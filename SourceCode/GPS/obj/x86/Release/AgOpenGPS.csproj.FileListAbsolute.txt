@@ -81,3 +81,4 @@ C:\Users\Leno\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPS
 C:\Users\Leno\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSettings.resources
 C:\Users\Leno\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Leno\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
