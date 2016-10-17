@@ -51,7 +51,6 @@
             this.lblSection4Width = new System.Windows.Forms.Label();
             this.lblSection3Width = new System.Windows.Forms.Label();
             this.lblSection2Width = new System.Windows.Forms.Label();
-            this.lblSection1Width = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -100,6 +99,12 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label14 = new System.Windows.Forms.Label();
+            this.lblSection2WidthM = new System.Windows.Forms.Label();
+            this.lblSection4WidthM = new System.Windows.Forms.Label();
+            this.lblSection3WidthM = new System.Windows.Forms.Label();
+            this.lblSection5WidthM = new System.Windows.Forms.Label();
+            this.lblSection1Width = new System.Windows.Forms.Label();
+            this.lblSection1WidthM = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
@@ -362,6 +367,11 @@
             // 
             // tabPageSections
             // 
+            this.tabPageSections.Controls.Add(this.lblSection5WidthM);
+            this.tabPageSections.Controls.Add(this.lblSection4WidthM);
+            this.tabPageSections.Controls.Add(this.lblSection3WidthM);
+            this.tabPageSections.Controls.Add(this.lblSection2WidthM);
+            this.tabPageSections.Controls.Add(this.lblSection1WidthM);
             this.tabPageSections.Controls.Add(this.lblTractor);
             this.tabPageSections.Controls.Add(this.lblSection5Width);
             this.tabPageSections.Controls.Add(this.lblSection4Width);
@@ -418,7 +428,7 @@
             // 
             this.lblSection5Width.AutoSize = true;
             this.lblSection5Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection5Width.Location = new System.Drawing.Point(751, 82);
+            this.lblSection5Width.Location = new System.Drawing.Point(751, 103);
             this.lblSection5Width.Name = "lblSection5Width";
             this.lblSection5Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection5Width.TabIndex = 36;
@@ -428,7 +438,7 @@
             // 
             this.lblSection4Width.AutoSize = true;
             this.lblSection4Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection4Width.Location = new System.Drawing.Point(585, 82);
+            this.lblSection4Width.Location = new System.Drawing.Point(585, 103);
             this.lblSection4Width.Name = "lblSection4Width";
             this.lblSection4Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection4Width.TabIndex = 35;
@@ -438,7 +448,7 @@
             // 
             this.lblSection3Width.AutoSize = true;
             this.lblSection3Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection3Width.Location = new System.Drawing.Point(419, 82);
+            this.lblSection3Width.Location = new System.Drawing.Point(419, 103);
             this.lblSection3Width.Name = "lblSection3Width";
             this.lblSection3Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection3Width.TabIndex = 34;
@@ -448,79 +458,69 @@
             // 
             this.lblSection2Width.AutoSize = true;
             this.lblSection2Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection2Width.Location = new System.Drawing.Point(253, 82);
+            this.lblSection2Width.Location = new System.Drawing.Point(253, 103);
             this.lblSection2Width.Name = "lblSection2Width";
             this.lblSection2Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection2Width.TabIndex = 33;
             this.lblSection2Width.Text = "0";
             // 
-            // lblSection1Width
-            // 
-            this.lblSection1Width.AutoSize = true;
-            this.lblSection1Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection1Width.Location = new System.Drawing.Point(87, 82);
-            this.lblSection1Width.Name = "lblSection1Width";
-            this.lblSection1Width.Size = new System.Drawing.Size(22, 23);
-            this.lblSection1Width.TabIndex = 32;
-            this.lblSection1Width.Text = "0";
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(842, 87);
+            this.label11.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(841, 101);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 38);
+            this.label11.Size = new System.Drawing.Size(36, 57);
             this.label11.TabIndex = 31;
             this.label11.Text = "|";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(678, 87);
+            this.label10.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(678, 101);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 38);
+            this.label10.Size = new System.Drawing.Size(36, 57);
             this.label10.TabIndex = 30;
             this.label10.Text = "|";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 87);
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(25, 101);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 38);
+            this.label6.Size = new System.Drawing.Size(36, 57);
             this.label6.TabIndex = 26;
             this.label6.Text = "|";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(513, 87);
+            this.label9.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(513, 101);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 38);
+            this.label9.Size = new System.Drawing.Size(36, 57);
             this.label9.TabIndex = 29;
             this.label9.Text = "|";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(350, 87);
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(350, 101);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 38);
+            this.label8.Size = new System.Drawing.Size(36, 57);
             this.label8.TabIndex = 28;
             this.label8.Text = "|";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(187, 87);
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(187, 101);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 38);
+            this.label7.Size = new System.Drawing.Size(36, 57);
             this.label7.TabIndex = 27;
             this.label7.Text = "|";
             // 
@@ -567,60 +567,60 @@
             // lblSection6Inch
             // 
             this.lblSection6Inch.AutoSize = true;
-            this.lblSection6Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection6Inch.Location = new System.Drawing.Point(830, 127);
+            this.lblSection6Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection6Inch.Location = new System.Drawing.Point(830, 167);
             this.lblSection6Inch.Name = "lblSection6Inch";
-            this.lblSection6Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection6Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection6Inch.TabIndex = 21;
             this.lblSection6Inch.Text = "0";
             // 
             // lblSection5Inch
             // 
             this.lblSection5Inch.AutoSize = true;
-            this.lblSection5Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection5Inch.Location = new System.Drawing.Point(667, 127);
+            this.lblSection5Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection5Inch.Location = new System.Drawing.Point(667, 167);
             this.lblSection5Inch.Name = "lblSection5Inch";
-            this.lblSection5Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection5Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection5Inch.TabIndex = 20;
             this.lblSection5Inch.Text = "0";
             // 
             // lblSection4Inch
             // 
             this.lblSection4Inch.AutoSize = true;
-            this.lblSection4Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection4Inch.Location = new System.Drawing.Point(503, 127);
+            this.lblSection4Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection4Inch.Location = new System.Drawing.Point(503, 167);
             this.lblSection4Inch.Name = "lblSection4Inch";
-            this.lblSection4Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection4Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection4Inch.TabIndex = 19;
             this.lblSection4Inch.Text = "0";
             // 
             // lblSection3Inch
             // 
             this.lblSection3Inch.AutoSize = true;
-            this.lblSection3Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection3Inch.Location = new System.Drawing.Point(340, 127);
+            this.lblSection3Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection3Inch.Location = new System.Drawing.Point(340, 167);
             this.lblSection3Inch.Name = "lblSection3Inch";
-            this.lblSection3Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection3Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection3Inch.TabIndex = 18;
             this.lblSection3Inch.Text = "0";
             // 
             // lblSection2Inch
             // 
             this.lblSection2Inch.AutoSize = true;
-            this.lblSection2Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection2Inch.Location = new System.Drawing.Point(177, 127);
+            this.lblSection2Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection2Inch.Location = new System.Drawing.Point(174, 167);
             this.lblSection2Inch.Name = "lblSection2Inch";
-            this.lblSection2Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection2Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection2Inch.TabIndex = 17;
             this.lblSection2Inch.Text = "0";
             // 
             // lblSection1Inch
             // 
             this.lblSection1Inch.AutoSize = true;
-            this.lblSection1Inch.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection1Inch.Location = new System.Drawing.Point(15, 127);
+            this.lblSection1Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection1Inch.Location = new System.Drawing.Point(10, 167);
             this.lblSection1Inch.Name = "lblSection1Inch";
-            this.lblSection1Inch.Size = new System.Drawing.Size(28, 29);
+            this.lblSection1Inch.Size = new System.Drawing.Size(25, 25);
             this.lblSection1Inch.TabIndex = 16;
             this.lblSection1Inch.Text = "0";
             // 
@@ -628,7 +628,7 @@
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.progressBar1.Location = new System.Drawing.Point(51, 105);
+            this.progressBar1.Location = new System.Drawing.Point(51, 126);
             this.progressBar1.Maximum = 50;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(796, 10);
@@ -643,7 +643,7 @@
             0,
             0,
             131072});
-            this.nudSection6.Location = new System.Drawing.Point(795, 173);
+            this.nudSection6.Location = new System.Drawing.Point(793, 195);
             this.nudSection6.Maximum = new decimal(new int[] {
             20,
             0,
@@ -655,7 +655,7 @@
             0,
             -2147483648});
             this.nudSection6.Name = "nudSection6";
-            this.nudSection6.Size = new System.Drawing.Size(88, 48);
+            this.nudSection6.Size = new System.Drawing.Size(102, 48);
             this.nudSection6.TabIndex = 14;
             this.nudSection6.Value = new decimal(new int[] {
             1,
@@ -673,7 +673,7 @@
             0,
             0,
             131072});
-            this.nudSection5.Location = new System.Drawing.Point(640, 173);
+            this.nudSection5.Location = new System.Drawing.Point(636, 195);
             this.nudSection5.Maximum = new decimal(new int[] {
             20,
             0,
@@ -685,7 +685,7 @@
             0,
             -2147483648});
             this.nudSection5.Name = "nudSection5";
-            this.nudSection5.Size = new System.Drawing.Size(88, 48);
+            this.nudSection5.Size = new System.Drawing.Size(102, 48);
             this.nudSection5.TabIndex = 13;
             this.nudSection5.Value = new decimal(new int[] {
             1,
@@ -703,7 +703,7 @@
             0,
             0,
             131072});
-            this.nudSection4.Location = new System.Drawing.Point(485, 173);
+            this.nudSection4.Location = new System.Drawing.Point(479, 195);
             this.nudSection4.Maximum = new decimal(new int[] {
             20,
             0,
@@ -715,7 +715,7 @@
             0,
             -2147483648});
             this.nudSection4.Name = "nudSection4";
-            this.nudSection4.Size = new System.Drawing.Size(88, 48);
+            this.nudSection4.Size = new System.Drawing.Size(102, 48);
             this.nudSection4.TabIndex = 12;
             this.nudSection4.Value = new decimal(new int[] {
             1,
@@ -733,7 +733,7 @@
             0,
             0,
             131072});
-            this.nudSection3.Location = new System.Drawing.Point(330, 173);
+            this.nudSection3.Location = new System.Drawing.Point(322, 195);
             this.nudSection3.Maximum = new decimal(new int[] {
             20,
             0,
@@ -745,7 +745,7 @@
             0,
             -2147483648});
             this.nudSection3.Name = "nudSection3";
-            this.nudSection3.Size = new System.Drawing.Size(88, 48);
+            this.nudSection3.Size = new System.Drawing.Size(102, 48);
             this.nudSection3.TabIndex = 11;
             this.nudSection3.Value = new decimal(new int[] {
             1,
@@ -763,7 +763,7 @@
             0,
             0,
             131072});
-            this.nudSection2.Location = new System.Drawing.Point(175, 173);
+            this.nudSection2.Location = new System.Drawing.Point(165, 195);
             this.nudSection2.Maximum = new decimal(new int[] {
             20,
             0,
@@ -775,7 +775,7 @@
             0,
             -2147483648});
             this.nudSection2.Name = "nudSection2";
-            this.nudSection2.Size = new System.Drawing.Size(88, 48);
+            this.nudSection2.Size = new System.Drawing.Size(102, 48);
             this.nudSection2.TabIndex = 10;
             this.nudSection2.Value = new decimal(new int[] {
             1,
@@ -793,7 +793,7 @@
             0,
             0,
             131072});
-            this.nudSection1.Location = new System.Drawing.Point(20, 173);
+            this.nudSection1.Location = new System.Drawing.Point(8, 195);
             this.nudSection1.Maximum = new decimal(new int[] {
             20,
             0,
@@ -805,7 +805,7 @@
             0,
             -2147483648});
             this.nudSection1.Name = "nudSection1";
-            this.nudSection1.Size = new System.Drawing.Size(88, 48);
+            this.nudSection1.Size = new System.Drawing.Size(102, 48);
             this.nudSection1.TabIndex = 9;
             this.nudSection1.Value = new decimal(new int[] {
             1,
@@ -827,7 +827,7 @@
             // nudNumberOfSections
             // 
             this.nudNumberOfSections.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNumberOfSections.Location = new System.Drawing.Point(51, 296);
+            this.nudNumberOfSections.Location = new System.Drawing.Point(32, 296);
             this.nudNumberOfSections.Maximum = new decimal(new int[] {
             5,
             0,
@@ -839,7 +839,7 @@
             0,
             0});
             this.nudNumberOfSections.Name = "nudNumberOfSections";
-            this.nudNumberOfSections.Size = new System.Drawing.Size(58, 46);
+            this.nudNumberOfSections.Size = new System.Drawing.Size(82, 46);
             this.nudNumberOfSections.TabIndex = 0;
             this.nudNumberOfSections.Value = new decimal(new int[] {
             1,
@@ -1166,6 +1166,66 @@
             this.label14.TabIndex = 57;
             this.label14.Text = "Don\'t forget to Save each page";
             // 
+            // lblSection2WidthM
+            // 
+            this.lblSection2WidthM.AutoSize = true;
+            this.lblSection2WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection2WidthM.Location = new System.Drawing.Point(253, 139);
+            this.lblSection2WidthM.Name = "lblSection2WidthM";
+            this.lblSection2WidthM.Size = new System.Drawing.Size(22, 23);
+            this.lblSection2WidthM.TabIndex = 39;
+            this.lblSection2WidthM.Text = "0";
+            // 
+            // lblSection4WidthM
+            // 
+            this.lblSection4WidthM.AutoSize = true;
+            this.lblSection4WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection4WidthM.Location = new System.Drawing.Point(585, 139);
+            this.lblSection4WidthM.Name = "lblSection4WidthM";
+            this.lblSection4WidthM.Size = new System.Drawing.Size(22, 23);
+            this.lblSection4WidthM.TabIndex = 41;
+            this.lblSection4WidthM.Text = "0";
+            // 
+            // lblSection3WidthM
+            // 
+            this.lblSection3WidthM.AutoSize = true;
+            this.lblSection3WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection3WidthM.Location = new System.Drawing.Point(419, 139);
+            this.lblSection3WidthM.Name = "lblSection3WidthM";
+            this.lblSection3WidthM.Size = new System.Drawing.Size(22, 23);
+            this.lblSection3WidthM.TabIndex = 40;
+            this.lblSection3WidthM.Text = "0";
+            // 
+            // lblSection5WidthM
+            // 
+            this.lblSection5WidthM.AutoSize = true;
+            this.lblSection5WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection5WidthM.Location = new System.Drawing.Point(751, 139);
+            this.lblSection5WidthM.Name = "lblSection5WidthM";
+            this.lblSection5WidthM.Size = new System.Drawing.Size(22, 23);
+            this.lblSection5WidthM.TabIndex = 43;
+            this.lblSection5WidthM.Text = "0";
+            // 
+            // lblSection1Width
+            // 
+            this.lblSection1Width.AutoSize = true;
+            this.lblSection1Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection1Width.Location = new System.Drawing.Point(78, 103);
+            this.lblSection1Width.Name = "lblSection1Width";
+            this.lblSection1Width.Size = new System.Drawing.Size(22, 23);
+            this.lblSection1Width.TabIndex = 32;
+            this.lblSection1Width.Text = "0";
+            // 
+            // lblSection1WidthM
+            // 
+            this.lblSection1WidthM.AutoSize = true;
+            this.lblSection1WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSection1WidthM.Location = new System.Drawing.Point(78, 139);
+            this.lblSection1WidthM.Name = "lblSection1WidthM";
+            this.lblSection1WidthM.Size = new System.Drawing.Size(22, 23);
+            this.lblSection1WidthM.TabIndex = 38;
+            this.lblSection1WidthM.Text = "0";
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1258,7 +1318,6 @@
         private System.Windows.Forms.Label lblSection4Width;
         private System.Windows.Forms.Label lblSection3Width;
         private System.Windows.Forms.Label lblSection2Width;
-        private System.Windows.Forms.Label lblSection1Width;
         private System.Windows.Forms.Label lblTractor;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.NumericUpDown nudNMEAHz;
@@ -1279,5 +1338,11 @@
         private System.Windows.Forms.Label lblAntennaFeet;
         private System.Windows.Forms.Label lblToolMarker;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblSection5WidthM;
+        private System.Windows.Forms.Label lblSection4WidthM;
+        private System.Windows.Forms.Label lblSection3WidthM;
+        private System.Windows.Forms.Label lblSection2WidthM;
+        private System.Windows.Forms.Label lblSection1WidthM;
+        private System.Windows.Forms.Label lblSection1Width;
     }
 }

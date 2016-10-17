@@ -267,12 +267,7 @@ namespace AgOpenGPS
             lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
         }
 
-        //user cancelled out
-        private void btnSectionCancel_Click(object sender, EventArgs e)
-        {
-
-        }
-
+ 
         //user wants change, update all the settings
         private void bntSectionOK_Click(object sender, EventArgs e)
         {
@@ -311,12 +306,16 @@ namespace AgOpenGPS
                         nudSection2.Enabled = true;
                         nudSection3.Enabled = false;
                         nudSection3.Value = 0;
+                        nudSection3.Visible = false;
                         nudSection4.Enabled = false;
                         nudSection4.Value = 0;
+                        nudSection4.Visible = false;
                         nudSection5.Enabled = false;
                         nudSection5.Value = 0;
+                        nudSection5.Visible = false;
                         nudSection6.Enabled = false;
                         nudSection6.Value = 0;
+                        nudSection6.Visible = false;
                         progressBar1.Value = 10 * i;
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection2.Value - nudSection1.Value); 
                         break;
@@ -326,12 +325,16 @@ namespace AgOpenGPS
                         nudSection1.Enabled = true;
                         nudSection2.Enabled = true;
                         nudSection3.Enabled = true;
+                        nudSection3.Visible = true;
                         nudSection4.Enabled = false;
+                        nudSection4.Visible = false;
                         nudSection4.Value = 0;
                         nudSection5.Enabled = false;
                         nudSection5.Value = 0;
+                        nudSection5.Visible = false;
                         nudSection6.Enabled = false;
                         nudSection6.Value = 0;
+                        nudSection6.Visible = false;
                         progressBar1.Value = 10 * i;
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection3.Value - nudSection1.Value);
                         break;
@@ -342,11 +345,15 @@ namespace AgOpenGPS
                         nudSection1.Enabled = true;
                         nudSection2.Enabled = true;
                         nudSection3.Enabled = true;
+                        nudSection3.Visible = true;
+                        nudSection4.Visible = true;
                         nudSection4.Enabled = true;
                         nudSection5.Enabled = false;
                         nudSection5.Value = 0;
+                        nudSection5.Visible = false;
                         nudSection6.Enabled = false;
                         nudSection6.Value = 0;
+                        nudSection6.Visible = false;
                         progressBar1.Value = 10 * i;
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection4.Value - nudSection1.Value);
                         break;
@@ -359,7 +366,11 @@ namespace AgOpenGPS
                         nudSection3.Enabled = true;
                         nudSection4.Enabled = true;
                         nudSection5.Enabled = true;
+                        nudSection3.Visible = true;
+                        nudSection4.Visible = true;
+                        nudSection5.Visible = true;
                         nudSection6.Enabled = false;
+                        nudSection6.Visible = false;
                         nudSection6.Value = 0;
                         progressBar1.Value = 10 * i;
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection5.Value - nudSection1.Value);
@@ -374,6 +385,10 @@ namespace AgOpenGPS
                         nudSection4.Enabled = true;
                         nudSection5.Enabled = true;
                         nudSection6.Enabled = true;
+                        nudSection3.Visible = true;
+                        nudSection4.Visible = true;
+                        nudSection5.Visible = true;
+                        nudSection6.Visible = true;
                         progressBar1.Value = 10 * i;
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection6.Value - nudSection1.Value);
                         break;
@@ -387,10 +402,14 @@ namespace AgOpenGPS
         {
             lblSection1Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection1.Value) * 39.3701, 0))+'"';
             lblSection2Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection2.Value) * 39.3701, 0))+'"';
-            lblSection3Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection3.Value) * 39.3701, 0))+'"';
-            lblSection4Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection4.Value) * 39.3701, 0))+'"';
-            lblSection5Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection5.Value) * 39.3701, 0))+'"';
-            lblSection6Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection6.Value) * 39.3701, 0))+'"';
+            lblSection3Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection3.Value) * 39.3701, 0)) + '"';
+            if (lblSection3Inch.Text == "0" + '"') lblSection3Inch.Text = "";
+            lblSection4Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection4.Value) * 39.3701, 0)) + '"';
+            if (lblSection4Inch.Text == "0" + '"') lblSection4Inch.Text = "";
+            lblSection5Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection5.Value) * 39.3701, 0)) + '"';
+            if (lblSection5Inch.Text == "0" + '"') lblSection5Inch.Text = "";
+            lblSection6Inch.Text = Convert.ToString(Math.Round(Convert.ToDouble(nudSection6.Value) * 39.3701, 0)) + '"';
+            if (lblSection6Inch.Text == "0"+'"') lblSection6Inch.Text = "";
 
             //based on number of sections, set accordingly
             int i = (int)nudNumberOfSections.Value;
@@ -399,11 +418,16 @@ namespace AgOpenGPS
                 case 1:
                     {
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection2.Value - nudSection1.Value);
+                        lblSection2Width.Text = "";
+                        lblSection3Width.Text = "";
+                        lblSection4Width.Text = "";
+                        lblSection5Width.Text = "";
+                        lblSection2WidthM.Text = "";
+                        lblSection3WidthM.Text = "";
+                        lblSection4WidthM.Text = "";
+                        lblSection5WidthM.Text = "";
                         lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value) * 39.3701, 0)) + '"';
-                        lblSection2Width.Text = "0";
-                        lblSection3Width.Text = "0";
-                        lblSection4Width.Text = "0";
-                        lblSection5Width.Text = "0";
+                        lblSection1WidthM.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 2));
                         break;
                     }
                 case 2:
@@ -411,9 +435,14 @@ namespace AgOpenGPS
                         lblVehicleToolWidth.Text = Convert.ToString(nudSection3.Value - nudSection1.Value);
                         lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value) * 39.3701, 0)) + '"';
                         lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value) * 39.3701, 0)) + '"';
-                        lblSection3Width.Text = "0";
-                        lblSection4Width.Text = "0";
-                        lblSection5Width.Text = "0";
+                        lblSection3Width.Text = "";
+                        lblSection4Width.Text = "";
+                        lblSection5Width.Text = "";
+                        lblSection3WidthM.Text = "";
+                        lblSection4WidthM.Text = "";
+                        lblSection5WidthM.Text = "";
+                        lblSection1WidthM.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 2));
+                        lblSection2WidthM.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 2));
                         break;
                     }
                 case 3:
@@ -422,8 +451,13 @@ namespace AgOpenGPS
                         lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value) * 39.3701, 0)) + '"';
                         lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value) * 39.3701, 0)) + '"';
                         lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value) * 39.3701, 0)) + '"';
-                        lblSection4Width.Text = "0";
-                        lblSection5Width.Text = "0";
+                        lblSection4Width.Text = "";
+                        lblSection5Width.Text = "";
+                        lblSection4WidthM.Text = "";
+                        lblSection5WidthM.Text = "";
+                        lblSection1WidthM.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 2));
+                        lblSection2WidthM.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 2));
+                        lblSection3WidthM.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 2));
                         break;
                     }
                 case 4:
@@ -433,7 +467,12 @@ namespace AgOpenGPS
                         lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value) * 39.3701, 0)) + '"';
                         lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value) * 39.3701, 0)) + '"';
                         lblSection4Width.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value) * 39.3701, 0)) + '"';
-                        lblSection5Width.Text = "0";
+                        lblSection5Width.Text = "";
+                        lblSection5WidthM.Text = "";
+                        lblSection1WidthM.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 2));
+                        lblSection2WidthM.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 2));
+                        lblSection3WidthM.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 2));
+                        lblSection4WidthM.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value), 2));
                         break;
                     }
                 case 5:
@@ -444,6 +483,11 @@ namespace AgOpenGPS
                         lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value) * 39.3701, 0)) + '"';
                         lblSection4Width.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value) * 39.3701, 0)) + '"';
                         lblSection5Width.Text = Convert.ToString(Math.Round(((float)nudSection6.Value - (float)nudSection5.Value) * 39.3701, 0)) + '"';
+                        lblSection1WidthM.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 2));
+                        lblSection2WidthM.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 2));
+                        lblSection3WidthM.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 2));
+                        lblSection4WidthM.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value), 2));
+                        lblSection5WidthM.Text = Convert.ToString(Math.Round(((float)nudSection6.Value - (float)nudSection5.Value), 2));
                         break;
                     }
             }
