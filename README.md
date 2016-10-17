@@ -10,4 +10,4 @@ There is much work to be done yet such as the interface for an Arduino to do the
 
 That is planned for the near future.
 
-Included is a setup, application, and source folders. 
+Included is an application, and source folders. 
