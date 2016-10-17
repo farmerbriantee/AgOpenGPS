@@ -1165,7 +1165,6 @@ namespace AgOpenGPS
             double sectionLookAheadPosition = (pn.speed * vehicle.lookAhead*2.5); //how far ahead ie up the screen
             if (sectionLookAheadPosition > 40) sectionLookAheadPosition = 40;
 
-          
             //scan 3 different spots, one at 2 secs ahead and one at 1 sec and one at section
             gl.ReadPixels(rpXPosition, 202 + (int)sectionLookAheadPosition + (int)vehicle.toolForeAft * 10, rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsBottom);
