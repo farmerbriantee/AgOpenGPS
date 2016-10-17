@@ -20,11 +20,13 @@ namespace AgOpenGPS
         public double distance = 0.0;
 
         //array index for previous northing and easting positions
-        public static int numPrevs = 20;
+        public static int numPrevs = 22;
 
         //able to go back in time
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
+
+        public double prevFixHeading;
 
         public string recvSentence = "Nothing";
 
@@ -147,6 +149,11 @@ namespace AgOpenGPS
                 prevEasting[0] = pn.easting;
                 prevNorthing[0] = pn.northing;
 
+                //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
+
+                prevFixHeading = fixHeading;
+
+ 
                 //speed in kph on menubar
                 this.lblSpeed.Text = SpeedMPH;
 

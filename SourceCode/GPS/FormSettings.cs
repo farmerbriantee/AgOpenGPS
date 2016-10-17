@@ -55,8 +55,15 @@ namespace AgOpenGPS
 
             //set vehicle settings to what it is in the settings page
             nudOverlap.Value = (decimal)mainForm.vehicle.toolOverlap;
+            OverlapUpdate();
+
             nudForeAft.Value = (decimal)mainForm.vehicle.toolForeAft;
+            ForeAftUpdate();
+
             nudAntennaHeight.Value = (decimal)mainForm.vehicle.antennaHeight;
+            AntennaHeightUpdate();
+
+
             nudLookAhead.Value = (decimal)mainForm.vehicle.lookAhead;
 
             //sections set to settings page
@@ -191,19 +198,23 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
+         private void ForeAftUpdate()
+         {
+             double toFeet = (Convert.ToDouble(nudForeAft.Value) * 3.28084);
+             lblForeAftFeet.Text = Convert.ToString((int)toFeet) + "'";
+             double temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
+             lblForeAftInches.Text = Convert.ToString(temp) + '"';
 
+             if ((int)((double)nudForeAft.Value * 1000.0) < 0) lblToolMarker.Left = 3;
+             else lblToolMarker.Left = 390;
+         }
+ 
         private void nudForeAft_ValueChanged(object sender, EventArgs e)
         {
-            double toFeet = (Convert.ToDouble(nudForeAft.Value) * 3.28084);
-            lblForeAftFeet.Text = Convert.ToString((int)toFeet) + "'";
-            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
-            lblForeAftInches.Text = Convert.ToString(temp)+'"';
-
-            if ((int)((double)nudForeAft.Value*1000.0) < 0) lblToolMarker.Left = 3;
-            else lblToolMarker.Left = 390;
+            ForeAftUpdate();
         }
 
-        private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
+        private void AntennaHeightUpdate()
         {
             double toFeet = (Convert.ToDouble(nudAntennaHeight.Value) * 3.28084);
             lblAntennaFeet.Text = Convert.ToString((int)toFeet) + "'";
@@ -211,11 +222,16 @@ namespace AgOpenGPS
             lblAntennaInches.Text = Convert.ToString(temp) + '"';           
         }
 
+        private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
+        {
+            AntennaHeightUpdate();
+        }
+
           #endregion Vehicle
 
 #region guidance
 
-         private void btnGuidanceOK_Click(object sender, EventArgs e)
+        private void btnGuidanceOK_Click(object sender, EventArgs e)
         {
             //save the new set width in settings
             mainForm.vehicle.toolOverlap = (double)nudOverlap.Value;
@@ -224,12 +240,17 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-       private void nudOverlap_ValueChanged(object sender, EventArgs e)
+        private void OverlapUpdate()
         {
             double toFeet = (Convert.ToDouble(nudOverlap.Value) * 3.28084);
             lblOverlapFeet.Text = Convert.ToString((int)toFeet) + "'";
             double temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
             lblOverlapInches.Text = Convert.ToString(temp)+'"';
+        }
+
+        private void nudOverlap_ValueChanged(object sender, EventArgs e)
+        {
+            OverlapUpdate();
         }
 
 
