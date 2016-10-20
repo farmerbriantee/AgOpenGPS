@@ -1,5 +1,8 @@
 
 # AgOpenGPS
+
+***** This is Alpha software. It has a few bugs and are being worked on. Check back for newer versions
+
 Ag Precision Mapping and Section Control Software
 
 This software reads NMEA strings for the purpose of recording and mapping position information 
