@@ -117,9 +117,8 @@ namespace AgOpenGPS
             updatedVTG = false;
             updatedRMC = false;
 
-            if (portData == null) return 0;
-            
-              rawBuffer += portData; // Add new data
+            // Add new data
+            if (portData == null) return 0;  rawBuffer += portData; 
 
             //find end of a sentence
             int cr = rawBuffer.IndexOf("\r\n");
@@ -129,7 +128,7 @@ namespace AgOpenGPS
             cr = rawBuffer.IndexOf("$");
             if (cr == -1) return 0;
 
-            //now we have a complete sentence somewhere in the portData
+            //now we have a complete sentence or more somewhere in the portData
             bool stillData = true;
 
             while (stillData)       
@@ -229,9 +228,11 @@ namespace AgOpenGPS
                 }//end $GPRMC
 #endregion $GPRMC
 
-#region $GPGGA
-          //is the sentence GGA
-                if (words[0] == "$GPGGA" & words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
+                #region $GPGGA
+
+                //is the sentence GGA
+                //if (words[0] == "$GPGGA" & words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
+                if (words[0] == "$GPGGA" )
                 {
                     //altitude
                     if (words[9] == String.Empty) altitude = -1;

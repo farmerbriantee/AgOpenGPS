@@ -1,4 +1,4 @@
-﻿October 2016
+﻿v1.2 October 2016
 * Fixed the RMC and GGA parsing routine, rather then reading an NMEA line and then updating, read all existing lines and process all at once. 
 	- much faster accumulation of data
 * Changed OpenGL draw routine from being triggered when RMC rec'd to 5 frames per second and triggering functions from there.
