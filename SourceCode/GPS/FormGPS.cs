@@ -27,6 +27,24 @@ namespace AgOpenGPS
         //maximum sections available
         const int MAXSECTIONS = 5;
 
+        private const byte SET_1 = 1;
+        private const byte SET_2 = 2;
+        private const byte SET_3 = 4;
+        private const byte SET_4 = 8;
+        private const byte SET_5 = 16;
+                            
+        private const byte RESET_1 = 254;
+        private const byte RESET_2 = 253;
+        private const byte RESET_3 = 251;
+        private const byte RESET_4 = 247;
+        private const byte RESET_5 = 239;
+
+        byte[] bufferArd = { 0 };
+
+
+        //polygon mode for section drawing
+        bool isDrawPolygons = false;
+
         //Current fix position
         public double fixPosX = 0.0;
         public double fixPosY = 0.0;
@@ -36,10 +54,11 @@ namespace AgOpenGPS
         public double fixHeading = 0.0;
         public double fixHeadingCam = 0.0;
         public double fixHeadingSection = 0.0;
+        public double fixHeadingDelta = 0;
 
         //storage for the cos and sin of heading
-        double cosHeading = 1.0;
-        double sinHeading = 0.0;
+        public double cosHeading = 1.0;
+        public double sinHeading = 0.0;
 
         //Is it in 2D or 3D
         public bool isIn3D = true;
@@ -64,6 +83,7 @@ namespace AgOpenGPS
         //how many individual sections
         public int numberOfSections;
 
+
 // Instances --------------------------------------------------------------------------
 
         //Instances made in FormGPS_Load if not new here.
@@ -74,12 +94,12 @@ namespace AgOpenGPS
         CWorldGrid worldGrid;
 
         //create instance of a stopwatch
-        //Stopwatch sw = new Stopwatch();
+        Stopwatch sw = new Stopwatch();
 
         //Parsing object of NMEA sentences
-        CNMEA pn = new CNMEA();
+        public CNMEA pn;
 
-        //create an array of sections, so far only 1 section
+        //create an array of sections, so far only 5 section
         public CSection[] section = new CSection[MAXSECTIONS];
 
 
@@ -92,7 +112,7 @@ namespace AgOpenGPS
         //create a sound player object
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
-//................................................................................
+#region Forms //................................................................................
 
         //All the forms related procedures
 
@@ -102,7 +122,7 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            //sw.Start();//start the stopwatch
+            sw.Start();//start the stopwatch
         }
 
         //Initialize items before the form Loads or is visible
@@ -117,8 +137,11 @@ namespace AgOpenGPS
             //our vehicle made with gl object and pointer of mainform
             vehicle = new CVehicle(gl, this);
 
+            //our NMEA parser
+            pn = new CNMEA(this);
+
             //get the pitch of camera from settings
-            camera.camPitch = Properties.Settings.Default.settings_pitch;
+            camera.camPitch = Properties.Settings.Default.setting_pitch;
 
             //change 2D or 3D icon accordingly on button
             if (camera.camPitch == -20)  {
@@ -126,9 +149,13 @@ namespace AgOpenGPS
             else  {
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_2D;   isIn3D = false; }
 
-           //set baud and port from last time run
+            //set baud and port from last time run
             baudRate = Properties.Settings.Default.setting_baudRate;
-            portName = Properties.Settings.Default.settings_portName;
+            portName = Properties.Settings.Default.setting_portName;
+
+            //same for Arduino port
+            portNameArduino = Properties.Settings.Default.setting_portNameArduino;
+            wasArduinoConnectedLastRun = Properties.Settings.Default.setting_wasArduinoConnected;
 
             //get the number of sections from settings
             numberOfSections = Properties.Settings.Default.setting_numSections;
@@ -138,6 +165,7 @@ namespace AgOpenGPS
             vehicle.toolForeAft = Properties.Settings.Default.setting_toolForeAft;
             vehicle.antennaHeight = Properties.Settings.Default.setting_antennaHeight;
             vehicle.lookAhead = Properties.Settings.Default.setting_lookAhead;
+            vehicle.isHitched = Properties.Settings.Default.setting_isHitched;
             
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
@@ -160,7 +188,11 @@ namespace AgOpenGPS
             menuCloseJob.Enabled = false;
 
             //try and open, if not go to setting up port
-            SerialPortOpen();
+            SerialPortOpenGPS();
+
+            //Only if Arduino was connected successfully last run
+            if (wasArduinoConnectedLastRun)
+                    SerialPortOpenArduino();
 
             //remembered window position
             if (Properties.Settings.Default.Maximized)
@@ -208,8 +240,20 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Minimized = true;
             }
             Properties.Settings.Default.Save();
-        }
 
+            //turn everything off
+            for (int j = 0; j < MAXSECTIONS; j++)
+            {
+                section[j].isSectionOn = false;
+            }
+
+            SectionControlOutToArduino();
+
+       }
+
+#endregion
+
+#region OpenGL //-------------------------------------------------------------------
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
@@ -220,6 +264,15 @@ namespace AgOpenGPS
             ////start the watch and time till it gets back here
             //sw.Start();
 
+            //if there is new data go update everything first.
+            UpdateFixPosition();
+
+            //Update the port counter
+            recvCounter++;
+
+            ProcessSectionOnOffRequests();
+
+            SectionControlOutToArduino();
             
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
@@ -243,8 +296,10 @@ namespace AgOpenGPS
             gl.Enable(OpenGL.GL_BLEND);
             gl.Disable(OpenGL.GL_DEPTH_TEST);
 
-            //patch color
+            //section patch color
             gl.Color(0.0f, 0.45f, 0.0f, 0.6f);
+            
+            if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
 
             //draw patches of sections
             for (int j = 0; j < numberOfSections; j++)
@@ -265,6 +320,8 @@ namespace AgOpenGPS
                     }
                 }
             }
+
+            gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
  
             //draw the tractor/implement
             vehicle.DrawVehicle();
@@ -356,7 +413,7 @@ namespace AgOpenGPS
             LoadGLTextures();
 
             //  Set the clear color.
-            gl.ClearColor(0.6f, 0.6f, 0.6f, 1.0f);
+            gl.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
 
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
@@ -391,8 +448,9 @@ namespace AgOpenGPS
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
 
+#endregion
 
-//Procedures and Functions --------------------------------------------------------------
+#region Procedures and Functions //---------------------------------------
 
         // Load Bitmaps And Convert To Textures
         public uint LoadGLTextures()
@@ -482,9 +540,6 @@ namespace AgOpenGPS
             //left and right tool position
             vehicle.toolFarLeftPosition = section[0].positionLeft;
             vehicle.toolFarRightPosition = section[numberOfSections-1].positionRight;
-
-            //status bar at bottom
-            lblEqWidth.Text = Convert.ToString(vehicle.toolWidth);
         }
 
         //request a new job
@@ -513,7 +568,6 @@ namespace AgOpenGPS
                 //clean out the lists
                 section[j].patchList.Clear();
                 if (section[j].triangleList != null) section[j].triangleList.Clear();
-                section[j].isPointListZero = true;
 
                 //turn all the sections off
                 section[j].isSectionOn = false;
@@ -553,10 +607,6 @@ namespace AgOpenGPS
             //reset acre and distance counters
             totalDistance = 0;
             totalSquareMeters = 0;
-            
-            
-
-
         }
 
         //function to open a previously saved field
@@ -837,9 +887,15 @@ namespace AgOpenGPS
 
         }
 
-        //..................................................................
+        #endregion //..................................................................
 
-// Menu items ------------------------------------------------------------------
+#region Menu items //------------------------------------------------------------------
+
+        private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isDrawPolygons = !isDrawPolygons;
+            polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
+        }
 
         private void menuJobNew_Click(object sender, EventArgs e)
         {
@@ -853,7 +909,7 @@ namespace AgOpenGPS
 
         private void menuItemVehicleToolStrip_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(0);
+            SettingsPageOpen(1);
         }
 
         private void menuItemGPSDataToolStrip_Click(object sender, EventArgs e)
@@ -863,12 +919,12 @@ namespace AgOpenGPS
 
         private void menuItemCOMPortsToolStrip_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(2);
+            SettingsPageOpen(0);
         }
 
         private void sectionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(1);
+            SettingsPageOpen(2);
         }
 
        private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -899,8 +955,9 @@ namespace AgOpenGPS
             Process.Start("help.htm");
 
         }
+        #endregion
 
-// Buttons -----------------------------------------------------------------------
+#region Buttons //-----------------------------------------------------------------------
 
         //ABLine
         private void btnABLine_Click(object sender, EventArgs e)
@@ -1024,7 +1081,7 @@ namespace AgOpenGPS
 
             }
 
-            Properties.Settings.Default.settings_pitch = camera.camPitch;
+            Properties.Settings.Default.setting_pitch = camera.camPitch;
             Properties.Settings.Default.Save();
             SetZoom();
         }
@@ -1051,7 +1108,15 @@ namespace AgOpenGPS
                 //turn off the master section on off flag
                 isMasterSectionOn = false;
 
-                for (int j=0; j<numberOfSections; j++) section[j].TurnSectionOff();
+                for (int j = 0; j < numberOfSections; j++)
+                {
+                    section[j].TurnSectionOff();
+                    section[j].sectionOnOffCycle = false;
+                    section[j].sectionOffRequest = true;
+                    section[j].sectionOnRequest = false;
+                    section[j].sectionOffTimer = 0;
+                    section[j].sectionOnTimer = 0;
+                }
             }
 
         }
@@ -1073,8 +1138,19 @@ namespace AgOpenGPS
             FileOpenField();
         }
 
-//Properties ---------------------------------------------------------------------
-#region Properties
+        private void btnSettings_Click_1(object sender, EventArgs e)
+        {
+            SettingsPageOpen(1);
+        }
+
+       private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
+        {
+            userDistance = 0;
+        }
+        
+#endregion
+
+#region Properties // ---------------------------------------------------------------------
 
         public string FixNorthing { get { return Convert.ToString(Math.Round(pn.northing, 2)); } }
         public string FixEasting { get { return Convert.ToString(Math.Round(pn.easting, 2)); } }
@@ -1101,9 +1177,15 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 8) return "Simulation";  
             else                         return "Unknown";    } }
 
+        public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
+        public string Acres { get { return Math.Round(totalSquareMeters / 4046.8627, 2).ToString(); } }
+
+
+        
+
 #endregion properties
 
-//Section Control and Off Screen Buffer
+#region SectionControl // ----------------------------------------------------------------
 
         //data buffer for pixels read from off screen buffer
         byte[] pixelsTop = new byte[401];
@@ -1157,31 +1239,27 @@ namespace AgOpenGPS
             }
  
             //10 pixels to a meter or 1 pixel is 10cm or 10 pixels is 1 meter - simple math
-            int rpXPosition = 200 - Math.Abs((int)vehicle.toolFarLeftPosition * 10);
-            int rpWidth = (int)vehicle.toolWidth * 10;
+            int rpXPosition = 200 - Math.Abs((int)(vehicle.toolFarLeftPosition * 10));
+            int rpWidth = (int)(vehicle.toolWidth * 10);
 
-            //read position for look ahead for turning on - this is only 1/3 of the way but....
-            //read pixels at 3 lines so it works out by multiplying the int by 3
-            double sectionLookAheadPosition = (pn.speed * vehicle.lookAhead*2.5); //how far ahead ie up the screen
-            if (sectionLookAheadPosition > 40) sectionLookAheadPosition = 40;
+            //read position for look ahead for turning on 
+            double sectionLookAheadPosition = (pn.speed * vehicle.lookAhead * 2.0) + (vehicle.toolForeAft * 10); //how far ahead ie up the screen
+            if (sectionLookAheadPosition > 80) sectionLookAheadPosition = 80;
 
             //scan 3 different spots, one at 2 secs ahead and one at 1 sec and one at section
-            gl.ReadPixels(rpXPosition, 202 + (int)sectionLookAheadPosition + (int)vehicle.toolForeAft * 10, rpWidth, 1,
+            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition*0.6), rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsBottom);
-            gl.ReadPixels(rpXPosition, 202 + (int)(sectionLookAheadPosition*0.8) + (int)vehicle.toolForeAft * 10, rpWidth, 1,
+            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition*0.8), rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsMiddle);
-            gl.ReadPixels(rpXPosition, 202 + (int)(sectionLookAheadPosition*0.6) + (int)vehicle.toolForeAft * 10, rpWidth, 1,
+            gl.ReadPixels(rpXPosition, 200 + (int)sectionLookAheadPosition, rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
 
             //scan just ahead of the tool otherwise its too fussy and keep turning on section
-            gl.ReadPixels(rpXPosition, 202 + (int)(vehicle.toolForeAft * 10), rpWidth, 1,
+            gl.ReadPixels(rpXPosition, 203 + (int)(vehicle.toolForeAft * 10), rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
 
-            //just ahead of tool
-            gl.ReadPixels(rpXPosition, 201 + (int)(vehicle.toolForeAft * 10), rpWidth, 1,
-                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
             
-            //XOR them together, if anywhere isn't applied, turn on section
+            //OR them together, if anywhere isn't applied, turn on section
             for (int a = 0; a < 401; a++)
             {
                 if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10 
@@ -1195,25 +1273,32 @@ namespace AgOpenGPS
             for (int j = 0; j < numberOfSections; j++)
             {
                 //section width * 10 is measured in pixels
-                for (int i = 0; i < (int)section[j].sectionWidth*10; i++)
+                for (int i = 0; i < (int)(section[j].sectionWidth*10); i++)
                 {
                     if (pixelsAtTool[x] < 50)
                     {
                         isSectionRequiredOn = true;
-                        x = x + (((int)section[j].sectionWidth * 10 - 1) - i);
+                        x += (int)(section[j].sectionWidth * 10) - i;
                         break;
                     }
 
                 x++;
 
                 }
-                
-                if (isSectionRequiredOn && !section[j].isSectionOn) section[j].TurnSectionOn();
-                else if (!isSectionRequiredOn && section[j].isSectionOn)
+
+                if (isSectionRequiredOn && isMasterSectionOn)
                 {
-                    section[j].TurnSectionOff();
+                    //global request to turn on section
+                    section[j].sectionOnRequest = true;
                 }
 
+                else if (!isSectionRequiredOn )
+                {
+                    //global request to turn off section
+                    section[j].sectionOffRequest = true;
+                }
+
+                //used in this loop only
                 isSectionRequiredOn = false;
             }
             gl.Flush();
@@ -1232,16 +1317,93 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(6.0f, (double)openGLControlBack.Width / (double)openGLControlBack.Height, 1, 6000);
+            gl.Perspective(6.0f, 1, 1, 6000);
 
             //  Set the modelview matrix.
             gl.MatrixMode(OpenGL.GL_MODELVIEW);        
 
         }
 
+
+#endregion
+
+        private void ProcessSectionOnOffRequests()
+        {
+            for (int j = 0; j < numberOfSections; j++)
+            {
+                //lblTest.Text = section[j].sectionOnTimer.ToString();
+                //lblTest2.Text = section[j].sectionOffTimer.ToString();
+
+                //Turn ON
+                //if requested to be on, set the timer to 10 (2 seconds) = 5 frames per second
+                if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                {
+                    section[j].sectionOnTimer = 10;
+                    section[j].sectionOnOffCycle = true;
+                }
+
+                //reset the ON request
+                section[j].sectionOnRequest = false;
+
+                //decrement the timer if not zero
+                if (section[j].sectionOnTimer > 0)
+                {
+                    //turn the section ON if not and decrement timer
+                    section[j].sectionOnTimer--;
+                    if (!section[j].isSectionOn) section[j].TurnSectionOn();
+                    
+                    //keep resetting the section OFF timer while the ON is active
+                    section[j].sectionOffTimer = 3;
+                }
+                
+                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 5;
+
+                //decrement the off timer
+                if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
+
+                //Turn OFF
+                //if Off section timer is zero, turn off the section
+                if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest) 
+                {
+                    if (section[j].isSectionOn) section[j].TurnSectionOff();
+                    section[j].sectionOnOffCycle = false;
+                    section[j].sectionOffRequest = false;
+                }
+                    
+            }
+        }
  
+        private void tmrWatchdog_tick(object sender, EventArgs e)
+        {
+            this.lblLatitude.Text = Latitude;
+            this.lblLongitude.Text = Longitude;
+
+            //acres on the master section soft control
+            this.chkSectionsOnOff.Text = Acres;
+
+            //status strip values
+            stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
+            stripMPH.Text = "MPH: " + SpeedMPH;
+            stripPassNumber.Text = "Pass: " + PassNumber;
+            stripGridZoom.Text = "Grid: " + Grid + " ft/sq";
+            stripAcres.Text = "Acres: " + Acres;
+
+            //update the online indicator
+            if (recvCounter > 16)
+            {
+                stripOnlineGPS.Value = 1;
+            }
+            else stripOnlineGPS.Value = 100;
+        }
+
+        private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GPSDataShow();
+        }
+
+
  
-    }//class FormGPS
+   }//class FormGPS
 }//namespace AgOpenGPS
 
 

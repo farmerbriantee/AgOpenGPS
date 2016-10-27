@@ -5,30 +5,55 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SharpGL;
+using System.Drawing;
 
 
 namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-        public static string portName = "COM1";
+        public static string portName = "GPS";
         public static int baudRate = 4800;
 
+        public static string portNameArduino = "ArduinoSectionControl";
+        public static int baudRateArduino = 9600;
+
+        //used to decide to autoconnect arduino this run
+        public bool wasArduinoConnectedLastRun = false;
+
+        //very first fix to setup grid etc
         public bool isFirstFixPositionSet = false;
 
         //a distance between previous and current fix
-        public double distance = 0.0;
+        private double distance = 0.0;
+        public double sectionDistance = 0;
+        public double userDistance = 0;
+
+        //how far travelled since last section was added, section points
+        double sectionTriggerDistance = 0;
+        double currentSectionNorthing = 0;
+        double currentSectionEasting = 0;
+        public double prevSectionNorthing = 0;
+        public double prevSectionEasting = 0;
+
+        //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
+        public int recvCounter = 20;
 
         //array index for previous northing and easting positions
-        public static int numPrevs = 22;
-
-        //able to go back in time
+        private static int numPrevs = 42;
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
 
+
         public double prevFixHeading;
 
-        public string recvSentence = "Nothing";
+
+        public string recvSentence = "InitalSetting";
+        public string recvSentenceArduino = "Arduino";
+
+        public string recvSentenceSettings = "InitalSetting";
+        public string recvSentenceSettingsArduino = "Arduino";
+
 
         //tally counters for display
         public double totalSquareMeters = 0;
@@ -37,31 +62,73 @@ namespace AgOpenGPS
         //serial port gps is connected to
         public SerialPort sp = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
-        public int rmcUpdateHz = 1;
+        //serial port Arduino is connected to
+        public SerialPort spArduino = new SerialPort(portNameArduino, baudRateArduino, Parity.None, 8, StopBits.One);
+
+        //how many fix updates per sec
+        public int rmcUpdateHz = 5;
 
        //individual points
         //List<CPointData> pointList = new List<CPointData>();
 
-        //called by the delegate every time a sentence terminated in * is rec'd
-        private void SerialLineReceived(string sentence)
+        private void SectionControlOutToArduino()
         {
-            //spit it out no matter what it says
-            recvSentence = sentence;
-            textBoxRcv.Text = "";
-            textBoxRcv.Text = sentence;
+            if (!spArduino.IsOpen) return;
 
-            //if saving a file ignore any movement
+            byte set = 1;
+            byte reset = 254;
+            bufferArd[0] = 0;
+
+            for (int j = 0; j < MAXSECTIONS; j++)
+            {
+                if (section[j].isSectionOn) bufferArd[0] = (byte)(bufferArd[0] | set);
+                else bufferArd[0] = (byte)(bufferArd[0] & reset);
+
+                set = (byte)(set << 1);
+
+                reset = (byte)(reset << 1);
+                reset = (byte)(reset + 1);
+            }
+
+            //Tell Arduino to turn section on or off accordingly
+            if (isMasterSectionOn & spArduino.IsOpen)
+            {
+                try { spArduino.Write(bufferArd, 0, 1); }
+                catch (Exception) { SerialPortCloseArduino(); }
+            }
+            else
+            {
+                bufferArd[0] = 0;
+
+                try { spArduino.Write(bufferArd, 0, 1); }
+                catch (Exception) { SerialPortCloseArduino(); }
+                return;
+            }
+
+
+        }
+
+        
+        //called by the openglDraw routine.
+        private void UpdateFixPosition()
+        {
+           //if saving a file ignore any movement
             if (isSavingFile) return;
+            //textBoxRcv.Text = recvSentence;
 
+            //if empty just return
+            if (recvSentence == "") return;
 
             //parse the line received GGA and RMC
-            //return 0 Bad Data, 1 RMC Data updated, 2 GGA updated 
-            int newFix = pn.ParseNMEA(sentence);
+            int newFix = pn.ParseNMEA(recvSentence);
 
-            //if its a valid fix data
-            if (newFix == 1)
+            //not enough for a comlete sentence
+            //if (newFix == 0) return;
+            
+            //if its a valid fix data for RMC
+            if (pn.updatedRMC)
             {
-                recvSentence = sentence;
+                //recvSentence = recvSentence;
                 //this is the current position taken from the latest sentence
                 //CPointData pd = new CPointData(pn.northing, pn.easting, pn.speed, pn.headingTrue);
 
@@ -71,20 +138,28 @@ namespace AgOpenGPS
                     isFirstFixPositionSet = true;
                     worldGrid.CreateWorldGrid(pn.northing, pn.easting);
 
-                    //moved enough to add position
-                    prevNorthing[0] = pn.northing;
+                    //save a copy of previous positions for cam heading of desired filtering or delay
+                    for (int x = numPrevs - 1; x > 0; x--)
+                    {
+                        prevNorthing[x] = prevNorthing[x - 1];
+                        prevEasting[x] = prevEasting[x - 1];
+                    }
+
+                    //most recent fixes
                     prevEasting[0] = pn.easting;
+                    prevNorthing[0] = pn.northing;
+
+                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
+
+                    prevFixHeading = fixHeading;
+
+                    prevSectionEasting = pn.easting;
+                    prevSectionNorthing = pn.northing;
 
                     return;
                 }
 
-                //check if position moved enough at least 0.5 meter, if not don't save point, just return
-                distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
-                if (distance < 0.1)
-                {
-                    return;
-                }
-
+ 
                 //determine fix positions and heading
                 fixPosX = (pn.easting);
                 fixPosZ = (pn.northing);
@@ -95,49 +170,68 @@ namespace AgOpenGPS
                 if (fixHeading < 0) fixHeading += Math.PI * 2.0;
  
                 //in radians
-                fixHeadingSection = Math.Atan2(pn.easting - prevEasting[rmcUpdateHz*2], pn.northing - prevNorthing[rmcUpdateHz*2]);
+                fixHeadingSection = Math.Atan2(pn.easting - prevEasting[rmcUpdateHz*1], pn.northing - prevNorthing[rmcUpdateHz*1]);
                 if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
 
                 //in degrees for glRotate opengl methods. 
                 //can be filtered for smoother display by higher prevEastings and prevNorthings
-                fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
+                fixHeadingCam = Math.Atan2(pn.easting - prevEasting[4], pn.northing - prevNorthing[4]);
                 if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                 fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
 
+                fixHeadingDelta = fixHeading - fixHeadingSection;
+                //lblTest.Text = Convert.ToString(Math.Round(fixHeadingDelta, 3));
+
                 //check to make sure the grid is big enough
                 worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
-
 
                 //precalc the sin and cos of heading * -1
                 sinHeading = Math.Sin(-fixHeadingSection);
                 cosHeading = Math.Cos(-fixHeadingSection);
 
-                //add the pathpoint
-                if (isJobStarted && isMasterSectionOn)
+                //calc distance travelled since last GPS fix
+                distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
+
+                //calculate how far since the last section triangle was made
+                currentSectionNorthing = pn.northing + vehicle.toolForeAft * cosHeading;
+                currentSectionEasting = pn.easting + vehicle.toolForeAft * -sinHeading;
+
+                //To prevent drawing high numbers of triangles, determine and test before drawing vertex
+                sectionTriggerDistance = pn.Distance(currentSectionNorthing, currentSectionEasting, prevSectionNorthing, prevSectionEasting);
+
+                //speed compensated min length limit triangles. The faster you go, the less of them
+                if (sectionTriggerDistance > (pn.speed/7+0.5))
                 {
-                    //calculate the new GPS coordinates based on fore / aft of tool
-                    double north = pn.northing + vehicle.toolForeAft * cosHeading;
-                    double east = pn.easting + vehicle.toolForeAft * -sinHeading;
-                    double prevNorth = prevNorthing[0] + vehicle.toolForeAft * cosHeading;
-                    double prevEast = prevEasting[0] + vehicle.toolForeAft * -sinHeading;
+                    
 
-                    //send the current and previous GPS fore/aft corrected fix to each section
-                    for (int j = 0; j < numberOfSections; j++)
+                    //add the pathpoint
+                    if (isJobStarted && isMasterSectionOn)
                     {
-                        if (section[j].isSectionOn)
-                        {
-                            section[j].AddPathPoint(north, east, prevNorth, prevEast, cosHeading, sinHeading);
+                        //save the north & east as previous
+                        prevSectionNorthing = currentSectionNorthing ;
+                        prevSectionEasting = currentSectionEasting;
 
-                            //area is made up of square meters in each section
-                            totalSquareMeters += distance * section[j].sectionWidth;
+                        //send the current and previous GPS fore/aft corrected fix to each section
+                        for (int j = 0; j < numberOfSections; j++)
+                        {
+                            if (section[j].isSectionOn)
+                            {
+                                section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);
+
+                                //area is made up of square meters in each section
+                                totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth;
+                            }
                         }
                     }
                 }
 
+ 
                 //distance tally, calculated based on fixposition updates, NOT sections. Runs continuously.
                 totalDistance += distance;
+
+                //userDistance can be reset
+                userDistance += distance;
                 
- 
                 //save a copy of previous positions for cam heading of desired filtering or delay
                 for (int x = numPrevs-1; x > 0; x--)
                 {
@@ -152,45 +246,130 @@ namespace AgOpenGPS
                 //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
 
                 prevFixHeading = fixHeading;
-
  
-                //speed in kph on menubar
-                this.lblSpeed.Text = SpeedMPH;
-
-                //position data fields
-                this.lblLatitude.Text = Latitude;
-                this.lblLongitude.Text = Longitude;
-                //this.lblNorthing.Text = FixNorthing;
-                //this.lblEasting.Text = FixEasting;
-
-                //Pass number from ref ABLine
-                this.lblPassNumber.Text = PassNumber;
-
-                //accumulated hectare and distance
-                this.chkSectionsOnOff.Text = Convert.ToString(Math.Round(totalSquareMeters/4046.8627,2));
-                this.lblTotalDistance.Text = Convert.ToString(Math.Round(totalDistance,1));
-
-                //  **** important *************************
-                //draw the main window as its manually triggered from here    
-                //no GPS signal - no drawing for OpenGL
-                openGLControl.DoRender();
+                 //openGLControl.DoRender();
             }
 
             //a GGA sentnece rec'd
 
-            if (newFix == 2)
+            if (pn.updatedGGA)
             {
-                recvSentence = sentence;
-                this.lblSatellites.Text = SatsTracked;
-                this.lblGridSpacing.Text = Convert.ToString(gridZoom);
             }
 
-        }//end of lineReceived
+            recvSentence = "";
+        }//end of UppdateFixPosition
+
+        //called by the delegate every time a chunk is rec'd
+        private void SerialLineReceived(string sentence)
+        {
+            //spit it out no matter what it says
+            recvSentence = sentence;
+            recvSentenceSettings = sentence;
+            //textBoxRcv.Text = "";
+            textBoxRcv.Text = sentence;
+
+        }
+ 
+        //Arduino port called by the delegate every time
+        private void SerialLineReceivedArduino(string sentence)
+        {
+            //spit it out no matter what it says
+            recvSentenceArduino = sentence;
+            recvSentenceSettingsArduino = sentence;
+
+            if (txtBoxRecvArduino.TextLength > 20) txtBoxRecvArduino.Text = "";
+            txtBoxRecvArduino.Text += recvSentenceArduino;
+
+        }
+
+        #region ArduinoSerialPort //--------------------------------------------------------------------
+
+        //the delegate for thread
+        private delegate void LineReceivedEventHandlerArduino(string sentence);
+
+        //Arduino serial port receive in its own thread
+        private void sp_DataReceivedArduino(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            if (spArduino.IsOpen)
+            {
+                try
+                {
+                    string sentence = spArduino.ReadExisting();
+                    this.BeginInvoke(new LineReceivedEventHandlerArduino(SerialLineReceivedArduino), sentence);
+                }
+                //this is bad programming, it just ignores errors until its hooked up again.
+                catch (Exception) { }
+                System.Threading.Thread.Sleep(100);
+            }
+        }
+
 
  
+        //open the Arduino serial port
+        public void SerialPortOpenArduino()
+        {
+            if (!spArduino.IsOpen)
+            {
+                spArduino.PortName = portNameArduino;
+                spArduino.BaudRate = baudRateArduino;
+                spArduino.DataReceived += sp_DataReceivedArduino;
+            }
 
- 
-        #region SerialPort
+            try { spArduino.Open(); }
+            catch (Exception exc)
+            { MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
+
+            //update port status label
+            stripPortArduino.Text = "* *";
+            stripOnlineArduino.Value = 1;
+            stripPortArduino.ForeColor = Color.Red;
+
+            Properties.Settings.Default.setting_wasArduinoConnected = false;
+            Properties.Settings.Default.Save();
+            }
+
+            if (spArduino.IsOpen)
+            {
+                spArduino.DiscardOutBuffer();
+                spArduino.DiscardInBuffer();
+
+                //update port status label
+                stripPortArduino.Text = portNameArduino;
+                stripPortArduino.ForeColor = Color.ForestGreen;
+                stripOnlineArduino.Value = 100;
+
+
+                Properties.Settings.Default.setting_portNameArduino = portNameArduino;
+                Properties.Settings.Default.setting_wasArduinoConnected = true;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public void SerialPortCloseArduino()
+        {
+            if (spArduino.IsOpen)
+            {
+                spArduino.DataReceived -= sp_DataReceivedArduino;
+                try { spArduino.Close(); }
+                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
+                
+                //update port status label
+                stripPortArduino.Text = "* *";
+                stripOnlineArduino.Value = 1;
+                stripPortArduino.ForeColor = Color.Red;
+
+                Properties.Settings.Default.setting_wasArduinoConnected = false;
+                Properties.Settings.Default.Save();
+
+                spArduino.Dispose();
+            }
+
+        }
+        #endregion
+
+
+        #region GPS SerialPort //--------------------------------------------------------------------------
+
         private delegate void LineReceivedEventHandler(string sentence);
 
         //serial port receive in its own thread
@@ -200,13 +379,17 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    string sentence = sp.ReadLine();
+                    //give it a sec to spit it out
+                    System.Threading.Thread.Sleep(150);
+
+                    //read whatever is in port
+                    string sentence = sp.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandler(SerialLineReceived), sentence);
                 }
-                //this is bad programming, it just ignores errors until its hooked up again.
-                catch (Exception) { }
+                catch (Exception) 
+                {
+                }
 
-                System.Threading.Thread.Sleep(100);
             }
 
         }
@@ -215,19 +398,26 @@ namespace AgOpenGPS
         //private void btnExit_Click(object sender, EventArgs e) { this.Exit(); }
 
 
-        public void SerialPortOpen()
+        public void SerialPortOpenGPS()
         {
             if (!sp.IsOpen)
             {
                 sp.PortName = portName;
                 sp.BaudRate = baudRate;
                 sp.DataReceived += sp_DataReceived;
+                sp.WriteTimeout = 1000;
             }
 
             try { sp.Open(); }
             catch (Exception exc) 
             {
                 MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
+
+                //update port status labels
+                stripPortGPS.Text = " * * ";
+                stripPortGPS.ForeColor = Color.Red;
+                stripOnlineGPS.Value = 1;
+
                 //SettingsPageOpen(0);
             }
 
@@ -240,19 +430,17 @@ namespace AgOpenGPS
                 sp.DiscardInBuffer();
 
                 //update port status label
-                this.lblConnected.ForeColor = System.Drawing.Color.YellowGreen;
-                this.lblConnected.Text = "Online";
+                stripPortGPS.Text = portName + " " + baudRate.ToString();
+                stripPortGPS.ForeColor = Color.ForestGreen;
+                //stripOnlineGPS.Value = 100;
 
-                this.lblBaudRate.Text = Convert.ToString(baudRate);
-                this.lblPortName.Text = portName;
-
-                Properties.Settings.Default.settings_portName = portName;
+                Properties.Settings.Default.setting_portName = portName;
                 Properties.Settings.Default.setting_baudRate = baudRate;
                 Properties.Settings.Default.Save();
             }
         }
 
-        public void SerialPortClose()
+        public void SerialPortCloseGPS()
         {
             if (sp.IsOpen)
             {
@@ -260,21 +448,17 @@ namespace AgOpenGPS
                 try { sp.Close(); }
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
 
-                //btnOpenSerial.Enabled = true;
-
-                //update port status labels
-                this.lblConnected.ForeColor = System.Drawing.Color.Crimson;
-                this.lblConnected.Text = "Offline";
-
-                this.lblBaudRate.Text = "-";
-                this.lblPortName.Text = "-";
+                 //update port status labels
+                stripPortGPS.Text = " * * " + baudRate.ToString();
+                stripPortGPS.ForeColor = Color.ForestGreen;
+                stripOnlineGPS.Value = 1;
 
                 sp.Dispose();
             }
 
         }
 
-         #endregion SerialPort
+         #endregion SerialPortGPS
 
     }//end class
 }//end namespace

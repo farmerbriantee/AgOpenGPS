@@ -94,22 +94,22 @@ namespace AgOpenGPS
 
 
             //sin x cos z for endpoints, opposite for additional lines
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 1000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 1000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 1000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 1000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
 
             isABLineSet = true;
         }
 
         public void SetABLineByHeading()
         {
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 1000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 1000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 1000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 1000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
 
             refPoint2.x = refABLineP2.x;
             refPoint2.z = refABLineP2.z;
@@ -128,11 +128,11 @@ namespace AgOpenGPS
             refPoint1.x = Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) / 100.0 + refPoint1.x;
             refPoint1.z = Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) / 100.0 + refPoint1.z;
 
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 1000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 1000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 1000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 1000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
 
             refPoint2.x = refABLineP2.x;
             refPoint2.z = refABLineP2.z;
@@ -182,11 +182,11 @@ namespace AgOpenGPS
                 0, Math.Sin(-abHeading) * (widthMinusOverlap * howManyPathsAway * refLineSide + snapDistance)+ refPoint1.z);
 
             //create the new line extent points for current ABLine based on original heading of AB line
-            currentABLineP1.x = point1.x - Math.Sin(abHeading) * 1000.0;
-            currentABLineP1.z = point1.z - Math.Cos(abHeading) * 1000.0;
+            currentABLineP1.x = point1.x - Math.Sin(abHeading) * 10000.0;
+            currentABLineP1.z = point1.z - Math.Cos(abHeading) * 10000.0;
 
-            currentABLineP2.x = point1.x + Math.Sin(abHeading) * 1000.0;
-            currentABLineP2.z = point1.z + Math.Cos(abHeading) * 1000.0;
+            currentABLineP2.x = point1.x + Math.Sin(abHeading) * 10000.0;
+            currentABLineP2.z = point1.z + Math.Cos(abHeading) * 10000.0;
 
             //get the distance from currently active AB line
             //x2-x1

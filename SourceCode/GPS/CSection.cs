@@ -22,11 +22,15 @@ namespace AgOpenGPS
         //list of the list of patch data individual triangles for that entire section activity
         public List<List<vec3>> patchList = new List<List<vec3>>();
 
-        //just starting out, careful with empty arrays
-        public bool isPointListZero = true;
-
         //is this section on or off
         public bool isSectionOn = false;
+
+        public bool sectionOnRequest = false;
+        public bool sectionOffRequest = false;
+        public bool sectionOnOffCycle = false;
+
+        public int sectionOnTimer = 0;
+        public int sectionOffTimer = 0;
 
         //the left side is always negative, right side is positive
         //so a section on the left side only would be -8, -4
@@ -55,18 +59,56 @@ namespace AgOpenGPS
                 //set the section bool to on
                 isSectionOn = true;
 
+                double north = mainForm.pn.northing + mainForm.vehicle.toolForeAft * mainForm.cosHeading;
+                double east = mainForm.pn.easting + mainForm.vehicle.toolForeAft * -mainForm.sinHeading;
+
+                //set the start of section to prev.
+                mainForm.prevSectionNorthing = north;
+                mainForm.prevSectionEasting = east;
+ 
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
-                isPointListZero = true;
                 triangleList = new List<vec3>();
                 patchList.Add(triangleList);
+
+                //left side of triangle
+                vec3 point = new vec3(mainForm.cosHeading * positionLeft + east,
+                        0, mainForm.sinHeading * positionLeft + north);
+                triangleList.Add(point);
+
+                //Right side of triangle
+                point = new vec3(mainForm.cosHeading * positionRight + east,
+                    0, mainForm.sinHeading * positionRight + north);
+                triangleList.Add(point);
+
+                //left side of triangle
+                point = new vec3(mainForm.cosHeading * positionLeft + east,
+                        0, mainForm.sinHeading * positionLeft + north);
+                triangleList.Add(point);
+
+                //Right side of triangle
+                point = new vec3(mainForm.cosHeading * positionRight + east,
+                    0, mainForm.sinHeading * positionRight + north);
+                triangleList.Add(point);
+
+                
+
             }            
            
         }
 
         public void TurnSectionOff()
         {
+            double north = mainForm.pn.northing + mainForm.vehicle.toolForeAft * mainForm.cosHeading;
+            double east = mainForm.pn.easting + mainForm.vehicle.toolForeAft * -mainForm.sinHeading;
+
+            AddPathPoint(north, east, mainForm.cosHeading, mainForm.sinHeading);
+
+            double tempAcres = mainForm.pn.Distance(north, east, mainForm.prevSectionNorthing, mainForm.prevSectionEasting);
+            mainForm.totalSquareMeters += tempAcres * sectionWidth;
+
             isSectionOn = false;
+            
         }
 
 
@@ -74,50 +116,20 @@ namespace AgOpenGPS
 
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
-        public void AddPathPoint(double northing, double easting, double prevNorthing, 
-                                    double prevEasting, double cosHeading, double sinHeading)
+        public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
         {
    
-            //the first triangle set points must be filled to make triangle strip
-            if (isPointListZero)
-            {
-                isPointListZero = false;
-
-                //left side of triangle
-                vec3 point = new vec3(cosHeading * positionLeft + prevEasting,
-                        0, sinHeading * positionLeft + prevNorthing);
-                triangleList.Add(point);
-
-                //Right side of triangle
-                point = new vec3(cosHeading * positionRight + prevEasting,
-                    0, sinHeading * positionRight + prevNorthing);
-                triangleList.Add(point);
-
-                //left side of triangle
-                point = new vec3(cosHeading * positionLeft + easting,
-                        0, sinHeading * positionLeft + northing);                
-                triangleList.Add(point);
-
-                //Right side of triangle
-                point = new vec3(cosHeading * positionRight + easting,
-                    0, sinHeading * positionRight + northing);
-                triangleList.Add(point);
-            }
-
-            else
-            {
-                //add two triangles for next step.
+            //add two triangles for next step.
                 //left side
-                vec3 point = new vec3(cosHeading * positionLeft + easting,
-                        0, sinHeading * positionLeft + northing);
+                vec3 point = new vec3(cosHeading * (positionLeft) + easting,
+                        0, sinHeading * (positionLeft) + northing);
                 triangleList.Add(point);
 
                 //Right side
-                point = new vec3(cosHeading * positionRight + easting,
-                    0, sinHeading * positionRight + northing);
+                point = new vec3(cosHeading * (positionRight) + easting,
+                    0, sinHeading * (positionRight) + northing);
                 triangleList.Add(point);                        
-            }
-        }
+             }
 
     }
 

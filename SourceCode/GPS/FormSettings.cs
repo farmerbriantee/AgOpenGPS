@@ -32,7 +32,7 @@ namespace AgOpenGPS
         private void FormSettings_Load(object sender, EventArgs e)
         {
 
-            //check if port is open or closed and set buttons accordingly
+            //check if GPS port is open or closed and set buttons accordingly
             if (mainForm.sp.IsOpen)
             {
                 cboxBaud.Enabled = false;
@@ -49,9 +49,29 @@ namespace AgOpenGPS
                 btnOpenSerial.Enabled = true;
             }
 
+            //check if Arduino port is open or closed and set buttons accordingly
+            if (mainForm.spArduino.IsOpen)
+            {
+                cboxPortArduino.Enabled = false;
+                btnCloseSerialArduino.Enabled = true;
+                btnOpenSerialArduino.Enabled = false;
+            }
+
+            else
+            {
+                cboxPortArduino.Enabled = true;
+                btnCloseSerialArduino.Enabled = false;
+                btnOpenSerialArduino.Enabled = true;
+            }
+
             //load the port box with valid port names
             cboxPort.Items.Clear();
-            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPort.Items.Add(s); }
+            cboxPortArduino.Items.Clear();
+            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) 
+            {
+                cboxPort.Items.Add(s);
+                cboxPortArduino.Items.Add(s);
+            }
 
             //set vehicle settings to what it is in the settings page
             nudOverlap.Value = (decimal)mainForm.vehicle.toolOverlap;
@@ -63,6 +83,8 @@ namespace AgOpenGPS
             nudAntennaHeight.Value = (decimal)mainForm.vehicle.antennaHeight;
             AntennaHeightUpdate();
 
+            if (mainForm.vehicle.isHitched) rboHitched.Checked = true;
+            if (!mainForm.vehicle.isHitched) rboRigid.Checked = true;
 
             nudLookAhead.Value = (decimal)mainForm.vehicle.lookAhead;
 
@@ -98,15 +120,72 @@ namespace AgOpenGPS
 
         }
 
- 
         #region PortSettings
 
+        // Arduino -------------------------------------------------------------------------------------------------
+       private void btnRescanArduino_Click(object sender, EventArgs e)
+        {
+            cboxPortArduino.Items.Clear();
+            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPortArduino.Items.Add(s); }
 
-       private void nudNMEAHz_ValueChanged(object sender, EventArgs e)
+        }
+
+        private void btnOpenSerialArduino_Click(object sender, EventArgs e)
+        {
+            mainForm.SerialPortOpenArduino();
+            if (mainForm.spArduino.IsOpen)
+            {
+                cboxPortArduino.Enabled = false;
+                btnCloseSerialArduino.Enabled = true;
+                btnOpenSerialArduino.Enabled = false;
+            }
+
+            else
+            {
+                cboxPortArduino.Enabled = true;
+                btnCloseSerialArduino.Enabled = false;
+                btnOpenSerialArduino.Enabled = true;
+            }
+
+        }
+
+        private void btnCloseSerialArduino_Click(object sender, EventArgs e)
+        {
+            mainForm.SerialPortCloseArduino();
+            if (mainForm.spArduino.IsOpen)
+            {
+                cboxPortArduino.Enabled = false;
+                btnCloseSerialArduino.Enabled = true;
+                btnOpenSerialArduino.Enabled = false;
+            }
+
+            else
+            {
+                cboxPortArduino.Enabled = true;
+                btnCloseSerialArduino.Enabled = false;
+                btnOpenSerialArduino.Enabled = true;
+            }
+
+        }
+
+        private void cboxPortArduino_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            mainForm.spArduino.PortName = cboxPortArduino.Text;
+            FormGPS.portNameArduino = cboxPortArduino.Text;
+
+        }
+
+
+ 
+        // GPS Serial Port---------------------------------------------------------------------------------------
+        private void nudNMEAHz_ValueChanged(object sender, EventArgs e)
         {
             mainForm.rmcUpdateHz = (int)nudNMEAHz.Value;
 
         }
+
+        ///
         private void cboxPort_SelectedIndexChanged(object sender, EventArgs e)
         {
             mainForm.sp.PortName = cboxPort.Text;
@@ -123,7 +202,7 @@ namespace AgOpenGPS
 
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
-            mainForm.SerialPortOpen();
+            mainForm.SerialPortOpenGPS();
             if (mainForm.sp.IsOpen)
             {
                 cboxBaud.Enabled = false;
@@ -144,7 +223,7 @@ namespace AgOpenGPS
 
         private void btnCloseSerial_Click(object sender, EventArgs e)
         {
-            mainForm.SerialPortClose();
+            mainForm.SerialPortCloseGPS();
             if (mainForm.sp.IsOpen)
             {
                 cboxBaud.Enabled = false;
@@ -170,7 +249,16 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBoxRcv.Text = mainForm.recvSentence;
+            //GPS phrase
+            textBoxRcv.Text = mainForm.recvSentenceSettings;
+            mainForm.recvSentenceSettings = "";
+
+            //Arduino phrase
+            txtBoxRecvArduino.Text += mainForm.recvSentenceSettingsArduino;
+            mainForm.recvSentenceSettingsArduino = "";
+
+            if (txtBoxRecvArduino.TextLength > 40) txtBoxRecvArduino.Text = "";
+            
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
@@ -190,11 +278,15 @@ namespace AgOpenGPS
              mainForm.vehicle.lookAhead = (double)nudLookAhead.Value;
              mainForm.vehicle.antennaHeight = (double)nudAntennaHeight.Value;
 
+             if (rboHitched.Checked) mainForm.vehicle.isHitched = true;
+             else mainForm.vehicle.isHitched = false;
+
             //save the new set width in settings
             Properties.Settings.Default.setting_toolWidth = mainForm.vehicle.toolWidth;
             Properties.Settings.Default.setting_toolForeAft = mainForm.vehicle.toolForeAft;
             Properties.Settings.Default.setting_antennaHeight = mainForm.vehicle.antennaHeight;
             Properties.Settings.Default.setting_lookAhead = mainForm.vehicle.lookAhead;
+            Properties.Settings.Default.setting_isHitched = mainForm.vehicle.isHitched;
             Properties.Settings.Default.Save();
         }
 
@@ -204,9 +296,6 @@ namespace AgOpenGPS
              lblForeAftFeet.Text = Convert.ToString((int)toFeet) + "'";
              double temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
              lblForeAftInches.Text = Convert.ToString(temp) + '"';
-
-             if ((int)((double)nudForeAft.Value * 1000.0) < 0) lblToolMarker.Left = 3;
-             else lblToolMarker.Left = 390;
          }
  
         private void nudForeAft_ValueChanged(object sender, EventArgs e)
@@ -229,7 +318,7 @@ namespace AgOpenGPS
 
           #endregion Vehicle
 
-#region guidance
+        #region guidance
 
         private void btnGuidanceOK_Click(object sender, EventArgs e)
         {
@@ -539,6 +628,11 @@ namespace AgOpenGPS
 
         #endregion Sections
 
+
+
+
+ 
+ 
     }
 }
  

@@ -20,6 +20,10 @@ namespace AgOpenGPS
         public double antennaHeight;
         public double lookAhead;
 
+        //is it flex hitch or rigidly attached
+        public bool isHitched = true;
+
+
         public double toolFarLeftPosition = 0;
         public double toolFarRightPosition = 0;
  
@@ -59,19 +63,19 @@ namespace AgOpenGPS
             gl.Color(0.0f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_LINES);
             gl.Vertex(0,0,toolForeAft); //hitch
-            gl.Vertex(0,0,-2);
+            gl.Vertex(0, 0, toolForeAft+1.0);
             gl.End();
 
             //section markers
-            gl.PointSize(6.0f);
+            gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
 
             for (int j = 1; j < mainForm.numberOfSections-1; j++)
             {
-
                 gl.Vertex(mainForm.section[j].positionLeft, 0, toolForeAft);
                 gl.Vertex(mainForm.section[j].positionRight, 0, toolForeAft);
             }
+            gl.Vertex(0, 0, 0);
             gl.End();
             gl.LineWidth(1);
 

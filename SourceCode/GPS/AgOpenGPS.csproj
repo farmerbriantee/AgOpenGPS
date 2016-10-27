@@ -145,9 +145,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGPS.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -196,6 +198,8 @@
   <ItemGroup>
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
+    <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\VehicleDimensions.jpg" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -205,7 +209,6 @@
     <Content Include="ALicense.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="btnImages\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

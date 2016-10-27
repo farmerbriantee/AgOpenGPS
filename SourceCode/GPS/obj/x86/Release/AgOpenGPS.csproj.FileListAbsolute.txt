@@ -96,3 +96,17 @@ C:\Users\Leno\Desktop\AgOpenGPSo\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSe
 C:\Users\Leno\Desktop\AgOpenGPSo\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Leno\Desktop\AgOpenGPSo\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
 C:\Users\Leno\Desktop\AgOpenGPSo\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.exe.config
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\Application\Dependencies\Landscape.png
+C:\Users\Farm\Desktop\AgOpenGPS\Application\Dependencies\Vehicle.png
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormABLine.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormAbout.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPSData.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPS.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSettings.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache

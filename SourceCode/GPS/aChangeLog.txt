@@ -1,0 +1,28 @@
+﻿October 2016
+* Fixed the RMC and GGA parsing routine, rather then reading an NMEA line and then updating, read all existing lines and process all at once. 
+	- much faster accumulation of data
+* Changed OpenGL draw routine from being triggered when RMC rec'd to 5 frames per second and triggering functions from there.
+	- three seperate threads - GPS Serial IO and decoding NMEA stream, sectionRelay serial IO, Draw routine. 
+* Ability to save and retrieve fields
+* Changed the Section tab to remove clutter with less sections
+* added section on and off request in section control. Allows the section to delay turning off and when turned on to remain on for 2 secs minimum.
+* Fixed fonts consistency
+* Added bottom status bar - looks way better in Linux
+* Added Arduino serial port to control sectionRelays
+* Output the section on off status to Arduino for full external control of sections
+* Added port selection to choose port for sectionRelays.
+* added hitched or rigid in vehicle
+* added antenna height in vehicle
+* added port status in status bar
+* added distance reset in status bar
+* fixed section drawing so it uses section position rather then fix position to end section drawing
+* added a guidance page to set overlap
+* fixed bug in section control loosing accuracy from converting double to int too soon. (missing a pixel or two)
+
+
+September 2016
+Added section control, Properties page, still pretty rough
+
+
+June 2016
+v1.0.0.1 Basic application with all its warts and bugs
