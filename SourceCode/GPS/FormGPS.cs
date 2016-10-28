@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
         //Zoom variables
         double gridZoom;
-        double zoomValue = 10;
+        double zoomValue = 10.06;
 
         // Storage For Our Tractor, implement, background etc Textures
         Texture particleTexture;
@@ -545,6 +545,7 @@ namespace AgOpenGPS
         //request a new job
         private void JobNew()
         {
+            btnNewJob.Visible = false;
             isJobStarted = true;
             menuCloseJob.Enabled = true;
             menuNewJob.Enabled = false;
@@ -562,6 +563,7 @@ namespace AgOpenGPS
         private void JobClose()
         {
             isJobStarted = false;
+            btnNewJob.Visible = true;
 
             for (int j = 0; j < MAXSECTIONS; j++)
             {
@@ -1019,28 +1021,30 @@ namespace AgOpenGPS
 
         }
 
-       private void button1_Click(object sender, EventArgs e)
+        private void btnMinMax_Click(object sender, EventArgs e)
         {
             if (zoomValue < 15) zoomValue = 50;
             else zoomValue = 12;
             //zoomValue = 12.0;
             camera.camSetDistance = zoomValue * zoomValue * -1;
             SetZoom();
+
         }
 
+ 
         private void SetZoom()
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) gridZoom = 2000;
             if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) gridZoom = 2000;
             if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) gridZoom = 1000;
-            if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) gridZoom = 500;
-            if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) gridZoom = 200;
-            if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom = 100;
-            if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom = 50;
-            if (camera.camSetDistance >= -250 && camera.camSetDistance < -100) gridZoom = 25;
-            if (camera.camSetDistance >= -100 && camera.camSetDistance < -50) gridZoom = 10;
-            if (camera.camSetDistance >= -50 && camera.camSetDistance < -10) gridZoom = 5;
+            if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) gridZoom = 503;
+            if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) gridZoom = 201.2;
+            if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom = 100.6;
+            if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom = 50.3;
+            if (camera.camSetDistance >= -250 && camera.camSetDistance < -100) gridZoom = 25.15;
+            if (camera.camSetDistance >= -100 && camera.camSetDistance < -50) gridZoom = 10.06;
+            if (camera.camSetDistance >= -50 && camera.camSetDistance < -10) gridZoom = 5.03;
 
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
@@ -1177,7 +1181,7 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 8) return "Simulation";  
             else                         return "Unknown";    } }
 
-        public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
+        public string Grid { get { return Math.Round(gridZoom*3.28084/16,0).ToString(); } }
         public string Acres { get { return Math.Round(totalSquareMeters / 4046.8627, 2).ToString(); } }
 
 
@@ -1385,7 +1389,7 @@ namespace AgOpenGPS
             stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
             stripMPH.Text = "MPH: " + SpeedMPH;
             stripPassNumber.Text = "Pass: " + PassNumber;
-            stripGridZoom.Text = "Grid: " + Grid + " ft/sq";
+            stripGridZoom.Text = "Grid: " + Grid + " Acres";
             stripAcres.Text = "Acres: " + Acres;
 
             //update the online indicator
@@ -1401,8 +1405,16 @@ namespace AgOpenGPS
             GPSDataShow();
         }
 
+        private void btnNewJob_Click(object sender, EventArgs e)
+        {
+            JobNew();
+        }
 
- 
+        private void FormGPS_MouseMove(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show("hello");
+        }
+
    }//class FormGPS
 }//namespace AgOpenGPS
 

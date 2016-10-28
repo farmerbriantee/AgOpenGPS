@@ -20,7 +20,7 @@ namespace AgOpenGPS
         private double camPosZ = 0;
         private double fixHeading = 0;
 
-        public double camSetDistance = -125;
+        public double camSetDistance = -100;
 
         //private double camDelta = 0;
 

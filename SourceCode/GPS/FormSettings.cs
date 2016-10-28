@@ -73,7 +73,13 @@ namespace AgOpenGPS
                 cboxPortArduino.Items.Add(s);
             }
 
-            //set vehicle settings to what it is in the settings page
+            lblCurrentBaud.Text = mainForm.sp.BaudRate.ToString();
+            lblCurrentPort.Text = mainForm.sp.PortName;
+
+            lblCurrentArduinoPort.Text = mainForm.spArduino.PortName;
+
+
+             //set vehicle settings to what it is in the settings page
             nudOverlap.Value = (decimal)mainForm.vehicle.toolOverlap;
             OverlapUpdate();
 
@@ -138,6 +144,7 @@ namespace AgOpenGPS
                 cboxPortArduino.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
+                lblCurrentArduinoPort.Text = mainForm.spArduino.PortName;
             }
 
             else
@@ -190,6 +197,7 @@ namespace AgOpenGPS
         {
             mainForm.sp.PortName = cboxPort.Text;
             FormGPS.portName = cboxPort.Text;
+ 
         }
 
  
@@ -209,6 +217,8 @@ namespace AgOpenGPS
                 cboxPort.Enabled = false;
                 btnCloseSerial.Enabled = true;
                 btnOpenSerial.Enabled = false;
+                lblCurrentBaud.Text = mainForm.sp.BaudRate.ToString();
+                lblCurrentPort.Text = mainForm.sp.PortName;
             }
 
             else
@@ -218,6 +228,8 @@ namespace AgOpenGPS
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
             }
+
+
 
         }
 

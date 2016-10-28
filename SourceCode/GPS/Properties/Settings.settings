@@ -6,7 +6,7 @@
       <Value Profile="(Default)">-20</Value>
     </Setting>
     <Setting Name="setting_portName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM GPS NMEA</Value>
+      <Value Profile="(Default)">GPS...</Value>
     </Setting>
     <Setting Name="setting_baudRate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4800</Value>
@@ -21,10 +21,10 @@
       <Value Profile="(Default)">-2</Value>
     </Setting>
     <Setting Name="Location" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
+      <Value Profile="(Default)">30, 30</Value>
     </Setting>
     <Setting Name="Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">800, 500</Value>
+      <Value Profile="(Default)">900, 600</Value>
     </Setting>
     <Setting Name="Maximized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -60,10 +60,10 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setting_lookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setting_portNameArduino" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM Arduino</Value>
+      <Value Profile="(Default)">Section...</Value>
     </Setting>
     <Setting Name="setting_wasArduinoConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

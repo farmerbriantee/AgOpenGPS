@@ -200,6 +200,7 @@
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
     <None Include="btnImages\VehicleDimensions.jpg" />
+    <None Include="btnImages\NewJob64.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

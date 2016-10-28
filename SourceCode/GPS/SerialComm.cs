@@ -49,10 +49,10 @@ namespace AgOpenGPS
 
 
         public string recvSentence = "InitalSetting";
-        public string recvSentenceArduino = "Arduino";
+        public string recvSentenceArduino = "Section Control";
 
         public string recvSentenceSettings = "InitalSetting";
-        public string recvSentenceSettingsArduino = "Arduino";
+        public string recvSentenceSettingsArduino = "Section Control";
 
 
         //tally counters for display
@@ -101,7 +101,8 @@ namespace AgOpenGPS
                 bufferArd[0] = 0;
 
                 try { spArduino.Write(bufferArd, 0, 1); }
-                catch (Exception) { SerialPortCloseArduino(); }
+                catch (Exception) { 
+                    SerialPortCloseArduino(); }
                 return;
             }
 
@@ -277,7 +278,7 @@ namespace AgOpenGPS
             recvSentenceArduino = sentence;
             recvSentenceSettingsArduino = sentence;
 
-            if (txtBoxRecvArduino.TextLength > 20) txtBoxRecvArduino.Text = "";
+            if (txtBoxRecvArduino.TextLength > 10) txtBoxRecvArduino.Text = "";
             txtBoxRecvArduino.Text += recvSentenceArduino;
 
         }
@@ -294,17 +295,16 @@ namespace AgOpenGPS
             {
                 try
                 {
+                    System.Threading.Thread.Sleep(100);
                     string sentence = spArduino.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandlerArduino(SerialLineReceivedArduino), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception) { }
-                System.Threading.Thread.Sleep(100);
+                
             }
         }
 
-
- 
         //open the Arduino serial port
         public void SerialPortOpenArduino()
         {
@@ -351,7 +351,7 @@ namespace AgOpenGPS
             {
                 spArduino.DataReceived -= sp_DataReceivedArduino;
                 try { spArduino.Close(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
+                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
                 
                 //update port status label
                 stripPortArduino.Text = "* *";
@@ -375,19 +375,20 @@ namespace AgOpenGPS
         //serial port receive in its own thread
         private void sp_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (sp.IsOpen)
+            if (sp.IsOpen) 
             {
                 try
                 {
                     //give it a sec to spit it out
-                    System.Threading.Thread.Sleep(150);
+                    System.Threading.Thread.Sleep(100);
 
                     //read whatever is in port
                     string sentence = sp.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandler(SerialLineReceived), sentence);
                 }
-                catch (Exception) 
+                catch (Exception exc) 
                 {
+                    MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "Screwed!");
                 }
 
             }
@@ -400,6 +401,9 @@ namespace AgOpenGPS
 
         public void SerialPortOpenGPS()
         {
+            //close it first
+            SerialPortCloseGPS();
+
             if (!sp.IsOpen)
             {
                 sp.PortName = portName;
@@ -432,7 +436,6 @@ namespace AgOpenGPS
                 //update port status label
                 stripPortGPS.Text = portName + " " + baudRate.ToString();
                 stripPortGPS.ForeColor = Color.ForestGreen;
-                //stripOnlineGPS.Value = 100;
 
                 Properties.Settings.Default.setting_portName = portName;
                 Properties.Settings.Default.setting_baudRate = baudRate;
@@ -442,7 +445,7 @@ namespace AgOpenGPS
 
         public void SerialPortCloseGPS()
         {
-            if (sp.IsOpen)
+            //if (sp.IsOpen)
             {
                 sp.DataReceived -= sp_DataReceived;
                 try { sp.Close(); }

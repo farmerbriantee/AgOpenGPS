@@ -33,9 +33,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCOMPorts = new System.Windows.Forms.TabPage();
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.btnOpenSerialArduino = new System.Windows.Forms.Button();
-            this.btnCloseSerialArduino = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnRescan = new System.Windows.Forms.Button();
             this.label99 = new System.Windows.Forms.Label();
             this.nudNMEAHz = new System.Windows.Forms.NumericUpDown();
             this.btnSerialOK = new System.Windows.Forms.Button();
@@ -48,7 +47,8 @@
             this.btnOpenSerial = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnRescan = new System.Windows.Forms.Button();
+            this.btnOpenSerialArduino = new System.Windows.Forms.Button();
+            this.btnCloseSerialArduino = new System.Windows.Forms.Button();
             this.cboxPortArduino = new System.Windows.Forms.ComboBox();
             this.tabPageVehicle = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -112,9 +112,14 @@
             this.lblOverlapFeet = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
+            this.tabDisplay = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label14 = new System.Windows.Forms.Label();
-            this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.lblCurrentBaud = new System.Windows.Forms.Label();
+            this.lblCurrentPort = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblCurrentArduinoPort = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabCOMPorts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).BeginInit();
@@ -154,7 +159,7 @@
             // 
             // tabCOMPorts
             // 
-            this.tabCOMPorts.BackColor = System.Drawing.Color.Azure;
+            this.tabCOMPorts.BackColor = System.Drawing.SystemColors.Control;
             this.tabCOMPorts.Controls.Add(this.txtBoxRecvArduino);
             this.tabCOMPorts.Controls.Add(this.button1);
             this.tabCOMPorts.Controls.Add(this.btnRescan);
@@ -176,40 +181,13 @@
             // 
             this.txtBoxRecvArduino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxRecvArduino.Enabled = false;
             this.txtBoxRecvArduino.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxRecvArduino.Location = new System.Drawing.Point(34, 294);
+            this.txtBoxRecvArduino.Location = new System.Drawing.Point(34, 290);
             this.txtBoxRecvArduino.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
             this.txtBoxRecvArduino.Size = new System.Drawing.Size(557, 23);
             this.txtBoxRecvArduino.TabIndex = 54;
-            // 
-            // btnOpenSerialArduino
-            // 
-            this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialArduino.Location = new System.Drawing.Point(148, 35);
-            this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
-            this.btnOpenSerialArduino.Size = new System.Drawing.Size(117, 36);
-            this.btnOpenSerialArduino.TabIndex = 53;
-            this.btnOpenSerialArduino.Text = "Connect";
-            this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
-            this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
-            // 
-            // btnCloseSerialArduino
-            // 
-            this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialArduino.Location = new System.Drawing.Point(298, 35);
-            this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
-            this.btnCloseSerialArduino.Size = new System.Drawing.Size(117, 36);
-            this.btnCloseSerialArduino.TabIndex = 52;
-            this.btnCloseSerialArduino.Text = "Disconnect";
-            this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
-            this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
             // 
             // button1
             // 
@@ -223,6 +201,20 @@
             this.button1.TabIndex = 48;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnRescan
+            // 
+            this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRescan.Location = new System.Drawing.Point(712, 45);
+            this.btnRescan.Name = "btnRescan";
+            this.btnRescan.Size = new System.Drawing.Size(117, 50);
+            this.btnRescan.TabIndex = 39;
+            this.btnRescan.Text = "Rescan Ports";
+            this.btnRescan.UseVisualStyleBackColor = false;
+            this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
             // 
             // label99
             // 
@@ -274,7 +266,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.label16);
+            this.groupBox1.Controls.Add(this.lblCurrentPort);
+            this.groupBox1.Controls.Add(this.lblCurrentBaud);
             this.groupBox1.Controls.Add(this.btnCloseSerial);
             this.groupBox1.Controls.Add(this.textBoxRcv);
             this.groupBox1.Controls.Add(this.cboxPort);
@@ -306,9 +301,8 @@
             // 
             this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRcv.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxRcv.Enabled = false;
             this.textBoxRcv.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRcv.Location = new System.Drawing.Point(18, 112);
+            this.textBoxRcv.Location = new System.Drawing.Point(18, 108);
             this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
@@ -352,7 +346,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 96);
+            this.label1.Location = new System.Drawing.Point(22, 136);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 16);
             this.label1.TabIndex = 41;
@@ -373,7 +367,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.lblCurrentArduinoPort);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
             this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
@@ -384,31 +380,43 @@
             this.groupBox2.Size = new System.Drawing.Size(609, 146);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Arduino";
+            this.groupBox2.Text = "Section Port";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(31, 89);
+            this.label15.Location = new System.Drawing.Point(22, 127);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(214, 16);
+            this.label15.Size = new System.Drawing.Size(174, 16);
             this.label15.TabIndex = 58;
-            this.label15.Text = "NMEA string from Section Port:";
+            this.label15.Text = "String from Section Port:";
             // 
-            // btnRescan
+            // btnOpenSerialArduino
             // 
-            this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(712, 45);
-            this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(117, 50);
-            this.btnRescan.TabIndex = 39;
-            this.btnRescan.Text = "Rescan Ports";
-            this.btnRescan.UseVisualStyleBackColor = false;
-            this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
+            this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialArduino.Location = new System.Drawing.Point(201, 35);
+            this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
+            this.btnOpenSerialArduino.Size = new System.Drawing.Size(117, 36);
+            this.btnOpenSerialArduino.TabIndex = 53;
+            this.btnOpenSerialArduino.Text = "Connect";
+            this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
+            this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
+            // 
+            // btnCloseSerialArduino
+            // 
+            this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialArduino.Location = new System.Drawing.Point(351, 35);
+            this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
+            this.btnCloseSerialArduino.Size = new System.Drawing.Size(117, 36);
+            this.btnCloseSerialArduino.TabIndex = 52;
+            this.btnCloseSerialArduino.Text = "Disconnect";
+            this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
+            this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
             // 
             // cboxPortArduino
             // 
@@ -416,9 +424,9 @@
             this.cboxPortArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPortArduino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPortArduino.FormattingEnabled = true;
-            this.cboxPortArduino.Location = new System.Drawing.Point(18, 37);
+            this.cboxPortArduino.Location = new System.Drawing.Point(25, 39);
             this.cboxPortArduino.Name = "cboxPortArduino";
-            this.cboxPortArduino.Size = new System.Drawing.Size(96, 31);
+            this.cboxPortArduino.Size = new System.Drawing.Size(112, 31);
             this.cboxPortArduino.TabIndex = 49;
             this.cboxPortArduino.Text = "Port";
             this.cboxPortArduino.SelectedIndexChanged += new System.EventHandler(this.cboxPortArduino_SelectedIndexChanged);
@@ -1348,6 +1356,15 @@
             65536});
             this.nudOverlap.ValueChanged += new System.EventHandler(this.nudOverlap_ValueChanged);
             // 
+            // tabDisplay
+            // 
+            this.tabDisplay.Location = new System.Drawing.Point(4, 31);
+            this.tabDisplay.Name = "tabDisplay";
+            this.tabDisplay.Size = new System.Drawing.Size(905, 355);
+            this.tabDisplay.TabIndex = 5;
+            this.tabDisplay.Text = "Display";
+            this.tabDisplay.UseVisualStyleBackColor = true;
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -1364,14 +1381,55 @@
             this.label14.TabIndex = 57;
             this.label14.Text = "Don\'t forget to Save each page";
             // 
-            // tabDisplay
+            // lblCurrentBaud
             // 
-            this.tabDisplay.Location = new System.Drawing.Point(4, 31);
-            this.tabDisplay.Name = "tabDisplay";
-            this.tabDisplay.Size = new System.Drawing.Size(905, 355);
-            this.tabDisplay.TabIndex = 5;
-            this.tabDisplay.Text = "Display";
-            this.tabDisplay.UseVisualStyleBackColor = true;
+            this.lblCurrentBaud.AutoSize = true;
+            this.lblCurrentBaud.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBaud.Location = new System.Drawing.Point(137, 77);
+            this.lblCurrentBaud.Name = "lblCurrentBaud";
+            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 16);
+            this.lblCurrentBaud.TabIndex = 46;
+            this.lblCurrentBaud.Text = "Baud";
+            // 
+            // lblCurrentPort
+            // 
+            this.lblCurrentPort.AutoSize = true;
+            this.lblCurrentPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentPort.Location = new System.Drawing.Point(89, 77);
+            this.lblCurrentPort.Name = "lblCurrentPort";
+            this.lblCurrentPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentPort.TabIndex = 47;
+            this.lblCurrentPort.Text = "Port";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(19, 77);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(74, 16);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "Currently:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(22, 76);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 16);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "Currently:";
+            // 
+            // lblCurrentArduinoPort
+            // 
+            this.lblCurrentArduinoPort.AutoSize = true;
+            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(92, 76);
+            this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
+            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentArduinoPort.TabIndex = 59;
+            this.lblCurrentArduinoPort.Text = "Port";
             // 
             // FormSettings
             // 
@@ -1507,5 +1565,10 @@
         private System.Windows.Forms.RadioButton rboHitched;
         private System.Windows.Forms.RadioButton rboRigid;
         private System.Windows.Forms.TabPage tabDisplay;
+        private System.Windows.Forms.Label lblCurrentPort;
+        private System.Windows.Forms.Label lblCurrentBaud;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblCurrentArduinoPort;
     }
 }
