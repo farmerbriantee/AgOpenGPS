@@ -95,7 +95,7 @@ namespace AgOpenGPS
             nudLookAhead.Value = (decimal)mainForm.vehicle.lookAhead;
 
             //sections set to settings page
-            nudNumberOfSections.Value = (decimal)mainForm.numberOfSections;
+            nudNumberOfSections.Value = (decimal)mainForm.vehicle.numberOfSections;
 
             //total width of implement
             lblVehicleToolWidth.Text = Convert.ToString(mainForm.vehicle.toolWidth);
@@ -107,14 +107,14 @@ namespace AgOpenGPS
             SectionEnDisSpinners( (int)nudNumberOfSections.Value);
 
             //Fill spinners with stored values
-            nudSection1.Value = Properties.Settings.Default.setting_nudSpin1;
-            nudSection2.Value = Properties.Settings.Default.setting_nudSpin2;
-            nudSection3.Value = Properties.Settings.Default.setting_nudSpin3;
-            nudSection4.Value = Properties.Settings.Default.setting_nudSpin4;
-            nudSection5.Value = Properties.Settings.Default.setting_nudSpin5;
-            nudSection6.Value = Properties.Settings.Default.setting_nudSpin6;
+            nudSection1.Value = Properties.Settings.Default.setSection_nudSpin1;
+            nudSection2.Value = Properties.Settings.Default.setSection_nudSpin2;
+            nudSection3.Value = Properties.Settings.Default.setSection_nudSpin3;
+            nudSection4.Value = Properties.Settings.Default.setSection_nudSpin4;
+            nudSection5.Value = Properties.Settings.Default.setSection_nudSpin5;
+            nudSection6.Value = Properties.Settings.Default.setSection_nudSpin6;
 
-            nudNMEAHz.Value = Properties.Settings.Default.setting_NMEAHz;
+            nudNMEAHz.Value = Properties.Settings.Default.setPort_NMEAHz;
 
         }
 
@@ -275,7 +275,7 @@ namespace AgOpenGPS
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setting_NMEAHz = mainForm.rmcUpdateHz;
+            Properties.Settings.Default.setPort_NMEAHz = mainForm.rmcUpdateHz;
             Properties.Settings.Default.Save();
         }
 
@@ -294,11 +294,11 @@ namespace AgOpenGPS
              else mainForm.vehicle.isHitched = false;
 
             //save the new set width in settings
-            Properties.Settings.Default.setting_toolWidth = mainForm.vehicle.toolWidth;
-            Properties.Settings.Default.setting_toolForeAft = mainForm.vehicle.toolForeAft;
-            Properties.Settings.Default.setting_antennaHeight = mainForm.vehicle.antennaHeight;
-            Properties.Settings.Default.setting_lookAhead = mainForm.vehicle.lookAhead;
-            Properties.Settings.Default.setting_isHitched = mainForm.vehicle.isHitched;
+            Properties.Settings.Default.setVehicle_toolWidth = mainForm.vehicle.toolWidth;
+            Properties.Settings.Default.setVehicle_toolForeAft = mainForm.vehicle.toolForeAft;
+            Properties.Settings.Default.setVehicle_antennaHeight = mainForm.vehicle.antennaHeight;
+            Properties.Settings.Default.setVehicle_lookAhead = mainForm.vehicle.lookAhead;
+            Properties.Settings.Default.setVehicle_isHitched = mainForm.vehicle.isHitched;
             Properties.Settings.Default.Save();
         }
 
@@ -337,7 +337,7 @@ namespace AgOpenGPS
             //save the new set width in settings
             mainForm.vehicle.toolOverlap = (double)nudOverlap.Value;
 
-            Properties.Settings.Default.setting_toolOverlap = mainForm.vehicle.toolOverlap;
+            Properties.Settings.Default.setVehicle_toolOverlap = mainForm.vehicle.toolOverlap;
             Properties.Settings.Default.Save();
         }
 
@@ -373,19 +373,19 @@ namespace AgOpenGPS
         private void bntSectionOK_Click(object sender, EventArgs e)
         {
             //save the number of sections selected
-            mainForm.numberOfSections = (Convert.ToInt32(nudNumberOfSections.Value));
+            mainForm.vehicle.numberOfSections = (Convert.ToInt32(nudNumberOfSections.Value));
 
             //save the total number of sections in settings
-            Properties.Settings.Default.setting_numSections = (int)nudNumberOfSections.Value;
+            Properties.Settings.Default.setVehicle_numSections = (int)nudNumberOfSections.Value;
             Properties.Settings.Default.Save();
 
             //save the values in each spinner for section position widths in settings
-            Properties.Settings.Default.setting_nudSpin1 = nudSection1.Value;
-            Properties.Settings.Default.setting_nudSpin2 = nudSection2.Value;
-            Properties.Settings.Default.setting_nudSpin3 = nudSection3.Value;
-            Properties.Settings.Default.setting_nudSpin4 = nudSection4.Value;
-            Properties.Settings.Default.setting_nudSpin5 = nudSection5.Value;
-            Properties.Settings.Default.setting_nudSpin6 = nudSection6.Value;
+            Properties.Settings.Default.setSection_nudSpin1 = nudSection1.Value;
+            Properties.Settings.Default.setSection_nudSpin2 = nudSection2.Value;
+            Properties.Settings.Default.setSection_nudSpin3 = nudSection3.Value;
+            Properties.Settings.Default.setSection_nudSpin4 = nudSection4.Value;
+            Properties.Settings.Default.setSection_nudSpin5 = nudSection5.Value;
+            Properties.Settings.Default.setSection_nudSpin6 = nudSection6.Value;
             Properties.Settings.Default.Save();
 
             //update the sections to newly configured widths and positions in main

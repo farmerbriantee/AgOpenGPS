@@ -12,10 +12,10 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-        public static string portName = "GPS";
+        public static string portName = "COM GPS...";
         public static int baudRate = 4800;
 
-        public static string portNameArduino = "ArduinoSectionControl";
+        public static string portNameArduino = "COM SectionControl...";
         public static int baudRateArduino = 9600;
 
         //used to decide to autoconnect arduino this run
@@ -213,7 +213,7 @@ namespace AgOpenGPS
                         prevSectionEasting = currentSectionEasting;
 
                         //send the current and previous GPS fore/aft corrected fix to each section
-                        for (int j = 0; j < numberOfSections; j++)
+                        for (int j = 0; j < vehicle.numberOfSections; j++)
                         {
                             if (section[j].isSectionOn)
                             {
@@ -324,7 +324,7 @@ namespace AgOpenGPS
             stripOnlineArduino.Value = 1;
             stripPortArduino.ForeColor = Color.Red;
 
-            Properties.Settings.Default.setting_wasArduinoConnected = false;
+            Properties.Settings.Default.setPort_wasArduinoConnected = false;
             Properties.Settings.Default.Save();
             }
 
@@ -339,8 +339,8 @@ namespace AgOpenGPS
                 stripOnlineArduino.Value = 100;
 
 
-                Properties.Settings.Default.setting_portNameArduino = portNameArduino;
-                Properties.Settings.Default.setting_wasArduinoConnected = true;
+                Properties.Settings.Default.setPort_portNameArduino = portNameArduino;
+                Properties.Settings.Default.setPort_wasArduinoConnected = true;
                 Properties.Settings.Default.Save();
             }
         }
@@ -358,7 +358,7 @@ namespace AgOpenGPS
                 stripOnlineArduino.Value = 1;
                 stripPortArduino.ForeColor = Color.Red;
 
-                Properties.Settings.Default.setting_wasArduinoConnected = false;
+                Properties.Settings.Default.setPort_wasArduinoConnected = false;
                 Properties.Settings.Default.Save();
 
                 spArduino.Dispose();
@@ -437,8 +437,8 @@ namespace AgOpenGPS
                 stripPortGPS.Text = portName + " " + baudRate.ToString();
                 stripPortGPS.ForeColor = Color.ForestGreen;
 
-                Properties.Settings.Default.setting_portName = portName;
-                Properties.Settings.Default.setting_baudRate = baudRate;
+                Properties.Settings.Default.setPort_portName = portName;
+                Properties.Settings.Default.setPort_baudRate = baudRate;
                 Properties.Settings.Default.Save();
             }
         }

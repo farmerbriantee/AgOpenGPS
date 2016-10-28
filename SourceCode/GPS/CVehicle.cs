@@ -23,6 +23,8 @@ namespace AgOpenGPS
         //is it flex hitch or rigidly attached
         public bool isHitched = true;
 
+        //how many individual sections
+        public int numberOfSections;
 
         public double toolFarLeftPosition = 0;
         public double toolFarRightPosition = 0;
@@ -45,7 +47,7 @@ namespace AgOpenGPS
             //draw the sections
             gl.LineWidth(6);
             gl.Begin(OpenGL.GL_LINES);
-            for (int j = 0; j < mainForm.numberOfSections; j++)
+            for (int j = 0; j < mainForm.vehicle.numberOfSections; j++)
             {
                 //if section is on green, if off puke red color
                 if (mainForm.section[j].isSectionOn) gl.Color(0.0f, 0.99f, 0.0f);
@@ -70,7 +72,7 @@ namespace AgOpenGPS
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
 
-            for (int j = 1; j < mainForm.numberOfSections-1; j++)
+            for (int j = 1; j < mainForm.vehicle.numberOfSections - 1; j++)
             {
                 gl.Vertex(mainForm.section[j].positionLeft, 0, toolForeAft);
                 gl.Vertex(mainForm.section[j].positionRight, 0, toolForeAft);

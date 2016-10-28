@@ -83,16 +83,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Angle_icon {
-            get {
-                object obj = ResourceManager.GetObject("Angle_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Cancel64 {
             get {
                 object obj = ResourceManager.GetObject("Cancel64", resourceCulture);
@@ -183,9 +173,9 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap NewJob64 {
+        internal static System.Drawing.Bitmap NewJobBlue64 {
             get {
-                object obj = ResourceManager.GetObject("NewJob64", resourceCulture);
+                object obj = ResourceManager.GetObject("NewJobBlue64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

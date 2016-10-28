@@ -2,73 +2,73 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgOpenGPS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="setting_pitch" Type="System.Double" Scope="User">
+    <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-20</Value>
     </Setting>
-    <Setting Name="setting_portName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">GPS...</Value>
+    <Setting Name="setPort_portName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM GPS...</Value>
     </Setting>
-    <Setting Name="setting_baudRate" Type="System.Int32" Scope="User">
+    <Setting Name="setPort_baudRate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">4800</Value>
     </Setting>
-    <Setting Name="setting_toolWidth" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_toolWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">16</Value>
     </Setting>
-    <Setting Name="setting_toolOverlap" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_toolOverlap" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.5</Value>
     </Setting>
-    <Setting Name="setting_toolForeAft" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_toolForeAft" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2</Value>
     </Setting>
-    <Setting Name="Location" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">30, 30</Value>
     </Setting>
-    <Setting Name="Size" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="setWindow_Size" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">900, 600</Value>
     </Setting>
-    <Setting Name="Maximized" Type="System.Boolean" Scope="User">
+    <Setting Name="setWindow_Maximized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="Minimized" Type="System.Boolean" Scope="User">
+    <Setting Name="setWindow_Minimized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setting_numSections" Type="System.Int32" Scope="User">
+    <Setting Name="setVehicle_numSections" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="setting_nudSpin1" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_nudSpin1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-8.0</Value>
     </Setting>
-    <Setting Name="setting_nudSpin2" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_nudSpin2" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-3.0</Value>
     </Setting>
-    <Setting Name="setting_nudSpin3" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_nudSpin3" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3.0</Value>
     </Setting>
-    <Setting Name="setting_nudSpin4" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">8</Value>
+    <Setting Name="setSection_nudSpin4" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">8.0</Value>
     </Setting>
-    <Setting Name="setting_nudSpin5" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_nudSpin5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setting_nudSpin6" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_nudSpin6" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setting_NMEAHz" Type="System.Decimal" Scope="User">
+    <Setting Name="setPort_NMEAHz" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="setting_antennaHeight" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_antennaHeight" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="setting_lookAhead" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setting_portNameArduino" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Section...</Value>
+    <Setting Name="setPort_portNameArduino" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM Section...</Value>
     </Setting>
-    <Setting Name="setting_wasArduinoConnected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasArduinoConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setting_isHitched" Type="System.Boolean" Scope="User">
+    <Setting Name="setVehicle_isHitched" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

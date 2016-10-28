@@ -80,10 +80,6 @@ namespace AgOpenGPS
         //if we are saving a file
         public bool isSavingFile = false;
 
-        //how many individual sections
-        public int numberOfSections;
-
-
 // Instances --------------------------------------------------------------------------
 
         //Instances made in FormGPS_Load if not new here.
@@ -141,7 +137,7 @@ namespace AgOpenGPS
             pn = new CNMEA(this);
 
             //get the pitch of camera from settings
-            camera.camPitch = Properties.Settings.Default.setting_pitch;
+            camera.camPitch = Properties.Settings.Default.setCam_pitch;
 
             //change 2D or 3D icon accordingly on button
             if (camera.camPitch == -20)  {
@@ -150,22 +146,22 @@ namespace AgOpenGPS
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_2D;   isIn3D = false; }
 
             //set baud and port from last time run
-            baudRate = Properties.Settings.Default.setting_baudRate;
-            portName = Properties.Settings.Default.setting_portName;
+            baudRate = Properties.Settings.Default.setPort_baudRate;
+            portName = Properties.Settings.Default.setPort_portName;
 
             //same for Arduino port
-            portNameArduino = Properties.Settings.Default.setting_portNameArduino;
-            wasArduinoConnectedLastRun = Properties.Settings.Default.setting_wasArduinoConnected;
+            portNameArduino = Properties.Settings.Default.setPort_portNameArduino;
+            wasArduinoConnectedLastRun = Properties.Settings.Default.setPort_wasArduinoConnected;
 
             //get the number of sections from settings
-            numberOfSections = Properties.Settings.Default.setting_numSections;
+            vehicle.numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
             //from settings grab the vehicle specifics
-            vehicle.toolOverlap = Properties.Settings.Default.setting_toolOverlap;
-            vehicle.toolForeAft = Properties.Settings.Default.setting_toolForeAft;
-            vehicle.antennaHeight = Properties.Settings.Default.setting_antennaHeight;
-            vehicle.lookAhead = Properties.Settings.Default.setting_lookAhead;
-            vehicle.isHitched = Properties.Settings.Default.setting_isHitched;
+            vehicle.toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
+            vehicle.toolForeAft = Properties.Settings.Default.setVehicle_toolForeAft;
+            vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
+            vehicle.lookAhead = Properties.Settings.Default.setVehicle_lookAhead;
+            vehicle.isHitched = Properties.Settings.Default.setVehicle_isHitched;
             
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
@@ -195,22 +191,22 @@ namespace AgOpenGPS
                     SerialPortOpenArduino();
 
             //remembered window position
-            if (Properties.Settings.Default.Maximized)
+            if (Properties.Settings.Default.setWindow_Maximized)
             {
                 WindowState = FormWindowState.Maximized;
-                Location = Properties.Settings.Default.Location;
-                Size = Properties.Settings.Default.Size;
+                Location = Properties.Settings.Default.setWindow_Location;
+                Size = Properties.Settings.Default.setWindow_Size;
             }
-            else if (Properties.Settings.Default.Minimized)
+            else if (Properties.Settings.Default.setWindow_Minimized)
             {
                 //WindowState = FormWindowState.Minimized;
-                Location = Properties.Settings.Default.Location;
-                Size = Properties.Settings.Default.Size;
+                Location = Properties.Settings.Default.setWindow_Location;
+                Size = Properties.Settings.Default.setWindow_Size;
             }
             else
             {
-                Location = Properties.Settings.Default.Location;
-                Size = Properties.Settings.Default.Size;
+                Location = Properties.Settings.Default.setWindow_Location;
+                Size = Properties.Settings.Default.setWindow_Size;
             }
 
           }
@@ -220,24 +216,24 @@ namespace AgOpenGPS
         {
             if (WindowState == FormWindowState.Maximized)
             {
-                Properties.Settings.Default.Location = RestoreBounds.Location;
-                Properties.Settings.Default.Size = RestoreBounds.Size;
-                Properties.Settings.Default.Maximized = true;
-                Properties.Settings.Default.Minimized = false;
+                Properties.Settings.Default.setWindow_Location = RestoreBounds.Location;
+                Properties.Settings.Default.setWindow_Size = RestoreBounds.Size;
+                Properties.Settings.Default.setWindow_Maximized = true;
+                Properties.Settings.Default.setWindow_Minimized = false;
             }
             else if (WindowState == FormWindowState.Normal)
             {
-                Properties.Settings.Default.Location = Location;
-                Properties.Settings.Default.Size = Size;
-                Properties.Settings.Default.Maximized = false;
-                Properties.Settings.Default.Minimized = false;
+                Properties.Settings.Default.setWindow_Location = Location;
+                Properties.Settings.Default.setWindow_Size = Size;
+                Properties.Settings.Default.setWindow_Maximized = false;
+                Properties.Settings.Default.setWindow_Minimized = false;
             }
             else
             {
-                Properties.Settings.Default.Location = RestoreBounds.Location;
-                Properties.Settings.Default.Size = RestoreBounds.Size;
-                Properties.Settings.Default.Maximized = false;
-                Properties.Settings.Default.Minimized = true;
+                Properties.Settings.Default.setWindow_Location = RestoreBounds.Location;
+                Properties.Settings.Default.setWindow_Size = RestoreBounds.Size;
+                Properties.Settings.Default.setWindow_Maximized = false;
+                Properties.Settings.Default.setWindow_Minimized = true;
             }
             Properties.Settings.Default.Save();
 
@@ -302,7 +298,7 @@ namespace AgOpenGPS
             if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
 
             //draw patches of sections
-            for (int j = 0; j < numberOfSections; j++)
+            for (int j = 0; j < vehicle.numberOfSections; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count();
@@ -512,20 +508,20 @@ namespace AgOpenGPS
         //function to set section positions
         public void SectionSetPosition()
         {
-            section[0].positionLeft = (double)Properties.Settings.Default.setting_nudSpin1;
-            section[0].positionRight = (double)Properties.Settings.Default.setting_nudSpin2;
+            section[0].positionLeft = (double)Properties.Settings.Default.setSection_nudSpin1;
+            section[0].positionRight = (double)Properties.Settings.Default.setSection_nudSpin2;
 
-            section[1].positionLeft = (double)Properties.Settings.Default.setting_nudSpin2;
-            section[1].positionRight = (double)Properties.Settings.Default.setting_nudSpin3;
+            section[1].positionLeft = (double)Properties.Settings.Default.setSection_nudSpin2;
+            section[1].positionRight = (double)Properties.Settings.Default.setSection_nudSpin3;
 
-            section[2].positionLeft = (double)Properties.Settings.Default.setting_nudSpin3;
-            section[2].positionRight = (double)Properties.Settings.Default.setting_nudSpin4;
+            section[2].positionLeft = (double)Properties.Settings.Default.setSection_nudSpin3;
+            section[2].positionRight = (double)Properties.Settings.Default.setSection_nudSpin4;
 
-            section[3].positionLeft = (double)Properties.Settings.Default.setting_nudSpin4;
-            section[3].positionRight = (double)Properties.Settings.Default.setting_nudSpin5;
+            section[3].positionLeft = (double)Properties.Settings.Default.setSection_nudSpin4;
+            section[3].positionRight = (double)Properties.Settings.Default.setSection_nudSpin5;
 
-            section[4].positionLeft = (double)Properties.Settings.Default.setting_nudSpin5;
-            section[4].positionRight = (double)Properties.Settings.Default.setting_nudSpin6;
+            section[4].positionLeft = (double)Properties.Settings.Default.setSection_nudSpin5;
+            section[4].positionRight = (double)Properties.Settings.Default.setSection_nudSpin6;
         }
 
         //function to calculate the width of each section and update
@@ -535,11 +531,11 @@ namespace AgOpenGPS
             section[j].sectionWidth = (section[j].positionRight - section[j].positionLeft);
 
             //calculate tool width based on extreme right and left values
-            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[numberOfSections-1].positionRight);
+            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[vehicle.numberOfSections - 1].positionRight);
 
             //left and right tool position
             vehicle.toolFarLeftPosition = section[0].positionLeft;
-            vehicle.toolFarRightPosition = section[numberOfSections-1].positionRight;
+            vehicle.toolFarRightPosition = section[vehicle.numberOfSections - 1].positionRight;
         }
 
         //request a new job
@@ -666,11 +662,11 @@ namespace AgOpenGPS
                     int numSects = int.Parse(line2);
 
                     //make sure sections in file matches sections set in current vehicle
-                    if (numberOfSections != numSects)
+                    if (vehicle.numberOfSections != numSects)
                     {  MessageBox.Show("Vehicle doesn't match this field");  return; }
-                
 
-                    for (int j = 0; j < numberOfSections; j++)
+
+                    for (int j = 0; j < vehicle.numberOfSections; j++)
                     { 
                         //now read number of patches, then how many vertex's
                         line2 = reader.ReadLine();
@@ -757,7 +753,7 @@ namespace AgOpenGPS
                     //finally start loading triangles
                     vec3 vecFix = new vec3(0, 0, 0);
 
-                    for (int j = 0; j < numberOfSections; j++)
+                    for (int j = 0; j < vehicle.numberOfSections; j++)
                     {
                         //now read number of patches, then how many vertex's
                         line = reader.ReadLine();
@@ -847,8 +843,8 @@ namespace AgOpenGPS
 
                 //write paths # of sections
                 writer.WriteLine("$Sections");
-                writer.WriteLine(numberOfSections);
-                for (int j = 0; j < numberOfSections; j++)
+                writer.WriteLine(vehicle.numberOfSections);
+                for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
                     //every time the patch turns off and on is a new patch
                     int patchCount = section[j].patchList.Count();
@@ -1085,7 +1081,7 @@ namespace AgOpenGPS
 
             }
 
-            Properties.Settings.Default.setting_pitch = camera.camPitch;
+            Properties.Settings.Default.setCam_pitch = camera.camPitch;
             Properties.Settings.Default.Save();
             SetZoom();
         }
@@ -1112,7 +1108,7 @@ namespace AgOpenGPS
                 //turn off the master section on off flag
                 isMasterSectionOn = false;
 
-                for (int j = 0; j < numberOfSections; j++)
+                for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
                     section[j].TurnSectionOff();
                     section[j].sectionOnOffCycle = false;
@@ -1223,7 +1219,7 @@ namespace AgOpenGPS
             gl.Color(0.0f, 1.0f, 0.0f);
 
             //draw patches j= # of sections
-            for (int j = 0; j < numberOfSections; j++)
+            for (int j = 0; j < vehicle.numberOfSections; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count();
@@ -1274,7 +1270,7 @@ namespace AgOpenGPS
             //if anywhere in the section is a 0, as in needs section turned on, turn on section and break out loop
             bool isSectionRequiredOn = false;
             int x = 0;
-            for (int j = 0; j < numberOfSections; j++)
+            for (int j = 0; j < vehicle.numberOfSections; j++)
             {
                 //section width * 10 is measured in pixels
                 for (int i = 0; i < (int)(section[j].sectionWidth*10); i++)
@@ -1333,7 +1329,7 @@ namespace AgOpenGPS
 
         private void ProcessSectionOnOffRequests()
         {
-            for (int j = 0; j < numberOfSections; j++)
+           for (int j = 0; j < vehicle.numberOfSections; j++)
             {
                 //lblTest.Text = section[j].sectionOnTimer.ToString();
                 //lblTest2.Text = section[j].sectionOffTimer.ToString();
@@ -1415,6 +1411,7 @@ namespace AgOpenGPS
             MessageBox.Show("hello");
         }
 
+ 
    }//class FormGPS
 }//namespace AgOpenGPS
 
