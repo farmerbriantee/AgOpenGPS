@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using SharpGL;
 using System.Drawing;
-
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -44,12 +44,13 @@ namespace AgOpenGPS
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
 
-
         public double prevFixHeading;
 
+        //public string recvSentence = "InitalSetting";
+        //public string recvSentenceArduino = "Section Control";
 
-        public string recvSentence = "InitalSetting";
-        public string recvSentenceArduino = "Section Control";
+        public StringBuilder recvSentence = new StringBuilder();
+        public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
 
         public string recvSentenceSettings = "InitalSetting";
         public string recvSentenceSettingsArduino = "Section Control";
@@ -117,15 +118,15 @@ namespace AgOpenGPS
             if (isSavingFile) return;
             //textBoxRcv.Text = recvSentence;
 
-            //if empty just return
-            if (recvSentence == "") return;
+            //add what has been rec'd to the nmea buffer
+            pn.rawBuffer += recvSentence.ToString();
+
+            //empty the received sentence
+            recvSentence.Clear();
 
             //parse the line received GGA and RMC
-            int newFix = pn.ParseNMEA(recvSentence);
+            pn.ParseNMEA();
 
-            //not enough for a comlete sentence
-            //if (newFix == 0) return;
-            
             //if its a valid fix data for RMC
             if (pn.updatedRMC)
             {
@@ -257,25 +258,24 @@ namespace AgOpenGPS
             {
             }
 
-            recvSentence = "";
+            
         }//end of UppdateFixPosition
 
         //called by the delegate every time a chunk is rec'd
         private void SerialLineReceived(string sentence)
         {
             //spit it out no matter what it says
-            recvSentence = sentence;
-            recvSentenceSettings = sentence;
-            //textBoxRcv.Text = "";
-            textBoxRcv.Text = sentence;
-
+            recvSentence.Append(sentence);
+            recvSentenceSettings = recvSentence.ToString();
+            //textBoxRcv.Text = recvSentence.ToString(); 
+            textBoxRcv.Text = pn.theSent;
         }
  
         //Arduino port called by the delegate every time
         private void SerialLineReceivedArduino(string sentence)
         {
             //spit it out no matter what it says
-            recvSentenceArduino = sentence;
+            recvSentenceArduino.Append(sentence);
             recvSentenceSettingsArduino = sentence;
 
             if (txtBoxRecvArduino.TextLength > 10) txtBoxRecvArduino.Text = "";
@@ -380,7 +380,7 @@ namespace AgOpenGPS
                 try
                 {
                     //give it a sec to spit it out
-                    System.Threading.Thread.Sleep(100);
+                    System.Threading.Thread.Sleep(50);
 
                     //read whatever is in port
                     string sentence = sp.ReadExisting();

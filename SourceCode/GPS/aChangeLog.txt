@@ -1,5 +1,10 @@
 ﻿v1.21 26 Oct 2016
+* 
+
 * Changed grid to display in acres. the grid width by half mile is acres displayed for grid
+* Changed serial ports....again. the data rec'd event was looping too fast and missing data. Fixed
+* Changed settings database to reflect more accurate naming
+* Streamlined the NMEA parsing engine to not remove incomplete strings or null out string if not containing both $ and \r\n
 
 
 v1.2 October 2016

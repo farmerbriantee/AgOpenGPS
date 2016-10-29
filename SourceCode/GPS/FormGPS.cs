@@ -1394,6 +1394,10 @@ namespace AgOpenGPS
                 stripOnlineGPS.Value = 1;
             }
             else stripOnlineGPS.Value = 100;
+
+            //textBox1.Text = pn.theSent;
+            //textBox1.SelectionStart = textBox1.Text.Length;
+            //textBox1.ScrollToCaret();
         }
 
         private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)

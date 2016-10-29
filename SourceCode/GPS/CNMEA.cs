@@ -72,7 +72,8 @@ namespace AgOpenGPS
         public bool updatedVTG = false;
         public bool updatedRMC = false;
 
-        private string rawBuffer="";
+        public string rawBuffer = "";
+        public string theSent = "";
         private string[] words;
 
         //UTM coordinates
@@ -108,7 +109,7 @@ namespace AgOpenGPS
         }
 
 
-        public int ParseNMEA(string portData)
+        public void ParseNMEA()
         {
             //returns......
             //return 0 - no data, invalid or incorrrect checksum etc
@@ -117,16 +118,20 @@ namespace AgOpenGPS
             updatedVTG = false;
             updatedRMC = false;
 
-            // Add new data
-            if (portData == null) return 0;  rawBuffer += portData; 
+            //theSent += rawBuffer;
+
+            if (rawBuffer == null) return;
 
             //find end of a sentence
             int cr = rawBuffer.IndexOf("\r\n");
-            if (cr == -1)  return 0; // No end found, wait for more data
+            if (cr == -1)  return; // No end found, wait for more data
 
             // Find start of next sentence
-            cr = rawBuffer.IndexOf("$");
-            if (cr == -1) return 0;
+            int dollar = rawBuffer.IndexOf("$");
+            if (dollar == -1) return;
+
+            //if the $ isn't first, get rid of the tail of sentence
+            if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
 
             //now we have a complete sentence or more somewhere in the portData
             bool stillData = true;
@@ -134,13 +139,14 @@ namespace AgOpenGPS
             while (stillData)       
             {
                 string nextNMEASentence = Parse();
-                if (nextNMEASentence == null) return 1;
+                
+                if (nextNMEASentence == null) return;
 
                 words = nextNMEASentence.Split(',');
             
-                //GPRMC parsing of the sentence
                 #region $GPRMC
 
+                //GPRMC parsing of the sentence 
                 //make sure there aren't missing coords in sentence
                 if (words[0] == "$GPRMC" & words[3] != "" & words[4] != "" & words[5] != "" & words[6] != "")
                 {
@@ -221,9 +227,10 @@ namespace AgOpenGPS
 
                     //update the receive counter that detects loss of communication
                     mainForm.recvCounter = 0;
-
                     //update that RMC data is newly updated
                     updatedRMC = true;
+
+                    theSent = nextNMEASentence;
 
                 }//end $GPRMC
 #endregion $GPRMC
@@ -231,8 +238,7 @@ namespace AgOpenGPS
                 #region $GPGGA
 
                 //is the sentence GGA
-                //if (words[0] == "$GPGGA" & words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
-                if (words[0] == "$GPGGA" )
+                if (words[0] == "$GPGGA" & words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
                 {
                     //altitude
                     if (words[9] == String.Empty) altitude = -1;
@@ -268,53 +274,45 @@ namespace AgOpenGPS
 
                 }
 
-            #endregion $GPGGA
-                
+            #endregion $GPGGA                
 
             }// while still data
-
-            //should never get here
-            return 0;
                    
         }//ParseNMEA
 
 
-        // Returns a valid NMEA sentence from the pile from portData
+         // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
         {
 
             string sentence;
             int start, end;
-             do
+            do
             {
-                 //double check for valid sentence
+                //double check for valid sentence
                 // Find start of next sentence
                 start = rawBuffer.IndexOf("$");
-                if (start == -1)
-                {
-                    // No start found
-                    rawBuffer = null;
-                    return null;
-                }
+                if (start == -1) return null;
                 rawBuffer = rawBuffer.Substring(start);
+
                 // Find end of sentence
                 end = rawBuffer.IndexOf("\r\n");
-                if (end == -1)
-                {
-                    // No end found, wait for more data
-                    rawBuffer = null;
-                    return null;
-                }
+                if (end == -1) return null;
+
+                //the NMEA sentence to be parsed
                 sentence = rawBuffer.Substring(0, end + 2);
+              
+                //remove the sentence from the buffer
                 rawBuffer = rawBuffer.Substring(end + 2);
             }
 
+            //if sentence has valid checksum, its all good
             while (!ValidateChecksum(sentence));
-            // Valid sentence found!
+
             // Remove trailing checksum and \r\n
             sentence = sentence.Substring(0, sentence.IndexOf("*"));
-            // Split into fields and return array
-            //return sentence.Split(",".ToCharArray());
+
+            //Back to ParseNMEA
             return sentence;
         }
 
