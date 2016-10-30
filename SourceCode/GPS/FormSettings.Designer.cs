@@ -39,6 +39,9 @@
             this.nudNMEAHz = new System.Windows.Forms.NumericUpDown();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblCurrentPort = new System.Windows.Forms.Label();
+            this.lblCurrentBaud = new System.Windows.Forms.Label();
             this.btnCloseSerial = new System.Windows.Forms.Button();
             this.textBoxRcv = new System.Windows.Forms.TextBox();
             this.cboxPort = new System.Windows.Forms.ComboBox();
@@ -46,14 +49,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnOpenSerial = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblCurrentArduinoPort = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.btnOpenSerialArduino = new System.Windows.Forms.Button();
             this.btnCloseSerialArduino = new System.Windows.Forms.Button();
             this.cboxPortArduino = new System.Windows.Forms.ComboBox();
             this.tabPageVehicle = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnFileOpenVehicle = new System.Windows.Forms.Button();
+            this.btnFileSaveVehicle = new System.Windows.Forms.Button();
             this.rboHitched = new System.Windows.Forms.RadioButton();
             this.rboRigid = new System.Windows.Forms.RadioButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblAntennaInches = new System.Windows.Forms.Label();
             this.lblAntennaFeet = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -115,18 +122,12 @@
             this.tabDisplay = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label14 = new System.Windows.Forms.Label();
-            this.lblCurrentBaud = new System.Windows.Forms.Label();
-            this.lblCurrentPort = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblCurrentArduinoPort = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabCOMPorts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPageVehicle.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).BeginInit();
@@ -284,6 +285,36 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "GPS Port";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(19, 77);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(74, 16);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "Currently:";
+            // 
+            // lblCurrentPort
+            // 
+            this.lblCurrentPort.AutoSize = true;
+            this.lblCurrentPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentPort.Location = new System.Drawing.Point(89, 77);
+            this.lblCurrentPort.Name = "lblCurrentPort";
+            this.lblCurrentPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentPort.TabIndex = 47;
+            this.lblCurrentPort.Text = "Port";
+            // 
+            // lblCurrentBaud
+            // 
+            this.lblCurrentBaud.AutoSize = true;
+            this.lblCurrentBaud.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBaud.Location = new System.Drawing.Point(137, 77);
+            this.lblCurrentBaud.Name = "lblCurrentBaud";
+            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 16);
+            this.lblCurrentBaud.TabIndex = 46;
+            this.lblCurrentBaud.Text = "Baud";
+            // 
             // btnCloseSerial
             // 
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -382,6 +413,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Section Port";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(22, 76);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 16);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "Currently:";
+            // 
+            // lblCurrentArduinoPort
+            // 
+            this.lblCurrentArduinoPort.AutoSize = true;
+            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(92, 76);
+            this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
+            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentArduinoPort.TabIndex = 59;
+            this.lblCurrentArduinoPort.Text = "Port";
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -435,6 +486,10 @@
             // 
             this.tabPageVehicle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageVehicle.BackgroundImage")));
             this.tabPageVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPageVehicle.Controls.Add(this.btnFileOpenVehicle);
+            this.tabPageVehicle.Controls.Add(this.btnFileSaveVehicle);
+            this.tabPageVehicle.Controls.Add(this.rboHitched);
+            this.tabPageVehicle.Controls.Add(this.rboRigid);
             this.tabPageVehicle.Controls.Add(this.groupBox3);
             this.tabPageVehicle.Controls.Add(this.lblAntennaInches);
             this.tabPageVehicle.Controls.Add(this.lblAntennaFeet);
@@ -457,21 +512,30 @@
             this.tabPageVehicle.Text = "Vehicle";
             this.tabPageVehicle.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // btnFileOpenVehicle
             // 
-            this.groupBox3.Controls.Add(this.rboHitched);
-            this.groupBox3.Controls.Add(this.rboRigid);
-            this.groupBox3.Location = new System.Drawing.Point(611, 16);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(151, 88);
-            this.groupBox3.TabIndex = 58;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tool Attached";
+            this.btnFileOpenVehicle.Location = new System.Drawing.Point(758, 202);
+            this.btnFileOpenVehicle.Name = "btnFileOpenVehicle";
+            this.btnFileOpenVehicle.Size = new System.Drawing.Size(132, 52);
+            this.btnFileOpenVehicle.TabIndex = 60;
+            this.btnFileOpenVehicle.Text = "Open Vehicle";
+            this.btnFileOpenVehicle.UseVisualStyleBackColor = true;
+            this.btnFileOpenVehicle.Click += new System.EventHandler(this.btnFileOpenVehicle_Click);
+            // 
+            // btnFileSaveVehicle
+            // 
+            this.btnFileSaveVehicle.Location = new System.Drawing.Point(758, 129);
+            this.btnFileSaveVehicle.Name = "btnFileSaveVehicle";
+            this.btnFileSaveVehicle.Size = new System.Drawing.Size(132, 52);
+            this.btnFileSaveVehicle.TabIndex = 59;
+            this.btnFileSaveVehicle.Text = "Save Vehicle";
+            this.btnFileSaveVehicle.UseVisualStyleBackColor = true;
+            this.btnFileSaveVehicle.Click += new System.EventHandler(this.btnFileSaveVehicle_Click);
             // 
             // rboHitched
             // 
             this.rboHitched.AutoSize = true;
-            this.rboHitched.Location = new System.Drawing.Point(18, 54);
+            this.rboHitched.Location = new System.Drawing.Point(758, 76);
             this.rboHitched.Name = "rboHitched";
             this.rboHitched.Size = new System.Drawing.Size(92, 26);
             this.rboHitched.TabIndex = 57;
@@ -482,7 +546,7 @@
             // rboRigid
             // 
             this.rboRigid.AutoSize = true;
-            this.rboRigid.Location = new System.Drawing.Point(18, 28);
+            this.rboRigid.Location = new System.Drawing.Point(758, 45);
             this.rboRigid.Name = "rboRigid";
             this.rboRigid.Size = new System.Drawing.Size(72, 26);
             this.rboRigid.TabIndex = 56;
@@ -490,13 +554,22 @@
             this.rboRigid.Text = "Rigid";
             this.rboRigid.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(743, 16);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(151, 95);
+            this.groupBox3.TabIndex = 58;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Tool Attached";
+            // 
             // lblAntennaInches
             // 
             this.lblAntennaInches.AutoSize = true;
-            this.lblAntennaInches.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAntennaInches.Location = new System.Drawing.Point(442, 100);
+            this.lblAntennaInches.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAntennaInches.Location = new System.Drawing.Point(353, 29);
             this.lblAntennaInches.Name = "lblAntennaInches";
-            this.lblAntennaInches.Size = new System.Drawing.Size(47, 33);
+            this.lblAntennaInches.Size = new System.Drawing.Size(39, 29);
             this.lblAntennaInches.TabIndex = 55;
             this.lblAntennaInches.Text = "YY";
             this.lblAntennaInches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -504,10 +577,10 @@
             // lblAntennaFeet
             // 
             this.lblAntennaFeet.AutoSize = true;
-            this.lblAntennaFeet.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAntennaFeet.Location = new System.Drawing.Point(384, 100);
+            this.lblAntennaFeet.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAntennaFeet.Location = new System.Drawing.Point(316, 29);
             this.lblAntennaFeet.Name = "lblAntennaFeet";
-            this.lblAntennaFeet.Size = new System.Drawing.Size(47, 33);
+            this.lblAntennaFeet.Size = new System.Drawing.Size(39, 29);
             this.lblAntennaFeet.TabIndex = 54;
             this.lblAntennaFeet.Text = "XX";
             this.lblAntennaFeet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -516,7 +589,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(371, 10);
+            this.label13.Location = new System.Drawing.Point(420, 6);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(127, 23);
             this.label13.TabIndex = 53;
@@ -525,13 +598,13 @@
             // nudAntennaHeight
             // 
             this.nudAntennaHeight.DecimalPlaces = 2;
-            this.nudAntennaHeight.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAntennaHeight.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudAntennaHeight.Increment = new decimal(new int[] {
             2,
             0,
             0,
             65536});
-            this.nudAntennaHeight.Location = new System.Drawing.Point(379, 48);
+            this.nudAntennaHeight.Location = new System.Drawing.Point(426, 35);
             this.nudAntennaHeight.Maximum = new decimal(new int[] {
             15,
             0,
@@ -543,10 +616,10 @@
             0,
             65536});
             this.nudAntennaHeight.Name = "nudAntennaHeight";
-            this.nudAntennaHeight.Size = new System.Drawing.Size(106, 44);
+            this.nudAntennaHeight.Size = new System.Drawing.Size(121, 41);
             this.nudAntennaHeight.TabIndex = 52;
             this.nudAntennaHeight.Value = new decimal(new int[] {
-            6,
+            20,
             0,
             0,
             65536});
@@ -556,7 +629,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(603, 142);
+            this.label3.Location = new System.Drawing.Point(418, 129);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 23);
             this.label3.TabIndex = 51;
@@ -565,13 +638,13 @@
             // nudLookAhead
             // 
             this.nudLookAhead.DecimalPlaces = 1;
-            this.nudLookAhead.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLookAhead.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLookAhead.Increment = new decimal(new int[] {
             2,
             0,
             0,
             65536});
-            this.nudLookAhead.Location = new System.Drawing.Point(611, 172);
+            this.nudLookAhead.Location = new System.Drawing.Point(426, 159);
             this.nudLookAhead.Maximum = new decimal(new int[] {
             5,
             0,
@@ -583,10 +656,10 @@
             0,
             65536});
             this.nudLookAhead.Name = "nudLookAhead";
-            this.nudLookAhead.Size = new System.Drawing.Size(130, 50);
+            this.nudLookAhead.Size = new System.Drawing.Size(121, 41);
             this.nudLookAhead.TabIndex = 50;
             this.nudLookAhead.Value = new decimal(new int[] {
-            6,
+            20,
             0,
             0,
             65536});
@@ -1381,56 +1454,6 @@
             this.label14.TabIndex = 57;
             this.label14.Text = "Don\'t forget to Save each page";
             // 
-            // lblCurrentBaud
-            // 
-            this.lblCurrentBaud.AutoSize = true;
-            this.lblCurrentBaud.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(137, 77);
-            this.lblCurrentBaud.Name = "lblCurrentBaud";
-            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 16);
-            this.lblCurrentBaud.TabIndex = 46;
-            this.lblCurrentBaud.Text = "Baud";
-            // 
-            // lblCurrentPort
-            // 
-            this.lblCurrentPort.AutoSize = true;
-            this.lblCurrentPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(89, 77);
-            this.lblCurrentPort.Name = "lblCurrentPort";
-            this.lblCurrentPort.Size = new System.Drawing.Size(38, 16);
-            this.lblCurrentPort.TabIndex = 47;
-            this.lblCurrentPort.Text = "Port";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(19, 77);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 16);
-            this.label16.TabIndex = 48;
-            this.label16.Text = "Currently:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(22, 76);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 16);
-            this.label17.TabIndex = 60;
-            this.label17.Text = "Currently:";
-            // 
-            // lblCurrentArduinoPort
-            // 
-            this.lblCurrentArduinoPort.AutoSize = true;
-            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(92, 76);
-            this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
-            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(38, 16);
-            this.lblCurrentArduinoPort.TabIndex = 59;
-            this.lblCurrentArduinoPort.Text = "Port";
-            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1456,8 +1479,6 @@
             this.groupBox2.PerformLayout();
             this.tabPageVehicle.ResumeLayout(false);
             this.tabPageVehicle.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).EndInit();
@@ -1570,5 +1591,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblCurrentArduinoPort;
+        private System.Windows.Forms.Button btnFileOpenVehicle;
+        private System.Windows.Forms.Button btnFileSaveVehicle;
     }
 }

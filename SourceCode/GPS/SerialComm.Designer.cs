@@ -12,12 +12,14 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
+        //port and baud names
         public static string portName = "COM GPS...";
         public static int baudRate = 4800;
 
         public static string portNameArduino = "COM SectionControl...";
         public static int baudRateArduino = 9600;
 
+        //Evrything is so wonky at the start, so no delay for first 20 frames
         int startCounter = 0;
 
         //used to decide to autoconnect arduino this run
@@ -56,30 +58,24 @@ namespace AgOpenGPS
         public double prevEastingLowSpeed = 0;
         double distanceLowSpeed = 0;
 
-        //public double prevFixHeading;
-
-        //public string recvSentence = "InitalSetting";
-        //public string recvSentenceArduino = "Section Control";
-
+        //strings used for serial port recieves and display
         public StringBuilder recvSentence = new StringBuilder();
         public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
-
         public string recvSentenceSettings = "InitalSetting";
         public string recvSentenceSettingsArduino = "Section Control";
-
-
 
         //serial port gps is connected to
         public SerialPort sp = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
 
-        //serial port Arduino is connected to
+        //serial port Arduino or USB relay is connected to
         public SerialPort spArduino = new SerialPort(portNameArduino, baudRateArduino, Parity.None, 8, StopBits.One);
 
         //how many fix updates per sec
         public int rmcUpdateHz = 5;
 
-       //individual points
-        //List<CPointData> pointList = new List<CPointData>();
+
+
+       //individual points   //List<CPointData> pointList = new List<CPointData>();
 
         private void SectionControlOutToArduino()
         {
@@ -118,7 +114,6 @@ namespace AgOpenGPS
 
 
         }
-
         
         //called by the openglDraw routine.
         private void UpdateFixPosition()
@@ -172,10 +167,12 @@ namespace AgOpenGPS
                 }
 
  
- 
+
+                //calc low speed distance travelled if speed < 2 kph and app not starting
                 if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevNorthingLowSpeed, prevEastingLowSpeed);
                 else distanceLowSpeed = -1;
 
+                //time to record next fix
                 if (distanceLowSpeed > 0.3 | pn.speed > 2.0 | startCounter < 50)
                 {
                     startCounter++;
@@ -183,6 +180,7 @@ namespace AgOpenGPS
                     fixPosX = (pn.easting);
                     fixPosZ = (pn.northing);
 
+                    //save a copy to calc distance 
                     prevNorthingLowSpeed = pn.northing;
                     prevEastingLowSpeed = pn.easting;
 
@@ -205,10 +203,9 @@ namespace AgOpenGPS
                     if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                     fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
 
-                    fixHeadingDelta = fixHeading - fixHeadingSection;
-                    
+                    //the difference between the vehicle and the implement
+                    fixHeadingDelta = fixHeading - fixHeadingSection;                
                     //lblTest.Text = Convert.ToString(Math.Round(fixHeadingDelta, 3));
-
  
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
@@ -286,16 +283,10 @@ namespace AgOpenGPS
             
         }//end of UppdateFixPosition
 
-        //called by the delegate every time a chunk is rec'd
-        private void SerialLineReceived(string sentence)
-        {
-            //spit it out no matter what it says
-            recvSentence.Append(sentence);
-            recvSentenceSettings = recvSentence.ToString();
-            //textBoxRcv.Text = recvSentence.ToString(); 
-            textBoxRcv.Text = pn.theSent;
-        }
- 
+
+        #region ArduinoSerialPort //--------------------------------------------------------------------
+
+
         //Arduino port called by the delegate every time
         private void SerialLineReceivedArduino(string sentence)
         {
@@ -307,8 +298,6 @@ namespace AgOpenGPS
             txtBoxRecvArduino.Text += recvSentenceArduino;
 
         }
-
-        #region ArduinoSerialPort //--------------------------------------------------------------------
 
         //the delegate for thread
         private delegate void LineReceivedEventHandlerArduino(string sentence);
@@ -395,6 +384,16 @@ namespace AgOpenGPS
 
         #region GPS SerialPort //--------------------------------------------------------------------------
 
+        //called by the delegate every time a chunk is rec'd
+        private void SerialLineReceived(string sentence)
+        {
+            //spit it out no matter what it says
+            recvSentence.Append(sentence);
+            recvSentenceSettings = recvSentence.ToString();
+            //textBoxRcv.Text = recvSentence.ToString(); 
+            textBoxRcv.Text = pn.theSent;
+        }
+
         private delegate void LineReceivedEventHandler(string sentence);
 
         //serial port receive in its own thread
@@ -419,10 +418,6 @@ namespace AgOpenGPS
             }
 
         }
-
-        //Event Handlers
-        //private void btnExit_Click(object sender, EventArgs e) { this.Exit(); }
-
 
         public void SerialPortOpenGPS()
         {

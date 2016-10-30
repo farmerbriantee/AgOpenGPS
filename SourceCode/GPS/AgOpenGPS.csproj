@@ -50,7 +50,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -116,13 +117,22 @@
     <Compile Include="FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FileOps.Designer.cs" >
+     <SubType>Form</SubType>
+	<DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenGL.Designer.cs">
+     <SubType>Form</SubType>
+	<DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SerialComm.cs">
+    <Compile Include="SerialComm.Designer.cs">
       <SubType>Form</SubType>
+	<DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGPS.cs">
       <SubType>Form</SubType>
@@ -161,6 +171,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -196,8 +207,6 @@
     <None Include="Dependencies\SharpGL.WinForms.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AppIcon.ico" />
-    <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
     <None Include="btnImages\VehicleDimensions.jpg" />
     <None Include="btnImages\NewJob64.png" />

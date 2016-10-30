@@ -142,7 +142,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(125, 17);
+            this.lblStatus.Location = new System.Drawing.Point(136, 17);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(66, 25);
@@ -154,7 +154,7 @@
             // 
             this.lblFixQuality.AutoSize = true;
             this.lblFixQuality.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFixQuality.Location = new System.Drawing.Point(125, 66);
+            this.lblFixQuality.Location = new System.Drawing.Point(136, 66);
             this.lblFixQuality.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblFixQuality.Name = "lblFixQuality";
             this.lblFixQuality.Size = new System.Drawing.Size(77, 25);
@@ -166,7 +166,7 @@
             // 
             this.lblSatsTracked.AutoSize = true;
             this.lblSatsTracked.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSatsTracked.Location = new System.Drawing.Point(125, 115);
+            this.lblSatsTracked.Location = new System.Drawing.Point(136, 115);
             this.lblSatsTracked.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSatsTracked.Name = "lblSatsTracked";
             this.lblSatsTracked.Size = new System.Drawing.Size(49, 25);
@@ -178,7 +178,7 @@
             // 
             this.lblLatitude.AutoSize = true;
             this.lblLatitude.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLatitude.Location = new System.Drawing.Point(373, 115);
+            this.lblLatitude.Location = new System.Drawing.Point(381, 115);
             this.lblLatitude.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(82, 25);
@@ -189,7 +189,7 @@
             // 
             this.lblEasting.AutoSize = true;
             this.lblEasting.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEasting.Location = new System.Drawing.Point(373, 66);
+            this.lblEasting.Location = new System.Drawing.Point(381, 66);
             this.lblEasting.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblEasting.Name = "lblEasting";
             this.lblEasting.Size = new System.Drawing.Size(76, 25);
@@ -200,7 +200,7 @@
             // 
             this.lblNorthing.AutoSize = true;
             this.lblNorthing.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNorthing.Location = new System.Drawing.Point(373, 17);
+            this.lblNorthing.Location = new System.Drawing.Point(381, 17);
             this.lblNorthing.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblNorthing.Name = "lblNorthing";
             this.lblNorthing.Size = new System.Drawing.Size(86, 25);
@@ -211,7 +211,7 @@
             // 
             this.lblLongitude.AutoSize = true;
             this.lblLongitude.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLongitude.Location = new System.Drawing.Point(373, 164);
+            this.lblLongitude.Location = new System.Drawing.Point(381, 164);
             this.lblLongitude.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(99, 25);
@@ -222,7 +222,7 @@
             // 
             this.lblAltitude.AutoSize = true;
             this.lblAltitude.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAltitude.Location = new System.Drawing.Point(125, 213);
+            this.lblAltitude.Location = new System.Drawing.Point(136, 213);
             this.lblAltitude.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblAltitude.Name = "lblAltitude";
             this.lblAltitude.Size = new System.Drawing.Size(78, 25);
@@ -269,7 +269,7 @@
             // 
             this.lblHDOP.AutoSize = true;
             this.lblHDOP.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHDOP.Location = new System.Drawing.Point(125, 164);
+            this.lblHDOP.Location = new System.Drawing.Point(136, 164);
             this.lblHDOP.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblHDOP.Name = "lblHDOP";
             this.lblHDOP.Size = new System.Drawing.Size(60, 25);
@@ -281,7 +281,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 305);
+            this.ClientSize = new System.Drawing.Size(543, 313);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblHDOP);
             this.Controls.Add(this.label8);
@@ -307,7 +307,7 @@
             this.MinimizeBox = false;
             this.Name = "FormGPSData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormGPSData";
+            this.Text = "GPS Data";
             this.ResumeLayout(false);
             this.PerformLayout();
 

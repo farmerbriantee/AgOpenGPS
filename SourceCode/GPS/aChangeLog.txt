@@ -1,5 +1,8 @@
 ﻿v1.21 26 Oct 2016
-* 
+* Added vehicle open and save
+* fix low speed issue, below 2 km/h fix must move at least 0.3 m before updating
+* added more partial classes in project - mainForm.cs getting too long
+* changed partial classes to Pa.....Designer.cs to group and prevent design window from coming up
 
 * Changed grid to display in acres. the grid width by half mile is acres displayed for grid
 * Changed serial ports....again. the data rec'd event was looping too fast and missing data. Fixed

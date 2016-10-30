@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGPS));
             this.openGLControl = new SharpGL.OpenGLControl();
             this.textBoxRcv = new System.Windows.Forms.TextBox();
@@ -40,6 +39,9 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gPSDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areYouSureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.okThenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.COMPortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +54,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripBtnResetDistance = new System.Windows.Forms.ToolStripSplitButton();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
@@ -90,7 +91,7 @@
             this.openGLControl.DrawFPS = false;
             this.openGLControl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openGLControl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.openGLControl.FrameRate = 5;
+            this.openGLControl.FrameRate = 6;
             this.openGLControl.Location = new System.Drawing.Point(0, 33);
             this.openGLControl.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.openGLControl.Name = "openGLControl";
@@ -105,15 +106,14 @@
             // 
             // textBoxRcv
             // 
-            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRcv.BackColor = System.Drawing.SystemColors.Control;
-            this.textBoxRcv.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRcv.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRcv.Location = new System.Drawing.Point(449, 6);
             this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
-            this.textBoxRcv.Size = new System.Drawing.Size(372, 20);
+            this.textBoxRcv.Size = new System.Drawing.Size(372, 21);
             this.textBoxRcv.TabIndex = 35;
             // 
             // lblLongitude
@@ -181,7 +181,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.gPSDataToolStripMenuItem});
+            this.gPSDataToolStripMenuItem,
+            this.resetAllToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(53, 29);
@@ -207,6 +208,29 @@
             this.gPSDataToolStripMenuItem.Size = new System.Drawing.Size(171, 30);
             this.gPSDataToolStripMenuItem.Text = "GPS Data";
             this.gPSDataToolStripMenuItem.Click += new System.EventHandler(this.gPSDataToolStripMenuItem_Click);
+            // 
+            // resetAllToolStripMenuItem
+            // 
+            this.resetAllToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.areYouSureToolStripMenuItem});
+            this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(171, 30);
+            this.resetAllToolStripMenuItem.Text = "Reset All";
+            // 
+            // areYouSureToolStripMenuItem
+            // 
+            this.areYouSureToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.okThenToolStripMenuItem});
+            this.areYouSureToolStripMenuItem.Name = "areYouSureToolStripMenuItem";
+            this.areYouSureToolStripMenuItem.Size = new System.Drawing.Size(200, 30);
+            this.areYouSureToolStripMenuItem.Text = "Are You Sure?";
+            // 
+            // okThenToolStripMenuItem
+            // 
+            this.okThenToolStripMenuItem.Name = "okThenToolStripMenuItem";
+            this.okThenToolStripMenuItem.Size = new System.Drawing.Size(152, 30);
+            this.okThenToolStripMenuItem.Text = "Ok Then";
+            this.okThenToolStripMenuItem.Click += new System.EventHandler(this.okThenToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -309,12 +333,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(923, 33);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // tmrWatchdog
-            // 
-            this.tmrWatchdog.Enabled = true;
-            this.tmrWatchdog.Interval = 500;
-            this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
             // 
             // statusStrip1
             // 
@@ -427,6 +445,7 @@
             // 
             // txtBoxRecvArduino
             // 
+            this.txtBoxRecvArduino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Control;
             this.txtBoxRecvArduino.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBoxRecvArduino.Location = new System.Drawing.Point(372, 6);
@@ -445,7 +464,7 @@
             this.btnSettings.Size = new System.Drawing.Size(70, 66);
             this.btnSettings.TabIndex = 94;
             this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click_1);
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnMinMaxZoom
             // 
@@ -478,7 +497,7 @@
             this.chkSectionsOnOff.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkSectionsOnOff.AutoSize = true;
             this.chkSectionsOnOff.Enabled = false;
-            this.chkSectionsOnOff.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSectionsOnOff.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSectionsOnOff.Image = ((System.Drawing.Image)(resources.GetObject("chkSectionsOnOff.Image")));
             this.chkSectionsOnOff.Location = new System.Drawing.Point(850, 326);
             this.chkSectionsOnOff.Name = "chkSectionsOnOff";
@@ -585,7 +604,6 @@
             this.Text = "AgOpenGPS - v 0.01 ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGPS_FormClosing);
             this.Load += new System.EventHandler(this.FormGPS_Load);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FormGPS_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -626,7 +644,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Timer tmrWatchdog;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.ToolStripMenuItem polygonsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -643,6 +660,9 @@
         private System.Windows.Forms.ToolStripStatusLabel stripPortArduino;
         private System.Windows.Forms.ToolStripMenuItem gPSDataToolStripMenuItem;
         private System.Windows.Forms.Button btnNewJob;
+        private System.Windows.Forms.ToolStripMenuItem resetAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem areYouSureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem okThenToolStripMenuItem;
     }
 }
 
