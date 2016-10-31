@@ -2,8 +2,8 @@
 
 using System;
 using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ using SharpGL;
 using System.IO.Ports;
 using System.IO;
 using System.Diagnostics;
-//using System.Media;
+using System.Media;
 using SharpGL.SceneGraph.Assets;
 
 //http://maps.google.com/maps?q=54.3%2C-111.10
@@ -23,11 +23,9 @@ namespace AgOpenGPS
     public partial class FormGPS : Form
     {
         //class variables ----------------------------------------------------
- #region variables
+
         //maximum sections available
         const int MAXSECTIONS = 5;
-
-        static int counter3FPS = 0;
 
         private const byte SET_1 = 1;
         private const byte SET_2 = 2;
@@ -50,7 +48,7 @@ namespace AgOpenGPS
         //Current fix position
         public double fixPosX = 0.0;
         public double fixPosY = 0.0;
-        public double fixPosZ = -0.0;
+        public double fixPosZ = -7.0;
 
         //headings
         public double fixHeading = 0.0;
@@ -82,9 +80,10 @@ namespace AgOpenGPS
         //if we are saving a file
         public bool isSavingFile = false;
 
-        // Instances  made in FormGPS_Load if not new here.---------------------------------------------------
+// Instances --------------------------------------------------------------------------
 
-       //create the scene camera
+        //Instances made in FormGPS_Load if not new here.
+        //create the scene camera
         public CCamera camera = new CCamera();
 
         //create world grid
@@ -99,6 +98,7 @@ namespace AgOpenGPS
         //create an array of sections, so far only 5 section
         public CSection[] section = new CSection[MAXSECTIONS];
 
+
         //ABLine Instance
         public CABLine ABLine;
 
@@ -108,9 +108,7 @@ namespace AgOpenGPS
         //create a sound player object
         System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
- #endregion variables
-
-//  Forms ................................................................................
+#region Forms //................................................................................
 
         //All the forms related procedures
 
@@ -246,55 +244,209 @@ namespace AgOpenGPS
             }
 
             SectionControlOutToArduino();
+
        }
 
-  //Procedures and Functions -------------------------------------------------------------------------------------
+#endregion
 
-        //All the various functions relied on by everything else
-
-        ///turn on and off section delays and control
-        private void ProcessSectionOnOffRequests()
+#region OpenGL //-------------------------------------------------------------------
+        /// Handles the OpenGLDraw event of the openGLControl control.
+        private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
+
+            //sw.Stop();
+            //int FPS = Convert.ToInt16(1 / (sw.Elapsed.TotalMilliseconds / 1000));
+            //sw.Reset();
+            ////start the watch and time till it gets back here
+            //sw.Start();
+
+            //if there is new data go update everything first.
+            UpdateFixPosition();
+
+            //Update the port counter
+            recvCounter++;
+
+            ProcessSectionOnOffRequests();
+
+            SectionControlOutToArduino();
+            
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControl.OpenGL;
+
+            //  Clear the color and depth buffer.
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            gl.LoadIdentity();
+
+            //camera does translations and rotations
+            camera.SetWorldCam(gl, fixPosX, fixPosY, fixPosZ, fixHeadingCam);
+
+            //Draw the world grid based on camera position
+            gl.Enable(OpenGL.GL_DEPTH_TEST);
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+            worldGrid.DrawWorldGrid(gridZoom);
+
+            // draw the current and reference AB Lines
+            if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
+
+            //turn on blend for paths
+            gl.Enable(OpenGL.GL_BLEND);
+            gl.Disable(OpenGL.GL_DEPTH_TEST);
+
+            //section patch color
+            gl.Color(0.0f, 0.45f, 0.0f, 0.6f);
+            
+            if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
+
+            //draw patches of sections
             for (int j = 0; j < vehicle.numberOfSections; j++)
             {
-                //Turn ON
-                //if requested to be on, set the timer to 10 (2 seconds) = 5 frames per second
-                if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                //every time the section turns off and on is a new patch
+                int patchCount = section[j].patchList.Count();
+
+                if (patchCount > 0)
                 {
-                    section[j].sectionOnTimer = 10;
-                    section[j].sectionOnOffCycle = true;
+                    //for every new chunk of patch
+                    foreach (var triList in section[j].patchList)
+                    {
+                        //draw the triangle strip in each triangle strip
+                        gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                        int count2 = triList.Count();
+                        for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
+                        gl.End();
+                    }
                 }
-
-                //reset the ON request
-                section[j].sectionOnRequest = false;
-
-                //decrement the timer if not zero
-                if (section[j].sectionOnTimer > 0)
-                {
-                    //turn the section ON if not and decrement timer
-                    section[j].sectionOnTimer--;
-                    if (!section[j].isSectionOn) section[j].TurnSectionOn();
-
-                    //keep resetting the section OFF timer while the ON is active
-                    section[j].sectionOffTimer = 3;
-                }
-
-                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 3;
-
-                //decrement the off timer
-                if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
-
-                //Turn OFF
-                //if Off section timer is zero, turn off the section
-                if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
-                {
-                    if (section[j].isSectionOn) section[j].TurnSectionOff();
-                    section[j].sectionOnOffCycle = false;
-                    section[j].sectionOffRequest = false;
-                }
-
             }
+
+            gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
+ 
+            //draw the tractor/implement
+            vehicle.DrawVehicle();
+
+            //gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
+            //gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixCam " + Convert.ToString(fixHeadingSection));
+            //gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection-fixHeading,3)));
+
+            gl.Color(1.0f,1.0f,1.0f);
+
+
+            gl.Disable(OpenGL.GL_BLEND);
+            gl.Enable(OpenGL.GL_DEPTH_TEST);
+
+            //// 2D Ortho --------------------------
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+            gl.PushMatrix();
+            gl.LoadIdentity();
+
+            //negative and positive on width, 0 at top to bottom ortho view
+            gl.Ortho2D(-(double)Width / 2, (double)Width / 2, (double)Height, 0);
+
+            //  Create the appropriate modelview matrix.
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            gl.PushMatrix();
+            gl.LoadIdentity();
+
+            //draw the background when in 3D
+            if (isIn3D)
+            {
+                //the background
+                double winLeftPos = -(double)Width / 2;
+                double winRightPos = -winLeftPos;
+
+                gl.Enable(OpenGL.GL_TEXTURE_2D);
+                gl.BindTexture(OpenGL.GL_TEXTURE_2D, texture[1]);		// Select Our Texture
+                gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				// Build Quad From A Triangle Strip
+                    gl.TexCoord(0, 0); gl.Vertex(winRightPos, 0.0); // Top Right
+                    gl.TexCoord(1, 0); gl.Vertex(winLeftPos, 0.0); // Top Left
+                    gl.TexCoord(0, 1); gl.Vertex(winRightPos, 0.2 * (double)Height); // Bottom Right
+                    gl.TexCoord(1, 1); gl.Vertex(winLeftPos, 0.2 * (double)Height); // Bottom Left
+                gl.End();						// Done Building Triangle Strip
+                gl.Disable(OpenGL.GL_TEXTURE_2D);
+            }
+
+            //LightBar if AB Line is set
+            if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+            {
+                txtDistanceOffABLine.Visible = true;
+                ABLine.DrawLightBar(openGLControl.Width, openGLControl.Height);
+                txtDistanceOffABLine.Text = Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine));
+                if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
+                else  txtDistanceOffABLine.ForeColor = Color.LightGreen;
+            }
+
+            //AB line is not set
+            else txtDistanceOffABLine.Visible = false;
+
+
+            //finish openGL commands
+            gl.Flush();
+
+            //  Pop the modelview.
+            gl.PopMatrix();
+
+            //  back to the projection and pop it, then back to the model view.
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+            gl.PopMatrix();
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+
+
+            //reset point size
+            gl.PointSize(1.0f);
+
+            gl.Flush();
+
+            //draw the section control window off screen buffer
+            openGLControlBack.DoRender();
+           
         }
+
+         /// Handles the OpenGLInitialized event of the openGLControl control.
+        private void openGLControl_OpenGLInitialized(object sender, EventArgs e)
+        {
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControl.OpenGL;
+
+            //Load all the textures
+            LoadGLTextures();
+
+            //  Set the clear color.
+            gl.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+
+            // Set The Blending Function For Translucency
+            gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
+
+            gl.Enable(OpenGL.GL_CULL_FACE);
+            gl.CullFace(OpenGL.GL_BACK);
+
+            gl.PixelStore(OpenGL.GL_PACK_ALIGNMENT, 1);
+
+            //set the camera to right distance
+            SetZoom();
+        }
+
+        /// Handles the Resized event of the openGLControl control.
+        private void openGLControl_Resized(object sender, EventArgs e)
+        {
+            //  TODO: Set the projection matrix here.
+
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControl.OpenGL;
+
+            //  Set the projection matrix.
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+
+            //  Load the identity.
+            gl.LoadIdentity();
+
+            //  Create a perspective transformation.
+            gl.Perspective(50.0f, (double)openGLControl.Width / (double)openGLControl.Height, 1, -4 * camera.camSetDistance);
+
+            //  Set the modelview matrix.
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+        }
+
+#endregion
+
+#region Procedures and Functions //---------------------------------------
 
         // Load Bitmaps And Convert To Textures
         public uint LoadGLTextures()
@@ -308,7 +460,12 @@ namespace AgOpenGPS
                 texture[0] = particleTexture.TextureName;
             }
 
-            catch (System.Exception excep) { MessageBox.Show("Texture File Vehicle.png is Missing",excep.Message); }
+            catch (System.Exception excep)
+            {
+
+                MessageBox.Show("Texture File Vehicle.png is Missing",excep.Message);
+            }
+
             try
             {
                 //  Background
@@ -317,7 +474,12 @@ namespace AgOpenGPS
                 texture[1] = particleTexture.TextureName;
             }
 
-            catch (System.Exception excep) { MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", excep.Message);  }
+            catch (System.Exception excep)
+            {
+
+                MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", excep.Message);
+            }
+
 
             return texture[0];
         }
@@ -383,9 +545,13 @@ namespace AgOpenGPS
             isJobStarted = true;
             menuCloseJob.Enabled = true;
             menuNewJob.Enabled = false;
+
             chkSectionsOnOff.Enabled = true;
+
             btnABLine.Enabled = true;
+
             btnSnapToAB.Enabled = true;
+
             ABLine.abHeading = 0.00;
         }
 
@@ -441,10 +607,288 @@ namespace AgOpenGPS
             totalSquareMeters = 0;
         }
 
+        //function to open a previously saved field
+        private void FileOpenField()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
 
-//   Menu items ------------------------------------------------------------------
+            //get the directory where the fields are stored
+            //string directoryName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+ "\\fields\\";
+            string directoryName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\Fields\\";
 
-        //Turn on or off mesh drawing or polygon drawing
+            //make sure the directory exists, if not, create it
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //the initial directory, fields, for the open dialog
+            ofd.InitialDirectory = directoryName;
+
+            //When leaving dialog put windows back where it was
+            ofd.RestoreDirectory = true;
+
+            //set the filter to text files only
+            ofd.Filter = "txt files (*.txt)|*.txt";
+
+            //was a file selected
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                fileName = ofd.FileName;
+
+                //make sure the file if fully valid and vehicle matches sections
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    string line2;
+                    
+                    line2 = reader.ReadLine();//Date time line                  
+                    line2 = reader.ReadLine();//AB Line header
+
+                    if (line2.IndexOf("$Heading") == -1)
+                    {  MessageBox.Show("File is Corrupt");  return;  }
+
+                    //read the boolean if AB is set
+                    line2 = reader.ReadLine();
+                    if ( (line2.IndexOf("True") == -1 && (line2.IndexOf("False") == -1)) )
+                    {    MessageBox.Show("AB Line is Corrupt"); return; }
+                  
+                    line2 = reader.ReadLine();//just read and skip the heading line                
+                    line2 = reader.ReadLine();//read the line $Sections
+
+                    if (line2.IndexOf("$Sections") == -1)
+                    { MessageBox.Show("Sections header is Corrupt"); return; }
+
+                    //read number of sections
+                    line2 = reader.ReadLine();
+                    int numSects = int.Parse(line2);
+
+                    //make sure sections in file matches sections set in current vehicle
+                    if (vehicle.numberOfSections != numSects)
+                    {  MessageBox.Show("Vehicle doesn't match this field");  return; }
+
+
+                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    { 
+                        //now read number of patches, then how many vertex's
+                        line2 = reader.ReadLine();
+                        int patches = int.Parse(line2);
+
+                        for (int k = 0; k < patches; k++)
+                        {
+ 
+                            line2 = reader.ReadLine();
+                            int verts = int.Parse(line2);
+
+                            for (int v = 0; v < verts; v++)
+                            {
+                                line2 = reader.ReadLine();
+                            }
+                        }
+                    }
+
+                    //read final area and header lines
+                    line2 = reader.ReadLine();
+                    if (line2.IndexOf("$totalSquareMeters") == -1)
+                    {
+                        MessageBox.Show("Meters header is Corrupt");
+                        return;
+                    }
+                
+                }
+                //made it to here so file is mostly valid
+
+                //close the existing job and reset everything
+                this.JobClose();
+
+                //and open a new job
+                this.JobNew();
+
+                //start to read the file
+                string line;
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    //Date time line
+                    line = reader.ReadLine();
+
+                    //AB Line header
+                    line = reader.ReadLine();
+
+                    //read the boolean if AB is set
+                    line = reader.ReadLine();
+                    bool b = bool.Parse(line);
+
+                    //If is true there is AB Line data
+                    if (b)
+                    {
+                        //Heading, refPoint1x,z,refPoint2x,z
+                        line = reader.ReadLine();
+
+                        //separate it into the 4 words
+                        string[] words = line.Split(',');
+                        ABLine.abHeading = double.Parse(words[0]);
+                        ABLine.refPoint1.x = double.Parse(words[1]);
+                        ABLine.refPoint1.z = double.Parse(words[2]);
+                        ABLine.refPoint2.x = double.Parse(words[3]);
+                        ABLine.refPoint2.z = double.Parse(words[4]);
+
+                        ABLine.refABLineP1.x = ABLine.refPoint1.x - Math.Sin(ABLine.abHeading) * 10000.0;
+                        ABLine.refABLineP1.z = ABLine.refPoint1.z - Math.Cos(ABLine.abHeading) * 10000.0;
+
+                        ABLine.refABLineP2.x = ABLine.refPoint1.x + Math.Sin(ABLine.abHeading) * 10000.0;
+                        ABLine.refABLineP2.z = ABLine.refPoint1.z + Math.Cos(ABLine.abHeading) * 10000.0;
+
+                        ABLine.isABLineSet = true;
+                    }
+
+                    //false so just read and skip the heading line
+                    else line = reader.ReadLine();
+
+                    //read the section and patch triangles...
+
+                    //read the line $Sections
+                    line = reader.ReadLine();
+
+                    //read number of sections
+                    line = reader.ReadLine();
+
+                    //finally start loading triangles
+                    vec3 vecFix = new vec3(0, 0, 0);
+
+                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    {
+                        //now read number of patches, then how many vertex's
+                        line = reader.ReadLine();
+                        int patches = int.Parse(line);
+                        
+                        for (int k = 0; k < patches; k++)
+                        {
+                            section[j].triangleList = new List<vec3>();
+                            section[j].patchList.Add(section[j].triangleList);
+
+                            line = reader.ReadLine();
+                            int verts = int.Parse(line);
+
+                            for (int v = 0; v < verts; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                vecFix.x = double.Parse(words[0]);
+                                vecFix.y = 0;
+                                vecFix.z = double.Parse(words[1]);
+
+                                section[j].triangleList.Add(vecFix);
+                            }
+
+                        }
+
+                    }
+
+                    line = reader.ReadLine();
+                    if (line.IndexOf("$totalSquareMeters") == -1)
+                    {
+                        MessageBox.Show("Meters header is Corrupt");
+                        return;
+                    }
+
+                    line = reader.ReadLine();
+                    totalSquareMeters = double.Parse(line);
+
+ 
+
+                }
+                //cancelled out of open file
+            }
+
+
+        }//end of open file
+
+        //Function to save a field
+        private void FileSaveField()
+        {
+            //in the current application directory
+            //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            //string fieldDir = dir + "\\fields\\";
+
+            if (!isJobStarted)
+            {
+                MessageBox.Show("Can't save a job if no job is open");
+                return;
+            }
+
+            string dirField = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\Fields\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName = String.Format("{0}{1}", DateTime.Now.ToString("yyyy_MMM_dd__hh.mm.ss.tt"), ".txt");
+
+            //set saving flag on
+            isSavingFile = true;
+            
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //Write out the date
+                writer.WriteLine(DateTime.Now.ToLongDateString() + "  -->  " + DateTime.Now.ToLongTimeString());
+
+                //write out the ABLine
+                writer.WriteLine("$Heading");
+
+                //true or false if ABLine is set
+                if (ABLine.isABLineSet) writer.WriteLine(true);
+                else writer.WriteLine(false);
+
+                writer.WriteLine(ABLine.abHeading + "," + ABLine.refPoint1.x + ","
+                    + ABLine.refPoint1.z + "," + ABLine.refPoint2.x + "," + ABLine.refPoint2.z);
+
+                //write paths # of sections
+                writer.WriteLine("$Sections");
+                writer.WriteLine(vehicle.numberOfSections);
+                for (int j = 0; j < vehicle.numberOfSections; j++)
+                {
+                    //every time the patch turns off and on is a new patch
+                    int patchCount = section[j].patchList.Count();
+
+                    //Write out the patch
+                    writer.WriteLine(patchCount);
+
+                    if (patchCount > 0)
+                    {
+                        //for every new chunk of patch in the whole section
+                        foreach (var triList in section[j].patchList)
+                        {
+                            int count2 = triList.Count();
+
+                            writer.WriteLine(count2);
+
+                            for (int i = 0; i < count2; i++)
+                            {
+                                writer.WriteLine(Math.Round(triList[i].x,2) + "," + Math.Round(triList[i].z,2));
+                            }
+                        }
+                    }
+
+               }
+
+                   //writer.WriteLine(Math.Round(totalSquareMeters / 4046.8627, 2));
+                    writer.WriteLine("$totalSquareMeters");
+                    writer.WriteLine(totalSquareMeters);
+
+ 
+            }
+
+            //set saving flag off
+            isSavingFile = false;
+
+            //little show to say saved and where
+            MessageBox.Show((dirField + "\n\r\n\r" + myFileName),"File Saved to ");
+
+        }
+
+        #endregion //..................................................................
+
+#region Menu items //------------------------------------------------------------------
+
         private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isDrawPolygons = !isDrawPolygons;
@@ -481,7 +925,7 @@ namespace AgOpenGPS
             SettingsPageOpen(2);
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+       private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileOpenField();
         }
@@ -491,7 +935,7 @@ namespace AgOpenGPS
             FileSaveField();
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+       private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormAbout())
             {
@@ -500,7 +944,8 @@ namespace AgOpenGPS
             }
  
         }
-        
+
+
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //string appPath = Assembly.GetEntryAssembly().Location;
@@ -508,50 +953,11 @@ namespace AgOpenGPS
             Process.Start("help.htm");
 
         }
- 
-        private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GPSDataShow();
-        }
+        #endregion
 
-        private void okThenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //delete the default config file and remake it with restart
-            Properties.Settings.Default.setVehicle_toolOverlap = 0.5;
-            Properties.Settings.Default.setVehicle_toolForeAft = -2;
-            Properties.Settings.Default.setVehicle_antennaHeight = 3.0;
-            Properties.Settings.Default.setVehicle_lookAhead = 2.0;
-            Properties.Settings.Default.setVehicle_isHitched = true;
-
-            Properties.Settings.Default.setSection_nudSpin1 = -8;
-            Properties.Settings.Default.setSection_nudSpin2 = -3;
-            Properties.Settings.Default.setSection_nudSpin3 = 3;
-            Properties.Settings.Default.setSection_nudSpin4 = 8;
-            Properties.Settings.Default.setSection_nudSpin5 = 0;
-            Properties.Settings.Default.setSection_nudSpin6 = 0;
-
-            Properties.Settings.Default.setVehicle_numSections = 3;
-            Properties.Settings.Default.setVehicle_toolWidth = 16.0;
-
-            Properties.Settings.Default.setCam_pitch = -20;
-            Properties.Settings.Default.setPort_baudRate = 4800;
-            Properties.Settings.Default.setPort_portName = "COM Reset";
-            Properties.Settings.Default.setPort_wasArduinoConnected = false;
-            Properties.Settings.Default.setPort_NMEAHz = 5;
-            Properties.Settings.Default.setPort_portNameArduino = "COM SecReset";
-
-            Properties.Settings.Default.setWindow_Maximized = false;
-            Properties.Settings.Default.setWindow_Minimized = false;
-
-            Properties.Settings.Default.Save();
-
-            Application.Exit();
-        }
-
-//Buttons -----------------------------------------------------------------------
+#region Buttons //-----------------------------------------------------------------------
 
         //ABLine
-
         private void btnABLine_Click(object sender, EventArgs e)
         {
             using (var form = new FormABLine(this))
@@ -620,6 +1026,7 @@ namespace AgOpenGPS
             SetZoom();
 
         }
+
  
         private void SetZoom()
         {
@@ -720,16 +1127,12 @@ namespace AgOpenGPS
              SettingsPageOpen(1);
         }
 
-        private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
+       private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
         {
             userDistance = 0;
         }
         
-        private void btnNewJob_Click(object sender, EventArgs e)
-        {
-            JobNew();
-        }
-
+#endregion
 
 #region Properties // ---------------------------------------------------------------------
 
@@ -766,7 +1169,232 @@ namespace AgOpenGPS
 
 #endregion properties
 
+#region SectionControl // ----------------------------------------------------------------
 
+        //data buffer for pixels read from off screen buffer
+        byte[] pixelsTop = new byte[401];
+        byte[] pixelsMiddle = new byte[401];
+        byte[] pixelsBottom = new byte[401];
+        byte[] pixelsAtTool = new byte[401];
+
+        //main openGL draw function
+        private void openGLControlBack_OpenGLDraw(object sender, RenderEventArgs args)
+        {
+            OpenGL gl = openGLControlBack.OpenGL;
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
+            gl.LoadIdentity();					// Reset The View
+
+            //back the camera up
+            gl.Translate(0, 0, -384);
+
+            //flip the world over so positive z aka north goes into screen
+            gl.Rotate(180, 0, 0, 1);
+
+            //rotate the camera down to look at fix
+            gl.Rotate(-90, 1, 0, 0);
+
+            //rotate camera so heading matched fix heading in the world
+            gl.Rotate(-fixHeadingSection * 180.0 / Math.PI + 180, 0, 1, 0);
+
+            //translate to that spot in the world 
+            gl.Translate(-fixPosX, -fixPosY, -fixPosZ);
+
+            //patch color
+            gl.Color(0.0f, 1.0f, 0.0f);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < vehicle.numberOfSections; j++)
+            {
+                //every time the section turns off and on is a new patch
+                int patchCount = section[j].patchList.Count();
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in section[j].patchList)
+                    {
+                        //draw the triangle strip in each triangle strip
+                        gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                        int count2 = triList.Count();
+                        for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
+                        gl.End();
+                    }
+                }
+            }
+ 
+            //10 pixels to a meter or 1 pixel is 10cm or 10 pixels is 1 meter - simple math
+            int rpXPosition = 200 - Math.Abs((int)(vehicle.toolFarLeftPosition * 10));
+            int rpWidth = (int)(vehicle.toolWidth * 10);
+
+            //read position for look ahead for turning on 
+            double sectionLookAheadPosition = (pn.speed * vehicle.lookAhead * 2.0) + (vehicle.toolForeAft * 10); //how far ahead ie up the screen
+            if (sectionLookAheadPosition > 80) sectionLookAheadPosition = 80;
+
+            //scan 3 different spots, one at 2 secs ahead and one at 1 sec and one at section
+            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition*0.6), rpWidth, 1,
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsBottom);
+            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition*0.8), rpWidth, 1,
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsMiddle);
+            gl.ReadPixels(rpXPosition, 200 + (int)sectionLookAheadPosition, rpWidth, 1,
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
+
+            //scan just ahead of the tool otherwise its too fussy and keep turning on section
+            gl.ReadPixels(rpXPosition, 203 + (int)(vehicle.toolForeAft * 10), rpWidth, 1,
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
+
+            
+            //OR them together, if anywhere isn't applied, turn on section
+            for (int a = 0; a < 401; a++)
+            {
+                if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10 
+                    | pixelsTop[a] < 10) pixelsAtTool[a] = 0;
+                else pixelsAtTool[a] = 255;
+            }
+         
+            //if anywhere in the section is a 0, as in needs section turned on, turn on section and break out loop
+            bool isSectionRequiredOn = false;
+            int x = 0;
+            for (int j = 0; j < vehicle.numberOfSections; j++)
+            {
+                //section width * 10 is measured in pixels
+                for (int i = 0; i < (int)(section[j].sectionWidth*10); i++)
+                {
+                    if (pixelsAtTool[x] < 50)
+                    {
+                        isSectionRequiredOn = true;
+                        x += (int)(section[j].sectionWidth * 10) - i;
+                        break;
+                    }
+
+                x++;
+
+                }
+
+                if (isSectionRequiredOn && isMasterSectionOn)
+                {
+                    //global request to turn on section
+                    section[j].sectionOnRequest = true;
+                }
+
+                else if (!isSectionRequiredOn )
+                {
+                    //global request to turn off section
+                    section[j].sectionOffRequest = true;
+                }
+
+                //used in this loop only
+                isSectionRequiredOn = false;
+            }
+            gl.Flush();
+
+        }
+
+        //Resize is called upn window creation
+        private void openGLControlBack_Resized(object sender, EventArgs e)
+        {
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControlBack.OpenGL;
+
+            gl.MatrixMode(OpenGL.GL_PROJECTION);
+
+            //  Load the identity.
+            gl.LoadIdentity();
+
+            //  Create a perspective transformation.
+            gl.Perspective(6.0f, 1, 1, 6000);
+
+            //  Set the modelview matrix.
+            gl.MatrixMode(OpenGL.GL_MODELVIEW);        
+
+        }
+
+
+#endregion
+
+        private void ProcessSectionOnOffRequests()
+        {
+           for (int j = 0; j < vehicle.numberOfSections; j++)
+            {
+                //lblTest.Text = section[j].sectionOnTimer.ToString();
+                //lblTest2.Text = section[j].sectionOffTimer.ToString();
+
+                //Turn ON
+                //if requested to be on, set the timer to 10 (2 seconds) = 5 frames per second
+                if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                {
+                    section[j].sectionOnTimer = 10;
+                    section[j].sectionOnOffCycle = true;
+                }
+
+                //reset the ON request
+                section[j].sectionOnRequest = false;
+
+                //decrement the timer if not zero
+                if (section[j].sectionOnTimer > 0)
+                {
+                    //turn the section ON if not and decrement timer
+                    section[j].sectionOnTimer--;
+                    if (!section[j].isSectionOn) section[j].TurnSectionOn();
+                    
+                    //keep resetting the section OFF timer while the ON is active
+                    section[j].sectionOffTimer = 3;
+                }
+                
+                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 5;
+
+                //decrement the off timer
+                if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
+
+                //Turn OFF
+                //if Off section timer is zero, turn off the section
+                if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest) 
+                {
+                    if (section[j].isSectionOn) section[j].TurnSectionOff();
+                    section[j].sectionOnOffCycle = false;
+                    section[j].sectionOffRequest = false;
+                }
+                    
+            }
+        }
+ 
+        private void tmrWatchdog_tick(object sender, EventArgs e)
+        {
+            this.lblLatitude.Text = Latitude;
+            this.lblLongitude.Text = Longitude;
+
+            //acres on the master section soft control
+            this.chkSectionsOnOff.Text = Acres;
+
+            //status strip values
+            stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
+            stripMPH.Text = "MPH: " + SpeedMPH;
+            stripPassNumber.Text = "Pass: " + PassNumber;
+            stripGridZoom.Text = "Grid: " + Grid + " Acres";
+            stripAcres.Text = "Acres: " + Acres;
+
+            //update the online indicator
+            if (recvCounter > 16)
+            {
+                stripOnlineGPS.Value = 1;
+            }
+            else stripOnlineGPS.Value = 100;
+
+            //textBox1.Text = pn.theSent;
+            //textBox1.SelectionStart = textBox1.Text.Length;
+            //textBox1.ScrollToCaret();
+        }
+
+        private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GPSDataShow();
+        }
+
+        private void btnNewJob_Click(object sender, EventArgs e)
+        {
+            JobNew();
+        }
+
+ 
    }//class FormGPS
 }//namespace AgOpenGPS
 

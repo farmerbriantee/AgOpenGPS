@@ -640,18 +640,6 @@ namespace AgOpenGPS
 
         #endregion Sections
 
-        private void btnFileOpenVehicle_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-            mainForm.FileOpenVehicle();
-        }
-
-        private void btnFileSaveVehicle_Click(object sender, EventArgs e)
-        {
-            mainForm.FileSaveVehicle();
-        }
-
 
 
 

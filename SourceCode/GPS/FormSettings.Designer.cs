@@ -56,8 +56,6 @@
             this.btnCloseSerialArduino = new System.Windows.Forms.Button();
             this.cboxPortArduino = new System.Windows.Forms.ComboBox();
             this.tabPageVehicle = new System.Windows.Forms.TabPage();
-            this.btnFileOpenVehicle = new System.Windows.Forms.Button();
-            this.btnFileSaveVehicle = new System.Windows.Forms.Button();
             this.rboHitched = new System.Windows.Forms.RadioButton();
             this.rboRigid = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -486,8 +484,6 @@
             // 
             this.tabPageVehicle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabPageVehicle.BackgroundImage")));
             this.tabPageVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabPageVehicle.Controls.Add(this.btnFileOpenVehicle);
-            this.tabPageVehicle.Controls.Add(this.btnFileSaveVehicle);
             this.tabPageVehicle.Controls.Add(this.rboHitched);
             this.tabPageVehicle.Controls.Add(this.rboRigid);
             this.tabPageVehicle.Controls.Add(this.groupBox3);
@@ -512,30 +508,10 @@
             this.tabPageVehicle.Text = "Vehicle";
             this.tabPageVehicle.UseVisualStyleBackColor = true;
             // 
-            // btnFileOpenVehicle
-            // 
-            this.btnFileOpenVehicle.Location = new System.Drawing.Point(758, 202);
-            this.btnFileOpenVehicle.Name = "btnFileOpenVehicle";
-            this.btnFileOpenVehicle.Size = new System.Drawing.Size(132, 52);
-            this.btnFileOpenVehicle.TabIndex = 60;
-            this.btnFileOpenVehicle.Text = "Open Vehicle";
-            this.btnFileOpenVehicle.UseVisualStyleBackColor = true;
-            this.btnFileOpenVehicle.Click += new System.EventHandler(this.btnFileOpenVehicle_Click);
-            // 
-            // btnFileSaveVehicle
-            // 
-            this.btnFileSaveVehicle.Location = new System.Drawing.Point(758, 129);
-            this.btnFileSaveVehicle.Name = "btnFileSaveVehicle";
-            this.btnFileSaveVehicle.Size = new System.Drawing.Size(132, 52);
-            this.btnFileSaveVehicle.TabIndex = 59;
-            this.btnFileSaveVehicle.Text = "Save Vehicle";
-            this.btnFileSaveVehicle.UseVisualStyleBackColor = true;
-            this.btnFileSaveVehicle.Click += new System.EventHandler(this.btnFileSaveVehicle_Click);
-            // 
             // rboHitched
             // 
             this.rboHitched.AutoSize = true;
-            this.rboHitched.Location = new System.Drawing.Point(758, 76);
+            this.rboHitched.Location = new System.Drawing.Point(441, 295);
             this.rboHitched.Name = "rboHitched";
             this.rboHitched.Size = new System.Drawing.Size(92, 26);
             this.rboHitched.TabIndex = 57;
@@ -546,7 +522,7 @@
             // rboRigid
             // 
             this.rboRigid.AutoSize = true;
-            this.rboRigid.Location = new System.Drawing.Point(758, 45);
+            this.rboRigid.Location = new System.Drawing.Point(441, 264);
             this.rboRigid.Name = "rboRigid";
             this.rboRigid.Size = new System.Drawing.Size(72, 26);
             this.rboRigid.TabIndex = 56;
@@ -556,7 +532,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(743, 16);
+            this.groupBox3.Location = new System.Drawing.Point(426, 235);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(151, 95);
             this.groupBox3.TabIndex = 58;
@@ -629,7 +605,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(418, 129);
+            this.label3.Location = new System.Drawing.Point(416, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 23);
             this.label3.TabIndex = 51;
@@ -644,7 +620,7 @@
             0,
             0,
             65536});
-            this.nudLookAhead.Location = new System.Drawing.Point(426, 159);
+            this.nudLookAhead.Location = new System.Drawing.Point(424, 147);
             this.nudLookAhead.Maximum = new decimal(new int[] {
             5,
             0,
@@ -1591,7 +1567,5 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblCurrentArduinoPort;
-        private System.Windows.Forms.Button btnFileOpenVehicle;
-        private System.Windows.Forms.Button btnFileSaveVehicle;
     }
 }

@@ -18,8 +18,6 @@ namespace AgOpenGPS
         public static string portNameArduino = "COM SectionControl...";
         public static int baudRateArduino = 9600;
 
-        int startCounter = 0;
-
         //used to decide to autoconnect arduino this run
         public bool wasArduinoConnectedLastRun = false;
 
@@ -29,6 +27,7 @@ namespace AgOpenGPS
         //a distance between previous and current fix
         private double distance = 0.0;
         public double sectionDistance = 0;
+        public double userDistance = 0;
 
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0;
@@ -37,17 +36,14 @@ namespace AgOpenGPS
         public double prevSectionNorthing = 0;
         public double prevSectionEasting = 0;
 
-        //tally counters for display
-        public double totalSquareMeters = 0;
-        public double totalDistance = 0;
-        public double userTotalSquareMeters = 0;
-        public double userDistance = 0;
-
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
         public int recvCounter = 20;
 
+        //Everything is so wonky at the start, so no delay for first 20 frames
+        int startCounter = 0;
+
         //array index for previous northing and easting positions
-        private static int numPrevs = 10;
+        private static int numPrevs = 42;
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
 
@@ -56,7 +52,7 @@ namespace AgOpenGPS
         public double prevEastingLowSpeed = 0;
         double distanceLowSpeed = 0;
 
-        //public double prevFixHeading;
+        public double prevFixHeading;
 
         //public string recvSentence = "InitalSetting";
         //public string recvSentenceArduino = "Section Control";
@@ -68,6 +64,9 @@ namespace AgOpenGPS
         public string recvSentenceSettingsArduino = "Section Control";
 
 
+        //tally counters for display
+        public double totalSquareMeters = 0;
+        public double totalDistance = 0;
 
         //serial port gps is connected to
         public SerialPort sp = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
@@ -123,6 +122,8 @@ namespace AgOpenGPS
         //called by the openglDraw routine.
         private void UpdateFixPosition()
         {
+            startCounter++;
+
            //if saving a file ignore any movement
             if (isSavingFile) return;
             //textBoxRcv.Text = recvSentence;
@@ -160,32 +161,31 @@ namespace AgOpenGPS
                         prevEasting[x] = prevEasting[0];
                     }
 
-                    //prevFixHeading = fixHeading;
+                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
+
+                    prevFixHeading = fixHeading;
 
                     prevSectionEasting = pn.easting;
                     prevSectionNorthing = pn.northing;
 
-                    prevNorthingLowSpeed = pn.northing;
-                    prevEastingLowSpeed = pn.easting;
-
                     return;
                 }
 
- 
- 
+                //calc low speed distance travelled if speed < 2 kph and app not starting
                 if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevNorthingLowSpeed, prevEastingLowSpeed);
                 else distanceLowSpeed = -1;
 
+                //time to record next fix
                 if (distanceLowSpeed > 0.3 | pn.speed > 2.0 | startCounter < 50)
                 {
-                    startCounter++;
-                   //determine fix positions and heading
+
+                    //determine fix positions and heading
                     fixPosX = (pn.easting);
                     fixPosZ = (pn.northing);
 
+                    //save a copy to calc distance 
                     prevNorthingLowSpeed = pn.northing;
                     prevEastingLowSpeed = pn.easting;
-
 
                     //in radians
                     fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
@@ -201,15 +201,13 @@ namespace AgOpenGPS
 
                     //in degrees for glRotate opengl methods. 
                     //can be filtered for smoother display by higher prevEastings and prevNorthings
-                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[4], pn.northing - prevNorthing[4]);
+                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[2], pn.northing - prevNorthing[2]);
                     if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                     fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
 
                     fixHeadingDelta = fixHeading - fixHeadingSection;
-                    
-                    //lblTest.Text = Convert.ToString(Math.Round(fixHeadingDelta, 3));
+                    lblTest.Text = Convert.ToString(Math.Round(fixHeadingDelta, 3));
 
- 
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
 
@@ -271,9 +269,8 @@ namespace AgOpenGPS
 
                     //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
 
-                    //prevFixHeading = fixHeading;
+                    prevFixHeading = fixHeading;
                 }
- 
                  //openGLControl.DoRender();
             }
 
