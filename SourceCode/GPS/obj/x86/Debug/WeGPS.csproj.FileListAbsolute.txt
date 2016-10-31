@@ -1,0 +1,14 @@
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\GPS.exe.config
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\GPS.exe
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\GPS.pdb
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\SharpGL.dll
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\_VS10\OpenGL\GPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.FormEqWidth.resources
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.GPSWinForm.resources
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.Properties.Resources.resources
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.csproj.GenerateResource.Cache
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\GPS.exe
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\GPS.pdb
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.FormGPSData.resources
+C:\_VS10\OpenGL\GPS\GPS\obj\x86\Debug\WeGPS.csprojResolveAssemblyReference.cache
