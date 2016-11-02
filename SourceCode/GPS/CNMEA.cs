@@ -57,6 +57,15 @@ namespace AgOpenGPS
          230394       Date - 23rd of March 1994
          003.1,W      Magnetic Variation
          *6A          The checksum data, always begins with *
+     *
+   $GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
+     *   
+        VTG          Track made good and ground speed
+        054.7,T      True track made good (degrees)
+        034.4,M      Magnetic track made good
+        005.5,N      Ground speed, knots
+        010.2,K      Ground speed, Kilometers per hour
+        *48          Checksum
     */
 
 
@@ -75,6 +84,7 @@ namespace AgOpenGPS
         public string rawBuffer = "";
         public string theSent = "";
         private string[] words;
+        private string nextNMEASentence = "";
 
         //UTM coordinates
         public double northing = 0;
@@ -100,153 +110,100 @@ namespace AgOpenGPS
             this.mainForm = f;
         }
 
-        public double Distance(double northing1, double easting1, double
-                northing2, double easting2)
-        {
-            return Math.Sqrt(
-                Math.Pow((easting1 - easting2), 2) +
-                Math.Pow((northing1 - northing2), 2));
-        }
-
-
+        //ParseNMEA
         public void ParseNMEA()
         {
-            //returns......
-            //return 0 - no data, invalid or incorrrect checksum etc
-            //return 1 - valid data updated
             updatedGGA = false;
             updatedVTG = false;
             updatedRMC = false;
 
-            //theSent += rawBuffer;
-
             if (rawBuffer == null) return;
-
-            //find end of a sentence
-            int cr = rawBuffer.IndexOf("\r\n");
-            if (cr == -1)  return; // No end found, wait for more data
-
-            // Find start of next sentence
-            int dollar = rawBuffer.IndexOf("$");
-            if (dollar == -1) return;
-
-            //if the $ isn't first, get rid of the tail of sentence
-            if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
-
-            //now we have a complete sentence or more somewhere in the portData
             bool stillData = true;
 
+                int cr, dollar;
+            //find end of a sentence
+            cr = rawBuffer.IndexOf("\r\n");
+            if (cr == -1) return; // No end found, wait for more data
+
+            // Find start of next sentence
+            dollar = rawBuffer.IndexOf("$");
+            if (dollar == -1) return;
+
+            //if the $ isn't first, get rid of the tail of corrupt sentence
+            if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
+            
+            cr = rawBuffer.IndexOf("\r\n");
+            if (cr == -1) return; // No end found, wait for more data
+            dollar = rawBuffer.IndexOf("$");
+            if (dollar == -1) return;
+
+            //if the $ isn't first, get rid of the tail of corrupt sentence
+            if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
+ 
+            cr = rawBuffer.IndexOf("\r\n");
+            dollar = rawBuffer.IndexOf("$");
+            if (cr == -1 || dollar == -1) return;
+
+            stillData = true;
+
+            theSent = "";
+
+            //now we have a complete sentence or more somewhere in the portData
             while (stillData)       
             {
-                string nextNMEASentence = Parse();
-                
+                //extract the next NMEA single sentence
+                nextNMEASentence = Parse();              
                 if (nextNMEASentence == null) return;
 
+                //parse them accordingly
                 words = nextNMEASentence.Split(',');
-            
-                #region $GPRMC
+                if (words.Length < 9) return;
 
-                //GPRMC parsing of the sentence 
-                //make sure there aren't missing coords in sentence
-                if (words[0] == "$GPRMC" & words[3] != "" & words[4] != "" & words[5] != "" & words[6] != "")
+                if (words[0] == "$GPGGA") ParseGGA();
+                if (words[0] == "$GPVTG") ParseVTG();
+                if (words[0] == "$GPRMC") ParseRMC();
+
+            }// while still data
+                   
+        }
+
+        //The indivdual sentence parsing
+        private void ParseGGA()
+        {
+ 
+                //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
+                //   0     1      2      3    4      5 6  7  8   9    10 11  12 13  14
+                //        Time      Lat       Lon  
+
+                //is the sentence GGA
+                if (words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
                 {
+
                     //get latitude and convert to decimal degrees
-                    try{ latitude = double.Parse(words[3].Substring(0, 2));
-                         latitude = latitude + double.Parse(words[3].Substring(2)) / 60.0; }
+                    try
+                    {
+                        latitude = double.Parse(words[2].Substring(0, 2));
+                        latitude = latitude + double.Parse(words[2].Substring(2)) / 60.0;
+                    }
                     catch (ArgumentNullException) { }
 
-                    try { if (words[4] == "S") latitude *= -1; }
+                    try { if (words[3] == "S") latitude *= -1; }
                     catch (ArgumentNullException) { }
 
                     //get longitude and convert to decimal degrees
-                    try { longitude = double.Parse(words[5].Substring(0, 3)); 
-                           longitude = longitude + double.Parse(words[5].Substring(3)) / 60.0; }
+                    try
+                    {
+                        longitude = double.Parse(words[4].Substring(0, 3));
+                        longitude = longitude + double.Parse(words[4].Substring(3)) / 60.0;
+                    }
                     catch (ArgumentNullException) { }
 
-                    try { if (words[6] == "W") longitude *= -1; }
+                    try { if (words[5] == "W") longitude *= -1; }
                     catch (ArgumentNullException) { }
 
                     //calculate zone and UTM coords
                     DecDeg2UTM(latitude, longitude);
 
-                    //Convert from knots to kph for speed
-                    if (words[7] == String.Empty) speed = -1;
-                    else
-                    {
-                        try { speed = double.Parse(words[7]) * 1.852; speed = Math.Round(speed, 1); }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    //True heading
-                    if (words[8] == String.Empty) headingTrue = -1;
-                    else
-                    {
-                        try { headingTrue = double.Parse(words[8]); }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    //Status
-                    if (words[2] == String.Empty) status = "z";
-                    else
-                    {
-                        try { status = words[2]; }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    //Date and Time
-                    if (words[1].Length != 0)
-                    {
-                        try
-                        {
-                            if (words[1].Length == 6)
-                            {
-                                // Only HHMMSS
-                                utcDateTime = new DateTime(
-                                    (int.Parse(words[9].Substring(4, 2)) + 2000),
-                                    int.Parse(words[9].Substring(2, 2)),
-                                    int.Parse(words[9].Substring(0, 2)),
-                                    int.Parse(words[1].Substring(0, 2)),
-                                    int.Parse(words[1].Substring(2, 2)),
-                                    int.Parse(words[1].Substring(4, 2)));
-                            }
-                            else
-                            {
-                                // HHMMSS.MS
-                                utcDateTime = new DateTime(
-                                    (int.Parse(words[9].Substring(4, 2)) + 2000),
-                                    int.Parse(words[9].Substring(2, 2)),
-                                    int.Parse(words[9].Substring(0, 2)),
-                                    int.Parse(words[1].Substring(0, 2)),
-                                    int.Parse(words[1].Substring(2, 2)),
-                                    int.Parse(words[1].Substring(4, 2)),
-                                    int.Parse(words[1].Substring(7)));
-                            }
-                        }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    //update the receive counter that detects loss of communication
-                    mainForm.recvCounter = 0;
-                    //update that RMC data is newly updated
-                    updatedRMC = true;
-
-                    theSent = nextNMEASentence;
-
-                }//end $GPRMC
-#endregion $GPRMC
-
-                #region $GPGGA
-
-                //is the sentence GGA
-                if (words[0] == "$GPGGA" & words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
-                {
-                    //altitude
-                    if (words[9] == String.Empty) altitude = -1;
-                    else
-                    {
-                        try { altitude = double.Parse(words[9]); }
-                        catch (ArgumentNullException) { }
-                    }
 
                     //fixQuality
                     if (words[6] == String.Empty) fixQuality = 0;
@@ -270,17 +227,112 @@ namespace AgOpenGPS
                         catch (ArgumentNullException) { }
                     }
 
+                    //altitude
+                    if (words[9] == String.Empty) altitude = -1;
+                    else
+                    {
+                        try { altitude = double.Parse(words[9]); }
+                        catch (ArgumentNullException) { }
+                    }
+                    theSent += nextNMEASentence;
                     updatedGGA = true;
-
+                    mainForm.recvCounter = 0;
                 }
 
-            #endregion $GPGGA                
+     }
 
-            }// while still data
-                   
-        }//ParseNMEA
+        private void ParseRMC()
+        {
+            //GPRMC parsing of the sentence 
+            //make sure there aren't missing coords in sentence
+            if (words[7] != "" & words[8] != "" & words[2] != "")
+            {
+                //get latitude and convert to decimal degrees
+                try
+                {
+                    latitude = double.Parse(words[3].Substring(0, 2));
+                    latitude = latitude + double.Parse(words[3].Substring(2)) / 60.0;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[4] == "S") latitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //get longitude and convert to decimal degrees
+                try
+                {
+                    longitude = double.Parse(words[5].Substring(0, 3));
+                    longitude = longitude + double.Parse(words[5].Substring(3)) / 60.0;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[6] == "W") longitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //calculate zone and UTM coords
+                DecDeg2UTM(latitude, longitude);
+
+        
+                //Convert from knots to kph for speed
+                if (words[7] == String.Empty) speed = -1;
+                else
+                {
+                    try { speed = double.Parse(words[7]) * 1.852; speed = Math.Round(speed, 1); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //True heading
+                if (words[8] == String.Empty) headingTrue = -1;
+                else
+                {
+                    try { headingTrue = double.Parse(words[8]); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //Status
+                if (words[2] == String.Empty) status = "z";
+                else
+                {
+                    try { status = words[2]; }
+                    catch (ArgumentNullException) { }
+                }
+                theSent += nextNMEASentence;
+                mainForm.recvCounter = 0;
+                updatedRMC = true;
+            }
+    
+
+        }
+ 
+        private void ParseVTG()
+        {
+            //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
+            //is the sentence GGA
+            if (words[1] != "" & words[5]  != "" )
+            {
+                //kph for speed - knots read
+                if (words[5] == String.Empty) speed = -1;
+                else
+                {
+                    try { speed = double.Parse(words[5]) * 1.852; speed = Math.Round(speed, 1); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //True heading
+                if (words[1] == String.Empty) headingTrue = -1;
+                else
+                {
+                    try { headingTrue = double.Parse(words[1]); }
+                    catch (ArgumentNullException) { }
+                }
+                updatedVTG = true;
+                theSent += nextNMEASentence;
+            }
 
 
+
+        }
+ 
          // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
         {
@@ -302,45 +354,56 @@ namespace AgOpenGPS
                 //the NMEA sentence to be parsed
                 sentence = rawBuffer.Substring(0, end + 2);
               
-                //remove the sentence from the buffer
+                //remove the processed sentence from the rawBuffer
                 rawBuffer = rawBuffer.Substring(end + 2);
             }
 
             //if sentence has valid checksum, its all good
             while (!ValidateChecksum(sentence));
 
-            // Remove trailing checksum and \r\n
+            // Remove trailing checksum and \r\n and return
             sentence = sentence.Substring(0, sentence.IndexOf("*"));
-
-            //Back to ParseNMEA
             return sentence;
         }
 
-
+        //checks the checksum against the string
         public bool ValidateChecksum(string Sentence)
         {
             int sum = 0, inx;
-            char[] sentence_chars = Sentence.ToCharArray();
-            char tmp;
-            // All character xor:ed results in the trailing hex checksum
-            // The checksum calc starts after '$' and ends before '*'
-            for (inx = 1; ; inx++)
-            {
-                if (inx >= sentence_chars.Length) // No checksum found
-                    return false;
-                tmp = sentence_chars[inx];
-                // Indicates end of data and start of checksum
-                if (tmp == '*')
-                    break;
-                sum = sum ^ tmp;    // Build checksum
-            }
-            // Calculated checksum converted to a 2 digit hex string
-            string sum_str = String.Format("{0:X2}", sum);
 
+            try
+            {
+                char[] sentence_chars = Sentence.ToCharArray();
+                char tmp;
+                // All character xor:ed results in the trailing hex checksum
+                // The checksum calc starts after '$' and ends before '*'
+                for (inx = 1; ; inx++)
+                {
+                    if (inx >= sentence_chars.Length) // No checksum found
+                        return false;
+                    tmp = sentence_chars[inx];
+                    // Indicates end of data and start of checksum
+                    if (tmp == '*')
+                        break;
+                    sum = sum ^ tmp;    // Build checksum
+                }
+                // Calculated checksum converted to a 2 digit hex string
+                string sum_str = String.Format("{0:X2}", sum);
+ 
             // Compare to checksum in sentence
             return sum_str.Equals(Sentence.Substring(inx + 1, 2));
+            }
+            catch (ArgumentNullException) { return false; }
+         }
+
+        public double Distance(double northing1, double easting1, double northing2, double easting2)
+        {
+            return Math.Sqrt(
+                Math.Pow((easting1 - easting2), 2) +
+                Math.Pow((northing1 - northing2), 2));
         }
 
+        #region (DecDeg2UTM)   Decimal Degrees to UTM Function
 
         // Parameters for the WGS84 ellipsoid
         private const double WGS84_E2 = 0.006694379990197;
@@ -355,9 +418,7 @@ namespace AgOpenGPS
         private const double UTM_FALSE_NORTHING_N = 0;    // Northern hemisphere
         private const double UTM_FALSE_NORTHING_S = 10000000; // Southern hemisphere
         private const double UTM_SCALE_FACTOR = 0.9996;
-
         // Takes a position in latitude / longitude (WGS84) as input
-        // Returns position in UTM easting/northing/zone (in meters)
         private void DecDeg2UTM(double latitude, double longitude)
         {
             // Normalize longitude into Zone, 6 degrees
@@ -393,7 +454,7 @@ namespace AgOpenGPS
             northing -= 5000000;
             //easting -= 300000;
         }
-
+        // Returns position in UTM easting/northing/zone (in meters)
         private double m_calc(double lat)
         {
             return (1 - WGS84_E2 / 4 - 3 * WGS84_E4 / 64 - 5 * WGS84_E6 / 256) * lat -
@@ -402,6 +463,65 @@ namespace AgOpenGPS
                  Math.Sin(4 * lat) - (35 * WGS84_E6 / 3072) * Math.Sin(6 * lat);
         }
 
+        #endregion
 
     }
 }
+
+//                #region $GPRMC
+
+//                //GPRMC parsing of the sentence 
+//                //make sure there aren't missing coords in sentence
+//                if (words[0] == "$GPRMC" & words[3] != "" & words[4] != "" & words[5] != "" & words[6] != "")
+//                {
+
+
+//                    //Status
+//                    if (words[2] == String.Empty) status = "z";
+//                    else
+//                    {
+//                        try { status = words[2]; }
+//                        catch (ArgumentNullException) { }
+//                    }
+
+//                    //Date and Time
+//                    if (words[1].Length != 0)
+//                    {
+//                        try
+//                        {
+//                            if (words[1].Length == 6)
+//                            {
+//                                // Only HHMMSS
+//                                utcDateTime = new DateTime(
+//                                    (int.Parse(words[9].Substring(4, 2)) + 2000),
+//                                    int.Parse(words[9].Substring(2, 2)),
+//                                    int.Parse(words[9].Substring(0, 2)),
+//                                    int.Parse(words[1].Substring(0, 2)),
+//                                    int.Parse(words[1].Substring(2, 2)),
+//                                    int.Parse(words[1].Substring(4, 2)));
+//                            }
+//                            else
+//                            {
+//                                // HHMMSS.MS
+//                                utcDateTime = new DateTime(
+//                                    (int.Parse(words[9].Substring(4, 2)) + 2000),
+//                                    int.Parse(words[9].Substring(2, 2)),
+//                                    int.Parse(words[9].Substring(0, 2)),
+//                                    int.Parse(words[1].Substring(0, 2)),
+//                                    int.Parse(words[1].Substring(2, 2)),
+//                                    int.Parse(words[1].Substring(4, 2)),
+//                                    int.Parse(words[1].Substring(7)));
+//                            }
+//                        }
+//                        catch (ArgumentNullException) { }
+//                    }
+
+//                    //update the receive counter that detects loss of communication
+//                    mainForm.recvCounter = 0;
+//                    //update that RMC data is newly updated
+//                    updatedRMC = true;
+
+//                    theSent = nextNMEASentence;
+
+//                }//end $GPRMC
+//#endregion $GPRMC

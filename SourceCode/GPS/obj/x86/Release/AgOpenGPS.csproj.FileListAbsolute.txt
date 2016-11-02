@@ -164,7 +164,6 @@ C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\Dependencies\Vehicle.png
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.pdb
-C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormABLine.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormAbout.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPSData.resources
@@ -187,3 +186,4 @@ C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86
 C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSettings.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormVariables.resources

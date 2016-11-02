@@ -65,7 +65,6 @@ namespace AgOpenGPS
 
             //section patch color
             gl.Color(0.0f, 0.45f, 0.0f, 0.6f);
-
             if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
 
             //draw patches of sections
@@ -90,12 +89,24 @@ namespace AgOpenGPS
 
             gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
 
+            //Draw vehicle track
+
+            if (isDrawVehicleTrack)
+            {
+
+                gl.Color(0.9f, 0.45f, 0.9f, 0.6f);
+
+                gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
+                foreach (var triList in pointList) gl.Vertex(triList.easting, 0, triList.northing);
+                gl.End();
+            }
+ 
             //draw the tractor/implement
             vehicle.DrawVehicle();
 
-            //gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
-            //gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixCam " + Convert.ToString(fixHeadingSection));
-            //gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection-fixHeading,3)));
+            gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
+            gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixCam " + Convert.ToString(fixHeadingSection));
+            gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection-fixHeading,3)));
 
             gl.Color(1.0f, 1.0f, 1.0f);
 

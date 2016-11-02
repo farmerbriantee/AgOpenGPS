@@ -65,7 +65,7 @@ namespace AgOpenGPS
             gl.Color(0.0f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_LINES);
             gl.Vertex(0,0,toolForeAft); //hitch
-            gl.Vertex(0, 0, toolForeAft+1.0);
+            gl.Vertex(0, 0, 0);
             gl.End();
 
             //section markers
@@ -85,8 +85,6 @@ namespace AgOpenGPS
             gl.Rotate(glm.degrees(-mainForm.fixHeadingSection), 0.0, 1.0, 0.0);
             gl.Rotate(glm.degrees(mainForm.fixHeading), 0.0, 1.0, 0.0);
 
-
-
             // Enable Texture Mapping and set color to white
             gl.Enable(OpenGL.GL_TEXTURE_2D);		
             gl.Color(1.0, 1.0, 1.0);
@@ -94,10 +92,10 @@ namespace AgOpenGPS
             //the vehicle
             gl.BindTexture(OpenGL.GL_TEXTURE_2D, mainForm.texture[0]);	// Select Our Texture
             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
-            gl.TexCoord(0, 0); gl.Vertex(2.0, 0.0, 2.0);                // Top Right
-            gl.TexCoord(1, 0); gl.Vertex(-2.0, 0.0, 2.0);               // Top Left
-            gl.TexCoord(0, 1); gl.Vertex(2.0, 0.0, -2.0);               // Bottom Right
-            gl.TexCoord(1, 1); gl.Vertex(-2.0, 0.0, -2.0);              // Bottom Left
+            gl.TexCoord(0, 0); gl.Vertex(2.0, 0.0, 4.0);                // Top Right
+            gl.TexCoord(1, 0); gl.Vertex(-2.0, 0.0, 4.0);               // Top Left
+            gl.TexCoord(0, 1); gl.Vertex(2.0, 0.0, -1.0);               // Bottom Right
+            gl.TexCoord(1, 1); gl.Vertex(-2.0, 0.0, -1.0);              // Bottom Left
             gl.End();						// Done Building Triangle Strip
 
         }

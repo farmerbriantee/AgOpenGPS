@@ -24,6 +24,9 @@ namespace AgOpenGPS
         //very first fix to setup grid etc
         public bool isFirstFixPositionSet = false;
 
+        //how many fix updates per sec
+        public int rmcUpdateHz = 5;
+
         //a distance between previous and current fix
         private double distance = 0.0;
         public double sectionDistance = 0;
@@ -43,7 +46,7 @@ namespace AgOpenGPS
         int startCounter = 0;
 
         //array index for previous northing and easting positions
-        private static int numPrevs = 42;
+        private static int numPrevs = 205;
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
 
@@ -54,15 +57,14 @@ namespace AgOpenGPS
 
         public double prevFixHeading;
 
-        //public string recvSentence = "InitalSetting";
-        //public string recvSentenceArduino = "Section Control";
-
         public StringBuilder recvSentence = new StringBuilder();
         public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
 
         public string recvSentenceSettings = "InitalSetting";
         public string recvSentenceSettingsArduino = "Section Control";
 
+        //individual points
+        List<CPointData> pointList = new List<CPointData>();
 
         //tally counters for display
         public double totalSquareMeters = 0;
@@ -74,12 +76,164 @@ namespace AgOpenGPS
         //serial port Arduino is connected to
         public SerialPort spArduino = new SerialPort(portNameArduino, baudRateArduino, Parity.None, 8, StopBits.One);
 
-        //how many fix updates per sec
-        public int rmcUpdateHz = 5;
+       //called by the openglDraw routine 10 times per second.
+        private void UpdateFixPosition()
+        {
+            startCounter++;
 
-       //individual points
-        //List<CPointData> pointList = new List<CPointData>();
+           //if saving a file ignore any movement
+            if (isSavingFile) return;
+ 
+            //add what has been rec'd to the nmea buffer
+            pn.rawBuffer += recvSentence.ToString();
 
+            //empty the received sentence
+            recvSentence.Clear();
+
+            //parse the line received GGA and RMC
+            pn.ParseNMEA();
+
+            //if its a valid fix data for RMC
+            if (pn.updatedGGA|pn.updatedRMC)
+            {
+                //this is the current position taken from the latest sentence
+                textBoxRcv.Text = pn.theSent;
+
+                //Point where the GPS antenna is.
+                CPointData pd = new CPointData(pn.northing, pn.easting);
+                pointList.Add(pd);
+
+                if (!isFirstFixPositionSet)
+                {
+                    //Draw a grid once we know where in the world we are.
+                    isFirstFixPositionSet = true;
+                    worldGrid.CreateWorldGrid(pn.northing, pn.easting);
+
+                   //most recent fixes
+                    prevEasting[0] = pn.easting;
+                    prevNorthing[0] = pn.northing+0.5;
+
+                     //save a copy of previous positions for cam heading of desired filtering or delay
+                    for (int x = 0; x > numPrevs; x++)
+                    {
+                        prevNorthing[x] = prevNorthing[0];
+                        prevEasting[x] = prevEasting[0];
+                    }
+
+                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
+
+                    prevFixHeading = fixHeading;
+
+                    prevSectionEasting = pn.easting;
+                    prevSectionNorthing = pn.northing;
+
+                    return;
+                }
+
+                //calc low speed distance travelled if speed < 2 kph and app not starting
+                if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevNorthingLowSpeed, prevEastingLowSpeed);
+                else distanceLowSpeed = -1;
+
+                //time to record next fix
+                if (distanceLowSpeed > 0.2 | pn.speed > 2.0 | startCounter < 50)
+                {
+
+                    //determine fix positions and heading
+                    fixPosX = (pn.easting);
+                    fixPosZ = (pn.northing);
+
+                    //save a copy to calc distance 
+                    prevNorthingLowSpeed = pn.northing;
+                    prevEastingLowSpeed = pn.easting;
+
+                    //in radians
+                    fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
+                    if (fixHeading < 0) fixHeading += Math.PI * 2.0;
+
+                    //in radians
+                    if (vehicle.isHitched)
+                    {
+                        double eastAvg = 0; 
+                        double northAvg = 0;
+                        
+                        for (int d = 1; d < (int)(deltaTurn+1); d++)
+                        {
+                            eastAvg += prevEasting[d] / (double)deltaTurn;
+                            northAvg += prevNorthing[d] / (double)deltaTurn;
+                        }
+
+                        fixHeadingSection = Math.Atan2(pn.easting - eastAvg, pn.northing - northAvg);
+                        if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
+                    }
+                    else fixHeadingSection = fixHeading;
+
+                    //in degrees for glRotate opengl methods.
+                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
+                    if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
+                    fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
+
+                    //difference between vehicle heading and sections heading
+                    fixHeadingDelta = fixHeading - fixHeadingSection;
+
+                    if (fixHeadingDelta > 4) fixHeadingDelta -= Math.PI * 2.0;
+                    if (fixHeadingDelta < -4) fixHeadingDelta += Math.PI * 2.0;
+
+ 
+                    //check to make sure the grid is big enough
+                    worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
+
+                    //precalc the sin and cos of heading * -1
+                    sinHeading = Math.Sin(-fixHeadingSection);
+                    cosHeading = Math.Cos(-fixHeadingSection);
+
+                    //calc distance travelled since last GPS fix
+                    distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
+
+                    //calculate how far since the last section triangle was made
+                    currentSectionNorthing = pn.northing + vehicle.toolForeAft * cosHeading;
+                    currentSectionEasting = pn.easting + vehicle.toolForeAft * -sinHeading;
+
+                    //To prevent drawing high numbers of triangles, determine and test before drawing vertex
+                    sectionTriggerDistance = pn.Distance(currentSectionNorthing, currentSectionEasting, prevSectionNorthing, prevSectionEasting);
+
+                    //speed compensated min length limit triangles. The faster you go, the less of them
+                    if (sectionTriggerDistance > (pn.speed / 7 + 0.3))
+                    {   if (isJobStarted && isMasterSectionOn)//add the pathpoint
+                        {
+                            //save the north & east as previous
+                            prevSectionNorthing = currentSectionNorthing;
+                            prevSectionEasting = currentSectionEasting;
+
+                            //send the current and previous GPS fore/aft corrected fix to each section
+                            for (int j = 0; j < vehicle.numberOfSections; j++)
+                            {   if (section[j].isSectionOn) 
+                                    {section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);                                    
+                                    totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth; }//area is made up of square meters in each section
+                            }
+                        }
+                    }
+
+                    totalDistance += distance; //distance tally                   
+                    userDistance += distance;//userDistance can be reset
+
+                    //save a copy of previous positions for cam heading of desired filtering or delay
+                    for (int x = numPrevs - 1; x > 0; x--)  {
+                        prevNorthing[x] = prevNorthing[x - 1];prevEasting[x] = prevEasting[x - 1];  }
+ 
+                    //most recent fixes
+                    prevEasting[0] = pn.easting;
+                    prevNorthing[0] = pn.northing;
+                    prevFixHeading = fixHeading;
+                }
+                 //openGLControl.DoRender();
+            }
+
+            else if (recvCounter > 16) textBoxRcv.Text = "************  NO GGA or RMC **************";
+
+            
+        }//end of UppdateFixPosition
+
+        //Send relay info out to relay board
         private void SectionControlOutToArduino()
         {
             if (!spArduino.IsOpen) return;
@@ -118,175 +272,6 @@ namespace AgOpenGPS
 
         }
 
-        
-        //called by the openglDraw routine.
-        private void UpdateFixPosition()
-        {
-            startCounter++;
-
-           //if saving a file ignore any movement
-            if (isSavingFile) return;
-            //textBoxRcv.Text = recvSentence;
-
-            //add what has been rec'd to the nmea buffer
-            pn.rawBuffer += recvSentence.ToString();
-
-            //empty the received sentence
-            recvSentence.Clear();
-
-            //parse the line received GGA and RMC
-            pn.ParseNMEA();
-
-            //if its a valid fix data for RMC
-            if (pn.updatedRMC)
-            {
-                //recvSentence = recvSentence;
-                //this is the current position taken from the latest sentence
-                //CPointData pd = new CPointData(pn.northing, pn.easting, pn.speed, pn.headingTrue);
-
-                if (!isFirstFixPositionSet)
-                {
-                    //Draw a grid once we know where in the world we are.
-                    isFirstFixPositionSet = true;
-                    worldGrid.CreateWorldGrid(pn.northing, pn.easting);
-
-                   //most recent fixes
-                    prevEasting[0] = pn.easting;
-                    prevNorthing[0] = pn.northing;
-
-                     //save a copy of previous positions for cam heading of desired filtering or delay
-                    for (int x = 0; x > numPrevs; x++)
-                    {
-                        prevNorthing[x] = prevNorthing[0];
-                        prevEasting[x] = prevEasting[0];
-                    }
-
-                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
-
-                    prevFixHeading = fixHeading;
-
-                    prevSectionEasting = pn.easting;
-                    prevSectionNorthing = pn.northing;
-
-                    return;
-                }
-
-                //calc low speed distance travelled if speed < 2 kph and app not starting
-                if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevNorthingLowSpeed, prevEastingLowSpeed);
-                else distanceLowSpeed = -1;
-
-                //time to record next fix
-                if (distanceLowSpeed > 0.3 | pn.speed > 2.0 | startCounter < 50)
-                {
-
-                    //determine fix positions and heading
-                    fixPosX = (pn.easting);
-                    fixPosZ = (pn.northing);
-
-                    //save a copy to calc distance 
-                    prevNorthingLowSpeed = pn.northing;
-                    prevEastingLowSpeed = pn.easting;
-
-                    //in radians
-                    fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
-                    if (fixHeading < 0) fixHeading += Math.PI * 2.0;
-
-                    //in radians
-                    if (vehicle.isHitched)
-                    {
-                        fixHeadingSection = Math.Atan2(pn.easting - prevEasting[rmcUpdateHz * 1], pn.northing - prevNorthing[rmcUpdateHz * 1]);
-                        if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
-                    }
-                    else fixHeadingSection = fixHeading;
-
-                    //in degrees for glRotate opengl methods.
-                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[2], pn.northing - prevNorthing[2]);
-                    if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
-                    fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
-
-                    //difference between vehicle heading and sections heading
-                    fixHeadingDelta = fixHeading - fixHeadingSection;
-
-                    if (fixHeadingDelta > 4) fixHeadingDelta -= Math.PI * 2.0;
-                    if (fixHeadingDelta < -4) fixHeadingDelta += Math.PI * 2.0;
-
-                    lblTest.Text = Convert.ToString(Math.Round(fixHeadingDelta, 3));
-
-                    //check to make sure the grid is big enough
-                    worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
-
-                    //precalc the sin and cos of heading * -1
-                    sinHeading = Math.Sin(-fixHeadingSection);
-                    cosHeading = Math.Cos(-fixHeadingSection);
-
-                    //calc distance travelled since last GPS fix
-                    distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
-
-                    //calculate how far since the last section triangle was made
-                    currentSectionNorthing = pn.northing + vehicle.toolForeAft * cosHeading;
-                    currentSectionEasting = pn.easting + vehicle.toolForeAft * -sinHeading;
-
-                    //To prevent drawing high numbers of triangles, determine and test before drawing vertex
-                    sectionTriggerDistance = pn.Distance(currentSectionNorthing, currentSectionEasting, prevSectionNorthing, prevSectionEasting);
-
-                    //speed compensated min length limit triangles. The faster you go, the less of them
-                    if (sectionTriggerDistance > (pn.speed / 7 + 0.3))
-                    {
-                        //add the pathpoint
-                        if (isJobStarted && isMasterSectionOn)
-                        {
-                            //save the north & east as previous
-                            prevSectionNorthing = currentSectionNorthing;
-                            prevSectionEasting = currentSectionEasting;
-
-                            //send the current and previous GPS fore/aft corrected fix to each section
-                            for (int j = 0; j < vehicle.numberOfSections; j++)
-                            {
-                                if (section[j].isSectionOn)
-                                {
-                                    section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);
-
-                                    //area is made up of square meters in each section
-                                    totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth;
-                                }
-                            }
-                        }
-                    }
-
-
-                    //distance tally, calculated based on fixposition updates, NOT sections. Runs continuously.
-                    totalDistance += distance;
-
-                    //userDistance can be reset
-                    userDistance += distance;
-
-                    //save a copy of previous positions for cam heading of desired filtering or delay
-                    for (int x = numPrevs - 1; x > 0; x--)
-                    {
-                        prevNorthing[x] = prevNorthing[x - 1];
-                        prevEasting[x] = prevEasting[x - 1];
-                    }
-
-                    //most recent fixes
-                    prevEasting[0] = pn.easting;
-                    prevNorthing[0] = pn.northing;
-
-                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
-
-                    prevFixHeading = fixHeading;
-                }
-                 //openGLControl.DoRender();
-            }
-
-            //a GGA sentnece rec'd
-
-            if (pn.updatedGGA)
-            {
-            }
-
-            
-        }//end of UppdateFixPosition
-
         //called by the delegate every time a chunk is rec'd
         private void SerialLineReceived(string sentence)
         {
@@ -294,7 +279,7 @@ namespace AgOpenGPS
             recvSentence.Append(sentence);
             recvSentenceSettings = recvSentence.ToString();
             //textBoxRcv.Text = recvSentence.ToString(); 
-            textBoxRcv.Text = pn.theSent;
+            //textBoxRcv.Text = pn.theSent;
         }
  
         //Arduino port called by the delegate every time

@@ -44,6 +44,7 @@ namespace AgOpenGPS
 
         //polygon mode for section drawing
         bool isDrawPolygons = false;
+        bool isDrawVehicleTrack = true;
 
         //Current fix position
         public double fixPosX = 0.0;
@@ -55,6 +56,8 @@ namespace AgOpenGPS
         public double fixHeadingCam = 0.0;
         public double fixHeadingSection = 0.0;
         public double fixHeadingDelta = 0;
+
+        public double deltaTurn = 32; 
 
         //storage for the cos and sin of heading
         public double cosHeading = 1.0;
@@ -287,13 +290,20 @@ namespace AgOpenGPS
         }
 
         //Bring up the dialog that shows GPS info
-        private void GPSDataShow()
+        private void GPSDataFormShow()
         {
             using (var form = new FormGPSData(this))
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
+        }
+
+        //Bring up the dialog that shows GPS info
+        private void VariablesFormShow()
+        {
+            Form form = new FormVariables(this);
+            form.Show();
         }
 
         //Open the dialog of tabbed settings
@@ -421,7 +431,7 @@ namespace AgOpenGPS
                 //if requested to be on, set the timer to 10 (2 seconds) = 5 frames per second
                 if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
                 {
-                    section[j].sectionOnTimer = 15;
+                    section[j].sectionOnTimer = (int)(pn.speed*vehicle.lookAhead);
                     section[j].sectionOnOffCycle = true;
                 }
 
@@ -436,10 +446,10 @@ namespace AgOpenGPS
                     if (!section[j].isSectionOn) section[j].TurnSectionOn();
                     
                     //keep resetting the section OFF timer while the ON is active
-                    section[j].sectionOffTimer = 3;
+                    section[j].sectionOffTimer = 7;
                 }
                 
-                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 5;
+                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 7;
 
                 //decrement the off timer
                 if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
@@ -502,6 +512,12 @@ namespace AgOpenGPS
             polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
         }
 
+        private void vehicleTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isDrawVehicleTrack = !isDrawVehicleTrack;
+            vehicleTrackToolStripMenuItem.Checked = !vehicleTrackToolStripMenuItem.Checked;
+        }
+
         private void menuJobNew_Click(object sender, EventArgs e)
         {
             JobNew();
@@ -529,7 +545,7 @@ namespace AgOpenGPS
 
         private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GPSDataShow();
+            GPSDataFormShow();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -560,6 +576,10 @@ namespace AgOpenGPS
 
         }
   
+       private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VariablesFormShow();
+        }
 
 // Buttons //-----------------------------------------------------------------------
 
@@ -638,7 +658,6 @@ namespace AgOpenGPS
 
         }
 
- 
         private void SetZoom()
         {
             //match grid to cam distance and redo perspective
@@ -804,6 +823,10 @@ namespace AgOpenGPS
             //textBox1.ScrollToCaret();
         }
 
+        private void lblTest_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
  

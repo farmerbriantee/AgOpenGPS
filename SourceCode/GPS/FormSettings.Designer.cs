@@ -118,10 +118,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.tabDisplay = new System.Windows.Forms.TabPage();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label14 = new System.Windows.Forms.Label();
             this.btnDisplayCancel = new System.Windows.Forms.Button();
             this.btnDisplayOK = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblAntennaWhere = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabCOMPorts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).BeginInit();
@@ -485,8 +486,9 @@
             // 
             // tabVehicle
             // 
-            this.tabVehicle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabVehicle.BackgroundImage")));
+            this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleDimensions;
             this.tabVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabVehicle.Controls.Add(this.lblAntennaWhere);
             this.tabVehicle.Controls.Add(this.rboHitched);
             this.tabVehicle.Controls.Add(this.rboRigid);
             this.tabVehicle.Controls.Add(this.groupBox3);
@@ -514,7 +516,7 @@
             // rboHitched
             // 
             this.rboHitched.AutoSize = true;
-            this.rboHitched.Location = new System.Drawing.Point(441, 295);
+            this.rboHitched.Location = new System.Drawing.Point(420, 304);
             this.rboHitched.Name = "rboHitched";
             this.rboHitched.Size = new System.Drawing.Size(92, 26);
             this.rboHitched.TabIndex = 57;
@@ -525,7 +527,7 @@
             // rboRigid
             // 
             this.rboRigid.AutoSize = true;
-            this.rboRigid.Location = new System.Drawing.Point(441, 264);
+            this.rboRigid.Location = new System.Drawing.Point(420, 273);
             this.rboRigid.Name = "rboRigid";
             this.rboRigid.Size = new System.Drawing.Size(72, 26);
             this.rboRigid.TabIndex = 56;
@@ -535,7 +537,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(426, 235);
+            this.groupBox3.Location = new System.Drawing.Point(405, 244);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(151, 95);
             this.groupBox3.TabIndex = 58;
@@ -660,7 +662,7 @@
             // 
             this.lblForeAftInches.AutoSize = true;
             this.lblForeAftInches.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForeAftInches.Location = new System.Drawing.Point(111, 299);
+            this.lblForeAftInches.Location = new System.Drawing.Point(64, 317);
             this.lblForeAftInches.Name = "lblForeAftInches";
             this.lblForeAftInches.Size = new System.Drawing.Size(47, 33);
             this.lblForeAftInches.TabIndex = 26;
@@ -671,7 +673,7 @@
             // 
             this.lblForeAftFeet.AutoSize = true;
             this.lblForeAftFeet.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForeAftFeet.Location = new System.Drawing.Point(43, 299);
+            this.lblForeAftFeet.Location = new System.Drawing.Point(7, 317);
             this.lblForeAftFeet.Name = "lblForeAftFeet";
             this.lblForeAftFeet.Size = new System.Drawing.Size(47, 33);
             this.lblForeAftFeet.TabIndex = 25;
@@ -687,7 +689,7 @@
             0,
             0,
             131072});
-            this.nudForeAft.Location = new System.Drawing.Point(204, 280);
+            this.nudForeAft.Location = new System.Drawing.Point(36, 264);
             this.nudForeAft.Maximum = new decimal(new int[] {
             16,
             0,
@@ -699,7 +701,7 @@
             0,
             -2147483648});
             this.nudForeAft.Name = "nudForeAft";
-            this.nudForeAft.Size = new System.Drawing.Size(148, 50);
+            this.nudForeAft.Size = new System.Drawing.Size(119, 50);
             this.nudForeAft.TabIndex = 24;
             this.nudForeAft.Value = new decimal(new int[] {
             20,
@@ -711,12 +713,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(36, 268);
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(6, 229);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 33);
+            this.label5.Size = new System.Drawing.Size(96, 23);
             this.label5.TabIndex = 23;
-            this.label5.Text = "Fore / Aft ";
+            this.label5.Text = "Fore / Aft ->";
             // 
             // btnVehicleOK
             // 
@@ -1419,22 +1421,6 @@
             this.tabDisplay.Text = "Display";
             this.tabDisplay.UseVisualStyleBackColor = true;
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 300;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(475, 8);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(242, 23);
-            this.label14.TabIndex = 57;
-            this.label14.Text = "Don\'t forget to Save each page";
-            // 
             // btnDisplayCancel
             // 
             this.btnDisplayCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -1460,6 +1446,32 @@
             this.btnDisplayOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnDisplayOK.UseVisualStyleBackColor = true;
             this.btnDisplayOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 300;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(475, 8);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(242, 23);
+            this.label14.TabIndex = 57;
+            this.label14.Text = "Don\'t forget to Save each page";
+            // 
+            // lblAntennaWhere
+            // 
+            this.lblAntennaWhere.AutoSize = true;
+            this.lblAntennaWhere.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAntennaWhere.Location = new System.Drawing.Point(108, 230);
+            this.lblAntennaWhere.Name = "lblAntennaWhere";
+            this.lblAntennaWhere.Size = new System.Drawing.Size(76, 22);
+            this.lblAntennaWhere.TabIndex = 59;
+            this.lblAntennaWhere.Text = "label18";
             // 
             // FormSettings
             // 
@@ -1601,5 +1613,6 @@
         private System.Windows.Forms.Label lblCurrentArduinoPort;
         private System.Windows.Forms.Button btnDisplayCancel;
         private System.Windows.Forms.Button btnDisplayOK;
+        private System.Windows.Forms.Label lblAntennaWhere;
     }
 }
