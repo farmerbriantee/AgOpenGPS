@@ -22,11 +22,8 @@ namespace AgOpenGPS
     //the main form object
     public partial class FormGPS : Form
     {
-        //class variables ----------------------------------------------------
-
         //maximum sections available
         const int MAXSECTIONS = 5;
-
         private const byte SET_1 = 1;
         private const byte SET_2 = 2;
         private const byte SET_3 = 4;
@@ -40,7 +37,6 @@ namespace AgOpenGPS
         private const byte RESET_5 = 239;
 
         byte[] bufferArd = { 0 };
-
 
         //polygon mode for section drawing
         bool isDrawPolygons = false;
@@ -56,8 +52,6 @@ namespace AgOpenGPS
         public double fixHeadingCam = 0.0;
         public double fixHeadingSection = 0.0;
         public double fixHeadingDelta = 0;
-
-        public double deltaTurn = 32; 
 
         //storage for the cos and sin of heading
         public double cosHeading = 1.0;
@@ -83,9 +77,6 @@ namespace AgOpenGPS
         //if we are saving a file
         public bool isSavingFile = false;
 
-// Instances --------------------------------------------------------------------------
-
-        //Instances made in FormGPS_Load if not new here.
         //create the scene camera
         public CCamera camera = new CCamera();
 
@@ -190,8 +181,7 @@ namespace AgOpenGPS
             SerialPortOpenGPS();
 
             //Only if Arduino was connected successfully last run
-            if (wasArduinoConnectedLastRun)
-                    SerialPortOpenArduino();
+            if (wasArduinoConnectedLastRun)  SerialPortOpenArduino();
 
             //remembered window position
             if (Properties.Settings.Default.setWindow_Maximized)

@@ -352,7 +352,6 @@ namespace AgOpenGPS
         private void nudForeAft_ValueChanged(object sender, EventArgs e)
         {
             ForeAftUpdate();
-            mainForm.deltaTurn = Math.Abs((int)(nudForeAft.Value) * 10.0);            
             if (nudForeAft.Value < 0) lblAntennaWhere.Text = "AFT (Behind)";
             else                        lblAntennaWhere.Text = "Fore (Ahead)";
         }
