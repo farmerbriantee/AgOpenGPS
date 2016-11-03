@@ -50,6 +50,11 @@ namespace AgOpenGPS
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
 
+        public double prevImplementNorthing = 0;
+        public double prevImplementEasting = 0;
+        public double prevFixHeadingSection = 0;
+        private const int TURN_STEPS = 10;
+
         //Low speed detection variables
         public double prevNorthingLowSpeed = 0;
         public double prevEastingLowSpeed = 0;
@@ -153,6 +158,81 @@ namespace AgOpenGPS
                     //in radians
                     if (vehicle.isHitched)
                     {
+
+                        if (prevImplementNorthing == 0 && prevImplementEasting == 0) {
+                            //No previous location known; assume it's straight back from the tractor
+                            fixHeadingSection = fixHeading;
+                            prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+                            prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+                            //System.Console.WriteLine("Initialized to starting position.");
+                            
+                        } else {
+                            if (Math.Abs(pn.northing - prevImplementNorthing) < 0.1 &&
+                                Math.Abs(pn.easting - prevImplementEasting) < 0.1) {
+                                // The new tractor position is exactly the same as the old
+                                // implement position, so push the implement straight back.
+                                fixHeadingSection = prevFixHeadingSection;
+                                prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+                                prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+                                //System.Console.WriteLine("Tractor moved to where implement was; pushing implement back.");
+                            } else {
+
+                                // Because this approximation over-estimates, break the change in tractor
+                                // position into several sub-steps and do this approximation for each
+                                // step.
+
+                                double in_temp = prevImplementNorthing;
+                                double ie_temp = prevImplementEasting;
+                                double n_step = (pn.northing - prevNorthing[1]) / TURN_STEPS;
+                                double e_step = (pn.easting - prevEasting[1]) / TURN_STEPS;
+                                double tn_temp = prevNorthing[1];
+                                double te_temp = prevEasting[1];
+
+                                double t;
+
+                                for (int i = 0; i < TURN_STEPS; i++) {
+                                    //Break the tractor movement up into little steps and move
+                                    //apply the approximation to each step.
+                                    tn_temp += n_step;
+                                    te_temp += e_step;
+                                    t = vehicle.toolForeAft / Math.Sqrt( (tn_temp - in_temp) * (tn_temp - in_temp) +
+                                                                         (te_temp - ie_temp) * (te_temp - ie_temp) );
+                                    in_temp = tn_temp + t * (tn_temp - in_temp);
+                                    ie_temp = te_temp + t * (te_temp - ie_temp);
+                                }
+
+                                //Now we are in the new position and the last approximation is the 
+                                //new position of the implement.
+                                prevImplementNorthing = in_temp;
+                                prevImplementEasting = ie_temp;
+                                
+                                /* Uncomment for faster, but less precise calculation. Also it's less obfuscated.
+
+                                // Draw a line as it were from the new tractor position to the old implement position
+                                // measure the hitch length along that line and that becomes the new implement position.
+                                // It over-estimates the sideways movement a bit, but with 5 samples per second it should
+                                // approximate the actual position fairly well.  If we need more precision, we can do
+                                // sub calculations in here.
+                                double t = vehicle.toolForeAft / Math.Sqrt( (pn.northing - prevImplementNorthing) * (pn.northing - prevImplementNorthing) +
+                                                                            (pn.easting - prevImplementEasting) * (pn.easting - prevImplementEasting));
+                                prevImplementNorthing = pn.northing + t * (pn.northing - prevImplementNorthing);
+                                prevImplementEasting = pn.easting + t * (pn.easting - prevImplementEasting);
+                                */
+
+                                fixHeadingSection = Math.Atan2(pn.easting - prevImplementEasting, pn.northing - prevImplementNorthing);
+                            }
+                        }
+                        /*
+                        System.Console.Write("Tractor heading is ");
+                        System.Console.Write((fixHeading * 180.0 / Math.PI + 360) % 360);
+                        System.Console.Write(" and implement heading is ");
+                        System.Console.WriteLine((fixHeadingSection * 180.0 / Math.PI + 360) % 360);
+                        */
+
+                        prevFixHeadingSection = fixHeadingSection;
+
+
+                        /*
                         double eastAvg = 0; 
                         double northAvg = 0;
                         
@@ -164,6 +244,7 @@ namespace AgOpenGPS
 
                         fixHeadingSection = Math.Atan2(pn.easting - eastAvg, pn.northing - northAvg);
                         if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
+			*/
                     }
                     else fixHeadingSection = fixHeading;
 
@@ -476,3 +557,4 @@ namespace AgOpenGPS
 
     }//end class
 }//end namespace
+
