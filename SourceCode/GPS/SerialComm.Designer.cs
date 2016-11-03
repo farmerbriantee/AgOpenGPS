@@ -249,9 +249,14 @@ namespace AgOpenGPS
                     else fixHeadingSection = fixHeading;
 
                     //in degrees for glRotate opengl methods.
-                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
-                    if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
-                    fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
+                    //fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
+                    //fix the negative numbers in one step
+                    //fixHeadingCam = (fixHeadingCam * 180.0 / Math.PI + 360) % 360;
+
+                    //use NMEA headings for camera and tractor graphic
+                    fixHeadingCam = pn.headingTrue;
+                    fixHeading = pn.headingTrue * Math.PI / 180.0;
+
 
                     //difference between vehicle heading and sections heading
                     fixHeadingDelta = fixHeading - fixHeadingSection;
