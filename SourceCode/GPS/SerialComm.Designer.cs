@@ -162,8 +162,8 @@ namespace AgOpenGPS
                         if (prevImplementNorthing == 0 && prevImplementEasting == 0) {
                             //No previous location known; assume it's straight back from the tractor
                             fixHeadingSection = fixHeading;
-                            prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
-                            prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+                            prevImplementEasting = pn.easting + Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+                            prevImplementNorthing = pn.northing + Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
                             //System.Console.WriteLine("Initialized to starting position.");
                             
                         } else {
