@@ -187,3 +187,4 @@ C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86
 C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev - Copy - PRE LOWSPEED\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormVariables.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormVariables.resources

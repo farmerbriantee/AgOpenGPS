@@ -46,9 +46,14 @@ namespace AgOpenGPS
         int startCounter = 0;
 
         //array index for previous northing and easting positions
-        private static int numPrevs = 205;
+        private static int numPrevs = 8;
         public double[] prevNorthing = new double[numPrevs];
         public double[] prevEasting = new double[numPrevs];
+
+        public double prevImplementNorthing = 0;
+        public double prevImplementEasting = 0;
+        public double prevFixHeadingSection = 0;
+        private const int TURN_STEPS = 1;
 
         //Low speed detection variables
         public double prevNorthingLowSpeed = 0;
@@ -76,14 +81,14 @@ namespace AgOpenGPS
         //serial port Arduino is connected to
         public SerialPort spArduino = new SerialPort(portNameArduino, baudRateArduino, Parity.None, 8, StopBits.One);
 
-       //called by the openglDraw routine 10 times per second.
+        //called by the openglDraw routine 10 times per second.
         private void UpdateFixPosition()
         {
             startCounter++;
 
-           //if saving a file ignore any movement
+            //if saving a file ignore any movement
             if (isSavingFile) return;
- 
+
             //add what has been rec'd to the nmea buffer
             pn.rawBuffer += recvSentence.ToString();
 
@@ -94,7 +99,7 @@ namespace AgOpenGPS
             pn.ParseNMEA();
 
             //if its a valid fix data for RMC
-            if (pn.updatedGGA|pn.updatedRMC)
+            if (pn.updatedGGA | pn.updatedRMC)
             {
                 //this is the current position taken from the latest sentence
                 textBoxRcv.Text = pn.theSent;
@@ -109,24 +114,14 @@ namespace AgOpenGPS
                     isFirstFixPositionSet = true;
                     worldGrid.CreateWorldGrid(pn.northing, pn.easting);
 
-                   //most recent fixes
-                    prevEasting[0] = pn.easting;
-                    prevNorthing[0] = pn.northing+0.5;
-
-                     //save a copy of previous positions for cam heading of desired filtering or delay
-                    for (int x = 0; x > numPrevs; x++)
-                    {
-                        prevNorthing[x] = prevNorthing[0];
-                        prevEasting[x] = prevEasting[0];
-                    }
-
-                    //label5.Text = Convert.ToString(Math.Round(prevFixHeading - fixHeading,3));
-
+                    //most recent fixes
+                    prevEasting[0] = pn.easting;   prevNorthing[0] = pn.northing;
                     prevFixHeading = fixHeading;
+                    prevSectionEasting = pn.easting;  prevSectionNorthing = pn.northing;
+                    prevImplementEasting = pn.easting + 0.0001;  prevImplementNorthing = pn.northing + 0.0001;
 
-                    prevSectionEasting = pn.easting;
-                    prevSectionNorthing = pn.northing;
-
+                    //save a copy of previous positions for cam heading of desired filtering or delay
+                    for (int x = 0; x > numPrevs; x++) {  prevNorthing[x] = prevNorthing[0]; prevEasting[x] = prevEasting[0]; }
                     return;
                 }
 
@@ -148,22 +143,27 @@ namespace AgOpenGPS
 
                     //in radians
                     fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
-                    if (fixHeading < 0) fixHeading += Math.PI * 2.0;
+                    //if (fixHeading < 0) fixHeading += Math.PI * 2.0;
+
+ 
 
                     //in radians
                     if (vehicle.isHitched)
                     {
-                        double eastAvg = 0; 
-                        double northAvg = 0;
-                        
-                        for (int d = 1; d < (int)(deltaTurn+1); d++)
-                        {
-                            eastAvg += prevEasting[d] / (double)deltaTurn;
-                            northAvg += prevNorthing[d] / (double)deltaTurn;
-                        }
+                        //Torriem rules!!!!! Oh yes, this is all his. Thank-you
+                        double t;
+                        double dist = Math.Sqrt( (pn.northing - prevImplementNorthing) * (pn.northing - prevImplementNorthing) +
+                                                                    (pn.easting - prevImplementEasting) * (pn.easting - prevImplementEasting));
 
-                        fixHeadingSection = Math.Atan2(pn.easting - eastAvg, pn.northing - northAvg);
-                        if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
+                        if (dist != 0)
+                        {
+                            t = vehicle.toolForeAft / dist;
+                            prevImplementNorthing = pn.northing + t * (pn.northing - prevImplementNorthing);
+                            prevImplementEasting = pn.easting + t * (pn.easting - prevImplementEasting);
+                            fixHeadingSection = Math.Atan2(pn.easting - prevImplementEasting, pn.northing - prevImplementNorthing);
+                        }
+                        prevFixHeadingSection = fixHeadingSection;
+
                     }
                     else fixHeadingSection = fixHeading;
 
@@ -172,13 +172,6 @@ namespace AgOpenGPS
                     if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                     fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
 
-                    //difference between vehicle heading and sections heading
-                    fixHeadingDelta = fixHeading - fixHeadingSection;
-
-                    if (fixHeadingDelta > 4) fixHeadingDelta -= Math.PI * 2.0;
-                    if (fixHeadingDelta < -4) fixHeadingDelta += Math.PI * 2.0;
-
- 
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
 
@@ -198,7 +191,8 @@ namespace AgOpenGPS
 
                     //speed compensated min length limit triangles. The faster you go, the less of them
                     if (sectionTriggerDistance > (pn.speed / 7 + 0.3))
-                    {   if (isJobStarted && isMasterSectionOn)//add the pathpoint
+                    {
+                        if (isJobStarted && isMasterSectionOn)//add the pathpoint
                         {
                             //save the north & east as previous
                             prevSectionNorthing = currentSectionNorthing;
@@ -206,9 +200,12 @@ namespace AgOpenGPS
 
                             //send the current and previous GPS fore/aft corrected fix to each section
                             for (int j = 0; j < vehicle.numberOfSections; j++)
-                            {   if (section[j].isSectionOn) 
-                                    {section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);                                    
-                                    totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth; }//area is made up of square meters in each section
+                            {
+                                if (section[j].isSectionOn)
+                                {
+                                    section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);
+                                    totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth;
+                                }//area is made up of square meters in each section
                             }
                         }
                     }
@@ -217,20 +214,22 @@ namespace AgOpenGPS
                     userDistance += distance;//userDistance can be reset
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
-                    for (int x = numPrevs - 1; x > 0; x--)  {
-                        prevNorthing[x] = prevNorthing[x - 1];prevEasting[x] = prevEasting[x - 1];  }
- 
+                    for (int x = numPrevs - 1; x > 0; x--)
+                    {
+                        prevNorthing[x] = prevNorthing[x - 1]; prevEasting[x] = prevEasting[x - 1];
+                    }
+
                     //most recent fixes
                     prevEasting[0] = pn.easting;
                     prevNorthing[0] = pn.northing;
                     prevFixHeading = fixHeading;
                 }
-                 //openGLControl.DoRender();
+                //openGLControl.DoRender();
             }
 
             else if (recvCounter > 16) textBoxRcv.Text = "************  NO GGA or RMC **************";
 
-            
+
         }//end of UppdateFixPosition
 
         //Send relay info out to relay board
@@ -264,8 +263,10 @@ namespace AgOpenGPS
                 bufferArd[0] = 0;
 
                 try { spArduino.Write(bufferArd, 0, 1); }
-                catch (Exception) { 
-                    SerialPortCloseArduino(); }
+                catch (Exception)
+                {
+                    SerialPortCloseArduino();
+                }
                 return;
             }
 
@@ -281,7 +282,7 @@ namespace AgOpenGPS
             //textBoxRcv.Text = recvSentence.ToString(); 
             //textBoxRcv.Text = pn.theSent;
         }
- 
+
         //Arduino port called by the delegate every time
         private void SerialLineReceivedArduino(string sentence)
         {
@@ -312,7 +313,7 @@ namespace AgOpenGPS
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception) { }
-                
+
             }
         }
 
@@ -328,15 +329,16 @@ namespace AgOpenGPS
 
             try { spArduino.Open(); }
             catch (Exception exc)
-            { MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
+            {
+                MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
 
-            //update port status label
-            stripPortArduino.Text = "* *";
-            stripOnlineArduino.Value = 1;
-            stripPortArduino.ForeColor = Color.Red;
+                //update port status label
+                stripPortArduino.Text = "* *";
+                stripOnlineArduino.Value = 1;
+                stripPortArduino.ForeColor = Color.Red;
 
-            Properties.Settings.Default.setPort_wasArduinoConnected = false;
-            Properties.Settings.Default.Save();
+                Properties.Settings.Default.setPort_wasArduinoConnected = false;
+                Properties.Settings.Default.Save();
             }
 
             if (spArduino.IsOpen)
@@ -363,7 +365,7 @@ namespace AgOpenGPS
                 spArduino.DataReceived -= sp_DataReceivedArduino;
                 try { spArduino.Close(); }
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
-                
+
                 //update port status label
                 stripPortArduino.Text = "* *";
                 stripOnlineArduino.Value = 1;
@@ -386,7 +388,7 @@ namespace AgOpenGPS
         //serial port receive in its own thread
         private void sp_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (sp.IsOpen) 
+            if (sp.IsOpen)
             {
                 try
                 {
@@ -397,7 +399,7 @@ namespace AgOpenGPS
                     string sentence = sp.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandler(SerialLineReceived), sentence);
                 }
-                catch (Exception exc) 
+                catch (Exception exc)
                 {
                     MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "Screwed!");
                 }
@@ -424,7 +426,7 @@ namespace AgOpenGPS
             }
 
             try { sp.Open(); }
-            catch (Exception exc) 
+            catch (Exception exc)
             {
                 MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
 
@@ -462,7 +464,7 @@ namespace AgOpenGPS
                 try { sp.Close(); }
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
 
-                 //update port status labels
+                //update port status labels
                 stripPortGPS.Text = " * * " + baudRate.ToString();
                 stripPortGPS.ForeColor = Color.ForestGreen;
                 stripOnlineGPS.Value = 1;
@@ -472,7 +474,69 @@ namespace AgOpenGPS
 
         }
 
-         #endregion SerialPortGPS
+        #endregion SerialPortGPS
 
     }//end class
 }//end namespace
+
+//if (prevImplementNorthing == 0 && prevImplementEasting == 0)
+//{
+//    //No previous location known; assume it's straight back from the tractor
+//    fixHeadingSection = fixHeading;
+//    prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+//    prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+//    //System.Console.WriteLine("Initialized to starting position.");
+
+//}
+//else
+//{
+//if (Math.Abs(pn.northing - prevImplementNorthing) < 0.000009 &&
+//    Math.Abs(pn.easting - prevImplementEasting) < 0.0000009)
+//{
+//    // The new tractor position is exactly the same as the old
+//    // implement position, so push the implement straight back.
+//    fixHeadingSection = prevFixHeadingSection;
+//    prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+//    prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+//    //System.Console.WriteLine("Tractor moved to where implement was; pushing implement back.");
+//}
+//else
+
+
+// Because this approximation over-estimates, break the change in tractor
+// position into several sub-steps and do this approximation for each
+// step.
+
+//double in_temp = prevImplementNorthing;
+//double ie_temp = prevImplementEasting;
+//double n_step = (pn.northing - prevNorthing[1]) / TURN_STEPS;
+//double e_step = (pn.easting - prevEasting[1]) / TURN_STEPS;
+//double tn_temp = prevNorthing[1];
+//double te_temp = prevEasting[1];
+
+//double t;
+
+
+//    //Break the tractor movement up into little steps and move
+//    //apply the approximation to each step.
+//    tn_temp += n_step;
+//    te_temp += e_step;
+//    t = vehicle.toolForeAft / Math.Sqrt((tn_temp - in_temp) * (tn_temp - in_temp) +
+//                                         (te_temp - ie_temp) * (te_temp - ie_temp));
+//    in_temp = tn_temp + t * (tn_temp - in_temp);
+//    ie_temp = te_temp + t * (te_temp - ie_temp);
+
+
+////Now we are in the new position and the last approximation is the 
+////new position of the implement.
+//prevImplementNorthing = in_temp;
+//prevImplementEasting = ie_temp;
+
+
+//}
+/*
+System.Console.Write("Tractor heading is ");
+System.Console.Write((fixHeading * 180.0 / Math.PI + 360) % 360);
+System.Console.Write(" and implement heading is ");
+System.Console.WriteLine((fixHeadingSection * 180.0 / Math.PI + 360) % 360);
+*/
