@@ -37,8 +37,10 @@ namespace AgOpenGPS
             //Update the port counter
             recvCounter++;
 
+            //Determine if sections want to be on or off
             ProcessSectionOnOffRequests();
 
+            //send the byte out to section relays
             SectionControlOutToArduino();
 
             //  Get the OpenGL object.
@@ -49,10 +51,10 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //camera does translations and rotations
-            camera.SetWorldCam(gl, fixPosX, fixPosY, fixPosZ, fixHeadingCam);
+            camera.SetWorldCam(gl, pivotAxleEasting, fixPosY, pivotAxleNorthing, fixHeadingCam);
 
             //Draw the world grid based on camera position
-            gl.Enable(OpenGL.GL_DEPTH_TEST);
+            gl.Disable(OpenGL.GL_DEPTH_TEST);
             gl.Disable(OpenGL.GL_TEXTURE_2D);
             worldGrid.DrawWorldGrid(gridZoom);
 
@@ -93,24 +95,42 @@ namespace AgOpenGPS
 
             if (isDrawVehicleTrack)
             {
-
+                //GPS Antenna
                 gl.Color(0.9f, 0.45f, 0.9f, 0.6f);
-
                 gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                foreach (var triList in pointList) gl.Vertex(triList.easting, 0, triList.northing);
+                foreach (var triList in pointAntenna) gl.Vertex(triList.easting, 0, triList.northing);
+                gl.End();
+
+                //Pivot Axle
+                gl.Color(0.45f, 0.9f, 0.9f, 0.6f);
+                gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
+                foreach (var triList2 in pointPivot) gl.Vertex(triList2.easting, 0, triList2.northing);
+                gl.End();
+
+                ////hitch
+                //gl.Color(0.9f, 0.9f, 0.45f, 0.6f);
+                //gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
+                //foreach (var triList3 in pointHitch) gl.Vertex(triList3.easting, 0, triList3.northing);
+                //gl.End();
+
+                //tool
+                gl.Color(0.9f, 0.1f, 0.25f, 0.6f);
+                gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
+                foreach (var triList4 in pointTool) gl.Vertex(triList4.easting, 0, triList4.northing);
                 gl.End();
             }
- 
+
+
+            //gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
+            //gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixSection " + Convert.ToString(fixHeadingSection));
+            //gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection - fixHeading, 3)));
+            //gl.DrawText(100, 240, 1, 1, 0, "Verdana", 24, " abs " + Convert.ToString(Math.Round(Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI),1)));
+
             //draw the tractor/implement
             vehicle.DrawVehicle();
 
-            gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
-            gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixCam " + Convert.ToString(fixHeadingSection));
-            gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection-fixHeading,3)));
-
+            //Back to normal
             gl.Color(1.0f, 1.0f, 1.0f);
-
-
             gl.Disable(OpenGL.GL_BLEND);
             gl.Enable(OpenGL.GL_DEPTH_TEST);
 
@@ -158,7 +178,6 @@ namespace AgOpenGPS
             //AB line is not set
             else txtDistanceOffABLine.Visible = false;
 
-
             //finish openGL commands
             gl.Flush();
 
@@ -170,7 +189,6 @@ namespace AgOpenGPS
             gl.PopMatrix();
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
 
-
             //reset point size
             gl.PointSize(1.0f);
 
@@ -178,7 +196,6 @@ namespace AgOpenGPS
 
             //draw the section control window off screen buffer
             openGLControlBack.DoRender();
-
         }
 
         /// Handles the OpenGLInitialized event of the openGLControl control.
@@ -196,10 +213,9 @@ namespace AgOpenGPS
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
 
-            gl.Enable(OpenGL.GL_CULL_FACE);
-            gl.CullFace(OpenGL.GL_BACK);
+            gl.Disable(OpenGL.GL_CULL_FACE);
+            //gl.CullFace(OpenGL.GL_BACK);
 
-            gl.PixelStore(OpenGL.GL_PACK_ALIGNMENT, 1);
 
             //set the camera to right distance
             SetZoom();
@@ -257,7 +273,7 @@ namespace AgOpenGPS
             gl.Rotate(-fixHeadingSection * 180.0 / Math.PI + 180, 0, 1, 0);
 
             //translate to that spot in the world 
-            gl.Translate(-fixPosX, -fixPosY, -fixPosZ);
+            gl.Translate(-toolEasting, -fixPosY, -toolNorthing);
 
             //patch color
             gl.Color(0.0f, 1.0f, 0.0f);
@@ -282,12 +298,12 @@ namespace AgOpenGPS
                 }
             }
 
-            //10 pixels to a meter or 1 pixel is 10cm or 10 pixels is 1 meter - simple math
+            //10 pixels to a meter or 1 pixel is 10cm - simple math
             int rpXPosition = 200 - Math.Abs((int)(vehicle.toolFarLeftPosition * 10));
             int rpWidth = (int)(vehicle.toolWidth * 10);
 
             //read position for look ahead for turning on 
-            double sectionLookAheadPosition = (pn.speed * vehicle.lookAhead * 2.0) + (vehicle.toolForeAft * 10); //how far ahead ie up the screen
+            double sectionLookAheadPosition = (pn.speed * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen
             if (sectionLookAheadPosition > 80) sectionLookAheadPosition = 80;
 
             //scan 3 different spots, one at 2 secs ahead and one at 1 sec and one at section
@@ -299,17 +315,18 @@ namespace AgOpenGPS
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
 
             //scan just ahead of the tool otherwise its too fussy and keep turning on section
-            gl.ReadPixels(rpXPosition, 203 + (int)(vehicle.toolForeAft * 10), rpWidth, 1,
+            gl.ReadPixels(rpXPosition, 202, rpWidth, 1,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
 
 
-            //OR them together, if anywhere isn't applied, turn on section
+            ////OR them together, if anywhere isn't applied, turn on section
             for (int a = 0; a < 401; a++)
             {
                 if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10
                     | pixelsTop[a] < 10) pixelsAtTool[a] = 0;
                 else pixelsAtTool[a] = 255;
             }
+
 
             //if anywhere in the section is a 0, as in needs section turned on, turn on section and break out loop
             bool isSectionRequiredOn = false;
@@ -353,21 +370,32 @@ namespace AgOpenGPS
         private void openGLControlBack_Resized(object sender, EventArgs e)
         {
             //  Get the OpenGL object.
-            OpenGL gl = openGLControlBack.OpenGL;
+            OpenGL gls = openGLControlBack.OpenGL;
 
-            gl.MatrixMode(OpenGL.GL_PROJECTION);
+            gls.MatrixMode(OpenGL.GL_PROJECTION);
 
             //  Load the identity.
-            gl.LoadIdentity();
+            gls.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(6.0f, 1, 1, 6000);
+            gls.Perspective(6.0f, 1, 1, 6000);
 
             //  Set the modelview matrix.
-            gl.MatrixMode(OpenGL.GL_MODELVIEW);
+            gls.MatrixMode(OpenGL.GL_MODELVIEW);
 
         }
 
+        private void openGLControlBack_OpenGLInitialized(object sender, EventArgs e)
+        {
+            OpenGL gls = openGLControlBack.OpenGL;
+
+            gls.Disable(OpenGL.GL_CULL_FACE);
+            //gl.CullFace(OpenGL.GL_BACK);
+
+            gls.PixelStore(OpenGL.GL_PACK_ALIGNMENT, 1);
+
+        }
+ 
 
         #endregion
 

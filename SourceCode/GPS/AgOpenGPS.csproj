@@ -91,11 +91,22 @@
     <Compile Include="CPointData.cs" />
     <Compile Include="CVehicle.cs" />
     <Compile Include="CWorldGrid.cs" />
+    <Compile Include="FormCommSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommSet.Designer.cs">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVariables.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVariables.Designer.cs">
       <DependentUpon>FormVariables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SaveOpen.Designer.cs">
       <SubType>Form</SubType>
@@ -130,11 +141,6 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="SerialComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCommSet.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
@@ -220,6 +229,18 @@
     <None Include="btnImages\VehicleDimensions.jpg" />
     <None Include="btnImages\NewJob64.png" />
     <None Include="btnImages\NewJobBlue64.png" />
+    <None Include="btnImages\VehicleSettings.jpg" />
+    <None Include="btnImages\ToolSettings.jpg" />
+    <None Include="btnImages\VehAft64.png" />
+    <None Include="btnImages\VehFore64.png" />
+    <None Include="btnImages\VehHitched64.png" />
+    <None Include="btnImages\VehRigid64.png" />
+    <None Include="btnImages\PivotAhead.png" />
+    <None Include="btnImages\PivotBehind.png" />
+    <None Include="btnImages\ImplementSettings.png" />
+    <None Include="btnImages\SteerAhead.png" />
+    <None Include="btnImages\SteerBehind.png" />
+    <None Include="btnImages\Examples.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

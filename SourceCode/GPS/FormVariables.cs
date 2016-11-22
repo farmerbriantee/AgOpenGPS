@@ -26,8 +26,28 @@ namespace AgOpenGPS
             lblLatitude.Text = mf.Latitude;
             lblLongitude.Text = mf.Longitude;
             lblAltitude.Text = mf.Altitude;
-            lblHeadingDelta.Text = Convert.ToString(Math.Round(mf.fixHeadingDelta, 3));
 
+            lblAntennaPivot.Text = Math.Round(mf.vehicle.antennaPivot,2).ToString();
+            lblHitchLength.Text = Math.Round(mf.vehicle.hitchLength,2).ToString();
+            lblTrailingHitchLength.Text = Math.Round(mf.vehicle.toolTrailingHitchLength,2).ToString();
+            lblToolWidth.Text = Math.Round(mf.vehicle.toolWidth,2).ToString();
+
+            lblRequestOn.Text = mf.section[0].sectionOnRequest.ToString();
+            lblRequestOff.Text = mf.section[0].sectionOffRequest.ToString();
+            lblCycleOnOff.Text = mf.section[0].sectionOnOffCycle.ToString();
+            lblTimerOn.Text = mf.section[0].sectionOnTimer.ToString();
+            lblTimerOff.Text = mf.section[0].sectionOffTimer.ToString();
+
+            lblHeadingFix.Text = mf.FixHeading;
+            lblHeadingSection.Text = mf.FixHeadingSection;
+            lblHeadingDelta.Text = (Math.Round(Math.PI - Math.Abs(Math.Abs(mf.fixHeadingSection - mf.fixHeading) - Math.PI),2)).ToString();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

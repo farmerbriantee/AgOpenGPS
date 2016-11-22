@@ -24,12 +24,12 @@ namespace AgOpenGPS
         //public DateTime utcDateTime;
 
         //public CPointData(double latitude, double longitude, double northing, double easting, double altitude, double speed, double headingTrue, DateTime utcDateTime)
-        public CPointData( double northing, double easting)
+        public CPointData(  double easting, double northing)
         {
             //this.latitude = Math.Round(latitude, 7);
             //this.longitude = Math.Round(longitude, 7);
-            this.northing = Math.Round(northing, 7);
             this.easting = Math.Round(easting, 7);
+            this.northing = Math.Round(northing, 7);
             //this.altitude = altitude;
             //this.speed = Math.Round(speed,1);
             //this.headingTrue = headingTrue;
