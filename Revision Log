@@ -1,3 +1,13 @@
+v1.3.0.1 22 Nov 2016
+
+* Most settings with graphics and easier to set
+* GPS Fix is at antenna, Pivot, Hitch, tool all calculated now
+* Section on off now by request with a section control as event handler
+* Communications has own window
+* Variables Window
+* Vehicle track for Antenna, Pivot point, Tool
+
+
 v1.2 October 2016
 
 * Fixed the RMC and GGA parsing routine, rather then reading an NMEA line and then updating, read all existing lines and process all at once. 
