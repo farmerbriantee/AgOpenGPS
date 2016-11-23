@@ -45,6 +45,8 @@ namespace AgOpenGPS
 
         public double sectionWidth = 0;
 
+        public double sectionLookAhead = 0;
+
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
         public CSection(FormGPS f)
         {

@@ -298,53 +298,50 @@ namespace AgOpenGPS
                 }
             }
 
-            //10 pixels to a meter or 1 pixel is 10cm - simple math
-            int rpXPosition = 200 - Math.Abs((int)(vehicle.toolFarLeftPosition * 10));
-            int rpWidth = (int)(vehicle.toolWidth * 10);
-
-            //read position for look ahead for turning on 
-            double sectionLookAheadPosition = (pn.speed * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen
-            if (sectionLookAheadPosition > 80) sectionLookAheadPosition = 80;
-
-            //scan 3 different spots, one at 2 secs ahead and one at 1 sec and one at section
-            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition * 0.6), rpWidth, 1,
-                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsBottom);
-            gl.ReadPixels(rpXPosition, 200 + (int)(sectionLookAheadPosition * 0.8), rpWidth, 1,
-                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsMiddle);
-            gl.ReadPixels(rpXPosition, 200 + (int)sectionLookAheadPosition, rpWidth, 1,
-                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
-
-            //scan just ahead of the tool otherwise its too fussy and keep turning on section
-            gl.ReadPixels(rpXPosition, 202, rpWidth, 1,
-                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
-
-
-            ////OR them together, if anywhere isn't applied, turn on section
-            for (int a = 0; a < 401; a++)
-            {
-                if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10
-                    | pixelsTop[a] < 10) pixelsAtTool[a] = 0;
-                else pixelsAtTool[a] = 255;
-            }
-
-
-            //if anywhere in the section is a 0, as in needs section turned on, turn on section and break out loop
-            bool isSectionRequiredOn = false;
-            int x = 0;
+      
+            //Read the pixels ahead of tool a section at a time. Each section can have its own lookahead manipulated. 
             for (int j = 0; j < vehicle.numberOfSections; j++)
             {
-                //section width * 10 is measured in pixels
-                for (int i = 0; i < (int)(section[j].sectionWidth * 10); i++)
+                // *** Torriem
+ 
+                //here is where you can manipulate individual section times
+                //delete this if setting externally outside this loop
+                section[j].sectionLookAhead = (pn.speed * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
+                
+                //*** Torriem
+
+                //keep in as safety
+                if (section[j].sectionLookAhead > 80) section[j].sectionLookAhead = 80;
+
+                //10 pixels to a meter or 1 pixel is 10cm - simple math
+                //find the left side pixel position
+                int rpXPosition = 200 + (int)(section[j].positionLeft * 10);
+
+                //find the right side pixel position
+                int rpWidth = (int)(section[j].sectionWidth * 10);
+
+                //scan 3 different spots, 1/3, 2/3 and full lookahead positions
+                gl.ReadPixels(rpXPosition, 200 + (int)(section[j].sectionLookAhead * 0.6), rpWidth, 1,
+                                    OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsBottom);
+                gl.ReadPixels(rpXPosition, 200 + (int)(section[j].sectionLookAhead * 0.8), rpWidth, 1,
+                                    OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsMiddle);
+                gl.ReadPixels(rpXPosition, 200 + (int)section[j].sectionLookAhead, rpWidth, 1,
+                                    OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
+
+                //scan just ahead of the tool otherwise its too fussy and keep turning on section
+                gl.ReadPixels(rpXPosition, 202, rpWidth, 1,
+                                    OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
+
+                bool isSectionRequiredOn = false;
+
+                ////OR them together, if nowhere applied, send OnRequest, if its all green send an offRequest
+                for (int a = 0; a < rpWidth; a++)
                 {
-                    if (pixelsAtTool[x] < 50)
+                    if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10 | pixelsTop[a] < 10)
                     {
                         isSectionRequiredOn = true;
-                        x += (int)(section[j].sectionWidth * 10) - i;
-                        break;
+                        break;                        
                     }
-
-                    x++;
-
                 }
 
                 if (isSectionRequiredOn && isMasterSectionOn)
