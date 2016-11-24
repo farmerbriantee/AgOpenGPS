@@ -41,10 +41,10 @@ namespace AgOpenGPS
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
                     writer.Write("Overlap," + Properties.Settings.Default.setVehicle_toolOverlap + ",");
-                    writer.Write("ForeAft," + Properties.Settings.Default.setVehicle_toolForeAft + ",");
+                    writer.Write("ForeAft," + Properties.Settings.Default.setVehicle_toolTrailingHitchLength + ",");
                     writer.Write("AntennaHeight," + Properties.Settings.Default.setVehicle_antennaHeight + ",");
                     writer.Write("LookAhead," + Properties.Settings.Default.setVehicle_lookAhead + ",");
-                    writer.Write("IsHitched," + Properties.Settings.Default.setVehicle_isHitched + ",");
+                    writer.Write("IsHitched," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");
 
                     writer.Write("Spinner1," + Properties.Settings.Default.setSection_nudSpin1 + ",");
                     writer.Write("Spinner2," + Properties.Settings.Default.setSection_nudSpin2 + ",");
@@ -111,10 +111,10 @@ namespace AgOpenGPS
                     if (words.Count() != 46) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
                     Properties.Settings.Default.setVehicle_toolOverlap = double.Parse(words[1]);
-                    Properties.Settings.Default.setVehicle_toolForeAft = double.Parse(words[3]);
+                    Properties.Settings.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[3]);
                     Properties.Settings.Default.setVehicle_antennaHeight = double.Parse(words[5]);
                     Properties.Settings.Default.setVehicle_lookAhead = double.Parse(words[7]);
-                    Properties.Settings.Default.setVehicle_isHitched = bool.Parse(words[9]);
+                    Properties.Settings.Default.setVehicle_isToolTrailing = bool.Parse(words[9]);
 
                     Properties.Settings.Default.setSection_nudSpin1 = decimal.Parse(words[11]);
                     Properties.Settings.Default.setSection_nudSpin2 = decimal.Parse(words[13]);
@@ -133,10 +133,10 @@ namespace AgOpenGPS
 
                     //from settings grab the vehicle specifics
                     vehicle.toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
-                    vehicle.toolForeAft = Properties.Settings.Default.setVehicle_toolForeAft;
+                    vehicle.toolTrailingHitchLength = Properties.Settings.Default.setVehicle_toolTrailingHitchLength;
                     vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
-                    vehicle.lookAhead = Properties.Settings.Default.setVehicle_lookAhead;
-                    vehicle.isHitched = Properties.Settings.Default.setVehicle_isHitched;
+                    vehicle.toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
+                    vehicle.isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
 
                     //Set width of section and positions for each section
                     SectionSetPosition();

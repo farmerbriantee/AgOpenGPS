@@ -44,7 +44,6 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.COMPortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleTrackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +75,7 @@
             this.btn2D3D = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnNewJob = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -93,17 +93,18 @@
             this.openGLControl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openGLControl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openGLControl.FrameRate = 10;
-            this.openGLControl.Location = new System.Drawing.Point(0, 33);
+            this.openGLControl.Location = new System.Drawing.Point(0, 32);
             this.openGLControl.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.openGLControl.Name = "openGLControl";
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.TimerBased;
-            this.openGLControl.Size = new System.Drawing.Size(781, 472);
+            this.openGLControl.Size = new System.Drawing.Size(1068, 478);
             this.openGLControl.TabIndex = 6;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
             this.openGLControl.Resized += new System.EventHandler(this.openGLControl_Resized);
+            this.openGLControl.Click += new System.EventHandler(this.openGLControl_Click);
             // 
             // textBoxRcv
             // 
@@ -115,7 +116,7 @@
             this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
-            this.textBoxRcv.Size = new System.Drawing.Size(258, 22);
+            this.textBoxRcv.Size = new System.Drawing.Size(545, 22);
             this.textBoxRcv.TabIndex = 35;
             // 
             // lblLongitude
@@ -125,7 +126,7 @@
             this.lblLongitude.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLongitude.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLongitude.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblLongitude.Location = new System.Drawing.Point(701, 17);
+            this.lblLongitude.Location = new System.Drawing.Point(988, 17);
             this.lblLongitude.Name = "lblLongitude";
             this.lblLongitude.Size = new System.Drawing.Size(43, 16);
             this.lblLongitude.TabIndex = 10;
@@ -139,7 +140,7 @@
             this.lblLatitude.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblLatitude.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLatitude.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblLatitude.Location = new System.Drawing.Point(712, 2);
+            this.lblLatitude.Location = new System.Drawing.Point(999, 2);
             this.lblLatitude.Name = "lblLatitude";
             this.lblLatitude.Size = new System.Drawing.Size(40, 16);
             this.lblLatitude.TabIndex = 11;
@@ -153,7 +154,7 @@
             this.txtDistanceOffABLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDistanceOffABLine.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDistanceOffABLine.ForeColor = System.Drawing.Color.Chartreuse;
-            this.txtDistanceOffABLine.Location = new System.Drawing.Point(372, 89);
+            this.txtDistanceOffABLine.Location = new System.Drawing.Point(516, 89);
             this.txtDistanceOffABLine.Name = "txtDistanceOffABLine";
             this.txtDistanceOffABLine.ReadOnly = true;
             this.txtDistanceOffABLine.Size = new System.Drawing.Size(39, 34);
@@ -168,13 +169,14 @@
             this.openGLControlBack.DrawFPS = false;
             this.openGLControlBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openGLControlBack.FrameRate = 1;
-            this.openGLControlBack.Location = new System.Drawing.Point(0, 45);
+            this.openGLControlBack.Location = new System.Drawing.Point(0, 35);
             this.openGLControlBack.Name = "openGLControlBack";
             this.openGLControlBack.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControlBack.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControlBack.RenderTrigger = SharpGL.RenderTrigger.Manual;
             this.openGLControlBack.Size = new System.Drawing.Size(400, 400);
             this.openGLControlBack.TabIndex = 91;
+            this.openGLControlBack.OpenGLInitialized += new System.EventHandler(this.openGLControlBack_OpenGLInitialized);
             this.openGLControlBack.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControlBack_OpenGLDraw);
             this.openGLControlBack.Resized += new System.EventHandler(this.openGLControlBack_Resized);
             // 
@@ -223,7 +225,6 @@
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.COMPortsToolStripMenuItem,
             this.vehicleToolStripMenuItem,
-            this.sectionsToolStripMenuItem,
             this.polygonsToolStripMenuItem,
             this.vehicleTrackToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -244,13 +245,6 @@
             this.vehicleToolStripMenuItem.Text = "Vehicle";
             this.vehicleToolStripMenuItem.Click += new System.EventHandler(this.menuItemVehicleToolStrip_Click);
             // 
-            // sectionsToolStripMenuItem
-            // 
-            this.sectionsToolStripMenuItem.Name = "sectionsToolStripMenuItem";
-            this.sectionsToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
-            this.sectionsToolStripMenuItem.Text = "Sections";
-            this.sectionsToolStripMenuItem.Click += new System.EventHandler(this.sectionsToolStripMenuItem_Click);
-            // 
             // polygonsToolStripMenuItem
             // 
             this.polygonsToolStripMenuItem.Checked = true;
@@ -262,8 +256,6 @@
             // 
             // vehicleTrackToolStripMenuItem
             // 
-            this.vehicleTrackToolStripMenuItem.Checked = true;
-            this.vehicleTrackToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.vehicleTrackToolStripMenuItem.Name = "vehicleTrackToolStripMenuItem";
             this.vehicleTrackToolStripMenuItem.Size = new System.Drawing.Size(192, 30);
             this.vehicleTrackToolStripMenuItem.Text = "Vehicle Track";
@@ -326,7 +318,7 @@
             this.aboutToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(781, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1068, 33);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -350,9 +342,9 @@
             this.stripOnlineGPS,
             this.stripPortArduino,
             this.stripOnlineArduino});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 504);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 508);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(781, 31);
+            this.statusStrip1.Size = new System.Drawing.Size(1068, 31);
             this.statusStrip1.TabIndex = 95;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -371,7 +363,7 @@
             // 
             this.stripDistance.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripDistance.Name = "stripDistance";
-            this.stripDistance.Size = new System.Drawing.Size(126, 26);
+            this.stripDistance.Size = new System.Drawing.Size(183, 26);
             this.stripDistance.Spring = true;
             this.stripDistance.Text = "Trip";
             this.stripDistance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,7 +372,7 @@
             // 
             this.stripAcres.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripAcres.Name = "stripAcres";
-            this.stripAcres.Size = new System.Drawing.Size(126, 26);
+            this.stripAcres.Size = new System.Drawing.Size(183, 26);
             this.stripAcres.Spring = true;
             this.stripAcres.Text = "Acres";
             this.stripAcres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -389,7 +381,7 @@
             // 
             this.stripMPH.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripMPH.Name = "stripMPH";
-            this.stripMPH.Size = new System.Drawing.Size(126, 26);
+            this.stripMPH.Size = new System.Drawing.Size(183, 26);
             this.stripMPH.Spring = true;
             this.stripMPH.Text = "MPH";
             this.stripMPH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -398,7 +390,7 @@
             // 
             this.stripGridZoom.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripGridZoom.Name = "stripGridZoom";
-            this.stripGridZoom.Size = new System.Drawing.Size(126, 26);
+            this.stripGridZoom.Size = new System.Drawing.Size(183, 26);
             this.stripGridZoom.Spring = true;
             this.stripGridZoom.Text = "Ft/Sq";
             this.stripGridZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -407,7 +399,7 @@
             // 
             this.stripPassNumber.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripPassNumber.Name = "stripPassNumber";
-            this.stripPassNumber.Size = new System.Drawing.Size(126, 26);
+            this.stripPassNumber.Size = new System.Drawing.Size(183, 26);
             this.stripPassNumber.Spring = true;
             this.stripPassNumber.Text = "Pass#";
             this.stripPassNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -485,7 +477,7 @@
             this.btnSnapToAB.Enabled = false;
             this.btnSnapToAB.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSnapToAB.Image = ((System.Drawing.Image)(resources.GetObject("btnSnapToAB.Image")));
-            this.btnSnapToAB.Location = new System.Drawing.Point(708, 216);
+            this.btnSnapToAB.Location = new System.Drawing.Point(995, 216);
             this.btnSnapToAB.Name = "btnSnapToAB";
             this.btnSnapToAB.Size = new System.Drawing.Size(70, 66);
             this.btnSnapToAB.TabIndex = 87;
@@ -500,7 +492,7 @@
             this.chkSectionsOnOff.Enabled = false;
             this.chkSectionsOnOff.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSectionsOnOff.Image = ((System.Drawing.Image)(resources.GetObject("chkSectionsOnOff.Image")));
-            this.chkSectionsOnOff.Location = new System.Drawing.Point(708, 326);
+            this.chkSectionsOnOff.Location = new System.Drawing.Point(995, 288);
             this.chkSectionsOnOff.Name = "chkSectionsOnOff";
             this.chkSectionsOnOff.Size = new System.Drawing.Size(70, 86);
             this.chkSectionsOnOff.TabIndex = 1;
@@ -516,7 +508,7 @@
             this.btnZoomIn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.BackgroundImage")));
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomIn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnZoomIn.Location = new System.Drawing.Point(717, 47);
+            this.btnZoomIn.Location = new System.Drawing.Point(1004, 47);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(57, 54);
             this.btnZoomIn.TabIndex = 3;
@@ -554,7 +546,7 @@
             this.btnABLine.Enabled = false;
             this.btnABLine.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnABLine.Image = ((System.Drawing.Image)(resources.GetObject("btnABLine.Image")));
-            this.btnABLine.Location = new System.Drawing.Point(708, 142);
+            this.btnABLine.Location = new System.Drawing.Point(995, 142);
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.Size = new System.Drawing.Size(70, 66);
             this.btnABLine.TabIndex = 0;
@@ -573,12 +565,28 @@
             this.btnNewJob.UseVisualStyleBackColor = true;
             this.btnNewJob.Click += new System.EventHandler(this.btnNewJob_Click);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(995, 385);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(64, 50);
+            this.checkBox1.TabIndex = 98;
+            this.checkBox1.Text = "Manual\r\n  On\r\n";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(781, 535);
+            this.ClientSize = new System.Drawing.Size(1068, 539);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnNewJob);
             this.Controls.Add(this.txtBoxRecvArduino);
             this.Controls.Add(this.statusStrip1);
@@ -635,7 +643,6 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem COMPortsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jobsToolStripMenuItem;
@@ -664,6 +671,7 @@
         private System.Windows.Forms.Button btnNewJob;
         private System.Windows.Forms.ToolStripMenuItem variablesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vehicleTrackToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

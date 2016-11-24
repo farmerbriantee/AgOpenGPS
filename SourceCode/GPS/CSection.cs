@@ -14,7 +14,7 @@ namespace AgOpenGPS
     public class CSection
     {
         //copy of the mainform address
-        private FormGPS mainForm;
+        private FormGPS mf;
 
         //list of patch data individual triangles
         public List<vec3> triangleList = new List<vec3>();
@@ -45,26 +45,25 @@ namespace AgOpenGPS
 
         public double sectionWidth = 0;
 
+        public double sectionLookAhead = 0;
+
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
         public CSection(FormGPS f)
         {
             //constructor
-            this.mainForm = f;
+            this.mf = f;
         }
 
         public void TurnSectionOn()
         {
-            if (mainForm.isMasterSectionOn && !isSectionOn)
+            if (mf.isMasterSectionOn && !isSectionOn)
             {
                 //set the section bool to on
                 isSectionOn = true;
 
-                double north = mainForm.pn.northing + mainForm.vehicle.toolForeAft * mainForm.cosHeading;
-                double east = mainForm.pn.easting + mainForm.vehicle.toolForeAft * -mainForm.sinHeading;
-
                 //set the start of section to prev.
-                mainForm.prevSectionNorthing = north;
-                mainForm.prevSectionEasting = east;
+                mf.prevSectionNorthing = mf.toolNorthing;
+                mf.prevSectionEasting = mf.toolEasting;
  
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
@@ -72,47 +71,36 @@ namespace AgOpenGPS
                 patchList.Add(triangleList);
 
                 //left side of triangle
-                vec3 point = new vec3(mainForm.cosHeading * positionLeft + east,
-                        0, mainForm.sinHeading * positionLeft + north);
+                vec3 point = new vec3(mf.cosHeading * positionLeft + mf.toolEasting,
+                        0, mf.sinHeading * positionLeft + mf.toolNorthing);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec3(mainForm.cosHeading * positionRight + east,
-                    0, mainForm.sinHeading * positionRight + north);
+                point = new vec3(mf.cosHeading * positionRight + mf.toolEasting,
+                    0, mf.sinHeading * positionRight + mf.toolNorthing);
                 triangleList.Add(point);
 
                 //left side of triangle
-                point = new vec3(mainForm.cosHeading * positionLeft + east,
-                        0, mainForm.sinHeading * positionLeft + north);
+                point = new vec3(mf.cosHeading * positionLeft + mf.toolEasting,
+                        0, mf.sinHeading * positionLeft + mf.toolNorthing);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec3(mainForm.cosHeading * positionRight + east,
-                    0, mainForm.sinHeading * positionRight + north);
+                point = new vec3(mf.cosHeading * positionRight + mf.toolEasting,
+                    0, mf.sinHeading * positionRight + mf.toolNorthing);
                 triangleList.Add(point);
-
-                
-
-            }            
-           
+            }          
         }
 
         public void TurnSectionOff()
         {
-            double north = mainForm.pn.northing + mainForm.vehicle.toolForeAft * mainForm.cosHeading;
-            double east = mainForm.pn.easting + mainForm.vehicle.toolForeAft * -mainForm.sinHeading;
+            AddPathPoint(mf.toolNorthing, mf.toolEasting, mf.cosHeading, mf.sinHeading);
 
-            AddPathPoint(north, east, mainForm.cosHeading, mainForm.sinHeading);
+            double tempAcres = mf.pn.Distance(mf.toolNorthing, mf.toolEasting, mf.prevSectionNorthing, mf.prevSectionEasting);
+            mf.totalSquareMeters += tempAcres * sectionWidth;
 
-            double tempAcres = mainForm.pn.Distance(north, east, mainForm.prevSectionNorthing, mainForm.prevSectionEasting);
-            mainForm.totalSquareMeters += tempAcres * sectionWidth;
-
-            isSectionOn = false;
-            
+            isSectionOn = false;            
         }
-
-
-
 
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
@@ -130,8 +118,5 @@ namespace AgOpenGPS
                     0, sinHeading * (positionRight) + northing);
                 triangleList.Add(point);                        
              }
-
     }
-
-
 }

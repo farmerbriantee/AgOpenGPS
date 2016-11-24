@@ -15,9 +15,9 @@
       <Value Profile="(Default)">16</Value>
     </Setting>
     <Setting Name="setVehicle_toolOverlap" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
-    <Setting Name="setVehicle_toolForeAft" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_toolTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2</Value>
     </Setting>
     <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
@@ -68,7 +68,37 @@
     <Setting Name="setPort_wasArduinoConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setVehicle_isHitched" Type="System.Boolean" Scope="User">
+    <Setting Name="setVehicle_isToolTrailing" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setVehicle_toolOffset" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setVehicle_isToolBehindPivot" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setVehicle_antennaPivot" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1.1</Value>
+    </Setting>
+    <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-0.5</Value>
+    </Setting>
+    <Setting Name="setDisplay_delayFixPrev" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setDisplay_delayCameraPrev" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="setVehicle_turnOffDelay" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setVehicle_isPivotBehindAntenna" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setVehicle_isSteerAxleAhead" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

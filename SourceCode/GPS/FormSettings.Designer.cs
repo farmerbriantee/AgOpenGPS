@@ -31,52 +31,44 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabCOMPorts = new System.Windows.Forms.TabPage();
-            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.btnSerialCancel = new System.Windows.Forms.Button();
-            this.btnRescan = new System.Windows.Forms.Button();
-            this.label99 = new System.Windows.Forms.Label();
-            this.nudNMEAHz = new System.Windows.Forms.NumericUpDown();
-            this.btnSerialOK = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lblCurrentPort = new System.Windows.Forms.Label();
-            this.lblCurrentBaud = new System.Windows.Forms.Label();
-            this.btnCloseSerial = new System.Windows.Forms.Button();
-            this.textBoxRcv = new System.Windows.Forms.TextBox();
-            this.cboxPort = new System.Windows.Forms.ComboBox();
-            this.cboxBaud = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnOpenSerial = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblCurrentArduinoPort = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btnOpenSerialArduino = new System.Windows.Forms.Button();
-            this.btnCloseSerialArduino = new System.Windows.Forms.Button();
-            this.cboxPortArduino = new System.Windows.Forms.ComboBox();
             this.tabVehicle = new System.Windows.Forms.TabPage();
-            this.rboHitched = new System.Windows.Forms.RadioButton();
-            this.rboRigid = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblAntennaInches = new System.Windows.Forms.Label();
-            this.lblAntennaFeet = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.chkIsSteerAxleAhead = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.chkIsTrailingRigid = new System.Windows.Forms.CheckBox();
+            this.chkIsAft = new System.Windows.Forms.CheckBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.nudHitchLength = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.chkIsPivotBehindAntenna = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nudAntennaPivot = new System.Windows.Forms.NumericUpDown();
+            this.nudWheelbase = new System.Windows.Forms.NumericUpDown();
             this.nudAntennaHeight = new System.Windows.Forms.NumericUpDown();
+            this.tabTool = new System.Windows.Forms.TabPage();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.nudTurnOffDelay = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.nudLookAhead = new System.Windows.Forms.NumericUpDown();
-            this.btnVehicleCancel = new System.Windows.Forms.Button();
-            this.lblForeAftInches = new System.Windows.Forms.Label();
-            this.lblForeAftFeet = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.nudForeAft = new System.Windows.Forms.NumericUpDown();
+            this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnVehicleOK = new System.Windows.Forms.Button();
-            this.tabPageSections = new System.Windows.Forms.TabPage();
-            this.lblSection5WidthM = new System.Windows.Forms.Label();
-            this.lblSection4WidthM = new System.Windows.Forms.Label();
-            this.lblSection3WidthM = new System.Windows.Forms.Label();
-            this.lblSection2WidthM = new System.Windows.Forms.Label();
-            this.lblSection1WidthM = new System.Windows.Forms.Label();
+            this.nudOffset = new System.Windows.Forms.NumericUpDown();
+            this.tabSections = new System.Windows.Forms.TabPage();
+            this.lblCalcInches = new System.Windows.Forms.Label();
+            this.lblCalcFeet = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.nudCalc = new System.Windows.Forms.NumericUpDown();
             this.lblTractor = new System.Windows.Forms.Label();
             this.lblSection5Width = new System.Windows.Forms.Label();
             this.lblSection4Width = new System.Windows.Forms.Label();
@@ -89,16 +81,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
-            this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
             this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblSection6Inch = new System.Windows.Forms.Label();
-            this.lblSection5Inch = new System.Windows.Forms.Label();
-            this.lblSection4Inch = new System.Windows.Forms.Label();
-            this.lblSection3Inch = new System.Windows.Forms.Label();
-            this.lblSection2Inch = new System.Windows.Forms.Label();
-            this.lblSection1Inch = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.nudSection6 = new System.Windows.Forms.NumericUpDown();
             this.nudSection5 = new System.Windows.Forms.NumericUpDown();
@@ -108,31 +92,39 @@
             this.nudSection1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
-            this.btnSectionsCancel = new System.Windows.Forms.Button();
-            this.bntSectionOK = new System.Windows.Forms.Button();
+            this.tabExamples = new System.Windows.Forms.TabPage();
             this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.btnGuidanceCancel = new System.Windows.Forms.Button();
-            this.btnGuidanceOK = new System.Windows.Forms.Button();
-            this.lblOverlapInches = new System.Windows.Forms.Label();
-            this.lblOverlapFeet = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.tabDisplay = new System.Windows.Forms.TabPage();
-            this.btnDisplayCancel = new System.Windows.Forms.Button();
-            this.btnDisplayOK = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbarDisplayFixDelay = new System.Windows.Forms.TrackBar();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblDisplayFixDelay = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbarDisplayCameraDelay = new System.Windows.Forms.TrackBar();
+            this.lblDisplayCameraDelay = new System.Windows.Forms.Label();
+            this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
+            this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label14 = new System.Windows.Forms.Label();
-            this.lblAntennaWhere = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.bntOK = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
-            this.tabCOMPorts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.tabVehicle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
+            this.tabTool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).BeginInit();
-            this.tabPageSections.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
+            this.tabSections.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCalc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).BeginInit();
@@ -140,492 +132,420 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
-            this.tabGuidance.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             this.tabDisplay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabCOMPorts);
             this.tabControl1.Controls.Add(this.tabVehicle);
-            this.tabControl1.Controls.Add(this.tabPageSections);
+            this.tabControl1.Controls.Add(this.tabTool);
+            this.tabControl1.Controls.Add(this.tabSections);
+            this.tabControl1.Controls.Add(this.tabExamples);
             this.tabControl1.Controls.Add(this.tabGuidance);
             this.tabControl1.Controls.Add(this.tabDisplay);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(5, 9);
+            this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(913, 390);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabCOMPorts
-            // 
-            this.tabCOMPorts.BackColor = System.Drawing.SystemColors.Control;
-            this.tabCOMPorts.Controls.Add(this.txtBoxRecvArduino);
-            this.tabCOMPorts.Controls.Add(this.btnSerialCancel);
-            this.tabCOMPorts.Controls.Add(this.btnRescan);
-            this.tabCOMPorts.Controls.Add(this.label99);
-            this.tabCOMPorts.Controls.Add(this.nudNMEAHz);
-            this.tabCOMPorts.Controls.Add(this.btnSerialOK);
-            this.tabCOMPorts.Controls.Add(this.groupBox1);
-            this.tabCOMPorts.Controls.Add(this.groupBox2);
-            this.tabCOMPorts.Location = new System.Drawing.Point(4, 31);
-            this.tabCOMPorts.Margin = new System.Windows.Forms.Padding(4);
-            this.tabCOMPorts.Name = "tabCOMPorts";
-            this.tabCOMPorts.Padding = new System.Windows.Forms.Padding(4);
-            this.tabCOMPorts.Size = new System.Drawing.Size(905, 355);
-            this.tabCOMPorts.TabIndex = 0;
-            this.tabCOMPorts.Text = "COM Ports";
-            this.tabCOMPorts.ToolTipText = "Setting of Com Ports and Communication with Antenna";
-            // 
-            // txtBoxRecvArduino
-            // 
-            this.txtBoxRecvArduino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBoxRecvArduino.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxRecvArduino.Location = new System.Drawing.Point(34, 290);
-            this.txtBoxRecvArduino.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
-            this.txtBoxRecvArduino.ReadOnly = true;
-            this.txtBoxRecvArduino.Size = new System.Drawing.Size(557, 23);
-            this.txtBoxRecvArduino.TabIndex = 54;
-            // 
-            // btnSerialCancel
-            // 
-            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(814, 280);
-            this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(88, 72);
-            this.btnSerialCancel.TabIndex = 48;
-            this.btnSerialCancel.UseVisualStyleBackColor = true;
-            this.btnSerialCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnRescan
-            // 
-            this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(712, 45);
-            this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(117, 50);
-            this.btnRescan.TabIndex = 39;
-            this.btnRescan.Text = "Rescan Ports";
-            this.btnRescan.UseVisualStyleBackColor = false;
-            this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(708, 126);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(158, 22);
-            this.label99.TabIndex = 47;
-            this.label99.Text = "RMC Update (Hz)";
-            // 
-            // nudNMEAHz
-            // 
-            this.nudNMEAHz.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNMEAHz.Location = new System.Drawing.Point(721, 158);
-            this.nudNMEAHz.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.Name = "nudNMEAHz";
-            this.nudNMEAHz.Size = new System.Drawing.Size(104, 44);
-            this.nudNMEAHz.TabIndex = 46;
-            this.nudNMEAHz.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.ValueChanged += new System.EventHandler(this.nudNMEAHz_ValueChanged);
-            // 
-            // btnSerialOK
-            // 
-            this.btnSerialOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSerialOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialOK.Image")));
-            this.btnSerialOK.Location = new System.Drawing.Point(656, 280);
-            this.btnSerialOK.Name = "btnSerialOK";
-            this.btnSerialOK.Size = new System.Drawing.Size(152, 72);
-            this.btnSerialOK.TabIndex = 43;
-            this.btnSerialOK.Text = "Save";
-            this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnSerialOK.UseVisualStyleBackColor = true;
-            this.btnSerialOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.lblCurrentPort);
-            this.groupBox1.Controls.Add(this.lblCurrentBaud);
-            this.groupBox1.Controls.Add(this.btnCloseSerial);
-            this.groupBox1.Controls.Add(this.textBoxRcv);
-            this.groupBox1.Controls.Add(this.cboxPort);
-            this.groupBox1.Controls.Add(this.cboxBaud);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnOpenSerial);
-            this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(16, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(609, 160);
-            this.groupBox1.TabIndex = 56;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "GPS Port";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(19, 77);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(74, 16);
-            this.label16.TabIndex = 48;
-            this.label16.Text = "Currently:";
-            // 
-            // lblCurrentPort
-            // 
-            this.lblCurrentPort.AutoSize = true;
-            this.lblCurrentPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(89, 77);
-            this.lblCurrentPort.Name = "lblCurrentPort";
-            this.lblCurrentPort.Size = new System.Drawing.Size(38, 16);
-            this.lblCurrentPort.TabIndex = 47;
-            this.lblCurrentPort.Text = "Port";
-            // 
-            // lblCurrentBaud
-            // 
-            this.lblCurrentBaud.AutoSize = true;
-            this.lblCurrentBaud.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(137, 77);
-            this.lblCurrentBaud.Name = "lblCurrentBaud";
-            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 16);
-            this.lblCurrentBaud.TabIndex = 46;
-            this.lblCurrentBaud.Text = "Baud";
-            // 
-            // btnCloseSerial
-            // 
-            this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerial.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial.Location = new System.Drawing.Point(459, 39);
-            this.btnCloseSerial.Name = "btnCloseSerial";
-            this.btnCloseSerial.Size = new System.Drawing.Size(117, 36);
-            this.btnCloseSerial.TabIndex = 44;
-            this.btnCloseSerial.Text = "Disconnect";
-            this.btnCloseSerial.UseVisualStyleBackColor = false;
-            this.btnCloseSerial.Click += new System.EventHandler(this.btnCloseSerial_Click);
-            // 
-            // textBoxRcv
-            // 
-            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRcv.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxRcv.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRcv.Location = new System.Drawing.Point(18, 108);
-            this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxRcv.Name = "textBoxRcv";
-            this.textBoxRcv.ReadOnly = true;
-            this.textBoxRcv.Size = new System.Drawing.Size(557, 23);
-            this.textBoxRcv.TabIndex = 40;
-            // 
-            // cboxPort
-            // 
-            this.cboxPort.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxPort.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cboxPort.FormattingEnabled = true;
-            this.cboxPort.Location = new System.Drawing.Point(18, 39);
-            this.cboxPort.Name = "cboxPort";
-            this.cboxPort.Size = new System.Drawing.Size(96, 31);
-            this.cboxPort.TabIndex = 36;
-            this.cboxPort.Text = "Port";
-            this.cboxPort.SelectedIndexChanged += new System.EventHandler(this.cboxPort_SelectedIndexChanged);
-            // 
-            // cboxBaud
-            // 
-            this.cboxBaud.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxBaud.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxBaud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cboxBaud.FormattingEnabled = true;
-            this.cboxBaud.Items.AddRange(new object[] {
-            "4800",
-            "9600",
-            "19200",
-            "38400",
-            "57600",
-            "115200"});
-            this.cboxBaud.Location = new System.Drawing.Point(158, 39);
-            this.cboxBaud.Name = "cboxBaud";
-            this.cboxBaud.Size = new System.Drawing.Size(96, 31);
-            this.cboxBaud.TabIndex = 37;
-            this.cboxBaud.Text = "Baud";
-            this.cboxBaud.SelectedIndexChanged += new System.EventHandler(this.cboxBaud_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 16);
-            this.label1.TabIndex = 41;
-            this.label1.Text = "NMEA string from GPS Port:";
-            // 
-            // btnOpenSerial
-            // 
-            this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerial.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial.Location = new System.Drawing.Point(298, 39);
-            this.btnOpenSerial.Name = "btnOpenSerial";
-            this.btnOpenSerial.Size = new System.Drawing.Size(117, 36);
-            this.btnOpenSerial.TabIndex = 45;
-            this.btnOpenSerial.Text = "Connect";
-            this.btnOpenSerial.UseVisualStyleBackColor = false;
-            this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.lblCurrentArduinoPort);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
-            this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
-            this.groupBox2.Controls.Add(this.cboxPortArduino);
-            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(16, 188);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(609, 146);
-            this.groupBox2.TabIndex = 57;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Section Port";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(22, 76);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 16);
-            this.label17.TabIndex = 60;
-            this.label17.Text = "Currently:";
-            // 
-            // lblCurrentArduinoPort
-            // 
-            this.lblCurrentArduinoPort.AutoSize = true;
-            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(92, 76);
-            this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
-            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(38, 16);
-            this.lblCurrentArduinoPort.TabIndex = 59;
-            this.lblCurrentArduinoPort.Text = "Port";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(22, 127);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(174, 16);
-            this.label15.TabIndex = 58;
-            this.label15.Text = "String from Section Port:";
-            // 
-            // btnOpenSerialArduino
-            // 
-            this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialArduino.Location = new System.Drawing.Point(201, 35);
-            this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
-            this.btnOpenSerialArduino.Size = new System.Drawing.Size(117, 36);
-            this.btnOpenSerialArduino.TabIndex = 53;
-            this.btnOpenSerialArduino.Text = "Connect";
-            this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
-            this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
-            // 
-            // btnCloseSerialArduino
-            // 
-            this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialArduino.Location = new System.Drawing.Point(351, 35);
-            this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
-            this.btnCloseSerialArduino.Size = new System.Drawing.Size(117, 36);
-            this.btnCloseSerialArduino.TabIndex = 52;
-            this.btnCloseSerialArduino.Text = "Disconnect";
-            this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
-            this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
-            // 
-            // cboxPortArduino
-            // 
-            this.cboxPortArduino.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxPortArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxPortArduino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cboxPortArduino.FormattingEnabled = true;
-            this.cboxPortArduino.Location = new System.Drawing.Point(25, 39);
-            this.cboxPortArduino.Name = "cboxPortArduino";
-            this.cboxPortArduino.Size = new System.Drawing.Size(112, 31);
-            this.cboxPortArduino.TabIndex = 49;
-            this.cboxPortArduino.Text = "Port";
-            this.cboxPortArduino.SelectedIndexChanged += new System.EventHandler(this.cboxPortArduino_SelectedIndexChanged);
+            this.tabControl1.Size = new System.Drawing.Size(948, 551);
+            this.tabControl1.TabIndex = 2;
             // 
             // tabVehicle
             // 
-            this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleDimensions;
-            this.tabVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabVehicle.Controls.Add(this.lblAntennaWhere);
-            this.tabVehicle.Controls.Add(this.rboHitched);
-            this.tabVehicle.Controls.Add(this.rboRigid);
-            this.tabVehicle.Controls.Add(this.groupBox3);
-            this.tabVehicle.Controls.Add(this.lblAntennaInches);
-            this.tabVehicle.Controls.Add(this.lblAntennaFeet);
+            this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleSettings;
+            this.tabVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabVehicle.Controls.Add(this.label29);
+            this.tabVehicle.Controls.Add(this.chkIsSteerAxleAhead);
+            this.tabVehicle.Controls.Add(this.label15);
+            this.tabVehicle.Controls.Add(this.label36);
+            this.tabVehicle.Controls.Add(this.label27);
+            this.tabVehicle.Controls.Add(this.chkIsTrailingRigid);
+            this.tabVehicle.Controls.Add(this.chkIsAft);
+            this.tabVehicle.Controls.Add(this.label28);
+            this.tabVehicle.Controls.Add(this.nudHitchLength);
+            this.tabVehicle.Controls.Add(this.label24);
+            this.tabVehicle.Controls.Add(this.label26);
+            this.tabVehicle.Controls.Add(this.label12);
+            this.tabVehicle.Controls.Add(this.chkIsPivotBehindAntenna);
             this.tabVehicle.Controls.Add(this.label13);
+            this.tabVehicle.Controls.Add(this.label25);
+            this.tabVehicle.Controls.Add(this.label18);
+            this.tabVehicle.Controls.Add(this.nudAntennaPivot);
+            this.tabVehicle.Controls.Add(this.nudWheelbase);
             this.tabVehicle.Controls.Add(this.nudAntennaHeight);
-            this.tabVehicle.Controls.Add(this.label3);
-            this.tabVehicle.Controls.Add(this.nudLookAhead);
-            this.tabVehicle.Controls.Add(this.btnVehicleCancel);
-            this.tabVehicle.Controls.Add(this.lblForeAftInches);
-            this.tabVehicle.Controls.Add(this.lblForeAftFeet);
-            this.tabVehicle.Controls.Add(this.nudForeAft);
-            this.tabVehicle.Controls.Add(this.label5);
-            this.tabVehicle.Controls.Add(this.btnVehicleOK);
+            this.helpProvider1.SetHelpString(this.tabVehicle, "");
             this.tabVehicle.Location = new System.Drawing.Point(4, 31);
             this.tabVehicle.Margin = new System.Windows.Forms.Padding(4);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(4);
-            this.tabVehicle.Size = new System.Drawing.Size(905, 355);
+            this.helpProvider1.SetShowHelp(this.tabVehicle, false);
+            this.tabVehicle.Size = new System.Drawing.Size(940, 516);
             this.tabVehicle.TabIndex = 1;
-            this.tabVehicle.Text = "Vehicle";
+            this.tabVehicle.Text = " Vehicle ";
             this.tabVehicle.UseVisualStyleBackColor = true;
             // 
-            // rboHitched
+            // label29
             // 
-            this.rboHitched.AutoSize = true;
-            this.rboHitched.Location = new System.Drawing.Point(420, 304);
-            this.rboHitched.Name = "rboHitched";
-            this.rboHitched.Size = new System.Drawing.Size(92, 26);
-            this.rboHitched.TabIndex = 57;
-            this.rboHitched.TabStop = true;
-            this.rboHitched.Text = "Hitched";
-            this.rboHitched.UseVisualStyleBackColor = true;
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(146, 447);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(223, 32);
+            this.label29.TabIndex = 23;
+            this.label29.Text = "* Anything rigidly attached to vehicle like\r\n    Drawbar, feeder/header, 3 pt hit" +
+    "ch";
             // 
-            // rboRigid
+            // chkIsSteerAxleAhead
             // 
-            this.rboRigid.AutoSize = true;
-            this.rboRigid.Location = new System.Drawing.Point(420, 273);
-            this.rboRigid.Name = "rboRigid";
-            this.rboRigid.Size = new System.Drawing.Size(72, 26);
-            this.rboRigid.TabIndex = 56;
-            this.rboRigid.TabStop = true;
-            this.rboRigid.Text = "Rigid";
-            this.rboRigid.UseVisualStyleBackColor = true;
+            this.chkIsSteerAxleAhead.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkIsSteerAxleAhead.AutoSize = true;
+            this.chkIsSteerAxleAhead.Image = global::AgOpenGPS.Properties.Resources.SteerAhead;
+            this.chkIsSteerAxleAhead.Location = new System.Drawing.Point(88, 156);
+            this.chkIsSteerAxleAhead.Name = "chkIsSteerAxleAhead";
+            this.chkIsSteerAxleAhead.Size = new System.Drawing.Size(70, 70);
+            this.chkIsSteerAxleAhead.TabIndex = 22;
+            this.chkIsSteerAxleAhead.UseVisualStyleBackColor = true;
+            this.chkIsSteerAxleAhead.CheckedChanged += new System.EventHandler(this.chkIsSteerAxleAhead_CheckedChanged);
             // 
-            // groupBox3
+            // label15
             // 
-            this.groupBox3.Location = new System.Drawing.Point(405, 244);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(151, 95);
-            this.groupBox3.TabIndex = 58;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tool Attached";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(753, 179);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(127, 23);
+            this.label15.TabIndex = 21;
+            this.label15.Text = "Antenna Height";
             // 
-            // lblAntennaInches
+            // label36
             // 
-            this.lblAntennaInches.AutoSize = true;
-            this.lblAntennaInches.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAntennaInches.Location = new System.Drawing.Point(353, 29);
-            this.lblAntennaInches.Name = "lblAntennaInches";
-            this.lblAntennaInches.Size = new System.Drawing.Size(39, 29);
-            this.lblAntennaInches.TabIndex = 55;
-            this.lblAntennaInches.Text = "YY";
-            this.lblAntennaInches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(215, 9);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(124, 23);
+            this.label36.TabIndex = 20;
+            this.label36.Text = "Tool Attached..";
             // 
-            // lblAntennaFeet
+            // label27
             // 
-            this.lblAntennaFeet.AutoSize = true;
-            this.lblAntennaFeet.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAntennaFeet.Location = new System.Drawing.Point(316, 29);
-            this.lblAntennaFeet.Name = "lblAntennaFeet";
-            this.lblAntennaFeet.Size = new System.Drawing.Size(39, 29);
-            this.lblAntennaFeet.TabIndex = 54;
-            this.lblAntennaFeet.Text = "XX";
-            this.lblAntennaFeet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(85, 10);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(73, 23);
+            this.label27.TabIndex = 18;
+            this.label27.Text = "Tool is...";
+            // 
+            // chkIsTrailingRigid
+            // 
+            this.chkIsTrailingRigid.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkIsTrailingRigid.AutoSize = true;
+            this.chkIsTrailingRigid.Image = global::AgOpenGPS.Properties.Resources.VehHitched64;
+            this.chkIsTrailingRigid.Location = new System.Drawing.Point(240, 43);
+            this.chkIsTrailingRigid.Name = "chkIsTrailingRigid";
+            this.chkIsTrailingRigid.Size = new System.Drawing.Size(70, 69);
+            this.chkIsTrailingRigid.TabIndex = 1;
+            this.chkIsTrailingRigid.UseVisualStyleBackColor = true;
+            this.chkIsTrailingRigid.CheckedChanged += new System.EventHandler(this.chkIsTrailingRigid_CheckedChanged);
+            // 
+            // chkIsAft
+            // 
+            this.chkIsAft.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkIsAft.AutoSize = true;
+            this.chkIsAft.Image = global::AgOpenGPS.Properties.Resources.VehAft64;
+            this.chkIsAft.Location = new System.Drawing.Point(88, 42);
+            this.chkIsAft.Name = "chkIsAft";
+            this.chkIsAft.Size = new System.Drawing.Size(70, 70);
+            this.chkIsAft.TabIndex = 7;
+            this.chkIsAft.UseVisualStyleBackColor = true;
+            this.chkIsAft.CheckedChanged += new System.EventHandler(this.chkIsAft_CheckedChanged);
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(408, 477);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(107, 23);
+            this.label28.TabIndex = 14;
+            this.label28.Text = "Hitch Length";
+            // 
+            // nudHitchLength
+            // 
+            this.nudHitchLength.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudHitchLength, "Enter vehicle rigily attached length measured from Pivot Point. NOT trailing tool" +
+        " length. Example... from rear tractor tires to hitch pin. High clearance sprayer" +
+        " rear wheels to the nozzles.");
+            this.nudHitchLength.Location = new System.Drawing.Point(185, 387);
+            this.nudHitchLength.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudHitchLength.Name = "nudHitchLength";
+            this.helpProvider1.SetShowHelp(this.nudHitchLength, true);
+            this.nudHitchLength.Size = new System.Drawing.Size(125, 48);
+            this.nudHitchLength.TabIndex = 2;
+            this.nudHitchLength.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.nudHitchLength.ValueChanged += new System.EventHandler(this.nudHitchLength_ValueChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(183, 361);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(107, 23);
+            this.label24.TabIndex = 16;
+            this.label24.Text = "Hitch Length\r\n";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(622, 468);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(94, 23);
+            this.label26.TabIndex = 13;
+            this.label26.Text = "Wheelbase";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(544, 154);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(91, 23);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Pivot Point";
+            // 
+            // chkIsPivotBehindAntenna
+            // 
+            this.chkIsPivotBehindAntenna.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkIsPivotBehindAntenna.AutoSize = true;
+            this.chkIsPivotBehindAntenna.Image = global::AgOpenGPS.Properties.Resources.PivotBehind;
+            this.chkIsPivotBehindAntenna.Location = new System.Drawing.Point(480, 57);
+            this.chkIsPivotBehindAntenna.Name = "chkIsPivotBehindAntenna";
+            this.chkIsPivotBehindAntenna.Size = new System.Drawing.Size(70, 70);
+            this.chkIsPivotBehindAntenna.TabIndex = 4;
+            this.chkIsPivotBehindAntenna.UseVisualStyleBackColor = true;
+            this.chkIsPivotBehindAntenna.CheckedChanged += new System.EventHandler(this.chkIsPivotBehindAntenna_CheckedChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(420, 6);
+            this.label13.Location = new System.Drawing.Point(183, 145);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(127, 23);
-            this.label13.TabIndex = 53;
-            this.label13.Text = "Antenna Height";
+            this.label13.Size = new System.Drawing.Size(94, 23);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Wheelbase";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(183, 253);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(127, 23);
+            this.label25.TabIndex = 10;
+            this.label25.Text = "Antenna Height";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(497, 25);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(161, 23);
+            this.label18.TabIndex = 8;
+            this.label18.Text = "Pivot Axle Point is....";
+            // 
+            // nudAntennaPivot
+            // 
+            this.nudAntennaPivot.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudAntennaPivot, "How far behind or ahead of antenna is the non steering Pivoting axle");
+            this.nudAntennaPivot.Location = new System.Drawing.Point(575, 64);
+            this.nudAntennaPivot.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudAntennaPivot.Name = "nudAntennaPivot";
+            this.helpProvider1.SetShowHelp(this.nudAntennaPivot, true);
+            this.nudAntennaPivot.Size = new System.Drawing.Size(102, 48);
+            this.nudAntennaPivot.TabIndex = 3;
+            this.nudAntennaPivot.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.nudAntennaPivot.ValueChanged += new System.EventHandler(this.nudAntennaPivot_ValueChanged);
+            // 
+            // nudWheelbase
+            // 
+            this.nudWheelbase.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudWheelbase, "From Pivot Point to steering Axle, If steering behind use negative value");
+            this.nudWheelbase.Location = new System.Drawing.Point(185, 171);
+            this.nudWheelbase.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.nudWheelbase.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudWheelbase.Name = "nudWheelbase";
+            this.helpProvider1.SetShowHelp(this.nudWheelbase, true);
+            this.nudWheelbase.Size = new System.Drawing.Size(125, 48);
+            this.nudWheelbase.TabIndex = 6;
+            this.nudWheelbase.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.nudWheelbase.ValueChanged += new System.EventHandler(this.nudWheelbase_ValueChanged);
             // 
             // nudAntennaHeight
             // 
-            this.nudAntennaHeight.DecimalPlaces = 2;
-            this.nudAntennaHeight.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAntennaHeight.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudAntennaHeight.Location = new System.Drawing.Point(426, 35);
+            this.nudAntennaHeight.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudAntennaHeight, "Height of the antenna from ground to center of antenna");
+            this.nudAntennaHeight.Location = new System.Drawing.Point(185, 279);
             this.nudAntennaHeight.Maximum = new decimal(new int[] {
-            15,
+            999,
             0,
             0,
             0});
             this.nudAntennaHeight.Minimum = new decimal(new int[] {
-            6,
+            1,
+            0,
+            0,
+            0});
+            this.nudAntennaHeight.Name = "nudAntennaHeight";
+            this.helpProvider1.SetShowHelp(this.nudAntennaHeight, true);
+            this.nudAntennaHeight.Size = new System.Drawing.Size(125, 48);
+            this.nudAntennaHeight.TabIndex = 5;
+            this.nudAntennaHeight.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.nudAntennaHeight.ValueChanged += new System.EventHandler(this.nudAntennaHeight_ValueChanged);
+            // 
+            // tabTool
+            // 
+            this.tabTool.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
+            this.tabTool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabTool.Controls.Add(this.label35);
+            this.tabTool.Controls.Add(this.label34);
+            this.tabTool.Controls.Add(this.label23);
+            this.tabTool.Controls.Add(this.nudTurnOffDelay);
+            this.tabTool.Controls.Add(this.label3);
+            this.tabTool.Controls.Add(this.nudLookAhead);
+            this.tabTool.Controls.Add(this.label19);
+            this.tabTool.Controls.Add(this.label1);
+            this.tabTool.Controls.Add(this.nudForeAft);
+            this.tabTool.Controls.Add(this.nudOverlap);
+            this.tabTool.Controls.Add(this.label5);
+            this.tabTool.Controls.Add(this.nudOffset);
+            this.tabTool.Location = new System.Drawing.Point(4, 31);
+            this.tabTool.Name = "tabTool";
+            this.helpProvider1.SetShowHelp(this.tabTool, true);
+            this.tabTool.Size = new System.Drawing.Size(940, 516);
+            this.tabTool.TabIndex = 9;
+            this.tabTool.Text = "  Tool  ";
+            this.tabTool.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(293, 456);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(139, 25);
+            this.label35.TabIndex = 113;
+            this.label35.Text = "Set in Sections\r\n";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(310, 418);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(104, 25);
+            this.label34.TabIndex = 111;
+            this.label34.Text = "Tool Width";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(762, 116);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(169, 23);
+            this.label23.TabIndex = 109;
+            this.label23.Text = "Turn Off Delay (Secs)";
+            // 
+            // nudTurnOffDelay
+            // 
+            this.nudTurnOffDelay.DecimalPlaces = 1;
+            this.nudTurnOffDelay.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTurnOffDelay.Increment = new decimal(new int[] {
+            2,
             0,
             0,
             65536});
-            this.nudAntennaHeight.Name = "nudAntennaHeight";
-            this.nudAntennaHeight.Size = new System.Drawing.Size(121, 41);
-            this.nudAntennaHeight.TabIndex = 52;
-            this.nudAntennaHeight.Value = new decimal(new int[] {
+            this.nudTurnOffDelay.Location = new System.Drawing.Point(766, 142);
+            this.nudTurnOffDelay.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudTurnOffDelay.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudTurnOffDelay.Name = "nudTurnOffDelay";
+            this.nudTurnOffDelay.Size = new System.Drawing.Size(121, 48);
+            this.nudTurnOffDelay.TabIndex = 108;
+            this.nudTurnOffDelay.Value = new decimal(new int[] {
             20,
             0,
             0,
             65536});
-            this.nudAntennaHeight.ValueChanged += new System.EventHandler(this.nudAntennaHeight_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(416, 117);
+            this.label3.Location = new System.Drawing.Point(762, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 23);
-            this.label3.TabIndex = 51;
+            this.label3.TabIndex = 107;
             this.label3.Text = "Look Ahead (Secs)";
             // 
             // nudLookAhead
             // 
             this.nudLookAhead.DecimalPlaces = 1;
-            this.nudLookAhead.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLookAhead.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLookAhead.Increment = new decimal(new int[] {
             2,
             0,
             0,
             65536});
-            this.nudLookAhead.Location = new System.Drawing.Point(424, 147);
+            this.nudLookAhead.Location = new System.Drawing.Point(766, 46);
             this.nudLookAhead.Maximum = new decimal(new int[] {
             5,
             0,
@@ -637,199 +557,197 @@
             0,
             65536});
             this.nudLookAhead.Name = "nudLookAhead";
-            this.nudLookAhead.Size = new System.Drawing.Size(121, 41);
-            this.nudLookAhead.TabIndex = 50;
+            this.nudLookAhead.Size = new System.Drawing.Size(121, 48);
+            this.nudLookAhead.TabIndex = 106;
             this.nudLookAhead.Value = new decimal(new int[] {
             20,
             0,
             0,
             65536});
             // 
-            // btnVehicleCancel
+            // label19
             // 
-            this.btnVehicleCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVehicleCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnVehicleCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVehicleCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnVehicleCancel.Location = new System.Drawing.Point(814, 280);
-            this.btnVehicleCancel.Name = "btnVehicleCancel";
-            this.btnVehicleCancel.Size = new System.Drawing.Size(88, 72);
-            this.btnVehicleCancel.TabIndex = 49;
-            this.btnVehicleCancel.UseVisualStyleBackColor = true;
-            this.btnVehicleCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(97, 276);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(110, 46);
+            this.label19.TabIndex = 105;
+            this.label19.Text = "Trailing Hitch\r\nLength Only\r\n";
             // 
-            // lblForeAftInches
+            // label1
             // 
-            this.lblForeAftInches.AutoSize = true;
-            this.lblForeAftInches.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForeAftInches.Location = new System.Drawing.Point(64, 317);
-            this.lblForeAftInches.Name = "lblForeAftInches";
-            this.lblForeAftInches.Size = new System.Drawing.Size(47, 33);
-            this.lblForeAftInches.TabIndex = 26;
-            this.lblForeAftInches.Text = "YY";
-            this.lblForeAftInches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblForeAftFeet
-            // 
-            this.lblForeAftFeet.AutoSize = true;
-            this.lblForeAftFeet.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForeAftFeet.Location = new System.Drawing.Point(7, 317);
-            this.lblForeAftFeet.Name = "lblForeAftFeet";
-            this.lblForeAftFeet.Size = new System.Drawing.Size(47, 33);
-            this.lblForeAftFeet.TabIndex = 25;
-            this.lblForeAftFeet.Text = "XX";
-            this.lblForeAftFeet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(592, 286);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 50);
+            this.label1.TabIndex = 103;
+            this.label1.Text = "    AB Line \r\nSkip or Overlap";
             // 
             // nudForeAft
             // 
-            this.nudForeAft.DecimalPlaces = 2;
-            this.nudForeAft.Font = new System.Drawing.Font("Arial Narrow", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudForeAft.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudForeAft.Location = new System.Drawing.Point(36, 264);
+            this.nudForeAft.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudForeAft, "From Hitch Pin to the tool\'s line of application");
+            this.nudForeAft.Location = new System.Drawing.Point(73, 225);
             this.nudForeAft.Maximum = new decimal(new int[] {
-            16,
+            1000,
             0,
             0,
             0});
             this.nudForeAft.Minimum = new decimal(new int[] {
-            16,
+            24,
+            0,
+            0,
+            0});
+            this.nudForeAft.Name = "nudForeAft";
+            this.helpProvider1.SetShowHelp(this.nudForeAft, true);
+            this.nudForeAft.Size = new System.Drawing.Size(95, 48);
+            this.nudForeAft.TabIndex = 102;
+            this.nudForeAft.Value = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            // 
+            // nudOverlap
+            // 
+            this.nudOverlap.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.helpProvider1.SetHelpString(this.nudOverlap, "Positive is Overlap, Negative is Skip (A gap)");
+            this.nudOverlap.Location = new System.Drawing.Point(597, 339);
+            this.nudOverlap.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.nudOverlap.Minimum = new decimal(new int[] {
+            300,
             0,
             0,
             -2147483648});
-            this.nudForeAft.Name = "nudForeAft";
-            this.nudForeAft.Size = new System.Drawing.Size(119, 50);
-            this.nudForeAft.TabIndex = 24;
-            this.nudForeAft.Value = new decimal(new int[] {
-            20,
+            this.nudOverlap.Name = "nudOverlap";
+            this.helpProvider1.SetShowHelp(this.nudOverlap, true);
+            this.nudOverlap.Size = new System.Drawing.Size(93, 48);
+            this.nudOverlap.TabIndex = 101;
+            this.nudOverlap.Value = new decimal(new int[] {
+            8,
             0,
             0,
-            -2147418112});
-            this.nudForeAft.ValueChanged += new System.EventHandler(this.nudForeAft_ValueChanged);
+            0});
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 229);
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(763, 211);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 23);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Fore / Aft ->";
+            this.label5.Size = new System.Drawing.Size(106, 25);
+            this.label5.TabIndex = 100;
+            this.label5.Text = "Tool Offset";
             // 
-            // btnVehicleOK
+            // nudOffset
             // 
-            this.btnVehicleOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVehicleOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVehicleOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnVehicleOK.Location = new System.Drawing.Point(653, 279);
-            this.btnVehicleOK.Name = "btnVehicleOK";
-            this.btnVehicleOK.Size = new System.Drawing.Size(156, 74);
-            this.btnVehicleOK.TabIndex = 5;
-            this.btnVehicleOK.Text = "Save";
-            this.btnVehicleOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnVehicleOK.UseVisualStyleBackColor = true;
-            this.btnVehicleOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.nudOffset.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOffset.Location = new System.Drawing.Point(768, 238);
+            this.nudOffset.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudOffset.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.nudOffset.Name = "nudOffset";
+            this.nudOffset.Size = new System.Drawing.Size(119, 48);
+            this.nudOffset.TabIndex = 99;
+            this.nudOffset.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            -2147483648});
             // 
-            // tabPageSections
+            // tabSections
             // 
-            this.tabPageSections.Controls.Add(this.lblSection5WidthM);
-            this.tabPageSections.Controls.Add(this.lblSection4WidthM);
-            this.tabPageSections.Controls.Add(this.lblSection3WidthM);
-            this.tabPageSections.Controls.Add(this.lblSection2WidthM);
-            this.tabPageSections.Controls.Add(this.lblSection1WidthM);
-            this.tabPageSections.Controls.Add(this.lblTractor);
-            this.tabPageSections.Controls.Add(this.lblSection5Width);
-            this.tabPageSections.Controls.Add(this.lblSection4Width);
-            this.tabPageSections.Controls.Add(this.lblSection3Width);
-            this.tabPageSections.Controls.Add(this.lblSection2Width);
-            this.tabPageSections.Controls.Add(this.lblSection1Width);
-            this.tabPageSections.Controls.Add(this.label11);
-            this.tabPageSections.Controls.Add(this.label10);
-            this.tabPageSections.Controls.Add(this.label6);
-            this.tabPageSections.Controls.Add(this.label9);
-            this.tabPageSections.Controls.Add(this.label8);
-            this.tabPageSections.Controls.Add(this.label7);
-            this.tabPageSections.Controls.Add(this.lblSecTotalWidthInches);
-            this.tabPageSections.Controls.Add(this.lblSecTotalWidthFeet);
-            this.tabPageSections.Controls.Add(this.lblVehicleToolWidth);
-            this.tabPageSections.Controls.Add(this.label4);
-            this.tabPageSections.Controls.Add(this.lblSection6Inch);
-            this.tabPageSections.Controls.Add(this.lblSection5Inch);
-            this.tabPageSections.Controls.Add(this.lblSection4Inch);
-            this.tabPageSections.Controls.Add(this.lblSection3Inch);
-            this.tabPageSections.Controls.Add(this.lblSection2Inch);
-            this.tabPageSections.Controls.Add(this.lblSection1Inch);
-            this.tabPageSections.Controls.Add(this.progressBar1);
-            this.tabPageSections.Controls.Add(this.nudSection6);
-            this.tabPageSections.Controls.Add(this.nudSection5);
-            this.tabPageSections.Controls.Add(this.nudSection4);
-            this.tabPageSections.Controls.Add(this.nudSection3);
-            this.tabPageSections.Controls.Add(this.nudSection2);
-            this.tabPageSections.Controls.Add(this.nudSection1);
-            this.tabPageSections.Controls.Add(this.label2);
-            this.tabPageSections.Controls.Add(this.nudNumberOfSections);
-            this.tabPageSections.Controls.Add(this.btnSectionsCancel);
-            this.tabPageSections.Controls.Add(this.bntSectionOK);
-            this.tabPageSections.Location = new System.Drawing.Point(4, 31);
-            this.tabPageSections.Name = "tabPageSections";
-            this.tabPageSections.Size = new System.Drawing.Size(905, 355);
-            this.tabPageSections.TabIndex = 2;
-            this.tabPageSections.Text = "Sections";
-            this.tabPageSections.UseVisualStyleBackColor = true;
+            this.tabSections.Controls.Add(this.lblCalcInches);
+            this.tabSections.Controls.Add(this.lblCalcFeet);
+            this.tabSections.Controls.Add(this.label31);
+            this.tabSections.Controls.Add(this.nudCalc);
+            this.tabSections.Controls.Add(this.lblTractor);
+            this.tabSections.Controls.Add(this.lblSection5Width);
+            this.tabSections.Controls.Add(this.lblSection4Width);
+            this.tabSections.Controls.Add(this.lblSection3Width);
+            this.tabSections.Controls.Add(this.lblSection2Width);
+            this.tabSections.Controls.Add(this.lblSection1Width);
+            this.tabSections.Controls.Add(this.label11);
+            this.tabSections.Controls.Add(this.label10);
+            this.tabSections.Controls.Add(this.label6);
+            this.tabSections.Controls.Add(this.label9);
+            this.tabSections.Controls.Add(this.label8);
+            this.tabSections.Controls.Add(this.label7);
+            this.tabSections.Controls.Add(this.lblVehicleToolWidth);
+            this.tabSections.Controls.Add(this.label4);
+            this.tabSections.Controls.Add(this.progressBar1);
+            this.tabSections.Controls.Add(this.nudSection6);
+            this.tabSections.Controls.Add(this.nudSection5);
+            this.tabSections.Controls.Add(this.nudSection4);
+            this.tabSections.Controls.Add(this.nudSection3);
+            this.tabSections.Controls.Add(this.nudSection2);
+            this.tabSections.Controls.Add(this.nudSection1);
+            this.tabSections.Controls.Add(this.label2);
+            this.tabSections.Controls.Add(this.nudNumberOfSections);
+            this.tabSections.Location = new System.Drawing.Point(4, 31);
+            this.tabSections.Name = "tabSections";
+            this.tabSections.Size = new System.Drawing.Size(940, 516);
+            this.tabSections.TabIndex = 2;
+            this.tabSections.Text = " Sections ";
+            this.tabSections.UseVisualStyleBackColor = true;
+            this.tabSections.Enter += new System.EventHandler(this.tabSections_Enter);
             // 
-            // lblSection5WidthM
+            // lblCalcInches
             // 
-            this.lblSection5WidthM.AutoSize = true;
-            this.lblSection5WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection5WidthM.Location = new System.Drawing.Point(751, 106);
-            this.lblSection5WidthM.Name = "lblSection5WidthM";
-            this.lblSection5WidthM.Size = new System.Drawing.Size(22, 23);
-            this.lblSection5WidthM.TabIndex = 43;
-            this.lblSection5WidthM.Text = "0";
+            this.lblCalcInches.AutoSize = true;
+            this.lblCalcInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalcInches.Location = new System.Drawing.Point(509, 353);
+            this.lblCalcInches.Name = "lblCalcInches";
+            this.lblCalcInches.Size = new System.Drawing.Size(47, 35);
+            this.lblCalcInches.TabIndex = 43;
+            this.lblCalcInches.Text = "II";
             // 
-            // lblSection4WidthM
+            // lblCalcFeet
             // 
-            this.lblSection4WidthM.AutoSize = true;
-            this.lblSection4WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection4WidthM.Location = new System.Drawing.Point(585, 106);
-            this.lblSection4WidthM.Name = "lblSection4WidthM";
-            this.lblSection4WidthM.Size = new System.Drawing.Size(22, 23);
-            this.lblSection4WidthM.TabIndex = 41;
-            this.lblSection4WidthM.Text = "0";
+            this.lblCalcFeet.AutoSize = true;
+            this.lblCalcFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCalcFeet.Location = new System.Drawing.Point(447, 353);
+            this.lblCalcFeet.Name = "lblCalcFeet";
+            this.lblCalcFeet.Size = new System.Drawing.Size(53, 35);
+            this.lblCalcFeet.TabIndex = 42;
+            this.lblCalcFeet.Text = "FF";
             // 
-            // lblSection3WidthM
+            // label31
             // 
-            this.lblSection3WidthM.AutoSize = true;
-            this.lblSection3WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection3WidthM.Location = new System.Drawing.Point(419, 106);
-            this.lblSection3WidthM.Name = "lblSection3WidthM";
-            this.lblSection3WidthM.Size = new System.Drawing.Size(22, 23);
-            this.lblSection3WidthM.TabIndex = 40;
-            this.lblSection3WidthM.Text = "0";
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(53, 387);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(109, 25);
+            this.label31.TabIndex = 39;
+            this.label31.Text = "Total Width";
             // 
-            // lblSection2WidthM
+            // nudCalc
             // 
-            this.lblSection2WidthM.AutoSize = true;
-            this.lblSection2WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection2WidthM.Location = new System.Drawing.Point(253, 106);
-            this.lblSection2WidthM.Name = "lblSection2WidthM";
-            this.lblSection2WidthM.Size = new System.Drawing.Size(22, 23);
-            this.lblSection2WidthM.TabIndex = 39;
-            this.lblSection2WidthM.Text = "0";
-            // 
-            // lblSection1WidthM
-            // 
-            this.lblSection1WidthM.AutoSize = true;
-            this.lblSection1WidthM.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection1WidthM.Location = new System.Drawing.Point(78, 106);
-            this.lblSection1WidthM.Name = "lblSection1WidthM";
-            this.lblSection1WidthM.Size = new System.Drawing.Size(22, 23);
-            this.lblSection1WidthM.TabIndex = 38;
-            this.lblSection1WidthM.Text = "0";
+            this.nudCalc.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCalc.Location = new System.Drawing.Point(58, 415);
+            this.nudCalc.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudCalc.Name = "nudCalc";
+            this.nudCalc.Size = new System.Drawing.Size(102, 48);
+            this.nudCalc.TabIndex = 38;
+            this.nudCalc.ValueChanged += new System.EventHandler(this.nudCalc_ValueChanged);
             // 
             // lblTractor
             // 
@@ -837,17 +755,18 @@
             this.lblTractor.BackColor = System.Drawing.SystemColors.Control;
             this.lblTractor.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTractor.ForeColor = System.Drawing.Color.Red;
-            this.lblTractor.Location = new System.Drawing.Point(76, 26);
+            this.lblTractor.Location = new System.Drawing.Point(421, 47);
             this.lblTractor.Name = "lblTractor";
-            this.lblTractor.Size = new System.Drawing.Size(94, 32);
+            this.lblTractor.Size = new System.Drawing.Size(103, 32);
             this.lblTractor.TabIndex = 37;
-            this.lblTractor.Text = "|-^-|";
+            this.lblTractor.Text = " |-^-|";
             // 
             // lblSection5Width
             // 
             this.lblSection5Width.AutoSize = true;
             this.lblSection5Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection5Width.Location = new System.Drawing.Point(751, 70);
+            this.lblSection5Width.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblSection5Width.Location = new System.Drawing.Point(774, 90);
             this.lblSection5Width.Name = "lblSection5Width";
             this.lblSection5Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection5Width.TabIndex = 36;
@@ -857,7 +776,8 @@
             // 
             this.lblSection4Width.AutoSize = true;
             this.lblSection4Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection4Width.Location = new System.Drawing.Point(585, 70);
+            this.lblSection4Width.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblSection4Width.Location = new System.Drawing.Point(608, 90);
             this.lblSection4Width.Name = "lblSection4Width";
             this.lblSection4Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection4Width.TabIndex = 35;
@@ -867,7 +787,8 @@
             // 
             this.lblSection3Width.AutoSize = true;
             this.lblSection3Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection3Width.Location = new System.Drawing.Point(419, 70);
+            this.lblSection3Width.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblSection3Width.Location = new System.Drawing.Point(442, 90);
             this.lblSection3Width.Name = "lblSection3Width";
             this.lblSection3Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection3Width.TabIndex = 34;
@@ -877,7 +798,8 @@
             // 
             this.lblSection2Width.AutoSize = true;
             this.lblSection2Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection2Width.Location = new System.Drawing.Point(253, 70);
+            this.lblSection2Width.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblSection2Width.Location = new System.Drawing.Point(276, 90);
             this.lblSection2Width.Name = "lblSection2Width";
             this.lblSection2Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection2Width.TabIndex = 33;
@@ -887,7 +809,8 @@
             // 
             this.lblSection1Width.AutoSize = true;
             this.lblSection1Width.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection1Width.Location = new System.Drawing.Point(78, 70);
+            this.lblSection1Width.ForeColor = System.Drawing.Color.LimeGreen;
+            this.lblSection1Width.Location = new System.Drawing.Point(101, 90);
             this.lblSection1Width.Name = "lblSection1Width";
             this.lblSection1Width.Size = new System.Drawing.Size(22, 23);
             this.lblSection1Width.TabIndex = 32;
@@ -897,7 +820,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(841, 68);
+            this.label11.Location = new System.Drawing.Point(864, 88);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(36, 57);
             this.label11.TabIndex = 31;
@@ -907,7 +830,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(678, 68);
+            this.label10.Location = new System.Drawing.Point(701, 88);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(36, 57);
             this.label10.TabIndex = 30;
@@ -917,7 +840,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 68);
+            this.label6.Location = new System.Drawing.Point(48, 88);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 57);
             this.label6.TabIndex = 26;
@@ -927,7 +850,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(513, 68);
+            this.label9.Location = new System.Drawing.Point(536, 88);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(36, 57);
             this.label9.TabIndex = 29;
@@ -937,7 +860,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(350, 68);
+            this.label8.Location = new System.Drawing.Point(373, 88);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 57);
             this.label8.TabIndex = 28;
@@ -947,37 +870,17 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(187, 68);
+            this.label7.Location = new System.Drawing.Point(210, 88);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(36, 57);
             this.label7.TabIndex = 27;
             this.label7.Text = "|";
             // 
-            // lblSecTotalWidthInches
-            // 
-            this.lblSecTotalWidthInches.AutoSize = true;
-            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(402, 293);
-            this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
-            this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
-            this.lblSecTotalWidthInches.TabIndex = 25;
-            this.lblSecTotalWidthInches.Text = "II";
-            // 
-            // lblSecTotalWidthFeet
-            // 
-            this.lblSecTotalWidthFeet.AutoSize = true;
-            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(340, 293);
-            this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
-            this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(53, 35);
-            this.lblSecTotalWidthFeet.TabIndex = 24;
-            this.lblSecTotalWidthFeet.Text = "FF";
-            // 
             // lblVehicleToolWidth
             // 
             this.lblVehicleToolWidth.AutoSize = true;
             this.lblVehicleToolWidth.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVehicleToolWidth.Location = new System.Drawing.Point(462, 251);
+            this.lblVehicleToolWidth.Location = new System.Drawing.Point(534, 292);
             this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             this.lblVehicleToolWidth.Size = new System.Drawing.Size(59, 29);
             this.lblVehicleToolWidth.TabIndex = 23;
@@ -987,77 +890,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(315, 252);
+            this.label4.Location = new System.Drawing.Point(406, 296);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 25);
+            this.label4.Size = new System.Drawing.Size(109, 25);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Total Width (m)";
-            // 
-            // lblSection6Inch
-            // 
-            this.lblSection6Inch.AutoSize = true;
-            this.lblSection6Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection6Inch.Location = new System.Drawing.Point(830, 134);
-            this.lblSection6Inch.Name = "lblSection6Inch";
-            this.lblSection6Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection6Inch.TabIndex = 21;
-            this.lblSection6Inch.Text = "0";
-            // 
-            // lblSection5Inch
-            // 
-            this.lblSection5Inch.AutoSize = true;
-            this.lblSection5Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection5Inch.Location = new System.Drawing.Point(667, 134);
-            this.lblSection5Inch.Name = "lblSection5Inch";
-            this.lblSection5Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection5Inch.TabIndex = 20;
-            this.lblSection5Inch.Text = "0";
-            // 
-            // lblSection4Inch
-            // 
-            this.lblSection4Inch.AutoSize = true;
-            this.lblSection4Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection4Inch.Location = new System.Drawing.Point(503, 134);
-            this.lblSection4Inch.Name = "lblSection4Inch";
-            this.lblSection4Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection4Inch.TabIndex = 19;
-            this.lblSection4Inch.Text = "0";
-            // 
-            // lblSection3Inch
-            // 
-            this.lblSection3Inch.AutoSize = true;
-            this.lblSection3Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection3Inch.Location = new System.Drawing.Point(340, 134);
-            this.lblSection3Inch.Name = "lblSection3Inch";
-            this.lblSection3Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection3Inch.TabIndex = 18;
-            this.lblSection3Inch.Text = "0";
-            // 
-            // lblSection2Inch
-            // 
-            this.lblSection2Inch.AutoSize = true;
-            this.lblSection2Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection2Inch.Location = new System.Drawing.Point(174, 134);
-            this.lblSection2Inch.Name = "lblSection2Inch";
-            this.lblSection2Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection2Inch.TabIndex = 17;
-            this.lblSection2Inch.Text = "0";
-            // 
-            // lblSection1Inch
-            // 
-            this.lblSection1Inch.AutoSize = true;
-            this.lblSection1Inch.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSection1Inch.Location = new System.Drawing.Point(10, 134);
-            this.lblSection1Inch.Name = "lblSection1Inch";
-            this.lblSection1Inch.Size = new System.Drawing.Size(25, 25);
-            this.lblSection1Inch.TabIndex = 16;
-            this.lblSection1Inch.Text = "0";
+            this.label4.Text = "Total Width";
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.progressBar1.Location = new System.Drawing.Point(51, 93);
+            this.progressBar1.Location = new System.Drawing.Point(74, 113);
             this.progressBar1.Maximum = 50;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(796, 10);
@@ -1065,21 +908,15 @@
             // 
             // nudSection6
             // 
-            this.nudSection6.DecimalPlaces = 2;
             this.nudSection6.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection6.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection6.Location = new System.Drawing.Point(793, 162);
+            this.nudSection6.Location = new System.Drawing.Point(816, 182);
             this.nudSection6.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection6.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1087,7 +924,7 @@
             this.nudSection6.Size = new System.Drawing.Size(102, 48);
             this.nudSection6.TabIndex = 14;
             this.nudSection6.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1095,21 +932,15 @@
             // 
             // nudSection5
             // 
-            this.nudSection5.DecimalPlaces = 2;
             this.nudSection5.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection5.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection5.Location = new System.Drawing.Point(636, 162);
+            this.nudSection5.Location = new System.Drawing.Point(659, 182);
             this.nudSection5.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection5.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1117,7 +948,7 @@
             this.nudSection5.Size = new System.Drawing.Size(102, 48);
             this.nudSection5.TabIndex = 13;
             this.nudSection5.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1125,21 +956,15 @@
             // 
             // nudSection4
             // 
-            this.nudSection4.DecimalPlaces = 2;
             this.nudSection4.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection4.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection4.Location = new System.Drawing.Point(479, 162);
+            this.nudSection4.Location = new System.Drawing.Point(502, 182);
             this.nudSection4.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection4.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1147,7 +972,7 @@
             this.nudSection4.Size = new System.Drawing.Size(102, 48);
             this.nudSection4.TabIndex = 12;
             this.nudSection4.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1155,21 +980,15 @@
             // 
             // nudSection3
             // 
-            this.nudSection3.DecimalPlaces = 2;
             this.nudSection3.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection3.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection3.Location = new System.Drawing.Point(322, 162);
+            this.nudSection3.Location = new System.Drawing.Point(345, 182);
             this.nudSection3.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection3.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1177,7 +996,7 @@
             this.nudSection3.Size = new System.Drawing.Size(102, 48);
             this.nudSection3.TabIndex = 11;
             this.nudSection3.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1185,21 +1004,15 @@
             // 
             // nudSection2
             // 
-            this.nudSection2.DecimalPlaces = 2;
             this.nudSection2.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection2.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection2.Location = new System.Drawing.Point(165, 162);
+            this.nudSection2.Location = new System.Drawing.Point(188, 182);
             this.nudSection2.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection2.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1207,7 +1020,7 @@
             this.nudSection2.Size = new System.Drawing.Size(102, 48);
             this.nudSection2.TabIndex = 10;
             this.nudSection2.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1215,21 +1028,15 @@
             // 
             // nudSection1
             // 
-            this.nudSection1.DecimalPlaces = 2;
             this.nudSection1.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection1.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudSection1.Location = new System.Drawing.Point(8, 162);
+            this.nudSection1.Location = new System.Drawing.Point(31, 182);
             this.nudSection1.Maximum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             0});
             this.nudSection1.Minimum = new decimal(new int[] {
-            20,
+            1000,
             0,
             0,
             -2147483648});
@@ -1237,7 +1044,7 @@
             this.nudSection1.Size = new System.Drawing.Size(102, 48);
             this.nudSection1.TabIndex = 9;
             this.nudSection1.Value = new decimal(new int[] {
-            1,
+            99,
             0,
             0,
             0});
@@ -1247,7 +1054,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(78, 247);
+            this.label2.Location = new System.Drawing.Point(74, 281);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 25);
             this.label2.TabIndex = 1;
@@ -1256,7 +1063,7 @@
             // nudNumberOfSections
             // 
             this.nudNumberOfSections.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNumberOfSections.Location = new System.Drawing.Point(88, 275);
+            this.nudNumberOfSections.Location = new System.Drawing.Point(78, 309);
             this.nudNumberOfSections.Maximum = new decimal(new int[] {
             5,
             0,
@@ -1277,209 +1084,204 @@
             0});
             this.nudNumberOfSections.ValueChanged += new System.EventHandler(this.nudNumberOfSections_ValueChanged);
             // 
-            // btnSectionsCancel
+            // tabExamples
             // 
-            this.btnSectionsCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSectionsCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSectionsCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSectionsCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSectionsCancel.Location = new System.Drawing.Point(814, 280);
-            this.btnSectionsCancel.Name = "btnSectionsCancel";
-            this.btnSectionsCancel.Size = new System.Drawing.Size(88, 73);
-            this.btnSectionsCancel.TabIndex = 8;
-            this.btnSectionsCancel.UseVisualStyleBackColor = true;
-            this.btnSectionsCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // bntSectionOK
-            // 
-            this.bntSectionOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bntSectionOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bntSectionOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.bntSectionOK.Location = new System.Drawing.Point(653, 279);
-            this.bntSectionOK.Name = "bntSectionOK";
-            this.bntSectionOK.Size = new System.Drawing.Size(156, 74);
-            this.bntSectionOK.TabIndex = 7;
-            this.bntSectionOK.Text = "Save";
-            this.bntSectionOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.bntSectionOK.UseVisualStyleBackColor = true;
-            this.bntSectionOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.tabExamples.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabExamples.BackgroundImage")));
+            this.tabExamples.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabExamples.Location = new System.Drawing.Point(4, 31);
+            this.tabExamples.Name = "tabExamples";
+            this.tabExamples.Size = new System.Drawing.Size(940, 516);
+            this.tabExamples.TabIndex = 8;
+            this.tabExamples.Text = " Examples ";
+            this.tabExamples.UseVisualStyleBackColor = true;
             // 
             // tabGuidance
             // 
-            this.tabGuidance.BackgroundImage = global::AgOpenGPS.Properties.Resources.GuidanceDimensions;
             this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabGuidance.Controls.Add(this.btnGuidanceCancel);
-            this.tabGuidance.Controls.Add(this.btnGuidanceOK);
-            this.tabGuidance.Controls.Add(this.lblOverlapInches);
-            this.tabGuidance.Controls.Add(this.lblOverlapFeet);
-            this.tabGuidance.Controls.Add(this.label12);
-            this.tabGuidance.Controls.Add(this.nudOverlap);
             this.tabGuidance.Location = new System.Drawing.Point(4, 31);
             this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.Size = new System.Drawing.Size(905, 355);
+            this.tabGuidance.Size = new System.Drawing.Size(940, 516);
             this.tabGuidance.TabIndex = 4;
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
             // 
-            // btnGuidanceCancel
-            // 
-            this.btnGuidanceCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGuidanceCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnGuidanceCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuidanceCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnGuidanceCancel.Location = new System.Drawing.Point(814, 280);
-            this.btnGuidanceCancel.Name = "btnGuidanceCancel";
-            this.btnGuidanceCancel.Size = new System.Drawing.Size(88, 72);
-            this.btnGuidanceCancel.TabIndex = 51;
-            this.btnGuidanceCancel.UseVisualStyleBackColor = true;
-            this.btnGuidanceCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnGuidanceOK
-            // 
-            this.btnGuidanceOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnGuidanceOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuidanceOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnGuidanceOK.Location = new System.Drawing.Point(653, 279);
-            this.btnGuidanceOK.Name = "btnGuidanceOK";
-            this.btnGuidanceOK.Size = new System.Drawing.Size(156, 74);
-            this.btnGuidanceOK.TabIndex = 50;
-            this.btnGuidanceOK.Text = "Save";
-            this.btnGuidanceOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnGuidanceOK.UseVisualStyleBackColor = true;
-            this.btnGuidanceOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // lblOverlapInches
-            // 
-            this.lblOverlapInches.AutoSize = true;
-            this.lblOverlapInches.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOverlapInches.Location = new System.Drawing.Point(96, 272);
-            this.lblOverlapInches.Name = "lblOverlapInches";
-            this.lblOverlapInches.Size = new System.Drawing.Size(47, 33);
-            this.lblOverlapInches.TabIndex = 25;
-            this.lblOverlapInches.Text = "YY";
-            this.lblOverlapInches.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblOverlapFeet
-            // 
-            this.lblOverlapFeet.AutoSize = true;
-            this.lblOverlapFeet.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOverlapFeet.Location = new System.Drawing.Point(28, 272);
-            this.lblOverlapFeet.Name = "lblOverlapFeet";
-            this.lblOverlapFeet.Size = new System.Drawing.Size(47, 33);
-            this.lblOverlapFeet.TabIndex = 24;
-            this.lblOverlapFeet.Text = "XX";
-            this.lblOverlapFeet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial Narrow", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(19, 155);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(86, 29);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Overlap";
-            // 
-            // nudOverlap
-            // 
-            this.nudOverlap.DecimalPlaces = 2;
-            this.nudOverlap.Font = new System.Drawing.Font("Arial Narrow", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudOverlap.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            131072});
-            this.nudOverlap.Location = new System.Drawing.Point(14, 198);
-            this.nudOverlap.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nudOverlap.Minimum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            -2147418112});
-            this.nudOverlap.Name = "nudOverlap";
-            this.nudOverlap.Size = new System.Drawing.Size(145, 63);
-            this.nudOverlap.TabIndex = 21;
-            this.nudOverlap.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nudOverlap.ValueChanged += new System.EventHandler(this.nudOverlap_ValueChanged);
-            // 
             // tabDisplay
             // 
-            this.tabDisplay.Controls.Add(this.btnDisplayCancel);
-            this.tabDisplay.Controls.Add(this.btnDisplayOK);
+            this.tabDisplay.Controls.Add(this.label21);
+            this.tabDisplay.Controls.Add(this.tbarDisplayFixDelay);
+            this.tabDisplay.Controls.Add(this.groupBox4);
             this.tabDisplay.Location = new System.Drawing.Point(4, 31);
             this.tabDisplay.Name = "tabDisplay";
-            this.tabDisplay.Size = new System.Drawing.Size(905, 355);
+            this.tabDisplay.Size = new System.Drawing.Size(940, 516);
             this.tabDisplay.TabIndex = 5;
-            this.tabDisplay.Text = "Display";
+            this.tabDisplay.Text = " Display ";
             this.tabDisplay.UseVisualStyleBackColor = true;
             // 
-            // btnDisplayCancel
+            // label21
             // 
-            this.btnDisplayCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDisplayCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnDisplayCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisplayCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDisplayCancel.Location = new System.Drawing.Point(813, 277);
-            this.btnDisplayCancel.Name = "btnDisplayCancel";
-            this.btnDisplayCancel.Size = new System.Drawing.Size(88, 72);
-            this.btnDisplayCancel.TabIndex = 53;
-            this.btnDisplayCancel.UseVisualStyleBackColor = true;
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(29, 171);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(72, 22);
+            this.label21.TabIndex = 57;
+            this.label21.Text = "Vehicle";
             // 
-            // btnDisplayOK
+            // tbarDisplayFixDelay
             // 
-            this.btnDisplayOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDisplayOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDisplayOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnDisplayOK.Location = new System.Drawing.Point(652, 276);
-            this.btnDisplayOK.Name = "btnDisplayOK";
-            this.btnDisplayOK.Size = new System.Drawing.Size(156, 74);
-            this.btnDisplayOK.TabIndex = 52;
-            this.btnDisplayOK.Text = "Save";
-            this.btnDisplayOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnDisplayOK.UseVisualStyleBackColor = true;
-            this.btnDisplayOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.tbarDisplayFixDelay.LargeChange = 2;
+            this.tbarDisplayFixDelay.Location = new System.Drawing.Point(111, 160);
+            this.tbarDisplayFixDelay.Name = "tbarDisplayFixDelay";
+            this.tbarDisplayFixDelay.Size = new System.Drawing.Size(283, 45);
+            this.tbarDisplayFixDelay.TabIndex = 55;
+            this.tbarDisplayFixDelay.Value = 1;
+            this.tbarDisplayFixDelay.Scroll += new System.EventHandler(this.tbarDisplayFixDelay_Scroll);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.lblDisplayFixDelay);
+            this.groupBox4.Controls.Add(this.label20);
+            this.groupBox4.Controls.Add(this.tbarDisplayCameraDelay);
+            this.groupBox4.Controls.Add(this.lblDisplayCameraDelay);
+            this.groupBox4.Location = new System.Drawing.Point(19, 24);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(481, 254);
+            this.groupBox4.TabIndex = 60;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Display Smoothing";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(126, 194);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(99, 22);
+            this.label22.TabIndex = 60;
+            this.label22.Text = "More ----->";
+            // 
+            // lblDisplayFixDelay
+            // 
+            this.lblDisplayFixDelay.AutoSize = true;
+            this.lblDisplayFixDelay.Location = new System.Drawing.Point(381, 147);
+            this.lblDisplayFixDelay.Name = "lblDisplayFixDelay";
+            this.lblDisplayFixDelay.Size = new System.Drawing.Size(21, 22);
+            this.lblDisplayFixDelay.TabIndex = 59;
+            this.lblDisplayFixDelay.Text = "1";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(36, 78);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(46, 22);
+            this.label20.TabIndex = 56;
+            this.label20.Text = "Grid";
+            // 
+            // tbarDisplayCameraDelay
+            // 
+            this.tbarDisplayCameraDelay.LargeChange = 2;
+            this.tbarDisplayCameraDelay.Location = new System.Drawing.Point(92, 69);
+            this.tbarDisplayCameraDelay.Name = "tbarDisplayCameraDelay";
+            this.tbarDisplayCameraDelay.Size = new System.Drawing.Size(283, 45);
+            this.tbarDisplayCameraDelay.TabIndex = 54;
+            this.tbarDisplayCameraDelay.Value = 1;
+            this.tbarDisplayCameraDelay.Scroll += new System.EventHandler(this.tbarDisplayCameraDelay_Scroll);
+            // 
+            // lblDisplayCameraDelay
+            // 
+            this.lblDisplayCameraDelay.AutoSize = true;
+            this.lblDisplayCameraDelay.Location = new System.Drawing.Point(381, 78);
+            this.lblDisplayCameraDelay.Name = "lblDisplayCameraDelay";
+            this.lblDisplayCameraDelay.Size = new System.Drawing.Size(21, 22);
+            this.lblDisplayCameraDelay.TabIndex = 58;
+            this.lblDisplayCameraDelay.Text = "1";
+            // 
+            // lblSecTotalWidthInches
+            // 
+            this.lblSecTotalWidthInches.AutoSize = true;
+            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(400, 576);
+            this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
+            this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
+            this.lblSecTotalWidthInches.TabIndex = 25;
+            this.lblSecTotalWidthInches.Text = "II";
+            // 
+            // lblSecTotalWidthFeet
+            // 
+            this.lblSecTotalWidthFeet.AutoSize = true;
+            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(338, 576);
+            this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
+            this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(53, 35);
+            this.lblSecTotalWidthFeet.TabIndex = 24;
+            this.lblSecTotalWidthFeet.Text = "FF";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 300;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label14
+            // label17
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(475, 8);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(242, 23);
-            this.label14.TabIndex = 57;
-            this.label14.Text = "Don\'t forget to Save each page";
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(12, 565);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(126, 46);
+            this.label17.TabIndex = 89;
+            this.label17.Text = "Measurements \r\nin Inches";
             // 
-            // lblAntennaWhere
+            // label16
             // 
-            this.lblAntennaWhere.AutoSize = true;
-            this.lblAntennaWhere.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAntennaWhere.Location = new System.Drawing.Point(108, 230);
-            this.lblAntennaWhere.Name = "lblAntennaWhere";
-            this.lblAntennaWhere.Size = new System.Drawing.Size(76, 22);
-            this.lblAntennaWhere.TabIndex = 59;
-            this.lblAntennaWhere.Text = "label18";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(214, 581);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(110, 25);
+            this.label16.TabIndex = 107;
+            this.label16.Text = "Tool Width:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.Location = new System.Drawing.Point(859, 557);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(88, 72);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // bntOK
+            // 
+            this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bntOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.bntOK.Location = new System.Drawing.Point(697, 557);
+            this.bntOK.Name = "bntOK";
+            this.bntOK.Size = new System.Drawing.Size(156, 72);
+            this.bntOK.TabIndex = 0;
+            this.bntOK.Text = "Save";
+            this.bntOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.bntOK.UseVisualStyleBackColor = true;
+            this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(918, 402);
-            this.Controls.Add(this.label14);
+            this.ClientSize = new System.Drawing.Size(952, 628);
+            this.ControlBox = false;
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.bntOK);
+            this.Controls.Add(this.lblSecTotalWidthFeet);
+            this.Controls.Add(this.lblSecTotalWidthInches);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -1489,20 +1291,22 @@
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormSettings_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabCOMPorts.ResumeLayout(false);
-            this.tabCOMPorts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.tabVehicle.ResumeLayout(false);
             this.tabVehicle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
+            this.tabTool.ResumeLayout(false);
+            this.tabTool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).EndInit();
-            this.tabPageSections.ResumeLayout(false);
-            this.tabPageSections.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
+            this.tabSections.ResumeLayout(false);
+            this.tabSections.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCalc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).EndInit();
@@ -1510,10 +1314,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
-            this.tabGuidance.ResumeLayout(false);
-            this.tabGuidance.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
             this.tabDisplay.ResumeLayout(false);
+            this.tabDisplay.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1522,27 +1328,13 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabCOMPorts;
         private System.Windows.Forms.TabPage tabVehicle;
-        private System.Windows.Forms.ComboBox cboxBaud;
-        private System.Windows.Forms.ComboBox cboxPort;
-        private System.Windows.Forms.Button btnRescan;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox textBoxRcv;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnSerialOK;
-        private System.Windows.Forms.Button btnVehicleOK;
-        private System.Windows.Forms.Button btnCloseSerial;
-        private System.Windows.Forms.Button btnOpenSerial;
-        private System.Windows.Forms.Label lblForeAftInches;
-        private System.Windows.Forms.Label lblForeAftFeet;
-        private System.Windows.Forms.NumericUpDown nudForeAft;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabPage tabPageSections;
+        private System.Windows.Forms.TabPage tabSections;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nudNumberOfSections;
-        private System.Windows.Forms.Button bntSectionOK;
-        private System.Windows.Forms.Button btnSectionsCancel;
+        private System.Windows.Forms.Button bntOK;
+        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.NumericUpDown nudSection6;
         private System.Windows.Forms.NumericUpDown nudSection5;
         private System.Windows.Forms.NumericUpDown nudSection4;
@@ -1550,12 +1342,6 @@
         private System.Windows.Forms.NumericUpDown nudSection2;
         private System.Windows.Forms.NumericUpDown nudSection1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label lblSection1Inch;
-        private System.Windows.Forms.Label lblSection6Inch;
-        private System.Windows.Forms.Label lblSection5Inch;
-        private System.Windows.Forms.Label lblSection4Inch;
-        private System.Windows.Forms.Label lblSection3Inch;
-        private System.Windows.Forms.Label lblSection2Inch;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblVehicleToolWidth;
         private System.Windows.Forms.Label lblSecTotalWidthInches;
@@ -1571,48 +1357,56 @@
         private System.Windows.Forms.Label lblSection3Width;
         private System.Windows.Forms.Label lblSection2Width;
         private System.Windows.Forms.Label lblTractor;
-        private System.Windows.Forms.Label label99;
-        private System.Windows.Forms.NumericUpDown nudNMEAHz;
-        private System.Windows.Forms.Button btnSerialCancel;
-        private System.Windows.Forms.Button btnVehicleCancel;
+        private System.Windows.Forms.TabPage tabGuidance;
+        private System.Windows.Forms.NumericUpDown nudAntennaHeight;
+        private System.Windows.Forms.Label lblSection1Width;
+        private System.Windows.Forms.TabPage tabDisplay;
+        private System.Windows.Forms.NumericUpDown nudAntennaPivot;
+        private System.Windows.Forms.NumericUpDown nudWheelbase;
+        private System.Windows.Forms.Label lblDisplayFixDelay;
+        private System.Windows.Forms.Label lblDisplayCameraDelay;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TrackBar tbarDisplayFixDelay;
+        private System.Windows.Forms.TrackBar tbarDisplayCameraDelay;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TabPage tabExamples;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkIsPivotBehindAntenna;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabTool;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown nudForeAft;
+        private System.Windows.Forms.NumericUpDown nudOverlap;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown nudOffset;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.NumericUpDown nudTurnOffDelay;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudLookAhead;
-        private System.Windows.Forms.TabPage tabGuidance;
-        private System.Windows.Forms.Label lblOverlapFeet;
-        private System.Windows.Forms.Button btnGuidanceCancel;
-        private System.Windows.Forms.Button btnGuidanceOK;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.NumericUpDown nudAntennaHeight;
-        private System.Windows.Forms.Label lblAntennaInches;
-        private System.Windows.Forms.Label lblAntennaFeet;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lblSection5WidthM;
-        private System.Windows.Forms.Label lblSection4WidthM;
-        private System.Windows.Forms.Label lblSection3WidthM;
-        private System.Windows.Forms.Label lblSection2WidthM;
-        private System.Windows.Forms.Label lblSection1WidthM;
-        private System.Windows.Forms.Label lblSection1Width;
-        private System.Windows.Forms.Label lblOverlapInches;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.NumericUpDown nudOverlap;
-        private System.Windows.Forms.Button btnOpenSerialArduino;
-        private System.Windows.Forms.Button btnCloseSerialArduino;
-        private System.Windows.Forms.ComboBox cboxPortArduino;
-        private System.Windows.Forms.TextBox txtBoxRecvArduino;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.CheckBox chkIsTrailingRigid;
+        private System.Windows.Forms.CheckBox chkIsAft;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.NumericUpDown nudHitchLength;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.NumericUpDown nudCalc;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label lblCalcInches;
+        private System.Windows.Forms.Label lblCalcFeet;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.RadioButton rboHitched;
-        private System.Windows.Forms.RadioButton rboRigid;
-        private System.Windows.Forms.TabPage tabDisplay;
-        private System.Windows.Forms.Label lblCurrentPort;
-        private System.Windows.Forms.Label lblCurrentBaud;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label lblCurrentArduinoPort;
-        private System.Windows.Forms.Button btnDisplayCancel;
-        private System.Windows.Forms.Button btnDisplayOK;
-        private System.Windows.Forms.Label lblAntennaWhere;
+        private System.Windows.Forms.CheckBox chkIsSteerAxleAhead;
+        private System.Windows.Forms.Label label29;
     }
 }

@@ -24,6 +24,7 @@ namespace AgOpenGPS
     {
         //maximum sections available
         const int MAXSECTIONS = 5;
+
         private const byte SET_1 = 1;
         private const byte SET_2 = 2;
         private const byte SET_3 = 4;
@@ -36,38 +37,16 @@ namespace AgOpenGPS
         private const byte RESET_4 = 247;
         private const byte RESET_5 = 239;
 
+        //Arduino send buffer
         byte[] bufferArd = { 0 };
 
         //polygon mode for section drawing
         bool isDrawPolygons = false;
-        bool isDrawVehicleTrack = true;
-
-        //Current fix position
-        public double fixPosX = 0.0;
-        public double fixPosY = 0.0;
-        public double fixPosZ = -7.0;
-
-        //headings
-        public double fixHeading = 0.0;
-        public double fixHeadingCam = 0.0;
-        public double fixHeadingSection = 0.0;
-        public double fixHeadingDelta = 0;
-
-        //storage for the cos and sin of heading
-        public double cosHeading = 1.0;
-        public double sinHeading = 0.0;
+        bool isDrawVehicleTrack = false;
 
         //Is it in 2D or 3D
         public bool isIn3D = true;
 
-        //Zoom variables
-        double gridZoom;
-        double zoomValue = 10.06;
-
-        // Storage For Our Tractor, implement, background etc Textures
-        Texture particleTexture;
-        public uint[] texture = new uint[3];	
-		
         //bool for whether or not a job is active
         public bool isJobStarted = false;
 
@@ -76,6 +55,14 @@ namespace AgOpenGPS
 
         //if we are saving a file
         public bool isSavingFile = false;
+
+        //Zoom variables
+        double gridZoom;
+        double zoomValue = 10.06;
+
+        // Storage For Our Tractor, implement, background etc Textures
+        Texture particleTexture;
+        public uint[] texture = new uint[3];		
 
         //create the scene camera
         public CCamera camera = new CCamera();
@@ -91,7 +78,6 @@ namespace AgOpenGPS
 
         //create an array of sections, so far only 5 section
         public CSection[] section = new CSection[MAXSECTIONS];
-
 
         //ABLine Instance
         public CABLine ABLine;
@@ -130,8 +116,10 @@ namespace AgOpenGPS
             //our NMEA parser
             pn = new CNMEA(this);
 
-            //get the pitch of camera from settings
-            camera.camPitch = Properties.Settings.Default.setCam_pitch;
+            //create the ABLine instance
+            ABLine = new CABLine(gl, this);
+
+            #region settings //--------------------------------------------------------------------------
 
             //change 2D or 3D icon accordingly on button
             if (camera.camPitch == -20)  {
@@ -146,17 +134,14 @@ namespace AgOpenGPS
             //same for Arduino port
             portNameArduino = Properties.Settings.Default.setPort_portNameArduino;
             wasArduinoConnectedLastRun = Properties.Settings.Default.setPort_wasArduinoConnected;
+            if (wasArduinoConnectedLastRun)  SerialPortOpenArduino();
 
-            //get the number of sections from settings
-            vehicle.numberOfSections = Properties.Settings.Default.setVehicle_numSections;
+            //try and open, if not go to setting up port
+            SerialPortOpenGPS();
 
-            //from settings grab the vehicle specifics
-            vehicle.toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
-            vehicle.toolForeAft = Properties.Settings.Default.setVehicle_toolForeAft;
-            vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
-            vehicle.lookAhead = Properties.Settings.Default.setVehicle_lookAhead;
-            vehicle.isHitched = Properties.Settings.Default.setVehicle_isHitched;
-            
+            //Can't close a job if you haven't started
+            menuCloseJob.Enabled = false;
+             
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
             section[0] = new CSection(this);
@@ -171,17 +156,10 @@ namespace AgOpenGPS
             //Calculate total width and each section width
             SectionCalcWidths();
  
-            //create the ABLine instance
-            ABLine = new CABLine(gl, this);
 
-            //Can't close a job if you haven't started
-            menuCloseJob.Enabled = false;
-
-            //try and open, if not go to setting up port
-            SerialPortOpenGPS();
-
-            //Only if Arduino was connected successfully last run
-            if (wasArduinoConnectedLastRun)  SerialPortOpenArduino();
+            //get the smoothing factors from settings
+            delayCameraPrev = Properties.Settings.Default.setDisplay_delayCameraPrev;
+            delayFixPrev = Properties.Settings.Default.setDisplay_delayFixPrev;
 
             //remembered window position
             if (Properties.Settings.Default.setWindow_Maximized)
@@ -201,8 +179,8 @@ namespace AgOpenGPS
                 Location = Properties.Settings.Default.setWindow_Location;
                 Size = Properties.Settings.Default.setWindow_Size;
             }
-
-          }
+            #endregion
+        }
    
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
@@ -244,6 +222,7 @@ namespace AgOpenGPS
 // Procedures and Functions //---------------------------------------
 
         // Load Bitmaps And Convert To Textures
+
         public uint LoadGLTextures()
         {
             OpenGL gl = openGLControl.OpenGL;
@@ -294,6 +273,16 @@ namespace AgOpenGPS
         {
             Form form = new FormVariables(this);
             form.Show();
+        }
+
+        private void SettingsCommunications()
+        {
+            using (var form = new FormCommSet(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+
         }
 
         //Open the dialog of tabbed settings
@@ -412,47 +401,48 @@ namespace AgOpenGPS
         //Does the logic to process section on off requests
         private void ProcessSectionOnOffRequests()
         {
-           for (int j = 0; j < vehicle.numberOfSections; j++)
+            if (pn.speed > 0.2)
             {
-                //lblTest.Text = section[j].sectionOnTimer.ToString();
-                //lblTest2.Text = section[j].sectionOffTimer.ToString();
-
-                //Turn ON
-                //if requested to be on, set the timer to 10 (2 seconds) = 5 frames per second
-                if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
-                    section[j].sectionOnTimer = (int)(pn.speed*vehicle.lookAhead);
-                    section[j].sectionOnOffCycle = true;
+                    //Turn ON
+                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
+                    if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                    {
+                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead );
+                        if (section[j].sectionOnTimer > 10) section[j].sectionOnTimer = 10;
+                        section[j].sectionOnOffCycle = true;
+                    }
+
+                    //reset the ON request
+                    section[j].sectionOnRequest = false;
+
+                    //decrement the timer if not zero
+                    if (section[j].sectionOnTimer > 0)
+                    {
+                        //turn the section ON if not and decrement timer
+                        section[j].sectionOnTimer--;
+                        if (!section[j].isSectionOn) section[j].TurnSectionOn();
+
+                        //keep resetting the section OFF timer while the ON is active
+                        section[j].sectionOffTimer =  (int)(10 *vehicle.toolTurnOffDelay);
+                    }
+
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(10 * vehicle.toolTurnOffDelay);
+
+                    //decrement the off timer
+                    if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
+
+                    //Turn OFF
+                    //if Off section timer is zero, turn off the section
+                    if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
+                    {
+                        if (section[j].isSectionOn) section[j].TurnSectionOff();
+                        section[j].sectionOnOffCycle = false;
+                        section[j].sectionOffRequest = false;
+                    }
+
                 }
-
-                //reset the ON request
-                section[j].sectionOnRequest = false;
-
-                //decrement the timer if not zero
-                if (section[j].sectionOnTimer > 0)
-                {
-                    //turn the section ON if not and decrement timer
-                    section[j].sectionOnTimer--;
-                    if (!section[j].isSectionOn) section[j].TurnSectionOn();
-                    
-                    //keep resetting the section OFF timer while the ON is active
-                    section[j].sectionOffTimer = 7;
-                }
-                
-                if (!section[j].sectionOffRequest) section[j].sectionOffTimer = 7;
-
-                //decrement the off timer
-                if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
-
-                //Turn OFF
-                //if Off section timer is zero, turn off the section
-                if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest) 
-                {
-                    if (section[j].isSectionOn) section[j].TurnSectionOff();
-                    section[j].sectionOnOffCycle = false;
-                    section[j].sectionOffRequest = false;
-                }
-                    
             }
         }
 
@@ -461,10 +451,10 @@ namespace AgOpenGPS
         {
             //delete the default config file and remake it with restart
             Properties.Settings.Default.setVehicle_toolOverlap = 0.5;
-            Properties.Settings.Default.setVehicle_toolForeAft = -2;
+            Properties.Settings.Default.setVehicle_toolTrailingHitchLength = -2;
             Properties.Settings.Default.setVehicle_antennaHeight = 3.0;
             Properties.Settings.Default.setVehicle_lookAhead = 2.0;
-            Properties.Settings.Default.setVehicle_isHitched = true;
+            Properties.Settings.Default.setVehicle_isToolTrailing = true;
 
             Properties.Settings.Default.setSection_nudSpin1 = -8;
             Properties.Settings.Default.setSection_nudSpin2 = -3;
@@ -505,6 +495,12 @@ namespace AgOpenGPS
         private void vehicleTrackToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isDrawVehicleTrack = !isDrawVehicleTrack;
+
+            //clear the old data first
+            pointAntenna.Clear();
+            pointPivot.Clear();
+            pointTool.Clear(); 
+
             vehicleTrackToolStripMenuItem.Checked = !vehicleTrackToolStripMenuItem.Checked;
         }
 
@@ -520,12 +516,12 @@ namespace AgOpenGPS
 
         private void menuItemVehicleToolStrip_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(1);
+            SettingsPageOpen(0);
         }
 
         private void menuItemCOMPortsToolStrip_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(0);
+            SettingsCommunications();
         }
 
         private void sectionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -658,9 +654,11 @@ namespace AgOpenGPS
             if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) gridZoom = 201.2;
             if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom = 100.6;
             if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom = 50.3;
-            if (camera.camSetDistance >= -250 && camera.camSetDistance < -100) gridZoom = 25.15;
-            if (camera.camSetDistance >= -100 && camera.camSetDistance < -50) gridZoom = 10.06;
-            if (camera.camSetDistance >= -50 && camera.camSetDistance < -10) gridZoom = 5.03;
+            if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) gridZoom = 25.15;
+            //if (camera.camSetDistance >= -100 && camera.camSetDistance < -80) gridZoom = 5.03;
+            if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) gridZoom = 5.03;
+            if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 2.532;
+            //1.216 2.532
 
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
@@ -744,7 +742,7 @@ namespace AgOpenGPS
         //Settings    
         private void btnSettings_Click(object sender, EventArgs e)
         {
-             SettingsPageOpen(1);
+             SettingsPageOpen(0);
         }
 
         private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
@@ -781,8 +779,11 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 8) return "Simulation";  
             else                         return "Unknown";    } }
 
-        public string Grid { get { return Math.Round(gridZoom*3.28084/16,0).ToString(); } }
+        //public string Grid { get { return Math.Round(gridZoom*3.28084/16,0).ToString(); } }
+        public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
         public string Acres { get { return Math.Round(totalSquareMeters / 4046.8627, 2).ToString(); } }
+        public string FixHeading { get { return Math.Round(fixHeading, 3).ToString(); } }
+        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 3).ToString(); } }
 
 #endregion properties
  
@@ -798,7 +799,7 @@ namespace AgOpenGPS
             stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
             stripMPH.Text = "MPH: " + SpeedMPH;
             stripPassNumber.Text = "Pass: " + PassNumber;
-            stripGridZoom.Text = "Grid: " + Grid + " Acres";
+            stripGridZoom.Text = "Grid: " + Grid + " Feet";
             stripAcres.Text = "Acres: " + Acres;
 
             //update the online indicator
@@ -807,19 +808,14 @@ namespace AgOpenGPS
                 stripOnlineGPS.Value = 1;
             }
             else stripOnlineGPS.Value = 100;
-
-            //textBox1.Text = pn.theSent;
-            //textBox1.SelectionStart = textBox1.Text.Length;
-            //textBox1.ScrollToCaret();
         }
 
-        private void lblTest_Click(object sender, EventArgs e)
+        private void openGLControl_Click(object sender, EventArgs e)
         {
-
+            
         }
 
 
- 
    }//class FormGPS
 }//namespace AgOpenGPS
 

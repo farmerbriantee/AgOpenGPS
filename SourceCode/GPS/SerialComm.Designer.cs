@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using SharpGL;
 using System.Drawing;
 using System.Text;
+using System.Diagnostics;
 
 namespace AgOpenGPS
 {
@@ -26,6 +27,40 @@ namespace AgOpenGPS
 
         //how many fix updates per sec
         public int rmcUpdateHz = 5;
+        public int delayFixPrev = 2;
+        public int delayCameraPrev = 6;
+
+        //Current fix position
+        public double fixPosX = 0.0;
+        public double fixPosY = 0.0;
+        public double fixPosZ = -7.0;
+
+        public double pivotAxleEasting = 0;
+        public double pivotAxleNorthing = 0;
+
+        public double hitchEasting = 0;
+        public double hitchNorthing = 0;
+
+        public double toolEasting = 0;
+        public double toolNorthing = 0;
+
+        public double prevToolEasting = 0;
+        public double prevToolNorthing = 0;
+
+       //array index for previous northing and easting positions
+        private static int numPrevs = 20;
+        public double[] prevNorthing = new double[numPrevs];
+        public double[] prevEasting = new double[numPrevs];
+
+ 
+        //headings
+        public double fixHeading = 0.0;
+        public double fixHeadingCam = 0.0;
+        public double fixHeadingSection = 0.0;
+
+        //storage for the cos and sin of heading
+        public double cosHeading = 1.0;
+        public double sinHeading = 0.0;
 
         //a distance between previous and current fix
         private double distance = 0.0;
@@ -34,34 +69,20 @@ namespace AgOpenGPS
 
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0;
-        double currentSectionNorthing = 0;
-        double currentSectionEasting = 0;
-        public double prevSectionNorthing = 0;
         public double prevSectionEasting = 0;
+        public double prevSectionNorthing = 0;
+
+        //Low speed detection variables
+        public double prevLowSpeedEasting = 0;
+        public double prevLowSpeedNorthing = 0;
+        double distanceLowSpeed = 0;
+
 
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
         public int recvCounter = 20;
 
         //Everything is so wonky at the start, so no delay for first 20 frames
         int startCounter = 0;
-
-        //array index for previous northing and easting positions
-        private static int numPrevs = 8;
-        public double[] prevNorthing = new double[numPrevs];
-        public double[] prevEasting = new double[numPrevs];
-
-        public double prevImplementNorthing = 0;
-        public double prevImplementEasting = 0;
-        public double prevFixHeadingSection = 0;
-        public double yawRate;
-        private const int TURN_STEPS = 1;
-
-        //Low speed detection variables
-        public double prevNorthingLowSpeed = 0;
-        public double prevEastingLowSpeed = 0;
-        double distanceLowSpeed = 0;
-
-        public double prevFixHeading;
 
         public StringBuilder recvSentence = new StringBuilder();
         public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
@@ -70,7 +91,10 @@ namespace AgOpenGPS
         public string recvSentenceSettingsArduino = "Section Control";
 
         //individual points
-        List<CPointData> pointList = new List<CPointData>();
+        List<CPointData> pointAntenna = new List<CPointData>();
+        List<CPointData> pointPivot = new List<CPointData>();
+        //List<CPointData> pointHitch = new List<CPointData>();
+        List<CPointData> pointTool = new List<CPointData>();
 
         //tally counters for display
         public double totalSquareMeters = 0;
@@ -92,22 +116,17 @@ namespace AgOpenGPS
 
             //add what has been rec'd to the nmea buffer
             pn.rawBuffer += recvSentence.ToString();
-
-            //empty the received sentence
             recvSentence.Clear();
 
             //parse the line received GGA and RMC
             pn.ParseNMEA();
 
-            //if its a valid fix data for RMC
+            //if its a valid fix data for RMC or GGA
             if (pn.updatedGGA | pn.updatedRMC)
             {
                 //this is the current position taken from the latest sentence
                 textBoxRcv.Text = pn.theSent;
 
-                //Point where the GPS antenna is.
-                CPointData pd = new CPointData(pn.northing, pn.easting);
-                pointList.Add(pd);
 
                 if (!isFirstFixPositionSet)
                 {
@@ -117,11 +136,8 @@ namespace AgOpenGPS
 
                     //most recent fixes
                     prevEasting[0] = pn.easting;   prevNorthing[0] = pn.northing;
-                    prevFixHeading = fixHeading;
-                    prevSectionEasting = pn.easting;  prevSectionNorthing = pn.northing;
-                    prevImplementEasting = pn.easting + Math.Sin(fixHeading) * vehicle.toolForeAft;
-                    prevImplementNorthing = pn.northing + Math.Cos(fixHeading) * vehicle.toolForeAft;
-                    fixHeadingSection = fixHeading;
+                    prevSectionEasting = pn.easting + 0.00001;  prevSectionNorthing = pn.northing + 0.00001;
+                    prevToolEasting = pn.easting + 0.00001;  prevToolNorthing = pn.northing + 0.00001;
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
                     for (int x = 0; x > numPrevs; x++) {  prevNorthing[x] = prevNorthing[0]; prevEasting[x] = prevEasting[0]; }
@@ -129,11 +145,11 @@ namespace AgOpenGPS
                 }
 
                 //calc low speed distance travelled if speed < 2 kph and app not starting
-                if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevNorthingLowSpeed, prevEastingLowSpeed);
+                if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevLowSpeedNorthing, prevLowSpeedEasting);
                 else distanceLowSpeed = -1;
 
                 //time to record next fix
-                if (distanceLowSpeed > 0.5 | pn.speed > 2.0 | startCounter < 50)
+                if (distanceLowSpeed > 0.1 | pn.speed > 2.0 | startCounter < 50)
                 {
 
                     //determine fix positions and heading
@@ -141,105 +157,91 @@ namespace AgOpenGPS
                     fixPosZ = (pn.northing);
 
                     //save a copy to calc distance 
-                    prevNorthingLowSpeed = pn.northing;
-                    prevEastingLowSpeed = pn.easting;
+                    prevLowSpeedEasting = pn.easting;
+                    prevLowSpeedNorthing = pn.northing;
 
                     //in radians
-                    fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
-                    //if (fixHeading < 0) fixHeading += Math.PI * 2.0;
-                    
+                    fixHeading = Math.Atan2(pn.easting - prevEasting[delayFixPrev], pn.northing - prevNorthing[delayFixPrev]);
+                    if (fixHeading < 0) fixHeading += Math.PI * 2.0;
 
-                    double temp;
-                    temp = fixHeading-prevFixHeading;
-                    if (temp > Math.PI) temp -= 2 * Math.PI;
-                    if (temp < -Math.PI) temp += 2 * Math.PI;
+                    //translate world to the pivot axle
+                    pivotAxleEasting = pn.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
+                    pivotAxleNorthing = pn.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
 
-                    if (temp > 0.78) {
-                        //System.Console.Write("Large heading change from {0:N2} to ", fixHeading);
-                        //System.Console.Write("{0:N2} ", prevFixHeading);
+                    hitchEasting = pn.easting + (Math.Sin(fixHeading) * ( vehicle.hitchLength-vehicle.antennaPivot));
+                    hitchNorthing = pn.northing + (Math.Cos(fixHeading) * ( vehicle.hitchLength-vehicle.antennaPivot));
 
-                        //If there's a very large heading change, just put the implement straight
-                        //back and go from here.
-                        prevImplementEasting = pn.easting + Math.Sin(fixHeading) * vehicle.toolForeAft;
-                        prevImplementNorthing = pn.northing + Math.Cos(fixHeading) * vehicle.toolForeAft;
-                        fixHeadingSection = fixHeading;
-                    }
- 
 
-                    //in radians
-                    if (vehicle.isHitched)
+                   //tool attached via a trailing hitch
+                    if (vehicle.isToolTrailing)
                     {
-                       //Torriem rules!!!!! Oh yes, this is all his. Thank-you
+                        //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                         double t;
-                        double dist = Math.Sqrt( (pn.northing - prevImplementNorthing) * (pn.northing - prevImplementNorthing) +
-                                                                    (pn.easting - prevImplementEasting) * (pn.easting - prevImplementEasting));
-
-                        double newImplementNorthing;
-                        double newImplementEasting;
-
+                        double dist = Math.Sqrt((hitchNorthing - prevToolNorthing) * (hitchNorthing - prevToolNorthing) +
+                                                                    (hitchEasting - prevToolEasting) * (hitchEasting - prevToolEasting));
                         if (dist != 0)
                         {
-                            t = vehicle.toolForeAft / dist;
-                            newImplementNorthing = pn.northing + t * (pn.northing - prevImplementNorthing);
-                            newImplementEasting = pn.easting + t * (pn.easting - prevImplementEasting);
-                            fixHeadingSection = Math.Atan2(pn.easting - newImplementEasting, pn.northing - newImplementNorthing);
-                        } else {
-                            // The new tractor position is exactly the same as the old
-                            // implement position, so push the implement straight back.
-                            fixHeadingSection = prevFixHeadingSection;
-                            newImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
-                            newImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+                            t = (vehicle.toolTrailingHitchLength + vehicle.hitchLength) / dist;
+                            prevToolEasting = hitchEasting + t * (hitchEasting - prevToolEasting);
+                            prevToolNorthing = hitchNorthing + t * (hitchNorthing - prevToolNorthing);
+                            fixHeadingSection = Math.Atan2(hitchEasting - prevToolEasting, hitchNorthing - prevToolNorthing);
+                            if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
+                        }
+                        //System.Console.Write(((fixHeading * 180.0 / Math.PI + 360) % 360) - ((fixHeadingSection * 180.0 / Math.PI + 360) % 360));
+
+                        //calculate the final tool position
+                        double over = Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI);
+
+                        if (over < 1.8)
+                        {
+                            toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                            toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
                         }
 
-                        //System.Console.Write(" {0:N} ", (fixHeadingSection * 180 / Math.PI + 360) % 360);
-
-                        // calculate speed of implement, which will vary from tractor speed
-                        // as it's turning.
-                        dist = Math.Sqrt( (pn.northing - prevNorthing[0]) * (pn.northing - prevNorthing[0]) +
-                                          (pn.easting - prevEasting[0]) * (pn.easting - prevEasting[0]) );
-                        if (dist != 0) {
-                            dist = Math.Sqrt( (newImplementNorthing - prevImplementNorthing) * (newImplementNorthing - prevImplementNorthing) +
-                                              (newImplementEasting - prevImplementEasting) * (newImplementEasting - prevImplementEasting) ) /
-                                              dist; //ratio of implement movement to tractor movement
-
-                            // overwrite the GPS speed with the estimated implement speed
-                            pn.speed = dist * pn.speed;
+                        else
+                        {
+                            fixHeadingSection = fixHeading;
+                            toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                            toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                            prevToolNorthing = toolNorthing;
+                            prevToolEasting = toolEasting;
                         }
-                        
-                        prevImplementNorthing = newImplementNorthing;
-                        prevImplementEasting = newImplementEasting;
+                    }
 
-                    } else fixHeadingSection = fixHeading;
+                    //rigidly connected to vehicle
+                    else
+                    {
+                        fixHeadingSection = fixHeading;
+                        toolEasting = hitchEasting;
+                        toolNorthing = hitchNorthing;
+                    }
 
-                    // calculate yaw rate in radians/second
-                    double newYawRate = fixHeadingSection - prevFixHeadingSection;
-                    
-                    //Account for crossing 360/0.  
-                    if (newYawRate < -Math.PI) 
-                        newYawRate += Math.PI * 2;
-                    else if (newYawRate > Math.PI)
-                        newYawRate -= 2 * Math.PI;
+                    if (isDrawVehicleTrack)
+                    {
+                        //Point where the GPS antenna is.
+                        CPointData pd = new CPointData(pn.easting, pn.northing);
+                        pointAntenna.Add(pd);
 
-                    newYawRate *= rmcUpdateHz;
+                        //center of pivoting axle
+                        CPointData pdP = new CPointData(pivotAxleEasting, pivotAxleNorthing);
+                        pointPivot.Add(pdP);
 
-                    double yawAccel = newYawRate - yawRate;
+                        ////Center of hitch
+                        //CPointData pdA = new CPointData(hitchEasting, hitchNorthing);
+                        //pointHitch.Add(pdA);
 
-                    yawRate = newYawRate;
-                    //System.Console.Write("{0:N2},", newYawRate * 180 / Math.PI);
-                    //System.Console.Write("{0:N2} ", yawAccel * 180 / Math.PI);
-                    
-                    prevFixHeadingSection = fixHeadingSection;
+                        //center of implement
+                        CPointData pdI = new CPointData(toolEasting, toolNorthing);
+                        pointTool.Add(pdI);
+                    }
 
+                   //in degrees for glRotate opengl methods.
+                    fixHeadingCam = Math.Atan2(pn.easting - prevEasting[delayCameraPrev], pn.northing - prevNorthing[delayCameraPrev]);
+                    if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
+                    fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
+ 
 
-                    //in degrees for glRotate opengl methods.
-                    //fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
-                    //fixHeadingCam = (fixHeadingCam * 180.0 / Math.PI + 360) % 360;
-
-                    //use NMEA headings for camera and tractor graphic
-                    fixHeadingCam = pn.headingTrue;
-                    fixHeading = pn.headingTrue * Math.PI / 180.0;
-
-
+  
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
 
@@ -250,28 +252,24 @@ namespace AgOpenGPS
                     //calc distance travelled since last GPS fix
                     distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
 
-                    //calculate how far since the last section triangle was made
-                    currentSectionNorthing = pn.northing + vehicle.toolForeAft * cosHeading;
-                    currentSectionEasting = pn.easting + vehicle.toolForeAft * -sinHeading;
-
                     //To prevent drawing high numbers of triangles, determine and test before drawing vertex
-                    sectionTriggerDistance = pn.Distance(currentSectionNorthing, currentSectionEasting, prevSectionNorthing, prevSectionEasting);
+                    sectionTriggerDistance = pn.Distance(toolNorthing, toolEasting, prevSectionNorthing, prevSectionEasting);
 
                     //speed compensated min length limit triangles. The faster you go, the less of them
-                    if (sectionTriggerDistance > (pn.speed / 7 + 0.3))
+                    if (sectionTriggerDistance > (pn.speed / 8 + 0.2))
                     {
                         if (isJobStarted && isMasterSectionOn)//add the pathpoint
                         {
                             //save the north & east as previous
-                            prevSectionNorthing = currentSectionNorthing;
-                            prevSectionEasting = currentSectionEasting;
+                            prevSectionNorthing = toolNorthing;
+                            prevSectionEasting = toolEasting;
 
                             //send the current and previous GPS fore/aft corrected fix to each section
                             for (int j = 0; j < vehicle.numberOfSections; j++)
                             {
                                 if (section[j].isSectionOn)
                                 {
-                                    section[j].AddPathPoint(currentSectionNorthing, currentSectionEasting, cosHeading, sinHeading);
+                                    section[j].AddPathPoint(toolNorthing, toolEasting, cosHeading, sinHeading);
                                     totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth;
                                 }//area is made up of square meters in each section
                             }
@@ -282,24 +280,14 @@ namespace AgOpenGPS
                     userDistance += distance;//userDistance can be reset
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
-                    for (int x = numPrevs - 1; x > 0; x--)
-                    {
-                        prevNorthing[x] = prevNorthing[x - 1]; prevEasting[x] = prevEasting[x - 1];
-                    }
+                    for (int x = numPrevs - 1; x > 0; x--) { prevNorthing[x] = prevNorthing[x - 1]; prevEasting[x] = prevEasting[x - 1]; }
 
                     //most recent fixes
-                    prevEasting[0] = pn.easting;
-                    prevNorthing[0] = pn.northing;
-                    prevFixHeading = fixHeading;
-                } else {
-                    yawRate = 0;
+                    prevEasting[0] = pn.easting; prevNorthing[0] = pn.northing;                    
                 }
-                //openGLControl.DoRender();
             }
-
+            // there hasn't been a sentence for while
             else if (recvCounter > 16) textBoxRcv.Text = "************  NO GGA or RMC **************";
-
-
         }//end of UppdateFixPosition
 
         //Send relay info out to relay board
@@ -349,8 +337,6 @@ namespace AgOpenGPS
             //spit it out no matter what it says
             recvSentence.Append(sentence);
             recvSentenceSettings = recvSentence.ToString();
-            //textBoxRcv.Text = recvSentence.ToString(); 
-            //textBoxRcv.Text = pn.theSent;
         }
 
         //Arduino port called by the delegate every time
@@ -362,7 +348,6 @@ namespace AgOpenGPS
 
             if (txtBoxRecvArduino.TextLength > 10) txtBoxRecvArduino.Text = "";
             txtBoxRecvArduino.Text += recvSentenceArduino;
-
         }
 
         #region ArduinoSerialPort //--------------------------------------------------------------------
@@ -548,65 +533,3 @@ namespace AgOpenGPS
 
     }//end class
 }//end namespace
-
-//if (prevImplementNorthing == 0 && prevImplementEasting == 0)
-//{
-//    //No previous location known; assume it's straight back from the tractor
-//    fixHeadingSection = fixHeading;
-//    prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
-//    prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
-//    //System.Console.WriteLine("Initialized to starting position.");
-
-//}
-//else
-//{
-//if (Math.Abs(pn.northing - prevImplementNorthing) < 0.000009 &&
-//    Math.Abs(pn.easting - prevImplementEasting) < 0.0000009)
-//{
-//    // The new tractor position is exactly the same as the old
-//    // implement position, so push the implement straight back.
-//    fixHeadingSection = prevFixHeadingSection;
-//    prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
-//    prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
-//    //System.Console.WriteLine("Tractor moved to where implement was; pushing implement back.");
-//}
-//else
-
-
-// Because this approximation over-estimates, break the change in tractor
-// position into several sub-steps and do this approximation for each
-// step.
-
-//double in_temp = prevImplementNorthing;
-//double ie_temp = prevImplementEasting;
-//double n_step = (pn.northing - prevNorthing[1]) / TURN_STEPS;
-//double e_step = (pn.easting - prevEasting[1]) / TURN_STEPS;
-//double tn_temp = prevNorthing[1];
-//double te_temp = prevEasting[1];
-
-//double t;
-
-
-//    //Break the tractor movement up into little steps and move
-//    //apply the approximation to each step.
-//    tn_temp += n_step;
-//    te_temp += e_step;
-//    t = vehicle.toolForeAft / Math.Sqrt((tn_temp - in_temp) * (tn_temp - in_temp) +
-//                                         (te_temp - ie_temp) * (te_temp - ie_temp));
-//    in_temp = tn_temp + t * (tn_temp - in_temp);
-//    ie_temp = te_temp + t * (te_temp - ie_temp);
-
-
-////Now we are in the new position and the last approximation is the 
-////new position of the implement.
-//prevImplementNorthing = in_temp;
-//prevImplementEasting = ie_temp;
-
-
-//}
-/*
-System.Console.Write("Tractor heading is ");
-System.Console.Write((fixHeading * 180.0 / Math.PI + 360) % 360);
-System.Console.Write(" and implement heading is ");
-System.Console.WriteLine((fixHeadingSection * 180.0 / Math.PI + 360) % 360);
-*/
