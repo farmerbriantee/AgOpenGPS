@@ -46,6 +46,9 @@ namespace AgOpenGPS
 
         public double prevToolEasting = 0;
         public double prevToolNorthing = 0;
+        
+        public double prevFixHeadingSection = 0;
+        public double yawRate = 0;
 
        //array index for previous northing and easting positions
         private static int numPrevs = 20;
@@ -137,7 +140,9 @@ namespace AgOpenGPS
                     //most recent fixes
                     prevEasting[0] = pn.easting;   prevNorthing[0] = pn.northing;
                     prevSectionEasting = pn.easting + 0.00001;  prevSectionNorthing = pn.northing + 0.00001;
-                    prevToolEasting = pn.easting + 0.00001;  prevToolNorthing = pn.northing + 0.00001;
+
+                    prevToolEasting = pn.easting + Math.Sin(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
+                    prevToolNorthing = pn.northing + Math.Cos(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
                     for (int x = 0; x > numPrevs; x++) {  prevNorthing[x] = prevNorthing[0]; prevEasting[x] = prevEasting[0]; }
@@ -179,15 +184,40 @@ namespace AgOpenGPS
                         double t;
                         double dist = Math.Sqrt((hitchNorthing - prevToolNorthing) * (hitchNorthing - prevToolNorthing) +
                                                                     (hitchEasting - prevToolEasting) * (hitchEasting - prevToolEasting));
+
+                        double newToolNorthing;
+                        double newToolEasting;
+
                         if (dist != 0)
                         {
                             t = (vehicle.toolTrailingHitchLength + vehicle.hitchLength) / dist;
-                            prevToolEasting = hitchEasting + t * (hitchEasting - prevToolEasting);
-                            prevToolNorthing = hitchNorthing + t * (hitchNorthing - prevToolNorthing);
+                            newToolEasting = hitchEasting + t * (hitchEasting - prevToolEasting);
+                            newToolNorthing = hitchNorthing + t * (hitchNorthing - prevToolNorthing);
                             fixHeadingSection = Math.Atan2(hitchEasting - prevToolEasting, hitchNorthing - prevToolNorthing);
                             if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
+                        } else {
+                            // The new tractor position is exactly the same as the old
+                            // implement position, so push the implement straight back.
+                            // A rare edge case, I admit.
+                            newToolEasting = pn.easting - Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
+                            newToolNorthing = pn.northing - Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
                         }
-                        //System.Console.Write(((fixHeading * 180.0 / Math.PI + 360) % 360) - ((fixHeadingSection * 180.0 / Math.PI + 360) % 360));
+
+
+                        // Compute the distance the tool moved vs the distance the tractor moved
+                        dist = Math.Sqrt( (pn.northing - prevNorthing[0]) * (pn.northing - prevNorthing[0]) +
+                                          (pn.easting - prevEasting[0]) * (pn.easting - prevEasting[0]) );
+                        if (dist != 0) {
+                            dist = Math.Sqrt( (newToolNorthing - prevToolNorthing) * (newToolNorthing - prevToolNorthing) +
+                                              (newToolEasting - prevToolEasting) * (newToolEasting - prevToolEasting) ) /
+                                              dist; //ratio of tool movement to tractor movement
+
+                            // overwrite the GPS speed with the estimated tool speed
+                            pn.speed = dist * pn.speed;
+                        }
+
+                        prevToolNorthing = newToolNorthing;
+                        prevToolEasting = newToolEasting;
 
                         //calculate the final tool position
                         double over = Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI);
@@ -216,6 +246,24 @@ namespace AgOpenGPS
                         toolNorthing = hitchNorthing;
                     }
 
+                    // calculate yaw rate in radians/second
+                    double newYawRate = fixHeadingSection - prevFixHeadingSection;
+                    prevFixHeadingSection = fixHeadingSection;
+                    
+                    //Account for crossing 360/0.  
+                    if (newYawRate < -Math.PI) 
+                        newYawRate += Math.PI * 2;
+                    else if (newYawRate > Math.PI)
+                        newYawRate -= 2 * Math.PI;
+
+                    newYawRate *= rmcUpdateHz;
+
+                    double yawAccel = newYawRate - yawRate;
+
+                    yawRate = newYawRate;
+                    //System.Console.Write("{0:N2},", newYawRate * 180 / Math.PI);
+                    //System.Console.Write("{0:N2} ", yawAccel * 180 / Math.PI);
+
                     if (isDrawVehicleTrack)
                     {
                         //Point where the GPS antenna is.
@@ -239,9 +287,11 @@ namespace AgOpenGPS
                     fixHeadingCam = Math.Atan2(pn.easting - prevEasting[delayCameraPrev], pn.northing - prevNorthing[delayCameraPrev]);
                     if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                     fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
- 
 
-  
+                    //use NMEA headings for camera and tractor graphic
+                    fixHeading = pn.headingTrue * Math.PI / 180;
+                    fixHeadingCam = pn.headingTrue;
+
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
 
@@ -533,3 +583,4 @@ namespace AgOpenGPS
 
     }//end class
 }//end namespace
+

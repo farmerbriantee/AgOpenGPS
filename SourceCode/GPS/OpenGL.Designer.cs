@@ -298,7 +298,6 @@ namespace AgOpenGPS
                 }
             }
 
-      
             //Read the pixels ahead of tool a section at a time. Each section can have its own lookahead manipulated. 
             for (int j = 0; j < vehicle.numberOfSections; j++)
             {
@@ -306,7 +305,13 @@ namespace AgOpenGPS
  
                 //here is where you can manipulate individual section times
                 //delete this if setting externally outside this loop
-                section[j].sectionLookAhead = (pn.speed * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
+                double deltaspeed = Math.Tan(yawRate * vehicle.toolLookAhead) * 
+                                    (section[j].positionLeft + section[j].positionRight ) / 2;
+                //System.Console.Write("{0:N2} ",deltaspeed);
+                //System.Console.Write("{0:N2} ",pn.speed - deltaspeed);
+
+                section[j].sectionLookAhead = ((pn.speed-deltaspeed) * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
+
                 
                 //*** Torriem
 
@@ -359,6 +364,7 @@ namespace AgOpenGPS
                 //used in this loop only
                 isSectionRequiredOn = false;
             }
+            //System.Console.WriteLine("");
             gl.Flush();
 
         }
