@@ -53,6 +53,7 @@ namespace AgOpenGPS
         public double prevImplementNorthing = 0;
         public double prevImplementEasting = 0;
         public double prevFixHeadingSection = 0;
+        public double yawRate;
         private const int TURN_STEPS = 1;
 
         //Low speed detection variables
@@ -118,7 +119,9 @@ namespace AgOpenGPS
                     prevEasting[0] = pn.easting;   prevNorthing[0] = pn.northing;
                     prevFixHeading = fixHeading;
                     prevSectionEasting = pn.easting;  prevSectionNorthing = pn.northing;
-                    prevImplementEasting = pn.easting + 0.0001;  prevImplementNorthing = pn.northing + 0.0001;
+                    prevImplementEasting = pn.easting + Math.Sin(fixHeading) * vehicle.toolForeAft;
+                    prevImplementNorthing = pn.northing + Math.Cos(fixHeading) * vehicle.toolForeAft;
+                    fixHeadingSection = fixHeading;
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
                     for (int x = 0; x > numPrevs; x++) {  prevNorthing[x] = prevNorthing[0]; prevEasting[x] = prevEasting[0]; }
@@ -130,7 +133,7 @@ namespace AgOpenGPS
                 else distanceLowSpeed = -1;
 
                 //time to record next fix
-                if (distanceLowSpeed > 0.2 | pn.speed > 2.0 | startCounter < 50)
+                if (distanceLowSpeed > 0.5 | pn.speed > 2.0 | startCounter < 50)
                 {
 
                     //determine fix positions and heading
@@ -144,7 +147,23 @@ namespace AgOpenGPS
                     //in radians
                     fixHeading = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
                     //if (fixHeading < 0) fixHeading += Math.PI * 2.0;
+                    
 
+                    double temp;
+                    temp = fixHeading-prevFixHeading;
+                    if (temp > Math.PI) temp -= 2 * Math.PI;
+                    if (temp < -Math.PI) temp += 2 * Math.PI;
+
+                    if (temp > 0.78) {
+                        //System.Console.Write("Large heading change from {0:N2} to ", fixHeading);
+                        //System.Console.Write("{0:N2} ", prevFixHeading);
+
+                        //If there's a very large heading change, just put the implement straight
+                        //back and go from here.
+                        prevImplementEasting = pn.easting + Math.Sin(fixHeading) * vehicle.toolForeAft;
+                        prevImplementNorthing = pn.northing + Math.Cos(fixHeading) * vehicle.toolForeAft;
+                        fixHeadingSection = fixHeading;
+                    }
  
 
                     //in radians
@@ -155,24 +174,62 @@ namespace AgOpenGPS
                         double dist = Math.Sqrt( (pn.northing - prevImplementNorthing) * (pn.northing - prevImplementNorthing) +
                                                                     (pn.easting - prevImplementEasting) * (pn.easting - prevImplementEasting));
 
+                        double newImplementNorthing;
+                        double newImplementEasting;
+
                         if (dist != 0)
                         {
                             t = vehicle.toolForeAft / dist;
-                            prevImplementNorthing = pn.northing + t * (pn.northing - prevImplementNorthing);
-                            prevImplementEasting = pn.easting + t * (pn.easting - prevImplementEasting);
-                            fixHeadingSection = Math.Atan2(pn.easting - prevImplementEasting, pn.northing - prevImplementNorthing);
+                            newImplementNorthing = pn.northing + t * (pn.northing - prevImplementNorthing);
+                            newImplementEasting = pn.easting + t * (pn.easting - prevImplementEasting);
+                            fixHeadingSection = Math.Atan2(pn.easting - newImplementEasting, pn.northing - newImplementNorthing);
                         } else {
                             // The new tractor position is exactly the same as the old
                             // implement position, so push the implement straight back.
                             fixHeadingSection = prevFixHeadingSection;
-                            prevImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
-                            prevImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
+                            newImplementEasting = pn.easting - Math.Sin(fixHeadingSection) * vehicle.toolForeAft;
+                            newImplementNorthing = pn.northing - Math.Cos(fixHeadingSection) * vehicle.toolForeAft;
                         }
 
-                        prevFixHeadingSection = fixHeadingSection;
+                        //System.Console.Write(" {0:N} ", (fixHeadingSection * 180 / Math.PI + 360) % 360);
 
-                    }
-                    else fixHeadingSection = fixHeading;
+                        // calculate speed of implement, which will vary from tractor speed
+                        // as it's turning.
+                        dist = Math.Sqrt( (pn.northing - prevNorthing[0]) * (pn.northing - prevNorthing[0]) +
+                                          (pn.easting - prevEasting[0]) * (pn.easting - prevEasting[0]) );
+                        if (dist != 0) {
+                            dist = Math.Sqrt( (newImplementNorthing - prevImplementNorthing) * (newImplementNorthing - prevImplementNorthing) +
+                                              (newImplementEasting - prevImplementEasting) * (newImplementEasting - prevImplementEasting) ) /
+                                              dist; //ratio of implement movement to tractor movement
+
+                            // overwrite the GPS speed with the estimated implement speed
+                            pn.speed = dist * pn.speed;
+                        }
+                        
+                        prevImplementNorthing = newImplementNorthing;
+                        prevImplementEasting = newImplementEasting;
+
+                    } else fixHeadingSection = fixHeading;
+
+                    // calculate yaw rate in radians/second
+                    double newYawRate = fixHeadingSection - prevFixHeadingSection;
+                    
+                    //Account for crossing 360/0.  
+                    if (newYawRate < -Math.PI) 
+                        newYawRate += Math.PI * 2;
+                    else if (newYawRate > Math.PI)
+                        newYawRate -= 2 * Math.PI;
+
+                    newYawRate *= rmcUpdateHz;
+
+                    double yawAccel = newYawRate - yawRate;
+
+                    yawRate = newYawRate;
+                    //System.Console.Write("{0:N2},", newYawRate * 180 / Math.PI);
+                    //System.Console.Write("{0:N2} ", yawAccel * 180 / Math.PI);
+                    
+                    prevFixHeadingSection = fixHeadingSection;
+
 
                     //in degrees for glRotate opengl methods.
                     //fixHeadingCam = Math.Atan2(pn.easting - prevEasting[1], pn.northing - prevNorthing[1]);
@@ -234,6 +291,8 @@ namespace AgOpenGPS
                     prevEasting[0] = pn.easting;
                     prevNorthing[0] = pn.northing;
                     prevFixHeading = fixHeading;
+                } else {
+                    yawRate = 0;
                 }
                 //openGLControl.DoRender();
             }
