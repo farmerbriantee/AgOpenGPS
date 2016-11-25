@@ -306,7 +306,10 @@ namespace AgOpenGPS
                 //here is where you can manipulate individual section times
                 //delete this if setting externally outside this loop
                 double deltaspeed = Math.Tan(yawRate * vehicle.toolLookAhead) * 
-                                    (section[j].positionLeft + section[j].positionRight ) / 2;
+                                    (section[j].positionLeft + section[j].positionRight ) / 2
+                                    / vehicle.toolLookAhead /* m/s */
+                                    * 3.6; //kph
+
                 //System.Console.Write("{0:N2} ",deltaspeed);
                 //System.Console.Write("{0:N2} ",pn.speed - deltaspeed);
 
