@@ -191,7 +191,6 @@ namespace AgOpenGPS
                             (hitchEasting - prevToolEasting) != 0)
                         {
                             fixHeadingSection = Math.Atan2(hitchEasting - prevToolEasting, hitchNorthing - prevToolNorthing);
-                            System.Console.WriteLine(fixHeadingSection);
                             if (fixHeadingSection < 0) 
                                 fixHeadingSection += Math.PI * 2.0;
                         }
@@ -221,6 +220,7 @@ namespace AgOpenGPS
                         toolNorthing = hitchNorthing;
                     }
 
+                    /*
                     // calculate yaw rate in radians/second
                     double newYawRate = fixHeadingSection - prevFixHeadingSection;
                     
@@ -237,6 +237,7 @@ namespace AgOpenGPS
                     yawRate = newYawRate;
                     //System.Console.Write("{0:N2},", newYawRate * 180 / Math.PI);
                     //System.Console.Write("{0:N2} ", yawAccel * 180 / Math.PI);
+                    */
 
                     if (isDrawVehicleTrack)
                     {
@@ -274,10 +275,6 @@ namespace AgOpenGPS
                     {
                         //we've reversed direction
                         //forward_heading = ! forward_heading;
-                        //System.Console.Write(fixHeadingSection * 180 / Math.PI);
-                        //System.Console.Write(" ");
-                        //System.Console.Write("Reversing direction: ");
-                        //System.Console.WriteLine(forward_heading);
                         fixHeading = (fixHeading + Math.PI) % Math.PI; //we're likely reversing
                         fixHeadingCam = (fixHeadingCam + 180) % 360; //we're likely reversing
                         //pn.speed = pn.speed;
@@ -294,31 +291,6 @@ namespace AgOpenGPS
                     //precalc the sin and cos of heading * -1
                     sinHeading = Math.Sin(-fixHeadingSection);
                     cosHeading = Math.Cos(-fixHeadingSection);
-
-                    double prevSinHeading = Math.Sin(-prevFixHeadingSection);
-                    double prevCosHeading = Math.Cos(-prevFixHeadingSection);
-
-                    System.Console.Write("{0:N0}->",fixHeadingSection * 180 / Math.PI);
-                    System.Console.Write("{0:N0} ",prevFixHeadingSection * 180 / Math.PI);
-
-
-                    for (int j = 0; j < vehicle.numberOfSections; j++ ){
-                        double toolSectionEasting = toolEasting + cosHeading * (section[j].positionLeft + section[j].positionRight) / 2;
-                        double toolSectionNorthing = toolNorthing + sinHeading * (section[j].positionLeft + section[j].positionRight) / 2;
-
-                        double prevToolSectionEasting = prevToolEasting + prevCosHeading * (section[j].positionLeft + section[j].positionRight) / 2;
-                        double prevToolSectionNorthing = prevToolNorthing + prevSinHeading * (section[j].positionLeft + section[j].positionRight) / 2;
-
-                        double dist;
-
-                        dist = Math.Sqrt( (toolSectionNorthing - prevToolSectionNorthing) * (toolSectionNorthing - prevToolSectionNorthing) +
-                                          (toolSectionEasting - prevToolSectionEasting) * (toolSectionEasting - prevToolSectionEasting));
-
-                        dist = dist * rmcUpdateHz * 3.6; //kph
-                        System.Console.Write("{0:N2} ",dist);
-                    }
-                    System.Console.WriteLine("");
-
 
                     //calc distance travelled since last GPS fix
                     distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
@@ -338,9 +310,11 @@ namespace AgOpenGPS
                             //send the current and previous GPS fore/aft corrected fix to each section
                             for (int j = 0; j < vehicle.numberOfSections; j++)
                             {
+                                section[j].AddPathPoint(toolNorthing, toolEasting, cosHeading, sinHeading);
+                                section[j].CalculateSpeed(fixHeadingSection, sw.Elapsed.TotalSeconds - lastFixTime,
+                                                          vehicle.toolLookAhead * 2.0);
                                 if (section[j].isSectionOn)
                                 {
-                                    section[j].AddPathPoint(toolNorthing, toolEasting, cosHeading, sinHeading);
                                     totalSquareMeters += sectionTriggerDistance * section[j].sectionWidth;
                                 }//area is made up of square meters in each section
                             }

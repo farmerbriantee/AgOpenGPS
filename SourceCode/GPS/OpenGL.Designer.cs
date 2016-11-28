@@ -305,15 +305,15 @@ namespace AgOpenGPS
  
                 //here is where you can manipulate individual section times
                 //delete this if setting externally outside this loop
-                double deltaspeed = Math.Tan(yawRate * vehicle.toolLookAhead) * 
-                                    (section[j].positionLeft + section[j].positionRight ) / 2
-                                    / vehicle.toolLookAhead /* m/s */
-                                    * 3.6; //kph
+                //double deltaspeed = Math.Tan(yawRate * vehicle.toolLookAhead) * 
+                //                    (section[j].positionLeft + section[j].positionRight ) / 2
+                //                    / vehicle.toolLookAhead /* m/s */
+                //                    * 3.6; //kph
 
                 //System.Console.Write("{0:N2} ",deltaspeed);
                 //System.Console.Write("{0:N2} ",pn.speed - deltaspeed);
 
-                section[j].sectionLookAhead = ((pn.speed-deltaspeed) * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
+                //section[j].sectionLookAhead = ((pn.speed-deltaspeed) * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
 
                 
                 //*** Torriem
@@ -351,6 +351,13 @@ namespace AgOpenGPS
                         break;                        
                     }
                 }
+
+                
+                /* EXPERIMENTAL... turn off section when it travels backwards */
+                if (section[j].sectionLookAhead < -0.2) {
+                    isSectionRequiredOn = false;
+                }
+                
 
                 //if (isSectionRequiredOn && isMasterSectionOn)
                 if (isSectionRequiredOn && section[j].isAllowedOn)
