@@ -47,6 +47,12 @@ namespace AgOpenGPS
 
         public double sectionLookAhead = 0;
 
+        private vec3 leftPoint;
+        private vec3 rightPoint;
+        private vec3 lastLeftPoint;
+        private vec3 lastRightPoint;
+
+
         //used to determine state of Manual section button - Off Auto On
         public AgOpenGPS.FormGPS.manBtn manBtnState = AgOpenGPS.FormGPS.manBtn.Off;
 
@@ -111,16 +117,43 @@ namespace AgOpenGPS
         public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
         {
    
+            lastLeftPoint = leftPoint;
+            lastRightPoint = rightPoint;
             //add two triangles for next step.
-                //left side
-                vec3 point = new vec3(cosHeading * (positionLeft) + easting,
-                        0, sinHeading * (positionLeft) + northing);
-                triangleList.Add(point);
+            //left side
+            leftPoint = new vec3(cosHeading * (positionLeft) + easting,
+                                 0, sinHeading * (positionLeft) + northing);
 
                 //Right side
-                point = new vec3(cosHeading * (positionRight) + easting,
-                    0, sinHeading * (positionRight) + northing);
-                triangleList.Add(point);                        
-             }
+            rightPoint = new vec3(cosHeading * (positionRight) + easting,
+                                  0, sinHeading * (positionRight) + northing);
+            if (isSectionOn) {
+                triangleList.Add(leftPoint);
+                triangleList.Add(rightPoint);                        
+            }
+        }
+
+        public void CalculateSpeed(double toolHeading, double elapsedTime, double lookAhead) {
+            if (elapsedTime > 0) {
+                vec3 left = leftPoint - lastLeftPoint;
+                vec3 right = rightPoint - lastRightPoint;
+
+                double leftSpeed = left.Magnitude() / elapsedTime;
+                double rightSpeed = right.Magnitude() / elapsedTime;
+                double heading;
+
+                if (leftSpeed > rightSpeed) {
+                    sectionLookAhead = leftSpeed * lookAhead;
+                } else {
+                    sectionLookAhead = rightSpeed * lookAhead;
+                }
+
+                // EXPERIMENTAL, determine if entire section is going backwards
+                if (Math.PI - Math.Abs(Math.Abs(left.HeadingXZ() - toolHeading) - Math.PI) > 1.8 &&
+                    Math.PI - Math.Abs(Math.Abs(right.HeadingXZ() - toolHeading) - Math.PI) > 1.8) {
+                    sectionLookAhead = -sectionLookAhead;
+                }
+            }
+        }
     }
 }

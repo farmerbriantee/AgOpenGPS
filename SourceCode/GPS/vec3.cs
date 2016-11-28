@@ -50,6 +50,28 @@ namespace AgOpenGPS
             this.z = v.z;
         }
 
+        public static vec3 operator -(vec3 a, vec3 b) {
+            return new vec3(a.x - b.x,
+                            a.y - b.y,
+                            a.z - b.z);
+        }
+
+        public double Magnitude() {
+            return Magnitude(this);
+        }
+
+        public static double Magnitude(vec3 a) {
+            return Math.Sqrt( a.x * a.x + a.y * a.y + a.z * a.z );
+        }
+
+        public vec3 Normalize() {
+            double m = Magnitude();
+            return new vec3(x / m, y / m, z / m);
+        }
+
+        public double HeadingXZ() {
+            return Math.Atan2(x,z);
+        }
     }
 
     //
