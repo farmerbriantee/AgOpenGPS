@@ -85,9 +85,13 @@ namespace AgOpenGPS
                 gl.Begin(OpenGL.GL_LINES);
                 for (int j = 0; j < mf.vehicle.numberOfSections; j++)
                 {
-                    //if section is on green, if off puke red color
-                    if (mf.section[j].isSectionOn) gl.Color(0.0f, 0.99f, 0.0f);
-                    else gl.Color(0.8f, 0.4f, 0.4f);
+                    //if section is on green, if off red color
+                    if (mf.section[j].isSectionOn)
+                    {
+                        if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.99f, 0.0f);
+                        else gl.Color(0.99, 0.99, 0);
+                    }
+                    else gl.Color(0.99f, 0.2f, 0.2f);
                     gl.Vertex(mf.section[j].positionLeft, 0, toolTrailingHitchLength);
                     gl.Vertex(mf.section[j].positionRight, 0, toolTrailingHitchLength);
                 }
@@ -122,7 +126,7 @@ namespace AgOpenGPS
                 {
                     //if section is on green, if off puke red color
                     if (mf.section[j].isSectionOn) gl.Color(0.0f, 0.99f, 0.0f);
-                    else gl.Color(0.8f, 0.4f, 0.4f);
+                    else gl.Color(0.99f, 0.2f, 0.2f);
                     gl.Vertex(mf.section[j].positionLeft, 0, 0);
                     gl.Vertex(mf.section[j].positionRight, 0, 0);
                 }

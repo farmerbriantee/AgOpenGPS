@@ -241,6 +241,12 @@
     <None Include="btnImages\SteerAhead.png" />
     <None Include="btnImages\SteerBehind.png" />
     <None Include="btnImages\Examples.png" />
+    <None Include="btnImages\SectionOffOnAutoAUTO.png" />
+    <None Include="btnImages\SectionAuto.png" />
+    <None Include="btnImages\SectionOff.png" />
+    <None Include="btnImages\SectionOn.png" />
+    <None Include="btnImages\ManualOff.png" />
+    <None Include="btnImages\ManualOn.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

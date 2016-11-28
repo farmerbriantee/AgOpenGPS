@@ -6,6 +6,9 @@ v1.3.0.1 22 Nov 2016
 * Communications has own window
 * Variables Window
 * Vehicle track for Antenna, Pivot point, Tool
+* individual button for Off Auto On control of sections. Manual All and Auto All buttons
+* changed to have each section remeber its own off auto status and the buttons merely changing those
+	not having buttons remember their own status
 
 
 v1.2 October 2016

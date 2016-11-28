@@ -329,7 +329,7 @@ namespace AgOpenGPS
                     //speed compensated min length limit triangles. The faster you go, the less of them
                     if (sectionTriggerDistance > (pn.speed / 8 + 0.2))
                     {
-                        if (isJobStarted && isMasterSectionOn)//add the pathpoint
+                        if (isJobStarted)//add the pathpoint
                         {
                             //save the north & east as previous
                             prevSectionNorthing = toolNorthing;
@@ -389,7 +389,7 @@ namespace AgOpenGPS
             }
 
             //Tell Arduino to turn section on or off accordingly
-            if (isMasterSectionOn & spArduino.IsOpen)
+            if (spArduino.IsOpen)
             {
                 try { spArduino.Write(bufferArd, 0, 1); }
                 catch (Exception) { SerialPortCloseArduino(); }

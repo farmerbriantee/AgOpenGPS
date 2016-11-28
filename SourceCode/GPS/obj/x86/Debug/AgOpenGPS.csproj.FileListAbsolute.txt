@@ -142,7 +142,6 @@ C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\Dependenci
 C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\Dependencies\Vehicle.png
 C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\AgOpenGPS.exe
 C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\AgOpenGPS.pdb
-C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
@@ -160,3 +159,21 @@ C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormS
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\Dependencies\Vehicle.png
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.exe
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.pdb
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormCommSet.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
