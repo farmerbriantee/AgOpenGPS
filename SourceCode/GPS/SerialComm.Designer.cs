@@ -50,6 +50,10 @@ namespace AgOpenGPS
         public double prevFixHeadingSection = 0;
         public double yawRate = 0;
 
+        public double lastFixTime = 0;
+
+        public bool forward_heading = true;
+
        //array index for previous northing and easting positions
         private static int numPrevs = 20;
         public double[] prevNorthing = new double[numPrevs];
@@ -74,6 +78,7 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0;
         public double prevSectionEasting = 0;
         public double prevSectionNorthing = 0;
+        public double prevHeadingSection = 0.0;
 
         //Low speed detection variables
         public double prevLowSpeedEasting = 0;
@@ -143,6 +148,7 @@ namespace AgOpenGPS
 
                     prevToolEasting = pn.easting + Math.Sin(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
                     prevToolNorthing = pn.northing + Math.Cos(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
+                    prevFixHeadingSection = fixHeading;
 
                     //save a copy of previous positions for cam heading of desired filtering or delay
                     for (int x = 0; x > numPrevs; x++) {  prevNorthing[x] = prevNorthing[0]; prevEasting[x] = prevEasting[0]; }
@@ -177,64 +183,33 @@ namespace AgOpenGPS
                     hitchNorthing = pn.northing + (Math.Cos(fixHeading) * ( vehicle.hitchLength-vehicle.antennaPivot));
 
 
-                   //tool attached via a trailing hitch
+                    //tool attached via a trailing hitch
                     if (vehicle.isToolTrailing)
                     {
                         //Torriem rules!!!!! Oh yes, this is all his. Thank-you
-                        double t;
-                        double dist = Math.Sqrt((hitchNorthing - prevToolNorthing) * (hitchNorthing - prevToolNorthing) +
-                                                                    (hitchEasting - prevToolEasting) * (hitchEasting - prevToolEasting));
-
-                        double newToolNorthing;
-                        double newToolEasting;
-
-                        if (dist != 0)
+                        if ((hitchNorthing - prevToolNorthing) != 0 ||
+                            (hitchEasting - prevToolEasting) != 0)
                         {
-                            t = (vehicle.toolTrailingHitchLength + vehicle.hitchLength) / dist;
-                            newToolEasting = hitchEasting + t * (hitchEasting - prevToolEasting);
-                            newToolNorthing = hitchNorthing + t * (hitchNorthing - prevToolNorthing);
                             fixHeadingSection = Math.Atan2(hitchEasting - prevToolEasting, hitchNorthing - prevToolNorthing);
-                            if (fixHeadingSection < 0) fixHeadingSection += Math.PI * 2.0;
-                        } else {
-                            // The new tractor position is exactly the same as the old
-                            // implement position, so push the implement straight back.
-                            // A rare edge case, I admit.
-                            newToolEasting = pn.easting - Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
-                            newToolNorthing = pn.northing - Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
+                            System.Console.WriteLine(fixHeadingSection);
+                            if (fixHeadingSection < 0) 
+                                fixHeadingSection += Math.PI * 2.0;
                         }
 
+                        toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                        toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                        //prevToolEasting and prevToolNorthing saved below;
 
                         // Compute the distance the tool moved vs the distance the tractor moved
-                        dist = Math.Sqrt( (pn.northing - prevNorthing[0]) * (pn.northing - prevNorthing[0]) +
+                        double dist = Math.Sqrt( (pn.northing - prevNorthing[0]) * (pn.northing - prevNorthing[0]) +
                                           (pn.easting - prevEasting[0]) * (pn.easting - prevEasting[0]) );
                         if (dist != 0) {
-                            dist = Math.Sqrt( (newToolNorthing - prevToolNorthing) * (newToolNorthing - prevToolNorthing) +
-                                              (newToolEasting - prevToolEasting) * (newToolEasting - prevToolEasting) ) /
+                            dist = Math.Sqrt( (toolNorthing - prevToolNorthing) * (toolNorthing - prevToolNorthing) +
+                                              (toolEasting - prevToolEasting) * (toolEasting - prevToolEasting) ) /
                                               dist; //ratio of tool movement to tractor movement
 
                             // overwrite the GPS speed with the estimated tool speed
                             pn.speed = dist * pn.speed;
-                        }
-
-                        prevToolNorthing = newToolNorthing;
-                        prevToolEasting = newToolEasting;
-
-                        //calculate the final tool position
-                        double over = Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI);
-
-                        if (over < 1.8)
-                        {
-                            toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                            toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                        }
-
-                        else
-                        {
-                            fixHeadingSection = fixHeading;
-                            toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                            toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                            prevToolNorthing = toolNorthing;
-                            prevToolEasting = toolEasting;
                         }
                     }
 
@@ -248,7 +223,6 @@ namespace AgOpenGPS
 
                     // calculate yaw rate in radians/second
                     double newYawRate = fixHeadingSection - prevFixHeadingSection;
-                    prevFixHeadingSection = fixHeadingSection;
                     
                     //Account for crossing 360/0.  
                     if (newYawRate < -Math.PI) 
@@ -283,7 +257,7 @@ namespace AgOpenGPS
                         pointTool.Add(pdI);
                     }
 
-                   //in degrees for glRotate opengl methods.
+                    //in degrees for glRotate opengl methods.
                     fixHeadingCam = Math.Atan2(pn.easting - prevEasting[delayCameraPrev], pn.northing - prevNorthing[delayCameraPrev]);
                     if (fixHeadingCam < 0) fixHeadingCam += Math.PI * 2.0;
                     fixHeadingCam = fixHeadingCam * 180.0 / Math.PI;
@@ -292,12 +266,59 @@ namespace AgOpenGPS
                     fixHeading = pn.headingTrue * Math.PI / 180;
                     fixHeadingCam = pn.headingTrue;
 
+                    //look for a sudden change in heading relative to what we were doing.
+                    //
+                    double over = Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI);
+
+                    if (over > 1.8)
+                    {
+                        //we've reversed direction
+                        //forward_heading = ! forward_heading;
+                        //System.Console.Write(fixHeadingSection * 180 / Math.PI);
+                        //System.Console.Write(" ");
+                        //System.Console.Write("Reversing direction: ");
+                        //System.Console.WriteLine(forward_heading);
+                        fixHeading = (fixHeading + Math.PI) % Math.PI; //we're likely reversing
+                        fixHeadingCam = (fixHeadingCam + 180) % 360; //we're likely reversing
+                        //pn.speed = pn.speed;
+                    }
+
+                    /*
+                    if (!forward_heading)
+                        fixHeading = (fixHeading + Math.PI) % Math.PI; //we're likely reversing
+                    */    
+
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
 
                     //precalc the sin and cos of heading * -1
                     sinHeading = Math.Sin(-fixHeadingSection);
                     cosHeading = Math.Cos(-fixHeadingSection);
+
+                    double prevSinHeading = Math.Sin(-prevFixHeadingSection);
+                    double prevCosHeading = Math.Cos(-prevFixHeadingSection);
+
+                    System.Console.Write("{0:N0}->",fixHeadingSection * 180 / Math.PI);
+                    System.Console.Write("{0:N0} ",prevFixHeadingSection * 180 / Math.PI);
+
+
+                    for (int j = 0; j < vehicle.numberOfSections; j++ ){
+                        double toolSectionEasting = toolEasting + cosHeading * (section[j].positionLeft + section[j].positionRight) / 2;
+                        double toolSectionNorthing = toolNorthing + sinHeading * (section[j].positionLeft + section[j].positionRight) / 2;
+
+                        double prevToolSectionEasting = prevToolEasting + prevCosHeading * (section[j].positionLeft + section[j].positionRight) / 2;
+                        double prevToolSectionNorthing = prevToolNorthing + prevSinHeading * (section[j].positionLeft + section[j].positionRight) / 2;
+
+                        double dist;
+
+                        dist = Math.Sqrt( (toolSectionNorthing - prevToolSectionNorthing) * (toolSectionNorthing - prevToolSectionNorthing) +
+                                          (toolSectionEasting - prevToolSectionEasting) * (toolSectionEasting - prevToolSectionEasting));
+
+                        dist = dist * rmcUpdateHz * 3.6; //kph
+                        System.Console.Write("{0:N2} ",dist);
+                    }
+                    System.Console.WriteLine("");
+
 
                     //calc distance travelled since last GPS fix
                     distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
@@ -334,6 +355,13 @@ namespace AgOpenGPS
 
                     //most recent fixes
                     prevEasting[0] = pn.easting; prevNorthing[0] = pn.northing;                    
+
+                    prevToolNorthing = toolNorthing;
+                    prevToolEasting = toolEasting;
+                    prevFixHeadingSection = fixHeadingSection;
+                    lastFixTime = sw.Elapsed.TotalSeconds;
+
+
                 }
             }
             // there hasn't been a sentence for while
