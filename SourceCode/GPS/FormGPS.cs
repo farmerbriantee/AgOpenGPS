@@ -51,7 +51,15 @@ namespace AgOpenGPS
         public bool isJobStarted = false;
 
         //the master on off for all sections
-        public bool isMasterSectionOn = false;
+        //public bool isMasterSectionOn = false;
+        public bool wasMasterSectionOn = false;
+
+        //master off on forcing sections to stay on, 3 states
+        public enum manualBtn {Off,On};
+        public manualBtn manualBtnState = manualBtn.Off;
+
+        //section button states
+        public enum manBtn { Off, Auto, On };
 
         //if we are saving a file
         public bool isSavingFile = false;
@@ -98,12 +106,11 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            sw.Start();//start the stopwatch
-        }
+            //create a new section and set left and right positions
+            //created whether used or not, saves restarting program
 
-        //Initialize items before the form Loads or is visible
-        private void FormGPS_Load(object sender, EventArgs e)
-        {
+            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
+
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
 
@@ -118,6 +125,13 @@ namespace AgOpenGPS
 
             //create the ABLine instance
             ABLine = new CABLine(gl, this);
+
+            sw.Start();//start the stopwatch
+        }
+
+        //Initialize items before the form Loads or is visible
+        private void FormGPS_Load(object sender, EventArgs e)
+        {
 
             #region settings //--------------------------------------------------------------------------
 
@@ -142,14 +156,6 @@ namespace AgOpenGPS
             //Can't close a job if you haven't started
             menuCloseJob.Enabled = false;
              
-            //create a new section and set left and right positions
-            //created whether used or not, saves restarting program
-            section[0] = new CSection(this);
-            section[1] = new CSection(this);
-            section[2] = new CSection(this);
-            section[3] = new CSection(this);
-            section[4] = new CSection(this);
-
             //Set width of section and positions for each section
             SectionSetPosition();
 
@@ -218,6 +224,10 @@ namespace AgOpenGPS
 
        }
 
+        private void FormGPS_Resize(object sender, EventArgs e)
+        {
+            LineUpManualBtns();
+        }
 
 // Procedures and Functions //---------------------------------------
 
@@ -329,6 +339,117 @@ namespace AgOpenGPS
             vehicle.toolFarRightPosition = section[vehicle.numberOfSections - 1].positionRight;
         }
 
+        //force all the buttons same according to two main buttons
+        private void ManualAllBtnsUpdate()
+        {
+            ManualBtnUpdate(0, btnSection1Man);
+            ManualBtnUpdate(1, btnSection2Man);
+            ManualBtnUpdate(2, btnSection3Man);
+            ManualBtnUpdate(3, btnSection4Man);
+            ManualBtnUpdate(4, btnSection5Man);
+        }
+
+        //line up section On Off Auto buttons based on how many there are
+        public void LineUpManualBtns()
+        {
+            switch (vehicle.numberOfSections)
+            {
+
+                case 1:
+                    btnSection1Man.Left = this.Width / 2 - 40;
+                    btnSection1Man.Top = this.Height - 100;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = false;
+                    btnSection3Man.Visible = false;
+                    btnSection4Man.Visible = false;
+                    btnSection5Man.Visible = false;
+                    break;
+
+                case 2:
+                    btnSection1Man.Left = this.Width / 2 - 80;
+                    btnSection1Man.Top = this.Height - 100;
+                    btnSection2Man.Left = this.Width / 2;
+                    btnSection2Man.Top = this.Height - 100;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = false;
+                    btnSection4Man.Visible = false;
+                    btnSection5Man.Visible = false;
+                     break;
+
+                case 3:
+                    btnSection1Man.Left = this.Width / 2 - 120;
+                    btnSection1Man.Top = this.Height - 100;
+                    btnSection2Man.Left = this.Width / 2 - 40;
+                    btnSection2Man.Top = this.Height - 100;
+                    btnSection3Man.Left = this.Width / 2 + 40;
+                    btnSection3Man.Top = this.Height - 100;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = false;
+                    btnSection5Man.Visible = false;
+                    break;
+
+                case 4:
+                    btnSection1Man.Left = this.Width / 2 - 160;
+                    btnSection1Man.Top = this.Height - 100;
+                    btnSection2Man.Left = this.Width / 2 - 80;
+                    btnSection2Man.Top = this.Height - 100;
+                    btnSection3Man.Left = this.Width / 2;
+                    btnSection3Man.Top = this.Height - 100;
+                    btnSection4Man.Left = this.Width / 2 + 80;
+                    btnSection4Man.Top = this.Height - 100;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = true;
+                    btnSection5Man.Visible = false;
+                    break;
+
+                case 5:
+                    btnSection1Man.Left = this.Width / 2 - 200;
+                    btnSection1Man.Top = this.Height - 100;
+                    btnSection2Man.Left = this.Width / 2 - 120;
+                    btnSection2Man.Top = this.Height - 100;
+                    btnSection3Man.Left = this.Width / 2 - 40;
+                    btnSection3Man.Top = this.Height - 100;
+                    btnSection4Man.Left = this.Width / 2 + 40;
+                    btnSection4Man.Top = this.Height - 100;
+                    btnSection5Man.Left = this.Width / 2 + 120;
+                    btnSection5Man.Top = this.Height - 100;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = true;
+                    btnSection5Man.Visible = true;
+                    break;
+
+            }
+        }
+
+        //update individual btn based on state after push
+        private void ManualBtnUpdate(int sectNumber, Button btn)
+        {
+            switch (section[sectNumber].manBtnState)
+            {
+                case manBtn.Off:
+                    section[sectNumber].manBtnState = manBtn.Auto;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionAuto;
+                    break;
+
+                case manBtn.Auto:
+                    section[sectNumber].manBtnState = manBtn.On;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOn;
+                    break;
+
+                case manBtn.On:
+                    section[sectNumber].manBtnState = manBtn.Off;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOff;
+                    break;
+            }
+        }
+
         //request a new job
         private void JobNew()
         {
@@ -338,9 +459,58 @@ namespace AgOpenGPS
             menuNewJob.Enabled = false;
 
             chkSectionsOnOff.Enabled = true;
+            chkSectionsOnOff.Visible = true;
 
+            btnManualOffOn.Enabled = true;
+            btnManualOffOn.Visible = true;
+            manualBtnState = manualBtn.Off;
+            btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            
+
+            switch (vehicle.numberOfSections)
+            {
+                case 1:
+                    btnSection1Man.Enabled = true;
+                    btnSection2Man.Enabled = false;
+                    btnSection3Man.Enabled = false;
+                    btnSection4Man.Enabled = false;
+                    btnSection5Man.Enabled = false;
+                    break;
+
+                case 2:
+                    btnSection1Man.Enabled = true;
+                    btnSection2Man.Enabled = true;
+                    btnSection3Man.Enabled = false;
+                    btnSection4Man.Enabled = false;
+                    btnSection5Man.Enabled = false;
+                    break;
+
+                case 3:
+                    btnSection1Man.Enabled = true;
+                    btnSection2Man.Enabled = true;
+                    btnSection3Man.Enabled = true;
+                    btnSection4Man.Enabled = false;
+                    btnSection5Man.Enabled = false;
+                    break;
+
+                case 4:
+                    btnSection1Man.Enabled = true;
+                    btnSection2Man.Enabled = true;
+                    btnSection3Man.Enabled = true;
+                    btnSection4Man.Enabled = true;
+                    btnSection5Man.Enabled = false;
+                    break;
+
+                case 5:
+                    btnSection1Man.Enabled = true;
+                    btnSection2Man.Enabled = true;
+                    btnSection3Man.Enabled = true;
+                    btnSection4Man.Enabled = true;
+                    btnSection5Man.Enabled = true;
+                    break;
+
+            }
             btnABLine.Enabled = true;
-
             btnSnapToAB.Enabled = true;
 
             ABLine.abHeading = 0.00;
@@ -360,7 +530,8 @@ namespace AgOpenGPS
 
                 //turn all the sections off
                 section[j].isSectionOn = false;
-                isMasterSectionOn = false;
+                section[j].isAllowedOn = false;
+                //isMasterSectionOn = false;
             }
 
             menuCloseJob.Enabled = false;
@@ -371,12 +542,15 @@ namespace AgOpenGPS
 
             //change image to reflect on off
             this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-
-
+            
             //fix the section on off to off
             chkSectionsOnOff.Enabled = false;
             chkSectionsOnOff.Checked = false;
             this.chkSectionsOnOff.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+
+            //fix ManualOffOnAuto button
+            btnManualOffOn.Enabled = false;
+            manualBtnState = manualBtn.Off;
 
             //reset all the ABLine stuff
             ABLine.refPoint1 = new vec3(0.2, 0.0, 0.2);
@@ -401,7 +575,7 @@ namespace AgOpenGPS
         //Does the logic to process section on off requests
         private void ProcessSectionOnOffRequests()
         {
-            if (pn.speed > 0.2)
+            //if (pn.speed > 0.2)
             {
                 for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
@@ -409,7 +583,7 @@ namespace AgOpenGPS
                     //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
                     if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
                     {
-                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead );
+                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead )+1;
                         if (section[j].sectionOnTimer > 10) section[j].sectionOnTimer = 10;
                         section[j].sectionOnOffCycle = true;
                     }
@@ -446,126 +620,6 @@ namespace AgOpenGPS
             }
         }
 
-        //Reset everything action
-        private void okThenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //delete the default config file and remake it with restart
-            Properties.Settings.Default.setVehicle_toolOverlap = 0.5;
-            Properties.Settings.Default.setVehicle_toolTrailingHitchLength = -2;
-            Properties.Settings.Default.setVehicle_antennaHeight = 3.0;
-            Properties.Settings.Default.setVehicle_lookAhead = 2.0;
-            Properties.Settings.Default.setVehicle_isToolTrailing = true;
-
-            Properties.Settings.Default.setSection_nudSpin1 = -8;
-            Properties.Settings.Default.setSection_nudSpin2 = -3;
-            Properties.Settings.Default.setSection_nudSpin3 = 3;
-            Properties.Settings.Default.setSection_nudSpin4 = 8;
-            Properties.Settings.Default.setSection_nudSpin5 = 0;
-            Properties.Settings.Default.setSection_nudSpin6 = 0;
-
-            Properties.Settings.Default.setVehicle_numSections = 3;
-            Properties.Settings.Default.setVehicle_toolWidth = 16.0;
-
-            Properties.Settings.Default.setCam_pitch = -20;
-            Properties.Settings.Default.setPort_baudRate = 4800;
-            Properties.Settings.Default.setPort_portName = "COM Reset";
-            Properties.Settings.Default.setPort_wasArduinoConnected = false;
-            Properties.Settings.Default.setPort_portNameArduino = "COM SecReset";
-
-            Properties.Settings.Default.setWindow_Maximized = false;
-            Properties.Settings.Default.setWindow_Minimized = false;
-
-            //Properties.Settings.Default.setDelay_camera = 4;
-            //Properties.Settings.Default.setDelay_section = 5;
-            //Properties.Settings.Default.setDelay_vehicle = 2;
-
-            Properties.Settings.Default.Save();
-
-            Application.Exit();
-        }
-
-   // Menu items //------------------------------------------------------------------
-
-        private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isDrawPolygons = !isDrawPolygons;
-            polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
-        }
-
-        private void vehicleTrackToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isDrawVehicleTrack = !isDrawVehicleTrack;
-
-            //clear the old data first
-            pointAntenna.Clear();
-            pointPivot.Clear();
-            pointTool.Clear(); 
-
-            vehicleTrackToolStripMenuItem.Checked = !vehicleTrackToolStripMenuItem.Checked;
-        }
-
-        private void menuJobNew_Click(object sender, EventArgs e)
-        {
-            JobNew();
-        }
-
-        private void menuJobClose_Click(object sender, EventArgs e)
-        {
-            JobClose();
-        }
-
-        private void menuItemVehicleToolStrip_Click(object sender, EventArgs e)
-        {
-            SettingsPageOpen(0);
-        }
-
-        private void menuItemCOMPortsToolStrip_Click(object sender, EventArgs e)
-        {
-            SettingsCommunications();
-        }
-
-        private void sectionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SettingsPageOpen(2);
-        }
-
-        private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GPSDataFormShow();
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FileOpenField();
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FileSaveField();
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormAbout())
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
-            }
- 
-        }
-
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //string appPath = Assembly.GetEntryAssembly().Location;
-            //string filename = Path.Combine(Path.GetDirectoryName(appPath), "help.htm");
-            Process.Start("help.htm");
-
-        }
-  
-       private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            VariablesFormShow();
-        }
 
 // Buttons //-----------------------------------------------------------------------
 
@@ -656,8 +710,8 @@ namespace AgOpenGPS
             if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom = 50.3;
             if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) gridZoom = 25.15;
             //if (camera.camSetDistance >= -100 && camera.camSetDistance < -80) gridZoom = 5.03;
-            if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) gridZoom = 5.03;
-            if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 2.532;
+            if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) gridZoom = 10.06;
+            if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 5.03;
             //1.216 2.532
 
             //  Get the OpenGL object.
@@ -710,11 +764,25 @@ namespace AgOpenGPS
              //turning the sections all ON
             if (chkSectionsOnOff.Checked)
             {
-                //set master flag on
-                isMasterSectionOn = true;
-
                 //change the image on button to on
                 this.chkSectionsOnOff.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOn;
+
+                for (int j = 0; j < vehicle.numberOfSections; j++)
+                {
+                    section[j].sectionOnOffCycle = false;
+                    section[j].sectionOffRequest = false;
+                    section[j].sectionOnRequest = false;
+                    section[j].sectionOffTimer = 0;
+                    section[j].sectionOnTimer = 0;
+                    section[j].isAllowedOn = true;
+                    section[j].manBtnState = manBtn.Off;
+                }
+
+                //update all the buttons
+                ManualAllBtnsUpdate();
+
+                manualBtnState = manualBtn.Off;
+                btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             }
 
             //turning the sections all OFF   
@@ -723,20 +791,142 @@ namespace AgOpenGPS
                 //change the image on button to off
                 this.chkSectionsOnOff.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
 
-                //turn off the master section on off flag
-                isMasterSectionOn = false;
-
                 for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
-                    section[j].TurnSectionOff();
                     section[j].sectionOnOffCycle = false;
                     section[j].sectionOffRequest = true;
                     section[j].sectionOnRequest = false;
                     section[j].sectionOffTimer = 0;
                     section[j].sectionOnTimer = 0;
+                    section[j].isAllowedOn = false;
+                    section[j].manBtnState = manBtn.On;
                 }
+
+                //update all the buttons
+                ManualAllBtnsUpdate();
+
+                manualBtnState = manualBtn.Off;
+                btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             }
 
+        }
+
+        //button for Manual On Off of the sections
+        private void btnManualOffOn_Click(object sender, EventArgs e)
+        {
+            switch (manualBtnState)
+            {
+                case manualBtn.Off:
+                    manualBtnState = manualBtn.On;
+                    btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOn;
+                    wasMasterSectionOn = chkSectionsOnOff.Checked;
+
+                    //turn all the sections allowed and update to ON!! Auto changes to ON
+                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    {
+                        section[j].isAllowedOn = true;
+                        section[j].manBtnState = manBtn.Auto;
+                    }
+
+                    ManualAllBtnsUpdate();
+                    break;
+
+                case manualBtn.On:
+                    manualBtnState = manualBtn.Off;
+                    btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+
+                    //turn section buttons all OFF or Auto if SectionAuto was on or off
+                    if (chkSectionsOnOff.Checked)
+                    {
+                        for (int j = 0; j < vehicle.numberOfSections; j++)
+                        {
+                            section[j].isAllowedOn = true;
+                            section[j].manBtnState = manBtn.Off;
+                        }
+                    }
+
+                    else
+                    {
+                        for (int j = 0; j < vehicle.numberOfSections; j++)
+                        {
+                            section[j].isAllowedOn = false;
+                            section[j].manBtnState = manBtn.On;
+
+                            section[j].sectionOnOffCycle = false;
+                            section[j].sectionOffRequest = true;
+                            section[j].sectionOnRequest = false;
+                            section[j].sectionOffTimer = 0;
+                            section[j].sectionOnTimer = 0;
+                        }
+                    }
+
+                    //Update the button colors and text
+                    ManualAllBtnsUpdate();
+                    break;
+            }
+
+        }
+
+
+        private void btnSection1Man_Click(object sender, EventArgs e)
+        {
+            if (!chkSectionsOnOff.Checked)
+            {
+                //if auto is off just have on-off for choices of section buttons
+                if (section[0].manBtnState == manBtn.Off) section[0].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(0, btnSection1Man);
+                return;
+            }
+
+            ManualBtnUpdate(0, btnSection1Man);
+                       
+        }
+        private void btnSection2Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (!chkSectionsOnOff.Checked)
+            {
+                if (section[1].manBtnState == manBtn.Off) section[1].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(1, btnSection2Man);
+                return;
+            }
+
+            ManualBtnUpdate(1, btnSection2Man);
+        }
+        private void btnSection3Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (!chkSectionsOnOff.Checked)
+            {
+                if (section[2].manBtnState == manBtn.Off) section[2].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(2, btnSection3Man);
+                return;
+            }
+
+            ManualBtnUpdate(2, btnSection3Man);
+        }
+        private void btnSection4Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (!chkSectionsOnOff.Checked)
+            {
+                if (section[3].manBtnState == manBtn.Off) section[3].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(3, btnSection4Man);
+                return;
+            }
+            ManualBtnUpdate(3, btnSection4Man);
+        }
+        private void btnSection5Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (!chkSectionsOnOff.Checked)
+            {
+                if (section[4].manBtnState == manBtn.Off) section[4].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(4, btnSection5Man);
+                return;
+            }
+
+            ManualBtnUpdate(4, btnSection5Man);
         }
 
         //Settings    
@@ -748,9 +938,117 @@ namespace AgOpenGPS
         private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
         {
             userDistance = 0;
+        }       
+        
+// Menu items //------------------------------------------------------------------
+
+        private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isDrawPolygons = !isDrawPolygons;
+            polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
         }
 
+        private void vehicleTrackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isDrawVehicleTrack = !isDrawVehicleTrack;
+
+            //clear the old data first
+            pointAntenna.Clear();
+            pointPivot.Clear();
+            pointTool.Clear(); 
+
+            vehicleTrackToolStripMenuItem.Checked = !vehicleTrackToolStripMenuItem.Checked;
+        }
+
+        private void menuJobNew_Click(object sender, EventArgs e)
+        {
+            JobNew();
+        }
+
+        private void menuJobClose_Click(object sender, EventArgs e)
+        {
+            JobClose();
+        }
+
+        private void menuItemVehicleToolStrip_Click(object sender, EventArgs e)
+        {
+            SettingsPageOpen(0);
+        }
+
+        private void menuItemCOMPortsToolStrip_Click(object sender, EventArgs e)
+        {
+            SettingsCommunications();
+        }
+
+        private void sectionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsPageOpen(2);
+        }
+
+        private void gPSDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GPSDataFormShow();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileOpenField();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileSaveField();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormAbout())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+ 
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //string appPath = Assembly.GetEntryAssembly().Location;
+            //string filename = Path.Combine(Path.GetDirectoryName(appPath), "help.htm");
+            Process.Start("help.htm");
+
+        }
+  
+        private void variablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            VariablesFormShow();
+        }
        
+        //load a vehicle
+        private void loadVehicleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JobClose();
+            FileOpenVehicle();
+        }
+
+        //save a vehicle
+        private void saveVehicleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileSaveVehicle();
+        }
+
+        //menu item to reset the setting database
+        private void resetALLToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result2 = MessageBox.Show("Really Reset Everything?", "Reset settings",
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (result2 == DialogResult.Yes)
+            {
+                MessageBox.Show("Program will exit and reset");
+                ResetAll();
+            }
+ 
+        }
 
 #region Properties // ---------------------------------------------------------------------
 
@@ -810,10 +1108,8 @@ namespace AgOpenGPS
             else stripOnlineGPS.Value = 100;
         }
 
-        private void openGLControl_Click(object sender, EventArgs e)
-        {
-            
-        }
+
+
 
 
    }//class FormGPS

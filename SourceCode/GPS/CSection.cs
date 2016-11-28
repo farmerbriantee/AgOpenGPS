@@ -24,6 +24,7 @@ namespace AgOpenGPS
 
         //is this section on or off
         public bool isSectionOn = false;
+        public bool isAllowedOn = false;
 
         public bool sectionOnRequest = false;
         public bool sectionOffRequest = false;
@@ -42,10 +43,12 @@ namespace AgOpenGPS
 
         public double positionLeft = -4;
         public double positionRight = 4;
-
         public double sectionWidth = 0;
 
         public double sectionLookAhead = 0;
+
+        //used to determine state of Manual section button - Off Auto On
+        public AgOpenGPS.FormGPS.manBtn manBtnState = AgOpenGPS.FormGPS.manBtn.Off;
 
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
         public CSection(FormGPS f)
@@ -56,7 +59,8 @@ namespace AgOpenGPS
 
         public void TurnSectionOn()
         {
-            if (mf.isMasterSectionOn && !isSectionOn)
+            //if (mf.isMasterSectionOn && !isSectionOn)
+            if (!isSectionOn )
             {
                 //set the section bool to on
                 isSectionOn = true;

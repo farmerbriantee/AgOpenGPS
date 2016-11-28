@@ -17,6 +17,54 @@ namespace AgOpenGPS
 {
     public partial class  FormGPS
     {
+        //Reset everything action
+        private void ResetAll()
+        {
+            //delete the default config file and remake it with restart
+            Properties.Settings.Default.setVehicle_toolOverlap = 0.1;
+            Properties.Settings.Default.setVehicle_toolTrailingHitchLength = -2;
+            Properties.Settings.Default.setVehicle_antennaHeight = 3.0;
+            Properties.Settings.Default.setVehicle_lookAhead = 2.0;
+            Properties.Settings.Default.setVehicle_antennaPivot = 1.1;
+            Properties.Settings.Default.setVehicle_hitchLength = -0.5;
+            Properties.Settings.Default.setVehicle_toolOffset = 0;
+            Properties.Settings.Default.setVehicle_turnOffDelay = 1;
+            Properties.Settings.Default.setVehicle_wheelbase = 5;
+
+            Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
+            Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
+            Properties.Settings.Default.setVehicle_isToolBehindPivot = true;
+            Properties.Settings.Default.setVehicle_isToolTrailing = true;
+
+            Properties.Settings.Default.setSection_nudSpin1 = -8;
+            Properties.Settings.Default.setSection_nudSpin2 = -3;
+            Properties.Settings.Default.setSection_nudSpin3 = 3;
+            Properties.Settings.Default.setSection_nudSpin4 = 8;
+            Properties.Settings.Default.setSection_nudSpin5 = 0;
+            Properties.Settings.Default.setSection_nudSpin6 = 0;
+
+            Properties.Settings.Default.setVehicle_numSections = 3;
+            Properties.Settings.Default.setVehicle_toolWidth = 16.0;
+
+            Properties.Settings.Default.setCam_pitch = -20;
+            Properties.Settings.Default.setPort_baudRate = 4800;
+            Properties.Settings.Default.setPort_portName = "COM Reset";
+            Properties.Settings.Default.setPort_wasArduinoConnected = false;
+            Properties.Settings.Default.setPort_portNameArduino = "COM SecReset";
+            Properties.Settings.Default.setPort_NMEAHz = 5;
+
+            Properties.Settings.Default.setWindow_Maximized = false;
+            Properties.Settings.Default.setWindow_Minimized = false;
+
+            Properties.Settings.Default.setDisplay_delayCameraPrev = 6;
+            Properties.Settings.Default.setDisplay_delayFixPrev = 5;
+
+
+            Properties.Settings.Default.Save();
+
+            Application.Exit();
+        }
+
         public void FileSaveVehicle()
         {
             //in the current application directory
@@ -41,10 +89,20 @@ namespace AgOpenGPS
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
                     writer.Write("Overlap," + Properties.Settings.Default.setVehicle_toolOverlap + ",");
-                    writer.Write("ForeAft," + Properties.Settings.Default.setVehicle_toolTrailingHitchLength + ",");
+                    writer.Write("ToolTrailingHitchLength," + Properties.Settings.Default.setVehicle_toolTrailingHitchLength + ",");
                     writer.Write("AntennaHeight," + Properties.Settings.Default.setVehicle_antennaHeight + ",");
                     writer.Write("LookAhead," + Properties.Settings.Default.setVehicle_lookAhead + ",");
-                    writer.Write("IsHitched," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");
+                    writer.Write("AntennaPivot," + Properties.Settings.Default.setVehicle_antennaPivot + ",");
+
+                    writer.Write("HitchLength," + Properties.Settings.Default.setVehicle_hitchLength + ",");
+                    writer.Write("ToolOffset," + Properties.Settings.Default.setVehicle_toolOffset + ",");
+                    writer.Write("TurnOffDelay," + Properties.Settings.Default.setVehicle_turnOffDelay + ",");
+                    writer.Write("Wheelbase," + Properties.Settings.Default.setVehicle_wheelbase + ",");
+
+                    writer.Write("IsPivotBehindAntenna," + Properties.Settings.Default.setVehicle_isPivotBehindAntenna + ",");
+                    writer.Write("IsSteerAxleAhead," + Properties.Settings.Default.setVehicle_isSteerAxleAhead + ","); 
+                    writer.Write("IsToolBehindPivot," + Properties.Settings.Default.setVehicle_isToolBehindPivot + ",");
+                    writer.Write("IsToolTrailing," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");                   
 
                     writer.Write("Spinner1," + Properties.Settings.Default.setSection_nudSpin1 + ",");
                     writer.Write("Spinner2," + Properties.Settings.Default.setSection_nudSpin2 + ",");
@@ -55,12 +113,13 @@ namespace AgOpenGPS
 
                     writer.Write("Sections," + Properties.Settings.Default.setVehicle_numSections + ",");
                     writer.Write("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth + ",");
+
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0");
-
-                    ////little show to say saved and where
+                    
+                    //little show to say saved and where
                     MessageBox.Show(saveDialog.FileName, "File Saved to ");
                 }
             }
@@ -99,35 +158,46 @@ namespace AgOpenGPS
                 using (StreamReader reader = new StreamReader(ofd.FileName))
                 {
                     string line;
-                    //Overlap,0.5,ForeAft,-2,AntennaHeight,3,LookAhead,2,IsHitched,False,
-                    //Spinner1,-8.0,Spinner2,-3.0,Spinner3,3.0,Spinner4,8.0,Spinner5,0,Spinner6,0,Sections,3,ToolWidth,16
+                    //Overlap,0.1,ToolTrailingHitchLength,-2,AntennaHeight,3,LookAhead,2,AntennaPivot,1.1,HitchLength,-0.5,
+                    //ToolOffset,0,TurnOffDelay,1,Wheelbase,5,IsPivotBehindAntenna,True,IsSteerAxleAhead,True,IsToolBehindPivot,True,
+                    //IsToolTrailing,True,Spinner1,-8,Spinner2,-3,Spinner3,3,Spinner4,8,Spinner5,0,Spinner6,0,Sections,3,ToolWidth,16
 
-                    line = reader.ReadLine();//Date time line  
+                    line = reader.ReadLine();  
 
                     string[] words;
 
                     words = line.Split(',');
 
-                    if (words.Count() != 46) { MessageBox.Show("Corrupt Vehicle file"); return; }
+                    if (words.Count() != 62) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
                     Properties.Settings.Default.setVehicle_toolOverlap = double.Parse(words[1]);
                     Properties.Settings.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[3]);
                     Properties.Settings.Default.setVehicle_antennaHeight = double.Parse(words[5]);
                     Properties.Settings.Default.setVehicle_lookAhead = double.Parse(words[7]);
-                    Properties.Settings.Default.setVehicle_isToolTrailing = bool.Parse(words[9]);
+                    Properties.Settings.Default.setVehicle_antennaPivot = double.Parse(words[9]);
 
-                    Properties.Settings.Default.setSection_nudSpin1 = decimal.Parse(words[11]);
-                    Properties.Settings.Default.setSection_nudSpin2 = decimal.Parse(words[13]);
-                    Properties.Settings.Default.setSection_nudSpin3 = decimal.Parse(words[15]);
-                    Properties.Settings.Default.setSection_nudSpin4 = decimal.Parse(words[17]);
-                    Properties.Settings.Default.setSection_nudSpin5 = decimal.Parse(words[19]);
-                    Properties.Settings.Default.setSection_nudSpin6 = decimal.Parse(words[21]);
+                    Properties.Settings.Default.setVehicle_hitchLength = double.Parse(words[11]);
+                    Properties.Settings.Default.setVehicle_toolOffset = double.Parse(words[13]);
+                    Properties.Settings.Default.setVehicle_turnOffDelay = double.Parse(words[15]);
+                    Properties.Settings.Default.setVehicle_wheelbase = double.Parse(words[17]);
 
-                    Properties.Settings.Default.setVehicle_numSections = int.Parse(words[23]);
-                    Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[25]);
+                    Properties.Settings.Default.setVehicle_isPivotBehindAntenna = bool.Parse(words[19]);
+                    Properties.Settings.Default.setVehicle_isSteerAxleAhead = bool.Parse(words[21]);
+                    Properties.Settings.Default.setVehicle_isToolBehindPivot = bool.Parse(words[23]);
+                    Properties.Settings.Default.setVehicle_isToolTrailing = bool.Parse(words[25]);
+
+                    Properties.Settings.Default.setSection_nudSpin1 = decimal.Parse(words[27]);
+                    Properties.Settings.Default.setSection_nudSpin2 = decimal.Parse(words[29]);
+                    Properties.Settings.Default.setSection_nudSpin3 = decimal.Parse(words[31]);
+                    Properties.Settings.Default.setSection_nudSpin4 = decimal.Parse(words[33]);
+                    Properties.Settings.Default.setSection_nudSpin5 = decimal.Parse(words[35]);
+                    Properties.Settings.Default.setSection_nudSpin6 = decimal.Parse(words[37]);
+
+                    Properties.Settings.Default.setVehicle_numSections = int.Parse(words[39]);
+                    Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[41]);
 
                     Properties.Settings.Default.Save();
-
+                    
                     //get the number of sections from settings
                     vehicle.numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
@@ -136,15 +206,23 @@ namespace AgOpenGPS
                     vehicle.toolTrailingHitchLength = Properties.Settings.Default.setVehicle_toolTrailingHitchLength;
                     vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
                     vehicle.toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
+
+                    vehicle.antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
+                    vehicle.hitchLength = Properties.Settings.Default.setVehicle_hitchLength; 
+                    vehicle.toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
+                    vehicle.toolTurnOffDelay = Properties.Settings.Default.setVehicle_turnOffDelay;
+                    vehicle.wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
+
                     vehicle.isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
+                    vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
+                    vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
+                    vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isToolBehindPivot;
 
                     //Set width of section and positions for each section
                     SectionSetPosition();
 
                     //Calculate total width and each section width
                     SectionCalcWidths();
-
-                    //MessageBox.Show("*** AgOpenGPS needs a Restart ***");
 
                     //Application.Exit();
 

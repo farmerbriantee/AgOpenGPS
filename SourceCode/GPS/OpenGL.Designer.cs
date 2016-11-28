@@ -344,20 +344,39 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (isSectionRequiredOn && isMasterSectionOn)
+                //if (isSectionRequiredOn && isMasterSectionOn)
+                if (isSectionRequiredOn && section[j].isAllowedOn)
                 {
                     //global request to turn on section
                     section[j].sectionOnRequest = true;
+                    section[j].sectionOffRequest = false;
                 }
 
                 else if (!isSectionRequiredOn)
                 {
                     //global request to turn off section
                     section[j].sectionOffRequest = true;
+                    section[j].sectionOnRequest = false;
                 }
 
-                //used in this loop only
-                isSectionRequiredOn = false;
+                //used in this loop only, reset to false for next iteration
+                //isSectionRequiredOn = false;
+
+                // Manual on, force the section On and exit loop
+                if (section[j].manBtnState == manBtn.On)
+                {
+                    section[j].sectionOnRequest = true;
+                    section[j].sectionOffRequest = false;
+                    continue;
+                }
+
+                if (section[j].manBtnState == manBtn.Off)
+                {
+                    section[j].sectionOnRequest = false;
+                    section[j].sectionOffRequest = true;
+                }
+
+
             }
             gl.Flush();
 

@@ -257,6 +257,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setSection_nudSpin5 = (decimal)spinSection5;
             Properties.Settings.Default.setSection_nudSpin6 = (decimal)spinSection6;
 
+            //line up manual buttons based on # of sections
+            mf.LineUpManualBtns();
+
             //update the sections to newly configured widths and positions in main
             mf.SectionSetPosition();
 
@@ -667,7 +670,6 @@ namespace AgOpenGPS
             UpdateSpinnersTextLabels();
             
             lblTractor.Left = (numberOfSections - 1) * 81 + 99;
-
         }
 
         //Did user spin a section distance spinner?

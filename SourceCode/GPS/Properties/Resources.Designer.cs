@@ -193,6 +193,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ManualOff {
+            get {
+                object obj = ResourceManager.GetObject("ManualOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ManualOn {
+            get {
+                object obj = ResourceManager.GetObject("ManualOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NewJobBlue64 {
             get {
                 object obj = ResourceManager.GetObject("NewJobBlue64", resourceCulture);
@@ -233,6 +253,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SectionAuto {
+            get {
+                object obj = ResourceManager.GetObject("SectionAuto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SectionMasterOff {
             get {
                 object obj = ResourceManager.GetObject("SectionMasterOff", resourceCulture);
@@ -246,6 +276,26 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap SectionMasterOn {
             get {
                 object obj = ResourceManager.GetObject("SectionMasterOn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionOff {
+            get {
+                object obj = ResourceManager.GetObject("SectionOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SectionOn {
+            get {
+                object obj = ResourceManager.GetObject("SectionOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
