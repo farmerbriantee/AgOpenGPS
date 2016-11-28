@@ -119,7 +119,7 @@ namespace AgOpenGPS
             //our NMEA parser
             pn = new CNMEA(this);
 
-            create the ABLine instance
+            //create the ABLine instance
             ABLine = new CABLine(gl, this);
 
             sw.Start();//start the stopwatch
