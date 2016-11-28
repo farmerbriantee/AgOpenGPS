@@ -50,10 +50,6 @@ namespace AgOpenGPS
         //bool for whether or not a job is active
         public bool isJobStarted = false;
 
-        //the master on off for all sections
-        //public bool isMasterSectionOn = false;
-        public bool wasMasterSectionOn = false;
-
         //master off on forcing sections to stay on, 3 states
         public enum manualBtn {Off,On};
         public manualBtn manualBtnState = manualBtn.Off;
@@ -531,8 +527,15 @@ namespace AgOpenGPS
                 //turn all the sections off
                 section[j].isSectionOn = false;
                 section[j].isAllowedOn = false;
-                //isMasterSectionOn = false;
             }
+
+            //disable all the idividual section buttons
+            btnSection1Man.Enabled = false;
+            btnSection2Man.Enabled = false;
+            btnSection3Man.Enabled = false;
+            btnSection4Man.Enabled = false;
+            btnSection5Man.Enabled = false;
+
 
             menuCloseJob.Enabled = false;
             menuNewJob.Enabled = true;
@@ -548,9 +551,25 @@ namespace AgOpenGPS
             chkSectionsOnOff.Checked = false;
             this.chkSectionsOnOff.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
 
-            //fix ManualOffOnAuto button
+            //fix ManualOffOnAuto buttons
             btnManualOffOn.Enabled = false;
             manualBtnState = manualBtn.Off;
+            btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+
+            for (int j = 0; j < vehicle.numberOfSections; j++)
+            {
+                section[j].isAllowedOn = false;
+                section[j].manBtnState = manBtn.On;
+
+                section[j].sectionOnOffCycle = false;
+                section[j].sectionOffRequest = true;
+                section[j].sectionOnRequest = false;
+                section[j].sectionOffTimer = 0;
+                section[j].sectionOnTimer = 0;
+            }
+            
+            //Update the button colors and text
+            ManualAllBtnsUpdate();
 
             //reset all the ABLine stuff
             ABLine.refPoint1 = new vec3(0.2, 0.0, 0.2);
@@ -819,7 +838,6 @@ namespace AgOpenGPS
                 case manualBtn.Off:
                     manualBtnState = manualBtn.On;
                     btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOn;
-                    wasMasterSectionOn = chkSectionsOnOff.Checked;
 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
                     for (int j = 0; j < vehicle.numberOfSections; j++)
