@@ -98,27 +98,32 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
+            //create a new section and set left and right positions
+            //created whether used or not, saves restarting program
+
+            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
+
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControl.OpenGL;
+
+            //create the world grid
+            worldGrid = new CWorldGrid(gl);
+ 
+            //our vehicle made with gl object and pointer of mainform
+            vehicle = new CVehicle(gl, this);
+ 
+            //our NMEA parser
+            pn = new CNMEA(this);
+
+            create the ABLine instance
+            ABLine = new CABLine(gl, this);
+
             sw.Start();//start the stopwatch
         }
 
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-            //  Get the OpenGL object.
-            OpenGL gl = openGLControl.OpenGL;
-
-            //create the world grid
-            worldGrid = new CWorldGrid(gl);
-
-            //our vehicle made with gl object and pointer of mainform
-            vehicle = new CVehicle(gl, this);
-
-            //our NMEA parser
-            pn = new CNMEA(this);
-
-            //create the ABLine instance
-            ABLine = new CABLine(gl, this);
-
             #region settings //--------------------------------------------------------------------------
 
             //change 2D or 3D icon accordingly on button
