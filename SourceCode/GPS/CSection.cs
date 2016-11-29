@@ -117,6 +117,7 @@ namespace AgOpenGPS
         public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
         {
    
+            //save points so we can calculate speed.
             lastLeftPoint = leftPoint;
             lastRightPoint = rightPoint;
             //add two triangles for next step.
@@ -124,14 +125,60 @@ namespace AgOpenGPS
             leftPoint = new vec3(cosHeading * (positionLeft) + easting,
                                  0, sinHeading * (positionLeft) + northing);
 
-                //Right side
+            //Right side
             rightPoint = new vec3(cosHeading * (positionRight) + easting,
                                   0, sinHeading * (positionRight) + northing);
             if (isSectionOn) {
-                triangleList.Add(leftPoint);
-                triangleList.Add(rightPoint);                        
+                //if the distance traveled to these new points is not greater
+                //than a certain distance, just overwrite those points...
+                int c = triangleList.Count;
+
+                if (c > 2 &&
+                    ((triangleList[c-2] - leftPoint).Magnitude2() < 0.01 &&
+                     (triangleList[c-1] - rightPoint).Magnitude2() < 0.01)) {
+                    triangleList[c-2] = leftPoint;
+                    triangleList[c-1] = rightPoint;
+                    System.Console.WriteLine("condensing triangle.");
+                } else {
+                    triangleList.Add(leftPoint);
+                    triangleList.Add(rightPoint);                        
+                }
             }
         }
+
+        //update the last path point rather than create a new one.  Saves
+        //on triangles, but lets our display stay right with the machine.
+        //As well this will ensure we get continual section speeds as we go.
+        public void UpdatePathPoint(double northing, double easting, double cosHeading, double sinHeading)
+        {
+   
+            //save points so we can calculate speed.
+            lastLeftPoint = leftPoint;
+            lastRightPoint = rightPoint;
+            //add two triangles for next step.
+            //left side
+            leftPoint = new vec3(cosHeading * (positionLeft) + easting,
+                                 0, sinHeading * (positionLeft) + northing);
+
+            //Right side
+            rightPoint = new vec3(cosHeading * (positionRight) + easting,
+                                  0, sinHeading * (positionRight) + northing);
+            if (isSectionOn) {
+                //if the distance traveled to these new points is not greater
+                //than a certain distance, just overwrite those points...
+                int c = triangleList.Count;
+
+                if (c > 2) {
+                    triangleList[c-2] = leftPoint;
+                    triangleList[c-1] = rightPoint;
+                } else {
+                    triangleList.Add(leftPoint);
+                    triangleList.Add(rightPoint);                        
+                }
+            }
+        }
+
+
 
         public void CalculateSpeed(double toolHeading, double elapsedTime, double lookAhead) {
             if (elapsedTime > 0) {
@@ -140,7 +187,6 @@ namespace AgOpenGPS
 
                 double leftSpeed = left.Magnitude() / elapsedTime;
                 double rightSpeed = right.Magnitude() / elapsedTime;
-                double heading;
 
                 if (leftSpeed > rightSpeed) {
                     sectionLookAhead = leftSpeed * lookAhead;
