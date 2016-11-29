@@ -297,7 +297,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-
+            
             //Read the pixels ahead of tool a section at a time. Each section can have its own lookahead manipulated. 
             for (int j = 0; j < vehicle.numberOfSections; j++)
             {
@@ -354,7 +354,7 @@ namespace AgOpenGPS
 
                 
                 /* EXPERIMENTAL... turn off section when it travels backwards */
-                if (section[j].sectionLookAhead < -0.2) {
+                if (section[j].sectionLookAhead < 0) {
                     isSectionRequiredOn = false;
                 }
                 

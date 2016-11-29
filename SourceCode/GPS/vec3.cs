@@ -57,12 +57,13 @@ namespace AgOpenGPS
         }
 
         public double Magnitude() {
-            return Magnitude(this);
+            return Math.Sqrt( x * x + y * y + z * z );
         }
 
-        public static double Magnitude(vec3 a) {
-            return Math.Sqrt( a.x * a.x + a.y * a.y + a.z * a.z );
+        public double Magnitude2() {
+            return x * x + y * y + z * z;
         }
+
 
         public vec3 Normalize() {
             double m = Magnitude();
