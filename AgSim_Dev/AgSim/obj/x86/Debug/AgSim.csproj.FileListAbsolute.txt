@@ -30,3 +30,12 @@ C:\Users\Farm\OneDrive\AgSim_Dev\AgSim\obj\x86\Debug\AgSim.FormSim.resources
 C:\Users\Farm\OneDrive\AgSim_Dev\AgSim\obj\x86\Debug\AgSim.Properties.Resources.resources
 C:\Users\Farm\OneDrive\AgSim_Dev\AgSim\obj\x86\Debug\AgSim.csproj.GenerateResource.Cache
 C:\Users\Farm\OneDrive\AgSim_Dev\AgSim\bin\Debug\AgSim.exe.config
+C:\Users\Farm\Desktop\AgSim\bin\Debug\AgSim.exe.config
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.exe
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.pdb
+C:\Users\Farm\Desktop\AgSim\bin\Debug\AgSim.exe
+C:\Users\Farm\Desktop\AgSim\bin\Debug\AgSim.pdb
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.csprojResolveAssemblyReference.cache
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.FormSim.resources
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.Properties.Resources.resources
+C:\Users\Farm\Desktop\AgSim\obj\x86\Debug\AgSim.csproj.GenerateResource.Cache
