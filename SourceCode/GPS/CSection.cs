@@ -84,15 +84,15 @@ namespace AgOpenGPS
                     0, mf.sinHeading * positionRight + mf.toolNorthing);
                 triangleList.Add(point);
 
-                //left side of triangle
-                point = new vec3(mf.cosHeading * positionLeft + mf.toolEasting,
-                        0, mf.sinHeading * positionLeft + mf.toolNorthing);
-                triangleList.Add(point);
+                ////left side of triangle
+                //point = new vec3(mf.cosHeading * positionLeft + mf.toolEasting,
+                //        0, mf.sinHeading * positionLeft + mf.toolNorthing);
+                //triangleList.Add(point);
 
-                //Right side of triangle
-                point = new vec3(mf.cosHeading * positionRight + mf.toolEasting,
-                    0, mf.sinHeading * positionRight + mf.toolNorthing);
-                triangleList.Add(point);
+                ////Right side of triangle
+                //point = new vec3(mf.cosHeading * positionRight + mf.toolEasting,
+                //    0, mf.sinHeading * positionRight + mf.toolNorthing);
+                //triangleList.Add(point);
             }          
         }
 

@@ -90,7 +90,7 @@ namespace AgOpenGPS
 
             abHeading = Math.Atan2(refPoint2.x - refPoint1.x, refPoint2.z - refPoint1.z);
 
-            if (abHeading < 0) abHeading += Math.PI * 2.0;
+            if (abHeading < 0) abHeading += glm.twoPI;
 
 
             //sin x cos z for endpoints, opposite for additional lines
@@ -121,12 +121,12 @@ namespace AgOpenGPS
         {
             double headingCalc;
             //calculate the heading 90 degrees to ref ABLine heading 
-            if (isOnRightSideCurrentLine) headingCalc = abHeading + Math.PI / 2.0;
-            else headingCalc = abHeading + Math.PI / -2.0;
+            if (isOnRightSideCurrentLine) headingCalc = abHeading + glm.PIBy2;
+            else headingCalc = abHeading - glm.PIBy2;
 
             //calculate the new points for the reference line and points
-            refPoint1.x = Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) / 100.0 + refPoint1.x;
-            refPoint1.z = Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) / 100.0 + refPoint1.z;
+            refPoint1.x = Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.01 + refPoint1.x;
+            refPoint1.z = Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.01 + refPoint1.z;
 
             refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
             refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
@@ -208,9 +208,9 @@ namespace AgOpenGPS
 
             //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
             abFixHeadingDelta = (Math.Abs(mainForm.fixHeading - abHeading));
-            if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - 2.0 * Math.PI);
+            if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
-            if (abFixHeadingDelta >= Math.PI / 2.0) isABSameAsFixHeading = false;
+            if (abFixHeadingDelta >= glm.PIBy2) isABSameAsFixHeading = false;
             else isABSameAsFixHeading = true;
 
             //Convert to centimeters
@@ -263,9 +263,11 @@ namespace AgOpenGPS
                     gl.Disable(OpenGL.GL_LINE_STIPPLE);
                     gl.LineWidth(3);
                     gl.Begin(OpenGL.GL_LINES);
-                    gl.Color(0.9f, 0.0f, 0.0f);
-                    gl.Vertex(currentABLineP1.x, currentABLineP1.y, currentABLineP1.z);
-                    gl.Vertex(currentABLineP2.x, currentABLineP2.y, currentABLineP2.z);
+
+                    if (passNumber%3!=0 || passNumber == 0)  gl.Color(0.9f, 0.0f, 0.0f);
+                    else gl.Color(0.990f, 0.990f, 0.0f);
+                    gl.Vertex(currentABLineP1.x, 2.0, currentABLineP1.z);
+                    gl.Vertex(currentABLineP2.x, 2.0, currentABLineP2.z);
                     gl.End();
 
                     gl.LineWidth(1);
@@ -280,18 +282,18 @@ namespace AgOpenGPS
             //width of lightbar
             double _width = 400;
 
-            double down = 28;
+            double down = 24;
 
             int dotDistance = (int)distanceFromCurrentLine;
-            if (dotDistance < 0) dotDistance -= 20;
-            if (dotDistance > 0) dotDistance += 20;
+            //if (dotDistance < 0) dotDistance -= 20;
+            //if (dotDistance > 0) dotDistance += 20;
 
             if (dotDistance < -280) dotDistance = -280;
             if (dotDistance > 280) dotDistance = 280;
 
             //the black background
             gl.Color(0, 0, 0);
-            gl.PointSize(48.0f);
+            gl.PointSize(32.0f);
             gl.Begin(OpenGL.GL_POINTS);
             for (int x = (int)-_width - 16; x <= 0; x += 32) gl.Vertex((double)x, down);
             for (int x = 0; x <= (int)_width + 32; x += 32) gl.Vertex((double)x, down);
@@ -324,21 +326,21 @@ namespace AgOpenGPS
 
             //left red dots
             gl.PointSize(8.0f);
-            gl.Begin(OpenGL.GL_POINTS);
             gl.Color(0.8f, 0.2f, 0.2f);
+            gl.Begin(OpenGL.GL_POINTS);
             for (int x = -21; x < -4; x++) gl.Vertex(x * 20, down);
             gl.End();
 
             //right red dots
-            gl.Begin(OpenGL.GL_POINTS);
             gl.Color(0.8f, 0.2f, 0.2f);
+            gl.Begin(OpenGL.GL_POINTS);
             for (int x = 5; x < 22; x++) gl.Vertex(x * 20, down);
             gl.End();
 
            //Are you on the right side of line?
             if (Math.Abs(distanceFromCurrentLine) < 15.0)
             {
-                gl.PointSize(32.0f);
+                gl.PointSize(24.0f);
                 gl.Color(0.0f, 1.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
                 gl.Vertex(dotDistance * -1.5, down);
@@ -348,18 +350,18 @@ namespace AgOpenGPS
 
             if (Math.Abs(distanceFromCurrentLine) < 50.0)
             {
-                gl.PointSize(32.0f);
-                gl.Begin(OpenGL.GL_POINTS);
+                gl.PointSize(24.0f);
                 gl.Color(1.0f, 1.0f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
                 gl.Vertex(dotDistance * -1.5, down);
                 gl.End();
                 return;
             }
 
             // more then 50 off ABLine so red
-                gl.PointSize(32.0f);
-                gl.Begin(OpenGL.GL_POINTS);
+                gl.PointSize(24.0f);
                 gl.Color(1.0f, 0.0f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
                 gl.Vertex(dotDistance * -1.5, down);
                 gl.End();
             

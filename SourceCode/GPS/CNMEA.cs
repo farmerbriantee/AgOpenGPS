@@ -183,7 +183,7 @@ namespace AgOpenGPS
                     try
                     {
                         latitude = double.Parse(words[2].Substring(0, 2));
-                        latitude = latitude + double.Parse(words[2].Substring(2)) / 60.0;
+                        latitude = latitude + double.Parse(words[2].Substring(2)) * 0.01666666666666666666666666666667;
                     }
                     catch (ArgumentNullException) { }
 
@@ -194,7 +194,7 @@ namespace AgOpenGPS
                     try
                     {
                         longitude = double.Parse(words[4].Substring(0, 3));
-                        longitude = longitude + double.Parse(words[4].Substring(3)) / 60.0;
+                        longitude = longitude + double.Parse(words[4].Substring(3)) * 0.01666666666666666666666666666667;
                     }
                     catch (ArgumentNullException) { }
 
@@ -251,7 +251,7 @@ namespace AgOpenGPS
                 try
                 {
                     latitude = double.Parse(words[3].Substring(0, 2));
-                    latitude = latitude + double.Parse(words[3].Substring(2)) / 60.0;
+                    latitude = latitude + double.Parse(words[3].Substring(2)) * 0.01666666666666666666666666666667;
                 }
                 catch (ArgumentNullException) { }
 
@@ -262,7 +262,7 @@ namespace AgOpenGPS
                 try
                 {
                     longitude = double.Parse(words[5].Substring(0, 3));
-                    longitude = longitude + double.Parse(words[5].Substring(3)) / 60.0;
+                    longitude = longitude + double.Parse(words[5].Substring(3)) * 0.01666666666666666666666666666667;
                 }
                 catch (ArgumentNullException) { }
 
@@ -428,8 +428,8 @@ namespace AgOpenGPS
             longitude -= (double)int_zone * 6.0;
             zone = int_zone + 31;    // UTM zone
             // Convert from decimal degrees to radians
-            longitude *= Math.PI / 180.0;
-            latitude *= Math.PI / 180.0;
+            longitude = glm.radians(longitude);
+            latitude = glm.radians(latitude);
             // Projection
             double M = WGS84_SEMI_MAJOR_AXIS * m_calc(latitude);
             double M_origin = WGS84_SEMI_MAJOR_AXIS * m_calc(UTM_LATITUDE_OF_ORIGIN);

@@ -158,72 +158,72 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-8.0")]
-        public decimal setSection_nudSpin1 {
+        public decimal setSection_position1 {
             get {
-                return ((decimal)(this["setSection_nudSpin1"]));
+                return ((decimal)(this["setSection_position1"]));
             }
             set {
-                this["setSection_nudSpin1"] = value;
+                this["setSection_position1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-3.0")]
-        public decimal setSection_nudSpin2 {
+        public decimal setSection_position2 {
             get {
-                return ((decimal)(this["setSection_nudSpin2"]));
+                return ((decimal)(this["setSection_position2"]));
             }
             set {
-                this["setSection_nudSpin2"] = value;
+                this["setSection_position2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3.0")]
-        public decimal setSection_nudSpin3 {
+        public decimal setSection_position3 {
             get {
-                return ((decimal)(this["setSection_nudSpin3"]));
+                return ((decimal)(this["setSection_position3"]));
             }
             set {
-                this["setSection_nudSpin3"] = value;
+                this["setSection_position3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8.0")]
-        public decimal setSection_nudSpin4 {
+        public decimal setSection_position4 {
             get {
-                return ((decimal)(this["setSection_nudSpin4"]));
+                return ((decimal)(this["setSection_position4"]));
             }
             set {
-                this["setSection_nudSpin4"] = value;
+                this["setSection_position4"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal setSection_nudSpin5 {
+        public decimal setSection_position5 {
             get {
-                return ((decimal)(this["setSection_nudSpin5"]));
+                return ((decimal)(this["setSection_position5"]));
             }
             set {
-                this["setSection_nudSpin5"] = value;
+                this["setSection_position5"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public decimal setSection_nudSpin6 {
+        public decimal setSection_position6 {
             get {
-                return ((decimal)(this["setSection_nudSpin6"]));
+                return ((decimal)(this["setSection_position6"]));
             }
             set {
-                this["setSection_nudSpin6"] = value;
+                this["setSection_position6"] = value;
             }
         }
         

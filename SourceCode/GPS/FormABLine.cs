@@ -14,14 +14,14 @@ namespace AgOpenGPS
     public partial class FormABLine : Form
     {
         //access to the main GPS form and all its variables
-        private FormGPS mainForm = null;
+        private FormGPS mf = null;
 
         private double upDnHeading = 0;
 
         public FormABLine(Form callingForm)
         {
             //get copy of the calling main form
-            mainForm = callingForm as FormGPS;
+            mf = callingForm as FormGPS;
 
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace AgOpenGPS
         private void FormABLine_Load(object sender, EventArgs e)
         {
             //different start based on AB line already set or not
-            if (mainForm.ABLine.isABLineSet)
+            if (mf.ABLine.isABLineSet)
             {
                 //AB line is on screen and set
                 btnAPoint.Enabled = false;
@@ -40,7 +40,7 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = true;
                 btnUpABHeadingBy1.Enabled = true;
                 btnDnABHeadingBy1.Enabled = true;
-                upDnHeading = Math.Round((glm.degrees(mainForm.ABLine.abHeading)), 1);
+                upDnHeading = Math.Round((glm.degrees(mf.ABLine.abHeading)), 1);
             }
 
             else
@@ -54,55 +54,54 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = false;
                 btnUpABHeadingBy1.Enabled = false;
                 btnDnABHeadingBy1.Enabled = false;
-                upDnHeading = Math.Round((glm.degrees(mainForm.fixHeading)), 1);
+                upDnHeading = Math.Round((glm.degrees(mf.fixHeading)), 1);
             }
         }
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
-            mainForm.ABLine.refPoint1.x = mainForm.prevEasting[0];
-            mainForm.ABLine.refPoint1.y = 0.0;
-            mainForm.ABLine.refPoint1.z = mainForm.prevNorthing[0];
-            Console.WriteLine(mainForm.ABLine.refPoint1.x);
-            Console.WriteLine(mainForm.ABLine.refPoint1.z);
+            mf.ABLine.refPoint1.x = mf.prevEasting[0];
+            mf.ABLine.refPoint1.y = 0.0;
+            mf.ABLine.refPoint1.z = mf.prevNorthing[0];
+            Console.WriteLine(mf.ABLine.refPoint1.x);
+            Console.WriteLine(mf.ABLine.refPoint1.z);
             btnAPoint.Enabled = false;
-            btnBPoint.Enabled = true;
             btnUpABHeading.Enabled = true;
             btnDnABHeading.Enabled = true;
             btnUpABHeadingBy1.Enabled = true;
             btnDnABHeadingBy1.Enabled = true;
-            upDnHeading = Math.Round(glm.degrees(mainForm.fixHeading), 1);
+            upDnHeading = Math.Round(glm.degrees(mf.fixHeading), 1);
         }
 
        private void btnBPoint_Click(object sender, EventArgs e)
         {
-            mainForm.ABLine.SetABLineByBPoint();
+            mf.ABLine.SetABLineByBPoint();
             btnABLineOk.Enabled = true;
             btnDeleteAB.Enabled = true;
-            upDnHeading = Math.Round(glm.degrees(mainForm.fixHeading), 1);
+            upDnHeading = Math.Round(glm.degrees(mf.fixHeading), 1);
         }
 
         private void btnUpABHeading_Click(object sender, EventArgs e)
         {
             if ((upDnHeading += 0.1) > 359.9) upDnHeading = 0;
-            mainForm.ABLine.abHeading = glm.radians(upDnHeading);
-            mainForm.ABLine.SetABLineByHeading();
+            mf.ABLine.abHeading = glm.radians(upDnHeading);
+            mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
         }
 
         private void btnDownABHeading_Click(object sender, EventArgs e)
         {
             if ((upDnHeading -= 0.1) < 0) upDnHeading = 359.9;
-            mainForm.ABLine.abHeading = glm.radians(upDnHeading);
-            mainForm.ABLine.SetABLineByHeading();
+            mf.ABLine.abHeading = glm.radians(upDnHeading);
+            mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
         }
 
         private void btnUpABHeadingBy1_Click(object sender, EventArgs e)
         {
             if ((upDnHeading += 1) > 359.9) upDnHeading -= 360;
-            mainForm.ABLine.abHeading = glm.radians(upDnHeading);
-            mainForm.ABLine.SetABLineByHeading();
+            mf.ABLine.abHeading = glm.radians(upDnHeading);
+            mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
 
         }
@@ -110,8 +109,8 @@ namespace AgOpenGPS
         private void btnDnABHeadingBy1_Click(object sender, EventArgs e)
         {
             if ((upDnHeading -= 1) < 0 ) upDnHeading += 360.0;
-            mainForm.ABLine.abHeading = glm.radians(upDnHeading);
-            mainForm.ABLine.SetABLineByHeading();
+            mf.ABLine.abHeading = glm.radians(upDnHeading);
+            mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
         }
 
@@ -125,7 +124,7 @@ namespace AgOpenGPS
 
         private void btnDeleteAB_Click(object sender, EventArgs e)
         {
-            mainForm.ABLine.DeleteAB();
+            mf.ABLine.DeleteAB();
             btnAPoint.Enabled = true;
             btnBPoint.Enabled = false;
             btnDeleteAB.Enabled = false;
@@ -137,8 +136,20 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.lblFixHeading.Text = Convert.ToString( Math.Round(glm.degrees(mainForm.fixHeading), 1)) + "°";
+            this.lblFixHeading.Text = Convert.ToString( Math.Round(glm.degrees(mf.fixHeading), 1)) + "°";
             this.lblABHeading.Text = Convert.ToString(upDnHeading) + "°";
+            lblKeepGoing.Text = "";
+
+            //make sure we go at least 3 or so meters before allowing B reference point
+            if (!btnAPoint.Enabled && !btnBPoint.Enabled)
+            {
+                double pointAToFixDistance = 
+                Math.Pow((mf.ABLine.refPoint1.x - mf.pn.easting), 2) +
+                Math.Pow((mf.ABLine.refPoint1.z - mf.pn.northing), 2);
+
+                if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
+                else lblKeepGoing.Text = "    Keep\r\n" + "Going  " + Convert.ToInt16((100 - pointAToFixDistance)).ToString();
+            }
 
         }
 

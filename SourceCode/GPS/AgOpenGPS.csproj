@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -74,7 +74,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -82,6 +81,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CABLine.cs" />
@@ -97,11 +100,39 @@
     <Compile Include="FormCommSet.Designer.cs">
       <DependentUpon>FormCommSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormJob.Designer.cs">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSaveOrNot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSaveOrNot.Designer.cs">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTimedMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTimedMessage.Designer.cs">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormVariables.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormVariables.Designer.cs">
       <DependentUpon>FormVariables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormWebCam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWebCam.Designer.cs">
+      <DependentUpon>FormWebCam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Position.designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -154,29 +185,49 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="TCPComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="vec3.cs" />
     <EmbeddedResource Include="FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormCommSet.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGPS.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormJob.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSaveOrNot.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormtimedMessage.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormVariables.resx">
       <DependentUpon>FormVariables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWebCam.resx">
+      <DependentUpon>FormWebCam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -218,11 +269,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dependencies\SharpGL.dll" />
-    <None Include="Dependencies\SharpGL.SceneGraph.dll" />
-    <None Include="Dependencies\SharpGL.WinForms.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
@@ -247,11 +293,32 @@
     <None Include="btnImages\SectionOn.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />
+    <None Include="btnImages\CloseJobBlue64.png" />
+    <None Include="btnImages\SectionSettings.jpg" />
+    <None Include="btnImages\SectionSettings1.jpg" />
+    <None Include="btnImages\SectionSettings2.jpg" />
+    <None Include="btnImages\SectionSettings3.jpg" />
+    <None Include="btnImages\SectionSettings4.jpg" />
+    <None Include="btnImages\SectionSettings5.jpg" />
+    <None Include="btnImages\JobActive.png" />
+    <None Include="btnImages\JobClosed.png" />
+    <None Include="btnImages\FileSave.png" />
+    <None Include="btnImages\Play.png" />
+    <None Include="btnImages\Stop.png" />
+    <None Include="btnImages\Oops.png" />
+    <None Include="btnImages\back-button.png" />
+    <None Include="btnImages\FileDontSave.png" />
+    <None Include="btnImages\FileNew.png" />
+    <None Include="btnImages\FileOpen.png" />
+    <None Include="btnImages\FilePrevious.png" />
+    <Content Include="Dependencies\Floor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dependencies\Landscape.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dependencies\Vehicle.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ALicense.txt" />
   </ItemGroup>

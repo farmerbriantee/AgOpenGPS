@@ -17,8 +17,6 @@ namespace AgOpenGPS
        //class variables
         private FormGPS mf = null;
 
-        const double in2m = 0.0254;
-        const double m2in = 39.3701;
 
 
         double toolOverlap, toolTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
@@ -27,12 +25,9 @@ namespace AgOpenGPS
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead;
         int numberOfSections,displayFixDelay, displayCameraDelay;
 
-        double spinSection1;
-        double spinSection2;
-        double spinSection3;
-        double spinSection4;
-        double spinSection5;
-        double spinSection6;
+
+        decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5;
+        decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4, sectionPosition5, sectionPosition6;
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -55,19 +50,19 @@ namespace AgOpenGPS
             wheelbase = Math.Abs(Properties.Settings.Default.setVehicle_wheelbase);
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
-            nudAntennaHeight.Value = (decimal)(antennaHeight * m2in);
+            nudAntennaHeight.Value = (decimal)(antennaHeight * glm.m2in);
             nudAntennaHeight.ValueChanged += nudAntennaHeight_ValueChanged;
 
             nudAntennaPivot.ValueChanged -= nudAntennaPivot_ValueChanged;
-            nudAntennaPivot.Value = (decimal)(antennaPivot * m2in);
+            nudAntennaPivot.Value = (decimal)(antennaPivot * glm.m2in);
             nudAntennaPivot.ValueChanged += nudAntennaPivot_ValueChanged;
 
             nudHitchLength.ValueChanged -= nudHitchLength_ValueChanged;
-            nudHitchLength.Value = (decimal)(hitchLength * m2in);
+            nudHitchLength.Value = (decimal)(hitchLength * glm.m2in);
             nudHitchLength.ValueChanged += nudHitchLength_ValueChanged;
 
             nudWheelbase.ValueChanged -= nudWheelbase_ValueChanged;
-            nudWheelbase.Value = (decimal)(wheelbase * m2in);
+            nudWheelbase.Value = (decimal)(wheelbase * glm.m2in);
             nudWheelbase.ValueChanged += nudWheelbase_ValueChanged;
 
             
@@ -114,17 +109,16 @@ namespace AgOpenGPS
             toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
 
 
-
             nudOverlap.ValueChanged -= nudOverlap_ValueChanged;
-            nudOverlap.Value = (decimal)(toolOverlap * m2in);
+            nudOverlap.Value = (decimal)(toolOverlap * glm.m2in);
             nudOverlap.ValueChanged += nudOverlap_ValueChanged;
 
             nudForeAft.ValueChanged -= nudAft_ValueChanged;
-            nudForeAft.Value = (decimal)(toolTrailingHitchLength * m2in);
+            nudForeAft.Value = (decimal)(toolTrailingHitchLength * glm.m2in);
             nudForeAft.ValueChanged += nudAft_ValueChanged;
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
-            nudOffset.Value = (decimal)(toolOffset * m2in);
+            nudOffset.Value = (decimal)(toolOffset * glm.m2in);
             nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             nudTurnOffDelay.ValueChanged -= nudTurnOffDelay_ValueChanged;
@@ -138,48 +132,21 @@ namespace AgOpenGPS
              //Sections set to settings page ----------------------------------------------------------------------
             numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
-            spinSection1 = (double)Properties.Settings.Default.setSection_nudSpin1;
-            spinSection2 = (double)Properties.Settings.Default.setSection_nudSpin2;
-            spinSection3 = (double)Properties.Settings.Default.setSection_nudSpin3;
-            spinSection4 = (double)Properties.Settings.Default.setSection_nudSpin4;
-            spinSection5 = (double)Properties.Settings.Default.setSection_nudSpin5;
-            spinSection6 = (double)Properties.Settings.Default.setSection_nudSpin6;
-
-            nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection1.Value = (decimal)(spinSection1 * m2in);
-            nudSection1.ValueChanged += nudSection1_ValueChanged;
-
-            nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection2.Value = (decimal)(spinSection2 * m2in);
-            nudSection2.ValueChanged += nudSection2_ValueChanged;
-
-            nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection3.Value = (decimal)(spinSection3 * m2in);
-            nudSection3.ValueChanged += nudSection3_ValueChanged;
-
-            nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection4.Value = (decimal)(spinSection4 * m2in);
-            nudSection4.ValueChanged += nudSection4_ValueChanged;
-
-            nudSection5.ValueChanged -= nudSection5_ValueChanged;
-            nudSection5.Value = (decimal)(spinSection5 * m2in);
-            nudSection5.ValueChanged += nudSection5_ValueChanged;
-
-            nudSection6.ValueChanged -= nudSection6_ValueChanged;
-            nudSection6.Value = (decimal)(spinSection6 * m2in);
-            nudSection6.ValueChanged += nudSection6_ValueChanged;
-
+            //grab number of sections
             nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
             nudNumberOfSections.Value = numberOfSections;
             nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
 
-            nudCalc.ValueChanged -= nudCalc_ValueChanged;
-            nudCalc.Value = (decimal)(Properties.Settings.Default.setVehicle_toolWidth * m2in);
-            nudCalc.ValueChanged += nudCalc_ValueChanged;
+            //calc the 5 section widths based on settings.settings also meters to inches
+            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1)*(decimal)glm.m2in);
+            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2)*(decimal)glm.m2in);
+            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3)*(decimal)glm.m2in);
+            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4)*(decimal)glm.m2in);
+            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5)*(decimal)glm.m2in); 
 
-            UpdateSpinnersTextLabels();            
-            lblTractor.Left = ((int)nudNumberOfSections.Value - 1) * 81 + 76;            
-            
+            //based on number of sections and values update the page before displaying
+            UpdateSpinners();            
+
             ////Display load the delay slides ------------------------------------------------------------------
             displayFixDelay = Properties.Settings.Default.setDisplay_delayFixPrev;
             displayCameraDelay = Properties.Settings.Default.setDisplay_delayCameraPrev;
@@ -249,13 +216,16 @@ namespace AgOpenGPS
             mf.vehicle.numberOfSections = numberOfSections;
             Properties.Settings.Default.setVehicle_numSections = mf.vehicle.numberOfSections;
 
+            //take the section widths and convert to meters and positions along tool.
+            CalculateSectionPositions();
+
             //save the values in each spinner for section position widths in settings
-            Properties.Settings.Default.setSection_nudSpin1 = (decimal)spinSection1;
-            Properties.Settings.Default.setSection_nudSpin2 = (decimal)spinSection2;
-            Properties.Settings.Default.setSection_nudSpin3 = (decimal)spinSection3;
-            Properties.Settings.Default.setSection_nudSpin4 = (decimal)spinSection4;
-            Properties.Settings.Default.setSection_nudSpin5 = (decimal)spinSection5;
-            Properties.Settings.Default.setSection_nudSpin6 = (decimal)spinSection6;
+            Properties.Settings.Default.setSection_position1 = sectionPosition1;
+            Properties.Settings.Default.setSection_position2 = sectionPosition2;
+            Properties.Settings.Default.setSection_position3 = sectionPosition3;
+            Properties.Settings.Default.setSection_position4 = sectionPosition4;
+            Properties.Settings.Default.setSection_position5 = sectionPosition5;
+            Properties.Settings.Default.setSection_position6 = sectionPosition6;
 
             //line up manual buttons based on # of sections
             mf.LineUpManualBtns();
@@ -297,22 +267,22 @@ namespace AgOpenGPS
 
         private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
         {
-            antennaHeight = (double)nudAntennaHeight.Value * in2m;
+            antennaHeight = (double)nudAntennaHeight.Value * glm.in2m;
         }
 
         private void nudAntennaPivot_ValueChanged(object sender, EventArgs e)
         {
-            antennaPivot = (double)nudAntennaPivot.Value * in2m;
+            antennaPivot = (double)nudAntennaPivot.Value * glm.in2m;
         }
 
         private void nudHitchLength_ValueChanged(object sender, EventArgs e)
         {
-            hitchLength = (double)nudHitchLength.Value * in2m;
+            hitchLength = (double)nudHitchLength.Value * glm.in2m;
         }
 
         private void nudWheelbase_ValueChanged(object sender, EventArgs e)
         {
-            wheelbase = (double)nudWheelbase.Value * in2m;
+            wheelbase = (double)nudWheelbase.Value * glm.in2m;
         }
 
         private void btnFileOpenVehicle_Click(object sender, EventArgs e)
@@ -405,12 +375,12 @@ namespace AgOpenGPS
 
         private void nudAft_ValueChanged(object sender, EventArgs e)
         {
-            toolTrailingHitchLength = (double)(nudForeAft.Value) * in2m;
+            toolTrailingHitchLength = (double)(nudForeAft.Value) * glm.in2m;
         }
 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
-            toolOffset = (double)nudOffset.Value * in2m;
+            toolOffset = (double)nudOffset.Value * glm.in2m;
         }
 
         private void nudLookAhead_ValueChanged(object sender, EventArgs e)
@@ -425,112 +395,99 @@ namespace AgOpenGPS
 
         private void nudOverlap_ValueChanged(object sender, EventArgs e)
         {
-            toolOverlap = (double)nudOverlap.Value * in2m; 
+            toolOverlap = (double)nudOverlap.Value * glm.in2m; 
         }
 
        #endregion Vehicle
 
         #region Sections //----------------------------------------------------------------
 
-        private void tabSections_Enter(object sender, EventArgs e)
-        {
-            //Enable or Disable the section distance spinners according to number of sections
-            UpdateSpinnersTextLabels();
-            lblTractor.Left = ((int)nudNumberOfSections.Value - 1) * 81 + 99;
-        }
-
-        //enable or disable section width spinners based on number selected
-        public void UpdateSpinnersTextLabels()
+        //enable or disable section width spinners based on number sections selected
+        public void UpdateSpinners()
         {
             int i = (int)nudNumberOfSections.Value;
             switch (i)
             {
                 case 1:
                     {
-                        nudSection1.Enabled = true;  nudSection2.Enabled = true;                        
+                        nudSection1.Enabled = true;  nudSection1.Visible = true;
+                        nudSection2.Enabled = false; nudSection2.Visible = false;                       
                         nudSection3.Enabled = false; nudSection3.Visible = false;                        
                         nudSection4.Enabled = false; nudSection4.Visible = false;                        
-                        nudSection5.Enabled = false; nudSection5.Visible = false;                        
-                        nudSection6.Enabled = false; nudSection6.Visible = false;                        
-                        progressBar1.Value = 10 * i;
+                        nudSection5.Enabled = false; nudSection5.Visible = false;
 
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection2.Value - nudSection1.Value,0));
-                        lblSection2Width.Text = "";
-                        lblSection3Width.Text = "";
-                        lblSection4Width.Text = "";
-                        lblSection5Width.Text = "";
-                        lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 0)) + '"';
+                        nudSection1.Left = 432;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)nudSection1.Value);
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings1;
+
                         break;
                     }
                 case 2:
                     {
-                        nudSection1.Enabled = true;  nudSection2.Enabled = true;                        
-                        nudSection3.Enabled = true;  nudSection3.Visible = true;                        
-                        nudSection4.Enabled = false; nudSection4.Visible = false;                        
-                        nudSection5.Enabled = false; nudSection5.Visible = false;                        
-                        nudSection6.Enabled = false; nudSection6.Visible = false;                        
-                        progressBar1.Value = 10 * i;
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = false; nudSection3.Visible = false;
+                        nudSection4.Enabled = false; nudSection4.Visible = false;
+                        nudSection5.Enabled = false; nudSection5.Visible = false;
 
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection3.Value - nudSection1.Value,0));
-                        lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 0)) + '"';
-                        lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 0)) + '"';
-                        lblSection3Width.Text = "";
-                        lblSection4Width.Text = "";
-                        lblSection5Width.Text = "";
+                        nudSection1.Left = 182;
+                        nudSection2.Left = 681;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings2;
                         break;
                     }
 
                 case 3:
                     {
-                        nudSection1.Enabled = true;  nudSection2.Enabled = true;                        
-                        nudSection3.Enabled = true;  nudSection3.Visible = true;                        
-                        nudSection4.Visible = true;  nudSection4.Enabled = true;                        
-                        nudSection5.Enabled = false; nudSection5.Visible = false;                        
-                        nudSection6.Enabled = false; nudSection6.Visible = false;                        
-                        progressBar1.Value = 10 * i;
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = true; nudSection3.Visible = true;
+                        nudSection4.Enabled = false; nudSection4.Visible = false;
+                        nudSection5.Enabled = false; nudSection5.Visible = false;
 
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection4.Value - nudSection1.Value,0));
-                        lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 0)) + '"';
-                        lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 0)) + '"';
-                        lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 0)) + '"';
-                        lblSection4Width.Text = "";
-                        lblSection5Width.Text = "";
+                        nudSection1.Left = 130;
+                        nudSection2.Left = 433;
+                        nudSection3.Left = 733;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings3;
                         break;
                     }
 
                 case 4:
                     {
-                        nudSection1.Enabled = true;  nudSection2.Enabled = true;                        
-                        nudSection3.Enabled = true;  nudSection3.Visible = true;
-                        nudSection4.Enabled = true;  nudSection4.Visible = true;
-                        nudSection5.Enabled = true;  nudSection5.Visible = true;                   
-                        nudSection6.Enabled = false; nudSection6.Visible = false;                        
-                        progressBar1.Value = 10 * i;
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = true; nudSection3.Visible = true;
+                        nudSection4.Enabled = true; nudSection4.Visible = true;
+                        nudSection5.Enabled = false; nudSection5.Visible = false;
+                        nudSection1.Left = 75;
+                        nudSection2.Left = 309;
+                        nudSection3.Left = 551;
+                        nudSection4.Left = 781;
 
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection5.Value - nudSection1.Value,0));
-                        lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 0)) + '"';
-                        lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 0)) + '"';
-                        lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 0)) + '"';
-                        lblSection4Width.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value), 0)) + '"';
-                        lblSection5Width.Text = "";
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value+nudSection4.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings4;
                         break;
                     }
 
                 case 5:
                     {
-                        nudSection1.Enabled = true; nudSection2.Enabled = true;                        
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
                         nudSection3.Enabled = true; nudSection3.Visible = true;
                         nudSection4.Enabled = true; nudSection4.Visible = true;
                         nudSection5.Enabled = true; nudSection5.Visible = true;
-                        nudSection6.Enabled = true; nudSection6.Visible = true;                
-                        progressBar1.Value = 10 * i;
+                        nudSection1.Left = 55;
+                        nudSection2.Left = 239;
+                        nudSection3.Left = 427;
+                        nudSection4.Left = 615;
+                        nudSection5.Left = 803;
 
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection6.Value - nudSection1.Value, 0));
-                        lblSection1Width.Text = Convert.ToString(Math.Round(((float)nudSection2.Value - (float)nudSection1.Value), 0)) + '"';
-                        lblSection2Width.Text = Convert.ToString(Math.Round(((float)nudSection3.Value - (float)nudSection2.Value), 0)) + '"';
-                        lblSection3Width.Text = Convert.ToString(Math.Round(((float)nudSection4.Value - (float)nudSection3.Value), 0)) + '"';
-                        lblSection4Width.Text = Convert.ToString(Math.Round(((float)nudSection5.Value - (float)nudSection4.Value), 0)) + '"';
-                        lblSection5Width.Text = Convert.ToString(Math.Round(((float)nudSection6.Value - (float)nudSection5.Value), 0)) + '"';
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value+nudSection4.Value+nudSection5.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
                         break;
                     }
 
@@ -539,159 +496,132 @@ namespace AgOpenGPS
             SectionFeetInchesTotalWidthLabelUpdate();
         }
 
-        private void CalculateSectionSpinners()
+        //update tool width label at bottom of window
+        private void SectionFeetInchesTotalWidthLabelUpdate()
         {
-            int i = numberOfSections;
+            double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text)* 0.0833333333333333);
+            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
+            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12 , 0);
+            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
 
-            nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection5.ValueChanged -= nudSection5_ValueChanged;
-            nudSection6.ValueChanged -= nudSection6_ValueChanged;
+        }
 
+        //Convert section width to positions along toolbar
+        private void CalculateSectionPositions()
+        {
+            int i = (int)nudNumberOfSections.Value;
+
+            //convert to meters spinner value
+            sectionWidth1 = nudSection1.Value * (decimal)glm.in2m;
+            sectionWidth2 = nudSection2.Value * (decimal)glm.in2m;
+            sectionWidth3 = nudSection3.Value * (decimal)glm.in2m;
+            sectionWidth4 = nudSection4.Value * (decimal)glm.in2m;
+            sectionWidth5 = nudSection5.Value * (decimal)glm.in2m;
 
             switch (i)
             {
-
-
                 case 1:
                     {
-                        nudSection2.Value = (nudCalc.Value * 0.5M);
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection2.Value - nudSection1.Value,2));
+                        sectionPosition2 = sectionWidth1 / 2.0M;
+                        sectionPosition1 = sectionPosition2 * -1;
+                        sectionPosition3 = 0;
+                        sectionPosition4 = 0;
+                        sectionPosition5 = 0;
+                        sectionPosition6 = 0;
                         break;
                     }
+
                 case 2:
                     {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = 0;
-                        nudSection3.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = 0;
-                        spinSection3 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection3.Value - nudSection1.Value,2));
+                        sectionPosition1 = sectionWidth1 * -1;
+                        sectionPosition2 = 0;
+                        sectionPosition3 = sectionWidth2;
+                        sectionPosition4 = 0;
+                        sectionPosition5 = 0;
+                        sectionPosition6 = 0;
                         break;
                     }
 
                 case 3:
                     {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.16M);
-                        nudSection3.Value = (nudCalc.Value * 0.16M);
-                        nudSection4.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(-nudCalc.Value * 0.16M * 0.0254M);
-                        spinSection3 = (double)(nudCalc.Value * 0.16M * 0.0254M);
-                        spinSection4 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection4.Value - nudSection1.Value,2));
+                        sectionPosition3 = sectionWidth2 / 2.0M;
+                        sectionPosition2 = sectionPosition3 * -1;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition4 = sectionPosition3 + sectionWidth3;
+                        sectionPosition5 = 0;
+                        sectionPosition6 = 0;
                         break;
                     }
 
                 case 4:
                     {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.25M);
-                        nudSection3.Value = 0;
-                        nudSection4.Value = (nudCalc.Value * 0.25M);
-                        nudSection5.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(-nudCalc.Value * 0.25M * 0.0254M);
-                        spinSection3 = 0;
-                        spinSection4 = (double)(nudCalc.Value * 0.25M * 0.0254M);
-                        spinSection5 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection5.Value - nudSection1.Value, 2));
+                        sectionPosition2 = sectionWidth2 * -1;
+                        sectionPosition3 = 0;
+                        sectionPosition4 = sectionWidth3;
+                        sectionPosition5 = sectionWidth3 + sectionWidth4;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition6 = 0;
                         break;
                     }
 
                 case 5:
                     {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.3M);
-                        nudSection3.Value = (-nudCalc.Value * 0.1M);
-                        nudSection4.Value = (nudCalc.Value * 0.1M);
-                        nudSection5.Value = (nudCalc.Value * 0.3M);
-                        nudSection6.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M); ;
-                        spinSection2 = (double)(-nudCalc.Value * 0.3M * 0.0254M);
-                        spinSection3 = (double)(-nudCalc.Value * 0.1M * 0.0254M);
-                        spinSection4 = (double)(nudCalc.Value * 0.1M * 0.0254M);
-                        spinSection5 = (double)(nudCalc.Value * 0.3M * 0.0254M);
-                        spinSection6 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection6.Value - nudSection1.Value, 2));
+                        sectionPosition4 = sectionWidth3 / 2.0M;
+                        sectionPosition3 = sectionPosition4 * -1;
+                        sectionPosition2 = sectionPosition3 - sectionWidth2;
+                        sectionPosition5 = sectionPosition4 + sectionWidth4;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition6 = sectionPosition5 + sectionWidth5;
                         break;
                     }
+
             }
-
-            SectionFeetInchesTotalWidthLabelUpdate();
-            UpdateSpinnersTextLabels();
-
-            nudSection1.ValueChanged += nudSection1_ValueChanged;
-            nudSection2.ValueChanged += nudSection2_ValueChanged;
-            nudSection3.ValueChanged += nudSection3_ValueChanged;
-            nudSection4.ValueChanged += nudSection4_ValueChanged;
-            nudSection5.ValueChanged += nudSection5_ValueChanged;
-            nudSection6.ValueChanged += nudSection6_ValueChanged;
-        }
-
-        private void SectionFeetInchesTotalWidthLabelUpdate()
-        {
-            double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text)/12);
-            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
-            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
-            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
-
-            nudCalc.ValueChanged -= nudCalc_ValueChanged;
-            nudCalc.Value = (decimal)(Convert.ToDouble(lblVehicleToolWidth.Text));
-            nudCalc.ValueChanged += nudCalc_ValueChanged;
-
-            toFeet = (Convert.ToDouble(nudCalc.Value) / 12);
-            lblCalcFeet.Text = Convert.ToString((int)toFeet) + "'";
-            temp = Math.Round((toFeet - Math.Truncate(toFeet)) / 0.08333, 0);
-            lblCalcInches.Text = Convert.ToString(temp) + '"';
-        }
-
-        //spin the magic calculator spinner
-        private void nudCalc_ValueChanged(object sender, EventArgs e)
-        {
-            CalculateSectionSpinners();
         }
 
         //Every time the # of Sections is spun
         private void nudNumberOfSections_ValueChanged(object sender, EventArgs e)
         {
             numberOfSections = (int)nudNumberOfSections.Value;
-            CalculateSectionSpinners();
-            UpdateSpinnersTextLabels();
-            
-            lblTractor.Left = (numberOfSections - 1) * 81 + 99;
+
+            nudSection1.ValueChanged -= nudSection1_ValueChanged;
+            nudSection1.Value = (decimal)(200);
+            nudSection1.ValueChanged += nudSection1_ValueChanged;
+
+            nudSection2.ValueChanged -= nudSection2_ValueChanged;
+            nudSection2.Value = (decimal)(200);
+            nudSection2.ValueChanged += nudSection2_ValueChanged;
+
+            nudSection3.ValueChanged -= nudSection3_ValueChanged;
+            nudSection3.Value = (decimal)(200);
+            nudSection3.ValueChanged += nudSection3_ValueChanged;
+
+            nudSection4.ValueChanged -= nudSection4_ValueChanged;
+            nudSection4.Value = (decimal)(200);
+            nudSection4.ValueChanged += nudSection4_ValueChanged;
+
+            nudSection5.ValueChanged -= nudSection5_ValueChanged;
+            nudSection5.Value = (decimal)(200);
+            nudSection5.ValueChanged += nudSection5_ValueChanged;
+
+
+            UpdateSpinners();
         }
 
         //Did user spin a section distance spinner?
         private void nudSection1_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection1 = (double)nudSection1.Value * .0254; }
+        { UpdateSpinners(); }
 
         private void nudSection2_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection2 = (double)nudSection2.Value * .0254; }
+        { UpdateSpinners(); }
 
         private void nudSection3_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection3 = (double)nudSection3.Value * .0254; }
+        { UpdateSpinners(); }
 
         private void nudSection4_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection4 = (double)nudSection4.Value * .0254; }
+        { UpdateSpinners(); }
 
         private void nudSection5_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection5 = (double)nudSection5.Value * .0254; }
-
-        private void nudSection6_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinnersTextLabels(); spinSection6 = (double)nudSection6.Value * .0254; }
-
-
+        { UpdateSpinners(); }
  
         #endregion Sections
 
@@ -725,11 +655,129 @@ namespace AgOpenGPS
 
 #endregion
 
-
- 
- 
-
-
     }
 }
- 
+
+
+/*
+        private void CalculateSectionSpinners()
+        {
+            int i = numberOfSections;
+
+            nudSection1.ValueChanged -= nudSection1_ValueChanged;
+            nudSection2.ValueChanged -= nudSection2_ValueChanged;
+            nudSection3.ValueChanged -= nudSection3_ValueChanged;
+            nudSection4.ValueChanged -= nudSection4_ValueChanged;
+            nudSection5.ValueChanged -= nudSection5_ValueChanged;
+
+
+            switch (i)
+            {
+
+
+                case 1:
+                    {
+                        nudSection2.Value = (nudCalc.Value * 0.5M);
+                        nudSection1.Value = (-nudCalc.Value * 0.5M);
+                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
+                        spinSection2 = (double)(nudCalc.Value * 0.5M * 0.0254M);
+                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection2.Value - nudSection1.Value,2));
+                        nudSection1.Left = 31;
+                        nudSection2.Left = 816;
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings1;
+                        break;
+                    }
+                case 2:
+                    {
+                        nudSection1.Value = (-nudCalc.Value * 0.5M);
+                        nudSection2.Value = 0;
+                        nudSection3.Value = (nudCalc.Value * 0.5M);
+                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
+                        spinSection2 = 0;
+                        spinSection3 = (double)(nudCalc.Value * 0.5M * 0.0254M);
+
+                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection3.Value - nudSection1.Value,2));
+                        nudSection1.Left = 31;
+                        nudSection2.Left = 434;
+                        nudSection3.Left = 816;
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings2;
+
+                        break;
+                    }
+
+                case 3:
+                    {
+                        nudSection1.Value = (-nudCalc.Value * 0.5M);
+                        nudSection2.Value = (-nudCalc.Value * 0.16M);
+                        nudSection3.Value = (nudCalc.Value * 0.16M);
+                        nudSection4.Value = (nudCalc.Value * 0.5M);
+                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
+                        spinSection2 = (double)(-nudCalc.Value * 0.16M * 0.0254M);
+                        spinSection3 = (double)(nudCalc.Value * 0.16M * 0.0254M);
+                        spinSection4 = (double)(nudCalc.Value * 0.5M * 0.0254M);
+                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection4.Value - nudSection1.Value,2));
+                        nudSection1.Left = 31;
+                        nudSection2.Left = 291;
+                        nudSection3.Left = 567;
+                        nudSection4.Left = 816;
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings3;
+                        break;
+                    }
+
+                case 4:
+                    {
+                        nudSection1.Value = (-nudCalc.Value * 0.5M);
+                        nudSection2.Value = (-nudCalc.Value * 0.25M);
+                        nudSection3.Value = 0;
+                        nudSection4.Value = (nudCalc.Value * 0.25M);
+                        nudSection5.Value = (nudCalc.Value * 0.5M);
+                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
+                        spinSection2 = (double)(-nudCalc.Value * 0.25M * 0.0254M);
+                        spinSection3 = 0;
+                        spinSection4 = (double)(nudCalc.Value * 0.25M * 0.0254M);
+                        spinSection5 = (double)(nudCalc.Value * 0.5M * 0.0254M);
+
+                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection5.Value - nudSection1.Value, 2));
+                        nudSection1.Left = 31;
+                        nudSection2.Left = 226;
+                        nudSection3.Left = 434;
+                        nudSection4.Left = 660;
+                        nudSection5.Left = 816;
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings4;
+                        break;
+                    }
+
+                case 5:
+                    {
+                        nudSection1.Value = (-nudCalc.Value * 0.5M);
+                        nudSection2.Value = (-nudCalc.Value * 0.3M);
+                        nudSection3.Value = (-nudCalc.Value * 0.1M);
+                        nudSection4.Value = (nudCalc.Value * 0.1M);
+                        nudSection5.Value = (nudCalc.Value * 0.3M);
+                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M); ;
+                        spinSection2 = (double)(-nudCalc.Value * 0.3M * 0.0254M);
+                        spinSection3 = (double)(-nudCalc.Value * 0.1M * 0.0254M);
+                        spinSection4 = (double)(nudCalc.Value * 0.1M * 0.0254M);
+                        spinSection5 = (double)(nudCalc.Value * 0.3M * 0.0254M);
+
+                        //lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection6.Value - nudSection1.Value, 2));
+                        nudSection1.Left = 31;
+                        nudSection2.Left = 188;
+                        nudSection3.Left = 345;
+                        nudSection4.Left = 502;
+                        nudSection5.Left = 660;
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
+                        break;
+                    }
+            }
+
+            SectionFeetInchesTotalWidthLabelUpdate();
+            UpdateSpinners();
+
+            nudSection1.ValueChanged += nudSection1_ValueChanged;
+            nudSection2.ValueChanged += nudSection2_ValueChanged;
+            nudSection3.ValueChanged += nudSection3_ValueChanged;
+            nudSection4.ValueChanged += nudSection4_ValueChanged;
+            nudSection5.ValueChanged += nudSection5_ValueChanged;
+        }
+        */

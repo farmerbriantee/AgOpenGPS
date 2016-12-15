@@ -75,140 +75,121 @@ namespace AgOpenGPS
             gl.Translate(mf.fixPosX, 0, mf.fixPosZ);
             gl.PushMatrix();
             
+            //most complicated translate ever!
             gl.Translate((Math.Sin(mf.fixHeading) * (hitchLength - antennaPivot)),0,(Math.Cos(mf.fixHeading) * (hitchLength - antennaPivot)));
             gl.Rotate(glm.degrees(mf.fixHeadingSection), 0.0, 1.0, 0.0);
-
-            if (isToolTrailing)
+            
+            //settings doesn't change trailing hitch length if set to rigid, so do it here
+            double trailing;
+            if (isToolTrailing) trailing = toolTrailingHitchLength;
+            else trailing = 0;
+            
+            //draw the sections
+            gl.LineWidth(8);
+            gl.Begin(OpenGL.GL_LINES);
+            for (int j = 0; j < mf.vehicle.numberOfSections; j++)
             {
-                //draw the sections
-                gl.LineWidth(6);
-                gl.Begin(OpenGL.GL_LINES);
-                for (int j = 0; j < mf.vehicle.numberOfSections; j++)
+                //if section is on green, if off red color
+                if (mf.section[j].isSectionOn)
                 {
-                    //if section is on green, if off red color
-                    if (mf.section[j].isSectionOn)
-                    {
-                        if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.99f, 0.0f);
-                        else gl.Color(0.99, 0.99, 0);
-                    }
-                    else gl.Color(0.99f, 0.2f, 0.2f);
-                    gl.Vertex(mf.section[j].positionLeft, 0, toolTrailingHitchLength);
-                    gl.Vertex(mf.section[j].positionRight, 0, toolTrailingHitchLength);
+                    if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.99f, 0.0f);
+                    else gl.Color(0.99, 0.99, 0);
                 }
-                gl.End();
+                else gl.Color(0.99f, 0.2f, 0.2f);
 
-                //draw the hitch
-                gl.LineWidth(1);
-                gl.Color(0.0f, 0.0f, 0.0f);
-                gl.Begin(OpenGL.GL_LINES);
-                gl.Vertex(0, 0, toolTrailingHitchLength); //hitch
-                gl.Vertex(0, 0, 0);
-                gl.End();
-
-                //section markers
-                gl.PointSize(4.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int j = 1; j < mf.vehicle.numberOfSections - 1; j++)
-                {
-                    gl.Vertex(mf.section[j].positionLeft, 0, toolTrailingHitchLength);
-                    gl.Vertex(mf.section[j].positionRight, 0, toolTrailingHitchLength);
-                }
-
-                //gl.Vertex(0, 0, 0);
-                gl.End();
+                //draw section line
+                gl.Vertex(mf.section[j].positionLeft, 0, trailing);
+                gl.Vertex(mf.section[j].positionRight, 0, trailing);
             }
-            else
-            {
-               //draw the sections
-                gl.LineWidth(6);
-                gl.Begin(OpenGL.GL_LINES);
-                for (int j = 0; j < mf.vehicle.numberOfSections; j++)
-                {
-                    //if section is on green, if off puke red color
-                    if (mf.section[j].isSectionOn) gl.Color(0.0f, 0.99f, 0.0f);
-                    else gl.Color(0.99f, 0.2f, 0.2f);
-                    gl.Vertex(mf.section[j].positionLeft, 0, 0);
-                    gl.Vertex(mf.section[j].positionRight, 0, 0);
-                }
-                gl.End();
+            gl.End();
 
-                //draw the hitch
-                gl.LineWidth(1);
-                gl.Color(0.0f, 0.0f, 0.0f);
-                gl.Begin(OpenGL.GL_LINES);
-                gl.Vertex(0, 0, 0); //hitch
+            //draw the hitch
+            gl.LineWidth(2);
+            gl.Color(0.0f, 0.0f, 0.0f);
+
+            gl.Begin(OpenGL.GL_LINES);
+                gl.Vertex(0, 0, trailing);
                 gl.Vertex(0, 0, 0);
-                gl.End();
+            gl.End();
 
-                //section markers
-                gl.PointSize(4.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int j = 1; j < mf.vehicle.numberOfSections - 1; j++)
-                {
-                    gl.Vertex(mf.section[j].positionLeft, 0, 0);
-                    gl.Vertex(mf.section[j].positionRight, 0, 0);
-                }
-
-                //gl.Vertex(0, 0, 0);
-                gl.End();
-   
-            }
-
+            //section markers
+            gl.PointSize(4.0f);
+            gl.Begin(OpenGL.GL_POINTS);
+                for (int j = 0; j < mf.vehicle.numberOfSections - 1; j++)
+                    gl.Vertex(mf.section[j].positionRight, 0, trailing);
+            gl.End();
+ 
             //draw vehicle
             gl.PopMatrix();
             gl.Rotate(glm.degrees(mf.fixHeading), 0.0, 1.0, 0.0);
+                        
+            //draw the vehicle Body
+            gl.Color(1.0, 0.5, 0.30);
+            gl.Begin(OpenGL.GL_TRIANGLE_FAN);
 
+                gl.Vertex(0, -1.0, 0);
+                gl.Vertex(1.8, 0.0, -antennaPivot);
+                gl.Vertex(0, 0.0, -antennaPivot+wheelbase);
+                gl.Color(0.20, 0.0, 1.0);
+                gl.Vertex(-1.8, 0.0, -antennaPivot);
+                gl.Vertex(1.8, 0.0, -antennaPivot);
 
+            gl.End();
+            
+            //draw the points
             gl.PointSize(8.0f);
             gl.Begin(OpenGL.GL_POINTS);
 
-            //antenna
-            gl.Color(0.99f, 0.0f, 0.0f);
-            gl.Vertex(0, 0, 0);
+            ////antenna
+            //gl.Color(0.0f, 1.0f, 0.0f);
+            //gl.Vertex(0, 0, 0);
 
-            //hitch pin
-            gl.Color(0.99f, 0.99f, 0.0f);
-            gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
-
-            //axle pivot
-            gl.Color(0.0f, 0.99f, 0.5f);
-            gl.Vertex(0, 0, -antennaPivot);
-
-            //steering Tires
-            gl.Color(0, 0, 0);
-            gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
-            gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
+            ////hitch pin
+            //gl.Color(0.99f, 0.99f, 0.0f);
+            //gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
 
             //rear Tires
             //gl.PointSize(12.0f);
+            gl.Color(0, 0, 0);
             gl.Vertex(-1.8, 0, -antennaPivot);
             gl.Vertex(1.8, 0, -antennaPivot);
 
             gl.End();
 
-            gl.Color(0.0f, 0.99f, 0.0f);
-            gl.Begin(OpenGL.GL_LINES);
-            gl.Vertex(-1.8, 0, -antennaPivot);
-            gl.Vertex(1.8, 0, -antennaPivot);
-            gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
-            gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
-            gl.End();
 
-            // Enable Texture Mapping and set color to white
-            gl.Enable(OpenGL.GL_TEXTURE_2D);		
-            gl.Color(1.0, 1.0, 1.0);
-
-            //the vehicle
-            //gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[0]);	// Select Our Texture
-            //gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
-            //gl.TexCoord(0, 0); gl.Vertex(2.0, 0.0, 2.0);                // Top Right
-            //gl.TexCoord(1, 0); gl.Vertex(-2.0, 0.0, 2.0);               // Top Left
-            //gl.TexCoord(0, 1); gl.Vertex(2.0, 0.0, -2.0);               // Bottom Right
-            //gl.TexCoord(1, 1); gl.Vertex(-2.0, 0.0, -2.0);              // Bottom Left
-            //gl.End();						// Done Building Triangle Strip
 
             gl.LineWidth(1);
 
         }
     }
 }
+
+
+//gl.Color(0.0f, 0.99f, 0.0f);
+//gl.Begin(OpenGL.GL_LINES);
+//gl.Vertex(-1.8, 0, -antennaPivot);
+//gl.Vertex(1.8, 0, -antennaPivot);
+//gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
+//gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
+//gl.End();
+
+// Enable Texture Mapping and set color to white
+//gl.Enable(OpenGL.GL_TEXTURE_2D);		
+////the vehicle
+//gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[0]);	// Select Our Texture
+//gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
+//gl.TexCoord(0, 0); gl.Vertex(2.0, 0.0, 2.0);                // Top Right
+//gl.TexCoord(1, 0); gl.Vertex(-2.0, 0.0, 2.0);               // Top Left
+//gl.TexCoord(0, 1); gl.Vertex(2.0, 0.0, -2.0);               // Bottom Right
+//gl.TexCoord(1, 1); gl.Vertex(-2.0, 0.0, -2.0);              // Bottom Left
+//gl.End();						// Done Building Triangle Strip
+
+////axle pivot
+//gl.Color(0.0f, 0.99f, 0.5f);
+//gl.Vertex(0, 0, -antennaPivot);
+
+////steering Tires
+//gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
+//gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
+
+ 

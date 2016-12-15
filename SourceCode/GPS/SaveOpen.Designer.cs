@@ -36,12 +36,12 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_isToolBehindPivot = true;
             Properties.Settings.Default.setVehicle_isToolTrailing = true;
 
-            Properties.Settings.Default.setSection_nudSpin1 = -8;
-            Properties.Settings.Default.setSection_nudSpin2 = -3;
-            Properties.Settings.Default.setSection_nudSpin3 = 3;
-            Properties.Settings.Default.setSection_nudSpin4 = 8;
-            Properties.Settings.Default.setSection_nudSpin5 = 0;
-            Properties.Settings.Default.setSection_nudSpin6 = 0;
+            Properties.Settings.Default.setSection_position1 = -8;
+            Properties.Settings.Default.setSection_position2 = -3;
+            Properties.Settings.Default.setSection_position3 = 3;
+            Properties.Settings.Default.setSection_position4 = 8;
+            Properties.Settings.Default.setSection_position5 = 0;
+            Properties.Settings.Default.setSection_position6 = 0;
 
             Properties.Settings.Default.setVehicle_numSections = 3;
             Properties.Settings.Default.setVehicle_toolWidth = 16.0;
@@ -104,12 +104,12 @@ namespace AgOpenGPS
                     writer.Write("IsToolBehindPivot," + Properties.Settings.Default.setVehicle_isToolBehindPivot + ",");
                     writer.Write("IsToolTrailing," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");                   
 
-                    writer.Write("Spinner1," + Properties.Settings.Default.setSection_nudSpin1 + ",");
-                    writer.Write("Spinner2," + Properties.Settings.Default.setSection_nudSpin2 + ",");
-                    writer.Write("Spinner3," + Properties.Settings.Default.setSection_nudSpin3 + ",");
-                    writer.Write("Spinner4," + Properties.Settings.Default.setSection_nudSpin4 + ",");
-                    writer.Write("Spinner5," + Properties.Settings.Default.setSection_nudSpin5 + ",");
-                    writer.Write("Spinner6," + Properties.Settings.Default.setSection_nudSpin6 + ",");
+                    writer.Write("Spinner1," + Properties.Settings.Default.setSection_position1 + ",");
+                    writer.Write("Spinner2," + Properties.Settings.Default.setSection_position2 + ",");
+                    writer.Write("Spinner3," + Properties.Settings.Default.setSection_position3 + ",");
+                    writer.Write("Spinner4," + Properties.Settings.Default.setSection_position4 + ",");
+                    writer.Write("Spinner5," + Properties.Settings.Default.setSection_position5 + ",");
+                    writer.Write("Spinner6," + Properties.Settings.Default.setSection_position6 + ",");
 
                     writer.Write("Sections," + Properties.Settings.Default.setVehicle_numSections + ",");
                     writer.Write("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth + ",");
@@ -119,9 +119,12 @@ namespace AgOpenGPS
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0");
                     
-                    //little show to say saved and where
-                    MessageBox.Show(saveDialog.FileName, "File Saved to ");
                 }
+                //little show to say saved and where
+                var form = new FormTimedMessage(this, 3000, "Saved in Folder: ", dirVehicle);
+                form.Show();
+
+
             }
 
         }
@@ -186,12 +189,12 @@ namespace AgOpenGPS
                     Properties.Settings.Default.setVehicle_isToolBehindPivot = bool.Parse(words[23]);
                     Properties.Settings.Default.setVehicle_isToolTrailing = bool.Parse(words[25]);
 
-                    Properties.Settings.Default.setSection_nudSpin1 = decimal.Parse(words[27]);
-                    Properties.Settings.Default.setSection_nudSpin2 = decimal.Parse(words[29]);
-                    Properties.Settings.Default.setSection_nudSpin3 = decimal.Parse(words[31]);
-                    Properties.Settings.Default.setSection_nudSpin4 = decimal.Parse(words[33]);
-                    Properties.Settings.Default.setSection_nudSpin5 = decimal.Parse(words[35]);
-                    Properties.Settings.Default.setSection_nudSpin6 = decimal.Parse(words[37]);
+                    Properties.Settings.Default.setSection_position1 = decimal.Parse(words[27]);
+                    Properties.Settings.Default.setSection_position2 = decimal.Parse(words[29]);
+                    Properties.Settings.Default.setSection_position3 = decimal.Parse(words[31]);
+                    Properties.Settings.Default.setSection_position4 = decimal.Parse(words[33]);
+                    Properties.Settings.Default.setSection_position5 = decimal.Parse(words[35]);
+                    Properties.Settings.Default.setSection_position6 = decimal.Parse(words[37]);
 
                     Properties.Settings.Default.setVehicle_numSections = int.Parse(words[39]);
                     Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[41]);
@@ -233,12 +236,10 @@ namespace AgOpenGPS
 
         }//end of open file
 
-
         //function to open a previously saved field
-        private void FileOpenField()
+        public void FileOpenField(string _filename)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-
+            string fileAndDirectory;
             //get the directory where the fields are stored
             //string directoryName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+ "\\fields\\";
             string directoryName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\Fields\\";
@@ -247,207 +248,215 @@ namespace AgOpenGPS
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            //the initial directory, fields, for the open dialog
-            ofd.InitialDirectory = directoryName;
-
-            //When leaving dialog put windows back where it was
-            ofd.RestoreDirectory = true;
-
-            //set the filter to text files only
-            ofd.Filter = "txt files (*.txt)|*.txt";
-
-            //was a file selected
-            if (ofd.ShowDialog() == DialogResult.OK)
+            //Either exit or update running save
+            if (_filename == "Resume")
             {
-                //make sure the file if fully valid and vehicle matches sections
-                using (StreamReader reader = new StreamReader(ofd.FileName))
-                {
-                    string line2;
-
-                    line2 = reader.ReadLine();//Date time line                  
-                    line2 = reader.ReadLine();//AB Line header
-
-                    if (line2.IndexOf("$Heading") == -1)
-                    { MessageBox.Show("File is Corrupt"); return; }
-
-                    //read the boolean if AB is set
-                    line2 = reader.ReadLine();
-                    if ((line2.IndexOf("True") == -1 && (line2.IndexOf("False") == -1)))
-                    { MessageBox.Show("AB Line is Corrupt"); return; }
-
-                    line2 = reader.ReadLine();//just read and skip the heading line                
-                    line2 = reader.ReadLine();//read the line $Sections
-
-                    if (line2.IndexOf("$Sections") == -1)
-                    { MessageBox.Show("Sections header is Corrupt"); return; }
-
-                    //read number of sections
-                    line2 = reader.ReadLine();
-                    int numSects = int.Parse(line2);
-
-                    //make sure sections in file matches sections set in current vehicle
-                    if (vehicle.numberOfSections != numSects)
-                    { MessageBox.Show("Vehicle doesn't match this field"); return; }
-
-
-                    for (int j = 0; j < vehicle.numberOfSections; j++)
-                    {
-                        //now read number of patches, then how many vertex's
-                        line2 = reader.ReadLine();
-                        int patches = int.Parse(line2);
-
-                        for (int k = 0; k < patches; k++)
-                        {
-
-                            line2 = reader.ReadLine();
-                            int verts = int.Parse(line2);
-
-                            for (int v = 0; v < verts; v++)
-                            {
-                                line2 = reader.ReadLine();
-                            }
-                        }
-                    }
-
-                    //read final area and header lines
-                    line2 = reader.ReadLine();
-                    if (line2.IndexOf("$totalSquareMeters") == -1)
-                    {
-                        MessageBox.Show("Meters header is Corrupt");
-                        return;
-                    }
-
-                }
-                //made it to here so file is mostly valid
-
-                //close the existing job and reset everything
-                this.JobClose();
-
-                //and open a new job
-                this.JobNew();
-
-                //start to read the file
-                string line;
-                using (StreamReader reader = new StreamReader(ofd.FileName))
-                {
-                    //Date time line
-                    line = reader.ReadLine();
-
-                    //AB Line header
-                    line = reader.ReadLine();
-
-                    //read the boolean if AB is set
-                    line = reader.ReadLine();
-                    bool b = bool.Parse(line);
-
-                    //If is true there is AB Line data
-                    if (b)
-                    {
-                        //Heading, refPoint1x,z,refPoint2x,z
-                        line = reader.ReadLine();
-
-                        //separate it into the 4 words
-                        string[] words = line.Split(',');
-                        ABLine.abHeading = double.Parse(words[0]);
-                        ABLine.refPoint1.x = double.Parse(words[1]);
-                        ABLine.refPoint1.z = double.Parse(words[2]);
-                        ABLine.refPoint2.x = double.Parse(words[3]);
-                        ABLine.refPoint2.z = double.Parse(words[4]);
-
-                        ABLine.refABLineP1.x = ABLine.refPoint1.x - Math.Sin(ABLine.abHeading) * 10000.0;
-                        ABLine.refABLineP1.z = ABLine.refPoint1.z - Math.Cos(ABLine.abHeading) * 10000.0;
-
-                        ABLine.refABLineP2.x = ABLine.refPoint1.x + Math.Sin(ABLine.abHeading) * 10000.0;
-                        ABLine.refABLineP2.z = ABLine.refPoint1.z + Math.Cos(ABLine.abHeading) * 10000.0;
-
-                        ABLine.isABLineSet = true;
-                    }
-
-                    //false so just read and skip the heading line
-                    else line = reader.ReadLine();
-
-                    //read the section and patch triangles...
-
-                    //read the line $Sections
-                    line = reader.ReadLine();
-
-                    //read number of sections
-                    line = reader.ReadLine();
-
-                    //finally start loading triangles
-                    vec3 vecFix = new vec3(0, 0, 0);
-
-                    for (int j = 0; j < vehicle.numberOfSections; j++)
-                    {
-                        //now read number of patches, then how many vertex's
-                        line = reader.ReadLine();
-                        int patches = int.Parse(line);
-
-                        for (int k = 0; k < patches; k++)
-                        {
-                            section[j].triangleList = new List<vec3>();
-                            section[j].patchList.Add(section[j].triangleList);
-
-                            line = reader.ReadLine();
-                            int verts = int.Parse(line);
-
-                            for (int v = 0; v < verts; v++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                vecFix.x = double.Parse(words[0]);
-                                vecFix.y = 0;
-                                vecFix.z = double.Parse(words[1]);
-
-                                section[j].triangleList.Add(vecFix);
-                            }
-
-                        }
-
-                    }
-
-                    line = reader.ReadLine();
-                    if (line.IndexOf("$totalSquareMeters") == -1)
-                    {
-                        MessageBox.Show("Meters header is Corrupt");
-                        return;
-                    }
-
-                    line = reader.ReadLine();
-                    totalSquareMeters = double.Parse(line);
-
-
-
-                }
-                //cancelled out of open file
+                fileAndDirectory = directoryName + "Resume.txt";
+                if (!File.Exists(fileAndDirectory)) return;
             }
 
+            //open file dialog instead
+            else
+            {
+                //create the dialog instance
+                OpenFileDialog ofd = new OpenFileDialog();
 
+                //the initial directory, fields, for the open dialog
+                ofd.InitialDirectory = directoryName;
+
+                //When leaving dialog put windows back where it was
+                ofd.RestoreDirectory = true;
+
+                //set the filter to text files only
+                ofd.Filter = "txt files (*.txt)|*.txt";
+
+                //was a file selected
+                if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                else fileAndDirectory = ofd.FileName;
+            }
+            
+            //make sure the file if fully valid and vehicle matches sections
+            using (StreamReader reader = new StreamReader(fileAndDirectory))
+            {
+                string line2;
+
+                line2 = reader.ReadLine();//Date time line                  
+                line2 = reader.ReadLine();//AB Line header
+
+                if (line2.IndexOf("$Heading") == -1)
+                { MessageBox.Show("File is Corrupt"); return; }
+
+                //read the boolean if AB is set
+                line2 = reader.ReadLine();
+                if ((line2.IndexOf("True") == -1 && (line2.IndexOf("False") == -1)))
+                { MessageBox.Show("AB Line is Corrupt"); return; }
+
+                line2 = reader.ReadLine();//just read and skip the heading line                
+                line2 = reader.ReadLine();//read the line $Sections
+
+                if (line2.IndexOf("$Sections") == -1)
+                { MessageBox.Show("Sections header is Corrupt"); return; }
+
+                //read number of sections
+                line2 = reader.ReadLine();
+                int numSects = int.Parse(line2);
+
+                //make sure sections in file matches sections set in current vehicle
+                if (vehicle.numberOfSections != numSects)
+                { MessageBox.Show("Vehicle doesn't match this field"); return; }
+
+
+                for (int j = 0; j < vehicle.numberOfSections; j++)
+                {
+                    //now read number of patches, then how many vertex's
+                    line2 = reader.ReadLine();
+                    int patches = int.Parse(line2);
+
+                    for (int k = 0; k < patches; k++)
+                    {
+
+                        line2 = reader.ReadLine();
+                        int verts = int.Parse(line2);
+
+                        for (int v = 0; v < verts; v++)
+                        {
+                            line2 = reader.ReadLine();
+                        }
+                    }
+                }
+
+                //read final area and header lines
+                line2 = reader.ReadLine();
+                if (line2.IndexOf("$totalSquareMeters") == -1)
+                {
+                    MessageBox.Show("Meters header is Corrupt");
+                    return;
+                }
+
+            }
+            //made it to here so file is mostly valid
+
+            //close the existing job and reset everything
+            this.JobClose();
+
+            //and open a new job
+            this.JobNew();
+
+            //start to read the file
+            string line;
+            using (StreamReader reader = new StreamReader(fileAndDirectory))
+            {
+                //Date time line
+                line = reader.ReadLine();
+
+                //AB Line header
+                line = reader.ReadLine();
+
+                //read the boolean if AB is set
+                line = reader.ReadLine();
+                bool b = bool.Parse(line);
+
+                //If is true there is AB Line data
+                if (b)
+                {
+                    //Heading, refPoint1x,z,refPoint2x,z
+                    line = reader.ReadLine();
+
+                    //separate it into the 4 words
+                    string[] words = line.Split(',');
+                    ABLine.abHeading = double.Parse(words[0]);
+                    ABLine.refPoint1.x = double.Parse(words[1]);
+                    ABLine.refPoint1.z = double.Parse(words[2]);
+                    ABLine.refPoint2.x = double.Parse(words[3]);
+                    ABLine.refPoint2.z = double.Parse(words[4]);
+
+                    ABLine.refABLineP1.x = ABLine.refPoint1.x - Math.Sin(ABLine.abHeading) * 10000.0;
+                    ABLine.refABLineP1.z = ABLine.refPoint1.z - Math.Cos(ABLine.abHeading) * 10000.0;
+
+                    ABLine.refABLineP2.x = ABLine.refPoint1.x + Math.Sin(ABLine.abHeading) * 10000.0;
+                    ABLine.refABLineP2.z = ABLine.refPoint1.z + Math.Cos(ABLine.abHeading) * 10000.0;
+
+                    ABLine.isABLineSet = true;
+                }
+
+                //false so just read and skip the heading line
+                else line = reader.ReadLine();
+
+                //read the section and patch triangles...
+
+                //read the line $Sections
+                line = reader.ReadLine();
+
+                //read number of sections
+                line = reader.ReadLine();
+
+                //finally start loading triangles
+                vec3 vecFix = new vec3(0, 0, 0);
+
+                for (int j = 0; j < vehicle.numberOfSections; j++)
+                {
+                    //now read number of patches, then how many vertex's
+                    line = reader.ReadLine();
+                    int patches = int.Parse(line);
+
+                    for (int k = 0; k < patches; k++)
+                    {
+                        section[j].triangleList = new List<vec3>();
+                        section[j].patchList.Add(section[j].triangleList);
+
+                        line = reader.ReadLine();
+                        int verts = int.Parse(line);
+
+                        for (int v = 0; v < verts; v++)
+                        {
+                            line = reader.ReadLine();
+                            string[] words = line.Split(',');
+                            vecFix.x = double.Parse(words[0]);
+                            vecFix.y = 0;
+                            vecFix.z = double.Parse(words[1]);
+
+                            section[j].triangleList.Add(vecFix);
+                        }
+
+                    }
+
+                }
+
+                line = reader.ReadLine();
+                if (line.IndexOf("$totalSquareMeters") == -1)
+                {
+                    MessageBox.Show("Meters header is Corrupt");
+                    return;
+                }
+
+                line = reader.ReadLine();
+                totalSquareMeters = double.Parse(line);
+            }
         }//end of open file
 
         //Function to save a field
-        private void FileSaveField()
+        public void FileSaveField(string _filename)
         {
-            //in the current application directory
-            //string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            //string fieldDir = dir + "\\fields\\";
-
             if (!isJobStarted)
             {
-                MessageBox.Show("Can't save a job if no job is open");
+                var form = new FormTimedMessage(this, 3000, "Ooops, Job Not Started", "Push Job Button");
+                form.Show();
                 return;
             }
 
-            string dirField = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\Fields\\";
-
+            //get the directory and make sure it exists, create if not
+            string dirField = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + 
+                                                                 "\\AgOpenGPS\\Fields\\";
             string directoryName = Path.GetDirectoryName(dirField);
-
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
-            string myFileName = String.Format("{0}{1}", DateTime.Now.ToString("yyyy_MMM_dd__hh.mm.ss.tt"), ".txt");
+            string myFileName;
 
-            //set saving flag on
+            if (_filename == "Resume") myFileName = "Resume.txt";
+            else myFileName = String.Format("{0}{1}", DateTime.Now.ToString("yyyy_MMM_dd__hh.mm.ss.tt"), ".txt");
+
+            //set saving flag on to ensure rapid save, no gps update
             isSavingFile = true;
 
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
@@ -494,7 +503,6 @@ namespace AgOpenGPS
 
                 }
 
-                //writer.WriteLine(Math.Round(totalSquareMeters / 4046.8627, 2));
                 writer.WriteLine("$totalSquareMeters");
                 writer.WriteLine(totalSquareMeters);
             }
@@ -503,7 +511,14 @@ namespace AgOpenGPS
             isSavingFile = false;
 
             //little show to say saved and where
-            MessageBox.Show((dirField + "\n\r\n\r" + myFileName), "File Saved to ");
+            //MessageBox.Show((dirField + "\n\r\n\r" + myFileName), "File Saved to ");
+
+            if (_filename != "Resume")
+            {
+                var form2 = new FormTimedMessage(this, 3000, "Folder: " + dirField, "File: " + myFileName);
+                form2.Show();
+            }
+
 
         }
     }

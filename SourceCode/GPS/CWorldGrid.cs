@@ -15,25 +15,43 @@ namespace AgOpenGPS
     public class CWorldGrid
     {
         OpenGL gl;
+        private FormGPS mf;
 
         //Z
-        public double northingMax = 400;
-        public double northingMin = -400;
+        public double northingMax = 40;
+        public double northingMin = -40;
 
         //X
-        public double eastingMax = 400;
-        public double eastingMin = -400;
+        public double eastingMax = 40;
+        public double eastingMin = -40;
 
 
-        public CWorldGrid(OpenGL _gl)
+        public CWorldGrid(OpenGL _gl, FormGPS f)
         {
-           gl = _gl; 
+           gl = _gl;
+           this.mf = f;
         }
 
         public void DrawWorldGrid(double _gridZoom)
         {
             //draw easting lines and westing lines to produce a grid
-            gl.Color(0.6f, 0.6f, 0.6f);
+  
+            // Enable Texture Mapping and set color to white
+            gl.Enable(OpenGL.GL_TEXTURE_2D);
+            gl.Color(0.954, 0.954, 0.954);
+
+            double texZoom = 100/mf.zoomValue;
+            //the floor
+            gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[2]);	// Select Our Texture
+            gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
+            gl.TexCoord(0, 0); gl.Vertex(eastingMax, 0.0, northingMax);                // Top Right
+            gl.TexCoord(texZoom, 0); gl.Vertex(eastingMin, 0.0, northingMax);               // Top Left
+            gl.TexCoord(0, texZoom); gl.Vertex(eastingMax, 0.0, northingMin);               // Bottom Right
+            gl.TexCoord(texZoom, texZoom); gl.Vertex(eastingMin, 0.0, northingMin);              // Bottom Left
+            gl.End();						// Done Building Triangle Strip
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+
+            gl.Color(0.22f, 0.37f, 0.22f);
             gl.Begin(OpenGL.GL_LINES);
             for (double x = eastingMin; x < eastingMax; x += _gridZoom)
             {
@@ -48,7 +66,7 @@ namespace AgOpenGPS
                 gl.Vertex(eastingMax, 0.1, x);
                 gl.Vertex(eastingMin, 0.1, x);
             }
-            
+
             gl.End();
 
 
@@ -57,11 +75,11 @@ namespace AgOpenGPS
         public void CreateWorldGrid(double northing, double easting)
         {
             //draw a grid 5 km each direction away from initial fix
-            northingMax = northing + 3000;
-            northingMin = northing - 3000;
+            northingMax = northing + 5000;
+            northingMin = northing - 5000;
 
-            eastingMax = easting + 3000;
-            eastingMin = easting - 3000;
+            eastingMax = easting + 5000;
+            eastingMin = easting - 5000;
  
         }
 

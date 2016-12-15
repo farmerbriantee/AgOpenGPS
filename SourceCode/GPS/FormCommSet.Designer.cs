@@ -95,7 +95,7 @@
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(721, 55);
+            this.btnRescan.Location = new System.Drawing.Point(458, 39);
             this.btnRescan.Name = "btnRescan";
             this.btnRescan.Size = new System.Drawing.Size(117, 50);
             this.btnRescan.TabIndex = 58;
@@ -106,7 +106,7 @@
             // label99
             // 
             this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(717, 136);
+            this.label99.Location = new System.Drawing.Point(720, 242);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(98, 13);
             this.label99.TabIndex = 61;
@@ -115,7 +115,7 @@
             // nudNMEAHz
             // 
             this.nudNMEAHz.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNMEAHz.Location = new System.Drawing.Point(730, 168);
+            this.nudNMEAHz.Location = new System.Drawing.Point(714, 275);
             this.nudNMEAHz.Maximum = new decimal(new int[] {
             10,
             0,
@@ -155,6 +155,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.cboxPort);
+            this.groupBox1.Controls.Add(this.btnRescan);
             this.groupBox1.Controls.Add(this.cboxBaud);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.lblCurrentPort);
@@ -246,7 +247,7 @@
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCloseSerial.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial.Location = new System.Drawing.Point(459, 39);
+            this.btnCloseSerial.Location = new System.Drawing.Point(298, 93);
             this.btnCloseSerial.Name = "btnCloseSerial";
             this.btnCloseSerial.Size = new System.Drawing.Size(117, 36);
             this.btnCloseSerial.TabIndex = 44;
@@ -382,7 +383,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(928, 423);
             this.Controls.Add(this.btnSerialCancel);
-            this.Controls.Add(this.btnRescan);
             this.Controls.Add(this.label99);
             this.Controls.Add(this.nudNMEAHz);
             this.Controls.Add(this.btnSerialOK);

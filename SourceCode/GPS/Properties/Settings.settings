@@ -35,22 +35,22 @@
     <Setting Name="setVehicle_numSections" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin1" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position1" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-8.0</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin2" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position2" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-3.0</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin3" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position3" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3.0</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin4" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position4" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">8.0</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin5" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setSection_nudSpin6" Type="System.Decimal" Scope="User">
+    <Setting Name="setSection_position6" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setPort_NMEAHz" Type="System.Decimal" Scope="User">

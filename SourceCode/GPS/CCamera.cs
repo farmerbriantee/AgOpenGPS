@@ -63,17 +63,17 @@ namespace AgOpenGPS
             gl.Rotate(-camYaw + 180, 0, 1, 0);
 
             //move the implement down slightly in the view so more is above or ahead of vehicle
-            //if (camPitch < -50.0)
+            if (camPitch < -50.0)
             
-            //    //its in 2D mode
-            //gl.Translate(-camPosX + (camSetDistance * 0.051 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
-            //                -camPosZ + (camSetDistance * 0.051 * Math.Cos(glm.radians(fixHeading))));
-            //else 
-            //    //its in 3D mode
-            //            gl.Translate(-camPosX + (camSetDistance * 0.12 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
-            //                -camPosZ + (camSetDistance * 0.12 * Math.Cos(glm.radians(fixHeading))));
+                //its in 2D mode
+            gl.Translate(-camPosX + (camSetDistance * 0.051 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
+                            -camPosZ + (camSetDistance * 0.051 * Math.Cos(glm.radians(fixHeading))));
+            else 
+                //its in 3D mode
+                        gl.Translate(-camPosX + (camSetDistance * 0.12 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
+                            -camPosZ + (camSetDistance * 0.12 * Math.Cos(glm.radians(fixHeading))));
  
-            gl.Translate(-camPosX, -camPosY, -camPosZ );      
+            //gl.Translate(-camPosX, -camPosY, -camPosZ );      
         }
         
     }

@@ -19,17 +19,22 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-
+ 
         #region OpenGL //-------------------------------------------------------------------
+
+        //extracted Near, Far, Right, Left clipping planes of frustum
+        double[] frustum = new double[24];
+
+        int triDrawn = 0;
+
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
+            //  Get the OpenGL object.
+            OpenGL gl = openGLControl.OpenGL;
 
-            //sw.Stop();
-            //int FPS = Convert.ToInt16(1 / (sw.Elapsed.TotalMilliseconds / 1000));
-            //sw.Reset();
-            ////start the watch and time till it gets back here
-            //sw.Start();
+            //start the watch and time till it gets back here
+            sw.Start();
 
             //if there is new data go update everything first.
             UpdateFixPosition();
@@ -43,31 +48,26 @@ namespace AgOpenGPS
             //send the byte out to section relays
             SectionControlOutToArduino();
 
-            //  Get the OpenGL object.
-            OpenGL gl = openGLControl.OpenGL;
 
             //  Clear the color and depth buffer.
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             gl.LoadIdentity();
-
+            
             //camera does translations and rotations
             camera.SetWorldCam(gl, pivotAxleEasting, fixPosY, pivotAxleNorthing, fixHeadingCam);
 
-            //Draw the world grid based on camera position
-            gl.Disable(OpenGL.GL_DEPTH_TEST);
-            gl.Disable(OpenGL.GL_TEXTURE_2D);
-            worldGrid.DrawWorldGrid(gridZoom);
+            CalcFrustum(gl);
 
-            // draw the current and reference AB Lines
-            if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
 
             //turn on blend for paths
             gl.Enable(OpenGL.GL_BLEND);
             gl.Disable(OpenGL.GL_DEPTH_TEST);
 
             //section patch color
-            gl.Color(0.0f, 0.45f, 0.0f, 0.6f);
+            gl.Color(0.85f, 0.85f, 0.0f, 0.6f);
             if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
+ 
+            triDrawn = 0;
 
             //draw patches of sections
             for (int j = 0; j < vehicle.numberOfSections; j++)
@@ -75,24 +75,61 @@ namespace AgOpenGPS
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count();
 
+                bool isDraw;
+
                 if (patchCount > 0)
                 {
                     //for every new chunk of patch
                     foreach (var triList in section[j].patchList)
                     {
-                        //draw the triangle strip in each triangle strip
-                        gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                        isDraw = false;
                         int count2 = triList.Count();
-                        for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
-                        gl.End();
+                        for (int i = 0; i < count2; i+=4)
+                        {
+                            //determine if point is in frustum or not
+                            if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
+                                continue;//right
+                            if (frustum[4] * triList[i].x + frustum[6] * triList[i].z + frustum[7] <= 0)
+                                continue;//left
+                           if (frustum[16] * triList[i].x + frustum[18] * triList[i].z + frustum[19] <= 0)
+                                continue;//bottom
+                            if (frustum[20] * triList[i].x + frustum[22] * triList[i].z + frustum[23] <= 0)
+                                continue;//top
+                            if (frustum[8] * triList[i].x + frustum[10] * triList[i].z + frustum[11] <= 0)
+                                continue;//far
+                            if (frustum[12] * triList[i].x + frustum[14] * triList[i].z + frustum[15] <= 0)
+                                continue;//near
+ 
+                            //point is in frustum so draw the entire patch
+                            isDraw = true;
+                            break;
+
+                        }
+
+                        if (isDraw)
+                        {
+                            //draw the triangle strip in each triangle strip
+                            gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                            count2 = triList.Count();
+                            for (int i = 0; i < count2; i++)
+                            {
+                                gl.Vertex(triList[i].x, 0, triList[i].z);
+                                triDrawn++;
+                            }
+                            gl.End();
+                        }
                     }
                 }
             }
 
             gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
 
-            //Draw vehicle track
+            gl.Color(1,1,1);
 
+            // draw the current and reference AB Lines
+            if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
+
+            //Draw vehicle track
             if (isDrawVehicleTrack)
             {
                 //GPS Antenna
@@ -101,30 +138,24 @@ namespace AgOpenGPS
                 foreach (var triList in pointAntenna) gl.Vertex(triList.easting, 0, triList.northing);
                 gl.End();
 
-                //Pivot Axle
-                gl.Color(0.45f, 0.9f, 0.9f, 0.6f);
-                gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                foreach (var triList2 in pointPivot) gl.Vertex(triList2.easting, 0, triList2.northing);
-                gl.End();
-
-                ////hitch
-                //gl.Color(0.9f, 0.9f, 0.45f, 0.6f);
+                ////Pivot Axle
+                //gl.Color(0.45f, 0.9f, 0.9f, 0.6f);
                 //gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                //foreach (var triList3 in pointHitch) gl.Vertex(triList3.easting, 0, triList3.northing);
+                //foreach (var triList2 in pointPivot) gl.Vertex(triList2.easting, 0, triList2.northing);
                 //gl.End();
 
-                //tool
-                gl.Color(0.9f, 0.1f, 0.25f, 0.6f);
-                gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                foreach (var triList4 in pointTool) gl.Vertex(triList4.easting, 0, triList4.northing);
-                gl.End();
+                ////tool
+                //gl.Color(0.9f, 0.1f, 0.25f, 0.6f);
+                //gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
+                //foreach (var triList4 in pointTool) gl.Vertex(triList4.easting, 0, triList4.northing);
+                //gl.End();
             }
 
 
-            //gl.DrawText(100, 150, 1, 0, 0, "Verdana", 24, " fix " + Convert.ToString(fixHeading));
-            //gl.DrawText(100, 180, 1, 0, 0, "Verdana", 24, " fixSection " + Convert.ToString(fixHeadingSection));
-            //gl.DrawText(100, 210, 1, 1, 0, "Verdana", 24, " delta " + Convert.ToString(Math.Round(fixHeadingSection - fixHeading, 3)));
-            //gl.DrawText(100, 240, 1, 1, 0, "Verdana", 24, " abs " + Convert.ToString(Math.Round(Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI),1)));
+            gl.DrawText(10, 15, 1, 0.8f, 0, "Verdana", 16, " FPS " + Convert.ToString(FPS));
+            gl.DrawText(10, 45, 1, 0.8f, 0, "Verdana", 16, " Triangles " + Convert.ToString(triDrawn));
+            //gl.DrawText(10, 60, 1, 0.8f, 1, "Verdana", 16, " zoomValue " + Convert.ToString(zoomValue));
+            //gl.DrawText(10, 75, 1, 0.8f, 1, "Verdana", 16, " gridZoom " + Convert.ToString(gridZoom));
 
             //draw the tractor/implement
             vehicle.DrawVehicle();
@@ -159,18 +190,20 @@ namespace AgOpenGPS
                 gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				// Build Quad From A Triangle Strip
                 gl.TexCoord(0, 0); gl.Vertex(winRightPos, 0.0); // Top Right
                 gl.TexCoord(1, 0); gl.Vertex(winLeftPos, 0.0); // Top Left
-                gl.TexCoord(0, 1); gl.Vertex(winRightPos, 0.2 * (double)Height); // Bottom Right
-                gl.TexCoord(1, 1); gl.Vertex(winLeftPos, 0.2 * (double)Height); // Bottom Left
+                gl.TexCoord(0, 1); gl.Vertex(winRightPos, 0.15 * (double)Height); // Bottom Right
+                gl.TexCoord(1, 1); gl.Vertex(winLeftPos, 0.15 * (double)Height); // Bottom Left
                 gl.End();						// Done Building Triangle Strip
-                gl.Disable(OpenGL.GL_TEXTURE_2D);
             }
-
+            
+            //disable, straight color
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+ 
             //LightBar if AB Line is set
             if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
             {
                 txtDistanceOffABLine.Visible = true;
                 ABLine.DrawLightBar(openGLControl.Width, openGLControl.Height);
-                txtDistanceOffABLine.Text = Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine));
+                txtDistanceOffABLine.Text = " "+Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine))+" ";
                 if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                 else txtDistanceOffABLine.ForeColor = Color.LightGreen;
             }
@@ -213,10 +246,9 @@ namespace AgOpenGPS
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
 
-            gl.Disable(OpenGL.GL_CULL_FACE);
-            //gl.CullFace(OpenGL.GL_BACK);
-
-
+            //gl.Disable(OpenGL.GL_CULL_FACE);
+            gl.CullFace(OpenGL.GL_BACK);
+            
             //set the camera to right distance
             SetZoom();
         }
@@ -236,7 +268,7 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(50.0f, (double)openGLControl.Width / (double)openGLControl.Height, 1, -4 * camera.camSetDistance);
+            gl.Perspective(45.0f, (double)openGLControl.Width / (double)openGLControl.Height, 1, -3 * camera.camSetDistance);
 
             //  Set the modelview matrix.
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
@@ -244,6 +276,123 @@ namespace AgOpenGPS
 
         #endregion
 
+        private void CalcFrustum(OpenGL gl)
+        {
+            float[] proj = new float[16];							// For Grabbing The PROJECTION Matrix
+            float[] modl = new float[16];							// For Grabbing The MODELVIEW Matrix
+            float[] clip = new float[16];							// Result Of Concatenating PROJECTION and MODELVIEW
+            float t;											    // Temporary Work Variable
+
+            gl.GetFloat(OpenGL.GL_PROJECTION_MATRIX, proj);		// Grab The Current PROJECTION Matrix
+            gl.GetFloat(OpenGL.GL_MODELVIEW_MATRIX, modl);		// Grab The Current MODELVIEW Matrix
+
+            // Concatenate (Multiply) The Two Matricies
+            clip[0] = modl[0] * proj[0] + modl[1] * proj[4] + modl[2] * proj[8] + modl[3] * proj[12];
+            clip[1] = modl[0] * proj[1] + modl[1] * proj[5] + modl[2] * proj[9] + modl[3] * proj[13];
+            clip[2] = modl[0] * proj[2] + modl[1] * proj[6] + modl[2] * proj[10] + modl[3] * proj[14];
+            clip[3] = modl[0] * proj[3] + modl[1] * proj[7] + modl[2] * proj[11] + modl[3] * proj[15];
+
+            clip[4] = modl[4] * proj[0] + modl[5] * proj[4] + modl[6] * proj[8] + modl[7] * proj[12];
+            clip[5] = modl[4] * proj[1] + modl[5] * proj[5] + modl[6] * proj[9] + modl[7] * proj[13];
+            clip[6] = modl[4] * proj[2] + modl[5] * proj[6] + modl[6] * proj[10] + modl[7] * proj[14];
+            clip[7] = modl[4] * proj[3] + modl[5] * proj[7] + modl[6] * proj[11] + modl[7] * proj[15];
+
+            clip[8] = modl[8] * proj[0] + modl[9] * proj[4] + modl[10] * proj[8] + modl[11] * proj[12];
+            clip[9] = modl[8] * proj[1] + modl[9] * proj[5] + modl[10] * proj[9] + modl[11] * proj[13];
+            clip[10] = modl[8] * proj[2] + modl[9] * proj[6] + modl[10] * proj[10] + modl[11] * proj[14];
+            clip[11] = modl[8] * proj[3] + modl[9] * proj[7] + modl[10] * proj[11] + modl[11] * proj[15];
+
+            clip[12] = modl[12] * proj[0] + modl[13] * proj[4] + modl[14] * proj[8] + modl[15] * proj[12];
+            clip[13] = modl[12] * proj[1] + modl[13] * proj[5] + modl[14] * proj[9] + modl[15] * proj[13];
+            clip[14] = modl[12] * proj[2] + modl[13] * proj[6] + modl[14] * proj[10] + modl[15] * proj[14];
+            clip[15] = modl[12] * proj[3] + modl[13] * proj[7] + modl[14] * proj[11] + modl[15] * proj[15];
+
+
+            // Extract the RIGHT clipping plane
+            frustum[0] = clip[3] - clip[0];
+            frustum[1] = clip[7] - clip[4];
+            frustum[2] = clip[11] - clip[8];
+            frustum[3] = clip[15] - clip[12];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[0] * frustum[0] + frustum[1] * frustum[1] + frustum[2] * frustum[2]);
+            frustum[0] /= t;
+            frustum[1] /= t;
+            frustum[2] /= t;
+            frustum[3] /= t;
+
+
+            // Extract the LEFT clipping plane
+            frustum[4] = clip[3] + clip[0];
+            frustum[5] = clip[7] + clip[4];
+            frustum[6] = clip[11] + clip[8];
+            frustum[7] = clip[15] + clip[12];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[4] * frustum[4] + frustum[5] * frustum[5] + frustum[6] * frustum[6]);
+            frustum[4] /= t;
+            frustum[5] /= t;
+            frustum[6] /= t;
+            frustum[7] /= t;
+
+            // Extract the FAR clipping plane
+            frustum[8] = clip[3] - clip[2];
+            frustum[9] = clip[7] - clip[6];
+            frustum[10] = clip[11] - clip[10];
+            frustum[11] = clip[15] - clip[14];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[8] * frustum[8] + frustum[9] * frustum[9] + frustum[10] * frustum[10]);
+            frustum[8] /= t;
+            frustum[9] /= t;
+            frustum[10] /= t;
+            frustum[11] /= t;
+
+            // Extract the NEAR clipping plane.  This is last on purpose (see pointinfrustum() for reason)
+            frustum[12] = clip[3] + clip[2];
+            frustum[13] = clip[7] + clip[6];
+            frustum[14] = clip[11] + clip[10];
+            frustum[15] = clip[15] + clip[14];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[12] * frustum[12] + frustum[13] * frustum[13] + frustum[14] * frustum[14]);
+            frustum[12] /= t;
+            frustum[13] /= t;
+            frustum[14] /= t;
+            frustum[15] /= t;
+
+            // Extract the BOTTOM clipping plane
+            frustum[16] = clip[3] + clip[1];
+            frustum[17] = clip[7] + clip[5];
+            frustum[18] = clip[11] + clip[9];
+            frustum[19] = clip[15] + clip[13];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[16] * frustum[16] + frustum[17] * frustum[17] + frustum[18] * frustum[18]);
+            frustum[16] /= t;
+            frustum[17] /= t;
+            frustum[18] /= t;
+            frustum[19] /= t;
+
+
+            // Extract the TOP clipping plane
+            frustum[20] = clip[3] - clip[1];
+            frustum[21] = clip[7] - clip[5];
+            frustum[22] = clip[11] - clip[9];
+            frustum[23] = clip[15] - clip[13];
+
+            // Normalize it
+            t = (float)Math.Sqrt(frustum[20] * frustum[20] + frustum[21] * frustum[21] + frustum[22] * frustum[22]);
+            frustum[20] /= t;
+            frustum[21] /= t;
+            frustum[22] /= t;
+            frustum[23] /= t;
+
+            //Draw the world grid based on camera position
+            gl.Disable(OpenGL.GL_DEPTH_TEST);
+            gl.Disable(OpenGL.GL_TEXTURE_2D);
+            worldGrid.DrawWorldGrid(gridZoom);
+        }
 
         #region SectionControl // ----------------------------------------------------------------
 
@@ -270,13 +419,19 @@ namespace AgOpenGPS
             gl.Rotate(-90, 1, 0, 0);
 
             //rotate camera so heading matched fix heading in the world
-            gl.Rotate(-fixHeadingSection * 180.0 / Math.PI + 180, 0, 1, 0);
+            gl.Rotate(-glm.degrees(fixHeadingSection) + 180, 0, 1, 0);
 
             //translate to that spot in the world 
             gl.Translate(-toolEasting, -fixPosY, -toolNorthing);
 
             //patch color
             gl.Color(0.0f, 1.0f, 0.0f);
+
+            //calculate the frustum for the section control window
+            CalcFrustum(gl);
+
+            //to draw or not the triangle patch
+            bool isDraw;
 
             //draw patches j= # of sections
             for (int j = 0; j < vehicle.numberOfSections; j++)
@@ -289,11 +444,38 @@ namespace AgOpenGPS
                     //for every new chunk of patch
                     foreach (var triList in section[j].patchList)
                     {
-                        //draw the triangle strip in each triangle strip
-                        gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                        isDraw = false;
                         int count2 = triList.Count();
-                        for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
-                        gl.End();
+                        for (int i = 0; i < count2; i+=4)
+                        {
+                            //determine if point is in frustum or not
+                            if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
+                                continue;//right
+                            if (frustum[4] * triList[i].x + frustum[6] * triList[i].z + frustum[7] <= 0)
+                                continue;//left
+                           if (frustum[16] * triList[i].x + frustum[18] * triList[i].z + frustum[19] <= 0)
+                                continue;//bottom
+                            if (frustum[20] * triList[i].x + frustum[22] * triList[i].z + frustum[23] <= 0)
+                                continue;//top
+
+                            //near and far not required since its always 2D looking down
+                            //if (frustum[8] * triList[i].x + frustum[10] * triList[i].z + frustum[11] <= 0)
+                            //    continue;//far
+                            //if (frustum[12] * triList[i].x + frustum[14] * triList[i].z + frustum[15] <= 0)
+                            //    continue;//near
+ 
+                            //point is in frustum so draw the entire patch
+                            isDraw = true;
+                            break;
+                        }
+
+                        if (isDraw)
+                        {
+                            //draw the triangle strip in each triangle strip
+                            gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                            for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
+                            gl.End();
+                        }
                     }
                 }
             }
@@ -332,12 +514,13 @@ namespace AgOpenGPS
                 gl.ReadPixels(rpXPosition, 202, rpWidth, 1,
                                     OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsAtTool);
 
+                //used in this loop only, reset to false for next iteration
                 bool isSectionRequiredOn = false;
 
                 ////OR them together, if nowhere applied, send OnRequest, if its all green send an offRequest
                 for (int a = 0; a < rpWidth; a++)
                 {
-                    if (pixelsMiddle[a] < 10 | pixelsBottom[a] < 10 | pixelsAtTool[a] < 10 | pixelsTop[a] < 10)
+                    if (pixelsMiddle[a] == 0 | pixelsTop[a] == 0 | pixelsAtTool[a] == 0 | pixelsBottom[a] == 0)
                     {
                         isSectionRequiredOn = true;
                         break;                        
@@ -359,9 +542,6 @@ namespace AgOpenGPS
                     section[j].sectionOnRequest = false;
                 }
 
-                //used in this loop only, reset to false for next iteration
-                //isSectionRequiredOn = false;
-
                 // Manual on, force the section On and exit loop
                 if (section[j].manBtnState == manBtn.On)
                 {
@@ -380,8 +560,29 @@ namespace AgOpenGPS
             }
             gl.Flush();
 
+            //stop the timer and calc how long it took to do calcs and derive FPS
+            sw.Stop();
+            frameTime = (sw.Elapsed.TotalMilliseconds/1000);
+            sw.Reset();
+
+            frames += frameTime;
+            if ( frameCounter++ > 10)
+            {
+                FPS =  frames * 0.1;
+                FPS = (int)(1 / FPS);
+                frames = 0;
+                frameCounter = 0;
+            }
+
+            //if a mninute has elapsed save the field in case of crash to be able to resume
+            if (saveCounter++ > 600)
+            {
+                if (isJobStarted) FileSaveField("Resume");
+                saveCounter = 1;
+            }
         }
 
+        double frames, FPS = 0;
         //Resize is called upn window creation
         private void openGLControlBack_Resized(object sender, EventArgs e)
         {
