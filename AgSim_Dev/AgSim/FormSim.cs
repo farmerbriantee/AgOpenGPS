@@ -218,7 +218,7 @@ namespace AgSim
         {
             sbVTG.Clear();
             sbVTG.Append("$GPVTG,");
-            sbVTG.Append(360-headingTrue);
+            sbVTG.Append(headingTrue);
             sbVTG.Append(",T,034.4,M,");
             sbVTG.Append(speed.ToString());
             sbVTG.Append(",N,");

@@ -240,7 +240,7 @@
             // 
             this.tbarStepDistance.LargeChange = 10;
             this.tbarStepDistance.Location = new System.Drawing.Point(23, 375);
-            this.tbarStepDistance.Maximum = 300;
+            this.tbarStepDistance.Maximum = 100;
             this.tbarStepDistance.Name = "tbarStepDistance";
             this.tbarStepDistance.Size = new System.Drawing.Size(347, 45);
             this.tbarStepDistance.SmallChange = 2;
@@ -400,6 +400,8 @@
             // chkGGA
             // 
             this.chkGGA.AutoSize = true;
+            this.chkGGA.Checked = true;
+            this.chkGGA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkGGA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkGGA.Location = new System.Drawing.Point(404, 88);
             this.chkGGA.Name = "chkGGA";
@@ -411,6 +413,8 @@
             // chkVTG
             // 
             this.chkVTG.AutoSize = true;
+            this.chkVTG.Checked = true;
+            this.chkVTG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVTG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkVTG.Location = new System.Drawing.Point(404, 117);
             this.chkVTG.Name = "chkVTG";
@@ -422,8 +426,6 @@
             // chkRMC
             // 
             this.chkRMC.AutoSize = true;
-            this.chkRMC.Checked = true;
-            this.chkRMC.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkRMC.Location = new System.Drawing.Point(404, 146);
             this.chkRMC.Name = "chkRMC";
@@ -454,7 +456,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(505, 397);
+            this.btnReset.Location = new System.Drawing.Point(488, 397);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 63;

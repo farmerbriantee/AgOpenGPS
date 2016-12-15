@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgSim", "AgSim\AgSim.csproj", "{28A2728E-74DA-4818-A0A8-08236F7F1149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgSim", "AgSim.csproj", "{28A2728E-74DA-4818-A0A8-08236F7F1149}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
