@@ -1,3 +1,21 @@
+v1.3.1.1 Dec 1 2016
+
+* TCP server added. Port 7777
+* tileable textures for field surface
+* WebCam support
+* New and close job are now; resume - new - open; in its own dialog
+* exiting asks if you want to save field if one is open
+* custom timeout message dialog - non modal
+* custom YesNo dialog for save
+* fixed AB line setting, must drive a ways before setting B point.
+* Set Auto Manual buttons on to off if other turned on to be easier
+* individual section buttons
+* added zoom by touching left or right side of screen
+* removed most divides with multiply, constants for pi/2 and 2 PI etc
+* Tool now has Red for Off, Yellow for ON, and Green for Auto, matching the buttons
+* Sections are in control of on off request now, not buttons. Buttons simply change button states of sections
+
+
 v1.3.0.1 22 Nov 2016
 
 * Most settings with graphics and easier to set
