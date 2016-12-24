@@ -311,9 +311,7 @@
     <None Include="btnImages\FileNew.png" />
     <None Include="btnImages\FileOpen.png" />
     <None Include="btnImages\FilePrevious.png" />
-    <Content Include="Dependencies\Floor.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

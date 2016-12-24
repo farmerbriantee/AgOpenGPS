@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-15")]
         public double setCam_pitch {
             get {
                 return ((double)(this["setCam_pitch"]));
@@ -416,6 +416,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setVehicle_isSteerAxleAhead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setCam_isAtanCam {
+            get {
+                return ((bool)(this["setCam_isAtanCam"]));
+            }
+            set {
+                this["setCam_isAtanCam"] = value;
             }
         }
     }

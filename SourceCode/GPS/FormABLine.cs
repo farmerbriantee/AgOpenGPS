@@ -41,6 +41,8 @@ namespace AgOpenGPS
                 btnUpABHeadingBy1.Enabled = true;
                 btnDnABHeadingBy1.Enabled = true;
                 upDnHeading = Math.Round((glm.degrees(mf.ABLine.abHeading)), 1);
+                nudTramRepeats.Value = mf.ABLine.tramPassEvery;
+                nudBasedOnPass.Value = mf.ABLine.passBasedOn;
             }
 
             else
@@ -55,6 +57,10 @@ namespace AgOpenGPS
                 btnUpABHeadingBy1.Enabled = false;
                 btnDnABHeadingBy1.Enabled = false;
                 upDnHeading = Math.Round((glm.degrees(mf.fixHeading)), 1);
+                nudTramRepeats.Value = 0;
+                nudBasedOnPass.Value = 0;
+                mf.ABLine.tramPassEvery=0;
+                mf.ABLine.passBasedOn=0;
             }
         }
 
@@ -129,7 +135,11 @@ namespace AgOpenGPS
             btnBPoint.Enabled = false;
             btnDeleteAB.Enabled = false;
             btnABLineOk.Enabled = false;
-  
+            nudTramRepeats.Value = 0;
+            nudBasedOnPass.Value = 0;
+            mf.ABLine.tramPassEvery = 0;
+            mf.ABLine.passBasedOn = 0;
+
             this.DialogResult = DialogResult.Cancel;
             this.Close();
          }
@@ -150,6 +160,18 @@ namespace AgOpenGPS
                 if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
                 else lblKeepGoing.Text = "    Keep\r\n" + "Going  " + Convert.ToInt16((100 - pointAToFixDistance)).ToString();
             }
+
+        }
+
+        private void nudTramRepeats_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.tramPassEvery = (int)nudTramRepeats.Value;
+
+        }
+
+        private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
 
         }
 

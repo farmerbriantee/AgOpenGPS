@@ -79,8 +79,8 @@ namespace AgOpenGPS
         private void SerialLineReceived(string sentence)
         {
             //spit it out no matter what it says
-            recvSentence.Append(sentence);
-            recvSentenceSettings = recvSentence.ToString();
+            pn.rawBuffer += sentence;
+            recvSentenceSettings = pn.rawBuffer;
         }
 
         //Arduino port called by the delegate every time
@@ -225,9 +225,9 @@ namespace AgOpenGPS
             }
 
             try { sp.Open(); }
-            catch (Exception exc)
+            catch (Exception)
             {
-                MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
+                //MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
 
                 //update port status labels
                 stripPortGPS.Text = " * * ";

@@ -58,7 +58,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_delayCameraPrev = 6;
             Properties.Settings.Default.setDisplay_delayFixPrev = 5;
-
+            Properties.Settings.Default.setCam_isAtanCam = true;
 
             Properties.Settings.Default.Save();
 
@@ -114,7 +114,9 @@ namespace AgOpenGPS
                     writer.Write("Sections," + Properties.Settings.Default.setVehicle_numSections + ",");
                     writer.Write("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth + ",");
 
-                    writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
+                    writer.Write("Reserved,0,"); 
+                    
+                    writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0");
@@ -325,13 +327,20 @@ namespace AgOpenGPS
                     }
                 }
 
-                //read final area and header lines
+                //read area and header lines
                 line2 = reader.ReadLine();
                 if (line2.IndexOf("$totalSquareMeters") == -1)
                 {
                     MessageBox.Show("Meters header is Corrupt");
                     return;
                 }
+
+                line2 = reader.ReadLine();//just read meters of total and skip the heading line                
+                line2 = reader.ReadLine();//read the line $Sections
+
+                if (line2.IndexOf("$SectionM") == -1)
+                { MessageBox.Show("Sections header is Corrupt"); return; }
+
 
             }
             //made it to here so file is mostly valid
@@ -359,6 +368,7 @@ namespace AgOpenGPS
                 //If is true there is AB Line data
                 if (b)
                 {
+                    btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
                     //Heading, refPoint1x,z,refPoint2x,z
                     line = reader.ReadLine();
 
@@ -369,6 +379,8 @@ namespace AgOpenGPS
                     ABLine.refPoint1.z = double.Parse(words[2]);
                     ABLine.refPoint2.x = double.Parse(words[3]);
                     ABLine.refPoint2.z = double.Parse(words[4]);
+                    ABLine.tramPassEvery = int.Parse(words[5]);
+                    ABLine.passBasedOn   = int.Parse(words[6]);
 
                     ABLine.refABLineP1.x = ABLine.refPoint1.x - Math.Sin(ABLine.abHeading) * 10000.0;
                     ABLine.refABLineP1.z = ABLine.refPoint1.z - Math.Cos(ABLine.abHeading) * 10000.0;
@@ -378,9 +390,13 @@ namespace AgOpenGPS
 
                     ABLine.isABLineSet = true;
                 }
-
-                //false so just read and skip the heading line
-                else line = reader.ReadLine();
+                  
+                //false so just read and skip the heading line, reset btn image
+                else 
+                {
+                    btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
+                    line = reader.ReadLine();
+                }
 
                 //read the section and patch triangles...
 
@@ -431,6 +447,22 @@ namespace AgOpenGPS
 
                 line = reader.ReadLine();
                 totalSquareMeters = double.Parse(line);
+
+                line = reader.ReadLine();//read the line $Sections
+
+                if (line.IndexOf("$SectionM") == -1)
+                { MessageBox.Show("Sections header is Corrupt"); return; }
+
+                //individual section meters
+                line = reader.ReadLine();
+
+                //separate it into the 4 words
+                string[] wordss = line.Split(',');
+                section[0].squareMetersSection = double.Parse(wordss[0]);
+                section[1].squareMetersSection = double.Parse(wordss[1]);
+                section[2].squareMetersSection = double.Parse(wordss[2]);
+                section[3].squareMetersSection = double.Parse(wordss[3]);
+                section[4].squareMetersSection = double.Parse(wordss[4]);
             }
         }//end of open file
 
@@ -472,8 +504,8 @@ namespace AgOpenGPS
                 else writer.WriteLine(false);
 
                 writer.WriteLine(ABLine.abHeading + "," + ABLine.refPoint1.x + ","
-                    + ABLine.refPoint1.z + "," + ABLine.refPoint2.x + "," + ABLine.refPoint2.z);
-
+                    + ABLine.refPoint1.z + "," + ABLine.refPoint2.x + "," + ABLine.refPoint2.z + "," + ABLine.tramPassEvery + "," + ABLine.passBasedOn);
+                 
                 //write paths # of sections
                 writer.WriteLine("$Sections");
                 writer.WriteLine(vehicle.numberOfSections);
@@ -505,6 +537,9 @@ namespace AgOpenGPS
 
                 writer.WriteLine("$totalSquareMeters");
                 writer.WriteLine(totalSquareMeters);
+
+                writer.WriteLine("$SectionMeters");
+                writer.WriteLine(section[0].squareMetersSection + "," + section[1].squareMetersSection + "," + section[2].squareMetersSection + "," + section[3].squareMetersSection + "," + section[4].squareMetersSection);
             }
 
             //set saving flag off

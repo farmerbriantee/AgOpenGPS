@@ -16,7 +16,9 @@ namespace AgOpenGPS
 
         public double toolWidth;
         public double toolFarLeftPosition = 0;
+        public double toolFarLeftSpeed = 0;
         public double toolFarRightPosition = 0;
+        public double toolFarRightSpeed = 0;
 
         public double toolOverlap;
         public double toolTrailingHitchLength;

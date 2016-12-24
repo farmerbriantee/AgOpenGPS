@@ -31,8 +31,7 @@ namespace AgOpenGPS
         byte[] bufferArd = { 0 };
 
         //polygon mode for section drawing
-        bool isDrawPolygons = false;
-        bool isDrawVehicleTrack = false;
+        bool isDrawPolygons = false, isDrawVehicleTrack = false;
 
         //Is it in 2D or 3D
         public bool isIn3D = true;
@@ -53,7 +52,7 @@ namespace AgOpenGPS
 
         //Zoom variables
         public double gridZoom;
-        public double zoomValue = 16;
+        public double zoomValue = 24;
 
         // Storage For Our Tractor, implement, background etc Textures
         Texture particleTexture;
@@ -65,13 +64,17 @@ namespace AgOpenGPS
         //create world grid
         CWorldGrid worldGrid;
 
-        //create instance of a stopwatch
-        Stopwatch sw = new Stopwatch();
+        //create instance of a stopwatch for timing of frames and NMEA hz determination
+        Stopwatch swFrame = new Stopwatch();
 
-        //fps set to 10 but this shows fps if there were no limit.
+        //Time to do fix position update and draw routine
         double frameTime = 0;
-        int frameCounter = 1;
+
+        //For field saving in background
         int saveCounter = 1;
+
+        //used to update the screen status bar etc
+        int statusUpdateCounter = 1;
 
         //Parsing object of NMEA sentences
         public CNMEA pn;
@@ -118,7 +121,7 @@ namespace AgOpenGPS
             //create the ABLine instance
             ABLine = new CABLine(gl, this);
 
-            sw.Start();//start the stopwatch
+            swFrame.Start();//start the stopwatch
         }
 
         //Initialize items before the form Loads or is visible
@@ -128,7 +131,7 @@ namespace AgOpenGPS
             #region settings //--------------------------------------------------------------------------
 
             //change 2D or 3D icon accordingly on button
-            if (camera.camPitch == -20)  {
+            if (camera.camPitch == -15)  {
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_3D;   isIn3D = true;  }
             else  {
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_2D;   isIn3D = false; }
@@ -161,6 +164,8 @@ namespace AgOpenGPS
             //get the smoothing factors from settings
             delayCameraPrev = Properties.Settings.Default.setDisplay_delayCameraPrev;
             delayFixPrev = Properties.Settings.Default.setDisplay_delayFixPrev;
+
+            isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
 
             //remembered window position
             if (Properties.Settings.Default.setWindow_Maximized)
@@ -216,8 +221,11 @@ namespace AgOpenGPS
             //lblListener.Text="Listening on " + strHostName.ToString() + "  " + localIPAddress[1].ToString() + " : " + nPortListen.ToString();
 
             // Create the listener socket in this machines IP address
-            listener.Bind(new IPEndPoint(localIPAddress[1], nPortListen));
+            //listener.Bind(new IPEndPoint(localIPAddress[1], nPortListen));
             //listener.Bind(new IPEndPoint(IPAddress.Loopback, nPortListen)); // For use with localhost 127.0.0.1
+            listener.Bind(new IPEndPoint(IPAddress.Any, nPortListen)); // For use with localhost 127.0.0.1
+            
+
 
             //limit backlog
             listener.Listen(10);
@@ -271,32 +279,51 @@ namespace AgOpenGPS
         private void openGLControl_Click(object sender, EventArgs e)
         {
             Point point = openGLControl.PointToClient(Cursor.Position);
-
-            if (point.X > Width/2)
+            if (point.Y > Height / 3)
             {
-                if (zoomValue <= 24)
+                if (point.X > Width / 2 )
                 {
-                    if ((zoomValue -= 2.0) < 12.0) zoomValue = 12.0;
+                    if (zoomValue <= 30)
+                    {
+                        if ((zoomValue -= 2.0) < 16.0) zoomValue = 16.0;
+                    }
+
+                    else
+                    {
+                        if ((zoomValue -= 6.0) < 16.0) zoomValue = 16.0;
+                    }
+                    camera.camSetDistance = zoomValue * zoomValue * -1;
+                    SetZoom();
+
                 }
 
                 else
                 {
-                    if ((zoomValue -= 6.0) < 12.0) zoomValue = 12.0;
+                    if (zoomValue <= 24) zoomValue += 2.0;
+                    else zoomValue += 6.0;
+                    camera.camSetDistance = zoomValue * zoomValue * -1;
+                    SetZoom();
                 }
-                camera.camSetDistance = zoomValue * zoomValue * -1;
-                SetZoom();
-
             }
 
             else
             {
-                if (zoomValue <= 20) zoomValue += 2.0;
-                else zoomValue += 6.0;
-                camera.camSetDistance = zoomValue * zoomValue * -1;
-                SetZoom();
+                if (isIn3D)
+                {
+                    if (point.X < Width / 2)
+                    {
+
+                        camera.camPitch += 5;
+                        if (camera.camPitch > -5) camera.camPitch = -5;
+                    }
+
+                    else
+                    {
+                        camera.camPitch -= 5;
+                        if (camera.camPitch < -30) camera.camPitch = -30;
+                    }
+                }
             }
-
-
         }
 
 // Procedures and Functions //---------------------------------------
@@ -344,9 +371,8 @@ namespace AgOpenGPS
 
             catch (System.Exception excep)
             {
-
-                MessageBox.Show("Texture File FLOOR.PNG is Missing", excep.Message);
-            }
+               MessageBox.Show("Texture File FLOOR.PNG is Missing", excep.Message);
+             }
 
 
             return texture[0];
@@ -389,7 +415,10 @@ namespace AgOpenGPS
             using (var form = new FormCommSet(this))
             {
                 var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }               
+                if (result == DialogResult.OK) 
+                {
+                    fixUpdateTime = 1 / (double)fixUpdateHz;
+                }               
             }
         }
 
@@ -624,12 +653,13 @@ namespace AgOpenGPS
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
 
-            //turn section buttons all OFF 
+            //turn section buttons all OFF and zero square meters
             for (int j = 0; j < MAXSECTIONS; j++)
             {
                 section[j].isAllowedOn = false;
                 section[j].manBtnState = manBtn.On;
-            }
+                section[j].squareMetersSection=0;
+             }
 
             //turn manual button off
             manualBtnState = btnStates.Off;
@@ -707,8 +737,8 @@ namespace AgOpenGPS
                     //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
                     if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
                     {
-                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead )+1;
-                        if (section[j].sectionOnTimer > 10) section[j].sectionOnTimer = 10;
+                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead)+1;
+                        if (section[j].sectionOnTimer > fixUpdateHz+3) section[j].sectionOnTimer = fixUpdateHz+3;
                         section[j].sectionOnOffCycle = true;
                     }
 
@@ -723,10 +753,10 @@ namespace AgOpenGPS
                         if (!section[j].isSectionOn) section[j].TurnSectionOn();
 
                         //keep resetting the section OFF timer while the ON is active
-                        section[j].sectionOffTimer =  (int)(10 *vehicle.toolTurnOffDelay);
+                        section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
                     }
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(10 * vehicle.toolTurnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
 
                     //decrement the off timer
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
@@ -748,14 +778,14 @@ namespace AgOpenGPS
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) gridZoom = 2000;
-            if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) gridZoom = 2000;
-            if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) gridZoom = 1000;
-            if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) gridZoom = 503;
-            if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) gridZoom = 201.2;
-            if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom = 100.6;
-            if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom = 100.6;
-            if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) gridZoom = 50.3;
-            if (camera.camSetDistance >= -150 && camera.camSetDistance < -1) gridZoom = 25.15;
+            if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) gridZoom =   2000;
+            if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) gridZoom =    1000;
+            if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) gridZoom =     503;
+            if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) gridZoom =     201.2;
+            if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom =      100.6;
+            if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom =       50.3;
+            if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) gridZoom =       25.15;
+            if (camera.camSetDistance >= -150 && camera.camSetDistance < -1) gridZoom =         10.06;
             //if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 10.06;
             //1.216 2.532
 
@@ -769,7 +799,7 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(45.0f, (double)openGLControl.Width / (double)openGLControl.Height, 1, -3 * camera.camSetDistance);
+            gl.Perspective(fovy, (double)openGLControl.Width / (double)openGLControl.Height, 1, camDistanceFactor * camera.camSetDistance);
 
             //  Set the modelview matrix.
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
@@ -855,8 +885,8 @@ namespace AgOpenGPS
 
         private void btnMinMax_Click(object sender, EventArgs e)
         {
-            if (zoomValue < 24) zoomValue = 50;
-            else zoomValue = 16;
+            if (zoomValue < 40) zoomValue = 80;
+            else zoomValue = 24;
             camera.camSetDistance = zoomValue * zoomValue * -1;
             SetZoom();
 
@@ -866,7 +896,7 @@ namespace AgOpenGPS
         private void btn2D3D_Click(object sender, EventArgs e)
         {
 
-            if (camera.camPitch == -20)
+            if (camera.camPitch == -15 | isIn3D)
             {
                 camera.camPitch = -90;
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_2D;
@@ -877,7 +907,7 @@ namespace AgOpenGPS
             }
             else
             {
-                camera.camPitch = -20;
+                camera.camPitch = -15;
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_3D;
                 isIn3D = true;
                 //player.SoundLocation = @".\Dependencies\TurnOff.wav";
@@ -1161,6 +1191,7 @@ namespace AgOpenGPS
         public string HDOP { get { return Convert.ToString(pn.hdop); }  }
         public string SpeedMPH { get { return Convert.ToString(Math.Round(pn.speed * 0.621371, 1)); } }
         public string SpeedKPH { get { return Convert.ToString(pn.speed); } }
+        public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
         public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }
         
@@ -1181,28 +1212,76 @@ namespace AgOpenGPS
         public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
         public string Acres { get { return Math.Round(totalSquareMeters * 2.4710499815078974633856493327535e-4, 1).ToString(); } }
         public string FixHeading { get { return Math.Round(fixHeading, 3).ToString(); } }
-        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 3).ToString(); } }
+        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 2).ToString(); } }
+
 
 #endregion properties
  
+
+        /*
+         * The order is:
+         * The watchdog timer times out and runs this function tmrWatchdog_tick.
+         * 20 times per second so statusUpdateCounter updates strip menu etc at 2 hz
+         * it also makes sure there is new sentences showing up otherwise it shows **** No GGA....
+         * saveCounter ticks 1 up 20x per second, used at end of draw routine every minute to save a backup of field
+         * then ScanForNMEA function checks for a complete sentence if contained in pn.rawbuffer
+         * if not it comes right back and waits for next watchdog trigger and starts all over
+         * if a new sentence is there, UpdateFix() is called
+         * Right away CalculateLookAhead(), no skips, is called to determine lookaheads and trigger distances to save triangles plotted
+         * Then UpdateFix() continues. 
+         * Hitch, pivot, antenna locations etc and directions are figured out if trigDistance is triggered
+         * When that is done, DoRender() is called on the visible OpenGL screen and its draw routine _draw is run
+         * before triangles are drawn, frustum cull figures out how many of the triangles should be drawn 
+         * When its all the way thru, it triggers the sectioncontrol Draw, its frustum cull, and determines if sections should be on
+         * ProcessSectionOnOffRequests() runs and that does the section on off magic
+         * SectionControlToArduino() runs and spits out the port relay control based on sections on or off
+         * If field needs saving (1 minute since last time) field is saved
+         * Now the program is "Done" and waits for the next watchdog trigger, determines if a new sentence is available etc
+         * and starts all over from the top. 
+         */
+
+        //Timer runs at 20 hz and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
-            //acres on the master section soft control
-            this.btnSectionOffAutoOn.Text = Acres;
-
-            //status strip values
-            stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
-            stripMPH.Text = "MPH: " + SpeedMPH;
-            stripPassNumber.Text = "Pass: " + PassNumber;
-            stripGridZoom.Text = "Grid: " + Grid + " Feet";
-            stripAcres.Text = "Acres: " + Acres;
-
-            //update the online indicator
-            if (recvCounter > 16)
+            //every half second update all status
+            if (statusUpdateCounter++ > 10)
             {
-                stripOnlineGPS.Value = 1;
+                //reset the counter
+                statusUpdateCounter = 0;
+
+                //counter used for saving field in background
+                saveCounter++;
+
+                //acres on the master section soft control
+                this.btnSectionOffAutoOn.Text = Acres;
+
+                btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+                btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+                btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+                btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+                btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+
+                //status strip values
+                stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
+                stripMPH.Text = "MPH: " + SpeedMPH;
+                stripPassNumber.Text = "Pass: " + PassNumber;
+                stripGridZoom.Text = "Grid: " + Grid + " Feet";
+                stripAcres.Text = "Acres: " + Acres;
+                stripHz.Text = "Hz: " + NMEAHz;
+
+                //update the online indicator
+                if (recvCounter > 3 * fixUpdateHz)
+                {
+                    stripOnlineGPS.Value = 1;
+                    textBoxRcv.Text = "************  NO GGA or RMC **************";
+                }
+                else stripOnlineGPS.Value = 100;
             }
-            else stripOnlineGPS.Value = 100;
+
+            //go see if data ready for draw and position updates
+            ScanForNMEA();
+
+            //wait till timer fires again.
         }
 
 

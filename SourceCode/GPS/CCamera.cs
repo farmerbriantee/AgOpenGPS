@@ -70,8 +70,8 @@ namespace AgOpenGPS
                             -camPosZ + (camSetDistance * 0.051 * Math.Cos(glm.radians(fixHeading))));
             else 
                 //its in 3D mode
-                        gl.Translate(-camPosX + (camSetDistance * 0.12 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
-                            -camPosZ + (camSetDistance * 0.12 * Math.Cos(glm.radians(fixHeading))));
+                        gl.Translate(-camPosX + (camSetDistance * 0.08 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
+                            -camPosZ + (camSetDistance * 0.08 * Math.Cos(glm.radians(fixHeading))));
  
             //gl.Translate(-camPosX, -camPosY, -camPosZ );      
         }

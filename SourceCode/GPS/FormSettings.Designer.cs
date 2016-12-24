@@ -94,6 +94,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -117,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -852,6 +855,7 @@
             // 
             // tabDisplay
             // 
+            this.tabDisplay.Controls.Add(this.groupBox1);
             this.tabDisplay.Controls.Add(this.label21);
             this.tabDisplay.Controls.Add(this.tbarDisplayFixDelay);
             this.tabDisplay.Controls.Add(this.groupBox4);
@@ -1014,6 +1018,29 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // chkIsAtanCam
+            // 
+            this.chkIsAtanCam.AutoSize = true;
+            this.chkIsAtanCam.Checked = true;
+            this.chkIsAtanCam.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIsAtanCam.Location = new System.Drawing.Point(40, 47);
+            this.chkIsAtanCam.Name = "chkIsAtanCam";
+            this.chkIsAtanCam.Size = new System.Drawing.Size(172, 26);
+            this.chkIsAtanCam.TabIndex = 61;
+            this.chkIsAtanCam.Text = "Use Fix For Cam";
+            this.chkIsAtanCam.UseVisualStyleBackColor = true;
+            this.chkIsAtanCam.CheckedChanged += new System.EventHandler(this.chkIsAtanCam_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkIsAtanCam);
+            this.groupBox1.Location = new System.Drawing.Point(19, 322);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(481, 115);
+            this.groupBox1.TabIndex = 63;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Uncheck for True Heading as Cam";
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1063,6 +1090,8 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1134,5 +1163,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox chkIsSteerAxleAhead;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkIsAtanCam;
     }
 }

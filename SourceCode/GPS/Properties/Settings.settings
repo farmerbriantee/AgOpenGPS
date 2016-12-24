@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-20</Value>
+      <Value Profile="(Default)">-15</Value>
     </Setting>
     <Setting Name="setPort_portName" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM GPS...</Value>
@@ -99,6 +99,9 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setVehicle_isSteerAxleAhead" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setCam_isAtanCam" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

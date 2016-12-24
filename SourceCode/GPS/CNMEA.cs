@@ -74,12 +74,9 @@ namespace AgOpenGPS
     public class CNMEA
     {
         //WGS84 Lat Long
-        public double latitude = 0;
-        public double longitude = 0;
+        public double latitude = 0, longitude = 0;
 
-        public bool updatedGGA = false;
-        public bool updatedVTG = false;
-        public bool updatedRMC = false;
+        public bool updatedGGA = false, updatedVTG = false, updatedRMC = false;
 
         public string rawBuffer = "";
         public string theSent = "";
@@ -87,36 +84,33 @@ namespace AgOpenGPS
         private string nextNMEASentence = "";
 
         //UTM coordinates
-        public double northing = 0;
-        public double easting = 0;
+        public double northing = 0, easting = 0;
         public int zone = 0;
  
 
         //other GIS Info
-        public double altitude = 0;
-        public int fixQuality = 0;
-        public string status = "q";
-        public double speed = 0;
-        public double headingTrue = 0;
-        public DateTime utcDateTime;
-        public int satellitesTracked = 0;
-        public double hdop = 0;
+        public double altitude = 0, speed = 0;
+        public double headingTrue = 0, hdop = 0;
 
-        private FormGPS mainForm;
+        public int fixQuality = 0;
+        public int satellitesTracked = 0;
+        public string status = "q";
+        public DateTime utcDateTime;
+
+        //UTM numbers are huge, these cut them way down.
+        public int utmNorth = 0, utmEast = 0;
+
+        private FormGPS mf;
 
         public CNMEA(FormGPS f)
         {
             //constructor, grab the main form reference
-            this.mainForm = f;
+            this.mf = f;
         }
 
         //ParseNMEA
         public void ParseNMEA()
         {
-            updatedGGA = false;
-            updatedVTG = false;
-            updatedRMC = false;
-
             if (rawBuffer == null) return;
             bool stillData = true;
 
@@ -166,172 +160,6 @@ namespace AgOpenGPS
             }// while still data
                    
         }
-
-        //The indivdual sentence parsing
-        private void ParseGGA()
-        {
- 
-                //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
-                //   0     1      2      3    4      5 6  7  8   9    10 11  12 13  14
-                //        Time      Lat       Lon  
-
-                //is the sentence GGA
-                if (words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
-                {
-
-                    //get latitude and convert to decimal degrees
-                    try
-                    {
-                        latitude = double.Parse(words[2].Substring(0, 2));
-                        latitude = latitude + double.Parse(words[2].Substring(2)) * 0.01666666666666666666666666666667;
-                    }
-                    catch (ArgumentNullException) { }
-
-                    try { if (words[3] == "S") latitude *= -1; }
-                    catch (ArgumentNullException) { }
-
-                    //get longitude and convert to decimal degrees
-                    try
-                    {
-                        longitude = double.Parse(words[4].Substring(0, 3));
-                        longitude = longitude + double.Parse(words[4].Substring(3)) * 0.01666666666666666666666666666667;
-                    }
-                    catch (ArgumentNullException) { }
-
-                    try { if (words[5] == "W") longitude *= -1; }
-                    catch (ArgumentNullException) { }
-
-                    //calculate zone and UTM coords
-                    DecDeg2UTM(latitude, longitude);
-
-
-                    //fixQuality
-                    if (words[6] == String.Empty) fixQuality = 0;
-                    else
-                    {
-                        try { fixQuality = int.Parse(words[6]); }
-                        catch (ArgumentNullException) { }
-                    }
-                    //satellites tracked
-                    if (words[7] == String.Empty) satellitesTracked = 0;
-                    else
-                    {
-                        try { satellitesTracked = int.Parse(words[7]); }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    if (words[8] == String.Empty) hdop = 0.0;
-                    else
-                    {
-                        try { hdop = double.Parse(words[8]); }
-                        catch (ArgumentNullException) { }
-                    }
-
-                    //altitude
-                    if (words[9] == String.Empty) altitude = -1;
-                    else
-                    {
-                        try { altitude = double.Parse(words[9]); }
-                        catch (ArgumentNullException) { }
-                    }
-                    theSent += nextNMEASentence;
-                    updatedGGA = true;
-                    mainForm.recvCounter = 0;
-                }
-
-     }
-
-        private void ParseRMC()
-        {
-            //GPRMC parsing of the sentence 
-            //make sure there aren't missing coords in sentence
-            if (words[7] != "" & words[8] != "" & words[2] != "")
-            {
-                //get latitude and convert to decimal degrees
-                try
-                {
-                    latitude = double.Parse(words[3].Substring(0, 2));
-                    latitude = latitude + double.Parse(words[3].Substring(2)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
-
-                try { if (words[4] == "S") latitude *= -1; }
-                catch (ArgumentNullException) { }
-
-                //get longitude and convert to decimal degrees
-                try
-                {
-                    longitude = double.Parse(words[5].Substring(0, 3));
-                    longitude = longitude + double.Parse(words[5].Substring(3)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
-
-                try { if (words[6] == "W") longitude *= -1; }
-                catch (ArgumentNullException) { }
-
-                //calculate zone and UTM coords
-                DecDeg2UTM(latitude, longitude);
-
-        
-                //Convert from knots to kph for speed
-                if (words[7] == String.Empty) speed = -1;
-                else
-                {
-                    try { speed = double.Parse(words[7]) * 1.852; speed = Math.Round(speed, 1); }
-                    catch (ArgumentNullException) { }
-                }
-
-                //True heading
-                if (words[8] == String.Empty) headingTrue = -1;
-                else
-                {
-                    try { headingTrue = double.Parse(words[8]); }
-                    catch (ArgumentNullException) { }
-                }
-
-                //Status
-                if (words[2] == String.Empty) status = "z";
-                else
-                {
-                    try { status = words[2]; }
-                    catch (ArgumentNullException) { }
-                }
-                theSent += nextNMEASentence;
-                mainForm.recvCounter = 0;
-                updatedRMC = true;
-            }
-    
-
-        }
- 
-        private void ParseVTG()
-        {
-            //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
-            //is the sentence GGA
-            if (words[1] != "" & words[5]  != "" )
-            {
-                //kph for speed - knots read
-                if (words[5] == String.Empty) speed = -1;
-                else
-                {
-                    try { speed = double.Parse(words[5]) * 1.852; speed = Math.Round(speed, 1); }
-                    catch (ArgumentNullException) { }
-                }
-
-                //True heading
-                if (words[1] == String.Empty) headingTrue = -1;
-                else
-                {
-                    try { headingTrue = double.Parse(words[1]); }
-                    catch (ArgumentNullException) { }
-                }
-                updatedVTG = true;
-                theSent += nextNMEASentence;
-            }
-
-
-
-        }
  
          // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
@@ -366,6 +194,172 @@ namespace AgOpenGPS
             return sentence;
         }
 
+        //The indivdual sentence parsing
+        private void ParseGGA()
+        {
+
+            //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
+            //   0     1      2      3    4      5 6  7  8   9    10 11  12 13  14
+            //        Time      Lat       Lon  
+
+            //is the sentence GGA
+            if (words[2] != "" & words[3] != "" & words[4] != "" & words[5] != "")
+            {
+
+                //get latitude and convert to decimal degrees
+                try
+                {
+                    latitude = double.Parse(words[2].Substring(0, 2));
+                    latitude = latitude + double.Parse(words[2].Substring(2)) * 0.01666666666666666666666666666667;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[3] == "S") latitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //get longitude and convert to decimal degrees
+                try
+                {
+                    longitude = double.Parse(words[4].Substring(0, 3));
+                    longitude = longitude + double.Parse(words[4].Substring(3)) * 0.01666666666666666666666666666667;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[5] == "W") longitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //calculate zone and UTM coords
+                DecDeg2UTM(latitude, longitude);
+
+
+                //fixQuality
+                if (words[6] == String.Empty) fixQuality = 0;
+                else
+                {
+                    try { fixQuality = int.Parse(words[6]); }
+                    catch (ArgumentNullException) { }
+                }
+                //satellites tracked
+                if (words[7] == String.Empty) satellitesTracked = 0;
+                else
+                {
+                    try { satellitesTracked = int.Parse(words[7]); }
+                    catch (ArgumentNullException) { }
+                }
+
+                if (words[8] == String.Empty) hdop = 0.0;
+                else
+                {
+                    try { hdop = double.Parse(words[8]); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //altitude
+                if (words[9] == String.Empty) altitude = -1;
+                else
+                {
+                    try { altitude = double.Parse(words[9]); }
+                    catch (ArgumentNullException) { }
+                }
+                theSent += nextNMEASentence;
+                updatedGGA = true;
+                mf.recvCounter = 0;
+            }
+
+        }
+
+        private void ParseRMC()
+        {
+            //GPRMC parsing of the sentence 
+            //make sure there aren't missing coords in sentence
+            if (words[7] != "" & words[8] != "" & words[2] != "")
+            {
+                //get latitude and convert to decimal degrees
+                try
+                {
+                    latitude = double.Parse(words[3].Substring(0, 2));
+                    latitude = latitude + double.Parse(words[3].Substring(2)) * 0.01666666666666666666666666666667;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[4] == "S") latitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //get longitude and convert to decimal degrees
+                try
+                {
+                    longitude = double.Parse(words[5].Substring(0, 3));
+                    longitude = longitude + double.Parse(words[5].Substring(3)) * 0.01666666666666666666666666666667;
+                }
+                catch (ArgumentNullException) { }
+
+                try { if (words[6] == "W") longitude *= -1; }
+                catch (ArgumentNullException) { }
+
+                //calculate zone and UTM coords
+                DecDeg2UTM(latitude, longitude);
+
+
+                //Convert from knots to kph for speed
+                if (words[7] == String.Empty) speed = -1;
+                else
+                {
+                    try { speed = double.Parse(words[7]) * 1.852; speed = Math.Round(speed, 1); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //True heading
+                if (words[8] == String.Empty) headingTrue = -1;
+                else
+                {
+                    try { headingTrue = double.Parse(words[8]); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //Status
+                if (words[2] == String.Empty) status = "z";
+                else
+                {
+                    try { status = words[2]; }
+                    catch (ArgumentNullException) { }
+                }
+                theSent += nextNMEASentence;
+                mf.recvCounter = 0;
+                updatedRMC = true;
+            }
+
+
+        }
+
+        private void ParseVTG()
+        {
+            //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
+            //is the sentence GGA
+            if (words[1] != "" & words[5] != "")
+            {
+                //kph for speed - knots read
+                if (words[5] == String.Empty) speed = -1;
+                else
+                {
+                    try { speed = double.Parse(words[5]) * 1.852; speed = Math.Round(speed, 1); }
+                    catch (ArgumentNullException) { }
+                }
+
+                //True heading
+                if (words[1] == String.Empty) headingTrue = -1;
+                else
+                {
+                    try { headingTrue = double.Parse(words[1]); }
+                    catch (ArgumentNullException) { }
+                }
+                updatedVTG = true;
+                theSent += nextNMEASentence;
+            }
+
+
+
+        }
+        
         //checks the checksum against the string
         public bool ValidateChecksum(string Sentence)
         {
@@ -451,8 +445,8 @@ namespace AgOpenGPS
                 A + (1 - T + C) * A2 * A / 6 +
                 (5 - 18 * T + T * T + 72 * C - 58 * e2_prim) * A2 * A2 * A / 120);
 
-            northing -= 5000000;
-            //easting -= 300000;
+            northing -= utmNorth;
+            easting -= utmEast;
         }
         // Returns position in UTM easting/northing/zone (in meters)
         private double m_calc(double lat)

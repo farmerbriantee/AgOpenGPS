@@ -40,7 +40,7 @@ namespace AgOpenGPS
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             gl.Color(0.954, 0.954, 0.954);
 
-            double texZoom = 100/mf.zoomValue;
+            double texZoom = 200/mf.zoomValue;
             //the floor
             gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[2]);	// Select Our Texture
             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
@@ -51,7 +51,7 @@ namespace AgOpenGPS
             gl.End();						// Done Building Triangle Strip
             gl.Disable(OpenGL.GL_TEXTURE_2D);
 
-            gl.Color(0.22f, 0.37f, 0.22f);
+            gl.Color(0.25f, 0.4f, 0.25f);
             gl.Begin(OpenGL.GL_LINES);
             for (double x = eastingMin; x < eastingMax; x += _gridZoom)
             {
@@ -75,11 +75,11 @@ namespace AgOpenGPS
         public void CreateWorldGrid(double northing, double easting)
         {
             //draw a grid 5 km each direction away from initial fix
-            northingMax = northing + 5000;
-            northingMin = northing - 5000;
+            northingMax = northing + 6000;
+            northingMin = northing - 6000;
 
-            eastingMax = easting + 5000;
-            eastingMin = easting - 5000;
+            eastingMax = easting + 6000;
+            eastingMin = easting - 6000;
  
         }
 
@@ -87,10 +87,10 @@ namespace AgOpenGPS
         {
             //make sure the grid extends far enough away as you move along
             //just keep it growing as you continue to move in a direction - forever.
-            if ((northingMax - northing) < 500) northingMax = northing + 2000;
-            if ((northing - northingMin) < 500) northingMin = northing - 2000;
-            if ((eastingMax - easting) < 500) eastingMax = easting + 2000;
-            if ((easting - eastingMin) < 500) eastingMin = easting - 2000;
+            if ((northingMax - northing) < 1500) northingMax = northing + 2000;
+            if ((northing - northingMin) < 1500) northingMin = northing - 2000;
+            if ((eastingMax - easting) < 1500) eastingMax = easting + 2000;
+            if ((easting - eastingMin) < 1500) eastingMin = easting - 2000;
         }
 
     }

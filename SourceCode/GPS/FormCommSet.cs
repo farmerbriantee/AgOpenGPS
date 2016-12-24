@@ -78,7 +78,7 @@ namespace AgOpenGPS
 
         private void nudNMEAHz_ValueChanged(object sender, EventArgs e)
         {
-            mf.rmcUpdateHz = (int)nudNMEAHz.Value;
+            mf.fixUpdateHz = (int)nudNMEAHz.Value;
         }
 
         // Arduino 
@@ -221,7 +221,7 @@ namespace AgOpenGPS
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
             //serial Ports  -  mostly done directly-------------------
-            Properties.Settings.Default.setPort_NMEAHz = mf.rmcUpdateHz;
+            Properties.Settings.Default.setPort_NMEAHz = mf.fixUpdateHz;
 
             //save
             Properties.Settings.Default.Save();

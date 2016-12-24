@@ -1,6 +1,19 @@
-﻿v1.3.1.1 Dec 1 2016
+﻿v1.4.1.1 Dec 20 2016
 
-* TCP server added. Port 7777
+* Camera can use heading of calculated by fix - settable in settings
+* Automatic breakup of patches, every 100 triangles, so Frustum culling is more effective
+* Auto NMEA frequency determination.
+* tramlines settable frequency and start position. Multi coloured.
+* Speed compensated lookahead. Based on work of Torriem.
+* No longer use of timers, data comes in updates/sec so app must conform, not other way around.
+* Completely reworked frame timing. "Fast" loop continuously runs and only once a complete NMEA 
+	sentence appears then fix position and draw routine are fired. Based off of 20 Hz watchdog timer
+* Each section has its own accumulated acres in its button
+* FINALLY runs nicely at 10 hz update 
+
+
+v1.3.1.1 Dec 1 2016
+
 * tileable textures for field surface
 * WebCam support
 * New and close job are now; resume - new - open; in its own dialog

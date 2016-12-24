@@ -1,18 +1,8 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using SharpGL;
-using System.IO.Ports;
-using System.IO;
-using System.Diagnostics;
-using System.Media;
-using SharpGL.SceneGraph.Assets;
 
 
 namespace AgOpenGPS
@@ -25,29 +15,19 @@ namespace AgOpenGPS
         //extracted Near, Far, Right, Left clipping planes of frustum
         double[] frustum = new double[24];
 
+        double fovy = 30;
+        double camDistanceFactor = -2;
+
+        //how many culled triangles are drawn
         int triDrawn = 0;
+        int patchesDrawn = 0;
+        int totalTri = 0;
 
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
         {
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
-
-            //start the watch and time till it gets back here
-            sw.Start();
-
-            //if there is new data go update everything first.
-            UpdateFixPosition();
-
-            //Update the port counter
-            recvCounter++;
-
-            //Determine if sections want to be on or off
-            ProcessSectionOnOffRequests();
-
-            //send the byte out to section relays
-            SectionControlOutToArduino();
-
 
             //  Clear the color and depth buffer.
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -56,8 +36,8 @@ namespace AgOpenGPS
             //camera does translations and rotations
             camera.SetWorldCam(gl, pivotAxleEasting, fixPosY, pivotAxleNorthing, fixHeadingCam);
 
+            //calculate the frustum planes for culling
             CalcFrustum(gl);
-
 
             //turn on blend for paths
             gl.Enable(OpenGL.GL_BLEND);
@@ -68,6 +48,8 @@ namespace AgOpenGPS
             if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
  
             triDrawn = 0;
+            patchesDrawn = 0;
+            totalTri = 0;
 
             //draw patches of sections
             for (int j = 0; j < vehicle.numberOfSections; j++)
@@ -75,18 +57,25 @@ namespace AgOpenGPS
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count();
 
+                //check if in frustum or not
                 bool isDraw;
-
+ 
                 if (patchCount > 0)
                 {
+                    //initialize the steps for mipmap of triangles (skipping detail while zooming out)
+                    int mipmap = 0;
+                    if (camera.camSetDistance < -600) mipmap = 4;
+                    if (camera.camSetDistance < -1200) mipmap = 8;
+
                     //for every new chunk of patch
                     foreach (var triList in section[j].patchList)
                     {
                         isDraw = false;
                         int count2 = triList.Count();
-                        for (int i = 0; i < count2; i+=4)
+                        totalTri += count2;
+                        for (int i = 0; i < count2; i+=3)
                         {
-                            //determine if point is in frustum or not
+                            //determine if point is in frustum or not, if < 0, its outside so abort                            
                             if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
                                 continue;//right
                             if (frustum[4] * triList[i].x + frustum[6] * triList[i].z + frustum[7] <= 0)
@@ -100,7 +89,7 @@ namespace AgOpenGPS
                             if (frustum[12] * triList[i].x + frustum[14] * triList[i].z + frustum[15] <= 0)
                                 continue;//near
  
-                            //point is in frustum so draw the entire patch
+                            //point is in frustum so draw the entire patch. The downside of triangle strips.
                             isDraw = true;
                             break;
 
@@ -108,13 +97,35 @@ namespace AgOpenGPS
 
                         if (isDraw)
                         {
+                            patchesDrawn++;
+
                             //draw the triangle strip in each triangle strip
                             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
                             count2 = triList.Count();
-                            for (int i = 0; i < count2; i++)
+
+                            //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                            if (count2 > 10)                                
                             {
-                                gl.Vertex(triList[i].x, 0, triList[i].z);
-                                triDrawn++;
+                                int step = mipmap;
+                                for (int i = 0; i < count2; i += step)
+                                {
+                                    gl.Vertex(triList[i].x, 0, triList[i].z);
+                                    triDrawn++;
+                                    i++;
+                                    gl.Vertex(triList[i].x, 0, triList[i].z);
+                                    triDrawn++;
+                                    i++;
+                                    if (count2-i < 10) step = 0;
+
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < count2; i ++)
+                                {
+                                    gl.Vertex(triList[i].x, 0, triList[i].z);
+                                    triDrawn++;
+                                } 
                             }
                             gl.End();
                         }
@@ -123,7 +134,6 @@ namespace AgOpenGPS
             }
 
             gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
-
             gl.Color(1,1,1);
 
             // draw the current and reference AB Lines
@@ -137,25 +147,19 @@ namespace AgOpenGPS
                 gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
                 foreach (var triList in pointAntenna) gl.Vertex(triList.easting, 0, triList.northing);
                 gl.End();
+           }
 
-                ////Pivot Axle
-                //gl.Color(0.45f, 0.9f, 0.9f, 0.6f);
-                //gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                //foreach (var triList2 in pointPivot) gl.Vertex(triList2.easting, 0, triList2.northing);
-                //gl.End();
+            //screen text for debug
+            gl.DrawText(10, 15, 1, 0.8f, 1, "Courier", 12, "   FrameTime(ms) " + Convert.ToString(Math.Round(frameTime,2)));
+            gl.DrawText(10, 30, 1, 0.8f, 0, "Courier", 12, "       TrisDrawn " + Convert.ToString(triDrawn));
+            gl.DrawText(10, 45, 1, 0.8f, 0, "Courier", 12, "    PatchesDrawn " + Convert.ToString(patchesDrawn));
+            gl.DrawText(10, 60, 1, 0.8f, 0, "Courier", 12, "    AllTriangles " + Convert.ToString(totalTri));
+            //gl.DrawText(10, 60, 1, 0.8f, 0, "Courier", 12, "FarRghtSpeed m/s " + Convert.ToString(Math.Round(vehicle.toolFarRightSpeed, 2)));
+            //gl.DrawText(10, 75, 1, 0.8f, 0, "Courier", 12, "FarLeftSpeed m/s " + Convert.ToString(Math.Round(vehicle.toolFarLeftSpeed,2)));
+            //gl.DrawText(10, 90, 1, 0.8f, 0, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
+            //gl.DrawText(10, 105, 1, 0.8f, 1, "Courier", 12, " TrigDistance(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
+            //gl.DrawText(10, 120, 1, 0.8f, 1, "Courier", 12, " et " + Convert.ToString(Math.Round(et, 5)));
 
-                ////tool
-                //gl.Color(0.9f, 0.1f, 0.25f, 0.6f);
-                //gl.Begin(OpenGL.GL_LINE_STRIP);//for every point in pointData
-                //foreach (var triList4 in pointTool) gl.Vertex(triList4.easting, 0, triList4.northing);
-                //gl.End();
-            }
-
-
-            gl.DrawText(10, 15, 1, 0.8f, 0, "Verdana", 16, " FPS " + Convert.ToString(FPS));
-            gl.DrawText(10, 45, 1, 0.8f, 0, "Verdana", 16, " Triangles " + Convert.ToString(triDrawn));
-            //gl.DrawText(10, 60, 1, 0.8f, 1, "Verdana", 16, " zoomValue " + Convert.ToString(zoomValue));
-            //gl.DrawText(10, 75, 1, 0.8f, 1, "Verdana", 16, " gridZoom " + Convert.ToString(gridZoom));
 
             //draw the tractor/implement
             vehicle.DrawVehicle();
@@ -179,7 +183,7 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //draw the background when in 3D
-            if (isIn3D)
+            if (isIn3D && camera.camPitch > -16)
             {
                 //the background
                 double winLeftPos = -(double)Width / 2;
@@ -241,7 +245,7 @@ namespace AgOpenGPS
             LoadGLTextures();
 
             //  Set the clear color.
-            gl.ClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+            gl.ClearColor(0.73f, 0.78f, 0.865f, 1.0f);
 
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
@@ -251,13 +255,14 @@ namespace AgOpenGPS
             
             //set the camera to right distance
             SetZoom();
+
+            //now start the timer assuming no errors, otherwise the program will not stop on errors.
+            tmrWatchdog.Enabled = true;
         }
 
         /// Handles the Resized event of the openGLControl control.
         private void openGLControl_Resized(object sender, EventArgs e)
         {
-            //  TODO: Set the projection matrix here.
-
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
 
@@ -268,7 +273,7 @@ namespace AgOpenGPS
             gl.LoadIdentity();
 
             //  Create a perspective transformation.
-            gl.Perspective(45.0f, (double)openGLControl.Width / (double)openGLControl.Height, 1, -3 * camera.camSetDistance);
+            gl.Perspective(fovy, (double)openGLControl.Width / (double)openGLControl.Height, 1, camDistanceFactor * camera.camSetDistance);
 
             //  Set the modelview matrix.
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
@@ -446,7 +451,7 @@ namespace AgOpenGPS
                     {
                         isDraw = false;
                         int count2 = triList.Count();
-                        for (int i = 0; i < count2; i+=4)
+                        for (int i = 0; i < count2; i+=3)
                         {
                             //determine if point is in frustum or not
                             if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
@@ -457,12 +462,6 @@ namespace AgOpenGPS
                                 continue;//bottom
                             if (frustum[20] * triList[i].x + frustum[22] * triList[i].z + frustum[23] <= 0)
                                 continue;//top
-
-                            //near and far not required since its always 2D looking down
-                            //if (frustum[8] * triList[i].x + frustum[10] * triList[i].z + frustum[11] <= 0)
-                            //    continue;//far
-                            //if (frustum[12] * triList[i].x + frustum[14] * triList[i].z + frustum[15] <= 0)
-                            //    continue;//near
  
                             //point is in frustum so draw the entire patch
                             isDraw = true;
@@ -484,16 +483,8 @@ namespace AgOpenGPS
             //Read the pixels ahead of tool a section at a time. Each section can have its own lookahead manipulated. 
             for (int j = 0; j < vehicle.numberOfSections; j++)
             {
-                // *** Torriem
- 
-                //here is where you can manipulate individual section times
-                //delete this if setting externally outside this loop
-                section[j].sectionLookAhead = (pn.speed * vehicle.toolLookAhead * 2.0); //how far ahead ie up the screen  
-                
-                //*** Torriem
-
-                //keep in as safety
-                if (section[j].sectionLookAhead > 80) section[j].sectionLookAhead = 80;
+               //keep in as safety
+                if (section[j].sectionLookAhead > 190) section[j].sectionLookAhead = 190;
 
                 //10 pixels to a meter or 1 pixel is 10cm - simple math
                 //find the left side pixel position
@@ -527,7 +518,13 @@ namespace AgOpenGPS
                     }
                 }
 
-                //if (isSectionRequiredOn && isMasterSectionOn)
+                //calculated in CSection.CalculateSectionLookAhead, section is going backwards
+                if (section[j].sectionLookAhead < 0)
+                {
+                    isSectionRequiredOn = false;
+                }
+
+                //if Master Auto is on
                 if (isSectionRequiredOn && section[j].isAllowedOn)
                 {
                     //global request to turn on section
@@ -555,34 +552,29 @@ namespace AgOpenGPS
                     section[j].sectionOnRequest = false;
                     section[j].sectionOffRequest = true;
                 }
-
-
             }
             gl.Flush();
 
-            //stop the timer and calc how long it took to do calcs and derive FPS
-            sw.Stop();
-            frameTime = (sw.Elapsed.TotalMilliseconds/1000);
-            sw.Reset();
+            //Determine if sections want to be on or off
+            ProcessSectionOnOffRequests();
 
-            frames += frameTime;
-            if ( frameCounter++ > 10)
-            {
-                FPS =  frames * 0.1;
-                FPS = (int)(1 / FPS);
-                frames = 0;
-                frameCounter = 0;
-            }
+            //send the byte out to section relays
+            SectionControlOutToArduino();
 
-            //if a mninute has elapsed save the field in case of crash to be able to resume
-            if (saveCounter++ > 600)
+
+            //stop the timer and calc how long it took to do calcs and draw
+            frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+
+            //if a minute has elapsed save the field in case of crash and to be able to resume            
+            if (saveCounter++ > 120)       //2 counts per second X 60 seconds.
             {
                 if (isJobStarted) FileSaveField("Resume");
                 saveCounter = 1;
             }
+            
+            //this is the end of the "frame". Now we wait for next NMEA sentence. 
         }
-
-        double frames, FPS = 0;
+                
         //Resize is called upn window creation
         private void openGLControlBack_Resized(object sender, EventArgs e)
         {
@@ -594,6 +586,7 @@ namespace AgOpenGPS
             //  Load the identity.
             gls.LoadIdentity();
 
+            // change these at your own peril!!!! Very critical
             //  Create a perspective transformation.
             gls.Perspective(6.0f, 1, 1, 6000);
 
@@ -617,5 +610,7 @@ namespace AgOpenGPS
         #endregion
 
 
+
+ 
     }
 }

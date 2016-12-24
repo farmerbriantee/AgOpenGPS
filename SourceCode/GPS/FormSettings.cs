@@ -22,7 +22,7 @@ namespace AgOpenGPS
         double toolOverlap, toolTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
         double antennaHeight, antennaPivot, wheelbase, hitchLength;
 
-        bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead;
+        bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
         int numberOfSections,displayFixDelay, displayCameraDelay;
 
 
@@ -151,6 +151,12 @@ namespace AgOpenGPS
             displayFixDelay = Properties.Settings.Default.setDisplay_delayFixPrev;
             displayCameraDelay = Properties.Settings.Default.setDisplay_delayCameraPrev;
 
+            isAtanCamera = Properties.Settings.Default.setCam_isAtanCam;
+
+            chkIsAtanCam.CheckedChanged -= chkIsAtanCam_CheckedChanged;
+            chkIsAtanCam.Checked = isAtanCamera;
+            chkIsAtanCam.CheckedChanged += chkIsAtanCam_CheckedChanged;
+
             tbarDisplayCameraDelay.Value = displayCameraDelay;
             tbarDisplayFixDelay.Value = displayFixDelay;
 
@@ -246,6 +252,9 @@ namespace AgOpenGPS
 
             mf.delayFixPrev = displayFixDelay;
             Properties.Settings.Default.setDisplay_delayFixPrev = displayFixDelay;
+
+            mf.isAtanCam = isAtanCamera;
+            Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
 
             Properties.Settings.Default.Save();
 
@@ -654,6 +663,12 @@ namespace AgOpenGPS
         }
 
 #endregion
+
+        private void chkIsAtanCam_CheckedChanged(object sender, EventArgs e)
+        {
+            isAtanCamera = !isAtanCamera;
+            chkIsAtanCam.Checked = isAtanCamera;
+        }
 
     }
 }

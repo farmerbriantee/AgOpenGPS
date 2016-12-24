@@ -103,6 +103,7 @@ namespace AgOpenGPS
             Invoke((Action)delegate
             {
                 recvSentence.Append(text);
+                pn.rawBuffer += text;
             });
         }
 

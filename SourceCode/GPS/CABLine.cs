@@ -9,6 +9,7 @@ using System.IO;
 using System.Diagnostics;
 using SharpGL;
 using SharpGL.SceneGraph.Assets;
+using System.Drawing;
 
 namespace AgOpenGPS
 {
@@ -34,6 +35,12 @@ namespace AgOpenGPS
 
         public double howManyPathsAway = 0.0;
 
+        //tramlines
+        Color tramColor = Color.YellowGreen;
+        public int tramPassEvery = 0;
+        public int passBasedOn = 0;
+
+        //pointers to mainform controls
         private FormGPS mainForm;
         private OpenGL gl;
 
@@ -248,9 +255,9 @@ namespace AgOpenGPS
                     //Draw reference AB line
                     gl.LineWidth(2);
                     gl.Enable(OpenGL.GL_LINE_STIPPLE);
-                    gl.LineStipple(1, 0x0700);
+                    gl.LineStipple(1, 0x07F0);
                     gl.Begin(OpenGL.GL_LINES);
-                    gl.Color(0.1f, 0.1f, 0.4f);
+                    gl.Color(0.9f, 0.5f, 0.7f);
                     gl.Vertex(refABLineP1.x, refABLineP1.y, refABLineP1.z);
                     gl.Vertex(refABLineP2.x, refABLineP2.y, refABLineP2.z);
                     gl.End();
@@ -263,11 +270,21 @@ namespace AgOpenGPS
                     gl.Disable(OpenGL.GL_LINE_STIPPLE);
                     gl.LineWidth(3);
                     gl.Begin(OpenGL.GL_LINES);
+                    gl.Color(0.9f, 0.0f, 0.0f);
 
-                    if (passNumber%3!=0 || passNumber == 0)  gl.Color(0.9f, 0.0f, 0.0f);
-                    else gl.Color(0.990f, 0.990f, 0.0f);
-                    gl.Vertex(currentABLineP1.x, 2.0, currentABLineP1.z);
-                    gl.Vertex(currentABLineP2.x, 2.0, currentABLineP2.z);
+                    //calculate if tram line is here
+                    if (tramPassEvery != 0)
+                    {
+                        int pass = (int)passNumber + (tramPassEvery*300) - passBasedOn;
+                        if (pass % tramPassEvery != 0) gl.Color(0.9f, 0.0f, 0.0f);
+                        else gl.Color(0, 0.9, 0);
+                    }
+
+                    //based on line pass, make ref purple
+                    if (passBasedOn == passNumber && tramPassEvery != 0) gl.Color(0.990f, 0.190f, 0.990f);
+
+                    gl.Vertex(currentABLineP1.x, 0.0, currentABLineP1.z);
+                    gl.Vertex(currentABLineP2.x, 0.0, currentABLineP2.z);
                     gl.End();
 
                     gl.LineWidth(1);
@@ -368,5 +385,6 @@ namespace AgOpenGPS
  
    
         }
+
     }
 }
