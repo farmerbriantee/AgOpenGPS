@@ -1,9 +1,0 @@
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\bin\Debug\AgSim.exe.config
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\bin\Debug\AgSim.exe
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\bin\Debug\AgSim.pdb
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSim.FormSimIP.resources
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSim.Properties.Resources.resources
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSimIP.csproj.GenerateResource.Cache
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSim.exe
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSim.pdb
-C:\Users\Farm\Desktop\AgSim_Dev_IP\AgSim\obj\x86\Debug\AgSimIP.csprojResolveAssemblyReference.cache
