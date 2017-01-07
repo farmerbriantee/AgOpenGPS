@@ -1,4 +1,4 @@
-﻿v1.4.1.1 Dec 20 2016
+﻿v1.5 Dec 20 2016
 
 * Camera can use heading of calculated by fix - settable in settings
 * Automatic breakup of patches, every 100 triangles, so Frustum culling is more effective

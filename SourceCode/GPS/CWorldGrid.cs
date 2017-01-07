@@ -18,12 +18,12 @@ namespace AgOpenGPS
         private FormGPS mf;
 
         //Z
-        public double northingMax = 40;
-        public double northingMin = -40;
+        public double northingMax;
+        public double northingMin;
 
         //X
-        public double eastingMax = 40;
-        public double eastingMin = -40;
+        public double eastingMax;
+        public double eastingMin;
 
 
         public CWorldGrid(OpenGL _gl, FormGPS f)
@@ -66,10 +66,7 @@ namespace AgOpenGPS
                 gl.Vertex(eastingMax, 0.1, x);
                 gl.Vertex(eastingMin, 0.1, x);
             }
-
             gl.End();
-
-
         }
 
         public void CreateWorldGrid(double northing, double easting)

@@ -53,6 +53,7 @@ namespace AgOpenGPS
         //Zoom variables
         public double gridZoom;
         public double zoomValue = 24;
+        public double triangleResolution = 1.0;
 
         // Storage For Our Tractor, implement, background etc Textures
         Texture particleTexture;
@@ -84,6 +85,9 @@ namespace AgOpenGPS
 
         //ABLine Instance
         public CABLine ABLine;
+
+        //Contour mode Instance
+        public CContour ct;
 
         //a brand new vehicle
         public CVehicle vehicle;
@@ -121,7 +125,11 @@ namespace AgOpenGPS
             //create the ABLine instance
             ABLine = new CABLine(gl, this);
 
-            swFrame.Start();//start the stopwatch
+            //new instance of contour mode
+            ct = new CContour(gl, this);
+
+            //start the stopwatch
+            swFrame.Start();
         }
 
         //Initialize items before the form Loads or is visible
@@ -155,7 +163,10 @@ namespace AgOpenGPS
             SectionCalcWidths();
 
             //start server
-            StartServer();
+            StartTCPServer();
+
+            //start server
+            StartUDPServer();
 
             //set the correct zoom and grid
             camera.camSetDistance = zoomValue * zoomValue * -1;
@@ -165,7 +176,11 @@ namespace AgOpenGPS
             delayCameraPrev = Properties.Settings.Default.setDisplay_delayCameraPrev;
             delayFixPrev = Properties.Settings.Default.setDisplay_delayFixPrev;
 
+            //which cam source is being used
             isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
+
+            //triangle resolution is how far to next triangle point trigger distance
+            triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
             //remembered window position
             if (Properties.Settings.Default.setWindow_Maximized)
@@ -186,9 +201,51 @@ namespace AgOpenGPS
                 Size = Properties.Settings.Default.setWindow_Size;
             }
             #endregion
+
+            var form = new FormTimedMessage(this, 1500, "Initializing GPS......", "If screen stays black, no GPS data");
+            form.Show();
+            return;
         }
 
-        private void StartServer()
+        //start the UDP server
+        private void StartUDPServer()
+        {
+            try
+            {
+                // Initialise the delegate which updates the status
+                updateStatusDelegate = new UpdateStatusDelegate(UpdateStatus);
+
+                // Initialise the socket
+                serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for the server and listen on port 9999
+                IPEndPoint server = new IPEndPoint(IPAddress.Any, 9999);
+
+                //IP address and port of MKR1000
+                IPAddress zeroIP = IPAddress.Parse("192.168.1.12");
+                epZero = new IPEndPoint(zeroIP, 8888);
+
+                // Associate the socket with this IP address and port
+                serverSocket.Bind(server);
+
+                // Initialise the IPEndPoint for the client
+                EndPoint client = new IPEndPoint(IPAddress.Any, 0);
+
+                // Start listening for incoming data
+                serverSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None,
+                                                ref client, new AsyncCallback(ReceiveData), serverSocket);
+
+                //lblStatus.Text = "Listening";
+            }
+            catch (Exception ex)
+            {
+                //lblStatus.Text = "Error";
+                MessageBox.Show("Load Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+        }
+        //start the TCP Server
+        private void StartTCPServer()
         {
                         // Welcome and Start listening
             //lblWelcome.Text="*** AgOpenGPS Server on Port 7777 Started: "+ DateTime.Now.ToString("G");
@@ -217,15 +274,11 @@ namespace AgOpenGPS
                 return;
             }
 
-
             //lblListener.Text="Listening on " + strHostName.ToString() + "  " + localIPAddress[1].ToString() + " : " + nPortListen.ToString();
-
             // Create the listener socket in this machines IP address
             //listener.Bind(new IPEndPoint(localIPAddress[1], nPortListen));
             //listener.Bind(new IPEndPoint(IPAddress.Loopback, nPortListen)); // For use with localhost 127.0.0.1
             listener.Bind(new IPEndPoint(IPAddress.Any, nPortListen)); // For use with localhost 127.0.0.1
-            
-
 
             //limit backlog
             listener.Listen(10);
@@ -275,7 +328,7 @@ namespace AgOpenGPS
             LineUpManualBtns();
         }
 
-        //user touches right of left and changes zoom
+        //user touches right of left and changes zoom or camera angle
         private void openGLControl_Click(object sender, EventArgs e)
         {
             Point point = openGLControl.PointToClient(Cursor.Position);
@@ -285,12 +338,12 @@ namespace AgOpenGPS
                 {
                     if (zoomValue <= 30)
                     {
-                        if ((zoomValue -= 2.0) < 16.0) zoomValue = 16.0;
+                        if ((zoomValue -= 1.5) < 6.0) zoomValue = 6.0;
                     }
 
                     else
                     {
-                        if ((zoomValue -= 6.0) < 16.0) zoomValue = 16.0;
+                        if ((zoomValue -= 4.0) < 6.0) zoomValue = 6.0;
                     }
                     camera.camSetDistance = zoomValue * zoomValue * -1;
                     SetZoom();
@@ -299,8 +352,8 @@ namespace AgOpenGPS
 
                 else
                 {
-                    if (zoomValue <= 24) zoomValue += 2.0;
-                    else zoomValue += 6.0;
+                    if (zoomValue <= 30) zoomValue += 1.5;
+                    else zoomValue += 4.0;
                     camera.camSetDistance = zoomValue * zoomValue * -1;
                     SetZoom();
                 }
@@ -556,46 +609,6 @@ namespace AgOpenGPS
                     break;
 
             }
-        }
-
-        //update individual btn based on state after push
-        private void ManualBtnUpdate(int sectNumber, Button btn)
-        {
-            switch (section[sectNumber].manBtnState)
-            {
-                case manBtn.Off:
-                    section[sectNumber].manBtnState = manBtn.Auto;
-                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionAuto;
-                    break;
-
-                case manBtn.Auto:
-                    section[sectNumber].manBtnState = manBtn.On;
-                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOn;
-                    break;
-
-                case manBtn.On:
-                    section[sectNumber].manBtnState = manBtn.Off;
-                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOff;
-                    break;
-            }
-        }
-
-        //request a new job
-        public void JobNew()
-        {            
-            isJobStarted = true;
-
-            //update button image to close
-            btnNewJob.Image = global::AgOpenGPS.Properties.Resources.JobActive;
-
-            btnManualOffOn.Enabled = true;
-            manualBtnState = btnStates.Off;
-            btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-           
-            btnSectionOffAutoOn.Enabled = true;
-            autoBtnState = btnStates.Off;
-            btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            
 
             switch (vehicle.numberOfSections)
             {
@@ -638,10 +651,54 @@ namespace AgOpenGPS
                     btnSection4Man.Enabled = true;
                     btnSection5Man.Enabled = true;
                     break;
-
             }
+        }
+
+        //update individual btn based on state after push
+        private void ManualBtnUpdate(int sectNumber, Button btn)
+        {
+            switch (section[sectNumber].manBtnState)
+            {
+                case manBtn.Off:
+                    section[sectNumber].manBtnState = manBtn.Auto;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionAuto;
+                    break;
+
+                case manBtn.Auto:
+                    section[sectNumber].manBtnState = manBtn.On;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOn;
+                    break;
+
+                case manBtn.On:
+                    section[sectNumber].manBtnState = manBtn.Off;
+                    btn.Image = global::AgOpenGPS.Properties.Resources.SectionOff;
+                    break;
+            }
+        }
+
+        //request a new job
+        public void JobNew()
+        {            
+            isJobStarted = true;
+
+            //update button image to close
+            btnNewJob.Image = global::AgOpenGPS.Properties.Resources.JobActive;
+
+            btnManualOffOn.Enabled = true;
+            manualBtnState = btnStates.Off;
+            btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+           
+            btnSectionOffAutoOn.Enabled = true;
+            autoBtnState = btnStates.Off;
+            btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            
+
+
+
+            
             btnABLine.Enabled = true;
             btnSnapToAB.Enabled = true;
+            btnContour.Enabled = true;
 
             ABLine.abHeading = 0.00;
         }
@@ -677,8 +734,10 @@ namespace AgOpenGPS
             btnSection4Man.Enabled = false;
             btnSection5Man.Enabled = false;
            
+            //job is closed
             isJobStarted = false;
 
+            //clear the section lists
             for (int j = 0; j < MAXSECTIONS; j++)
             {
                 //clean out the lists
@@ -686,11 +745,22 @@ namespace AgOpenGPS
                 if (section[j].triangleList != null) section[j].triangleList.Clear();
             }
 
+            //clear out the contour Lists
+            ct.stripList.Clear();
+            if (ct.ptList != null) ct.ptList.Clear();
+            if (ct.guideList != null) ct.guideList.Clear();
+
+            //reset the buttons
             btnABLine.Enabled = false;
             btnSnapToAB.Enabled = false;
+            btnContour.Enabled = false;
 
-            //change image to reflect on off
+            ct.isContourBtnOn = false;
+            ct.isContourOn = false;
+
+            //change images to reflect on off
             this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
             
             //fix ManualOffOnAuto buttons
             btnManualOffOn.Enabled = false;
@@ -785,8 +855,8 @@ namespace AgOpenGPS
             if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) gridZoom =      100.6;
             if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) gridZoom =       50.3;
             if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) gridZoom =       25.15;
-            if (camera.camSetDistance >= -150 && camera.camSetDistance < -1) gridZoom =         10.06;
-            //if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 10.06;
+            if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) gridZoom =         10.06;
+            if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) gridZoom = 5.03;
             //1.216 2.532
 
             //  Get the OpenGL object.
@@ -886,7 +956,7 @@ namespace AgOpenGPS
         private void btnMinMax_Click(object sender, EventArgs e)
         {
             if (zoomValue < 40) zoomValue = 80;
-            else zoomValue = 24;
+            else zoomValue = 20;
             camera.camSetDistance = zoomValue * zoomValue * -1;
             SetZoom();
 
@@ -1073,13 +1143,21 @@ namespace AgOpenGPS
         private void stripBtnResetDistance_ButtonClick(object sender, EventArgs e)
         {
             userDistance = 0;
-        }       
-        
-        //Manual file Save button
-        private void btnFileJobSave_Click(object sender, EventArgs e)
-        {
-            FileSaveField("");
         }
+
+        private void btnContour_Click(object sender, EventArgs e)
+        {
+            ct.isContourBtnOn = !ct.isContourBtnOn;
+            if (ct.isContourBtnOn)
+            {
+                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
+            }
+            else
+            {
+                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            }
+        }
+
 
 // Menu items //------------------------------------------------------------------
 
@@ -1114,6 +1192,11 @@ namespace AgOpenGPS
         private void menuItemVehicleToolStrip_Click(object sender, EventArgs e)
         {
             SettingsPageOpen(0);
+        }
+
+        private void saveFieldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileSaveField("");
         }
 
         private void menuItemCOMPortsToolStrip_Click(object sender, EventArgs e)
@@ -1288,8 +1371,10 @@ namespace AgOpenGPS
         private void webCamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();
-            form.Show(); 
+            form.Show();
         }
+
+
 
 
    }//class FormGPS

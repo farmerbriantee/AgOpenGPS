@@ -430,5 +430,17 @@ namespace AgOpenGPS.Properties {
                 this["setCam_isAtanCam"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setDisplay_triangleResolution {
+            get {
+                return ((double)(this["setDisplay_triangleResolution"]));
+            }
+            set {
+                this["setDisplay_triangleResolution"] = value;
+            }
+        }
     }
 }

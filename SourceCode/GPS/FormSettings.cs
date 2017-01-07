@@ -25,9 +25,10 @@ namespace AgOpenGPS
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
         int numberOfSections,displayFixDelay, displayCameraDelay;
 
-
         decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5;
         decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4, sectionPosition5, sectionPosition6;
+
+        decimal triResolution;
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -160,6 +161,9 @@ namespace AgOpenGPS
             tbarDisplayCameraDelay.Value = displayCameraDelay;
             tbarDisplayFixDelay.Value = displayFixDelay;
 
+            triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
+            nudTriangleResolution.Value = triResolution;
+
             UpdateDisplayDelay();
         }
 
@@ -255,6 +259,9 @@ namespace AgOpenGPS
 
             mf.isAtanCam = isAtanCamera;
             Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
+
+            mf.triangleResolution = (double)triResolution;
+            Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
 
             Properties.Settings.Default.Save();
 
@@ -662,7 +669,12 @@ namespace AgOpenGPS
             UpdateDisplayDelay();
         }
 
-#endregion
+        private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
+        {
+            triResolution = nudTriangleResolution.Value;
+        }
+
+ #endregion
 
         private void chkIsAtanCam_CheckedChanged(object sender, EventArgs e)
         {
@@ -670,7 +682,7 @@ namespace AgOpenGPS
             chkIsAtanCam.Checked = isAtanCamera;
         }
 
-    }
+   }
 }
 
 

@@ -17,10 +17,10 @@ namespace AgOpenGPS
         private FormGPS mf;
 
         //list of patch data individual triangles
-        public List<vec3> triangleList = new List<vec3>();
+        public List<vec2> triangleList = new List<vec2>();
 
         //list of the list of patch data individual triangles for that entire section activity
-        public List<List<vec3>> patchList = new List<List<vec3>>();
+        public List<List<vec2>> patchList = new List<List<vec2>>();
 
         //is this section on or off
         public bool isSectionOn = false;
@@ -79,17 +79,17 @@ namespace AgOpenGPS
 
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
-                triangleList = new List<vec3>();
+                triangleList = new List<vec2>();
                 patchList.Add(triangleList);
 
                 //left side of triangle
-                vec3 point = new vec3(mf.cosHeading * positionLeft + mf.toolEasting,
-                        0, mf.sinHeading * positionLeft + mf.toolNorthing);
+                vec2 point = new vec2(mf.cosHeading * positionLeft + mf.toolEasting,
+                        mf.sinHeading * positionLeft + mf.toolNorthing);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec3(mf.cosHeading * positionRight + mf.toolEasting,
-                    0, mf.sinHeading * positionRight + mf.toolNorthing);
+                point = new vec2(mf.cosHeading * positionRight + mf.toolEasting,
+                    mf.sinHeading * positionRight + mf.toolNorthing);
                 triangleList.Add(point);
             }
         }
@@ -110,15 +110,15 @@ namespace AgOpenGPS
    
             //add two triangles for next step.
             //left side
-            vec3 point = new vec3(cosHeading * (positionLeft) + easting,
-                0, sinHeading * (positionLeft) + northing);
+            vec2 point = new vec2(cosHeading * (positionLeft) + easting,
+                sinHeading * (positionLeft) + northing);
 
             //add the point to List
             triangleList.Add(point);
 
             //Right side
-            vec3 point2 = new vec3(cosHeading * (positionRight) + easting,
-                0, sinHeading * (positionRight) + northing);
+            vec2 point2 = new vec2(cosHeading * (positionRight) + easting,
+                sinHeading * (positionRight) + northing);
 
             //add the point to the list
             triangleList.Add(point2);
@@ -127,7 +127,7 @@ namespace AgOpenGPS
             numTriangles++;
 
             //quick count
-            int c = triangleList.Count()-1;
+            int c = triangleList.Count-1;
 
             //when closing a job the triangle patches all are emptied by the section delay keeps going. Prevented by quick check.
             if (c > 3)
@@ -141,11 +141,11 @@ namespace AgOpenGPS
                 squareMetersSection += temp;
             }
 
-            if (numTriangles > 40)
+            if (numTriangles > 36)
             {
                 numTriangles = 0;
 
-                triangleList = new List<vec3>();
+                triangleList = new List<vec2>();
                 patchList.Add(triangleList);
 
                 //add the points to List, yes its more points, but breaks up patches for culling

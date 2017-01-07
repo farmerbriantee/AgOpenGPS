@@ -104,6 +104,7 @@ namespace AgOpenGPS
             {
                 recvSentence.Append(text);
                 pn.rawBuffer += text;
+                textBox1.Text = text;
             });
         }
 

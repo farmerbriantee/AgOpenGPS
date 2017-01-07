@@ -167,13 +167,10 @@ namespace AgOpenGPS
                     //ToolOffset,0,TurnOffDelay,1,Wheelbase,5,IsPivotBehindAntenna,True,IsSteerAxleAhead,True,IsToolBehindPivot,True,
                     //IsToolTrailing,True,Spinner1,-8,Spinner2,-3,Spinner3,3,Spinner4,8,Spinner5,0,Spinner6,0,Sections,3,ToolWidth,16
 
-                    line = reader.ReadLine();  
-
+                    line = reader.ReadLine(); 
                     string[] words;
-
                     words = line.Split(',');
-
-                    if (words.Count() != 62) { MessageBox.Show("Corrupt Vehicle file"); return; }
+                    if (words.Length != 62) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
                     Properties.Settings.Default.setVehicle_toolOverlap = double.Parse(words[1]);
                     Properties.Settings.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[3]);
@@ -282,7 +279,15 @@ namespace AgOpenGPS
             {
                 string line2;
 
-                line2 = reader.ReadLine();//Date time line                  
+                line2 = reader.ReadLine();//Date time line 
+
+                line2 = reader.ReadLine();//Offset header
+
+                if (line2.IndexOf("$Offset") == -1)
+                { MessageBox.Show("File is Corrupt"); return; }
+                line2 = reader.ReadLine();//Offset values
+              
+ 
                 line2 = reader.ReadLine();//AB Line header
 
                 if (line2.IndexOf("$Heading") == -1)
@@ -358,6 +363,17 @@ namespace AgOpenGPS
                 //Date time line
                 line = reader.ReadLine();
 
+                //Offset header
+                line = reader.ReadLine();
+
+                //read the Offsets 
+                line = reader.ReadLine();
+                string[] offs = line.Split(',');
+                pn.utmEast = int.Parse(offs[0]);
+                pn.utmNorth = int.Parse(offs[1]);
+
+                //worldGrid.CreateWorldGrid(pn.northing - pn.utmNorth, pn.easting - pn.utmEast);
+
                 //AB Line header
                 line = reader.ReadLine();
 
@@ -407,7 +423,7 @@ namespace AgOpenGPS
                 line = reader.ReadLine();
 
                 //finally start loading triangles
-                vec3 vecFix = new vec3(0, 0, 0);
+                vec2 vecFix = new vec2(0, 0);
 
                 for (int j = 0; j < vehicle.numberOfSections; j++)
                 {
@@ -417,7 +433,7 @@ namespace AgOpenGPS
 
                     for (int k = 0; k < patches; k++)
                     {
-                        section[j].triangleList = new List<vec3>();
+                        section[j].triangleList = new List<vec2>();
                         section[j].patchList.Add(section[j].triangleList);
 
                         line = reader.ReadLine();
@@ -428,7 +444,7 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
                             string[] words = line.Split(',');
                             vecFix.x = double.Parse(words[0]);
-                            vecFix.y = 0;
+                            //vecFix.y = 0;
                             vecFix.z = double.Parse(words[1]);
 
                             section[j].triangleList.Add(vecFix);
@@ -495,6 +511,10 @@ namespace AgOpenGPS
             {
                 //Write out the date
                 writer.WriteLine(DateTime.Now.ToLongDateString() + "  -->  " + DateTime.Now.ToLongTimeString());
+
+                //write out the easting and northing Offsets
+                writer.WriteLine("$Offsets");
+                writer.WriteLine(pn.utmEast + "," + pn.utmNorth);
 
                 //write out the ABLine
                 writer.WriteLine("$Heading");

@@ -39,6 +39,7 @@
             this.variablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveFieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webCamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.COMPortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,7 @@
             this.stripPortArduino = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineArduino = new System.Windows.Forms.ToolStripProgressBar();
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.btnFileJobSave = new System.Windows.Forms.Button();
+            this.btnContour = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
             this.btnSection5Man = new System.Windows.Forms.Button();
             this.btnSection4Man = new System.Windows.Forms.Button();
@@ -79,6 +80,7 @@
             this.btnSnapToAB = new System.Windows.Forms.Button();
             this.btn2D3D = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -102,7 +104,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.openGLControl.Size = new System.Drawing.Size(946, 502);
+            this.openGLControl.Size = new System.Drawing.Size(946, 460);
             this.openGLControl.TabIndex = 6;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -162,6 +164,7 @@
             this.variablesToolStripMenuItem,
             this.loadVehicleToolStripMenuItem,
             this.saveVehicleToolStripMenuItem,
+            this.saveFieldToolStripMenuItem,
             this.webCamToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
@@ -195,6 +198,13 @@
             this.saveVehicleToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
             this.saveVehicleToolStripMenuItem.Text = "Save Vehicle";
             this.saveVehicleToolStripMenuItem.Click += new System.EventHandler(this.saveVehicleToolStripMenuItem_Click);
+            // 
+            // saveFieldToolStripMenuItem
+            // 
+            this.saveFieldToolStripMenuItem.Name = "saveFieldToolStripMenuItem";
+            this.saveFieldToolStripMenuItem.Size = new System.Drawing.Size(187, 30);
+            this.saveFieldToolStripMenuItem.Text = "Save Field";
+            this.saveFieldToolStripMenuItem.Click += new System.EventHandler(this.saveFieldToolStripMenuItem_Click);
             // 
             // webCamToolStripMenuItem
             // 
@@ -314,7 +324,7 @@
             this.stripOnlineGPS,
             this.stripPortArduino,
             this.stripOnlineArduino});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 532);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(946, 31);
             this.statusStrip1.TabIndex = 95;
@@ -428,17 +438,21 @@
             this.txtBoxRecvArduino.Size = new System.Drawing.Size(69, 20);
             this.txtBoxRecvArduino.TabIndex = 96;
             // 
-            // btnFileJobSave
+            // btnContour
             // 
-            this.btnFileJobSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnFileJobSave.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFileJobSave.Image = global::AgOpenGPS.Properties.Resources.FileSave;
-            this.btnFileJobSave.Location = new System.Drawing.Point(4, 418);
-            this.btnFileJobSave.Name = "btnFileJobSave";
-            this.btnFileJobSave.Size = new System.Drawing.Size(70, 66);
-            this.btnFileJobSave.TabIndex = 105;
-            this.btnFileJobSave.UseVisualStyleBackColor = true;
-            this.btnFileJobSave.Click += new System.EventHandler(this.btnFileJobSave_Click);
+            this.btnContour.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnContour.Enabled = false;
+            this.btnContour.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            this.btnContour.Location = new System.Drawing.Point(857, 186);
+            this.btnContour.Name = "btnContour";
+            this.btnContour.Size = new System.Drawing.Size(82, 66);
+            this.btnContour.TabIndex = 105;
+            this.btnContour.Text = "Contour";
+            this.btnContour.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnContour.UseVisualStyleBackColor = true;
+            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
             // btnSectionOffAutoOn
             // 
@@ -448,7 +462,7 @@
             this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(857, 396);
+            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(857, 372);
             this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
             this.btnSectionOffAutoOn.Size = new System.Drawing.Size(82, 88);
             this.btnSectionOffAutoOn.TabIndex = 104;
@@ -468,7 +482,7 @@
             this.btnSection5Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection5Man.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection5Man.Image = ((System.Drawing.Image)(resources.GetObject("btnSection5Man.Image")));
-            this.btnSection5Man.Location = new System.Drawing.Point(180, 457);
+            this.btnSection5Man.Location = new System.Drawing.Point(180, 415);
             this.btnSection5Man.Name = "btnSection5Man";
             this.btnSection5Man.Size = new System.Drawing.Size(69, 49);
             this.btnSection5Man.TabIndex = 103;
@@ -487,7 +501,7 @@
             this.btnSection4Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection4Man.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection4Man.Image = ((System.Drawing.Image)(resources.GetObject("btnSection4Man.Image")));
-            this.btnSection4Man.Location = new System.Drawing.Point(156, 440);
+            this.btnSection4Man.Location = new System.Drawing.Point(156, 398);
             this.btnSection4Man.Name = "btnSection4Man";
             this.btnSection4Man.Size = new System.Drawing.Size(69, 49);
             this.btnSection4Man.TabIndex = 102;
@@ -506,7 +520,7 @@
             this.btnSection3Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection3Man.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection3Man.Image = ((System.Drawing.Image)(resources.GetObject("btnSection3Man.Image")));
-            this.btnSection3Man.Location = new System.Drawing.Point(128, 425);
+            this.btnSection3Man.Location = new System.Drawing.Point(128, 383);
             this.btnSection3Man.Name = "btnSection3Man";
             this.btnSection3Man.Size = new System.Drawing.Size(69, 49);
             this.btnSection3Man.TabIndex = 101;
@@ -525,7 +539,7 @@
             this.btnSection2Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection2Man.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection2Man.Image = ((System.Drawing.Image)(resources.GetObject("btnSection2Man.Image")));
-            this.btnSection2Man.Location = new System.Drawing.Point(103, 408);
+            this.btnSection2Man.Location = new System.Drawing.Point(103, 366);
             this.btnSection2Man.Name = "btnSection2Man";
             this.btnSection2Man.Size = new System.Drawing.Size(69, 49);
             this.btnSection2Man.TabIndex = 100;
@@ -544,7 +558,7 @@
             this.btnSection1Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection1Man.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection1Man.Image = ((System.Drawing.Image)(resources.GetObject("btnSection1Man.Image")));
-            this.btnSection1Man.Location = new System.Drawing.Point(78, 393);
+            this.btnSection1Man.Location = new System.Drawing.Point(78, 351);
             this.btnSection1Man.Name = "btnSection1Man";
             this.btnSection1Man.Size = new System.Drawing.Size(69, 49);
             this.btnSection1Man.TabIndex = 99;
@@ -560,7 +574,7 @@
             this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnManualOffOn.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.btnManualOffOn.Location = new System.Drawing.Point(857, 280);
+            this.btnManualOffOn.Location = new System.Drawing.Point(857, 266);
             this.btnManualOffOn.Name = "btnManualOffOn";
             this.btnManualOffOn.Size = new System.Drawing.Size(82, 88);
             this.btnManualOffOn.TabIndex = 98;
@@ -572,7 +586,7 @@
             this.btnNewJob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnNewJob.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewJob.Image = global::AgOpenGPS.Properties.Resources.JobClosed;
-            this.btnNewJob.Location = new System.Drawing.Point(4, 342);
+            this.btnNewJob.Location = new System.Drawing.Point(4, 398);
             this.btnNewJob.Name = "btnNewJob";
             this.btnNewJob.Size = new System.Drawing.Size(70, 66);
             this.btnNewJob.TabIndex = 97;
@@ -583,7 +597,7 @@
             // 
             this.btnSettings.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
-            this.btnSettings.Location = new System.Drawing.Point(4, 266);
+            this.btnSettings.Location = new System.Drawing.Point(4, 256);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(70, 66);
             this.btnSettings.TabIndex = 94;
@@ -603,14 +617,13 @@
             // 
             // btnSnapToAB
             // 
-            this.btnSnapToAB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSnapToAB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnSnapToAB.Enabled = false;
             this.btnSnapToAB.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSnapToAB.Image = ((System.Drawing.Image)(resources.GetObject("btnSnapToAB.Image")));
-            this.btnSnapToAB.Location = new System.Drawing.Point(857, 193);
+            this.btnSnapToAB.Location = new System.Drawing.Point(4, 327);
             this.btnSnapToAB.Name = "btnSnapToAB";
-            this.btnSnapToAB.Size = new System.Drawing.Size(82, 66);
+            this.btnSnapToAB.Size = new System.Drawing.Size(70, 66);
             this.btnSnapToAB.TabIndex = 87;
             this.btnSnapToAB.UseVisualStyleBackColor = true;
             this.btnSnapToAB.Click += new System.EventHandler(this.btnABSnapToAB_Click);
@@ -619,7 +632,7 @@
             // 
             this.btn2D3D.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2D3D.Image = ((System.Drawing.Image)(resources.GetObject("btn2D3D.Image")));
-            this.btn2D3D.Location = new System.Drawing.Point(4, 190);
+            this.btn2D3D.Location = new System.Drawing.Point(4, 185);
             this.btn2D3D.Name = "btn2D3D";
             this.btn2D3D.Size = new System.Drawing.Size(70, 66);
             this.btn2D3D.TabIndex = 2;
@@ -632,7 +645,7 @@
             this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnABLine.Enabled = false;
             this.btnABLine.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABLine.Image = ((System.Drawing.Image)(resources.GetObject("btnABLine.Image")));
+            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
             this.btnABLine.Location = new System.Drawing.Point(857, 114);
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.Size = new System.Drawing.Size(82, 66);
@@ -640,13 +653,21 @@
             this.btnABLine.UseVisualStyleBackColor = true;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(41, 44);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(893, 20);
+            this.textBox1.TabIndex = 106;
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(946, 563);
-            this.Controls.Add(this.btnFileJobSave);
+            this.ClientSize = new System.Drawing.Size(946, 521);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnContour);
             this.Controls.Add(this.btnSectionOffAutoOn);
             this.Controls.Add(this.btnSection5Man);
             this.Controls.Add(this.btnSection4Man);
@@ -734,10 +755,12 @@
         private System.Windows.Forms.Button btnSection4Man;
         private System.Windows.Forms.Button btnSection5Man;
         private System.Windows.Forms.Button btnSectionOffAutoOn;
-        private System.Windows.Forms.Button btnFileJobSave;
+        private System.Windows.Forms.Button btnContour;
         private System.Windows.Forms.ToolStripMenuItem webCamToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel stripHz;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem saveFieldToolStripMenuItem;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

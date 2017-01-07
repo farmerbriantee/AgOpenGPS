@@ -32,16 +32,6 @@ namespace AgOpenGPS
             camPitch = Properties.Settings.Default.setCam_pitch;
         }
 
-        public void PositionCam()
-        {
-            //the angle of camera looking down at fix
-            //camPitch = -80;
-
-            //correct overun of 360 to 0 problem TODO
-
-            //Get the camera position filled with the fix coordinates
-       }
-
         public void SetWorldCam(OpenGL gl, double _fixPosX, double _fixPosY, double _fixPosZ, double _fixHeading)
         {
             camPosX = _fixPosX;
@@ -66,15 +56,13 @@ namespace AgOpenGPS
             if (camPitch < -50.0)
             
                 //its in 2D mode
-            gl.Translate(-camPosX + (camSetDistance * 0.051 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
-                            -camPosZ + (camSetDistance * 0.051 * Math.Cos(glm.radians(fixHeading))));
+            gl.Translate(-camPosX + (camSetDistance * 0.031 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
+                            -camPosZ + (camSetDistance * 0.031 * Math.Cos(glm.radians(fixHeading))));
             else 
                 //its in 3D mode
                         gl.Translate(-camPosX + (camSetDistance * 0.08 * Math.Sin(glm.radians(fixHeading))), -camPosY, 
                             -camPosZ + (camSetDistance * 0.08 * Math.Cos(glm.radians(fixHeading))));
- 
-            //gl.Translate(-camPosX, -camPosY, -camPosZ );      
-        }
+         }
         
     }
 }

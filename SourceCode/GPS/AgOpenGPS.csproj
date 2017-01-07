@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="CABLine.cs" />
     <Compile Include="CCamera.cs" />
+    <Compile Include="CContour.cs" />
     <Compile Include="CNMEA.cs" />
     <Compile Include="CSection.cs" />
     <Compile Include="CPointData.cs" />
@@ -189,6 +190,7 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="UDPComm.Designer.cs" />
     <Compile Include="vec3.cs" />
     <EmbeddedResource Include="FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
@@ -236,6 +238,7 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -311,6 +314,8 @@
     <None Include="btnImages\FileNew.png" />
     <None Include="btnImages\FileOpen.png" />
     <None Include="btnImages\FilePrevious.png" />
+    <None Include="btnImages\ContourOff.png" />
+    <None Include="btnImages\ContourOn.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
