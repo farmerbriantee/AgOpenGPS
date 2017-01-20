@@ -1,3 +1,13 @@
+v1.6 Jan 2017
+
+* UDP server for GPS, section control etc
+* TCP server just because.
+* Contour guidance now, merged with lightbar and same nomenclature as ABLine
+* Area Calculations
+* Module communication class
+* Assorted bugs fixed
+
+
 v1.5 Dec 20 2016
 
 * Camera can use heading of calculated by fix - settable in settings
