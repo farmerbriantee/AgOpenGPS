@@ -144,7 +144,15 @@ namespace AgOpenGPS
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolNorthing, toolEasting, cosHeading, sinHeading);
 
-            ct.DistanceFromContourLine();
+            //do the distance from line calculations for contour and AB
+            if (ct.isContourBtnOn) ct.DistanceFromContourLine();
+            else ct.distanceFromCurrentLine = 9999;
+
+            if (ABLine.isABLineSet && !ct.isContourBtnOn) ABLine.getCurrentABLine();
+            else ABLine.distanceFromCurrentLine = 9999;
+
+            //module communications current heading variable
+            modcom.autosteerActualHeading = fixHeading;
 
             //time to record next fix
             if (distanceLowSpeed > 0.1 | pn.speed > 2.0 | startCounter < 20)
@@ -181,16 +189,27 @@ namespace AgOpenGPS
         //end of UppdateFixPosition
         }
 
-        //add the points for section and contour patches
+        //add the points for section, contour line points, Area Calc feature
         private void AddSectionContourPathPoints()
         {
-            if (isJobStarted)//add the pathpoint
-            {                
-                int sectionCounter = 0;
-
                 //save the north & east as previous
                 prevSectionNorthing = toolNorthing;
                 prevSectionEasting = toolEasting;
+
+               //build the polygon to calculate area
+                if (periArea.isBtnPerimeterOn)
+                {
+                    //Right side
+                    vec2 point = new vec2(cosHeading * (section[vehicle.numberOfSections-1].positionRight) + toolEasting,
+                        sinHeading * (section[vehicle.numberOfSections-1].positionRight) + toolNorthing);
+                    periArea.periList.Add(point);
+                }
+
+            if (isJobStarted)//add the pathpoint
+            {
+ 
+                int sectionCounter = 0;
+
 
                 //send the current and previous GPS fore/aft corrected fix to each section
                 for (int j = 0; j < vehicle.numberOfSections; j++)
@@ -215,6 +234,9 @@ namespace AgOpenGPS
 
                 //Build contour line if close enough to a patch
                 ct.BuildContourGuidanceLine(pn.easting, pn.northing);
+
+
+
             }
         }
 

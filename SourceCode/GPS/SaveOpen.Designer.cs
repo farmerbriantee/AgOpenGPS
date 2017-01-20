@@ -48,10 +48,9 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setCam_pitch = -20;
             Properties.Settings.Default.setPort_baudRate = 4800;
-            Properties.Settings.Default.setPort_portName = "COM Reset";
-            Properties.Settings.Default.setPort_wasArduinoConnected = false;
-            Properties.Settings.Default.setPort_portNameArduino = "COM SecReset";
-            Properties.Settings.Default.setPort_NMEAHz = 5;
+            Properties.Settings.Default.setPort_portNameGPS = "COM Reset";
+            Properties.Settings.Default.setPort_wasRelayConnected = false;
+            Properties.Settings.Default.setPort_portNameRelay = "COM SecReset";
 
             Properties.Settings.Default.setWindow_Maximized = false;
             Properties.Settings.Default.setWindow_Minimized = false;

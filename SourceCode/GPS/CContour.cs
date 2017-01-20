@@ -329,31 +329,38 @@ namespace AgOpenGPS
                 //if you're going the opposite direction left is right and right is left
                 if (isABSameAsFixHeading)
                 {
+                    mf.modcom.autosteerSetpointHeading = refHeading;
                     if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
                 //opposite way so right is left
                 else
                 {
+                    mf.modcom.autosteerSetpointHeading = refHeading - Math.PI;
                     if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
+                //within a cm of guidance line
+                mf.modcom.guidanceLineDistance = (int)distanceFromCurrentLine;
+                
             }
 
+            else mf.modcom.guidanceLineDistance = 9999;
 
         }
 
+        //draw the red follow me line
         public void DrawContourLine()
         {
-            gl.Color(1.0f, 1.0f, 0.50f);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            //for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
-            gl.Vertex(boxA.x, 0, boxA.z);
-            gl.Vertex(boxB.x, 0, boxB.z);
-            gl.Vertex(boxC.x, 0, boxC.z);
-            gl.Vertex(boxD.x, 0, boxD.z);
-            gl.Vertex(boxA.x, 0, boxA.z);
-            gl.End();
+            //gl.Color(1.0f, 1.0f, 0.50f);
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            ////for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
+            //gl.Vertex(boxA.x, 0, boxA.z);
+            //gl.Vertex(boxB.x, 0, boxB.z);
+            //gl.Vertex(boxC.x, 0, boxC.z);
+            //gl.Vertex(boxD.x, 0, boxD.z);
+            //gl.Vertex(boxA.x, 0, boxA.z);
+            //gl.End();
 
             ////draw the guidance line
             int ptCount = guideList.Count;
@@ -363,48 +370,48 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
             gl.End();
 
-            //draw the reference line
-            gl.PointSize(3.0f);
-            //if (isContourBtnOn)
-            {
-                ptCount = stripList.Count;
-                if (ptCount > 0)
-                {
-                    ptCount = stripList[closestRefPatch].Count;
-                    gl.Begin(OpenGL.GL_POINTS);
-                    for (int i = 0; i < ptCount; i++)
-                    {
-                        gl.Vertex(stripList[closestRefPatch][i].x, 0, stripList[closestRefPatch][i].z);
-                    }
-                    gl.End();
-                }
-            }
+            ////draw the reference line
+            //gl.PointSize(3.0f);
+            ////if (isContourBtnOn)
+            //{
+            //    ptCount = stripList.Count;
+            //    if (ptCount > 0)
+            //    {
+            //        ptCount = stripList[closestRefPatch].Count;
+            //        gl.Begin(OpenGL.GL_POINTS);
+            //        for (int i = 0; i < ptCount; i++)
+            //        {
+            //            gl.Vertex(stripList[closestRefPatch][i].x, 0, stripList[closestRefPatch][i].z);
+            //        }
+            //        gl.End();
+            //    }
+            //}
 
 
-            ptCount = conList.Count;
-            if (ptCount > 0)
-            {
-                //draw closest point and side of line points
-                gl.Color(0.5f, 0.900f, 0.90f);
-                gl.PointSize(4.0f);
-                gl.Begin(OpenGL.GL_POINTS);
+            //ptCount = conList.Count;
+            //if (ptCount > 0)
+            //{
+            //    //draw closest point and side of line points
+            //    gl.Color(0.5f, 0.900f, 0.90f);
+            //    gl.PointSize(4.0f);
+            //    gl.Begin(OpenGL.GL_POINTS);
 
-                for (int i = 0; i < ptCount; i++)
-                {
-                    gl.Vertex(conList[i].x, 0, conList[i].z);
-                }
+            //    for (int i = 0; i < ptCount; i++)
+            //    {
+            //        gl.Vertex(conList[i].x, 0, conList[i].z);
+            //    }
 
-                gl.End();
+            //    gl.End();
 
 
-                //draw closest point and side of line points
-                gl.Color(0.35f, 0.30f, 0.90f);
-                gl.PointSize(6.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(conList[closestRefPoint].x, 0, conList[closestRefPoint].z);
-                gl.End();
+            //    //draw closest point and side of line points
+            //    gl.Color(0.35f, 0.30f, 0.90f);
+            //    gl.PointSize(6.0f);
+            //    gl.Begin(OpenGL.GL_POINTS);
+            //    gl.Vertex(conList[closestRefPoint].x, 0, conList[closestRefPoint].z);
+            //    gl.End();
 
-            }
+            //}
 
         }
 

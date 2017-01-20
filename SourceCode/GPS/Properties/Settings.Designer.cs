@@ -38,12 +38,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM GPS...")]
-        public string setPort_portName {
+        public string setPort_portNameGPS {
             get {
-                return ((string)(this["setPort_portName"]));
+                return ((string)(this["setPort_portNameGPS"]));
             }
             set {
-                this["setPort_portName"] = value;
+                this["setPort_portNameGPS"] = value;
             }
         }
         
@@ -229,18 +229,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public decimal setPort_NMEAHz {
-            get {
-                return ((decimal)(this["setPort_NMEAHz"]));
-            }
-            set {
-                this["setPort_NMEAHz"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public double setVehicle_antennaHeight {
             get {
@@ -266,24 +254,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM Section...")]
-        public string setPort_portNameArduino {
+        public string setPort_portNameRelay {
             get {
-                return ((string)(this["setPort_portNameArduino"]));
+                return ((string)(this["setPort_portNameRelay"]));
             }
             set {
-                this["setPort_portNameArduino"] = value;
+                this["setPort_portNameRelay"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setPort_wasArduinoConnected {
+        public bool setPort_wasRelayConnected {
             get {
-                return ((bool)(this["setPort_wasArduinoConnected"]));
+                return ((bool)(this["setPort_wasRelayConnected"]));
             }
             set {
-                this["setPort_wasArduinoConnected"] = value;
+                this["setPort_wasRelayConnected"] = value;
             }
         }
         

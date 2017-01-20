@@ -1,11 +1,20 @@
-﻿v1.5 Dec 20 2016
+﻿v1.6 Jan 2017
+
+* UDP server for GPS, section control etc
+* TCP server just because.
+* Contour guidance now, merged with lightbar and same nomenclature as ABLine
+* Area Calculations
+* Module communication class
+* Assorted bugs fixed
+
+v1.5 Dec 20 2016
 
 * Camera can use heading of calculated by fix - settable in settings
 * Automatic breakup of patches, every 100 triangles, so Frustum culling is more effective
 * Auto NMEA frequency determination.
 * tramlines settable frequency and start position. Multi coloured.
-* Speed compensated lookahead. Based on work of Torriem.
-* No longer use of timers, data comes in updates/sec so app must conform, not other way around.
+* Speed compensated lookahead. Based on work of ***Torriem***.
+* No longer use of integration timers, data comes in updates/sec so app must conform, not other way around.
 * Completely reworked frame timing. "Fast" loop continuously runs and only once a complete NMEA 
 	sentence appears then fix position and draw routine are fired. Based off of 20 Hz watchdog timer
 * Each section has its own accumulated acres in its button

@@ -83,38 +83,12 @@ namespace AgOpenGPS
         }
 
 
-        private void UpdateStatus(string status)
+        private void UpdateStatus(string recvd)
         {
-            //rtxtStatus.AppendText(status);
-            recvSentence.Append(status);
-            pn.rawBuffer += status;
-            textBox1.Text = status;
-
-            //rtxtStatus.Text = (status);
-        }
-
-        
-        //int book = 0;
-        //private void timer1_Tick(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Get packet as byte array
-        //        byte[] byteData = Encoding.ASCII.GetBytes(book.ToString());
-        //        book++;
-
-        //        if (byteData.Length != 0)
-
-        //            // Send packet to the server
-        //            serverSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epZero, new AsyncCallback(SendData), null);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Send Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
-
-
+            //recvSentence.Append(recvd);
+            //pn.rawBuffer += recvd;
+            //textBox1.Text = recvd;
+        }        
 
     }
 }

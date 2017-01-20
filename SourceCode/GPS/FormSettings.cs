@@ -515,7 +515,7 @@ namespace AgOpenGPS
         //update tool width label at bottom of window
         private void SectionFeetInchesTotalWidthLabelUpdate()
         {
-            double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text)* 0.0833333333333333);
+            double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text)* 0.08334);
             lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
             double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12 , 0);
             lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';

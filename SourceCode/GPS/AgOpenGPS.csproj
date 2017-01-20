@@ -90,7 +90,9 @@
     <Compile Include="CABLine.cs" />
     <Compile Include="CCamera.cs" />
     <Compile Include="CContour.cs" />
+    <Compile Include="CModuleComm.cs" />
     <Compile Include="CNMEA.cs" />
+    <Compile Include="CPerimeter.cs" />
     <Compile Include="CSection.cs" />
     <Compile Include="CPointData.cs" />
     <Compile Include="CVehicle.cs" />
@@ -237,8 +239,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -275,7 +275,6 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
-    <None Include="btnImages\VehicleDimensions.jpg" />
     <None Include="btnImages\NewJob64.png" />
     <None Include="btnImages\NewJobBlue64.png" />
     <None Include="btnImages\VehicleSettings.jpg" />
@@ -290,7 +289,6 @@
     <None Include="btnImages\SteerAhead.png" />
     <None Include="btnImages\SteerBehind.png" />
     <None Include="btnImages\Examples.png" />
-    <None Include="btnImages\SectionOffOnAutoAUTO.png" />
     <None Include="btnImages\SectionAuto.png" />
     <None Include="btnImages\SectionOff.png" />
     <None Include="btnImages\SectionOn.png" />
@@ -316,6 +314,9 @@
     <None Include="btnImages\FilePrevious.png" />
     <None Include="btnImages\ContourOff.png" />
     <None Include="btnImages\ContourOn.png" />
+    <None Include="btnImages\PeriArea.png" />
+    <None Include="btnImages\PeriDone.png" />
+    <None Include="btnImages\PeriDraw.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

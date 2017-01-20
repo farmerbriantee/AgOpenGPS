@@ -9,8 +9,6 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
- 
-        #region OpenGL //-------------------------------------------------------------------
 
         //extracted Near, Far, Right, Left clipping planes of frustum
         double[] frustum = new double[24];
@@ -156,12 +154,15 @@ namespace AgOpenGPS
                     if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
                 }
 
+                //draw the perimter line
+                periArea.DrawPerimeterLine();
+
                 //screen text for debug
-                  gl.DrawText(10, 15, 1, 0.5f, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
-                  gl.DrawText(10, 30, 1, 0.5f, 1, "Courier", 12, " distFromCur " + Convert.ToString(ct.distanceFromCurrentLine));
-                gl.DrawText(10, 60, 1, 0.5f, 1, "Courier", 24, "     fixHead " + Convert.ToString(Math.Round(glm.degrees(fixHeading),1)));
-                //gl.DrawText(10, 60, 1, 0.5f, 1, "Courier", 12, "        ref2 " + Convert.ToString(ct.ref2));
-                //gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "refHeading  " + Convert.ToString(Math.Round(ct.refHeading, 2)));
+                  gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " frame msec " + Convert.ToString((int)(frameTime)));
+                //  gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "distFromCur " + Convert.ToString(modcom.guidanceLineDistance));
+                //  gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "   Set Head " + Convert.ToString(modcom.autosteerSetpointHeading));
+                //  gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "     Actual " + Convert.ToString(modcom.autosteerActualHeading));
+                ////gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "refHeading  " + Convert.ToString(Math.Round(ct.refHeading, 2)));
                 //gl.DrawText(10, 90, 1, 0.5f, 1, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
                //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigDistance(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
                  //gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
@@ -298,9 +299,6 @@ namespace AgOpenGPS
             //  Set the modelview matrix.
             gl.MatrixMode(OpenGL.GL_MODELVIEW);
         }
-
-        #endregion
-        #region SectionControl // ----------------------------------------------------------------
 
         //data buffer for pixels read from off screen buffer
         byte[] pixelsTop = new byte[401];
@@ -460,8 +458,8 @@ namespace AgOpenGPS
             ProcessSectionOnOffRequests();
 
             //send the byte out to section relays
+            BuildSectionRelayByte();
             SectionControlOutToArduino();
-
 
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
@@ -496,19 +494,17 @@ namespace AgOpenGPS
 
         }
 
+
         private void openGLControlBack_OpenGLInitialized(object sender, EventArgs e)
         {
             OpenGL gls = openGLControlBack.OpenGL;
 
-            gls.Disable(OpenGL.GL_CULL_FACE);
-            //gl.CullFace(OpenGL.GL_BACK);
+            gls.Enable(OpenGL.GL_CULL_FACE);
+            gls.CullFace(OpenGL.GL_BACK);
 
             gls.PixelStore(OpenGL.GL_PACK_ALIGNMENT, 1);
 
         }
- 
-
-        #endregion
 
         public void DrawLightBar(double Width, double Height, double offlineDistance)
         {

@@ -5,7 +5,7 @@
     <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-15</Value>
     </Setting>
-    <Setting Name="setPort_portName" Type="System.String" Scope="User">
+    <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM GPS...</Value>
     </Setting>
     <Setting Name="setPort_baudRate" Type="System.Int32" Scope="User">
@@ -53,19 +53,16 @@
     <Setting Name="setSection_position6" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setPort_NMEAHz" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
     <Setting Name="setVehicle_antennaHeight" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setPort_portNameArduino" Type="System.String" Scope="User">
+    <Setting Name="setPort_portNameRelay" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM Section...</Value>
     </Setting>
-    <Setting Name="setPort_wasArduinoConnected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasRelayConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_isToolTrailing" Type="System.Boolean" Scope="User">

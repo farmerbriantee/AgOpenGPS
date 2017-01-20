@@ -34,8 +34,6 @@
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnRescan = new System.Windows.Forms.Button();
-            this.label99 = new System.Windows.Forms.Label();
-            this.nudNMEAHz = new System.Windows.Forms.NumericUpDown();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboxPort = new System.Windows.Forms.ComboBox();
@@ -53,8 +51,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.btnOpenSerialArduino = new System.Windows.Forms.Button();
             this.btnCloseSerialArduino = new System.Windows.Forms.Button();
-            this.cboxPortArduino = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).BeginInit();
+            this.cboxArdPort = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +79,7 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(824, 339);
+            this.btnSerialCancel.Location = new System.Drawing.Point(726, 234);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 72);
             this.btnSerialCancel.TabIndex = 62;
@@ -102,39 +99,6 @@
             this.btnRescan.Text = "Rescan Ports";
             this.btnRescan.UseVisualStyleBackColor = false;
             this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(720, 242);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(98, 13);
-            this.label99.TabIndex = 61;
-            this.label99.Text = "NMEA Update (Hz)";
-            // 
-            // nudNMEAHz
-            // 
-            this.nudNMEAHz.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNMEAHz.Location = new System.Drawing.Point(714, 275);
-            this.nudNMEAHz.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.Name = "nudNMEAHz";
-            this.nudNMEAHz.Size = new System.Drawing.Size(104, 44);
-            this.nudNMEAHz.TabIndex = 60;
-            this.nudNMEAHz.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNMEAHz.ValueChanged += new System.EventHandler(this.nudNMEAHz_ValueChanged);
             // 
             // btnSerialOK
             // 
@@ -294,13 +258,13 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Controls.Add(this.cboxArdPort);
             this.groupBox2.Controls.Add(this.txtBoxRecvArduino);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.lblCurrentArduinoPort);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
             this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
-            this.groupBox2.Controls.Add(this.cboxPortArduino);
             this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(25, 242);
             this.groupBox2.Name = "groupBox2";
@@ -350,6 +314,7 @@
             this.btnOpenSerialArduino.TabIndex = 53;
             this.btnOpenSerialArduino.Text = "Connect";
             this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
+            this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
             // 
             // btnCloseSerialArduino
             // 
@@ -364,40 +329,32 @@
             this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
             this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
             // 
-            // cboxPortArduino
+            // cboxArdPort
             // 
-            this.cboxPortArduino.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxPortArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxPortArduino.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.cboxPortArduino.FormattingEnabled = true;
-            this.cboxPortArduino.Location = new System.Drawing.Point(25, 37);
-            this.cboxPortArduino.Name = "cboxPortArduino";
-            this.cboxPortArduino.Size = new System.Drawing.Size(112, 31);
-            this.cboxPortArduino.TabIndex = 49;
-            this.cboxPortArduino.Text = "Port";
-            this.cboxPortArduino.Click += new System.EventHandler(this.cboxPortArduino_SelectedIndexChanged);
+            this.cboxArdPort.FormattingEnabled = true;
+            this.cboxArdPort.Location = new System.Drawing.Point(25, 31);
+            this.cboxArdPort.Name = "cboxArdPort";
+            this.cboxArdPort.Size = new System.Drawing.Size(121, 33);
+            this.cboxArdPort.TabIndex = 64;
+            this.cboxArdPort.SelectedIndexChanged += new System.EventHandler(this.cboxArdPort_SelectedIndexChanged);
             // 
             // FormCommSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(928, 423);
+            this.ClientSize = new System.Drawing.Size(826, 423);
             this.Controls.Add(this.btnSerialCancel);
-            this.Controls.Add(this.label99);
-            this.Controls.Add(this.nudNMEAHz);
             this.Controls.Add(this.btnSerialOK);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormCommSet";
             this.Text = "FormCommSet";
             this.Load += new System.EventHandler(this.FormCommSet_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudNMEAHz)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -407,8 +364,6 @@
         private System.Windows.Forms.TextBox txtBoxRecvArduino;
         private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.Button btnRescan;
-        private System.Windows.Forms.Label label99;
-        private System.Windows.Forms.NumericUpDown nudNMEAHz;
         private System.Windows.Forms.Button btnSerialOK;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label16;
@@ -424,8 +379,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnOpenSerialArduino;
         private System.Windows.Forms.Button btnCloseSerialArduino;
-        private System.Windows.Forms.ComboBox cboxPortArduino;
         private System.Windows.Forms.ComboBox cboxBaud;
         private System.Windows.Forms.ComboBox cboxPort;
+        private System.Windows.Forms.ComboBox cboxArdPort;
     }
 }

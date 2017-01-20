@@ -78,6 +78,10 @@
             this.tabExamples = new System.Windows.Forms.TabPage();
             this.tabGuidance = new System.Windows.Forms.TabPage();
             this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -96,10 +100,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -120,12 +120,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabDisplay.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -873,6 +873,66 @@
             this.tabDisplay.Text = " Display ";
             this.tabDisplay.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.nudTriangleResolution);
+            this.groupBox2.Location = new System.Drawing.Point(539, 24);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(370, 169);
+            this.groupBox2.TabIndex = 65;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Triangle Resolution";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(85, 136);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(176, 22);
+            this.label7.TabIndex = 67;
+            this.label7.Text = "2.2 -> Few triangles";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 104);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 22);
+            this.label6.TabIndex = 66;
+            this.label6.Text = "0.2 -> Lots of triangles";
+            // 
+            // nudTriangleResolution
+            // 
+            this.nudTriangleResolution.DecimalPlaces = 1;
+            this.nudTriangleResolution.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTriangleResolution.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
+            this.nudTriangleResolution.Maximum = new decimal(new int[] {
+            22,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Name = "nudTriangleResolution";
+            this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
+            this.nudTriangleResolution.TabIndex = 64;
+            this.nudTriangleResolution.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkIsAtanCam);
@@ -979,7 +1039,7 @@
             // 
             this.lblSecTotalWidthInches.AutoSize = true;
             this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(400, 576);
+            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(419, 576);
             this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
             this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
             this.lblSecTotalWidthInches.TabIndex = 25;
@@ -1048,66 +1108,6 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudTriangleResolution
-            // 
-            this.nudTriangleResolution.DecimalPlaces = 1;
-            this.nudTriangleResolution.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTriangleResolution.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
-            this.nudTriangleResolution.Maximum = new decimal(new int[] {
-            22,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Name = "nudTriangleResolution";
-            this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
-            this.nudTriangleResolution.TabIndex = 64;
-            this.nudTriangleResolution.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.nudTriangleResolution);
-            this.groupBox2.Location = new System.Drawing.Point(539, 24);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(370, 169);
-            this.groupBox2.TabIndex = 65;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Triangle Resolution";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 104);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(199, 22);
-            this.label6.TabIndex = 66;
-            this.label6.Text = "0.2 -> Lots of triangles";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 136);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(176, 22);
-            this.label7.TabIndex = 67;
-            this.label7.Text = "2.2 -> Few triangles";
-            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1153,15 +1153,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             this.tabDisplay.ResumeLayout(false);
             this.tabDisplay.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

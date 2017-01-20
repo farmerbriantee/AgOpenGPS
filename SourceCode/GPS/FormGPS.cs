@@ -27,11 +27,8 @@ namespace AgOpenGPS
         //maximum sections available
         const int MAXSECTIONS = 5;
 
-        //Arduino send buffer
-        byte[] bufferArd = { 0 };
-
         //polygon mode for section drawing
-        bool isDrawPolygons = false, isDrawVehicleTrack = false;
+        bool isDrawPolygons = false;
 
         //Is it in 2D or 3D
         public bool isIn3D = true;
@@ -92,8 +89,14 @@ namespace AgOpenGPS
         //a brand new vehicle
         public CVehicle vehicle;
 
+        //module communication object
+        public CModuleComm modcom;
+
+        //perimeter object for area calc
+        public CPerimeter periArea;
+
         //create a sound player object
-        System.Media.SoundPlayer player = new System.Media.SoundPlayer();
+        //System.Media.SoundPlayer player = new System.Media.SoundPlayer();
 
 // Forms //................................................................................
 
@@ -107,7 +110,6 @@ namespace AgOpenGPS
 
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
-
             for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
 
             //  Get the OpenGL object.
@@ -128,6 +130,12 @@ namespace AgOpenGPS
             //new instance of contour mode
             ct = new CContour(gl, this);
 
+            //module communication
+            modcom = new CModuleComm(this);
+
+            //perimeter list object
+            periArea = new CPerimeter(gl, this);            
+
             //start the stopwatch
             swFrame.Start();
         }
@@ -135,7 +143,6 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-
             #region settings //--------------------------------------------------------------------------
 
             //change 2D or 3D icon accordingly on button
@@ -145,16 +152,16 @@ namespace AgOpenGPS
                 this.btn2D3D.Image = global::AgOpenGPS.Properties.Resources.Icon_2D;   isIn3D = false; }
 
             //set baud and port from last time run
-            baudRate = Properties.Settings.Default.setPort_baudRate;
-            portName = Properties.Settings.Default.setPort_portName;
-
-            //same for Arduino port
-            portNameArduino = Properties.Settings.Default.setPort_portNameArduino;
-            wasArduinoConnectedLastRun = Properties.Settings.Default.setPort_wasArduinoConnected;
-            if (wasArduinoConnectedLastRun)  SerialPortOpenArduino();
+            baudRateGPS = Properties.Settings.Default.setPort_baudRate;
+            portNameGPS = Properties.Settings.Default.setPort_portNameGPS;
 
             //try and open, if not go to setting up port
             SerialPortOpenGPS();
+
+            //same for SectionRelay port
+            portNameRelaySection = Properties.Settings.Default.setPort_portNameRelay;
+            wasSectionRelayConnectedLastRun = Properties.Settings.Default.setPort_wasRelayConnected;
+            if (wasSectionRelayConnectedLastRun)  SerialPortRelayOpen();
 
             //Set width of section and positions for each section
             SectionSetPosition();
@@ -201,6 +208,12 @@ namespace AgOpenGPS
                 Size = Properties.Settings.Default.setWindow_Size;
             }
             #endregion
+
+            btnSection1Man.Enabled = false;
+            btnSection2Man.Enabled = false;
+            btnSection3Man.Enabled = false;
+            btnSection4Man.Enabled = false;
+            btnSection5Man.Enabled = false;
 
             var form = new FormTimedMessage(this, 1500, "Initializing GPS......", "If screen stays black, no GPS data");
             form.Show();
@@ -323,6 +336,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
        }
 
+        //called everytime window is resized, clean up button positions
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
@@ -390,14 +404,14 @@ namespace AgOpenGPS
             {
                 //  Tractor
                 particleTexture = new Texture();
-                particleTexture.Create(gl, @".\Dependencies\Vehicle.png");
+                particleTexture.Create(gl, @".\Dependencies\Compass.png");
                 texture[0] = particleTexture.TextureName;
             }
 
             catch (System.Exception excep)
             {
 
-                MessageBox.Show("Texture File Vehicle.png is Missing",excep.Message);
+                MessageBox.Show("Texture File Compass.png is Missing",excep.Message);
             }
 
             try
@@ -692,15 +706,13 @@ namespace AgOpenGPS
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
             
-
-
-
-            
             btnABLine.Enabled = true;
             btnSnapToAB.Enabled = true;
             btnContour.Enabled = true;
 
             ABLine.abHeading = 0.00;
+
+            LineUpManualBtns();
         }
 
         //close the current job
@@ -841,6 +853,26 @@ namespace AgOpenGPS
                     }
 
                 }
+            }
+        }
+
+        //build the byte for individual realy control
+        private void BuildSectionRelayByte()
+        {
+            byte set = 1;
+            byte reset = 254;
+            modcom.relaySectionControl[0] = (byte)0;
+
+            for (int j = 0; j < MAXSECTIONS; j++)
+            {
+                //set if on, reset bit if off
+                if (section[j].isSectionOn) modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
+                else modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] & reset);
+
+                //move set and reset over 1 bit left
+                set = (byte)(set << 1);
+                reset = (byte)(reset << 1);
+                reset = (byte)(reset + 1);
             }
         }
 
@@ -1158,6 +1190,34 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnPerimeter_Click(object sender, EventArgs e)
+        {
+            if (periArea.isBtnPerimeterOn && periArea.periList.Count > 0)
+            {
+                periArea.isBtnPerimeterOn = false;
+                //btnPerimeter.Text = "Paused";
+                btnPerimeter.Image = global::AgOpenGPS.Properties.Resources.PeriDone;
+                return;
+            }
+
+            //periArea.isBtnPerimeterOn = !periArea.isBtnPerimeterOn;
+
+            if (!periArea.isBtnPerimeterOn && periArea.periList.Count > 0)
+              {
+                  periArea.periList.Clear();
+                  //btnPerimeter.Text = "Cleared";
+                  btnPerimeter.Image = global::AgOpenGPS.Properties.Resources.PeriArea;
+                  return;       
+              }
+
+             if (!periArea.isBtnPerimeterOn && periArea.periList.Count == 0)
+              {
+                  //btnPerimeter.Text = "Logging";
+                  btnPerimeter.Image = global::AgOpenGPS.Properties.Resources.PeriDraw;
+                  periArea.isBtnPerimeterOn = true;
+              }
+         }
+
 
 // Menu items //------------------------------------------------------------------
 
@@ -1165,18 +1225,6 @@ namespace AgOpenGPS
         {
             isDrawPolygons = !isDrawPolygons;
             polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
-        }
-
-        private void vehicleTrackToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isDrawVehicleTrack = !isDrawVehicleTrack;
-
-            //clear the old data first
-            pointAntenna.Clear();
-            //pointPivot.Clear();
-            //pointTool.Clear(); 
-
-            vehicleTrackToolStripMenuItem.Checked = !vehicleTrackToolStripMenuItem.Checked;
         }
 
         private void menuJobNew_Click(object sender, EventArgs e)
@@ -1276,6 +1324,8 @@ namespace AgOpenGPS
         public string SpeedKPH { get { return Convert.ToString(pn.speed); } }
         public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
+        public string Heading { get { return Convert.ToString(Math.Round(glm.degrees(fixHeading), 1)); } }
+        public string PeriArea { get { return Math.Round(periArea.area * 0.000247105, 1).ToString(); ; } }
         public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }
         
         public string FixQuality { get
@@ -1293,7 +1343,7 @@ namespace AgOpenGPS
 
         //public string Grid { get { return Math.Round(gridZoom*3.28084/16,0).ToString(); } }
         public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
-        public string Acres { get { return Math.Round(totalSquareMeters * 2.4710499815078974633856493327535e-4, 1).ToString(); } }
+        public string Acres { get { return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString(); } }
         public string FixHeading { get { return Math.Round(fixHeading, 3).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 2).ToString(); } }
 
@@ -1338,19 +1388,22 @@ namespace AgOpenGPS
                 //acres on the master section soft control
                 this.btnSectionOffAutoOn.Text = Acres;
 
-                btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
-                btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
-                btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
-                btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
-                btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 2.4710499815078974633856493327535e-4, 2).ToString();
+                btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
 
                 //status strip values
                 stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
                 stripMPH.Text = "MPH: " + SpeedMPH;
                 stripPassNumber.Text = "Pass: " + PassNumber;
-                stripGridZoom.Text = "Grid: " + Grid + " Feet";
+                stripGridZoom.Text = "Grid: " + Grid + " '";
                 stripAcres.Text = "Acres: " + Acres;
                 stripHz.Text = "Hz: " + NMEAHz;
+                stripHeading.Text = "Dir: " + Heading + "\u00B0";
+                txtHeading.Text = Heading + "\u00B0";
+                btnPerimeter.Text = PeriArea;
 
                 //update the online indicator
                 if (recvCounter > 3 * fixUpdateHz)

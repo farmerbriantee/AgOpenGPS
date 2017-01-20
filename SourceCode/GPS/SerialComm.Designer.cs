@@ -13,102 +13,73 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-        public static string portName = "COM GPS...";
-        public static int baudRate = 4800;
+        public static string portNameGPS = "COM GPS...";
+        public static int baudRateGPS = 4800;
 
-        public static string portNameArduino = "COM SectionControl...";
-        public static int baudRateArduino = 9600;
+        public static string portNameRelaySection = "COM SectionControl...";
+        public static int baudRateRelaySection = 9600;
 
         //used to decide to autoconnect arduino this run
-        public bool wasArduinoConnectedLastRun = false;
+        public bool wasSectionRelayConnectedLastRun = false;
 
-        public StringBuilder recvSentence = new StringBuilder();
-        public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
+        //public StringBuilder recvSentence = new StringBuilder();
+        //public StringBuilder recvSentenceArduino = new StringBuilder("SectionControl");
 
         public string recvSentenceSettings = "InitalSetting";
         public string recvSentenceSettingsArduino = "Section Control";
 
         //serial port gps is connected to
-        public SerialPort sp = new SerialPort(portName, baudRate, Parity.None, 8, StopBits.One);
+        public SerialPort sp = new SerialPort(portNameGPS, baudRateGPS, Parity.None, 8, StopBits.One);
 
         //serial port Arduino is connected to
-        public SerialPort spArduino = new SerialPort(portNameArduino, baudRateArduino, Parity.None, 8, StopBits.One);
+        public SerialPort spRelay = new SerialPort(portNameRelaySection, baudRateRelaySection, Parity.None, 8, StopBits.One);
 
         //Send relay info out to relay board
         private void SectionControlOutToArduino()
         {
-            if (!spArduino.IsOpen) return;
-
-            byte set = 1;
-            byte reset = 254;
-            bufferArd[0] = 0;
-
-            for (int j = 0; j < MAXSECTIONS; j++)
-            {
-                if (section[j].isSectionOn) bufferArd[0] = (byte)(bufferArd[0] | set);
-                else bufferArd[0] = (byte)(bufferArd[0] & reset);
-
-                set = (byte)(set << 1);
-
-                reset = (byte)(reset << 1);
-                reset = (byte)(reset + 1);
-            }
-
             //Tell Arduino to turn section on or off accordingly
-            if (spArduino.IsOpen)
+            if (spRelay.IsOpen)
             {
-                try { spArduino.Write(bufferArd, 0, 1); }
-                catch (Exception) { SerialPortCloseArduino(); }
+                try { spRelay.Write(modcom.relaySectionControl, 0, 1); }
+                catch (Exception) { SerialPortRelayClose(); }
             }
-            else
-            {
-                bufferArd[0] = 0;
-
-                try { spArduino.Write(bufferArd, 0, 1); }
-                catch (Exception)
-                {
-                    SerialPortCloseArduino();
-                }
-                return;
-            }
-
-
         }
 
         //called by the delegate every time a chunk is rec'd
         private void SerialLineReceived(string sentence)
         {
             //spit it out no matter what it says
+            //modcom.serialGPSRecv.Append(sentence);
             pn.rawBuffer += sentence;
             recvSentenceSettings = pn.rawBuffer;
         }
 
         //Arduino port called by the delegate every time
-        private void SerialLineReceivedArduino(string sentence)
+        private void SerialLineReceivedRelay(string sentence)
         {
             //spit it out no matter what it says
-            recvSentenceArduino.Append(sentence);
+            modcom.serialRelayRecv.Append(sentence);
             recvSentenceSettingsArduino = sentence;
 
             if (txtBoxRecvArduino.TextLength > 10) txtBoxRecvArduino.Text = "";
-            txtBoxRecvArduino.Text += recvSentenceArduino;
+            txtBoxRecvArduino.Text = sentence;
         }
 
-        #region ArduinoSerialPort //--------------------------------------------------------------------
+        #region RelaySerialPort //--------------------------------------------------------------------
 
         //the delegate for thread
-        private delegate void LineReceivedEventHandlerArduino(string sentence);
+        private delegate void LineReceivedEventHandlerRelay(string sentence);
 
         //Arduino serial port receive in its own thread
-        private void sp_DataReceivedArduino(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void sp_DataReceivedRelay(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (spArduino.IsOpen)
+            if (spRelay.IsOpen)
             {
                 try
                 {
                     System.Threading.Thread.Sleep(100);
-                    string sentence = spArduino.ReadExisting();
-                    this.BeginInvoke(new LineReceivedEventHandlerArduino(SerialLineReceivedArduino), sentence);
+                    string sentence = spRelay.ReadExisting();
+                    this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRelay), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception) { }
@@ -117,16 +88,16 @@ namespace AgOpenGPS
         }
 
         //open the Arduino serial port
-        public void SerialPortOpenArduino()
+        public void SerialPortRelayOpen()
         {
-            if (!spArduino.IsOpen)
+            if (!spRelay.IsOpen)
             {
-                spArduino.PortName = portNameArduino;
-                spArduino.BaudRate = baudRateArduino;
-                spArduino.DataReceived += sp_DataReceivedArduino;
+                spRelay.PortName = portNameRelaySection;
+                spRelay.BaudRate = baudRateRelaySection;
+                spRelay.DataReceived += sp_DataReceivedRelay;
             }
 
-            try { spArduino.Open(); }
+            try { spRelay.Open(); }
             catch (Exception exc)
             {
                 MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
@@ -136,33 +107,33 @@ namespace AgOpenGPS
                 stripOnlineArduino.Value = 1;
                 stripPortArduino.ForeColor = Color.Red;
 
-                Properties.Settings.Default.setPort_wasArduinoConnected = false;
+                Properties.Settings.Default.setPort_wasRelayConnected = false;
                 Properties.Settings.Default.Save();
             }
 
-            if (spArduino.IsOpen)
+            if (spRelay.IsOpen)
             {
-                spArduino.DiscardOutBuffer();
-                spArduino.DiscardInBuffer();
+                spRelay.DiscardOutBuffer();
+                spRelay.DiscardInBuffer();
 
                 //update port status label
-                stripPortArduino.Text = portNameArduino;
+                stripPortArduino.Text = portNameRelaySection;
                 stripPortArduino.ForeColor = Color.ForestGreen;
                 stripOnlineArduino.Value = 100;
 
 
-                Properties.Settings.Default.setPort_portNameArduino = portNameArduino;
-                Properties.Settings.Default.setPort_wasArduinoConnected = true;
+                Properties.Settings.Default.setPort_portNameRelay = portNameRelaySection;
+                Properties.Settings.Default.setPort_wasRelayConnected = true;
                 Properties.Settings.Default.Save();
             }
         }
 
-        public void SerialPortCloseArduino()
+        public void SerialPortRelayClose()
         {
-            if (spArduino.IsOpen)
+            if (spRelay.IsOpen)
             {
-                spArduino.DataReceived -= sp_DataReceivedArduino;
-                try { spArduino.Close(); }
+                spRelay.DataReceived -= sp_DataReceivedRelay;
+                try { spRelay.Close(); }
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
 
                 //update port status label
@@ -170,10 +141,10 @@ namespace AgOpenGPS
                 stripOnlineArduino.Value = 1;
                 stripPortArduino.ForeColor = Color.Red;
 
-                Properties.Settings.Default.setPort_wasArduinoConnected = false;
+                Properties.Settings.Default.setPort_wasRelayConnected = false;
                 Properties.Settings.Default.Save();
 
-                spArduino.Dispose();
+                spRelay.Dispose();
             }
 
         }
@@ -218,8 +189,8 @@ namespace AgOpenGPS
 
             if (!sp.IsOpen)
             {
-                sp.PortName = portName;
-                sp.BaudRate = baudRate;
+                sp.PortName = portNameGPS;
+                sp.BaudRate = baudRateGPS;
                 sp.DataReceived += sp_DataReceived;
                 sp.WriteTimeout = 1000;
             }
@@ -246,11 +217,11 @@ namespace AgOpenGPS
                 sp.DiscardInBuffer();
 
                 //update port status label
-                stripPortGPS.Text = portName + " " + baudRate.ToString();
+                stripPortGPS.Text = portNameGPS + " " + baudRateGPS.ToString();
                 stripPortGPS.ForeColor = Color.ForestGreen;
 
-                Properties.Settings.Default.setPort_portName = portName;
-                Properties.Settings.Default.setPort_baudRate = baudRate;
+                Properties.Settings.Default.setPort_portNameGPS = portNameGPS;
+                Properties.Settings.Default.setPort_baudRate = baudRateGPS;
                 Properties.Settings.Default.Save();
             }
         }
@@ -264,7 +235,7 @@ namespace AgOpenGPS
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
 
                 //update port status labels
-                stripPortGPS.Text = " * * " + baudRate.ToString();
+                stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 stripPortGPS.ForeColor = Color.ForestGreen;
                 stripOnlineGPS.Value = 1;
 

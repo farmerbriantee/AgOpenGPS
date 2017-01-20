@@ -142,7 +142,7 @@ namespace AgOpenGPS
 
         }
  
-        private void getCurrentABLine()
+        public void getCurrentABLine()
         {
             //move the ABLine over based on the overlap amount set in vehicle
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
@@ -223,14 +223,20 @@ namespace AgOpenGPS
             //if you're going the opposite direction left is right and right is left
             if (isABSameAsFixHeading)
             {
+                mf.modcom.autosteerSetpointHeading = abHeading;
                 if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
 
             //opposite way so right is left
             else
             {
+                mf.modcom.autosteerSetpointHeading = abHeading - Math.PI;
                 if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
+
+            mf.modcom.guidanceLineDistance = (int)distanceFromCurrentLine;
+
+            
         }
 
         public void DrawABLines()
@@ -260,7 +266,7 @@ namespace AgOpenGPS
 
                     gl.LineWidth(1);
 
-                    getCurrentABLine();
+                    //getCurrentABLine();
 
                     //draw current AB Line
                     gl.Disable(OpenGL.GL_LINE_STIPPLE);

@@ -42,67 +42,53 @@ namespace AgOpenGPS
             }
 
             //check if Arduino port is open or closed and set buttons accordingly
-            if (mf.spArduino.IsOpen)
+            if (mf.spRelay.IsOpen)
             {
-                cboxPortArduino.Enabled = false;
+                cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
             }
 
             else
             {
-                cboxPortArduino.Enabled = true;
+                cboxArdPort.Enabled = true;
                 btnCloseSerialArduino.Enabled = false;
                 btnOpenSerialArduino.Enabled = true;
             }
 
             //load the port box with valid port names
             cboxPort.Items.Clear();
-            cboxPortArduino.Items.Clear();
+            cboxArdPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxPort.Items.Add(s);
-                cboxPortArduino.Items.Add(s);
-            }
-        
+                cboxArdPort.Items.Add(s);
+            }        
 
             lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
             lblCurrentPort.Text = mf.sp.PortName;
-            lblCurrentArduinoPort.Text = mf.spArduino.PortName;
-            nudNMEAHz.Value = Properties.Settings.Default.setPort_NMEAHz;
-
+            lblCurrentArduinoPort.Text = mf.spRelay.PortName;
         }
 
 
         #region PortSettings //----------------------------------------------------------------
 
-        private void nudNMEAHz_ValueChanged(object sender, EventArgs e)
-        {
-            mf.fixUpdateHz = (int)nudNMEAHz.Value;
-        }
 
         // Arduino 
-        private void btnRescanArduino_Click(object sender, EventArgs e)
-        {
-            cboxPortArduino.Items.Clear();
-            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPortArduino.Items.Add(s); }
-
-        }
-
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortOpenArduino();
-            if (mf.spArduino.IsOpen)
+            mf.SerialPortRelayOpen();
+            if (mf.spRelay.IsOpen)
             {
-                cboxPortArduino.Enabled = false;
+                cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
-                lblCurrentArduinoPort.Text = mf.spArduino.PortName;
+                lblCurrentArduinoPort.Text = mf.spRelay.PortName;
             }
 
             else
             {
-                cboxPortArduino.Enabled = true;
+                cboxArdPort.Enabled = true;
                 btnCloseSerialArduino.Enabled = false;
                 btnOpenSerialArduino.Enabled = true;
             }
@@ -111,44 +97,44 @@ namespace AgOpenGPS
 
         private void btnCloseSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortCloseArduino();
-            if (mf.spArduino.IsOpen)
+            mf.SerialPortRelayClose();
+            if (mf.spRelay.IsOpen)
             {
-                cboxPortArduino.Enabled = false;
+                cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
             }
 
             else
             {
-                cboxPortArduino.Enabled = true;
+                cboxArdPort.Enabled = true;
                 btnCloseSerialArduino.Enabled = false;
                 btnOpenSerialArduino.Enabled = true;
             }
 
         }
 
-        private void cboxPortArduino_SelectedIndexChanged(object sender, EventArgs e)
+
+       private void cboxArdPort_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            mf.spArduino.PortName = cboxPortArduino.Text;
-            FormGPS.portNameArduino = cboxPortArduino.Text;
-
+            mf.spRelay.PortName = cboxArdPort.Text;
+            FormGPS.portNameRelaySection = cboxArdPort.Text;
+            lblCurrentArduinoPort.Text = cboxPort.Text;
         }
 
         // GPS Serial Port
 
-         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
              mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
-            FormGPS.baudRate = Convert.ToInt32(cboxBaud.Text);
+            FormGPS.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
        
         }
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             mf.sp.PortName = cboxPort.Text;
-            FormGPS.portName = cboxPort.Text;
+            FormGPS.portNameGPS = cboxPort.Text;
         }
 
         private void btnOpenSerial_Click(object sender, EventArgs e)
@@ -171,9 +157,6 @@ namespace AgOpenGPS
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
             }
-
-
-
         }
 
         private void btnCloseSerial_Click(object sender, EventArgs e)
@@ -198,6 +181,9 @@ namespace AgOpenGPS
 
         private void btnRescan_Click(object sender, EventArgs e)
         {
+            cboxArdPort.Items.Clear();
+            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxArdPort.Items.Add(s); }
+
             cboxPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPort.Items.Add(s); }
         }
@@ -221,7 +207,6 @@ namespace AgOpenGPS
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
             //serial Ports  -  mostly done directly-------------------
-            Properties.Settings.Default.setPort_NMEAHz = mf.fixUpdateHz;
 
             //save
             Properties.Settings.Default.Save();
@@ -238,6 +223,7 @@ namespace AgOpenGPS
             this.Close();
         }
 
+ 
 
 
 
