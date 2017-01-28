@@ -430,5 +430,53 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_triangleResolution"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIsMetric {
+            get {
+                return ((bool)(this["setIsMetric"]));
+            }
+            set {
+                this["setIsMetric"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIsGridOn {
+            get {
+                return ((bool)(this["setIsGridOn"]));
+            }
+            set {
+                this["setIsGridOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIsLightbarOn {
+            get {
+                return ((bool)(this["setIsLightbarOn"]));
+            }
+            set {
+                this["setIsLightbarOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIsAreaRight {
+            get {
+                return ((bool)(this["setIsAreaRight"]));
+            }
+            set {
+                this["setIsAreaRight"] = value;
+            }
+        }
     }
 }

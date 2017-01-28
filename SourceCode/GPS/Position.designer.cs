@@ -99,7 +99,8 @@ namespace AgOpenGPS
                     et = (1 / (hzTime*0.000025));
                     if (et > 4 && et < 8) fixUpdateHz = 5;
                     if (et > 9 && et < 13) fixUpdateHz = 10;
-                    if (et > 0.5 && et < 2) fixUpdateHz = 1;
+                    if (et > 1.2 && et < 3) fixUpdateHz = 2;
+                    if (et > 0.8 && et < 1.2) fixUpdateHz = 1;
                     fixUpdateTime = 1 / (double)fixUpdateHz;
                     timerPn = 0;
                     hzTime = 0;
@@ -199,10 +200,23 @@ namespace AgOpenGPS
                //build the polygon to calculate area
                 if (periArea.isBtnPerimeterOn)
                 {
-                    //Right side
-                    vec2 point = new vec2(cosHeading * (section[vehicle.numberOfSections-1].positionRight) + toolEasting,
-                        sinHeading * (section[vehicle.numberOfSections-1].positionRight) + toolNorthing);
-                    periArea.periList.Add(point);
+                    if (isAreaOnRight)
+                    {
+                        //Right side
+                        vec2 point = new vec2(cosHeading * (section[vehicle.numberOfSections - 1].positionRight) + toolEasting,
+                            sinHeading * (section[vehicle.numberOfSections - 1].positionRight) + toolNorthing);
+                        periArea.periList.Add(point);
+                    }
+
+                        //draw on left side
+                    else
+                    {
+                        //Right side
+                        vec2 point = new vec2(cosHeading * (section[0].positionLeft) + toolEasting,
+                            sinHeading * (section[0].positionLeft) + toolNorthing);
+                        periArea.periList.Add(point);
+                    }
+                    
                 }
 
             if (isJobStarted)//add the pathpoint

@@ -114,12 +114,15 @@ namespace AgOpenGPS
                 gl.Vertex(0, 0, 0);
             gl.End();
 
-            //section markers
-            gl.PointSize(4.0f);
-            gl.Begin(OpenGL.GL_POINTS);
+            if (mf.camera.camSetDistance > -750)
+            {
+                //section markers
+                gl.PointSize(4.0f);
+                gl.Begin(OpenGL.GL_POINTS);
                 for (int j = 0; j < mf.vehicle.numberOfSections - 1; j++)
                     gl.Vertex(mf.section[j].positionRight, 0, trailing);
-            gl.End();
+                gl.End();
+            }
  
             //draw vehicle
             gl.PopMatrix();
@@ -139,8 +142,8 @@ namespace AgOpenGPS
             gl.End();
             
             //draw the points
-            gl.PointSize(8.0f);
-            gl.Begin(OpenGL.GL_POINTS);
+            //gl.PointSize(8.0f);
+            //gl.Begin(OpenGL.GL_POINTS);
 
             ////antenna
             //gl.Color(0.0f, 1.0f, 0.0f);
@@ -152,11 +155,11 @@ namespace AgOpenGPS
 
             //rear Tires
             //gl.PointSize(12.0f);
-            gl.Color(0, 0, 0);
-            gl.Vertex(-1.8, 0, -antennaPivot);
-            gl.Vertex(1.8, 0, -antennaPivot);
+            //gl.Color(0, 0, 0);
+            //gl.Vertex(-1.8, 0, -antennaPivot);
+            //gl.Vertex(1.8, 0, -antennaPivot);
 
-            gl.End();
+            //gl.End();
 
 
 
@@ -166,32 +169,3 @@ namespace AgOpenGPS
     }
 }
 
-
-//gl.Color(0.0f, 0.99f, 0.0f);
-//gl.Begin(OpenGL.GL_LINES);
-//gl.Vertex(-1.8, 0, -antennaPivot);
-//gl.Vertex(1.8, 0, -antennaPivot);
-//gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
-//gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
-//gl.End();
-
-// Enable Texture Mapping and set color to white
-//gl.Enable(OpenGL.GL_TEXTURE_2D);		
-////the vehicle
-//gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[0]);	// Select Our Texture
-//gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
-//gl.TexCoord(0, 0); gl.Vertex(2.0, 0.0, 2.0);                // Top Right
-//gl.TexCoord(1, 0); gl.Vertex(-2.0, 0.0, 2.0);               // Top Left
-//gl.TexCoord(0, 1); gl.Vertex(2.0, 0.0, -2.0);               // Bottom Right
-//gl.TexCoord(1, 1); gl.Vertex(-2.0, 0.0, -2.0);              // Bottom Left
-//gl.End();						// Done Building Triangle Strip
-
-////axle pivot
-//gl.Color(0.0f, 0.99f, 0.5f);
-//gl.Vertex(0, 0, -antennaPivot);
-
-////steering Tires
-//gl.Vertex(-1.2, 0, -antennaPivot+wheelbase);
-//gl.Vertex(1.2, 0, -antennaPivot+wheelbase);
-
- 

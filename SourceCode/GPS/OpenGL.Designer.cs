@@ -40,14 +40,17 @@ namespace AgOpenGPS
                 //calculate the frustum planes for culling
                 CalcFrustum(gl);
 
+                worldGrid.DrawFieldSurface();
+                
                 //Draw the world grid based on camera position
                 gl.Disable(OpenGL.GL_DEPTH_TEST);
                 gl.Disable(OpenGL.GL_TEXTURE_2D);
-                worldGrid.DrawWorldGrid(gridZoom);
+
+                //if grid is on draw it
+                if (isGridOn) worldGrid.DrawWorldGrid(gridZoom);
 
                 //turn on blend for paths
                 gl.Enable(OpenGL.GL_BLEND);
-                gl.Disable(OpenGL.GL_DEPTH_TEST);
 
                 //section patch color
                 gl.Color(0.99f, 1.0f, 0.50f, 0.4f);
@@ -69,7 +72,7 @@ namespace AgOpenGPS
                     if (patchCount > 0)
                     {
                         //initialize the steps for mipmap of triangles (skipping detail while zooming out)
-                        int mipmap = 0;                  
+                        int mipmap = 0;
                         if (camera.camSetDistance < -800) mipmap = 2;
                         if (camera.camSetDistance < -1500) mipmap = 4;
                         if (camera.camSetDistance < -2400) mipmap = 8;
@@ -139,27 +142,25 @@ namespace AgOpenGPS
                     }
                 }
 
+
                 gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
                 gl.Color(1, 1, 1);
 
                 //draw contour line if button on 
-                if (ct.isContourBtnOn)
-                {
-                    ct.DrawContourLine();
-                }
+                if (ct.isContourBtnOn) ct.DrawContourLine();
 
                 // draw the current and reference AB Lines
                 else
                 {
                     if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                }
+                }                
 
-                //draw the perimter line
+                //draw the perimter line, returns if no line to draw
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                  gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " frame msec " + Convert.ToString((int)(frameTime)));
-                //  gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "distFromCur " + Convert.ToString(modcom.guidanceLineDistance));
+                 // gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " frame msec " + Convert.ToString((int)(frameTime)));
+                  gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "recvC " + Convert.ToString(recvCounter));
                 //  gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "   Set Head " + Convert.ToString(modcom.autosteerSetpointHeading));
                 //  gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "     Actual " + Convert.ToString(modcom.autosteerActualHeading));
                 ////gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "refHeading  " + Convert.ToString(Math.Round(ct.refHeading, 2)));
@@ -208,38 +209,39 @@ namespace AgOpenGPS
                     gl.Disable(OpenGL.GL_TEXTURE_2D);
                 }
 
-                //LightBar if AB Line is set
-
-                if (ct.isContourBtnOn)
+                //LightBar if AB Line is set and turned on
+                if (isLightbarOn)
                 {
+
+                    if (ct.isContourBtnOn)
+                    {
                         txtDistanceOffABLine.Visible = true;
                         DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine);
                         txtDistanceOffABLine.Text = " " + Convert.ToString(Math.Abs(ct.distanceFromCurrentLine)) + " ";
                         if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                         else txtDistanceOffABLine.ForeColor = Color.LightGreen;
-                }
-
-                else
-                {
-                    if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-                    {
-                        txtDistanceOffABLine.Visible = true;
-                        DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine);
-                        txtDistanceOffABLine.Text = " " + Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine)) + " ";
-                        if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
-                        else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                     }
-                }
 
-                //AB line is not set so turn off numbers
+                    else
+                    {
+                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+                        {
+                            txtDistanceOffABLine.Visible = true;
+                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine);
+                            txtDistanceOffABLine.Text = " " + Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine)) + " ";
+                            if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
+                            else txtDistanceOffABLine.ForeColor = Color.LightGreen;
+                        }
+                    }
+
+                    //AB line is not set so turn off numbers
                     if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
                         txtDistanceOffABLine.Visible = false;
+                }
 
-                //finish openGL commands
-                gl.Flush();
-
-                //  Pop the modelview.
-                gl.PopMatrix();
+                else txtDistanceOffABLine.Visible = false;                
+                gl.Flush();//finish openGL commands                
+                gl.PopMatrix();//  Pop the modelview.
 
                 //  back to the projection and pop it, then back to the model view.
                 gl.MatrixMode(OpenGL.GL_PROJECTION);
@@ -248,7 +250,6 @@ namespace AgOpenGPS
 
                 //reset point size
                 gl.PointSize(1.0f);
-
                 gl.Flush();
 
                 //draw the section control window off screen buffer
@@ -514,7 +515,7 @@ namespace AgOpenGPS
             //  Dot distance is representation of how far from AB Line
 
             //width of lightbar
-            double _width = 400;
+            double _width = 448;
 
             double down = 24;
 
@@ -522,14 +523,14 @@ namespace AgOpenGPS
             //if (dotDistance < 0) dotDistance -= 20;
             //if (dotDistance > 0) dotDistance += 20;
 
-            if (dotDistance < -280) dotDistance = -280;
-            if (dotDistance > 280) dotDistance = 280;
+            if (dotDistance < -370) dotDistance = -370;
+            if (dotDistance > 370) dotDistance = 370;
 
             //the black background
             gl.Color(0, 0, 0);
             gl.PointSize(32.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int x = (int)-_width - 16; x <= 0; x += 32) gl.Vertex((double)x, down);
+            for (int x = (int)-_width - 32; x <= 0; x += 32) gl.Vertex((double)x, down);
             for (int x = 0; x <= (int)_width + 32; x += 32) gl.Vertex((double)x, down);
             gl.End();
 
@@ -542,52 +543,64 @@ namespace AgOpenGPS
             //gl.End();
 
 
-            //2 off center green dots
+            ////2 off center green dots
             gl.PointSize(8.0f);
             gl.Begin(OpenGL.GL_POINTS);
             gl.Color(0.0f, 1.0f, 0.0f);
-            gl.Vertex(0, down);
-            gl.Vertex(20, down);
-            gl.Vertex(-20, down);
-            gl.Color(1.0f, 1.0f, 0.0f);
             gl.Vertex(40, down);
             gl.Vertex(-40, down);
             gl.Vertex(60, down);
             gl.Vertex(-60, down);
-            gl.Vertex(80, down);
+
+            //yellow
+            gl.Color(1.0f, 1.0f, 0.0f);
+            gl.Vertex( 80, down);
             gl.Vertex(-80, down);
-            gl.End();
+            gl.Vertex(100, down);
+            gl.Vertex(-100, down);
+            gl.Vertex(120, down);
+            gl.Vertex(-120, down);
 
             //left red dots
-            gl.PointSize(8.0f);
             gl.Color(0.8f, 0.2f, 0.2f);
-            gl.Begin(OpenGL.GL_POINTS);
-            for (int x = -21; x < -4; x++) gl.Vertex(x * 20, down);
-            gl.End();
+            for (int x = -24; x < -6; x++) gl.Vertex(x * 20, down);
 
             //right red dots
             gl.Color(0.8f, 0.2f, 0.2f);
-            gl.Begin(OpenGL.GL_POINTS);
-            for (int x = 5; x < 22; x++) gl.Vertex(x * 20, down);
+            for (int x = 7; x < 25; x++) gl.Vertex(x * 20, down);
             gl.End();
 
-            //Are you on the right side of line?
-            if (Math.Abs(offlineDistance) < 15.0)
+            if (dotDistance >= -1 && dotDistance <= 1)
             {
                 gl.PointSize(24.0f);
                 gl.Color(0.0f, 1.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1.5, down);
+                gl.Vertex(-30, down);
+                gl.Vertex( 25, down);
+                gl.End();
+                return;
+            }
+            if (dotDistance < -1) dotDistance -= 30;
+            if (dotDistance > 1) dotDistance += 30;
+            
+            //else dotDistance += 30;
+            //Are you on the right side of line?
+            if (Math.Abs(offlineDistance) < 30.0)
+            {
+                gl.PointSize(24.0f);
+                gl.Color(0.0f, 1.0f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
+                gl.Vertex(dotDistance * -1.2, down);
                 gl.End();
                 return;
             }
 
-            if (Math.Abs(offlineDistance) < 50.0)
+            if (Math.Abs(offlineDistance) < 100.0)
             {
                 gl.PointSize(24.0f);
                 gl.Color(1.0f, 1.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1.5, down);
+                gl.Vertex(dotDistance * -1.2, down);
                 gl.End();
                 return;
             }
@@ -596,7 +609,7 @@ namespace AgOpenGPS
             gl.PointSize(24.0f);
             gl.Color(1.0f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            gl.Vertex(dotDistance * -1.5, down);
+            gl.Vertex(dotDistance * -1.2, down);
             gl.End();
 
 

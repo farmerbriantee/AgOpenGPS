@@ -86,8 +86,9 @@ namespace AgOpenGPS
         private void UpdateStatus(string recvd)
         {
             //recvSentence.Append(recvd);
-            //pn.rawBuffer += recvd;
-            //textBox1.Text = recvd;
+            pn.rawBuffer += recvd;
+            //textBox1.Text = pn.rawBuffer;
+            textBox1.Text = recvd;
         }        
 
     }

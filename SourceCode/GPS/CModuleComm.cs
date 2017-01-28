@@ -9,7 +9,7 @@ namespace AgOpenGPS
 
         //properties for relay control of sections and input lines, 8 bit bytes
         public byte[] relaySectionControl = new byte[1];
-        public byte digitalInputLines;
+        public byte[] digitalInputLines = new byte[1];
 
         //distance in cm from guidance line
         public int guidanceLineDistance;
@@ -18,13 +18,13 @@ namespace AgOpenGPS
         public double autosteerSetpointHeading, autosteerActualHeading;
 
         //property to receive NMEA sentence from GPS
-        public StringBuilder nmeaCommandRecv;
+        //public StringBuilder nmeaCommandRecv;
 
-        public StringBuilder commandAutosteerSend;
-        public StringBuilder commandAutosteerRecv;
+        //public StringBuilder commandAutosteerSend;
+        //public StringBuilder commandAutosteerRecv;
 
-        public StringBuilder commandRelaySend;
-        public StringBuilder commandRelayRecv;
+        //public StringBuilder commandRelaySend;
+        //public StringBuilder commandRelayRecv;
 
         //send and recv strings from all possible input outputs
         public StringBuilder udpSentenceSend;
@@ -39,35 +39,18 @@ namespace AgOpenGPS
         public StringBuilder serialAutosteerRecv;
 
 
-        /*
-         * 1 is GPS module
-         * 2 is section module
-         * 3 is autosteer module
-         * 
-         * 
-         */
- 
-
        //constructor
         public CModuleComm(FormGPS f)
         {            
             this.mf = f;
 
             //control all relays based on byte value, 1 means on, 0 means off
-            relaySectionControl[0] = (byte)0;
+            relaySectionControl[0] = 0;
 
             //set the byte value for the digital input lines to 0 means low, 1 means high, active low
-            digitalInputLines = 0;
+            digitalInputLines[0] = 0;
 
-            //create string for nmea sentence from GPS, out to section IO, and autosteer
-            nmeaCommandRecv = new StringBuilder();
-
-            commandRelayRecv = new StringBuilder();
-            commandAutosteerRecv = new StringBuilder();
-
-            commandRelaySend = new StringBuilder();
-            commandAutosteerSend = new StringBuilder();
-
+            //the relay for sectionControl
             serialRelayRecv = new StringBuilder();
 
             //distance from guidance line in cm
@@ -78,8 +61,6 @@ namespace AgOpenGPS
 
             //what is AB line heading or contour segment heading at current fix
             autosteerSetpointHeading = 0;
-
-
         }
 
 

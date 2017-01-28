@@ -32,10 +32,8 @@ namespace AgOpenGPS
            this.mf = f;
         }
 
-        public void DrawWorldGrid(double _gridZoom)
+        public void DrawFieldSurface()
         {
-            //draw easting lines and westing lines to produce a grid
-  
             // Enable Texture Mapping and set color to white
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             gl.Color(0.954, 0.954, 0.954);
@@ -50,7 +48,11 @@ namespace AgOpenGPS
             gl.TexCoord(texZoom, texZoom); gl.Vertex(eastingMin, 0.0, northingMin);              // Bottom Left
             gl.End();						// Done Building Triangle Strip
             gl.Disable(OpenGL.GL_TEXTURE_2D);
+        }
 
+            //draw easting lines and westing lines to produce a grid
+        public void DrawWorldGrid(double _gridZoom)
+        {
             gl.Color(0.25f, 0.4f, 0.25f);
             gl.Begin(OpenGL.GL_LINES);
             for (double x = eastingMin; x < eastingMax; x += _gridZoom)

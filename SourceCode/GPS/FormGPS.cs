@@ -30,11 +30,11 @@ namespace AgOpenGPS
         //polygon mode for section drawing
         bool isDrawPolygons = false;
 
-        //Is it in 2D or 3D
-        public bool isIn3D = true;
+        //Is it in 2D or 3D, metric or imperial, display lightbar, display grid
+        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false;
+        public bool isJobStarted = false, isAreaOnRight = true;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates {Off,Auto,On};
@@ -155,6 +155,13 @@ namespace AgOpenGPS
             baudRateGPS = Properties.Settings.Default.setPort_baudRate;
             portNameGPS = Properties.Settings.Default.setPort_portNameGPS;
 
+            //is it in metric?
+            isMetric = Properties.Settings.Default.setIsMetric;
+
+            //Grid and lightbar settings
+            isGridOn = Properties.Settings.Default.setIsGridOn;
+            isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
+
             //try and open, if not go to setting up port
             SerialPortOpenGPS();
 
@@ -170,7 +177,7 @@ namespace AgOpenGPS
             SectionCalcWidths();
 
             //start server
-            StartTCPServer();
+            //StartTCPServer();
 
             //start server
             StartUDPServer();
@@ -215,6 +222,43 @@ namespace AgOpenGPS
             btnSection4Man.Enabled = false;
             btnSection5Man.Enabled = false;
 
+            //metric settings
+            isMetric = Properties.Settings.Default.setIsMetric;
+            if (isMetric)
+            {
+                metricToolStripMenuItem.Checked = true;
+                imperialToolStripMenuItem.Checked = false;
+            }
+
+            else
+            {
+                metricToolStripMenuItem.Checked = false;
+                imperialToolStripMenuItem.Checked = true;
+            }
+
+            //area side settings
+            isAreaOnRight = Properties.Settings.Default.setIsAreaRight;
+            if (isAreaOnRight)
+            {
+                rightSideToolStripMenuItem.Checked = true;
+                leftSideToolStripMenuItem.Checked = false;
+            }
+
+            else
+            {
+                rightSideToolStripMenuItem.Checked = false;
+                leftSideToolStripMenuItem.Checked = true;
+            }
+
+
+            //set up grid and lightbar
+            isGridOn = Properties.Settings.Default.setIsGridOn;
+            gridToolStripMenuItem.Checked = isGridOn;
+
+            isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
+            lightbarToolStripMenuItem.Checked = isLightbarOn;
+
+            //flash no gpd no worky message
             var form = new FormTimedMessage(this, 1500, "Initializing GPS......", "If screen stays black, no GPS data");
             form.Show();
             return;
@@ -1311,7 +1355,70 @@ namespace AgOpenGPS
  
         }
 
-#region Properties // ---------------------------------------------------------------------
+        private void webCamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormWebCam();
+            form.Show();
+        }
+
+        //is it metric selected
+        private void metricToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isMetric = true;
+            Properties.Settings.Default.setIsMetric = isMetric;
+            Properties.Settings.Default.Save();
+            metricToolStripMenuItem.Checked = true;
+            imperialToolStripMenuItem.Checked = false;
+        }
+
+        //or imperial selected
+        private void imperialToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isMetric = false;
+            Properties.Settings.Default.setIsMetric = isMetric;
+            Properties.Settings.Default.Save();
+            metricToolStripMenuItem.Checked = false;
+            imperialToolStripMenuItem.Checked = true;
+        }
+
+        //which side is area line recorded on, right or left
+        private void rightSideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isAreaOnRight = true;
+            Properties.Settings.Default.setIsAreaRight = isAreaOnRight;
+            Properties.Settings.Default.Save();
+            rightSideToolStripMenuItem.Checked = true;
+            leftSideToolStripMenuItem.Checked = false;
+        }
+
+        private void leftSideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isAreaOnRight = false;
+            Properties.Settings.Default.setIsAreaRight = isAreaOnRight;
+            Properties.Settings.Default.Save();
+            rightSideToolStripMenuItem.Checked = false;
+            leftSideToolStripMenuItem.Checked = true;
+        }
+
+        //turn grid on/off
+        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isGridOn = !isGridOn;
+            gridToolStripMenuItem.Checked = isGridOn;
+            Properties.Settings.Default.setIsGridOn = isGridOn;
+            Properties.Settings.Default.Save();
+        }
+
+        //turn Lighbar off on
+        private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isLightbarOn = !isLightbarOn;
+            lightbarToolStripMenuItem.Checked = isLightbarOn;
+            Properties.Settings.Default.setIsLightbarOn = isLightbarOn;
+            Properties.Settings.Default.Save();
+        }
+        
+        #region Properties // ---------------------------------------------------------------------
 
         public string FixNorthing { get { return Convert.ToString(Math.Round(pn.northing, 2)); } }
         public string FixEasting { get { return Convert.ToString(Math.Round(pn.easting, 2)); } }
@@ -1320,14 +1427,10 @@ namespace AgOpenGPS
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
         public string Altitude { get { return Convert.ToString(pn.altitude); }  }
         public string HDOP { get { return Convert.ToString(pn.hdop); }  }
-        public string SpeedMPH { get { return Convert.ToString(Math.Round(pn.speed * 0.621371, 1)); } }
-        public string SpeedKPH { get { return Convert.ToString(pn.speed); } }
         public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.degrees(fixHeading), 1)); } }
-        public string PeriArea { get { return Math.Round(periArea.area * 0.000247105, 1).ToString(); ; } }
-        public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }
-        
+        public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }       
         public string FixQuality { get
         { 
             if (pn.fixQuality == 0) return "Invalid";  
@@ -1341,9 +1444,18 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 8) return "Simulation";  
             else                         return "Unknown";    } }
 
-        //public string Grid { get { return Math.Round(gridZoom*3.28084/16,0).ToString(); } }
-        public string Grid { get { return Math.Round(gridZoom*3.28084,0).ToString(); } }
+        public string SpeedMPH { get { return Convert.ToString(Math.Round(pn.speed * 0.621371, 1)); } }
+        public string SpeedKPH { get { return Convert.ToString(pn.speed); } }
+
+        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 1).ToString(); ; } }
+        public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 1).ToString(); ; } }
+
+        public string GridFeet { get { return Math.Round(gridZoom * 3.28084, 0).ToString(); } }
+        public string GridMeters { get { return Math.Round(gridZoom, 0).ToString(); } }
+
         public string Acres { get { return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString(); } }
+        public string Hectares { get { return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); } }
+
         public string FixHeading { get { return Math.Round(fixHeading, 3).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 2).ToString(); } }
 
@@ -1376,7 +1488,11 @@ namespace AgOpenGPS
         //Timer runs at 20 hz and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
-            //every half second update all status
+
+            //go see if data ready for draw and position updates
+            ScanForNMEA();
+
+           //every half second update all status
             if (statusUpdateCounter++ > 10)
             {
                 //reset the counter
@@ -1384,29 +1500,57 @@ namespace AgOpenGPS
 
                 //counter used for saving field in background
                 saveCounter++;
+                if (isMetric)
+                {
+                    //acres on the master section soft control
+                    this.btnSectionOffAutoOn.Text = Hectares;
 
-                //acres on the master section soft control
-                this.btnSectionOffAutoOn.Text = Acres;
+                    btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.0001, 2).ToString();
+                    btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.0001, 2).ToString();
+                    btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.0001, 2).ToString();
+                    btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.0001, 2).ToString();
+                    btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.0001, 2).ToString();
 
-                btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
-                btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
-                btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
-                btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
-                btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                    //area button
+                    btnPerimeter.Text = PeriAreaHectares;
 
-                //status strip values
-                stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
-                stripMPH.Text = "MPH: " + SpeedMPH;
-                stripPassNumber.Text = "Pass: " + PassNumber;
-                stripGridZoom.Text = "Grid: " + Grid + " '";
-                stripAcres.Text = "Acres: " + Acres;
+                    //status strip values
+                    stripDistance.Text = "Dist: " + Convert.ToString(Math.Round(userDistance, 0)) + " m";
+                    stripMPH.Text = "Kph: " + SpeedKPH;
+                    stripGridZoom.Text = "Grid: " + GridMeters;
+                    stripAcres.Text = "Ha: " + Hectares;
+                }
+
+                else
+                {
+                    //acres on the master section soft control
+                    this.btnSectionOffAutoOn.Text = Acres;
+
+                    btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                    btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                    btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                    btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+                    btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.00024710499815078974633856493327535, 2).ToString();
+
+                    //area button
+                    btnPerimeter.Text = PeriAreaAcres;
+
+                    //status strip values
+                    stripDistance.Text = "Feet: " + Convert.ToString(Math.Round(userDistance * 3.28084, 0));
+                    stripMPH.Text = "MPH: " + SpeedMPH;
+                    stripGridZoom.Text = "Grid: " + GridFeet + " '";
+                    stripAcres.Text = "Acres: " + Acres;
+                }
+
+                //non metric fields
                 stripHz.Text = "Hz: " + NMEAHz;
                 stripHeading.Text = "Dir: " + Heading + "\u00B0";
-                txtHeading.Text = Heading + "\u00B0";
-                btnPerimeter.Text = PeriArea;
+                //txtHeading.Text = Heading + "\u00B0";
+                stripPassNumber.Text = "Pass: " + PassNumber;
+                
 
                 //update the online indicator
-                if (recvCounter > 3 * fixUpdateHz)
+                if (recvCounter > 50)
                 {
                     stripOnlineGPS.Value = 1;
                     textBoxRcv.Text = "************  NO GGA or RMC **************";
@@ -1414,20 +1558,9 @@ namespace AgOpenGPS
                 else stripOnlineGPS.Value = 100;
             }
 
-            //go see if data ready for draw and position updates
-            ScanForNMEA();
-
+ 
             //wait till timer fires again.
         }
-
-
-        private void webCamToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form form = new FormWebCam();
-            form.Show();
-        }
-
-
 
 
    }//class FormGPS

@@ -45,8 +45,17 @@
             this.COMPortsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.areaOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.leftSideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unitsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metricToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imperialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +65,9 @@
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripBtnResetDistance = new System.Windows.Forms.ToolStripSplitButton();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripAcres = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripMPH = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripGridZoom = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripMPH = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripAcres = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripPassNumber = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripHeading = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
@@ -80,7 +89,6 @@
             this.btn2D3D = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtHeading = new System.Windows.Forms.TextBox();
             this.btnPerimeter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -99,13 +107,13 @@
             this.openGLControl.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openGLControl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openGLControl.FrameRate = 5;
-            this.openGLControl.Location = new System.Drawing.Point(0, 32);
+            this.openGLControl.Location = new System.Drawing.Point(0, 35);
             this.openGLControl.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.openGLControl.Name = "openGLControl";
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.openGLControl.Size = new System.Drawing.Size(946, 521);
+            this.openGLControl.Size = new System.Drawing.Size(946, 518);
             this.openGLControl.TabIndex = 6;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -130,14 +138,14 @@
             this.txtDistanceOffABLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDistanceOffABLine.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.txtDistanceOffABLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDistanceOffABLine.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDistanceOffABLine.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDistanceOffABLine.ForeColor = System.Drawing.Color.Chartreuse;
-            this.txtDistanceOffABLine.Location = new System.Drawing.Point(441, 70);
+            this.txtDistanceOffABLine.Location = new System.Drawing.Point(444, 39);
             this.txtDistanceOffABLine.Name = "txtDistanceOffABLine";
             this.txtDistanceOffABLine.ReadOnly = true;
-            this.txtDistanceOffABLine.Size = new System.Drawing.Size(64, 34);
+            this.txtDistanceOffABLine.Size = new System.Drawing.Size(53, 32);
             this.txtDistanceOffABLine.TabIndex = 7;
-            this.txtDistanceOffABLine.Text = "00000";
+            this.txtDistanceOffABLine.Text = "000";
             this.txtDistanceOffABLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // openGLControlBack
@@ -147,7 +155,7 @@
             this.openGLControlBack.DrawFPS = false;
             this.openGLControlBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openGLControlBack.FrameRate = 1;
-            this.openGLControlBack.Location = new System.Drawing.Point(0, 35);
+            this.openGLControlBack.Location = new System.Drawing.Point(4, 35);
             this.openGLControlBack.Name = "openGLControlBack";
             this.openGLControlBack.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControlBack.RenderContextType = SharpGL.RenderContextType.NativeWindow;
@@ -220,8 +228,13 @@
             this.COMPortsToolStripMenuItem,
             this.vehicleToolStripMenuItem,
             this.toolStripSeparator1,
+            this.resetALLToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.areaOnToolStripMenuItem,
+            this.unitsToolStripMenuItem,
             this.polygonsToolStripMenuItem,
-            this.resetALLToolStripMenuItem});
+            this.gridToolStripMenuItem,
+            this.lightbarToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(88, 29);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -229,37 +242,104 @@
             // COMPortsToolStripMenuItem
             // 
             this.COMPortsToolStripMenuItem.Name = "COMPortsToolStripMenuItem";
-            this.COMPortsToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
+            this.COMPortsToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
             this.COMPortsToolStripMenuItem.Text = "COM Ports...";
             this.COMPortsToolStripMenuItem.Click += new System.EventHandler(this.menuItemCOMPortsToolStrip_Click);
             // 
             // vehicleToolStripMenuItem
             // 
             this.vehicleToolStripMenuItem.Name = "vehicleToolStripMenuItem";
-            this.vehicleToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
+            this.vehicleToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
             this.vehicleToolStripMenuItem.Text = "Options...";
             this.vehicleToolStripMenuItem.Click += new System.EventHandler(this.menuItemVehicleToolStrip_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(182, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(210, 6);
+            // 
+            // resetALLToolStripMenuItem
+            // 
+            this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
+            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.resetALLToolStripMenuItem.Text = "Reset ALL";
+            this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(210, 6);
+            // 
+            // areaOnToolStripMenuItem
+            // 
+            this.areaOnToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rightSideToolStripMenuItem,
+            this.leftSideToolStripMenuItem});
+            this.areaOnToolStripMenuItem.Name = "areaOnToolStripMenuItem";
+            this.areaOnToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.areaOnToolStripMenuItem.Text = "Draw Area From";
+            // 
+            // rightSideToolStripMenuItem
+            // 
+            this.rightSideToolStripMenuItem.Name = "rightSideToolStripMenuItem";
+            this.rightSideToolStripMenuItem.Size = new System.Drawing.Size(165, 30);
+            this.rightSideToolStripMenuItem.Text = "Right Side";
+            this.rightSideToolStripMenuItem.Click += new System.EventHandler(this.rightSideToolStripMenuItem_Click);
+            // 
+            // leftSideToolStripMenuItem
+            // 
+            this.leftSideToolStripMenuItem.Name = "leftSideToolStripMenuItem";
+            this.leftSideToolStripMenuItem.Size = new System.Drawing.Size(165, 30);
+            this.leftSideToolStripMenuItem.Text = "Left Side";
+            this.leftSideToolStripMenuItem.Click += new System.EventHandler(this.leftSideToolStripMenuItem_Click);
+            // 
+            // unitsToolStripMenuItem
+            // 
+            this.unitsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.metricToolStripMenuItem,
+            this.imperialToolStripMenuItem});
+            this.unitsToolStripMenuItem.Name = "unitsToolStripMenuItem";
+            this.unitsToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.unitsToolStripMenuItem.Text = "Set Units";
+            // 
+            // metricToolStripMenuItem
+            // 
+            this.metricToolStripMenuItem.Checked = true;
+            this.metricToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.metricToolStripMenuItem.Name = "metricToolStripMenuItem";
+            this.metricToolStripMenuItem.Size = new System.Drawing.Size(146, 30);
+            this.metricToolStripMenuItem.Text = "Metric";
+            this.metricToolStripMenuItem.Click += new System.EventHandler(this.metricToolStripMenuItem_Click);
+            // 
+            // imperialToolStripMenuItem
+            // 
+            this.imperialToolStripMenuItem.Name = "imperialToolStripMenuItem";
+            this.imperialToolStripMenuItem.Size = new System.Drawing.Size(146, 30);
+            this.imperialToolStripMenuItem.Text = "Imperial";
+            this.imperialToolStripMenuItem.Click += new System.EventHandler(this.imperialToolStripMenuItem_Click);
             // 
             // polygonsToolStripMenuItem
             // 
             this.polygonsToolStripMenuItem.Checked = true;
             this.polygonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.polygonsToolStripMenuItem.Name = "polygonsToolStripMenuItem";
-            this.polygonsToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
+            this.polygonsToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
             this.polygonsToolStripMenuItem.Text = "Polygons";
             this.polygonsToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
             // 
-            // resetALLToolStripMenuItem
+            // gridToolStripMenuItem
             // 
-            this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
-            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(185, 30);
-            this.resetALLToolStripMenuItem.Text = "Reset ALL";
-            this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
+            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
+            this.gridToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.gridToolStripMenuItem.Text = "Grid On";
+            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
+            // 
+            // lightbarToolStripMenuItem
+            // 
+            this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
+            this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(213, 30);
+            this.lightbarToolStripMenuItem.Text = "Lightbar On";
+            this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem2
             // 
@@ -299,7 +379,7 @@
             // 
             // tmrWatchdog
             // 
-            this.tmrWatchdog.Interval = 50;
+            this.tmrWatchdog.Interval = 30;
             this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
             // 
             // statusStrip1
@@ -309,9 +389,9 @@
             this.stripHz,
             this.stripBtnResetDistance,
             this.stripDistance,
-            this.stripAcres,
-            this.stripMPH,
             this.stripGridZoom,
+            this.stripMPH,
+            this.stripAcres,
             this.stripPassNumber,
             this.stripHeading,
             this.stripPortGPS,
@@ -352,14 +432,14 @@
             this.stripDistance.Text = "Trip";
             this.stripDistance.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // stripAcres
+            // stripGridZoom
             // 
-            this.stripAcres.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stripAcres.Name = "stripAcres";
-            this.stripAcres.Size = new System.Drawing.Size(127, 26);
-            this.stripAcres.Spring = true;
-            this.stripAcres.Text = "Acres";
-            this.stripAcres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.stripGridZoom.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripGridZoom.Name = "stripGridZoom";
+            this.stripGridZoom.Size = new System.Drawing.Size(127, 26);
+            this.stripGridZoom.Spring = true;
+            this.stripGridZoom.Text = "Ft/Sq";
+            this.stripGridZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // stripMPH
             // 
@@ -370,14 +450,14 @@
             this.stripMPH.Text = "MPH";
             this.stripMPH.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // stripGridZoom
+            // stripAcres
             // 
-            this.stripGridZoom.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stripGridZoom.Name = "stripGridZoom";
-            this.stripGridZoom.Size = new System.Drawing.Size(127, 26);
-            this.stripGridZoom.Spring = true;
-            this.stripGridZoom.Text = "Ft/Sq";
-            this.stripGridZoom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.stripAcres.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripAcres.Name = "stripAcres";
+            this.stripAcres.Size = new System.Drawing.Size(127, 26);
+            this.stripAcres.Spring = true;
+            this.stripAcres.Text = "Acres";
+            this.stripAcres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // stripPassNumber
             // 
@@ -448,7 +528,7 @@
             this.btnContour.Enabled = false;
             this.btnContour.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
-            this.btnContour.Location = new System.Drawing.Point(857, 186);
+            this.btnContour.Location = new System.Drawing.Point(857, 191);
             this.btnContour.Name = "btnContour";
             this.btnContour.Size = new System.Drawing.Size(82, 66);
             this.btnContour.TabIndex = 105;
@@ -465,7 +545,7 @@
             this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(857, 372);
+            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(857, 377);
             this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
             this.btnSectionOffAutoOn.Size = new System.Drawing.Size(82, 88);
             this.btnSectionOffAutoOn.TabIndex = 104;
@@ -577,7 +657,7 @@
             this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnManualOffOn.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.btnManualOffOn.Location = new System.Drawing.Point(857, 266);
+            this.btnManualOffOn.Location = new System.Drawing.Point(857, 271);
             this.btnManualOffOn.Name = "btnManualOffOn";
             this.btnManualOffOn.Size = new System.Drawing.Size(82, 88);
             this.btnManualOffOn.TabIndex = 98;
@@ -589,7 +669,7 @@
             this.btnNewJob.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnNewJob.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewJob.Image = global::AgOpenGPS.Properties.Resources.JobClosed;
-            this.btnNewJob.Location = new System.Drawing.Point(4, 326);
+            this.btnNewJob.Location = new System.Drawing.Point(4, 327);
             this.btnNewJob.Name = "btnNewJob";
             this.btnNewJob.Size = new System.Drawing.Size(70, 66);
             this.btnNewJob.TabIndex = 97;
@@ -613,7 +693,7 @@
             this.btnSnapToAB.Enabled = false;
             this.btnSnapToAB.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSnapToAB.Image = ((System.Drawing.Image)(resources.GetObject("btnSnapToAB.Image")));
-            this.btnSnapToAB.Location = new System.Drawing.Point(4, 255);
+            this.btnSnapToAB.Location = new System.Drawing.Point(4, 256);
             this.btnSnapToAB.Name = "btnSnapToAB";
             this.btnSnapToAB.Size = new System.Drawing.Size(70, 66);
             this.btnSnapToAB.TabIndex = 87;
@@ -647,32 +727,18 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(347, 5);
+            this.textBox1.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(208, 6);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(226, 22);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(365, 20);
             this.textBox1.TabIndex = 106;
-            // 
-            // txtHeading
-            // 
-            this.txtHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtHeading.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtHeading.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtHeading.Font = new System.Drawing.Font("Arial Narrow", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHeading.ForeColor = System.Drawing.Color.Chartreuse;
-            this.txtHeading.Location = new System.Drawing.Point(857, 43);
-            this.txtHeading.Name = "txtHeading";
-            this.txtHeading.ReadOnly = true;
-            this.txtHeading.Size = new System.Drawing.Size(82, 34);
-            this.txtHeading.TabIndex = 107;
-            this.txtHeading.Text = "000";
-            this.txtHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnPerimeter
             // 
             this.btnPerimeter.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPerimeter.Image = global::AgOpenGPS.Properties.Resources.PeriArea;
-            this.btnPerimeter.Location = new System.Drawing.Point(4, 396);
+            this.btnPerimeter.Location = new System.Drawing.Point(4, 398);
             this.btnPerimeter.Name = "btnPerimeter";
             this.btnPerimeter.Size = new System.Drawing.Size(70, 66);
             this.btnPerimeter.TabIndex = 108;
@@ -688,7 +754,6 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(946, 582);
             this.Controls.Add(this.btnPerimeter);
-            this.Controls.Add(this.txtHeading);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnContour);
             this.Controls.Add(this.btnSectionOffAutoOn);
@@ -781,9 +846,17 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem saveFieldToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txtHeading;
         private System.Windows.Forms.ToolStripStatusLabel stripHeading;
         private System.Windows.Forms.Button btnPerimeter;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem unitsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem metricToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imperialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lightbarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem areaOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rightSideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem leftSideToolStripMenuItem;
     }
 }
 

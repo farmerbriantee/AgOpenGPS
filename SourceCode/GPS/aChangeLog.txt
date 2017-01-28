@@ -1,4 +1,12 @@
-﻿v1.6 Jan 2017
+﻿v1.7 Feb 2017
+
+* can set which side area is recorded from
+* metric and imperial can be set
+* Turn grid on off
+* Allow lightbar to be controlled independently of guidance lines
+*
+
+v1.6 Jan 2017
 
 * UDP server for GPS, section control etc
 * TCP server just because.
