@@ -159,8 +159,8 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                 // gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " frame msec " + Convert.ToString((int)(frameTime)));
-                  gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "recvC " + Convert.ToString(recvCounter));
+                 //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " frame msec " + Convert.ToString((int)(frameTime)));
+                 // gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "recvC " + Convert.ToString(recvCounter));
                 //  gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "   Set Head " + Convert.ToString(modcom.autosteerSetpointHeading));
                 //  gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "     Actual " + Convert.ToString(modcom.autosteerActualHeading));
                 ////gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "refHeading  " + Convert.ToString(Math.Round(ct.refHeading, 2)));

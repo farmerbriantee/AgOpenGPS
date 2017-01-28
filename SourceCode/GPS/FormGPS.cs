@@ -1490,7 +1490,9 @@ namespace AgOpenGPS
         {
 
             //go see if data ready for draw and position updates
+            tmrWatchdog.Enabled = false;
             ScanForNMEA();
+            tmrWatchdog.Enabled = true;
 
            //every half second update all status
             if (statusUpdateCounter++ > 10)
@@ -1543,7 +1545,7 @@ namespace AgOpenGPS
                 }
 
                 //non metric fields
-                stripHz.Text = "Hz: " + NMEAHz;
+                stripHz.Text = "Hz:" + NMEAHz + " ms:" + ((int)frameTime).ToString();
                 stripHeading.Text = "Dir: " + Heading + "\u00B0";
                 //txtHeading.Text = Heading + "\u00B0";
                 stripPassNumber.Text = "Pass: " + PassNumber;
