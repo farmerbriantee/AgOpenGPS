@@ -177,7 +177,7 @@ namespace AgOpenGPS
             SectionCalcWidths();
 
             //start server
-            //StartTCPServer();
+            StartTCPServer();
 
             //start server
             StartUDPServer();

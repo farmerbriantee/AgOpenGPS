@@ -87,53 +87,53 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CABLine.cs" />
-    <Compile Include="CCamera.cs" />
-    <Compile Include="CContour.cs" />
-    <Compile Include="CModuleComm.cs" />
-    <Compile Include="CNMEA.cs" />
-    <Compile Include="CPerimeter.cs" />
-    <Compile Include="CSection.cs" />
-    <Compile Include="CPointData.cs" />
-    <Compile Include="CVehicle.cs" />
-    <Compile Include="CWorldGrid.cs" />
-    <Compile Include="FormCommSet.cs">
+    <Compile Include="Classes\CABLine.cs" />
+    <Compile Include="Classes\CCamera.cs" />
+    <Compile Include="Classes\CContour.cs" />
+    <Compile Include="Classes\CModuleComm.cs" />
+    <Compile Include="Classes\CNMEA.cs" />
+    <Compile Include="Classes\CPerimeter.cs" />
+    <Compile Include="Classes\CSection.cs" />
+    <Compile Include="Classes\CPointData.cs" />
+    <Compile Include="Classes\CVehicle.cs" />
+    <Compile Include="Classes\CWorldGrid.cs" />
+    <Compile Include="Forms\FormCommSet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCommSet.Designer.cs">
+    <Compile Include="Forms\FormCommSet.Designer.cs">
       <DependentUpon>FormCommSet.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormJob.cs">
+    <Compile Include="Forms\FormJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormJob.Designer.cs">
+    <Compile Include="Forms\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSaveOrNot.cs">
+    <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSaveOrNot.Designer.cs">
+    <Compile Include="Forms\FormSaveOrNot.Designer.cs">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTimedMessage.cs">
+    <Compile Include="Forms\FormTimedMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTimedMessage.Designer.cs">
+    <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormVariables.cs">
+    <Compile Include="Forms\FormVariables.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormVariables.Designer.cs">
+    <Compile Include="Forms\FormVariables.Designer.cs">
       <DependentUpon>FormVariables.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormWebCam.cs">
+    <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormWebCam.Designer.cs">
+    <Compile Include="Forms\FormWebCam.Designer.cs">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Position.designer.cs">
+    <Compile Include="Forms\Position.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
@@ -142,95 +142,98 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SaveOpen.Designer.cs">
+    <Compile Include="Forms\SaveOpen.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormABLine.cs">
+    <Compile Include="Forms\FormABLine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormABLine.Designer.cs">
+    <Compile Include="Forms\FormABLine.Designer.cs">
       <DependentUpon>FormABLine.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormAbout.cs">
+    <Compile Include="Forms\FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormAbout.Designer.cs">
+    <Compile Include="Forms\FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGPSData.cs">
+    <Compile Include="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGPSData.Designer.cs">
+    <Compile Include="Forms\FormGPSData.Designer.cs">
       <DependentUpon>FormGPSData.cs</DependentUpon>
     </Compile>
-    <Compile Include="CGLM.cs" />
-    <Compile Include="FormSettings.cs">
+    <Compile Include="Classes\CGLM.cs" />
+    <Compile Include="Forms\FormSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSettings.Designer.cs">
+    <Compile Include="Forms\FormSettings.Designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenGL.Designer.cs">
+    <Compile Include="Forms\OpenGL.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="SerialComm.Designer.cs">
+    <Compile Include="Forms\SerialComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGPS.cs">
+    <Compile Include="Forms\FormGPS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGPS.Designer.cs">
+    <Compile Include="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="TCPComm.Designer.cs">
+    <Compile Include="Forms\TCPComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="UDPComm.Designer.cs" />
+    <Compile Include="Forms\UDPComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="vec3.cs" />
-    <EmbeddedResource Include="FormABLine.resx">
+    <EmbeddedResource Include="Forms\FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormAbout.resx">
+    <EmbeddedResource Include="Forms\FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCommSet.resx">
+    <EmbeddedResource Include="Forms\FormCommSet.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGPSData.resx">
+    <EmbeddedResource Include="Forms\FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGPS.resx">
+    <EmbeddedResource Include="Forms\FormGPS.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormJob.resx">
+    <EmbeddedResource Include="Forms\FormJob.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSaveOrNot.resx">
+    <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSettings.resx">
+    <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormtimedMessage.resx">
+    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormVariables.resx">
+    <EmbeddedResource Include="Forms\FormVariables.resx">
       <DependentUpon>FormVariables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormWebCam.resx">
+    <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

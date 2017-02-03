@@ -221,9 +221,8 @@ namespace AgOpenGPS
 
             if (isJobStarted)//add the pathpoint
             {
- 
+                // if non zero, at least one section is on.
                 int sectionCounter = 0;
-
 
                 //send the current and previous GPS fore/aft corrected fix to each section
                 for (int j = 0; j < vehicle.numberOfSections; j++)

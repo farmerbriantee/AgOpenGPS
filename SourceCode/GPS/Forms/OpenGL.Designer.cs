@@ -29,6 +29,7 @@ namespace AgOpenGPS
 
                 //  Get the OpenGL object.
                 OpenGL gl = openGLControl.OpenGL;
+                //System.Threading.Thread.Sleep(500);
 
                 //  Clear the color and depth buffer.
                 gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
@@ -217,18 +218,19 @@ namespace AgOpenGPS
                     {
                         txtDistanceOffABLine.Visible = true;
                         DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine);
-                        txtDistanceOffABLine.Text = " " + Convert.ToString(Math.Abs(ct.distanceFromCurrentLine)) + " ";
+                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.3937)) + " ";
                         if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                         else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                     }
 
                     else
                     {
+
                         if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
                         {
                             txtDistanceOffABLine.Visible = true;
                             DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine);
-                            txtDistanceOffABLine.Text = " " + Convert.ToString(Math.Abs(ABLine.distanceFromCurrentLine)) + " ";
+                            txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.3937)) + " ";
                             if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                             else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                         }
@@ -418,6 +420,12 @@ namespace AgOpenGPS
                     }
                 }
 
+                /* Below is priority based. The last if statement is the one that is
+                 * applied and takes the highest priority. Digital input controls
+                 * have the highest priority and overide all buttons except
+                 * the manual button which exits the loop and just turns sections on....
+                 * Because isn't that what manual means! */
+                 
                 //calculated in CSection.CalculateSectionLookAhead, section is going backwards
                 if (section[j].sectionLookAhead < 0)
                 {
@@ -439,7 +447,7 @@ namespace AgOpenGPS
                     section[j].sectionOnRequest = false;
                 }
 
-                // Manual on, force the section On and exit loop
+                // Manual on, force the section On and exit loop so digital is also overidden
                 if (section[j].manBtnState == manBtn.On)
                 {
                     section[j].sectionOnRequest = true;
@@ -452,6 +460,27 @@ namespace AgOpenGPS
                     section[j].sectionOnRequest = false;
                     section[j].sectionOffRequest = true;
                 }
+
+                ////digital input Master control
+                //if (isJobStarted)
+                //{
+                //    if (!inputMenu.Checked)
+                //    {
+                //        section[j].sectionOnRequest = false;
+                //        section[j].sectionOffRequest = true;
+                //    }
+
+                //    else
+                //    {
+                //        section[j].sectionOnRequest = true;
+                //        section[j].sectionOffRequest = false;
+                //    }
+                //}
+
+                // Torriem .... Here will go individual section on - off - auto
+                //compare the digital value and set the status accordingly
+
+ 
             }
             gl.Flush();
 
@@ -534,16 +563,7 @@ namespace AgOpenGPS
             for (int x = 0; x <= (int)_width + 32; x += 32) gl.Vertex((double)x, down);
             gl.End();
 
-            ////Big center green dots
-            //gl.PointSize(40.0f);
-            //gl.Begin(OpenGL.GL_POINTS);
-            //gl.Color(0.0f, 0.7f, 0.0f);
-            //gl.Vertex(8, down);
-            //gl.Vertex(-8, down);
-            //gl.End();
-
-
-            ////2 off center green dots
+            //2 off center green dots
             gl.PointSize(8.0f);
             gl.Begin(OpenGL.GL_POINTS);
             gl.Color(0.0f, 1.0f, 0.0f);
