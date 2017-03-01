@@ -1,0 +1,179 @@
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\GPS.exe.config
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\GPS.exe
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\GPS.pdb
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\SharpGL.dll
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\_VS10Bu\OpenGL\GPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\GPS.exe
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\GPS.pdb
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\_VS10Bu\OpenGL\GPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\GPS.exe.config
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\GPS.exe
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\GPS.pdb
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\GPS.exe
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\GPS.pdb
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\SharpGL.dll
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\_VS10Bu\AgOpenGPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\_VS10Bu\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\GPS.exe.config
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\GPS.exe
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\GPS.pdb
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\GPS.exe
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\GPS.pdb
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\SharpGL.dll
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\_VS10Bu\OpenGL\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Leno\OneDrive\Sharp\AgOpenGPS\GPS\bin\Debug\GPS.exe.config
+C:\Users\Leno\OneDrive\Sharp\AgOpenGPS\GPS\obj\x86\Debug\GPS.exe
+C:\Users\Leno\OneDrive\Sharp\AgOpenGPS\GPS\obj\x86\Debug\GPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.exe.config
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\GPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\GPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\AgOpenGPSAug\GPS\bin\Debug\GPS.exe.config
+C:\Users\Leno\Desktop\AgOpenGPSAug\GPS\obj\x86\Debug\GPS.exe
+C:\Users\Leno\Desktop\AgOpenGPSAug\GPS\obj\x86\Debug\GPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.exe.config
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\GPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\GPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\GPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.dll
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\bin\Debug\SharpGL.WinForms.dll
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Farm\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\AgOpenGPS_\Application\Dependencies\Landscape.png
+C:\Users\Leno\Desktop\AgOpenGPS_\Application\Dependencies\Vehicle.png
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\AgOpenGPS_\Application\AgOpenGPS.exe.config
+C:\Users\Leno\Desktop\AgOpenGPS_\Application\AgOpenGPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS_\Application\AgOpenGPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS_\AgOpenGPS\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.exe.config
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\Application\Dependencies\Landscape.png
+C:\Users\Farm\Desktop\AgOpenGPS\Application\Dependencies\Vehicle.png
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS\Application\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\Dependencies\Vehicle.png
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_prettyPics\Application\AgOpenGPS.exe.config
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_prettyPics\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_prettyPics\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormCommSet.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\AgOpenGPS.exe.config
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormCommSet.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\Dependencies\Landscape.png
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\Dependencies\Vehicle.png
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\AgOpenGPS.exe
+C:\Users\Farm\Desktop\Old ones\AgOpenGPS_Dev_toolSettings\Application\AgOpenGPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\Dependencies\Vehicle.png
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormCommSet.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\Dependencies\Vehicle.png
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.exe
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\Application\AgOpenGPS.pdb
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormABLine.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormAbout.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormCommSet.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPSData.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormGPS.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSettings.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVariables.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
+C:\Users\Leno\OneDrive\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.GenerateResource.Cache

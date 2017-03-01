@@ -1,0 +1,130 @@
+﻿
+v 1.9 Feb 2017
+
+* 
+* readPixel now a single block rather then multiple reads. Faster, more accurate. 
+* Workswitch now in settings, selectable on-off and active low or high.
+* can set which side area is recorded from
+* metric and imperial can be set
+* Turn grid on off
+* Allow lightbar to be controlled independently of guidance lines 
+* Pin marking, selecting, deleting, view in Google Earth
+* Ability to set colors for field background and section colors.
+* Repeating buttons for camera angle and zoom. Works touchscreen or mouse.
+* Windows Explorer as a tool, 
+* Google Earth as a tool that brings up all pins marked, numbered.
+* Context Menu buttons on most functions, GUI significantly changed
+* Common buttons immediate, secondary/protected functions as context.
+* multi colour pins, selectable
+* Files saved in binary. Significant speed up.
+* Able to export files as text.
+* Contour file contains UTM and LatLong with elevation for elevation map generation - to come in  viewer.
+* most data and status at top of screen
+* eliminated NMEA strings off top of Gui, in GPS Data screen now
+* Field directories are set up at start of field
+* ability to continue a field, every field is its own directory.
+* Directories and files are all created if not exist, no matter on initial state of program
+*
+* Significantly modified the OpenGL SharpGL wrapper, excluded all serialization, scene graph
+* added additional overloaded GL and GLU functions for ReadPixel and inverse matrix
+* Reduced SharpGL into only 2 DLL's for GL and Winforms.
+* Removed 399 error checking calls that internals were commented anyways in every GL call
+* 3469 xml documentation warnings still to fix. Volunteers?
+* added functions for matrix, texture, vectors directly to OpenGL.cs from scenegraph
+* AgOpenGPS SharpGL is completely forked from SharpGL written by David Kerr. License still applies.
+* AgOpenGPS will no longer work with Standard SharpGL wrapper and DLL's.
+* 
+* Zoom min max extents now remembers former zoom position
+* minor bug fixes, although certainly getting to be quite solid.
+* Section on off logic includes ability to externally switch, enable and disable ability too.
+* Field texture and area recalculating when new field or position changed 
+
+
+v1.6 Jan 2017
+
+* UDP server for GPS, section control etc
+* TCP server just because.
+* Contour guidance now, merged with lightbar and same nomenclature as ABLine
+* Area Calculations
+* Module communication class
+* Assorted bugs fixed
+
+v1.5 Dec 20 2016
+
+* Camera can use heading of calculated by fix - settable in settings
+* Automatic breakup of patches, every 100 triangles, so Frustum culling is more effective
+* Auto NMEA frequency determination.
+* tramlines settable frequency and start position. Multi coloured.
+* Speed compensated lookahead. Based on work of ***Torriem***.
+* No longer use of integration timers, data comes in updates/sec so app must conform, not other way around.
+* Completely reworked frame timing. "Fast" loop continuously runs and only once a complete NMEA 
+	sentence appears then fix position and draw routine are fired. Based off of 20 Hz watchdog timer
+* Each section has its own accumulated acres in its button
+* FINALLY runs nicely at 10 hz update 
+
+
+v1.3.1.1 Dec 1 2016
+
+* tileable textures for field surface
+* WebCam support
+* New and close job are now; resume - new - open; in its own dialog
+* exiting asks if you want to save field if one is open
+* custom timeout message dialog - non modal
+* custom YesNo dialog for save
+* fixed AB line setting, must drive a ways before setting B point.
+* Set Auto Manual buttons on to off if other turned on to be easier
+* individual section buttons
+* added zoom by touching left or right side of screen
+* removed most divides with multiply, constants for pi/2 and 2 PI etc
+* Tool now has Red for Off, Yellow for ON, and Green for Auto, matching the buttons
+* Sections are in control of on off request now, not buttons. Buttons simply change button states of sections
+
+
+v1.3.0.1 22 Nov 2016
+
+* Most settings with graphics and easier to set
+* GPS Fix is at antenna, Pivot, Hitch, tool all calculated now
+* Section on off now by request with a section control as event handler
+* Communications has own window
+* Variables Window
+* Vehicle track for Antenna, Pivot point, Tool
+
+
+
+v1.21 26 Oct 2016
+* 
+
+* Changed grid to display in acres. the grid width by half mile is acres displayed for grid
+* Changed serial ports....again. the data rec'd event was looping too fast and missing data. Fixed
+* Changed settings database to reflect more accurate naming
+* Streamlined the NMEA parsing engine to not remove incomplete strings or null out string if not containing both $ and \r\n
+
+
+v1.2 October 2016
+* Fixed the RMC and GGA parsing routine, rather then reading an NMEA line and then updating, read all existing lines and process all at once. 
+	- much faster accumulation of data
+* Changed OpenGL draw routine from being triggered when RMC rec'd to 5 frames per second and triggering functions from there.
+	- three seperate threads - GPS Serial IO and decoding NMEA stream, sectionRelay serial IO, Draw routine. 
+* Ability to save and retrieve fields
+* Changed the Section tab to remove clutter with less sections
+* added section on and off request in section control. Allows the section to delay turning off and when turned on to remain on for 2 secs minimum.
+* Fixed fonts consistency
+* Added bottom status bar - looks way better in Linux
+* Added Arduino serial port to control sectionRelays
+* Output the section on off status to Arduino for full external control of sections
+* Added port selection to choose port for sectionRelays.
+* added hitched or rigid in vehicle
+* added antenna height in vehicle
+* added port status in status bar
+* added distance reset in status bar
+* fixed section drawing so it uses section position rather then fix position to end section drawing
+* added a guidance page to set overlap
+* fixed bug in section control loosing accuracy from converting double to int too soon. (missing a pixel or two)
+
+
+September 2016
+Added section control, Properties page, still pretty rough
+
+
+June 2016
+v1.0.0.1 Basic application with all its warts and bugs
