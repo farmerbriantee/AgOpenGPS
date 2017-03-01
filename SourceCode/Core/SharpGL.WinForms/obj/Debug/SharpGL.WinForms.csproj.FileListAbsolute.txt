@@ -1,0 +1,24 @@
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.SceneGraph.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.SceneGraph.pdb
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.Controls.GLColourPicker.resources
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.OpenGLControl.resources
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.SceneControl.resources
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.Controls.VertexControl.resources
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Debug\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.Controls.GLColourPicker.resources
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.OpenGLControl.resources
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Debug\SharpGL.WinForms.pdb

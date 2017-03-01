@@ -1,0 +1,9 @@
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL\bin\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL\bin\Debug\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL\obj\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL\obj\Debug\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master\source\SharpGL\Core\SharpGL\obj\Debug\SharpGL.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\bin\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\bin\Debug\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\obj\Debug\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\obj\Debug\SharpGL.pdb
