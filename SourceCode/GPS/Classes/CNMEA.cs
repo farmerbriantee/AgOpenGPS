@@ -346,6 +346,9 @@ namespace AgOpenGPS
                 theSent += nextNMEASentence;
                 mf.recvCounter = 0;
                 updatedRMC = true;
+
+                mf.avgSpeed[mf.ringCounter] = speed;
+                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
             }
 
 
@@ -374,6 +377,10 @@ namespace AgOpenGPS
                 }
                 updatedVTG = true;
                 theSent += nextNMEASentence;
+
+                mf.avgSpeed[mf.ringCounter] = speed;
+                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+
             }
 
 

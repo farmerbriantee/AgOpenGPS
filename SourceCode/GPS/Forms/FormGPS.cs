@@ -59,7 +59,11 @@ namespace AgOpenGPS
 
         // Storage For Our Tractor, implement, background etc Textures
         Texture particleTexture;
-        public uint[] texture = new uint[3];		
+        public uint[] texture = new uint[3];
+
+        //for average speed
+        public double [] avgSpeed = new double[10];
+        public int ringCounter = 0;
 
         //create the scene camera
         public CCamera camera = new CCamera();
@@ -1689,8 +1693,26 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 8) return "Simulation";  
             else                         return "Unknown";    } }
 
-        public string SpeedMPH { get { return Convert.ToString(Math.Round(pn.speed * 0.621371, 1)); } }
-        public string SpeedKPH { get { return Convert.ToString(pn.speed); } }
+        public string SpeedMPH
+        {
+            get
+            {
+                double spd = 0;
+                for (int c = 0; c < 10; c++) spd += avgSpeed[c];
+                spd *= 0.0621371;
+                return Convert.ToString(Math.Round(spd, 1));
+            }
+        }
+        public string SpeedKPH
+        {
+            get
+            {
+                double spd = 0;
+                for (int c = 0; c < 10; c++) spd += avgSpeed[c];
+                spd *= 0.1;
+                return Convert.ToString(Math.Round(spd, 1));
+            }
+        }
 
         public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 1).ToString(); ; } }
         public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 1).ToString(); ; } }
