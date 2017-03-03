@@ -20,7 +20,7 @@ namespace AgOpenGPS
         const int MAXSECTIONS = 5;
 
         //current directory of field;
-        public string currentFieldDirectory = "", workingDirectory = "";
+        public string currentFieldDirectory = "", workingDirectory = "", vehiclefileName = "";
 
         //colors for sections and field background
         byte redSections,grnSections,bluSections;
@@ -245,6 +245,8 @@ namespace AgOpenGPS
 
             //set previous job directory
             currentFieldDirectory = Properties.Settings.Default.setCurrentDir;
+            vehiclefileName = Properties.Settings.Default.setVehicle_Name;
+                
 
             isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
@@ -1239,6 +1241,13 @@ namespace AgOpenGPS
         }
         private void loadVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(this, 2000, "Ooops, Field Open", "Close Field First");
+                form.Show();
+                return;
+
+            }
             FileOpenVehicle();
         }
         private void saveVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1249,7 +1258,7 @@ namespace AgOpenGPS
         {
             if (!isJobStarted)
             {
-                var form = new FormTimedMessage(this, 2000, "Ooops, Job Not Started", "Start a Job First");
+                var form = new FormTimedMessage(this, 2000, "Ooops, Field Not Started", "Start a Field First");
                 form.Show();
                 return;
             }
@@ -1311,8 +1320,7 @@ namespace AgOpenGPS
                 }                
             }
         }
-
-
+        
         //Help menu drop down items
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1390,7 +1398,16 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
 
         }
+        private void toolStripBtn2D3D_ButtonClick(object sender, EventArgs e)
+        {
+            if (camera.camPitch > -90) camera.camPitch = -90;
+            else camera.camPitch = -15;
 
+            Properties.Settings.Default.setCam_pitch = camera.camPitch;
+            Properties.Settings.Default.Save();
+            SetZoom();
+        }
+ 
         //Tools drop down items
         private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1670,8 +1687,8 @@ namespace AgOpenGPS
         public string FixEasting { get { return Convert.ToString(Math.Round(pn.easting + pn.utmEast, 2)); } }
         public string Latitude { get { return Convert.ToString(Math.Round(pn.latitude,7)); } }
         public string Longitude { get { return Convert.ToString(Math.Round(pn.longitude, 7)); } }
-        public string Elevation { get { return Convert.ToString(pn.altitude); } }
-        public string ElevationFeet { get { return Convert.ToString((int)(pn.altitude * 3.28084)); } }
+        public string Altitude { get { return Convert.ToString(pn.altitude); } }
+        public string AltitudeFeet { get { return Convert.ToString((int)(pn.altitude * 3.28084)); } }
 
 
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
@@ -1763,10 +1780,8 @@ namespace AgOpenGPS
                     stripDistance.Text = Convert.ToString(Math.Round(userDistance, 0)) + " m";
                     lblSpeed.Text = SpeedKPH;
                     stripGridZoom.Text = "Grid: " + GridMeters;
-                    //stripAcres.Text = "Ha: " + Hectares;
-                    stripElev.Text = "Elev: " + Elevation;
-                    //lblMphKph.Text = "kph:";
-                    stripEqWidth.Text = "Eq: " + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
+                    stripAlt.Text = "Alt: " + Altitude;
+                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
                 }
 
                 else
@@ -1785,10 +1800,8 @@ namespace AgOpenGPS
                     stripDistance.Text = Convert.ToString(Math.Round(userDistance * 3.28084, 0)) + " ft";
                     lblSpeed.Text = SpeedMPH;
                     stripGridZoom.Text = "Grid: " + GridFeet + " '";
-                    //stripAcres.Text = "Acres: " + Acres;
-                    stripElev.Text = "Elev: " + ElevationFeet;
-                    //lblMphKph.Text = "mph:";
-                    stripEqWidth.Text = "Eq: " + (Math.Round(vehicle.toolWidth*glm.m2ft, 2)).ToString() + " ft";
+                    stripAlt.Text = "Alt: " + AltitudeFeet;
+                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                 }
 
                 //non metric or imp fields
@@ -1801,18 +1814,13 @@ namespace AgOpenGPS
                 {
                     lblEasting.Text = Math.Round(pn.easting, 1).ToString();
                     lblNorthing.Text = Math.Round(pn.northing, 1).ToString();
-                    //lblFieldName.Text = currentFieldDirectory;
                 }
 
                 else
                 {
                     lblEasting.Text = ((int)pn.actualEasting).ToString();
                     lblNorthing.Text = ((int)pn.actualNorthing).ToString();
-                    //lblFieldName.Text = "No Job Started";
                 }
-
-                //lblZone.Text = pn.zone.ToString();
-
 
                 //update the online indicator
                 if (recvCounter > 50)
@@ -1827,7 +1835,7 @@ namespace AgOpenGPS
             //wait till timer fires again.
         }
 
- 
+
    }//class FormGPS
 }//namespace AgOpenGPS
 

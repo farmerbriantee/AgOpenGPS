@@ -40,7 +40,7 @@ namespace AgOpenGPS
             lblEasting.Text = mainForm.FixEasting;
             lblLatitude.Text = mainForm.Latitude;
             lblLongitude.Text = mainForm.Longitude;
-            lblAltitude.Text = mainForm.Elevation;
+            lblAltitude.Text = mainForm.Altitude;
 
             //other sat and GPS info
             lblFixQuality.Text = mainForm.FixQuality;

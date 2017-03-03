@@ -49,6 +49,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.resetALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fieldToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,9 +59,6 @@
             this.communicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.settingsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fieldToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,11 +73,12 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripAlt = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnResetDistance = new System.Windows.Forms.ToolStripSplitButton();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripGridZoom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripElev = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBtn2D3D = new System.Windows.Forms.ToolStripSplitButton();
+            this.stripGridZoom = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
             this.stripPortArduino = new System.Windows.Forms.ToolStripStatusLabel();
@@ -206,7 +207,7 @@
             this.txtDistanceOffABLine.MaximumSize = new System.Drawing.Size(53, 28);
             this.txtDistanceOffABLine.Name = "txtDistanceOffABLine";
             this.txtDistanceOffABLine.ReadOnly = true;
-            this.txtDistanceOffABLine.Size = new System.Drawing.Size(53, 28);
+            this.txtDistanceOffABLine.Size = new System.Drawing.Size(53, 32);
             this.txtDistanceOffABLine.TabIndex = 7;
             this.txtDistanceOffABLine.Text = "000";
             this.txtDistanceOffABLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -241,7 +242,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fileToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(55, 28);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadVehicleToolStripMenuItem
@@ -308,7 +309,7 @@
             this.settingsToolStripMenuItem1});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(94, 29);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(94, 28);
             this.settingsToolStripMenuItem.Text = "Options";
             // 
             // toolStripSeparator1
@@ -327,6 +328,29 @@
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(229, 6);
+            // 
+            // colorsToolStripMenuItem
+            // 
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sectionToolStripMenuItem,
+            this.fieldToolStripMenuItem1});
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
+            this.colorsToolStripMenuItem.Text = "Colors";
+            // 
+            // sectionToolStripMenuItem
+            // 
+            this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
+            this.sectionToolStripMenuItem.Size = new System.Drawing.Size(156, 30);
+            this.sectionToolStripMenuItem.Text = "Section";
+            this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
+            // 
+            // fieldToolStripMenuItem1
+            // 
+            this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
+            this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(156, 30);
+            this.fieldToolStripMenuItem1.Text = "Field";
+            this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
             // 
             // gridToolStripMenuItem
             // 
@@ -375,29 +399,6 @@
             this.settingsToolStripMenuItem1.Text = "Settings";
             this.settingsToolStripMenuItem1.Click += new System.EventHandler(this.settingsToolStripMenuItem1_Click);
             // 
-            // colorsToolStripMenuItem
-            // 
-            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sectionToolStripMenuItem,
-            this.fieldToolStripMenuItem1});
-            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(232, 30);
-            this.colorsToolStripMenuItem.Text = "Colors";
-            // 
-            // sectionToolStripMenuItem
-            // 
-            this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
-            this.sectionToolStripMenuItem.Size = new System.Drawing.Size(156, 30);
-            this.sectionToolStripMenuItem.Text = "Section";
-            this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
-            // 
-            // fieldToolStripMenuItem1
-            // 
-            this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
-            this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(156, 30);
-            this.fieldToolStripMenuItem1.Text = "Field";
-            this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
-            // 
             // aboutToolStripMenuItem2
             // 
             this.aboutToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -405,7 +406,7 @@
             this.helpToolStripMenuItem});
             this.aboutToolStripMenuItem2.Name = "aboutToolStripMenuItem2";
             this.aboutToolStripMenuItem2.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.aboutToolStripMenuItem2.Size = new System.Drawing.Size(64, 29);
+            this.aboutToolStripMenuItem2.Size = new System.Drawing.Size(64, 28);
             this.aboutToolStripMenuItem2.Text = "Help";
             // 
             // aboutToolStripMenuItem
@@ -506,11 +507,12 @@
             this.statusStrip1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
+            this.stripAlt,
             this.toolStripBtnResetDistance,
             this.stripDistance,
-            this.stripGridZoom,
-            this.stripElev,
             this.stripEqWidth,
+            this.toolStripBtn2D3D,
+            this.stripGridZoom,
             this.stripPortGPS,
             this.stripOnlineGPS,
             this.stripPortArduino,
@@ -523,12 +525,23 @@
             // 
             // stripHz
             // 
+            this.stripHz.AutoSize = false;
             this.stripHz.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
-            this.stripHz.Size = new System.Drawing.Size(29, 20);
+            this.stripHz.Size = new System.Drawing.Size(100, 20);
             this.stripHz.Text = "Hz";
             this.stripHz.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            // 
+            // stripAlt
+            // 
+            this.stripAlt.AutoSize = false;
+            this.stripAlt.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripAlt.Margin = new System.Windows.Forms.Padding(0);
+            this.stripAlt.Name = "stripAlt";
+            this.stripAlt.Size = new System.Drawing.Size(80, 20);
+            this.stripAlt.Text = "Alt";
+            this.stripAlt.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
             // toolStripBtnResetDistance
             // 
@@ -539,19 +552,40 @@
             this.toolStripBtnResetDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripBtnResetDistance.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnResetDistance.Name = "toolStripBtnResetDistance";
-            this.toolStripBtnResetDistance.Size = new System.Drawing.Size(56, 18);
-            this.toolStripBtnResetDistance.Text = "Reset";
+            this.toolStripBtnResetDistance.Size = new System.Drawing.Size(64, 18);
+            this.toolStripBtnResetDistance.Text = "Reset>";
             this.toolStripBtnResetDistance.ButtonClick += new System.EventHandler(this.toolStripBtnResetDistance_ButtonClick);
             // 
             // stripDistance
             // 
+            this.stripDistance.AutoSize = false;
             this.stripDistance.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripDistance.Margin = new System.Windows.Forms.Padding(0);
             this.stripDistance.Name = "stripDistance";
-            this.stripDistance.Size = new System.Drawing.Size(183, 20);
-            this.stripDistance.Spring = true;
+            this.stripDistance.Size = new System.Drawing.Size(70, 20);
             this.stripDistance.Text = "Trip";
             this.stripDistance.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            // 
+            // stripEqWidth
+            // 
+            this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
+            this.stripEqWidth.Name = "stripEqWidth";
+            this.stripEqWidth.Size = new System.Drawing.Size(319, 20);
+            this.stripEqWidth.Spring = true;
+            this.stripEqWidth.Text = "Width";
+            this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // toolStripBtn2D3D
+            // 
+            this.toolStripBtn2D3D.DropDownButtonWidth = 0;
+            this.toolStripBtn2D3D.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripBtn2D3D.Image = global::AgOpenGPS.Properties.Resources.A2D3D;
+            this.toolStripBtn2D3D.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtn2D3D.Name = "toolStripBtn2D3D";
+            this.toolStripBtn2D3D.Size = new System.Drawing.Size(66, 18);
+            this.toolStripBtn2D3D.Text = "2D - 3D";
+            this.toolStripBtn2D3D.ButtonClick += new System.EventHandler(this.toolStripBtn2D3D_ButtonClick);
             // 
             // stripGridZoom
             // 
@@ -559,30 +593,9 @@
             this.stripGridZoom.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripGridZoom.Margin = new System.Windows.Forms.Padding(0);
             this.stripGridZoom.Name = "stripGridZoom";
-            this.stripGridZoom.Size = new System.Drawing.Size(183, 20);
-            this.stripGridZoom.Spring = true;
+            this.stripGridZoom.Size = new System.Drawing.Size(80, 20);
             this.stripGridZoom.Text = "Ft/Sq";
             this.stripGridZoom.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            // 
-            // stripElev
-            // 
-            this.stripElev.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stripElev.Margin = new System.Windows.Forms.Padding(0);
-            this.stripElev.Name = "stripElev";
-            this.stripElev.Size = new System.Drawing.Size(183, 20);
-            this.stripElev.Spring = true;
-            this.stripElev.Text = "Elev";
-            this.stripElev.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            // 
-            // stripEqWidth
-            // 
-            this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
-            this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(183, 20);
-            this.stripEqWidth.Spring = true;
-            this.stripEqWidth.Text = "Width";
-            this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
             // stripPortGPS
             // 
@@ -1109,8 +1122,8 @@
             // 
             // FormGPS
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(911, 521);
             this.Controls.Add(this.btnTiltUp);
@@ -1203,7 +1216,7 @@
         private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightbarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripStatusLabel stripElev;
+        private System.Windows.Forms.ToolStripStatusLabel stripAlt;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asTextFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem explorerToolStripMenuItem;
@@ -1255,6 +1268,7 @@
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fieldToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSplitButton toolStripBtn2D3D;
     }
 }
 

@@ -586,5 +586,17 @@ namespace AgOpenGPS.Properties {
                 this["setIsWorkSwitchEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        public string setVehicle_Name {
+            get {
+                return ((string)(this["setVehicle_Name"]));
+            }
+            set {
+                this["setVehicle_Name"] = value;
+            }
+        }
     }
 }

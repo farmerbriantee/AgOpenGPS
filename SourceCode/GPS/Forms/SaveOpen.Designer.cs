@@ -6,6 +6,7 @@ using System.IO;
 
 namespace AgOpenGPS
 {
+    
     public partial class  FormGPS
     {
         public void FileSaveVehicle()
@@ -67,10 +68,12 @@ namespace AgOpenGPS
                 }
                 //little show to say saved and where
 
-                using ( var form = new FormTimedMessage(this, 3000, "Saved in Folder: ", dirVehicle))
-                { form.Show(); }
+                var form = new FormTimedMessage(this, 3000, "Saved in Folder: ", dirVehicle);
+                form.Show();
 
-
+                vehiclefileName = Path.GetFileNameWithoutExtension(saveDialog.FileName) + " - "; 
+                Properties.Settings.Default.setVehicle_Name = vehiclefileName;
+                Properties.Settings.Default.Save();
             }
 
         }
@@ -81,7 +84,6 @@ namespace AgOpenGPS
             OpenFileDialog ofd = new OpenFileDialog();
 
             //get the directory where the fields are stored
-            //string directoryName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+ "\\fields\\";
             string directoryName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\Vehicles\\";
 
             //make sure the directory exists, if not, create it
@@ -116,6 +118,8 @@ namespace AgOpenGPS
                     words = line.Split(',');
                     if (words.Length != 62) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
+                    Properties.Settings.Default.setVehicle_Name = ofd.FileName;
+
                     Properties.Settings.Default.setVehicle_toolOverlap = double.Parse(words[1]);
                     Properties.Settings.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[3]);
                     Properties.Settings.Default.setVehicle_antennaHeight = double.Parse(words[5]);
@@ -141,6 +145,9 @@ namespace AgOpenGPS
 
                     Properties.Settings.Default.setVehicle_numSections = int.Parse(words[39]);
                     Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[41]);
+
+                    vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
+                    Properties.Settings.Default.setVehicle_Name = vehiclefileName;
 
                     Properties.Settings.Default.Save();
                     

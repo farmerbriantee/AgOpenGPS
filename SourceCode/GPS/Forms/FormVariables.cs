@@ -25,7 +25,7 @@ namespace AgOpenGPS
             lblEasting.Text = mf.FixEasting;
             lblLatitude.Text = mf.Latitude;
             lblLongitude.Text = mf.Longitude;
-            lblAltitude.Text = mf.Elevation;
+            lblAltitude.Text = mf.Altitude;
 
             lblAntennaPivot.Text = Math.Round(mf.vehicle.antennaPivot,2).ToString();
             lblHitchLength.Text = Math.Round(mf.vehicle.hitchLength,2).ToString();

@@ -159,7 +159,7 @@ namespace AgOpenGPS
             //modcom.autosteerActualHeading = fixHeading;
 
             //time to record next fix
-            if (distanceLowSpeed > 0.1 | pn.speed > 2.0 | startCounter < 20)
+            if (distanceLowSpeed > 0.5 | pn.speed > 2.0 | startCounter < 20)
             {
                 //positions and headings 
                 CalculatePositionHeading();
