@@ -1,16 +1,14 @@
 
 # AgOpenGPS
 
-***** This is Alpha software. It has a few bugs and are being worked on. Check back for newer versions
+***** This is Beta software. It has a few bugs and are being worked on. Check back for newer versions
 
 Ag Precision Mapping and Section Control Software
 
 This software reads NMEA strings for the purpose of recording and mapping position information 
-for Agricultural use. Also it has up to 5 Section Control to control implements application of product
+for Agricultural use. Also it has up to 8 Section Control to control implements application of product
 preventing over-application.
 
-There is much work to be done yet such as the interface for an Arduino to do the actual electronic controlling.
-
-That is planned for the near future.
+Also ouputs angle delta and distance from reference line for AB line and Contour guidance.
 
 Included is an application, and source folders. 
