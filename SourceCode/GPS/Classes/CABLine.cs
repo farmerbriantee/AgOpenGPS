@@ -216,26 +216,31 @@ namespace AgOpenGPS
             else isABSameAsFixHeading = true;
 
             //Convert to centimeters
-            distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 100.0, 0);
+            distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
             //distance is negative if on left, positive if on right
             //if you're going the opposite direction left is right and right is left
+            double temp;
             if (isABSameAsFixHeading)
             {
-                //mf.modcom.autosteerSetpointHeading = abHeading;
+                temp = (abHeading);
                 if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
 
             //opposite way so right is left
             else
             {
-                //mf.modcom.autosteerSetpointHeading = abHeading - Math.PI;
+                temp = (abHeading - Math.PI);
+                if (temp < 0) temp = (temp + glm.twoPI);
                 if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
 
-            //mf.modcom.guidanceLineDistance = (int)distanceFromCurrentLine;
+            mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+            mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading),
+                                                Math.Cos(temp - mf.fixHeading))) * 10000);
 
-            
+            //depending on which side of line, neg angle needs negating.
+            if (distanceFromCurrentLine < 0) mf.guidanceLineHeadingDelta *= -1;
         }
 
         public void DrawABLines()

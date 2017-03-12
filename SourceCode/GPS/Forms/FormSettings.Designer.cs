@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabGuidance = new System.Windows.Forms.TabPage();
             this.tabDisplay = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tbarDisplayCameraDelay = new System.Windows.Forms.TrackBar();
             this.lblDisplayCameraDelay = new System.Windows.Forms.Label();
+            this.tabGuidance = new System.Windows.Forms.TabPage();
             this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
             this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -105,6 +105,9 @@
             this.tabExamples = new System.Windows.Forms.TabPage();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.nudSection6 = new System.Windows.Forms.NumericUpDown();
+            this.nudSection7 = new System.Windows.Forms.NumericUpDown();
+            this.nudSection8 = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabDisplay.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -133,6 +136,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -151,16 +157,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(959, 551);
             this.tabControl1.TabIndex = 2;
-            // 
-            // tabGuidance
-            // 
-            this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabGuidance.Location = new System.Drawing.Point(4, 31);
-            this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.Size = new System.Drawing.Size(951, 516);
-            this.tabGuidance.TabIndex = 4;
-            this.tabGuidance.Text = "Guidance";
-            this.tabGuidance.UseVisualStyleBackColor = true;
             // 
             // tabDisplay
             // 
@@ -217,12 +213,12 @@
             65536});
             this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
             this.nudTriangleResolution.Maximum = new decimal(new int[] {
-            22,
+            40,
             0,
             0,
             65536});
             this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            2,
+            4,
             0,
             0,
             65536});
@@ -230,7 +226,7 @@
             this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
             this.nudTriangleResolution.TabIndex = 64;
             this.nudTriangleResolution.Value = new decimal(new int[] {
-            2,
+            4,
             0,
             0,
             65536});
@@ -337,6 +333,16 @@
             this.lblDisplayCameraDelay.Size = new System.Drawing.Size(21, 22);
             this.lblDisplayCameraDelay.TabIndex = 58;
             this.lblDisplayCameraDelay.Text = "1";
+            // 
+            // tabGuidance
+            // 
+            this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabGuidance.Location = new System.Drawing.Point(4, 31);
+            this.tabGuidance.Name = "tabGuidance";
+            this.tabGuidance.Size = new System.Drawing.Size(951, 516);
+            this.tabGuidance.TabIndex = 4;
+            this.tabGuidance.Text = "Guidance";
+            this.tabGuidance.UseVisualStyleBackColor = true;
             // 
             // lblSecTotalWidthInches
             // 
@@ -893,8 +899,11 @@
             // 
             // tabSections
             // 
-            this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
+            this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings8;
             this.tabSections.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabSections.Controls.Add(this.nudSection8);
+            this.tabSections.Controls.Add(this.nudSection7);
+            this.tabSections.Controls.Add(this.nudSection6);
             this.tabSections.Controls.Add(this.label8);
             this.tabSections.Controls.Add(this.lblVehicleToolWidth);
             this.tabSections.Controls.Add(this.label4);
@@ -956,7 +965,7 @@
             // nudSection5
             // 
             this.nudSection5.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection5.Location = new System.Drawing.Point(803, 168);
+            this.nudSection5.Location = new System.Drawing.Point(488, 168);
             this.nudSection5.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -975,7 +984,7 @@
             // nudSection4
             // 
             this.nudSection4.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection4.Location = new System.Drawing.Point(615, 168);
+            this.nudSection4.Location = new System.Drawing.Point(371, 168);
             this.nudSection4.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -994,7 +1003,7 @@
             // nudSection3
             // 
             this.nudSection3.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection3.Location = new System.Drawing.Point(427, 168);
+            this.nudSection3.Location = new System.Drawing.Point(254, 168);
             this.nudSection3.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1013,7 +1022,7 @@
             // nudSection2
             // 
             this.nudSection2.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection2.Location = new System.Drawing.Point(239, 168);
+            this.nudSection2.Location = new System.Drawing.Point(134, 168);
             this.nudSection2.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1032,7 +1041,7 @@
             // nudSection1
             // 
             this.nudSection1.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection1.Location = new System.Drawing.Point(55, 168);
+            this.nudSection1.Location = new System.Drawing.Point(13, 168);
             this.nudSection1.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -1063,7 +1072,7 @@
             this.nudNumberOfSections.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNumberOfSections.Location = new System.Drawing.Point(78, 309);
             this.nudNumberOfSections.Maximum = new decimal(new int[] {
-            5,
+            8,
             0,
             0,
             0});
@@ -1168,6 +1177,63 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // nudSection6
+            // 
+            this.nudSection6.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection6.Location = new System.Drawing.Point(606, 168);
+            this.nudSection6.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection6.Name = "nudSection6";
+            this.nudSection6.Size = new System.Drawing.Size(102, 48);
+            this.nudSection6.TabIndex = 25;
+            this.nudSection6.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection6.ValueChanged += new System.EventHandler(this.nudSection6_ValueChanged);
+            // 
+            // nudSection7
+            // 
+            this.nudSection7.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection7.Location = new System.Drawing.Point(723, 168);
+            this.nudSection7.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection7.Name = "nudSection7";
+            this.nudSection7.Size = new System.Drawing.Size(102, 48);
+            this.nudSection7.TabIndex = 26;
+            this.nudSection7.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection7.ValueChanged += new System.EventHandler(this.nudSection7_ValueChanged);
+            // 
+            // nudSection8
+            // 
+            this.nudSection8.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection8.Location = new System.Drawing.Point(839, 168);
+            this.nudSection8.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection8.Name = "nudSection8";
+            this.nudSection8.Size = new System.Drawing.Size(102, 48);
+            this.nudSection8.TabIndex = 27;
+            this.nudSection8.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection8.ValueChanged += new System.EventHandler(this.nudSection8_ValueChanged);
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1226,6 +1292,9 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1308,5 +1377,8 @@
         private System.Windows.Forms.CheckBox chkWorkSwActiveLow;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudSection8;
+        private System.Windows.Forms.NumericUpDown nudSection7;
+        private System.Windows.Forms.NumericUpDown nudSection6;
     }
 }

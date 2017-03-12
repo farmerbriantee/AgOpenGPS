@@ -598,5 +598,65 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_Name"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position7 {
+            get {
+                return ((decimal)(this["setSection_position7"]));
+            }
+            set {
+                this["setSection_position7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position8 {
+            get {
+                return ((decimal)(this["setSection_position8"]));
+            }
+            set {
+                this["setSection_position8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position9 {
+            get {
+                return ((decimal)(this["setSection_position9"]));
+            }
+            set {
+                this["setSection_position9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM AS")]
+        public string setPort_portNameAutoSteer {
+            get {
+                return ((string)(this["setPort_portNameAutoSteer"]));
+            }
+            set {
+                this["setPort_portNameAutoSteer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPort_wasAutoSteerConnected {
+            get {
+                return ((bool)(this["setPort_wasAutoSteerConnected"]));
+            }
+            set {
+                this["setPort_wasAutoSteerConnected"] = value;
+            }
+        }
     }
 }

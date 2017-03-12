@@ -175,7 +175,7 @@ namespace AgOpenGPS
             ptCount = conList.Count;
             if (ptCount == 0)
             {
-                distanceFromCurrentLine = 0;
+                distanceFromCurrentLine = 9999;
                 return;
             }
 
@@ -270,6 +270,7 @@ namespace AgOpenGPS
         {
             double minDistA = 1000000, minDistB = 1000000;
             int ptCount = guideList.Count;
+            //distanceFromCurrentLine = 9999;
             if (ptCount > 0)
             {
                 //find the closest 2 points to current fix
@@ -324,29 +325,41 @@ namespace AgOpenGPS
                 else isABSameAsFixHeading = true;
 
                 //Convert to centimeters
-                distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 100.0, 0);
+                distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
                 //distance is negative if on left, positive if on right
                 //if you're going the opposite direction left is right and right is left
+                double temp;
                 if (isABSameAsFixHeading)
                 {
-                    //mf.modcom.autosteerSetpointHeading = refHeading;
+                    temp = (abHeading);
                     if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
                 //opposite way so right is left
                 else
                 {
-                    //mf.modcom.autosteerSetpointHeading = refHeading - Math.PI;
+                    temp = (abHeading - Math.PI);
+                    if (temp < 0) temp = (temp + glm.twoPI);
+                    //temp = glm.toDegrees(temp);
                     if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
-                //within a cm of guidance line
-                //mf.modcom.guidanceLineDistance = (int)distanceFromCurrentLine;
-                
+                mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading),
+                                                    Math.Cos(temp - mf.fixHeading))) * 10000);
+
+                //depending on which side of line, neg angle needs negating.
+                if (distanceFromCurrentLine < 0) mf.guidanceLineHeadingDelta *= -1;
+           }
+
+            else
+            {
+                distanceFromCurrentLine = 32000;
+                mf.guidanceLineDistanceOff = (Int16)32000;
+
             }
 
-            //else mf.modcom.guidanceLineDistance = 9999;
 
         }
 

@@ -148,8 +148,14 @@
   <data name="DnArrow64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\DnArrow64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SectionSettings6" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SectionSettings6.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="SteerBehind" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SteerBehind.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SectionSettings8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SectionSettings8.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FlagDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\FlagDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -192,6 +198,9 @@
   </data>
   <data name="AreaSide" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AreaSide.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WorkSwitch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\WorkSwitch.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="UpArrow64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\UpArrow64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -307,6 +316,9 @@
   <data name="SectionAuto" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SectionAuto.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SectionSettings7" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SectionSettings7.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FlagDeleteAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\FlagDeleteAll.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -322,7 +334,10 @@
   <data name="GoogleEarth" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\GoogleEarth.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WorkSwitch" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\WorkSwitch.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AutoSteerOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\AutoSteerOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AutoSteerOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\AutoSteerOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

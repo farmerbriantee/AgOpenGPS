@@ -19,6 +19,9 @@ namespace AgOpenGPS
         //very first fix to setup grid etc
         public bool isFirstFixPositionSet = false, isGPSPositionInitialized = false;
 
+        // autosteer variables for sending serial
+        public Int16 guidanceLineDistanceOff, guidanceLineHeadingDelta;
+
         //how many fix updates per sec
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
@@ -148,15 +151,29 @@ namespace AgOpenGPS
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolNorthing, toolEasting, cosHeading, sinHeading);
 
+            //preset the values
+            guidanceLineDistanceOff = 32000;
+            guidanceLineHeadingDelta = 0;
+
             //do the distance from line calculations for contour and AB
             if (ct.isContourBtnOn) ct.DistanceFromContourLine();
-            else ct.distanceFromCurrentLine = 9999;
-
             if (ABLine.isABLineSet && !ct.isContourBtnOn) ABLine.getCurrentABLine();
-            else ABLine.distanceFromCurrentLine = 9999;
 
-            //module communications current heading variable
-            //modcom.autosteerActualHeading = fixHeading;
+            // autosteer at full speed of updates
+            if (!isAutoSteerBtnOn)
+            {
+                guidanceLineDistanceOff = 32020;
+                guidanceLineHeadingDelta = 32020;
+            }
+
+            modcom.autoSteerControl[0] = (byte)(guidanceLineDistanceOff >> 8);
+            modcom.autoSteerControl[1] = (byte)guidanceLineDistanceOff;
+
+            modcom.autoSteerControl[2] = (byte)(guidanceLineHeadingDelta >> 8);
+            modcom.autoSteerControl[3] = (byte)guidanceLineHeadingDelta;
+
+            //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
+            AutoSteerControlOutToPort();
 
             //time to record next fix
             if (distanceLowSpeed > 0.5 | pn.speed > 2.0 | startCounter < 20)
@@ -206,8 +223,8 @@ namespace AgOpenGPS
                     if (isAreaOnRight)
                     {
                         //Right side
-                        vec2 point = new vec2(cosHeading * (section[vehicle.numberOfSections - 1].positionRight) + toolEasting,
-                            sinHeading * (section[vehicle.numberOfSections - 1].positionRight) + toolNorthing);
+                        vec2 point = new vec2(cosHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
+                            sinHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
                         periArea.periPtList.Add(point);
                     }
 
@@ -228,7 +245,7 @@ namespace AgOpenGPS
                 int sectionCounter = 0;
 
                 //send the current and previous GPS fore/aft corrected fix to each section
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     if (section[j].isSectionOn)
                     {
@@ -249,10 +266,7 @@ namespace AgOpenGPS
                 else { if (ct.isContourOn) { ct.StopContourLine(); }  }
 
                 //Build contour line if close enough to a patch
-                ct.BuildContourGuidanceLine(pn.easting, pn.northing);
-
-
-
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pn.easting, pn.northing);
             }
         }
 
@@ -386,7 +400,7 @@ namespace AgOpenGPS
             else sectionTriggerStepDistance = vehicle.toolFarRightSpeed / metersPerSec;
 
             //finally determine distance
-            sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance * metersPerSec * triangleResolution + 1.0;
+            sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance * metersPerSec * triangleResolution*2.0 + 1.0;
 
             //  ** Torriem Cam   *****
             //Default using fix Atan2 to calc cam, if unchecked in display settings use True Heading from NMEA
@@ -415,10 +429,12 @@ namespace AgOpenGPS
             vec2 left = new vec2(0, 0);
             vec2 right = left;
 
-            double leftSpeed, rightSpeed = 0;
+            double leftSpeed = 0, rightSpeed = 0, leftLook = 0, rightLook = 0 ;
+
+
 
             //now loop all the section rights and the one extreme left
-            for (int j = 0; j < vehicle.numberOfSections; j++)
+            for (int j = 0; j < vehicle.numOfSections; j++)
             {
                 if (j == 0)
                 {
@@ -432,7 +448,8 @@ namespace AgOpenGPS
                     section[j].lastLeftPoint = section[j].leftPoint;
                     
                     //get the speed for left side only once
-                    leftSpeed = left.GetLength()* vehicle.toolLookAhead / fixUpdateTime * 10;
+                    leftSpeed = left.GetLength() / fixUpdateTime * 10;
+                    leftLook = leftSpeed * vehicle.toolLookAhead;
 
                     //save the far left speed
                     vehicle.toolFarLeftSpeed = leftSpeed;
@@ -461,11 +478,12 @@ namespace AgOpenGPS
                 section[j].lastRightPoint = section[j].rightPoint;
 
                 //grab vector length and convert to meters/sec/10 pixels per meter                
-                rightSpeed = right.GetLength()* vehicle.toolLookAhead / fixUpdateTime * 10;
+                rightSpeed = right.GetLength() / fixUpdateTime * 10;
+                rightLook = rightSpeed * vehicle.toolLookAhead;
 
                 //choose fastest speed
-                if (leftSpeed > rightSpeed)  section[j].sectionLookAhead = leftSpeed;
-                else section[j].sectionLookAhead = rightSpeed;
+                if (leftLook > rightLook)  section[j].sectionLookAhead = leftLook;
+                else section[j].sectionLookAhead = rightLook;
 
                 double head = left.HeadingXZ();
                 if (head < 0) head += glm.twoPI;
@@ -483,7 +501,7 @@ namespace AgOpenGPS
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
             //save far right speed, 0 if going backwards, in meters/sec
-            if (section[vehicle.numberOfSections - 1].sectionLookAhead > 0) vehicle.toolFarRightSpeed = rightSpeed * 0.05;
+            if (section[vehicle.numOfSections - 1].sectionLookAhead > 0) vehicle.toolFarRightSpeed = rightSpeed * 0.05;
             else vehicle.toolFarRightSpeed = 0;
 
             //safe left side, 0 if going backwards, in meters/sec convert back from pixels/m

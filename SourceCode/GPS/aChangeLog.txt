@@ -1,4 +1,9 @@
-﻿
+﻿v 2.0 March 2017
+
+* 8 sections now
+* auto steer enabled with separate serial
+* single section for mapping when all the sections are on
+* 
 v 1.9 Feb 2017
 
 * 

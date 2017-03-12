@@ -18,10 +18,7 @@ namespace AgOpenGPS
         int mouseX = 0, mouseY = 0;
 
         //data buffer for pixels read from off screen buffer
-        byte[] pixelsTop = new byte[80001];
-        //byte[] pixelsMiddle = new byte[401];
-        //byte[] pixelsBottom = new byte[401];
-        //byte[] pixelsAtTool = new byte[401];
+        byte[] pixels = new byte[80001];
 
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -62,7 +59,7 @@ namespace AgOpenGPS
                 if (isDrawPolygons) gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_LINE);
 
                 //draw patches of sections
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;
@@ -142,14 +139,10 @@ namespace AgOpenGPS
                 // draw the current and reference AB Lines
                 else  { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();  }
 
-                //draw the flags if on
-                //if (showFlagsToolStripMenuItem.Checked)
+                //draw the flags if there are some
+                int flagCnt = flagPts.Count;
+                if (flagCnt > 0)
                 {
-                    //draw marker flags
-                    int flagCnt = flagPts.Count;
-                    if (flagCnt > 0)
-                        gl.Color(1.0f, 0.0f, 1.0f);
-
                     for (int f = 0; f < flagCnt; f++)
                     {
                         gl.PointSize(8.0f);
@@ -191,13 +184,13 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " look " + Convert.ToString((int)(test)));
-                // gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "statusupcntr " + Convert.ToString(camera.offset));
-                // gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "   Set Head " + Convert.ToString(modcom.autosteerSetpointHeading));
-                // gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "     Actual " + Convert.ToString(modcom.autosteerActualHeading));
-                // gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "refHeading  " + Convert.ToString(Math.Round(ct.refHeading, 2)));
-                // gl.DrawText(10, 90, 1, 0.5f, 1, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
-                // gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigDistance(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
+                gl.DrawText(10, 15, 1, 1, 1, "Courier", 16, " Distance " + Convert.ToString(guidanceLineDistanceOff));
+                gl.DrawText(10, 30, 1, 1, 1, "Courier", 16, "    Delta " + Convert.ToString(guidanceLineHeadingDelta));
+                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "FixHead " + Convert.ToString(glm.toDegrees(fixHeading)));
+                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "AB Head " + Convert.ToString(ABLine.abHeading));
+                //gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "trigdist  " + Convert.ToString(Math.Round(, 2)));
+                //gl.DrawText(10, 90, 1, 0.5f, 1, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
+                //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
                 // gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
                 //draw the vehicle/implement
@@ -251,8 +244,8 @@ namespace AgOpenGPS
                     if (ct.isContourBtnOn)
                     {
                         txtDistanceOffABLine.Visible = true;
-                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine);
-                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.3937)) + " ";
+                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine*0.1);
+                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.03937)) + " ";
                         if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                         else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                     }
@@ -263,8 +256,8 @@ namespace AgOpenGPS
                         if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
                         {
                             txtDistanceOffABLine.Visible = true;
-                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine);
-                            txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.3937)) + " ";
+                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine*0.1);
+                            txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ";
                             if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                             else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                         }
@@ -393,7 +386,7 @@ namespace AgOpenGPS
             bool isDraw;
 
             //draw patches j= # of sections
-            for (int j = 0; j < vehicle.numberOfSections; j++)
+            for (int j = 0; j < vehicle.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count;
@@ -433,99 +426,194 @@ namespace AgOpenGPS
                 }
             }
 
-      
-            //Read the pixels ahead of tool a section at a time. Each section can have its own lookahead manipulated. 
-            for (int j = 0; j < vehicle.numberOfSections; j++)
+
+            //determine farthest ahead lookahead - is the height of the readpixel line
+            int rpHeight = 0;
+
+            //assume all buttons are on, if not, make it false
+            vehicle.areAllSectionBtnsOn = true;
+
+            //assume all sections are on, if not set them false as not being all on.
+            vehicle.areAllSectionsRequiredOn = true;
+
+            //find any off buttons and the farthest lookahead
+            for (int j = 0; j < vehicle.numOfSections; j++)
             {
-               //keep in as safety
-                if (section[j].sectionLookAhead > 198) section[j].sectionLookAhead = 198;
+                if (section[j].sectionLookAhead > rpHeight) rpHeight = (int)section[j].sectionLookAhead;
+                if (section[j].manBtnState == manBtn.Off) vehicle.areAllSectionBtnsOn = false;
+            }
 
- 
-                //10 pixels to a meter or 1 pixel is 10cm - simple math
-                //find the left side pixel position
-                int rpXPosition = 200 + (int)(section[j].positionLeft * 10);
+            //if only one section, no need for super section 
+            if (vehicle.numOfSections == 1) vehicle.areAllSectionsRequiredOn = false;
 
-                //find the right side pixel position
-                int rpWidth = (int)(section[j].sectionWidth * 10);
-                int rpHeight = (int)section[j].sectionLookAhead;
+            //clamp the height
+            if (rpHeight > 190) rpHeight = 190;
 
-                //scan a block to full lookahead positions
-                gl.ReadPixels(rpXPosition, 202, rpWidth, rpHeight,
-                                    OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixelsTop);
- 
-                //used in this loop only, reset to false for next iteration
-                bool isSectionRequiredOn = false;
+            //read the whole block of pixels up to max lookahead, one read only
+            gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, rpHeight,
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixels);
+
+            //Read the pixels ahead of tool a normal section at a time. Each section can have its own lookahead manipulated. 
+            for (int j = 0; j < vehicle.numOfSections; j++)
+            {
+                int start = 0, end = 0, skip = 0;
+                start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                end = section[j].rpSectionWidth - 1 + start;
+                if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
+                skip = vehicle.rpWidth - (end - start);
 
                 //If nowhere applied, send OnRequest, if its all green send an offRequest
-                for (int a = 0; a < (rpWidth*rpHeight); a+=4)
+                section[j].isSectionRequiredOn = false;
+              
+                int tagged = 0;
+                for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
                 {
-                    if (pixelsTop[a] == 0)
+                    for (int a = start; a < end; a++)
                     {
-                        isSectionRequiredOn = true;
-                        break;
+                        if (pixels[a] == 0)
+                        {
+                            if (tagged++ > vehicle.minUnappliedPixels)
+                            {
+                                section[j].isSectionRequiredOn = true;
+                                goto GetMeOutaHere;
+                            }
+                        }
+                    }
+
+                    start += vehicle.rpWidth;
+                    end += vehicle.rpWidth;
+                }
+                GetMeOutaHere:
+                 
+                //calculated in CSection.CalculateSectionLookAhead, section is going backwards
+                if (section[j].sectionLookAhead < 0) section[j].isSectionRequiredOn = false;
+                if (section[j].isSectionRequiredOn == false) vehicle.areAllSectionsRequiredOn = false;
+            }
+
+            //Only if all sections on, check if there is applied anywhere in the lookahead block
+            int totalPixs = 0;
+            int pixLimit = (int)((float)(vehicle.rpWidth * rpHeight)*0.1); 
+            if (vehicle.areAllSectionsRequiredOn)
+            {
+                for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
+                {
+                    if (pixels[a] != 0)
+                    {
+                        if (totalPixs++ > pixLimit)
+                        {
+                            vehicle.areAllSectionsRequiredOn = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+
+            // If ALL sections are required on, No buttons are off, then we can turn super section, normal sections off
+            if (vehicle.areAllSectionBtnsOn && vehicle.areAllSectionsRequiredOn)
+            {
+                for (int j = 0; j < vehicle.numOfSections; j++)
+                {
+                    if (section[j].isSectionOn)
+                    {
+                        section[j].sectionOffRequest = true;
+                        section[j].sectionOnRequest = false;
+                        section[j].sectionOffTimer = 0;
+                        section[j].sectionOnTimer = 0;
                     }
                 }
 
-                /* Below is priority based. The last if statement is the one that is
-                 * applied and takes the highest priority. Digital input controls
-                 * have the highest priority and overide all buttons except
-                 * the manual button which exits the loop and just turns sections on....
-                 * Because isn't that what manual means! */
-                 
-                //calculated in CSection.CalculateSectionLookAhead, section is going backwards
-                if (section[j].sectionLookAhead < 0)
-                {
-                    isSectionRequiredOn = false;
-                }
-
-                //if Master Auto is on
-                if (isSectionRequiredOn && section[j].isAllowedOn)
-                {
-                    //global request to turn on section
-                    section[j].sectionOnRequest = true;
-                    section[j].sectionOffRequest = false;
-                }
-
-                else if (!isSectionRequiredOn)
-                {
-                    //global request to turn off section
-                    section[j].sectionOffRequest = true;
-                    section[j].sectionOnRequest = false;
-                }
-
-                // Manual on, force the section On and exit loop so digital is also overidden
-                if (section[j].manBtnState == manBtn.On)
-                {
-                    section[j].sectionOnRequest = true;
-                    section[j].sectionOffRequest = false;
-                    continue;
-                }
-
-                if (section[j].manBtnState == manBtn.Off)
-                {
-                    section[j].sectionOnRequest = false;
-                    section[j].sectionOffRequest = true;
-                }
+                //turn on super section
+                section[vehicle.numOfSections].sectionOnRequest = true;
+                section[vehicle.numOfSections].sectionOffRequest = false;
 
                 //digital input Master control (WorkSwitch)
                 if (isJobStarted && modcom.isWorkSwitchEnabled)
-                {                    
+                {
                     //check condition of work switch
                     if (modcom.isWorkSwitchActiveLow)
                     {
                         if (modcom.relaySerialRecvStr == "0")
-                        { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
+                        { section[vehicle.numOfSections].sectionOnRequest = true; section[vehicle.numOfSections].sectionOffRequest = false; }
 
-                        else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
+                        else { section[vehicle.numOfSections].sectionOnRequest = false; section[vehicle.numOfSections].sectionOffRequest = true; }
                     }
                     else
                     {
                         if (modcom.relaySerialRecvStr == "1")
-                        { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
+                        { section[vehicle.numOfSections].sectionOnRequest = true; section[vehicle.numOfSections].sectionOffRequest = false; }
 
-                        else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
+                        else { section[vehicle.numOfSections].sectionOnRequest = false; section[vehicle.numOfSections].sectionOffRequest = true; }
                     }
-                } 
+                }
+            }
+
+            /* Below is priority based. The last if statement is the one that is
+                * applied and takes the highest priority. Digital input controls
+                * have the highest priority and overide all buttons except
+                * the manual button which exits the loop and just turns sections on....
+                * Because isn't that what manual means! */
+            else
+            {
+                //if the superSection is on, turn it off
+                if (section[vehicle.numOfSections].isSectionOn)
+                {
+                    section[vehicle.numOfSections].sectionOffRequest = true;
+                    section[vehicle.numOfSections].sectionOnRequest = false;
+                    section[vehicle.numOfSections].sectionOffTimer = 0;
+                    section[vehicle.numOfSections].sectionOnTimer = 0;
+                }
+
+
+                //if Master Auto is on
+                for (int j = 0; j < vehicle.numOfSections; j++)
+                {
+                    if (section[j].isSectionRequiredOn && section[j].isAllowedOn)
+                    {
+                        //global request to turn on section
+                        section[j].sectionOnRequest = true;
+                        section[j].sectionOffRequest = false;
+                    }
+
+                    else if (!section[j].isSectionRequiredOn)
+                    {
+                        //global request to turn off section
+                        section[j].sectionOffRequest = true;
+                        section[j].sectionOnRequest = false;
+                    }
+
+                    // Manual on, force the section On and exit loop so digital is also overidden
+                    if (section[j].manBtnState == manBtn.On)
+                    {
+                        section[j].sectionOnRequest = true;
+                        section[j].sectionOffRequest = false;
+                        continue;
+                    }
+
+                    if (section[j].manBtnState == manBtn.Off)
+                    {
+                        section[j].sectionOnRequest = false;
+                        section[j].sectionOffRequest = true;
+                    }
+
+                    //digital input Master control (WorkSwitch)
+                    if (isJobStarted && modcom.isWorkSwitchEnabled)
+                    {
+                        //check condition of work switch
+                        if (modcom.isWorkSwitchActiveLow)
+                        {
+                            if (modcom.relaySerialRecvStr == "0")
+                                { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
+                            else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
+                        }
+                        else
+                        {
+                            if (modcom.relaySerialRecvStr == "1")
+                                { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
+                            else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
+                        }
+                    }
+                }
             }
 
             //double check the work switch to enable/disable auto section button
@@ -542,7 +630,7 @@ namespace AgOpenGPS
 
             //send the byte out to section relays
             BuildSectionRelayByte();
-            SectionControlOutToArduino();
+            SectionControlOutToPort();
 
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;

@@ -56,22 +56,85 @@ namespace AgOpenGPS
                 btnOpenSerialArduino.Enabled = true;
             }
 
+            //check if AutoSteer port is open or closed and set buttons accordingly
+            if (mf.spAutoSteer.IsOpen)
+            {
+                cboxASPort.Enabled = false;
+                btnCloseSerialAutoSteer.Enabled = true;
+                btnOpenSerialAutoSteer.Enabled = false;
+            }
+
+            else
+            {
+                cboxASPort.Enabled = true;
+                btnCloseSerialAutoSteer.Enabled = false;
+                btnOpenSerialAutoSteer.Enabled = true;
+            }
+
             //load the port box with valid port names
             cboxPort.Items.Clear();
             cboxArdPort.Items.Clear();
+            cboxASPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxPort.Items.Add(s);
                 cboxArdPort.Items.Add(s);
+                cboxASPort.Items.Add(s);
             }        
 
             lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
             lblCurrentPort.Text = mf.sp.PortName;
             lblCurrentArduinoPort.Text = mf.spRelay.PortName;
+            lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
         }
 
-
         #region PortSettings //----------------------------------------------------------------
+
+        //AutoSteer
+        private void cboxASPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.spAutoSteer.PortName = cboxASPort.Text;
+            FormGPS.portNameAutoSteer = cboxASPort.Text;
+            lblCurrentAutoSteerPort.Text = cboxASPort.Text;
+        }
+
+        private void btnOpenSerialAutoSteer_Click(object sender, EventArgs e)
+        {
+            mf.SerialPortAutoSteerOpen();
+            if (mf.spAutoSteer.IsOpen)
+            {
+                this.cboxASPort.Enabled = false;
+                btnCloseSerialAutoSteer.Enabled = true;
+                btnOpenSerialAutoSteer.Enabled = false;
+                lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
+            }
+
+            else
+            {
+                cboxASPort.Enabled = true;
+                btnCloseSerialAutoSteer.Enabled = false;
+                btnOpenSerialAutoSteer.Enabled = true;
+            }
+
+        }
+
+        private void btnCloseSerialAutoSteer_Click(object sender, EventArgs e)
+        {
+            mf.SerialPortAutoSteerClose();
+            if (mf.spAutoSteer.IsOpen)
+            {
+                cboxASPort.Enabled = false;
+                btnCloseSerialAutoSteer.Enabled = true;
+                btnOpenSerialAutoSteer.Enabled = false;
+            }
+
+            else
+            {
+                cboxASPort.Enabled = true;
+                btnCloseSerialAutoSteer.Enabled = false;
+                btnOpenSerialAutoSteer.Enabled = true;
+            }
+        }
 
         // Arduino 
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
@@ -117,11 +180,10 @@ namespace AgOpenGPS
         {
             mf.spRelay.PortName = cboxArdPort.Text;
             FormGPS.portNameRelaySection = cboxArdPort.Text;
-            lblCurrentArduinoPort.Text = cboxPort.Text;
+            lblCurrentArduinoPort.Text = cboxArdPort.Text;
         }
 
         // GPS Serial Port
-
         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
              mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
@@ -179,12 +241,17 @@ namespace AgOpenGPS
 
         private void btnRescan_Click(object sender, EventArgs e)
         {
+            cboxASPort.Items.Clear();
+            foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxASPort.Items.Add(s); }
+
             cboxArdPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxArdPort.Items.Add(s); }
 
             cboxPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPort.Items.Add(s); }
         }
+        
+        #endregion PortSettings
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -195,9 +262,11 @@ namespace AgOpenGPS
             //Arduino phrases
             txtBoxRecvArduino.Text = mf.modcom.relaySerialRecvStr;
             txtBoxSendArduino.Text = mf.modcom.relaySectionControl[0].ToString();
-        }
 
-        #endregion PortSettings
+            //autoSteer
+            txtBoxRecvAutoSteer.Text = mf.modcom.serialRecvAutoSteer;
+            txtBoxSendAutoSteer.Text = mf.modcom.autoSteerControl[0].ToString();
+        }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
@@ -214,5 +283,5 @@ namespace AgOpenGPS
             this.Close();
         }
 
-     }
-}
+     } //class
+} //namespace

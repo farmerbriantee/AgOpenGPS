@@ -146,5 +146,20 @@
     <Setting Name="setVehicle_Name" Type="System.String" Scope="User">
       <Value Profile="(Default)">Default</Value>
     </Setting>
+    <Setting Name="setSection_position7" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setSection_position8" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setSection_position9" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setPort_portNameAutoSteer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM AS</Value>
+    </Setting>
+    <Setting Name="setPort_wasAutoSteerConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

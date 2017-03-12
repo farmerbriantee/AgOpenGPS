@@ -17,7 +17,7 @@ namespace AgOpenGPS
     {
         #region // Class Props and instances
         //maximum sections available
-        const int MAXSECTIONS = 5;
+        const int MAXSECTIONS = 9;
 
         //current directory of field;
         public string currentFieldDirectory = "", workingDirectory = "", vehiclefileName = "";
@@ -38,7 +38,7 @@ namespace AgOpenGPS
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAreaOnRight = true;
+        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn = false;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates {Off,Auto,On};
@@ -86,7 +86,7 @@ namespace AgOpenGPS
         //Parsing object of NMEA sentences
         public CNMEA pn;
 
-        //create an array of sections, so far only 5 section
+        //create an array of sections, so far only 8 section + 1 fullWidth Section
         public CSection[] section = new CSection[MAXSECTIONS];
 
         //ABLine Instance
@@ -179,7 +179,12 @@ namespace AgOpenGPS
             //same for SectionRelay port
             portNameRelaySection = Properties.Settings.Default.setPort_portNameRelay;
             wasSectionRelayConnectedLastRun = Properties.Settings.Default.setPort_wasRelayConnected;
-            if (wasSectionRelayConnectedLastRun)  SerialPortRelayOpen();
+            if (wasSectionRelayConnectedLastRun) SerialPortRelayOpen();
+            
+            //same for AutoSteer port
+            portNameAutoSteer = Properties.Settings.Default.setPort_portNameAutoSteer;
+            wasAutoSteerConnectedLastRun = Properties.Settings.Default.setPort_wasAutoSteerConnected;
+            if (wasAutoSteerConnectedLastRun) SerialPortAutoSteerOpen();
 
             //Set width of section and positions for each section
             SectionSetPosition();
@@ -289,7 +294,7 @@ namespace AgOpenGPS
 
                         //turn all relays off
                         modcom.relaySectionControl[0] = (byte)0;
-                        this.SectionControlOutToArduino();
+                        this.SectionControlOutToPort();
                         break;
 
                     //Ignore and return
@@ -518,20 +523,42 @@ namespace AgOpenGPS
 
             section[4].positionLeft = (double)Properties.Settings.Default.setSection_position5;
             section[4].positionRight = (double)Properties.Settings.Default.setSection_position6;
+
+            section[5].positionLeft = (double)Properties.Settings.Default.setSection_position6;
+            section[5].positionRight = (double)Properties.Settings.Default.setSection_position7;
+
+            section[6].positionLeft = (double)Properties.Settings.Default.setSection_position7;
+            section[6].positionRight = (double)Properties.Settings.Default.setSection_position8;
+
+            section[7].positionLeft = (double)Properties.Settings.Default.setSection_position8;
+            section[7].positionRight = (double)Properties.Settings.Default.setSection_position9;
         }
 
         //function to calculate the width of each section and update
         public void SectionCalcWidths()
         {
             for (int j = 0; j < MAXSECTIONS; j++)
-            section[j].sectionWidth = (section[j].positionRight - section[j].positionLeft);
+            {
+                section[j].sectionWidth = (section[j].positionRight - section[j].positionLeft);
+                section[j].rpSectionPosition = 200 + (int)(Math.Round(section[j].positionLeft * 10, 0, MidpointRounding.AwayFromZero));
+                section[j].rpSectionWidth = (int)(Math.Round(section[j].sectionWidth * 10, 0, MidpointRounding.AwayFromZero));
+            }
 
             //calculate tool width based on extreme right and left values
-            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[vehicle.numberOfSections - 1].positionRight);
+            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[vehicle.numOfSections - 1].positionRight);
 
             //left and right tool position
             vehicle.toolFarLeftPosition = section[0].positionLeft;
-            vehicle.toolFarRightPosition = section[vehicle.numberOfSections - 1].positionRight;
+            vehicle.toolFarRightPosition = section[vehicle.numOfSections - 1].positionRight;
+
+            //now do the full width section
+            section[vehicle.numOfSections].sectionWidth = vehicle.toolWidth;
+            section[vehicle.numOfSections].positionLeft = vehicle.toolFarLeftPosition;
+            section[vehicle.numOfSections].positionRight = vehicle.toolFarRightPosition;
+
+            //find the right side pixel position
+            vehicle.rpXPosition = 200 + (int)(Math.Round(vehicle.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
+            vehicle.rpWidth = (int)(Math.Round(vehicle.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
         }
 
         //force all the buttons same according to two main buttons
@@ -542,6 +569,9 @@ namespace AgOpenGPS
             ManualBtnUpdate(2, btnSection3Man);
             ManualBtnUpdate(3, btnSection4Man);
             ManualBtnUpdate(4, btnSection5Man);
+            ManualBtnUpdate(5, btnSection6Man);
+            ManualBtnUpdate(6, btnSection7Man);
+            ManualBtnUpdate(7, btnSection8Man);
         }
 
         //line up section On Off Auto buttons based on how many there are
@@ -549,85 +579,151 @@ namespace AgOpenGPS
         {
             int top = 120;
 
-            switch (vehicle.numberOfSections)
+            btnSection4Man.Top = this.Height - top;
+            btnSection1Man.Top = this.Height - top;
+            btnSection2Man.Top = this.Height - top;
+            btnSection3Man.Top = this.Height - top;
+            btnSection4Man.Top = this.Height - top;
+            btnSection5Man.Top = this.Height - top;
+            btnSection6Man.Top = this.Height - top;
+            btnSection7Man.Top = this.Height - top;
+            btnSection8Man.Top = this.Height - top;
+
+
+            switch (vehicle.numOfSections)
             {
                     
 
                 case 1:
                     btnSection1Man.Left = this.Width / 2 - 40;
-                    btnSection1Man.Top = this.Height - top;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = false;
                     btnSection3Man.Visible = false;
                     btnSection4Man.Visible = false;
                     btnSection5Man.Visible = false;
+                    btnSection6Man.Visible = false;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
                     break;
 
                 case 2:
                     btnSection1Man.Left = this.Width / 2 - 90;
-                    btnSection1Man.Top = this.Height - top;
                     btnSection2Man.Left = this.Width / 2+10;
-                    btnSection2Man.Top = this.Height - top;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = false;
                     btnSection4Man.Visible = false;
                     btnSection5Man.Visible = false;
+                    btnSection6Man.Visible = false;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
                      break;
 
                 case 3:
                     btnSection1Man.Left = this.Width / 2 - 140;
-                    btnSection1Man.Top = this.Height - top;
                     btnSection2Man.Left = this.Width / 2 - 40;
-                    btnSection2Man.Top = this.Height - top;
                     btnSection3Man.Left = this.Width / 2 + 60;
-                    btnSection3Man.Top = this.Height - top;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
                     btnSection4Man.Visible = false;
                     btnSection5Man.Visible = false;
+                    btnSection6Man.Visible = false;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
                     break;
 
                 case 4:
                     btnSection1Man.Left = this.Width / 2 - 190;
-                    btnSection1Man.Top = this.Height - top;
                     btnSection2Man.Left = this.Width / 2 - 90;
-                    btnSection2Man.Top = this.Height - top;
                     btnSection3Man.Left = this.Width / 2 + 10;
-                    btnSection3Man.Top = this.Height - top;
                     btnSection4Man.Left = this.Width / 2 + 110;
-                    btnSection4Man.Top = this.Height - top;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
                     btnSection4Man.Visible = true;
                     btnSection5Man.Visible = false;
+                    btnSection6Man.Visible = false;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
                     break;
 
                 case 5:
                     btnSection1Man.Left = this.Width / 2 - 240;
-                    btnSection1Man.Top = this.Height - top;
                     btnSection2Man.Left = this.Width / 2 - 140;
-                    btnSection2Man.Top = this.Height - top;
                     btnSection3Man.Left = this.Width / 2 - 40;
-                    btnSection3Man.Top = this.Height - top;
                     btnSection4Man.Left = this.Width / 2 + 60;
-                    btnSection4Man.Top = this.Height - top;
                     btnSection5Man.Left = this.Width / 2 + 160;
-                    btnSection5Man.Top = this.Height - top;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
                     btnSection4Man.Visible = true;
                     btnSection5Man.Visible = true;
+                    btnSection6Man.Visible = false;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
                     break;
 
+                case 6:
+                    btnSection1Man.Left = this.Width / 2 - 290;
+                    btnSection2Man.Left = this.Width / 2 - 190;
+                    btnSection3Man.Left = this.Width / 2 - 90;
+                    btnSection4Man.Left = this.Width / 2 + 10;
+                    btnSection5Man.Left = this.Width / 2 + 110;
+                    btnSection6Man.Left = this.Width / 2 + 210;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = true;
+                    btnSection5Man.Visible = true;
+                    btnSection6Man.Visible = true;
+                    btnSection7Man.Visible = false;
+                    btnSection8Man.Visible = false;
+                    break;
+
+                case 7:
+                    btnSection1Man.Left = this.Width / 2 - 340;
+                    btnSection2Man.Left = this.Width / 2 - 240;
+                    btnSection3Man.Left = this.Width / 2 - 140;
+                    btnSection4Man.Left = this.Width / 2 - 40;
+                    btnSection5Man.Left = this.Width / 2 + 60;
+                    btnSection6Man.Left = this.Width / 2 + 160;
+                    btnSection7Man.Left = this.Width / 2 + 260;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = true;
+                    btnSection5Man.Visible = true;
+                    btnSection6Man.Visible = true;
+                    btnSection7Man.Visible = true;
+                    btnSection8Man.Visible = false;
+
+                    break;
+
+
+                case 8:
+                    btnSection1Man.Left = this.Width / 2 - 390;
+                    btnSection2Man.Left = this.Width / 2 - 290;
+                    btnSection3Man.Left = this.Width / 2 - 190;
+                    btnSection4Man.Left = this.Width / 2 - 90;
+                    btnSection5Man.Left = this.Width / 2 + 10;
+                    btnSection6Man.Left = this.Width / 2 + 110;
+                    btnSection7Man.Left = this.Width / 2 + 210;
+                    btnSection8Man.Left = this.Width / 2 + 310;
+                    btnSection1Man.Visible = true;
+                    btnSection2Man.Visible = true;
+                    btnSection3Man.Visible = true;
+                    btnSection4Man.Visible = true;
+                    btnSection5Man.Visible = true;
+                    btnSection6Man.Visible = true;
+                    btnSection7Man.Visible = true;
+                    btnSection8Man.Visible = true;
+                    break;
             }
 
             if (isJobStarted)
             {
-                switch (vehicle.numberOfSections)
+                switch (vehicle.numOfSections)
                 {
                     case 1:
                         btnSection1Man.Enabled = true;
@@ -635,6 +731,9 @@ namespace AgOpenGPS
                         btnSection3Man.Enabled = false;
                         btnSection4Man.Enabled = false;
                         btnSection5Man.Enabled = false;
+                        btnSection6Man.Enabled = false;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
                         break;
 
                     case 2:
@@ -643,6 +742,9 @@ namespace AgOpenGPS
                         btnSection3Man.Enabled = false;
                         btnSection4Man.Enabled = false;
                         btnSection5Man.Enabled = false;
+                        btnSection6Man.Enabled = false;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
                         break;
 
                     case 3:
@@ -651,6 +753,9 @@ namespace AgOpenGPS
                         btnSection3Man.Enabled = true;
                         btnSection4Man.Enabled = false;
                         btnSection5Man.Enabled = false;
+                        btnSection6Man.Enabled = false;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
                         break;
 
                     case 4:
@@ -659,6 +764,9 @@ namespace AgOpenGPS
                         btnSection3Man.Enabled = true;
                         btnSection4Man.Enabled = true;
                         btnSection5Man.Enabled = false;
+                        btnSection6Man.Enabled = false;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
                         break;
 
                     case 5:
@@ -667,6 +775,42 @@ namespace AgOpenGPS
                         btnSection3Man.Enabled = true;
                         btnSection4Man.Enabled = true;
                         btnSection5Man.Enabled = true;
+                        btnSection6Man.Enabled = false;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
+                        break;
+
+                    case 6:
+                        btnSection1Man.Enabled = true;
+                        btnSection2Man.Enabled = true;
+                        btnSection3Man.Enabled = true;
+                        btnSection4Man.Enabled = true;
+                        btnSection5Man.Enabled = true;
+                        btnSection6Man.Enabled = true;
+                        btnSection7Man.Enabled = false;
+                        btnSection8Man.Enabled = false;
+                        break;
+
+                    case 7:
+                        btnSection1Man.Enabled = true;
+                        btnSection2Man.Enabled = true;
+                        btnSection3Man.Enabled = true;
+                        btnSection4Man.Enabled = true;
+                        btnSection5Man.Enabled = true;
+                        btnSection6Man.Enabled = true;
+                        btnSection7Man.Enabled = true;
+                        btnSection8Man.Enabled = false;
+                        break;
+
+                    case 8:
+                        btnSection1Man.Enabled = true;
+                        btnSection2Man.Enabled = true;
+                        btnSection3Man.Enabled = true;
+                        btnSection4Man.Enabled = true;
+                        btnSection5Man.Enabled = true;
+                        btnSection6Man.Enabled = true;
+                        btnSection7Man.Enabled = true;
+                        btnSection8Man.Enabled = true;
                         break;
                 }
             }
@@ -709,6 +853,7 @@ namespace AgOpenGPS
             
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
+            btnAutoSteer.Enabled = true;
 
             ABLine.abHeading = 0.00;
 
@@ -750,6 +895,9 @@ namespace AgOpenGPS
             btnSection3Man.Enabled = false;
             btnSection4Man.Enabled = false;
             btnSection5Man.Enabled = false;
+            btnSection6Man.Enabled = false;
+            btnSection7Man.Enabled = false;
+            btnSection8Man.Enabled = false;
            
             //job is closed
             isJobStarted = false;
@@ -774,6 +922,7 @@ namespace AgOpenGPS
             //reset the buttons
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
+            btnAutoSteer.Enabled = false;
 
             ct.isContourBtnOn = false;
             ct.isContourOn = false;
@@ -781,6 +930,7 @@ namespace AgOpenGPS
             //change images to reflect on off
             this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
             
             //fix ManualOffOnAuto buttons
             btnManualOffOn.Enabled = false;
@@ -821,7 +971,7 @@ namespace AgOpenGPS
         {
             //if (pn.speed > 0.2)
             {
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     //Turn ON
                     //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
@@ -862,28 +1012,6 @@ namespace AgOpenGPS
 
                 }
             }
-        }
-
-        //build the byte for individual realy control
-        private void BuildSectionRelayByte()
-        {
-            byte set = 1;
-            byte reset = 254;
-            modcom.relaySectionControl[0] = (byte)0;
-
-            for (int j = 0; j < MAXSECTIONS; j++)
-            {
-                //set if on, reset bit if off
-                if (section[j].isSectionOn) modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
-                else modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] & reset);
-
-                //move set and reset over 1 bit left
-                set = (byte)(set << 1);
-                reset = (byte)(reset << 1);
-                reset = (byte)(reset + 1);
-            }
-            
-
         }
 
         //take the distance from object and convert to camera data
@@ -934,6 +1062,32 @@ namespace AgOpenGPS
         
     // Buttons //-----------------------------------------------------------------------
 
+
+        //auto steer off and on
+        private void btnAutoSteer_Click(object sender, EventArgs e)
+        {
+            if (isAutoSteerBtnOn)
+            {
+                isAutoSteerBtnOn = false;
+                this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            }
+
+            else 
+            {
+                if (ABLine.isABLineSet | ct.isContourBtnOn)
+                {
+                    isAutoSteerBtnOn = true;
+                    this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
+                }
+                else
+                {
+                    var form = new FormTimedMessage(this, 2000, "Ooops, No Guidance Lines", "Turn on Contour or Make AB Line");
+                    form.Show();
+                }
+
+            }
+        }
+
         //ABLine
         private void btnABLine_Click(object sender, EventArgs e)
         {
@@ -963,9 +1117,21 @@ namespace AgOpenGPS
                     txtDistanceOffABLine.Visible = false;
                     //change image to reflect on off
                     this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-
                 }
+            }
+        }
 
+        //turn on contour guidance or off
+        private void btnContour_Click(object sender, EventArgs e)
+        {
+            ct.isContourBtnOn = !ct.isContourBtnOn;
+            if (ct.isContourBtnOn)
+            {
+                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
+            }
+            else
+            {
+                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
             }
         }
 
@@ -1002,7 +1168,7 @@ namespace AgOpenGPS
 
 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
-                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    for (int j = 0; j < vehicle.numOfSections; j++)
                     {
                         section[j].isAllowedOn = true;
                         section[j].manBtnState = manBtn.Auto;
@@ -1016,7 +1182,7 @@ namespace AgOpenGPS
                     btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
 
                     //turn section buttons all OFF or Auto if SectionAuto was on or off
-                        for (int j = 0; j < vehicle.numberOfSections; j++)
+                        for (int j = 0; j < vehicle.numOfSections; j++)
                         {
                             section[j].isAllowedOn = false;
                             section[j].manBtnState = manBtn.On;
@@ -1043,7 +1209,7 @@ namespace AgOpenGPS
                     btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
                 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
-                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    for (int j = 0; j < vehicle.numOfSections; j++)
                     {
                         section[j].isAllowedOn = true;
                         section[j].manBtnState = manBtn.Off;
@@ -1058,7 +1224,7 @@ namespace AgOpenGPS
                     btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
 
                     //turn section buttons all OFF or Auto if SectionAuto was on or off
-                    for (int j = 0; j < vehicle.numberOfSections; j++)
+                    for (int j = 0; j < vehicle.numOfSections; j++)
                     {
                         section[j].isAllowedOn = false;
                         section[j].manBtnState = manBtn.On;
@@ -1132,6 +1298,45 @@ namespace AgOpenGPS
 
             ManualBtnUpdate(4, btnSection5Man);
         }
+        private void btnSection6Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (autoBtnState != btnStates.Auto)
+            {
+                if (section[5].manBtnState == manBtn.Off) section[5].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(5, btnSection6Man);
+                return;
+            }
+
+            ManualBtnUpdate(5, btnSection6Man);
+
+        }
+        private void btnSection7Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (autoBtnState != btnStates.Auto)
+            {
+                if (section[6].manBtnState == manBtn.Off) section[6].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(6, btnSection7Man);
+                return;
+            }
+
+            ManualBtnUpdate(6, btnSection7Man);
+
+        }
+        private void btnSection8Man_Click(object sender, EventArgs e)
+        {
+            //if auto is off just have on-off for choices of section buttons
+            if (autoBtnState != btnStates.Auto)
+            {
+                if (section[7].manBtnState == manBtn.Off) section[7].manBtnState = manBtn.Auto;
+                ManualBtnUpdate(7, btnSection8Man);
+                return;
+            }
+
+            ManualBtnUpdate(7, btnSection8Man);
+
+        }
 
         //Settings page, the big tabbed one    
         private void btnSettings_Click(object sender, EventArgs e)
@@ -1145,20 +1350,6 @@ namespace AgOpenGPS
             userDistance = 0;
         }
      
-        //turn on contour guidance or off
-        private void btnContour_Click(object sender, EventArgs e)
-        {
-            ct.isContourBtnOn = !ct.isContourBtnOn;
-            if (ct.isContourBtnOn)
-            {
-                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
-            }
-            else
-            {
-                btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
-            }
-        }
-
         //measure area button
         private void btnPerimeter_Click(object sender, EventArgs e)
         {
@@ -1303,7 +1494,7 @@ namespace AgOpenGPS
 
                         //turn all relays off
                         modcom.relaySectionControl[0] = (byte)0;
-                        this.SectionControlOutToArduino();
+                        this.SectionControlOutToPort();
 
                         break;
                     //Ignore and return
@@ -1769,11 +1960,6 @@ namespace AgOpenGPS
                 {
                     //acres on the master section soft control and sections
                     this.btnSectionOffAutoOn.Text = Hectares;
-                    btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.0001, 2).ToString();
-                    btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.0001, 2).ToString();
-                    btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.0001, 2).ToString();
-                    btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.0001, 2).ToString();
-                    btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.0001, 2).ToString();                    
                     btnPerimeter.Text = PeriAreaHectares;    //area button
 
                     //status strip values
@@ -1788,12 +1974,6 @@ namespace AgOpenGPS
                 {
                     //acres on the master section soft control and sections
                     this.btnSectionOffAutoOn.Text = Acres;
-                    btnSection1Man.Text = Math.Round(section[0].squareMetersSection * 0.000247105, 2).ToString();
-                    btnSection2Man.Text = Math.Round(section[1].squareMetersSection * 0.000247105, 2).ToString();
-                    btnSection3Man.Text = Math.Round(section[2].squareMetersSection * 0.000247105, 2).ToString();
-                    btnSection4Man.Text = Math.Round(section[3].squareMetersSection * 0.000247105, 2).ToString();
-                    btnSection5Man.Text = Math.Round(section[4].squareMetersSection * 0.000247105, 2).ToString();
-                    
                     btnPerimeter.Text = PeriAreaAcres;    //area button
 
                     //status strip values
@@ -1834,6 +2014,8 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.
         }
+
+
 
 
    }//class FormGPS

@@ -59,7 +59,7 @@ namespace AgOpenGPS
             double area = mf.totalSquareMeters * 0.001;
             if (!mf.isMetric) area = mf.totalSquareMeters * 0.00024710499815078974633856493327535;
  
-            for (int j = 0; j < mf.vehicle.numberOfSections; j++)
+            for (int j = 0; j < mf.vehicle.numOfSections; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchC = mf.section[j].patchList.Count;

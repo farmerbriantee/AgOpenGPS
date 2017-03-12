@@ -54,6 +54,9 @@ namespace AgOpenGPS
                     writer.Write("Spinner4," + Properties.Settings.Default.setSection_position4 + ",");
                     writer.Write("Spinner5," + Properties.Settings.Default.setSection_position5 + ",");
                     writer.Write("Spinner6," + Properties.Settings.Default.setSection_position6 + ",");
+                    writer.Write("Spinner7," + Properties.Settings.Default.setSection_position7 + ",");
+                    writer.Write("Spinner8," + Properties.Settings.Default.setSection_position8 + ",");
+                    writer.Write("Spinner9," + Properties.Settings.Default.setSection_position9 + ",");
 
                     writer.Write("Sections," + Properties.Settings.Default.setVehicle_numSections + ",");
                     writer.Write("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth + ",");
@@ -116,7 +119,7 @@ namespace AgOpenGPS
                     line = reader.ReadLine(); 
                     string[] words;
                     words = line.Split(',');
-                    if (words.Length != 62) { MessageBox.Show("Corrupt Vehicle file"); return; }
+                    if (words.Length != 68) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
                     Properties.Settings.Default.setVehicle_Name = ofd.FileName;
 
@@ -142,9 +145,12 @@ namespace AgOpenGPS
                     Properties.Settings.Default.setSection_position4 = decimal.Parse(words[33]);
                     Properties.Settings.Default.setSection_position5 = decimal.Parse(words[35]);
                     Properties.Settings.Default.setSection_position6 = decimal.Parse(words[37]);
+                    Properties.Settings.Default.setSection_position7 = decimal.Parse(words[39]);
+                    Properties.Settings.Default.setSection_position8 = decimal.Parse(words[41]);
+                    Properties.Settings.Default.setSection_position9 = decimal.Parse(words[43]);
 
-                    Properties.Settings.Default.setVehicle_numSections = int.Parse(words[39]);
-                    Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[41]);
+                    Properties.Settings.Default.setVehicle_numSections = int.Parse(words[45]);
+                    Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[47]);
 
                     vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
                     Properties.Settings.Default.setVehicle_Name = vehiclefileName;
@@ -152,7 +158,8 @@ namespace AgOpenGPS
                     Properties.Settings.Default.Save();
                     
                     //get the number of sections from settings
-                    vehicle.numberOfSections = Properties.Settings.Default.setVehicle_numSections;
+                    vehicle.numOfSections = Properties.Settings.Default.setVehicle_numSections;
+                    vehicle.numSuperSection = vehicle.numOfSections + 1;
 
                     //from settings grab the vehicle specifics
                     vehicle.toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
@@ -176,6 +183,19 @@ namespace AgOpenGPS
 
                     //Calculate total width and each section width
                     SectionCalcWidths();
+
+                    //enable disable manual buttons
+                    LineUpManualBtns();
+
+                    btnSection1Man.Enabled = false;
+                    btnSection2Man.Enabled = false;
+                    btnSection3Man.Enabled = false;
+                    btnSection4Man.Enabled = false;
+                    btnSection5Man.Enabled = false;
+                    btnSection6Man.Enabled = false;
+                    btnSection7Man.Enabled = false;
+                    btnSection8Man.Enabled = false;
+
 
                     //Application.Exit();
 
@@ -314,17 +334,17 @@ namespace AgOpenGPS
                 { MessageBox.Show("Sections header is Corrupt"); JobClose(); return; }
 
                 //read number of sections
-                int numSects = br.ReadInt32();        //$Sections
+                int numSects = br.ReadInt32() - 1;        //$Sections
 
                 //make sure sections in file matches sections set in current vehicle
-                if (vehicle.numberOfSections != numSects)
+                if (vehicle.numOfSections != numSects)
                 { MessageBox.Show("# of Sections doesn't match this field"); JobClose(); return; }
 
 
                 //finally start loading triangles
                 vec2 vecFix = new vec2(0, 0);
 
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     //now read number of patches, then how many vertex's
                     int patches = br.ReadInt32();
@@ -347,13 +367,6 @@ namespace AgOpenGPS
                 { MessageBox.Show("Meters header is Corrupt"); JobClose(); return; }
                 
                 totalSquareMeters = br.ReadDouble();//total square meters
-
-                s = br.ReadString();//read the line $SectionMeters
-                if (s.IndexOf("$SectionM") == -1)
-                { MessageBox.Show("Sections header is Corrupt"); JobClose(); return; }
-
-                //read the section areas
-                for (int j = 0; j < MAXSECTIONS; j++) section[j].squareMetersSection = br.ReadDouble();
             }
 
             // Contour points ----------------------------------------------------------------------------
@@ -536,9 +549,9 @@ namespace AgOpenGPS
                  
                 //write paths # of sections
                 bw.Write("$Sections");
-                bw.Write(vehicle.numberOfSections);
+                bw.Write(vehicle.numOfSections+1);
 
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     //total patches for each section
                     int patchCount = section[j].patchList.Count;
@@ -566,11 +579,7 @@ namespace AgOpenGPS
                 }
 
                 bw.Write("$TotalSqM");
-                bw.Write(totalSquareMeters); //double
-
-                bw.Write("$SectionMeters");
-                for (int j = 0; j < MAXSECTIONS; j++)  bw.Write(section[j].squareMetersSection);    
-                
+                bw.Write(totalSquareMeters); //double                
                 //bw.Close();
 
             }
@@ -782,8 +791,8 @@ namespace AgOpenGPS
 
                 //write paths # of sections
                 writer.WriteLine("$Sections");
-                writer.WriteLine(vehicle.numberOfSections);
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                writer.WriteLine(vehicle.numOfSections+1);
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     //every time the patch turns off and on is a new patch
                     int patchCount = section[j].patchList.Count();
@@ -811,23 +820,10 @@ namespace AgOpenGPS
 
                 writer.WriteLine("$totalSquareMeters");
                 writer.WriteLine(totalSquareMeters);
-
-                writer.WriteLine("$SectionMeters");
-                writer.WriteLine(section[0].squareMetersSection + "," + section[1].squareMetersSection + "," + section[2].squareMetersSection + "," + section[3].squareMetersSection + "," + section[4].squareMetersSection);
-            }
+           }
 
             //set saving flag off
             isSavingFile = false;
-
-            //little show to say saved and where
-            //MessageBox.Show((dirField + "\n\r\n\r" + myFileName), "File Saved to ");
-
-            //if (_filename != "Resume")
-            //{
-            //    var form2 = new FormTimedMessage(this, 3000, "Folder: " + dirField, "File: " + myFileName);
-            //    form2.Show();
-            //}
-
 
         }
 
@@ -850,7 +846,7 @@ namespace AgOpenGPS
             isSavingFile = true;
 
             int patchCoun = 0;
-            for (int j = 0; j < vehicle.numberOfSections; j++)
+            for (int j = 0; j < vehicle.numOfSections+1; j++)
             {
                 //every time the patch turns off and on is a new patch
                 patchCoun += section[j].patchList.Count;
@@ -871,7 +867,7 @@ namespace AgOpenGPS
                 writer.WriteLine("$Patches");
                 writer.WriteLine(patchCoun);
 
-                for (int j = 0; j < vehicle.numberOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections+1; j++)
                 {
                     //every time the patch turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;

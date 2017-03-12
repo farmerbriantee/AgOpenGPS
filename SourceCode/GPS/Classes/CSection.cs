@@ -25,6 +25,7 @@ namespace AgOpenGPS
         //is this section on or off
         public bool isSectionOn = false;
         public bool isAllowedOn = false;
+        public bool isSectionRequiredOn = false;
 
         public bool sectionOnRequest = false;
         public bool sectionOffRequest = false;
@@ -44,6 +45,10 @@ namespace AgOpenGPS
         public double positionLeft = -4;
         public double positionRight = 4;
         public double sectionWidth = 0;
+
+        //used by readpixel to determine color in pixel array
+        public int rpSectionWidth = 0;
+        public int rpSectionPosition = 0;
 
         public vec2 leftPoint;
         public vec2 rightPoint;
@@ -154,10 +159,6 @@ namespace AgOpenGPS
                 triangleList.Add(point2);
 
             }
-
-
-
-
         }
         
     }

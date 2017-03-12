@@ -39,7 +39,16 @@ namespace AgOpenGPS
         public double hitchLength;
 
         //how many individual sections
-        public int numberOfSections;
+        public int numOfSections;
+        public int numSuperSection;
+        public int minUnappliedPixels = 10;
+        public bool areAllSectionsRequiredOn;
+        public bool areAllSectionBtnsOn = true;
+
+        //read pixel values
+        public int rpXPosition;
+        public int rpWidth;
+
 
         public CVehicle(OpenGL gl, FormGPS f)
         {
@@ -67,7 +76,8 @@ namespace AgOpenGPS
             toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
             toolTurnOffDelay = Properties.Settings.Default.setVehicle_turnOffDelay;
 
-            numberOfSections = Properties.Settings.Default.setVehicle_numSections;
+            numOfSections = Properties.Settings.Default.setVehicle_numSections;
+            numSuperSection = numOfSections+1;
         }
 
         public void DrawVehicle()
@@ -88,7 +98,17 @@ namespace AgOpenGPS
             //draw the sections
             gl.LineWidth(8);
             gl.Begin(OpenGL.GL_LINES);
-            for (int j = 0; j < mf.vehicle.numberOfSections; j++)
+
+                //draw section line
+            if (mf.section[numOfSections].isSectionOn)
+            {
+                gl.Color(0.97f, 0.297f, 0.97f);
+                gl.Vertex(mf.section[numOfSections].positionLeft, 0, trailing);
+                gl.Vertex(mf.section[numOfSections].positionRight, 0, trailing);
+            }
+
+            else
+            for (int j = 0; j < mf.vehicle.numOfSections; j++)
             {
                 //if section is on green, if off red color
                 if (mf.section[j].isSectionOn)
@@ -118,7 +138,7 @@ namespace AgOpenGPS
                 //section markers
                 gl.PointSize(4.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                for (int j = 0; j < mf.vehicle.numberOfSections - 1; j++)
+                for (int j = 0; j < mf.vehicle.numOfSections - 1; j++)
                     gl.Vertex(mf.section[j].positionRight, 0, trailing);
                 gl.End(); 
             }

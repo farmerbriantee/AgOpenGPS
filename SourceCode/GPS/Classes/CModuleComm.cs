@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System;
 
 namespace AgOpenGPS
 {
@@ -10,10 +11,14 @@ namespace AgOpenGPS
         //properties for relay control of sections and input lines, 8 bit bytes
         public byte[] relaySectionControl = new byte[1];
         //public byte[] relayInputLines = new byte[1];
-
-        //sentence recvd from section relay serial
         public string relaySerialRecvStr;
 
+        //control for the auto steer module
+        public byte[] autoSteerControl = new byte[4];
+        public string serialRecvAutoSteer;
+
+        //sentence recvd from autoSteer serial module
+ 
         public bool isWorkSwitchOn, isWorkSwitchActiveLow, isWorkSwitchEnabled;
 
         //constructor

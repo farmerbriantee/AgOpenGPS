@@ -23,8 +23,9 @@ namespace AgOpenGPS
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
         int numberOfSections,displayFixDelay, displayCameraDelay;
 
-        decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5;
-        decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4, sectionPosition5, sectionPosition6;
+        decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
+        decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
+                    sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
         decimal triResolution;
 
@@ -140,12 +141,15 @@ namespace AgOpenGPS
             nudNumberOfSections.Value = numberOfSections;
             nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
 
-            //calc the 5 section widths based on settings.settings also meters to inches
-            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1)*(decimal)glm.m2in);
-            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2)*(decimal)glm.m2in);
-            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3)*(decimal)glm.m2in);
-            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4)*(decimal)glm.m2in);
-            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5)*(decimal)glm.m2in); 
+            //calc the 8 section widths based on settings.settings also meters to inches
+            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)glm.m2in);
+            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)glm.m2in);
+            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)glm.m2in);
+            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)glm.m2in);
+            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)glm.m2in);
+            nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)glm.m2in);
+            nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)glm.m2in);
+            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)glm.m2in); 
 
             //based on number of sections and values update the page before displaying
             UpdateSpinners();            
@@ -237,8 +241,9 @@ namespace AgOpenGPS
 
             //Sections ------------------------------------------------------------------------------------------
 
-            mf.vehicle.numberOfSections = numberOfSections;
-            Properties.Settings.Default.setVehicle_numSections = mf.vehicle.numberOfSections;
+            mf.vehicle.numOfSections = numberOfSections;
+            mf.vehicle.numSuperSection = numberOfSections + 1;
+            Properties.Settings.Default.setVehicle_numSections = mf.vehicle.numOfSections;
 
             //take the section widths and convert to meters and positions along tool.
             CalculateSectionPositions();
@@ -250,6 +255,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setSection_position4 = sectionPosition4;
             Properties.Settings.Default.setSection_position5 = sectionPosition5;
             Properties.Settings.Default.setSection_position6 = sectionPosition6;
+            Properties.Settings.Default.setSection_position7 = sectionPosition7;
+            Properties.Settings.Default.setSection_position8 = sectionPosition8;
+            Properties.Settings.Default.setSection_position9 = sectionPosition9;
 
             //line up manual buttons based on # of sections
             mf.LineUpManualBtns();
@@ -442,10 +450,13 @@ namespace AgOpenGPS
                 case 1:
                     {
                         nudSection1.Enabled = true;  nudSection1.Visible = true;
-                        nudSection2.Enabled = false; nudSection2.Visible = false;                       
-                        nudSection3.Enabled = false; nudSection3.Visible = false;                        
-                        nudSection4.Enabled = false; nudSection4.Visible = false;                        
+                        nudSection2.Enabled = false; nudSection2.Visible = false;
+                        nudSection3.Enabled = false; nudSection3.Visible = false;
+                        nudSection4.Enabled = false; nudSection4.Visible = false;
                         nudSection5.Enabled = false; nudSection5.Visible = false;
+                        nudSection6.Enabled = false; nudSection6.Visible = false;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
 
                         nudSection1.Left = 432;
 
@@ -460,6 +471,9 @@ namespace AgOpenGPS
                         nudSection2.Enabled = true; nudSection2.Visible = true;
                         nudSection3.Enabled = false; nudSection3.Visible = false;
                         nudSection4.Enabled = false; nudSection4.Visible = false;
+                        nudSection6.Enabled = false; nudSection6.Visible = false;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
                         nudSection5.Enabled = false; nudSection5.Visible = false;
 
                         nudSection1.Left = 182;
@@ -477,6 +491,9 @@ namespace AgOpenGPS
                         nudSection3.Enabled = true; nudSection3.Visible = true;
                         nudSection4.Enabled = false; nudSection4.Visible = false;
                         nudSection5.Enabled = false; nudSection5.Visible = false;
+                        nudSection6.Enabled = false; nudSection6.Visible = false;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
 
                         nudSection1.Left = 130;
                         nudSection2.Left = 433;
@@ -494,6 +511,9 @@ namespace AgOpenGPS
                         nudSection3.Enabled = true; nudSection3.Visible = true;
                         nudSection4.Enabled = true; nudSection4.Visible = true;
                         nudSection5.Enabled = false; nudSection5.Visible = false;
+                        nudSection6.Enabled = false; nudSection6.Visible = false;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
                         nudSection1.Left = 75;
                         nudSection2.Left = 309;
                         nudSection3.Left = 551;
@@ -511,17 +531,91 @@ namespace AgOpenGPS
                         nudSection3.Enabled = true; nudSection3.Visible = true;
                         nudSection4.Enabled = true; nudSection4.Visible = true;
                         nudSection5.Enabled = true; nudSection5.Visible = true;
+                        nudSection6.Enabled = false; nudSection6.Visible = false;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
                         nudSection1.Left = 55;
                         nudSection2.Left = 239;
                         nudSection3.Left = 427;
                         nudSection4.Left = 615;
                         nudSection5.Left = 803;
 
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value+nudSection4.Value+nudSection5.Value));
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value + nudSection5.Value));
                         tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
                         break;
                     }
 
+                case 6:
+                    {
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = true; nudSection3.Visible = true;
+                        nudSection4.Enabled = true; nudSection4.Visible = true;
+                        nudSection5.Enabled = true; nudSection5.Visible = true;
+                        nudSection6.Enabled = true; nudSection6.Visible = true;
+                        nudSection7.Enabled = false; nudSection7.Visible = false;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
+                        nudSection1.Left = 45;
+                        nudSection2.Left = 198;
+                        nudSection3.Left = 353;
+                        nudSection4.Left = 510;
+                        nudSection5.Left = 669;
+                        nudSection6.Left = 821;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value +
+                                nudSection5.Value + nudSection6.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings6;
+                        break;
+                    }
+
+                case 7:
+                    {
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = true; nudSection3.Visible = true;
+                        nudSection4.Enabled = true; nudSection4.Visible = true;
+                        nudSection5.Enabled = true; nudSection5.Visible = true;
+                        nudSection6.Enabled = true; nudSection6.Visible = true;
+                        nudSection7.Enabled = true; nudSection7.Visible = true;
+                        nudSection8.Enabled = false; nudSection8.Visible = false;
+                        nudSection1.Left = 29;
+                        nudSection2.Left = 162;
+                        nudSection3.Left = 296;
+                        nudSection4.Left = 427;
+                        nudSection5.Left = 561;
+                        nudSection6.Left = 696;
+                        nudSection7.Left = 830;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
+                            nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings7;
+                        break;
+                    }
+
+                case 8:
+                    {
+                        nudSection1.Enabled = true; nudSection1.Visible = true;
+                        nudSection2.Enabled = true; nudSection2.Visible = true;
+                        nudSection3.Enabled = true; nudSection3.Visible = true;
+                        nudSection4.Enabled = true; nudSection4.Visible = true;
+                        nudSection5.Enabled = true; nudSection5.Visible = true;
+                        nudSection6.Enabled = true; nudSection6.Visible = true;
+                        nudSection7.Enabled = true; nudSection7.Visible = true;
+                        nudSection8.Enabled = true; nudSection8.Visible = true;
+                        nudSection1.Left = 10;
+                        nudSection2.Left = 133;
+                        nudSection3.Left = 254;
+                        nudSection4.Left = 372;
+                        nudSection5.Left = 489;
+                        nudSection6.Left = 607;
+                        nudSection7.Left = 724;
+                        nudSection8.Left = 839;
+
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
+                            nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value));
+                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings8;
+                        break;
+                    }
             }
             //update in settings dialog ONLY total tool width
             SectionFeetInchesTotalWidthLabelUpdate();
@@ -549,6 +643,9 @@ namespace AgOpenGPS
             sectionWidth3 = nudSection3.Value * (decimal)glm.in2m;
             sectionWidth4 = nudSection4.Value * (decimal)glm.in2m;
             sectionWidth5 = nudSection5.Value * (decimal)glm.in2m;
+            sectionWidth6 = nudSection6.Value * (decimal)glm.in2m;
+            sectionWidth7 = nudSection7.Value * (decimal)glm.in2m;
+            sectionWidth8 = nudSection8.Value * (decimal)glm.in2m;
 
             switch (i)
             {
@@ -560,6 +657,9 @@ namespace AgOpenGPS
                         sectionPosition4 = 0;
                         sectionPosition5 = 0;
                         sectionPosition6 = 0;
+                        sectionPosition7 = 0;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
                         break;
                     }
 
@@ -571,6 +671,9 @@ namespace AgOpenGPS
                         sectionPosition4 = 0;
                         sectionPosition5 = 0;
                         sectionPosition6 = 0;
+                        sectionPosition7 = 0;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
                         break;
                     }
 
@@ -582,6 +685,9 @@ namespace AgOpenGPS
                         sectionPosition4 = sectionPosition3 + sectionWidth3;
                         sectionPosition5 = 0;
                         sectionPosition6 = 0;
+                        sectionPosition7 = 0;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
                         break;
                     }
 
@@ -593,6 +699,9 @@ namespace AgOpenGPS
                         sectionPosition5 = sectionWidth3 + sectionWidth4;
                         sectionPosition1 = sectionPosition2 - sectionWidth1;
                         sectionPosition6 = 0;
+                        sectionPosition7 = 0;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
                         break;
                     }
 
@@ -604,8 +713,53 @@ namespace AgOpenGPS
                         sectionPosition5 = sectionPosition4 + sectionWidth4;
                         sectionPosition1 = sectionPosition2 - sectionWidth1;
                         sectionPosition6 = sectionPosition5 + sectionWidth5;
+                        sectionPosition7 = 0;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
                         break;
                     }
+                case 6:
+                    {
+                        sectionPosition4 = 0;
+                        sectionPosition3 = sectionWidth3 * -1;
+                        sectionPosition2 = sectionPosition3 - sectionWidth2;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition5 = sectionWidth4;
+                        sectionPosition6 = sectionPosition5 + sectionWidth5;
+                        sectionPosition7 = sectionPosition6 + sectionWidth6;
+                        sectionPosition8 = 0;
+                        sectionPosition9 = 0;
+                        break;
+                    }
+
+                case 7:
+                    {
+                        sectionPosition5 = sectionWidth3 / 2.0M;
+                        sectionPosition4 = sectionPosition5 * -1;
+                        sectionPosition3 = sectionPosition4 - sectionWidth3;
+                        sectionPosition2 = sectionPosition3 - sectionWidth2;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition6 = sectionPosition5 + sectionWidth5;
+                        sectionPosition7 = sectionPosition6 + sectionWidth6;
+                        sectionPosition8 = sectionPosition7 + sectionWidth7;
+                        sectionPosition9 = 0;
+                        break;
+                    }
+
+                case 8:
+                    {
+                        sectionPosition4 = sectionWidth4 * -1;
+                        sectionPosition3 = sectionPosition4 - sectionWidth3;
+                        sectionPosition2 = sectionPosition3 - sectionWidth2;
+                        sectionPosition1 = sectionPosition2 - sectionWidth1;
+                        sectionPosition5 = 0;
+                        sectionPosition6 = sectionWidth5;
+                        sectionPosition7 = sectionPosition6 + sectionWidth6;
+                        sectionPosition8 = sectionPosition7 + sectionWidth7;
+                        sectionPosition9 = sectionPosition8 + sectionWidth8;
+                        break;
+                    }
+
 
             }
         }
@@ -616,25 +770,36 @@ namespace AgOpenGPS
             numberOfSections = (int)nudNumberOfSections.Value;
 
             nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection1.Value = (decimal)(200);
+            nudSection1.Value = (decimal)(100);
             nudSection1.ValueChanged += nudSection1_ValueChanged;
 
             nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection2.Value = (decimal)(200);
+            nudSection2.Value = (decimal)(100);
             nudSection2.ValueChanged += nudSection2_ValueChanged;
 
             nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection3.Value = (decimal)(200);
+            nudSection3.Value = (decimal)(100);
             nudSection3.ValueChanged += nudSection3_ValueChanged;
 
             nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection4.Value = (decimal)(200);
+            nudSection4.Value = (decimal)(100);
             nudSection4.ValueChanged += nudSection4_ValueChanged;
 
             nudSection5.ValueChanged -= nudSection5_ValueChanged;
-            nudSection5.Value = (decimal)(200);
+            nudSection5.Value = (decimal)(100);
             nudSection5.ValueChanged += nudSection5_ValueChanged;
 
+            nudSection6.ValueChanged -= nudSection6_ValueChanged;
+            nudSection6.Value = (decimal)(100);
+            nudSection6.ValueChanged += nudSection6_ValueChanged;
+
+            nudSection7.ValueChanged -= nudSection7_ValueChanged;
+            nudSection7.Value = (decimal)(100);
+            nudSection7.ValueChanged += nudSection7_ValueChanged;
+
+            nudSection8.ValueChanged -= nudSection8_ValueChanged;
+            nudSection8.Value = (decimal)(100);
+            nudSection8.ValueChanged += nudSection8_ValueChanged;
 
             UpdateSpinners();
         }
@@ -660,6 +825,18 @@ namespace AgOpenGPS
         { UpdateSpinners(); 
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection5.Value -= 1; }
  
+       private void nudSection6_ValueChanged(object sender, EventArgs e)
+        { UpdateSpinners();
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection6.Value -= 1; }
+
+        private void nudSection7_ValueChanged(object sender, EventArgs e)
+       { UpdateSpinners();
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection7.Value -= 1;  }
+
+        private void nudSection8_ValueChanged(object sender, EventArgs e)
+        { UpdateSpinners();
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection8.Value -= 1;  }
+        
         #endregion Sections
 
         #region Guidance //----------------------------------------------------------------
@@ -719,6 +896,8 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+ 
 
     }
 }

@@ -52,6 +52,7 @@ namespace AgOpenGPS
             tboxSerialOut.Text = mainForm.modcom.relaySectionControl[0].ToString();
             tboxNMEASerial.Text = mainForm.recvSentenceSettings;
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
+            tboxSerialOutAutoSteer.Text = mainForm.modcom.serialRecvAutoSteer;
 
         }
 

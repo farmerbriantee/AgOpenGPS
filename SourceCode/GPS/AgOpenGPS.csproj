@@ -362,6 +362,11 @@
     <None Include="btnImages\ColorField.png" />
     <None Include="btnImages\WorkSwitch.png" />
     <None Include="btnImages\WorkSwitch.jpg" />
+    <None Include="btnImages\SectionSettings6.jpg" />
+    <None Include="btnImages\SectionSettings7.jpg" />
+    <None Include="btnImages\SectionSettings8.jpg" />
+    <None Include="btnImages\AutoSteerOff.png" />
+    <None Include="btnImages\AutoSteerOn.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

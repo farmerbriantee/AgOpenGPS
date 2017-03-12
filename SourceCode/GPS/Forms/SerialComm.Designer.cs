@@ -19,9 +19,15 @@ namespace AgOpenGPS
         public static string portNameRelaySection = "COM Sect";
         public static int baudRateRelaySection = 9600;
 
-        //used to decide to autoconnect arduino this run
+        public static string portNameAutoSteer = "COM AS";
+        public static int baudRateAutoSteer = 19200;
+
+        //used to decide to autoconnect section arduino this run
         public bool wasSectionRelayConnectedLastRun = false;
         public string recvSentenceSettings = "InitalSetting";
+
+        //used to decide to autoconnect autosteer arduino this run
+        public bool wasAutoSteerConnectedLastRun = false;
 
         //serial port gps is connected to
         public SerialPort sp = new SerialPort(portNameGPS, baudRateGPS, Parity.None, 8, StopBits.One);
@@ -29,8 +35,154 @@ namespace AgOpenGPS
         //serial port Arduino is connected to
         public SerialPort spRelay = new SerialPort(portNameRelaySection, baudRateRelaySection, Parity.None, 8, StopBits.One);
 
+        //serial port AutoSteer is connected to
+        public SerialPort spAutoSteer = new SerialPort(portNameAutoSteer, baudRateAutoSteer, Parity.None, 8, StopBits.One);
+
+        #region AutoSteerPort //--------------------------------------------------------------------
+
         //Send relay info out to relay board
-        private void SectionControlOutToArduino()
+        public void AutoSteerControlOutToPort()
+        {
+            //Tell Arduino to turn section on or off accordingly
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(modcom.autoSteerControl, 0, 4); }
+                catch (Exception) { SerialPortAutoSteerClose(); }
+            }
+        }
+
+        //called by the AutoSteer module delegate every time a chunk is rec'd
+        private void SerialLineReceivedAutoSteer(string sentence)
+        {
+            //spit it out no matter what it says
+            modcom.serialRecvAutoSteer = sentence;
+        }
+
+        //the delegate for thread
+        private delegate void LineReceivedEventHandlerAutoSteer(string sentence);
+
+        //Arduino serial port receive in its own thread
+        private void sp_DataReceivedAutoSteer(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            if (spAutoSteer.IsOpen)
+            {
+                try
+                {
+                    System.Threading.Thread.Sleep(100);
+                    string sentence = spAutoSteer.ReadExisting();
+                    this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
+                }
+                //this is bad programming, it just ignores errors until its hooked up again.
+                catch (Exception) { }
+
+            }
+        }
+
+        //open the Arduino serial port
+        public void SerialPortAutoSteerOpen()
+        {
+            if (!spAutoSteer.IsOpen)
+            {
+                spAutoSteer.PortName = portNameAutoSteer;
+                spAutoSteer.BaudRate = baudRateAutoSteer;
+                spAutoSteer.DataReceived += sp_DataReceivedAutoSteer;
+            }
+
+            try { spAutoSteer.Open(); }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
+
+                //update port status label
+                //stripPortArduino.Text = "* *";
+                //stripOnlineArduino.Value = 1;
+                //stripPortArduino.ForeColor = Color.Red;
+
+                Properties.Settings.Default.setPort_wasAutoSteerConnected = false;
+                Properties.Settings.Default.Save();
+            }
+
+            if (spAutoSteer.IsOpen)
+            {
+                spAutoSteer.DiscardOutBuffer();
+                spAutoSteer.DiscardInBuffer();
+
+                //update port status label
+                stripPortArduino.Text = portNameAutoSteer;
+                stripPortArduino.ForeColor = Color.ForestGreen;
+                stripOnlineArduino.Value = 100;
+
+
+                Properties.Settings.Default.setPort_portNameAutoSteer = portNameAutoSteer;
+                Properties.Settings.Default.setPort_wasAutoSteerConnected = true;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        public void SerialPortAutoSteerClose()
+        {
+            if (spAutoSteer.IsOpen)
+            {
+                spAutoSteer.DataReceived -= sp_DataReceivedAutoSteer;
+                try { spAutoSteer.Close(); }
+                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
+
+                //update port status label
+                stripPortArduino.Text = "* *";
+                stripOnlineArduino.Value = 1;
+                stripPortArduino.ForeColor = Color.Red;
+
+                Properties.Settings.Default.setPort_wasAutoSteerConnected = false;
+                Properties.Settings.Default.Save();
+
+                spAutoSteer.Dispose();
+            }
+
+        }
+        #endregion
+
+        #region RelaySerialPort //--------------------------------------------------------------------
+
+        //build the byte for individual realy control
+        private void BuildSectionRelayByte()
+        {
+            byte set = 1;
+            byte reset = 254;
+            modcom.relaySectionControl[0] = (byte)0;
+
+            if (section[vehicle.numOfSections].isSectionOn)
+            {
+                modcom.relaySectionControl[0] = (byte)0;
+                for (int j = 0; j < vehicle.numOfSections; j++)
+                {
+                    //all the sections are on, so set them
+                    modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
+
+                    //move set and reset over 1 bit left
+                    set = (byte)(set << 1);
+                    reset = (byte)(reset << 1);
+                    reset = (byte)(reset + 1);
+                }
+            }
+
+            else
+            {
+                for (int j = 0; j < MAXSECTIONS; j++)
+                {
+                    //set if on, reset bit if off
+                    if (section[j].isSectionOn) modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
+                    else modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] & reset);
+
+                    //move set and reset over 1 bit left
+                    set = (byte)(set << 1);
+                    reset = (byte)(reset << 1);
+                    reset = (byte)(reset + 1);
+                }
+            }
+        }
+
+        //Send relay info out to relay board
+        private void SectionControlOutToPort()
         {
             //Tell Arduino to turn section on or off accordingly
             if (spRelay.IsOpen)
@@ -39,23 +191,12 @@ namespace AgOpenGPS
                 catch (Exception) { SerialPortRelayClose(); }
             }
         }
-
-        //called by the delegate every time a chunk is rec'd
-        private void SerialLineReceived(string sentence)
-        {
-            //spit it out no matter what it says
-            pn.rawBuffer += sentence;
-            recvSentenceSettings = pn.rawBuffer;
-        }
-
-        //Arduino port called by the delegate every time
+        //Arduino port called by the Relay delegate every time
         private void SerialLineReceivedRelay(string sentence)
         {
             //spit it out no matter what it says
             modcom.relaySerialRecvStr = sentence;
-       }
-
-        #region RelaySerialPort //--------------------------------------------------------------------
+        }
 
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);
@@ -140,8 +281,15 @@ namespace AgOpenGPS
         }
         #endregion
 
-
         #region GPS SerialPort //--------------------------------------------------------------------------
+
+        //called by the GPS delegate every time a chunk is rec'd
+        private void SerialLineReceived(string sentence)
+        {
+            //spit it out no matter what it says
+            pn.rawBuffer += sentence;
+            recvSentenceSettings = pn.rawBuffer;
+        }
 
         private delegate void LineReceivedEventHandler(string sentence);
 
@@ -167,10 +315,6 @@ namespace AgOpenGPS
             }
 
         }
-
-        //Event Handlers
-        //private void btnExit_Click(object sender, EventArgs e) { this.Exit(); }
-
 
         public void SerialPortOpenGPS()
         {
