@@ -631,6 +631,8 @@ namespace AgOpenGPS
             BuildSectionRelayByte();
             SectionControlOutToPort();
 
+            //System.Threading.Thread.Sleep(400);
+
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 

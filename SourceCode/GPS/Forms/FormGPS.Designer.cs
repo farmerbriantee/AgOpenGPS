@@ -552,7 +552,7 @@
             this.stripHz.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
-            this.stripHz.Size = new System.Drawing.Size(55, 20);
+            this.stripHz.Size = new System.Drawing.Size(65, 20);
             this.stripHz.Text = "Hz";
             this.stripHz.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             // 
@@ -624,7 +624,7 @@
             this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(340, 20);
+            this.stripEqWidth.Size = new System.Drawing.Size(304, 20);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
