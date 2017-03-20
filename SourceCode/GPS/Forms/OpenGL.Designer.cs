@@ -184,11 +184,11 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                gl.DrawText(10, 15, 1, 1, 1, "Courier", 16, " Distance " + Convert.ToString(guidanceLineDistanceOff));
-                gl.DrawText(10, 30, 1, 1, 1, "Courier", 16, "    Delta " + Convert.ToString(guidanceLineHeadingDelta));
-                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "FixHead " + Convert.ToString(glm.toDegrees(fixHeading)));
-                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "AB Head " + Convert.ToString(ABLine.abHeading));
-                //gl.DrawText(10, 75, 1, 0.5f, 1, "Courier", 12, "trigdist  " + Convert.ToString(Math.Round(, 2)));
+                gl.DrawText(10, 15, 1, 1, 1, "Courier", 16, " Distance " + Convert.ToString(section[3].sectionLookAhead));
+                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 16, " Pitch " + Convert.ToString(avgPitch));
+                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 16, "  Roll " + Convert.ToString(avgRoll));
+                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 16, "angVel " + Convert.ToString(avgAngVel));
+                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  Dist " + Convert.ToString(Math.Round(tiltDistance,2)));
                 //gl.DrawText(10, 90, 1, 0.5f, 1, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
                 //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
                 // gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
@@ -286,22 +286,23 @@ namespace AgOpenGPS
                 if (leftMouseDownOnOpenGL)
                 {
                     leftMouseDownOnOpenGL = false; 
-                    byte[] data1 = new byte[3];
+                    byte[] data1 = new byte[192];
 
                     //scan the center of click and a set of square points around
-                    gl.ReadPixels(mouseX, mouseY, 1, 1, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-                    if (data1[0] == 255 | data1[1] == 255) { flagNumberPicked = data1[2]; return;}                  
-                    gl.ReadPixels(mouseX - 4, mouseY + 4, 1, 1, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-                    if (data1[0] == 255 | data1[1] == 255) { flagNumberPicked = data1[2]; return; } 
-                    gl.ReadPixels(mouseX + 4, mouseY + 4, 1, 1, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-                    if (data1[0] == 255 | data1[1] == 255) { flagNumberPicked = data1[2]; return; }
-                    gl.ReadPixels(mouseX + 4, mouseY - 4, 1, 1, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-                    if (data1[0] == 255 | data1[1] == 255) { flagNumberPicked = data1[2]; return; }
-                    gl.ReadPixels(mouseX - 4, mouseY - 4, 1, 1, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-                    if (data1[0] == 255 | data1[1] == 255) { flagNumberPicked = data1[2]; return; }
- 
+                    gl.ReadPixels(mouseX-4, mouseY-4, 8, 8, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
+
                     //made it here so no flag found
-                    flagNumberPicked = 0;                
+                    flagNumberPicked = 0; 
+
+                    for (int ctr = 0; ctr < 192; ctr += 3)
+                    {
+                        if (data1[ctr] == 255 | data1[ctr + 1] == 255)
+                        {
+                            flagNumberPicked = data1[ctr + 2];
+                            break;
+                        }  
+                    }
+  
 
                 }
 
@@ -320,7 +321,7 @@ namespace AgOpenGPS
             LoadGLTextures();
 
             //  Set the clear color.
-            gl.ClearColor(0.73f, 0.78f, 0.865f, 1.0f);
+            gl.ClearColor(0.22f, 0.2858f, 0.16f, 1.0f);
 
             // Set The Blending Function For Translucency
             gl.BlendFunc(OpenGL.GL_SRC_ALPHA, OpenGL.GL_ONE_MINUS_SRC_ALPHA);
@@ -428,7 +429,7 @@ namespace AgOpenGPS
 
 
             //determine farthest ahead lookahead - is the height of the readpixel line
-            int rpHeight = 0;
+            double rpHeight = 0;
 
             //assume all buttons are on, if not, make it false
             vehicle.areAllSectionBtnsOn = true;
@@ -443,56 +444,24 @@ namespace AgOpenGPS
                 if (section[j].manBtnState == manBtn.Off) vehicle.areAllSectionBtnsOn = false;
             }
 
-            //if only one section, no need for super section 
-            if (vehicle.numOfSections == 1) vehicle.areAllSectionsRequiredOn = false;
+            //if only one section, or going slow no need for super section 
+            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff+1.4) 
+                    vehicle.areAllSectionsRequiredOn = false;
 
             //clamp the height
-            if (rpHeight > 190) rpHeight = 190;
+            rpHeight *= 1.2;
+            if (rpHeight > 199) rpHeight = 199;
 
             //read the whole block of pixels up to max lookahead, one read only
-            gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, rpHeight,
+            gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, (int)rpHeight,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixels);
-
-            //Read the pixels ahead of tool a normal section at a time. Each section can have its own lookahead manipulated. 
-            for (int j = 0; j < vehicle.numOfSections; j++)
-            {
-                int start = 0, end = 0, skip = 0;
-                start = section[j].rpSectionPosition - section[0].rpSectionPosition;
-                end = section[j].rpSectionWidth - 1 + start;
-                if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
-                skip = vehicle.rpWidth - (end - start);
-
-                //If nowhere applied, send OnRequest, if its all green send an offRequest
-                section[j].isSectionRequiredOn = false;
-              
-                int tagged = 0;
-                for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
-                {
-                    for (int a = start; a < end; a++)
-                    {
-                        if (pixels[a] == 0)
-                        {
-                            if (tagged++ > vehicle.minUnappliedPixels)
-                            {
-                                section[j].isSectionRequiredOn = true;
-                                goto GetMeOutaHere;
-                            }
-                        }
-                    }
-
-                    start += vehicle.rpWidth;
-                    end += vehicle.rpWidth;
-                }
-                GetMeOutaHere:
-                 
-                //calculated in CSection.CalculateSectionLookAhead, section is going backwards
-                if (section[j].sectionLookAhead < 0) section[j].isSectionRequiredOn = false;
-                if (section[j].isSectionRequiredOn == false) vehicle.areAllSectionsRequiredOn = false;
-            }
 
             //Only if all sections on, check if there is applied anywhere in the lookahead block
             int totalPixs = 0;
+
+            //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((float)(vehicle.rpWidth * rpHeight)*0.1); 
+
             if (vehicle.areAllSectionsRequiredOn)
             {
                 for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
@@ -526,26 +495,6 @@ namespace AgOpenGPS
                 //turn on super section
                 section[vehicle.numOfSections].sectionOnRequest = true;
                 section[vehicle.numOfSections].sectionOffRequest = false;
-
-                //digital input Master control (WorkSwitch)
-                if (isJobStarted && modcom.isWorkSwitchEnabled)
-                {
-                    //check condition of work switch
-                    if (modcom.isWorkSwitchActiveLow)
-                    {
-                        if (modcom.relaySerialRecvStr == "0")
-                        { section[vehicle.numOfSections].sectionOnRequest = true; section[vehicle.numOfSections].sectionOffRequest = false; }
-
-                        else { section[vehicle.numOfSections].sectionOnRequest = false; section[vehicle.numOfSections].sectionOffRequest = true; }
-                    }
-                    else
-                    {
-                        if (modcom.relaySerialRecvStr == "1")
-                        { section[vehicle.numOfSections].sectionOnRequest = true; section[vehicle.numOfSections].sectionOffRequest = false; }
-
-                        else { section[vehicle.numOfSections].sectionOnRequest = false; section[vehicle.numOfSections].sectionOffRequest = true; }
-                    }
-                }
             }
 
             /* Below is priority based. The last if statement is the one that is
@@ -555,6 +504,48 @@ namespace AgOpenGPS
                 * Because isn't that what manual means! */
             else
             {
+
+                //Read the pixels ahead of tool a normal section at a time. Each section can have its own lookahead manipulated. 
+                for (int j = 0; j < vehicle.numOfSections; j++)
+                {
+                    int start = 0, end = 0, skip = 0;
+                    start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                    end = section[j].rpSectionWidth - 1 + start;
+                    if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
+                    skip = vehicle.rpWidth - (end - start);
+
+                    //If nowhere applied, send OnRequest, if its all green send an offRequest
+                    section[j].isSectionRequiredOn = false;
+
+                    int tagged = 0;
+                    for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                    {
+                        for (int a = start; a < end; a++)
+                        {
+                            if (pixels[a] == 0)
+                            {
+                                if (tagged++ > vehicle.minUnappliedPixels)
+                                {
+                                    section[j].isSectionRequiredOn = true;
+                                    goto GetMeOutaHere;
+                                }
+                            }
+                        }
+
+                        start += vehicle.rpWidth;
+                        end += vehicle.rpWidth;
+                    }
+
+                    //minimum apllied conditions met
+                    GetMeOutaHere:
+
+                    //calculated in CSection.CalculateSectionLookAhead, section is going backwards
+                    if (section[j].sectionLookAhead < 0) section[j].isSectionRequiredOn = false;
+                    if (section[j].isSectionRequiredOn == false) vehicle.areAllSectionsRequiredOn = false;
+                }
+
+
+
                 //if the superSection is on, turn it off
                 if (section[vehicle.numOfSections].isSectionOn)
                 {
@@ -596,23 +587,31 @@ namespace AgOpenGPS
                         section[j].sectionOffRequest = true;
                     }
 
+                    //if going too slow turn off sections
+                    if (pn.speed < vehicle.slowSpeedCutoff)
+                    {
+                        section[j].sectionOnRequest = false;
+                        section[j].sectionOffRequest = true;
+                    }
+  
+
                     //digital input Master control (WorkSwitch)
                     if (isJobStarted && modcom.isWorkSwitchEnabled)
                     {
                         //check condition of work switch
                         if (modcom.isWorkSwitchActiveLow)
                         {
-                            if (modcom.relaySerialRecvStr == "0")
+                            if (modcom.workSwitchValue == 0)
                                 { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
                             else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
                         }
                         else
                         {
-                            if (modcom.relaySerialRecvStr == "1")
+                            if (modcom.workSwitchValue == 1)
                                 { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
                             else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
                         }
-                    }
+                    }                                      
                 }
             }
 
@@ -636,13 +635,15 @@ namespace AgOpenGPS
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 120)       //2 counts per second X 60 seconds.
+            if (saveCounter > 180)       //3 counts per second X 60 seconds.
             {
                 if (isJobStarted)
                 {
                     FileSaveField();
                     FileSaveContour();
                     FileSaveFlags();
+
+                    if (isLogNMEA) FileSaveNMEA();
                 }
                 saveCounter = 0;
             }

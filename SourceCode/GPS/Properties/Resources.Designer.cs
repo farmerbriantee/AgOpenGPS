@@ -783,6 +783,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ZeroPitchRoll {
+            get {
+                object obj = ResourceManager.GetObject("ZeroPitchRoll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ZoomIn48 {
             get {
                 object obj = ResourceManager.GetObject("ZoomIn48", resourceCulture);

@@ -103,6 +103,8 @@ namespace AgOpenGPS
         //UTM numbers are huge, these cut them way down.
         public int utmNorth = 0, utmEast = 0;
 
+        public StringBuilder logNMEASentence = new StringBuilder();
+
         private FormGPS mf;
 
         public CNMEA(FormGPS f)
@@ -163,11 +165,14 @@ namespace AgOpenGPS
             }// while still data
                    
         }
- 
-         // Returns a valid NMEA sentence from the pile from portData
+
+        public string currentNMEA_GGASentence = "";
+        public string currentNMEA_RMCSentence = "";
+        public string currentNMEA_VTGSentence = "";
+
+        // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
         {
-
             string sentence;
             int start, end;
             do
@@ -184,7 +189,15 @@ namespace AgOpenGPS
 
                 //the NMEA sentence to be parsed
                 sentence = rawBuffer.Substring(0, end + 2);
-              
+
+                //save to log sentence if field is open and sections on and menu enabled
+                if (mf.isLogNMEA)
+                {
+                    if (sentence.Contains("$GPGGA")) currentNMEA_GGASentence = sentence;
+                    if (sentence.Contains("$GPRMC")) currentNMEA_RMCSentence = sentence;
+                    if (sentence.Contains("$GPVTG")) currentNMEA_VTGSentence = sentence;
+                }
+                
                 //remove the processed sentence from the rawBuffer
                 rawBuffer = rawBuffer.Substring(end + 2);
             }
@@ -200,6 +213,7 @@ namespace AgOpenGPS
         //The indivdual sentence parsing
         private void ParseGGA()
         {
+            double temp;
 
             //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
             //   0     1      2      3    4      5 6  7  8   9    10 11  12 13  14
@@ -211,68 +225,42 @@ namespace AgOpenGPS
             {
 
                 //get latitude and convert to decimal degrees
-                try
-                {
-                    latitude = double.Parse(words[2].Substring(0, 2));
-                    latitude = latitude + double.Parse(words[2].Substring(2)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
+                     double.TryParse(words[2].Substring(0, 2), out latitude);
+                     double.TryParse(words[2].Substring(2), out temp);
+                       temp *= 0.01666666666666666666666666666667;
+                       latitude += temp;
 
-                try
-                {
+      
                     if (words[3] == "S")
                     {
                         latitude *= -1;
                         hemisphere = 'S';
                     }
                     else hemisphere = 'N';
-                }
-                catch (ArgumentNullException) { }
+                
 
                 //get longitude and convert to decimal degrees
-                try
-                {
-                    longitude = double.Parse(words[4].Substring(0, 3));
-                    longitude = longitude + double.Parse(words[4].Substring(3)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
+                    double.TryParse(words[4].Substring(0, 3), out longitude);
+                    double.TryParse(words[4].Substring(3), out temp);
+                    longitude = longitude + temp * 0.01666666666666666666666666666667;
 
-                try { if (words[5] == "W") longitude *= -1; }
-                catch (ArgumentNullException) { }
-
+                 { if (words[5] == "W") longitude *= -1; }
+                
                 //calculate zone and UTM coords
                 DecDeg2UTM();
 
-
                 //fixQuality
-                if (String.IsNullOrEmpty(words[6])) fixQuality = 0;
-                else
-                {
-                    try { fixQuality = int.Parse(words[6]); }
-                    catch (ArgumentNullException) { }
-                }
+                int.TryParse(words[6], out fixQuality);
+ 
                 //satellites tracked
-                if (String.IsNullOrEmpty(words[7])) satellitesTracked = 0;
-                else
-                {
-                    try { satellitesTracked = int.Parse(words[7]); }
-                    catch (ArgumentNullException) { }
-                }
-
-                if (String.IsNullOrEmpty(words[8])) hdop = 0.0;
-                else
-                {
-                    try { hdop = double.Parse(words[8]); }
-                    catch (ArgumentNullException) { }
-                }
+                int.TryParse(words[7], out satellitesTracked);
+                
+                //hdop
+                double.TryParse(words[8], out hdop); 
 
                 //altitude
-                if (String.IsNullOrEmpty(words[9])) altitude = -1;
-                else
-                {
-                    try { altitude = double.Parse(words[9]); }
-                    catch (ArgumentNullException) { }
-                }
+                double.TryParse(words[9], out altitude);
+
                 theSent += nextNMEASentence;
                 updatedGGA = true;
                 mf.recvCounter = 0;
@@ -282,60 +270,41 @@ namespace AgOpenGPS
 
         private void ParseRMC()
         {
+            double temp;
             //GPRMC parsing of the sentence 
             //make sure there aren't missing coords in sentence
             if (!String.IsNullOrEmpty(words[7]) & !String.IsNullOrEmpty(words[8]) & !String.IsNullOrEmpty(words[2]))
             {
                 //get latitude and convert to decimal degrees
-                try
-                {
-                    latitude = double.Parse(words[3].Substring(0, 2));
-                    latitude = latitude + double.Parse(words[3].Substring(2)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
+                double.TryParse(words[3].Substring(0, 2), out latitude);
+                double.TryParse(words[3].Substring(2), out temp);
+                latitude = latitude + temp * 0.01666666666666666666666666666667;
 
-                try 
+                if (words[4] == "S")
                 {
-                    if (words[4] == "S")
-                    {
                         latitude *= -1;
                         hemisphere = 'S';
-                    }
-                    else hemisphere = 'N';
                 }
-                catch (ArgumentNullException) { }
+                    else hemisphere = 'N';
 
                 //get longitude and convert to decimal degrees
-                try
-                {
-                    longitude = double.Parse(words[5].Substring(0, 3));
-                    longitude = longitude + double.Parse(words[5].Substring(3)) * 0.01666666666666666666666666666667;
-                }
-                catch (ArgumentNullException) { }
+                double.TryParse(words[5].Substring(0, 3), out longitude);
+                double.TryParse(words[5].Substring(3), out temp);
+                longitude = longitude + temp * 0.01666666666666666666666666666667;
 
-                try { if (words[6] == "W") longitude *= -1; }
-                catch (ArgumentNullException) { }
+                if (words[6] == "W") longitude *= -1;
 
                 //calculate zone and UTM coords
                 DecDeg2UTM();
 
 
                 //Convert from knots to kph for speed
-                if (String.IsNullOrEmpty(words[7])) speed = -1;
-                else
-                {
-                    try { speed = double.Parse(words[7]) * 1.852; speed = Math.Round(speed, 1); }
-                    catch (ArgumentNullException) { }
-                }
+                double.TryParse(words[7], out speed);
+                speed = Math.Round(speed * 1.852, 1);
 
                 //True heading
-                if (String.IsNullOrEmpty(words[8])) headingTrue = -1;
-                else
-                {
-                    try { headingTrue = double.Parse(words[8]); }
-                    catch (ArgumentNullException) { }
-                }
-
+                double.TryParse(words[8], out headingTrue);
+ 
                 //Status
                 if (String.IsNullOrEmpty(words[2])) status = "z";
                 else
@@ -343,6 +312,7 @@ namespace AgOpenGPS
                     try { status = words[2]; }
                     catch (ArgumentNullException) { }
                 }
+
                 theSent += nextNMEASentence;
                 mf.recvCounter = 0;
                 updatedRMC = true;
@@ -361,20 +331,12 @@ namespace AgOpenGPS
             if (!String.IsNullOrEmpty(words[1]) & !String.IsNullOrEmpty(words[5]))
             {
                 //kph for speed - knots read
-                if (String.IsNullOrEmpty(words[5])) speed = -1;
-                else
-                {
-                    try { speed = double.Parse(words[5]) * 1.852; speed = Math.Round(speed, 1); }
-                    catch (ArgumentNullException) { }
-                }
+                double.TryParse(words[5], out speed);
+                speed = Math.Round(speed * 1.852, 1);
 
                 //True heading
-                if (String.IsNullOrEmpty(words[1])) headingTrue = -1;
-                else
-                {
-                    try { headingTrue = double.Parse(words[1]); }
-                    catch (ArgumentNullException) { }
-                }
+                double.TryParse(words[1], out headingTrue); 
+                    
                 updatedVTG = true;
                 theSent += nextNMEASentence;
 
@@ -391,7 +353,6 @@ namespace AgOpenGPS
         public bool ValidateChecksum(string Sentence)
         {
             int sum = 0, inx;
-
             try
             {
                 char[] sentence_chars = Sentence.ToCharArray();
@@ -404,8 +365,7 @@ namespace AgOpenGPS
                         return false;
                     tmp = sentence_chars[inx];
                     // Indicates end of data and start of checksum
-                    if (tmp == '*')
-                        break;
+                    if (tmp == '*') break;
                     sum = sum ^ tmp;    // Build checksum
                 }
                 // Calculated checksum converted to a 2 digit hex string

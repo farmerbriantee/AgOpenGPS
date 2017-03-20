@@ -49,7 +49,7 @@ namespace AgOpenGPS
         public enum manBtn { Off, Auto, On };
 
         //if we are saving a file
-        public bool isSavingFile = false;
+        public bool isSavingFile = false, isLogNMEA = false;
 
         //Zoom variables
         public double gridZoom;
@@ -60,10 +60,6 @@ namespace AgOpenGPS
         // Storage For Our Tractor, implement, background etc Textures
         Texture particleTexture;
         public uint[] texture = new uint[3];
-
-        //for average speed
-        public double [] avgSpeed = new double[10];
-        public int ringCounter = 0;
 
         //create the scene camera
         public CCamera camera = new CCamera();
@@ -166,13 +162,6 @@ namespace AgOpenGPS
             baudRateGPS = Properties.Settings.Default.setPort_baudRate;
             portNameGPS = Properties.Settings.Default.setPort_portNameGPS;
 
-            //is it in metric?
-            isMetric = Properties.Settings.Default.setIsMetric;
-
-            //Grid and lightbar settings
-            isGridOn = Properties.Settings.Default.setIsGridOn;
-            isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
-
             //try and open, if not go to setting up port
             SerialPortOpenGPS();
 
@@ -240,23 +229,28 @@ namespace AgOpenGPS
 
             //metric settings
             isMetric = Properties.Settings.Default.setIsMetric;
+            toolStripMenuMetricImp.Checked = isMetric;
 
             //area side settings
             isAreaOnRight = Properties.Settings.Default.setIsAreaRight;
+            toolStripMenuAreaSide.Checked = isAreaOnRight;
 
             //set up grid and lightbar
             isGridOn = Properties.Settings.Default.setIsGridOn;
             gridToolStripMenuItem.Checked = isGridOn;
 
-            //set previous job directory
-            currentFieldDirectory = Properties.Settings.Default.setCurrentDir;
-            vehiclefileName = Properties.Settings.Default.setVehicle_Name;
-                
+            //log NMEA 
+            isLogNMEA = Properties.Settings.Default.setIsLogNMEA;
+            logNMEAMenuItem.Checked = isLogNMEA;    
 
             isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
 
             openGLControlBack.Visible = false;
+
+            //set previous job directory
+            currentFieldDirectory = Properties.Settings.Default.setCurrentDir;
+            vehiclefileName = Properties.Settings.Default.setVehicle_Name;
 
             //load up colors
             redField = (float)(Properties.Settings.Default.setFieldColorR) / 259.0f;
@@ -274,6 +268,9 @@ namespace AgOpenGPS
             //workswitch stuff
             modcom.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
             modcom.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
+
+            pitchZero = Properties.Settings.Default.setIMU_pitchZero;
+            rollZero = Properties.Settings.Default.setIMU_rollZero;
         }
 
         //form is closing so tidy up and save settings
@@ -1142,7 +1139,7 @@ namespace AgOpenGPS
             if (zoomValue < 80)
             {
                 previousZoom = zoomValue;
-                zoomValue = 120;
+                zoomValue = 100;
             }
             else
             {
@@ -1553,7 +1550,15 @@ namespace AgOpenGPS
             }
  
         }
-        private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void logNMEAMenuItem_Click(object sender, EventArgs e)
+        {
+            isLogNMEA = !isLogNMEA;
+            logNMEAMenuItem.Checked = isLogNMEA;
+            Properties.Settings.Default.setIsLogNMEA = isLogNMEA;
+            Properties.Settings.Default.Save();
+        }
+
+       private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isLightbarOn = !isLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
@@ -1948,7 +1953,7 @@ namespace AgOpenGPS
             statusUpdateCounter++;
 
            //every half second update all status
-            if (statusUpdateCounter > 10)
+            if (statusUpdateCounter > 7)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -1985,10 +1990,14 @@ namespace AgOpenGPS
                 }
 
                 //non metric or imp fields
-                stripHz.Text = "Hz: " + NMEAHz + " ms: " + ((int)frameTime).ToString();
+                stripHz.Text = NMEAHz+"Hz "+ (int)(frameTime);
                 lblHeading.Text = Heading + "\u00B0";
                 btnABLine.Text = PassNumber;
-
+                stripRoll.Text = avgRoll + "\u00B0";
+                stripPitch.Text = avgPitch + "\u00B0";
+                stripAngularVel.Text = avgAngVel.ToString();
+                //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
+                
                 //up in the menu a few pieces of info
                 if (isJobStarted)
                 {
@@ -2012,9 +2021,8 @@ namespace AgOpenGPS
                 }
                 else  stripOnlineGPS.Value = 100;
             }            
-            //wait till timer fires again.
+            //wait till timer fires again.        
         }
-
 
 
 

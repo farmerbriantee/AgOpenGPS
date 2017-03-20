@@ -117,4 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>AgOpenGPS is protected under the GNU Public License
+
+Version 3, 29 June 2007
+
+Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
+
+
+If you distribute copies of such a program, whether
+gratis or for a fee, you must pass on to the recipients the same
+freedoms that you received.  You must make sure that they, too, receive
+or can get the source code.  And you must show them these terms so they
+know their rights.
+
+Copyright (c) 2016 Brian Tischler
+</value>
+  </data>
 </root>

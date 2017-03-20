@@ -41,13 +41,16 @@ namespace AgOpenGPS
         //how many individual sections
         public int numOfSections;
         public int numSuperSection;
-        public int minUnappliedPixels = 10;
+        public int minUnappliedPixels = 20;
         public bool areAllSectionsRequiredOn;
         public bool areAllSectionBtnsOn = true;
 
         //read pixel values
         public int rpXPosition;
         public int rpWidth;
+
+        //min vehicle speed allowed before turning shit off
+        public double slowSpeedCutoff = 0;
 
 
         public CVehicle(OpenGL gl, FormGPS f)
@@ -78,6 +81,8 @@ namespace AgOpenGPS
 
             numOfSections = Properties.Settings.Default.setVehicle_numSections;
             numSuperSection = numOfSections+1;
+
+            slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
         }
 
         public void DrawVehicle()

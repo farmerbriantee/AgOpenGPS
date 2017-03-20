@@ -17,10 +17,12 @@ namespace AgOpenGPS
         public static int baudRateGPS = 4800;
 
         public static string portNameRelaySection = "COM Sect";
-        public static int baudRateRelaySection = 9600;
+        public static int baudRateRelaySection = 38400;
 
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 19200;
+
+        private string[] words;
 
         //used to decide to autoconnect section arduino this run
         public bool wasSectionRelayConnectedLastRun = false;
@@ -55,7 +57,7 @@ namespace AgOpenGPS
         private void SerialLineReceivedAutoSteer(string sentence)
         {
             //spit it out no matter what it says
-            modcom.serialRecvAutoSteer = sentence;
+            modcom.serialRecvAutoSteerStr = sentence;
         }
 
         //the delegate for thread
@@ -94,9 +96,9 @@ namespace AgOpenGPS
                 MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
 
                 //update port status label
-                //stripPortArduino.Text = "* *";
-                //stripOnlineArduino.Value = 1;
-                //stripPortArduino.ForeColor = Color.Red;
+                stripPortAutoSteer.Text = "* *";
+                stripOnlineAutoSteer.Value = 1;
+                stripPortAutoSteer.ForeColor = Color.Red;
 
                 Properties.Settings.Default.setPort_wasAutoSteerConnected = false;
                 Properties.Settings.Default.Save();
@@ -108,9 +110,9 @@ namespace AgOpenGPS
                 spAutoSteer.DiscardInBuffer();
 
                 //update port status label
-                stripPortArduino.Text = portNameAutoSteer;
-                stripPortArduino.ForeColor = Color.ForestGreen;
-                stripOnlineArduino.Value = 100;
+                stripPortAutoSteer.Text = portNameAutoSteer;
+                stripPortAutoSteer.ForeColor = Color.ForestGreen;
+                stripOnlineAutoSteer.Value = 100;
 
 
                 Properties.Settings.Default.setPort_portNameAutoSteer = portNameAutoSteer;
@@ -128,9 +130,9 @@ namespace AgOpenGPS
                 catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
 
                 //update port status label
-                stripPortArduino.Text = "* *";
-                stripOnlineArduino.Value = 1;
-                stripPortArduino.ForeColor = Color.Red;
+                stripPortAutoSteer.Text = "* *";
+                stripOnlineAutoSteer.Value = 1;
+                stripPortAutoSteer.ForeColor = Color.Red;
 
                 Properties.Settings.Default.setPort_wasAutoSteerConnected = false;
                 Properties.Settings.Default.Save();
@@ -139,6 +141,7 @@ namespace AgOpenGPS
             }
 
         }
+
         #endregion
 
         #region RelaySerialPort //--------------------------------------------------------------------
@@ -191,11 +194,49 @@ namespace AgOpenGPS
                 catch (Exception) { SerialPortRelayClose(); }
             }
         }
+
         //Arduino port called by the Relay delegate every time
         private void SerialLineReceivedRelay(string sentence)
         {
+            modcom.serialRecvRelayStr = sentence;
+            int end;
             //spit it out no matter what it says
-            modcom.relaySerialRecvStr = sentence;
+            //modcom.serialRecvRelayStr = sentence;
+            if (sentence.Length < 8 ) return;
+
+
+            // Find end of sentence
+            end = sentence.IndexOf("\r\n");
+            if (end == -1) return;
+
+            //the ArdRelay sentence to be parsed
+            sentence = sentence.Substring(0, end);
+
+            words = sentence.Split(',');
+            if (words.Length < 4) return;
+
+                
+            int.TryParse(words[0], out modcom.workSwitchValue);
+
+            double.TryParse(words[1], out modcom.rollAngle);
+            modcom.rollAngle *= 0.0625;
+
+            double.TryParse(words[2], out modcom.pitchAngle);
+            modcom.pitchAngle *= 0.0625;
+
+            double.TryParse(words[3], out modcom.angularVelocity);
+
+            if (modcom.pitchAngle > 10) modcom.pitchAngle = 10;
+            if (modcom.pitchAngle < -10) modcom.pitchAngle = -10;
+
+            if (modcom.rollAngle > 12) modcom.rollAngle = 12;
+            if (modcom.rollAngle < -12) modcom.rollAngle = -12;
+
+            //double.TryParse(words[4], out modcom.imuHeading);
+            //modcom.imuHeading *= 0.0625;
+
+                
+
         }
 
         //the delegate for thread

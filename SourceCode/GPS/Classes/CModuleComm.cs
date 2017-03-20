@@ -11,15 +11,18 @@ namespace AgOpenGPS
         //properties for relay control of sections and input lines, 8 bit bytes
         public byte[] relaySectionControl = new byte[1];
         //public byte[] relayInputLines = new byte[1];
-        public string relaySerialRecvStr;
+        public string serialRecvRelayStr;
+        public double rollAngle = 0, pitchAngle = 0;
+        public double angularVelocity = 0;
+        public double imuHeading = 0;
 
         //control for the auto steer module
         public byte[] autoSteerControl = new byte[4];
-        public string serialRecvAutoSteer;
-
-        //sentence recvd from autoSteer serial module
+        public string serialRecvAutoSteerStr;
  
+        //for the workswitch
         public bool isWorkSwitchOn, isWorkSwitchActiveLow, isWorkSwitchEnabled;
+        public int workSwitchValue = 0;
 
         //constructor
         public CModuleComm(FormGPS f)

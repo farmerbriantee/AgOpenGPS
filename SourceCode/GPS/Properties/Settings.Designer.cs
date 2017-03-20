@@ -658,5 +658,53 @@ namespace AgOpenGPS.Properties {
                 this["setPort_wasAutoSteerConnected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setVehicle_slowSpeedCutoff {
+            get {
+                return ((double)(this["setVehicle_slowSpeedCutoff"]));
+            }
+            set {
+                this["setVehicle_slowSpeedCutoff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setIMU_pitchZero {
+            get {
+                return ((double)(this["setIMU_pitchZero"]));
+            }
+            set {
+                this["setIMU_pitchZero"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setIMU_rollZero {
+            get {
+                return ((double)(this["setIMU_rollZero"]));
+            }
+            set {
+                this["setIMU_rollZero"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIsLogNMEA {
+            get {
+                return ((bool)(this["setIsLogNMEA"]));
+            }
+            set {
+                this["setIsLogNMEA"] = value;
+            }
+        }
     }
 }

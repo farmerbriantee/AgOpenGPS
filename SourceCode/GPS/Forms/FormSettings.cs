@@ -18,7 +18,7 @@ namespace AgOpenGPS
         private FormGPS mf = null;
 
         double toolOverlap, toolTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
-        double antennaHeight, antennaPivot, wheelbase, hitchLength;
+        double antennaHeight, antennaPivot, wheelbase, hitchLength, pitchZeroSet, rollZeroSet;
 
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
         int numberOfSections,displayFixDelay, displayCameraDelay;
@@ -27,7 +27,7 @@ namespace AgOpenGPS
         decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
-        decimal triResolution;
+        decimal triResolution, cutoffSpeed;
 
         bool isWorkSwEn, isWorkSwActiveLow;
 
@@ -183,6 +183,15 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
             UpdateDisplayDelay();
+
+            pitchZeroSet = Properties.Settings.Default.setIMU_pitchZero;
+            rollZeroSet = Properties.Settings.Default.setIMU_rollZero;
+
+            cutoffSpeed = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
+
+            nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
+            nudCutoffSpeed.Value = cutoffSpeed;
+            nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -290,6 +299,15 @@ namespace AgOpenGPS
 
             mf.modcom.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setIsWorkSwitchEnabled = isWorkSwEn;
+
+            mf.rollZero = rollZeroSet;
+            mf.pitchZero = pitchZeroSet;
+
+            Properties.Settings.Default.setIMU_rollZero = rollZeroSet;
+            Properties.Settings.Default.setIMU_pitchZero = pitchZeroSet;
+
+            Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)cutoffSpeed;
+            mf.vehicle.slowSpeedCutoff = (double)cutoffSpeed;
 
             Properties.Settings.Default.Save();
 
@@ -439,7 +457,8 @@ namespace AgOpenGPS
 
        #endregion Vehicle
 
-        #region Sections //----------------------------------------------------------------
+        #region Sections //---------------------------------------------------------------
+
 
         //enable or disable section width spinners based on number sections selected
         public void UpdateSpinners()
@@ -619,6 +638,12 @@ namespace AgOpenGPS
             }
             //update in settings dialog ONLY total tool width
             SectionFeetInchesTotalWidthLabelUpdate();
+        }
+
+        //the minimum speed before sections turn off
+        private void nudCutoffSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            cutoffSpeed = nudCutoffSpeed.Value;
         }
 
         //update tool width label at bottom of window
@@ -896,6 +921,22 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblPitchFromIMU.Text = (mf.modcom.pitchAngle).ToString();
+            lblRollFromIMU.Text = (mf.modcom.rollAngle).ToString();
+            lblRollOffset.Text = rollZeroSet.ToString();
+            lblPitchOffset.Text = pitchZeroSet.ToString();
+        }
+
+        private void btnRollPitchZero_Click(object sender, EventArgs e)
+        {
+            pitchZeroSet = -mf.modcom.pitchAngle;
+            rollZeroSet = -mf.modcom.rollAngle;
+        }
+
+
 
  
 

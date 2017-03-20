@@ -31,28 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabDisplay = new System.Windows.Forms.TabPage();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbarDisplayFixDelay = new System.Windows.Forms.TrackBar();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lblDisplayFixDelay = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.tbarDisplayCameraDelay = new System.Windows.Forms.TrackBar();
-            this.lblDisplayCameraDelay = new System.Windows.Forms.Label();
-            this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
-            this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.lblSecTotalWidthMeters = new System.Windows.Forms.Label();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.label29 = new System.Windows.Forms.Label();
             this.chkIsSteerAxleAhead = new System.Windows.Forms.CheckBox();
@@ -87,6 +65,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.tabSections = new System.Windows.Forms.TabPage();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
+            this.nudSection8 = new System.Windows.Forms.NumericUpDown();
+            this.nudSection7 = new System.Windows.Forms.NumericUpDown();
+            this.nudSection6 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -102,20 +86,42 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
+            this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.tbarDisplayFixDelay = new System.Windows.Forms.TrackBar();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblDisplayFixDelay = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbarDisplayCameraDelay = new System.Windows.Forms.TrackBar();
+            this.lblDisplayCameraDelay = new System.Windows.Forms.Label();
+            this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblRollOffset = new System.Windows.Forms.Label();
+            this.lblPitchOffset = new System.Windows.Forms.Label();
+            this.btnRollPitchZero = new System.Windows.Forms.Button();
+            this.lblRollFromIMU = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblPitchFromIMU = new System.Windows.Forms.Label();
             this.tabExamples = new System.Windows.Forms.TabPage();
+            this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
+            this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lblSecTotalWidthMeters = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudSection6 = new System.Windows.Forms.NumericUpDown();
-            this.nudSection7 = new System.Windows.Forms.NumericUpDown();
-            this.nudSection8 = new System.Windows.Forms.NumericUpDown();
+            this.label32 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
-            this.tabDisplay.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).BeginInit();
@@ -128,6 +134,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             this.tabSections.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection3)).BeginInit();
@@ -136,9 +146,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).BeginInit();
+            this.tabDisplay.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
+            this.tabGuidance.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -157,248 +172,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(959, 551);
             this.tabControl1.TabIndex = 2;
-            // 
-            // tabDisplay
-            // 
-            this.tabDisplay.Controls.Add(this.groupBox2);
-            this.tabDisplay.Controls.Add(this.groupBox1);
-            this.tabDisplay.Controls.Add(this.label21);
-            this.tabDisplay.Controls.Add(this.tbarDisplayFixDelay);
-            this.tabDisplay.Controls.Add(this.groupBox4);
-            this.tabDisplay.Location = new System.Drawing.Point(4, 31);
-            this.tabDisplay.Name = "tabDisplay";
-            this.tabDisplay.Size = new System.Drawing.Size(951, 516);
-            this.tabDisplay.TabIndex = 5;
-            this.tabDisplay.Text = " Display ";
-            this.tabDisplay.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.nudTriangleResolution);
-            this.groupBox2.Location = new System.Drawing.Point(539, 24);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(370, 169);
-            this.groupBox2.TabIndex = 65;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Triangle Resolution";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 136);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(176, 22);
-            this.label7.TabIndex = 67;
-            this.label7.Text = "2.2 -> Few triangles";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 104);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(199, 22);
-            this.label6.TabIndex = 66;
-            this.label6.Text = "0.2 -> Lots of triangles";
-            // 
-            // nudTriangleResolution
-            // 
-            this.nudTriangleResolution.DecimalPlaces = 1;
-            this.nudTriangleResolution.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTriangleResolution.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
-            this.nudTriangleResolution.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Name = "nudTriangleResolution";
-            this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
-            this.nudTriangleResolution.TabIndex = 64;
-            this.nudTriangleResolution.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkIsAtanCam);
-            this.groupBox1.Location = new System.Drawing.Point(19, 267);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(481, 85);
-            this.groupBox1.TabIndex = 63;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Uncheck for True Heading as Cam";
-            // 
-            // chkIsAtanCam
-            // 
-            this.chkIsAtanCam.AutoSize = true;
-            this.chkIsAtanCam.Checked = true;
-            this.chkIsAtanCam.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIsAtanCam.Location = new System.Drawing.Point(40, 47);
-            this.chkIsAtanCam.Name = "chkIsAtanCam";
-            this.chkIsAtanCam.Size = new System.Drawing.Size(172, 26);
-            this.chkIsAtanCam.TabIndex = 61;
-            this.chkIsAtanCam.Text = "Use Fix For Cam";
-            this.chkIsAtanCam.UseVisualStyleBackColor = true;
-            this.chkIsAtanCam.CheckedChanged += new System.EventHandler(this.chkIsAtanCam_CheckedChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(29, 142);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(72, 22);
-            this.label21.TabIndex = 57;
-            this.label21.Text = "Vehicle";
-            // 
-            // tbarDisplayFixDelay
-            // 
-            this.tbarDisplayFixDelay.LargeChange = 2;
-            this.tbarDisplayFixDelay.Location = new System.Drawing.Point(111, 131);
-            this.tbarDisplayFixDelay.Name = "tbarDisplayFixDelay";
-            this.tbarDisplayFixDelay.Size = new System.Drawing.Size(283, 45);
-            this.tbarDisplayFixDelay.TabIndex = 55;
-            this.tbarDisplayFixDelay.Value = 1;
-            this.tbarDisplayFixDelay.Scroll += new System.EventHandler(this.tbarDisplayFixDelay_Scroll);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.lblDisplayFixDelay);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.tbarDisplayCameraDelay);
-            this.groupBox4.Controls.Add(this.lblDisplayCameraDelay);
-            this.groupBox4.Location = new System.Drawing.Point(19, 24);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(481, 204);
-            this.groupBox4.TabIndex = 60;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Display Smoothing";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(126, 165);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(190, 22);
-            this.label22.TabIndex = 60;
-            this.label22.Text = "More Smoothing----->";
-            // 
-            // lblDisplayFixDelay
-            // 
-            this.lblDisplayFixDelay.AutoSize = true;
-            this.lblDisplayFixDelay.Location = new System.Drawing.Point(381, 118);
-            this.lblDisplayFixDelay.Name = "lblDisplayFixDelay";
-            this.lblDisplayFixDelay.Size = new System.Drawing.Size(21, 22);
-            this.lblDisplayFixDelay.TabIndex = 59;
-            this.lblDisplayFixDelay.Text = "1";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(36, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(46, 22);
-            this.label20.TabIndex = 56;
-            this.label20.Text = "Grid";
-            // 
-            // tbarDisplayCameraDelay
-            // 
-            this.tbarDisplayCameraDelay.LargeChange = 2;
-            this.tbarDisplayCameraDelay.Location = new System.Drawing.Point(92, 40);
-            this.tbarDisplayCameraDelay.Name = "tbarDisplayCameraDelay";
-            this.tbarDisplayCameraDelay.Size = new System.Drawing.Size(283, 45);
-            this.tbarDisplayCameraDelay.TabIndex = 54;
-            this.tbarDisplayCameraDelay.Value = 1;
-            this.tbarDisplayCameraDelay.Scroll += new System.EventHandler(this.tbarDisplayCameraDelay_Scroll);
-            // 
-            // lblDisplayCameraDelay
-            // 
-            this.lblDisplayCameraDelay.AutoSize = true;
-            this.lblDisplayCameraDelay.Location = new System.Drawing.Point(381, 49);
-            this.lblDisplayCameraDelay.Name = "lblDisplayCameraDelay";
-            this.lblDisplayCameraDelay.Size = new System.Drawing.Size(21, 22);
-            this.lblDisplayCameraDelay.TabIndex = 58;
-            this.lblDisplayCameraDelay.Text = "1";
-            // 
-            // tabGuidance
-            // 
-            this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabGuidance.Location = new System.Drawing.Point(4, 31);
-            this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.Size = new System.Drawing.Size(951, 516);
-            this.tabGuidance.TabIndex = 4;
-            this.tabGuidance.Text = "Guidance";
-            this.tabGuidance.UseVisualStyleBackColor = true;
-            // 
-            // lblSecTotalWidthInches
-            // 
-            this.lblSecTotalWidthInches.AutoSize = true;
-            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(374, 576);
-            this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
-            this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
-            this.lblSecTotalWidthInches.TabIndex = 25;
-            this.lblSecTotalWidthInches.Text = "II";
-            // 
-            // lblSecTotalWidthFeet
-            // 
-            this.lblSecTotalWidthFeet.AutoSize = true;
-            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(293, 576);
-            this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
-            this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(53, 35);
-            this.lblSecTotalWidthFeet.TabIndex = 24;
-            this.lblSecTotalWidthFeet.Text = "FF";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 300;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(12, 565);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(126, 46);
-            this.label17.TabIndex = 89;
-            this.label17.Text = "Measurements \r\nin Inches";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(169, 581);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(110, 25);
-            this.label16.TabIndex = 107;
-            this.label16.Text = "Tool Width:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblSecTotalWidthMeters
-            // 
-            this.lblSecTotalWidthMeters.AutoSize = true;
-            this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(507, 576);
-            this.lblSecTotalWidthMeters.Name = "lblSecTotalWidthMeters";
-            this.lblSecTotalWidthMeters.Size = new System.Drawing.Size(47, 35);
-            this.lblSecTotalWidthMeters.TabIndex = 108;
-            this.lblSecTotalWidthMeters.Text = "II";
             // 
             // tabVehicle
             // 
@@ -901,6 +674,9 @@
             // 
             this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings8;
             this.tabSections.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabSections.Controls.Add(this.label31);
+            this.tabSections.Controls.Add(this.label30);
+            this.tabSections.Controls.Add(this.nudCutoffSpeed);
             this.tabSections.Controls.Add(this.nudSection8);
             this.tabSections.Controls.Add(this.nudSection7);
             this.tabSections.Controls.Add(this.nudSection6);
@@ -921,6 +697,113 @@
             this.tabSections.TabIndex = 2;
             this.tabSections.Text = " Sections ";
             this.tabSections.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(175, 426);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(56, 25);
+            this.label31.TabIndex = 30;
+            this.label31.Text = "Km/H";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(29, 390);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(216, 25);
+            this.label30.TabIndex = 29;
+            this.label30.Text = "Sections Turn Off below";
+            // 
+            // nudCutoffSpeed
+            // 
+            this.nudCutoffSpeed.DecimalPlaces = 1;
+            this.nudCutoffSpeed.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCutoffSpeed.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudCutoffSpeed.Location = new System.Drawing.Point(78, 418);
+            this.nudCutoffSpeed.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudCutoffSpeed.Minimum = new decimal(new int[] {
+            12,
+            0,
+            0,
+            65536});
+            this.nudCutoffSpeed.Name = "nudCutoffSpeed";
+            this.nudCutoffSpeed.Size = new System.Drawing.Size(82, 44);
+            this.nudCutoffSpeed.TabIndex = 28;
+            this.nudCutoffSpeed.Value = new decimal(new int[] {
+            28,
+            0,
+            0,
+            65536});
+            this.nudCutoffSpeed.ValueChanged += new System.EventHandler(this.nudCutoffSpeed_ValueChanged);
+            // 
+            // nudSection8
+            // 
+            this.nudSection8.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection8.Location = new System.Drawing.Point(839, 168);
+            this.nudSection8.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection8.Name = "nudSection8";
+            this.nudSection8.Size = new System.Drawing.Size(102, 48);
+            this.nudSection8.TabIndex = 27;
+            this.nudSection8.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection8.ValueChanged += new System.EventHandler(this.nudSection8_ValueChanged);
+            // 
+            // nudSection7
+            // 
+            this.nudSection7.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection7.Location = new System.Drawing.Point(723, 168);
+            this.nudSection7.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection7.Name = "nudSection7";
+            this.nudSection7.Size = new System.Drawing.Size(102, 48);
+            this.nudSection7.TabIndex = 26;
+            this.nudSection7.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection7.ValueChanged += new System.EventHandler(this.nudSection7_ValueChanged);
+            // 
+            // nudSection6
+            // 
+            this.nudSection6.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSection6.Location = new System.Drawing.Point(606, 168);
+            this.nudSection6.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSection6.Name = "nudSection6";
+            this.nudSection6.Size = new System.Drawing.Size(102, 48);
+            this.nudSection6.TabIndex = 25;
+            this.nudSection6.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudSection6.ValueChanged += new System.EventHandler(this.nudSection6_ValueChanged);
             // 
             // label8
             // 
@@ -1139,6 +1022,295 @@
             this.chkEnableWorkSwitch.UseVisualStyleBackColor = true;
             this.chkEnableWorkSwitch.CheckedChanged += new System.EventHandler(this.chkEnableWorkSwitch_CheckedChanged);
             // 
+            // tabDisplay
+            // 
+            this.tabDisplay.Controls.Add(this.groupBox2);
+            this.tabDisplay.Controls.Add(this.groupBox1);
+            this.tabDisplay.Controls.Add(this.label21);
+            this.tabDisplay.Controls.Add(this.tbarDisplayFixDelay);
+            this.tabDisplay.Controls.Add(this.groupBox4);
+            this.tabDisplay.Location = new System.Drawing.Point(4, 31);
+            this.tabDisplay.Name = "tabDisplay";
+            this.tabDisplay.Size = new System.Drawing.Size(951, 516);
+            this.tabDisplay.TabIndex = 5;
+            this.tabDisplay.Text = " Display ";
+            this.tabDisplay.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.nudTriangleResolution);
+            this.groupBox2.Location = new System.Drawing.Point(539, 24);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(370, 169);
+            this.groupBox2.TabIndex = 65;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Triangle Resolution";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(85, 136);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(176, 22);
+            this.label7.TabIndex = 67;
+            this.label7.Text = "2.2 -> Few triangles";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(40, 104);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(199, 22);
+            this.label6.TabIndex = 66;
+            this.label6.Text = "0.2 -> Lots of triangles";
+            // 
+            // nudTriangleResolution
+            // 
+            this.nudTriangleResolution.DecimalPlaces = 1;
+            this.nudTriangleResolution.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTriangleResolution.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
+            this.nudTriangleResolution.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.Name = "nudTriangleResolution";
+            this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
+            this.nudTriangleResolution.TabIndex = 64;
+            this.nudTriangleResolution.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.chkIsAtanCam);
+            this.groupBox1.Location = new System.Drawing.Point(19, 267);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(481, 85);
+            this.groupBox1.TabIndex = 63;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Uncheck for True Heading as Cam";
+            // 
+            // chkIsAtanCam
+            // 
+            this.chkIsAtanCam.AutoSize = true;
+            this.chkIsAtanCam.Checked = true;
+            this.chkIsAtanCam.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIsAtanCam.Location = new System.Drawing.Point(40, 47);
+            this.chkIsAtanCam.Name = "chkIsAtanCam";
+            this.chkIsAtanCam.Size = new System.Drawing.Size(172, 26);
+            this.chkIsAtanCam.TabIndex = 61;
+            this.chkIsAtanCam.Text = "Use Fix For Cam";
+            this.chkIsAtanCam.UseVisualStyleBackColor = true;
+            this.chkIsAtanCam.CheckedChanged += new System.EventHandler(this.chkIsAtanCam_CheckedChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(29, 142);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(72, 22);
+            this.label21.TabIndex = 57;
+            this.label21.Text = "Vehicle";
+            // 
+            // tbarDisplayFixDelay
+            // 
+            this.tbarDisplayFixDelay.LargeChange = 2;
+            this.tbarDisplayFixDelay.Location = new System.Drawing.Point(111, 131);
+            this.tbarDisplayFixDelay.Name = "tbarDisplayFixDelay";
+            this.tbarDisplayFixDelay.Size = new System.Drawing.Size(283, 45);
+            this.tbarDisplayFixDelay.TabIndex = 55;
+            this.tbarDisplayFixDelay.Value = 1;
+            this.tbarDisplayFixDelay.Scroll += new System.EventHandler(this.tbarDisplayFixDelay_Scroll);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.lblDisplayFixDelay);
+            this.groupBox4.Controls.Add(this.label20);
+            this.groupBox4.Controls.Add(this.tbarDisplayCameraDelay);
+            this.groupBox4.Controls.Add(this.lblDisplayCameraDelay);
+            this.groupBox4.Location = new System.Drawing.Point(19, 24);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(481, 204);
+            this.groupBox4.TabIndex = 60;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Display Smoothing";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(126, 165);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(190, 22);
+            this.label22.TabIndex = 60;
+            this.label22.Text = "More Smoothing----->";
+            // 
+            // lblDisplayFixDelay
+            // 
+            this.lblDisplayFixDelay.AutoSize = true;
+            this.lblDisplayFixDelay.Location = new System.Drawing.Point(381, 118);
+            this.lblDisplayFixDelay.Name = "lblDisplayFixDelay";
+            this.lblDisplayFixDelay.Size = new System.Drawing.Size(21, 22);
+            this.lblDisplayFixDelay.TabIndex = 59;
+            this.lblDisplayFixDelay.Text = "1";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(36, 49);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(46, 22);
+            this.label20.TabIndex = 56;
+            this.label20.Text = "Grid";
+            // 
+            // tbarDisplayCameraDelay
+            // 
+            this.tbarDisplayCameraDelay.LargeChange = 2;
+            this.tbarDisplayCameraDelay.Location = new System.Drawing.Point(92, 40);
+            this.tbarDisplayCameraDelay.Name = "tbarDisplayCameraDelay";
+            this.tbarDisplayCameraDelay.Size = new System.Drawing.Size(283, 45);
+            this.tbarDisplayCameraDelay.TabIndex = 54;
+            this.tbarDisplayCameraDelay.Value = 1;
+            this.tbarDisplayCameraDelay.Scroll += new System.EventHandler(this.tbarDisplayCameraDelay_Scroll);
+            // 
+            // lblDisplayCameraDelay
+            // 
+            this.lblDisplayCameraDelay.AutoSize = true;
+            this.lblDisplayCameraDelay.Location = new System.Drawing.Point(381, 49);
+            this.lblDisplayCameraDelay.Name = "lblDisplayCameraDelay";
+            this.lblDisplayCameraDelay.Size = new System.Drawing.Size(21, 22);
+            this.lblDisplayCameraDelay.TabIndex = 58;
+            this.lblDisplayCameraDelay.Text = "1";
+            // 
+            // tabGuidance
+            // 
+            this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabGuidance.Controls.Add(this.label32);
+            this.tabGuidance.Controls.Add(this.label14);
+            this.tabGuidance.Controls.Add(this.label9);
+            this.tabGuidance.Controls.Add(this.lblRollOffset);
+            this.tabGuidance.Controls.Add(this.lblPitchOffset);
+            this.tabGuidance.Controls.Add(this.btnRollPitchZero);
+            this.tabGuidance.Controls.Add(this.lblRollFromIMU);
+            this.tabGuidance.Controls.Add(this.label11);
+            this.tabGuidance.Controls.Add(this.label10);
+            this.tabGuidance.Controls.Add(this.lblPitchFromIMU);
+            this.tabGuidance.Location = new System.Drawing.Point(4, 31);
+            this.tabGuidance.Name = "tabGuidance";
+            this.tabGuidance.Size = new System.Drawing.Size(951, 516);
+            this.tabGuidance.TabIndex = 4;
+            this.tabGuidance.Text = "Guidance";
+            this.tabGuidance.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(770, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(73, 30);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Actual";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(869, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(80, 30);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Offsets";
+            // 
+            // lblRollOffset
+            // 
+            this.lblRollOffset.AutoSize = true;
+            this.lblRollOffset.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRollOffset.Location = new System.Drawing.Point(875, 69);
+            this.lblRollOffset.Name = "lblRollOffset";
+            this.lblRollOffset.Size = new System.Drawing.Size(49, 30);
+            this.lblRollOffset.TabIndex = 6;
+            this.lblRollOffset.Text = "Roll";
+            // 
+            // lblPitchOffset
+            // 
+            this.lblPitchOffset.AutoSize = true;
+            this.lblPitchOffset.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPitchOffset.Location = new System.Drawing.Point(875, 37);
+            this.lblPitchOffset.Name = "lblPitchOffset";
+            this.lblPitchOffset.Size = new System.Drawing.Size(60, 30);
+            this.lblPitchOffset.TabIndex = 5;
+            this.lblPitchOffset.Text = "Pitch";
+            // 
+            // btnRollPitchZero
+            // 
+            this.btnRollPitchZero.Image = global::AgOpenGPS.Properties.Resources.ZeroPitchRoll;
+            this.btnRollPitchZero.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRollPitchZero.Location = new System.Drawing.Point(775, 110);
+            this.btnRollPitchZero.Name = "btnRollPitchZero";
+            this.btnRollPitchZero.Size = new System.Drawing.Size(122, 122);
+            this.btnRollPitchZero.TabIndex = 4;
+            this.btnRollPitchZero.Text = "-> Zero <-";
+            this.btnRollPitchZero.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRollPitchZero.UseVisualStyleBackColor = true;
+            this.btnRollPitchZero.Click += new System.EventHandler(this.btnRollPitchZero_Click);
+            // 
+            // lblRollFromIMU
+            // 
+            this.lblRollFromIMU.AutoSize = true;
+            this.lblRollFromIMU.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRollFromIMU.Location = new System.Drawing.Point(795, 69);
+            this.lblRollFromIMU.Name = "lblRollFromIMU";
+            this.lblRollFromIMU.Size = new System.Drawing.Size(49, 30);
+            this.lblRollFromIMU.TabIndex = 3;
+            this.lblRollFromIMU.Text = "Roll";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(750, 69);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 30);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Roll";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(741, 37);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(60, 30);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Pitch";
+            // 
+            // lblPitchFromIMU
+            // 
+            this.lblPitchFromIMU.AutoSize = true;
+            this.lblPitchFromIMU.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPitchFromIMU.Location = new System.Drawing.Point(795, 37);
+            this.lblPitchFromIMU.Name = "lblPitchFromIMU";
+            this.lblPitchFromIMU.Size = new System.Drawing.Size(60, 30);
+            this.lblPitchFromIMU.TabIndex = 0;
+            this.lblPitchFromIMU.Text = "Pitch";
+            // 
             // tabExamples
             // 
             this.tabExamples.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabExamples.BackgroundImage")));
@@ -1149,6 +1321,63 @@
             this.tabExamples.TabIndex = 8;
             this.tabExamples.Text = " Examples ";
             this.tabExamples.UseVisualStyleBackColor = true;
+            // 
+            // lblSecTotalWidthInches
+            // 
+            this.lblSecTotalWidthInches.AutoSize = true;
+            this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(374, 576);
+            this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
+            this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
+            this.lblSecTotalWidthInches.TabIndex = 25;
+            this.lblSecTotalWidthInches.Text = "II";
+            // 
+            // lblSecTotalWidthFeet
+            // 
+            this.lblSecTotalWidthFeet.AutoSize = true;
+            this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(293, 576);
+            this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
+            this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(53, 35);
+            this.lblSecTotalWidthFeet.TabIndex = 24;
+            this.lblSecTotalWidthFeet.Text = "FF";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(12, 565);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(126, 46);
+            this.label17.TabIndex = 89;
+            this.label17.Text = "Measurements \r\nin Inches";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(169, 581);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(110, 25);
+            this.label16.TabIndex = 107;
+            this.label16.Text = "Tool Width:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSecTotalWidthMeters
+            // 
+            this.lblSecTotalWidthMeters.AutoSize = true;
+            this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(507, 576);
+            this.lblSecTotalWidthMeters.Name = "lblSecTotalWidthMeters";
+            this.lblSecTotalWidthMeters.Size = new System.Drawing.Size(47, 35);
+            this.lblSecTotalWidthMeters.TabIndex = 108;
+            this.lblSecTotalWidthMeters.Text = "II";
             // 
             // btnCancel
             // 
@@ -1177,62 +1406,15 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudSection6
+            // label32
             // 
-            this.nudSection6.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection6.Location = new System.Drawing.Point(606, 168);
-            this.nudSection6.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.nudSection6.Name = "nudSection6";
-            this.nudSection6.Size = new System.Drawing.Size(102, 48);
-            this.nudSection6.TabIndex = 25;
-            this.nudSection6.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudSection6.ValueChanged += new System.EventHandler(this.nudSection6_ValueChanged);
-            // 
-            // nudSection7
-            // 
-            this.nudSection7.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection7.Location = new System.Drawing.Point(723, 168);
-            this.nudSection7.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.nudSection7.Name = "nudSection7";
-            this.nudSection7.Size = new System.Drawing.Size(102, 48);
-            this.nudSection7.TabIndex = 26;
-            this.nudSection7.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudSection7.ValueChanged += new System.EventHandler(this.nudSection7_ValueChanged);
-            // 
-            // nudSection8
-            // 
-            this.nudSection8.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSection8.Location = new System.Drawing.Point(839, 168);
-            this.nudSection8.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.nudSection8.Name = "nudSection8";
-            this.nudSection8.Size = new System.Drawing.Size(102, 48);
-            this.nudSection8.TabIndex = 27;
-            this.nudSection8.Value = new decimal(new int[] {
-            99,
-            0,
-            0,
-            0});
-            this.nudSection8.ValueChanged += new System.EventHandler(this.nudSection8_ValueChanged);
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(686, 249);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(261, 30);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "Zero Roll and Pitch Values";
             // 
             // FormSettings
             // 
@@ -1257,17 +1439,6 @@
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.FormSettings_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabDisplay.ResumeLayout(false);
-            this.tabDisplay.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
             this.tabVehicle.ResumeLayout(false);
             this.tabVehicle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).EndInit();
@@ -1283,6 +1454,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             this.tabSections.ResumeLayout(false);
             this.tabSections.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection3)).EndInit();
@@ -1292,9 +1467,19 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).EndInit();
+            this.tabDisplay.ResumeLayout(false);
+            this.tabDisplay.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
+            this.tabGuidance.ResumeLayout(false);
+            this.tabGuidance.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1380,5 +1565,18 @@
         private System.Windows.Forms.NumericUpDown nudSection8;
         private System.Windows.Forms.NumericUpDown nudSection7;
         private System.Windows.Forms.NumericUpDown nudSection6;
+        private System.Windows.Forms.Label lblRollFromIMU;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblPitchFromIMU;
+        private System.Windows.Forms.Button btnRollPitchZero;
+        private System.Windows.Forms.Label lblRollOffset;
+        private System.Windows.Forms.Label lblPitchOffset;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
+        private System.Windows.Forms.Label label32;
     }
 }

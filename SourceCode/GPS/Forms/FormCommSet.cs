@@ -260,11 +260,11 @@ namespace AgOpenGPS
             mf.recvSentenceSettings = "";
 
             //Arduino phrases
-            txtBoxRecvArduino.Text = mf.modcom.relaySerialRecvStr;
+            txtBoxRecvArduino.Text = mf.modcom.serialRecvRelayStr;
             txtBoxSendArduino.Text = mf.modcom.relaySectionControl[0].ToString();
 
             //autoSteer
-            txtBoxRecvAutoSteer.Text = mf.modcom.serialRecvAutoSteer;
+            txtBoxRecvAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
             txtBoxSendAutoSteer.Text = mf.modcom.autoSteerControl[0].ToString();
         }
 

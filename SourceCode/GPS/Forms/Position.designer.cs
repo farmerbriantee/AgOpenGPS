@@ -80,6 +80,29 @@ namespace AgOpenGPS
         //used to determine NMEA sentence frequency
         private int timerPn = 1;        
         private double et = 0, hzTime = 0;
+
+        //IMU 
+        double tiltDistance = 0;
+        double roll = 0, pitch = 0, angVel = 0;
+        double avgPitch = 0, avgRoll = 0, avgAngVel = 0;
+
+        //for average speed
+        public double[] avgSpeed = new double[10];
+        public int ringCounter = 0;
+
+        //for tilt
+        public double[] avgTiltRoll = new double[10];
+        public int ringCounterTiltRoll = 0;
+
+        //for pitch
+        public double[] avgTiltPitch = new double[10];
+        public int ringCounterTiltPitch = 0;
+
+        //for angular velocity
+        public double[] avgAngularVelocity = new double[30];
+        public int ringCounterAngularVelocity = 0;
+
+        public double pitchZero, rollZero;
         
         //called by watchdog timer every 50 ms
         private void ScanForNMEA()
@@ -87,7 +110,7 @@ namespace AgOpenGPS
             //parse any data from pn.rawBuffer
             pn.ParseNMEA();
 
-            //check if time for a frame update
+            //time for a frame update with new valid nmea data
             if (pn.updatedGGA | pn.updatedRMC)
             {
                 //if saving a file ignore any movement
@@ -102,7 +125,7 @@ namespace AgOpenGPS
                 //now calculate NMEA rate
                 if (timerPn++ == 36)
                 {
-                    et = (1 / (hzTime*0.000025));
+                    et = (1 / (hzTime * 0.000025));
                     if (et > 4 && et < 8) fixUpdateHz = 5;
                     if (et > 9 && et < 13) fixUpdateHz = 10;
                     if (et > 1.2 && et < 3) fixUpdateHz = 2;
@@ -116,7 +139,7 @@ namespace AgOpenGPS
 
                 //start the watch and time till it gets back here
                 swFrame.Start();
-             
+
                 //reset both flags
                 pn.updatedGGA = false;
                 pn.updatedRMC = false;
@@ -125,7 +148,23 @@ namespace AgOpenGPS
                 UpdateFixPosition();
             }
 
-            //Update the port counter - is reset every time new sentence is valid and ready
+            //must make sure arduinos are kept off
+            else
+            {
+                if (!isGPSPositionInitialized)
+                {
+                    modcom.relaySectionControl[0] = (byte)0;
+                    SectionControlOutToPort();
+                    modcom.autoSteerControl[0] = (byte)0;
+                    modcom.autoSteerControl[1] = (byte)0;
+                    modcom.autoSteerControl[2] = (byte)0;
+                    modcom.autoSteerControl[3] = (byte)0;
+                    AutoSteerControlOutToPort();
+                }
+
+            }
+
+            //Update the port connecition counter - is reset every time new sentence is valid and ready
             recvCounter++;
         }
 
@@ -134,18 +173,65 @@ namespace AgOpenGPS
         {
             startCounter++;
 
-            //if its a valid fix data for RMC or GGA
-            //this is the current position taken from the latest sentence
-            //textBoxRcv.Text = pn.theSent;
-
             if (!isGPSPositionInitialized)
             {
                 InitializeFirstFewGPSPositions();
                 return;
             }
+            
+            //average out angular velocity
+            int times = 30;
+            avgAngularVelocity[ringCounterTiltRoll] = modcom.angularVelocity;
+            if (ringCounterAngularVelocity++ == times) ringCounterAngularVelocity = 0;
+            angVel = 0;
+            for (int c = 0; c <= times - 1; c++) angVel += avgAngularVelocity[c];
+            angVel /= times;
+            avgAngVel = Math.Round(angVel, 1);
+
+            //average out the roll angle
+            times = 5;
+            avgTiltRoll[ringCounterTiltRoll] = modcom.rollAngle+rollZero;
+            if (ringCounterTiltRoll++ == times) ringCounterTiltRoll = 0;
+            roll = 0;
+            for (int c = 0; c <= times - 1; c++) roll += avgTiltRoll[c];
+            roll /= times;
+            avgRoll = Math.Round(roll, 1);
+
+            //Convert 16 bit int to degrees, take the sin of it
+            roll = Math.Sin(glm.toRadians(roll));
+            tiltDistance = Math.Abs(roll * vehicle.antennaHeight);
+
+            //tilt to left is positive 
+            if (roll > 0)
+            {
+                pn.easting = (Math.Cos(fixHeading) * tiltDistance) + pn.easting;
+                pn.northing = (Math.Sin(fixHeading) * -tiltDistance) + pn.northing;
+            }
+
+            else
+            {
+                pn.easting = (Math.Cos(fixHeading) * -tiltDistance) + pn.easting;
+                pn.northing = (Math.Sin(fixHeading) * tiltDistance) + pn.northing;
+            }
+
+            //average out the pitch angle
+            times = 10;
+            avgTiltPitch[ringCounterTiltPitch] = modcom.pitchAngle+pitchZero;
+            if (ringCounterTiltPitch++ == times - 1) ringCounterTiltPitch = 0;
+            pitch = 0;
+            for (int c = 0; c < times; c++) pitch += avgTiltPitch[c];
+            pitch /= times;
+            avgPitch = Math.Round(pitch, 1);
+            //Convert 16 bit int to degrees, take the sin of it
+            pitch = Math.Sin(glm.toRadians(pitch));
+
+            tiltDistance = (pitch * vehicle.antennaHeight);
+
+            //pn.easting = (Math.Sin(fixHeading) * tiltDistance) + pn.easting;
+            //pn.northing = (Math.Cos(fixHeading) * tiltDistance) + pn.northing;
 
             //calc low speed distance travelled if speed < 2 kph and app not starting
-            if (pn.speed < 2.0) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevLowSpeedNorthing, prevLowSpeedEasting);
+            if (pn.speed < (1.9)) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevLowSpeedNorthing, prevLowSpeedEasting);
             else distanceLowSpeed = -1;
            
             //calculate lookahead at full speed, no sentence misses
@@ -176,7 +262,7 @@ namespace AgOpenGPS
             AutoSteerControlOutToPort();
 
             //time to record next fix
-            if (distanceLowSpeed > 0.5 | pn.speed > 2.0 | startCounter < 20)
+            if (distanceLowSpeed > 0.4 | pn.speed > 1.8 | startCounter < 20)
             {
                 //positions and headings 
                 CalculatePositionHeading();
@@ -260,6 +346,21 @@ namespace AgOpenGPS
                     //keep the line going, everything is on for recording path
                     if (ct.isContourOn) ct.AddPoint();
                     else { ct.StartContourLine(); ct.AddPoint(); }
+
+                    //grab sentences for logging
+                    if (isLogNMEA)
+                    {
+                        if (ct.isContourOn)
+                        {
+                            pn.logNMEASentence.Append(pn.currentNMEA_RMCSentence);
+                            pn.logNMEASentence.Append(pn.currentNMEA_GGASentence);
+                            pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
+
+                            pn.currentNMEA_RMCSentence = "";
+                            pn.currentNMEA_GGASentence = "";
+                            pn.currentNMEA_VTGSentence = "";
+                        }
+                    }
                 }
 
                 //All sections OFF so if on, turn off
@@ -320,17 +421,18 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-            //determine fix positions and heading
-            fixPosX = (pn.easting);
-            fixPosZ = (pn.northing);
-
-            //save a copy to calc distance for next time, make these current.
-            prevLowSpeedEasting = pn.easting;
-            prevLowSpeedNorthing = pn.northing;
-
+     
             //in radians
             fixHeading = Math.Atan2(pn.easting - prevEasting[delayFixPrev], pn.northing - prevNorthing[delayFixPrev]);
             if (fixHeading < 0) fixHeading += glm.twoPI;
+
+            //determine fix positions and heading
+            fixPosX = (pn.easting);
+            fixPosZ = (pn.northing);
+ 
+           //save a copy to calc distance for next time, make these current.
+            prevLowSpeedEasting = pn.easting;
+            prevLowSpeedNorthing = pn.northing;
 
             //translate world to the pivot axle
             pivotAxleEasting = pn.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
@@ -484,6 +586,8 @@ namespace AgOpenGPS
                 //choose fastest speed
                 if (leftLook > rightLook)  section[j].sectionLookAhead = leftLook;
                 else section[j].sectionLookAhead = rightLook;
+
+                if (section[j].sectionLookAhead > 190) section[j].sectionLookAhead = 190;
 
                 double head = left.HeadingXZ();
                 if (head < 0) head += glm.twoPI;
