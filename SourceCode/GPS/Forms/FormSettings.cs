@@ -21,13 +21,13 @@ namespace AgOpenGPS
         double antennaHeight, antennaPivot, wheelbase, hitchLength, pitchZeroSet, rollZeroSet;
 
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
-        int numberOfSections,displayFixDelay, displayCameraDelay;
+        int numberOfSections;
 
         decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
         decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
-        decimal triResolution, cutoffSpeed;
+        decimal triResolution, cutoffSpeed, minFixStepDistance;
 
         bool isWorkSwEn, isWorkSwActiveLow;
 
@@ -154,21 +154,17 @@ namespace AgOpenGPS
             //based on number of sections and values update the page before displaying
             UpdateSpinners();            
 
-            ////Display load the delay slides ------------------------------------------------------------------
-            displayFixDelay = Properties.Settings.Default.setDisplay_delayFixPrev;
-            displayCameraDelay = Properties.Settings.Default.setDisplay_delayCameraPrev;
-
             isAtanCamera = Properties.Settings.Default.setCam_isAtanCam;
 
             chkIsAtanCam.CheckedChanged -= chkIsAtanCam_CheckedChanged;
             chkIsAtanCam.Checked = isAtanCamera;
             chkIsAtanCam.CheckedChanged += chkIsAtanCam_CheckedChanged;
 
-            tbarDisplayCameraDelay.Value = displayCameraDelay;
-            tbarDisplayFixDelay.Value = displayFixDelay;
-
             triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
             nudTriangleResolution.Value = triResolution;
+
+            minFixStepDistance = (decimal)Properties.Settings.Default.set_minFixStep;
+            nudMinFixStepDistance.Value = minFixStepDistance;
 
             isWorkSwActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
 
@@ -181,8 +177,6 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.CheckedChanged -= chkEnableWorkSwitch_CheckedChanged;
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
-
-            UpdateDisplayDelay();
 
             pitchZeroSet = Properties.Settings.Default.setIMU_pitchZero;
             rollZeroSet = Properties.Settings.Default.setIMU_rollZero;
@@ -281,18 +275,14 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
             ////Display ---load the delay slides --------------------------------------------------------------------
-
-            mf.delayCameraPrev = displayCameraDelay;
-            Properties.Settings.Default.setDisplay_delayCameraPrev = displayCameraDelay;
-
-            mf.delayFixPrev = displayFixDelay;
-            Properties.Settings.Default.setDisplay_delayFixPrev = displayFixDelay;
-
             mf.isAtanCam = isAtanCamera;
             Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
 
             mf.triangleResolution = (double)triResolution;
             Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
+
+            mf.minFixStepDist = (double)minFixStepDistance;
+            Properties.Settings.Default.set_minFixStep = mf.minFixStepDist;
 
             mf.modcom.isWorkSwitchActiveLow = isWorkSwActiveLow;
             Properties.Settings.Default.setIsWorkSwitchActiveLow = isWorkSwActiveLow;
@@ -873,30 +863,15 @@ namespace AgOpenGPS
 
         #region Display //----------------------------------------------------------------
         
-        private void tbarDisplayFixDelay_Scroll(object sender, EventArgs e)
-        {
-            UpdateDisplayDelay();
-        }
-
-        private void UpdateDisplayDelay()
-        {
-            lblDisplayFixDelay.Text = tbarDisplayFixDelay.Value.ToString();
-            displayFixDelay = tbarDisplayFixDelay.Value;
-
-            lblDisplayCameraDelay.Text = tbarDisplayCameraDelay.Value.ToString();
-            displayCameraDelay = tbarDisplayCameraDelay.Value;
-        }
-
-        private void tbarDisplayCameraDelay_Scroll(object sender, EventArgs e)
-        {
-            UpdateDisplayDelay();
-        }
-
         private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
         {
             triResolution = nudTriangleResolution.Value;
         }
 
+        private void nudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
+        {
+            minFixStepDistance = nudMinFixStepDistance.Value;
+        }
 
         private void chkIsAtanCam_CheckedChanged(object sender, EventArgs e)
         {
@@ -935,6 +910,7 @@ namespace AgOpenGPS
             pitchZeroSet = -mf.modcom.pitchAngle;
             rollZeroSet = -mf.modcom.rollAngle;
         }
+
 
 
 

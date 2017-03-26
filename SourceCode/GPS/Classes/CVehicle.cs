@@ -162,30 +162,32 @@ namespace AgOpenGPS
                 gl.Color(0.20, 0.0, 0.9);
                 gl.Vertex(-1.8, 0.0, -antennaPivot);
                 gl.Vertex(1.8, 0.0, -antennaPivot);
-
             gl.End();
-            
 
-            ////antenna
-            //gl.Color(0.0f, 0.98f, 0.0f);
-            //gl.Vertex(0, 0, 0);
-
-            ////hitch pin
-            //gl.Color(0.99f, 0.99f, 0.0f);
-            //gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
-
-            //rear Tires
-            //gl.PointSize(12.0f);
-            //gl.Color(0, 0, 0);
-            //gl.Vertex(-1.8, 0, -antennaPivot);
-            //gl.Vertex(1.8, 0, -antennaPivot);
-
-            //draw the area side marker
+           //draw the area side marker
             gl.Color(0.95f, 0.90f, 0.0f);
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
             if (mf.isAreaOnRight) gl.Vertex(2.5, 0, -antennaPivot);
             else gl.Vertex(-2.5, 0, -antennaPivot);
+
+
+            ////antenna
+            //gl.Color(0.0f, 0.98f, 0.0f);
+            //gl.Vertex(0, 0, 0);
+
+            //hitch pin
+            gl.Color(0.99f, 0.0f, 0.0f);
+            gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
+
+            ////rear Tires
+            //gl.PointSize(12.0f);
+            //gl.Color(0, 0, 0);
+            //gl.Vertex(-1.8, 0, -antennaPivot);
+            //gl.Vertex(1.8, 0, -antennaPivot);
+ 
+
+
             gl.End();
             gl.LineWidth(1);
 

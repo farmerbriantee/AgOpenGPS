@@ -191,10 +191,6 @@ namespace AgOpenGPS
             camera.camSetDistance = zoomValue * zoomValue * -1;
             SetZoom();
 
-            //get the smoothing factors from settings
-            delayCameraPrev = Properties.Settings.Default.setDisplay_delayCameraPrev;
-            delayFixPrev = Properties.Settings.Default.setDisplay_delayFixPrev;
-
             //which cam source is being used
             isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
 
@@ -269,6 +265,8 @@ namespace AgOpenGPS
             modcom.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
             modcom.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
 
+            minFixStepDist = Properties.Settings.Default.set_minFixStep;
+
             pitchZero = Properties.Settings.Default.setIMU_pitchZero;
             rollZero = Properties.Settings.Default.setIMU_rollZero;
         }
@@ -334,8 +332,7 @@ namespace AgOpenGPS
             LineUpManualBtns();
         }
 
-    // Procedures and Functions ---------------------------------------
-
+        // Procedures and Functions ---------------------------------------
         public uint LoadGLTextures()
         {
             OpenGL gl = openGLControl.OpenGL;
@@ -837,8 +834,9 @@ namespace AgOpenGPS
 
         //request a new job
         public void JobNew()
-        {            
+        {
             isJobStarted = true;
+            startCounter = 0;
 
             btnManualOffOn.Enabled = true;
             manualBtnState = btnStates.Off;
@@ -860,6 +858,7 @@ namespace AgOpenGPS
 
             //update the menu
             fieldToolStripMenuItem.Text = "Close Field";
+
         }
 
         //close the current job
@@ -1936,8 +1935,8 @@ namespace AgOpenGPS
         public string Acres { get { return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString(); } }
         public string Hectares { get { return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); } }
 
-        public string FixHeading { get { return Math.Round(fixHeading, 3).ToString(); } }
-        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 2).ToString(); } }
+        public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
+        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
 
 
 #endregion properties 
@@ -2023,8 +2022,6 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
-
-
 
    }//class FormGPS
 }//namespace AgOpenGPS

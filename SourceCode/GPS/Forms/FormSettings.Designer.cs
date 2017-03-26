@@ -93,15 +93,9 @@
             this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbarDisplayFixDelay = new System.Windows.Forms.TrackBar();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.lblDisplayFixDelay = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.tbarDisplayCameraDelay = new System.Windows.Forms.TrackBar();
-            this.lblDisplayCameraDelay = new System.Windows.Forms.Label();
             this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblRollOffset = new System.Windows.Forms.Label();
@@ -120,7 +114,9 @@
             this.lblSecTotalWidthMeters = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.label32 = new System.Windows.Forms.Label();
+            this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -150,10 +146,9 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).BeginInit();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).BeginInit();
             this.tabGuidance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -733,11 +728,6 @@
             0,
             0,
             0});
-            this.nudCutoffSpeed.Minimum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            65536});
             this.nudCutoffSpeed.Name = "nudCutoffSpeed";
             this.nudCutoffSpeed.Size = new System.Drawing.Size(82, 44);
             this.nudCutoffSpeed.TabIndex = 28;
@@ -1026,8 +1016,6 @@
             // 
             this.tabDisplay.Controls.Add(this.groupBox2);
             this.tabDisplay.Controls.Add(this.groupBox1);
-            this.tabDisplay.Controls.Add(this.label21);
-            this.tabDisplay.Controls.Add(this.tbarDisplayFixDelay);
             this.tabDisplay.Controls.Add(this.groupBox4);
             this.tabDisplay.Location = new System.Drawing.Point(4, 31);
             this.tabDisplay.Name = "tabDisplay";
@@ -1051,20 +1039,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(85, 136);
+            this.label7.Location = new System.Drawing.Point(193, 125);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(176, 22);
+            this.label7.Size = new System.Drawing.Size(160, 22);
             this.label7.TabIndex = 67;
-            this.label7.Text = "2.2 -> Few triangles";
+            this.label7.Text = "4 -> Few triangles";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 104);
+            this.label6.Location = new System.Drawing.Point(170, 93);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(199, 22);
+            this.label6.Size = new System.Drawing.Size(183, 22);
             this.label6.TabIndex = 66;
-            this.label6.Text = "0.2 -> Lots of triangles";
+            this.label6.Text = "1 -> Lots of triangles";
             // 
             // nudTriangleResolution
             // 
@@ -1082,7 +1070,7 @@
             0,
             65536});
             this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            4,
+            10,
             0,
             0,
             65536});
@@ -1090,7 +1078,7 @@
             this.nudTriangleResolution.Size = new System.Drawing.Size(120, 44);
             this.nudTriangleResolution.TabIndex = 64;
             this.nudTriangleResolution.Value = new decimal(new int[] {
-            4,
+            10,
             0,
             0,
             65536});
@@ -1099,7 +1087,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkIsAtanCam);
-            this.groupBox1.Location = new System.Drawing.Point(19, 267);
+            this.groupBox1.Location = new System.Drawing.Point(34, 250);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(481, 85);
             this.groupBox1.TabIndex = 63;
@@ -1119,84 +1107,17 @@
             this.chkIsAtanCam.UseVisualStyleBackColor = true;
             this.chkIsAtanCam.CheckedChanged += new System.EventHandler(this.chkIsAtanCam_CheckedChanged);
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(29, 142);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(72, 22);
-            this.label21.TabIndex = 57;
-            this.label21.Text = "Vehicle";
-            // 
-            // tbarDisplayFixDelay
-            // 
-            this.tbarDisplayFixDelay.LargeChange = 2;
-            this.tbarDisplayFixDelay.Location = new System.Drawing.Point(111, 131);
-            this.tbarDisplayFixDelay.Name = "tbarDisplayFixDelay";
-            this.tbarDisplayFixDelay.Size = new System.Drawing.Size(283, 45);
-            this.tbarDisplayFixDelay.TabIndex = 55;
-            this.tbarDisplayFixDelay.Value = 1;
-            this.tbarDisplayFixDelay.Scroll += new System.EventHandler(this.tbarDisplayFixDelay_Scroll);
-            // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.lblDisplayFixDelay);
+            this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.tbarDisplayCameraDelay);
-            this.groupBox4.Controls.Add(this.lblDisplayCameraDelay);
-            this.groupBox4.Location = new System.Drawing.Point(19, 24);
+            this.groupBox4.Controls.Add(this.nudMinFixStepDistance);
+            this.groupBox4.Location = new System.Drawing.Point(34, 24);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(481, 204);
+            this.groupBox4.Size = new System.Drawing.Size(344, 169);
             this.groupBox4.TabIndex = 60;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Display Smoothing";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(126, 165);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(190, 22);
-            this.label22.TabIndex = 60;
-            this.label22.Text = "More Smoothing----->";
-            // 
-            // lblDisplayFixDelay
-            // 
-            this.lblDisplayFixDelay.AutoSize = true;
-            this.lblDisplayFixDelay.Location = new System.Drawing.Point(381, 118);
-            this.lblDisplayFixDelay.Name = "lblDisplayFixDelay";
-            this.lblDisplayFixDelay.Size = new System.Drawing.Size(21, 22);
-            this.lblDisplayFixDelay.TabIndex = 59;
-            this.lblDisplayFixDelay.Text = "1";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(36, 49);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(46, 22);
-            this.label20.TabIndex = 56;
-            this.label20.Text = "Grid";
-            // 
-            // tbarDisplayCameraDelay
-            // 
-            this.tbarDisplayCameraDelay.LargeChange = 2;
-            this.tbarDisplayCameraDelay.Location = new System.Drawing.Point(92, 40);
-            this.tbarDisplayCameraDelay.Name = "tbarDisplayCameraDelay";
-            this.tbarDisplayCameraDelay.Size = new System.Drawing.Size(283, 45);
-            this.tbarDisplayCameraDelay.TabIndex = 54;
-            this.tbarDisplayCameraDelay.Value = 1;
-            this.tbarDisplayCameraDelay.Scroll += new System.EventHandler(this.tbarDisplayCameraDelay_Scroll);
-            // 
-            // lblDisplayCameraDelay
-            // 
-            this.lblDisplayCameraDelay.AutoSize = true;
-            this.lblDisplayCameraDelay.Location = new System.Drawing.Point(381, 49);
-            this.lblDisplayCameraDelay.Name = "lblDisplayCameraDelay";
-            this.lblDisplayCameraDelay.Size = new System.Drawing.Size(21, 22);
-            this.lblDisplayCameraDelay.TabIndex = 58;
-            this.lblDisplayCameraDelay.Text = "1";
+            this.groupBox4.Text = "Distance Back for Heading";
             // 
             // tabGuidance
             // 
@@ -1217,6 +1138,16 @@
             this.tabGuidance.TabIndex = 4;
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(686, 249);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(261, 30);
+            this.label32.TabIndex = 9;
+            this.label32.Text = "Zero Roll and Pitch Values";
             // 
             // label14
             // 
@@ -1406,15 +1337,53 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // label32
+            // nudMinFixStepDistance
             // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(686, 249);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(261, 30);
-            this.label32.TabIndex = 9;
-            this.label32.Text = "Zero Roll and Pitch Values";
+            this.nudMinFixStepDistance.DecimalPlaces = 1;
+            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(30, 49);
+            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
+            this.nudMinFixStepDistance.Size = new System.Drawing.Size(120, 44);
+            this.nudMinFixStepDistance.TabIndex = 66;
+            this.nudMinFixStepDistance.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.nudMinFixStepDistance_ValueChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(171, 62);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 22);
+            this.label20.TabIndex = 67;
+            this.label20.Text = "Meters";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(26, 125);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(279, 22);
+            this.label21.TabIndex = 68;
+            this.label21.Text = "More Meters is More Smoothing";
             // 
             // FormSettings
             // 
@@ -1468,18 +1437,16 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabDisplay.ResumeLayout(false);
-            this.tabDisplay.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayFixDelay)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarDisplayCameraDelay)).EndInit();
             this.tabGuidance.ResumeLayout(false);
             this.tabGuidance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1510,14 +1477,7 @@
         private System.Windows.Forms.TabPage tabDisplay;
         private System.Windows.Forms.NumericUpDown nudAntennaPivot;
         private System.Windows.Forms.NumericUpDown nudWheelbase;
-        private System.Windows.Forms.Label lblDisplayFixDelay;
-        private System.Windows.Forms.Label lblDisplayCameraDelay;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TrackBar tbarDisplayFixDelay;
-        private System.Windows.Forms.TrackBar tbarDisplayCameraDelay;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label18;
@@ -1578,5 +1538,8 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
     }
 }

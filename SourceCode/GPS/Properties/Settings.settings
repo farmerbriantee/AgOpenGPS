@@ -83,12 +83,6 @@
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
     </Setting>
-    <Setting Name="setDisplay_delayFixPrev" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="setDisplay_delayCameraPrev" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
     <Setting Name="setVehicle_turnOffDelay" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
@@ -172,6 +166,9 @@
     </Setting>
     <Setting Name="setIsLogNMEA" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="set_minFixStep" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -349,30 +349,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int setDisplay_delayFixPrev {
-            get {
-                return ((int)(this["setDisplay_delayFixPrev"]));
-            }
-            set {
-                this["setDisplay_delayFixPrev"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public int setDisplay_delayCameraPrev {
-            get {
-                return ((int)(this["setDisplay_delayCameraPrev"]));
-            }
-            set {
-                this["setDisplay_delayCameraPrev"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public double setVehicle_turnOffDelay {
             get {
@@ -704,6 +680,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setIsLogNMEA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double set_minFixStep {
+            get {
+                return ((double)(this["set_minFixStep"]));
+            }
+            set {
+                this["set_minFixStep"] = value;
             }
         }
     }

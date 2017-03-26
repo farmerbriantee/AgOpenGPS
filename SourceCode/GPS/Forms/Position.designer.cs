@@ -26,8 +26,6 @@ namespace AgOpenGPS
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
 
-        public int delayFixPrev = 2, delayCameraPrev = 6;
-
         //for heading or Atan2 as camera
         public bool isAtanCam = true;
 
@@ -39,16 +37,14 @@ namespace AgOpenGPS
         public double prevToolEasting = 0, prevToolNorthing = 0;
 
         //array index for previous northing and easting positions
-        private static int numPrevs = 20;
-        public double[] prevNorthing = new double[numPrevs];
-        public double[] prevEasting = new double[numPrevs];
-
+        private static int numPrevs = 11;
+        public double prevNorthing,prevEasting;
 
         //headings
         public double fixHeading = 0.0, fixHeadingCam = 0.0, fixHeadingSection = 0.0;
 
         //storage for the cos and sin of heading
-        public double cosHeading = 1.0, sinHeading = 0.0;
+        public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
 
         //a distance between previous and current fix
         private double distance = 0.0, userDistance = 0;
@@ -59,10 +55,6 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;
         
         public double prevSectionEasting = 0, prevSectionNorthing = 0;
-
-        //Low speed detection variables
-        public double prevLowSpeedEasting = 0, prevLowSpeedNorthing = 0;
-        double distanceLowSpeed = 0;
 
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
         public int recvCounter = 20;
@@ -103,6 +95,15 @@ namespace AgOpenGPS
         public int ringCounterAngularVelocity = 0;
 
         public double pitchZero, rollZero;
+
+        private static int numFixSteps = 20;
+        private int stepFixNumber = 0;
+        public vec3[] stepFixPts = new vec3[40];
+        double distanceCurrentStepFix = 0;
+        private double fixStepDist;
+        private vec3 vHold;
+        bool isFixHolding = false, isFixHoldLoaded = false;
+        public double minFixStepDist = 0;
         
         //called by watchdog timer every 50 ms
         private void ScanForNMEA()
@@ -168,17 +169,15 @@ namespace AgOpenGPS
             recvCounter++;
         }
 
-        //called by the openglDraw routine 10 times per second.
+        //call for position update after valid NMEA sentence
         private void UpdateFixPosition()
         {
             startCounter++;
+            numFixSteps = fixUpdateHz * 3;
 
-            if (!isGPSPositionInitialized)
-            {
-                InitializeFirstFewGPSPositions();
-                return;
-            }
+            if (!isGPSPositionInitialized) {  InitializeFirstFewGPSPositions();   return;  }
             
+    #region tilt
             //average out angular velocity
             int times = 30;
             avgAngularVelocity[ringCounterTiltRoll] = modcom.angularVelocity;
@@ -201,21 +200,21 @@ namespace AgOpenGPS
             roll = Math.Sin(glm.toRadians(roll));
             tiltDistance = Math.Abs(roll * vehicle.antennaHeight);
 
-            //tilt to left is positive 
-            if (roll > 0)
-            {
-                pn.easting = (Math.Cos(fixHeading) * tiltDistance) + pn.easting;
-                pn.northing = (Math.Sin(fixHeading) * -tiltDistance) + pn.northing;
-            }
+            ////tilt to left is positive 
+            //if (roll > 0)
+            //{
+            //    pn.easting = (Math.Cos(fixHeading) * tiltDistance) + pn.easting;
+            //    pn.northing = (Math.Sin(fixHeading) * -tiltDistance) + pn.northing;
+            //}
 
-            else
-            {
-                pn.easting = (Math.Cos(fixHeading) * -tiltDistance) + pn.easting;
-                pn.northing = (Math.Sin(fixHeading) * tiltDistance) + pn.northing;
-            }
+            //else
+            //{
+            //    pn.easting = (Math.Cos(fixHeading) * -tiltDistance) + pn.easting;
+            //    pn.northing = (Math.Sin(fixHeading) * tiltDistance) + pn.northing;
+            //}
 
             //average out the pitch angle
-            times = 10;
+            times = 5;
             avgTiltPitch[ringCounterTiltPitch] = modcom.pitchAngle+pitchZero;
             if (ringCounterTiltPitch++ == times - 1) ringCounterTiltPitch = 0;
             pitch = 0;
@@ -226,17 +225,87 @@ namespace AgOpenGPS
             pitch = Math.Sin(glm.toRadians(pitch));
 
             tiltDistance = (pitch * vehicle.antennaHeight);
-
             //pn.easting = (Math.Sin(fixHeading) * tiltDistance) + pn.easting;
             //pn.northing = (Math.Cos(fixHeading) * tiltDistance) + pn.northing;
 
-            //calc low speed distance travelled if speed < 2 kph and app not starting
-            if (pn.speed < (1.9)) distanceLowSpeed = pn.Distance(pn.northing, pn.easting, prevLowSpeedNorthing, prevLowSpeedEasting);
-            else distanceLowSpeed = -1;
-           
-            //calculate lookahead at full speed, no sentence misses
-            CalculateSectionLookAhead(toolNorthing, toolEasting, cosHeading, sinHeading);
+#endregion            
+            
+            distanceCurrentStepFix = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
+            fixStepDist = distanceCurrentStepFix;
 
+            if (distanceCurrentStepFix <= minFixStepDist)
+            {
+                for (stepFixNumber = 0; stepFixNumber < numFixSteps; stepFixNumber++)
+                {
+                    fixStepDist += stepFixPts[stepFixNumber].h;
+                    if (fixStepDist > minFixStepDist)
+                    {
+                        if (stepFixNumber < (numFixSteps-1) ) stepFixNumber++; 
+                        isFixHolding = false;
+                        break;
+                    }
+                    else isFixHolding = true;
+                }
+            }
+            else stepFixNumber = 0;
+
+            //if total distance is less then the addition of all the fixes, keep last one as reference
+            if (isFixHolding)
+            {
+                if (isFixHoldLoaded == false)
+                {
+                    vHold = stepFixPts[(numFixSteps - 1)];
+                    isFixHoldLoaded = true;
+                }
+
+                //cycle thru like normal
+                for (int i = numFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
+
+                //fill in the latest distance and fix
+                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
+                stepFixPts[0].x = pn.easting;
+                stepFixPts[0].z = pn.northing;
+
+                //reload the last position that was triggered.
+                stepFixPts[(numFixSteps - 1)].h = pn.Distance(vHold.z, vHold.x, stepFixPts[(numFixSteps - 1)].z, stepFixPts[(numFixSteps - 1)].x);
+                stepFixPts[(numFixSteps - 1)].x = vHold.x;
+                stepFixPts[(numFixSteps - 1)].z = vHold.z;
+            }
+            
+            else
+            {
+                //positions and headings 
+                CalculatePositionHeading();
+
+                isFixHoldLoaded = false;
+
+                stepFixPts[(numFixSteps - 1)].h = 0;
+
+                //To prevent drawing high numbers of triangles, determine and test before drawing vertex
+                sectionTriggerDistance = pn.Distance(toolNorthing, toolEasting, prevSectionNorthing, prevSectionEasting);
+
+                //section on off and points, contour points
+                if (sectionTriggerDistance > sectionTriggerStepDistance)
+                        AddSectionContourPathPoints();
+
+                //calc distance travelled since last GPS fix
+                distance = pn.Distance(pn.northing, pn.easting, prevNorthing, prevEasting);
+                totalDistance += distance; //distance tally                   
+                userDistance += distance;//userDistance can be reset
+
+               //most recent fixes
+                prevEasting = pn.easting; prevNorthing = pn.northing;
+
+                //load up history with valid data
+                for (int i = numFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
+
+                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
+
+                stepFixPts[0].x = pn.easting;
+                stepFixPts[0].z = pn.northing;
+            }
+
+        #region AutoSteer
             //preset the values
             guidanceLineDistanceOff = 32000;
             guidanceLineHeadingDelta = 0;
@@ -260,40 +329,122 @@ namespace AgOpenGPS
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
             AutoSteerControlOutToPort();
+            #endregion
 
-            //time to record next fix
-            if (distanceLowSpeed > 0.4 | pn.speed > 1.8 | startCounter < 20)
-            {
-                //positions and headings 
-                CalculatePositionHeading();
-
-                //To prevent drawing high numbers of triangles, determine and test before drawing vertex
-                sectionTriggerDistance = pn.Distance(toolNorthing, toolEasting, prevSectionNorthing, prevSectionEasting);
-
-                //section on off and points, contour points
-                if (sectionTriggerDistance > sectionTriggerStepDistance)
-                        AddSectionContourPathPoints();
-
-                //calc distance travelled since last GPS fix
-                distance = pn.Distance(pn.northing, pn.easting, prevNorthing[0], prevEasting[0]);
-                totalDistance += distance; //distance tally                   
-                userDistance += distance;//userDistance can be reset
-
-                //save a copy of previous positions for cam heading of desired filtering or delay
-                for (int x = numPrevs - 1; x > 0; x--) { prevNorthing[x] = prevNorthing[x - 1]; prevEasting[x] = prevEasting[x - 1]; }
-
-                //most recent fixes
-                prevEasting[0] = pn.easting; prevNorthing[0] = pn.northing;
-
-                prevToolNorthing = toolNorthing;
-                prevToolEasting = toolEasting;
-                prevFixHeadingSection = fixHeadingSection;
-            }
+            //calculate lookahead at full speed, no sentence misses
+            CalculateSectionLookAhead(toolNorthing, toolEasting, cosSectionHeading, sinSectionHeading);
 
             //openGLControl_Draw routine triggered manually
             openGLControl.DoRender();
 
         //end of UppdateFixPosition
+        }
+
+        double dist = 0, t = 0;
+
+        //all the hitch, pivot, section, trailing hitch, headings and fixes
+        private void CalculatePositionHeading()
+        {
+            //in radians
+            fixHeading = Math.Atan2(pn.easting - stepFixPts[stepFixNumber].x, pn.northing - stepFixPts[stepFixNumber].z);
+            if (fixHeading < 0) fixHeading += glm.twoPI;
+
+            //determine fix positions and heading
+            fixPosX = (pn.easting);
+            fixPosZ = (pn.northing);
+ 
+
+       #region pivot hitch trail
+
+            //translate world to the pivot axle
+            pivotAxleEasting = pn.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
+            pivotAxleNorthing = pn.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
+
+            //determine where the rigid vehicle hitch ends
+            hitchEasting = pn.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
+            hitchNorthing = pn.northing + (Math.Cos(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
+
+            //tool attached via a trailing hitch
+            if (vehicle.isToolTrailing)
+            {
+                //Torriem rules!!!!! Oh yes, this is all his. Thank-you
+                if (distanceCurrentStepFix != 0)
+                {
+                    t = (vehicle.toolTrailingHitchLength) / distanceCurrentStepFix;
+                    toolEasting = hitchEasting + t * (hitchEasting - toolEasting);
+                    toolNorthing = hitchNorthing + t * (hitchNorthing - toolNorthing);
+                    fixHeadingSection = Math.Atan2(hitchEasting - toolEasting, hitchNorthing - toolNorthing);                    
+                }
+
+                //the tool is seriously jacknifed so just spring it back.
+                double over = Math.Abs(Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI));
+
+                dist = over;
+
+                if (over < 1.9 && startCounter > 50)
+                {
+                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                }
+
+                if (over > 1.9 | startCounter < 50 | over < 0.004)
+                {
+                    fixHeadingSection = fixHeading;
+                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    prevToolNorthing = toolNorthing;
+                    prevToolEasting = toolEasting;
+                }
+            }
+
+            //rigidly connected to vehicle
+            else
+            {
+                fixHeadingSection = fixHeading;
+                toolEasting = hitchEasting;
+                toolNorthing = hitchNorthing;
+            }
+
+#endregion
+
+            //in degrees for glRotate opengl methods.
+            int camStep = stepFixNumber * 2;
+            if (camStep > (numFixSteps - 1)) camStep = (numFixSteps - 1);
+            fixHeadingCam = Math.Atan2(pn.easting - stepFixPts[camStep].x, pn.northing - stepFixPts[camStep].z);
+            if (fixHeadingCam < 0) fixHeadingCam += glm.twoPI;
+
+            //to degrees for openGL camera
+            fixHeadingCam = glm.toDegrees(fixHeadingCam);
+
+            //used to increase triangle count when going around corners, less on straight
+            //pick the slow moving side edge of tool
+            double metersPerSec = pn.speed * 0.277777777;
+
+            //whichever is less
+            if (vehicle.toolFarLeftSpeed < vehicle.toolFarRightSpeed)
+                sectionTriggerStepDistance = vehicle.toolFarLeftSpeed / metersPerSec;
+            else sectionTriggerStepDistance = vehicle.toolFarRightSpeed / metersPerSec;
+
+            //finally determine distance
+            sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance * 
+                metersPerSec * triangleResolution*2.0 + 1.0;
+
+            //  ** Torriem Cam   *****
+            //Default using fix Atan2 to calc cam, if unchecked in display settings use True Heading from NMEA
+            if (!isAtanCam)
+            {
+                //use NMEA headings for camera and tractor graphic
+                fixHeading = glm.toRadians(pn.headingTrue);
+                fixHeadingCam = pn.headingTrue;
+            }
+
+            //check to make sure the grid is big enough
+            worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
+
+            //precalc the sin and cos of heading * -1
+            sinSectionHeading = Math.Sin(-fixHeadingSection);
+            cosSectionHeading = Math.Cos(-fixHeadingSection);
+
         }
 
         //add the points for section, contour line points, Area Calc feature
@@ -309,8 +460,8 @@ namespace AgOpenGPS
                     if (isAreaOnRight)
                     {
                         //Right side
-                        vec2 point = new vec2(cosHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
-                            sinHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
+                        vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
+                            sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
                         periArea.periPtList.Add(point);
                     }
 
@@ -318,8 +469,8 @@ namespace AgOpenGPS
                     else
                     {
                         //Right side
-                        vec2 point = new vec2(cosHeading * (section[0].positionLeft) + toolEasting,
-                            sinHeading * (section[0].positionLeft) + toolNorthing);
+                        vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolEasting,
+                            sinSectionHeading * (section[0].positionLeft) + toolNorthing);
                         periArea.periPtList.Add(point);
                     }
                     
@@ -335,7 +486,7 @@ namespace AgOpenGPS
                 {
                     if (section[j].isSectionOn)
                     {
-                        section[j].AddPathPoint(toolNorthing, toolEasting, cosHeading, sinHeading);
+                        section[j].AddPathPoint(toolNorthing, toolEasting, cosSectionHeading, sinSectionHeading);
                         sectionCounter++;
                     }
                 }
@@ -387,8 +538,12 @@ namespace AgOpenGPS
                 worldGrid.CreateWorldGrid(pn.northing, pn.easting);
 
                 //most recent fixes
-                prevEasting[0] = pn.easting;
-                prevNorthing[0] = pn.northing;
+                prevEasting = pn.easting;
+                prevNorthing = pn.northing;
+
+                stepFixPts[0].x = pn.easting;
+                stepFixPts[0].z = pn.northing;
+                stepFixPts[0].h = 0;
 
                 //run once and return
                 isFirstFixPositionSet = true;
@@ -397,129 +552,32 @@ namespace AgOpenGPS
 
             else
             {
-                //save a copy of previous positions for cam heading of desired filtering or delay
-                for (int x = numPrevs - 1; x > 0; x--) { prevNorthing[x] = prevNorthing[x - 1]; prevEasting[x] = prevEasting[x - 1]; }
-
+ 
                 //most recent fixes
-                prevEasting[0] = pn.easting; prevNorthing[0] = pn.northing;
+                prevEasting = pn.easting; prevNorthing = pn.northing;
 
-                if (startCounter > delayCameraPrev) isGPSPositionInitialized = true;
+                //load up history with valid data
+                for (int i = numFixSteps - 1; i > 0; i--)
+                {
+                    stepFixPts[i].x = stepFixPts[i - 1].x;
+                    stepFixPts[i].z = stepFixPts[i - 1].z;
+                    stepFixPts[i].h = stepFixPts[i - 1].h;
+                }
+
+                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
+                stepFixPts[0].x = pn.easting;
+                stepFixPts[0].z = pn.northing;
+
+                //keep here till valid data
+                if (startCounter > numFixSteps) isGPSPositionInitialized = true;
 
                 //in radians
-                fixHeading = Math.Atan2(pn.easting - prevEasting[delayFixPrev], pn.northing - prevNorthing[delayFixPrev]);
+                fixHeading = Math.Atan2(pn.easting - stepFixPts[numFixSteps - 1].x, pn.northing - stepFixPts[numFixSteps - 1].z); 
                 if (fixHeading < 0) fixHeading += glm.twoPI;
-
-                prevToolEasting = pn.easting + Math.Sin(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
-                prevToolNorthing = pn.northing + Math.Cos(fixHeading) * (vehicle.toolTrailingHitchLength + vehicle.hitchLength);
-                prevFixHeadingSection = fixHeading;
                 fixHeadingSection = fixHeading;
 
                 return;
             }
-        }
-
-        //all the hitch, pivot, section, trailing hitch, headings and fixes
-        private void CalculatePositionHeading()
-        {
-     
-            //in radians
-            fixHeading = Math.Atan2(pn.easting - prevEasting[delayFixPrev], pn.northing - prevNorthing[delayFixPrev]);
-            if (fixHeading < 0) fixHeading += glm.twoPI;
-
-            //determine fix positions and heading
-            fixPosX = (pn.easting);
-            fixPosZ = (pn.northing);
- 
-           //save a copy to calc distance for next time, make these current.
-            prevLowSpeedEasting = pn.easting;
-            prevLowSpeedNorthing = pn.northing;
-
-            //translate world to the pivot axle
-            pivotAxleEasting = pn.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
-            pivotAxleNorthing = pn.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
-
-            //determine where the rigid vehicle hitch ends
-            hitchEasting = pn.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
-            hitchNorthing = pn.northing + (Math.Cos(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
-
-            //tool attached via a trailing hitch
-            if (vehicle.isToolTrailing)
-            {
-                //Torriem rules!!!!! Oh yes, this is all his. Thank-you
-                double t;
-                double dist = Math.Sqrt((hitchNorthing - prevToolNorthing) * (hitchNorthing - prevToolNorthing) +
-                                                            (hitchEasting - prevToolEasting) * (hitchEasting - prevToolEasting));
-                if (dist != 0)
-                {
-                    t = (vehicle.toolTrailingHitchLength + vehicle.hitchLength) / dist;
-                    prevToolEasting = hitchEasting + t * (hitchEasting - prevToolEasting);
-                    prevToolNorthing = hitchNorthing + t * (hitchNorthing - prevToolNorthing);
-                    fixHeadingSection = Math.Atan2(hitchEasting - prevToolEasting, hitchNorthing - prevToolNorthing);
-                    if (fixHeadingSection < 0) fixHeadingSection += glm.twoPI;
-                }
-
-                //the tool is seriously jacknifed so just spring it back.
-                double over = Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI);
-
-                if (over < 1.9)
-                {
-                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                }
-
-                else
-                {
-                    fixHeadingSection = fixHeading;
-                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                    prevToolNorthing = toolNorthing;
-                    prevToolEasting = toolEasting;
-                }
-            }
-
-            //rigidly connected to vehicle
-            else
-            {
-                fixHeadingSection = fixHeading;
-                toolEasting = hitchEasting;
-                toolNorthing = hitchNorthing;
-            }
-
-            //in degrees for glRotate opengl methods.
-            fixHeadingCam = Math.Atan2(pn.easting - prevEasting[delayCameraPrev], pn.northing - prevNorthing[delayCameraPrev]);
-            if (fixHeadingCam < 0) fixHeadingCam += glm.twoPI;
-
-            //to degrees for openGL camera
-            fixHeadingCam = glm.toDegrees(fixHeadingCam);
-
-            //used to increase triangle count when going around corners, less on straight
-            //pick the slow moving side edge of tool
-            double metersPerSec = pn.speed * 0.277777777;
-
-            //whichever is less
-            if (vehicle.toolFarLeftSpeed < vehicle.toolFarRightSpeed)
-                sectionTriggerStepDistance = vehicle.toolFarLeftSpeed / metersPerSec;
-            else sectionTriggerStepDistance = vehicle.toolFarRightSpeed / metersPerSec;
-
-            //finally determine distance
-            sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance * metersPerSec * triangleResolution*2.0 + 1.0;
-
-            //  ** Torriem Cam   *****
-            //Default using fix Atan2 to calc cam, if unchecked in display settings use True Heading from NMEA
-            if (!isAtanCam)
-            {
-                //use NMEA headings for camera and tractor graphic
-                fixHeading = glm.toRadians(pn.headingTrue);
-                fixHeadingCam = pn.headingTrue;
-            }
-
-            //check to make sure the grid is big enough
-            worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
-
-            //precalc the sin and cos of heading * -1
-            sinHeading = Math.Sin(-fixHeadingSection);
-            cosHeading = Math.Cos(-fixHeadingSection);
-
         }
         
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards
@@ -531,7 +589,7 @@ namespace AgOpenGPS
             vec2 left = new vec2(0, 0);
             vec2 right = left;
 
-            double leftSpeed = 0, rightSpeed = 0, leftLook = 0, rightLook = 0 ;
+            double leftSpeed = 0, rightSpeed = 0, leftLook = 0, rightLook = 0;
 
 
 
@@ -587,7 +645,10 @@ namespace AgOpenGPS
                 if (leftLook > rightLook)  section[j].sectionLookAhead = leftLook;
                 else section[j].sectionLookAhead = rightLook;
 
+                //if (pn.speed < 3.6) section[j].sectionLookAhead = 10.0;
+
                 if (section[j].sectionLookAhead > 190) section[j].sectionLookAhead = 190;
+                if (section[j].sectionLookAhead < 5) section[j].sectionLookAhead = 5;
 
                 double head = left.HeadingXZ();
                 if (head < 0) head += glm.twoPI;
@@ -598,7 +659,7 @@ namespace AgOpenGPS
                 //if both left and right sides of section are going backwards turn off section, negative lookahead
                 if (Math.PI - Math.Abs(Math.Abs(head - fixHeadingSection) - Math.PI) > glm.PIBy2 &&
                         Math.PI - Math.Abs(Math.Abs(head2 - fixHeadingSection) - Math.PI) > glm.PIBy2)
-                    
+
                     section[j].sectionLookAhead = Math.Abs(section[j].sectionLookAhead) * -1;
                 
             }//endfor

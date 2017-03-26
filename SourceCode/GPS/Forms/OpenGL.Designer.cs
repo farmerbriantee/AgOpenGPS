@@ -184,12 +184,12 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                gl.DrawText(10, 15, 1, 1, 1, "Courier", 16, " Distance " + Convert.ToString(section[3].sectionLookAhead));
-                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 16, " Pitch " + Convert.ToString(avgPitch));
-                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 16, "  Roll " + Convert.ToString(avgRoll));
-                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 16, "angVel " + Convert.ToString(avgAngVel));
-                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  Dist " + Convert.ToString(Math.Round(tiltDistance,2)));
-                //gl.DrawText(10, 90, 1, 0.5f, 1, "Courier", 12, "Lookahead[0] (m) " + Convert.ToString(Math.Round(section[0].sectionLookAhead*0.1)));
+                gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " lookA " + Convert.ToString(section[0].sectionLookAhead));
+                gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  step " + Convert.ToString(stepFixNumber));
+                gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Curr " + Convert.ToString(distanceCurrentStepFix));
+                gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  dist " + Convert.ToString(fixStepDist));
+                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  DD " + Convert.ToString(dist));
+                //gl.DrawText(10, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
                 //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
                 // gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
@@ -445,7 +445,7 @@ namespace AgOpenGPS
             }
 
             //if only one section, or going slow no need for super section 
-            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff+1.4) 
+            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff) 
                     vehicle.areAllSectionsRequiredOn = false;
 
             //clamp the height
