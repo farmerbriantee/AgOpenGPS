@@ -1996,6 +1996,9 @@ namespace AgOpenGPS
                 stripPitch.Text = avgPitch + "\u00B0";
                 stripAngularVel.Text = avgAngVel.ToString();
                 //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
+
+                lblAutoSteerDelta.Text = guidanceLineHeadingDelta + "\u00B0";
+                lblAutoSteerDistance.Text = guidanceLineDistanceOff.ToString();
                 
                 //up in the menu a few pieces of info
                 if (isJobStarted)

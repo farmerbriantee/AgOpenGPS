@@ -131,6 +131,8 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnMinMaxZoom = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
+            this.lblAutoSteerDistance = new System.Windows.Forms.Label();
+            this.lblAutoSteerDelta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -624,7 +626,7 @@
             this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(304, 20);
+            this.stripEqWidth.Size = new System.Drawing.Size(330, 20);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1261,12 +1263,40 @@
             this.btnABLine.UseVisualStyleBackColor = true;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
             // 
+            // lblAutoSteerDistance
+            // 
+            this.lblAutoSteerDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAutoSteerDistance.AutoSize = true;
+            this.lblAutoSteerDistance.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.lblAutoSteerDistance.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutoSteerDistance.Location = new System.Drawing.Point(873, 5);
+            this.lblAutoSteerDistance.Name = "lblAutoSteerDistance";
+            this.lblAutoSteerDistance.Size = new System.Drawing.Size(67, 25);
+            this.lblAutoSteerDistance.TabIndex = 129;
+            this.lblAutoSteerDistance.Text = "32000";
+            this.lblAutoSteerDistance.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblAutoSteerDelta
+            // 
+            this.lblAutoSteerDelta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAutoSteerDelta.AutoSize = true;
+            this.lblAutoSteerDelta.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.lblAutoSteerDelta.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAutoSteerDelta.Location = new System.Drawing.Point(801, 5);
+            this.lblAutoSteerDelta.Name = "lblAutoSteerDelta";
+            this.lblAutoSteerDelta.Size = new System.Drawing.Size(67, 25);
+            this.lblAutoSteerDelta.TabIndex = 130;
+            this.lblAutoSteerDelta.Text = "32000";
+            this.lblAutoSteerDelta.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1019, 520);
+            this.Controls.Add(this.lblAutoSteerDelta);
+            this.Controls.Add(this.lblAutoSteerDistance);
             this.Controls.Add(this.btnAutoSteer);
             this.Controls.Add(this.btnSection8Man);
             this.Controls.Add(this.btnSection7Man);
@@ -1424,6 +1454,8 @@
         private System.Windows.Forms.ToolStripStatusLabel stripPitch;
         private System.Windows.Forms.ToolStripStatusLabel stripAngularVel;
         private System.Windows.Forms.ToolStripMenuItem logNMEAMenuItem;
+        private System.Windows.Forms.Label lblAutoSteerDistance;
+        private System.Windows.Forms.Label lblAutoSteerDelta;
     }
 }
 

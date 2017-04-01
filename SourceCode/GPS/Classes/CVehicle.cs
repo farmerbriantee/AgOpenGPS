@@ -101,7 +101,7 @@ namespace AgOpenGPS
             else trailing = 0;
             
             //draw the sections
-            gl.LineWidth(8);
+            gl.LineWidth(4);
             gl.Begin(OpenGL.GL_LINES);
 
                 //draw section line
@@ -168,8 +168,8 @@ namespace AgOpenGPS
             gl.Color(0.95f, 0.90f, 0.0f);
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            if (mf.isAreaOnRight) gl.Vertex(2.5, 0, -antennaPivot);
-            else gl.Vertex(-2.5, 0, -antennaPivot);
+            if (mf.isAreaOnRight) gl.Vertex(2.0, 0, -antennaPivot);
+            else gl.Vertex(-2.0, 0, -antennaPivot);
 
 
             ////antenna

@@ -184,10 +184,10 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " lookA " + Convert.ToString(section[0].sectionLookAhead));
-                gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  step " + Convert.ToString(stepFixNumber));
-                gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Curr " + Convert.ToString(distanceCurrentStepFix));
-                gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  dist " + Convert.ToString(fixStepDist));
+                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " lookA " + Convert.ToString(section[0].sectionLookAhead));
+                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  step " + Convert.ToString(currentStepFix));
+                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Curr " + Convert.ToString(distanceCurrentStepFix));
+                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  dist " + Convert.ToString(fixStepDist));
                 //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  DD " + Convert.ToString(dist));
                 //gl.DrawText(10, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
                 //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
@@ -449,19 +449,18 @@ namespace AgOpenGPS
                     vehicle.areAllSectionsRequiredOn = false;
 
             //clamp the height
-            rpHeight *= 1.2;
+            rpHeight *= 2.0;
             if (rpHeight > 199) rpHeight = 199;
 
             //read the whole block of pixels up to max lookahead, one read only
             gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, (int)rpHeight,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixels);
 
-            //Only if all sections on, check if there is applied anywhere in the lookahead block
-            int totalPixs = 0;
-
             //10 % min is required for overlap, otherwise it never would be on.
-            int pixLimit = (int)((float)(vehicle.rpWidth * rpHeight)*0.1); 
+            int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight)*(1.0/(double)(vehicle.numOfSections*1.5)) ); 
 
+            //is applied area coming up?
+            int totalPixs = 0;
             if (vehicle.areAllSectionsRequiredOn)
             {
                 for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
@@ -502,6 +501,8 @@ namespace AgOpenGPS
                 * have the highest priority and overide all buttons except
                 * the manual button which exits the loop and just turns sections on....
                 * Because isn't that what manual means! */
+
+            //turn on indivdual sections as super section turn off
             else
             {
 
@@ -544,8 +545,6 @@ namespace AgOpenGPS
                     if (section[j].isSectionRequiredOn == false) vehicle.areAllSectionsRequiredOn = false;
                 }
 
-
-
                 //if the superSection is on, turn it off
                 if (section[vehicle.numOfSections].isSectionOn)
                 {
@@ -554,7 +553,6 @@ namespace AgOpenGPS
                     section[vehicle.numOfSections].sectionOffTimer = 0;
                     section[vehicle.numOfSections].sectionOnTimer = 0;
                 }
-
 
                 //if Master Auto is on
                 for (int j = 0; j < vehicle.numOfSections; j++)
@@ -592,8 +590,7 @@ namespace AgOpenGPS
                     {
                         section[j].sectionOnRequest = false;
                         section[j].sectionOffRequest = true;
-                    }
-  
+                    }  
 
                     //digital input Master control (WorkSwitch)
                     if (isJobStarted && modcom.isWorkSwitchEnabled)
@@ -632,7 +629,6 @@ namespace AgOpenGPS
             SectionControlOutToPort();
 
             //System.Threading.Thread.Sleep(400);
-
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
@@ -644,12 +640,10 @@ namespace AgOpenGPS
                     FileSaveField();
                     FileSaveContour();
                     FileSaveFlags();
-
                     if (isLogNMEA) FileSaveNMEA();
                 }
                 saveCounter = 0;
-            }
-            
+            }            
             //this is the end of the "frame". Now we wait for next NMEA sentence. 
         }
                 

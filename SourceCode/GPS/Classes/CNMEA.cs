@@ -273,7 +273,8 @@ namespace AgOpenGPS
             double temp;
             //GPRMC parsing of the sentence 
             //make sure there aren't missing coords in sentence
-            if (!String.IsNullOrEmpty(words[7]) & !String.IsNullOrEmpty(words[8]) & !String.IsNullOrEmpty(words[2]))
+            if (!String.IsNullOrEmpty(words[3]) & !String.IsNullOrEmpty(words[4])
+                & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
             {
                 //get latitude and convert to decimal degrees
                 double.TryParse(words[3].Substring(0, 2), out latitude);
