@@ -1,7 +1,7 @@
 
 # AgOpenGPS
 
-***** This is Beta software. It has a few bugs and are being worked on. Check back for newer versions
+***** This is ongoing development software. It has a few bugs and are being worked on. Check back for newer versions
 
 Ag Precision Mapping and Section Control Software
 
@@ -11,4 +11,4 @@ preventing over-application.
 
 Also ouputs angle delta and distance from reference line for AB line and Contour guidance.
 
-Included is an application, and source folders. 
+Included is an application, and source folders, along with UDP, TCP/IP, and serial NMEA simulators. 
