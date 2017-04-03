@@ -27,9 +27,11 @@ namespace AgOpenGPS
         decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
-        decimal triResolution, cutoffSpeed, minFixStepDistance;
+        decimal triResolution, minFixStepDistance;
 
         bool isWorkSwEn, isWorkSwActiveLow;
+
+        double metImp2m, m2MetImp, cutoffMetricImperial, cutoffSpeed, maxWidth;
 
         //string gooleEarthPath;
 
@@ -40,6 +42,33 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
+            if (mf.isMetric)
+            {
+                metImp2m = 0.01;
+                m2MetImp = 100.0;
+                lblInchesCm.Text = "Centimeters";
+                lblSecTotalWidthFeet.Visible = false;
+                lblSecTotalWidthInches.Visible = false;
+                lblSecTotalWidthMeters.Visible = true;
+                lblDoNotExceed.Text = "* Do not exceed 4000 cm*";
+                lblTurnOffBelowUnits.Text = "Km/h";
+                cutoffMetricImperial = 1;
+                maxWidth = 4000;
+            }
+
+            else
+            {
+                metImp2m = glm.in2m;
+                m2MetImp = glm.m2in;
+                lblInchesCm.Text = "Inches";
+                lblSecTotalWidthFeet.Visible = true;
+                lblSecTotalWidthInches.Visible = true;
+                lblSecTotalWidthMeters.Visible = false;
+                lblDoNotExceed.Text = "* Do not exceed 1570 inches *";
+                lblTurnOffBelowUnits.Text = "MPH";
+                cutoffMetricImperial = 1.60934;
+                maxWidth = 1570;
+            }
             //select the page as per calling menu or button from mainGPS form
             tabControl1.SelectedIndex = page;
         }
@@ -54,19 +83,19 @@ namespace AgOpenGPS
             wheelbase = Math.Abs(Properties.Settings.Default.setVehicle_wheelbase);
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
-            nudAntennaHeight.Value = (decimal)(antennaHeight * glm.m2in);
+            nudAntennaHeight.Value = (decimal)(antennaHeight * m2MetImp);
             nudAntennaHeight.ValueChanged += nudAntennaHeight_ValueChanged;
 
             nudAntennaPivot.ValueChanged -= nudAntennaPivot_ValueChanged;
-            nudAntennaPivot.Value = (decimal)(antennaPivot * glm.m2in);
+            nudAntennaPivot.Value = (decimal)(antennaPivot * m2MetImp);
             nudAntennaPivot.ValueChanged += nudAntennaPivot_ValueChanged;
 
             nudHitchLength.ValueChanged -= nudHitchLength_ValueChanged;
-            nudHitchLength.Value = (decimal)(hitchLength * glm.m2in);
+            nudHitchLength.Value = (decimal)(hitchLength * m2MetImp);
             nudHitchLength.ValueChanged += nudHitchLength_ValueChanged;
 
             nudWheelbase.ValueChanged -= nudWheelbase_ValueChanged;
-            nudWheelbase.Value = (decimal)(wheelbase * glm.m2in);
+            nudWheelbase.Value = (decimal)(wheelbase * m2MetImp);
             nudWheelbase.ValueChanged += nudWheelbase_ValueChanged;
 
             
@@ -114,15 +143,15 @@ namespace AgOpenGPS
 
 
             nudOverlap.ValueChanged -= nudOverlap_ValueChanged;
-            nudOverlap.Value = (decimal)(toolOverlap * glm.m2in);
+            nudOverlap.Value = (decimal)(toolOverlap * m2MetImp);
             nudOverlap.ValueChanged += nudOverlap_ValueChanged;
 
             nudForeAft.ValueChanged -= nudAft_ValueChanged;
-            nudForeAft.Value = (decimal)(toolTrailingHitchLength * glm.m2in);
+            nudForeAft.Value = (decimal)(toolTrailingHitchLength * m2MetImp);
             nudForeAft.ValueChanged += nudAft_ValueChanged;
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
-            nudOffset.Value = (decimal)(toolOffset * glm.m2in);
+            nudOffset.Value = (decimal)(toolOffset * m2MetImp);
             nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             nudTurnOffDelay.ValueChanged -= nudTurnOffDelay_ValueChanged;
@@ -142,14 +171,14 @@ namespace AgOpenGPS
             nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
 
             //calc the 8 section widths based on settings.settings also meters to inches
-            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)glm.m2in);
-            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)glm.m2in);
-            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)glm.m2in);
-            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)glm.m2in);
-            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)glm.m2in);
-            nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)glm.m2in);
-            nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)glm.m2in);
-            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)glm.m2in); 
+            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)m2MetImp);
+            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)m2MetImp);
+            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)m2MetImp);
+            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)m2MetImp);
+            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)m2MetImp);
+            nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)m2MetImp);
+            nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)m2MetImp);
+            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)m2MetImp); 
 
             //based on number of sections and values update the page before displaying
             UpdateSpinners();            
@@ -181,10 +210,10 @@ namespace AgOpenGPS
             pitchZeroSet = Properties.Settings.Default.setIMU_pitchZero;
             rollZeroSet = Properties.Settings.Default.setIMU_rollZero;
 
-            cutoffSpeed = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
+            cutoffSpeed = Properties.Settings.Default.setVehicle_slowSpeedCutoff/cutoffMetricImperial;
 
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
-            nudCutoffSpeed.Value = cutoffSpeed;
+            nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
         }
 
@@ -296,8 +325,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_rollZero = rollZeroSet;
             Properties.Settings.Default.setIMU_pitchZero = pitchZeroSet;
 
-            Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)cutoffSpeed;
-            mf.vehicle.slowSpeedCutoff = (double)cutoffSpeed;
+            Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)cutoffSpeed*cutoffMetricImperial;
+            mf.vehicle.slowSpeedCutoff = (double)cutoffSpeed*cutoffMetricImperial;
 
             Properties.Settings.Default.Save();
 
@@ -314,22 +343,22 @@ namespace AgOpenGPS
 
         private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
         {
-            antennaHeight = (double)nudAntennaHeight.Value * glm.in2m;
+            antennaHeight = (double)nudAntennaHeight.Value * metImp2m;
         }
 
         private void nudAntennaPivot_ValueChanged(object sender, EventArgs e)
         {
-            antennaPivot = (double)nudAntennaPivot.Value * glm.in2m;
+            antennaPivot = (double)nudAntennaPivot.Value * metImp2m;
         }
 
         private void nudHitchLength_ValueChanged(object sender, EventArgs e)
         {
-            hitchLength = (double)nudHitchLength.Value * glm.in2m;
+            hitchLength = (double)nudHitchLength.Value * metImp2m;
         }
 
         private void nudWheelbase_ValueChanged(object sender, EventArgs e)
         {
-            wheelbase = (double)nudWheelbase.Value * glm.in2m;
+            wheelbase = (double)nudWheelbase.Value * metImp2m;
         }
 
         private void btnFileOpenVehicle_Click(object sender, EventArgs e)
@@ -422,12 +451,12 @@ namespace AgOpenGPS
 
         private void nudAft_ValueChanged(object sender, EventArgs e)
         {
-            toolTrailingHitchLength = (double)(nudForeAft.Value) * glm.in2m;
+            toolTrailingHitchLength = (double)(nudForeAft.Value) * metImp2m;
         }
 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
-            toolOffset = (double)nudOffset.Value * glm.in2m;
+            toolOffset = (double)nudOffset.Value * metImp2m;
         }
 
         private void nudLookAhead_ValueChanged(object sender, EventArgs e)
@@ -442,7 +471,7 @@ namespace AgOpenGPS
 
         private void nudOverlap_ValueChanged(object sender, EventArgs e)
         {
-            toolOverlap = (double)nudOverlap.Value * glm.in2m; 
+            toolOverlap = (double)nudOverlap.Value * metImp2m; 
         }
 
        #endregion Vehicle
@@ -633,18 +662,26 @@ namespace AgOpenGPS
         //the minimum speed before sections turn off
         private void nudCutoffSpeed_ValueChanged(object sender, EventArgs e)
         {
-            cutoffSpeed = nudCutoffSpeed.Value;
+            cutoffSpeed = (double)nudCutoffSpeed.Value;
         }
 
         //update tool width label at bottom of window
         private void SectionFeetInchesTotalWidthLabelUpdate()
         {
-            double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text)* 0.08334);
-            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
-            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12 , 0);
-            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+            if (mf.isMetric)
+            {
+                lblSecTotalWidthMeters.Text = Convert.ToDouble(lblVehicleToolWidth.Text) + " m";
+            }
 
-            lblSecTotalWidthMeters.Text = (Math.Round((glm.in2m * toFeet * 12.0),2)).ToString() + " m";
+            else
+            {
+                double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text) * 0.08334);
+                lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
+                double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
+                lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+
+                lblSecTotalWidthMeters.Text = (Math.Round((glm.in2m * toFeet * 12.0), 2)).ToString() + " m";
+            }
         }
 
         //Convert section width to positions along toolbar
@@ -653,14 +690,14 @@ namespace AgOpenGPS
             int i = (int)nudNumberOfSections.Value;
 
             //convert to meters spinner value
-            sectionWidth1 = nudSection1.Value * (decimal)glm.in2m;
-            sectionWidth2 = nudSection2.Value * (decimal)glm.in2m;
-            sectionWidth3 = nudSection3.Value * (decimal)glm.in2m;
-            sectionWidth4 = nudSection4.Value * (decimal)glm.in2m;
-            sectionWidth5 = nudSection5.Value * (decimal)glm.in2m;
-            sectionWidth6 = nudSection6.Value * (decimal)glm.in2m;
-            sectionWidth7 = nudSection7.Value * (decimal)glm.in2m;
-            sectionWidth8 = nudSection8.Value * (decimal)glm.in2m;
+            sectionWidth1 = nudSection1.Value * (decimal)metImp2m;
+            sectionWidth2 = nudSection2.Value * (decimal)metImp2m;
+            sectionWidth3 = nudSection3.Value * (decimal)metImp2m;
+            sectionWidth4 = nudSection4.Value * (decimal)metImp2m;
+            sectionWidth5 = nudSection5.Value * (decimal)metImp2m;
+            sectionWidth6 = nudSection6.Value * (decimal)metImp2m;
+            sectionWidth7 = nudSection7.Value * (decimal)metImp2m;
+            sectionWidth8 = nudSection8.Value * (decimal)metImp2m;
 
             switch (i)
             {
@@ -822,35 +859,35 @@ namespace AgOpenGPS
         //Did user spin a section distance spinner?
         private void nudSection1_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners(); 
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection1.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection1.Value -= 1; }
 
         private void nudSection2_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection2.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection2.Value -= 1; }
 
         private void nudSection3_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners(); 
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection3.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection3.Value -= 1; }
 
         private void nudSection4_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners(); 
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection4.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection4.Value -= 1; }
 
         private void nudSection5_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners(); 
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection5.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection5.Value -= 1; }
  
        private void nudSection6_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection6.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection6.Value -= 1; }
 
         private void nudSection7_ValueChanged(object sender, EventArgs e)
        { UpdateSpinners();
-           if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection7.Value -= 1;  }
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection7.Value -= 1;  }
 
         private void nudSection8_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-           if (Convert.ToDouble(lblVehicleToolWidth.Text) > 1572) nudSection8.Value -= 1;  }
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection8.Value -= 1;  }
         
         #endregion Sections
 

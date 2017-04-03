@@ -52,6 +52,9 @@
             this.colorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fieldToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripUnitsMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.metricToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.imperialToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logNMEAMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -133,6 +136,7 @@
             this.btnABLine = new System.Windows.Forms.Button();
             this.lblAutoSteerDistance = new System.Windows.Forms.Label();
             this.lblAutoSteerDelta = new System.Windows.Forms.Label();
+            this.lblSpeedUnits = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -312,6 +316,7 @@
             this.resetALLToolStripMenuItem,
             this.toolStripSeparator2,
             this.colorsToolStripMenuItem,
+            this.toolStripUnitsMenu,
             this.gridToolStripMenuItem,
             this.lightbarToolStripMenuItem,
             this.logNMEAMenuItem,
@@ -364,6 +369,31 @@
             this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(156, 30);
             this.fieldToolStripMenuItem1.Text = "Field";
             this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
+            // 
+            // toolStripUnitsMenu
+            // 
+            this.toolStripUnitsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.metricToolStrip,
+            this.imperialToolStrip});
+            this.toolStripUnitsMenu.Name = "toolStripUnitsMenu";
+            this.toolStripUnitsMenu.Size = new System.Drawing.Size(232, 30);
+            this.toolStripUnitsMenu.Text = "Units";
+            // 
+            // metricToolStrip
+            // 
+            this.metricToolStrip.CheckOnClick = true;
+            this.metricToolStrip.Name = "metricToolStrip";
+            this.metricToolStrip.Size = new System.Drawing.Size(159, 30);
+            this.metricToolStrip.Text = "Metric";
+            this.metricToolStrip.Click += new System.EventHandler(this.metricToolStrip_Click);
+            // 
+            // imperialToolStrip
+            // 
+            this.imperialToolStrip.CheckOnClick = true;
+            this.imperialToolStrip.Name = "imperialToolStrip";
+            this.imperialToolStrip.Size = new System.Drawing.Size(159, 30);
+            this.imperialToolStrip.Text = "Imperial";
+            this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
             // 
             // gridToolStripMenuItem
             // 
@@ -1289,12 +1319,27 @@
             this.lblAutoSteerDelta.Text = "32000";
             this.lblAutoSteerDelta.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // lblSpeedUnits
+            // 
+            this.lblSpeedUnits.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblSpeedUnits.AutoSize = true;
+            this.lblSpeedUnits.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.lblSpeedUnits.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeedUnits.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSpeedUnits.Location = new System.Drawing.Point(587, 4);
+            this.lblSpeedUnits.Name = "lblSpeedUnits";
+            this.lblSpeedUnits.Size = new System.Drawing.Size(52, 25);
+            this.lblSpeedUnits.TabIndex = 131;
+            this.lblSpeedUnits.Text = "Kmh";
+            this.lblSpeedUnits.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1019, 520);
+            this.Controls.Add(this.lblSpeedUnits);
             this.Controls.Add(this.lblAutoSteerDelta);
             this.Controls.Add(this.lblAutoSteerDistance);
             this.Controls.Add(this.btnAutoSteer);
@@ -1456,6 +1501,10 @@
         private System.Windows.Forms.ToolStripMenuItem logNMEAMenuItem;
         private System.Windows.Forms.Label lblAutoSteerDistance;
         private System.Windows.Forms.Label lblAutoSteerDelta;
+        private System.Windows.Forms.Label lblSpeedUnits;
+        private System.Windows.Forms.ToolStripMenuItem toolStripUnitsMenu;
+        private System.Windows.Forms.ToolStripMenuItem metricToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem imperialToolStrip;
     }
 }
 

@@ -225,7 +225,21 @@ namespace AgOpenGPS
 
             //metric settings
             isMetric = Properties.Settings.Default.setIsMetric;
-            toolStripMenuMetricImp.Checked = isMetric;
+            this.metricToolStrip.Checked = isMetric;
+
+            if (isMetric)
+            {
+                lblSpeedUnits.Text = "Kmh";
+                this.metricToolStrip.Checked = true;
+                this.imperialToolStrip.Checked = false;
+            }
+            else
+            {
+                lblSpeedUnits.Text = "MPH";
+                this.metricToolStrip.Checked = false;
+                this.imperialToolStrip.Checked = true;
+            }
+
 
             //area side settings
             isAreaOnRight = Properties.Settings.Default.setIsAreaRight;
@@ -1584,7 +1598,29 @@ namespace AgOpenGPS
         {
             SettingsCommunications();
         }
- 
+         private void metricToolStrip_Click(object sender, EventArgs e)
+        {
+            this.metricToolStrip.Checked = true;
+            this.imperialToolStrip.Checked = false;
+            isMetric = true;
+            Properties.Settings.Default.setIsMetric = isMetric;
+            Properties.Settings.Default.Save();
+            if (isMetric) lblSpeedUnits.Text = "Kmh";
+            else lblSpeedUnits.Text = "MPH";
+
+        }
+
+        private void imperialToolStrip_Click(object sender, EventArgs e)
+        {
+            this.metricToolStrip.Checked = false;
+            this.imperialToolStrip.Checked = true;
+            isMetric = false;
+            Properties.Settings.Default.setIsMetric = isMetric;
+            Properties.Settings.Default.Save();
+            if (isMetric) lblSpeedUnits.Text = "Kmh";
+            else lblSpeedUnits.Text = "MPH";
+        }
+
         //Area button context menu items
         private void toolStripMenuAreaSide_Click(object sender, EventArgs e)
         {
@@ -1673,6 +1709,19 @@ namespace AgOpenGPS
             if (isMetric) isMetric = false; else isMetric = true;
             Properties.Settings.Default.setIsMetric = isMetric;
             Properties.Settings.Default.Save();
+            if (isMetric)
+            {
+                lblSpeedUnits.Text = "Kmh";
+                this.metricToolStrip.Checked = true;
+                this.imperialToolStrip.Checked = false;
+            }
+            else
+            {
+                lblSpeedUnits.Text = "MPH";
+                this.metricToolStrip.Checked = false;
+                this.imperialToolStrip.Checked = true;
+            }
+
         }
         private void toolStripMenuSettings_Click(object sender, EventArgs e)
         {
@@ -2025,6 +2074,8 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
+
+
 
    }//class FormGPS
 }//namespace AgOpenGPS

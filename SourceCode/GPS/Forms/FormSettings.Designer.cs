@@ -65,13 +65,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.tabSections = new System.Windows.Forms.TabPage();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
             this.nudSection8 = new System.Windows.Forms.NumericUpDown();
             this.nudSection7 = new System.Windows.Forms.NumericUpDown();
             this.nudSection6 = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblDoNotExceed = new System.Windows.Forms.Label();
             this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -94,6 +94,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabGuidance = new System.Windows.Forms.TabPage();
             this.label32 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -114,9 +117,7 @@
             this.lblSecTotalWidthMeters = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lblInchesCm = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -147,8 +148,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.tabGuidance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
+            this.tabGuidance.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -669,13 +670,13 @@
             // 
             this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings8;
             this.tabSections.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabSections.Controls.Add(this.label31);
+            this.tabSections.Controls.Add(this.lblTurnOffBelowUnits);
             this.tabSections.Controls.Add(this.label30);
             this.tabSections.Controls.Add(this.nudCutoffSpeed);
             this.tabSections.Controls.Add(this.nudSection8);
             this.tabSections.Controls.Add(this.nudSection7);
             this.tabSections.Controls.Add(this.nudSection6);
-            this.tabSections.Controls.Add(this.label8);
+            this.tabSections.Controls.Add(this.lblDoNotExceed);
             this.tabSections.Controls.Add(this.lblVehicleToolWidth);
             this.tabSections.Controls.Add(this.label4);
             this.tabSections.Controls.Add(this.progressBar1);
@@ -693,15 +694,15 @@
             this.tabSections.Text = " Sections ";
             this.tabSections.UseVisualStyleBackColor = true;
             // 
-            // label31
+            // lblTurnOffBelowUnits
             // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(175, 426);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(56, 25);
-            this.label31.TabIndex = 30;
-            this.label31.Text = "Km/H";
+            this.lblTurnOffBelowUnits.AutoSize = true;
+            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(175, 426);
+            this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
+            this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(56, 25);
+            this.lblTurnOffBelowUnits.TabIndex = 30;
+            this.lblTurnOffBelowUnits.Text = "Km/H";
             // 
             // label30
             // 
@@ -718,13 +719,13 @@
             this.nudCutoffSpeed.DecimalPlaces = 1;
             this.nudCutoffSpeed.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudCutoffSpeed.Increment = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             65536});
             this.nudCutoffSpeed.Location = new System.Drawing.Point(78, 418);
             this.nudCutoffSpeed.Maximum = new decimal(new int[] {
-            5,
+            8,
             0,
             0,
             0});
@@ -795,15 +796,15 @@
             0});
             this.nudSection6.ValueChanged += new System.EventHandler(this.nudSection6_ValueChanged);
             // 
-            // label8
+            // lblDoNotExceed
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(502, 338);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(203, 25);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "* Do not exceed 1570 *";
+            this.lblDoNotExceed.AutoSize = true;
+            this.lblDoNotExceed.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoNotExceed.Location = new System.Drawing.Point(502, 338);
+            this.lblDoNotExceed.Name = "lblDoNotExceed";
+            this.lblDoNotExceed.Size = new System.Drawing.Size(203, 25);
+            this.lblDoNotExceed.TabIndex = 24;
+            this.lblDoNotExceed.Text = "* Do not exceed 1570 *";
             // 
             // lblVehicleToolWidth
             // 
@@ -1119,6 +1120,54 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Distance Back for Heading";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(26, 125);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(279, 22);
+            this.label21.TabIndex = 68;
+            this.label21.Text = "More Meters is More Smoothing";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(171, 62);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 22);
+            this.label20.TabIndex = 67;
+            this.label20.Text = "Meters";
+            // 
+            // nudMinFixStepDistance
+            // 
+            this.nudMinFixStepDistance.DecimalPlaces = 1;
+            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(30, 49);
+            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
+            this.nudMinFixStepDistance.Size = new System.Drawing.Size(120, 44);
+            this.nudMinFixStepDistance.TabIndex = 66;
+            this.nudMinFixStepDistance.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.nudMinFixStepDistance_ValueChanged);
+            // 
             // tabGuidance
             // 
             this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -1257,7 +1306,7 @@
             // 
             this.lblSecTotalWidthInches.AutoSize = true;
             this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(374, 576);
+            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(454, 576);
             this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
             this.lblSecTotalWidthInches.Size = new System.Drawing.Size(47, 35);
             this.lblSecTotalWidthInches.TabIndex = 25;
@@ -1267,7 +1316,7 @@
             // 
             this.lblSecTotalWidthFeet.AutoSize = true;
             this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(293, 576);
+            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(373, 576);
             this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
             this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(53, 35);
             this.lblSecTotalWidthFeet.TabIndex = 24;
@@ -1283,17 +1332,17 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(12, 565);
+            this.label17.Location = new System.Drawing.Point(7, 558);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(126, 46);
+            this.label17.Size = new System.Drawing.Size(140, 23);
             this.label17.TabIndex = 89;
-            this.label17.Text = "Measurements \r\nin Inches";
+            this.label17.Text = "Measurements in";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(169, 581);
+            this.label16.Location = new System.Drawing.Point(249, 581);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(110, 25);
             this.label16.TabIndex = 107;
@@ -1304,7 +1353,7 @@
             // 
             this.lblSecTotalWidthMeters.AutoSize = true;
             this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Verdana", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(507, 576);
+            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(412, 576);
             this.lblSecTotalWidthMeters.Name = "lblSecTotalWidthMeters";
             this.lblSecTotalWidthMeters.Size = new System.Drawing.Size(47, 35);
             this.lblSecTotalWidthMeters.TabIndex = 108;
@@ -1337,53 +1386,16 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudMinFixStepDistance
+            // lblInchesCm
             // 
-            this.nudMinFixStepDistance.DecimalPlaces = 1;
-            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Arial", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(30, 49);
-            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
-            this.nudMinFixStepDistance.Size = new System.Drawing.Size(120, 44);
-            this.nudMinFixStepDistance.TabIndex = 66;
-            this.nudMinFixStepDistance.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.nudMinFixStepDistance_ValueChanged);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(171, 62);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 22);
-            this.label20.TabIndex = 67;
-            this.label20.Text = "Meters";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(26, 125);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(279, 22);
-            this.label21.TabIndex = 68;
-            this.label21.Text = "More Meters is More Smoothing";
+            this.lblInchesCm.AutoSize = true;
+            this.lblInchesCm.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInchesCm.ForeColor = System.Drawing.Color.Red;
+            this.lblInchesCm.Location = new System.Drawing.Point(20, 586);
+            this.lblInchesCm.Name = "lblInchesCm";
+            this.lblInchesCm.Size = new System.Drawing.Size(101, 37);
+            this.lblInchesCm.TabIndex = 109;
+            this.lblInchesCm.Text = "Inches";
             // 
             // FormSettings
             // 
@@ -1391,6 +1403,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 628);
             this.ControlBox = false;
+            this.Controls.Add(this.lblInchesCm);
             this.Controls.Add(this.lblSecTotalWidthMeters);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label17);
@@ -1444,9 +1457,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabGuidance.ResumeLayout(false);
             this.tabGuidance.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1521,7 +1534,7 @@
         private System.Windows.Forms.CheckBox chkEnableWorkSwitch;
         private System.Windows.Forms.CheckBox chkWorkSwActiveLow;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblDoNotExceed;
         private System.Windows.Forms.NumericUpDown nudSection8;
         private System.Windows.Forms.NumericUpDown nudSection7;
         private System.Windows.Forms.NumericUpDown nudSection6;
@@ -1534,12 +1547,13 @@
         private System.Windows.Forms.Label lblPitchOffset;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lblTurnOffBelowUnits;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblInchesCm;
     }
 }
