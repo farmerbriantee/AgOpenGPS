@@ -1,7 +1,7 @@
 
 # AgOpenGPS
 
-***** This is ongoing development software. It has a few bugs and are being worked on. Check back for newer versions
+This project is for my personal use only, and has no commercial value whatsoever. This software is not for sale, is incomplete, is in development to show concepts only and is mostly non functional. Any use of this software is not recommended and is intended for simulation only.
 
 Ag Precision Mapping and Section Control Software
 
