@@ -30,12 +30,14 @@ namespace AgOpenGPS
         public bool isAtanCam = true;
 
         //Current fix positions
+        public double prevNorthing, prevEasting;
         public double fixPosX = 0.0, fixPosY = 0.0, fixPosZ = -7.0;
         public double pivotAxleEasting = 0, pivotAxleNorthing = 0, hitchEasting = 0, hitchNorthing = 0;
-        public double toolEasting = 0, toolNorthing = 0, prevNorthing,prevEasting;
+        public double toolEasting = 0, toolNorthing = 0, fixHeadingSection = 0.0;
+        public double tankEasting = 0, tankNorthing = 0, fixHeadingTank = 0;
 
         //headings
-        public double fixHeading = 0.0, fixHeadingCam = 0.0, fixHeadingSection = 0.0;
+        public double fixHeading = 0.0, fixHeadingCam = 0.0;
 
         //storage for the cos and sin of heading
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
@@ -64,8 +66,8 @@ namespace AgOpenGPS
         private double et = 0, hzTime = 0;
 
         //IMU 
-        double tiltDistance = 0;
-        double roll = 0, pitch = 0, angVel = 0;
+        //double tiltDistance = 0;
+        //double roll = 0, pitch = 0, angVel = 0;
         double avgPitch = 0, avgRoll = 0, avgAngVel = 0;
         
         public double[] avgSpeed = new double[10];//for average speed
@@ -158,27 +160,27 @@ namespace AgOpenGPS
             if (!isGPSPositionInitialized) {  InitializeFirstFewGPSPositions();   return;  }
             
     #region tilt
-            //average out angular velocity
-            int times = 30;
-            avgAngularVelocity[ringCounterTiltRoll] = modcom.angularVelocity;
-            if (ringCounterAngularVelocity++ == times) ringCounterAngularVelocity = 0;
-            angVel = 0;
-            for (int c = 0; c <= times - 1; c++) angVel += avgAngularVelocity[c];
-            angVel /= times;
-            avgAngVel = Math.Round(angVel, 1);
+            ////average out angular velocity
+            //int times = 30;
+            //avgAngularVelocity[ringCounterTiltRoll] = modcom.angularVelocity;
+            //if (ringCounterAngularVelocity++ == times) ringCounterAngularVelocity = 0;
+            //angVel = 0;
+            //for (int c = 0; c <= times - 1; c++) angVel += avgAngularVelocity[c];
+            //angVel /= times;
+            //avgAngVel = Math.Round(angVel, 1);
 
-            //average out the roll angle
-            times = 5;
-            avgTiltRoll[ringCounterTiltRoll] = modcom.rollAngle+rollZero;
-            if (ringCounterTiltRoll++ == times) ringCounterTiltRoll = 0;
-            roll = 0;
-            for (int c = 0; c <= times - 1; c++) roll += avgTiltRoll[c];
-            roll /= times;
-            avgRoll = Math.Round(roll, 1);
+            ////average out the roll angle
+            //times = 5;
+            //avgTiltRoll[ringCounterTiltRoll] = modcom.rollAngle+rollZero;
+            //if (ringCounterTiltRoll++ == times) ringCounterTiltRoll = 0;
+            //roll = 0;
+            //for (int c = 0; c <= times - 1; c++) roll += avgTiltRoll[c];
+            //roll /= times;
+            //avgRoll = Math.Round(roll, 1);
 
-            //Convert 16 bit int to degrees, take the sin of it
-            roll = Math.Sin(glm.toRadians(roll));
-            tiltDistance = Math.Abs(roll * vehicle.antennaHeight);
+            ////Convert 16 bit int to degrees, take the sin of it
+            //roll = Math.Sin(glm.toRadians(roll));
+            //tiltDistance = Math.Abs(roll * vehicle.antennaHeight);
 
             ////tilt to left is positive 
             //if (roll > 0)
@@ -193,28 +195,30 @@ namespace AgOpenGPS
             //    pn.northing = (Math.Sin(fixHeading) * tiltDistance) + pn.northing;
             //}
 
-            //average out the pitch angle
-            times = 5;
-            avgTiltPitch[ringCounterTiltPitch] = modcom.pitchAngle+pitchZero;
-            if (ringCounterTiltPitch++ == times - 1) ringCounterTiltPitch = 0;
-            pitch = 0;
-            for (int c = 0; c < times; c++) pitch += avgTiltPitch[c];
-            pitch /= times;
-            avgPitch = Math.Round(pitch, 1);
-            //Convert 16 bit int to degrees, take the sin of it
-            pitch = Math.Sin(glm.toRadians(pitch));
+            ////average out the pitch angle
+            //times = 5;
+            //avgTiltPitch[ringCounterTiltPitch] = modcom.pitchAngle+pitchZero;
+            //if (ringCounterTiltPitch++ == times - 1) ringCounterTiltPitch = 0;
+            //pitch = 0;
+            //for (int c = 0; c < times; c++) pitch += avgTiltPitch[c];
+            //pitch /= times;
+            //avgPitch = Math.Round(pitch, 1);
+            ////Convert 16 bit int to degrees, take the sin of it
+            //pitch = Math.Sin(glm.toRadians(pitch));
 
-            tiltDistance = (pitch * vehicle.antennaHeight);
-            //pn.easting = (Math.Sin(fixHeading) * tiltDistance) + pn.easting;
+            //tiltDistance = (pitch * vehicle.antennaHeight);
+            ////pn.easting = (Math.Sin(fixHeading) * tiltDistance) + pn.easting;
             //pn.northing = (Math.Cos(fixHeading) * tiltDistance) + pn.northing;
 
 #endregion            
 
     #region Step Fix
 
+            //grab the most current fix and save the distance from the last fix
             distanceCurrentStepFix = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
             fixStepDist = distanceCurrentStepFix;
 
+            //if  min distance isn't exceeded, keep adding old fixes till it does
             if (distanceCurrentStepFix <= minFixStepDist)
             {
                 for (currentStepFix = 0; currentStepFix < totalFixSteps; currentStepFix++)
@@ -222,6 +226,7 @@ namespace AgOpenGPS
                     fixStepDist += stepFixPts[currentStepFix].h;
                     if (fixStepDist > minFixStepDist)
                     {
+                        //if we reached end, keep the oldest and stay till distance is exceeded
                         if (currentStepFix < (totalFixSteps-1) ) currentStepFix++; 
                         isFixHolding = false;
                         break;
@@ -229,6 +234,8 @@ namespace AgOpenGPS
                     else isFixHolding = true;
                 }
             }
+
+            // only takes a single fix to exceeed min distance
             else currentStepFix = 0;
 
             //if total distance is less then the addition of all the fixes, keep last one as reference
@@ -254,13 +261,15 @@ namespace AgOpenGPS
                 stepFixPts[(totalFixSteps - 1)].z = vHold.z;
             }
             
-            else
+            else //distance is exceeded, time to do all calcs and next frame
             {
                 //positions and headings 
                 CalculatePositionHeading();
 
+                //get rid of hold position
                 isFixHoldLoaded = false;
 
+                //don't add the total distance again
                 stepFixPts[(totalFixSteps - 1)].h = 0;
 
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
@@ -280,9 +289,7 @@ namespace AgOpenGPS
 
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
-
                 stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
-
                 stepFixPts[0].x = pn.easting;
                 stepFixPts[0].z = pn.northing;
             }
@@ -305,11 +312,14 @@ namespace AgOpenGPS
                 guidanceLineHeadingDelta = 32020;
             }
 
-            modcom.autoSteerControl[0] = (byte)(guidanceLineDistanceOff >> 8);
-            modcom.autoSteerControl[1] = (byte)guidanceLineDistanceOff;
+            // modcom.autoSteerControl[0] contains the section relay byte
+            modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
 
-            modcom.autoSteerControl[2] = (byte)(guidanceLineHeadingDelta >> 8);
-            modcom.autoSteerControl[3] = (byte)guidanceLineHeadingDelta;
+            modcom.autoSteerControl[2] = (byte)(guidanceLineDistanceOff >> 8);
+            modcom.autoSteerControl[3] = (byte)guidanceLineDistanceOff;
+
+            modcom.autoSteerControl[4] = (byte)(guidanceLineHeadingDelta >> 8);
+            modcom.autoSteerControl[5] = (byte)guidanceLineHeadingDelta;
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
             AutoSteerControlOutToPort();
@@ -323,6 +333,8 @@ namespace AgOpenGPS
 
         //end of UppdateFixPosition
         }
+
+        double overTank, overSect;
 
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
@@ -349,34 +361,76 @@ namespace AgOpenGPS
             //tool attached via a trailing hitch
             if (vehicle.isToolTrailing)
             {
+                double over;
+                if (vehicle.tankTrailingHitchLength < -2.0)
+                {
+                    //Torriem rules!!!!! Oh yes, this is all his. Thank-you
+                    if (distanceCurrentStepFix != 0)
+                    {
+                        double t = (vehicle.tankTrailingHitchLength) / distanceCurrentStepFix;
+                        tankEasting = hitchEasting + t * (hitchEasting - tankEasting);
+                        tankNorthing = hitchNorthing + t * (hitchNorthing - tankNorthing);
+                        fixHeadingTank = Math.Atan2(hitchEasting - tankEasting, hitchNorthing - tankNorthing);
+                    }
+
+
+                    ////the tool is seriously jacknifed or just starting out so just spring it back.
+                    over = Math.Abs(Math.PI - Math.Abs(Math.Abs(fixHeadingTank - fixHeading) - Math.PI));
+                    overTank = over;
+
+                    if (over < 2.0 && startCounter > 50)
+                    {
+                        tankEasting = hitchEasting + (Math.Sin(fixHeadingTank) * (vehicle.tankTrailingHitchLength));
+                        tankNorthing = hitchNorthing + (Math.Cos(fixHeadingTank) * (vehicle.tankTrailingHitchLength));
+                    }
+
+                    //criteria for a forced reset to put tool directly behind vehicle
+                    if (over > 2.0 | startCounter < 51 )
+                    {
+                        fixHeadingTank = fixHeading;
+                        tankEasting = hitchEasting + (Math.Sin(fixHeadingTank) * (vehicle.tankTrailingHitchLength));
+                        tankNorthing = hitchNorthing + (Math.Cos(fixHeadingTank) * (vehicle.tankTrailingHitchLength));
+                    }
+
+                }
+
+                else
+                {
+                    fixHeadingTank = fixHeading;
+                    tankEasting = hitchEasting;
+                    tankNorthing = hitchNorthing;
+                }
+
                 //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                 if (distanceCurrentStepFix != 0)
                 {
                     double t = (vehicle.toolTrailingHitchLength) / distanceCurrentStepFix;
-                    toolEasting = hitchEasting + t * (hitchEasting - toolEasting);
-                    toolNorthing = hitchNorthing + t * (hitchNorthing - toolNorthing);
-                    fixHeadingSection = Math.Atan2(hitchEasting - toolEasting, hitchNorthing - toolNorthing);                    
+                    toolEasting = tankEasting + t * (tankEasting - toolEasting);
+                    toolNorthing = tankNorthing + t * (tankNorthing - toolNorthing);
+                    fixHeadingSection = Math.Atan2(tankEasting - toolEasting, tankNorthing - toolNorthing);
                 }
 
-                //the tool is seriously jacknifed so just spring it back.
-                double over = Math.Abs(Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeading) - Math.PI));
+
+                ////the tool is seriously jacknifed or just starting out so just spring it back.
+                over = Math.Abs(Math.PI - Math.Abs(Math.Abs(fixHeadingSection - fixHeadingTank) - Math.PI));
+                overSect = over;
 
                 if (over < 1.9 && startCounter > 50)
                 {
-                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    toolEasting = tankEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    toolNorthing = tankNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
                 }
 
                 //criteria for a forced reset to put tool directly behind vehicle
-                if (over > 1.9 | startCounter < 51 | over < 0.004)
+                if (over > 1.9 | startCounter < 51 )
                 {
-                    fixHeadingSection = fixHeading;
-                    toolEasting = hitchEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
-                    toolNorthing = hitchNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    fixHeadingSection = fixHeadingTank;
+                    toolEasting = tankEasting + (Math.Sin(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
+                    toolNorthing = tankNorthing + (Math.Cos(fixHeadingSection) * (vehicle.toolTrailingHitchLength));
                 }
             }
 
-            //rigidly connected to vehicle
+            //rigidly connected to vehicley
             else
             {
                 fixHeadingSection = fixHeading;
@@ -386,46 +440,9 @@ namespace AgOpenGPS
 
 #endregion
 
-            //double angle = 0;
-            //double x = 0, y = 0;
-
-            //for (int j = 0; j < stepFixNumber; j++)
-            //{
-            //    angle = Math.Atan2(pn.easting - stepFixPts[j].x, pn.northing - stepFixPts[j].z);
-            //    x += Math.Cos(angle);
-            //    y += Math.Sin(angle);
-            //}
-
-            ////x += Math.Cos(angle);
-            ////y += Math.Sin(angle);
-
-            //fixHeadingCam = Math.Atan2(y, x);
-
-            //in degrees for glRotate opengl methods.
+           //in degrees for glRotate opengl methods.
             int camStep = currentStepFix * 2;
             if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-
-            //double x = 0, z = 0;
-            //x += pn.northing;
-            //x += stepFixPts[0].x;
-            //x += stepFixPts[1].x;
-            //x /= 3.0;
-
-            //z += pn.easting;
-            //z += stepFixPts[0].z;
-            //z += stepFixPts[1].z;
-            //z /= 3.0;
-
-            //double x2 = 0, z2 = 0;
-            //x2 += stepFixPts[2].x;
-            //x2 += stepFixPts[3].x;
-            //x2 += stepFixPts[4].x;
-            //x2 /= 3.0;
-
-            //z2 += stepFixPts[2].z;
-            //z2 += stepFixPts[3].z;
-            //z2 += stepFixPts[4].z;
-            //z2 /= 3.0;
 
 
             fixHeadingCam = Math.Atan2(pn.easting - stepFixPts[camStep].x, pn.northing - stepFixPts[camStep].z);
@@ -462,37 +479,36 @@ namespace AgOpenGPS
             //precalc the sin and cos of heading * -1
             sinSectionHeading = Math.Sin(-fixHeadingSection);
             cosSectionHeading = Math.Cos(-fixHeadingSection);
-
         }
 
         //add the points for section, contour line points, Area Calc feature
         private void AddSectionContourPathPoints()
         {
-                //save the north & east as previous
-                prevSectionNorthing = toolNorthing;
-                prevSectionEasting = toolEasting;
+            //save the north & east as previous
+            prevSectionNorthing = toolNorthing;
+            prevSectionEasting = toolEasting;
 
-               //build the polygon to calculate area
-                if (periArea.isBtnPerimeterOn)
+            //build the polygon to calculate area
+            if (periArea.isBtnPerimeterOn)
+            {
+                if (isAreaOnRight)
                 {
-                    if (isAreaOnRight)
-                    {
-                        //Right side
-                        vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
-                            sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
-                        periArea.periPtList.Add(point);
-                    }
-
-                        //draw on left side
-                    else
-                    {
-                        //Right side
-                        vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolEasting,
-                            sinSectionHeading * (section[0].positionLeft) + toolNorthing);
-                        periArea.periPtList.Add(point);
-                    }
-                    
+                    //Right side
+                    vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
+                        sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
+                    periArea.periPtList.Add(point);
                 }
+
+                    //draw on left side
+                else
+                {
+                    //Right side
+                    vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolEasting,
+                        sinSectionHeading * (section[0].positionLeft) + toolNorthing);
+                    periArea.periPtList.Add(point);
+                }
+                    
+            }
 
             if (isJobStarted)//add the pathpoint
             {
@@ -523,11 +539,11 @@ namespace AgOpenGPS
                         {
                             pn.logNMEASentence.Append(pn.currentNMEA_RMCSentence);
                             pn.logNMEASentence.Append(pn.currentNMEA_GGASentence);
-                            pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
+                            //pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
 
                             pn.currentNMEA_RMCSentence = "";
                             pn.currentNMEA_GGASentence = "";
-                            pn.currentNMEA_VTGSentence = "";
+                            //pn.currentNMEA_VTGSentence = "";
                         }
                     }
                 }
@@ -844,3 +860,41 @@ namespace AgOpenGPS
 
     }//end class
 }//end namespace
+
+//double angle = 0;
+//double x = 0, y = 0;
+
+//for (int j = 0; j < stepFixNumber; j++)
+//{
+//    angle = Math.Atan2(pn.easting - stepFixPts[j].x, pn.northing - stepFixPts[j].z);
+//    x += Math.Cos(angle);
+//    y += Math.Sin(angle);
+//}
+
+////x += Math.Cos(angle);
+////y += Math.Sin(angle);
+
+//fixHeadingCam = Math.Atan2(y, x);
+
+
+//double x = 0, z = 0;
+//x += pn.northing;
+//x += stepFixPts[0].x;
+//x += stepFixPts[1].x;
+//x /= 3.0;
+
+//z += pn.easting;
+//z += stepFixPts[0].z;
+//z += stepFixPts[1].z;
+//z /= 3.0;
+
+//double x2 = 0, z2 = 0;
+//x2 += stepFixPts[2].x;
+//x2 += stepFixPts[3].x;
+//x2 += stepFixPts[4].x;
+//x2 /= 3.0;
+
+//z2 += stepFixPts[2].z;
+//z2 += stepFixPts[3].z;
+//z2 += stepFixPts[4].z;
+//z2 /= 3.0;

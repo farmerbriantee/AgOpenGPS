@@ -30,7 +30,6 @@ namespace AgOpenGPS
             lblAntennaPivot.Text = Math.Round(mf.vehicle.antennaPivot,2).ToString();
             lblHitchLength.Text = Math.Round(mf.vehicle.hitchLength,2).ToString();
             lblTrailingHitchLength.Text = Math.Round(mf.vehicle.toolTrailingHitchLength,2).ToString();
-            lblToolWidth.Text = Math.Round(mf.vehicle.toolWidth,2).ToString();
 
             lblRequestOn.Text = mf.section[0].sectionOnRequest.ToString();
             lblRequestOff.Text = mf.section[0].sectionOffRequest.ToString();
@@ -40,8 +39,14 @@ namespace AgOpenGPS
 
             lblHeadingFix.Text = mf.FixHeading;
             lblHeadingSection.Text = mf.FixHeadingSection;
-            lblHeadingDelta.Text = (Math.Round(Math.PI - Math.Abs(Math.Abs(mf.fixHeadingSection - mf.fixHeading) - Math.PI),2)).ToString();
+            lblHeadingDelta.Text = (Math.Round(Math.PI - Math.Abs(Math.Abs(mf.fixHeadingTank - mf.fixHeading) - Math.PI),2)).ToString();
+            lblLookaheadZero.Text = mf.LookAhead;
             lblZone.Text = mf.pn.zone.ToString();
+
+            lblStepNum.Text = mf.StepFixNum;
+            lblStepDistance.Text = mf.CurrentStepDistance;
+            lblTotalStep.Text = mf.TotalStepDistance;
+
 
             //mf.UTMToLatLon(mf.pn.easting+mf.pn.utmEast,mf.pn.northing+mf.pn.utmNorth);
 

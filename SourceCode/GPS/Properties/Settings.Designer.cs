@@ -565,7 +565,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default ")]
         public string setVehicle_Name {
             get {
                 return ((string)(this["setVehicle_Name"]));
@@ -692,6 +692,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["set_minFixStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1.5")]
+        public double setVehicle_tankTrailingHitchLength {
+            get {
+                return ((double)(this["setVehicle_tankTrailingHitchLength"]));
+            }
+            set {
+                this["setVehicle_tankTrailingHitchLength"] = value;
             }
         }
     }

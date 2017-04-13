@@ -52,6 +52,9 @@
             this.nudWheelbase = new System.Windows.Forms.NumericUpDown();
             this.nudAntennaHeight = new System.Windows.Forms.NumericUpDown();
             this.tabTool = new System.Windows.Forms.TabPage();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -125,6 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
             this.tabTool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).BeginInit();
@@ -205,7 +209,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(146, 447);
+            this.label29.Location = new System.Drawing.Point(104, 447);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(223, 32);
             this.label29.TabIndex = 23;
@@ -450,6 +454,9 @@
             // 
             this.tabTool.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
             this.tabTool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabTool.Controls.Add(this.label22);
+            this.tabTool.Controls.Add(this.label8);
+            this.tabTool.Controls.Add(this.nudTankHitch);
             this.tabTool.Controls.Add(this.label35);
             this.tabTool.Controls.Add(this.label34);
             this.tabTool.Controls.Add(this.label23);
@@ -469,6 +476,45 @@
             this.tabTool.Text = "  Tool  ";
             this.tabTool.UseVisualStyleBackColor = true;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(38, 25);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(185, 69);
+            this.label22.TabIndex = 116;
+            this.label22.Text = "Tow Between Disabled \r\n< 200 cm\r\n< 78 inches";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(28, 193);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(154, 46);
+            this.label8.TabIndex = 115;
+            this.label8.Text = "Tow Between Hitch\r\nLength Only\r\n";
+            // 
+            // nudTankHitch
+            // 
+            this.nudTankHitch.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTankHitch.Location = new System.Drawing.Point(46, 142);
+            this.nudTankHitch.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudTankHitch.Name = "nudTankHitch";
+            this.nudTankHitch.Size = new System.Drawing.Size(95, 48);
+            this.nudTankHitch.TabIndex = 114;
+            this.nudTankHitch.Value = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.nudTankHitch.ValueChanged += new System.EventHandler(this.nudTankHitch_ValueChanged);
+            // 
             // label35
             // 
             this.label35.AutoSize = true;
@@ -483,7 +529,7 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(310, 418);
+            this.label34.Location = new System.Drawing.Point(310, 428);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(104, 25);
             this.label34.TabIndex = 111;
@@ -493,7 +539,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(762, 116);
+            this.label23.Location = new System.Drawing.Point(748, 116);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(169, 23);
             this.label23.TabIndex = 109;
@@ -508,7 +554,7 @@
             0,
             0,
             65536});
-            this.nudTurnOffDelay.Location = new System.Drawing.Point(766, 142);
+            this.nudTurnOffDelay.Location = new System.Drawing.Point(752, 142);
             this.nudTurnOffDelay.Maximum = new decimal(new int[] {
             5,
             0,
@@ -527,12 +573,13 @@
             0,
             0,
             65536});
+            this.nudTurnOffDelay.ValueChanged += new System.EventHandler(this.nudTurnOffDelay_ValueChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(762, 20);
+            this.label3.Location = new System.Drawing.Point(748, 20);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 23);
             this.label3.TabIndex = 107;
@@ -547,7 +594,7 @@
             0,
             0,
             65536});
-            this.nudLookAhead.Location = new System.Drawing.Point(766, 46);
+            this.nudLookAhead.Location = new System.Drawing.Point(752, 46);
             this.nudLookAhead.Maximum = new decimal(new int[] {
             5,
             0,
@@ -566,12 +613,13 @@
             0,
             0,
             65536});
+            this.nudLookAhead.ValueChanged += new System.EventHandler(this.nudLookAhead_ValueChanged);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(97, 276);
+            this.label19.Location = new System.Drawing.Point(31, 328);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(110, 46);
             this.label19.TabIndex = 105;
@@ -590,7 +638,7 @@
             // nudForeAft
             // 
             this.nudForeAft.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudForeAft.Location = new System.Drawing.Point(73, 225);
+            this.nudForeAft.Location = new System.Drawing.Point(45, 277);
             this.nudForeAft.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -609,6 +657,7 @@
             0,
             0,
             0});
+            this.nudForeAft.ValueChanged += new System.EventHandler(this.nudForeAft_ValueChanged);
             // 
             // nudOverlap
             // 
@@ -632,12 +681,13 @@
             0,
             0,
             0});
+            this.nudOverlap.ValueChanged += new System.EventHandler(this.nudOverlap_ValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(763, 211);
+            this.label5.Location = new System.Drawing.Point(749, 211);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 25);
             this.label5.TabIndex = 100;
@@ -646,7 +696,7 @@
             // nudOffset
             // 
             this.nudOffset.Font = new System.Drawing.Font("Arial Narrow", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudOffset.Location = new System.Drawing.Point(768, 238);
+            this.nudOffset.Location = new System.Drawing.Point(754, 238);
             this.nudOffset.Maximum = new decimal(new int[] {
             500,
             0,
@@ -665,6 +715,7 @@
             0,
             0,
             -2147483648});
+            this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             // 
             // tabSections
             // 
@@ -1399,8 +1450,8 @@
             // 
             // FormSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(965, 628);
             this.ControlBox = false;
             this.Controls.Add(this.lblInchesCm);
@@ -1429,6 +1480,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             this.tabTool.ResumeLayout(false);
             this.tabTool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).EndInit();
@@ -1555,5 +1607,8 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblInchesCm;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudTankHitch;
+        private System.Windows.Forms.Label label22;
     }
 }

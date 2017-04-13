@@ -30,6 +30,9 @@ namespace AgOpenGPS
 
             if (saveDialog.ShowDialog() == DialogResult.OK)
             {
+                vehiclefileName = Path.GetFileNameWithoutExtension(saveDialog.FileName) + " - ";
+                Properties.Settings.Default.setVehicle_Name = vehiclefileName;
+
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
                     writer.Write("Overlap," + Properties.Settings.Default.setVehicle_toolOverlap + ",");
@@ -46,7 +49,7 @@ namespace AgOpenGPS
                     writer.Write("IsPivotBehindAntenna," + Properties.Settings.Default.setVehicle_isPivotBehindAntenna + ",");
                     writer.Write("IsSteerAxleAhead," + Properties.Settings.Default.setVehicle_isSteerAxleAhead + ","); 
                     writer.Write("IsToolBehindPivot," + Properties.Settings.Default.setVehicle_isToolBehindPivot + ",");
-                    writer.Write("IsToolTrailing," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");                   
+                    writer.Write("IsToolTrailing," + Properties.Settings.Default.setVehicle_isToolTrailing + ",");
 
                     writer.Write("Spinner1," + Properties.Settings.Default.setSection_position1 + ",");
                     writer.Write("Spinner2," + Properties.Settings.Default.setSection_position2 + ",");
@@ -61,13 +64,43 @@ namespace AgOpenGPS
                     writer.Write("Sections," + Properties.Settings.Default.setVehicle_numSections + ",");
                     writer.Write("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth + ",");
 
-                    writer.Write("WorkSwitch," + Properties.Settings.Default.setIsWorkSwitchEnabled + ",");                  
+                    writer.Write("WorkSwitch," + Properties.Settings.Default.setIsWorkSwitchEnabled + ",");
                     writer.Write("ActiveLow," + Properties.Settings.Default.setIsWorkSwitchActiveLow + ",");
 
-                    writer.Write("Reserved,0,");
+                    writer.Write("CamPitch," + Properties.Settings.Default.setCam_pitch + ",");
+
+                    writer.Write("IsAtanCam," + Properties.Settings.Default.setCam_isAtanCam + ",");
+                    writer.Write("TriangleResolution," + Properties.Settings.Default.setDisplay_triangleResolution + ",");
+                    writer.Write("IsMetric," + Properties.Settings.Default.setIsMetric + ",");
+                    writer.Write("IsGridOn," + Properties.Settings.Default.setIsGridOn + ",");
+                    writer.Write("IsLightBarOn," + Properties.Settings.Default.setIsLightbarOn + ",");
+                    writer.Write("IsAreaRight," + Properties.Settings.Default.setIsAreaRight + ",");
+
+                    writer.Write("FieldColorR," + Properties.Settings.Default.setFieldColorR + ",");
+                    writer.Write("FieldColorG," + Properties.Settings.Default.setFieldColorG + ",");
+                    writer.Write("FieldColorB," + Properties.Settings.Default.setFieldColorB + ",");
+                    writer.Write("SectionColorR," + Properties.Settings.Default.setSectionColorR + ",");
+                    writer.Write("SectionColorG," + Properties.Settings.Default.setSectionColorG + ",");
+                    writer.Write("SectionColorB," + Properties.Settings.Default.setSectionColorB + ",");
+
+                    writer.Write("SlowSpeedCutoff," + Properties.Settings.Default.setVehicle_slowSpeedCutoff + ",");
+
+                    writer.Write("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZero + ",");
+                    writer.Write("IMURollZero," + Properties.Settings.Default.setIMU_rollZero + ",");
+                    writer.Write("IsLogNMEA," + Properties.Settings.Default.setIsLogNMEA + ",");
+                    writer.Write("MinFixStep," + Properties.Settings.Default.set_minFixStep + ",");
+
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
-                    writer.Write("Reserved,0");
+                    writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
+                    writer.Write("Reserved,0"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
+
+                    //writer.Write("PortNameGPS," + Properties.Settings.Default.setPort_portNameGPS + ",");
+                    //writer.Write("BaudRateGPS," + Properties.Settings.Default.setPort_baudRate + ",");
+                    //writer.Write("PortNameRelay," + Properties.Settings.Default.setPort_portNameRelay + ",");
+                    //writer.Write("WasRelayConnected," + Properties.Settings.Default.setPort_wasRelayConnected + ",");
+                    //writer.Write("PortNameAutoSteer," + Properties.Settings.Default.setPort_portNameAutoSteer + ",");
+                    //writer.Write("WasAutoSteerConnected," + Properties.Settings.Default.setPort_wasAutoSteerConnected + ",");
                     
                 }
                 //little show to say saved and where
@@ -75,8 +108,6 @@ namespace AgOpenGPS
                 var form = new FormTimedMessage(this, 3000, "Saved in Folder: ", dirVehicle);
                 form.Show();
 
-                vehiclefileName = Path.GetFileNameWithoutExtension(saveDialog.FileName) + " - "; 
-                Properties.Settings.Default.setVehicle_Name = vehiclefileName;
                 Properties.Settings.Default.Save();
             }
 
@@ -120,7 +151,7 @@ namespace AgOpenGPS
                     line = reader.ReadLine(); 
                     string[] words;
                     words = line.Split(',');
-                    if (words.Length != 68) { MessageBox.Show("Corrupt Vehicle file"); return; }
+                    if (words.Length != 112) { MessageBox.Show("Corrupt Vehicle file"); return; }
 
                     Properties.Settings.Default.setVehicle_Name = ofd.FileName;
 
@@ -155,6 +186,38 @@ namespace AgOpenGPS
 
                     Properties.Settings.Default.setIsWorkSwitchEnabled = bool.Parse(words[49]);
                     Properties.Settings.Default.setIsWorkSwitchActiveLow = bool.Parse(words[51]);
+
+                    //
+
+                    Properties.Settings.Default.setCam_pitch = double.Parse(words[53]);
+
+                    Properties.Settings.Default.setCam_isAtanCam = bool.Parse(words[55]);
+                    Properties.Settings.Default.setDisplay_triangleResolution= double.Parse(words[57]);
+                    Properties.Settings.Default.setIsMetric = bool.Parse(words[59]);
+                    Properties.Settings.Default.setIsGridOn = bool.Parse(words[61]);
+                    Properties.Settings.Default.setIsLightbarOn = bool.Parse(words[63]);
+                    Properties.Settings.Default.setIsAreaRight = bool.Parse(words[65]);
+
+                    Properties.Settings.Default.setFieldColorR= byte.Parse(words[67]);
+                    Properties.Settings.Default.setFieldColorG= byte.Parse(words[69]);
+                    Properties.Settings.Default.setFieldColorB= byte.Parse(words[71]);
+                    Properties.Settings.Default.setSectionColorR= byte.Parse(words[73]);
+                    Properties.Settings.Default.setSectionColorG= byte.Parse(words[75]);
+                    Properties.Settings.Default.setSectionColorB= byte.Parse(words[77]);
+
+                    Properties.Settings.Default.setVehicle_slowSpeedCutoff= double.Parse(words[79]);
+
+                    Properties.Settings.Default.setIMU_pitchZero= double.Parse(words[81]);
+                    Properties.Settings.Default.setIMU_rollZero = double.Parse(words[83]);
+                    Properties.Settings.Default.setIsLogNMEA = bool.Parse(words[85]);
+                    Properties.Settings.Default.set_minFixStep = double.Parse(words[87]);
+
+                    //Properties.Settings.Default.setPort_portNameGPS = (words[17]);
+                    //Properties.Settings.Default.setPort_baudRate = int.Parse(words[17]);
+                    //Properties.Settings.Default.setPort_portNameRelay = (words[17]);
+                    //Properties.Settings.Default.setPort_wasRelayConnected = bool.Parse(words[17]);
+                    //Properties.Settings.Default.setPort_portNameAutoSteer = (words[17]);
+                    //Properties.Settings.Default.setPort_wasAutoSteerConnected = bool.Parse(words[17]);
 
                     vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
                     Properties.Settings.Default.setVehicle_Name = vehiclefileName;
@@ -203,6 +266,38 @@ namespace AgOpenGPS
                     btnSection7Man.Enabled = false;
                     btnSection8Man.Enabled = false;
 
+                    camera.camPitch =  Properties.Settings.Default.setCam_pitch;
+                      
+                    isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
+                    triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
+
+                    isMetric = Properties.Settings.Default.setIsMetric;
+                    if (isMetric) metricToolStrip.Checked = true;
+                    else metricToolStrip.Checked = false;
+
+                    isGridOn = Properties.Settings.Default.setIsGridOn;
+                    if (isGridOn) gridToolStripMenuItem.Checked = true;
+                    else gridToolStripMenuItem.Checked = false;
+
+                    isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
+                    if (isLightbarOn) lightbarToolStripMenuItem.Checked = true;
+                    else lightbarToolStripMenuItem.Checked = false;
+
+                    isAreaOnRight = Properties.Settings.Default.setIsAreaRight;
+                      
+                    redSections = Properties.Settings.Default.setSectionColorR;
+                    grnSections = Properties.Settings.Default.setSectionColorG;
+                    bluSections = Properties.Settings.Default.setSectionColorB;
+                    redField = Properties.Settings.Default.setFieldColorR;
+                    grnField = Properties.Settings.Default.setFieldColorG;
+                    bluField = Properties.Settings.Default.setFieldColorB;
+                     
+                    vehicle.slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
+                     
+                    pitchZero = Properties.Settings.Default.setIMU_pitchZero;
+                    rollZero = Properties.Settings.Default.setIMU_rollZero;
+                    isLogNMEA = Properties.Settings.Default.setIsLogNMEA;
+                    minFixStepDist = Properties.Settings.Default.set_minFixStep;
 
                     //Application.Exit();
 

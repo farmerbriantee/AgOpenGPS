@@ -1,4 +1,10 @@
-﻿v2.1 March 2017
+﻿v2.2 April 15
+* Full Metric Imperial
+* AirSeeder style hitch, double pivot position
+* AutoSteerModule gets relay info
+* Turn sky on off
+
+v2.1 March 2017
 *
 * NMEA Logging capability
 * BNO055 IMU drivers for angular velocity, roll, pitch

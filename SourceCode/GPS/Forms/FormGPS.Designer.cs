@@ -58,6 +58,7 @@
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logNMEAMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skyToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.communicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -320,6 +321,7 @@
             this.gridToolStripMenuItem,
             this.lightbarToolStripMenuItem,
             this.logNMEAMenuItem,
+            this.skyToolStripMenu,
             this.polygonsToolStripMenuItem,
             this.toolStripSeparator7,
             this.communicationToolStripMenuItem,
@@ -415,6 +417,15 @@
             this.logNMEAMenuItem.Size = new System.Drawing.Size(232, 30);
             this.logNMEAMenuItem.Text = "Log NMEA";
             this.logNMEAMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
+            // 
+            // skyToolStripMenu
+            // 
+            this.skyToolStripMenu.Checked = true;
+            this.skyToolStripMenu.CheckOnClick = true;
+            this.skyToolStripMenu.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.skyToolStripMenu.Name = "skyToolStripMenu";
+            this.skyToolStripMenu.Size = new System.Drawing.Size(232, 30);
+            this.skyToolStripMenu.Text = "Sky On";
             // 
             // polygonsToolStripMenuItem
             // 
@@ -1505,6 +1516,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripUnitsMenu;
         private System.Windows.Forms.ToolStripMenuItem metricToolStrip;
         private System.Windows.Forms.ToolStripMenuItem imperialToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem skyToolStripMenu;
     }
 }
 

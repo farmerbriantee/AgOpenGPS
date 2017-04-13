@@ -138,7 +138,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_Name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default</Value>
+      <Value Profile="(Default)">Default </Value>
     </Setting>
     <Setting Name="setSection_position7" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -169,6 +169,9 @@
     </Setting>
     <Setting Name="set_minFixStep" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setVehicle_tankTrailingHitchLength" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-1.5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -67,15 +67,15 @@ namespace AgOpenGPS
             {
                offset = (45.0 + camPitch) / 45.0;
 
-                offset = offset * offset * offset * offset * 0.28 + 0.08;
+                offset = offset * offset * offset * offset * 0.28 + 0.06;
 
                 gl.Translate(-camPosX + ( offset*camSetDistance * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
                     -camPosZ + (offset*camSetDistance * Math.Cos(glm.toRadians(fixHeading))));
  
              }
 
-            else  gl.Translate(-camPosX + ( 0.08 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
-                            -camPosZ + (0.08 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))));
+            else  gl.Translate(-camPosX + ( 0.06 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
+                            -camPosZ + (0.06 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))));
  
 
          }

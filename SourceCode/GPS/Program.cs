@@ -19,6 +19,8 @@ namespace AgOpenGPS
         {
             if (mutex.WaitOne(TimeSpan.Zero, true))
             {
+                //if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormGPS());
@@ -28,5 +30,8 @@ namespace AgOpenGPS
                 MessageBox.Show("AgOpenGPS is Already Running");
             }
         }
+
+        //[System.Runtime.InteropServices.DllImport("user32.dll")]
+        //private static extern bool SetProcessDPIAware();
     }
 }

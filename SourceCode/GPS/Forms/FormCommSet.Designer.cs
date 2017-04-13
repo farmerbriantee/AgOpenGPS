@@ -72,7 +72,6 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnSerialCancel
@@ -493,8 +492,8 @@
             // 
             // FormCommSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(770, 474);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnSerialCancel);

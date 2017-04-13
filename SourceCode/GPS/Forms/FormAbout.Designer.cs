@@ -80,7 +80,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 4;
-            this.label2.Text = "v2.11 March 2017";
+            this.label2.Text = "v2.12 March 2017";
             // 
             // label3
             // 
@@ -156,8 +156,8 @@
             // 
             // FormAbout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(660, 376);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);

@@ -17,7 +17,7 @@ namespace AgOpenGPS
        //class variables
         private FormGPS mf = null;
 
-        double toolOverlap, toolTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
+        double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
         double antennaHeight, antennaPivot, wheelbase, hitchLength, pitchZeroSet, rollZeroSet;
 
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
@@ -133,7 +133,9 @@ namespace AgOpenGPS
             UpdateIsPivotBehindAntennaCheckbox();
             UpdateIsSteerAxleAhead();
 
-            toolTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_toolTrailingHitchLength);    
+            toolTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_toolTrailingHitchLength);
+            tankTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength);  
+            
 
             toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
             toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
@@ -146,9 +148,13 @@ namespace AgOpenGPS
             nudOverlap.Value = (decimal)(toolOverlap * m2MetImp);
             nudOverlap.ValueChanged += nudOverlap_ValueChanged;
 
-            nudForeAft.ValueChanged -= nudAft_ValueChanged;
+            nudForeAft.ValueChanged -= nudForeAft_ValueChanged;
             nudForeAft.Value = (decimal)(toolTrailingHitchLength * m2MetImp);
-            nudForeAft.ValueChanged += nudAft_ValueChanged;
+            nudForeAft.ValueChanged += nudForeAft_ValueChanged;
+
+            nudTankHitch.ValueChanged -= nudTankHitch_ValueChanged;
+            nudTankHitch.Value = (decimal)(tankTrailingHitchLength * m2MetImp);
+            nudTankHitch.ValueChanged += nudTankHitch_ValueChanged;
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
             nudOffset.Value = (decimal)(toolOffset * m2MetImp);
@@ -246,6 +252,10 @@ namespace AgOpenGPS
             toolTrailingHitchLength *= -1;
             mf.vehicle.toolTrailingHitchLength = toolTrailingHitchLength;
             Properties.Settings.Default.setVehicle_toolTrailingHitchLength = mf.vehicle.toolTrailingHitchLength;
+
+            tankTrailingHitchLength *= -1;
+            mf.vehicle.tankTrailingHitchLength = tankTrailingHitchLength;
+            Properties.Settings.Default.setVehicle_tankTrailingHitchLength = mf.vehicle.tankTrailingHitchLength;
 
             mf.vehicle.toolLookAhead = toolLookAhead;
             Properties.Settings.Default.setVehicle_lookAhead = mf.vehicle.toolLookAhead;
@@ -449,11 +459,16 @@ namespace AgOpenGPS
         }
 
 
-        private void nudAft_ValueChanged(object sender, EventArgs e)
+        private void nudForeAft_ValueChanged(object sender, EventArgs e)
         {
             toolTrailingHitchLength = (double)(nudForeAft.Value) * metImp2m;
         }
 
+        private void nudTankHitch_ValueChanged(object sender, EventArgs e)
+        {
+            tankTrailingHitchLength = (double)(nudTankHitch.Value) * metImp2m;
+        }
+ 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
             toolOffset = (double)nudOffset.Value * metImp2m;
@@ -670,7 +685,7 @@ namespace AgOpenGPS
         {
             if (mf.isMetric)
             {
-                lblSecTotalWidthMeters.Text = Convert.ToDouble(lblVehicleToolWidth.Text) + " m";
+                lblSecTotalWidthMeters.Text = Convert.ToDouble(lblVehicleToolWidth.Text) + " cm";
             }
 
             else
@@ -679,8 +694,6 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
                 double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
                 lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
-
-                lblSecTotalWidthMeters.Text = (Math.Round((glm.in2m * toFeet * 12.0), 2)).ToString() + " m";
             }
         }
 
@@ -949,8 +962,7 @@ namespace AgOpenGPS
         }
 
 
-
-
+ 
  
 
     }

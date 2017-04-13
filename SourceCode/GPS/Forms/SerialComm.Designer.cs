@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public static int baudRateGPS = 4800;
 
         public static string portNameRelaySection = "COM Sect";
-        public static int baudRateRelaySection = 38400;
+        public static int baudRateRelaySection = 19200;
 
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 19200;
@@ -48,7 +48,7 @@ namespace AgOpenGPS
             //Tell Arduino to turn section on or off accordingly
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(modcom.autoSteerControl, 0, 4); }
+                try { spAutoSteer.Write(modcom.autoSteerControl, 0, 6); }
                 catch (Exception) { SerialPortAutoSteerClose(); }
             }
         }
@@ -70,8 +70,8 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(100);
-                    string sentence = spAutoSteer.ReadExisting();
+                    System.Threading.Thread.Sleep(50);
+                    string sentence = spAutoSteer.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
@@ -182,6 +182,8 @@ namespace AgOpenGPS
                     reset = (byte)(reset + 1);
                 }
             }
+
+            modcom.autoSteerControl[0] = (byte)(modcom.relaySectionControl[0]);
         }
 
         //Send relay info out to relay board
@@ -202,7 +204,7 @@ namespace AgOpenGPS
             int end;
             //spit it out no matter what it says
             //modcom.serialRecvRelayStr = sentence;
-            if (sentence.Length < 8 ) return;
+            //if (sentence.Length < 8 ) return;
 
 
             // Find end of sentence
@@ -213,24 +215,24 @@ namespace AgOpenGPS
             sentence = sentence.Substring(0, end);
 
             words = sentence.Split(',');
-            if (words.Length < 4) return;
+            if (words.Length < 1) return;
 
                 
             int.TryParse(words[0], out modcom.workSwitchValue);
 
-            double.TryParse(words[1], out modcom.rollAngle);
-            modcom.rollAngle *= 0.0625;
+            //double.TryParse(words[1], out modcom.rollAngle);
+            //modcom.rollAngle *= 0.0625;
 
-            double.TryParse(words[2], out modcom.pitchAngle);
-            modcom.pitchAngle *= 0.0625;
+            //double.TryParse(words[2], out modcom.pitchAngle);
+            //modcom.pitchAngle *= 0.0625;
 
-            double.TryParse(words[3], out modcom.angularVelocity);
+            //double.TryParse(words[3], out modcom.angularVelocity);
 
-            if (modcom.pitchAngle > 10) modcom.pitchAngle = 10;
-            if (modcom.pitchAngle < -10) modcom.pitchAngle = -10;
+            //if (modcom.pitchAngle > 10) modcom.pitchAngle = 10;
+            //if (modcom.pitchAngle < -10) modcom.pitchAngle = -10;
 
-            if (modcom.rollAngle > 12) modcom.rollAngle = 12;
-            if (modcom.rollAngle < -12) modcom.rollAngle = -12;
+            //if (modcom.rollAngle > 12) modcom.rollAngle = 12;
+            //if (modcom.rollAngle < -12) modcom.rollAngle = -12;
 
             //double.TryParse(words[4], out modcom.imuHeading);
             //modcom.imuHeading *= 0.0625;
@@ -249,8 +251,8 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(100);
-                    string sentence = spRelay.ReadExisting();
+                    System.Threading.Thread.Sleep(50);
+                    string sentence = spRelay.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRelay), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.

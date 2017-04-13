@@ -91,7 +91,7 @@ namespace AgOpenGPS
 
         //other GIS Info
         public double altitude = 0, speed = 0;
-        public double headingTrue = 0, hdop = 0;
+        public double headingTrue = 0, hdop = 0, ageDiff = 0;
 
         public int fixQuality = 0;
         public int satellitesTracked = 0;
@@ -261,6 +261,9 @@ namespace AgOpenGPS
                 //altitude
                 double.TryParse(words[9], out altitude);
 
+                //age of differential
+                double.TryParse(words[12], out ageDiff);
+
                 theSent += nextNMEASentence;
                 updatedGGA = true;
                 mf.recvCounter = 0;
@@ -321,8 +324,6 @@ namespace AgOpenGPS
                 mf.avgSpeed[mf.ringCounter] = speed;
                 if (mf.ringCounter++ > 8) mf.ringCounter = 0;
             }
-
-
         }
 
         private void ParseVTG()
@@ -345,9 +346,6 @@ namespace AgOpenGPS
                 if (mf.ringCounter++ > 8) mf.ringCounter = 0;
 
             }
-
-
-
         }
         
         //checks the checksum against the string

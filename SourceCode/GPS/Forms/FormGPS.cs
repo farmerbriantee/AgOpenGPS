@@ -24,7 +24,7 @@ namespace AgOpenGPS
 
         //colors for sections and field background
         byte redSections,grnSections,bluSections;
-        public float redField,grnField,bluField;
+        public byte redField,grnField,bluField;
 
         //polygon mode for section drawing
         bool isDrawPolygons = false;
@@ -263,9 +263,9 @@ namespace AgOpenGPS
             vehiclefileName = Properties.Settings.Default.setVehicle_Name;
 
             //load up colors
-            redField = (float)(Properties.Settings.Default.setFieldColorR) / 259.0f;
-            grnField = (float)(Properties.Settings.Default.setFieldColorG) / 259.0f;
-            bluField = (float)(Properties.Settings.Default.setFieldColorB) / 259.0f;
+            redField = (Properties.Settings.Default.setFieldColorR);
+            grnField = (Properties.Settings.Default.setFieldColorG);
+            bluField = (Properties.Settings.Default.setFieldColorB);
 
             redSections = Properties.Settings.Default.setSectionColorR;
             grnSections = Properties.Settings.Default.setSectionColorG;
@@ -304,6 +304,18 @@ namespace AgOpenGPS
                         //turn all relays off
                         modcom.relaySectionControl[0] = (byte)0;
                         this.SectionControlOutToPort();
+
+                        modcom.autoSteerControl[0] = (byte)0;
+                        modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
+
+                        modcom.autoSteerControl[2] = (byte)(125);
+                        modcom.autoSteerControl[3] = (byte)20;
+
+                        modcom.autoSteerControl[4] = (byte)(125);
+                        modcom.autoSteerControl[5] = (byte)20;
+
+                        //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
+                        AutoSteerControlOutToPort();
                         break;
 
                     //Ignore and return
@@ -1506,6 +1518,23 @@ namespace AgOpenGPS
                         modcom.relaySectionControl[0] = (byte)0;
                         this.SectionControlOutToPort();
 
+                        //turn all relays off
+                        modcom.relaySectionControl[0] = (byte)0;
+                        this.SectionControlOutToPort();
+
+                        modcom.autoSteerControl[0] = (byte)0;
+                        modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
+
+                        modcom.autoSteerControl[2] = (byte)(125);
+                        modcom.autoSteerControl[3] = (byte)20;
+
+                        modcom.autoSteerControl[4] = (byte)(125);
+                        modcom.autoSteerControl[5] = (byte)20;
+
+                        //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
+                        AutoSteerControlOutToPort();
+
+
                         break;
                     //Ignore and return
                     case 1:
@@ -1876,8 +1905,11 @@ namespace AgOpenGPS
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
                 redSections = colorDlg.Color.R;
+                if (redSections > 253) redSections = 253;
                 grnSections = colorDlg.Color.G;
+                if (grnSections > 253) grnSections = 253;
                 bluSections = colorDlg.Color.B;
+                if (bluSections > 253) bluSections = 253;
 
                 Properties.Settings.Default.setSectionColorR = redSections;
                 Properties.Settings.Default.setSectionColorG = grnSections;
@@ -1900,13 +1932,16 @@ namespace AgOpenGPS
 
             if (colorDlg.ShowDialog() == DialogResult.OK)
             {
-                redField = (float)colorDlg.Color.R / 259.0f;
-                grnField = (float)colorDlg.Color.G / 259.0f;
-                bluField = (float)colorDlg.Color.B / 259.0f;
+                redField = colorDlg.Color.R;
+                if (redField > 253) redField = 253;
+                grnField = colorDlg.Color.G;
+                if (grnField > 253) grnField = 253;
+                bluField = colorDlg.Color.B;
+                if (bluField > 253) bluField = 253;
 
-                Properties.Settings.Default.setFieldColorR = colorDlg.Color.R;
-                Properties.Settings.Default.setFieldColorG = colorDlg.Color.G;
-                Properties.Settings.Default.setFieldColorB = colorDlg.Color.B;
+                Properties.Settings.Default.setFieldColorR = redField;
+                Properties.Settings.Default.setFieldColorG = grnField;
+                Properties.Settings.Default.setFieldColorB = bluField;
                 Properties.Settings.Default.Save();
             }
         } 
@@ -1986,6 +2021,18 @@ namespace AgOpenGPS
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
+
+        public string LookAhead { get { return ((int)(section[0].sectionLookAhead)).ToString(); } }
+        public string StepFixNum { get { return (currentStepFix).ToString(); } }
+        public string CurrentStepDistance { get { return Math.Round(distanceCurrentStepFix, 3).ToString(); } }
+        public string TotalStepDistance { get { return Math.Round(fixStepDist, 3).ToString(); } }
+
+        public string WorkSwitchValue { get { return modcom.workSwitchValue.ToString(); } }
+        public string AgeDiff { get { return pn.ageDiff.ToString(); } }
+
+
+        //public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
+        //public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
 
 
 #endregion properties 

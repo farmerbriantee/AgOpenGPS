@@ -107,12 +107,6 @@
     <Compile Include="Forms\FormFieldDir.Designer.cs">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormOverlap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormOverlap.Designer.cs">
-      <DependentUpon>FormOverlap.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormCommSet.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,9 +210,6 @@
     <Compile Include="Classes\vec3.cs" />
     <EmbeddedResource Include="Forms\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormOverlap.resx">
-      <DependentUpon>FormOverlap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>

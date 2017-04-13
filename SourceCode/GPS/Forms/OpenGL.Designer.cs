@@ -184,12 +184,12 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " lookA " + Convert.ToString(section[0].sectionLookAhead));
-                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  step " + Convert.ToString(currentStepFix));
-                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Curr " + Convert.ToString(distanceCurrentStepFix));
-                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  dist " + Convert.ToString(fixStepDist));
-                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  DD " + Convert.ToString(dist));
-                //gl.DrawText(10, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
+                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " overT " + modcom.serialRecvRelayStr);
+                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  Head " + Convert.ToString(fixHeading));
+                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Tank " + Convert.ToString(fixHeadingTank ));
+                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  Sect " + Convert.ToString(fixHeadingSection));
+                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  overS " + Convert.ToString(overSect));
+                ////gl.DrawText(10, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
                 //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
                 // gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
@@ -214,27 +214,30 @@ namespace AgOpenGPS
                 gl.PushMatrix();
                 gl.LoadIdentity();
 
-                //draw the background when in 3D
-                if (camera.camPitch > -31)
+                if (skyToolStripMenu.Checked)
                 {
-                    //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                    double hite = (camera.camPitch + 32)/22 * 0.38;
+                    ////draw the background when in 3D
+                    if (camera.camPitch > -31)
+                    {
+                        //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
+                        double hite = (camera.camPitch + 32) / 22 * 0.38;
 
-                    //the background
-                    double winLeftPos = -(double)Width / 2;
-                    double winRightPos = -winLeftPos;
+                        //the background
+                        double winLeftPos = -(double)Width / 2;
+                        double winRightPos = -winLeftPos;
 
-                    gl.Enable(OpenGL.GL_TEXTURE_2D);
-                    gl.BindTexture(OpenGL.GL_TEXTURE_2D, texture[0]);		// Select Our Texture
-                    gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				// Build Quad From A Triangle Strip
-                    gl.TexCoord(0, 0); gl.Vertex(winRightPos, 0.0); // Top Right
-                    gl.TexCoord(1, 0); gl.Vertex(winLeftPos, 0.0); // Top Left
-                    gl.TexCoord(0, 1); gl.Vertex(winRightPos, hite * (double)Height); // Bottom Right
-                    gl.TexCoord(1, 1); gl.Vertex(winLeftPos, hite * (double)Height); // Bottom Left
-                    gl.End();						// Done Building Triangle Strip
+                        gl.Enable(OpenGL.GL_TEXTURE_2D);
+                        gl.BindTexture(OpenGL.GL_TEXTURE_2D, texture[0]);		// Select Our Texture
+                        gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				// Build Quad From A Triangle Strip
+                        gl.TexCoord(0, 0); gl.Vertex(winRightPos, 0.0); // Top Right
+                        gl.TexCoord(1, 0); gl.Vertex(winLeftPos, 0.0); // Top Left
+                        gl.TexCoord(0, 1); gl.Vertex(winRightPos, hite * (double)Height); // Bottom Right
+                        gl.TexCoord(1, 1); gl.Vertex(winLeftPos, hite * (double)Height); // Bottom Left
+                        gl.End();						// Done Building Triangle Strip
 
-                    //disable, straight color
-                    gl.Disable(OpenGL.GL_TEXTURE_2D);
+                        //disable, straight color
+                        gl.Disable(OpenGL.GL_TEXTURE_2D);
+                    }
                 }
 
                 //LightBar if AB Line is set and turned on
@@ -245,7 +248,7 @@ namespace AgOpenGPS
                     {
                         txtDistanceOffABLine.Visible = true;
                         DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine*0.1);
-                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.03937)) + " ";
+                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.1)) + " ";
                         if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
                         else txtDistanceOffABLine.ForeColor = Color.LightGreen;
                     }
