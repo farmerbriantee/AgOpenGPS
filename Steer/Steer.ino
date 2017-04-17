@@ -7,7 +7,7 @@
   
   #define RELAY1_PIN 5  //PD5
   #define RELAY2_PIN 6  //PD6
-  #define RELAY3_PIN 7  //PD6
+  #define RELAY3_PIN 7  //PD7
   #define RELAY4_PIN 8  //PB0
   #define RELAY5_PIN 9  //PB1
   #define RELAY6_PIN 10  //PB2
@@ -68,7 +68,7 @@ void loop()
             case 11:{Kd +=0.5; break; }      
             case 10:{Kd -=0.5; break; }      
             case 17:{Ko +=0.1; break; }      
-            case 16:{Ko +=0.1; break; }         
+            case 16:{Ko -=0.1; break; }         
           }
           
         }
