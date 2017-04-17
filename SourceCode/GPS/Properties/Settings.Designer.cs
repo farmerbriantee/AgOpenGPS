@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-25")]
         public double setCam_pitch {
             get {
                 return ((double)(this["setCam_pitch"]));
@@ -469,7 +469,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("130")]
         public byte setFieldColorR {
             get {
                 return ((byte)(this["setFieldColorR"]));
@@ -481,7 +481,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
         public byte setFieldColorG {
             get {
                 return ((byte)(this["setFieldColorG"]));
@@ -493,7 +493,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public byte setFieldColorB {
             get {
                 return ((byte)(this["setFieldColorB"]));
@@ -505,7 +505,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("70")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public byte setSectionColorR {
             get {
                 return ((byte)(this["setSectionColorR"]));
@@ -517,7 +517,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("190")]
+        [global::System.Configuration.DefaultSettingValueAttribute("220")]
         public byte setSectionColorG {
             get {
                 return ((byte)(this["setSectionColorG"]));

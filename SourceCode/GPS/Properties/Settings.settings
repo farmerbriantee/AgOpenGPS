@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-15</Value>
+      <Value Profile="(Default)">-25</Value>
     </Setting>
     <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM GPS...</Value>
@@ -114,19 +114,19 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="setFieldColorR" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">130</Value>
     </Setting>
     <Setting Name="setFieldColorG" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="setFieldColorB" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">25</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="setSectionColorR" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">70</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="setSectionColorG" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">190</Value>
+      <Value Profile="(Default)">220</Value>
     </Setting>
     <Setting Name="setSectionColorB" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">200</Value>

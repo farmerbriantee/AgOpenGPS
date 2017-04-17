@@ -142,6 +142,31 @@ namespace AgOpenGPS
             swFrame.Start();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F))
+            {
+                JobNewOpenResume();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.G))
+            {
+                Form form = new FormGPSData(this);
+                form.Show();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.S))
+            {
+                SettingsPageOpen(0);
+                return true;    // indicate that you handled this keystroke
+            }
+
+            // Call the base class
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
@@ -305,14 +330,15 @@ namespace AgOpenGPS
                         modcom.relaySectionControl[0] = (byte)0;
                         this.SectionControlOutToPort();
 
-                        modcom.autoSteerControl[0] = (byte)0;
-                        modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
-
-                        modcom.autoSteerControl[2] = (byte)(125);
-                        modcom.autoSteerControl[3] = (byte)20;
-
+                        modcom.autoSteerControl[0] = (byte)127;
+                        modcom.autoSteerControl[1] = (byte)(254);
+                        modcom.autoSteerControl[2] = (byte)0;
+                        modcom.autoSteerControl[3] = (byte)(0);
                         modcom.autoSteerControl[4] = (byte)(125);
                         modcom.autoSteerControl[5] = (byte)20;
+                        modcom.autoSteerControl[6] = (byte)(125);
+                        modcom.autoSteerControl[7] = (byte)20;
+
 
                         //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                         AutoSteerControlOutToPort();
@@ -988,6 +1014,53 @@ namespace AgOpenGPS
 
         }
 
+        //bring up field dialog for new/open/resume
+        private void JobNewOpenResume()
+        {
+            //bring up dialog if no job active, close job if one is
+            if (!isJobStarted)
+            {
+                using (var form = new FormJob(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.Yes)
+                    {
+                        //ask for a directory name
+                        using (var form2 = new FormFieldDir(this))
+                        { var result2 = form2.ShowDialog(); }
+                    }
+                }
+
+                this.Text = "AgOpenGPS - " + currentFieldDirectory;
+            }
+
+            //close the current job and ask how to or if to save
+            else
+            {
+                int choice = SaveOrNot();
+                switch (choice)
+                {
+                    //OK
+                    case 0:
+                        Properties.Settings.Default.setCurrentDir = currentFieldDirectory;
+                        Properties.Settings.Default.Save();
+                        FileSaveEverythingBeforeClosingField();
+                        break;
+                    //Ignore and return
+                    case 1:
+                        break;
+
+                    ////Don't Save
+                    //case 2:
+                    //    JobClose();
+                    //    Properties.Settings.Default.setCurrentDir = "";
+                    //    Properties.Settings.Default.Save();
+                    //    currentFieldDirectory = "";
+                    //    break;
+                }
+            }
+        }
+
         //Does the logic to process section on off requests
         private void ProcessSectionOnOffRequests()
         {
@@ -1487,68 +1560,7 @@ namespace AgOpenGPS
         }
         private void fieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!isJobStarted)
-            {
-                using (var form = new FormJob(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.Yes)
-                    {
-                        //ask for a directory name
-                        using (var form2 = new FormFieldDir(this))
-                        { var result2 = form2.ShowDialog(); }
-                    }
-                }
-                this.Text = "AgOpenGPS - " + currentFieldDirectory;
-            }
-
-            //close the current job and ask how to or if to save
-            else
-            {
-                int choice = SaveOrNot();
-                switch (choice)
-                {
-                    //OK
-                    case 0:
-                        Properties.Settings.Default.setCurrentDir = currentFieldDirectory;
-                        Properties.Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-
-                        //turn all relays off
-                        modcom.relaySectionControl[0] = (byte)0;
-                        this.SectionControlOutToPort();
-
-                        //turn all relays off
-                        modcom.relaySectionControl[0] = (byte)0;
-                        this.SectionControlOutToPort();
-
-                        modcom.autoSteerControl[0] = (byte)0;
-                        modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
-
-                        modcom.autoSteerControl[2] = (byte)(125);
-                        modcom.autoSteerControl[3] = (byte)20;
-
-                        modcom.autoSteerControl[4] = (byte)(125);
-                        modcom.autoSteerControl[5] = (byte)20;
-
-                        //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
-                        AutoSteerControlOutToPort();
-
-
-                        break;
-                    //Ignore and return
-                    case 1:
-                        break;
-
-                    ////Don't Save
-                    //case 2:
-                    //    JobClose();
-                    //    Properties.Settings.Default.setCurrentDir = "";
-                    //    Properties.Settings.Default.Save();
-                    //    currentFieldDirectory = "";
-                    //    break;
-                }                
-            }
+            JobNewOpenResume();
         }
         
         //Help menu drop down items
@@ -1762,50 +1774,7 @@ namespace AgOpenGPS
         }
         private void toolStripMenuField_Click(object sender, EventArgs e)
         {
-            //2 position button, either asking 3 ways to open or closing current
-
-            //bring up dialog if no job active, close job if one is
-            if (!isJobStarted)
-            {
-                using (var form = new FormJob(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.Yes)
-                    {
-                        //ask for a directory name
-                        using (var form2 = new FormFieldDir(this))
-                        { var result2 = form2.ShowDialog(); }
-                    }
-                }
-
-                this.Text = "AgOpenGPS - " + currentFieldDirectory;
-            }
-
-            //close the current job and ask how to or if to save
-            else
-            {
-                int choice = SaveOrNot();
-                switch (choice)
-                {
-                    //OK
-                    case 0:
-                        Properties.Settings.Default.setCurrentDir = currentFieldDirectory;
-                        Properties.Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-                        break;
-                    //Ignore and return
-                    case 1:
-                        break;
-
-                    ////Don't Save
-                    //case 2:
-                    //    JobClose();
-                    //    Properties.Settings.Default.setCurrentDir = "";
-                    //    Properties.Settings.Default.Save();
-                    //    currentFieldDirectory = "";
-                    //    break;
-                }
-            }
+            JobNewOpenResume();
         }
 
         //ABLine button context menu
@@ -2121,7 +2090,6 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
-
 
 
    }//class FormGPS

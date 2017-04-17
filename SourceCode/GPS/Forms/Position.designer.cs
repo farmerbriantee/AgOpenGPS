@@ -138,10 +138,14 @@ namespace AgOpenGPS
                 {
                     modcom.relaySectionControl[0] = (byte)0;
                     SectionControlOutToPort();
-                    modcom.autoSteerControl[0] = (byte)0;
-                    modcom.autoSteerControl[1] = (byte)0;
+                    modcom.autoSteerControl[0] = (byte)127;
+                    modcom.autoSteerControl[1] = (byte)(254);
                     modcom.autoSteerControl[2] = (byte)0;
-                    modcom.autoSteerControl[3] = (byte)0;
+                    modcom.autoSteerControl[3] = (byte)(0);
+                    modcom.autoSteerControl[4] = (byte)(125);
+                    modcom.autoSteerControl[5] = (byte)20;
+                    modcom.autoSteerControl[6] = (byte)(125);
+                    modcom.autoSteerControl[7] = (byte)20;
                     AutoSteerControlOutToPort();
                 }
 
@@ -312,14 +316,14 @@ namespace AgOpenGPS
                 guidanceLineHeadingDelta = 32020;
             }
 
-            // modcom.autoSteerControl[0] contains the section relay byte
-            modcom.autoSteerControl[1] = (byte)(pn.speed * 4.0);
+            // modcom.autoSteerControl[2] contains the section relay byte
+            modcom.autoSteerControl[3] = (byte)(pn.speed * 4.0);
 
-            modcom.autoSteerControl[2] = (byte)(guidanceLineDistanceOff >> 8);
-            modcom.autoSteerControl[3] = (byte)guidanceLineDistanceOff;
+            modcom.autoSteerControl[4] = (byte)(guidanceLineDistanceOff >> 8);
+            modcom.autoSteerControl[5] = (byte)guidanceLineDistanceOff;
 
-            modcom.autoSteerControl[4] = (byte)(guidanceLineHeadingDelta >> 8);
-            modcom.autoSteerControl[5] = (byte)guidanceLineHeadingDelta;
+            modcom.autoSteerControl[6] = (byte)(guidanceLineHeadingDelta >> 8);
+            modcom.autoSteerControl[7] = (byte)guidanceLineHeadingDelta;
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
             AutoSteerControlOutToPort();

@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public double imuHeading = 0;
 
         //control for the auto steer module
-        public byte[] autoSteerControl = new byte[6];
+        public byte[] autoSteerControl = new byte[9];
         public string serialRecvAutoSteerStr;
  
         //for the workswitch
@@ -32,14 +32,15 @@ namespace AgOpenGPS
             //control all relays based on byte value, 1 means on, 0 means off
             relaySectionControl[0] = 0;
 
-            autoSteerControl[0] = (byte)0;
-            autoSteerControl[1] = (byte)(0);
-
-            autoSteerControl[2] = (byte)(125);
-            autoSteerControl[3] = (byte)20;
-
+            autoSteerControl[0] = (byte)127;
+            autoSteerControl[1] = (byte)(254);
+            autoSteerControl[2] = (byte)0;
+            autoSteerControl[3] = (byte)(0);
             autoSteerControl[4] = (byte)(125);
             autoSteerControl[5] = (byte)20;
+            autoSteerControl[6] = (byte)(125);
+            autoSteerControl[7] = (byte)20;
+            autoSteerControl[8] = (byte)0;
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;

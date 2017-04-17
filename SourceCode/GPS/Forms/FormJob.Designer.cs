@@ -44,7 +44,7 @@
             this.btnJobOpen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobOpen.Name = "btnJobOpen";
             this.btnJobOpen.Size = new System.Drawing.Size(205, 70);
-            this.btnJobOpen.TabIndex = 58;
+            this.btnJobOpen.TabIndex = 3;
             this.btnJobOpen.Text = "Open  ";
             this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobOpen.UseVisualStyleBackColor = true;
@@ -59,7 +59,7 @@
             this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobNew.Name = "btnJobNew";
             this.btnJobNew.Size = new System.Drawing.Size(205, 70);
-            this.btnJobNew.TabIndex = 59;
+            this.btnJobNew.TabIndex = 2;
             this.btnJobNew.Text = "New  ";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobNew.UseVisualStyleBackColor = true;
@@ -74,7 +74,7 @@
             this.btnDeleteAB.Location = new System.Drawing.Point(120, 311);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(109, 62);
-            this.btnDeleteAB.TabIndex = 62;
+            this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnJobResume
@@ -86,7 +86,7 @@
             this.btnJobResume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobResume.Name = "btnJobResume";
             this.btnJobResume.Size = new System.Drawing.Size(205, 70);
-            this.btnJobResume.TabIndex = 60;
+            this.btnJobResume.TabIndex = 1;
             this.btnJobResume.Text = "Resume";
             this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobResume.UseVisualStyleBackColor = true;

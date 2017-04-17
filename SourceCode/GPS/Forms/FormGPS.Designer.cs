@@ -167,7 +167,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.openGLControl.Size = new System.Drawing.Size(1019, 466);
+            this.openGLControl.Size = new System.Drawing.Size(857, 466);
             this.openGLControl.TabIndex = 6;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -219,7 +219,7 @@
             this.txtDistanceOffABLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDistanceOffABLine.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDistanceOffABLine.ForeColor = System.Drawing.Color.Chartreuse;
-            this.txtDistanceOffABLine.Location = new System.Drawing.Point(481, 32);
+            this.txtDistanceOffABLine.Location = new System.Drawing.Point(400, 32);
             this.txtDistanceOffABLine.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.txtDistanceOffABLine.MaximumSize = new System.Drawing.Size(53, 28);
             this.txtDistanceOffABLine.Name = "txtDistanceOffABLine";
@@ -497,7 +497,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.menuStrip1.Size = new System.Drawing.Size(1019, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(857, 28);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -585,7 +585,7 @@
             this.stripOnlineAutoSteer});
             this.statusStrip1.Location = new System.Drawing.Point(0, 500);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1019, 20);
+            this.statusStrip1.Size = new System.Drawing.Size(857, 20);
             this.statusStrip1.TabIndex = 95;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -667,7 +667,7 @@
             this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(330, 20);
+            this.stripEqWidth.Size = new System.Drawing.Size(168, 20);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -749,7 +749,7 @@
             this.lblNorthing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblNorthing.AutoSize = true;
             this.lblNorthing.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.lblNorthing.Location = new System.Drawing.Point(963, 18);
+            this.lblNorthing.Location = new System.Drawing.Point(801, 18);
             this.lblNorthing.Name = "lblNorthing";
             this.lblNorthing.Size = new System.Drawing.Size(41, 13);
             this.lblNorthing.TabIndex = 110;
@@ -761,7 +761,7 @@
             this.lblEasting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEasting.AutoSize = true;
             this.lblEasting.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.lblEasting.Location = new System.Drawing.Point(963, 2);
+            this.lblEasting.Location = new System.Drawing.Point(801, 2);
             this.lblEasting.Name = "lblEasting";
             this.lblEasting.Size = new System.Drawing.Size(41, 13);
             this.lblEasting.TabIndex = 111;
@@ -774,7 +774,7 @@
             this.lblSpeed.AutoSize = true;
             this.lblSpeed.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblSpeed.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeed.Location = new System.Drawing.Point(534, 1);
+            this.lblSpeed.Location = new System.Drawing.Point(453, 1);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(53, 30);
             this.lblSpeed.TabIndex = 116;
@@ -786,7 +786,7 @@
             this.lblHeading.AutoSize = true;
             this.lblHeading.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblHeading.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.Location = new System.Drawing.Point(422, 1);
+            this.lblHeading.Location = new System.Drawing.Point(341, 1);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(44, 30);
             this.lblHeading.TabIndex = 117;
@@ -1098,7 +1098,7 @@
             this.btnZoomIn.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomOut48;
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZoomIn.Location = new System.Drawing.Point(875, 67);
+            this.btnZoomIn.Location = new System.Drawing.Point(713, 67);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(55, 49);
             this.btnZoomIn.TabIndex = 120;
@@ -1111,7 +1111,7 @@
             this.btnZoomOut.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomIn48;
             this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZoomOut.Location = new System.Drawing.Point(957, 67);
+            this.btnZoomOut.Location = new System.Drawing.Point(795, 67);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(55, 49);
             this.btnZoomOut.TabIndex = 119;
@@ -1139,7 +1139,7 @@
             this.btnContour.Enabled = false;
             this.btnContour.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
-            this.btnContour.Location = new System.Drawing.Point(930, 217);
+            this.btnContour.Location = new System.Drawing.Point(768, 217);
             this.btnContour.Name = "btnContour";
             this.btnContour.Size = new System.Drawing.Size(82, 66);
             this.btnContour.TabIndex = 105;
@@ -1156,7 +1156,7 @@
             this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(930, 386);
+            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(768, 386);
             this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
             this.btnSectionOffAutoOn.Size = new System.Drawing.Size(82, 88);
             this.btnSectionOffAutoOn.TabIndex = 104;
@@ -1268,7 +1268,7 @@
             this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnManualOffOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.btnManualOffOn.Location = new System.Drawing.Point(930, 290);
+            this.btnManualOffOn.Location = new System.Drawing.Point(768, 290);
             this.btnManualOffOn.Name = "btnManualOffOn";
             this.btnManualOffOn.Size = new System.Drawing.Size(82, 88);
             this.btnManualOffOn.TabIndex = 98;
@@ -1295,7 +1295,7 @@
             this.btnABLine.Enabled = false;
             this.btnABLine.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-            this.btnABLine.Location = new System.Drawing.Point(930, 145);
+            this.btnABLine.Location = new System.Drawing.Point(768, 145);
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.Size = new System.Drawing.Size(82, 66);
             this.btnABLine.TabIndex = 0;
@@ -1310,7 +1310,7 @@
             this.lblAutoSteerDistance.AutoSize = true;
             this.lblAutoSteerDistance.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblAutoSteerDistance.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutoSteerDistance.Location = new System.Drawing.Point(873, 5);
+            this.lblAutoSteerDistance.Location = new System.Drawing.Point(711, 5);
             this.lblAutoSteerDistance.Name = "lblAutoSteerDistance";
             this.lblAutoSteerDistance.Size = new System.Drawing.Size(67, 25);
             this.lblAutoSteerDistance.TabIndex = 129;
@@ -1323,7 +1323,7 @@
             this.lblAutoSteerDelta.AutoSize = true;
             this.lblAutoSteerDelta.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblAutoSteerDelta.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAutoSteerDelta.Location = new System.Drawing.Point(801, 5);
+            this.lblAutoSteerDelta.Location = new System.Drawing.Point(639, 5);
             this.lblAutoSteerDelta.Name = "lblAutoSteerDelta";
             this.lblAutoSteerDelta.Size = new System.Drawing.Size(67, 25);
             this.lblAutoSteerDelta.TabIndex = 130;
@@ -1337,7 +1337,7 @@
             this.lblSpeedUnits.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblSpeedUnits.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeedUnits.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSpeedUnits.Location = new System.Drawing.Point(587, 4);
+            this.lblSpeedUnits.Location = new System.Drawing.Point(506, 4);
             this.lblSpeedUnits.Name = "lblSpeedUnits";
             this.lblSpeedUnits.Size = new System.Drawing.Size(52, 25);
             this.lblSpeedUnits.TabIndex = 131;
@@ -1349,7 +1349,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1019, 520);
+            this.ClientSize = new System.Drawing.Size(857, 520);
             this.Controls.Add(this.lblSpeedUnits);
             this.Controls.Add(this.lblAutoSteerDelta);
             this.Controls.Add(this.lblAutoSteerDistance);

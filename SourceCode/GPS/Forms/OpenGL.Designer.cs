@@ -184,8 +184,8 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " overT " + modcom.serialRecvRelayStr);
-                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "  Head " + Convert.ToString(fixHeading));
+                gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " Dist " + ABLine.distanceFromCurrentLine);
+                gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "delta " + Convert.ToString((double)(guidanceLineHeadingDelta)/10000));
                 //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Tank " + Convert.ToString(fixHeadingTank ));
                 //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  Sect " + Convert.ToString(fixHeadingSection));
                 //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  overS " + Convert.ToString(overSect));

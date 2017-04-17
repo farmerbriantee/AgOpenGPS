@@ -14,13 +14,15 @@ namespace AgOpenGPS
 {
     public partial class FormGPSData : Form
     {
-        private FormGPS mainForm = null;
+        private FormGPS mf = null;
 
         public decimal ReturnValue1 { get; set; }
 
+        int pValue = 0, iValue = 0, dValue = 0, oValue = 0;
+
         public FormGPSData(Form callingForm)
         {
-            mainForm = callingForm as FormGPS;
+            mf = callingForm as FormGPS;
             InitializeComponent();
         }
 
@@ -35,33 +37,94 @@ namespace AgOpenGPS
         {
 
             //all the fixings and position
-            lblZone.Text = mainForm.Zone;
-            lblNorthing.Text = mainForm.FixNorthing;
-            lblEasting.Text = mainForm.FixEasting;
-            lblLatitude.Text = mainForm.Latitude;
-            lblLongitude.Text = mainForm.Longitude;
-            lblAltitude.Text = mainForm.Altitude;
+            lblZone.Text = mf.Zone;
+            lblNorthing.Text = mf.FixNorthing;
+            lblEasting.Text = mf.FixEasting;
+            lblLatitude.Text = mf.Latitude;
+            lblLongitude.Text = mf.Longitude;
+            lblAltitude.Text = mf.Altitude;
 
             //other sat and GPS info
-            lblFixQuality.Text = mainForm.FixQuality;
-            lblSatsTracked.Text = mainForm.SatsTracked;
-            lblStatus.Text = mainForm.Status;
-            lblHDOP.Text = mainForm.HDOP;
+            lblFixQuality.Text = mf.FixQuality;
+            lblSatsTracked.Text = mf.SatsTracked;
+            lblStatus.Text = mf.Status;
+            lblHDOP.Text = mf.HDOP;
 
-            tboxSerialFromRelay.Text = mainForm.modcom.serialRecvRelayStr;
-            tboxSerialToRelay.Text = mainForm.modcom.relaySectionControl[0].ToString();
-            tboxNMEASerial.Text = mainForm.recvSentenceSettings;
+            tboxSerialFromRelay.Text = mf.modcom.serialRecvRelayStr;
+            tboxSerialToRelay.Text = mf.modcom.relaySectionControl[0].ToString();
+            tboxNMEASerial.Text = mf.recvSentenceSettings;
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
 
-            tboxSerialFromAutoSteer.Text = mainForm.modcom.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = mainForm.modcom.autoSteerControl[0] + ", " + mainForm.modcom.autoSteerControl[1]
-                                    + ", " + mainForm.guidanceLineDistanceOff + ", " + mainForm.guidanceLineHeadingDelta;
-
+            tboxSerialFromAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
+            tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[0] + ", " + mf.modcom.autoSteerControl[1]
+                                + ", " + mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta
+                                    + ", " + mf.modcom.autoSteerControl[8];
         }
 
-        private void FormGPSData_Load(object sender, EventArgs e)
+        //Send to Autosteer to adjust PIDO values, LSB is up or down
+        private void btnPPlus_Click(object sender, EventArgs e)
         {
-
+            //0000 0011
+            mf.modcom.autoSteerControl[8] = (byte)3;
+            pValue++;
+            lblPValue.Text = pValue.ToString();
         }
-    }
+
+        private void btnPMinus_Click(object sender, EventArgs e)
+        {
+            //0000 0010
+            mf.modcom.autoSteerControl[8] = (byte)2;
+            pValue--;
+            lblPValue.Text = pValue.ToString();
+        }
+
+        private void btnIPlus_Click(object sender, EventArgs e)
+        {
+            //0000 0101
+            mf.modcom.autoSteerControl[8] = (byte)5;
+            iValue++;
+            lblIValue.Text = iValue.ToString();
+        }
+
+        private void btnIMinus_Click(object sender, EventArgs e)
+        {
+            //0000 0100
+            mf.modcom.autoSteerControl[8] = (byte)4;
+            iValue--;
+            lblIValue.Text = iValue.ToString();
+        }
+
+        private void btnDPlus_Click(object sender, EventArgs e)
+        {
+            //0000 1001
+            mf.modcom.autoSteerControl[8] = (byte)11;
+            dValue++;
+            lblDValue.Text = dValue.ToString();
+        }
+
+        private void btnDMinus_Click(object sender, EventArgs e)
+        {
+            //0000 1000
+            mf.modcom.autoSteerControl[8] = (byte)10;
+            dValue--;
+            lblDValue.Text = dValue.ToString();
+        }
+
+        private void btnOPlus_Click(object sender, EventArgs e)
+        {
+            //0001 0001
+            mf.modcom.autoSteerControl[8] = (byte)17;
+            oValue++;
+            lblOValue.Text = oValue.ToString();
+        }
+
+        private void btnOMinus_Click(object sender, EventArgs e)
+        {
+            //0001 0000
+            mf.modcom.autoSteerControl[8] = (byte)16;
+            oValue--;
+            lblOValue.Text = oValue.ToString();
+        }
+     }
 }
