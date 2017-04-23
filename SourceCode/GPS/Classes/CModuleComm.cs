@@ -9,15 +9,19 @@ namespace AgOpenGPS
         private FormGPS mf;
 
         //properties for relay control of sections and input lines, 8 bit bytes
-        public byte[] relaySectionControl = new byte[1];
-        //public byte[] relayInputLines = new byte[1];
+        public byte[] relaySectionControl = new byte[numRelayControls];
         public string serialRecvRelayStr;
         public double rollAngle = 0, pitchAngle = 0;
         public double angularVelocity = 0;
         public double imuHeading = 0;
 
+        public static int numSteerControls = 8;
+        public static int numSteerSettings = 7;
+        public static int numRelayControls = 1;
+
         //control for the auto steer module
-        public byte[] autoSteerControl = new byte[9];
+        public byte[] autoSteerControl = new byte[numSteerControls];
+        public byte[] autoSteerSettings = new byte[numSteerSettings];
         public string serialRecvAutoSteerStr;
  
         //for the workswitch
@@ -40,7 +44,6 @@ namespace AgOpenGPS
             autoSteerControl[5] = (byte)20;
             autoSteerControl[6] = (byte)(125);
             autoSteerControl[7] = (byte)20;
-            autoSteerControl[8] = (byte)0;
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
@@ -48,6 +51,15 @@ namespace AgOpenGPS
 
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
+
+            autoSteerSettings[0] = (byte)127;
+            autoSteerSettings[1] = (byte)252; //32764 as header
+
+            autoSteerSettings[2] = Properties.Settings.Default.setAS_Kp;
+            autoSteerSettings[3] = Properties.Settings.Default.setAS_Ki;
+            autoSteerSettings[4] = Properties.Settings.Default.setAS_Kd;
+            autoSteerSettings[5] = Properties.Settings.Default.setAS_Ko;
+            autoSteerSettings[6] = Properties.Settings.Default.setAS_maxIntError;
         }
     }
 }

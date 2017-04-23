@@ -83,6 +83,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -124,6 +125,12 @@
     </Compile>
     <Compile Include="Forms\FormSaveOrNot.Designer.cs">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSteer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSteer.Designer.cs">
+      <DependentUpon>FormSteer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormTimedMessage.cs">
       <SubType>Form</SubType>
@@ -240,6 +247,9 @@
     <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSteer.resx">
+      <DependentUpon>FormSteer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>

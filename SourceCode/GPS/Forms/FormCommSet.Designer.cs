@@ -64,9 +64,15 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnOpenSerialAutoSteer = new System.Windows.Forms.Button();
             this.btnCloseSerialAutoSteer = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboxTCP = new System.Windows.Forms.CheckBox();
+            this.cboxUDP = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -76,11 +82,12 @@
             // 
             // btnSerialCancel
             // 
+            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(676, 290);
+            this.btnSerialCancel.Location = new System.Drawing.Point(610, 403);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 72);
             this.btnSerialCancel.TabIndex = 62;
@@ -93,7 +100,7 @@
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(624, 101);
+            this.btnRescan.Location = new System.Drawing.Point(679, 47);
             this.btnRescan.Name = "btnRescan";
             this.btnRescan.Size = new System.Drawing.Size(117, 50);
             this.btnRescan.TabIndex = 58;
@@ -103,11 +110,12 @@
             // 
             // btnSerialOK
             // 
+            this.btnSerialOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSerialOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialOK.Image")));
-            this.btnSerialOK.Location = new System.Drawing.Point(608, 395);
+            this.btnSerialOK.Location = new System.Drawing.Point(722, 403);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(156, 72);
             this.btnSerialOK.TabIndex = 59;
@@ -128,7 +136,7 @@
             this.groupBox1.Controls.Add(this.textBoxRcv);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnOpenSerial);
-            this.groupBox1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(576, 178);
@@ -139,7 +147,7 @@
             // cboxPort
             // 
             this.cboxPort.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxPort.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
             this.cboxPort.Items.AddRange(new object[] {
@@ -151,7 +159,7 @@
             "115200"});
             this.cboxPort.Location = new System.Drawing.Point(25, 39);
             this.cboxPort.Name = "cboxPort";
-            this.cboxPort.Size = new System.Drawing.Size(96, 31);
+            this.cboxPort.Size = new System.Drawing.Size(96, 37);
             this.cboxPort.TabIndex = 50;
             this.cboxPort.Text = "Port";
             this.cboxPort.SelectedIndexChanged += new System.EventHandler(this.cboxPort_SelectedIndexChanged_1);
@@ -159,7 +167,7 @@
             // cboxBaud
             // 
             this.cboxBaud.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.cboxBaud.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxBaud.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxBaud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxBaud.FormattingEnabled = true;
             this.cboxBaud.Items.AddRange(new object[] {
@@ -171,7 +179,7 @@
             "115200"});
             this.cboxBaud.Location = new System.Drawing.Point(140, 39);
             this.cboxBaud.Name = "cboxBaud";
-            this.cboxBaud.Size = new System.Drawing.Size(96, 31);
+            this.cboxBaud.Size = new System.Drawing.Size(96, 37);
             this.cboxBaud.TabIndex = 49;
             this.cboxBaud.Text = "Baud";
             this.cboxBaud.SelectedIndexChanged += new System.EventHandler(this.cboxBaud_SelectedIndexChanged_1);
@@ -189,20 +197,20 @@
             // lblCurrentPort
             // 
             this.lblCurrentPort.AutoSize = true;
-            this.lblCurrentPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentPort.Location = new System.Drawing.Point(89, 84);
             this.lblCurrentPort.Name = "lblCurrentPort";
-            this.lblCurrentPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentPort.Size = new System.Drawing.Size(36, 16);
             this.lblCurrentPort.TabIndex = 47;
             this.lblCurrentPort.Text = "Port";
             // 
             // lblCurrentBaud
             // 
             this.lblCurrentBaud.AutoSize = true;
-            this.lblCurrentBaud.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentBaud.Location = new System.Drawing.Point(137, 84);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
-            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 16);
+            this.lblCurrentBaud.Size = new System.Drawing.Size(40, 16);
             this.lblCurrentBaud.TabIndex = 46;
             this.lblCurrentBaud.Text = "Baud";
             // 
@@ -294,10 +302,10 @@
             // lblCurrentArduinoPort
             // 
             this.lblCurrentArduinoPort.AutoSize = true;
-            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 48);
             this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
-            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(36, 16);
             this.lblCurrentArduinoPort.TabIndex = 59;
             this.lblCurrentArduinoPort.Text = "Port";
             // 
@@ -314,10 +322,11 @@
             // 
             // cboxArdPort
             // 
+            this.cboxArdPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxArdPort.FormattingEnabled = true;
             this.cboxArdPort.Location = new System.Drawing.Point(25, 31);
             this.cboxArdPort.Name = "cboxArdPort";
-            this.cboxArdPort.Size = new System.Drawing.Size(121, 33);
+            this.cboxArdPort.Size = new System.Drawing.Size(121, 37);
             this.cboxArdPort.TabIndex = 64;
             this.cboxArdPort.SelectedIndexChanged += new System.EventHandler(this.cboxArdPort_SelectedIndexChanged);
             // 
@@ -333,7 +342,7 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
             this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
-            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 192);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(576, 134);
@@ -384,7 +393,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.btnOpenSerialAutoSteer);
             this.groupBox3.Controls.Add(this.btnCloseSerialAutoSteer);
-            this.groupBox3.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(12, 342);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(576, 132);
@@ -398,9 +407,9 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(29, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 16);
+            this.label3.Size = new System.Drawing.Size(108, 16);
             this.label3.TabIndex = 66;
-            this.label3.Text = "To Section Port:";
+            this.label3.Text = "To Auto Steer:";
             // 
             // txtBoxSendAutoSteer
             // 
@@ -416,10 +425,11 @@
             // cboxASPort
             // 
             this.cboxASPort.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cboxASPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxASPort.FormattingEnabled = true;
             this.cboxASPort.Location = new System.Drawing.Point(25, 31);
             this.cboxASPort.Name = "cboxASPort";
-            this.cboxASPort.Size = new System.Drawing.Size(121, 33);
+            this.cboxASPort.Size = new System.Drawing.Size(121, 37);
             this.cboxASPort.TabIndex = 64;
             this.cboxASPort.SelectedIndexChanged += new System.EventHandler(this.cboxASPort_SelectedIndexChanged);
             // 
@@ -447,10 +457,10 @@
             // lblCurrentAutoSteerPort
             // 
             this.lblCurrentAutoSteerPort.AutoSize = true;
-            this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(162, 48);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
-            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(38, 16);
+            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(36, 16);
             this.lblCurrentAutoSteerPort.TabIndex = 59;
             this.lblCurrentAutoSteerPort.Text = "Port";
             // 
@@ -460,9 +470,9 @@
             this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(303, 77);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 16);
+            this.label6.Size = new System.Drawing.Size(123, 16);
             this.label6.TabIndex = 58;
-            this.label6.Text = "From Section Port:";
+            this.label6.Text = "From Auto Steer:";
             // 
             // btnOpenSerialAutoSteer
             // 
@@ -490,11 +500,70 @@
             this.btnCloseSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnCloseSerialAutoSteer.Click += new System.EventHandler(this.btnCloseSerialAutoSteer_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(642, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(212, 16);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "To Refresh Available USB Ports";
+            // 
+            // cboxTCP
+            // 
+            this.cboxTCP.AutoSize = true;
+            this.cboxTCP.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxTCP.Location = new System.Drawing.Point(14, 42);
+            this.cboxTCP.Name = "cboxTCP";
+            this.cboxTCP.Size = new System.Drawing.Size(237, 27);
+            this.cboxTCP.TabIndex = 67;
+            this.cboxTCP.Text = " - TCP Server On (Port 7777)";
+            this.cboxTCP.UseVisualStyleBackColor = true;
+            this.cboxTCP.CheckedChanged += new System.EventHandler(this.cboxTCP_CheckedChanged);
+            // 
+            // cboxUDP
+            // 
+            this.cboxUDP.AutoSize = true;
+            this.cboxUDP.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxUDP.Location = new System.Drawing.Point(14, 91);
+            this.cboxUDP.Name = "cboxUDP";
+            this.cboxUDP.Size = new System.Drawing.Size(238, 27);
+            this.cboxUDP.TabIndex = 68;
+            this.cboxUDP.Text = " - UDP Server On (Port 9999)";
+            this.cboxUDP.UseVisualStyleBackColor = true;
+            this.cboxUDP.CheckedChanged += new System.EventHandler(this.cboxUDP_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.cboxUDP);
+            this.groupBox4.Controls.Add(this.cboxTCP);
+            this.groupBox4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(613, 135);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(265, 201);
+            this.groupBox4.TabIndex = 69;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Ethernet Servers";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(15, 146);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(227, 36);
+            this.label7.TabIndex = 70;
+            this.label7.Text = "** You must Restart App for \r\nServers to Start or Stop\r\n";
+            // 
             // FormCommSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(770, 474);
+            this.ClientSize = new System.Drawing.Size(890, 483);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.btnRescan);
@@ -510,7 +579,10 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -550,5 +622,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnOpenSerialAutoSteer;
         private System.Windows.Forms.Button btnCloseSerialAutoSteer;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox cboxTCP;
+        private System.Windows.Forms.CheckBox cboxUDP;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label7;
     }
 }

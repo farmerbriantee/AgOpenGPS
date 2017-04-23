@@ -706,5 +706,89 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_tankTrailingHitchLength"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public byte setAS_Ko {
+            get {
+                return ((byte)(this["setAS_Ko"]));
+            }
+            set {
+                this["setAS_Ko"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public byte setAS_Kp {
+            get {
+                return ((byte)(this["setAS_Kp"]));
+            }
+            set {
+                this["setAS_Kp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        public byte setAS_Ki {
+            get {
+                return ((byte)(this["setAS_Ki"]));
+            }
+            set {
+                this["setAS_Ki"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("35")]
+        public byte setAS_Kd {
+            get {
+                return ((byte)(this["setAS_Kd"]));
+            }
+            set {
+                this["setAS_Kd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public byte setAS_maxIntError {
+            get {
+                return ((byte)(this["setAS_maxIntError"]));
+            }
+            set {
+                this["setAS_maxIntError"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPort_isUDPOn {
+            get {
+                return ((bool)(this["setPort_isUDPOn"]));
+            }
+            set {
+                this["setPort_isUDPOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPort_isTCPOn {
+            get {
+                return ((bool)(this["setPort_isTCPOn"]));
+            }
+            set {
+                this["setPort_isTCPOn"] = value;
+            }
+        }
     }
 }

@@ -27,9 +27,9 @@ namespace AgOpenGPS
 
        public static double m2ft = 3.28084;
 
-       public static double twoPI = 6.2857142857142857142857142857143;
-                     
-       public static double PIBy2 = 1.5714285714285714285714285714286;
+       public static double twoPI = 6.28318530717958647692;
+
+       public static double PIBy2 = 1.57079632679489661923;
 
        public static float acos(float x)
         {

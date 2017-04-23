@@ -1,8 +1,16 @@
-﻿v2.2 April 15
+﻿v2.13 April 15
+*
+* In communication, can turn on or off servers
 * Full Metric Imperial
 * AirSeeder style hitch, double pivot position
 * AutoSteerModule gets relay info
 * Turn sky on off
+* PID Autosteer dialog with settable paramters
+* super Mario size the buttons, u/d counters etc
+* Offset works, along with guidance
+* fixed PI/2 and 2Pi constants
+* fixed Snap, was in mm not cm
+* Small bugs fixed
 
 v2.1 March 2017
 *

@@ -42,18 +42,25 @@ namespace AgOpenGPS
 
         #region AutoSteerPort //--------------------------------------------------------------------
 
-        //Send relay info out to relay board
         public void AutoSteerControlOutToPort()
         {
-            //Tell Arduino to turn section on or off accordingly
+            //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(modcom.autoSteerControl, 0, 9); }
+                try { spAutoSteer.Write(modcom.autoSteerControl, 0, CModuleComm.numSteerControls); }
                 catch (Exception) { SerialPortAutoSteerClose(); }
             }
-            //reset the PID settings byte
-            modcom.autoSteerControl[8] = (byte)0;
+ 
+        }
 
+        public void AutoSteerSettingsOutToPort()
+        {
+            //Tell Arduino autoSteer settings
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(modcom.autoSteerSettings, 0, CModuleComm.numSteerSettings ); }
+                catch (Exception) { SerialPortAutoSteerClose(); }
+            }
         }
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
@@ -195,7 +202,7 @@ namespace AgOpenGPS
             //Tell Arduino to turn section on or off accordingly
             if (spRelay.IsOpen)
             {
-                try { spRelay.Write(modcom.relaySectionControl, 0, 1); }
+                try { spRelay.Write(modcom.relaySectionControl, 0, CModuleComm.numRelayControls ); }
                 catch (Exception) { SerialPortRelayClose(); }
             }
         }

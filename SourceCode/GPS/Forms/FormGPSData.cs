@@ -18,8 +18,6 @@ namespace AgOpenGPS
 
         public decimal ReturnValue1 { get; set; }
 
-        int pValue = 0, iValue = 0, dValue = 0, oValue = 0;
-
         public FormGPSData(Form callingForm)
         {
             mf = callingForm as FormGPS;
@@ -58,73 +56,8 @@ namespace AgOpenGPS
             tboxSerialFromAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
             tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[0] + ", " + mf.modcom.autoSteerControl[1]
                                 + ", " + mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta
-                                    + ", " + mf.modcom.autoSteerControl[8];
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
         }
-
-        //Send to Autosteer to adjust PIDO values, LSB is up or down
-        private void btnPPlus_Click(object sender, EventArgs e)
-        {
-            //0000 0011
-            mf.modcom.autoSteerControl[8] = (byte)3;
-            pValue++;
-            lblPValue.Text = pValue.ToString();
-        }
-
-        private void btnPMinus_Click(object sender, EventArgs e)
-        {
-            //0000 0010
-            mf.modcom.autoSteerControl[8] = (byte)2;
-            pValue--;
-            lblPValue.Text = pValue.ToString();
-        }
-
-        private void btnIPlus_Click(object sender, EventArgs e)
-        {
-            //0000 0101
-            mf.modcom.autoSteerControl[8] = (byte)5;
-            iValue++;
-            lblIValue.Text = iValue.ToString();
-        }
-
-        private void btnIMinus_Click(object sender, EventArgs e)
-        {
-            //0000 0100
-            mf.modcom.autoSteerControl[8] = (byte)4;
-            iValue--;
-            lblIValue.Text = iValue.ToString();
-        }
-
-        private void btnDPlus_Click(object sender, EventArgs e)
-        {
-            //0000 1001
-            mf.modcom.autoSteerControl[8] = (byte)11;
-            dValue++;
-            lblDValue.Text = dValue.ToString();
-        }
-
-        private void btnDMinus_Click(object sender, EventArgs e)
-        {
-            //0000 1000
-            mf.modcom.autoSteerControl[8] = (byte)10;
-            dValue--;
-            lblDValue.Text = dValue.ToString();
-        }
-
-        private void btnOPlus_Click(object sender, EventArgs e)
-        {
-            //0001 0001
-            mf.modcom.autoSteerControl[8] = (byte)17;
-            oValue++;
-            lblOValue.Text = oValue.ToString();
-        }
-
-        private void btnOMinus_Click(object sender, EventArgs e)
-        {
-            //0001 0000
-            mf.modcom.autoSteerControl[8] = (byte)16;
-            oValue--;
-            lblOValue.Text = oValue.ToString();
-        }
+ 
      }
 }

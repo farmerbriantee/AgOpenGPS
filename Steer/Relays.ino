@@ -2,8 +2,8 @@
  {
     if (bitRead(relay,0)) bitSet(PORTD, 5); //Digital Pin 5
     else bitClear(PORTD, 5); 
-    if (bitRead(relay,1)) bitSet(PORTD, 6); //Digital Pin 6
-    else bitClear(PORTD, 6); 
+    //if (bitRead(relay,1)) bitSet(PORTD, 6); //Digital Pin 6
+    //else bitClear(PORTD, 6); 
     //if (bitRead(relay,2)) bitSet(PORTD, 7); //Digital Pin 7
     //else bitClear(PORTD, 7); 
     //if (bitRead(relay,3)) bitSet(PORTB, 0); //Digital Pin 8

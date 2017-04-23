@@ -198,6 +198,10 @@ namespace AgOpenGPS
             refZ = stripList[strip][pt].z;
             refHeading = stripList[strip][pt].y;
 
+            //are we going same direction as stripList was created?
+            bool isSameWay = false;
+            if (Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4) isSameWay = true;
+
             //which side of the patch are we on is next
             //calculate endpoints of reference line based on closest point
             refPoint1.x = refX - Math.Sin(refHeading) * 50.0;
@@ -205,9 +209,6 @@ namespace AgOpenGPS
 
             refPoint2.x = refX + Math.Sin(refHeading) * 50.0;
             refPoint2.z = refZ + Math.Cos(refHeading) * 50.0;
-
-            //move the Guidance Line over based on the overlap amount set in vehicle
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
             //x2-x1
             double dx = refPoint2.x - refPoint1.x;
@@ -226,13 +227,21 @@ namespace AgOpenGPS
             if (distanceFromRefLine > 0) piSide = glm.PIBy2;
             else piSide = -glm.PIBy2;
 
+            //offset calcs
+            double toolOffset = mf.vehicle.toolOffset;
+            if (isSameWay) toolOffset = 0.0;
+            else
+            {
+                if (distanceFromRefLine > 0) toolOffset = toolOffset * 2.0;
+                else toolOffset = toolOffset * -2.0;
+            }
+
+            //move the Guidance Line over based on the overlap, width, and offset amount set in vehicle
+            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap + toolOffset;
+            
             //absolute the distance
             distanceFromRefLine = Math.Abs(distanceFromRefLine);
-
-            //are we going same direction as stripList was created?
-            bool isSameWay = false;
-            if (Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4) isSameWay = true;
-            
+           
             //make the new guidance line list called guideList
             ptCount = stripList[strip].Count-1;
             int start, stop;
@@ -252,7 +261,8 @@ namespace AgOpenGPS
                 if (start < 0) start = 0;
                 stop = pt + 10;
                 if (stop > ptCount) stop = ptCount+1;
-            }
+            }                
+
 
             for (int i = start; i < stop; i++)
             {

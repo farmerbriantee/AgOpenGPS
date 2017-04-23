@@ -24,6 +24,9 @@ namespace AgOpenGPS
 
         private void FormCommSet_Load(object sender, EventArgs e)
         {
+            cboxTCP.Checked = Properties.Settings.Default.setPort_isTCPOn;
+            cboxUDP.Checked = Properties.Settings.Default.setPort_isUDPOn;
+
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)
             {
@@ -271,6 +274,9 @@ namespace AgOpenGPS
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
             //save
+            Properties.Settings.Default.setPort_isUDPOn = cboxUDP.Checked;
+            Properties.Settings.Default.setPort_isTCPOn = cboxTCP.Checked;
+
             Properties.Settings.Default.Save();
             this.DialogResult = DialogResult.OK;
             this.Close();
@@ -281,6 +287,16 @@ namespace AgOpenGPS
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void cboxTCP_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxUDP_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
 
      } //class

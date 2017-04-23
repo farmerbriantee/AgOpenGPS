@@ -158,9 +158,9 @@ namespace AgOpenGPS
                 words = nextNMEASentence.Split(',');
                 if (words.Length < 9) return;
 
-                if (words[0] == "$GPGGA") ParseGGA();
-                if (words[0] == "$GPVTG") ParseVTG();
-                if (words[0] == "$GPRMC") ParseRMC();
+                if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
+                if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
+                if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
 
             }// while still data
                    
@@ -193,9 +193,9 @@ namespace AgOpenGPS
                 //save to log sentence if field is open and sections on and menu enabled
                 if (mf.isLogNMEA)
                 {
-                    if (sentence.Contains("$GPGGA")) currentNMEA_GGASentence = sentence;
-                    if (sentence.Contains("$GPRMC")) currentNMEA_RMCSentence = sentence;
-                    if (sentence.Contains("$GPVTG")) currentNMEA_VTGSentence = sentence;
+                    if (sentence.Contains("$GPGGA") | sentence.Contains("$GNGGA")) currentNMEA_GGASentence = sentence;
+                    if (sentence.Contains("$GPRMC") | sentence.Contains("$GNRMC")) currentNMEA_RMCSentence = sentence;
+                    if (sentence.Contains("$GPVTG") | sentence.Contains("$GNVTG")) currentNMEA_VTGSentence = sentence;
                 }
                 
                 //remove the processed sentence from the rawBuffer

@@ -706,6 +706,8 @@ namespace AgOpenGPS
                 if (fixHeading < 0) fixHeading += glm.twoPI;
                 fixHeadingSection = fixHeading;
 
+                if (isGPSPositionInitialized) AutoSteerSettingsOutToPort();
+
                 return;
             }
         }

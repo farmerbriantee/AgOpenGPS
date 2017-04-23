@@ -13,6 +13,7 @@ namespace AgOpenGPS
     {
         // Server socket
         private Socket serverSocket;
+        public bool isUDPServerOn = false;
 
         //endpoint of the reply from the zero MKR1000
         IPEndPoint epZero;

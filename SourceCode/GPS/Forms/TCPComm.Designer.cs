@@ -18,6 +18,8 @@ namespace AgOpenGPS
         // Attributes
         private ArrayList clientsList = new ArrayList();
 
+        public bool isTCPServerOn = false;
+
         Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
 

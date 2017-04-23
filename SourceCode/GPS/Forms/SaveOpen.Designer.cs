@@ -90,8 +90,12 @@ namespace AgOpenGPS
                     writer.Write("IsLogNMEA," + Properties.Settings.Default.setIsLogNMEA + ",");
                     writer.Write("MinFixStep," + Properties.Settings.Default.set_minFixStep + ",");
 
-                    writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
-                    writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
+                    writer.Write("pidP," + Properties.Settings.Default.setAS_Kp + ",");
+                    writer.Write("pidI," + Properties.Settings.Default.setAS_Ki + ",");
+                    writer.Write("pidD," + Properties.Settings.Default.setAS_Kd + ",");
+                    writer.Write("pidO," + Properties.Settings.Default.setAS_Ko + ",");
+                    writer.Write("pidW," + Properties.Settings.Default.setAS_maxIntError + ","); 
+                    writer.Write("Reserved,0,");
                     writer.Write("Reserved,0,"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
                     writer.Write("Reserved,0"); writer.Write("Reserved,0,"); writer.Write("Reserved,0,");
 
@@ -212,6 +216,12 @@ namespace AgOpenGPS
                     Properties.Settings.Default.setIsLogNMEA = bool.Parse(words[85]);
                     Properties.Settings.Default.set_minFixStep = double.Parse(words[87]);
 
+                    Properties.Settings.Default.setAS_Kp = byte.Parse(words[89]);
+                    Properties.Settings.Default.setAS_Ki = byte.Parse(words[91]);
+                    Properties.Settings.Default.setAS_Kd = byte.Parse(words[93]);
+                    Properties.Settings.Default.setAS_Ko = byte.Parse(words[95]);
+                    Properties.Settings.Default.setAS_maxIntError = byte.Parse(words[97]);
+
                     //Properties.Settings.Default.setPort_portNameGPS = (words[17]);
                     //Properties.Settings.Default.setPort_baudRate = int.Parse(words[17]);
                     //Properties.Settings.Default.setPort_portNameRelay = (words[17]);
@@ -244,6 +254,12 @@ namespace AgOpenGPS
                     vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
                     vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
                     vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isToolBehindPivot;
+
+                    modcom.autoSteerSettings[2] = Properties.Settings.Default.setAS_Kp;
+                    modcom.autoSteerSettings[3] = Properties.Settings.Default.setAS_Ki;
+                    modcom.autoSteerSettings[4] = Properties.Settings.Default.setAS_Kd;
+                    modcom.autoSteerSettings[5] = Properties.Settings.Default.setAS_Ko;
+                    modcom.autoSteerSettings[6] = Properties.Settings.Default.setAS_maxIntError;
 
                     modcom.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
                     modcom.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;

@@ -96,22 +96,22 @@ namespace AgOpenGPS
 
 
             //sin x cos z for endpoints, opposite for additional lines
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 2000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 2000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 2000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 2000.0;
 
             isABLineSet = true;
         }
 
         public void SetABLineByHeading()
         {
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 2000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 2000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 2000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 2000.0;
 
             refPoint2.x = refABLineP2.x;
             refPoint2.z = refABLineP2.z;
@@ -127,14 +127,14 @@ namespace AgOpenGPS
             else headingCalc = abHeading - glm.PIBy2;
 
             //calculate the new points for the reference line and points
-            refPoint1.x = Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.01 + refPoint1.x;
-            refPoint1.z = Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.01 + refPoint1.z;
+            refPoint1.x = Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.001 + refPoint1.x;
+            refPoint1.z = Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.001 + refPoint1.z;
 
-            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 10000.0;
-            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 10000.0;
+            refABLineP1.x = refPoint1.x - Math.Sin(abHeading) * 2000.0;
+            refABLineP1.z = refPoint1.z - Math.Cos(abHeading) * 2000.0;
 
-            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 10000.0;
-            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 10000.0;
+            refABLineP2.x = refPoint1.x + Math.Sin(abHeading) * 2000.0;
+            refABLineP2.z = refPoint1.z + Math.Cos(abHeading) * 2000.0;
 
             refPoint2.x = refABLineP2.x;
             refPoint2.z = refABLineP2.z;
@@ -179,9 +179,13 @@ namespace AgOpenGPS
             //generate that pass number as signed integer
             passNumber = Convert.ToInt32(refLineSide * howManyPathsAway);
 
+            double toolOffset = mf.vehicle.toolOffset;
+            if (passNumber % 2 == 0 | passNumber == 0) toolOffset = 0;
+            if (passNumber != 0) toolOffset *= 2.0;
+            
             //calculate the new point that is number of implement widths over
-            vec2 point1 = new vec2(Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway * refLineSide + snapDistance) + refPoint1.x,
-                Math.Sin(-abHeading) * (widthMinusOverlap * howManyPathsAway * refLineSide + snapDistance)+ refPoint1.z);
+            vec2 point1 = new vec2(Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway * refLineSide + toolOffset) + refPoint1.x,
+                Math.Sin(-abHeading) * (widthMinusOverlap * howManyPathsAway * refLineSide + toolOffset) + refPoint1.z);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentABLineP1.x = point1.x - Math.Sin(abHeading) * 10000.0;
@@ -189,6 +193,7 @@ namespace AgOpenGPS
 
             currentABLineP2.x = point1.x + Math.Sin(abHeading) * 10000.0;
             currentABLineP2.z = point1.z + Math.Cos(abHeading) * 10000.0;
+           
 
             //get the distance from currently active AB line
             //x2-x1

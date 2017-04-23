@@ -163,6 +163,12 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
+            if (keyData == (Keys.P))
+            {
+                SettingsPageOpen(3);
+                return true;    // indicate that you handled this keystroke
+            }
+
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -206,11 +212,12 @@ namespace AgOpenGPS
             //Calculate total width and each section width
             SectionCalcWidths();
 
-            //start server
-            //StartTCPServer();
+            isTCPServerOn = Properties.Settings.Default.setPort_isTCPOn;
+            isUDPServerOn = Properties.Settings.Default.setPort_isUDPOn;
 
-            //start server
-            StartUDPServer();
+            //start servers or not
+            if (isTCPServerOn) StartTCPServer();
+            if (isUDPServerOn) StartUDPServer();
 
             //set the correct zoom and grid
             camera.camSetDistance = zoomValue * zoomValue * -1;
@@ -555,29 +562,29 @@ namespace AgOpenGPS
         //function to set section positions
         public void SectionSetPosition()
         {
-            section[0].positionLeft = (double)Properties.Settings.Default.setSection_position1;
-            section[0].positionRight = (double)Properties.Settings.Default.setSection_position2;
+            section[0].positionLeft = (double)Properties.Settings.Default.setSection_position1 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[0].positionRight = (double)Properties.Settings.Default.setSection_position2 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[1].positionLeft = (double)Properties.Settings.Default.setSection_position2;
-            section[1].positionRight = (double)Properties.Settings.Default.setSection_position3;
+            section[1].positionLeft = (double)Properties.Settings.Default.setSection_position2 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[1].positionRight = (double)Properties.Settings.Default.setSection_position3 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[2].positionLeft = (double)Properties.Settings.Default.setSection_position3;
-            section[2].positionRight = (double)Properties.Settings.Default.setSection_position4;
+            section[2].positionLeft = (double)Properties.Settings.Default.setSection_position3 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[2].positionRight = (double)Properties.Settings.Default.setSection_position4 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[3].positionLeft = (double)Properties.Settings.Default.setSection_position4;
-            section[3].positionRight = (double)Properties.Settings.Default.setSection_position5;
+            section[3].positionLeft = (double)Properties.Settings.Default.setSection_position4 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[3].positionRight = (double)Properties.Settings.Default.setSection_position5 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[4].positionLeft = (double)Properties.Settings.Default.setSection_position5;
-            section[4].positionRight = (double)Properties.Settings.Default.setSection_position6;
+            section[4].positionLeft = (double)Properties.Settings.Default.setSection_position5 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[4].positionRight = (double)Properties.Settings.Default.setSection_position6 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[5].positionLeft = (double)Properties.Settings.Default.setSection_position6;
-            section[5].positionRight = (double)Properties.Settings.Default.setSection_position7;
+            section[5].positionLeft = (double)Properties.Settings.Default.setSection_position6 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[5].positionRight = (double)Properties.Settings.Default.setSection_position7 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[6].positionLeft = (double)Properties.Settings.Default.setSection_position7;
-            section[6].positionRight = (double)Properties.Settings.Default.setSection_position8;
+            section[6].positionLeft = (double)Properties.Settings.Default.setSection_position7 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[6].positionRight = (double)Properties.Settings.Default.setSection_position8 + Properties.Settings.Default.setVehicle_toolOffset;
 
-            section[7].positionLeft = (double)Properties.Settings.Default.setSection_position8;
-            section[7].positionRight = (double)Properties.Settings.Default.setSection_position9;
+            section[7].positionLeft = (double)Properties.Settings.Default.setSection_position8 + Properties.Settings.Default.setVehicle_toolOffset;
+            section[7].positionRight = (double)Properties.Settings.Default.setSection_position9 + Properties.Settings.Default.setVehicle_toolOffset;
         }
 
         //function to calculate the width of each section and update
@@ -887,6 +894,7 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
+            AutoSteerSettingsOutToPort();
             isJobStarted = true;
             startCounter = 0;
 
@@ -1612,7 +1620,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-       private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isLightbarOn = !isLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
@@ -1639,7 +1647,7 @@ namespace AgOpenGPS
         {
             SettingsCommunications();
         }
-         private void metricToolStrip_Click(object sender, EventArgs e)
+        private void metricToolStrip_Click(object sender, EventArgs e)
         {
             this.metricToolStrip.Checked = true;
             this.imperialToolStrip.Checked = false;
@@ -1735,6 +1743,13 @@ namespace AgOpenGPS
             form.Show(); 
         }
  
+         private void toolStripMenuAuutoSteer_Click(object sender, EventArgs e)
+        {
+            Form form = new FormSteer(this);
+            form.Show();
+
+        }
+
         //Display button's context menu items
         private void toolStripMenuItem3D_Click(object sender, EventArgs e)
         {
@@ -1764,6 +1779,7 @@ namespace AgOpenGPS
             }
 
         }
+
         private void toolStripMenuSettings_Click(object sender, EventArgs e)
         {
             SettingsPageOpen(0);
@@ -2016,7 +2032,7 @@ namespace AgOpenGPS
             tmrWatchdog.Enabled = true;
             statusUpdateCounter++;
 
-           //every half second update all status
+           //every third of a second update all status
             if (statusUpdateCounter > 7)
             {
                 //reset the counter
@@ -2090,6 +2106,17 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
+
+        private void btnJob_Click(object sender, EventArgs e)
+        {
+            JobNewOpenResume();
+        }
+
+        private void btnSnap_Click(object sender, EventArgs e)
+        {
+            ABLine.snapABLine();
+        }
+
 
 
    }//class FormGPS
