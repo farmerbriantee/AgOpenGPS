@@ -6,12 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
         private FormGPS mf = null;
+        private string[] words;
 
         public decimal ReturnValue1 { get; set; }
 
@@ -24,9 +26,78 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             tboxSerialFromAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[0] + ", " + mf.modcom.autoSteerControl[1]
-                                + ", " + mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
+            tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
+
+            //just data
+
+            //words = mf.modcom.serialRecvAutoSteerStr.Split(',');
+            string dataA = mf.modcom.serialRecvAutoSteerStr.Split(',')[0];
+            string dataB = mf.modcom.serialRecvAutoSteerStr.Split(',')[1];
+            string dataC = mf.modcom.serialRecvAutoSteerStr.Split(',')[2];
+            string dataD = mf.modcom.serialRecvAutoSteerStr.Split(',')[3];
+            string dataE = mf.modcom.serialRecvAutoSteerStr.Split(',')[4];
+
+
+            ////recvString = line;
+            //string dataA = ((int)mf.guidanceLineDistanceOff).ToString();
+            //string dataB = ((int)mf.guidanceLineHeadingDelta).ToString();
+            //string dataC = "-10";
+            //string dataD = "-10";
+            //string dataE = "-10";
+
+            //if (!paused)
+            {
+                Series s = unoChart.Series["S"];
+                Series t = unoChart.Series["P"];
+                Series u = unoChart.Series["I"];
+                Series v = unoChart.Series["D"];
+                Series w = unoChart.Series["PWM"];
+                double nextX = 1;
+                double nextX2 = 1;
+                double nextX3 = 1;
+                double nextX4 = 1;
+                double nextX5 = 1;
+
+                if (s.Points.Count > 0) nextX = s.Points[s.Points.Count - 1].XValue + 1;
+                if (t.Points.Count > 0) nextX2 = t.Points[t.Points.Count - 1].XValue + 1;
+                if (u.Points.Count > 0) nextX3 = u.Points[u.Points.Count - 1].XValue + 1;
+                if (v.Points.Count > 0) nextX4 = u.Points[u.Points.Count - 1].XValue + 1;
+                if (w.Points.Count > 0) nextX5 = u.Points[u.Points.Count - 1].XValue + 1;
+
+                this.unoChart.Series["S"].Points.AddXY(nextX, dataA);
+                this.unoChart.Series["P"].Points.AddXY(nextX2, dataB);
+                this.unoChart.Series["I"].Points.AddXY(nextX3, dataC);
+                this.unoChart.Series["D"].Points.AddXY(nextX4, dataD);
+                this.unoChart.Series["PWM"].Points.AddXY(nextX5, dataE);
+
+                //if (isScroll)
+                {
+                    while (s.Points.Count > 100)
+                    {
+                        s.Points.RemoveAt(0);
+                    }
+                    while (t.Points.Count > 100)
+                    {
+                        t.Points.RemoveAt(0);
+                    }
+                    while (u.Points.Count > 100)
+                    {
+                        u.Points.RemoveAt(0);
+                    }
+                    while (v.Points.Count > 100)
+                    {
+                        v.Points.RemoveAt(0);
+                    }
+                    while (w.Points.Count > 100)
+                    {
+                        w.Points.RemoveAt(0);
+                    }
+                    unoChart.ResetAutoValues();
+                }
+            }
+
+
         }
 
         //Send to Autosteer to adjust PIDO values, LSB is up or down

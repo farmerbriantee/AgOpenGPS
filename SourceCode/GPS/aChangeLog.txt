@@ -1,12 +1,12 @@
 ﻿v2.13 April 15
 *
-* In communication, can turn on or off servers
+* In communication, can turn on or off UDP and TCP servers
 * Full Metric Imperial
 * AirSeeder style hitch, double pivot position
-* AutoSteerModule gets relay info
+* AutoSteerModule gets relay info, 1 module can do everything
 * Turn sky on off
-* PID Autosteer dialog with settable paramters
-* super Mario size the buttons, u/d counters etc
+* PID Autosteer dialog allows adjustment of parameters on the fly and saves them
+* Super Mario size the buttons, u/d counters etc
 * Offset works, along with guidance
 * fixed PI/2 and 2Pi constants
 * fixed Snap, was in mm not cm

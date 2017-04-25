@@ -1968,10 +1968,10 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 2) return "DGPS fix";  
             else if (pn.fixQuality == 3) return "PPS fix";  
             else if (pn.fixQuality == 4) return "RTK fix";  
-            else if (pn.fixQuality == 5) return "Float RTK";  
-            else if (pn.fixQuality == 6) return "Estimated";  
-            else if (pn.fixQuality == 7) return "Manual IP";  
-            else if (pn.fixQuality == 8) return "Simulation";  
+            else if (pn.fixQuality == 5) return "Flt RTK";  
+            else if (pn.fixQuality == 6) return "Estimate";  
+            else if (pn.fixQuality == 7) return "Man IP";  
+            else if (pn.fixQuality == 8) return "Sim";  
             else                         return "Unknown";    } }
 
         public string SpeedMPH
@@ -2078,8 +2078,8 @@ namespace AgOpenGPS
                 stripAngularVel.Text = avgAngVel.ToString();
                 //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
 
-                lblAutoSteerDelta.Text = guidanceLineHeadingDelta + "\u00B0";
-                lblAutoSteerDistance.Text = guidanceLineDistanceOff.ToString();
+                lblFix.Text = FixQuality;
+                lblAgeDiff.Text = AgeDiff;
                 
                 //up in the menu a few pieces of info
                 if (isJobStarted)
