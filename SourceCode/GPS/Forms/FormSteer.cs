@@ -15,6 +15,12 @@ namespace AgOpenGPS
         private FormGPS mf = null;
         private string[] words;
 
+        string dataSteerAngle = "2";
+        string dataP = "4";
+        string dataI = "6";
+        string dataD = "-6";
+        string dataPWM = "-10";
+
         public decimal ReturnValue1 { get; set; }
 
         public FormSteer(Form callingForm)
@@ -30,21 +36,30 @@ namespace AgOpenGPS
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
 
             //just data
+            words = mf.modcom.serialRecvAutoSteerStr.Split(',');
+            if (words.Length < 5)
+            {
+                dataSteerAngle = "2";
+                dataP = "4";
+                dataI = "6";
+                dataD = "-6";
+                dataPWM = "-10";
+            }
 
-            //words = mf.modcom.serialRecvAutoSteerStr.Split(',');
-            string dataA = mf.modcom.serialRecvAutoSteerStr.Split(',')[0];
-            string dataB = mf.modcom.serialRecvAutoSteerStr.Split(',')[1];
-            string dataC = mf.modcom.serialRecvAutoSteerStr.Split(',')[2];
-            string dataD = mf.modcom.serialRecvAutoSteerStr.Split(',')[3];
-            string dataE = mf.modcom.serialRecvAutoSteerStr.Split(',')[4];
+            else
+            {
+                dataSteerAngle = mf.modcom.serialRecvAutoSteerStr.Split(',')[0];
+                dataP = mf.modcom.serialRecvAutoSteerStr.Split(',')[1];
+                dataI = mf.modcom.serialRecvAutoSteerStr.Split(',')[2];
+                dataD = mf.modcom.serialRecvAutoSteerStr.Split(',')[3];
+                dataPWM = mf.modcom.serialRecvAutoSteerStr.Split(',')[4];
 
-
-            ////recvString = line;
-            //string dataA = ((int)mf.guidanceLineDistanceOff).ToString();
-            //string dataB = ((int)mf.guidanceLineHeadingDelta).ToString();
-            //string dataC = "-10";
-            //string dataD = "-10";
-            //string dataE = "-10";
+                lblSteerAng.Text = dataSteerAngle;
+                lblP.Text = dataP;
+                lblI.Text = dataI;
+                lblD.Text = dataD;
+                lblPWM.Text = dataPWM;
+            }
 
             //if (!paused)
             {
@@ -65,31 +80,31 @@ namespace AgOpenGPS
                 if (v.Points.Count > 0) nextX4 = u.Points[u.Points.Count - 1].XValue + 1;
                 if (w.Points.Count > 0) nextX5 = u.Points[u.Points.Count - 1].XValue + 1;
 
-                this.unoChart.Series["S"].Points.AddXY(nextX, dataA);
-                this.unoChart.Series["P"].Points.AddXY(nextX2, dataB);
-                this.unoChart.Series["I"].Points.AddXY(nextX3, dataC);
+                this.unoChart.Series["S"].Points.AddXY(nextX, dataSteerAngle);
+                this.unoChart.Series["P"].Points.AddXY(nextX2, dataP);
+                this.unoChart.Series["I"].Points.AddXY(nextX3, dataI);
                 this.unoChart.Series["D"].Points.AddXY(nextX4, dataD);
-                this.unoChart.Series["PWM"].Points.AddXY(nextX5, dataE);
+                this.unoChart.Series["PWM"].Points.AddXY(nextX5, dataPWM);
 
                 //if (isScroll)
                 {
-                    while (s.Points.Count > 100)
+                    while (s.Points.Count > 50)
                     {
                         s.Points.RemoveAt(0);
                     }
-                    while (t.Points.Count > 100)
+                    while (t.Points.Count > 50)
                     {
                         t.Points.RemoveAt(0);
                     }
-                    while (u.Points.Count > 100)
+                    while (u.Points.Count > 50)
                     {
                         u.Points.RemoveAt(0);
                     }
-                    while (v.Points.Count > 100)
+                    while (v.Points.Count > 50)
                     {
                         v.Points.RemoveAt(0);
                     }
-                    while (w.Points.Count > 100)
+                    while (w.Points.Count > 50)
                     {
                         w.Points.RemoveAt(0);
                     }
@@ -203,6 +218,40 @@ namespace AgOpenGPS
             lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
             lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
             lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
+        }
+
+        private void btnAuto_Click(object sender, EventArgs e)
+        {
+            unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;
+            unoChart.ChartAreas[0].RecalculateAxesScale();
+            unoChart.ResetAutoValues();
+        }
+
+        private void btnPlus_Click(object sender, EventArgs e)
+        {
+            if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
+                unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
+            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) *-1;
+            unoChart.ChartAreas[0].AxisY.Minimum -= 50;
+            unoChart.ChartAreas[0].AxisY.Maximum += 50;
+            unoChart.ResetAutoValues();
+        }
+
+        private void btnMinus_Click(object sender, EventArgs e)
+        {
+            if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
+                unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
+            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
+
+            if (unoChart.ChartAreas[0].AxisY.Maximum < 51)
+            {
+                unoChart.ChartAreas[0].AxisY.Maximum = 55;
+                unoChart.ChartAreas[0].AxisY.Minimum = -55;
+            }
+            unoChart.ChartAreas[0].AxisY.Minimum += 50;
+            unoChart.ChartAreas[0].AxisY.Maximum -= 50;
+            unoChart.ResetAutoValues();
+
         } 
     }
 }

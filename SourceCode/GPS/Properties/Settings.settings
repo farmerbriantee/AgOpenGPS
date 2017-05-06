@@ -168,7 +168,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="set_minFixStep" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_tankTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-1.5</Value>

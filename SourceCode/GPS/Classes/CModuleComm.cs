@@ -33,6 +33,9 @@ namespace AgOpenGPS
         {            
             this.mf = f;
 
+            serialRecvAutoSteerStr = ",";
+            serialRecvRelayStr = ",";
+
             //control all relays based on byte value, 1 means on, 0 means off
             relaySectionControl[0] = 0;
 

@@ -1,32 +1,34 @@
-void calcDistancePID(void) {
+void calcSteeringPID(void) {
   
   //proportional
-  pValue = Kp * distanceError;
+  pValue = Kp * headingError;
   
   //Integral
-  integrated_error = integrated_error + distanceError;
+  integrated_error = integrated_error + headingError;
   if (integrated_error > maxIntErr) integrated_error = maxIntErr;
   if (integrated_error < -maxIntErr) integrated_error = -maxIntErr;
 
   //once it passes near center zero out the integrator error
-  if (abs(distanceError) < 2) integrated_error = 0;
+  if (abs(headingError) < 2) integrated_error = 0;
   iValue = Ki * integrated_error;
 
   //Derivative
-  if (abs(distanceError) > 2) 
-  dError = distanceError - lastError;
+  if (abs(headingError) > 2) 
+  dError = headingError - lastError;
   dValue = Kd * (dError);
   
   //save history of errors
   lastLastError = lastError;
-  lastError = distanceError;
+  lastError = headingError;
 
   drive = (pValue + iValue + dValue)*Ko;
   pwmDrive = int(constrain(drive, -255, 255));
 
-  //if (pwmDrive < 0 & pwmDrive > -255) pwmDrive = pwmDrive - 6;
-  //else if (pwmDrive > 0 & pwmDrive < 255) pwmDrive = pwmDrive + 6;
-}
+  //add throttle factor so no delay from motor resistance.
+  if (pwmDrive < 0 & pwmDrive > -224) pwmDrive = pwmDrive - 30;
+  else if (pwmDrive > 0 & pwmDrive < 224) pwmDrive = pwmDrive + 30;
+
+ }
 
  void motorDrive(void) 
   {
@@ -318,3 +320,4 @@ void AP_SteerController::reset_I()
 }
 
 */
+

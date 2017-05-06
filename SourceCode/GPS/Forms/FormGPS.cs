@@ -2033,7 +2033,7 @@ namespace AgOpenGPS
             statusUpdateCounter++;
 
            //every third of a second update all status
-            if (statusUpdateCounter > 7)
+            if (statusUpdateCounter > 13)
             {
                 //reset the counter
                 statusUpdateCounter = 0;

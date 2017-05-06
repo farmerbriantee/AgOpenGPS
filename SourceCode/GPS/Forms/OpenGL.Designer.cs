@@ -636,7 +636,7 @@ namespace AgOpenGPS
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 180)       //3 counts per second X 60 seconds.
+            if (saveCounter > 1080)       //3 counts per second X 60 seconds.
             {
                 if (isJobStarted)
                 {
