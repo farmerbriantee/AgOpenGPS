@@ -17,11 +17,13 @@
   #define RAD2GRAD 57.2957795
 
   byte relay = 0, workSwitch = 0, speeed = 0;
-  float distanceError = 0;
-  int headingError = 0;
+  float distanceActual = 0;
+  float headingActual = 0;
+  float headingError = 0;
+  
   byte pidSetting = 0;
   
-  int steeringPosition = 0, steeringPosZero = 512;  
+  int steeringPosition = 0, steeringPositionZero = 512;  
   int pwmDrive = 0, drive = 0, pwmDisplay = 0;
   float pValue = 0, iValue = 0, dValue = 0;
  
@@ -54,59 +56,72 @@ void loop()
   {  
     relay = Serial.read();   // read relay control from AgOpenGPS
     speeed = Serial.read()>>2;  //single byte
-    distanceError = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
-    headingError = (float)(Serial.read() << 8 | Serial.read());     //high low bytes 
+    distanceActual = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
+    headingActual = (float)(Serial.read() << 8 | Serial.read());     //high low bytes 
     
     isDataFound = false;    
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     SetRelays();
-    steeringPosition = ( analogRead(A0) - steeringPosZero);   //read the steering position sensor
+    steeringPosition = ( analogRead(A0) - steeringPositionZero);   //read the steering position sensor
     delay(2);
   
-    if (distanceError == 32020 | distanceError == 32000       //auto Steer is off if 32020, invalid if 32000
-          | abs(distanceError) > 3000 | headingError > 4000  // greater then 2 meters off, steep angle > .4 rads
-          | speeed < 3)                                       //Speed is too slow
+    if (distanceActual == 32020 | distanceActual == 32000       //auto Steer is off if 32020, invalid if 32000
+          | abs(distanceActual) > 4000 | headingActual > 4000  // greater then 4 meters off, steep angle > .4 radians
+          | speeed < 1)                                       //Speed is too slow
     {
       pwmDrive = 0; //turn off steering motor
       motorDrive();
       bitClear(PORTD, 6); //Digital Pin 6
       
       Serial.print(steeringPosition);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(Kp);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(Ki,4);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(Kd);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(Ko);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.println(maxIntErr);
       //bitClear(PINB, 5); 
     }
     
     else          //valid spot to turn on autosteer
     {
-      bitSet(PORTD, 6);             //Digital Pin 6
+      bitSet(PORTD, 6);             //Digital Pin 6 turn relay 2 on
       bitSet(PINB, 5);              //turn LED on showing in headingDelta loop      
-      calcDistancePID();            //the distance loop                                                                                    
-      
-      if (distanceError > 0 )       //on the right side of line
-      {                
+
+      //determine ideal approach angle based on distance from line. 
+      if (distanceActual > 0 )       //on the right side of line
+      { 
+        if (distanceActual > 500) headingError  = distanceActual - headingActual;  
+        else headingError = distanceActual - headingActual;            
+        calcSteeringPID();  
+                                                                                               
+        if (steeringPosition < -50)   pwmDrive = 0;   //limit the turn radius  
       }  
-      else                          //on the left side. 
+      
+      else                            //on the left side. 
       {      
-      }       
-      motorDrive();                 //out to motors the pwm value
+       if (distanceActual > 500) headingError  = distanceActual*-1 - headingActual;  
+       else headingError = distanceActual*-1 - headingActual; 
+       calcSteeringPID();              
+       pwmDrive*=-1;                  //opposite action for left side of line 
+       
+       if (steeringPosition > 50)   pwmDrive = 0;   //limit the turn radius                                                                                                                                                                           
+      } 
+            
+      motorDrive();    //out to motors the pwm value
       
       Serial.print(steeringPosition);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(pValue);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(iValue);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.print(dValue);
-      Serial.print(" ");    
+      Serial.print(",");    
       Serial.println(pwmDisplay);
     } 
   }
@@ -119,7 +134,8 @@ void loop()
     Ki = (float)Serial.read() * 0.001;   // read Ki from AgOpenGPS
     Kd = (float)Serial.read() * 0.1;   // read Kd from AgOpenGPS
     Ko = (float)Serial.read() * 0.1;   // read Ko from AgOpenGPS
-    maxIntErr = Serial.read() * 100;  
+    steeringPositionZero = 385 + Serial.read();  //read integral anti-windup limit
   }
    	
 }
+
