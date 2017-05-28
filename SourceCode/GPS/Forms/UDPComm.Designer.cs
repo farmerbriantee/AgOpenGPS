@@ -37,9 +37,11 @@ namespace AgOpenGPS
                     // Send packet to the zero
                     serverSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epZero, new AsyncCallback(SendData), null);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("Send Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                WriteErrorLog("Sending UDP Message" + e.ToString());
+
+                MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -50,9 +52,11 @@ namespace AgOpenGPS
             {
                 serverSocket.EndSend(asyncResult);
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                WriteErrorLog(" UDP Send Data" + e.ToString());
+
+                MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,9 +81,11 @@ namespace AgOpenGPS
                 // Update status through a delegate
                 Invoke(updateStatusDelegate, new object[] { text });
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("ReceiveData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                WriteErrorLog("UDP Recv data " + e.ToString());
+
+                MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

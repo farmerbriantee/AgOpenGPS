@@ -154,6 +154,12 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTrip.Designer.cs">
+      <DependentUpon>FormTrip.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTrip.resx">
+      <DependentUpon>FormTrip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -371,6 +380,13 @@
     <None Include="btnImages\AutoSteerOff.png" />
     <None Include="btnImages\AutoSteerOn.png" />
     <None Include="btnImages\ZeroPitchRoll.png" />
+    <None Include="btnImages\ResetTrip.png" />
+    <None Include="btnImages\ComPorts.png" />
+    <None Include="btnImages\HideShowMenu.png" />
+    <None Include="btnImages\AutoSteerConfig.png" />
+    <None Include="btnImages\TripOdometer.png" />
+    <None Include="btnImages\ArrowLeft.png" />
+    <None Include="btnImages\ArrowRight.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

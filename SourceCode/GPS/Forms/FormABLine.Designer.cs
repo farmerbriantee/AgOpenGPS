@@ -294,7 +294,6 @@
             this.MinimizeBox = false;
             this.Name = "FormABLine";
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AB Line";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormABLine_Load);

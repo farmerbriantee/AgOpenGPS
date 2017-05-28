@@ -24,6 +24,8 @@ namespace AgOpenGPS
 
         private string[] words;
 
+        public string NMEASentence = "No Data";
+
         //used to decide to autoconnect section arduino this run
         public bool wasSectionRelayConnectedLastRun = false;
         public string recvSentenceSettings = "InitalSetting";
@@ -48,7 +50,11 @@ namespace AgOpenGPS
             if (spAutoSteer.IsOpen)
             {
                 try { spAutoSteer.Write(modcom.autoSteerControl, 0, CModuleComm.numSteerControls); }
-                catch (Exception) { SerialPortAutoSteerClose(); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Steering Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
             }
  
         }
@@ -59,7 +65,11 @@ namespace AgOpenGPS
             if (spAutoSteer.IsOpen)
             {
                 try { spAutoSteer.Write(modcom.autoSteerSettings, 0, CModuleComm.numSteerSettings ); }
-                catch (Exception) { SerialPortAutoSteerClose(); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Settings to Steer Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
             }
         }
 
@@ -85,7 +95,10 @@ namespace AgOpenGPS
                     this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    WriteErrorLog("AutoSteer Recv" + ex.ToString());
+                }
 
             }
         }
@@ -101,9 +114,11 @@ namespace AgOpenGPS
             }
 
             try { spAutoSteer.Open(); }
-            catch (Exception exc)
+            catch (Exception e)
             {
-                MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
+                WriteErrorLog("Opening Steer Port" + e.ToString());
+
+                MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
 
                 //update port status label
                 stripPortAutoSteer.Text = "* *";
@@ -137,7 +152,11 @@ namespace AgOpenGPS
             {
                 spAutoSteer.DataReceived -= sp_DataReceivedAutoSteer;
                 try { spAutoSteer.Close(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Closing steer Port" + e.ToString());
+                    MessageBox.Show(e.Message, "Connection already terminated??");
+                }
 
                 //update port status label
                 stripPortAutoSteer.Text = "* *";
@@ -203,7 +222,11 @@ namespace AgOpenGPS
             if (spRelay.IsOpen)
             {
                 try { spRelay.Write(modcom.relaySectionControl, 0, CModuleComm.numRelayControls ); }
-                catch (Exception) { SerialPortRelayClose(); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out to Section relays" + e.ToString());
+                    SerialPortRelayClose();
+                }
             }
         }
 
@@ -266,7 +289,10 @@ namespace AgOpenGPS
                     this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRelay), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    WriteErrorLog("Relay Data Recvd " + ex.ToString());
+                }
 
             }
         }
@@ -282,9 +308,11 @@ namespace AgOpenGPS
             }
 
             try { spRelay.Open(); }
-            catch (Exception exc)
+            catch (Exception e)
             {
-                MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
+                WriteErrorLog("Opening Relay Port" + e.ToString());
+
+                MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
 
                 //update port status label
                 stripPortArduino.Text = "* *";
@@ -318,7 +346,11 @@ namespace AgOpenGPS
             {
                 spRelay.DataReceived -= sp_DataReceivedRelay;
                 try { spRelay.Close(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated??"); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Closing Relay Serial Port" + e.ToString());
+                    MessageBox.Show(e.Message, "Connection already terminated??");
+                }
 
                 //update port status label
                 stripPortArduino.Text = "* *";
@@ -360,9 +392,11 @@ namespace AgOpenGPS
                     string sentence = sp.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandler(SerialLineReceived), sentence);
                 }
-                catch (Exception exc)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "ComPort Failure!");
+                    WriteErrorLog("GPS Data Recv" + e.ToString());
+
+                    MessageBox.Show(ex.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "ComPort Failure!");
                 }
 
             }
@@ -383,9 +417,10 @@ namespace AgOpenGPS
             }
 
             try { sp.Open(); }
-            catch (Exception)
+            catch (Exception e)
             {
                 //MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
+                WriteErrorLog("Open GPS Port " + e.ToString());
 
                 //update port status labels
                 stripPortGPS.Text = " * * ";
@@ -419,7 +454,11 @@ namespace AgOpenGPS
             {
                 sp.DataReceived -= sp_DataReceived;
                 try { sp.Close(); }
-                catch (Exception exc) { MessageBox.Show(exc.Message, "Connection already terminated?"); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Closing GPS Port" + e.ToString());
+                    MessageBox.Show(e.Message, "Connection already terminated?");
+                }
 
                 //update port status labels
                 stripPortGPS.Text = " * * " + baudRateGPS.ToString();

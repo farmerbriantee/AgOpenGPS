@@ -29,6 +29,9 @@ namespace AgOpenGPS
         //polygon mode for section drawing
         bool isDrawPolygons = false;
 
+        //for animated submenu
+        bool isMenuHid = true;
+
         //Flag stuff
         public byte flagColor = 0;
         bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
@@ -315,6 +318,15 @@ namespace AgOpenGPS
 
             pitchZero = Properties.Settings.Default.setIMU_pitchZero;
             rollZero = Properties.Settings.Default.setIMU_rollZero;
+
+            var point = new Point(140,95);
+            panel1.Location = point;
+            panel1.Width = 300;
+
+            totalUserSquareMeters = Properties.Settings.Default.setUserTotalArea;
+            userSquareMetersAlarm = Properties.Settings.Default.setUserTripAlarm;
+
+
         }
 
         //form is closing so tidy up and save settings
@@ -382,6 +394,9 @@ namespace AgOpenGPS
             }
              
             Properties.Settings.Default.setCam_pitch = camera.camPitch;
+            Properties.Settings.Default.setUserTotalArea = totalUserSquareMeters;
+            Properties.Settings.Default.setUserTripAlarm = userSquareMetersAlarm;
+
             Properties.Settings.Default.Save();
        }
 
@@ -417,10 +432,11 @@ namespace AgOpenGPS
                 texture[0] = particleTexture.TextureName;
             }
 
-            catch (System.Exception excep)
+            catch (System.Exception e)
             {
+                WriteErrorLog("Loading Landscape Textures" + e.ToString());
 
-                MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", excep.Message);
+                MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", e.Message);
             }
 
             try
@@ -431,9 +447,11 @@ namespace AgOpenGPS
                 texture[1] = particleTexture.TextureName;
             }
 
-            catch (System.Exception excep)
+            catch (System.Exception e)
             {
-               MessageBox.Show("Texture File FLOOR.PNG is Missing", excep.Message);
+                WriteErrorLog("Loading Floor Texture" + e.ToString());
+
+               MessageBox.Show("Texture File FLOOR.PNG is Missing", e.Message);
              }
 
 
@@ -470,10 +488,12 @@ namespace AgOpenGPS
 
                 //lblStatus.Text = "Listening";
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
+                WriteErrorLog("UDP Server" + e.ToString());
+
                 //lblStatus.Text = "Error";
-                MessageBox.Show("Load Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         
         }
@@ -496,9 +516,11 @@ namespace AgOpenGPS
                 IPHostEntry ipEntry = Dns.GetHostEntry(string.Empty);
                 localIPAddress = ipEntry.AddressList;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show("Error trying to get local address "+ ex.Message);
+                WriteErrorLog("TCP Server " + e.ToString());
+
+                MessageBox.Show("Error trying to get local address "+ e.Message);
             }
 
             // Verify we got an IP address. Tell the user if we did
@@ -630,7 +652,7 @@ namespace AgOpenGPS
         //line up section On Off Auto buttons based on how many there are
         public void LineUpManualBtns()
         {
-            int top = 120;
+            int top = 140;
 
             btnSection4Man.Top = this.Height - top;
             btnSection1Man.Top = this.Height - top;
@@ -909,6 +931,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
+            btnSnap.Enabled = true;
 
             ABLine.abHeading = 0.00;
 
@@ -979,6 +1002,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
             btnAutoSteer.Enabled = false;
+            btnSnap.Enabled = false;
 
             ct.isContourBtnOn = false;
             ct.isContourOn = false;
@@ -1016,9 +1040,12 @@ namespace AgOpenGPS
             //reset acre and distance counters
             totalDistance = 0;
             totalSquareMeters = 0;
+            //totalUserSquareMeters = 0;
 
             //update the menu
             fieldToolStripMenuItem.Text = "Start Field";
+
+            
 
         }
 
@@ -1026,8 +1053,16 @@ namespace AgOpenGPS
         private void JobNewOpenResume()
         {
             //bring up dialog if no job active, close job if one is
+
             if (!isJobStarted)
             {
+                if (stripOnlineGPS.Value == 1)
+                {
+                    var form = new FormTimedMessage(this, 3000, "No GPS", "Is your GPS source off?");
+                    form.Show();
+                    return;
+                }
+
                 using (var form = new FormJob(this))
                 {
                     var result = form.ShowDialog();
@@ -1152,15 +1187,51 @@ namespace AgOpenGPS
         //All the files that need to be saved when closing field or app
         private void FileSaveEverythingBeforeClosingField()
         {
-            FileSaveField();
-            FileSaveContour();
-            FileSaveFlags();            
-            FileSaveFieldText();
-            //FileSaveContourText();
-            //FileSaveFlagsText();
-            FileSaveFlagKML();
-            JobClose();
-            this.Text = "AgOpenGPS";
+            if (stripOnlineGPS.Value == 1)
+            {
+                var form = new FormTimedMessage(this, 3000, "No GPS", "Is your GPS source off?");
+                form.Show();
+                JobClose();
+                this.Text = "AgOpenGPS";
+            }
+            else
+            {
+                //turn off contour line if on
+                if (ct.isContourOn) ct.StopContourLine();
+
+                //turn off all the sections
+                for (int j = 0; j < vehicle.numOfSections + 1; j++)
+                {
+                    if (section[j].isSectionOn)  section[j].TurnSectionOff();
+                    section[j].sectionOnOffCycle = false;
+                    section[j].sectionOffRequest = false;
+                }
+
+                FileSaveField();
+                FileSaveContour();
+                FileSaveFlagKML();
+
+                JobClose();
+                this.Text = "AgOpenGPS";
+            }
+        }
+
+        public void WriteErrorLog(string strErrorText)
+        {
+            try
+            {
+                //DECLARE THE FILENAME FROM THE ERROR LOG
+                string strFileName = "Error Log.txt";
+                /*DECLARE THE FOLDER WHERE THE LOGFILE HAS TO BE STORED, IN THIS EXAMPLE WE CHOSE THE PATH OF THE CURRENT APPLICATION*/
+                string strPath = Application.StartupPath;
+                //WRITE THE ERROR TEXT AND THE CURRENT DATE-TIME TO THE ERROR FILE
+                System.IO.File.AppendAllText(strPath + "\\" + strFileName, strErrorText + " - " + 
+                    DateTime.Now.ToString() + "\r\n\r\n");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error in WriteErrorLog: " + ex.Message, "Error Logging", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         
     // Buttons //-----------------------------------------------------------------------
@@ -1242,10 +1313,10 @@ namespace AgOpenGPS
         private void btnMinMax_Click(object sender, EventArgs e)
         {
             //keep a copy to go back to previous zoom
-            if (zoomValue < 80)
+            if (zoomValue < 56)
             {
                 previousZoom = zoomValue;
-                zoomValue = 100;
+                zoomValue = 60;
             }
             else
             {
@@ -1451,6 +1522,7 @@ namespace AgOpenGPS
         private void toolStripBtnResetDistance_ButtonClick(object sender, EventArgs e)
         {
             userDistance = 0;
+            totalUserSquareMeters = 0;
         }
      
         //measure area button
@@ -1488,6 +1560,7 @@ namespace AgOpenGPS
             int nextflag = flagPts.Count + 1;
             CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.easting, pn.northing, flagColor, nextflag);
             flagPts.Add(flagPt);
+            FileSaveFlags();
         }
 
         //The zoom buttons in out
@@ -1523,16 +1596,93 @@ namespace AgOpenGPS
             if (camera.camPitch < -90) camera.camPitch = -90;
         }
 
+        //panel buttons
+        private void btnMenuDrawer_Click(object sender, EventArgs e)
+        {
+            if (isMenuHid)
+            {
+                btnMenuDrawer.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
+                isMenuHid = false;
+            }
+            else 
+            {
+                btnMenuDrawer.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+                isMenuHid = true;
+            }
+
+        }
+        private void HideMenu()
+        {
+            isMenuHid = true;
+            btnMenuDrawer.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+        }
+        private void btnJob_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            JobNewOpenResume();
+        }
+        private void btnSnap_Click(object sender, EventArgs e)
+        {
+            ABLine.snapABLine();
+            HideMenu();
+        }
+        private void btnSettings_Click_1(object sender, EventArgs e)
+        {
+            HideMenu();
+            SettingsPageOpen(0);
+ 
+        }
+        private void btnComm_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            SettingsCommunications();
+        }
+        private void btnUnits_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            if (isMetric) isMetric = false; else isMetric = true;
+            Properties.Settings.Default.setIsMetric = isMetric;
+            Properties.Settings.Default.Save();
+            if (isMetric)
+            {
+                lblSpeedUnits.Text = "Kmh";
+                this.metricToolStrip.Checked = true;
+                this.imperialToolStrip.Checked = false;
+            }
+            else
+            {
+                lblSpeedUnits.Text = "MPH";
+                this.metricToolStrip.Checked = false;
+                this.imperialToolStrip.Checked = true;
+            }
+        }
+        private void btnGPSData_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            Form form = new FormGPSData(this);
+            form.Show();
+        }
+        private void btnAutoSteerConfig_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            Form form = new FormSteer(this);
+            form.Show();
+
+        }
+        private void btnTripOdometer_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            using (var form = new FormTrip(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
    // Menu Items ------------------------------------------------------------------
 
         //File drop down items
-        private void saveFieldToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FileSaveField();
-            FileSaveContour();
-            FileSaveFlags();
-            FileSaveFlagsText();
-        }
+
         private void loadVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1547,24 +1697,6 @@ namespace AgOpenGPS
         private void saveVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FileSaveVehicle();
-        }
-        private void asTextFilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!isJobStarted)
-            {
-                var form = new FormTimedMessage(this, 2000, "Ooops, Field Not Started", "Start a Field First");
-                form.Show();
-                return;
-            }
-            FileSaveFieldText();
-            FileSaveFlagsText();
-            FileSaveContourText();
-            FileSaveSectionPatchesText();
-            FileSaveFlagKML();
-
-            using (var form2 = new FormTimedMessage(this, 1500, "Field, Flags, Contours, Section Area Saved",
-                                                            "MyDocuments\\AgOpenGPS\\Fields..."))
-            { form2.Show(); }
         }
         private void fieldToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1760,34 +1892,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             SetZoom();
         }
-        private void toolStripMenuMetricImp_Click(object sender, EventArgs e)
-        {
-            if (isMetric) isMetric = false; else isMetric = true;
-            Properties.Settings.Default.setIsMetric = isMetric;
-            Properties.Settings.Default.Save();
-            if (isMetric)
-            {
-                lblSpeedUnits.Text = "Kmh";
-                this.metricToolStrip.Checked = true;
-                this.imperialToolStrip.Checked = false;
-            }
-            else
-            {
-                lblSpeedUnits.Text = "MPH";
-                this.metricToolStrip.Checked = false;
-                this.imperialToolStrip.Checked = true;
-            }
 
-        }
-
-        private void toolStripMenuSettings_Click(object sender, EventArgs e)
-        {
-            SettingsPageOpen(0);
-        }
-        private void toolStripMenuComPorts_Click(object sender, EventArgs e)
-        {
-            SettingsCommunications();
-        }
         private void toolStripMenuField_Click(object sender, EventArgs e)
         {
             JobNewOpenResume();
@@ -1821,12 +1926,14 @@ namespace AgOpenGPS
         private void toolStripMenuFlagDelete_Click(object sender, EventArgs e)
         {
             //delete selected flag and set selected to none
-            DeleteSelectedFlag(); 
+            DeleteSelectedFlag();
+            FileSaveFlags();
         }
         private void toolStripMenuFlagDeleteAll_Click(object sender, EventArgs e)
         {
             flagNumberPicked = 0;
             flagPts.Clear();
+            FileSaveFlags();
         }
         private void contextMenuStripFlag_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -1959,7 +2066,7 @@ namespace AgOpenGPS
         public string HDOP { get { return Convert.ToString(pn.hdop); }  }
         public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
-        public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)); } }
+        public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
         public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }       
         public string FixQuality { get
         { 
@@ -1995,14 +2102,19 @@ namespace AgOpenGPS
             }
         }
 
-        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 1).ToString(); ; } }
-        public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 1).ToString(); ; } }
+        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString(); ; } }
+        public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 2).ToString(); ; } }
 
         public string GridFeet { get { return Math.Round(gridZoom * 3.28084, 0).ToString(); } }
         public string GridMeters { get { return Math.Round(gridZoom, 0).ToString(); } }
 
-        public string Acres { get { return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString(); } }
-        public string Hectares { get { return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); } }
+        public string Acres { get { if (totalSquareMeters < 404645) return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 2).ToString();
+                                     else return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString();  }  }
+        public string Hectares { get { if (totalSquareMeters < 999900) return Math.Round(totalSquareMeters * 0.0001, 2).ToString();
+                                        else return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); }  }
+
+        public string AcresUser { get { return Math.Round(totalUserSquareMeters * 0.00024710499815078974633856493327535, 2).ToString()+ " Ac"; } }
+        public string HectaresUser { get { return Math.Round(totalUserSquareMeters * 0.0001, 2).ToString() + " Ha"; } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
@@ -2032,6 +2144,9 @@ namespace AgOpenGPS
             tmrWatchdog.Enabled = true;
             statusUpdateCounter++;
 
+            if (isMenuHid) { if (panel1.Width > 30) panel1.Width -= 30; else panel1.Width = 0; }
+            else { if (panel1.Width < 270) panel1.Width += 30; }
+
            //every third of a second update all status
             if (statusUpdateCounter > 13)
             {
@@ -2043,15 +2158,15 @@ namespace AgOpenGPS
                 
                 if (isMetric)  //metric or imperial
                 {
-                    //acres on the master section soft control and sections
+                    //Hectares on the master section soft control and sections
                     this.btnSectionOffAutoOn.Text = Hectares;
                     btnPerimeter.Text = PeriAreaHectares;    //area button
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString(Math.Round(userDistance, 0)) + " m";
+                    stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m";
+                    stripAreaUser.Text = HectaresUser;
                     lblSpeed.Text = SpeedKPH;
-                    stripGridZoom.Text = "Grid: " + GridMeters;
-                    stripAlt.Text = "Alt: " + Altitude;
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10))).ToString() + " ha/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
                 }
 
@@ -2062,62 +2177,65 @@ namespace AgOpenGPS
                     btnPerimeter.Text = PeriAreaAcres;    //area button
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString(Math.Round(userDistance * 3.28084, 0)) + " ft";
+                    stripDistance.Text = Convert.ToString((UInt16)(userDistance * 3.28084)) + " ft";
+                    stripAreaUser.Text = AcresUser;
                     lblSpeed.Text = SpeedMPH;
-                    stripGridZoom.Text = "Grid: " + GridFeet + " '";
-                    stripAlt.Text = "Alt: " + AltitudeFeet;
+                    //stripGridZoom.Text = "Grid: " + GridFeet + " '";
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10) * 2.47)).ToString() + " ac/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                 }
 
                 //non metric or imp fields
                 stripHz.Text = NMEAHz+"Hz "+ (int)(frameTime);
-                lblHeading.Text = Heading + "\u00B0";
+                lblHeading.Text = Heading;
                 btnABLine.Text = PassNumber;
-                stripRoll.Text = avgRoll + "\u00B0";
-                stripPitch.Text = avgPitch + "\u00B0";
-                stripAngularVel.Text = avgAngVel.ToString();
+                //stripRoll.Text = avgRoll + "\u00B0";
+                //stripPitch.Text = avgPitch + "\u00B0";
+                //stripAngularVel.Text = avgAngVel.ToString();
                 //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
 
                 lblFix.Text = FixQuality;
-                lblAgeDiff.Text = AgeDiff;
-                
+                //lblAgeDiff.Text = AgeDiff;
+
+                if (userSquareMetersAlarm == 0) stripAreaUser.BackColor = System.Drawing.SystemColors.ControlLightLight;
+                else
+                {
+                    if (totalUserSquareMeters < userSquareMetersAlarm) stripAreaUser.BackColor = System.Drawing.SystemColors.ControlLightLight;
+                    else stripAreaUser.BackColor = System.Drawing.Color.OrangeRed;
+                }
+
                 //up in the menu a few pieces of info
                 if (isJobStarted)
                 {
-                    lblEasting.Text = Math.Round(pn.easting, 1).ToString();
-                    lblNorthing.Text = Math.Round(pn.northing, 1).ToString();
+                    lblEasting.Text = "E: "+ Math.Round(pn.easting, 1).ToString();
+                    lblNorthing.Text = "N: " + Math.Round(pn.northing, 1).ToString();
                 }
 
                 else
                 {
-                    lblEasting.Text = ((int)pn.actualEasting).ToString();
-                    lblNorthing.Text = ((int)pn.actualNorthing).ToString();
+                    lblEasting.Text = "E: " + ((int)pn.actualEasting).ToString();
+                    lblNorthing.Text = "N: " + ((int)pn.actualNorthing).ToString();
                 }
 
+                lblZone.Text = pn.zone.ToString();
+
+                //grab the Validate sentence
+                NMEASentence = pn.currentNMEA_GGASentence + pn.currentNMEA_RMCSentence;
+
+                tboxSentence.Text = NMEASentence;
                 //update the online indicator
                 if (recvCounter > 50)
                 {
                     stripOnlineGPS.Value = 1;
                     lblEasting.Text = "-";
                     lblNorthing.Text ="No GPS";
-                    //lblZone.Text = "-";
+                    lblZone.Text = "-";
+                    tboxSentence.Text = "** No Sentence Data **";
                 }
                 else  stripOnlineGPS.Value = 100;
             }            
             //wait till timer fires again.        
         }
-
-        private void btnJob_Click(object sender, EventArgs e)
-        {
-            JobNewOpenResume();
-        }
-
-        private void btnSnap_Click(object sender, EventArgs e)
-        {
-            ABLine.snapABLine();
-        }
-
-
 
    }//class FormGPS
 }//namespace AgOpenGPS
@@ -2125,9 +2243,9 @@ namespace AgOpenGPS
         /*The order is:
          * 
          * The watchdog timer times out and runs this function tmrWatchdog_tick.
-         * 20 times per second so statusUpdateCounter updates strip menu etc at 2 hz
+         * 40 times per second so statusUpdateCounter updates strip menu etc at 2 hz
          * it also makes sure there is new sentences showing up otherwise it shows **** No GGA....
-         * saveCounter ticks 1 up 20x per second, used at end of draw routine every minute to save a backup of field
+         * saveCounter ticks 1 up 40x per second, used at end of draw routine every minute to save a backup of field
          * then ScanForNMEA function checks for a complete sentence if contained in pn.rawbuffer
          * if not it comes right back and waits for next watchdog trigger and starts all over
          * if a new sentence is there, UpdateFix() is called

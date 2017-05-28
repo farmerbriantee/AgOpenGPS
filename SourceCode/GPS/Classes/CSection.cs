@@ -104,6 +104,9 @@ namespace AgOpenGPS
             AddPathPoint(mf.toolNorthing, mf.toolEasting, mf.cosSectionHeading, mf.sinSectionHeading);
             isSectionOn = false;
             numTriangles = 0;
+
+            //save the triangle list in a patch list to add to saving file
+            mf.patchSaveList.Add(triangleList);
         }
 
 
@@ -136,20 +139,36 @@ namespace AgOpenGPS
 
             //when closing a job the triangle patches all are emptied but the section delay keeps going. 
             //Prevented by quick check.
-            if (c > 3)
+            if (c >= 3)
             {
-                //acres calculated from last right point to previous right side
-                double lastDistance = mf.pn.Distance(triangleList[c].x, triangleList[c].z, triangleList[c - 2].x, triangleList[c - 2].z);
+                //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
+                {
+                    double temp = 0;
+                    temp = triangleList[c].x * (triangleList[c - 1].z - triangleList[c - 2].z) +
+                              triangleList[c - 1].x * (triangleList[c - 2].z - triangleList[c].z) +
+                                  triangleList[c - 2].x * (triangleList[c].z - triangleList[c - 1].z);
 
-                //tally sq meters for this section and add to total of all sections    
-                double temp = (lastDistance * sectionWidth);
-                mf.totalSquareMeters += temp;
-                squareMetersSection += temp;
+                    temp = Math.Abs((temp / 2.0));
+                    mf.totalSquareMeters += temp;
+                    mf.totalUserSquareMeters += temp;
+
+                    temp = 0;
+                    temp = triangleList[c - 1].x * (triangleList[c - 2].z - triangleList[c - 3].z) +
+                              triangleList[c - 2].x * (triangleList[c - 3].z - triangleList[c - 1].z) +
+                                  triangleList[c - 3].x * (triangleList[c - 1].z - triangleList[c - 2].z);
+
+                    temp = Math.Abs((temp / 2.0));
+                    mf.totalSquareMeters += temp;
+                    mf.totalUserSquareMeters += temp;
+                }
             }
 
             if (numTriangles > 36)
             {
                 numTriangles = 0;
+
+                //save the cutoff patch to be saved later
+                mf.patchSaveList.Add(triangleList);
 
                 triangleList = new List<vec2>();
                 patchList.Add(triangleList);

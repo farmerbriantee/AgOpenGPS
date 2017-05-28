@@ -98,7 +98,7 @@
             // 
             this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRescan.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRescan.Location = new System.Drawing.Point(679, 47);
             this.btnRescan.Name = "btnRescan";
@@ -218,7 +218,7 @@
             // 
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerial.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerial.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerial.Location = new System.Drawing.Point(437, 39);
             this.btnCloseSerial.Name = "btnCloseSerial";
             this.btnCloseSerial.Size = new System.Drawing.Size(117, 36);
@@ -254,7 +254,7 @@
             // 
             this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerial.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerial.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerial.Location = new System.Drawing.Point(298, 39);
             this.btnOpenSerial.Name = "btnOpenSerial";
             this.btnOpenSerial.Size = new System.Drawing.Size(117, 36);
@@ -267,7 +267,7 @@
             // 
             this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerialArduino.Location = new System.Drawing.Point(437, 28);
             this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
             this.btnCloseSerialArduino.Size = new System.Drawing.Size(117, 36);
@@ -280,7 +280,7 @@
             // 
             this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialArduino.Location = new System.Drawing.Point(298, 28);
             this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
             this.btnOpenSerialArduino.Size = new System.Drawing.Size(117, 36);
@@ -478,7 +478,7 @@
             // 
             this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialAutoSteer.Location = new System.Drawing.Point(298, 28);
             this.btnOpenSerialAutoSteer.Name = "btnOpenSerialAutoSteer";
             this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(117, 36);
@@ -491,7 +491,7 @@
             // 
             this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Arial Narrow", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(437, 28);
             this.btnCloseSerialAutoSteer.Name = "btnCloseSerialAutoSteer";
             this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(117, 36);
@@ -571,6 +571,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Name = "FormCommSet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Communication Settings";
             this.Load += new System.EventHandler(this.FormCommSet_Load);
             this.groupBox1.ResumeLayout(false);

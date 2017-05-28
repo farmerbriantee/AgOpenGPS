@@ -184,8 +184,8 @@ namespace AgOpenGPS
                 periArea.DrawPerimeterLine();
 
                 //screen text for debug
-                //gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, " Dist " + ABLine.distanceFromCurrentLine);
-                //gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, "delta " + Convert.ToString((double)(guidanceLineHeadingDelta)/10000));
+                gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, totalUserSquareMeters.ToString());
+                gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, userSquareMetersAlarm.ToString());
                 //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Tank " + Convert.ToString(fixHeadingTank ));
                 //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  Sect " + Convert.ToString(fixHeadingSection));
                 //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  overS " + Convert.ToString(overSect));
@@ -636,18 +636,22 @@ namespace AgOpenGPS
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 1080)       //3 counts per second X 60 seconds.
+            if (saveCounter > 360)       //3 counts per second X 60 seconds = 180 counts per second.
             {
-                if (isJobStarted)
+                if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
+                    //auto save the field patches, contours accumulated so far
                     FileSaveField();
                     FileSaveContour();
-                    FileSaveFlags();
+
+                    //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();
                 }
                 saveCounter = 0;
             }            
             //this is the end of the "frame". Now we wait for next NMEA sentence. 
+
+
         }
                 
         //Resize is called upn window creation
@@ -690,23 +694,23 @@ namespace AgOpenGPS
             //  Dot distance is representation of how far from AB Line
 
             //width of lightbar
-            double _width = 448;
+            double _width = 330;
 
             double down = 16;
 
-            int dotDistance = (int)offlineDistance;
+            int dotDistance = (int)(offlineDistance*0.5);
             //if (dotDistance < 0) dotDistance -= 20;
             //if (dotDistance > 0) dotDistance += 20;
 
-            if (dotDistance < -370) dotDistance = -370;
-            if (dotDistance > 370) dotDistance = 370;
+            if (dotDistance < -320) dotDistance = -320;
+            if (dotDistance > 320) dotDistance = 320;
 
             //the black background
             gl.Color(0, 0, 0);
             gl.PointSize(32.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int x = (int)-_width - 32; x <= 0; x += 32) gl.Vertex((double)x, down);
-            for (int x = 0; x <= (int)_width + 32; x += 32) gl.Vertex((double)x, down);
+            for (int x = (int)-_width - 26; x <= 0; x += 26) gl.Vertex((double)x, down);
+            for (int x = 0; x <= (int)_width + 26; x += 26) gl.Vertex((double)x, down);
             gl.End();
 
             //2 off center green dots
@@ -729,14 +733,14 @@ namespace AgOpenGPS
 
             //left red dots
             gl.Color(0.8f, 0.2f, 0.2f);
-            for (int x = -24; x < -6; x++) gl.Vertex(x * 20, down);
+            for (int x = -18; x < -6; x++) gl.Vertex(x * 20, down);
 
             //right red dots
             gl.Color(0.8f, 0.2f, 0.2f);
-            for (int x = 7; x < 25; x++) gl.Vertex(x * 20, down);
+            for (int x = 7; x < 18; x++) gl.Vertex(x * 20, down);
             gl.End();
 
-            if (dotDistance >= -1 && dotDistance <= 1)
+            if (dotDistance >= -6 && dotDistance <= 6)
             {
                 gl.PointSize(24.0f);
                 gl.Color(0.0f, 0.98f, 0.0f);
@@ -746,8 +750,8 @@ namespace AgOpenGPS
                 gl.End();
                 return;
             }
-            if (dotDistance < -1) dotDistance -= 30;
-            if (dotDistance > 1) dotDistance += 30;
+            if (dotDistance < -6) dotDistance -= 30;
+            if (dotDistance > 6) dotDistance += 30;
             
             //else dotDistance += 30;
             //Are you on the right side of line?
@@ -756,7 +760,7 @@ namespace AgOpenGPS
                 gl.PointSize(24.0f);
                 gl.Color(0.0f, 0.98f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1.2, down);
+                gl.Vertex(dotDistance * -1, down);
                 gl.End();
                 return;
             }
@@ -766,7 +770,7 @@ namespace AgOpenGPS
                 gl.PointSize(24.0f);
                 gl.Color(0.98f, 0.98f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1.2, down);
+                gl.Vertex(dotDistance * -1, down);
                 gl.End();
                 return;
             }
@@ -775,7 +779,7 @@ namespace AgOpenGPS
             gl.PointSize(24.0f);
             gl.Color(0.98f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            gl.Vertex(dotDistance * -1.2, down);
+            gl.Vertex(dotDistance * -1, down);
             gl.End();
 
 

@@ -180,7 +180,7 @@
             this.tabControl1.Controls.Add(this.tabWorkSwitch);
             this.tabControl1.Controls.Add(this.tabDisplay);
             this.tabControl1.Controls.Add(this.tabExamples);
-            this.tabControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(2, 5);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -211,11 +211,11 @@
             this.tabVehicle.Controls.Add(this.nudAntennaPivot);
             this.tabVehicle.Controls.Add(this.nudWheelbase);
             this.tabVehicle.Controls.Add(this.nudAntennaHeight);
-            this.tabVehicle.Location = new System.Drawing.Point(4, 31);
+            this.tabVehicle.Location = new System.Drawing.Point(4, 41);
             this.tabVehicle.Margin = new System.Windows.Forms.Padding(4);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(4);
-            this.tabVehicle.Size = new System.Drawing.Size(951, 516);
+            this.tabVehicle.Size = new System.Drawing.Size(951, 506);
             this.tabVehicle.TabIndex = 1;
             this.tabVehicle.Text = " Vehicle ";
             this.tabVehicle.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(753, 179);
+            this.label15.Location = new System.Drawing.Point(753, 167);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(127, 23);
             this.label15.TabIndex = 21;
@@ -361,7 +361,7 @@
             this.chkIsPivotBehindAntenna.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkIsPivotBehindAntenna.AutoSize = true;
             this.chkIsPivotBehindAntenna.Image = global::AgOpenGPS.Properties.Resources.PivotBehind;
-            this.chkIsPivotBehindAntenna.Location = new System.Drawing.Point(480, 57);
+            this.chkIsPivotBehindAntenna.Location = new System.Drawing.Point(480, 60);
             this.chkIsPivotBehindAntenna.Name = "chkIsPivotBehindAntenna";
             this.chkIsPivotBehindAntenna.Size = new System.Drawing.Size(70, 70);
             this.chkIsPivotBehindAntenna.TabIndex = 4;
@@ -484,9 +484,9 @@
             this.tabTool.Controls.Add(this.nudOverlap);
             this.tabTool.Controls.Add(this.label5);
             this.tabTool.Controls.Add(this.nudOffset);
-            this.tabTool.Location = new System.Drawing.Point(4, 31);
+            this.tabTool.Location = new System.Drawing.Point(4, 41);
             this.tabTool.Name = "tabTool";
-            this.tabTool.Size = new System.Drawing.Size(951, 516);
+            this.tabTool.Size = new System.Drawing.Size(951, 506);
             this.tabTool.TabIndex = 9;
             this.tabTool.Text = "  Tool  ";
             this.tabTool.UseVisualStyleBackColor = true;
@@ -752,9 +752,9 @@
             this.tabSections.Controls.Add(this.nudSection1);
             this.tabSections.Controls.Add(this.label2);
             this.tabSections.Controls.Add(this.nudNumberOfSections);
-            this.tabSections.Location = new System.Drawing.Point(4, 31);
+            this.tabSections.Location = new System.Drawing.Point(4, 41);
             this.tabSections.Name = "tabSections";
-            this.tabSections.Size = new System.Drawing.Size(951, 516);
+            this.tabSections.Size = new System.Drawing.Size(951, 506);
             this.tabSections.TabIndex = 2;
             this.tabSections.Text = " Sections ";
             this.tabSections.UseVisualStyleBackColor = true;
@@ -809,7 +809,7 @@
             this.nudSection8.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection8.Location = new System.Drawing.Point(839, 168);
             this.nudSection8.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -828,7 +828,7 @@
             this.nudSection7.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection7.Location = new System.Drawing.Point(723, 168);
             this.nudSection7.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -847,7 +847,7 @@
             this.nudSection6.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection6.Location = new System.Drawing.Point(606, 168);
             this.nudSection6.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -896,7 +896,7 @@
             this.nudSection5.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection5.Location = new System.Drawing.Point(488, 168);
             this.nudSection5.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -915,7 +915,7 @@
             this.nudSection4.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection4.Location = new System.Drawing.Point(371, 168);
             this.nudSection4.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -923,7 +923,7 @@
             this.nudSection4.Size = new System.Drawing.Size(102, 56);
             this.nudSection4.TabIndex = 12;
             this.nudSection4.Value = new decimal(new int[] {
-            1555,
+            99,
             0,
             0,
             0});
@@ -934,7 +934,7 @@
             this.nudSection3.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection3.Location = new System.Drawing.Point(254, 168);
             this.nudSection3.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -953,7 +953,7 @@
             this.nudSection2.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection2.Location = new System.Drawing.Point(134, 168);
             this.nudSection2.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -972,7 +972,7 @@
             this.nudSection1.Font = new System.Drawing.Font("Arial Narrow", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSection1.Location = new System.Drawing.Point(13, 168);
             this.nudSection1.Maximum = new decimal(new int[] {
-            2000,
+            4000,
             0,
             0,
             0});
@@ -1049,9 +1049,9 @@
             this.tabGuidance.Controls.Add(this.label11);
             this.tabGuidance.Controls.Add(this.label10);
             this.tabGuidance.Controls.Add(this.lblPitchFromIMU);
-            this.tabGuidance.Location = new System.Drawing.Point(4, 31);
+            this.tabGuidance.Location = new System.Drawing.Point(4, 41);
             this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.Size = new System.Drawing.Size(951, 516);
+            this.tabGuidance.Size = new System.Drawing.Size(951, 506);
             this.tabGuidance.TabIndex = 4;
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
@@ -1059,9 +1059,9 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(17, 388);
+            this.label39.Location = new System.Drawing.Point(17, 200);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(253, 110);
+            this.label39.Size = new System.Drawing.Size(373, 160);
             this.label39.TabIndex = 160;
             this.label39.Text = "P - Proportional\r\nI - Integral\r\nD - Derivative\r\nO - Overall Gain\r\nW - Anti Integr" +
     "al Windup Max\r\n";
@@ -1313,6 +1313,7 @@
             // 
             // btnRollPitchZero
             // 
+            this.btnRollPitchZero.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRollPitchZero.Image = global::AgOpenGPS.Properties.Resources.ZeroPitchRoll;
             this.btnRollPitchZero.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRollPitchZero.Location = new System.Drawing.Point(748, 311);
@@ -1369,9 +1370,9 @@
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
             this.tabWorkSwitch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabWorkSwitch.Controls.Add(this.groupBox3);
-            this.tabWorkSwitch.Location = new System.Drawing.Point(4, 31);
+            this.tabWorkSwitch.Location = new System.Drawing.Point(4, 41);
             this.tabWorkSwitch.Name = "tabWorkSwitch";
-            this.tabWorkSwitch.Size = new System.Drawing.Size(951, 516);
+            this.tabWorkSwitch.Size = new System.Drawing.Size(951, 506);
             this.tabWorkSwitch.TabIndex = 10;
             this.tabWorkSwitch.Text = "Work Switch";
             this.tabWorkSwitch.UseVisualStyleBackColor = true;
@@ -1417,9 +1418,9 @@
             this.tabDisplay.Controls.Add(this.groupBox2);
             this.tabDisplay.Controls.Add(this.groupBox1);
             this.tabDisplay.Controls.Add(this.groupBox4);
-            this.tabDisplay.Location = new System.Drawing.Point(4, 31);
+            this.tabDisplay.Location = new System.Drawing.Point(4, 41);
             this.tabDisplay.Name = "tabDisplay";
-            this.tabDisplay.Size = new System.Drawing.Size(951, 516);
+            this.tabDisplay.Size = new System.Drawing.Size(951, 506);
             this.tabDisplay.TabIndex = 5;
             this.tabDisplay.Text = " Display ";
             this.tabDisplay.UseVisualStyleBackColor = true;
@@ -1429,9 +1430,10 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.nudTriangleResolution);
-            this.groupBox2.Location = new System.Drawing.Point(486, 24);
+            this.groupBox2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(488, 53);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(423, 169);
+            this.groupBox2.Size = new System.Drawing.Size(453, 197);
             this.groupBox2.TabIndex = 65;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Triangle Resolution";
@@ -1439,20 +1441,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(234, 69);
+            this.label7.Location = new System.Drawing.Point(205, 93);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 22);
+            this.label7.Size = new System.Drawing.Size(205, 27);
             this.label7.TabIndex = 67;
             this.label7.Text = "4 -> Few triangles";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(211, 37);
+            this.label6.Location = new System.Drawing.Point(183, 49);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(183, 22);
+            this.label6.Size = new System.Drawing.Size(224, 27);
             this.label6.TabIndex = 66;
-            this.label6.Text = "1 -> Lots of triangles";
+            this.label6.Text = "1 -> Many Triangles";
             // 
             // nudTriangleResolution
             // 
@@ -1463,7 +1465,7 @@
             0,
             0,
             65536});
-            this.nudTriangleResolution.Location = new System.Drawing.Point(44, 37);
+            this.nudTriangleResolution.Location = new System.Drawing.Point(30, 49);
             this.nudTriangleResolution.Maximum = new decimal(new int[] {
             40,
             0,
@@ -1487,7 +1489,8 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkIsAtanCam);
-            this.groupBox1.Location = new System.Drawing.Point(34, 250);
+            this.groupBox1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(34, 279);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(481, 85);
             this.groupBox1.TabIndex = 63;
@@ -1501,7 +1504,7 @@
             this.chkIsAtanCam.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIsAtanCam.Location = new System.Drawing.Point(40, 47);
             this.chkIsAtanCam.Name = "chkIsAtanCam";
-            this.chkIsAtanCam.Size = new System.Drawing.Size(172, 26);
+            this.chkIsAtanCam.Size = new System.Drawing.Size(211, 31);
             this.chkIsAtanCam.TabIndex = 61;
             this.chkIsAtanCam.Text = "Use Fix For Cam";
             this.chkIsAtanCam.UseVisualStyleBackColor = true;
@@ -1512,9 +1515,10 @@
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.nudMinFixStepDistance);
-            this.groupBox4.Location = new System.Drawing.Point(34, 24);
+            this.groupBox4.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(21, 53);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(344, 169);
+            this.groupBox4.Size = new System.Drawing.Size(446, 197);
             this.groupBox4.TabIndex = 60;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Distance Back for Heading";
@@ -1524,7 +1528,7 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(26, 125);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(279, 22);
+            this.label21.Size = new System.Drawing.Size(351, 27);
             this.label21.TabIndex = 68;
             this.label21.Text = "More Meters is More Smoothing";
             // 
@@ -1572,9 +1576,9 @@
             // 
             this.tabExamples.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabExamples.BackgroundImage")));
             this.tabExamples.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tabExamples.Location = new System.Drawing.Point(4, 31);
+            this.tabExamples.Location = new System.Drawing.Point(4, 41);
             this.tabExamples.Name = "tabExamples";
-            this.tabExamples.Size = new System.Drawing.Size(951, 516);
+            this.tabExamples.Size = new System.Drawing.Size(951, 506);
             this.tabExamples.TabIndex = 8;
             this.tabExamples.Text = " Examples ";
             this.tabExamples.UseVisualStyleBackColor = true;

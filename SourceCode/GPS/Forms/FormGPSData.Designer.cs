@@ -287,7 +287,7 @@
             this.tboxNMEASerial.Multiline = true;
             this.tboxNMEASerial.Name = "tboxNMEASerial";
             this.tboxNMEASerial.ReadOnly = true;
-            this.tboxNMEASerial.Size = new System.Drawing.Size(427, 60);
+            this.tboxNMEASerial.Size = new System.Drawing.Size(453, 60);
             this.tboxNMEASerial.TabIndex = 107;
             // 
             // tboxSerialFromRelay
@@ -300,7 +300,7 @@
             this.tboxSerialFromRelay.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromRelay.Name = "tboxSerialFromRelay";
             this.tboxSerialFromRelay.ReadOnly = true;
-            this.tboxSerialFromRelay.Size = new System.Drawing.Size(372, 29);
+            this.tboxSerialFromRelay.Size = new System.Drawing.Size(398, 29);
             this.tboxSerialFromRelay.TabIndex = 108;
             // 
             // label10
@@ -369,7 +369,7 @@
             this.tboxSerialToRelay.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToRelay.Name = "tboxSerialToRelay";
             this.tboxSerialToRelay.ReadOnly = true;
-            this.tboxSerialToRelay.Size = new System.Drawing.Size(371, 29);
+            this.tboxSerialToRelay.Size = new System.Drawing.Size(397, 29);
             this.tboxSerialToRelay.TabIndex = 115;
             // 
             // label14
@@ -393,7 +393,7 @@
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(371, 29);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(397, 29);
             this.tboxSerialFromAutoSteer.TabIndex = 119;
             // 
             // label15
@@ -417,7 +417,7 @@
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
-            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(372, 29);
+            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(398, 29);
             this.tboxSerialToAutoSteer.TabIndex = 117;
             // 
             // label16
@@ -446,7 +446,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(437, 430);
+            this.ClientSize = new System.Drawing.Size(463, 438);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label14);
@@ -480,6 +480,7 @@
             this.Controls.Add(this.lblFixQuality);
             this.Controls.Add(this.lblStatus);
             this.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

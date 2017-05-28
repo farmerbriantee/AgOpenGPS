@@ -123,6 +123,8 @@ namespace AgOpenGPS
  
         private void btnABLineOk_Click(object sender, EventArgs e)
         {
+            //save the ABLine
+            mf.FileSaveABLine();
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -138,6 +140,9 @@ namespace AgOpenGPS
             nudBasedOnPass.Value = 0;
             mf.ABLine.tramPassEvery = 0;
             mf.ABLine.passBasedOn = 0;
+
+            //save the no ABLine;
+            mf.FileSaveABLine();
 
             this.DialogResult = DialogResult.Cancel;
             this.Close();

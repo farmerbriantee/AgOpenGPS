@@ -9,3 +9,5 @@
 // You do not need to add suppressions to this file manually.
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1013:OverloadOperatorEqualsOnOverloadingAddAndSubtract", Scope = "member", Target = "AgOpenGPS.vec2.#op_Subtraction(AgOpenGPS.vec2,AgOpenGPS.vec2)")]
+
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormGPS.openGLControl_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)")]

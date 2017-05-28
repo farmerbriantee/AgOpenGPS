@@ -37,10 +37,10 @@
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(12, 19);
+            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage.Location = new System.Drawing.Point(12, 20);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(88, 25);
+            this.lblMessage.Size = new System.Drawing.Size(114, 32);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Message";
             // 
@@ -53,10 +53,10 @@
             // lblMessage2
             // 
             this.lblMessage2.AutoSize = true;
-            this.lblMessage2.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage2.Location = new System.Drawing.Point(91, 55);
+            this.lblMessage2.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessage2.Location = new System.Drawing.Point(75, 71);
             this.lblMessage2.Name = "lblMessage2";
-            this.lblMessage2.Size = new System.Drawing.Size(88, 21);
+            this.lblMessage2.Size = new System.Drawing.Size(130, 32);
             this.lblMessage2.TabIndex = 1;
             this.lblMessage2.Text = "Message 2";
             // 
@@ -64,7 +64,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(605, 100);
+            this.ClientSize = new System.Drawing.Size(985, 133);
             this.Controls.Add(this.lblMessage2);
             this.Controls.Add(this.lblMessage);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

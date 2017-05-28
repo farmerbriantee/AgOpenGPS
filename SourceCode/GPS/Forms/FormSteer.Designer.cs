@@ -94,7 +94,7 @@
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(799, 29);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(795, 29);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // label15
@@ -118,7 +118,7 @@
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
-            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(800, 29);
+            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(796, 29);
             this.tboxSerialToAutoSteer.TabIndex = 123;
             // 
             // timer1
@@ -332,7 +332,7 @@
             legend1.ForeColor = System.Drawing.Color.White;
             legend1.Name = "Legend1";
             this.unoChart.Legends.Add(legend1);
-            this.unoChart.Location = new System.Drawing.Point(4, 171);
+            this.unoChart.Location = new System.Drawing.Point(0, 171);
             this.unoChart.Name = "unoChart";
             this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             series1.BackSecondaryColor = System.Drawing.Color.White;
@@ -374,7 +374,7 @@
             this.unoChart.Series.Add(series3);
             this.unoChart.Series.Add(series4);
             this.unoChart.Series.Add(series5);
-            this.unoChart.Size = new System.Drawing.Size(870, 359);
+            this.unoChart.Size = new System.Drawing.Size(870, 243);
             this.unoChart.TabIndex = 179;
             // 
             // lblSteerAng
@@ -439,10 +439,11 @@
             // 
             // btnPlus
             // 
+            this.btnPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPlus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(8, 175);
+            this.btnPlus.Location = new System.Drawing.Point(8, 184);
             this.btnPlus.Name = "btnPlus";
-            this.btnPlus.Size = new System.Drawing.Size(28, 108);
+            this.btnPlus.Size = new System.Drawing.Size(28, 64);
             this.btnPlus.TabIndex = 185;
             this.btnPlus.Text = "^\r";
             this.btnPlus.UseVisualStyleBackColor = true;
@@ -450,10 +451,11 @@
             // 
             // btnMinus
             // 
+            this.btnMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnMinus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinus.Location = new System.Drawing.Point(8, 414);
+            this.btnMinus.Location = new System.Drawing.Point(8, 338);
             this.btnMinus.Name = "btnMinus";
-            this.btnMinus.Size = new System.Drawing.Size(28, 108);
+            this.btnMinus.Size = new System.Drawing.Size(28, 64);
             this.btnMinus.TabIndex = 186;
             this.btnMinus.Text = "v";
             this.btnMinus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -462,10 +464,11 @@
             // 
             // btnAuto
             // 
-            this.btnAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Location = new System.Drawing.Point(8, 293);
+            this.btnAuto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuto.Location = new System.Drawing.Point(8, 261);
             this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(28, 108);
+            this.btnAuto.Size = new System.Drawing.Size(28, 64);
             this.btnAuto.TabIndex = 187;
             this.btnAuto.Text = "A\r\nu\r\nt\r\no";
             this.btnAuto.UseVisualStyleBackColor = true;
@@ -531,7 +534,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(877, 533);
+            this.ClientSize = new System.Drawing.Size(873, 414);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -567,6 +570,7 @@
             this.Controls.Add(this.tboxSerialToAutoSteer);
             this.Name = "FormSteer";
             this.Text = "Auto Steer Configuration";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSteer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).EndInit();
             this.ResumeLayout(false);

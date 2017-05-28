@@ -1,4 +1,18 @@
-﻿v2.13 April 15
+﻿v2.14 May 15
+*
+* File saving now done as appending rather then completely rewriting file
+* File saves are text files, again. Binary was efficient, but what a pita
+* Enlarged the buttons and most display values 
+* Resettable acre trip counter
+* Error checking when loading fields
+* UTM offsets are loaded when starting a new field and never changed again
+* Resume button tells which field you are resuming
+* Menu drawer for quick use buttons
+* Alarm for trip acres
+* Acres per hour status value
+* 
+
+v2.13 April 15
 *
 * In communication, can turn on or off UDP and TCP servers
 * Full Metric Imperial

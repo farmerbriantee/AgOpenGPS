@@ -33,7 +33,7 @@ namespace AgOpenGPS
 
             //append date time to name
             mf.currentFieldDirectory = tboxFieldName.Text.Trim() +
-                String.Format("{0}", DateTime.Now.ToString("_MMMdd"));
+                String.Format("{0}", DateTime.Now.ToString(" MMMdd"));
             try
             {
                 //get the directory and make sure it exists, create if not
@@ -61,16 +61,19 @@ namespace AgOpenGPS
                     if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
                     { Directory.CreateDirectory(directoryName); }
 
-                    //if you can't save here, you're screwed
-                    mf.FileSaveField();
-                    mf.FileSaveContour();
+                    //create the field file header info
+                    mf.FileCreateField();
+                    mf.FileCreateContour();
                     mf.FileSaveFlags();
+                    mf.FileSaveABLine();
                 }
             }
 
-            catch (Exception err)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error", err.ToString());
+                mf.WriteErrorLog("Creating new field " + ex.ToString());
+
+                MessageBox.Show("Error", ex.ToString());
                 mf.currentFieldDirectory = "";
             }
 

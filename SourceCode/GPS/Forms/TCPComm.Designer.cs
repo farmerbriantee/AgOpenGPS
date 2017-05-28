@@ -125,6 +125,8 @@ namespace AgOpenGPS
         {
             Invoke((Action)delegate
             {
+                WriteErrorLog("TCP Error" + text);
+
                 MessageBox.Show(text, "Server Error: ");
             });
         }

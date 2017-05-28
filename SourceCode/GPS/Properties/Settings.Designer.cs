@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-30")]
         public double setCam_pitch {
             get {
                 return ((double)(this["setCam_pitch"]));
@@ -109,7 +109,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("900, 600")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1024, 768")]
         public global::System.Drawing.Size setWindow_Size {
             get {
                 return ((global::System.Drawing.Size)(this["setWindow_Size"]));
@@ -565,7 +565,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Default ")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default - ")]
         public string setVehicle_Name {
             get {
                 return ((string)(this["setVehicle_Name"]));
@@ -788,6 +788,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setPort_isTCPOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setUserTripAlarm {
+            get {
+                return ((double)(this["setUserTripAlarm"]));
+            }
+            set {
+                this["setUserTripAlarm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setUserTotalArea {
+            get {
+                return ((double)(this["setUserTotalArea"]));
+            }
+            set {
+                this["setUserTotalArea"] = value;
             }
         }
     }

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
@@ -34,6 +28,14 @@ namespace AgOpenGPS
                 //back to FormGPS
                 this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
+            else
+            {
+                //back to FormGPS
+                this.DialogResult = DialogResult.Cancel;
+                mf.JobClose();
+                this.Close();
+
             }
         }
 
@@ -64,15 +66,18 @@ namespace AgOpenGPS
             string directoryName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
                 + "\\AgOpenGPS\\Fields\\" + mf.currentFieldDirectory + "\\";
 
-            string fileAndDirectory = directoryName + "Field.fld";
+            string fileAndDirectory = directoryName + "Field.txt";
 
             if (!File.Exists(fileAndDirectory))
             {
+                lblResumeDirectory.Text = "";
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
                 Properties.Settings.Default.setCurrentDir = "";
                 Properties.Settings.Default.Save();
             }
+
+            else lblResumeDirectory.Text = mf.currentFieldDirectory;
  
         }
 

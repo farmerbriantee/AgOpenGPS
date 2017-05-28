@@ -33,8 +33,6 @@ namespace AgOpenGPS
 
         double metImp2m, m2MetImp, cutoffMetricImperial, cutoffSpeed, maxWidth;
 
-        //string gooleEarthPath;
-
         //constructor
         public FormSettings(Form callingForm, int page)
         {

@@ -158,7 +158,7 @@ namespace AgOpenGPS
                 words = nextNMEASentence.Split(',');
                 if (words.Length < 9) return;
 
-                if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
+                if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA(); 
                 if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
                 if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
 
@@ -191,13 +191,17 @@ namespace AgOpenGPS
                 sentence = rawBuffer.Substring(0, end + 2);
 
                 //save to log sentence if field is open and sections on and menu enabled
-                if (mf.isLogNMEA)
+                //if (mf.isLogNMEA)
                 {
+                    currentNMEA_RMCSentence = "";
+                    currentNMEA_GGASentence = "";
+                    currentNMEA_VTGSentence = "";
+
                     if (sentence.Contains("$GPGGA") | sentence.Contains("$GNGGA")) currentNMEA_GGASentence = sentence;
                     if (sentence.Contains("$GPRMC") | sentence.Contains("$GNRMC")) currentNMEA_RMCSentence = sentence;
                     if (sentence.Contains("$GPVTG") | sentence.Contains("$GNVTG")) currentNMEA_VTGSentence = sentence;
                 }
-                
+
                 //remove the processed sentence from the rawBuffer
                 rawBuffer = rawBuffer.Substring(end + 2);
             }
@@ -213,6 +217,7 @@ namespace AgOpenGPS
         //The indivdual sentence parsing
         private void ParseGGA()
         {
+            
             double temp;
 
             //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
@@ -314,7 +319,10 @@ namespace AgOpenGPS
                 else
                 {
                     try { status = words[2]; }
-                    catch (ArgumentNullException) { }
+                    catch (Exception e)
+                    {
+                        mf.WriteErrorLog("Parse RMC" + e.ToString());
+                    }
                 }
 
                 theSent += nextNMEASentence;
@@ -373,7 +381,11 @@ namespace AgOpenGPS
             // Compare to checksum in sentence
             return sum_str.Equals(Sentence.Substring(inx + 1, 2));
             }
-            catch (ArgumentNullException) { return false; }
+            catch (Exception e)
+            {
+                mf.WriteErrorLog("Validate Checksum" + e.ToString());
+                return false;
+            }
          }
 
         public double Distance(double northing1, double easting1, double northing2, double easting2)

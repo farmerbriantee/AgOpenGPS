@@ -150,13 +150,14 @@ namespace AgOpenGPS
             
 
             //draw the sections
-            gl.LineWidth(4);
+            gl.LineWidth(8);
             gl.Begin(OpenGL.GL_LINES);
 
             //draw section line
             if (mf.section[numOfSections].isSectionOn)
             {
-                gl.Color(0.97f, 0.297f, 0.97f);
+                if (mf.section[0].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
+                else gl.Color(0.99, 0.99, 0);
                 gl.Vertex(mf.section[numOfSections].positionLeft, 0, trailingTool);
                 gl.Vertex(mf.section[numOfSections].positionRight, 0, trailingTool);
             }
@@ -168,7 +169,7 @@ namespace AgOpenGPS
                     if (mf.section[j].isSectionOn)
                     {
                         if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
-                        else gl.Color(0.99, 0.99, 0);
+                        else gl.Color(0.97, 0.97, 0);
                     }
                     else gl.Color(0.97f, 0.2f, 0.2f);
 

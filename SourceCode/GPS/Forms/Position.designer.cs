@@ -59,25 +59,27 @@ namespace AgOpenGPS
         List<CFlag> flagPts = new List<CFlag>();
 
         //tally counters for display
-        public double totalSquareMeters = 0, totalDistance = 0;
+        public double totalSquareMeters = 0, totalUserSquareMeters = 0, 
+            totalDistance = 0, userSquareMetersAlarm = 0;
 
         //used to determine NMEA sentence frequency
         private int timerPn = 1;        
         private double et = 0, hzTime = 0;
 
+        public double[] avgSpeed = new double[10];//for average speed
+        public int ringCounter = 0;  
+      
         //IMU 
         //double tiltDistance = 0;
         //double roll = 0, pitch = 0, angVel = 0;
-        double avgPitch = 0, avgRoll = 0, avgAngVel = 0;
+        //double avgPitch = 0, avgRoll = 0, avgAngVel = 0;
         
-        public double[] avgSpeed = new double[10];//for average speed
-        public int ringCounter = 0;        
-        public double[] avgTiltRoll = new double[10];//for tilt
-        public int ringCounterTiltRoll = 0;        
-        public double[] avgTiltPitch = new double[10];//for pitch
-        public int ringCounterTiltPitch = 0;        
-        public double[] avgAngularVelocity = new double[30];//for angular velocity
-        public int ringCounterAngularVelocity = 0;
+        //public double[] avgTiltRoll = new double[10];//for tilt
+        //public int ringCounterTiltRoll = 0;        
+        //public double[] avgTiltPitch = new double[10];//for pitch
+        //public int ringCounterTiltPitch = 0;        
+        //public double[] avgAngularVelocity = new double[30];//for angular velocity
+        //public int ringCounterAngularVelocity = 0;
 
         public double pitchZero, rollZero;
 
@@ -543,11 +545,8 @@ namespace AgOpenGPS
                         {
                             pn.logNMEASentence.Append(pn.currentNMEA_RMCSentence);
                             pn.logNMEASentence.Append(pn.currentNMEA_GGASentence);
-                            //pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
+                            pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
 
-                            pn.currentNMEA_RMCSentence = "";
-                            pn.currentNMEA_GGASentence = "";
-                            //pn.currentNMEA_VTGSentence = "";
                         }
                     }
                 }
@@ -557,6 +556,8 @@ namespace AgOpenGPS
 
                 //Build contour line if close enough to a patch
                 if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pn.easting, pn.northing);
+
+
             }
         }
        

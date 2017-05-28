@@ -98,6 +98,9 @@ namespace AgOpenGPS
             {
                 vec4 point = new vec4(mf.pivotAxleEasting, mf.fixHeading, mf.pivotAxleNorthing, mf.pn.altitude);
                 ptList.Add(point);
+
+                //add the point list to the save list for appending to contour file
+                mf.contourSaveList.Add(ptList);
             }
 
             //delete ptList

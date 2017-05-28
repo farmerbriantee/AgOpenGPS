@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-25</Value>
+      <Value Profile="(Default)">-30</Value>
     </Setting>
     <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM GPS...</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">30, 30</Value>
     </Setting>
     <Setting Name="setWindow_Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">900, 600</Value>
+      <Value Profile="(Default)">1024, 768</Value>
     </Setting>
     <Setting Name="setWindow_Maximized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -138,7 +138,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_Name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default </Value>
+      <Value Profile="(Default)">Default - </Value>
     </Setting>
     <Setting Name="setSection_position7" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -193,6 +193,12 @@
     </Setting>
     <Setting Name="setPort_isTCPOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setUserTripAlarm" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setUserTotalArea" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>
