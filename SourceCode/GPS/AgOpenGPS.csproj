@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
     <Compile Include="Classes\CCamera.cs" />
@@ -102,6 +103,18 @@
     <Compile Include="Classes\CPointData.cs" />
     <Compile Include="Classes\CVehicle.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
+    <Compile Include="Forms\FormBoundary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBoundary.Designer.cs">
+      <DependentUpon>FormBoundary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormBoundaryPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBoundaryPlayer.Designer.cs">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormFieldDir.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +234,12 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
+    <EmbeddedResource Include="Forms\FormBoundary.resx">
+      <DependentUpon>FormBoundary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </EmbeddedResource>
@@ -387,6 +406,17 @@
     <None Include="btnImages\TripOdometer.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
+    <None Include="btnImages\OuterBoundary.png" />
+    <None Include="btnImages\BoundaryLeft.png" />
+    <None Include="btnImages\BoundaryRight.png" />
+    <None Include="btnImages\boundaryPause.png" />
+    <None Include="btnImages\boundaryPlay.png" />
+    <None Include="btnImages\boundaryStop.png" />
+    <None Include="btnImages\BoundaryDelete.png" />
+    <None Include="btnImages\BoundaryOuter.png" />
+    <None Include="btnImages\BoundaryRecord.png" />
+    <None Include="btnImages\BoundaryMenu.png" />
+    <None Include="btnImages\FileExplorerWindows.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

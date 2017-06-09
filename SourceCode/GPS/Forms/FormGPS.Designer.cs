@@ -32,7 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGPS));
             this.openGLControl = new SharpGL.OpenGLControl();
             this.contextMenuStripOpenGL = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.txtDistanceOffABLine = new System.Windows.Forms.TextBox();
             this.openGLControlBack = new SharpGL.OpenGLControl();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +77,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBtnResetDistance = new System.Windows.Forms.ToolStripSplitButton();
             this.stripAreaUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
@@ -89,15 +92,27 @@
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblHeading = new System.Windows.Forms.Label();
             this.contextMenuStripDisplay = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuMetricImp = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3D = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuComPorts = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagGrn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagYel = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuFlagDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuFlagDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuAreaSide = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFix = new System.Windows.Forms.Label();
             this.lblSpeedUnits = new System.Windows.Forms.Label();
             this.tboxSentence = new System.Windows.Forms.TextBox();
             this.lblZone = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnFileExplorer = new System.Windows.Forms.Button();
+            this.btnBoundaryMenu = new System.Windows.Forms.Button();
             this.btnAutoSteerConfig = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnUnits = new System.Windows.Forms.Button();
@@ -123,23 +138,11 @@
             this.btnSection2Man = new System.Windows.Forms.Button();
             this.btnSection1Man = new System.Windows.Forms.Button();
             this.btnManualOffOn = new System.Windows.Forms.Button();
-            this.toolStripBtnResetDistance = new System.Windows.Forms.ToolStripSplitButton();
             this.btnMinMaxZoom = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnMenuDrawer = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
-            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuMetricImp = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3D = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuComPorts = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagGrn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagYel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuAreaSide = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabelBoundaryArea = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -169,7 +172,7 @@
             this.openGLControl.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControl.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControl.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.openGLControl.Size = new System.Drawing.Size(1008, 654);
+            this.openGLControl.Size = new System.Drawing.Size(1136, 654);
             this.openGLControl.TabIndex = 6;
             this.openGLControl.OpenGLInitialized += new System.EventHandler(this.openGLControl_OpenGLInitialized);
             this.openGLControl.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControl_OpenGLDraw);
@@ -188,24 +191,44 @@
             this.contextMenuStripOpenGL.Size = new System.Drawing.Size(72, 160);
             this.contextMenuStripOpenGL.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripOpenGL_Opening);
             // 
+            // deleteFlagToolOpenGLContextMenu
+            // 
+            this.deleteFlagToolOpenGLContextMenu.AutoSize = false;
+            this.deleteFlagToolOpenGLContextMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteFlagToolOpenGLContextMenu.Image = ((System.Drawing.Image)(resources.GetObject("deleteFlagToolOpenGLContextMenu.Image")));
+            this.deleteFlagToolOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.deleteFlagToolOpenGLContextMenu.Name = "deleteFlagToolOpenGLContextMenu";
+            this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
+            this.deleteFlagToolOpenGLContextMenu.Text = ".";
+            this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
+            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(68, 6);
             // 
+            // googleEarthOpenGLContextMenu
+            // 
+            this.googleEarthOpenGLContextMenu.AutoSize = false;
+            this.googleEarthOpenGLContextMenu.Image = ((System.Drawing.Image)(resources.GetObject("googleEarthOpenGLContextMenu.Image")));
+            this.googleEarthOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.googleEarthOpenGLContextMenu.Name = "googleEarthOpenGLContextMenu";
+            this.googleEarthOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
+            this.googleEarthOpenGLContextMenu.Text = ".";
+            this.googleEarthOpenGLContextMenu.Click += new System.EventHandler(this.googleEarthOpenGLContextMenu_Click);
+            // 
             // txtDistanceOffABLine
             // 
             this.txtDistanceOffABLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtDistanceOffABLine.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtDistanceOffABLine.BackColor = System.Drawing.SystemColors.MenuBar;
             this.txtDistanceOffABLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDistanceOffABLine.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDistanceOffABLine.ForeColor = System.Drawing.Color.Chartreuse;
-            this.txtDistanceOffABLine.Location = new System.Drawing.Point(476, 41);
+            this.txtDistanceOffABLine.Font = new System.Drawing.Font("Tahoma", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDistanceOffABLine.ForeColor = System.Drawing.Color.Green;
+            this.txtDistanceOffABLine.Location = new System.Drawing.Point(506, 3);
             this.txtDistanceOffABLine.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
-            this.txtDistanceOffABLine.MaximumSize = new System.Drawing.Size(53, 28);
             this.txtDistanceOffABLine.Name = "txtDistanceOffABLine";
             this.txtDistanceOffABLine.ReadOnly = true;
-            this.txtDistanceOffABLine.Size = new System.Drawing.Size(53, 29);
+            this.txtDistanceOffABLine.Size = new System.Drawing.Size(128, 36);
             this.txtDistanceOffABLine.TabIndex = 7;
             this.txtDistanceOffABLine.Text = "000";
             this.txtDistanceOffABLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -217,13 +240,14 @@
             this.openGLControlBack.DrawFPS = false;
             this.openGLControlBack.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.openGLControlBack.FrameRate = 1;
-            this.openGLControlBack.Location = new System.Drawing.Point(165, 62);
+            this.openGLControlBack.Location = new System.Drawing.Point(34, 95);
             this.openGLControlBack.Name = "openGLControlBack";
             this.openGLControlBack.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.openGLControlBack.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControlBack.RenderTrigger = SharpGL.RenderTrigger.Manual;
             this.openGLControlBack.Size = new System.Drawing.Size(400, 400);
             this.openGLControlBack.TabIndex = 91;
+            this.openGLControlBack.Visible = false;
             this.openGLControlBack.OpenGLInitialized += new System.EventHandler(this.openGLControlBack_OpenGLInitialized);
             this.openGLControlBack.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControlBack_OpenGLDraw);
             this.openGLControlBack.Resized += new System.EventHandler(this.openGLControlBack_Resized);
@@ -462,7 +486,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1136, 40);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -538,6 +562,7 @@
             this.toolStripBtnResetDistance,
             this.stripAreaUser,
             this.stripEqWidth,
+            this.toolStripStatusLabelBoundaryArea,
             this.stripAreaRate,
             this.stripPortGPS,
             this.stripOnlineGPS,
@@ -547,7 +572,7 @@
             this.stripOnlineAutoSteer});
             this.statusStrip1.Location = new System.Drawing.Point(0, 693);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 38);
+            this.statusStrip1.Size = new System.Drawing.Size(1136, 38);
             this.statusStrip1.TabIndex = 95;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -570,6 +595,22 @@
             this.stripDistance.Size = new System.Drawing.Size(120, 38);
             this.stripDistance.Text = "68888 ft";
             // 
+            // toolStripBtnResetDistance
+            // 
+            this.toolStripBtnResetDistance.AutoSize = false;
+            this.toolStripBtnResetDistance.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripBtnResetDistance.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripBtnResetDistance.BackgroundImage")));
+            this.toolStripBtnResetDistance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.toolStripBtnResetDistance.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripBtnResetDistance.DropDownButtonWidth = 20;
+            this.toolStripBtnResetDistance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripBtnResetDistance.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.toolStripBtnResetDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripBtnResetDistance.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.toolStripBtnResetDistance.Name = "toolStripBtnResetDistance";
+            this.toolStripBtnResetDistance.Size = new System.Drawing.Size(100, 36);
+            this.toolStripBtnResetDistance.ButtonClick += new System.EventHandler(this.toolStripBtnResetDistance_ButtonClick);
+            // 
             // stripAreaUser
             // 
             this.stripAreaUser.AutoSize = false;
@@ -587,7 +628,7 @@
             this.stripEqWidth.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(300, 38);
+            this.stripEqWidth.Size = new System.Drawing.Size(287, 38);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             // 
@@ -659,7 +700,7 @@
             this.lblNorthing.AutoSize = true;
             this.lblNorthing.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblNorthing.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNorthing.Location = new System.Drawing.Point(874, 0);
+            this.lblNorthing.Location = new System.Drawing.Point(1002, 0);
             this.lblNorthing.Name = "lblNorthing";
             this.lblNorthing.Size = new System.Drawing.Size(55, 18);
             this.lblNorthing.TabIndex = 110;
@@ -672,7 +713,7 @@
             this.lblEasting.AutoSize = true;
             this.lblEasting.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblEasting.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEasting.Location = new System.Drawing.Point(779, 0);
+            this.lblEasting.Location = new System.Drawing.Point(907, 0);
             this.lblEasting.Name = "lblEasting";
             this.lblEasting.Size = new System.Drawing.Size(55, 18);
             this.lblEasting.TabIndex = 111;
@@ -685,7 +726,7 @@
             this.lblSpeed.AutoSize = true;
             this.lblSpeed.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeed.Location = new System.Drawing.Point(539, 4);
+            this.lblSpeed.Location = new System.Drawing.Point(655, 4);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(66, 33);
             this.lblSpeed.TabIndex = 116;
@@ -697,7 +738,7 @@
             this.lblHeading.AutoSize = true;
             this.lblHeading.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblHeading.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.Location = new System.Drawing.Point(407, 4);
+            this.lblHeading.Location = new System.Drawing.Point(378, 4);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(55, 33);
             this.lblHeading.TabIndex = 117;
@@ -714,6 +755,46 @@
             this.toolStripMenuComPorts});
             this.contextMenuStripDisplay.Name = "contextMenuStripDisplay";
             this.contextMenuStripDisplay.Size = new System.Drawing.Size(70, 290);
+            // 
+            // toolStripMenuMetricImp
+            // 
+            this.toolStripMenuMetricImp.AutoSize = false;
+            this.toolStripMenuMetricImp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuMetricImp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuMetricImp.Image")));
+            this.toolStripMenuMetricImp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuMetricImp.Name = "toolStripMenuMetricImp";
+            this.toolStripMenuMetricImp.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuMetricImp.Text = ".";
+            // 
+            // toolStripMenuItem3D
+            // 
+            this.toolStripMenuItem3D.AutoSize = false;
+            this.toolStripMenuItem3D.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuItem3D.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3D.Image")));
+            this.toolStripMenuItem3D.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItem3D.Name = "toolStripMenuItem3D";
+            this.toolStripMenuItem3D.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuItem3D.Text = ".";
+            this.toolStripMenuItem3D.Click += new System.EventHandler(this.toolStripMenuItem3D_Click);
+            // 
+            // toolStripMenuSettings
+            // 
+            this.toolStripMenuSettings.AutoSize = false;
+            this.toolStripMenuSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuSettings.Image")));
+            this.toolStripMenuSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuSettings.Name = "toolStripMenuSettings";
+            this.toolStripMenuSettings.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuSettings.Text = ".";
+            // 
+            // toolStripMenuComPorts
+            // 
+            this.toolStripMenuComPorts.AutoSize = false;
+            this.toolStripMenuComPorts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuComPorts.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuComPorts.Image")));
+            this.toolStripMenuComPorts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuComPorts.Name = "toolStripMenuComPorts";
+            this.toolStripMenuComPorts.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuComPorts.Text = ".";
             // 
             // contextMenuStripFlag
             // 
@@ -732,6 +813,42 @@
             this.contextMenuStripFlag.Size = new System.Drawing.Size(72, 400);
             this.contextMenuStripFlag.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripFlag_Opening);
             // 
+            // toolStripMenuItemFlagRed
+            // 
+            this.toolStripMenuItemFlagRed.AutoSize = false;
+            this.toolStripMenuItemFlagRed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuItemFlagRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuItemFlagRed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemFlagRed.Image")));
+            this.toolStripMenuItemFlagRed.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemFlagRed.Name = "toolStripMenuItemFlagRed";
+            this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuItemFlagRed.Text = ".";
+            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
+            // 
+            // toolStripMenuFlagGrn
+            // 
+            this.toolStripMenuFlagGrn.AutoSize = false;
+            this.toolStripMenuFlagGrn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagGrn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagGrn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagGrn.Image")));
+            this.toolStripMenuFlagGrn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagGrn.Name = "toolStripMenuFlagGrn";
+            this.toolStripMenuFlagGrn.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagGrn.Text = ".";
+            this.toolStripMenuFlagGrn.Click += new System.EventHandler(this.toolStripMenuGrn_Click);
+            // 
+            // toolStripMenuFlagYel
+            // 
+            this.toolStripMenuFlagYel.AutoSize = false;
+            this.toolStripMenuFlagYel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagYel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagYel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagYel.Image")));
+            this.toolStripMenuFlagYel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagYel.Name = "toolStripMenuFlagYel";
+            this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagYel.Text = ".";
+            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.AutoSize = false;
@@ -739,11 +856,33 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(68, 20);
             // 
+            // toolStripMenuFlagDelete
+            // 
+            this.toolStripMenuFlagDelete.AutoSize = false;
+            this.toolStripMenuFlagDelete.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagDelete.Image")));
+            this.toolStripMenuFlagDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagDelete.Name = "toolStripMenuFlagDelete";
+            this.toolStripMenuFlagDelete.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagDelete.Text = ".";
+            this.toolStripMenuFlagDelete.Click += new System.EventHandler(this.toolStripMenuFlagDelete_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.AutoSize = false;
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(68, 20);
+            // 
+            // toolStripMenuFlagDeleteAll
+            // 
+            this.toolStripMenuFlagDeleteAll.AutoSize = false;
+            this.toolStripMenuFlagDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagDeleteAll.Image")));
+            this.toolStripMenuFlagDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagDeleteAll.Name = "toolStripMenuFlagDeleteAll";
+            this.toolStripMenuFlagDeleteAll.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagDeleteAll.Text = "toolStripMenuFlagDeleteAll";
+            this.toolStripMenuFlagDeleteAll.Click += new System.EventHandler(this.toolStripMenuFlagDeleteAll_Click);
             // 
             // contextMenuArea
             // 
@@ -753,13 +892,25 @@
             this.contextMenuArea.Name = "contextMenuArea";
             this.contextMenuArea.Size = new System.Drawing.Size(70, 80);
             // 
+            // toolStripMenuAreaSide
+            // 
+            this.toolStripMenuAreaSide.AutoSize = false;
+            this.toolStripMenuAreaSide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuAreaSide.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuAreaSide.Image")));
+            this.toolStripMenuAreaSide.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuAreaSide.Name = "toolStripMenuAreaSide";
+            this.toolStripMenuAreaSide.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuAreaSide.Text = ".";
+            this.toolStripMenuAreaSide.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripMenuAreaSide.Click += new System.EventHandler(this.toolStripMenuAreaSide_Click);
+            // 
             // lblFix
             // 
             this.lblFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFix.AutoSize = true;
             this.lblFix.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblFix.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFix.Location = new System.Drawing.Point(673, 0);
+            this.lblFix.Location = new System.Drawing.Point(801, 0);
             this.lblFix.Name = "lblFix";
             this.lblFix.Size = new System.Drawing.Size(69, 18);
             this.lblFix.TabIndex = 130;
@@ -773,7 +924,7 @@
             this.lblSpeedUnits.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblSpeedUnits.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeedUnits.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSpeedUnits.Location = new System.Drawing.Point(603, 9);
+            this.lblSpeedUnits.Location = new System.Drawing.Point(719, 9);
             this.lblSpeedUnits.Name = "lblSpeedUnits";
             this.lblSpeedUnits.Size = new System.Drawing.Size(52, 25);
             this.lblSpeedUnits.TabIndex = 131;
@@ -785,7 +936,7 @@
             this.tboxSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxSentence.BackColor = System.Drawing.SystemColors.MenuBar;
             this.tboxSentence.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSentence.Location = new System.Drawing.Point(670, 20);
+            this.tboxSentence.Location = new System.Drawing.Point(798, 20);
             this.tboxSentence.Name = "tboxSentence";
             this.tboxSentence.Size = new System.Drawing.Size(334, 20);
             this.tboxSentence.TabIndex = 134;
@@ -796,7 +947,7 @@
             this.lblZone.AutoSize = true;
             this.lblZone.BackColor = System.Drawing.SystemColors.MenuBar;
             this.lblZone.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZone.Location = new System.Drawing.Point(973, 0);
+            this.lblZone.Location = new System.Drawing.Point(1101, 0);
             this.lblZone.Name = "lblZone";
             this.lblZone.Size = new System.Drawing.Size(26, 18);
             this.lblZone.TabIndex = 135;
@@ -806,6 +957,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.panel1.Controls.Add(this.btnFileExplorer);
+            this.panel1.Controls.Add(this.btnBoundaryMenu);
             this.panel1.Controls.Add(this.btnAutoSteerConfig);
             this.panel1.Controls.Add(this.btnGPSData);
             this.panel1.Controls.Add(this.btnUnits);
@@ -814,16 +967,46 @@
             this.panel1.Controls.Add(this.btnTripOdometer);
             this.panel1.Controls.Add(this.btnJob);
             this.panel1.Controls.Add(this.btnSnap);
-            this.panel1.Location = new System.Drawing.Point(456, 120);
+            this.panel1.Location = new System.Drawing.Point(451, 87);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(270, 505);
+            this.panel1.Size = new System.Drawing.Size(420, 532);
             this.panel1.TabIndex = 136;
+            // 
+            // btnFileExplorer
+            // 
+            this.btnFileExplorer.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnFileExplorer.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFileExplorer.Image = global::AgOpenGPS.Properties.Resources.FileExplorerWindows;
+            this.btnFileExplorer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnFileExplorer.Location = new System.Drawing.Point(296, 141);
+            this.btnFileExplorer.Name = "btnFileExplorer";
+            this.btnFileExplorer.Size = new System.Drawing.Size(110, 110);
+            this.btnFileExplorer.TabIndex = 141;
+            this.btnFileExplorer.Text = "Explorer";
+            this.btnFileExplorer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFileExplorer.UseVisualStyleBackColor = true;
+            this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
+            // 
+            // btnBoundaryMenu
+            // 
+            this.btnBoundaryMenu.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnBoundaryMenu.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBoundaryMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryMenu;
+            this.btnBoundaryMenu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnBoundaryMenu.Location = new System.Drawing.Point(153, 141);
+            this.btnBoundaryMenu.Name = "btnBoundaryMenu";
+            this.btnBoundaryMenu.Size = new System.Drawing.Size(110, 110);
+            this.btnBoundaryMenu.TabIndex = 140;
+            this.btnBoundaryMenu.Text = "Boundary";
+            this.btnBoundaryMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBoundaryMenu.UseVisualStyleBackColor = true;
+            this.btnBoundaryMenu.Click += new System.EventHandler(this.btnBoundary_Click);
             // 
             // btnAutoSteerConfig
             // 
             this.btnAutoSteerConfig.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoSteerConfig.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConfig;
-            this.btnAutoSteerConfig.Location = new System.Drawing.Point(150, 261);
+            this.btnAutoSteerConfig.Image = ((System.Drawing.Image)(resources.GetObject("btnAutoSteerConfig.Image")));
+            this.btnAutoSteerConfig.Location = new System.Drawing.Point(153, 275);
             this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
             this.btnAutoSteerConfig.Size = new System.Drawing.Size(110, 110);
             this.btnAutoSteerConfig.TabIndex = 139;
@@ -835,9 +1018,9 @@
             // 
             this.btnGPSData.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnGPSData.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGPSData.Image = global::AgOpenGPS.Properties.Resources.Satellite64;
+            this.btnGPSData.Image = ((System.Drawing.Image)(resources.GetObject("btnGPSData.Image")));
             this.btnGPSData.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGPSData.Location = new System.Drawing.Point(6, 261);
+            this.btnGPSData.Location = new System.Drawing.Point(6, 275);
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.Size = new System.Drawing.Size(110, 110);
             this.btnGPSData.TabIndex = 138;
@@ -850,9 +1033,9 @@
             // 
             this.btnUnits.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnUnits.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUnits.Image = global::AgOpenGPS.Properties.Resources.AcHa;
+            this.btnUnits.Image = ((System.Drawing.Image)(resources.GetObject("btnUnits.Image")));
             this.btnUnits.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnUnits.Location = new System.Drawing.Point(150, 134);
+            this.btnUnits.Location = new System.Drawing.Point(296, 8);
             this.btnUnits.Name = "btnUnits";
             this.btnUnits.Size = new System.Drawing.Size(110, 110);
             this.btnUnits.TabIndex = 137;
@@ -865,9 +1048,9 @@
             // 
             this.btnComm.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnComm.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnComm.Image = global::AgOpenGPS.Properties.Resources.ComPorts;
+            this.btnComm.Image = ((System.Drawing.Image)(resources.GetObject("btnComm.Image")));
             this.btnComm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnComm.Location = new System.Drawing.Point(150, 388);
+            this.btnComm.Location = new System.Drawing.Point(153, 409);
             this.btnComm.Name = "btnComm";
             this.btnComm.Size = new System.Drawing.Size(110, 110);
             this.btnComm.TabIndex = 136;
@@ -880,9 +1063,9 @@
             // 
             this.btnSettings.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnSettings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSettings.Image = global::AgOpenGPS.Properties.Resources.Settings64;
+            this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSettings.Location = new System.Drawing.Point(6, 388);
+            this.btnSettings.Location = new System.Drawing.Point(6, 409);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(110, 110);
             this.btnSettings.TabIndex = 135;
@@ -895,8 +1078,8 @@
             // 
             this.btnTripOdometer.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnTripOdometer.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTripOdometer.Image = global::AgOpenGPS.Properties.Resources.TripOdometer;
-            this.btnTripOdometer.Location = new System.Drawing.Point(6, 134);
+            this.btnTripOdometer.Image = ((System.Drawing.Image)(resources.GetObject("btnTripOdometer.Image")));
+            this.btnTripOdometer.Location = new System.Drawing.Point(6, 141);
             this.btnTripOdometer.Name = "btnTripOdometer";
             this.btnTripOdometer.Size = new System.Drawing.Size(110, 110);
             this.btnTripOdometer.TabIndex = 134;
@@ -910,7 +1093,7 @@
             this.btnJob.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnJob.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnJob.Image = ((System.Drawing.Image)(resources.GetObject("btnJob.Image")));
-            this.btnJob.Location = new System.Drawing.Point(150, 7);
+            this.btnJob.Location = new System.Drawing.Point(153, 7);
             this.btnJob.Name = "btnJob";
             this.btnJob.Size = new System.Drawing.Size(110, 110);
             this.btnJob.TabIndex = 132;
@@ -1046,7 +1229,7 @@
             this.btnZoomIn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.BackgroundImage")));
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZoomIn.Location = new System.Drawing.Point(773, 199);
+            this.btnZoomIn.Location = new System.Drawing.Point(901, 199);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(80, 80);
             this.btnZoomIn.TabIndex = 120;
@@ -1059,7 +1242,7 @@
             this.btnZoomOut.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.BackgroundImage")));
             this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnZoomOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZoomOut.Location = new System.Drawing.Point(773, 95);
+            this.btnZoomOut.Location = new System.Drawing.Point(901, 95);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(80, 80);
             this.btnZoomOut.TabIndex = 119;
@@ -1073,7 +1256,7 @@
             this.btnContour.Enabled = false;
             this.btnContour.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnContour.Image = ((System.Drawing.Image)(resources.GetObject("btnContour.Image")));
-            this.btnContour.Location = new System.Drawing.Point(877, 235);
+            this.btnContour.Location = new System.Drawing.Point(1005, 235);
             this.btnContour.Name = "btnContour";
             this.btnContour.Size = new System.Drawing.Size(126, 126);
             this.btnContour.TabIndex = 105;
@@ -1090,7 +1273,7 @@
             this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSectionOffAutoOn.Image = ((System.Drawing.Image)(resources.GetObject("btnSectionOffAutoOn.Image")));
-            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(877, 559);
+            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(1005, 559);
             this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
             this.btnSectionOffAutoOn.Size = new System.Drawing.Size(126, 126);
             this.btnSectionOffAutoOn.TabIndex = 104;
@@ -1203,28 +1386,12 @@
             this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnManualOffOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualOffOn.Image = ((System.Drawing.Image)(resources.GetObject("btnManualOffOn.Image")));
-            this.btnManualOffOn.Location = new System.Drawing.Point(878, 397);
+            this.btnManualOffOn.Location = new System.Drawing.Point(1006, 397);
             this.btnManualOffOn.Name = "btnManualOffOn";
             this.btnManualOffOn.Size = new System.Drawing.Size(126, 126);
             this.btnManualOffOn.TabIndex = 98;
             this.btnManualOffOn.UseVisualStyleBackColor = true;
             this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
-            // 
-            // toolStripBtnResetDistance
-            // 
-            this.toolStripBtnResetDistance.AutoSize = false;
-            this.toolStripBtnResetDistance.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripBtnResetDistance.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripBtnResetDistance.BackgroundImage")));
-            this.toolStripBtnResetDistance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.toolStripBtnResetDistance.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripBtnResetDistance.DropDownButtonWidth = 20;
-            this.toolStripBtnResetDistance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripBtnResetDistance.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.toolStripBtnResetDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.toolStripBtnResetDistance.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.toolStripBtnResetDistance.Name = "toolStripBtnResetDistance";
-            this.toolStripBtnResetDistance.Size = new System.Drawing.Size(100, 36);
-            this.toolStripBtnResetDistance.ButtonClick += new System.EventHandler(this.toolStripBtnResetDistance_ButtonClick);
             // 
             // btnMinMaxZoom
             // 
@@ -1245,7 +1412,7 @@
             this.btnABLine.Enabled = false;
             this.btnABLine.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnABLine.Image = ((System.Drawing.Image)(resources.GetObject("btnABLine.Image")));
-            this.btnABLine.Location = new System.Drawing.Point(877, 73);
+            this.btnABLine.Location = new System.Drawing.Point(1005, 73);
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.Size = new System.Drawing.Size(126, 126);
             this.btnABLine.TabIndex = 0;
@@ -1258,7 +1425,7 @@
             // 
             this.btnMenuDrawer.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnMenuDrawer.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuDrawer.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnMenuDrawer.Image = ((System.Drawing.Image)(resources.GetObject("btnMenuDrawer.Image")));
             this.btnMenuDrawer.Location = new System.Drawing.Point(12, 73);
             this.btnMenuDrawer.Name = "btnMenuDrawer";
             this.btnMenuDrawer.Size = new System.Drawing.Size(110, 104);
@@ -1282,143 +1449,23 @@
             this.btnPerimeter.UseVisualStyleBackColor = true;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
-            // deleteFlagToolOpenGLContextMenu
+            // toolStripStatusLabelBoundaryArea
             // 
-            this.deleteFlagToolOpenGLContextMenu.AutoSize = false;
-            this.deleteFlagToolOpenGLContextMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.deleteFlagToolOpenGLContextMenu.Image = ((System.Drawing.Image)(resources.GetObject("deleteFlagToolOpenGLContextMenu.Image")));
-            this.deleteFlagToolOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.deleteFlagToolOpenGLContextMenu.Name = "deleteFlagToolOpenGLContextMenu";
-            this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
-            this.deleteFlagToolOpenGLContextMenu.Text = ".";
-            this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
-            // 
-            // googleEarthOpenGLContextMenu
-            // 
-            this.googleEarthOpenGLContextMenu.AutoSize = false;
-            this.googleEarthOpenGLContextMenu.Image = ((System.Drawing.Image)(resources.GetObject("googleEarthOpenGLContextMenu.Image")));
-            this.googleEarthOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.googleEarthOpenGLContextMenu.Name = "googleEarthOpenGLContextMenu";
-            this.googleEarthOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
-            this.googleEarthOpenGLContextMenu.Text = ".";
-            this.googleEarthOpenGLContextMenu.Click += new System.EventHandler(this.googleEarthOpenGLContextMenu_Click);
-            // 
-            // toolStripMenuMetricImp
-            // 
-            this.toolStripMenuMetricImp.AutoSize = false;
-            this.toolStripMenuMetricImp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuMetricImp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuMetricImp.Image")));
-            this.toolStripMenuMetricImp.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuMetricImp.Name = "toolStripMenuMetricImp";
-            this.toolStripMenuMetricImp.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuMetricImp.Text = ".";
-            // 
-            // toolStripMenuItem3D
-            // 
-            this.toolStripMenuItem3D.AutoSize = false;
-            this.toolStripMenuItem3D.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuItem3D.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3D.Image")));
-            this.toolStripMenuItem3D.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItem3D.Name = "toolStripMenuItem3D";
-            this.toolStripMenuItem3D.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuItem3D.Text = ".";
-            this.toolStripMenuItem3D.Click += new System.EventHandler(this.toolStripMenuItem3D_Click);
-            // 
-            // toolStripMenuSettings
-            // 
-            this.toolStripMenuSettings.AutoSize = false;
-            this.toolStripMenuSettings.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuSettings.Image")));
-            this.toolStripMenuSettings.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuSettings.Name = "toolStripMenuSettings";
-            this.toolStripMenuSettings.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuSettings.Text = ".";
-            // 
-            // toolStripMenuComPorts
-            // 
-            this.toolStripMenuComPorts.AutoSize = false;
-            this.toolStripMenuComPorts.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuComPorts.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuComPorts.Image")));
-            this.toolStripMenuComPorts.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuComPorts.Name = "toolStripMenuComPorts";
-            this.toolStripMenuComPorts.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuComPorts.Text = ".";
-            // 
-            // toolStripMenuItemFlagRed
-            // 
-            this.toolStripMenuItemFlagRed.AutoSize = false;
-            this.toolStripMenuItemFlagRed.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuItemFlagRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuItemFlagRed.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemFlagRed.Image")));
-            this.toolStripMenuItemFlagRed.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItemFlagRed.Name = "toolStripMenuItemFlagRed";
-            this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuItemFlagRed.Text = ".";
-            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
-            // 
-            // toolStripMenuFlagGrn
-            // 
-            this.toolStripMenuFlagGrn.AutoSize = false;
-            this.toolStripMenuFlagGrn.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagGrn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagGrn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagGrn.Image")));
-            this.toolStripMenuFlagGrn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagGrn.Name = "toolStripMenuFlagGrn";
-            this.toolStripMenuFlagGrn.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagGrn.Text = ".";
-            this.toolStripMenuFlagGrn.Click += new System.EventHandler(this.toolStripMenuGrn_Click);
-            // 
-            // toolStripMenuFlagYel
-            // 
-            this.toolStripMenuFlagYel.AutoSize = false;
-            this.toolStripMenuFlagYel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagYel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagYel.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagYel.Image")));
-            this.toolStripMenuFlagYel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagYel.Name = "toolStripMenuFlagYel";
-            this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagYel.Text = ".";
-            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
-            // 
-            // toolStripMenuFlagDelete
-            // 
-            this.toolStripMenuFlagDelete.AutoSize = false;
-            this.toolStripMenuFlagDelete.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagDelete.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagDelete.Image")));
-            this.toolStripMenuFlagDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagDelete.Name = "toolStripMenuFlagDelete";
-            this.toolStripMenuFlagDelete.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagDelete.Text = ".";
-            this.toolStripMenuFlagDelete.Click += new System.EventHandler(this.toolStripMenuFlagDelete_Click);
-            // 
-            // toolStripMenuFlagDeleteAll
-            // 
-            this.toolStripMenuFlagDeleteAll.AutoSize = false;
-            this.toolStripMenuFlagDeleteAll.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuFlagDeleteAll.Image")));
-            this.toolStripMenuFlagDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagDeleteAll.Name = "toolStripMenuFlagDeleteAll";
-            this.toolStripMenuFlagDeleteAll.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagDeleteAll.Text = "toolStripMenuFlagDeleteAll";
-            this.toolStripMenuFlagDeleteAll.Click += new System.EventHandler(this.toolStripMenuFlagDeleteAll_Click);
-            // 
-            // toolStripMenuAreaSide
-            // 
-            this.toolStripMenuAreaSide.AutoSize = false;
-            this.toolStripMenuAreaSide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuAreaSide.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuAreaSide.Image")));
-            this.toolStripMenuAreaSide.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuAreaSide.Name = "toolStripMenuAreaSide";
-            this.toolStripMenuAreaSide.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuAreaSide.Text = ".";
-            this.toolStripMenuAreaSide.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripMenuAreaSide.Click += new System.EventHandler(this.toolStripMenuAreaSide_Click);
+            this.toolStripStatusLabelBoundaryArea.AutoSize = false;
+            this.toolStripStatusLabelBoundaryArea.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabelBoundaryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.toolStripStatusLabelBoundaryArea.Name = "toolStripStatusLabelBoundaryArea";
+            this.toolStripStatusLabelBoundaryArea.Size = new System.Drawing.Size(110, 38);
+            this.toolStripStatusLabelBoundaryArea.Text = "Area";
+            this.toolStripStatusLabelBoundaryArea.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolStripStatusLabelBoundaryArea.ToolTipText = "Area Per Hour";
             // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(1008, 731);
+            this.ClientSize = new System.Drawing.Size(1136, 731);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblZone);
             this.Controls.Add(this.tboxSentence);
@@ -1591,6 +1638,9 @@
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnTripOdometer;
         private System.Windows.Forms.Button btnMenuDrawer;
+        private System.Windows.Forms.Button btnBoundaryMenu;
+        private System.Windows.Forms.Button btnFileExplorer;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelBoundaryArea;
     }
 }
 

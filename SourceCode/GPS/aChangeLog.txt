@@ -1,5 +1,17 @@
-﻿v2.14 May 15
+﻿
+
+
+v2.14 May 15
 *
+* June....
+* Added boundary
+* Fixed section, area, boundary triggers
+* section going backwards turn off working much better
+* NMEA log actually saving all incoming sentences
+* boundary area displayed in status bar
+* boundary has its own file for save/resume
+* most classes have their own reset/delete functions now.
+* 
 * File saving now done as appending rather then completely rewriting file
 * File saves are text files, again. Binary was efficient, but what a pita
 * Enlarged the buttons and most display values 

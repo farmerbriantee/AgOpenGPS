@@ -19,6 +19,11 @@ namespace AgOpenGPS
         //maximum sections available
         const int MAXSECTIONS = 9;
 
+        //some test variables
+        double testDouble = 0;
+        bool testBool = false;
+        int testInt = 0;
+
         //current directory of field;
         public string currentFieldDirectory = "", workingDirectory = "", vehiclefileName = "";
 
@@ -103,6 +108,9 @@ namespace AgOpenGPS
         //perimeter object for area calc
         public CPerimeter periArea;
 
+        //boundary instance
+        public CBoundary boundary;
+
         #endregion
 
     // Main GPS Form ................................................................................
@@ -119,6 +127,7 @@ namespace AgOpenGPS
 
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
+            OpenGL glBack = openGLControlBack.OpenGL;
 
             //create the world grid
             worldGrid = new CWorldGrid(gl, this);
@@ -139,7 +148,10 @@ namespace AgOpenGPS
             modcom = new CModuleComm(this);
 
             //perimeter list object
-            periArea = new CPerimeter(gl, this);            
+            periArea = new CPerimeter(gl, this);  
+          
+            //boundary object
+            boundary = new CBoundary(gl, glBack, this);
 
             //start the stopwatch
             swFrame.Start();
@@ -291,7 +303,7 @@ namespace AgOpenGPS
             isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
 
-            openGLControlBack.Visible = false;
+            //openGLControlBack.Visible = false;
 
             //set previous job directory
             currentFieldDirectory = Properties.Settings.Default.setCurrentDir;
@@ -321,7 +333,7 @@ namespace AgOpenGPS
 
             var point = new Point(140,95);
             panel1.Location = point;
-            panel1.Width = 300;
+            panel1.Width = 400;
 
             totalUserSquareMeters = Properties.Settings.Default.setUserTotalArea;
             userSquareMetersAlarm = Properties.Settings.Default.setUserTripAlarm;
@@ -956,7 +968,6 @@ namespace AgOpenGPS
             {
                 section[j].isAllowedOn = false;
                 section[j].manBtnState = manBtn.On;
-                section[j].squareMetersSection=0;
              }
 
             //turn manual button off
@@ -990,9 +1001,7 @@ namespace AgOpenGPS
             }
 
             //clear out the contour Lists
-            ct.stripList.Clear();
-            if (ct.ptList != null) ct.ptList.Clear();
-            if (ct.guideList != null) ct.guideList.Clear();
+            ct.ResetContour();
 
             //clear the flags
             flagPts.Clear();
@@ -1023,24 +1032,13 @@ namespace AgOpenGPS
             btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
 
             //reset all the ABLine stuff
-            ABLine.refPoint1 = new vec2(0.2, 0.2);
-            ABLine.refPoint2 = new vec2(0.3, 0.3);
-
-            ABLine.refABLineP1 = new vec2(0.0, 0.0);
-            ABLine.refABLineP2 = new vec2(0.0, 1.0);
-
-            ABLine.currentABLineP1 = new vec2(0.0, 0.0);
-            ABLine.currentABLineP2 = new vec2(0.0, 1.0);
-
-            ABLine.abHeading = 0.0;
-            ABLine.isABLineSet = false;
-            ABLine.isABLineBeingSet = false;
-            ABLine.passNumber = 0;
+            ABLine.ResetABLine();
 
             //reset acre and distance counters
-            totalDistance = 0;
             totalSquareMeters = 0;
-            //totalUserSquareMeters = 0;
+
+            //reset boundary
+            boundary.ResetBoundary();
 
             //update the menu
             fieldToolStripMenuItem.Text = "Start Field";
@@ -1187,44 +1185,36 @@ namespace AgOpenGPS
         //All the files that need to be saved when closing field or app
         private void FileSaveEverythingBeforeClosingField()
         {
-            if (stripOnlineGPS.Value == 1)
+            //turn off contour line if on
+            if (ct.isContourOn) ct.StopContourLine();
+
+            //turn off all the sections
+            for (int j = 0; j < vehicle.numOfSections + 1; j++)
             {
-                var form = new FormTimedMessage(this, 3000, "No GPS", "Is your GPS source off?");
-                form.Show();
-                JobClose();
-                this.Text = "AgOpenGPS";
+                if (section[j].isSectionOn) section[j].TurnSectionOff();
+                section[j].sectionOnOffCycle = false;
+                section[j].sectionOffRequest = false;
             }
-            else
-            {
-                //turn off contour line if on
-                if (ct.isContourOn) ct.StopContourLine();
 
-                //turn off all the sections
-                for (int j = 0; j < vehicle.numOfSections + 1; j++)
-                {
-                    if (section[j].isSectionOn)  section[j].TurnSectionOff();
-                    section[j].sectionOnOffCycle = false;
-                    section[j].sectionOffRequest = false;
-                }
+            FileSaveOuterBoundary();
+            FileSaveField();
+            FileSaveContour();
+            FileSaveFlagsKML();
 
-                FileSaveField();
-                FileSaveContour();
-                FileSaveFlagKML();
-
-                JobClose();
-                this.Text = "AgOpenGPS";
-            }
+            JobClose();
+            this.Text = "AgOpenGPS";
         }
 
+        //an error log called by all try catches
         public void WriteErrorLog(string strErrorText)
         {
             try
             {
-                //DECLARE THE FILENAME FROM THE ERROR LOG
+                //set up file and folder if it doesn't exist
                 string strFileName = "Error Log.txt";
-                /*DECLARE THE FOLDER WHERE THE LOGFILE HAS TO BE STORED, IN THIS EXAMPLE WE CHOSE THE PATH OF THE CURRENT APPLICATION*/
                 string strPath = Application.StartupPath;
-                //WRITE THE ERROR TEXT AND THE CURRENT DATE-TIME TO THE ERROR FILE
+                
+                //Write out the error appending to existing
                 System.IO.File.AppendAllText(strPath + "\\" + strFileName, strErrorText + " - " + 
                     DateTime.Now.ToString() + "\r\n\r\n");
             }
@@ -1233,6 +1223,14 @@ namespace AgOpenGPS
                 MessageBox.Show("Error in WriteErrorLog: " + ex.Message, "Error Logging", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+
+        public void TimedMessageBox(int timeout, string s1, string s2)
+        {
+            var form = new FormTimedMessage(this, timeout, s1, s2);
+            form.Show();
+            return;
+        }
+
         
     // Buttons //-----------------------------------------------------------------------
 
@@ -1541,6 +1539,7 @@ namespace AgOpenGPS
             if (!periArea.isBtnPerimeterOn && periArea.periPtList.Count > 0)
               {
                   periArea.periPtList.Clear();
+                  periArea.calcList.Clear();
                   //btnPerimeter.Text = "Cleared";
                   btnPerimeter.Image = global::AgOpenGPS.Properties.Resources.PeriArea;
                   return;       
@@ -1677,6 +1676,36 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
+        }
+        private void btnBoundary_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+
+            if (isJobStarted)
+            {
+                using (var form = new FormBoundary(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show();
+                    }
+                }
+            }
+
+            else { TimedMessageBox(3000, "Field not Open", "Start a Field First"); }
+
+        }
+        private void btnFileExplorer_Click(object sender, EventArgs e)
+        {
+            HideMenu();
+            if (isJobStarted)
+            {
+                FileSaveFlagsKML();
+            }
+            Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                        "\\AgOpenGPS\\Fields\\" + currentFieldDirectory);
         }
 
    // Menu Items ------------------------------------------------------------------
@@ -1825,7 +1854,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                FileSaveFlagKML();
+                FileSaveFlagsKML();
             }
                 Process.Start(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                             "\\AgOpenGPS\\Fields\\" + currentFieldDirectory);
@@ -1840,7 +1869,7 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 //save new copy of flags
-                FileSaveFlagKML();
+                FileSaveFlagsKML();
 
                 //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
                 System.Diagnostics.Process.Start(workingDirectory + currentFieldDirectory + "\\Flags.KML");
@@ -2145,7 +2174,7 @@ namespace AgOpenGPS
             statusUpdateCounter++;
 
             if (isMenuHid) { if (panel1.Width > 30) panel1.Width -= 30; else panel1.Width = 0; }
-            else { if (panel1.Width < 270) panel1.Width += 30; }
+            else { if (panel1.Width < 391) panel1.Width += 30; }
 
            //every third of a second update all status
             if (statusUpdateCounter > 13)
@@ -2168,6 +2197,7 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedKPH;
                     stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10))).ToString() + " ha/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
+                    toolStripStatusLabelBoundaryArea.Text = boundary.areaHectare;
                 }
 
                 else
@@ -2183,6 +2213,7 @@ namespace AgOpenGPS
                     //stripGridZoom.Text = "Grid: " + GridFeet + " '";
                     stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10) * 2.47)).ToString() + " ac/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+                    toolStripStatusLabelBoundaryArea.Text = boundary.areaAcre;
                 }
 
                 //non metric or imp fields
@@ -2219,10 +2250,10 @@ namespace AgOpenGPS
 
                 lblZone.Text = pn.zone.ToString();
 
-                //grab the Validate sentence
-                NMEASentence = pn.currentNMEA_GGASentence + pn.currentNMEA_RMCSentence;
+                //grab the Valid sentence
+                //NMEASentence = recvSentenceSettings;// pn.currentNMEA_GGASentence + pn.currentNMEA_RMCSentence;
 
-                tboxSentence.Text = NMEASentence;
+                tboxSentence.Text = recvSentenceSettings;
                 //update the online indicator
                 if (recvCounter > 50)
                 {
@@ -2236,6 +2267,8 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
+
+
 
    }//class FormGPS
 }//namespace AgOpenGPS

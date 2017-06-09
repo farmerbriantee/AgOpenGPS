@@ -41,7 +41,7 @@ namespace AgOpenGPS
         //how many individual sections
         public int numOfSections;
         public int numSuperSection;
-        public int minUnappliedPixels = 50;
+        public int minUnappliedPixels = 30;
         public bool areAllSectionsRequiredOn;
         public bool areAllSectionBtnsOn = true;
 
@@ -51,7 +51,6 @@ namespace AgOpenGPS
 
         //min vehicle speed allowed before turning shit off
         public double slowSpeedCutoff = 0;
-
 
         public CVehicle(OpenGL gl, FormGPS f)
         {

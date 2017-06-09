@@ -122,17 +122,17 @@ namespace AgOpenGPS
             //double startX = eastFix + Math.Sin(mf.fixHeading)* 0;
             //double startY = northFix + Math.Cos(mf.fixHeading) * 0;
 
-            boxA.x = eastFix - Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
-            boxA.z = northFix - Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
+            boxA.easting = eastFix - Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
+            boxA.northing = northFix - Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
                                                                       
-            boxB.x = eastFix + Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
-            boxB.z = northFix + Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
+            boxB.easting = eastFix + Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
+            boxB.northing = northFix + Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
 
-            boxC.x = boxB.x + Math.Sin(mf.fixHeading) * 13.0;
-            boxC.z = boxB.z + Math.Cos(mf.fixHeading) * 13.0;
+            boxC.easting = boxB.easting + Math.Sin(mf.fixHeading) * 13.0;
+            boxC.northing = boxB.northing + Math.Cos(mf.fixHeading) * 13.0;
                                                          
-            boxD.x = boxA.x + Math.Sin(mf.fixHeading) * 13.0;
-            boxD.z = boxA.z + Math.Cos(mf.fixHeading) * 13.0;
+            boxD.easting = boxA.easting + Math.Sin(mf.fixHeading) * 13.0;
+            boxD.northing = boxA.northing + Math.Cos(mf.fixHeading) * 13.0;
 
             conList.Clear();
             guideList.Clear();
@@ -150,14 +150,14 @@ namespace AgOpenGPS
                 ptCount = stripList[s].Count;
                 for (int p = 0; p < ptCount; p++)
                 {
-                    if (((boxB.x - boxA.x) * (stripList[s][p].z - boxA.z) -
-                            (boxB.z - boxA.z) * (stripList[s][p].x - boxA.x)) < 0) continue;
-                    if (((boxD.x - boxC.x) * (stripList[s][p].z - boxC.z) -
-                            (boxD.z - boxC.z) * (stripList[s][p].x - boxC.x)) < 0) continue;
-                    if (((boxC.x - boxB.x) * (stripList[s][p].z - boxB.z) -
-                            (boxC.z - boxB.z) * (stripList[s][p].x - boxB.x)) < 0) continue;
-                    if (((boxA.x - boxD.x) * (stripList[s][p].z - boxD.z) -
-                            (boxA.z - boxD.z) * (stripList[s][p].x - boxD.x)) < 0) continue;
+                    if (((boxB.easting - boxA.easting) * (stripList[s][p].z - boxA.northing) -
+                            (boxB.northing - boxA.northing) * (stripList[s][p].x - boxA.easting)) < 0) continue;
+                    if (((boxD.easting - boxC.easting) * (stripList[s][p].z - boxC.northing) -
+                            (boxD.northing - boxC.northing) * (stripList[s][p].x - boxC.easting)) < 0) continue;
+                    if (((boxC.easting - boxB.easting) * (stripList[s][p].z - boxB.northing) -
+                            (boxC.northing - boxB.northing) * (stripList[s][p].x - boxB.easting)) < 0) continue;
+                    if (((boxA.easting - boxD.easting) * (stripList[s][p].z - boxD.northing) -
+                            (boxA.northing - boxD.northing) * (stripList[s][p].x - boxD.easting)) < 0) continue;
 
                     //in the box so is it parallelish or perpedicularish to current heading
                     ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].y) - Math.PI);
@@ -207,20 +207,20 @@ namespace AgOpenGPS
 
             //which side of the patch are we on is next
             //calculate endpoints of reference line based on closest point
-            refPoint1.x = refX - Math.Sin(refHeading) * 50.0;
-            refPoint1.z = refZ - Math.Cos(refHeading) * 50.0;
+            refPoint1.easting = refX - Math.Sin(refHeading) * 50.0;
+            refPoint1.northing = refZ - Math.Cos(refHeading) * 50.0;
 
-            refPoint2.x = refX + Math.Sin(refHeading) * 50.0;
-            refPoint2.z = refZ + Math.Cos(refHeading) * 50.0;
+            refPoint2.easting = refX + Math.Sin(refHeading) * 50.0;
+            refPoint2.northing = refZ + Math.Cos(refHeading) * 50.0;
 
             //x2-x1
-            double dx = refPoint2.x - refPoint1.x;
+            double dx = refPoint2.easting - refPoint1.easting;
             //z2-z1
-            double dz = refPoint2.z - refPoint1.z;
+            double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosZ + refPoint2.x *
-                                    refPoint1.z - refPoint2.z * refPoint1.x) /
+            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosZ + refPoint2.easting *
+                                    refPoint1.northing - refPoint2.northing * refPoint1.easting) /
                                         Math.Sqrt(dz * dz + dx * dx);
 
             //add or subtract pi by 2 depending on which side of ref line
@@ -440,6 +440,14 @@ namespace AgOpenGPS
 
             //}
 
+        }
+
+        //Reset the contour to zip
+        public void ResetContour()
+        {
+            stripList.Clear();
+            if (ptList != null) ptList.Clear();
+            if (guideList != null) guideList.Clear();
         }
 
     }//class

@@ -49,6 +49,9 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;        
         public double prevSectionEasting = 0, prevSectionNorthing = 0;
 
+        //step distances and positions for boundary
+        public double prevBoundaryEasting = 0, prevBoundaryNorthing = 0, boundaryTriggerDistance = 6.0;
+
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
         public int recvCounter = 20;
 
@@ -59,8 +62,7 @@ namespace AgOpenGPS
         List<CFlag> flagPts = new List<CFlag>();
 
         //tally counters for display
-        public double totalSquareMeters = 0, totalUserSquareMeters = 0, 
-            totalDistance = 0, userSquareMetersAlarm = 0;
+        public double totalSquareMeters = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
         //used to determine NMEA sentence frequency
         private int timerPn = 1;        
@@ -278,19 +280,31 @@ namespace AgOpenGPS
                 //don't add the total distance again
                 stepFixPts[(totalFixSteps - 1)].h = 0;
 
+                //grab sentences for logging
+                if (isLogNMEA)
+                {
+                    if (ct.isContourOn)
+                    {
+                        pn.logNMEASentence.Append(recvSentenceSettings);
+                    }
+                }
+
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
-                sectionTriggerDistance = pn.Distance(toolNorthing, toolEasting, prevSectionNorthing, prevSectionEasting);
+                sectionTriggerDistance = pn.Distance(pn.northing, pn.easting, prevSectionNorthing, prevSectionEasting);
 
                 //section on off and points, contour points
                 if (sectionTriggerDistance > sectionTriggerStepDistance)
                         AddSectionContourPathPoints();
 
+                //test if travelled far enough for new boundary point
+                double boundaryDistance = pn.Distance(pn.northing, pn.easting, prevBoundaryNorthing, prevBoundaryEasting);
+                if (boundaryDistance > boundaryTriggerDistance) AddBoundaryPoint();
+
                 //calc distance travelled since last GPS fix
                 distance = pn.Distance(pn.northing, pn.easting, prevNorthing, prevEasting);
-                totalDistance += distance; //distance tally                   
                 userDistance += distance;//userDistance can be reset
 
-               //most recent fixes
+               //most recent fixes are now the prev ones
                 prevEasting = pn.easting; prevNorthing = pn.northing;
 
                 //load up history with valid data
@@ -487,12 +501,33 @@ namespace AgOpenGPS
             cosSectionHeading = Math.Cos(-fixHeadingSection);
         }
 
-        //add the points for section, contour line points, Area Calc feature
-        private void AddSectionContourPathPoints()
+        private void AddBoundaryPoint()
         {
             //save the north & east as previous
-            prevSectionNorthing = toolNorthing;
-            prevSectionEasting = toolEasting;
+            prevBoundaryEasting = pn.easting;
+            prevBoundaryNorthing = pn.northing;
+
+            //build the boundary line
+            if (boundary.isOkToAddPoints)
+            {
+                if (boundary.isDrawRightSide)
+                {
+                    //Right side
+                    vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolEasting,
+                        sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolNorthing);
+                    boundary.ptList.Add(point);
+                }
+
+                    //draw on left side
+                else
+                {
+                    //Right side
+                    vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolEasting,
+                        sinSectionHeading * (section[0].positionLeft) + toolNorthing);
+                    boundary.ptList.Add(point);
+                }
+
+            }
 
             //build the polygon to calculate area
             if (periArea.isBtnPerimeterOn)
@@ -513,8 +548,16 @@ namespace AgOpenGPS
                         sinSectionHeading * (section[0].positionLeft) + toolNorthing);
                     periArea.periPtList.Add(point);
                 }
-                    
+
             }
+        }
+
+        //add the points for section, contour line points, Area Calc feature
+        private void AddSectionContourPathPoints()
+        {
+            //save the north & east as previous
+            prevSectionNorthing = pn.northing;
+            prevSectionEasting = pn.easting;
 
             if (isJobStarted)//add the pathpoint
             {
@@ -537,18 +580,6 @@ namespace AgOpenGPS
                     //keep the line going, everything is on for recording path
                     if (ct.isContourOn) ct.AddPoint();
                     else { ct.StartContourLine(); ct.AddPoint(); }
-
-                    //grab sentences for logging
-                    if (isLogNMEA)
-                    {
-                        if (ct.isContourOn)
-                        {
-                            pn.logNMEASentence.Append(pn.currentNMEA_RMCSentence);
-                            pn.logNMEASentence.Append(pn.currentNMEA_GGASentence);
-                            pn.logNMEASentence.Append(pn.currentNMEA_VTGSentence);
-
-                        }
-                    }
                 }
 
                 //All sections OFF so if on, turn off
@@ -590,6 +621,7 @@ namespace AgOpenGPS
                     //save the far left speed
                     vehicle.toolFarLeftSpeed = leftSpeed;
 
+
                 }
                 else
                 {
@@ -617,30 +649,54 @@ namespace AgOpenGPS
                 rightSpeed = right.GetLength() / fixUpdateTime * 10;
                 rightLook = rightSpeed * vehicle.toolLookAhead;
 
+                //Is section outer going forward or backward
+                double head = left.HeadingXZ();
+                if (Math.PI - Math.Abs(Math.Abs(head - fixHeadingSection) - Math.PI) > glm.PIBy2) leftLook *= -1;
+
+                head = right.HeadingXZ();
+                if (Math.PI - Math.Abs(Math.Abs(head - fixHeadingSection) - Math.PI) > glm.PIBy2) rightLook *= -1;
+
                 //choose fastest speed
                 if (leftLook > rightLook)  section[j].sectionLookAhead = leftLook;
                 else section[j].sectionLookAhead = rightLook;
 
                 if (section[j].sectionLookAhead > 190) section[j].sectionLookAhead = 190;
-                if (section[j].sectionLookAhead < 5) section[j].sectionLookAhead = 5;
 
-                //Doing the screen jump thing, exceeding buffer so just set as minimum
+                //Doing the slow mo, exceeding buffer so just set as minimum 0.5 meter
                 if (currentStepFix >= totalFixSteps - 1) section[j].sectionLookAhead = 5;
 
-                //Reverse section turnoff
-                //double head = left.HeadingXZ();
-                //if (head < 0) head += glm.twoPI;
-
-                //double head2 = right.HeadingXZ();
-                //if (head2 < 0) head2 += glm.twoPI;
-
-                ////if both left and right sides of section are going backwards turn off section, negative lookahead
-                //if (Math.PI - Math.Abs(Math.Abs(head - fixHeadingSection) - Math.PI) > glm.PIBy2 &&
-                //        Math.PI - Math.Abs(Math.Abs(head2 - fixHeadingSection) - Math.PI) > glm.PIBy2)
-
-                //    section[j].sectionLookAhead = Math.Abs(section[j].sectionLookAhead) * -1;
-                
             }//endfor
+
+            //determine if section is in boundary using the section left/right positions
+            for (int j = 0; j < vehicle.numOfSections; j++)
+            {
+                bool isLeftIn = true, isRightIn = true;
+
+                if (boundary.isSet)
+                {
+                    if (j == 0)
+                    {
+                        //only one first left point, the rest are all rights moved over to left
+                        isLeftIn = boundary.IsPrePointInPolygon(section[j].leftPoint);
+                        isRightIn = boundary.IsPrePointInPolygon(section[j].rightPoint);
+
+                        if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
+                        else section[j].isInsideBoundary = false;
+                    }
+
+                    else
+                    {
+                        //grab the last right, its the left of this section
+                        isLeftIn = isRightIn;
+                        isRightIn = boundary.IsPrePointInPolygon(section[j].rightPoint);
+                        if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
+                        else section[j].isInsideBoundary = false;
+                    }
+                }
+
+                //no boundary created so always inside
+                else section[j].isInsideBoundary = true;                
+            }
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
             //save far right speed, 0 if going backwards, in meters/sec
@@ -649,7 +705,9 @@ namespace AgOpenGPS
 
             //safe left side, 0 if going backwards, in meters/sec convert back from pixels/m
             if (section[0].sectionLookAhead > 0) vehicle.toolFarLeftSpeed = vehicle.toolFarLeftSpeed * 0.05;
-            else vehicle.toolFarLeftSpeed = 0;          
+            else vehicle.toolFarLeftSpeed = 0;    
+      
+            //calculate using left and right points whether or not section is in boundary
             
         }
 

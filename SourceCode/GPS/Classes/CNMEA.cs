@@ -192,15 +192,15 @@ namespace AgOpenGPS
 
                 //save to log sentence if field is open and sections on and menu enabled
                 //if (mf.isLogNMEA)
-                {
-                    currentNMEA_RMCSentence = "";
-                    currentNMEA_GGASentence = "";
-                    currentNMEA_VTGSentence = "";
+                //{
+                //    currentNMEA_RMCSentence = "";
+                //    currentNMEA_GGASentence = "";
+                //    currentNMEA_VTGSentence = "";
 
-                    if (sentence.Contains("$GPGGA") | sentence.Contains("$GNGGA")) currentNMEA_GGASentence = sentence;
-                    if (sentence.Contains("$GPRMC") | sentence.Contains("$GNRMC")) currentNMEA_RMCSentence = sentence;
-                    if (sentence.Contains("$GPVTG") | sentence.Contains("$GNVTG")) currentNMEA_VTGSentence = sentence;
-                }
+                //    if (sentence.Contains("$GPGGA") | sentence.Contains("$GNGGA")) currentNMEA_GGASentence = sentence;
+                //    if (sentence.Contains("$GPRMC") | sentence.Contains("$GNRMC")) currentNMEA_RMCSentence = sentence;
+                //    if (sentence.Contains("$GPVTG") | sentence.Contains("$GNVTG")) currentNMEA_VTGSentence = sentence;
+                //}
 
                 //remove the processed sentence from the rawBuffer
                 rawBuffer = rawBuffer.Substring(end + 2);

@@ -491,8 +491,8 @@ namespace AgOpenGPS
                         {
                             line = reader.ReadLine();
                             string[] words = line.Split(',');
-                            vecFix.x = double.Parse(words[0]);
-                            vecFix.z = double.Parse(words[1]);
+                            vecFix.easting = double.Parse(words[0]);
+                            vecFix.northing = double.Parse(words[1]);
                             section[0].triangleList.Add(vecFix);
                         }
 
@@ -503,9 +503,9 @@ namespace AgOpenGPS
                             for (int j = 0; j < verts; j++)
                             {
                                 double temp = 0;
-                                temp = section[0].triangleList[j].x * (section[0].triangleList[j + 1].z - section[0].triangleList[j + 2].z) +
-                                          section[0].triangleList[j + 1].x * (section[0].triangleList[j + 2].z - section[0].triangleList[j].z) +
-                                              section[0].triangleList[j + 2].x * (section[0].triangleList[j].z - section[0].triangleList[j + 1].z);
+                                temp = section[0].triangleList[j].easting * (section[0].triangleList[j + 1].northing - section[0].triangleList[j + 2].northing) +
+                                          section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
+                                              section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
 
                                 totalSquareMeters += Math.Abs((temp / 2.0));
                             }
@@ -676,7 +676,7 @@ namespace AgOpenGPS
                         //read the lines and skip them
                         line = reader.ReadLine();
                         line = reader.ReadLine();
- 
+
                         line = reader.ReadLine();
                         bool isAB = bool.Parse(line);
 
@@ -692,28 +692,28 @@ namespace AgOpenGPS
                             //refPoint1x,z
                             line = reader.ReadLine();
                             string[] words = line.Split(',');
-                            ABLine.refPoint1.x = double.Parse(words[0]);
-                            ABLine.refPoint1.z = double.Parse(words[1]);
+                            ABLine.refPoint1.easting = double.Parse(words[0]);
+                            ABLine.refPoint1.northing = double.Parse(words[1]);
 
                             //refPoint2x,z
                             line = reader.ReadLine();
                             words = line.Split(',');
-                            ABLine.refPoint2.x = double.Parse(words[0]);
-                            ABLine.refPoint2.z = double.Parse(words[1]);
+                            ABLine.refPoint2.easting = double.Parse(words[0]);
+                            ABLine.refPoint2.northing = double.Parse(words[1]);
 
                             //Tramline
                             line = reader.ReadLine();
                             words = line.Split(',');
                             ABLine.tramPassEvery = int.Parse(words[0]);
-                            ABLine.passBasedOn =   int.Parse(words[1]);
+                            ABLine.passBasedOn = int.Parse(words[1]);
 
-                            ABLine.refABLineP1.x = ABLine.refPoint1.x - Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP1.z = ABLine.refPoint1.z - Math.Cos(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 10000.0;
 
-                            ABLine.refABLineP2.x = ABLine.refPoint1.x + Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP2.z = ABLine.refPoint1.z + Math.Cos(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 10000.0;
 
-                            ABLine.isABLineSet = true;                        
+                            ABLine.isABLineSet = true;
                         }
                     }
 
@@ -725,10 +725,81 @@ namespace AgOpenGPS
 
                     }
                 }
+
+
+                // Boundary  -------------------------------------------------------------------------------------------------
+
+                //Either exit or update running save
+                fileAndDirectory = workingDirectory + currentFieldDirectory + "\\Boundary.txt";
+                if (!File.Exists(fileAndDirectory))
+                {
+                    var form = new FormTimedMessage(this, 4000, "Missing Boundary File", "But Field is Loaded");
+                    form.Show();
+                }
+
+                //2017-June-05 09:48:52 PM
+                //Points in line followed by easting, northing
+                //$BoundaryDir
+                //gtr Jun05
+                //$Offsets
+                //555799,5921092,12
+                //$NumLinePoints
+                //27
+                //-3.1814080592639,-3.1814080592639
+                //-3.16491526875197,-3.16491526875197
+
+                else
+                {
+                    using (StreamReader reader = new StreamReader(fileAndDirectory))
+                    {
+                        try
+                        {
+                            //read the lines and skip them
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+
+                            line = reader.ReadLine();
+                            int numPoints = int.Parse(line);
+
+                            if (numPoints > 0)
+                            {
+                                vec2 vecPt = new vec2(0, 0);
+                                boundary.ptList.Clear();
+
+                                //load the line
+                                for (int i = 0; i < numPoints; i++)
+                                {
+                                    line = reader.ReadLine();
+                                    string[] words = line.Split(',');
+                                    vecPt.easting = double.Parse(words[0]);
+                                    vecPt.northing = double.Parse(words[1]);
+                                    boundary.ptList.Add(vecPt);
+                                }
+
+                                boundary.CalculateBoundaryArea();
+                                boundary.PreCalcBoundaryLines();
+                                if (boundary.area > 0) boundary.isSet = true;
+                                else boundary.isSet = false;
+                            }
+                        }
+
+                        catch (Exception e)
+                        {
+                            var form = new FormTimedMessage(this, 4000, "Boundary Line File is Corrupt", "But Field is Loaded");
+                            form.Show();
+                            WriteErrorLog("Load Boundary Line" + e.ToString());
+
+                        }
+                    }
+
+
+                }
             }
-
-
-
 
         }//end of open file
 
@@ -797,7 +868,7 @@ namespace AgOpenGPS
                         writer.WriteLine(count2);
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine(triList[i].x + "," + triList[i].z);
+                            writer.WriteLine(triList[i].easting + "," + triList[i].northing);
                     }
                 }
 
@@ -880,6 +951,51 @@ namespace AgOpenGPS
 
             //set saving flag off
             isSavingFile = false;
+        }
+
+        //save the boundary
+        public void FileSaveOuterBoundary()
+        {
+            //Saturday, February 11, 2017  -->  7:26:52 AM
+            //12  - points in patch
+            //64.697,0.168,-21.654,0 - east, heading, north, altitude
+            //$ContourDir
+            //Bob_Feb11
+            //$Offsets
+            //533172,5927719,12
+
+            //get the directory and make sure it exists, create if not
+            string dirField = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                         "\\AgOpenGPS\\Fields\\" + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + "boundary.Txt"))
+            {
+                //Write out the date
+                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt"));
+                writer.WriteLine("Points in line followed by easting, northing");
+
+                //which field directory
+                writer.WriteLine("$BoundaryDir");
+                writer.WriteLine(currentFieldDirectory);
+
+                //write out the easting and northing Offsets
+                writer.WriteLine("$Offsets");
+                writer.WriteLine(pn.utmEast + "," + pn.utmNorth + "," + pn.zone);
+
+                writer.WriteLine("$NumLinePoints");
+                
+                writer.WriteLine(boundary.ptList.Count);
+                if (boundary.ptList.Count > 0)
+                {
+                    for (int j = 0; j < boundary.ptList.Count; j++)
+                        writer.WriteLine(boundary.ptList[j].easting + "," + boundary.ptList[j].northing);
+                }
+            }
         }
 
         //save all the flag markers
@@ -971,8 +1087,8 @@ namespace AgOpenGPS
                     else writer.WriteLine(false);
 
                     writer.WriteLine(ABLine.abHeading);
-                    writer.WriteLine(ABLine.refPoint1.x + "," + ABLine.refPoint1.z);
-                    writer.WriteLine(ABLine.refPoint2.x + "," + ABLine.refPoint2.z);
+                    writer.WriteLine(ABLine.refPoint1.easting + "," + ABLine.refPoint1.northing);
+                    writer.WriteLine(ABLine.refPoint2.easting + "," + ABLine.refPoint2.northing);
                     writer.WriteLine(ABLine.tramPassEvery + "," + ABLine.passBasedOn);
                 }
 
@@ -998,7 +1114,7 @@ namespace AgOpenGPS
         }
 
         //generate KML file from flags
-        public void FileSaveFlagKML()
+        public void FileSaveFlagsKML()
         {
 
             //get the directory and make sure it exists, create if not

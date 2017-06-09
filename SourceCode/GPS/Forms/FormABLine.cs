@@ -66,10 +66,10 @@ namespace AgOpenGPS
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
-            mf.ABLine.refPoint1.x = mf.prevEasting;
-            mf.ABLine.refPoint1.z = mf.prevNorthing;
-            Console.WriteLine(mf.ABLine.refPoint1.x);
-            Console.WriteLine(mf.ABLine.refPoint1.z);
+            mf.ABLine.refPoint1.easting = mf.prevEasting;
+            mf.ABLine.refPoint1.northing = mf.prevNorthing;
+            Console.WriteLine(mf.ABLine.refPoint1.easting);
+            Console.WriteLine(mf.ABLine.refPoint1.northing);
             btnAPoint.Enabled = false;
             btnUpABHeading.Enabled = true;
             btnDnABHeading.Enabled = true;
@@ -158,8 +158,8 @@ namespace AgOpenGPS
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
             {
                 double pointAToFixDistance = 
-                Math.Pow((mf.ABLine.refPoint1.x - mf.pn.easting), 2) +
-                Math.Pow((mf.ABLine.refPoint1.z - mf.pn.northing), 2);
+                Math.Pow((mf.ABLine.refPoint1.easting - mf.pn.easting), 2) +
+                Math.Pow((mf.ABLine.refPoint1.northing - mf.pn.northing), 2);
 
                 if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
                 else lblKeepGoing.Text = "    Keep\r\n" + "Going  " + Convert.ToInt16((100 - pointAToFixDistance)).ToString();

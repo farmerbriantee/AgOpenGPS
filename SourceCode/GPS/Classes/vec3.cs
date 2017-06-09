@@ -104,19 +104,19 @@ namespace AgOpenGPS
 
     public struct vec2
     {
-        public double x; //easting
-        public double z; //northing
+        public double easting; //easting
+        public double northing; //northing
 
 
-        public vec2(double x, double z)
+        public vec2(double easting, double northing)
         {
-            this.x = x;
-            this.z = z;
+            this.easting = easting;
+            this.northing = northing;
        }
 
         public static vec2 operator -(vec2 lhs, vec2 rhs)
         {
-            return new vec2(lhs.x - rhs.x, lhs.z - rhs.z);
+            return new vec2(lhs.easting - rhs.easting, lhs.northing - rhs.northing);
         }
 
 
@@ -133,7 +133,7 @@ namespace AgOpenGPS
         //calculate the heading of dirction pointx to pointz
         public double HeadingXZ()
         {
-            return Math.Atan2(x, z);
+            return Math.Atan2(easting, northing);
         }
 
         //normalize to 1
@@ -145,20 +145,20 @@ namespace AgOpenGPS
                 throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
             }
 
-            x /= length;
-            z /= length;
+            easting /= length;
+            northing /= length;
         }
 
         //Returns the length of the vector
         public double GetLength()
         {
-            return System.Math.Sqrt(x * x + z * z);
+            return System.Math.Sqrt(easting * easting + northing * northing);
         }
 
         // Calculates the squared length of the vector.
         public double GetLengthSquared()
         {
-            return (x * x + z * z);
+            return (easting * easting + northing * northing);
         }  
         
     }

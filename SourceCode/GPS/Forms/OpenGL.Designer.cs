@@ -18,7 +18,7 @@ namespace AgOpenGPS
         int mouseX = 0, mouseY = 0;
 
         //data buffer for pixels read from off screen buffer
-        byte[] pixels = new byte[80001];
+        byte[] grnPixels = new byte[80001];
 
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -84,17 +84,17 @@ namespace AgOpenGPS
                             for (int i = 0; i < count2; i += 3)
                             {
                                 //determine if point is in frustum or not, if < 0, its outside so abort                            
-                                if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
+                                if (frustum[0] * triList[i].easting + frustum[2] * triList[i].northing + frustum[3] <= 0)
                                     continue;//right
-                                if (frustum[4] * triList[i].x + frustum[6] * triList[i].z + frustum[7] <= 0)
+                                if (frustum[4] * triList[i].easting + frustum[6] * triList[i].northing + frustum[7] <= 0)
                                     continue;//left
-                                if (frustum[16] * triList[i].x + frustum[18] * triList[i].z + frustum[19] <= 0)
+                                if (frustum[16] * triList[i].easting + frustum[18] * triList[i].northing + frustum[19] <= 0)
                                     continue;//bottom
-                                if (frustum[20] * triList[i].x + frustum[22] * triList[i].z + frustum[23] <= 0)
+                                if (frustum[20] * triList[i].easting + frustum[22] * triList[i].northing + frustum[23] <= 0)
                                     continue;//top
-                                if (frustum[8] * triList[i].x + frustum[10] * triList[i].z + frustum[11] <= 0)
+                                if (frustum[8] * triList[i].easting + frustum[10] * triList[i].northing + frustum[11] <= 0)
                                     continue;//far
-                                if (frustum[12] * triList[i].x + frustum[14] * triList[i].z + frustum[15] <= 0)
+                                if (frustum[12] * triList[i].easting + frustum[14] * triList[i].northing + frustum[15] <= 0)
                                     continue;//near
 
                                 //point is in frustum so draw the entire patch. The downside of triangle strips.
@@ -114,15 +114,15 @@ namespace AgOpenGPS
                                     int step = mipmap;
                                     for (int i = 0; i < count2; i += step)
                                     {
-                                        gl.Vertex(triList[i].x, 0, triList[i].z); i++;
-                                        gl.Vertex(triList[i].x, 0, triList[i].z); i++;
+                                        gl.Vertex(triList[i].easting, 0, triList[i].northing); i++;
+                                        gl.Vertex(triList[i].easting, 0, triList[i].northing); i++;
 
                                         //too small to mipmap it
                                         if (count2 - i <= (mipmap + 2)) step = 0;
                                     }
                                 }
 
-                                else { for (int i = 0; i < count2; i++)  gl.Vertex(triList[i].x, 0, triList[i].z); }
+                                else { for (int i = 0; i < count2; i++)  gl.Vertex(triList[i].easting, 0, triList[i].northing); }
                                 gl.End();
                             }
                         }
@@ -183,15 +183,18 @@ namespace AgOpenGPS
                 //draw the perimter line, returns if no line to draw
                 periArea.DrawPerimeterLine();
 
+                //draw the boundary line
+                boundary.DrawBoundaryLine();
+
                 //screen text for debug
-                gl.DrawText(10, 15, 1, 1, 1, "Courier", 14, totalUserSquareMeters.ToString());
-                gl.DrawText(10, 30, 1, 1, 1, "Courier", 14, userSquareMetersAlarm.ToString());
-                //gl.DrawText(10, 45, 1, 1, 1, "Courier", 14, "  Tank " + Convert.ToString(fixHeadingTank ));
-                //gl.DrawText(10, 60, 1, 1, 1, "Courier", 14, "  Sect " + Convert.ToString(fixHeadingSection));
-                //gl.DrawText(10, 75, 1, 1, 1, "Courier", 16, "  overS " + Convert.ToString(overSect));
-                //gl.DrawText(10, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
-                //gl.DrawText(10, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
-                //gl.DrawText(10, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
+                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " sec1: " + section[1].isInsideBoundary.ToString());
+                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " sec0: " + section[0].isInsideBoundary.ToString());
+                //gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Set: " + boundary.isSet.ToString());
+                //gl.DrawText(140, 60, 1, 1, 1, "Courier", 14, " la: " + section[0].sectionLookAhead.ToString());
+                //gl.DrawText(140, 75, 1, 1, 1, "Courier", 16, "  " + Convert.ToString(overSect));
+                //gl.DrawText(140, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
+                //gl.DrawText(140, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
+                //gl.DrawText(140, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
@@ -243,26 +246,54 @@ namespace AgOpenGPS
                 //LightBar if AB Line is set and turned on
                 if (isLightbarOn)
                 {
-
                     if (ct.isContourBtnOn)
                     {
+                        string dist;
+
                         txtDistanceOffABLine.Visible = true;
                         DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine*0.1);
-                        txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ct.distanceFromCurrentLine*0.1)) + " ";
-                        if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
-                        else txtDistanceOffABLine.ForeColor = Color.LightGreen;
+                        if ((ABLine.distanceFromCurrentLine) < 0.0)                             
+                        {
+                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " \u21D2";
+                            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " \u21D2";
+                            txtDistanceOffABLine.Text = dist;
+                        }
+
+                        else
+                        {
+                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            if (isMetric) dist = "\u21d0 " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
+                            else dist = "\u21d0 " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
+                            txtDistanceOffABLine.Text = dist;
+                        }                           
                     }
 
                     else
                     {
-
                         if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
                         {
+                            string dist;
+
                             txtDistanceOffABLine.Visible = true;
                             DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine*0.1);
-                            txtDistanceOffABLine.Text = " " + Convert.ToString((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ";
-                            if (Math.Abs(ABLine.distanceFromCurrentLine) > 15.0) txtDistanceOffABLine.ForeColor = Color.Yellow;
-                            else txtDistanceOffABLine.ForeColor = Color.LightGreen;
+                            if ((ABLine.distanceFromCurrentLine) < 0.0)
+                            {
+                                // --->
+                                txtDistanceOffABLine.ForeColor = Color.Green;
+                                if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " \u21D2";
+                                else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " \u21D2";
+                                txtDistanceOffABLine.Text = dist;
+                            }
+
+                            else
+                            {
+                                // <----
+                                txtDistanceOffABLine.ForeColor = Color.Red;
+                                if (isMetric) dist = "\u21d0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+                                else dist = "\u21d0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+                                txtDistanceOffABLine.Text = dist;
+                            }
                         }
                     }
 
@@ -305,8 +336,6 @@ namespace AgOpenGPS
                             break;
                         }  
                     }
-  
-
                 }
 
                 //draw the section control window off screen buffer
@@ -381,7 +410,7 @@ namespace AgOpenGPS
             gl.Translate(-toolEasting, -fixPosY, -toolNorthing);
 
             //patch color
-            gl.Color(0.0f, 0.98f, 0.0f);
+            gl.Color(0.0f, 0.5f, 0.0f);
 
             //calculate the frustum for the section control window
             CalcFrustum(gl);
@@ -405,13 +434,13 @@ namespace AgOpenGPS
                         for (int i = 0; i < count2; i+=3)
                         {
                             //determine if point is in frustum or not
-                            if (frustum[0] * triList[i].x + frustum[2] * triList[i].z + frustum[3] <= 0)
+                            if (frustum[0] * triList[i].easting + frustum[2] * triList[i].northing + frustum[3] <= 0)
                                 continue;//right
-                            if (frustum[4] * triList[i].x + frustum[6] * triList[i].z + frustum[7] <= 0)
+                            if (frustum[4] * triList[i].easting + frustum[6] * triList[i].northing + frustum[7] <= 0)
                                 continue;//left
-                           if (frustum[16] * triList[i].x + frustum[18] * triList[i].z + frustum[19] <= 0)
+                           if (frustum[16] * triList[i].easting + frustum[18] * triList[i].northing + frustum[19] <= 0)
                                 continue;//bottom
-                            if (frustum[20] * triList[i].x + frustum[22] * triList[i].z + frustum[23] <= 0)
+                            if (frustum[20] * triList[i].easting + frustum[22] * triList[i].northing + frustum[23] <= 0)
                                 continue;//top
  
                             //point is in frustum so draw the entire patch
@@ -423,14 +452,16 @@ namespace AgOpenGPS
                         {
                             //draw the triangle strip in each triangle strip
                             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
-                            for (int i = 0; i < count2; i++) gl.Vertex(triList[i].x, 0, triList[i].z);
+                            for (int i = 0; i < count2; i++) gl.Vertex(triList[i].easting, 0, triList[i].northing);
                             gl.End();
                         }
                     }
                 }
             }
 
-
+            //draw boundary line
+            boundary.DrawBoundaryLineOnBackBuffer();
+            
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
 
@@ -440,24 +471,29 @@ namespace AgOpenGPS
             //assume all sections are on, if not set them false as not being all on.
             vehicle.areAllSectionsRequiredOn = true;
 
-            //find any off buttons and the farthest lookahead
+            //find any off buttons, any outside of boundary, going backwards, and the farthest lookahead
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
-                if (section[j].sectionLookAhead > rpHeight) rpHeight = (int)section[j].sectionLookAhead;
+                if (section[j].sectionLookAhead > rpHeight) rpHeight = section[j].sectionLookAhead;
                 if (section[j].manBtnState == manBtn.Off) vehicle.areAllSectionBtnsOn = false;
+                if (!section[j].isInsideBoundary) vehicle.areAllSectionBtnsOn = false;
+
+                //check if any sections going backwards
+                if (section[j].sectionLookAhead < 0) vehicle.areAllSectionBtnsOn = false;
             }
 
             //if only one section, or going slow no need for super section 
             if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff) 
                     vehicle.areAllSectionsRequiredOn = false;
 
-            //clamp the height
-            rpHeight *= 2.0;
-            if (rpHeight > 199) rpHeight = 199;
+            //clamp the height after looking way ahead, this is for switching off super section only
+            rpHeight = Math.Abs(rpHeight) * 2.0;
+            if (rpHeight > 195) rpHeight = 195;
+            if (rpHeight < 8) rpHeight = 8;
 
             //read the whole block of pixels up to max lookahead, one read only
             gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, (int)rpHeight,
-                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, pixels);
+                                OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPixels);
 
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight)*(1.0/(double)(vehicle.numOfSections*1.5)) ); 
@@ -466,11 +502,25 @@ namespace AgOpenGPS
             int totalPixs = 0;
             if (vehicle.areAllSectionsRequiredOn)
             {
+                //look for anything applied coming up
                 for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
                 {
-                    if (pixels[a] != 0)
+                    if (grnPixels[a] != 0 )
                     {
                         if (totalPixs++ > pixLimit)
+                        {
+                            vehicle.areAllSectionsRequiredOn = false;
+                            break;
+                        }
+                    }
+                }
+
+                //any boundary coming up and is it on? Then turn off super section
+                if (boundary.isSet)
+                {
+                    for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
+                    {
+                        if (grnPixels[a] > 200)
                         {
                             vehicle.areAllSectionsRequiredOn = false;
                             break;
@@ -480,7 +530,7 @@ namespace AgOpenGPS
             }
 
 
-            // If ALL sections are required on, No buttons are off, then we can turn super section, normal sections off
+            // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
             if (vehicle.areAllSectionBtnsOn && vehicle.areAllSectionsRequiredOn)
             {
                 for (int j = 0; j < vehicle.numOfSections; j++)
@@ -508,44 +558,128 @@ namespace AgOpenGPS
             //turn on indivdual sections as super section turn off
             else
             {
-
                 //Read the pixels ahead of tool a normal section at a time. Each section can have its own lookahead manipulated. 
+
                 for (int j = 0; j < vehicle.numOfSections; j++)
                 {
-                    int start = 0, end = 0, skip = 0;
-                    start = section[j].rpSectionPosition - section[0].rpSectionPosition;
-                    end = section[j].rpSectionWidth - 1 + start;
-                    if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
-                    skip = vehicle.rpWidth - (end - start);
-
-                    //If nowhere applied, send OnRequest, if its all green send an offRequest
-                    section[j].isSectionRequiredOn = false;
-
-                    int tagged = 0;
-                    for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                    //is section going backwards?
+                    if (section[j].sectionLookAhead > 0)
                     {
-                        for (int a = start; a < end; a++)
+                        //If any nowhere applied, send OnRequest, if its all green send an offRequest
+                        section[j].isSectionRequiredOn = false;
+
+                        if (boundary.isSet)
                         {
-                            if (pixels[a] == 0)
+
+                            int start = 0, end = 0, skip = 0;
+                            start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                            end = section[j].rpSectionWidth - 1 + start;
+                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
+                            skip = vehicle.rpWidth - (end - start);
+
+
+                            int tagged = 0;
+                            for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
                             {
-                                if (tagged++ > vehicle.minUnappliedPixels)
+                                for (int a = start; a < end; a++)
                                 {
-                                    section[j].isSectionRequiredOn = true;
-                                    goto GetMeOutaHere;
+                                    if (grnPixels[a] == 0)
+                                    {
+                                        if (tagged++ > vehicle.minUnappliedPixels)
+                                        {
+                                            section[j].isSectionRequiredOn = true;
+                                            goto GetMeOutaHere;
+                                        }
+                                    }
                                 }
+
+                                start += vehicle.rpWidth;
+                                end += vehicle.rpWidth;
+                            }
+
+                            //minimum apllied conditions met
+                        GetMeOutaHere:
+
+                            start = 0; end = 0; skip = 0;
+                            start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                            end = section[j].rpSectionWidth - 1 + start;
+                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
+                            skip = vehicle.rpWidth - (end - start);
+
+                            //looking for boundary line color, bright green
+                            for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                            {
+                                for (int a = start; a < end; a++)
+                                {
+                                    if (grnPixels[a] > 240) //&& )
+                                    {
+                                        section[j].isSectionRequiredOn = false;
+                                        section[j].sectionOffRequest = true;
+                                        section[j].sectionOnRequest = false;
+                                        section[j].sectionOffTimer = 0;
+                                        section[j].sectionOnTimer = 0;
+
+                                        goto GetMeOutaHereNow;
+                                    }
+                                }
+
+                                start += vehicle.rpWidth;
+                                end += vehicle.rpWidth;
+                            }
+
+                            GetMeOutaHereNow:
+
+                            //if out of boundary, turn it off
+                            if (!section[j].isInsideBoundary)
+                            {
+                                section[j].isSectionRequiredOn = false;
+                                section[j].sectionOffRequest = true;
+                                section[j].sectionOnRequest = false;
+                                section[j].sectionOffTimer = 0;
+                                section[j].sectionOnTimer = 0;
                             }
                         }
 
-                        start += vehicle.rpWidth;
-                        end += vehicle.rpWidth;
+                        //no boundary set so ignore
+                        else
+                        {
+                            section[j].isSectionRequiredOn = false;
+
+                            int start = 0, end = 0, skip = 0;
+                            start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                            end = section[j].rpSectionWidth - 1 + start;
+                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
+                            skip = vehicle.rpWidth - (end - start);
+
+
+                            int tagged = 0;
+                            for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                            {
+                                for (int a = start; a < end; a++)
+                                {
+                                    if (grnPixels[a] == 0)
+                                    {
+                                        if (tagged++ > vehicle.minUnappliedPixels)
+                                        {
+                                            section[j].isSectionRequiredOn = true;
+                                            goto GetMeOutaHere;
+                                        }
+                                    }
+                                }
+
+                                start += vehicle.rpWidth;
+                                end += vehicle.rpWidth;
+                            }
+
+                            //minimum apllied conditions met
+                        GetMeOutaHere:
+                            start = 0;
+                        }
                     }
 
-                    //minimum apllied conditions met
-                    GetMeOutaHere:
+                    //if section going backwards turn it off
+                    else section[j].isSectionRequiredOn = false;
 
-                    //calculated in CSection.CalculateSectionLookAhead, section is going backwards
-                    if (section[j].sectionLookAhead < 0) section[j].isSectionRequiredOn = false;
-                    if (section[j].isSectionRequiredOn == false) vehicle.areAllSectionsRequiredOn = false;
                 }
 
                 //if the superSection is on, turn it off
@@ -636,7 +770,7 @@ namespace AgOpenGPS
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 360)       //3 counts per second X 60 seconds = 180 counts per second.
+            if (saveCounter > 180)       //3 counts per second X 60 seconds = 180 counts per minute.
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
@@ -690,100 +824,84 @@ namespace AgOpenGPS
         {
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
+            double down = 30;
 
             //  Dot distance is representation of how far from AB Line
-
-            //width of lightbar
-            double _width = 330;
-
-            double down = 16;
-
             int dotDistance = (int)(offlineDistance*0.5);
-            //if (dotDistance < 0) dotDistance -= 20;
-            //if (dotDistance > 0) dotDistance += 20;
 
             if (dotDistance < -320) dotDistance = -320;
             if (dotDistance > 320) dotDistance = 320;
 
-            //the black background
-            gl.Color(0, 0, 0);
-            gl.PointSize(32.0f);
-            gl.Begin(OpenGL.GL_POINTS);
-            for (int x = (int)-_width - 26; x <= 0; x += 26) gl.Vertex((double)x, down);
-            for (int x = 0; x <= (int)_width + 26; x += 26) gl.Vertex((double)x, down);
-            gl.End();
+            if (dotDistance < -10) dotDistance -= 30;
+            if (dotDistance > 10) dotDistance += 30;
 
-            //2 off center green dots
+            //black dot background
             gl.PointSize(8.0f);
+            gl.Color(0.50f, 0.50f, 0.50f);
             gl.Begin(OpenGL.GL_POINTS);
-            gl.Color(0.0f, 0.98f, 0.0f);
-            gl.Vertex(40, down);
-            gl.Vertex(-40, down);
-            gl.Vertex(60, down);
-            gl.Vertex(-60, down);
-
-            //yellow
-            gl.Color(0.98f, 0.98f, 0.0f);
-            gl.Vertex( 80, down);
-            gl.Vertex(-80, down);
-            gl.Vertex(100, down);
-            gl.Vertex(-100, down);
-            gl.Vertex(120, down);
-            gl.Vertex(-120, down);
-
-            //left red dots
-            gl.Color(0.8f, 0.2f, 0.2f);
-            for (int x = -18; x < -6; x++) gl.Vertex(x * 20, down);
-
-            //right red dots
-            gl.Color(0.8f, 0.2f, 0.2f);
-            for (int x = 7; x < 18; x++) gl.Vertex(x * 20, down);
+            for (int i = -11; i < 0; i++) gl.Vertex((i * 40), down);
+            for (int i = 1; i < 12; i++) gl.Vertex((i * 40), down);
             gl.End();
 
-            if (dotDistance >= -6 && dotDistance <= 6)
+            //Are you on the right side of line? So its green.
+            if ((offlineDistance) < 0.0)
             {
-                gl.PointSize(24.0f);
-                gl.Color(0.0f, 0.98f, 0.0f);
+                int dots = dotDistance * -1 / 32;
+
+                gl.PointSize(32.0f);
+                gl.Color(0.0f, 0.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(-30, down);
-                gl.Vertex( 30, down);
+                for (int i = 0; i < dots+1; i++) gl.Vertex((i * 40), down);
                 gl.End();
-                return;
-            }
-            if (dotDistance < -6) dotDistance -= 30;
-            if (dotDistance > 6) dotDistance += 30;
-            
-            //else dotDistance += 30;
-            //Are you on the right side of line?
-            if (Math.Abs(offlineDistance) < 30.0)
-            {
+
                 gl.PointSize(24.0f);
-                gl.Color(0.0f, 0.98f, 0.0f);
+                gl.Color(0.0f, 0.980f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1, down);
+                for (int i = 0; i < dots; i++) gl.Vertex((i * 40 + 40), down);
                 gl.End();
-                return;
+                //return;
             }
 
-            if (Math.Abs(offlineDistance) < 100.0)
+            else
             {
-                gl.PointSize(24.0f);
-                gl.Color(0.98f, 0.98f, 0.0f);
+                int dots = dotDistance / 32;
+
+                gl.PointSize(32.0f);
+                gl.Color(0.0f, 0.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(dotDistance * -1, down);
+                for (int i = 0; i < dots+1; i++) gl.Vertex((i * -40), down);
                 gl.End();
-                return;
+
+                gl.PointSize(24.0f);
+                gl.Color(0.980f, 0.30f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
+                for (int i = 0; i < dots; i++) gl.Vertex((i * -40 - 40), down);
+                gl.End();
+                //return;
             }
 
-            // more then 50 off ABLine so red
-            gl.PointSize(24.0f);
-            gl.Color(0.98f, 0.0f, 0.0f);
-            gl.Begin(OpenGL.GL_POINTS);
-            gl.Vertex(dotDistance * -1, down);
-            gl.End();
+            //yellow center dot
+            if (dotDistance >= -10 && dotDistance <= 10)
+            {
+                gl.PointSize(24.0f);
+                gl.Color(0.980f, 0.98f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
+                gl.Vertex(-0, down);
+                //gl.Vertex(25, down);
+                gl.End();
+                //return;
+            }
 
-
-
+            else
+            {
+                gl.PointSize(12.0f);
+                gl.Color(0.980f, 0.98f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
+                gl.Vertex(-0, down);
+                //gl.Vertex(25, down);
+                gl.End();
+                //return;
+            }
         }
 
         private void CalcFrustum(OpenGL gl)

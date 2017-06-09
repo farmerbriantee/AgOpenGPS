@@ -16,7 +16,7 @@ namespace AgOpenGPS
     {
         private FormGPS mf = null;
 
-        public decimal ReturnValue1 { get; set; }
+        //public decimal ReturnValue1 { get; set; }
 
         public FormGPSData(Form callingForm)
         {

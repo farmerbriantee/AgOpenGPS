@@ -50,15 +50,18 @@ namespace AgOpenGPS
         public int rpSectionWidth = 0;
         public int rpSectionPosition = 0;
 
+        //points in world space that start and end of section are in
         public vec2 leftPoint;
         public vec2 rightPoint;
  
+        //used to determine left and right point
         public vec2 lastLeftPoint;
         public vec2 lastRightPoint;
 
         public double sectionLookAhead = 6;
 
-        public double squareMetersSection = 0;
+        //whether or not this section is in boundary
+        public bool isInsideBoundary = true;
 
         public int numTriangles = 0;
 
@@ -144,18 +147,18 @@ namespace AgOpenGPS
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {
                     double temp = 0;
-                    temp = triangleList[c].x * (triangleList[c - 1].z - triangleList[c - 2].z) +
-                              triangleList[c - 1].x * (triangleList[c - 2].z - triangleList[c].z) +
-                                  triangleList[c - 2].x * (triangleList[c].z - triangleList[c - 1].z);
+                    temp = triangleList[c].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing) +
+                              triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c].northing) +
+                                  triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing);
 
                     temp = Math.Abs((temp / 2.0));
                     mf.totalSquareMeters += temp;
                     mf.totalUserSquareMeters += temp;
 
                     temp = 0;
-                    temp = triangleList[c - 1].x * (triangleList[c - 2].z - triangleList[c - 3].z) +
-                              triangleList[c - 2].x * (triangleList[c - 3].z - triangleList[c - 1].z) +
-                                  triangleList[c - 3].x * (triangleList[c - 1].z - triangleList[c - 2].z);
+                    temp = triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing) +
+                              triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing) +
+                                  triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing);
 
                     temp = Math.Abs((temp / 2.0));
                     mf.totalSquareMeters += temp;
