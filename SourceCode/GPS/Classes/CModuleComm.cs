@@ -11,22 +11,30 @@ namespace AgOpenGPS
         //properties for relay control of sections and input lines, 8 bit bytes
         public byte[] relaySectionControl = new byte[numRelayControls];
         public string serialRecvRelayStr;
-        public double rollAngle = 0, pitchAngle = 0;
-        public double angularVelocity = 0;
-        public double imuHeading = 0;
 
-        public static int numSteerControls = 8;
-        public static int numSteerSettings = 7;
+        //public double angularVelocity = 0;
+        //public double imuHeading = 0;
+
+        public static int numSteerDataItems = 8;
+        public int sdHeaderHi = 0, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4, 
+                        sdDistanceLo=5, sdHeadingHi=6, sdHeadingLo=7;        
+
+        public static int numSteerSettingItems = 8;
+        public int ssHeaderHi = 0, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5, ssSteerOffset = 6, ssMinPWM = 7;
+
         public static int numRelayControls = 1;
 
         //control for the auto steer module
-        public byte[] autoSteerControl = new byte[numSteerControls];
-        public byte[] autoSteerSettings = new byte[numSteerSettings];
+        public byte[] autoSteerData = new byte[numSteerDataItems];
+        public byte[] autoSteerSettings = new byte[numSteerSettingItems];
         public string serialRecvAutoSteerStr;
+        //from autosteer module the a/d conversion of inclinometer
+        public int rollRaw = 0;
  
         //for the workswitch
         public bool isWorkSwitchOn, isWorkSwitchActiveLow, isWorkSwitchEnabled;
         public int workSwitchValue = 0;
+
 
         //constructor
         public CModuleComm(FormGPS f)
@@ -39,14 +47,14 @@ namespace AgOpenGPS
             //control all relays based on byte value, 1 means on, 0 means off
             relaySectionControl[0] = 0;
 
-            autoSteerControl[0] = (byte)127;
-            autoSteerControl[1] = (byte)(254);
-            autoSteerControl[2] = (byte)0;
-            autoSteerControl[3] = (byte)(0);
-            autoSteerControl[4] = (byte)(125);
-            autoSteerControl[5] = (byte)20;
-            autoSteerControl[6] = (byte)(125);
-            autoSteerControl[7] = (byte)20;
+            autoSteerData[sdHeaderHi] = (byte)127; //32766
+            autoSteerData[sdHeaderLo] = (byte)(254);
+            autoSteerData[sdRelay] = (byte)0;
+            autoSteerData[sdSpeed] = (byte)(0);
+            autoSteerData[sdDistanceHi] = (byte)(125); //32020
+            autoSteerData[sdDistanceLo] = (byte)20;
+            autoSteerData[sdHeadingHi] = (byte)(125); //32020
+            autoSteerData[sdHeadingLo] = (byte)20;
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
@@ -55,14 +63,15 @@ namespace AgOpenGPS
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
 
-            autoSteerSettings[0] = (byte)127;
-            autoSteerSettings[1] = (byte)252; //32764 as header
+            autoSteerSettings[ssHeaderHi] = (byte)127;
+            autoSteerSettings[ssHeaderLo] = (byte)252; //32764 as header
 
-            autoSteerSettings[2] = Properties.Settings.Default.setAS_Kp;
-            autoSteerSettings[3] = Properties.Settings.Default.setAS_Ki;
-            autoSteerSettings[4] = Properties.Settings.Default.setAS_Kd;
-            autoSteerSettings[5] = Properties.Settings.Default.setAS_Ko;
-            autoSteerSettings[6] = Properties.Settings.Default.setAS_maxIntError;
+            autoSteerSettings[ssKp] = Properties.Settings.Default.setAS_Kp;
+            autoSteerSettings[ssKi] = Properties.Settings.Default.setAS_Ki;
+            autoSteerSettings[ssKd] = Properties.Settings.Default.setAS_Kd;
+            autoSteerSettings[ssKo] = Properties.Settings.Default.setAS_Ko;
+            autoSteerSettings[ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+            autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
         }
     }
 }

@@ -42,10 +42,10 @@ namespace AgOpenGPS
             //the floor
             gl.BindTexture(OpenGL.GL_TEXTURE_2D, mf.texture[1]);	// Select Our Texture
             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				            // Build Quad From A Triangle Strip
-            gl.TexCoord(0, 0); gl.Vertex(eastingMax, 0.0, northingMax);                // Top Right
-            gl.TexCoord(texZoom, 0); gl.Vertex(eastingMin, 0.0, northingMax);               // Top Left
-            gl.TexCoord(0, texZoom); gl.Vertex(eastingMax, 0.0, northingMin);               // Bottom Right
-            gl.TexCoord(texZoom, texZoom); gl.Vertex(eastingMin, 0.0, northingMin);              // Bottom Left
+            gl.TexCoord(0, 0); gl.Vertex(eastingMin, northingMin, 0.0);                // Top Right
+            gl.TexCoord(texZoom, 0); gl.Vertex(eastingMax, northingMin, 0.0);               // Top Left
+            gl.TexCoord(0, texZoom); gl.Vertex(eastingMin, northingMax, 0.0);               // Bottom Right
+            gl.TexCoord(texZoom, texZoom); gl.Vertex(eastingMax, northingMax, 0.0);              // Bottom Left
             gl.End();						// Done Building Triangle Strip
             gl.Disable(OpenGL.GL_TEXTURE_2D);
         }
@@ -58,15 +58,15 @@ namespace AgOpenGPS
             for (double x = eastingMin; x < eastingMax; x += _gridZoom)
             {
                 //the x lines
-                gl.Vertex(x, 0.1, northingMax);
-                gl.Vertex(x, 0.1, northingMin);
+                gl.Vertex(x, northingMax, 0.1 );
+                gl.Vertex(x, northingMin, 0.1);
             }
 
             for (double x = northingMin; x < northingMax; x += _gridZoom)
             {
                 //the z lines
-                gl.Vertex(eastingMax, 0.1, x);
-                gl.Vertex(eastingMin, 0.1, x);
+                gl.Vertex(eastingMax, x, 0.1 );
+                gl.Vertex(eastingMin, x, 0.1 );
             }
             gl.End();
         }

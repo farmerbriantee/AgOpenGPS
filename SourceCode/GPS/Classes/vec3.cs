@@ -9,29 +9,29 @@ namespace AgOpenGPS
     /// </summary>
     public struct vec3
     {
-        public double x;
-        public double h;
-        public double z;
+        public double easting;
+        public double northing;
+        public double heading;
 
 
-        public vec3(double x, double y, double z)
+        public vec3(double easting, double northing, double heading)
         {
-            this.x = x;
-            this.h = y;
-            this.z = z;
+            this.easting = easting;
+            this.northing = northing;
+            this.heading = heading;
         }
 
 
        public vec3(vec3 v)
         {
-            this.x = v.x;
-            this.h = v.h;
-            this.z = v.z;
-        }
+            this.easting = v.easting;
+            this.northing = v.northing;
+            this.heading = v.heading;
+         }
 
         public double HeadingXZ()
         {
-            return Math.Atan2(x, z);
+            return Math.Atan2(easting, northing);
         }
  
         public void Normalize()
@@ -42,26 +42,26 @@ namespace AgOpenGPS
                 throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
             }
 
-            x /= length;
-            h /= length;
-            z /= length;
+            easting /= length;
+            northing /= length;
+            heading /= length;
         }
 
         //Returns the length of the vector
         public double GetLength()
         {
-            return System.Math.Sqrt(x * x + h * h + z * z);
+            return System.Math.Sqrt(easting * easting + heading * heading + northing * northing);
         }
 
         // Calculates the squared length of the vector.
         public double GetLengthSquared()
         {
-            return (x * x + h * h + z * z);
+            return (easting * easting + heading * heading + northing * northing);
         }
 
         public static vec3 operator -(vec3 lhs, vec3 rhs)
         {
-            return new vec3(lhs.x - rhs.x, lhs.h - rhs.h, lhs.z - rhs.z);
+            return new vec3(lhs.easting - rhs.easting, lhs.heading - rhs.heading, lhs.northing - rhs.northing);
         }
 
         //public static bool operator ==(vec3 lhs, vec3 rhs)
@@ -184,9 +184,9 @@ namespace AgOpenGPS
 
          public cvec(vec3 v)
          {
-             this.x = v.x;
-             this.z = v.z;
-             this.h = v.h;
+             this.x = v.easting;
+             this.z = v.northing;
+             this.h = v.heading;
              this.strip = 99999;
              this.pt = 99999;
          }

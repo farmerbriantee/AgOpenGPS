@@ -22,7 +22,7 @@ namespace AgOpenGPS
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 19200;
 
-        private string[] words;
+        //private string[] words;
 
         public string NMEASentence = "No Data";
 
@@ -49,10 +49,10 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(modcom.autoSteerControl, 0, CModuleComm.numSteerControls); }
+                try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.numSteerDataItems); }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Out Steering Port " + e.ToString());
+                    WriteErrorLog("Out Data to Steering Port " + e.ToString());
                     SerialPortAutoSteerClose();
                 }
             }
@@ -64,7 +64,7 @@ namespace AgOpenGPS
             //Tell Arduino autoSteer settings
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(modcom.autoSteerSettings, 0, CModuleComm.numSteerSettings ); }
+                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.numSteerSettingItems ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out Settings to Steer Port " + e.ToString());
@@ -77,7 +77,38 @@ namespace AgOpenGPS
         private void SerialLineReceivedAutoSteer(string sentence)
         {
             //spit it out no matter what it says
-            modcom.serialRecvAutoSteerStr = sentence;
+            mc.serialRecvAutoSteerStr = sentence;
+
+            //get the Roll a/d value sent from autosteer
+            string[] words = mc.serialRecvAutoSteerStr.Split(',');
+            if (words.Length == 6)
+            {
+                int.TryParse(words[5], out mc.rollRaw);
+                if (mc.rollRaw > 400 | mc.rollRaw < -400) mc.rollRaw = 0;
+                else rollAngle = Math.Round((double)mc.rollRaw/20.0 + rollZero,2);
+            }
+
+            else rollAngle = 0;
+
+
+            //int.TryParse(words[0], out modcom.workSwitchValue);
+
+            //double.TryParse(words[1], out modcom.rollAngle);
+            //modcom.rollAngle *= 0.0625;
+
+            //double.TryParse(words[2], out modcom.pitchAngle);
+            //modcom.pitchAngle *= 0.0625;
+
+            //double.TryParse(words[3], out modcom.angularVelocity);
+
+            //if (modcom.pitchAngle > 10) modcom.pitchAngle = 10;
+            //if (modcom.pitchAngle < -10) modcom.pitchAngle = -10;
+
+            //if (modcom.rollAngle > 12) modcom.rollAngle = 12;
+            //if (modcom.rollAngle < -12) modcom.rollAngle = -12;
+
+            //double.TryParse(words[4], out modcom.imuHeading);
+            //modcom.imuHeading *= 0.0625;
         }
 
         //the delegate for thread
@@ -90,7 +121,7 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(25);
                     string sentence = spAutoSteer.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
                 }
@@ -180,15 +211,15 @@ namespace AgOpenGPS
         {
             byte set = 1;
             byte reset = 254;
-            modcom.relaySectionControl[0] = (byte)0;
+            mc.relaySectionControl[0] = (byte)0;
 
             if (section[vehicle.numOfSections].isSectionOn)
             {
-                modcom.relaySectionControl[0] = (byte)0;
+                mc.relaySectionControl[0] = (byte)0;
                 for (int j = 0; j < vehicle.numOfSections; j++)
                 {
                     //all the sections are on, so set them
-                    modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
+                    mc.relaySectionControl[0] = (byte)(mc.relaySectionControl[0] | set);
 
                     //move set and reset over 1 bit left
                     set = (byte)(set << 1);
@@ -202,8 +233,8 @@ namespace AgOpenGPS
                 for (int j = 0; j < MAXSECTIONS; j++)
                 {
                     //set if on, reset bit if off
-                    if (section[j].isSectionOn) modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] | set);
-                    else modcom.relaySectionControl[0] = (byte)(modcom.relaySectionControl[0] & reset);
+                    if (section[j].isSectionOn) mc.relaySectionControl[0] = (byte)(mc.relaySectionControl[0] | set);
+                    else mc.relaySectionControl[0] = (byte)(mc.relaySectionControl[0] & reset);
 
                     //move set and reset over 1 bit left
                     set = (byte)(set << 1);
@@ -212,7 +243,7 @@ namespace AgOpenGPS
                 }
             }
 
-            modcom.autoSteerControl[2] = (byte)(modcom.relaySectionControl[0]);
+            mc.autoSteerData[mc.sdRelay] = (byte)(mc.relaySectionControl[0]);
         }
 
         //Send relay info out to relay board
@@ -221,7 +252,7 @@ namespace AgOpenGPS
             //Tell Arduino to turn section on or off accordingly
             if (spRelay.IsOpen)
             {
-                try { spRelay.Write(modcom.relaySectionControl, 0, CModuleComm.numRelayControls ); }
+                try { spRelay.Write(mc.relaySectionControl, 0, CModuleComm.numRelayControls ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out to Section relays" + e.ToString());
@@ -233,7 +264,7 @@ namespace AgOpenGPS
         //Arduino port called by the Relay delegate every time
         private void SerialLineReceivedRelay(string sentence)
         {
-            modcom.serialRecvRelayStr = sentence;
+            mc.serialRecvRelayStr = sentence;
             int end;
             //spit it out no matter what it says
             //modcom.serialRecvRelayStr = sentence;
@@ -247,11 +278,11 @@ namespace AgOpenGPS
             //the ArdRelay sentence to be parsed
             sentence = sentence.Substring(0, end);
 
-            words = sentence.Split(',');
+            string[] words = sentence.Split(',');
             if (words.Length < 1) return;
 
                 
-            int.TryParse(words[0], out modcom.workSwitchValue);
+            int.TryParse(words[0], out mc.workSwitchValue);
 
             //double.TryParse(words[1], out modcom.rollAngle);
             //modcom.rollAngle *= 0.0625;
@@ -269,9 +300,6 @@ namespace AgOpenGPS
 
             //double.TryParse(words[4], out modcom.imuHeading);
             //modcom.imuHeading *= 0.0625;
-
-                
-
         }
 
         //the delegate for thread

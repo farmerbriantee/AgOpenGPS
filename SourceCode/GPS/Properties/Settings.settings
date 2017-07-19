@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-30</Value>
+      <Value Profile="(Default)">-64</Value>
     </Setting>
     <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM GPS...</Value>
@@ -185,8 +185,8 @@
     <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">35</Value>
     </Setting>
-    <Setting Name="setAS_maxIntError" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">30</Value>
+    <Setting Name="setAS_steerAngleOffset" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">99</Value>
     </Setting>
     <Setting Name="setPort_isUDPOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -199,6 +199,15 @@
     </Setting>
     <Setting Name="setUserTotalArea" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setVehicle_minApplied" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="setAS_minSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">27</Value>
+    </Setting>
+    <Setting Name="set_boundaryTriggerDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">6</Value>
     </Setting>
   </Settings>
 </SettingsFile>

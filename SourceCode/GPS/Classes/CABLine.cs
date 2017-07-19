@@ -86,7 +86,7 @@ namespace AgOpenGPS
         public void SetABLineByBPoint()
         {
             refPoint2.easting = mf.fixPosX;
-            refPoint2.northing = mf.fixPosZ;
+            refPoint2.northing = mf.fixPosY;
             Console.WriteLine(refPoint2.easting);
             Console.WriteLine(refPoint2.northing);
 
@@ -147,9 +147,9 @@ namespace AgOpenGPS
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
             //distance from a point to a line defined by two points
-            // |(z2-z1)x0 - (x2-x1)z0 + x2z1 - z2x1|
+            // |(y2-y1)x0 - (x2-x1)y0 + x2y1 - y2x1|
             // --------------------------------------
-            // SQRT( (z2-z1)*(z2-z1) + (x2-x1)*(x2-x1) )
+            // SQRT( (y2-y1)*(y2-y1) + (x2-x1)*(x2-x1) )
 
 
             //x2-x1
@@ -158,7 +158,7 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees
-            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosZ + refPoint2.easting *
+            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosY + refPoint2.easting *
                                     refPoint1.northing - refPoint2.northing * refPoint1.easting) /
                                         Math.Sqrt(dz * dz + dx * dx);
 
@@ -202,7 +202,7 @@ namespace AgOpenGPS
             dz = currentABLineP2.northing - currentABLineP1.northing;
 
             //how far from current AB Line is fix
-            distanceFromCurrentLine = (dz * mf.fixPosX - dx * mf.fixPosZ + currentABLineP2.easting *
+            distanceFromCurrentLine = (dz * mf.fixPosX - dx * mf.fixPosY + currentABLineP2.easting *
                         currentABLineP1.northing - currentABLineP2.northing * currentABLineP1.easting) /
                             Math.Sqrt(dz * dz + dx * dx);
 
@@ -254,9 +254,9 @@ namespace AgOpenGPS
                 gl.PointSize(8.0f);
                 gl.Begin(OpenGL.GL_POINTS);
                 gl.Color(0.5f, 0.0f, 0.0f);
-                gl.Vertex(refPoint1.easting, 0.0, refPoint1.northing);
+                gl.Vertex(refPoint1.easting, refPoint1.northing, 0.0);
                 gl.Color(0.0f, 0.0f, 0.5f);
-                gl.Vertex(refPoint2.easting, 0.0, refPoint2.northing);
+                gl.Vertex(refPoint2.easting, refPoint2.northing, 0.0);
                 gl.End();
                 gl.PointSize(1.0f);
 
@@ -269,8 +269,8 @@ namespace AgOpenGPS
                     gl.LineStipple(1, 0x07F0);
                     gl.Begin(OpenGL.GL_LINES);
                     gl.Color(0.9f, 0.5f, 0.7f);
-                    gl.Vertex(refABLineP1.easting, 0, refABLineP1.northing);
-                    gl.Vertex(refABLineP2.easting, 0, refABLineP2.northing);
+                    gl.Vertex(refABLineP1.easting, refABLineP1.northing, 0);
+                    gl.Vertex(refABLineP2.easting, refABLineP2.northing, 0);
                     gl.End();
 
                     gl.LineWidth(1);
@@ -294,8 +294,8 @@ namespace AgOpenGPS
                     //based on line pass, make ref purple
                     if (passBasedOn == passNumber && tramPassEvery != 0) gl.Color(0.990f, 0.190f, 0.990f);
 
-                    gl.Vertex(currentABLineP1.easting, 0.0, currentABLineP1.northing);
-                    gl.Vertex(currentABLineP2.easting, 0.0, currentABLineP2.northing);
+                    gl.Vertex(currentABLineP1.easting, currentABLineP1.northing, 0.0);
+                    gl.Vertex(currentABLineP2.easting, currentABLineP2.northing, 0.0);
                     gl.End();
 
                     gl.LineWidth(1);

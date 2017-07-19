@@ -41,8 +41,10 @@ namespace AgOpenGPS
         //how many individual sections
         public int numOfSections;
         public int numSuperSection;
-        public int minUnappliedPixels = 30;
-        public bool areAllSectionsRequiredOn;
+
+        //used for super section off on
+        public int toolMinUnappliedPixels;
+        public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
         //read pixel values
@@ -83,17 +85,18 @@ namespace AgOpenGPS
             numSuperSection = numOfSections+1;
 
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
+            toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
         }
 
         public void DrawVehicle()
         {
             //translate and rotate at pivot axle
-            gl.Translate(mf.fixPosX, 0, mf.fixPosZ);
+            gl.Translate(mf.fixPosX, mf.fixPosY, 0);
             gl.PushMatrix();
-            
+
             //most complicated translate ever!
-            gl.Translate((Math.Sin(mf.fixHeading) * (hitchLength - antennaPivot)),0,
-                            (Math.Cos(mf.fixHeading) * (hitchLength - antennaPivot)));
+            gl.Translate((Math.Sin(mf.fixHeading) * (hitchLength - antennaPivot)),
+                            (Math.Cos(mf.fixHeading) * (hitchLength - antennaPivot)), 0);
 
             //settings doesn't change trailing hitch length if set to rigid, so do it here
             double trailingTank, trailingTool;
@@ -108,14 +111,14 @@ namespace AgOpenGPS
             //there is a trailing tow between hitch
             if (tankTrailingHitchLength < -2.0 && isToolTrailing)
             {
-                gl.Rotate(glm.toDegrees(mf.fixHeadingTank), 0.0, 1.0, 0.0);
+                gl.Rotate(glm.toDegrees(-mf.fixHeadingTank), 0.0, 0.0, 1.0);
 
                 //draw the tank hitch
                 gl.LineWidth(2);
-                gl.Color(0.7f, 0.7f, 0.7f);
+                gl.Color(0.7f, 0.7f, 0.97f);
 
                 gl.Begin(OpenGL.GL_LINES);
-                gl.Vertex(0, 0, trailingTank);
+                gl.Vertex(0, trailingTank, 0);
                 gl.Vertex(0, 0, 0);
                 gl.End();
 
@@ -123,30 +126,30 @@ namespace AgOpenGPS
                 gl.Color(0.95f, 0.950f, 0.0f);
                 gl.PointSize(6.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(0,0,trailingTank);
+                gl.Vertex(0, trailingTank, 0);
                 gl.End();
 
                 //move down the tank hitch, unwind, rotate to section heading
-                gl.Translate(0, 0, trailingTank);
-                gl.Rotate(-glm.toDegrees(mf.fixHeadingTank), 0.0, 1.0, 0.0);
-                gl.Rotate(glm.toDegrees(mf.fixHeadingSection), 0.0, 1.0, 0.0);
+                gl.Translate(0, trailingTank, 0);
+                gl.Rotate(glm.toDegrees(mf.fixHeadingTank), 0.0, 0.0, 1.0);
+                gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
             }
 
             //no tow between hitch
-            else  gl.Rotate(glm.toDegrees(mf.fixHeadingSection), 0.0, 1.0, 0.0);
- 
+            else gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
+
             //draw the hitch if trailing
             if (isToolTrailing)
             {
                 gl.LineWidth(2);
-                gl.Color(0.7f, 0.7f, 0.7f);
+                gl.Color(0.7f, 0.7f, 0.97f);
 
                 gl.Begin(OpenGL.GL_LINES);
-                gl.Vertex(0, 0, trailingTool);
+                gl.Vertex(0, trailingTool, 0);
                 gl.Vertex(0, 0, 0);
                 gl.End();
             }
-            
+
 
             //draw the sections
             gl.LineWidth(8);
@@ -157,14 +160,14 @@ namespace AgOpenGPS
             {
                 if (mf.section[0].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
                 else gl.Color(0.99, 0.99, 0);
-                gl.Vertex(mf.section[numOfSections].positionLeft, 0, trailingTool);
-                gl.Vertex(mf.section[numOfSections].positionRight, 0, trailingTool);
+                gl.Vertex(mf.section[numOfSections].positionLeft, trailingTool, 0);
+                gl.Vertex(mf.section[numOfSections].positionRight, trailingTool, 0);
             }
 
             else
                 for (int j = 0; j < mf.vehicle.numOfSections; j++)
                 {
-                    //if section is on green, if off red color
+                    //if section is on, green, if off, red color
                     if (mf.section[j].isSectionOn)
                     {
                         if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
@@ -173,8 +176,8 @@ namespace AgOpenGPS
                     else gl.Color(0.97f, 0.2f, 0.2f);
 
                     //draw section line
-                    gl.Vertex(mf.section[j].positionLeft, 0, trailingTool);
-                    gl.Vertex(mf.section[j].positionRight, 0, trailingTool);
+                    gl.Vertex(mf.section[j].positionLeft, trailingTool, 0);
+                    gl.Vertex(mf.section[j].positionRight, trailingTool, 0);
                 }
             gl.End();
 
@@ -186,40 +189,40 @@ namespace AgOpenGPS
                 gl.PointSize(4.0f);
                 gl.Begin(OpenGL.GL_POINTS);
                 for (int j = 0; j < mf.vehicle.numOfSections - 1; j++)
-                    gl.Vertex(mf.section[j].positionRight, 0, trailingTool);
+                    gl.Vertex(mf.section[j].positionRight, trailingTool, 0);
                 gl.End();
             }
 
             //draw vehicle
             gl.PopMatrix();
-            gl.Rotate(glm.toDegrees(mf.fixHeading), 0.0, 1.0, 0.0);
+            gl.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
 
             //draw the vehicle Body
             gl.Color(0.9, 0.5, 0.30);
             gl.Begin(OpenGL.GL_TRIANGLE_FAN);
 
-            gl.Vertex(0, -0.2, 0);
-            gl.Vertex(1.8, 0.0, -antennaPivot);
-            gl.Vertex(0, 0.0, -antennaPivot + wheelbase);
+            gl.Vertex(0, 0, -0.2);
+            gl.Vertex(1.8, -antennaPivot, 0.0);
+            gl.Vertex(0, -antennaPivot + wheelbase, 0.0);
             gl.Color(0.20, 0.0, 0.9);
-            gl.Vertex(-1.8, 0.0, -antennaPivot);
-            gl.Vertex(1.8, 0.0, -antennaPivot);
+            gl.Vertex(-1.8, -antennaPivot, 0.0);
+            gl.Vertex(1.8, -antennaPivot, 0.0);
             gl.End();
 
            //draw the area side marker
             gl.Color(0.95f, 0.90f, 0.0f);
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            if (mf.isAreaOnRight) gl.Vertex(2.0, 0, -antennaPivot);
-            else gl.Vertex(-2.0, 0, -antennaPivot);
+            if (mf.isAreaOnRight) gl.Vertex(2.0, -antennaPivot, 0);
+            else gl.Vertex(-2.0, -antennaPivot, 0);
 
             ////antenna
-            //gl.Color(0.0f, 0.98f, 0.0f);
-            //gl.Vertex(0, 0, 0);
+            gl.Color(0.0f, 0.98f, 0.0f);
+            gl.Vertex(0, 0, 0);
 
             //hitch pin
             gl.Color(0.99f, 0.0f, 0.0f);
-            gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
+            gl.Vertex(0, mf.vehicle.hitchLength - antennaPivot, 0);
 
             ////rear Tires
             //gl.PointSize(12.0f);
@@ -230,10 +233,10 @@ namespace AgOpenGPS
  
             //draw the rigid hitch
             gl.LineWidth(2);
-            gl.Color(0.37f, 0.37f, 0.37f); 
+            gl.Color(0.37f, 0.37f, 0.97f); 
             gl.Begin(OpenGL.GL_LINES);
-            gl.Vertex(0, 0, mf.vehicle.hitchLength - antennaPivot);
-            gl.Vertex(0, 0, -antennaPivot);
+            gl.Vertex(0, mf.vehicle.hitchLength - antennaPivot, 0);
+            gl.Vertex(0, -antennaPivot, 0);
             gl.End();
 
            gl.LineWidth(1);

@@ -31,7 +31,7 @@ namespace AgOpenGPS
 
         //Current fix positions
         public double prevNorthing, prevEasting;
-        public double fixPosX = 0.0, fixPosY = 0.0, fixPosZ = -7.0;
+        public double fixPosX = 0.0, fixPosY = 3.0, fixPosZ = 0.0;
         public double pivotAxleEasting = 0, pivotAxleNorthing = 0, hitchEasting = 0, hitchNorthing = 0;
         public double toolEasting = 0, toolNorthing = 0, fixHeadingSection = 0.0;
         public double tankEasting = 0, tankNorthing = 0, fixHeadingTank = 0;
@@ -49,7 +49,7 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;        
         public double prevSectionEasting = 0, prevSectionNorthing = 0;
 
-        //step distances and positions for boundary
+        //step distances and positions for boundary, 6 meters before next point
         public double prevBoundaryEasting = 0, prevBoundaryNorthing = 0, boundaryTriggerDistance = 6.0;
 
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
@@ -72,24 +72,27 @@ namespace AgOpenGPS
         public int ringCounter = 0;  
       
         //IMU 
-        //double tiltDistance = 0;
-        //double roll = 0, pitch = 0, angVel = 0;
-        //double avgPitch = 0, avgRoll = 0, avgAngVel = 0;
-        
-        //public double[] avgTiltRoll = new double[10];//for tilt
-        //public int ringCounterTiltRoll = 0;        
+        double rollDistance = 0;
+        double roll = 0; //, pitch = 0, angVel = 0;
+        double avgRoll = 0; //, avgPitch = 0, avgAngVel = 0;
+
+        int times;
+        public double[] avgTiltRoll = new double[30];//for tilt
+        public int ringCounterTiltRoll = 0;        
         //public double[] avgTiltPitch = new double[10];//for pitch
         //public int ringCounterTiltPitch = 0;        
         //public double[] avgAngularVelocity = new double[30];//for angular velocity
         //public int ringCounterAngularVelocity = 0;
 
-        public double pitchZero, rollZero;
-
-        private int totalFixSteps = 20, currentStepFix = 0;
+        private int totalFixSteps = 10, currentStepFix = 0;
         private vec3 vHold;
         public vec3[] stepFixPts = new vec3[50];
         public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
         bool isFixHolding = false, isFixHoldLoaded = false;
+
+        public double rollZero = 0, pitchZero = 0;
+        public double rollAngle = 0, pitchAngle = 0;
+
         
         //called by watchdog timer every 50 ms
         private void ScanForNMEA()
@@ -140,19 +143,22 @@ namespace AgOpenGPS
             {
                 if (!isGPSPositionInitialized)
                 {
-                    modcom.relaySectionControl[0] = (byte)0;
+                    //relay port
+                    mc.relaySectionControl[0] = (byte)0;
                     SectionControlOutToPort();
-                    modcom.autoSteerControl[0] = (byte)127;
-                    modcom.autoSteerControl[1] = (byte)(254);
-                    modcom.autoSteerControl[2] = (byte)0;
-                    modcom.autoSteerControl[3] = (byte)(0);
-                    modcom.autoSteerControl[4] = (byte)(125);
-                    modcom.autoSteerControl[5] = (byte)20;
-                    modcom.autoSteerControl[6] = (byte)(125);
-                    modcom.autoSteerControl[7] = (byte)20;
+
+                    //autosteer port
+                    mc.autoSteerData[mc.sdHeaderHi] = (byte)127; //32766
+                    mc.autoSteerData[mc.sdHeaderLo] = (byte)(254);
+                    mc.autoSteerData[mc.sdRelay] = (byte)0;
+                    mc.autoSteerData[mc.sdSpeed] = (byte)(0);
+                    mc.autoSteerData[mc.sdDistanceHi] = (byte)(125); //32020
+                    mc.autoSteerData[mc.sdDistanceLo] = (byte)20;
+                    mc.autoSteerData[mc.sdHeadingHi] = (byte)(125); //32020
+                    mc.autoSteerData[mc.sdHeadingLo] = (byte)20;
+
                     AutoSteerControlOutToPort();
                 }
-
             }
 
             //Update the port connecition counter - is reset every time new sentence is valid and ready
@@ -164,7 +170,6 @@ namespace AgOpenGPS
         {
             startCounter++;
             totalFixSteps = fixUpdateHz * 4;
-
             if (!isGPSPositionInitialized) {  InitializeFirstFewGPSPositions();   return;  }
             
     #region tilt
@@ -177,31 +182,31 @@ namespace AgOpenGPS
             //angVel /= times;
             //avgAngVel = Math.Round(angVel, 1);
 
-            ////average out the roll angle
-            //times = 5;
-            //avgTiltRoll[ringCounterTiltRoll] = modcom.rollAngle+rollZero;
-            //if (ringCounterTiltRoll++ == times) ringCounterTiltRoll = 0;
-            //roll = 0;
-            //for (int c = 0; c <= times - 1; c++) roll += avgTiltRoll[c];
-            //roll /= times;
-            //avgRoll = Math.Round(roll, 1);
+            //average out the roll angle
+            times = 29;
+            avgTiltRoll[ringCounterTiltRoll] = rollAngle + rollZero;
+            if (ringCounterTiltRoll++ == times) ringCounterTiltRoll = 0;
+            roll = 0;
+            for (int c = 0; c <= times - 1; c++) roll += avgTiltRoll[c];
+            roll /= times;
+            avgRoll = Math.Round(roll, 1);
 
-            ////Convert 16 bit int to degrees, take the sin of it
-            //roll = Math.Sin(glm.toRadians(roll));
-            //tiltDistance = Math.Abs(roll * vehicle.antennaHeight);
+            roll = Math.Sin(glm.toRadians(avgRoll));
+            //roll = Math.Sin(glm.toRadians(rollAngle));
+            rollDistance = Math.Abs(roll * vehicle.antennaHeight);
 
-            ////tilt to left is positive 
-            //if (roll > 0)
-            //{
-            //    pn.easting = (Math.Cos(fixHeading) * tiltDistance) + pn.easting;
-            //    pn.northing = (Math.Sin(fixHeading) * -tiltDistance) + pn.northing;
-            //}
+            //tilt to left is positive 
+            if (roll > 0)
+            {
+                pn.easting = (Math.Cos(fixHeading) * rollDistance) + pn.easting;
+                pn.northing = (Math.Sin(fixHeading) * -rollDistance) + pn.northing;
+            }
 
-            //else
-            //{
-            //    pn.easting = (Math.Cos(fixHeading) * -tiltDistance) + pn.easting;
-            //    pn.northing = (Math.Sin(fixHeading) * tiltDistance) + pn.northing;
-            //}
+            else
+            {
+                pn.easting = (Math.Cos(fixHeading) * -rollDistance) + pn.easting;
+                pn.northing = (Math.Sin(fixHeading) * rollDistance) + pn.northing;
+            }
 
             ////average out the pitch angle
             //times = 5;
@@ -223,7 +228,7 @@ namespace AgOpenGPS
     #region Step Fix
 
             //grab the most current fix and save the distance from the last fix
-            distanceCurrentStepFix = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
+            distanceCurrentStepFix = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
             fixStepDist = distanceCurrentStepFix;
 
             //if  min distance isn't exceeded, keep adding old fixes till it does
@@ -231,7 +236,7 @@ namespace AgOpenGPS
             {
                 for (currentStepFix = 0; currentStepFix < totalFixSteps; currentStepFix++)
                 {
-                    fixStepDist += stepFixPts[currentStepFix].h;
+                    fixStepDist += stepFixPts[currentStepFix].heading;
                     if (fixStepDist > minFixStepDist)
                     {
                         //if we reached end, keep the oldest and stay till distance is exceeded
@@ -259,14 +264,14 @@ namespace AgOpenGPS
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
 
                 //fill in the latest distance and fix
-                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
-                stepFixPts[0].x = pn.easting;
-                stepFixPts[0].z = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
+                stepFixPts[0].easting = pn.easting;
+                stepFixPts[0].northing = pn.northing;
 
                 //reload the last position that was triggered.
-                stepFixPts[(totalFixSteps - 1)].h = pn.Distance(vHold.z, vHold.x, stepFixPts[(totalFixSteps - 1)].z, stepFixPts[(totalFixSteps - 1)].x);
-                stepFixPts[(totalFixSteps - 1)].x = vHold.x;
-                stepFixPts[(totalFixSteps - 1)].z = vHold.z;
+                stepFixPts[(totalFixSteps - 1)].heading = pn.Distance(vHold.northing, vHold.easting, stepFixPts[(totalFixSteps - 1)].northing, stepFixPts[(totalFixSteps - 1)].easting);
+                stepFixPts[(totalFixSteps - 1)].easting = vHold.easting;
+                stepFixPts[(totalFixSteps - 1)].northing = vHold.northing;
             }
             
             else //distance is exceeded, time to do all calcs and next frame
@@ -278,7 +283,7 @@ namespace AgOpenGPS
                 isFixHoldLoaded = false;
 
                 //don't add the total distance again
-                stepFixPts[(totalFixSteps - 1)].h = 0;
+                stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
                 if (isLogNMEA)
@@ -309,9 +314,9 @@ namespace AgOpenGPS
 
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
-                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
-                stepFixPts[0].x = pn.easting;
-                stepFixPts[0].z = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
+                stepFixPts[0].easting = pn.easting;
+                stepFixPts[0].northing = pn.northing;
             }
 
 #endregion
@@ -319,27 +324,27 @@ namespace AgOpenGPS
     #region AutoSteer
             //preset the values
             guidanceLineDistanceOff = 32000;
-            guidanceLineHeadingDelta = 0;
+            guidanceLineHeadingDelta = 32000;
 
             //do the distance from line calculations for contour and AB
             if (ct.isContourBtnOn) ct.DistanceFromContourLine();
             if (ABLine.isABLineSet && !ct.isContourBtnOn) ABLine.getCurrentABLine();
 
             // autosteer at full speed of updates
-            if (!isAutoSteerBtnOn)
+            if (!isAutoSteerBtnOn) //32020 means auto steer is off
             {
                 guidanceLineDistanceOff = 32020;
                 guidanceLineHeadingDelta = 32020;
             }
 
-            // modcom.autoSteerControl[2] contains the section relay byte
-            modcom.autoSteerControl[3] = (byte)(pn.speed * 4.0);
+            //fill up0 the auto steer array with new values
+            mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0);
 
-            modcom.autoSteerControl[4] = (byte)(guidanceLineDistanceOff >> 8);
-            modcom.autoSteerControl[5] = (byte)guidanceLineDistanceOff;
+            mc.autoSteerData[mc.sdDistanceHi] = (byte)(guidanceLineDistanceOff >> 8);
+            mc.autoSteerData[mc.sdDistanceLo] = (byte)guidanceLineDistanceOff;
 
-            modcom.autoSteerControl[6] = (byte)(guidanceLineHeadingDelta >> 8);
-            modcom.autoSteerControl[7] = (byte)guidanceLineHeadingDelta;
+            mc.autoSteerData[mc.sdHeadingHi] = (byte)(guidanceLineHeadingDelta >> 8);
+            mc.autoSteerData[mc.sdHeadingLo] = (byte)guidanceLineHeadingDelta;
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
             AutoSteerControlOutToPort();
@@ -360,12 +365,12 @@ namespace AgOpenGPS
         private void CalculatePositionHeading()
         {
             //in radians
-            fixHeading = Math.Atan2(pn.easting - stepFixPts[currentStepFix].x, pn.northing - stepFixPts[currentStepFix].z);
+            fixHeading = Math.Atan2(pn.easting - stepFixPts[currentStepFix].easting, pn.northing - stepFixPts[currentStepFix].northing);
             if (fixHeading < 0) fixHeading += glm.twoPI;
 
             //determine fix positions and heading
             fixPosX = (pn.easting);
-            fixPosZ = (pn.northing);
+            fixPosY = (pn.northing);
  
 
        #region pivot hitch trail
@@ -450,7 +455,7 @@ namespace AgOpenGPS
                 }
             }
 
-            //rigidly connected to vehicley
+            //rigidly connected to vehicle
             else
             {
                 fixHeadingSection = fixHeading;
@@ -465,7 +470,7 @@ namespace AgOpenGPS
             if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
 
 
-            fixHeadingCam = Math.Atan2(pn.easting - stepFixPts[camStep].x, pn.northing - stepFixPts[camStep].z);
+            fixHeadingCam = Math.Atan2(pn.easting - stepFixPts[camStep].easting, pn.northing - stepFixPts[camStep].northing);
             if (fixHeadingCam < 0) fixHeadingCam += glm.twoPI;
 
             //to degrees for openGL camera
@@ -686,7 +691,7 @@ namespace AgOpenGPS
 
                     else
                     {
-                        //grab the last right, its the left of this section
+                        //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
                         isRightIn = boundary.IsPrePointInPolygon(section[j].rightPoint);
                         if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
@@ -705,10 +710,7 @@ namespace AgOpenGPS
 
             //safe left side, 0 if going backwards, in meters/sec convert back from pixels/m
             if (section[0].sectionLookAhead > 0) vehicle.toolFarLeftSpeed = vehicle.toolFarLeftSpeed * 0.05;
-            else vehicle.toolFarLeftSpeed = 0;    
-      
-            //calculate using left and right points whether or not section is in boundary
-            
+            else vehicle.toolFarLeftSpeed = 0;                
         }
 
         //the start of first few frames to initialize entire program
@@ -730,9 +732,9 @@ namespace AgOpenGPS
                 prevEasting = pn.easting;
                 prevNorthing = pn.northing;
 
-                stepFixPts[0].x = pn.easting;
-                stepFixPts[0].z = pn.northing;
-                stepFixPts[0].h = 0;
+                stepFixPts[0].easting = pn.easting;
+                stepFixPts[0].northing = pn.northing;
+                stepFixPts[0].heading = 0;
 
                 //run once and return
                 isFirstFixPositionSet = true;
@@ -748,31 +750,32 @@ namespace AgOpenGPS
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--)
                 {
-                    stepFixPts[i].x = stepFixPts[i - 1].x;
-                    stepFixPts[i].z = stepFixPts[i - 1].z;
-                    stepFixPts[i].h = stepFixPts[i - 1].h;
+                    stepFixPts[i].easting = stepFixPts[i - 1].easting;
+                    stepFixPts[i].northing = stepFixPts[i - 1].northing;
+                    stepFixPts[i].heading = stepFixPts[i - 1].heading;
                 }
 
-                stepFixPts[0].h = pn.Distance(pn.northing, pn.easting, stepFixPts[0].z, stepFixPts[0].x);
-                stepFixPts[0].x = pn.easting;
-                stepFixPts[0].z = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
+                stepFixPts[0].easting = pn.easting;
+                stepFixPts[0].northing = pn.northing;
 
                 //keep here till valid data
                 if (startCounter > totalFixSteps) isGPSPositionInitialized = true;
 
                 //in radians
-                fixHeading = Math.Atan2(pn.easting - stepFixPts[totalFixSteps - 1].x, pn.northing - stepFixPts[totalFixSteps - 1].z); 
+                fixHeading = Math.Atan2(pn.easting - stepFixPts[totalFixSteps - 1].easting, pn.northing - stepFixPts[totalFixSteps - 1].northing); 
                 if (fixHeading < 0) fixHeading += glm.twoPI;
                 fixHeadingSection = fixHeading;
 
+                //send out initial zero settings
                 if (isGPSPositionInitialized) AutoSteerSettingsOutToPort();
 
                 return;
             }
         }
 
- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        // intense math section....   the lat long converted to utm   *********************************************************
+ #region utm Calcualtions
         private double sm_a = 6378137.0;
         private double sm_b = 6356752.314;
         private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
@@ -791,12 +794,10 @@ namespace AgOpenGPS
             /* If in southern hemisphere, adjust y accordingly. */
             if (pn.hemisphere == 'S')
                 Y -= 10000000.0;
-
             Y *= UTMScaleFactor2;
 
             cmeridian = (-183.0 + (pn.zone * 6.0)) * 0.01745329251994329576923690766743;
-            double[] latlon = new double[2]; //= MapXYToLatLon(X, Y, cmeridian);
-          
+            double[] latlon = new double[2]; //= MapXYToLatLon(X, Y, cmeridian);          
   
             double phif, Nf, Nfpow, nuf2, ep2, tf, tf2, tf4, cf;
             double x1frac, x2frac, x3frac, x4frac, x5frac, x6frac, x7frac, x8frac;
@@ -923,43 +924,7 @@ namespace AgOpenGPS
             return result;
         }
 
+#endregion
+
     }//end class
 }//end namespace
-
-//double angle = 0;
-//double x = 0, y = 0;
-
-//for (int j = 0; j < stepFixNumber; j++)
-//{
-//    angle = Math.Atan2(pn.easting - stepFixPts[j].x, pn.northing - stepFixPts[j].z);
-//    x += Math.Cos(angle);
-//    y += Math.Sin(angle);
-//}
-
-////x += Math.Cos(angle);
-////y += Math.Sin(angle);
-
-//fixHeadingCam = Math.Atan2(y, x);
-
-
-//double x = 0, z = 0;
-//x += pn.northing;
-//x += stepFixPts[0].x;
-//x += stepFixPts[1].x;
-//x /= 3.0;
-
-//z += pn.easting;
-//z += stepFixPts[0].z;
-//z += stepFixPts[1].z;
-//z /= 3.0;
-
-//double x2 = 0, z2 = 0;
-//x2 += stepFixPts[2].x;
-//x2 += stepFixPts[3].x;
-//x2 += stepFixPts[4].x;
-//x2 /= 3.0;
-
-//z2 += stepFixPts[2].z;
-//z2 += stepFixPts[3].z;
-//z2 += stepFixPts[4].z;
-//z2 /= 3.0;

@@ -27,7 +27,7 @@ namespace AgOpenGPS
         decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
-        decimal triResolution, minFixStepDistance;
+        decimal triResolution, minFixStepDistance, boundaryDistance;
 
         bool isWorkSwEn, isWorkSwActiveLow;
 
@@ -196,6 +196,9 @@ namespace AgOpenGPS
             triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
             nudTriangleResolution.Value = triResolution;
 
+            boundaryDistance = (decimal)Properties.Settings.Default.set_boundaryTriggerDistance;
+            nudBoundaryDistance.Value = boundaryDistance;
+
             minFixStepDistance = (decimal)Properties.Settings.Default.set_minFixStep;
             nudMinFixStepDistance.Value = minFixStepDistance;
 
@@ -220,11 +223,11 @@ namespace AgOpenGPS
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
 
-            lblPValue.Text =    mf.modcom.autoSteerSettings[2].ToString();
-            lblIValue.Text =    mf.modcom.autoSteerSettings[3].ToString();
-            lblDValue.Text =    mf.modcom.autoSteerSettings[4].ToString();
-            lblOValue.Text =    mf.modcom.autoSteerSettings[5].ToString();
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
+            lblPValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
+            lblIValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
+            lblDValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
+            lblOValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
+            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -321,16 +324,19 @@ namespace AgOpenGPS
             mf.isAtanCam = isAtanCamera;
             Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
 
+            mf.boundaryTriggerDistance = (double)boundaryDistance;
+            Properties.Settings.Default.set_boundaryTriggerDistance = mf.boundaryTriggerDistance;
+
             mf.triangleResolution = (double)triResolution;
             Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
 
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.set_minFixStep = mf.minFixStepDist;
 
-            mf.modcom.isWorkSwitchActiveLow = isWorkSwActiveLow;
+            mf.mc.isWorkSwitchActiveLow = isWorkSwActiveLow;
             Properties.Settings.Default.setIsWorkSwitchActiveLow = isWorkSwActiveLow;
 
-            mf.modcom.isWorkSwitchEnabled = isWorkSwEn;
+            mf.mc.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setIsWorkSwitchEnabled = isWorkSwEn;
 
             mf.rollZero = rollZeroSet;
@@ -349,6 +355,7 @@ namespace AgOpenGPS
             Close();
         }
 
+        //don't save anything, leave the settings as before
         private void btnCancel_Click(object sender, EventArgs e)
         { DialogResult = DialogResult.Cancel; Close(); }
 
@@ -385,10 +392,7 @@ namespace AgOpenGPS
         private void btnFileSaveVehicle_Click(object sender, EventArgs e)
         {
             mf.FileSaveVehicle();
-        }
-
- 
- 
+        } 
  
         private void UpdateTrailingRigidCheckbox()
         {
@@ -398,7 +402,7 @@ namespace AgOpenGPS
             else  {  this.chkIsTrailingRigid.Image = global::AgOpenGPS.Properties.Resources.VehRigid64; }
         }
 
-       private void UpdateIsAftCheckbox()
+        private void UpdateIsAftCheckbox()
         {
             if (chkIsAft.Checked)
             {
@@ -417,7 +421,7 @@ namespace AgOpenGPS
             }
         }
 
-       private void UpdateIsPivotBehindAntennaCheckbox()
+        private void UpdateIsPivotBehindAntennaCheckbox()
        {
            if (chkIsPivotBehindAntenna.Checked) {
                this.chkIsPivotBehindAntenna.Image = global::AgOpenGPS.Properties.Resources.PivotBehind;
@@ -467,6 +471,8 @@ namespace AgOpenGPS
         {
             toolTrailingHitchLength = (double)(nudForeAft.Value) * metImp2m;
         }
+
+
 
         private void nudTankHitch_ValueChanged(object sender, EventArgs e)
         {
@@ -913,104 +919,110 @@ namespace AgOpenGPS
         //Send to Autosteer to adjust PIDO values, LSB is up or down
         private void btnPPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[2] += 1;
-            lblPValue.Text = mf.modcom.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.modcom.autoSteerSettings[2];
+            mf.mc.autoSteerSettings[2] += 1;
+            lblPValue.Text = mf.mc.autoSteerSettings[2].ToString();
+            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[2];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnPMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[2] -= 1;
-            if (mf.modcom.autoSteerSettings[2] == 255) mf.modcom.autoSteerSettings[2] = 0;
-            lblPValue.Text = mf.modcom.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.modcom.autoSteerSettings[2];
+            mf.mc.autoSteerSettings[2] -= 1;
+            if (mf.mc.autoSteerSettings[2] == 255) mf.mc.autoSteerSettings[2] = 0;
+            lblPValue.Text = mf.mc.autoSteerSettings[2].ToString();
+            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[2];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnIPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[3] += 1;
-            lblIValue.Text = mf.modcom.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.modcom.autoSteerSettings[3];
+            mf.mc.autoSteerSettings[3] += 1;
+            lblIValue.Text = mf.mc.autoSteerSettings[3].ToString();
+            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[3];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnIMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[3] -= 1;
-            if (mf.modcom.autoSteerSettings[3] == 255) mf.modcom.autoSteerSettings[3] = 0;
-            lblIValue.Text = mf.modcom.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.modcom.autoSteerSettings[3];
+            mf.mc.autoSteerSettings[3] -= 1;
+            if (mf.mc.autoSteerSettings[3] == 255) mf.mc.autoSteerSettings[3] = 0;
+            lblIValue.Text = mf.mc.autoSteerSettings[3].ToString();
+            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[3];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnDPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[4] += 1;
-            lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.modcom.autoSteerSettings[4];
+            mf.mc.autoSteerSettings[4] += 1;
+            lblDValue.Text = mf.mc.autoSteerSettings[4].ToString();
+            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[4];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnDMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[4] -= 1;
-            if (mf.modcom.autoSteerSettings[4] == 255) mf.modcom.autoSteerSettings[4] = 0;
-            lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.modcom.autoSteerSettings[4];
+            mf.mc.autoSteerSettings[4] -= 1;
+            if (mf.mc.autoSteerSettings[4] == 255) mf.mc.autoSteerSettings[4] = 0;
+            lblDValue.Text = mf.mc.autoSteerSettings[4].ToString();
+            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[4];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnOPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[5] += 1;
-            lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.modcom.autoSteerSettings[5];
+            mf.mc.autoSteerSettings[5] += 1;
+            lblOValue.Text = mf.mc.autoSteerSettings[5].ToString();
+            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[5];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnOMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[5] -= 1;
-            if (mf.modcom.autoSteerSettings[5] == 255) mf.modcom.autoSteerSettings[5] = 0;
-            lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.modcom.autoSteerSettings[5];
+            mf.mc.autoSteerSettings[5] -= 1;
+            if (mf.mc.autoSteerSettings[5] == 255) mf.mc.autoSteerSettings[5] = 0;
+            lblOValue.Text = mf.mc.autoSteerSettings[5].ToString();
+            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[5];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void btnMaxIntErrPlus_Click(object sender, EventArgs e)
+        private void btnSteerAngleOffsetMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[6] += 1;
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_maxIntError = mf.modcom.autoSteerSettings[6];
+            mf.mc.autoSteerSettings[6] -= 1;
+            if (mf.mc.autoSteerSettings[6] == 0) mf.mc.autoSteerSettings[6] = 255;
+            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[6].ToString();
+            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[6];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void btnMaxIntErrMinus_Click(object sender, EventArgs e)
+        private void btnSteerAngleOffsetPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[6] -= 1;
-            if (mf.modcom.autoSteerSettings[6] == 255) mf.modcom.autoSteerSettings[6] = 0;
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_maxIntError = mf.modcom.autoSteerSettings[6];
+            mf.mc.autoSteerSettings[6] -= 1;
+            if (mf.mc.autoSteerSettings[6] == 255) mf.mc.autoSteerSettings[6] = 0;
+            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[6].ToString();
+            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[6];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
-
 
 #endregion Guidance
 
         #region Display //----------------------------------------------------------------
-        
+
+
+        private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
+        {
+            boundaryDistance = nudBoundaryDistance.Value;
+        }
+
         private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
         {
             triResolution = nudTriangleResolution.Value;
@@ -1047,17 +1059,20 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblPitchFromIMU.Text = (mf.modcom.pitchAngle).ToString();
-            lblRollFromIMU.Text = (mf.modcom.rollAngle).ToString();
+            lblPitchFromIMU.Text = (mf.pitchAngle).ToString();
+            lblRollFromIMU.Text = (mf.rollAngle).ToString();
             lblRollOffset.Text = rollZeroSet.ToString();
             lblPitchOffset.Text = pitchZeroSet.ToString();
         }
 
         private void btnRollPitchZero_Click(object sender, EventArgs e)
         {
-            pitchZeroSet = -mf.modcom.pitchAngle;
-            rollZeroSet = -mf.modcom.rollAngle;
+            pitchZeroSet = -mf.pitchAngle;
+            rollZeroSet = -mf.rollAngle;
         }
+
+
+
 
 
 

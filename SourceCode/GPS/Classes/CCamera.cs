@@ -43,42 +43,44 @@ namespace AgOpenGPS
             camYaw = _fixHeading;
 
             //back the camera up
-            gl.Translate(0, 0, camSetDistance*0.5);
+            gl.Translate(0, 0, camSetDistance * 0.5);
 
-            //flip the world over so positive z aka north goes into screen
-            gl.Rotate(180, 0, 0, 1);
+            ////draw the guide
+            //gl.Begin(OpenGL.GL_TRIANGLES);
+
+            //gl.Color(0.98f, 0.0f, 0.0f);
+            //gl.Vertex(0.0f, -2.0f, 0.0f);
+
+            //gl.Color(0.0f, 0.98f, 0.0f);
+            //gl.Vertex(-2.0f, -3.0f, 0.0f);
+
+            //gl.Color(0.98f, 0.98f, 0.0f);
+            //gl.Vertex(2.0f, -3.0f, 0.0f);
+
+            //gl.End();						// Done Drawing Reticle
 
             //rotate the camera down to look at fix
             gl.Rotate(camPitch, 1, 0, 0);
 
-            //rotate camera so heading matched fix heading in the world
-            gl.Rotate(-camYaw + 180, 0, 1, 0);
+            gl.Rotate(camYaw, 0, 0, 1);
 
-            //move the implement down slightly in the view so more is above or ahead of vehicle
-            //if (camPitch < -50.0)
-            
-            //    //its in 2D mode
-            //gl.Translate(-camPosX + (camSetDistance * 0.031 * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
-            //                -camPosZ + (camSetDistance * 0.031 * Math.Cos(glm.toRadians(fixHeading))));
-            //else 
-                //its in 3D mode
+            //gl.Translate(-camPosX,-camPosY,-camPosZ);
 
             if (camPitch > -45)
             {
-               offset = (45.0 + camPitch) / 45.0;
+                offset = (45.0 + camPitch) / 45.0;
 
-                offset = offset * offset * offset * offset * 0.28 + 0.02;
+                offset = offset * offset * offset * offset * 0.015 + 0.02;
 
-                gl.Translate(-camPosX + ( offset*camSetDistance * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
-                    -camPosZ + (offset*camSetDistance * Math.Cos(glm.toRadians(fixHeading))));
- 
-             }
+                gl.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                    -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
 
-            else  gl.Translate(-camPosX + ( 0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))), -camPosY, 
-                            -camPosZ + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))));
- 
+            }
 
-         }
-        
+            else gl.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                           -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+
+        }
+
     }
 }

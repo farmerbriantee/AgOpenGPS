@@ -7,26 +7,16 @@ namespace AgOpenGPS
 {
    public static class glm
     {
-        public const byte SET_1 = 1;
-        public const byte SET_2 = 2;
-        public const byte SET_3 = 4;
-        public const byte SET_4 = 8;
-        public const byte SET_5 = 16;
-        
-        public const byte RESET_1 = 254;
-        public const byte RESET_2 = 253;
-        public const byte RESET_3 = 251;
-        public const byte RESET_4 = 247;
-        public const byte RESET_5 = 239;
-
        //inches to meters
        public static double in2m = 0.0254;
 
        //meters to inches
        public static double m2in = 39.3701;
 
+       //meters to feet
        public static double m2ft = 3.28084;
 
+       //the pi's
        public static double twoPI = 6.28318530717958647692;
 
        public static double PIBy2 = 1.57079632679489661923;

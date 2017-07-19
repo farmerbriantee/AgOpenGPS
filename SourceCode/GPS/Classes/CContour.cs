@@ -161,7 +161,7 @@ namespace AgOpenGPS
 
                     //in the box so is it parallelish or perpedicularish to current heading
                     ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].y) - Math.PI);
-                    if (ref2 < 1.4 || ref2 > 1.74)
+                    if (ref2 < 0.8 || ref2 > 2.3)
                     {                    
                         //it's in the box and parallelish so add to list
                         pointC.x = stripList[s][p].x;
@@ -219,7 +219,7 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosZ + refPoint2.easting *
+            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosY + refPoint2.easting *
                                     refPoint1.northing - refPoint2.northing * refPoint1.easting) /
                                         Math.Sqrt(dz * dz + dx * dx);
 
@@ -315,11 +315,13 @@ namespace AgOpenGPS
                 //z2-z1
                 double dz = guideList[B].z - guideList[A].z;
 
+                if (dx == 0 && dz == 0) return;
+
                 //abHeading = Math.Atan2(dz, dx);
                 abHeading = guideList[A].y;
 
                 //how far from current AB Line is fix
-                distanceFromCurrentLine = (dz * mf.fixPosX - dx * mf.fixPosZ + guideList[B].x *
+                distanceFromCurrentLine = (dz * mf.fixPosX - dx * mf.fixPosY + guideList[B].x *
                             guideList[A].z - guideList[B].z * guideList[A].x) /
                                 Math.Sqrt(dz * dz + dx * dx);
 
@@ -394,7 +396,7 @@ namespace AgOpenGPS
             gl.LineWidth(2);
             gl.Color(0.98f, 0.2f, 0.0f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
+            for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, guideList[h].z, 0);
             gl.End();
 
             ////draw the reference line

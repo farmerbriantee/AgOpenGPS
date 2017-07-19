@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-64")]
         public double setCam_pitch {
             get {
                 return ((double)(this["setCam_pitch"]));
@@ -757,13 +757,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public byte setAS_maxIntError {
+        [global::System.Configuration.DefaultSettingValueAttribute("99")]
+        public byte setAS_steerAngleOffset {
             get {
-                return ((byte)(this["setAS_maxIntError"]));
+                return ((byte)(this["setAS_steerAngleOffset"]));
             }
             set {
-                this["setAS_maxIntError"] = value;
+                this["setAS_steerAngleOffset"] = value;
             }
         }
         
@@ -812,6 +812,42 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setUserTotalArea"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int setVehicle_minApplied {
+            get {
+                return ((int)(this["setVehicle_minApplied"]));
+            }
+            set {
+                this["setVehicle_minApplied"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27")]
+        public byte setAS_minSteerPWM {
+            get {
+                return ((byte)(this["setAS_minSteerPWM"]));
+            }
+            set {
+                this["setAS_minSteerPWM"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public double set_boundaryTriggerDistance {
+            get {
+                return ((double)(this["set_boundaryTriggerDistance"]));
+            }
+            set {
+                this["set_boundaryTriggerDistance"] = value;
             }
         }
     }

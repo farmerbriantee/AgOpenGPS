@@ -103,7 +103,7 @@ namespace AgOpenGPS
         public CVehicle vehicle;
 
         //module communication object
-        public CModuleComm modcom;
+        public CModuleComm mc;
 
         //perimeter object for area calc
         public CPerimeter periArea;
@@ -145,7 +145,7 @@ namespace AgOpenGPS
             ct = new CContour(gl, this);
 
             //module communication
-            modcom = new CModuleComm(this);
+            mc = new CModuleComm(this);
 
             //perimeter list object
             periArea = new CPerimeter(gl, this);  
@@ -157,6 +157,7 @@ namespace AgOpenGPS
             swFrame.Start();
         }
 
+        //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == (Keys.F))
@@ -191,9 +192,6 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-
-            #region settings //--------------------------------------------------------------------------
-
              //set the flag mark button to red dot
             btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
 
@@ -208,7 +206,7 @@ namespace AgOpenGPS
             baudRateGPS = Properties.Settings.Default.setPort_baudRate;
             portNameGPS = Properties.Settings.Default.setPort_portNameGPS;
 
-            //try and open, if not go to setting up port
+            //try and open
             SerialPortOpenGPS();
 
             //same for SectionRelay port
@@ -262,7 +260,6 @@ namespace AgOpenGPS
                 Location = Properties.Settings.Default.setWindow_Location;
                 Size = Properties.Settings.Default.setWindow_Size;
             }
-            #endregion
 
             btnSection1Man.Enabled = false;
             btnSection2Man.Enabled = false;
@@ -276,13 +273,13 @@ namespace AgOpenGPS
 
             if (isMetric)
             {
-                lblSpeedUnits.Text = "Kmh";
+                lblSpeedUnits.Text = "kmh";
                 this.metricToolStrip.Checked = true;
                 this.imperialToolStrip.Checked = false;
             }
             else
             {
-                lblSpeedUnits.Text = "MPH";
+                lblSpeedUnits.Text = "mph";
                 this.metricToolStrip.Checked = false;
                 this.imperialToolStrip.Checked = true;
             }
@@ -323,8 +320,8 @@ namespace AgOpenGPS
             btnFlag.Enabled = false;
 
             //workswitch stuff
-            modcom.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
-            modcom.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
+            mc.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
+            mc.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
 
             minFixStepDist = Properties.Settings.Default.set_minFixStep;
 
@@ -337,6 +334,8 @@ namespace AgOpenGPS
 
             totalUserSquareMeters = Properties.Settings.Default.setUserTotalArea;
             userSquareMetersAlarm = Properties.Settings.Default.setUserTripAlarm;
+
+            boundaryTriggerDistance = Properties.Settings.Default.set_boundaryTriggerDistance;
 
 
         }
@@ -358,18 +357,17 @@ namespace AgOpenGPS
                         FileSaveEverythingBeforeClosingField();
 
                         //turn all relays off
-                        modcom.relaySectionControl[0] = (byte)0;
+                        mc.relaySectionControl[0] = (byte)0;
                         this.SectionControlOutToPort();
 
-                        modcom.autoSteerControl[0] = (byte)127;
-                        modcom.autoSteerControl[1] = (byte)(254);
-                        modcom.autoSteerControl[2] = (byte)0;
-                        modcom.autoSteerControl[3] = (byte)(0);
-                        modcom.autoSteerControl[4] = (byte)(125);
-                        modcom.autoSteerControl[5] = (byte)20;
-                        modcom.autoSteerControl[6] = (byte)(125);
-                        modcom.autoSteerControl[7] = (byte)20;
-
+                        mc.autoSteerData[mc.sdHeaderHi] = (byte)127; //32766
+                        mc.autoSteerData[mc.sdHeaderLo] = (byte)(254);
+                        mc.autoSteerData[mc.sdRelay] = (byte)0;
+                        mc.autoSteerData[mc.sdSpeed] = (byte)(0);
+                        mc.autoSteerData[mc.sdDistanceHi] = (byte)(125); //32020
+                        mc.autoSteerData[mc.sdDistanceLo] = (byte)20;
+                        mc.autoSteerData[mc.sdHeadingHi] = (byte)(125); //32020
+                        mc.autoSteerData[mc.sdHeadingLo] = (byte)20;
 
                         //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                         AutoSteerControlOutToPort();
@@ -1042,9 +1040,6 @@ namespace AgOpenGPS
 
             //update the menu
             fieldToolStripMenuItem.Text = "Start Field";
-
-            
-
         }
 
         //bring up field dialog for new/open/resume
@@ -1584,15 +1579,15 @@ namespace AgOpenGPS
         }
 
         //view tilt up down and saving in settings
-        private void btnTiltDown_MouseDown(object sender, MouseEventArgs e)
-        {
-            camera.camPitch -= camera.camPitch*0.05;
-            if (camera.camPitch > -10) camera.camPitch = -10;
-        }       
         private void btnTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch += camera.camPitch*0.05;
-            if (camera.camPitch < -90) camera.camPitch = -90;
+            camera.camPitch -= (camera.camPitch*0.03-1);
+            if (camera.camPitch > 0) camera.camPitch = 0;
+        }       
+        private void btnTiltDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            camera.camPitch += (camera.camPitch*0.03-1);
+            if (camera.camPitch < -80) camera.camPitch = -80;
         }
 
         //panel buttons
@@ -1644,13 +1639,13 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             if (isMetric)
             {
-                lblSpeedUnits.Text = "Kmh";
+                lblSpeedUnits.Text = "kmh";
                 this.metricToolStrip.Checked = true;
                 this.imperialToolStrip.Checked = false;
             }
             else
             {
-                lblSpeedUnits.Text = "MPH";
+                lblSpeedUnits.Text = "mph";
                 this.metricToolStrip.Checked = false;
                 this.imperialToolStrip.Checked = true;
             }
@@ -1733,16 +1728,16 @@ namespace AgOpenGPS
         }
         
         //Help menu drop down items
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuHelpAbout_Click(object sender, EventArgs e)
         {
             using (var form = new FormAbout())
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
- 
+
         }
-        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        private void helpToolStripMenuHelpHelp_Click(object sender, EventArgs e)
         {
             //string appPath = Assembly.GetEntryAssembly().Location;
             //string filename = Path.Combine(Path.GetDirectoryName(appPath), "help.htm");
@@ -1780,7 +1775,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIsLogNMEA = isLogNMEA;
             Properties.Settings.Default.Save();
         }
-
         private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isLightbarOn = !isLightbarOn;
@@ -1815,11 +1809,10 @@ namespace AgOpenGPS
             isMetric = true;
             Properties.Settings.Default.setIsMetric = isMetric;
             Properties.Settings.Default.Save();
-            if (isMetric) lblSpeedUnits.Text = "Kmh";
-            else lblSpeedUnits.Text = "MPH";
+            //if (isMetric) lblSpeedUnits.Text = "Kmh";
+            //else lblSpeedUnits.Text = "MPH";
 
         }
-
         private void imperialToolStrip_Click(object sender, EventArgs e)
         {
             this.metricToolStrip.Checked = false;
@@ -1827,8 +1820,8 @@ namespace AgOpenGPS
             isMetric = false;
             Properties.Settings.Default.setIsMetric = isMetric;
             Properties.Settings.Default.Save();
-            if (isMetric) lblSpeedUnits.Text = "Kmh";
-            else lblSpeedUnits.Text = "MPH";
+            if (isMetric) lblSpeedUnits.Text = "kmh";
+            else lblSpeedUnits.Text = "mph";
         }
 
         //Area button context menu items
@@ -1902,29 +1895,12 @@ namespace AgOpenGPS
         {
             Form form = new FormVariables(this);
             form.Show(); 
-        }
- 
-         private void toolStripMenuAuutoSteer_Click(object sender, EventArgs e)
+        } 
+        private void toolStripMenuAuutoSteer_Click(object sender, EventArgs e)
         {
             Form form = new FormSteer(this);
             form.Show();
 
-        }
-
-        //Display button's context menu items
-        private void toolStripMenuItem3D_Click(object sender, EventArgs e)
-        {
-            if (camera.camPitch > -90) camera.camPitch = -90;
-            else camera.camPitch = -15;
-
-            Properties.Settings.Default.setCam_pitch = camera.camPitch;
-            Properties.Settings.Default.Save();
-            SetZoom();
-        }
-
-        private void toolStripMenuField_Click(object sender, EventArgs e)
-        {
-            JobNewOpenResume();
         }
 
         //ABLine button context menu
@@ -2139,11 +2115,12 @@ namespace AgOpenGPS
 
         public string Acres { get { if (totalSquareMeters < 404645) return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 2).ToString();
                                      else return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString();  }  }
+
         public string Hectares { get { if (totalSquareMeters < 999900) return Math.Round(totalSquareMeters * 0.0001, 2).ToString();
                                         else return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); }  }
 
-        public string AcresUser { get { return Math.Round(totalUserSquareMeters * 0.00024710499815078974633856493327535, 2).ToString()+ " Ac"; } }
-        public string HectaresUser { get { return Math.Round(totalUserSquareMeters * 0.0001, 2).ToString() + " Ha"; } }
+        public string AcresUser { get { return Math.Round(totalUserSquareMeters * 0.00024710499815078974633856493327535, 2).ToString(); } }
+        public string HectaresUser { get { return Math.Round(totalUserSquareMeters * 0.0001, 2).ToString(); } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
@@ -2153,7 +2130,7 @@ namespace AgOpenGPS
         public string CurrentStepDistance { get { return Math.Round(distanceCurrentStepFix, 3).ToString(); } }
         public string TotalStepDistance { get { return Math.Round(fixStepDist, 3).ToString(); } }
 
-        public string WorkSwitchValue { get { return modcom.workSwitchValue.ToString(); } }
+        public string WorkSwitchValue { get { return mc.workSwitchValue.ToString(); } }
         public string AgeDiff { get { return pn.ageDiff.ToString(); } }
 
 
@@ -2177,7 +2154,7 @@ namespace AgOpenGPS
             else { if (panel1.Width < 391) panel1.Width += 30; }
 
            //every third of a second update all status
-            if (statusUpdateCounter > 13)
+            if (statusUpdateCounter > 0)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2195,7 +2172,7 @@ namespace AgOpenGPS
                     stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m";
                     stripAreaUser.Text = HectaresUser;
                     lblSpeed.Text = SpeedKPH;
-                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10))).ToString() + " ha/hr";
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10))).ToString();
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
                     toolStripStatusLabelBoundaryArea.Text = boundary.areaHectare;
                 }
@@ -2211,21 +2188,24 @@ namespace AgOpenGPS
                     stripAreaUser.Text = AcresUser;
                     lblSpeed.Text = SpeedMPH;
                     //stripGridZoom.Text = "Grid: " + GridFeet + " '";
-                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10) * 2.47)).ToString() + " ac/hr";
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10) * 2.47)).ToString();
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                     toolStripStatusLabelBoundaryArea.Text = boundary.areaAcre;
                 }
+
+                //lblDelta.Text = guidanceLineHeadingDelta.ToString();
 
                 //non metric or imp fields
                 stripHz.Text = NMEAHz+"Hz "+ (int)(frameTime);
                 lblHeading.Text = Heading;
                 btnABLine.Text = PassNumber;
+
                 //stripRoll.Text = avgRoll + "\u00B0";
                 //stripPitch.Text = avgPitch + "\u00B0";
                 //stripAngularVel.Text = avgAngVel.ToString();
                 //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
 
-                lblFix.Text = FixQuality;
+                //lblFix.Text = FixQuality;
                 //lblAgeDiff.Text = AgeDiff;
 
                 if (userSquareMetersAlarm == 0) stripAreaUser.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -2267,6 +2247,8 @@ namespace AgOpenGPS
             }            
             //wait till timer fires again.        
         }
+
+
 
 
 

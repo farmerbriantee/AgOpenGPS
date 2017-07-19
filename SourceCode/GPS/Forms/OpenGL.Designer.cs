@@ -35,7 +35,7 @@ namespace AgOpenGPS
                 gl.LoadIdentity();
 
                 //camera does translations and rotations
-                camera.SetWorldCam(gl, pivotAxleEasting, fixPosY, pivotAxleNorthing, fixHeadingCam);
+                camera.SetWorldCam(gl, pivotAxleEasting, pivotAxleNorthing, fixPosZ, fixHeadingCam);
 
                 //calculate the frustum planes for culling
                 CalcFrustum(gl);
@@ -43,14 +43,14 @@ namespace AgOpenGPS
                 //draw the field ground images
                 worldGrid.DrawFieldSurface();
                 
-                //Draw the world grid based on camera position
+                ////Draw the world grid based on camera position
                 gl.Disable(OpenGL.GL_DEPTH_TEST);
                 gl.Disable(OpenGL.GL_TEXTURE_2D);
 
-                //if grid is on draw it
+                ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(gridZoom);
 
-  
+
                 //turn on blend for paths
                 gl.Enable(OpenGL.GL_BLEND);
 
@@ -83,18 +83,18 @@ namespace AgOpenGPS
                             int count2 = triList.Count;
                             for (int i = 0; i < count2; i += 3)
                             {
-                                //determine if point is in frustum or not, if < 0, its outside so abort                            
-                                if (frustum[0] * triList[i].easting + frustum[2] * triList[i].northing + frustum[3] <= 0)
+                                //determine if point is in frustum or not, if < 0, its outside so abort, z always is 0                            
+                                if (frustum[0] * triList[i].easting + frustum[1] * triList[i].northing + frustum[3] <= 0)
                                     continue;//right
-                                if (frustum[4] * triList[i].easting + frustum[6] * triList[i].northing + frustum[7] <= 0)
+                                if (frustum[4] * triList[i].easting + frustum[5] * triList[i].northing + frustum[7] <= 0)
                                     continue;//left
-                                if (frustum[16] * triList[i].easting + frustum[18] * triList[i].northing + frustum[19] <= 0)
+                                if (frustum[16] * triList[i].easting + frustum[17] * triList[i].northing + frustum[19] <= 0)
                                     continue;//bottom
-                                if (frustum[20] * triList[i].easting + frustum[22] * triList[i].northing + frustum[23] <= 0)
+                                if (frustum[20] * triList[i].easting + frustum[21] * triList[i].northing + frustum[23] <= 0)
                                     continue;//top
-                                if (frustum[8] * triList[i].easting + frustum[10] * triList[i].northing + frustum[11] <= 0)
+                                if (frustum[8] * triList[i].easting + frustum[9] * triList[i].northing + frustum[11] <= 0)
                                     continue;//far
-                                if (frustum[12] * triList[i].easting + frustum[14] * triList[i].northing + frustum[15] <= 0)
+                                if (frustum[12] * triList[i].easting + frustum[13] * triList[i].northing + frustum[15] <= 0)
                                     continue;//near
 
                                 //point is in frustum so draw the entire patch. The downside of triangle strips.
@@ -114,15 +114,15 @@ namespace AgOpenGPS
                                     int step = mipmap;
                                     for (int i = 0; i < count2; i += step)
                                     {
-                                        gl.Vertex(triList[i].easting, 0, triList[i].northing); i++;
-                                        gl.Vertex(triList[i].easting, 0, triList[i].northing); i++;
+                                        gl.Vertex(triList[i].easting, triList[i].northing, 0); i++;
+                                        gl.Vertex(triList[i].easting, triList[i].northing, 0); i++;
 
                                         //too small to mipmap it
                                         if (count2 - i <= (mipmap + 2)) step = 0;
                                     }
                                 }
 
-                                else { for (int i = 0; i < count2; i++)  gl.Vertex(triList[i].easting, 0, triList[i].northing); }
+                                else { for (int i = 0; i < count2; i++)  gl.Vertex(triList[i].easting, triList[i].northing, 0); }
                                 gl.End();
                             }
                         }
@@ -137,7 +137,7 @@ namespace AgOpenGPS
                 if (ct.isContourBtnOn) ct.DrawContourLine();
 
                 // draw the current and reference AB Lines
-                else  { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();  }
+                else { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines(); }
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
@@ -148,9 +148,9 @@ namespace AgOpenGPS
                         gl.PointSize(8.0f);
                         gl.Begin(OpenGL.GL_POINTS);
                         if (flagPts[f].color == 0) gl.Color((byte)255, (byte)0, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 1) gl.Color((byte)0,(byte)255, (byte)flagPts[f].ID);
+                        if (flagPts[f].color == 1) gl.Color((byte)0, (byte)255, (byte)flagPts[f].ID);
                         if (flagPts[f].color == 2) gl.Color((byte)255, (byte)255, (byte)flagPts[f].ID);
-                        gl.Vertex(flagPts[f].easting, 0, flagPts[f].northing);
+                        gl.Vertex(flagPts[f].easting, flagPts[f].northing, 0);
                         gl.End();
                     }
 
@@ -161,22 +161,22 @@ namespace AgOpenGPS
                         gl.Color(0.980f, 0.0f, 0.980f);
                         gl.Begin(OpenGL.GL_LINE_STRIP);
 
-                        double offSet = (zoomValue * zoomValue *0.01);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, 0, flagPts[flagNumberPicked - 1].northing+offSet);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting-offSet, 0, flagPts[flagNumberPicked - 1].northing);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, 0, flagPts[flagNumberPicked - 1].northing-offSet);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting+offSet, 0, flagPts[flagNumberPicked - 1].northing);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, 0, flagPts[flagNumberPicked - 1].northing+offSet);
+                        double offSet = (zoomValue * zoomValue * 0.01);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
 
                         gl.End();
 
                         //draw the flag with a black dot inside
                         gl.PointSize(4.0f);
-                        gl.Color(0,0,0);
+                        gl.Color(0, 0, 0);
                         gl.Begin(OpenGL.GL_POINTS);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, 0, flagPts[flagNumberPicked - 1].northing);
+                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
                         gl.End();
- 
+
                     }
                 }
 
@@ -187,10 +187,14 @@ namespace AgOpenGPS
                 boundary.DrawBoundaryLine();
 
                 //screen text for debug
-                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " sec1: " + section[1].isInsideBoundary.ToString());
-                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " sec0: " + section[0].isInsideBoundary.ToString());
-                //gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Set: " + boundary.isSet.ToString());
-                //gl.DrawText(140, 60, 1, 1, 1, "Courier", 14, " la: " + section[0].sectionLookAhead.ToString());
+                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " Dist: " + (guidanceLineDistanceOff).ToString());
+                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " Head: " + guidanceLineHeadingDelta.ToString());
+
+                if (guidanceLineDistanceOff > 0)
+                gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Diff: " + ((guidanceLineDistanceOff - guidanceLineHeadingDelta)/200.0).ToString());
+                else  gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Diff: " + ((guidanceLineDistanceOff + guidanceLineHeadingDelta)/200.0).ToString());
+
+                gl.DrawText(140, 60, 1, 1, 1, "Courier", 14, " la: " + avgRoll.ToString());
                 //gl.DrawText(140, 75, 1, 1, 1, "Courier", 16, "  " + Convert.ToString(overSect));
                 //gl.DrawText(140, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
                 //gl.DrawText(140, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
@@ -220,10 +224,11 @@ namespace AgOpenGPS
                 if (skyToolStripMenu.Checked)
                 {
                     ////draw the background when in 3D
-                    if (camera.camPitch > -31)
+                    if (camera.camPitch < -60)
                     {
                         //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                        double hite = (camera.camPitch + 32) / 22 * 0.38;
+                        double hite = (camera.camPitch + 60) / -20 * 0.34;
+                        //hite = 0.001;
 
                         //the background
                         double winLeftPos = -(double)Width / 2;
@@ -243,30 +248,38 @@ namespace AgOpenGPS
                     }
                 }
 
-                //LightBar if AB Line is set and turned on
+                //LightBar if AB Line is set and turned on or contour
                 if (isLightbarOn)
                 {
                     if (ct.isContourBtnOn)
                     {
                         string dist;
-
                         txtDistanceOffABLine.Visible = true;
-                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine*0.1);
-                        if ((ABLine.distanceFromCurrentLine) < 0.0)                             
+                        //lblDelta.Visible = true;
+                        if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
+
+                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine * 0.1);
+                        if ((ct.distanceFromCurrentLine) < 0.0)
                         {
                             txtDistanceOffABLine.ForeColor = Color.Green;
-                            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " \u21D2";
-                            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " \u21D2";
+                            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " \u2192";
+                            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " \u2192";
                             txtDistanceOffABLine.Text = dist;
                         }
 
                         else
                         {
                             txtDistanceOffABLine.ForeColor = Color.Red;
-                            if (isMetric) dist = "\u21d0 " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
-                            else dist = "\u21d0 " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
+                            if (isMetric) dist = "\u2190 " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
+                            else dist = "\u2190 " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
                             txtDistanceOffABLine.Text = dist;
-                        }                           
+                        }
+
+                        //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
+                        //else lblDelta.ForeColor = Color.Green;
+
+                        if (guidanceLineHeadingDelta == 32020 | guidanceLineHeadingDelta == 32000) btnAutoSteer.Text = "\u2715";
+                        else btnAutoSteer.Text = "\u2713";
                     }
 
                     else
@@ -276,7 +289,8 @@ namespace AgOpenGPS
                             string dist;
 
                             txtDistanceOffABLine.Visible = true;
-                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine*0.1);
+                            //lblDelta.Visible = true;
+                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine * 0.1);
                             if ((ABLine.distanceFromCurrentLine) < 0.0)
                             {
                                 // --->
@@ -290,21 +304,37 @@ namespace AgOpenGPS
                             {
                                 // <----
                                 txtDistanceOffABLine.ForeColor = Color.Red;
-                                if (isMetric) dist = "\u21d0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
-                                else dist = "\u21d0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+                                if (isMetric) dist = "\u21D0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+                                else dist = "\u21D0 " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
                                 txtDistanceOffABLine.Text = dist;
                             }
+
+                            //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
+                            //else lblDelta.ForeColor = Color.Green;
+                            if (guidanceLineHeadingDelta == 32020 | guidanceLineHeadingDelta == 32000) btnAutoSteer.Text = "\u2715";
+                            else btnAutoSteer.Text = "\u2713";
                         }
                     }
 
                     //AB line is not set so turn off numbers
                     if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
+                    {
                         txtDistanceOffABLine.Visible = false;
+                        //lblDelta.Visible = false;
+                        btnAutoSteer.Text = "-";
+
+                    }
                 }
 
-                else txtDistanceOffABLine.Visible = false;                
+                else
+                {
+                    txtDistanceOffABLine.Visible = false;
+                    //lblDelta.Visible = false;
+                    btnAutoSteer.Text = "-";
+                }
+
                 gl.Flush();//finish openGL commands 
-               
+
                 gl.PopMatrix();//  Pop the modelview.
 
                 //  back to the projection and pop it, then back to the model view.
@@ -319,14 +349,14 @@ namespace AgOpenGPS
 
                 if (leftMouseDownOnOpenGL)
                 {
-                    leftMouseDownOnOpenGL = false; 
+                    leftMouseDownOnOpenGL = false;
                     byte[] data1 = new byte[192];
 
                     //scan the center of click and a set of square points around
-                    gl.ReadPixels(mouseX-4, mouseY-4, 8, 8, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
+                    gl.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
 
                     //made it here so no flag found
-                    flagNumberPicked = 0; 
+                    flagNumberPicked = 0;
 
                     for (int ctr = 0; ctr < 192; ctr += 3)
                     {
@@ -334,7 +364,7 @@ namespace AgOpenGPS
                         {
                             flagNumberPicked = data1[ctr + 2];
                             break;
-                        }  
+                        }
                     }
                 }
 
@@ -395,19 +425,13 @@ namespace AgOpenGPS
             gl.LoadIdentity();					// Reset The View
 
             //back the camera up
-            gl.Translate(0, 0, -384);
-
-            //flip the world over so positive z aka north goes into screen
-            gl.Rotate(180, 0, 0, 1);
-
-            //rotate the camera down to look at fix
-            gl.Rotate(-90, 1, 0, 0);
+            gl.Translate(0, 0, -390);
 
             //rotate camera so heading matched fix heading in the world
-            gl.Rotate(-glm.toDegrees(fixHeadingSection) + 180, 0, 1, 0);
+            gl.Rotate(glm.toDegrees(fixHeadingSection), 0, 0, 1);
 
             //translate to that spot in the world 
-            gl.Translate(-toolEasting, -fixPosY, -toolNorthing);
+            gl.Translate(-toolEasting, -toolNorthing, -fixPosZ);
 
             //patch color
             gl.Color(0.0f, 0.5f, 0.0f);
@@ -434,13 +458,13 @@ namespace AgOpenGPS
                         for (int i = 0; i < count2; i+=3)
                         {
                             //determine if point is in frustum or not
-                            if (frustum[0] * triList[i].easting + frustum[2] * triList[i].northing + frustum[3] <= 0)
+                            if (frustum[0] * triList[i].easting + frustum[1] * triList[i].northing + frustum[3] <= 0)
                                 continue;//right
-                            if (frustum[4] * triList[i].easting + frustum[6] * triList[i].northing + frustum[7] <= 0)
+                            if (frustum[4] * triList[i].easting + frustum[5] * triList[i].northing + frustum[7] <= 0)
                                 continue;//left
-                           if (frustum[16] * triList[i].easting + frustum[18] * triList[i].northing + frustum[19] <= 0)
+                           if (frustum[16] * triList[i].easting + frustum[17] * triList[i].northing + frustum[19] <= 0)
                                 continue;//bottom
-                            if (frustum[20] * triList[i].easting + frustum[22] * triList[i].northing + frustum[23] <= 0)
+                            if (frustum[20] * triList[i].easting + frustum[21] * triList[i].northing + frustum[23] <= 0)
                                 continue;//top
  
                             //point is in frustum so draw the entire patch
@@ -450,9 +474,9 @@ namespace AgOpenGPS
 
                         if (isDraw)
                         {
-                            //draw the triangle strip in each triangle strip
+                            //draw the triangles in each triangle strip
                             gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
-                            for (int i = 0; i < count2; i++) gl.Vertex(triList[i].easting, 0, triList[i].northing);
+                            for (int i = 0; i < count2; i++) gl.Vertex(triList[i].easting, triList[i].northing, 0);
                             gl.End();
                         }
                     }
@@ -465,26 +489,23 @@ namespace AgOpenGPS
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
 
-            //assume all buttons are on, if not, make it false
-            vehicle.areAllSectionBtnsOn = true;
-
-            //assume all sections are on, if not set them false as not being all on.
-            vehicle.areAllSectionsRequiredOn = true;
+            //assume all sections are on and super can be on, if not set false to turn off.
+            vehicle.isSuperSectionAllowedOn = true;
 
             //find any off buttons, any outside of boundary, going backwards, and the farthest lookahead
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
                 if (section[j].sectionLookAhead > rpHeight) rpHeight = section[j].sectionLookAhead;
-                if (section[j].manBtnState == manBtn.Off) vehicle.areAllSectionBtnsOn = false;
-                if (!section[j].isInsideBoundary) vehicle.areAllSectionBtnsOn = false;
+                if (section[j].manBtnState == manBtn.Off) vehicle.isSuperSectionAllowedOn = false;
+                if (!section[j].isInsideBoundary) vehicle.isSuperSectionAllowedOn = false;
 
                 //check if any sections going backwards
-                if (section[j].sectionLookAhead < 0) vehicle.areAllSectionBtnsOn = false;
+                if (section[j].sectionLookAhead < 0) vehicle.isSuperSectionAllowedOn = false;
             }
 
             //if only one section, or going slow no need for super section 
             if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff) 
-                    vehicle.areAllSectionsRequiredOn = false;
+                    vehicle.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
             rpHeight = Math.Abs(rpHeight) * 2.0;
@@ -496,11 +517,11 @@ namespace AgOpenGPS
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPixels);
 
             //10 % min is required for overlap, otherwise it never would be on.
-            int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight)*(1.0/(double)(vehicle.numOfSections*1.5)) ); 
+            int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight)/(double)(vehicle.numOfSections*1.5)); 
 
             //is applied area coming up?
             int totalPixs = 0;
-            if (vehicle.areAllSectionsRequiredOn)
+            if (vehicle.isSuperSectionAllowedOn)
             {
                 //look for anything applied coming up
                 for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
@@ -509,20 +530,14 @@ namespace AgOpenGPS
                     {
                         if (totalPixs++ > pixLimit)
                         {
-                            vehicle.areAllSectionsRequiredOn = false;
+                            vehicle.isSuperSectionAllowedOn = false;
                             break;
                         }
-                    }
-                }
 
-                //any boundary coming up and is it on? Then turn off super section
-                if (boundary.isSet)
-                {
-                    for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
-                    {
+                        //check for a boundary line
                         if (grnPixels[a] > 200)
                         {
-                            vehicle.areAllSectionsRequiredOn = false;
+                            vehicle.isSuperSectionAllowedOn = false;
                             break;
                         }
                     }
@@ -531,7 +546,7 @@ namespace AgOpenGPS
 
 
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
-            if (vehicle.areAllSectionBtnsOn && vehicle.areAllSectionsRequiredOn)
+            if (vehicle.isSuperSectionAllowedOn)
             {
                 for (int j = 0; j < vehicle.numOfSections; j++)
                 {
@@ -585,7 +600,7 @@ namespace AgOpenGPS
                                 {
                                     if (grnPixels[a] == 0)
                                     {
-                                        if (tagged++ > vehicle.minUnappliedPixels)
+                                        if (tagged++ > vehicle.toolMinUnappliedPixels)
                                         {
                                             section[j].isSectionRequiredOn = true;
                                             goto GetMeOutaHere;
@@ -659,7 +674,7 @@ namespace AgOpenGPS
                                 {
                                     if (grnPixels[a] == 0)
                                     {
-                                        if (tagged++ > vehicle.minUnappliedPixels)
+                                        if (tagged++ > vehicle.toolMinUnappliedPixels)
                                         {
                                             section[j].isSectionRequiredOn = true;
                                             goto GetMeOutaHere;
@@ -730,18 +745,18 @@ namespace AgOpenGPS
                     }  
 
                     //digital input Master control (WorkSwitch)
-                    if (isJobStarted && modcom.isWorkSwitchEnabled)
+                    if (isJobStarted && mc.isWorkSwitchEnabled)
                     {
                         //check condition of work switch
-                        if (modcom.isWorkSwitchActiveLow)
+                        if (mc.isWorkSwitchActiveLow)
                         {
-                            if (modcom.workSwitchValue == 0)
+                            if (mc.workSwitchValue == 0)
                                 { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
                             else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
                         }
                         else
                         {
-                            if (modcom.workSwitchValue == 1)
+                            if (mc.workSwitchValue == 1)
                                 { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
                             else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
                         }
@@ -752,7 +767,7 @@ namespace AgOpenGPS
             //double check the work switch to enable/disable auto section button
             if (isJobStarted)
             {
-                if (!modcom.isWorkSwitchEnabled) btnSectionOffAutoOn.Enabled = true;
+                if (!mc.isWorkSwitchEnabled) btnSectionOffAutoOn.Enabled = true;
                 else btnSectionOffAutoOn.Enabled = false;
             }
             
@@ -824,10 +839,28 @@ namespace AgOpenGPS
         {
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
-            double down = 30;
+            double down = 20;
+            int steer;
+            if (guidanceLineDistanceOff > 0)
+                steer  = (guidanceLineDistanceOff - guidanceLineHeadingDelta)>>2;
+            else steer = (guidanceLineDistanceOff + guidanceLineHeadingDelta)>>2;
 
+            if (steer > 400) steer = 400;
+            if (steer < -400) steer = -400;
+
+            //draw the delta line
+            gl.LineWidth(8);
+            gl.Color(0.96f, 0.96f, 0.0f);
+
+            gl.Begin(OpenGL.GL_LINES);
+            gl.Vertex(0, down+30);
+            gl.Vertex(-steer, down+30);
+            gl.End();
+
+            gl.LineWidth(1);
+            
             //  Dot distance is representation of how far from AB Line
-            int dotDistance = (int)(offlineDistance*0.5);
+            int dotDistance = (int)(offlineDistance);
 
             if (dotDistance < -320) dotDistance = -320;
             if (dotDistance > 320) dotDistance = 320;
@@ -835,72 +868,99 @@ namespace AgOpenGPS
             if (dotDistance < -10) dotDistance -= 30;
             if (dotDistance > 10) dotDistance += 30;
 
-            //black dot background
+            // dot background
             gl.PointSize(8.0f);
-            gl.Color(0.50f, 0.50f, 0.50f);
+            gl.Color(0.00f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int i = -11; i < 0; i++) gl.Vertex((i * 40), down);
-            for (int i = 1; i < 12; i++) gl.Vertex((i * 40), down);
+            for (int i = -10; i < 0; i++) gl.Vertex((i * 40), down);
+            for (int i = 1; i < 11; i++) gl.Vertex((i * 40), down);
             gl.End();
 
-            //Are you on the right side of line? So its green.
-            if ((offlineDistance) < 0.0)
-            {
-                int dots = dotDistance * -1 / 32;
+            gl.PointSize(4.0f);
 
-                gl.PointSize(32.0f);
-                gl.Color(0.0f, 0.0f, 0.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int i = 0; i < dots+1; i++) gl.Vertex((i * 40), down);
-                gl.End();
+            //red left side
+            gl.Color(0.9750f, 0.0f, 0.0f);
+            gl.Begin(OpenGL.GL_POINTS);
+            for (int i = -10; i < 0; i++) gl.Vertex((i * 40), down);
 
-                gl.PointSize(24.0f);
-                gl.Color(0.0f, 0.980f, 0.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int i = 0; i < dots; i++) gl.Vertex((i * 40 + 40), down);
-                gl.End();
-                //return;
-            }
+            //green right side
+            gl.Color(0.0f, 0.9750f, 0.0f);
+            for (int i = 1; i < 11; i++) gl.Vertex((i * 40), down);
+            gl.End();
 
-            else
-            {
-                int dots = dotDistance / 32;
+                //Are you on the right side of line? So its green.
+                if ((offlineDistance) < 0.0)
+                {
+                    int dots = dotDistance * -1 / 32;
 
-                gl.PointSize(32.0f);
-                gl.Color(0.0f, 0.0f, 0.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int i = 0; i < dots+1; i++) gl.Vertex((i * -40), down);
-                gl.End();
+                    gl.PointSize(32.0f);
+                    gl.Color(0.0f, 0.0f, 0.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+                    for (int i = 1; i < dots + 1; i++) gl.Vertex((i * 40), down);
+                    gl.End();
 
-                gl.PointSize(24.0f);
-                gl.Color(0.980f, 0.30f, 0.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int i = 0; i < dots; i++) gl.Vertex((i * -40 - 40), down);
-                gl.End();
-                //return;
-            }
+                    gl.PointSize(24.0f);
+                    gl.Color(0.0f, 0.980f, 0.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+                    for (int i = 0; i < dots; i++) gl.Vertex((i * 40 + 40), down);
+                    gl.End();
+                    //return;
+                }
 
+                else
+                {
+                    int dots = dotDistance / 32;
+
+                    gl.PointSize(32.0f);
+                    gl.Color(0.0f, 0.0f, 0.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+                    for (int i = 1; i < dots + 1; i++) gl.Vertex((i * -40), down);
+                    gl.End();
+
+                    gl.PointSize(24.0f);
+                    gl.Color(0.980f, 0.30f, 0.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+                    for (int i = 0; i < dots; i++) gl.Vertex((i * -40 - 40), down);
+                    gl.End();
+                    //return;
+                }
+            
             //yellow center dot
             if (dotDistance >= -10 && dotDistance <= 10)
             {
+                gl.PointSize(32.0f);                
+                gl.Color(0.0f, 0.0f, 0.0f);
+                gl.Begin(OpenGL.GL_POINTS);
+                gl.Vertex(0, down);
+                //gl.Vertex(0, down + 50);
+                gl.End();
+
                 gl.PointSize(24.0f);
                 gl.Color(0.980f, 0.98f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(-0, down);
-                //gl.Vertex(25, down);
+                gl.Vertex(0, down);
+                //gl.Vertex(0, down + 50);
                 gl.End();
-                //return;
             }
 
             else
             {
-                gl.PointSize(12.0f);
-                gl.Color(0.980f, 0.98f, 0.0f);
+
+                gl.PointSize(8.0f);
+                gl.Color(0.00f, 0.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
                 gl.Vertex(-0, down);
-                //gl.Vertex(25, down);
+                gl.Vertex(0, down + 30);
+                gl.Vertex(0, down + 60);
                 gl.End();
-                //return;
+
+                gl.PointSize(4.0f);
+                gl.Color(0.9250f, 0.9250f, 0.250f);
+                gl.Begin(OpenGL.GL_POINTS);
+                gl.Vertex(0, down);
+                gl.Vertex(0, down + 30);
+                gl.Vertex(0, down + 60);
+                gl.End();
             }
         }
 
@@ -909,7 +969,7 @@ namespace AgOpenGPS
             float[] proj = new float[16];							// For Grabbing The PROJECTION Matrix
             float[] modl = new float[16];							// For Grabbing The MODELVIEW Matrix
             float[] clip = new float[16];							// Result Of Concatenating PROJECTION and MODELVIEW
-            float t;											    // Temporary Work Variable
+            //float t;											    // Temporary Work Variable
 
             gl.GetFloat(OpenGL.GL_PROJECTION_MATRIX, proj);		// Grab The Current PROJECTION Matrix
             gl.GetFloat(OpenGL.GL_MODELVIEW_MATRIX, modl);		// Grab The Current MODELVIEW Matrix
@@ -943,11 +1003,11 @@ namespace AgOpenGPS
             frustum[3] = clip[15] - clip[12];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[0] * frustum[0] + frustum[1] * frustum[1] + frustum[2] * frustum[2]);
-            frustum[0] /= t;
-            frustum[1] /= t;
-            frustum[2] /= t;
-            frustum[3] /= t;
+            //t = (float)Math.Sqrt(frustum[0] * frustum[0] + frustum[1] * frustum[1] + frustum[2] * frustum[2]);
+            //frustum[0] /= t;
+            //frustum[1] /= t;
+            //frustum[2] /= t;
+            //frustum[3] /= t;
 
 
             // Extract the LEFT clipping plane
@@ -957,11 +1017,11 @@ namespace AgOpenGPS
             frustum[7] = clip[15] + clip[12];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[4] * frustum[4] + frustum[5] * frustum[5] + frustum[6] * frustum[6]);
-            frustum[4] /= t;
-            frustum[5] /= t;
-            frustum[6] /= t;
-            frustum[7] /= t;
+            //t = (float)Math.Sqrt(frustum[4] * frustum[4] + frustum[5] * frustum[5] + frustum[6] * frustum[6]);
+            //frustum[4] /= t;
+            //frustum[5] /= t;
+            //frustum[6] /= t;
+            //frustum[7] /= t;
 
             // Extract the FAR clipping plane
             frustum[8] = clip[3] - clip[2];
@@ -970,11 +1030,11 @@ namespace AgOpenGPS
             frustum[11] = clip[15] - clip[14];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[8] * frustum[8] + frustum[9] * frustum[9] + frustum[10] * frustum[10]);
-            frustum[8] /= t;
-            frustum[9] /= t;
-            frustum[10] /= t;
-            frustum[11] /= t;
+            //t = (float)Math.Sqrt(frustum[8] * frustum[8] + frustum[9] * frustum[9] + frustum[10] * frustum[10]);
+            //frustum[8] /= t;
+            //frustum[9] /= t;
+            //frustum[10] /= t;
+            //frustum[11] /= t;
 
             // Extract the NEAR clipping plane.  This is last on purpose (see pointinfrustum() for reason)
             frustum[12] = clip[3] + clip[2];
@@ -983,11 +1043,11 @@ namespace AgOpenGPS
             frustum[15] = clip[15] + clip[14];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[12] * frustum[12] + frustum[13] * frustum[13] + frustum[14] * frustum[14]);
-            frustum[12] /= t;
-            frustum[13] /= t;
-            frustum[14] /= t;
-            frustum[15] /= t;
+            //t = (float)Math.Sqrt(frustum[12] * frustum[12] + frustum[13] * frustum[13] + frustum[14] * frustum[14]);
+            //frustum[12] /= t;
+            //frustum[13] /= t;
+            //frustum[14] /= t;
+            //frustum[15] /= t;
 
             // Extract the BOTTOM clipping plane
             frustum[16] = clip[3] + clip[1];
@@ -996,11 +1056,11 @@ namespace AgOpenGPS
             frustum[19] = clip[15] + clip[13];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[16] * frustum[16] + frustum[17] * frustum[17] + frustum[18] * frustum[18]);
-            frustum[16] /= t;
-            frustum[17] /= t;
-            frustum[18] /= t;
-            frustum[19] /= t;
+            //t = (float)Math.Sqrt(frustum[16] * frustum[16] + frustum[17] * frustum[17] + frustum[18] * frustum[18]);
+            //frustum[16] /= t;
+            //frustum[17] /= t;
+            //frustum[18] /= t;
+            //frustum[19] /= t;
 
 
             // Extract the TOP clipping plane
@@ -1010,11 +1070,11 @@ namespace AgOpenGPS
             frustum[23] = clip[15] - clip[13];
 
             // Normalize it
-            t = (float)Math.Sqrt(frustum[20] * frustum[20] + frustum[21] * frustum[21] + frustum[22] * frustum[22]);
-            frustum[20] /= t;
-            frustum[21] /= t;
-            frustum[22] /= t;
-            frustum[23] /= t;
+            //t = (float)Math.Sqrt(frustum[20] * frustum[20] + frustum[21] * frustum[21] + frustum[22] * frustum[22]);
+            //frustum[20] /= t;
+            //frustum[21] /= t;
+            //frustum[22] /= t;
+            //frustum[23] /= t;
         } 
     }
 }

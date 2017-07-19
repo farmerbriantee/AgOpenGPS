@@ -263,12 +263,13 @@ namespace AgOpenGPS
             mf.recvSentenceSettings = "";
 
             //Arduino phrases
-            txtBoxRecvArduino.Text = mf.modcom.serialRecvRelayStr;
-            txtBoxSendArduino.Text = mf.modcom.relaySectionControl[0].ToString();
+            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayStr;
+            txtBoxSendArduino.Text = mf.mc.relaySectionControl[0].ToString();
 
             //autoSteer
-            txtBoxRecvAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
-            txtBoxSendAutoSteer.Text = mf.modcom.autoSteerControl[0].ToString();
+            txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
+            txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)

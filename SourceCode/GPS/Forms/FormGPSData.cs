@@ -48,14 +48,13 @@ namespace AgOpenGPS
             lblStatus.Text = mf.Status;
             lblHDOP.Text = mf.HDOP;
 
-            tboxSerialFromRelay.Text = mf.modcom.serialRecvRelayStr;
-            tboxSerialToRelay.Text = mf.modcom.relaySectionControl[0].ToString();
+            tboxSerialFromRelay.Text = mf.mc.serialRecvRelayStr;
+            tboxSerialToRelay.Text = mf.mc.relaySectionControl[0].ToString();
             tboxNMEASerial.Text = mf.recvSentenceSettings;
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
 
-            tboxSerialFromAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[0] + ", " + mf.modcom.autoSteerControl[1]
-                                + ", " + mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
+            tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
+            tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
         }
  

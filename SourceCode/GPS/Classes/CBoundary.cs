@@ -60,7 +60,7 @@ namespace AgOpenGPS
         public void PreCalcBoundaryLines()
         {
             int j = ptList.Count - 1;
-            //clear the list, constant is x, multiple is z
+            //clear the list, constant is easting, multiple is northing
             calcList.Clear();
             vec2 constantMultiple = new vec2(0, 0);
 
@@ -115,15 +115,15 @@ namespace AgOpenGPS
             gl.LineWidth(4);
             gl.Color(0.98f, 0.2f, 0.60f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, 0, ptList[h].northing);
+            for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
             gl.End();
 
             //the "close the loop" line
             gl.LineWidth(4);
             gl.Color(0.9f, 0.32f, 0.70f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
-            gl.Vertex(ptList[ptCount - 1].easting, 0, ptList[ptCount - 1].northing);
-            gl.Vertex(ptList[0].easting, 0, ptList[0].northing);
+            gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
+            gl.Vertex(ptList[0].easting, ptList[0].northing, 0);
             gl.End();
         }
 
@@ -136,15 +136,15 @@ namespace AgOpenGPS
             glb.LineWidth(4);
             glb.Color(0.0f, 0.99f, 0.0f);
             glb.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) glb.Vertex(ptList[h].easting, 0, ptList[h].northing);
+            for (int h = 0; h < ptCount; h++) glb.Vertex(ptList[h].easting, ptList[h].northing, 0);
             glb.End();
 
             //the "close the loop" line
             glb.LineWidth(4);
             glb.Color(0.0f, 0.990f, 0.0f);
             glb.Begin(OpenGL.GL_LINE_STRIP);
-            glb.Vertex(ptList[ptCount - 1].easting, 0, ptList[ptCount - 1].northing);
-            glb.Vertex(ptList[0].easting, 0, ptList[0].northing);
+            glb.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
+            glb.Vertex(ptList[0].easting, ptList[0].northing, 0);
             glb.End();
         }
 

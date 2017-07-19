@@ -29,30 +29,40 @@ namespace AgOpenGPS
             InitializeComponent();
         }
 
+         private void FormSteer_Load(object sender, EventArgs e)
+        {
+            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
+            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
+            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
+            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
+            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
+            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            tboxSerialFromAutoSteer.Text = mf.modcom.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = mf.modcom.autoSteerControl[2] + ", " + mf.modcom.autoSteerControl[3]
+            tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
+            tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
 
             //just data
-            words = mf.modcom.serialRecvAutoSteerStr.Split(',');
+            words = mf.mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length < 5)
             {
-                dataSteerAngle = "2";
-                dataP = "4";
-                dataI = "6";
-                dataD = "-6";
-                dataPWM = "-10";
+                dataSteerAngle = "0";
+                dataP = "1";
+                dataI = "2";
+                dataD = "-1";
+                dataPWM = "-2";
             }
 
             else
             {
-                dataSteerAngle = mf.modcom.serialRecvAutoSteerStr.Split(',')[0];
-                dataP = mf.modcom.serialRecvAutoSteerStr.Split(',')[1];
-                dataI = mf.modcom.serialRecvAutoSteerStr.Split(',')[2];
-                dataD = mf.modcom.serialRecvAutoSteerStr.Split(',')[3];
-                dataPWM = mf.modcom.serialRecvAutoSteerStr.Split(',')[4];
+                dataSteerAngle = mf.mc.serialRecvAutoSteerStr.Split(',')[0];
+                dataP = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
+                dataI = mf.mc.serialRecvAutoSteerStr.Split(',')[2];
+                dataD = mf.mc.serialRecvAutoSteerStr.Split(',')[3];
+                dataPWM = mf.mc.serialRecvAutoSteerStr.Split(',')[4];
 
                 lblSteerAng.Text = dataSteerAngle;
                 lblP.Text = dataP;
@@ -118,108 +128,119 @@ namespace AgOpenGPS
         //Send to Autosteer to adjust PIDO values, LSB is up or down
         private void btnPPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[2] += 1;
-            lblPValue.Text = mf.modcom.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.modcom.autoSteerSettings[2];
+            mf.mc.autoSteerSettings[mf.mc.ssKp] += 1;
+            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
+            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnPMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[2] -= 1;
-            if (mf.modcom.autoSteerSettings[2] == 255) mf.modcom.autoSteerSettings[2] = 0;
-            lblPValue.Text = mf.modcom.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.modcom.autoSteerSettings[2];
+            mf.mc.autoSteerSettings[mf.mc.ssKp] -= 1;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssKp] == 255) mf.mc.autoSteerSettings[mf.mc.ssKp] = 0;
+            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
+            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnIPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[3] += 1;
-            lblIValue.Text = mf.modcom.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.modcom.autoSteerSettings[3];
+            mf.mc.autoSteerSettings[mf.mc.ssKi] += 1;
+            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
+            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnIMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[3] -= 1;
-            if (mf.modcom.autoSteerSettings[3] == 255) mf.modcom.autoSteerSettings[3] = 0;
-            lblIValue.Text = mf.modcom.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.modcom.autoSteerSettings[3];
+            mf.mc.autoSteerSettings[mf.mc.ssKi] -= 1;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssKi] == 255) mf.mc.autoSteerSettings[mf.mc.ssKi] = 0;
+            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
+            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnDPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[4] += 1;
-            lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.modcom.autoSteerSettings[4];
+            mf.mc.autoSteerSettings[mf.mc.ssKd] += 1;
+            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
+            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnDMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[4] -= 1;
-            if (mf.modcom.autoSteerSettings[4] == 255) mf.modcom.autoSteerSettings[4] = 0;
-            lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.modcom.autoSteerSettings[4];
+            mf.mc.autoSteerSettings[mf.mc.ssKd] -= 1;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssKd] == 255) mf.mc.autoSteerSettings[mf.mc.ssKd] = 0;
+            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
+            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnOPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[5] += 1;
-            lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.modcom.autoSteerSettings[5];
+            mf.mc.autoSteerSettings[mf.mc.ssKo] += 1;
+            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
+            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
         private void btnOMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[5] -= 1;
-            if (mf.modcom.autoSteerSettings[5] == 255) mf.modcom.autoSteerSettings[5] = 0;
-            lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.modcom.autoSteerSettings[5];
+            mf.mc.autoSteerSettings[mf.mc.ssKo] -= 1;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssKo] == 255) mf.mc.autoSteerSettings[mf.mc.ssKo] = 0;
+            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
+            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void btnMaxIntErrPlus_Click(object sender, EventArgs e)
+        private void btnSteerPlus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[6] += 1;
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_maxIntError = mf.modcom.autoSteerSettings[6];
+            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] += 1;
+            //if (mf.modcom.autoSteerSettings[6] == 255) mf.modcom.autoSteerSettings[6] = 0;
+            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
+            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void btnMaxIntErrMinus_Click(object sender, EventArgs e)
+        private void btnSteerMinus_Click(object sender, EventArgs e)
         {
-            mf.modcom.autoSteerSettings[6] -= 1;
-            if (mf.modcom.autoSteerSettings[6] == 255) mf.modcom.autoSteerSettings[6] = 0;
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_maxIntError = mf.modcom.autoSteerSettings[6];
+            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] -= 1;
+            //if (mf.modcom.autoSteerSettings[mf.mc.ssSteerOffset] == 0) mf.modcom.autoSteerSettings[mf.mc.ssSteerOffset] = 255;
+            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
+            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void FormSteer_Load(object sender, EventArgs e)
+        private void btnMinPWMPlus_Click(object sender, EventArgs e)
         {
-            lblPValue.Text = mf.modcom.autoSteerSettings[2].ToString();
-            lblIValue.Text = mf.modcom.autoSteerSettings[3].ToString();
-            lblDValue.Text = mf.modcom.autoSteerSettings[4].ToString();
-            lblOValue.Text = mf.modcom.autoSteerSettings[5].ToString();
-            lblMaxIntErr.Text = mf.modcom.autoSteerSettings[6].ToString();
+            mf.mc.autoSteerSettings[mf.mc.ssMinPWM] += 1;
+            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
+            Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+
         }
 
+        private void btnMinPWMMinus_Click(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssMinPWM] -= 1;
+            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
+            Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+
+        }
         private void btnAuto_Click(object sender, EventArgs e)
         {
             unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;
@@ -252,6 +273,6 @@ namespace AgOpenGPS
             unoChart.ChartAreas[0].AxisY.Maximum -= 50;
             unoChart.ResetAutoValues();
 
-        } 
+        }
     }
 }

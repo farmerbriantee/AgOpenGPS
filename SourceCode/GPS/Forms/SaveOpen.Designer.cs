@@ -103,7 +103,12 @@ namespace AgOpenGPS
                     writer.WriteLine("pidI," + Properties.Settings.Default.setAS_Ki);
                     writer.WriteLine("pidD," + Properties.Settings.Default.setAS_Kd);
                     writer.WriteLine("pidO," + Properties.Settings.Default.setAS_Ko);
-                    writer.WriteLine("pidW," + Properties.Settings.Default.setAS_maxIntError);                     
+                    writer.WriteLine("SteerAngleOffset," + Properties.Settings.Default.setAS_steerAngleOffset);
+
+                    writer.WriteLine("minPWM," + Properties.Settings.Default.setAS_minSteerPWM);
+
+                    writer.WriteLine("ToolMinUnappliedPixels," + Properties.Settings.Default.setVehicle_minApplied);
+
                 }
                 //little show to say saved and where
 
@@ -268,7 +273,37 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_Ko = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_maxIntError = byte.Parse(words[1]);
+                        Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1]);
+
+                        //**********new versions of load/save vehicle must test for older vehicle files****************
+
+                        //set a default value if not exist in file, next save they will be there
+                        mc.autoSteerData[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+
+                        //read in new values only if they exist
+                        while (!reader.EndOfStream)
+                        {
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1]);
+                            mc.autoSteerData[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+
+                            line = reader.ReadLine(); words = line.Split(',');
+
+                        }
+
+                        //set a default value if not exist in file, next save they will be there
+                        vehicle.toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
+
+                        //read in new values only if they exist
+                        while (!reader.EndOfStream)
+                        {
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setVehicle_minApplied = int.Parse(words[1]);
+                            vehicle.toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
+
+                            line = reader.ReadLine(); words = line.Split(',');
+
+                        }
 
                         //Properties.Settings.Default.setPort_portNameGPS = (words[1]);
                         //Properties.Settings.Default.setPort_baudRate = int.Parse(words[1]);
@@ -304,14 +339,14 @@ namespace AgOpenGPS
                         vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
                         vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isToolBehindPivot;
 
-                        modcom.autoSteerSettings[2] = Properties.Settings.Default.setAS_Kp;
-                        modcom.autoSteerSettings[3] = Properties.Settings.Default.setAS_Ki;
-                        modcom.autoSteerSettings[4] = Properties.Settings.Default.setAS_Kd;
-                        modcom.autoSteerSettings[5] = Properties.Settings.Default.setAS_Ko;
-                        modcom.autoSteerSettings[6] = Properties.Settings.Default.setAS_maxIntError;
+                        mc.autoSteerSettings[mc.ssKp] = Properties.Settings.Default.setAS_Kp;
+                        mc.autoSteerSettings[mc.ssKi] = Properties.Settings.Default.setAS_Ki;
+                        mc.autoSteerSettings[mc.ssKd] = Properties.Settings.Default.setAS_Kd;
+                        mc.autoSteerSettings[mc.ssKo] = Properties.Settings.Default.setAS_Ko;
+                        mc.autoSteerSettings[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
 
-                        modcom.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
-                        modcom.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
+                        mc.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
+                        mc.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
 
                         //Set width of section and positions for each section
                         SectionSetPosition();
@@ -366,27 +401,21 @@ namespace AgOpenGPS
 
                         //Application.Exit();
                     }
-                    catch (Exception e)
-                        //FormatException e || IndexOutOfRangeException e2)
+                    catch (Exception e) //FormatException e || IndexOutOfRangeException e2)
                     {
-
                         WriteErrorLog("Open Vehicle" + e.ToString());
 
+                        //vehicle is corrupt, reload with all default information
                         Properties.Settings.Default.Reset();
                         Properties.Settings.Default.Save();
                         MessageBox.Show("Program will Reset to Recover. Please Restart", "Vehicle file is Corrupt", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         Application.Exit();
-
                     }
-
                 }
-
-            }
-            //cancelled out of open file
-
+            }      //cancelled out of open file
         }//end of open file
 
-        //function to open a previously saved field, Contour, Flags
+        //function to open a previously saved field, Contour, Flags, Boundary
         public void FileOpenField(string _openType)
         {
             string fileAndDirectory;

@@ -39,15 +39,15 @@ namespace AgOpenGPS
             gl.LineWidth(2);
             gl.Color(0.2f, 0.98f, 0.0f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) gl.Vertex(periPtList[h].easting, 0, periPtList[h].northing);
+            for (int h = 0; h < ptCount; h++) gl.Vertex(periPtList[h].easting, periPtList[h].northing, 0);
             gl.End();
 
             //the "close the loop" line
             gl.LineWidth(1);
             gl.Color(0.98f, 0.8f, 0.0f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
-            gl.Vertex(periPtList[ptCount-1].easting, 0, periPtList[ptCount-1].northing);
-            gl.Vertex(periPtList[0].easting, 0, periPtList[0].northing);
+            gl.Vertex(periPtList[ptCount-1].easting, periPtList[ptCount-1].northing, 0);
+            gl.Vertex(periPtList[0].easting, periPtList[0].northing, 0);
             gl.End();
             
              

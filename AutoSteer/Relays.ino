@@ -1,4 +1,4 @@
- void SetRelays(void)
+   void SetRelays(void)
  {
     if (bitRead(relay,0)) bitSet(PORTD, 5); //Digital Pin 5
     else bitClear(PORTD, 5); 
@@ -17,4 +17,3 @@
     //if (bitRead(relay,7)) bitSet(PORTC, 5); //Analog Pin A5
     //else bitClear(PORTC, 5); 
   }
-
