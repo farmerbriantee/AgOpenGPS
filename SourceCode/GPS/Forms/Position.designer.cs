@@ -195,7 +195,7 @@ namespace AgOpenGPS
             //roll = Math.Sin(glm.toRadians(rollAngle));
             rollDistance = Math.Abs(roll * vehicle.antennaHeight);
 
-            rollDistance = 0;
+            //rollDistance = 0;
 
             //tilt to left is positive 
             if (roll > 0)
