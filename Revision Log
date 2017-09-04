@@ -1,3 +1,9 @@
+v2.15 Sept 2015
+*
+* Pure pursuit guidance
+* Removed all heading Delta strings
+* Auto steer module rewritten for steering radius
+
 v2.14 May 15
 *
 * June....
