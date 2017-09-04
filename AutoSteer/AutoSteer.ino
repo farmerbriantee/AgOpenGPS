@@ -17,26 +17,25 @@
   #define RAD2GRAD 57.2957795
 
   byte relay = 0, workSwitch = 0, speeed = 0;
-  float distanceActual = 0;
-  float headingActual = 0;
-  float headingError = 0;
-  
-  byte pidSetting = 0;
-  
-  int steeringPosition = 0, steeringPositionZero = 512; 
+  float distanceFromLine = 0; // not used
+  float steerAngleActual = 0; // the steering wheels angle currently
+  float steerAngleSetPoint = 0; //the desired angle from AgOpen
+
+  int steeringPosition = 0, steeringPositionZero = 512; //from steering sensor
   int tilt = 0, roll = 0;
   int pwmDrive = 0, drive = 0, pwmDisplay = 0;
   float pValue = 0, iValue = 0, dValue = 0;
   byte minPWMValue = 10;
+  float steerAngleError = 0; //setpoint - actual
  
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
   //PID variables
   float Ko = 1.0f;  //overall gain
-  float Kp = 0.1f;  //proportional gain
+  float Kp = 1.0f;  //proportional gain
   float Ki = 0.008f;//integral gain
-  float Kd = 3.0f;  //derivative gain  
+  float Kd = 1.0f;  //derivative gain  
   int   maxIntErr = 3000; //anti windup max  
   float lastError = 0, lastLastError = 0, integrated_error = 0, dError = 0;
 
@@ -81,15 +80,40 @@ void loop()
   //Header has been found, presumably the next 6 bytes are the data
   if (Serial.available()> 5 && isDataFound)
   {  
-    relay = Serial.read();   // read relay control from AgOpenGPS
-    speeed = Serial.read()>>2;  //single byte
-    distanceActual = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
-    headingActual = (float)(Serial.read() << 8 | Serial.read());     //high low bytes 
-    
     isDataFound = false;    
+    relay = Serial.read();   // read relay control from AgOpenGPS
+
+    //actual speed times 4
+    speeed = Serial.read()>>2;  //single byte
+
+    //distance from the guidance line in mm
+    distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
+
+    //set point steer angle * 10 is sent
+    steerAngleSetPoint = (float)(Serial.read() << 8 | Serial.read()); //high low bytes 
+    steerAngleSetPoint /=10.0;
+    
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     SetRelays();
-    steeringPosition = ( analogRead(A0) - steeringPositionZero);   //read the steering position sensor
+
+    //steering position and steer angle
+    analogRead(A0); //discard initial reading
+    steeringPosition = analogRead(A0);
+    delay(1);
+    steeringPosition += analogRead(A0);
+    delay(1);
+    steeringPosition += analogRead(A0);
+    delay(1);
+    steeringPosition += analogRead(A0);
+    delay(1);
+    steeringPosition = steeringPosition >> 2; //divide by 4    
+    steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
+
+    //convert position to steer angle. 4 counts per degree of steer pot position / 10
+    //make sure that negative means a left turn and positive value is a right turn
+    steerAngleActual = (float)(steeringPosition)/-4.0;    
+
+    //inclinometer
     delay(1);
     analogRead(A1); //discard
     tilt = analogRead(A1);
@@ -98,8 +122,7 @@ void loop()
     tilt = map(tilt,0,1023,-500,500);
 
     //the steering part - if not off or invalid
-    if (distanceActual == 32020 | distanceActual == 32000             //auto Steer is off if 32020, invalid if 32000
-          | abs(distanceActual) > 4000 | abs (headingActual) > 6000   // greater then 4 meters off, steep angle > .4 radians
+    if (distanceFromLine == 32020 | distanceFromLine == 32000             //auto Steer is off if 32020, invalid if 32000
           | speeed < 1)                                               //Speed is too slow
     {
       pwmDrive = 0; //turn off steering motor
@@ -107,7 +130,7 @@ void loop()
       bitClear(PORTD, 6); //Digital Pin 6
 
       //send to AgOpenGPS - autosteer is off
-      Serial.print(steeringPosition);
+      Serial.print(steerAngleActual);
       Serial.print(",");    
       Serial.print(Kp);
       Serial.print(",");    
@@ -126,6 +149,7 @@ void loop()
      *  Positive heading, heading to the line, negative is away from the line
      *  Positive error - turn left   <<<<<
      *  Negative error - turn right  >>>>>
+     *  sin (steering angle) = wheelbase/radius
      */
      
     else          //valid spot to turn on autosteer
@@ -133,23 +157,15 @@ void loop()
       bitSet(PORTD, 6);             //Digital Pin 6 turn relay 2 on
       bitSet(PINB, 5);              //turn LED on showing in headingDelta loop      
 
-      //determine ideal approach angle based on distance from line. 
-      if (distanceActual > 0 )       //positive on the right side of line
-      { 
-        headingError = (distanceActual - headingActual)/50 - steeringPosition;                
-      }  
-      
-      else                            //on the left side and has negative distance from line 
-      {      
-       headingError = (distanceActual + headingActual)/50 - steeringPosition;                                                                                                                                                                           
-      } 
+      //setpoint is 10 times the actual desired angle
+      steerAngleError = steerAngleActual - steerAngleSetPoint;                    
       
       calcSteeringPID();  
                                                                                                           
       motorDrive();    //out to motors the pwm value
 
       //send to agopenGPS
-      Serial.print(steeringPosition);
+      Serial.print(steerAngleActual);
       Serial.print(",");    
       Serial.print(pValue);
       Serial.print(",");    
@@ -161,8 +177,7 @@ void loop()
       Serial.print(",");
       Serial.println(tilt);   //tilt     
     } 
-  }
-  
+  }  
 
   //Header has been found, presumably the next 6 bytes are the settings
   if (Serial.available() > 5 && isSettingFound)
@@ -170,11 +185,11 @@ void loop()
     isSettingFound = false;
 
     //change the factors as required for your own PID values
-    Kp = (float)Serial.read() * 0.01;   // read Kp from AgOpenGPS
-    Ki = (float)Serial.read() * 0.001;   // read Ki from AgOpenGPS
-    Kd = (float)Serial.read() * 0.1;   // read Kd from AgOpenGPS
+    Kp = (float)Serial.read() * 1.0;   // read Kp from AgOpenGPS
+    Ki = (float)Serial.read() * 1.0;   // read Ki from AgOpenGPS
+    Kd = (float)Serial.read() * 1.0;   // read Kd from AgOpenGPS
     Ko = (float)Serial.read() * 0.1;   // read Ko from AgOpenGPS
-    steeringPositionZero = 412 + Serial.read();  //read steering zero offset
+    steeringPositionZero = 512 + Serial.read();  //read steering zero offset
     minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
   }
 }
