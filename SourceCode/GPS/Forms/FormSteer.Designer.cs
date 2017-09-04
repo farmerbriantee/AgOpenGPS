@@ -70,6 +70,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnMinPWMMinus = new System.Windows.Forms.Button();
             this.btnMinPWMPlus = new System.Windows.Forms.Button();
+            this.btnLookAheadMinus = new System.Windows.Forms.Button();
+            this.buttonLookAheadPlus = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +96,7 @@
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(343, 29);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(350, 29);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // label15
@@ -318,7 +320,7 @@
             this.unoChart.Series.Add(series3);
             this.unoChart.Series.Add(series4);
             this.unoChart.Series.Add(series5);
-            this.unoChart.Size = new System.Drawing.Size(809, 346);
+            this.unoChart.Size = new System.Drawing.Size(816, 346);
             this.unoChart.TabIndex = 179;
             // 
             // lblSteerAng
@@ -480,9 +482,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(68, 3);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(150, 13);
+            this.label6.Size = new System.Drawing.Size(180, 13);
             this.label6.TabIndex = 193;
-            this.label6.Text = "Relay, Speed, Distance, Delta";
+            this.label6.Text = "Relay, Speed, Distance, Steer Angle";
             // 
             // label7
             // 
@@ -528,12 +530,38 @@
             this.btnMinPWMPlus.UseVisualStyleBackColor = true;
             this.btnMinPWMPlus.Click += new System.EventHandler(this.btnMinPWMPlus_Click);
             // 
+            // btnLookAheadMinus
+            // 
+            this.btnLookAheadMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLookAheadMinus.Location = new System.Drawing.Point(730, 98);
+            this.btnLookAheadMinus.Name = "btnLookAheadMinus";
+            this.btnLookAheadMinus.Size = new System.Drawing.Size(79, 39);
+            this.btnLookAheadMinus.TabIndex = 199;
+            this.btnLookAheadMinus.Text = "255";
+            this.btnLookAheadMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnLookAheadMinus.UseVisualStyleBackColor = true;
+            this.btnLookAheadMinus.Click += new System.EventHandler(this.btnLookAheadMinus_Click);
+            // 
+            // buttonLookAheadPlus
+            // 
+            this.buttonLookAheadPlus.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLookAheadPlus.Location = new System.Drawing.Point(730, 52);
+            this.buttonLookAheadPlus.Name = "buttonLookAheadPlus";
+            this.buttonLookAheadPlus.Size = new System.Drawing.Size(79, 39);
+            this.buttonLookAheadPlus.TabIndex = 198;
+            this.buttonLookAheadPlus.Text = "Look";
+            this.buttonLookAheadPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonLookAheadPlus.UseVisualStyleBackColor = true;
+            this.buttonLookAheadPlus.Click += new System.EventHandler(this.buttonLookAheadPlus_Click);
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(808, 482);
+            this.ClientSize = new System.Drawing.Size(815, 482);
+            this.Controls.Add(this.btnLookAheadMinus);
+            this.Controls.Add(this.buttonLookAheadPlus);
             this.Controls.Add(this.btnMinPWMMinus);
             this.Controls.Add(this.btnMinPWMPlus);
             this.Controls.Add(this.label8);
@@ -613,5 +641,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnMinPWMMinus;
         private System.Windows.Forms.Button btnMinPWMPlus;
+        private System.Windows.Forms.Button btnLookAheadMinus;
+        private System.Windows.Forms.Button buttonLookAheadPlus;
     }
 }

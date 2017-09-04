@@ -209,5 +209,8 @@
     <Setting Name="set_boundaryTriggerDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
+    <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2.5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

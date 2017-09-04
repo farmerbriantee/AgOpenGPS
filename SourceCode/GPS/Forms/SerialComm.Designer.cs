@@ -84,8 +84,8 @@ namespace AgOpenGPS
             if (words.Length == 6)
             {
                 int.TryParse(words[5], out mc.rollRaw);
-                if (mc.rollRaw > 400 | mc.rollRaw < -400) mc.rollRaw = 0;
-                else rollAngle = Math.Round((double)mc.rollRaw/20.0 + rollZero,2);
+                //if (mc.rollRaw > 400 | mc.rollRaw < -400) mc.rollRaw = 0;
+                 rollAngle = Math.Round((double)mc.rollRaw/20.0 + rollZero,2);
             }
 
             else rollAngle = 0;

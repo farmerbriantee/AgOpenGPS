@@ -55,7 +55,7 @@ namespace AgOpenGPS
 
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
         }
  
      }

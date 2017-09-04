@@ -54,6 +54,9 @@ namespace AgOpenGPS
         //min vehicle speed allowed before turning shit off
         public double slowSpeedCutoff = 0;
 
+        //autosteer values
+        public double goalPointLookAhead = 3;
+
         public CVehicle(OpenGL gl, FormGPS f)
         {
             //constructor
@@ -86,6 +89,8 @@ namespace AgOpenGPS
 
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
             toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
+
+            goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
         }
 
         public void DrawVehicle()
@@ -181,7 +186,7 @@ namespace AgOpenGPS
                 }
             gl.End();
 
-            //draw section markers
+            //draw section markers if close enough
             if (mf.camera.camSetDistance > -1500)
             {
                 gl.Color(0.0f, 0.0f, 0.0f);

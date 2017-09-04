@@ -35,7 +35,7 @@ namespace AgOpenGPS
                 gl.LoadIdentity();
 
                 //camera does translations and rotations
-                camera.SetWorldCam(gl, pivotAxleEasting, pivotAxleNorthing, fixPosZ, fixHeadingCam);
+                camera.SetWorldCam(gl, pivotAxlePos.easting, pivotAxlePos.northing, fixPosZ, fixHeadingCam);
 
                 //calculate the frustum planes for culling
                 CalcFrustum(gl);
@@ -187,18 +187,18 @@ namespace AgOpenGPS
                 boundary.DrawBoundaryLine();
 
                 //screen text for debug
-                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " Dist: " + (guidanceLineDistanceOff).ToString());
-                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " Head: " + guidanceLineHeadingDelta.ToString());
+                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " Dist: " + (ABLine.lookAheadDistanceSquared).ToString());
+                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " Head: " + fixHeading.ToString());
 
-                if (guidanceLineDistanceOff > 0)
-                gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Diff: " + ((guidanceLineDistanceOff - guidanceLineHeadingDelta)/200.0).ToString());
-                else  gl.DrawText(140, 45, 1, 1, 1, "Courier", 14, " Diff: " + ((guidanceLineDistanceOff + guidanceLineHeadingDelta)/200.0).ToString());
+               
+                gl.DrawText(40, 45, 1, 1, 1, "Courier", 18, " SteerAngle: " + Convert.ToString(guidanceLineSteerAngle/10));
+   
+                //gl.DrawText(40, 70, 1, 1, 1, "Courier", 18, " Radius: " + Convert.ToString((int)ABLine.ppRadiusAB));
 
-                gl.DrawText(140, 60, 1, 1, 1, "Courier", 14, " la: " + avgRoll.ToString());
-                //gl.DrawText(140, 75, 1, 1, 1, "Courier", 16, "  " + Convert.ToString(overSect));
-                //gl.DrawText(140, 90, 1, 1, 1, "Courier", 12, "   t " + Convert.ToString(t));
-                //gl.DrawText(140, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
-                //gl.DrawText(140, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
+                //gl.DrawText(40, 75, 1, 1, 1, "Courier", 16, " SteerCT " + Convert.ToString(ct.steeringAngleCT));
+                //gl.DrawText(40, 90, 1, 1, 1, "Courier", 12, " RadiusCT " + Convert.ToString(ct.radiusCT));
+                //gl.DrawText(40, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
+                //gl.DrawText(40, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
@@ -278,7 +278,7 @@ namespace AgOpenGPS
                         //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
                         //else lblDelta.ForeColor = Color.Green;
 
-                        if (guidanceLineHeadingDelta == 32020 | guidanceLineHeadingDelta == 32000) btnAutoSteer.Text = "\u2715";
+                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "\u2715";
                         else btnAutoSteer.Text = "\u2713";
                     }
 
@@ -311,7 +311,7 @@ namespace AgOpenGPS
 
                             //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
                             //else lblDelta.ForeColor = Color.Green;
-                            if (guidanceLineHeadingDelta == 32020 | guidanceLineHeadingDelta == 32000) btnAutoSteer.Text = "\u2715";
+                            if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "\u2715";
                             else btnAutoSteer.Text = "\u2713";
                         }
                     }
@@ -431,7 +431,7 @@ namespace AgOpenGPS
             gl.Rotate(glm.toDegrees(fixHeadingSection), 0, 0, 1);
 
             //translate to that spot in the world 
-            gl.Translate(-toolEasting, -toolNorthing, -fixPosZ);
+            gl.Translate(-toolPos.easting, -toolPos.northing, -fixPosZ);
 
             //patch color
             gl.Color(0.0f, 0.5f, 0.0f);
@@ -840,22 +840,6 @@ namespace AgOpenGPS
             //  Get the OpenGL object.
             OpenGL gl = openGLControl.OpenGL;
             double down = 20;
-            int steer;
-            if (guidanceLineDistanceOff > 0)
-                steer  = (guidanceLineDistanceOff - guidanceLineHeadingDelta)>>2;
-            else steer = (guidanceLineDistanceOff + guidanceLineHeadingDelta)>>2;
-
-            if (steer > 400) steer = 400;
-            if (steer < -400) steer = -400;
-
-            //draw the delta line
-            gl.LineWidth(8);
-            gl.Color(0.96f, 0.96f, 0.0f);
-
-            gl.Begin(OpenGL.GL_LINES);
-            gl.Vertex(0, down+30);
-            gl.Vertex(-steer, down+30);
-            gl.End();
 
             gl.LineWidth(1);
             
@@ -950,17 +934,17 @@ namespace AgOpenGPS
                 gl.Color(0.00f, 0.0f, 0.0f);
                 gl.Begin(OpenGL.GL_POINTS);
                 gl.Vertex(-0, down);
-                gl.Vertex(0, down + 30);
-                gl.Vertex(0, down + 60);
+                //gl.Vertex(0, down + 30);
+                //gl.Vertex(0, down + 60);
                 gl.End();
 
-                gl.PointSize(4.0f);
-                gl.Color(0.9250f, 0.9250f, 0.250f);
-                gl.Begin(OpenGL.GL_POINTS);
-                gl.Vertex(0, down);
-                gl.Vertex(0, down + 30);
-                gl.Vertex(0, down + 60);
-                gl.End();
+                //gl.PointSize(4.0f);
+                //gl.Color(0.9250f, 0.9250f, 0.250f);
+                //gl.Begin(OpenGL.GL_POINTS);
+                //gl.Vertex(0, down);
+                //gl.Vertex(0, down + 30);
+                //gl.Vertex(0, down + 60);
+                //gl.End();
             }
         }
 

@@ -395,6 +395,12 @@ namespace AgOpenGPS
                 Math.Pow((northing1 - northing2), 2));
         }
 
+        //not normalized distance, no square root
+        public double DistanceSquared(double northing1, double easting1, double northing2, double easting2)
+        {
+            return ( Math.Pow((easting1 - easting2), 2) + Math.Pow((northing1 - northing2), 2));
+        }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

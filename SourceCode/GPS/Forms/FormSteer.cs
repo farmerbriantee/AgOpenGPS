@@ -37,13 +37,14 @@ namespace AgOpenGPS
             btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
             btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
             btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
+            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
 
             //just data
             words = mf.mc.serialRecvAutoSteerStr.Split(',');
@@ -202,6 +203,22 @@ namespace AgOpenGPS
             mf.AutoSteerSettingsOutToPort();
         }
 
+        private void buttonLookAheadPlus_Click(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAhead += 0.1;
+            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
+            Properties.Settings.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
+            Properties.Settings.Default.Save();
+        }
+
+        private void btnLookAheadMinus_Click(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAhead -= 0.1;
+            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
+            Properties.Settings.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
+            Properties.Settings.Default.Save();
+        }
+
         private void btnSteerPlus_Click(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] += 1;
@@ -274,5 +291,7 @@ namespace AgOpenGPS
             unoChart.ResetAutoValues();
 
         }
+
+
     }
 }

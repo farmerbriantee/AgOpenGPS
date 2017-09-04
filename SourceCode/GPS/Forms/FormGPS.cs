@@ -366,8 +366,8 @@ namespace AgOpenGPS
                         mc.autoSteerData[mc.sdSpeed] = (byte)(0);
                         mc.autoSteerData[mc.sdDistanceHi] = (byte)(125); //32020
                         mc.autoSteerData[mc.sdDistanceLo] = (byte)20;
-                        mc.autoSteerData[mc.sdHeadingHi] = (byte)(125); //32020
-                        mc.autoSteerData[mc.sdHeadingLo] = (byte)20;
+                        mc.autoSteerData[mc.sdSteerAngleHi] = (byte)(125); //32020
+                        mc.autoSteerData[mc.sdSteerAngleLo] = (byte)20;
 
                         //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                         AutoSteerControlOutToPort();

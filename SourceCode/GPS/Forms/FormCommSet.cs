@@ -269,7 +269,7 @@ namespace AgOpenGPS
             //autoSteer
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineHeadingDelta;
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)

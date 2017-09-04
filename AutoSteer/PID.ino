@@ -1,25 +1,26 @@
 void calcSteeringPID(void) {
   
   //proportional
-  pValue = Kp * headingError;
+  pValue = Kp * steerAngleError;
   
+ /* 
   //Integral
 
-  integrated_error = integrated_error + headingError;
+  integrated_error = integrated_error + steerAngleError;
   if (integrated_error > maxIntErr) integrated_error = maxIntErr;
   if (integrated_error < -maxIntErr) integrated_error = -maxIntErr;
 
   //once it passes near center zero out the integrator error
   //if (abs(headingError) < 2) integrated_error = 0;
   iValue = Ki * integrated_error;
-
+*/
   //Derivative
-  dError = headingError - lastError;
+  dError = steerAngleError - lastError;
   dValue = Kd * (dError);
   
   //save history of errors
   lastLastError = lastError;
-  lastError = headingError;
+  lastError = steerAngleError;
 
   drive = (pValue + iValue + dValue)*Ko;
   pwmDrive = int(constrain(drive, -255, 255));

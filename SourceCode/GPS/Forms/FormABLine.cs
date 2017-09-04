@@ -66,8 +66,8 @@ namespace AgOpenGPS
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
-            mf.ABLine.refPoint1.easting = mf.prevEasting;
-            mf.ABLine.refPoint1.northing = mf.prevNorthing;
+            mf.ABLine.refPoint1.easting = mf.prevFix.easting;
+            mf.ABLine.refPoint1.northing = mf.prevFix.northing;
             Console.WriteLine(mf.ABLine.refPoint1.easting);
             Console.WriteLine(mf.ABLine.refPoint1.northing);
             btnAPoint.Enabled = false;

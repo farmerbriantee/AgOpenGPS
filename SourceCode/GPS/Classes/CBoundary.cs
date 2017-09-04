@@ -93,7 +93,7 @@ namespace AgOpenGPS
             if (calcList.Count < 10) return false;
             int j = ptList.Count - 1;
             bool oddNodes = false;
-            //vec2 testPoint = new vec2(mf.toolEasting, mf.toolNorthing);
+            //vec2 testPoint = new vec2(mf.toolPos.easting, mf.toolPos.northing);
 
             //test against the constant and multiples list the test point
             for (int i = 0; i < ptList.Count; j = i++)

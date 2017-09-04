@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
         public static int numSteerDataItems = 8;
         public int sdHeaderHi = 0, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4, 
-                        sdDistanceLo=5, sdHeadingHi=6, sdHeadingLo=7;        
+                        sdDistanceLo=5, sdSteerAngleHi=6, sdSteerAngleLo=7;        
 
         public static int numSteerSettingItems = 8;
         public int ssHeaderHi = 0, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5, ssSteerOffset = 6, ssMinPWM = 7;
@@ -53,8 +53,8 @@ namespace AgOpenGPS
             autoSteerData[sdSpeed] = (byte)(0);
             autoSteerData[sdDistanceHi] = (byte)(125); //32020
             autoSteerData[sdDistanceLo] = (byte)20;
-            autoSteerData[sdHeadingHi] = (byte)(125); //32020
-            autoSteerData[sdHeadingLo] = (byte)20;
+            autoSteerData[sdSteerAngleHi] = (byte)(125); //32020
+            autoSteerData[sdSteerAngleLo] = (byte)20;
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;

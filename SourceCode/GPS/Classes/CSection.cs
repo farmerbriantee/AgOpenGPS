@@ -91,20 +91,20 @@ namespace AgOpenGPS
                 patchList.Add(triangleList);
 
                 //left side of triangle
-                vec2 point = new vec2(mf.cosSectionHeading * positionLeft + mf.toolEasting,
-                        mf.sinSectionHeading * positionLeft + mf.toolNorthing);
+                vec2 point = new vec2(mf.cosSectionHeading * positionLeft + mf.toolPos.easting,
+                        mf.sinSectionHeading * positionLeft + mf.toolPos.northing);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec2(mf.cosSectionHeading * positionRight + mf.toolEasting,
-                    mf.sinSectionHeading * positionRight + mf.toolNorthing);
+                point = new vec2(mf.cosSectionHeading * positionRight + mf.toolPos.easting,
+                    mf.sinSectionHeading * positionRight + mf.toolPos.northing);
                 triangleList.Add(point);
             }
         }
 
         public void TurnSectionOff()
         {
-            AddPathPoint(mf.toolNorthing, mf.toolEasting, mf.cosSectionHeading, mf.sinSectionHeading);
+            AddPathPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
             isSectionOn = false;
             numTriangles = 0;
 
