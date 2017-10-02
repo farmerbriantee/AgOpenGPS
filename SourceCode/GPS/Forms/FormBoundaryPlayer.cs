@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -12,8 +6,8 @@ namespace AgOpenGPS
     public partial class FormBoundaryPlayer : Form
     {
         //properties
-        private FormGPS mf = null;
-      
+        private readonly FormGPS mf = null;
+
         //constructor
         public FormBoundaryPlayer(Form callingForm)
         {
@@ -31,7 +25,6 @@ namespace AgOpenGPS
                mf.boundary.isSet = true;
                mf.FileSaveOuterBoundary();
            }
-
            else
            {
                mf.boundary.calcList.Clear();
@@ -49,23 +42,21 @@ namespace AgOpenGPS
             if (mf.boundary.isOkToAddPoints)
             {
                 mf.boundary.isOkToAddPoints = false;
-                btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+                btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = "Record";
             }
-
             else
             {
                 mf.boundary.isOkToAddPoints = true;
-                btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+                btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = "Pause";
             }
-
         }
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
             mf.boundary.isOkToAddPoints = false;
-            btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

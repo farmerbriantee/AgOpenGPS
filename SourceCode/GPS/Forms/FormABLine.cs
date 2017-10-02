@@ -1,12 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -14,7 +8,7 @@ namespace AgOpenGPS
     public partial class FormABLine : Form
     {
         //access to the main GPS form and all its variables
-        private FormGPS mf = null;
+        private readonly FormGPS mf = null;
 
         private double upDnHeading = 0;
 
@@ -44,7 +38,6 @@ namespace AgOpenGPS
                 nudTramRepeats.Value = mf.ABLine.tramPassEvery;
                 nudBasedOnPass.Value = mf.ABLine.passBasedOn;
             }
-
             else
             {
                 //no AB line
@@ -68,8 +61,8 @@ namespace AgOpenGPS
         {
             mf.ABLine.refPoint1.easting = mf.prevFix.easting;
             mf.ABLine.refPoint1.northing = mf.prevFix.northing;
-            Console.WriteLine(mf.ABLine.refPoint1.easting);
-            Console.WriteLine(mf.ABLine.refPoint1.northing);
+            //Console.WriteLine(mf.ABLine.refPoint1.easting);
+            //Console.WriteLine(mf.ABLine.refPoint1.northing);
             btnAPoint.Enabled = false;
             btnUpABHeading.Enabled = true;
             btnDnABHeading.Enabled = true;
@@ -108,7 +101,6 @@ namespace AgOpenGPS
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
-
         }
 
         private void btnDnABHeadingBy1_Click(object sender, EventArgs e)
@@ -120,13 +112,12 @@ namespace AgOpenGPS
         }
 
  
- 
         private void btnABLineOk_Click(object sender, EventArgs e)
         {
             //save the ABLine
             mf.FileSaveABLine();
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnDeleteAB_Click(object sender, EventArgs e)
@@ -144,47 +135,40 @@ namespace AgOpenGPS
             //save the no ABLine;
             mf.FileSaveABLine();
 
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
          }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.lblFixHeading.Text = Convert.ToString( Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
-            this.lblABHeading.Text = Convert.ToString(upDnHeading) + "°";
+            lblFixHeading.Text = Convert.ToString( Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
+            lblABHeading.Text = Convert.ToString(upDnHeading) + "°";
             lblKeepGoing.Text = "";
 
             //make sure we go at least 3 or so meters before allowing B reference point
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
             {
-                double pointAToFixDistance = 
+                double pointAToFixDistance =
                 Math.Pow((mf.ABLine.refPoint1.easting - mf.pn.easting), 2) +
                 Math.Pow((mf.ABLine.refPoint1.northing - mf.pn.northing), 2);
 
                 if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
                 else lblKeepGoing.Text = "    Keep\r\n" + "Going  " + Convert.ToInt16((100 - pointAToFixDistance)).ToString();
             }
-
         }
 
         private void nudTramRepeats_ValueChanged(object sender, EventArgs e)
         {
             mf.ABLine.tramPassEvery = (int)nudTramRepeats.Value;
-
         }
 
         private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
         {
             mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
-
         }
 
- 
 
- 
- 
- 
- 
- 
+
+
      }
 }

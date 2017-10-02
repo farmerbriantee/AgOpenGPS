@@ -1,17 +1,14 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SharpGL;
 
 namespace AgOpenGPS
 {
     public class CVehicle
     {
-        private OpenGL gl;
-        private FormGPS mf;
+        private readonly OpenGL gl;
+        private readonly FormGPS mf;
 
         public double toolWidth;
         public double toolFarLeftPosition = 0;
@@ -25,8 +22,8 @@ namespace AgOpenGPS
 
         public double toolTurnOffDelay;
         public double toolLookAhead;
- 
-        public bool isToolTrailing;        
+
+        public bool isToolTrailing;
         public bool isToolBehindPivot;
         public bool isSteerAxleAhead;
 
@@ -55,13 +52,15 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead = 3;
+        public double goalPointLookAhead;
+        public double maxSteerAngle;
+        public double maxAngularVelocity;
 
-        public CVehicle(OpenGL gl, FormGPS f)
+        public CVehicle(OpenGL _gl, FormGPS _f)
         {
             //constructor
-            this.gl = gl;
-            this.mf = f;
+            gl = _gl;
+            mf = _f;
 
             //from settings grab the vehicle specifics
             toolWidth = Properties.Settings.Default.setVehicle_toolWidth;
@@ -70,7 +69,7 @@ namespace AgOpenGPS
             tankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
             toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
 
-            isToolBehindPivot = Properties.Settings.Default.setVehicle_isToolBehindPivot;            
+            isToolBehindPivot = Properties.Settings.Default.setVehicle_isToolBehindPivot;
             isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
 
             isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
@@ -91,12 +90,14 @@ namespace AgOpenGPS
             toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
 
             goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
+            maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
+            maxSteerAngle = Properties.Settings.Default.setVehicle_maxSteerAngle;
         }
 
         public void DrawVehicle()
         {
             //translate and rotate at pivot axle
-            gl.Translate(mf.fixPosX, mf.fixPosY, 0);
+            gl.Translate(mf.fixEasting, mf.fixNorthing, 0);
             gl.PushMatrix();
 
             //most complicated translate ever!
@@ -110,7 +111,6 @@ namespace AgOpenGPS
                 trailingTank = tankTrailingHitchLength;
                 trailingTool = toolTrailingHitchLength;
             }
-
             else { trailingTank = 0; trailingTool = 0; }
 
             //there is a trailing tow between hitch
@@ -155,7 +155,6 @@ namespace AgOpenGPS
                 gl.End();
             }
 
-
             //draw the sections
             gl.LineWidth(8);
             gl.Begin(OpenGL.GL_LINES);
@@ -163,19 +162,18 @@ namespace AgOpenGPS
             //draw section line
             if (mf.section[numOfSections].isSectionOn)
             {
-                if (mf.section[0].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
+                if (mf.section[0].manBtnState == FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
                 else gl.Color(0.99, 0.99, 0);
                 gl.Vertex(mf.section[numOfSections].positionLeft, trailingTool, 0);
                 gl.Vertex(mf.section[numOfSections].positionRight, trailingTool, 0);
             }
-
             else
                 for (int j = 0; j < mf.vehicle.numOfSections; j++)
                 {
                     //if section is on, green, if off, red color
                     if (mf.section[j].isSectionOn)
                     {
-                        if (mf.section[j].manBtnState == AgOpenGPS.FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
+                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
                         else gl.Color(0.97, 0.97, 0);
                     }
                     else gl.Color(0.97f, 0.2f, 0.2f);
@@ -214,14 +212,14 @@ namespace AgOpenGPS
             gl.Vertex(1.8, -antennaPivot, 0.0);
             gl.End();
 
-           //draw the area side marker
+            //draw the area side marker
             gl.Color(0.95f, 0.90f, 0.0f);
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
             if (mf.isAreaOnRight) gl.Vertex(2.0, -antennaPivot, 0);
             else gl.Vertex(-2.0, -antennaPivot, 0);
 
-            ////antenna
+            //antenna
             gl.Color(0.0f, 0.98f, 0.0f);
             gl.Vertex(0, 0, 0);
 
@@ -235,17 +233,25 @@ namespace AgOpenGPS
             //gl.Vertex(-1.8, 0, -antennaPivot);
             //gl.Vertex(1.8, 0, -antennaPivot);
             gl.End();
- 
+
+            gl.LineWidth(1);
+            gl.Color(0.9, 0.95, 0.10);
+            gl.Begin(OpenGL.GL_LINE_STRIP);
+            {
+                gl.Vertex(1.2, -antennaPivot + wheelbase + 5, 0.0);
+                gl.Vertex(0, -antennaPivot + wheelbase + 10, 0.0);
+                gl.Vertex(-1.2, -antennaPivot + wheelbase + 5, 0.0);
+            }
+            gl.End();
+
             //draw the rigid hitch
-            gl.LineWidth(2);
-            gl.Color(0.37f, 0.37f, 0.97f); 
+            gl.Color(0.37f, 0.37f, 0.97f);
             gl.Begin(OpenGL.GL_LINES);
             gl.Vertex(0, mf.vehicle.hitchLength - antennaPivot, 0);
             gl.Vertex(0, -antennaPivot, 0);
             gl.End();
 
            gl.LineWidth(1);
-
         }
     }
 }

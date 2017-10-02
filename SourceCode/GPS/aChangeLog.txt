@@ -1,8 +1,19 @@
-﻿v2.15
+﻿v2.15 and v 2.16 Sept 2015
 *
 * Pure pursuit guidance
-* Removed all heading Delta strings
+* Removed all heading Delta strings - but maybe i shouldn't of
 * Auto steer module rewritten for steering radius
+* Removed guidance from main settings page
+* Added max steer angle, max angular velocity, look ahead values
+* Settings sent to steer module more often
+* Much improved integral function with zero crossing detection for Arduino
+* Added switch support for autosteer on/off in arduino code
+* All autosteer values saved in vehicle save
+* from Svenn71 Netherlands - AB guide, Ha/hour more precision
+* can turn on off guide lines, pure pursuit
+* used Roslynator and Resharper to fix about 1000 sloppy coding issues. 
+* Fixed AB line when using offset - it was completely wrong previously
+* Added guides on sides of ABLine
 
 
 v2.14 May 15

@@ -39,6 +39,7 @@ namespace AgOpenGPS
             {
                 vehiclefileName = Path.GetFileNameWithoutExtension(saveDialog.FileName) + " - ";
                 Properties.Settings.Default.setVehicle_Name = vehiclefileName;
+                Properties.Settings.Default.Save();
 
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
@@ -73,49 +74,78 @@ namespace AgOpenGPS
                     writer.WriteLine("Sections," + Properties.Settings.Default.setVehicle_numSections);
                     writer.WriteLine("ToolWidth," + Properties.Settings.Default.setVehicle_toolWidth);
 
-                    writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setIsWorkSwitchEnabled);
-                    writer.WriteLine("ActiveLow," + Properties.Settings.Default.setIsWorkSwitchActiveLow);
+                    writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setF_IsWorkSwitchEnabled);
+                    writer.WriteLine("ActiveLow," + Properties.Settings.Default.setF_IsWorkSwitchActiveLow);
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch);
 
                     writer.WriteLine("IsAtanCam," + Properties.Settings.Default.setCam_isAtanCam);
                     writer.WriteLine("TriangleResolution," + Properties.Settings.Default.setDisplay_triangleResolution);
-                    writer.WriteLine("IsMetric," + Properties.Settings.Default.setIsMetric);
-                    writer.WriteLine("IsGridOn," + Properties.Settings.Default.setIsGridOn);
-                    writer.WriteLine("IsLightBarOn," + Properties.Settings.Default.setIsLightbarOn);
-                    writer.WriteLine("IsAreaRight," + Properties.Settings.Default.setIsAreaRight);
+                    writer.WriteLine("IsMetric," + Properties.Settings.Default.setMenu_IsMetric);
+                    writer.WriteLine("IsGridOn," + Properties.Settings.Default.setMenu_IsGridOn);
+                    writer.WriteLine("IsLightBarOn," + Properties.Settings.Default.setMenu_IsLightbarOn);
+                    writer.WriteLine("IsAreaRight," + Properties.Settings.Default.setMenu_IsAreaRight);
+                    writer.WriteLine("IsPurePursuitLineOn," + Properties.Settings.Default.setMenu_isPureOn);
+                    writer.WriteLine("IsGuideLinesOn," + Properties.Settings.Default.setMenu_IsSideGuideLines);
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
 
-                    writer.WriteLine("FieldColorR," + Properties.Settings.Default.setFieldColorR);
-                    writer.WriteLine("FieldColorG," + Properties.Settings.Default.setFieldColorG);
-                    writer.WriteLine("FieldColorB," + Properties.Settings.Default.setFieldColorB);
-                    writer.WriteLine("SectionColorR," + Properties.Settings.Default.setSectionColorR);
-                    writer.WriteLine("SectionColorG," + Properties.Settings.Default.setSectionColorG);
-                    writer.WriteLine("SectionColorB," + Properties.Settings.Default.setSectionColorB);
+                    writer.WriteLine("FieldColorR," + Properties.Settings.Default.setF_FieldColorR);
+                    writer.WriteLine("FieldColorG," + Properties.Settings.Default.setF_FieldColorG);
+                    writer.WriteLine("FieldColorB," + Properties.Settings.Default.setF_FieldColorB);
+                    writer.WriteLine("SectionColorR," + Properties.Settings.Default.setF_SectionColorR);
+                    writer.WriteLine("SectionColorG," + Properties.Settings.Default.setF_SectionColorG);
+                    writer.WriteLine("SectionColorB," + Properties.Settings.Default.setF_SectionColorB);
 
                     writer.WriteLine("SlowSpeedCutoff," + Properties.Settings.Default.setVehicle_slowSpeedCutoff);
+                    writer.WriteLine("ToolMinUnappliedPixels," + Properties.Settings.Default.setVehicle_minApplied);
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
 
                     writer.WriteLine("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZero);
                     writer.WriteLine("IMURollZero," + Properties.Settings.Default.setIMU_rollZero);
-                    writer.WriteLine("IsLogNMEA," + Properties.Settings.Default.setIsLogNMEA);
-                    writer.WriteLine("MinFixStep," + Properties.Settings.Default.set_minFixStep);
+                    writer.WriteLine("IsLogNMEA," + Properties.Settings.Default.setMenu_IsLogNMEA);
+                    writer.WriteLine("MinFixStep," + Properties.Settings.Default.setF_minFixStep);
 
                     writer.WriteLine("pidP," + Properties.Settings.Default.setAS_Kp);
                     writer.WriteLine("pidI," + Properties.Settings.Default.setAS_Ki);
                     writer.WriteLine("pidD," + Properties.Settings.Default.setAS_Kd);
                     writer.WriteLine("pidO," + Properties.Settings.Default.setAS_Ko);
                     writer.WriteLine("SteerAngleOffset," + Properties.Settings.Default.setAS_steerAngleOffset);
-
                     writer.WriteLine("minPWM," + Properties.Settings.Default.setAS_minSteerPWM);
+                    writer.WriteLine("MaxIntegral," + Properties.Settings.Default.setAS_maxIntegral);
+                    writer.WriteLine("CountsPerDegree," + Properties.Settings.Default.setAS_countsPerDegree);
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
 
-                    writer.WriteLine("ToolMinUnappliedPixels," + Properties.Settings.Default.setVehicle_minApplied);
+                    writer.WriteLine("GoalPointLookAhead," + Properties.Settings.Default.setVehicle_goalPointLookAhead);
+                    writer.WriteLine("MaxSteerAngle," + Properties.Settings.Default.setVehicle_maxSteerAngle);
+                    writer.WriteLine("MaxAngularVelocity," + Properties.Settings.Default.setVehicle_maxAngularVelocity);
+
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("Empty," + "10");
 
                 }
+
                 //little show to say saved and where
-
-                var form = new FormTimedMessage(this, 3000, "Saved in Folder: ", dirVehicle);
+                var form = new FormTimedMessage(3000, "Saved in Folder: ", dirVehicle);
                 form.Show();
-
-                Properties.Settings.Default.Save();
             }
 
         }
@@ -160,7 +190,16 @@ namespace AgOpenGPS
                         if (words[0] != "Version")
 
                         {
-                            var form = new FormTimedMessage(this, 5000, "Vehicle File is Wrong Version", "Must be Version 2.14 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
+                            form.Show();
+                            return;
+                        }
+
+                        double test = double.Parse(words[1]);
+
+                        if (test < 2.16)
+                        {
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
                             form.Show();
                             return;
                         }
@@ -220,9 +259,9 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setVehicle_toolWidth = double.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsWorkSwitchEnabled = bool.Parse(words[1]);
+                        Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsWorkSwitchActiveLow = bool.Parse(words[1]);
+                        Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1]);
@@ -231,38 +270,55 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setDisplay_triangleResolution = double.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsMetric = bool.Parse(words[1]);
+                        Properties.Settings.Default.setMenu_IsMetric = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsGridOn = bool.Parse(words[1]);
+                        Properties.Settings.Default.setMenu_IsGridOn = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsLightbarOn = bool.Parse(words[1]);
+                        Properties.Settings.Default.setMenu_IsLightbarOn = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsAreaRight = bool.Parse(words[1]);
+                        Properties.Settings.Default.setMenu_IsAreaRight = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setMenu_isPureOn = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setMenu_IsSideGuideLines = bool.Parse(words[1]);
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setFieldColorR = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_FieldColorR = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setFieldColorG = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_FieldColorG = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setFieldColorB = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_FieldColorB = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setSectionColorR = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_SectionColorR = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setSectionColorG = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_SectionColorG = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setSectionColorB = byte.Parse(words[1]);
+                        Properties.Settings.Default.setF_SectionColorB = byte.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setVehicle_slowSpeedCutoff = double.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setVehicle_minApplied = int.Parse(words[1]);
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_pitchZero = double.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_rollZero = double.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIsLogNMEA = bool.Parse(words[1]);
+                        Properties.Settings.Default.setMenu_IsLogNMEA = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.set_minFixStep = double.Parse(words[1]);
+                        Properties.Settings.Default.setF_minFixStep = double.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_Kp = byte.Parse(words[1]);
@@ -274,44 +330,31 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setAS_Ko = byte.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setAS_minSteerPWM = byte.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1]);
+                        line = reader.ReadLine();words = line.Split(',');
+                        Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1]);
 
-                        //**********new versions of load/save vehicle must test for older vehicle files****************
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setVehicle_lookAhead = double.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setVehicle_maxSteerAngle = double.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setVehicle_maxAngularVelocity = double.Parse(words[1]);
 
-                        //set a default value if not exist in file, next save they will be there
-                        mc.autoSteerData[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
 
-                        //read in new values only if they exist
-                        while (!reader.EndOfStream)
-                        {
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1]);
-                            mc.autoSteerData[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
-
-                            line = reader.ReadLine(); words = line.Split(',');
-
-                        }
-
-                        //set a default value if not exist in file, next save they will be there
-                        vehicle.toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
-
-                        //read in new values only if they exist
-                        while (!reader.EndOfStream)
-                        {
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setVehicle_minApplied = int.Parse(words[1]);
-                            vehicle.toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
-
-                            line = reader.ReadLine(); words = line.Split(',');
-
-                        }
-
-                        //Properties.Settings.Default.setPort_portNameGPS = (words[1]);
-                        //Properties.Settings.Default.setPort_baudRate = int.Parse(words[1]);
-                        //Properties.Settings.Default.setPort_portNameRelay = (words[1]);
-                        //Properties.Settings.Default.setPort_wasRelayConnected = bool.Parse(words[1]);
-                        //Properties.Settings.Default.setPort_portNameAutoSteer = (words[1]);
-                        //Properties.Settings.Default.setPort_wasAutoSteerConnected = bool.Parse(words[1]);
-
+                        //fill in the current variables with restored data
                         vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
                         Properties.Settings.Default.setVehicle_Name = vehiclefileName;
 
@@ -338,15 +381,22 @@ namespace AgOpenGPS
                         vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
                         vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
                         vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isToolBehindPivot;
+                        vehicle.toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
+
+                        vehicle.maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
+                        vehicle.maxSteerAngle = Properties.Settings.Default.setVehicle_maxSteerAngle;
 
                         mc.autoSteerSettings[mc.ssKp] = Properties.Settings.Default.setAS_Kp;
                         mc.autoSteerSettings[mc.ssKi] = Properties.Settings.Default.setAS_Ki;
                         mc.autoSteerSettings[mc.ssKd] = Properties.Settings.Default.setAS_Kd;
                         mc.autoSteerSettings[mc.ssKo] = Properties.Settings.Default.setAS_Ko;
                         mc.autoSteerSettings[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+                        mc.autoSteerSettings[mc.ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
+                        mc.autoSteerSettings[mc.ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
+                        mc.autoSteerSettings[mc.ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
 
-                        mc.isWorkSwitchEnabled = Properties.Settings.Default.setIsWorkSwitchEnabled;
-                        mc.isWorkSwitchActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
+                        mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
+                        mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
 
                         //Set width of section and positions for each section
                         SectionSetPosition();
@@ -371,33 +421,37 @@ namespace AgOpenGPS
                         isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
                         triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
-                        isMetric = Properties.Settings.Default.setIsMetric;
-                        if (isMetric) metricToolStrip.Checked = true; else metricToolStrip.Checked = false;
-                        if (isMetric) imperialToolStrip.Checked = false; else imperialToolStrip.Checked = true;
+                        isMetric = Properties.Settings.Default.setMenu_IsMetric;
+                        metricToolStrip.Checked = isMetric;
+                        imperialToolStrip.Checked = isMetric;
 
-                        isGridOn = Properties.Settings.Default.setIsGridOn;
-                        if (isGridOn) gridToolStripMenuItem.Checked = true;
-                        else gridToolStripMenuItem.Checked = false;
+                        isGridOn = Properties.Settings.Default.setMenu_IsGridOn;
+                        gridToolStripMenuItem.Checked = (isGridOn);
 
-                        isLightbarOn = Properties.Settings.Default.setIsLightbarOn;
-                        if (isLightbarOn) lightbarToolStripMenuItem.Checked = true;
-                        else lightbarToolStripMenuItem.Checked = false;
+                        isLightbarOn = Properties.Settings.Default.setMenu_IsLightbarOn;
+                        lightbarToolStripMenuItem.Checked = isLightbarOn;
 
-                        isAreaOnRight = Properties.Settings.Default.setIsAreaRight;
+                        isPureOn = Properties.Settings.Default.setMenu_isPureOn;
+                        pursuitLineToolStripMenuItem.Checked = isPureOn;
 
-                        redSections = Properties.Settings.Default.setSectionColorR;
-                        grnSections = Properties.Settings.Default.setSectionColorG;
-                        bluSections = Properties.Settings.Default.setSectionColorB;
-                        redField = Properties.Settings.Default.setFieldColorR;
-                        grnField = Properties.Settings.Default.setFieldColorG;
-                        bluField = Properties.Settings.Default.setFieldColorB;
+                        isSideGuideLines = Properties.Settings.Default.setMenu_IsSideGuideLines;
+                        sideGuideLines.Checked = isSideGuideLines;
+
+                        isAreaOnRight = Properties.Settings.Default.setMenu_IsAreaRight;
+
+                        redSections = Properties.Settings.Default.setF_SectionColorR;
+                        grnSections = Properties.Settings.Default.setF_SectionColorG;
+                        bluSections = Properties.Settings.Default.setF_SectionColorB;
+                        redField = Properties.Settings.Default.setF_FieldColorR;
+                        grnField = Properties.Settings.Default.setF_FieldColorG;
+                        bluField = Properties.Settings.Default.setF_FieldColorB;
 
                         vehicle.slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
                         pitchZero = Properties.Settings.Default.setIMU_pitchZero;
                         rollZero = Properties.Settings.Default.setIMU_rollZero;
-                        isLogNMEA = Properties.Settings.Default.setIsLogNMEA;
-                        minFixStepDist = Properties.Settings.Default.set_minFixStep;
+                        isLogNMEA = Properties.Settings.Default.setMenu_IsLogNMEA;
+                        minFixStepDist = Properties.Settings.Default.setF_minFixStep;
 
                         //Application.Exit();
                     }
@@ -546,7 +600,7 @@ namespace AgOpenGPS
                 {
                     WriteErrorLog("While Opening Field" + e.ToString());
 
-                    var form = new FormTimedMessage(this, 4000, "Field File is Corrupt", "Choose a different field");
+                    var form = new FormTimedMessage(4000, "Field File is Corrupt", "Choose a different field");
                     form.Show();
                     JobClose();
                     return;
@@ -558,7 +612,7 @@ namespace AgOpenGPS
             fileAndDirectory = workingDirectory + currentFieldDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(this, 4000, "Missing Contour File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
                 form.Show();
                 //return;
             }
@@ -615,7 +669,7 @@ namespace AgOpenGPS
                     {
                         WriteErrorLog("Loading Contour file" + e.ToString());
 
-                        var form = new FormTimedMessage(this, 4000, "Contour File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
                         form.Show();
                     }
                 }
@@ -628,7 +682,7 @@ namespace AgOpenGPS
             fileAndDirectory = workingDirectory + currentFieldDirectory + "\\Flags.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(this, 4000, "Missing Flags File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Flags File", "But Field is Loaded");
                 form.Show();
             }
 
@@ -678,7 +732,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(this, 4000, "Flag File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Flag File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("FieldOpen, Loading Flags, Corrupt Flag File" + e.ToString());
                     }
@@ -692,7 +746,7 @@ namespace AgOpenGPS
             fileAndDirectory = workingDirectory + currentFieldDirectory + "\\ABLine.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(this, 4000, "Missing ABLine File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing ABLine File", "But Field is Loaded");
                 form.Show();
             }
 
@@ -748,7 +802,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(this, 4000, "AB Line File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "AB Line File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("Load AB Line" + e.ToString());
 
@@ -762,7 +816,7 @@ namespace AgOpenGPS
                 fileAndDirectory = workingDirectory + currentFieldDirectory + "\\Boundary.txt";
                 if (!File.Exists(fileAndDirectory))
                 {
-                    var form = new FormTimedMessage(this, 4000, "Missing Boundary File", "But Field is Loaded");
+                    var form = new FormTimedMessage(4000, "Missing Boundary File", "But Field is Loaded");
                     form.Show();
                 }
 
@@ -819,7 +873,7 @@ namespace AgOpenGPS
 
                         catch (Exception e)
                         {
-                            var form = new FormTimedMessage(this, 4000, "Boundary Line File is Corrupt", "But Field is Loaded");
+                            var form = new FormTimedMessage(4000, "Boundary Line File is Corrupt", "But Field is Loaded");
                             form.Show();
                             WriteErrorLog("Load Boundary Line" + e.ToString());
 
@@ -846,7 +900,7 @@ namespace AgOpenGPS
 
             if (!isJobStarted)
             {
-                using (var form = new FormTimedMessage(this, 3000, "Ooops, Job Not Started", "Start a Job First"))
+                using (var form = new FormTimedMessage(3000, "Ooops, Job Not Started", "Start a Job First"))
                 { form.Show(); }
                 return;
             }

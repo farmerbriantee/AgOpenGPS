@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using SharpGL;
-using System.Windows;
-using System.Drawing;
 
 namespace AgOpenGPS
 {
     public class CPerimeter
     {
         //copy of the mainform address
-        private FormGPS mf;
-        private OpenGL gl;
+        //private FormGPS mf;
+        private readonly OpenGL gl;
 
         //list of coordinates of perimter line
         public List<vec2> periPtList = new List<vec2>();
@@ -25,10 +23,10 @@ namespace AgOpenGPS
         public double area = 0;
 
        //constructor
-        public CPerimeter(OpenGL gl, FormGPS f)
+        public CPerimeter(OpenGL _gl)//, FormGPS _f)
         {            
-            this.mf = f;
-            this.gl = gl;
+            //mf = _f;
+            gl = _gl;
         }
 
         public void DrawPerimeterLine()

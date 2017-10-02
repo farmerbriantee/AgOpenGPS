@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
@@ -84,38 +83,14 @@
             this.nudSection1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
-            this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.label39 = new System.Windows.Forms.Label();
-            this.lblSteerAngleOffset = new System.Windows.Forms.Label();
-            this.btnSteerAngleOffsetMinus = new System.Windows.Forms.Button();
-            this.btnSteerAngleOffsetPlus = new System.Windows.Forms.Button();
-            this.lblOValue = new System.Windows.Forms.Label();
-            this.lblDValue = new System.Windows.Forms.Label();
-            this.lblIValue = new System.Windows.Forms.Label();
-            this.lblPValue = new System.Windows.Forms.Label();
-            this.btnOMinus = new System.Windows.Forms.Button();
-            this.btnOPlus = new System.Windows.Forms.Button();
-            this.btnIMinus = new System.Windows.Forms.Button();
-            this.btnDMinus = new System.Windows.Forms.Button();
-            this.btnPMinus = new System.Windows.Forms.Button();
-            this.btnIPlus = new System.Windows.Forms.Button();
-            this.btnDPlus = new System.Windows.Forms.Button();
-            this.btnPPlus = new System.Windows.Forms.Button();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lblRollOffset = new System.Windows.Forms.Label();
-            this.lblPitchOffset = new System.Windows.Forms.Label();
-            this.btnRollPitchZero = new System.Windows.Forms.Button();
-            this.lblRollFromIMU = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblPitchFromIMU = new System.Windows.Forms.Label();
             this.tabWorkSwitch = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
             this.tabDisplay = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.nudBoundaryDistance = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -129,16 +104,12 @@
             this.tabExamples = new System.Windows.Forms.TabPage();
             this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
             this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblSecTotalWidthMeters = new System.Windows.Forms.Label();
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudBoundaryDistance = new System.Windows.Forms.NumericUpDown();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -163,17 +134,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
-            this.tabGuidance.SuspendLayout();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabDisplay.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).BeginInit();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -181,7 +151,6 @@
             this.tabControl1.Controls.Add(this.tabVehicle);
             this.tabControl1.Controls.Add(this.tabTool);
             this.tabControl1.Controls.Add(this.tabSections);
-            this.tabControl1.Controls.Add(this.tabGuidance);
             this.tabControl1.Controls.Add(this.tabWorkSwitch);
             this.tabControl1.Controls.Add(this.tabDisplay);
             this.tabControl1.Controls.Add(this.tabExamples);
@@ -1025,351 +994,6 @@
             0});
             this.nudNumberOfSections.ValueChanged += new System.EventHandler(this.nudNumberOfSections_ValueChanged);
             // 
-            // tabGuidance
-            // 
-            this.tabGuidance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabGuidance.Controls.Add(this.label39);
-            this.tabGuidance.Controls.Add(this.lblSteerAngleOffset);
-            this.tabGuidance.Controls.Add(this.btnSteerAngleOffsetMinus);
-            this.tabGuidance.Controls.Add(this.btnSteerAngleOffsetPlus);
-            this.tabGuidance.Controls.Add(this.lblOValue);
-            this.tabGuidance.Controls.Add(this.lblDValue);
-            this.tabGuidance.Controls.Add(this.lblIValue);
-            this.tabGuidance.Controls.Add(this.lblPValue);
-            this.tabGuidance.Controls.Add(this.btnOMinus);
-            this.tabGuidance.Controls.Add(this.btnOPlus);
-            this.tabGuidance.Controls.Add(this.btnIMinus);
-            this.tabGuidance.Controls.Add(this.btnDMinus);
-            this.tabGuidance.Controls.Add(this.btnPMinus);
-            this.tabGuidance.Controls.Add(this.btnIPlus);
-            this.tabGuidance.Controls.Add(this.btnDPlus);
-            this.tabGuidance.Controls.Add(this.btnPPlus);
-            this.tabGuidance.Controls.Add(this.label32);
-            this.tabGuidance.Controls.Add(this.label14);
-            this.tabGuidance.Controls.Add(this.label9);
-            this.tabGuidance.Controls.Add(this.lblRollOffset);
-            this.tabGuidance.Controls.Add(this.lblPitchOffset);
-            this.tabGuidance.Controls.Add(this.btnRollPitchZero);
-            this.tabGuidance.Controls.Add(this.lblRollFromIMU);
-            this.tabGuidance.Controls.Add(this.label11);
-            this.tabGuidance.Controls.Add(this.label10);
-            this.tabGuidance.Controls.Add(this.lblPitchFromIMU);
-            this.tabGuidance.Location = new System.Drawing.Point(4, 41);
-            this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.Size = new System.Drawing.Size(951, 506);
-            this.tabGuidance.TabIndex = 4;
-            this.tabGuidance.Text = "Guidance";
-            this.tabGuidance.UseVisualStyleBackColor = true;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(17, 200);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(307, 192);
-            this.label39.TabIndex = 160;
-            this.label39.Text = "P - Proportional\r\nI - Integral\r\nD - Derivative\r\nO - Overall Gain\r\nS - Steering an" +
-    "gle offset\r\n\r\n";
-            // 
-            // lblSteerAngleOffset
-            // 
-            this.lblSteerAngleOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSteerAngleOffset.AutoSize = true;
-            this.lblSteerAngleOffset.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerAngleOffset.Location = new System.Drawing.Point(665, 75);
-            this.lblSteerAngleOffset.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblSteerAngleOffset.Name = "lblSteerAngleOffset";
-            this.lblSteerAngleOffset.Size = new System.Drawing.Size(32, 37);
-            this.lblSteerAngleOffset.TabIndex = 158;
-            this.lblSteerAngleOffset.Text = "0";
-            this.lblSteerAngleOffset.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnSteerAngleOffsetMinus
-            // 
-            this.btnSteerAngleOffsetMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSteerAngleOffsetMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerAngleOffsetMinus.Location = new System.Drawing.Point(597, 95);
-            this.btnSteerAngleOffsetMinus.Name = "btnSteerAngleOffsetMinus";
-            this.btnSteerAngleOffsetMinus.Size = new System.Drawing.Size(64, 58);
-            this.btnSteerAngleOffsetMinus.TabIndex = 156;
-            this.btnSteerAngleOffsetMinus.Text = "S-";
-            this.btnSteerAngleOffsetMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSteerAngleOffsetMinus.UseVisualStyleBackColor = true;
-            this.btnSteerAngleOffsetMinus.Click += new System.EventHandler(this.btnSteerAngleOffsetMinus_Click);
-            // 
-            // btnSteerAngleOffsetPlus
-            // 
-            this.btnSteerAngleOffsetPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSteerAngleOffsetPlus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerAngleOffsetPlus.Location = new System.Drawing.Point(597, 29);
-            this.btnSteerAngleOffsetPlus.Name = "btnSteerAngleOffsetPlus";
-            this.btnSteerAngleOffsetPlus.Size = new System.Drawing.Size(64, 58);
-            this.btnSteerAngleOffsetPlus.TabIndex = 155;
-            this.btnSteerAngleOffsetPlus.Text = "S+";
-            this.btnSteerAngleOffsetPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSteerAngleOffsetPlus.UseVisualStyleBackColor = true;
-            this.btnSteerAngleOffsetPlus.Click += new System.EventHandler(this.btnSteerAngleOffsetPlus_Click);
-            // 
-            // lblOValue
-            // 
-            this.lblOValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOValue.AutoSize = true;
-            this.lblOValue.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOValue.Location = new System.Drawing.Point(517, 75);
-            this.lblOValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblOValue.Name = "lblOValue";
-            this.lblOValue.Size = new System.Drawing.Size(32, 37);
-            this.lblOValue.TabIndex = 154;
-            this.lblOValue.Text = "0";
-            this.lblOValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblDValue
-            // 
-            this.lblDValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDValue.AutoSize = true;
-            this.lblDValue.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDValue.Location = new System.Drawing.Point(373, 75);
-            this.lblDValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblDValue.Name = "lblDValue";
-            this.lblDValue.Size = new System.Drawing.Size(32, 37);
-            this.lblDValue.TabIndex = 153;
-            this.lblDValue.Text = "0";
-            this.lblDValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblIValue
-            // 
-            this.lblIValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblIValue.AutoSize = true;
-            this.lblIValue.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIValue.Location = new System.Drawing.Point(229, 75);
-            this.lblIValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblIValue.Name = "lblIValue";
-            this.lblIValue.Size = new System.Drawing.Size(32, 37);
-            this.lblIValue.TabIndex = 152;
-            this.lblIValue.Text = "0";
-            this.lblIValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblPValue
-            // 
-            this.lblPValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPValue.AutoSize = true;
-            this.lblPValue.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPValue.Location = new System.Drawing.Point(85, 75);
-            this.lblPValue.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblPValue.Name = "lblPValue";
-            this.lblPValue.Size = new System.Drawing.Size(32, 37);
-            this.lblPValue.TabIndex = 151;
-            this.lblPValue.Text = "0";
-            this.lblPValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // btnOMinus
-            // 
-            this.btnOMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOMinus.Location = new System.Drawing.Point(451, 95);
-            this.btnOMinus.Name = "btnOMinus";
-            this.btnOMinus.Size = new System.Drawing.Size(64, 58);
-            this.btnOMinus.TabIndex = 149;
-            this.btnOMinus.Text = "O-";
-            this.btnOMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOMinus.UseVisualStyleBackColor = true;
-            this.btnOMinus.Click += new System.EventHandler(this.btnOMinus_Click);
-            // 
-            // btnOPlus
-            // 
-            this.btnOPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOPlus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOPlus.Location = new System.Drawing.Point(452, 29);
-            this.btnOPlus.Name = "btnOPlus";
-            this.btnOPlus.Size = new System.Drawing.Size(64, 58);
-            this.btnOPlus.TabIndex = 148;
-            this.btnOPlus.Text = "O+";
-            this.btnOPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOPlus.UseVisualStyleBackColor = true;
-            this.btnOPlus.Click += new System.EventHandler(this.btnOPlus_Click);
-            // 
-            // btnIMinus
-            // 
-            this.btnIMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIMinus.Location = new System.Drawing.Point(163, 95);
-            this.btnIMinus.Name = "btnIMinus";
-            this.btnIMinus.Size = new System.Drawing.Size(64, 58);
-            this.btnIMinus.TabIndex = 144;
-            this.btnIMinus.Text = "I-";
-            this.btnIMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnIMinus.UseVisualStyleBackColor = true;
-            this.btnIMinus.Click += new System.EventHandler(this.btnIMinus_Click);
-            // 
-            // btnDMinus
-            // 
-            this.btnDMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDMinus.Location = new System.Drawing.Point(307, 95);
-            this.btnDMinus.Name = "btnDMinus";
-            this.btnDMinus.Size = new System.Drawing.Size(64, 58);
-            this.btnDMinus.TabIndex = 143;
-            this.btnDMinus.Text = "D-";
-            this.btnDMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDMinus.UseVisualStyleBackColor = true;
-            this.btnDMinus.Click += new System.EventHandler(this.btnDMinus_Click);
-            // 
-            // btnPMinus
-            // 
-            this.btnPMinus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPMinus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPMinus.Location = new System.Drawing.Point(19, 95);
-            this.btnPMinus.Name = "btnPMinus";
-            this.btnPMinus.Size = new System.Drawing.Size(64, 58);
-            this.btnPMinus.TabIndex = 142;
-            this.btnPMinus.Text = "P-";
-            this.btnPMinus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPMinus.UseVisualStyleBackColor = true;
-            this.btnPMinus.Click += new System.EventHandler(this.btnPMinus_Click);
-            // 
-            // btnIPlus
-            // 
-            this.btnIPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIPlus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIPlus.Location = new System.Drawing.Point(163, 29);
-            this.btnIPlus.Name = "btnIPlus";
-            this.btnIPlus.Size = new System.Drawing.Size(64, 58);
-            this.btnIPlus.TabIndex = 141;
-            this.btnIPlus.Text = "I+";
-            this.btnIPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnIPlus.UseVisualStyleBackColor = true;
-            this.btnIPlus.Click += new System.EventHandler(this.btnIPlus_Click);
-            // 
-            // btnDPlus
-            // 
-            this.btnDPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDPlus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDPlus.Location = new System.Drawing.Point(307, 29);
-            this.btnDPlus.Name = "btnDPlus";
-            this.btnDPlus.Size = new System.Drawing.Size(64, 58);
-            this.btnDPlus.TabIndex = 140;
-            this.btnDPlus.Text = "D+";
-            this.btnDPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDPlus.UseVisualStyleBackColor = true;
-            this.btnDPlus.Click += new System.EventHandler(this.btnDPlus_Click);
-            // 
-            // btnPPlus
-            // 
-            this.btnPPlus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPPlus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPPlus.Location = new System.Drawing.Point(19, 29);
-            this.btnPPlus.Name = "btnPPlus";
-            this.btnPPlus.Size = new System.Drawing.Size(64, 58);
-            this.btnPPlus.TabIndex = 139;
-            this.btnPPlus.Text = "P+";
-            this.btnPPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPPlus.UseVisualStyleBackColor = true;
-            this.btnPPlus.Click += new System.EventHandler(this.btnPPlus_Click);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(659, 450);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(261, 30);
-            this.label32.TabIndex = 9;
-            this.label32.Text = "Zero Roll and Pitch Values";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(743, 211);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(73, 30);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Actual";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(842, 211);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 30);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Offsets";
-            // 
-            // lblRollOffset
-            // 
-            this.lblRollOffset.AutoSize = true;
-            this.lblRollOffset.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRollOffset.Location = new System.Drawing.Point(848, 270);
-            this.lblRollOffset.Name = "lblRollOffset";
-            this.lblRollOffset.Size = new System.Drawing.Size(49, 30);
-            this.lblRollOffset.TabIndex = 6;
-            this.lblRollOffset.Text = "Roll";
-            // 
-            // lblPitchOffset
-            // 
-            this.lblPitchOffset.AutoSize = true;
-            this.lblPitchOffset.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPitchOffset.Location = new System.Drawing.Point(848, 238);
-            this.lblPitchOffset.Name = "lblPitchOffset";
-            this.lblPitchOffset.Size = new System.Drawing.Size(60, 30);
-            this.lblPitchOffset.TabIndex = 5;
-            this.lblPitchOffset.Text = "Pitch";
-            // 
-            // btnRollPitchZero
-            // 
-            this.btnRollPitchZero.Font = new System.Drawing.Font("Arial", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRollPitchZero.Image = global::AgOpenGPS.Properties.Resources.ZeroPitchRoll;
-            this.btnRollPitchZero.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRollPitchZero.Location = new System.Drawing.Point(748, 311);
-            this.btnRollPitchZero.Name = "btnRollPitchZero";
-            this.btnRollPitchZero.Size = new System.Drawing.Size(122, 122);
-            this.btnRollPitchZero.TabIndex = 4;
-            this.btnRollPitchZero.Text = "-> Zero <-";
-            this.btnRollPitchZero.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRollPitchZero.UseVisualStyleBackColor = true;
-            this.btnRollPitchZero.Click += new System.EventHandler(this.btnRollPitchZero_Click);
-            // 
-            // lblRollFromIMU
-            // 
-            this.lblRollFromIMU.AutoSize = true;
-            this.lblRollFromIMU.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRollFromIMU.Location = new System.Drawing.Point(768, 270);
-            this.lblRollFromIMU.Name = "lblRollFromIMU";
-            this.lblRollFromIMU.Size = new System.Drawing.Size(49, 30);
-            this.lblRollFromIMU.TabIndex = 3;
-            this.lblRollFromIMU.Text = "Roll";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(723, 270);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 30);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Roll";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(714, 238);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 30);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Pitch";
-            // 
-            // lblPitchFromIMU
-            // 
-            this.lblPitchFromIMU.AutoSize = true;
-            this.lblPitchFromIMU.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPitchFromIMU.Location = new System.Drawing.Point(768, 238);
-            this.lblPitchFromIMU.Name = "lblPitchFromIMU";
-            this.lblPitchFromIMU.Size = new System.Drawing.Size(60, 30);
-            this.lblPitchFromIMU.TabIndex = 0;
-            this.lblPitchFromIMU.Text = "Pitch";
-            // 
             // tabWorkSwitch
             // 
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
@@ -1430,6 +1054,56 @@
             this.tabDisplay.TabIndex = 5;
             this.tabDisplay.Text = " Display ";
             this.tabDisplay.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label31);
+            this.groupBox5.Controls.Add(this.nudBoundaryDistance);
+            this.groupBox5.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(488, 213);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(453, 131);
+            this.groupBox5.TabIndex = 62;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Boundary Point to Point Distance";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(190, 66);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(190, 27);
+            this.label31.TabIndex = 67;
+            this.label31.Text = "6 to 10m is good\r\n";
+            // 
+            // nudBoundaryDistance
+            // 
+            this.nudBoundaryDistance.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudBoundaryDistance.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudBoundaryDistance.Location = new System.Drawing.Point(30, 49);
+            this.nudBoundaryDistance.Maximum = new decimal(new int[] {
+            16,
+            0,
+            0,
+            0});
+            this.nudBoundaryDistance.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudBoundaryDistance.Name = "nudBoundaryDistance";
+            this.nudBoundaryDistance.Size = new System.Drawing.Size(120, 65);
+            this.nudBoundaryDistance.TabIndex = 66;
+            this.nudBoundaryDistance.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.nudBoundaryDistance.ValueChanged += new System.EventHandler(this.nudBoundaryDistance_ValueChanged);
             // 
             // groupBox2
             // 
@@ -1609,12 +1283,6 @@
             this.lblSecTotalWidthFeet.TabIndex = 24;
             this.lblSecTotalWidthFeet.Text = "FF";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -1684,56 +1352,6 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudBoundaryDistance
-            // 
-            this.nudBoundaryDistance.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBoundaryDistance.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudBoundaryDistance.Location = new System.Drawing.Point(30, 49);
-            this.nudBoundaryDistance.Maximum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.Name = "nudBoundaryDistance";
-            this.nudBoundaryDistance.Size = new System.Drawing.Size(120, 65);
-            this.nudBoundaryDistance.TabIndex = 66;
-            this.nudBoundaryDistance.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.ValueChanged += new System.EventHandler(this.nudBoundaryDistance_ValueChanged);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label31);
-            this.groupBox5.Controls.Add(this.nudBoundaryDistance);
-            this.groupBox5.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(488, 213);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(453, 131);
-            this.groupBox5.TabIndex = 62;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Boundary Point to Point Distance";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(190, 66);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(190, 27);
-            this.label31.TabIndex = 67;
-            this.label31.Text = "6 to 10m is good\r\n";
-            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -1784,12 +1402,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
-            this.tabGuidance.ResumeLayout(false);
-            this.tabGuidance.PerformLayout();
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabDisplay.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
@@ -1798,9 +1417,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1810,7 +1426,6 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabVehicle;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabPage tabSections;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nudNumberOfSections;
@@ -1825,7 +1440,6 @@
         private System.Windows.Forms.Label lblVehicleToolWidth;
         private System.Windows.Forms.Label lblSecTotalWidthInches;
         private System.Windows.Forms.Label lblSecTotalWidthFeet;
-        private System.Windows.Forms.TabPage tabGuidance;
         private System.Windows.Forms.NumericUpDown nudAntennaHeight;
         private System.Windows.Forms.TabPage tabDisplay;
         private System.Windows.Forms.NumericUpDown nudAntennaPivot;
@@ -1878,19 +1492,9 @@
         private System.Windows.Forms.NumericUpDown nudSection8;
         private System.Windows.Forms.NumericUpDown nudSection7;
         private System.Windows.Forms.NumericUpDown nudSection6;
-        private System.Windows.Forms.Label lblRollFromIMU;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblPitchFromIMU;
-        private System.Windows.Forms.Button btnRollPitchZero;
-        private System.Windows.Forms.Label lblRollOffset;
-        private System.Windows.Forms.Label lblPitchOffset;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblTurnOffBelowUnits;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
@@ -1898,22 +1502,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudTankHitch;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label lblOValue;
-        private System.Windows.Forms.Label lblDValue;
-        private System.Windows.Forms.Label lblIValue;
-        private System.Windows.Forms.Label lblPValue;
-        private System.Windows.Forms.Button btnOMinus;
-        private System.Windows.Forms.Button btnOPlus;
-        private System.Windows.Forms.Button btnIMinus;
-        private System.Windows.Forms.Button btnDMinus;
-        private System.Windows.Forms.Button btnPMinus;
-        private System.Windows.Forms.Button btnIPlus;
-        private System.Windows.Forms.Button btnDPlus;
-        private System.Windows.Forms.Button btnPPlus;
-        private System.Windows.Forms.Label lblSteerAngleOffset;
-        private System.Windows.Forms.Button btnSteerAngleOffsetMinus;
-        private System.Windows.Forms.Button btnSteerAngleOffsetPlus;
-        private System.Windows.Forms.Label label39;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.NumericUpDown nudBoundaryDistance;

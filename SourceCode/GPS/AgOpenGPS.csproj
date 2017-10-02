@@ -102,6 +102,7 @@
     <Compile Include="Classes\CSection.cs" />
     <Compile Include="Classes\CPointData.cs" />
     <Compile Include="Classes\CVehicle.cs" />
+    <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Forms\FormBoundary.cs">
       <SubType>Form</SubType>
@@ -162,6 +163,12 @@
     </Compile>
     <Compile Include="Forms\FormWebCam.Designer.cs">
       <DependentUpon>FormWebCam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWizardSteer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWizardSteer.Designer.cs">
+      <DependentUpon>FormWizardSteer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Position.designer.cs">
       <SubType>Form</SubType>
@@ -284,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWizardSteer.resx">
+      <DependentUpon>FormWizardSteer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTrip.resx">
       <DependentUpon>FormTrip.cs</DependentUpon>
@@ -417,6 +427,7 @@
     <None Include="btnImages\BoundaryRecord.png" />
     <None Include="btnImages\BoundaryMenu.png" />
     <None Include="btnImages\FileExplorerWindows.png" />
+    <None Include="btnImages\tire.jpg" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

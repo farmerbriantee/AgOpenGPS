@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SharpGL;
 
 namespace AgOpenGPS
@@ -9,36 +7,36 @@ namespace AgOpenGPS
     public class CContour
     {
         //copy of the mainform address
-        private FormGPS mf;
-        private OpenGL gl;
+        private readonly FormGPS mf;
+        private readonly OpenGL gl;
 
-        public bool isContourOn = false, isContourBtnOn = false;
+        public bool isContourOn, isContourBtnOn;
 
         //used to determine if section was off and now is on or vice versa
-        public bool wasSectionOn = false;
+        public bool wasSectionOn;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
 
         //current contour patch and point closest to current fix
-        public int closestRefPatch = 0, closestRefPoint = 0;
+        public int closestRefPatch, closestRefPoint;
 
         //angle to path line closest point and fix
-        public double refHeading = 0, ref2 = 0;
+        public double refHeading, ref2;
 
         // for closest line point to current fix
-        public double minDistance = 99999.0, refX=0, refZ=0;
+        public double minDistance = 99999.0, refX, refZ;
 
         //generated reference line
         public double refLineSide = 1.0;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
-        public double distanceFromRefLine = 0.0;
-        public double distanceFromCurrentLine = 0.0;
+        public double distanceFromRefLine;
+        public double distanceFromCurrentLine;
 
-        int A = 0, B = 0, C = 0;
-        public double abFixHeadingDelta = 0, abHeading = 0;
+        int A, B, C;
+        public double abFixHeadingDelta, abHeading;
 
         public bool isABSameAsFixHeading = true;
         public bool isOnRightSideCurrentLine = true;
@@ -47,9 +45,9 @@ namespace AgOpenGPS
         public vec2 pivotAxlePosCT = new vec2(0, 0);
         public vec2 goalPointCT = new vec2(0, 0);
         public vec2 radiusPointCT = new vec2(0, 0);
-        public double steerAngleCT = 0;
-        public double rEastCT = 0, rNorthCT = 0;
-        public double ppRadiusCT = 0;
+        public double steerAngleCT;
+        public double rEastCT, rNorthCT;
+        public double ppRadiusCT;
 
         //list of strip data individual points
         public List<vec4> ptList = new List<vec4>();
@@ -59,15 +57,15 @@ namespace AgOpenGPS
 
         //list of points for the new contour line
         public List<vec4> ctList = new List<vec4>();
- 
+
         //list of points to determine position ofnew contour line
         public List<cvec> conList = new List<cvec>();
 
         //constructor
-        public CContour(OpenGL gl, FormGPS f)
-        {            
-            this.mf = f;
-            this.gl = gl;
+        public CContour(OpenGL _gl, FormGPS _f)
+        {
+            mf = _f;
+            gl = _gl;
         }
 
         //start stop and add points to list
@@ -79,7 +77,6 @@ namespace AgOpenGPS
                 //reuse ptList
                 ptList.Clear();
             }
-
             else
             {
                 //make new ptList
@@ -89,13 +86,13 @@ namespace AgOpenGPS
             //grab a copy from main
             pivotAxlePosCT = mf.pivotAxlePos;
 
-            pivotAxlePosCT.easting = pivotAxlePosCT.easting - Math.Sin(mf.fixHeading) * 5.0;
-            pivotAxlePosCT.northing = pivotAxlePosCT.northing - Math.Cos(mf.fixHeading) * 5.0;
+            pivotAxlePosCT.easting -= (Math.Sin(mf.fixHeading) * 5.0);
+            pivotAxlePosCT.northing -= (Math.Cos(mf.fixHeading) * 5.0);
 
             vec4 point = new vec4(pivotAxlePosCT.easting, mf.fixHeading, pivotAxlePosCT.northing, mf.pn.altitude);
             ptList.Add(point);
         }
-        
+
         //Add current position to stripList
         public void AddPoint()
         {
@@ -112,8 +109,8 @@ namespace AgOpenGPS
                 //grab a copy from main
                 pivotAxlePosCT = mf.pivotAxlePos;
 
-                pivotAxlePosCT.easting = pivotAxlePosCT.easting + Math.Sin(mf.fixHeading) * 5.0;
-                pivotAxlePosCT.northing = pivotAxlePosCT.northing + Math.Cos(mf.fixHeading) * 5.0;
+                pivotAxlePosCT.easting += (Math.Sin(mf.fixHeading) * 5.0);
+                pivotAxlePosCT.northing += (Math.Cos(mf.fixHeading) * 5.0);
 
                 vec4 point = new vec4(pivotAxlePosCT.easting, mf.fixHeading, pivotAxlePosCT.northing, mf.pn.altitude);
                 ptList.Add(point);
@@ -136,22 +133,22 @@ namespace AgOpenGPS
 
         //determine closest point on applied 
         public void BuildContourGuidanceLine(double eastFix, double northFix)
-        {   
+        {
             //build a frustum box ahead of fix to find adjacent paths and points
             //double startX = eastFix + Math.Sin(mf.fixHeading)* 0;
             //double startY = northFix + Math.Cos(mf.fixHeading) * 0;
 
-            boxA.easting = eastFix - Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
-            boxA.northing = northFix - Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
-                                                                      
-            boxB.easting = eastFix + Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth;
-            boxB.northing = northFix + Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth;
+            boxA.easting = eastFix - (Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth);
+            boxA.northing = northFix - (Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth);
 
-            boxC.easting = boxB.easting + Math.Sin(mf.fixHeading) * 13.0;
-            boxC.northing = boxB.northing + Math.Cos(mf.fixHeading) * 13.0;
-                                                         
-            boxD.easting = boxA.easting + Math.Sin(mf.fixHeading) * 13.0;
-            boxD.northing = boxA.northing + Math.Cos(mf.fixHeading) * 13.0;
+            boxB.easting = eastFix + (Math.Sin(mf.fixHeading + glm.PIBy2) *  2.0 * mf.vehicle.toolWidth);
+            boxB.northing = northFix + (Math.Cos(mf.fixHeading + glm.PIBy2) * 2.0 * mf.vehicle.toolWidth);
+
+            boxC.easting = boxB.easting + (Math.Sin(mf.fixHeading) * 13.0);
+            boxC.northing = boxB.northing + (Math.Cos(mf.fixHeading) * 13.0);
+
+            boxD.easting = boxA.easting + (Math.Sin(mf.fixHeading) * 13.0);
+            boxD.northing = boxA.northing + (Math.Cos(mf.fixHeading) * 13.0);
 
             conList.Clear();
             ctList.Clear();
@@ -162,26 +159,29 @@ namespace AgOpenGPS
             if (stripCount == 0) return;
 
             cvec pointC = new cvec();
-            
+
             //determine if points are in frustum box
             for (int s = 0; s < stripCount; s++)
             {
                 ptCount = stripList[s].Count;
                 for (int p = 0; p < ptCount; p++)
                 {
-                    if (((boxB.easting - boxA.easting) * (stripList[s][p].z - boxA.northing) -
-                            (boxB.northing - boxA.northing) * (stripList[s][p].x - boxA.easting)) < 0) continue;
-                    if (((boxD.easting - boxC.easting) * (stripList[s][p].z - boxC.northing) -
-                            (boxD.northing - boxC.northing) * (stripList[s][p].x - boxC.easting)) < 0) continue;
-                    if (((boxC.easting - boxB.easting) * (stripList[s][p].z - boxB.northing) -
-                            (boxC.northing - boxB.northing) * (stripList[s][p].x - boxB.easting)) < 0) continue;
-                    if (((boxA.easting - boxD.easting) * (stripList[s][p].z - boxD.northing) -
-                            (boxA.northing - boxD.northing) * (stripList[s][p].x - boxD.easting)) < 0) continue;
+                    if ((((boxB.easting - boxA.easting) * (stripList[s][p].z - boxA.northing))
+                            - ((boxB.northing - boxA.northing) * (stripList[s][p].x - boxA.easting))) < 0) { continue; }
+
+                    if ((((boxD.easting - boxC.easting) * (stripList[s][p].z - boxC.northing))
+                            - ((boxD.northing - boxC.northing) * (stripList[s][p].x - boxC.easting))) < 0) { continue; }
+
+                    if ((((boxC.easting - boxB.easting) * (stripList[s][p].z - boxB.northing))
+                            - ((boxC.northing - boxB.northing) * (stripList[s][p].x - boxB.easting))) < 0) { continue; }
+
+                    if ((((boxA.easting - boxD.easting) * (stripList[s][p].z - boxD.northing))
+                            - ((boxA.northing - boxD.northing) * (stripList[s][p].x - boxD.easting))) < 0) { continue; }
 
                     //in the box so is it parallelish or perpedicularish to current heading
                     ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].y) - Math.PI);
                     if (ref2 < 1.2 || ref2 > 1.9)
-                    {                    
+                    {
                         //it's in the box and parallelish so add to list
                         pointC.x = stripList[s][p].x;
                         pointC.z = stripList[s][p].z;
@@ -205,8 +205,8 @@ namespace AgOpenGPS
             minDistance = 99999;
             for (int i = 0; i < ptCount; i++)
             {
-                double dist = (eastFix - conList[i].x) * (eastFix - conList[i].x) +
-                                (northFix - conList[i].z) * (northFix - conList[i].z);
+                double dist = ((eastFix - conList[i].x) * (eastFix - conList[i].x))
+                                + ((northFix - conList[i].z) * (northFix - conList[i].z));
                 if (minDistance >= dist)
                 {
                     minDistance = dist;
@@ -222,16 +222,15 @@ namespace AgOpenGPS
             refHeading = stripList[strip][pt].y;
 
             //are we going same direction as stripList was created?
-            bool isSameWay = false;
-            if (Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4) isSameWay = true;
+            bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4;
 
             //which side of the patch are we on is next
             //calculate endpoints of reference line based on closest point
-            refPoint1.easting = refX - Math.Sin(refHeading) * 50.0;
-            refPoint1.northing = refZ - Math.Cos(refHeading) * 50.0;
+            refPoint1.easting = refX - (Math.Sin(refHeading) * 50.0);
+            refPoint1.northing = refZ - (Math.Cos(refHeading) * 50.0);
 
-            refPoint2.easting = refX + Math.Sin(refHeading) * 50.0;
-            refPoint2.northing = refZ + Math.Cos(refHeading) * 50.0;
+            refPoint2.easting = refX + (Math.Sin(refHeading) * 50.0);
+            refPoint2.northing = refZ + (Math.Cos(refHeading) * 50.0);
 
             //x2-x1
             double dx = refPoint2.easting - refPoint1.easting;
@@ -239,9 +238,9 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = (dz * mf.fixPosX - dx * mf.fixPosY + refPoint2.easting *
-                                    refPoint1.northing - refPoint2.northing * refPoint1.easting) /
-                                        Math.Sqrt(dz * dz + dx * dx);
+            distanceFromRefLine = ((dz * mf.fixEasting) - (dx * mf.fixNorthing) + (refPoint2.easting
+                                    * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
+                                        / Math.Sqrt((dz * dz) + (dx * dx));
 
             //add or subtract pi by 2 depending on which side of ref line
             double piSide;
@@ -255,20 +254,19 @@ namespace AgOpenGPS
             if (isSameWay) toolOffset = 0.0;
             else
             {
-                if (distanceFromRefLine > 0) toolOffset = toolOffset * 2.0;
-                else toolOffset = toolOffset * -2.0;
+                if (distanceFromRefLine > 0) toolOffset *= 2.0;
+                else toolOffset *= -2.0;
             }
 
             //move the Guidance Line over based on the overlap, width, and offset amount set in vehicle
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap + toolOffset;
-            
+
             //absolute the distance
             distanceFromRefLine = Math.Abs(distanceFromRefLine);
-           
+
             //make the new guidance line list called guideList
             ptCount = stripList[strip].Count-1;
             int start, stop;
-            vec4 point;
 
             if (isSameWay)
             {
@@ -277,26 +275,26 @@ namespace AgOpenGPS
                 stop = pt + 60;
                 if (stop > ptCount) stop = ptCount+1;
             }
-
             else
             {
                 start = pt - 60;
                 if (start < 0) start = 0;
                 stop = pt + 25;
                 if (stop > ptCount) stop = ptCount+1;
-            }                
-
+            }
 
             for (int i = start; i < stop; i++)
             {
-                point = new vec4(
-                    stripList[strip][i].x + Math.Sin(piSide + stripList[strip][i].y) * widthMinusOverlap,
+                var point = new vec4(
+                    stripList[strip][i].x + (Math.Sin(piSide + stripList[strip][i].y) * widthMinusOverlap),
                     stripList[strip][i].y,
-                    stripList[strip][i].z + Math.Cos(piSide + stripList[strip][i].y) * widthMinusOverlap,
+                    stripList[strip][i].z + (Math.Cos(piSide + stripList[strip][i].y) * widthMinusOverlap),
                     0);
                 ctList.Add(point);
             }
         }
+
+        double angVel;
 
         //determine distance from contour guidance line
         public void DistanceFromContourLine()
@@ -312,8 +310,8 @@ namespace AgOpenGPS
                 //find the closest 2 points to current fix
                 for (int t = 0; t < ptCount; t++)
                 {
-                    double dist = (mf.pn.easting - ctList[t].x) * (mf.pn.easting - ctList[t].x) +
-                                    (mf.pn.northing - ctList[t].z) * (mf.pn.northing - ctList[t].z);
+                    double dist = ((mf.pn.easting - ctList[t].x) * (mf.pn.easting - ctList[t].x))
+                                    + ((mf.pn.northing - ctList[t].z) * (mf.pn.northing - ctList[t].z));
                     if (dist < minDistA)
                     {
                         minDistB = minDistA;
@@ -321,7 +319,6 @@ namespace AgOpenGPS
                         minDistA = dist;
                         A = t;
                     }
-
                     else if (dist < minDistB)
                     {
                         minDistB = dist;
@@ -338,27 +335,26 @@ namespace AgOpenGPS
                 //z2-z1
                 double dz = ctList[B].z - ctList[A].z;
 
-                if (dx == 0 && dz == 0) return;
+                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
                 //abHeading = Math.Atan2(dz, dx);
                 abHeading = ctList[A].y;
 
                 //how far from current AB Line is fix
-                distanceFromCurrentLine = (dz * mf.fixPosX - dx * mf.fixPosY + ctList[B].x *
-                            ctList[A].z - ctList[B].z * ctList[A].x) /
-                                Math.Sqrt(dz * dz + dx * dx);
+                distanceFromCurrentLine = ((dz * mf.fixEasting) - (dx * mf.fixNorthing) + (ctList[B].x
+                            * ctList[A].z) - (ctList[B].z * ctList[A].x))
+                                / Math.Sqrt((dz * dz) + (dx * dx));
 
                 //are we on the right side or not
-                if (distanceFromCurrentLine > 0) isOnRightSideCurrentLine = true;
-                else isOnRightSideCurrentLine = false;
+                isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
 
                 //absolute the distance
                 distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
                 // ** Pure pursuit ** - calc point on ABLine closest to current position      
-                double U = (((pivotAxlePosCT.easting - ctList[A].x) * (dx)) +
-                            ((pivotAxlePosCT.northing - ctList[A].z) * (dz)))
-                            / (dx * dx + dz * dz);
+                double U = (((pivotAxlePosCT.easting - ctList[A].x) * (dx))
+                            + ((pivotAxlePosCT.northing - ctList[A].z) * (dz)))
+                            / ((dx * dx) + (dz * dz));
 
                 rEastCT = ctList[A].x + (U * (dx));
                 rNorthCT = ctList[A].z + (U * (dz));
@@ -368,7 +364,7 @@ namespace AgOpenGPS
                 if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
                 //used for accumulating distance to find goal point
-                double distSoFar = 0;
+                double distSoFar;
 
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
@@ -388,9 +384,8 @@ namespace AgOpenGPS
                     if (distSoFar > goalPointDistance)
                     {
                         //treat current segment like an AB Line
-                        goalPointCT.easting = rEastCT - Math.Sin(ctList[A].y) * goalPointDistance;
-                        goalPointCT.northing = rNorthCT - Math.Cos(ctList[A].y) * goalPointDistance;
-
+                        goalPointCT.easting = rEastCT - (Math.Sin(ctList[A].y) * goalPointDistance);
+                        goalPointCT.northing = rNorthCT - (Math.Cos(ctList[A].y) * goalPointDistance);
                     }
 
                     //multiple segments required
@@ -412,14 +407,12 @@ namespace AgOpenGPS
                         }
 
                         double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                        t = t / tempDist;
+                        t /= tempDist;
 
-
-                        goalPointCT.easting = ((1 - t) * ctList[B].x + t * ctList[A].x);
-                        goalPointCT.northing = ((1 - t) * ctList[B].z + t * ctList[A].z);
+                        goalPointCT.easting = (((1 - t) * ctList[B].x) + (t * ctList[A].x));
+                        goalPointCT.northing = (((1 - t) * ctList[B].z) + (t * ctList[A].z));
                     }
                 }
-
                 else
                 {
                     //counting up
@@ -430,15 +423,15 @@ namespace AgOpenGPS
                     if (distSoFar > goalPointDistance)
                     {
                         //treat current segment like an AB Line
-                        goalPointCT.easting = rEastCT + Math.Sin(ctList[A].y) * goalPointDistance;
-                        goalPointCT.northing = rNorthCT + Math.Cos(ctList[A].y) * goalPointDistance;
-       
+                        goalPointCT.easting = rEastCT + (Math.Sin(ctList[A].y) * goalPointDistance);
+                        goalPointCT.northing = rNorthCT + (Math.Cos(ctList[A].y) * goalPointDistance);
                     }
 
                     //multiple segments required
                     else
                     {
                         //cycle thru segments and keep adding lengths. check if end and break if so.
+                        // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
                         while (B < ptCount - 1)
                         {
                             B++; A++;
@@ -450,18 +443,18 @@ namespace AgOpenGPS
                                 //A--; B--;
                                 break; //tempDist contains the full length of next segment
                             }
-                            else distSoFar += tempDist;
+
+                            distSoFar += tempDist;
                         }
 
                         //xt = (((1 - t) * x0 + t * x1)                    
                         //yt = ((1 - t) * y0 + t * y1))
 
                         double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                        t = t / tempDist;
+                        t /= tempDist;
 
-
-                        goalPointCT.easting = ((1 - t) * ctList[A].x + t * ctList[B].x);
-                        goalPointCT.northing = ((1 - t) * ctList[A].z + t * ctList[B].z);
+                        goalPointCT.easting = (((1 - t) * ctList[A].x) + (t * ctList[B].x));
+                        goalPointCT.northing = (((1 - t) * ctList[A].z) + (t * ctList[B].z));
                     }
                 }
 
@@ -470,49 +463,61 @@ namespace AgOpenGPS
 
                 //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
                 double localHeading = glm.twoPI - mf.fixHeading;
-                ppRadiusCT = goalPointDistanceSquared / (2 * ((goalPointCT.easting - pivotAxlePosCT.easting) * Math.Cos(localHeading) + (goalPointCT.northing - pivotAxlePosCT.northing) * Math.Sin(localHeading)));
+                ppRadiusCT = goalPointDistanceSquared / (2 * (((goalPointCT.easting - pivotAxlePosCT.easting) * Math.Cos(localHeading)) + ((goalPointCT.northing - pivotAxlePosCT.northing) * Math.Sin(localHeading))));
 
-                steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivotAxlePosCT.easting) * Math.Cos(localHeading)) +
-                    ((goalPointCT.northing - pivotAxlePosCT.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+                steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivotAxlePosCT.easting) * Math.Cos(localHeading))
+                    + ((goalPointCT.northing - pivotAxlePosCT.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+
+                if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
+                if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
 
                 if (ppRadiusCT < -500) ppRadiusCT = -500;
                 if (ppRadiusCT > 500) ppRadiusCT = 500;
 
-                radiusPointCT.easting = pivotAxlePosCT.easting + ppRadiusCT * Math.Cos(localHeading);
-                radiusPointCT.northing = pivotAxlePosCT.northing + ppRadiusCT * Math.Sin(localHeading);
+                radiusPointCT.easting = pivotAxlePosCT.easting + (ppRadiusCT * Math.Cos(localHeading));
+                radiusPointCT.northing = pivotAxlePosCT.northing + (ppRadiusCT * Math.Sin(localHeading));
+
+                //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
+                angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
+
+                //clamp the steering angle to not exceed safe angular velocity
+                if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                {
+                    steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
+                            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777)))
+                        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
+                }
                 //Convert to centimeters
                 distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
                 //distance is negative if on left, positive if on right
                 //if you're going the opposite direction left is right and right is left
-                double temp;
+                //double temp;
                 if (isABSameAsFixHeading)
                 {
-                    temp = (abHeading);
+                    //temp = (abHeading);
                     if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
                 //opposite way so right is left
                 else
                 {
-                    temp = (abHeading - Math.PI);
-                    if (temp < 0) temp = (temp + glm.twoPI);
+                    //temp = (abHeading - Math.PI);
+                    //if (temp < 0) temp = (temp + glm.twoPI);
                     //temp = glm.toDegrees(temp);
                     if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                mf.guidanceLineSteerAngle = (Int16)(steerAngleCT*10);
                 //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading),
                 //                                    Math.Cos(temp - mf.fixHeading))) * 10000);
-
-                mf.guidanceLineSteerAngle = (Int16)(steerAngleCT*10);
            }
-
             else
             {
+                //invalid distance so tell AS module
                 distanceFromCurrentLine = 32000;
-                mf.guidanceLineDistanceOff = (Int16)32000;
-
+                mf.guidanceLineDistanceOff = 32000;
             }
         }
 
@@ -537,7 +542,7 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) gl.Vertex(ctList[h].x, ctList[h].z, 0);
             gl.End();
 
-            gl.PointSize(4.0f);
+            gl.PointSize(2.0f);
             gl.Begin(OpenGL.GL_POINTS);
 
             gl.Color(0.7f, 0.7f, 0.25f);
@@ -563,74 +568,63 @@ namespace AgOpenGPS
             //    }
             //}
 
-            //Draw AB Points
-            gl.PointSize(8.0f);
-            gl.Begin(OpenGL.GL_POINTS);
-
-            //gl.Color(1.0f, 1.0f, 0.25f);
-            //gl.Vertex(rEast, rNorth, 0.0);
-
-            gl.Color(1.0f, 0.5f, 0.95f);
-            gl.Vertex(goalPointCT.easting, goalPointCT.northing, 0.0);
-
-            gl.End();
-            gl.PointSize(1.0f);
-
             //ptCount = conList.Count;
             //if (ptCount > 0)
             //{
-                ////draw closest point and side of line points
-                //gl.Color(0.5f, 0.900f, 0.90f);
-                //gl.PointSize(4.0f);
-                //gl.Begin(OpenGL.GL_POINTS);
+            ////draw closest point and side of line points
+            //gl.Color(0.5f, 0.900f, 0.90f);
+            //gl.PointSize(4.0f);
+            //gl.Begin(OpenGL.GL_POINTS);
+            //for (int i = 0; i < ptCount; i++)  gl.Vertex(conList[i].x, conList[i].z, 0);
+            //gl.End();
 
-                //for (int i = 0; i < ptCount; i++)
-                //{
-                //    gl.Vertex(conList[i].x, conList[i].z, 0);
-                //}
-
-                //gl.End();
-
-
-                ////draw closest point and side of line points
-                //gl.Color(0.35f, 0.30f, 0.90f);
-                //gl.PointSize(6.0f);
-                //gl.Begin(OpenGL.GL_POINTS);
-                //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-                //gl.End();
-
+            //gl.Color(0.35f, 0.30f, 0.90f);
+            //gl.PointSize(6.0f);
+            //gl.Begin(OpenGL.GL_POINTS);
+            //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
+            //gl.End();
             //}
-
-            int num_segments = 100;
+            if (mf.isPureOn)
             {
-                gl.Color(0.95f, 0.30f, 0.950f);
-
-                double theta = glm.twoPI / (double)(num_segments);
-                double c = Math.Cos(theta);//precalculate the sine and cosine
-                double s = Math.Sin(theta);
-                double t;
-
-                double x = ppRadiusCT;//we start at angle = 0 
-                double y = 0;
-
-                gl.Begin(OpenGL.GL_LINE_LOOP);
-                for (int ii = 0; ii < num_segments; ii++)
+                const int numSegments = 100;
                 {
-                    //glVertex2f(x + cx, y + cy);//output vertex 
-                    gl.Vertex(x + radiusPointCT.easting, y + radiusPointCT.northing);//output vertex 
+                    gl.Color(0.95f, 0.30f, 0.950f);
 
-                    //apply the rotation matrix
-                    t = x;
-                    x = c * x - s * y;
-                    y = s * t + c * y;
+                    double theta = glm.twoPI / (numSegments);
+                    double c = Math.Cos(theta);//precalculate the sine and cosine
+                    double s = Math.Sin(theta);
+
+                    double x = ppRadiusCT;//we start at angle = 0 
+                    double y = 0;
+
+                    gl.LineWidth(1);
+                    gl.Begin(OpenGL.GL_LINE_LOOP);
+                    for (int ii = 0; ii < numSegments; ii++)
+                    {
+                        //glVertex2f(x + cx, y + cy);//output vertex 
+                        gl.Vertex(x + radiusPointCT.easting, y + radiusPointCT.northing);//output vertex 
+
+                        //apply the rotation matrix
+                        double t = x;
+                        x = (c * x) - (s * y);
+                        y = (s * t) + (c * y);
+                    }
+                    gl.End();
+
+                    //Draw lookahead Point
+                    gl.PointSize(4.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+
+                    //gl.Color(1.0f, 1.0f, 0.25f);
+                    //gl.Vertex(rEast, rNorth, 0.0);
+
+                    gl.Color(1.0f, 0.5f, 0.95f);
+                    gl.Vertex(goalPointCT.easting, goalPointCT.northing, 0.0);
+
+                    gl.End();
+                    gl.PointSize(1.0f);
                 }
-                gl.End(); 
             }
-
-
-
-
-
         }
 
         //Reset the contour to zip
@@ -640,6 +634,5 @@ namespace AgOpenGPS
             if (ptList != null) ptList.Clear();
             if (ctList != null) ctList.Clear();
         }
-
     }//class
 }//namespace

@@ -1,21 +1,13 @@
 ﻿//Please, if you use this, share the improvements
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using SharpGL;
 
 namespace AgOpenGPS
 {
     public class CWorldGrid
     {
-        OpenGL gl;
-        private FormGPS mf;
+        readonly OpenGL gl;
+        readonly FormGPS mf;
 
         //Z
         public double northingMax;
@@ -25,12 +17,12 @@ namespace AgOpenGPS
         public double eastingMax;
         public double eastingMin;
 
-        double texZoom = 20;
- 
-        public CWorldGrid(OpenGL _gl, FormGPS f)
+        const double texZoom = 20;
+
+        public CWorldGrid(OpenGL _gl, FormGPS _f)
         {
            gl = _gl;
-           this.mf = f;
+           mf = _f;
         }
 
         public void DrawFieldSurface()
@@ -79,7 +71,6 @@ namespace AgOpenGPS
 
             eastingMax = easting + 4000;
             eastingMin = easting - 4000;
- 
         }
 
         public void checkZoomWorldGrid(double northing, double easting)
@@ -91,6 +82,5 @@ namespace AgOpenGPS
             if ((eastingMax - easting) < 1500) eastingMax = easting + 2000;
             if ((easting - eastingMin) < 1500) eastingMin = easting - 2000;
         }
-
     }
 }

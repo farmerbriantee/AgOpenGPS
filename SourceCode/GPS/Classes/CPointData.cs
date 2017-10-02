@@ -1,9 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AgOpenGPS
 {
@@ -24,18 +21,16 @@ namespace AgOpenGPS
         //public DateTime utcDateTime;
 
         //public CPointData(double latitude, double longitude, double northing, double easting, double altitude, double speed, double headingTrue, DateTime utcDateTime)
-        public CPointData(  double easting, double northing, double lati, double longi)
+        public CPointData(  double _easting, double _northing, double _lati, double _longi)
         {
-            this.latitude = Math.Round(lati, 7);
-            this.longitude = Math.Round(longi, 7);
-            this.easting = Math.Round(easting, 7);
-            this.northing = Math.Round(northing, 7);
-            //this.altitude = altitude;
-            //this.speed = Math.Round(speed,1);
-            //this.headingTrue = headingTrue;
-            //this.utcDateTime = utcDateTime;
+            latitude = Math.Round(_lati, 7);
+            longitude = Math.Round(_longi, 7);
+            easting = Math.Round(_easting, 7);
+            northing = Math.Round(_northing, 7);
+            //altitude = altitude;
+            //speed = Math.Round(speed,1);
+            //headingTrue = headingTrue;
+            //utcDateTime = utcDateTime;
         }
-
-
     }
 }

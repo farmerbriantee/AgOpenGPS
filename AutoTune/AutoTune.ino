@@ -16,14 +16,17 @@
   //#define RELAY8_PIN A5  //PC5
   
   #define RAD2GRAD 57.2957795
+  
+  //autotune variables
+  int counter = 0;
+  float testPID = 0;
 
-  //program flow
+//program flow
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
   byte relay = 0, workSwitch = 0, steerSwitch = 1, speeed = 0;
   float distanceFromLine = 0; // not used
-  
 
   //steering variables
   float steerAngleActual = 0;
@@ -31,7 +34,6 @@
   float steerAngleSetPoint = 0; //the desired angle from AgOpen
   int steeringPosition = 0, steeringPositionZero = 512; //from steering sensor
   float steerAngleError = 0; //setpoint - actual
-  float steerSensorCounts = 40;
 
   //inclinometer variables
   int tilt = 0, roll = 0;
@@ -49,14 +51,16 @@
 
   //integral values - **** change as required *****
   int   maxIntErr = 200; //anti windup max
-  int maxIntegralValue = 20; //max PWM value for integral PID component 
+  float maxIntegralValue = 20.0; //max PWM value for integral PID component 
 
   //error values
   float lastError = 0, lastLastError = 0, integrated_error = 0, dError = 0;
 
+
 void setup()
 {
   //analogReference(EXTERNAL);
+  
   pinMode(LED_PIN, OUTPUT); //configure LED for output
   pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output //Pin 5
   pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output //Pin 6
@@ -68,11 +72,10 @@ void setup()
   //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output //Pin A5
   
   pinMode(DIR_PIN, OUTPUT); //D11 PB3 direction pin of PWM Board
-
-  //keep pulled high and drag low to activate, noise free safe    
+      
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
   pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 10 PB2
-    
+   
   Serial.begin(19200);  //open serial port
    
   //PWM rate settings Adjust to desired PWM Rate
@@ -113,11 +116,8 @@ void loop()
     
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
-    SetRelays();
 
     //analogReference(EXTERNAL);
-      
-    //steering position and steer angle
     analogRead(A0); //discard initial reading
     steeringPosition = analogRead(A0);
     delay(1);
@@ -128,79 +128,44 @@ void loop()
     steeringPosition += analogRead(A0);
     delay(1);
     steeringPosition = steeringPosition >> 2; //divide by 4    
-    steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
+    steeringPosition = (steeringPosition - steeringPositionZero); //zero it out
+    
+    bitSet(PINB, 5);              //turn LED on showing in headingDelta loop      
 
-    //convert position to steer angle. 4 counts per degree of steer pot position in my case
-    //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
-    // remove or add the minus for steerSensorCounts to do that.
-    steerAngleActual = (float)(steeringPosition)/-steerSensorCounts;    
+      counter++;
 
-    //inclinometer
-    delay(1);
-    analogRead(A1); //discard
-    delay(1);
-    tilt = analogRead(A1);
-   delay(1);
-    tilt += analogRead(A1);
-   delay(1);
-    tilt += analogRead(A1);
-   delay(1);
-    tilt += analogRead(A1);
+      if (counter == 30) testPID = 5;
+      if (counter == 60) testPID = 0;
+      if (counter == 90) testPID = -5;
+      if (counter == 120) testPID = 0;
 
-    tilt = tilt >> 2; //divide by 4
+      if (counter > 150) counter = 0;
 
-    //inclinometer goes from -25 to 25 from 0 volts to 5 volts
-    tilt = map(tilt,0,1023,-500,500);
-
-    //the steering part - if not off or invalid
-    if (distanceFromLine == 32020 | distanceFromLine == 32000             //auto Steer is off if 32020, invalid if 32000
-          | speeed < 1 | steerSwitch == 0 )                                               //Speed is too slow, motor or footswitch out of place or pulling pin low
-    {
-      pwmDrive = 0; //turn off steering motor
-      motorDrive();
-
-      //send to AgOpenGPS - autosteer is off
-      Serial.print(steerAngleActual);
-      Serial.print(",");    
-      Serial.print(Kp);
-      Serial.print(",");    
-      Serial.print(Ki,2);
-      Serial.print(",");    
-      Serial.print(Kd);
-      Serial.print(",");    
-      Serial.print(Ko);
-      Serial.print(",");    
-      Serial.println(tilt); //tilt
-    }
-     
-    else          //valid spot to turn on autosteer
-    {
-      bitSet(PINB, 5);              //turn LED on showing in headingDelta loop      
-
-      //calculate the steering error
-      steerAngleError = steerAngleActual - steerAngleSetPoint;                    
-
-      //do the pid
-      calcSteeringPID();                                                                                                            
+      //determine ideal approach angle based on distance from line. 
+      steerAngleError = testPID - steeringPosition;                
+   
+      //calculate PID values and motor drive
+      calcSteeringPID();                                                                                                           
       motorDrive();    //out to motors the pwm value
 
       //send to agopenGPS
-      Serial.print(steerAngleActual);
+      Serial.print(steeringPosition);
       Serial.print(",");    
-      Serial.print((int)pValue);
+      Serial.print(pValue);
       Serial.print(",");    
-      Serial.print((int)iValue);
+      Serial.print(iValue);
       Serial.print(",");    
-      Serial.print((int)dValue);
+      Serial.print(dValue);
       Serial.print(",");    
       Serial.print(pwmDisplay);
       Serial.print(",");
-      Serial.println(tilt);   //tilt     
-    } 
-  }  
+      Serial.println(testPID);   //tilt     
+    
+  }
+  
 
-  //Header has been found, presumably the next 8 bytes are the settings
-  if (Serial.available() > 7 && isSettingFound)
+  //Header has been found, presumably the next 7 bytes are the settings
+  if (Serial.available() > 6 && isSettingFound)
   {  
     isSettingFound = false;
 
@@ -212,7 +177,6 @@ void loop()
     steeringPositionZero = 412 + Serial.read();  //read steering zero offset
     minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
     maxIntegralValue = Serial.read(); //
-    steerSensorCounts = Serial.read()*0.1; //sent as 10 times the setting displayed in AOG
   }
 }
 

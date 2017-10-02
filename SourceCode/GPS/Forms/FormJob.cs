@@ -7,8 +7,7 @@ namespace AgOpenGPS
     public partial class FormJob : Form
     {
         //class variables
-        private FormGPS mf = null;
-
+        private readonly FormGPS mf = null;
 
         public FormJob(Form callingForm)
         {
@@ -26,16 +25,15 @@ namespace AgOpenGPS
             if (mf.isJobStarted)
             {
                 //back to FormGPS
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
             else
             {
                 //back to FormGPS
-                this.DialogResult = DialogResult.Cancel;
+                DialogResult = DialogResult.Cancel;
                 mf.JobClose();
-                this.Close();
-
+                Close();
             }
         }
 
@@ -45,8 +43,8 @@ namespace AgOpenGPS
             mf.JobNew();
 
             //back to FormGPS
-            this.DialogResult = DialogResult.Yes;
-            this.Close();
+            DialogResult = DialogResult.Yes;
+            Close();
         }
 
         private void btnJobResume_Click(object sender, EventArgs e)
@@ -55,8 +53,8 @@ namespace AgOpenGPS
             mf.FileOpenField("Resume");
 
             //back to FormGPS
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void FormJob_Load(object sender, EventArgs e)
@@ -73,13 +71,10 @@ namespace AgOpenGPS
                 lblResumeDirectory.Text = "";
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
-                Properties.Settings.Default.setCurrentDir = "";
+                Properties.Settings.Default.setF_CurrentDir = "";
                 Properties.Settings.Default.Save();
             }
-
             else lblResumeDirectory.Text = mf.currentFieldDirectory;
- 
         }
-
     }
 }

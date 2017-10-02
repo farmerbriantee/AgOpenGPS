@@ -2,12 +2,8 @@
 
 using System.IO.Ports;
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using SharpGL;
 using System.Drawing;
-using System.Text;
-using System.Diagnostics;
 
 namespace AgOpenGPS
 {
@@ -44,7 +40,7 @@ namespace AgOpenGPS
 
         #region AutoSteerPort //--------------------------------------------------------------------
 
-        public void AutoSteerControlOutToPort()
+        public void AutoSteerDataOutToPort()
         {
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
@@ -84,8 +80,8 @@ namespace AgOpenGPS
             if (words.Length == 6)
             {
                 int.TryParse(words[5], out mc.rollRaw);
-                //if (mc.rollRaw > 400 | mc.rollRaw < -400) mc.rollRaw = 0;
-                 rollAngle = Math.Round((double)mc.rollRaw/20.0 + rollZero,2);
+                if (mc.rollRaw > 400 | mc.rollRaw < -400) mc.rollRaw = 0;
+                 rollAngle = Math.Round((double)mc.rollRaw/20.0, 2);
             }
 
             else rollAngle = 0;

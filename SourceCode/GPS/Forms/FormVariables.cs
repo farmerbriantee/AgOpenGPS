@@ -1,20 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
     public partial class FormVariables : Form
     {
-        private FormGPS mf = null;
-        public FormVariables(Form callingForm)
-        {     
-            mf = callingForm as FormGPS;
+        private readonly FormGPS mf;
+        public FormVariables(Form _callingForm)
+        {
+            mf = _callingForm as FormGPS;
             InitializeComponent();
         }
 
@@ -47,20 +41,11 @@ namespace AgOpenGPS
             lblStepDistance.Text = mf.CurrentStepDistance;
             lblTotalStep.Text = mf.TotalStepDistance;
 
-
             //mf.UTMToLatLon(mf.pn.easting+mf.pn.utmEast,mf.pn.northing+mf.pn.utmNorth);
 
             //lblToLat.Text = mf.utmLat.ToString();
             //lblToLong.Text = mf.utmLon.ToString();
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
     }
 }
-
- 

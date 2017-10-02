@@ -1,7 +1,6 @@
 ﻿
 using System;
 using System.Drawing;
-using System.Linq;
 using SharpGL;
 
 
@@ -35,7 +34,7 @@ namespace AgOpenGPS
                 gl.LoadIdentity();
 
                 //camera does translations and rotations
-                camera.SetWorldCam(gl, pivotAxlePos.easting, pivotAxlePos.northing, fixPosZ, fixHeadingCam);
+                camera.SetWorldCam(gl, pivotAxlePos.easting, pivotAxlePos.northing, fixHeadingCam);
 
                 //calculate the frustum planes for culling
                 CalcFrustum(gl);
@@ -49,7 +48,6 @@ namespace AgOpenGPS
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(gridZoom);
-
 
                 //turn on blend for paths
                 gl.Enable(OpenGL.GL_BLEND);
@@ -176,7 +174,6 @@ namespace AgOpenGPS
                         gl.Begin(OpenGL.GL_POINTS);
                         gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
                         gl.End();
-
                     }
                 }
 
@@ -187,13 +184,9 @@ namespace AgOpenGPS
                 boundary.DrawBoundaryLine();
 
                 //screen text for debug
-                //gl.DrawText(140, 15, 1, 1, 1, "Courier", 14, " Dist: " + (ABLine.lookAheadDistanceSquared).ToString());
-                //gl.DrawText(140, 30, 1, 1, 1, "Courier", 14, " Head: " + fixHeading.ToString());
-
-               
-                gl.DrawText(40, 45, 1, 1, 1, "Courier", 18, " SteerAngle: " + Convert.ToString(guidanceLineSteerAngle/10));
-   
-                //gl.DrawText(40, 70, 1, 1, 1, "Courier", 18, " Radius: " + Convert.ToString((int)ABLine.ppRadiusAB));
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier", 18, " camstep: " + testInt.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier", 18, "head: " + Convert.ToString((double)(testDouble)));   
+                //gl.DrawText(120, 70, 1, 1, 1, "Courier", 18, " Xe: " + Convert.ToString(Xe));
 
                 //gl.DrawText(40, 75, 1, 1, 1, "Courier", 16, " SteerCT " + Convert.ToString(ct.steeringAngleCT));
                 //gl.DrawText(40, 90, 1, 1, 1, "Courier", 12, " RadiusCT " + Convert.ToString(ct.radiusCT));
@@ -233,9 +226,9 @@ namespace AgOpenGPS
                         //the background
                         double winLeftPos = -(double)Width / 2;
                         double winRightPos = -winLeftPos;
-
                         gl.Enable(OpenGL.GL_TEXTURE_2D);
                         gl.BindTexture(OpenGL.GL_TEXTURE_2D, texture[0]);		// Select Our Texture
+
                         gl.Begin(OpenGL.GL_TRIANGLE_STRIP);				// Build Quad From A Triangle Strip
                         gl.TexCoord(0, 0); gl.Vertex(winRightPos, 0.0); // Top Right
                         gl.TexCoord(1, 0); gl.Vertex(winLeftPos, 0.0); // Top Left
@@ -322,7 +315,6 @@ namespace AgOpenGPS
                         txtDistanceOffABLine.Visible = false;
                         //lblDelta.Visible = false;
                         btnAutoSteer.Text = "-";
-
                     }
                 }
 
@@ -333,8 +325,7 @@ namespace AgOpenGPS
                     btnAutoSteer.Text = "-";
                 }
 
-                gl.Flush();//finish openGL commands 
-
+                gl.Flush();//finish openGL commands
                 gl.PopMatrix();//  Pop the modelview.
 
                 //  back to the projection and pop it, then back to the model view.
@@ -345,7 +336,6 @@ namespace AgOpenGPS
                 //reset point size
                 gl.PointSize(1.0f);
                 gl.Flush();
-
 
                 if (leftMouseDownOnOpenGL)
                 {
@@ -431,7 +421,7 @@ namespace AgOpenGPS
             gl.Rotate(glm.toDegrees(fixHeadingSection), 0, 0, 1);
 
             //translate to that spot in the world 
-            gl.Translate(-toolPos.easting, -toolPos.northing, -fixPosZ);
+            gl.Translate(-toolPos.easting, -toolPos.northing, -fixZ);
 
             //patch color
             gl.Color(0.0f, 0.5f, 0.0f);

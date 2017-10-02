@@ -98,43 +98,43 @@
     <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setIsMetric" Type="System.Boolean" Scope="User">
+    <Setting Name="setMenu_IsMetric" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setIsGridOn" Type="System.Boolean" Scope="User">
+    <Setting Name="setMenu_IsGridOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setIsLightbarOn" Type="System.Boolean" Scope="User">
+    <Setting Name="setMenu_IsLightbarOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setIsAreaRight" Type="System.Boolean" Scope="User">
+    <Setting Name="setMenu_IsAreaRight" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setCurrentDir" Type="System.String" Scope="User">
+    <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="setFieldColorR" Type="System.Byte" Scope="User">
+    <Setting Name="setF_FieldColorR" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">130</Value>
     </Setting>
-    <Setting Name="setFieldColorG" Type="System.Byte" Scope="User">
+    <Setting Name="setF_FieldColorG" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">120</Value>
     </Setting>
-    <Setting Name="setFieldColorB" Type="System.Byte" Scope="User">
+    <Setting Name="setF_FieldColorB" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
-    <Setting Name="setSectionColorR" Type="System.Byte" Scope="User">
+    <Setting Name="setF_SectionColorR" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="setSectionColorG" Type="System.Byte" Scope="User">
+    <Setting Name="setF_SectionColorG" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">220</Value>
     </Setting>
-    <Setting Name="setSectionColorB" Type="System.Byte" Scope="User">
+    <Setting Name="setF_SectionColorB" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">200</Value>
     </Setting>
-    <Setting Name="setIsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_IsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setIsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_Name" Type="System.String" Scope="User">
@@ -164,29 +164,29 @@
     <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setIsLogNMEA" Type="System.Boolean" Scope="User">
+    <Setting Name="setMenu_IsLogNMEA" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="set_minFixStep" Type="System.Double" Scope="User">
+    <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_tankTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-1.5</Value>
     </Setting>
     <Setting Name="setAS_Ko" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setAS_Ki" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">35</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setAS_steerAngleOffset" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">99</Value>
+      <Value Profile="(Default)">70</Value>
     </Setting>
     <Setting Name="setPort_isUDPOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -194,23 +194,41 @@
     <Setting Name="setPort_isTCPOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setUserTripAlarm" Type="System.Double" Scope="User">
+    <Setting Name="setF_UserTripAlarm" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setUserTotalArea" Type="System.Double" Scope="User">
+    <Setting Name="setF_UserTotalArea" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_minApplied" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="setAS_minSteerPWM" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">27</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="set_boundaryTriggerDistance" Type="System.Double" Scope="User">
+    <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2.5</Value>
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setMenu_IsSideGuideLines" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

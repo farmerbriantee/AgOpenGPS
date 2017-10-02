@@ -13,7 +13,6 @@ namespace AgOpenGPS
         public double northing;
         public double heading;
 
-
         public vec3(double easting, double northing, double heading)
         {
             this.easting = easting;
@@ -21,23 +20,22 @@ namespace AgOpenGPS
             this.heading = heading;
         }
 
-
        public vec3(vec3 v)
         {
-            this.easting = v.easting;
-            this.northing = v.northing;
-            this.heading = v.heading;
+            easting = v.easting;
+            northing = v.northing;
+            heading = v.heading;
          }
 
         public double HeadingXZ()
         {
             return Math.Atan2(easting, northing);
         }
- 
+
         public void Normalize()
         {
             double length = GetLength();
-            if (length == 0)
+            if (Math.Abs(length) < 0.0000000000001)
             {
                 throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
             }
@@ -50,7 +48,7 @@ namespace AgOpenGPS
         //Returns the length of the vector
         public double GetLength()
         {
-            return System.Math.Sqrt(easting * easting + heading * heading + northing * northing);
+            return Math.Sqrt(easting * easting + heading * heading + northing * northing);
         }
 
         // Calculates the squared length of the vector.
@@ -74,8 +72,6 @@ namespace AgOpenGPS
         //    return (lhs.x != rhs.x && lhs.z != rhs.z && lhs.h != rhs.h);
         //}
 
-
-
     }
 
     //
@@ -90,7 +86,6 @@ namespace AgOpenGPS
         public double z; //northing
         public double k;    //altitude
 
-
         public vec4(double x, double y, double z, double k)
         {
             this.x = x;
@@ -100,13 +95,10 @@ namespace AgOpenGPS
         }
     }
 
-
-
     public struct vec2
     {
         public double easting; //easting
         public double northing; //northing
-
 
         public vec2(double easting, double northing)
         {
@@ -118,7 +110,6 @@ namespace AgOpenGPS
         {
             return new vec2(lhs.easting - rhs.easting, lhs.northing - rhs.northing);
         }
-
 
         //public static bool operator ==(vec2 lhs, vec2 rhs)
         //{
@@ -140,7 +131,7 @@ namespace AgOpenGPS
         public void Normalize()
         {
             double length = GetLength();
-            if (length == 0)
+            if (Math.Abs(length) < 0.000000000001)
             {
                 throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
             }
@@ -152,15 +143,14 @@ namespace AgOpenGPS
         //Returns the length of the vector
         public double GetLength()
         {
-            return System.Math.Sqrt(easting * easting + northing * northing);
+            return Math.Sqrt(easting * easting + northing * northing);
         }
 
         // Calculates the squared length of the vector.
         public double GetLengthSquared()
         {
             return (easting * easting + northing * northing);
-        }  
-        
+        }
     }
 
     //strucutre for contour guidance
@@ -178,24 +168,20 @@ namespace AgOpenGPS
             this.x = x;
             this.z = z;
             this.h = h;
-            this.strip = s;
-            this.pt = p;
+            strip = s;
+            pt = p;
         }
 
          public cvec(vec3 v)
          {
-             this.x = v.easting;
-             this.z = v.northing;
-             this.h = v.heading;
-             this.strip = 99999;
-             this.pt = 99999;
+             x = v.easting;
+             z = v.northing;
+             h = v.heading;
+             strip = 99999;
+             pt = 99999;
          }
-
-
     }
 }
-
-
 
 //public double this[int index]
 //{
@@ -239,7 +225,6 @@ namespace AgOpenGPS
 //{
 //    return new vec2(lhs.x + rhs, lhs.z + rhs);
 //}
-
 
 //public static vec2 operator -(vec2 lhs, double rhs)
 //{

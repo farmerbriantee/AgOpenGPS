@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
     public partial class FormBoundary : Form
     {
-        private FormGPS mf = null;
+        private readonly FormGPS mf = null;
 
         public FormBoundary(Form callingForm)
         {
@@ -21,8 +15,8 @@ namespace AgOpenGPS
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
-            if (mf.boundary.isDrawRightSide) btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
-            else btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
+            btnLeftRight.Image = mf.boundary.isDrawRightSide ? Properties.Resources.BoundaryRight
+                            : Properties.Resources.BoundaryLeft;
             btnLeftRight.Enabled = false;
 
             if (mf.boundary.isSet)
@@ -31,14 +25,12 @@ namespace AgOpenGPS
                 btnSerialOK.Enabled = false;
                 btnDelete.Enabled = true;
             }
-
             else
             {
                 btnOuter.Enabled = true;
                 btnSerialOK.Enabled = false;
                 btnDelete.Enabled = false;
             }
-
         }
 
         private void btnOuter_Click(object sender, EventArgs e)
@@ -58,9 +50,7 @@ namespace AgOpenGPS
         {
             mf.boundary.isDrawRightSide = !mf.boundary.isDrawRightSide;
 
-            if (mf.boundary.isDrawRightSide) btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
-            else btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
- 
+            btnLeftRight.Image = mf.boundary.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -73,13 +63,7 @@ namespace AgOpenGPS
             mf.boundary.ResetBoundary();
             mf.FileSaveOuterBoundary();
 
-            if (mf.boundary.isDrawRightSide) btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
-            else btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
-
+            btnLeftRight.Image = mf.boundary.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
-
-
-
-
     }
 }

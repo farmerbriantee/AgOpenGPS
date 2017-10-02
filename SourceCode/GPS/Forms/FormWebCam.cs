@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using WebEye.Controls.WinForms.WebCameraControl;
 
-
 namespace AgOpenGPS
 {
     public partial class FormWebCam : Form
@@ -42,7 +41,6 @@ namespace AgOpenGPS
             {
                 comboBox1.SelectedItem = comboBox1.Items[0];
             }
-
         }
 
         private void UpdateButtons()
@@ -69,7 +67,6 @@ namespace AgOpenGPS
             {
                 UpdateButtons();
             }
- 
         }
 
         private void stopButton_Click_1(object sender, EventArgs e)
@@ -78,7 +75,5 @@ namespace AgOpenGPS
 
             UpdateButtons();
         }
-
     }
-    
 }

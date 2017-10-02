@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AgOpenGPS
 {
@@ -39,7 +36,7 @@ namespace AgOpenGPS
 
         public static float asinh(float x)
         {
-            return (float)(x < 0f ? -1f : (x > 0f ? 1f : 0f)) * (float)Math.Log(Math.Abs(x) + Math.Sqrt(1f + x * x));
+            return (x < 0f ? -1f : (x > 0f ? 1f : 0f)) * (float)Math.Log(Math.Abs(x) + Math.Sqrt(1f + x * x));
         }
 
         public static float atan(float y, float x)
@@ -105,6 +102,5 @@ namespace AgOpenGPS
         {
             return (float)Math.Tanh(angle);
         }
-
     }
 }

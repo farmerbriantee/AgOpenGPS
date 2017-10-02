@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AgOpenGPS
 {
@@ -21,16 +18,14 @@ namespace AgOpenGPS
         public int ID = 0;
 
         //constructor
-        public CFlag(double lati, double longi, double easting, double northing, int color, int ID)
+        public CFlag(double _lati, double _longi, double _easting, double _northing, int _color, int _ID)
         {
-            this.latitude = Math.Round(lati, 7);
-            this.longitude = Math.Round(longi, 7);
-            this.easting = Math.Round(easting, 7);
-            this.northing = Math.Round(northing, 7);
-            this.color = color;
-            this.ID = ID;
-
+            latitude = Math.Round(_lati, 7);
+            longitude = Math.Round(_longi, 7);
+            easting = Math.Round(_easting, 7);
+            northing = Math.Round(_northing, 7);
+            color = _color;
+            ID = _ID;
         }
-
     }
 }

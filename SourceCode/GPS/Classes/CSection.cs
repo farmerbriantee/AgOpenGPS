@@ -2,8 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AgOpenGPS
 {
@@ -14,7 +12,7 @@ namespace AgOpenGPS
     public class CSection
     {
         //copy of the mainform address
-        private FormGPS mf;
+        private readonly FormGPS mf;
 
         //list of patch data individual triangles
         public List<vec2> triangleList = new List<vec2>();
@@ -53,7 +51,7 @@ namespace AgOpenGPS
         //points in world space that start and end of section are in
         public vec2 leftPoint;
         public vec2 rightPoint;
- 
+
         //used to determine left and right point
         public vec2 lastLeftPoint;
         public vec2 lastRightPoint;
@@ -66,13 +64,13 @@ namespace AgOpenGPS
         public int numTriangles = 0;
 
         //used to determine state of Manual section button - Off Auto On
-        public AgOpenGPS.FormGPS.manBtn manBtnState = AgOpenGPS.FormGPS.manBtn.Off;
+        public FormGPS.manBtn manBtnState = FormGPS.manBtn.Off;
 
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
-        public CSection(FormGPS f)
+        public CSection(FormGPS _f)
         {
             //constructor
-            this.mf = f;
+            mf = _f;
         }
 
         public void TurnSectionOn()
@@ -91,13 +89,13 @@ namespace AgOpenGPS
                 patchList.Add(triangleList);
 
                 //left side of triangle
-                vec2 point = new vec2(mf.cosSectionHeading * positionLeft + mf.toolPos.easting,
-                        mf.sinSectionHeading * positionLeft + mf.toolPos.northing);
+                vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
+                        (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec2(mf.cosSectionHeading * positionRight + mf.toolPos.easting,
-                    mf.sinSectionHeading * positionRight + mf.toolPos.northing);
+                point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
+                    (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
                 triangleList.Add(point);
             }
         }
@@ -112,24 +110,22 @@ namespace AgOpenGPS
             mf.patchSaveList.Add(triangleList);
         }
 
-
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
 
         public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
         {
-   
             //add two triangles for next step.
             //left side
-            vec2 point = new vec2(cosHeading * (positionLeft) + easting,
-                sinHeading * (positionLeft) + northing);
+            vec2 point = new vec2((cosHeading * positionLeft) + easting,
+                (sinHeading * positionLeft) + northing);
 
             //add the point to List
             triangleList.Add(point);
 
             //Right side
-            vec2 point2 = new vec2(cosHeading * (positionRight) + easting,
-                sinHeading * (positionRight) + northing);
+            vec2 point2 = new vec2((cosHeading * positionRight) + easting,
+                (sinHeading * positionRight) + northing);
 
             //add the point to the list
             triangleList.Add(point2);
@@ -146,21 +142,20 @@ namespace AgOpenGPS
             {
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {
-                    double temp = 0;
-                    temp = triangleList[c].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing) +
-                              triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c].northing) +
-                                  triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing);
+                    double temp = (triangleList[c].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing)) +
+                              (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c].northing)) +
+                                  (triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing));
 
-                    temp = Math.Abs((temp / 2.0));
+                    temp = Math.Abs(temp / 2.0);
                     mf.totalSquareMeters += temp;
                     mf.totalUserSquareMeters += temp;
 
-                    temp = 0;
-                    temp = triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing) +
-                              triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing) +
-                                  triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing);
+                    //temp = 0;
+                    temp = (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing)) +
+                              (triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing)) +
+                                  (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing));
 
-                    temp = Math.Abs((temp / 2.0));
+                    temp = Math.Abs(temp / 2.0);
                     mf.totalSquareMeters += temp;
                     mf.totalUserSquareMeters += temp;
                 }
@@ -179,9 +174,7 @@ namespace AgOpenGPS
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);
                 triangleList.Add(point2);
-
             }
         }
-        
     }
 }

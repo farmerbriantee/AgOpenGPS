@@ -1,23 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SharpGL;
-using System.Windows;
-using System.Drawing;
 
 namespace AgOpenGPS
 {
     public class CBoundary
     {
         //copy of the mainform address
-        private FormGPS mf;
-        private OpenGL gl;
-        private OpenGL glb;
+        private readonly FormGPS mf;
+        private readonly OpenGL gl;
+        private readonly OpenGL glb;
 
         //constructor
-        public CBoundary(OpenGL gl, OpenGL glb, FormGPS f)
+        public CBoundary(OpenGL _gl, OpenGL _glb, FormGPS _f)
         {
-            this.mf = f;
-            this.gl = gl;
-            this.glb = glb;
+            mf = _f;
+            gl = _gl;
+            glb = _glb;
 
             area = 0;
             isSet = false;
@@ -67,12 +66,11 @@ namespace AgOpenGPS
             for (int i = 0; i < ptList.Count; j = i++)
             {
                 //check for divide by zero
-                if (ptList[i].northing == ptList[j].northing)
+                if (Math.Abs(ptList[i].northing - ptList[j].northing) < 0.00000000001)
                 {
                     constantMultiple.easting = ptList[i].easting;
                     constantMultiple.northing = 0;
                 }
-
                 else
                 {
                     //determine constant and multiple and add to list
@@ -84,8 +82,8 @@ namespace AgOpenGPS
                 }
             }
 
-            areaHectare = System.Math.Round((mf.boundary.area * 0.0001), 1) + " Ha";
-            areaAcre = System.Math.Round(mf.boundary.area * 0.000247105, 1) + " Ac";
+            areaHectare = Math.Round((mf.boundary.area * 0.0001), 1) + " Ha";
+            areaAcre = Math.Round(mf.boundary.area * 0.000247105, 1) + " Ac";
         }
 
         public bool IsPrePointInPolygon(vec2 testPoint)
@@ -160,9 +158,7 @@ namespace AgOpenGPS
             {
                 area = area + (ptList[j].easting + ptList[i].easting) * (ptList[j].northing - ptList[i].northing);
             }
-            area = System.Math.Abs(area / 2);
-
-
+            area = Math.Abs(area / 2);
         }
 
         //the non precalculated version
@@ -182,6 +178,5 @@ namespace AgOpenGPS
             }
             return result;
         }
-
     }
 }

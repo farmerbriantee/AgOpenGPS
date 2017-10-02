@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -12,7 +6,7 @@ namespace AgOpenGPS
     public partial class FormCommSet : Form
     {
       //class variables
-        private FormGPS mf = null;
+        private readonly FormGPS mf = null;
 
         //constructor
         public FormCommSet(Form callingForm)
@@ -35,7 +29,6 @@ namespace AgOpenGPS
                 btnCloseSerial.Enabled = true;
                 btnOpenSerial.Enabled = false;
             }
-
             else
             {
                 cboxBaud.Enabled = true;
@@ -51,7 +44,6 @@ namespace AgOpenGPS
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
             }
-
             else
             {
                 cboxArdPort.Enabled = true;
@@ -66,7 +58,6 @@ namespace AgOpenGPS
                 btnCloseSerialAutoSteer.Enabled = true;
                 btnOpenSerialAutoSteer.Enabled = false;
             }
-
             else
             {
                 cboxASPort.Enabled = true;
@@ -83,7 +74,7 @@ namespace AgOpenGPS
                 cboxPort.Items.Add(s);
                 cboxArdPort.Items.Add(s);
                 cboxASPort.Items.Add(s);
-            }        
+            }
 
             lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
             lblCurrentPort.Text = mf.sp.PortName;
@@ -106,19 +97,17 @@ namespace AgOpenGPS
             mf.SerialPortAutoSteerOpen();
             if (mf.spAutoSteer.IsOpen)
             {
-                this.cboxASPort.Enabled = false;
+                cboxASPort.Enabled = false;
                 btnCloseSerialAutoSteer.Enabled = true;
                 btnOpenSerialAutoSteer.Enabled = false;
                 lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
             }
-
             else
             {
                 cboxASPort.Enabled = true;
                 btnCloseSerialAutoSteer.Enabled = false;
                 btnOpenSerialAutoSteer.Enabled = true;
             }
-
         }
 
         private void btnCloseSerialAutoSteer_Click(object sender, EventArgs e)
@@ -130,7 +119,6 @@ namespace AgOpenGPS
                 btnCloseSerialAutoSteer.Enabled = true;
                 btnOpenSerialAutoSteer.Enabled = false;
             }
-
             else
             {
                 cboxASPort.Enabled = true;
@@ -150,14 +138,12 @@ namespace AgOpenGPS
                 btnOpenSerialArduino.Enabled = false;
                 lblCurrentArduinoPort.Text = mf.spRelay.PortName;
             }
-
             else
             {
                 cboxArdPort.Enabled = true;
                 btnCloseSerialArduino.Enabled = false;
                 btnOpenSerialArduino.Enabled = true;
             }
-
         }
 
         private void btnCloseSerialArduino_Click(object sender, EventArgs e)
@@ -169,14 +155,12 @@ namespace AgOpenGPS
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
             }
-
             else
             {
                 cboxArdPort.Enabled = true;
                 btnCloseSerialArduino.Enabled = false;
                 btnOpenSerialArduino.Enabled = true;
             }
-
         }
 
         private void cboxArdPort_SelectedIndexChanged(object sender, EventArgs e)
@@ -191,7 +175,6 @@ namespace AgOpenGPS
         {
              mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
             FormGPS.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
-       
         }
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -212,7 +195,6 @@ namespace AgOpenGPS
                 lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
                 lblCurrentPort.Text = mf.sp.PortName;
             }
-
             else
             {
                 cboxBaud.Enabled = true;
@@ -232,7 +214,6 @@ namespace AgOpenGPS
                 btnCloseSerial.Enabled = true;
                 btnOpenSerial.Enabled = false;
             }
-
             else
             {
                 cboxBaud.Enabled = true;
@@ -253,7 +234,7 @@ namespace AgOpenGPS
             cboxPort.Items.Clear();
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPort.Items.Add(s); }
         }
-        
+
         #endregion PortSettings
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -279,15 +260,14 @@ namespace AgOpenGPS
             Properties.Settings.Default.setPort_isTCPOn = cboxTCP.Checked;
 
             Properties.Settings.Default.Save();
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void cboxTCP_CheckedChanged(object sender, EventArgs e)
@@ -299,6 +279,5 @@ namespace AgOpenGPS
         {
 
         }
-
      } //class
 } //namespace

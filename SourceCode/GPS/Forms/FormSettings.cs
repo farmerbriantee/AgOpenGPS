@@ -1,13 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
-
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -15,10 +8,10 @@ namespace AgOpenGPS
     public partial class FormSettings : Form
     {
        //class variables
-        private FormGPS mf = null;
+        private readonly FormGPS mf = null;
 
         double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
-        double antennaHeight, antennaPivot, wheelbase, hitchLength, pitchZeroSet, rollZeroSet;
+        double antennaHeight, antennaPivot, wheelbase, hitchLength;
 
         bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
         int numberOfSections;
@@ -31,7 +24,8 @@ namespace AgOpenGPS
 
         bool isWorkSwEn, isWorkSwActiveLow;
 
-        double metImp2m, m2MetImp, cutoffMetricImperial, cutoffSpeed, maxWidth;
+        readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
+        private double cutoffSpeed;
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -40,7 +34,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-            if (mf.isMetric)
+            if (mf != null && mf.isMetric)
             {
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
@@ -53,7 +47,6 @@ namespace AgOpenGPS
                 cutoffMetricImperial = 1;
                 maxWidth = 4000;
             }
-
             else
             {
                 metImp2m = glm.in2m;
@@ -75,7 +68,7 @@ namespace AgOpenGPS
         private void FormSettings_Load(object sender, EventArgs e)
         {
             //Vehicle settings to what it is in the settings page------------------------------------------------
-            antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;     
+            antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
             antennaPivot = Math.Abs(Properties.Settings.Default.setVehicle_antennaPivot);
             hitchLength = Math.Abs(Properties.Settings.Default.setVehicle_hitchLength);
             wheelbase = Math.Abs(Properties.Settings.Default.setVehicle_wheelbase);
@@ -96,19 +89,14 @@ namespace AgOpenGPS
             nudWheelbase.Value = (decimal)(wheelbase * m2MetImp);
             nudWheelbase.ValueChanged += nudWheelbase_ValueChanged;
 
-            
             //Tool    hitched, pivot behind antenna, and tool behind pivot are the default as true------------------------------------------------------
-            if (Properties.Settings.Default.setVehicle_isToolBehindPivot) isToolBehindPivot = true;
-            else isToolBehindPivot = false;
+            isToolBehindPivot = Properties.Settings.Default.setVehicle_isToolBehindPivot;
 
-            if (Properties.Settings.Default.setVehicle_isToolTrailing) isToolTrailing = true;
-            else isToolTrailing = false;
+            isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
 
-            if (Properties.Settings.Default.setVehicle_isPivotBehindAntenna) isPivotBehindAntenna = true;
-            else isPivotBehindAntenna = false;
+            isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
 
-            if (Properties.Settings.Default.setVehicle_isSteerAxleAhead) isSteerAxleAhead = true;
-            else isSteerAxleAhead = false;
+            isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
 
             chkIsAft.CheckedChanged -= chkIsAft_CheckedChanged;
             chkIsAft.Checked = isToolBehindPivot;
@@ -132,15 +120,14 @@ namespace AgOpenGPS
             UpdateIsSteerAxleAhead();
 
             toolTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_toolTrailingHitchLength);
-            tankTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength);  
-            
+            tankTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength);
+
 
             toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
             toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
 
             toolTurnOffDelay = Properties.Settings.Default.setVehicle_turnOffDelay;
             toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
-
 
             nudOverlap.ValueChanged -= nudOverlap_ValueChanged;
             nudOverlap.Value = (decimal)(toolOverlap * m2MetImp);
@@ -165,7 +152,7 @@ namespace AgOpenGPS
             nudLookAhead.ValueChanged -= nudLookAhead_ValueChanged;
             nudLookAhead.Value = (decimal)(toolLookAhead);
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
-            
+
              //Sections set to settings page ----------------------------------------------------------------------
             numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
@@ -182,10 +169,10 @@ namespace AgOpenGPS
             nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)m2MetImp);
             nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)m2MetImp);
             nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)m2MetImp);
-            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)m2MetImp); 
+            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)m2MetImp);
 
             //based on number of sections and values update the page before displaying
-            UpdateSpinners();            
+            UpdateSpinners();
 
             isAtanCamera = Properties.Settings.Default.setCam_isAtanCam;
 
@@ -196,38 +183,29 @@ namespace AgOpenGPS
             triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
             nudTriangleResolution.Value = triResolution;
 
-            boundaryDistance = (decimal)Properties.Settings.Default.set_boundaryTriggerDistance;
+            boundaryDistance = (decimal)Properties.Settings.Default.setF_boundaryTriggerDistance;
             nudBoundaryDistance.Value = boundaryDistance;
 
-            minFixStepDistance = (decimal)Properties.Settings.Default.set_minFixStep;
+            minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             nudMinFixStepDistance.Value = minFixStepDistance;
 
-            isWorkSwActiveLow = Properties.Settings.Default.setIsWorkSwitchActiveLow;
+            isWorkSwActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
 
             chkWorkSwActiveLow.CheckedChanged -= chkWorkSwActiveLow_CheckedChanged;
             chkWorkSwActiveLow.Checked = isWorkSwActiveLow;
             chkWorkSwActiveLow.CheckedChanged += chkWorkSwActiveLow_CheckedChanged;
 
-            isWorkSwEn = Properties.Settings.Default.setIsWorkSwitchEnabled;
+            isWorkSwEn = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
 
             chkEnableWorkSwitch.CheckedChanged -= chkEnableWorkSwitch_CheckedChanged;
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
-
-            pitchZeroSet = Properties.Settings.Default.setIMU_pitchZero;
-            rollZeroSet = Properties.Settings.Default.setIMU_rollZero;
 
             cutoffSpeed = Properties.Settings.Default.setVehicle_slowSpeedCutoff/cutoffMetricImperial;
 
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
-
-            lblPValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
-            lblIValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
-            lblDValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
-            lblOValue.Text =    mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
-            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -236,18 +214,16 @@ namespace AgOpenGPS
 
             if (!isPivotBehindAntenna) antennaPivot *= -1;
             mf.vehicle.antennaPivot = antennaPivot;
-            Properties.Settings.Default.setVehicle_antennaPivot = mf.vehicle.antennaPivot;            
+            Properties.Settings.Default.setVehicle_antennaPivot = mf.vehicle.antennaPivot;
 
-            if (isPivotBehindAntenna) mf.vehicle.isPivotBehindAntenna = true;
-            else mf.vehicle.isPivotBehindAntenna = false;
+            mf.vehicle.isPivotBehindAntenna = isPivotBehindAntenna;
             Properties.Settings.Default.setVehicle_isPivotBehindAntenna = mf.vehicle.isPivotBehindAntenna;
 
             if (!isSteerAxleAhead) wheelbase *= -1;
             mf.vehicle.wheelbase = wheelbase;
             Properties.Settings.Default.setVehicle_wheelbase = wheelbase;
 
-            if (isSteerAxleAhead) mf.vehicle.isSteerAxleAhead = true;
-            else mf.vehicle.isSteerAxleAhead = false;
+            mf.vehicle.isSteerAxleAhead = isSteerAxleAhead;
             Properties.Settings.Default.setVehicle_isSteerAxleAhead = mf.vehicle.isSteerAxleAhead;
 
             mf.vehicle.antennaHeight = antennaHeight;
@@ -276,12 +252,10 @@ namespace AgOpenGPS
             mf.vehicle.toolOffset = toolOffset;
             Properties.Settings.Default.setVehicle_toolOffset = mf.vehicle.toolOffset;
 
-            if (isToolTrailing) mf.vehicle.isToolTrailing = true;
-            else mf.vehicle.isToolTrailing = false;
+            mf.vehicle.isToolTrailing = isToolTrailing;
             Properties.Settings.Default.setVehicle_isToolTrailing = mf.vehicle.isToolTrailing;
 
-            if (isToolBehindPivot) mf.vehicle.isToolBehindPivot = true;
-            else mf.vehicle.isToolBehindPivot = false;
+            mf.vehicle.isToolBehindPivot = isToolBehindPivot;
             Properties.Settings.Default.setVehicle_isToolBehindPivot = mf.vehicle.isToolBehindPivot;
 
             if (isToolBehindPivot) hitchLength *= -1;
@@ -325,28 +299,22 @@ namespace AgOpenGPS
             Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
 
             mf.boundaryTriggerDistance = (double)boundaryDistance;
-            Properties.Settings.Default.set_boundaryTriggerDistance = mf.boundaryTriggerDistance;
+            Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
 
             mf.triangleResolution = (double)triResolution;
             Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
 
             mf.minFixStepDist = (double)minFixStepDistance;
-            Properties.Settings.Default.set_minFixStep = mf.minFixStepDist;
+            Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
 
             mf.mc.isWorkSwitchActiveLow = isWorkSwActiveLow;
-            Properties.Settings.Default.setIsWorkSwitchActiveLow = isWorkSwActiveLow;
+            Properties.Settings.Default.setF_IsWorkSwitchActiveLow = isWorkSwActiveLow;
 
             mf.mc.isWorkSwitchEnabled = isWorkSwEn;
-            Properties.Settings.Default.setIsWorkSwitchEnabled = isWorkSwEn;
+            Properties.Settings.Default.setF_IsWorkSwitchEnabled = isWorkSwEn;
 
-            mf.rollZero = rollZeroSet;
-            mf.pitchZero = pitchZeroSet;
-
-            Properties.Settings.Default.setIMU_rollZero = rollZeroSet;
-            Properties.Settings.Default.setIMU_pitchZero = pitchZeroSet;
-
-            Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)cutoffSpeed*cutoffMetricImperial;
-            mf.vehicle.slowSpeedCutoff = (double)cutoffSpeed*cutoffMetricImperial;
+            Properties.Settings.Default.setVehicle_slowSpeedCutoff = cutoffSpeed*cutoffMetricImperial;
+            mf.vehicle.slowSpeedCutoff = cutoffSpeed*cutoffMetricImperial;
 
             Properties.Settings.Default.Save();
 
@@ -360,7 +328,6 @@ namespace AgOpenGPS
         { DialogResult = DialogResult.Cancel; Close(); }
 
         #region Vehicle //----------------------------------------------------------------
-
 
         private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
         {
@@ -382,24 +349,11 @@ namespace AgOpenGPS
             wheelbase = (double)nudWheelbase.Value * metImp2m;
         }
 
-        private void btnFileOpenVehicle_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
-            mf.FileOpenVehicle();
-        }
-
-        private void btnFileSaveVehicle_Click(object sender, EventArgs e)
-        {
-            mf.FileSaveVehicle();
-        } 
- 
         private void UpdateTrailingRigidCheckbox()
         {
             //change 2D or 3D icon accordingly on button
-            if (chkIsTrailingRigid.Checked) {
-                this.chkIsTrailingRigid.Image = global::AgOpenGPS.Properties.Resources.VehHitched64; }
-            else  {  this.chkIsTrailingRigid.Image = global::AgOpenGPS.Properties.Resources.VehRigid64; }
+            chkIsTrailingRigid.Image = chkIsTrailingRigid.Checked ? Properties.Resources.VehHitched64
+                                                                           : Properties.Resources.VehRigid64;
         }
 
         private void UpdateIsAftCheckbox()
@@ -408,7 +362,7 @@ namespace AgOpenGPS
             {
                 chkIsTrailingRigid.Enabled = true;
                 nudForeAft.Enabled = true;
-                this.chkIsAft.Image = global::AgOpenGPS.Properties.Resources.VehAft64; 
+                chkIsAft.Image = Properties.Resources.VehAft64;
             }
             else
             {
@@ -417,26 +371,20 @@ namespace AgOpenGPS
                 isToolTrailing = false;
                 UpdateTrailingRigidCheckbox();
                 chkIsTrailingRigid.Enabled = false;
-                this.chkIsAft.Image = global::AgOpenGPS.Properties.Resources.VehFore64; 
+                chkIsAft.Image = Properties.Resources.VehFore64;
             }
         }
 
         private void UpdateIsPivotBehindAntennaCheckbox()
-       {
-           if (chkIsPivotBehindAntenna.Checked) {
-               this.chkIsPivotBehindAntenna.Image = global::AgOpenGPS.Properties.Resources.PivotBehind;
-           }
-           else { this.chkIsPivotBehindAntenna.Image = global::AgOpenGPS.Properties.Resources.PivotAhead; }
-
-       }
+        {
+            chkIsPivotBehindAntenna.Image = chkIsPivotBehindAntenna.Checked ? Properties.Resources.PivotBehind
+                                                                                    : Properties.Resources.PivotAhead;
+        }
 
         private void UpdateIsSteerAxleAhead()
         {
-            if (chkIsSteerAxleAhead.Checked)
-            {
-                this.chkIsSteerAxleAhead.Image = global::AgOpenGPS.Properties.Resources.SteerAhead;
-            }
-            else { this.chkIsSteerAxleAhead.Image = global::AgOpenGPS.Properties.Resources.SteerBehind; }
+            chkIsSteerAxleAhead.Image = chkIsSteerAxleAhead.Checked ? Properties.Resources.SteerAhead
+                                                                            : Properties.Resources.SteerBehind;
         }
 
         private void chkIsTrailingRigid_CheckedChanged(object sender, EventArgs e)
@@ -444,41 +392,35 @@ namespace AgOpenGPS
             UpdateTrailingRigidCheckbox();
             isToolTrailing = !isToolTrailing;
         }
-      
+
         private void chkIsAft_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateIsAftCheckbox(); 
+            UpdateIsAftCheckbox();
             isToolBehindPivot = !isToolBehindPivot;
-
         }
 
          private void chkIsPivotBehindAntenna_CheckedChanged(object sender, EventArgs e)
         {
             isPivotBehindAntenna = !isPivotBehindAntenna;
             UpdateIsPivotBehindAntennaCheckbox();
-
         }
 
         private void chkIsSteerAxleAhead_CheckedChanged(object sender, EventArgs e)
         {
             isSteerAxleAhead = !isSteerAxleAhead;
             UpdateIsSteerAxleAhead();
-
         }
-
 
         private void nudForeAft_ValueChanged(object sender, EventArgs e)
         {
             toolTrailingHitchLength = (double)(nudForeAft.Value) * metImp2m;
         }
 
-
-
         private void nudTankHitch_ValueChanged(object sender, EventArgs e)
         {
             tankTrailingHitchLength = (double)(nudTankHitch.Value) * metImp2m;
         }
- 
+
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
             toolOffset = (double)nudOffset.Value * metImp2m;
@@ -496,13 +438,12 @@ namespace AgOpenGPS
 
         private void nudOverlap_ValueChanged(object sender, EventArgs e)
         {
-            toolOverlap = (double)nudOverlap.Value * metImp2m; 
+            toolOverlap = (double)nudOverlap.Value * metImp2m;
         }
 
        #endregion Vehicle
 
         #region Sections //---------------------------------------------------------------
-
 
         //enable or disable section width spinners based on number sections selected
         public void UpdateSpinners()
@@ -524,7 +465,7 @@ namespace AgOpenGPS
                         nudSection1.Left = 432;
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)nudSection1.Value);
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings1;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings1;
 
                         break;
                     }
@@ -543,10 +484,9 @@ namespace AgOpenGPS
                         nudSection2.Left = 681;
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings2;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings2;
                         break;
                     }
-
                 case 3:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -563,10 +503,9 @@ namespace AgOpenGPS
                         nudSection3.Left = 733;
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings3;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings3;
                         break;
                     }
-
                 case 4:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -583,10 +522,9 @@ namespace AgOpenGPS
                         nudSection4.Left = 781;
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value+nudSection2.Value+nudSection3.Value+nudSection4.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings4;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings4;
                         break;
                     }
-
                 case 5:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -604,10 +542,9 @@ namespace AgOpenGPS
                         nudSection5.Left = 803;
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value + nudSection5.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings5;
                         break;
                     }
-
                 case 6:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -627,10 +564,9 @@ namespace AgOpenGPS
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value +
                                 nudSection5.Value + nudSection6.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings6;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings6;
                         break;
                     }
-
                 case 7:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -651,10 +587,9 @@ namespace AgOpenGPS
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
                             nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings7;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings7;
                         break;
                     }
-
                 case 8:
                     {
                         nudSection1.Enabled = true; nudSection1.Visible = true;
@@ -676,7 +611,7 @@ namespace AgOpenGPS
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
                             nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value));
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings8;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings8;
                         break;
                     }
             }
@@ -697,7 +632,6 @@ namespace AgOpenGPS
             {
                 lblSecTotalWidthMeters.Text = Convert.ToDouble(lblVehicleToolWidth.Text) + " cm";
             }
-
             else
             {
                 double toFeet = (Convert.ToDouble(lblVehicleToolWidth.Text) * 0.08334);
@@ -737,7 +671,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 2:
                     {
                         sectionPosition1 = sectionWidth1 * -1;
@@ -751,7 +684,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 3:
                     {
                         sectionPosition3 = sectionWidth2 / 2.0M;
@@ -765,7 +697,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 4:
                     {
                         sectionPosition2 = sectionWidth2 * -1;
@@ -779,7 +710,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 5:
                     {
                         sectionPosition4 = sectionWidth3 / 2.0M;
@@ -806,7 +736,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 7:
                     {
                         sectionPosition5 = sectionWidth3 / 2.0M;
@@ -820,7 +749,6 @@ namespace AgOpenGPS
                         sectionPosition9 = 0;
                         break;
                     }
-
                 case 8:
                     {
                         sectionPosition4 = sectionWidth4 * -1;
@@ -834,8 +762,6 @@ namespace AgOpenGPS
                         sectionPosition9 = sectionPosition8 + sectionWidth8;
                         break;
                     }
-
-
             }
         }
 
@@ -845,35 +771,35 @@ namespace AgOpenGPS
             numberOfSections = (int)nudNumberOfSections.Value;
 
             nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection1.Value = (decimal)(100);
+            nudSection1.Value = 100;
             nudSection1.ValueChanged += nudSection1_ValueChanged;
 
             nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection2.Value = (decimal)(100);
+            nudSection2.Value = 100;
             nudSection2.ValueChanged += nudSection2_ValueChanged;
 
             nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection3.Value = (decimal)(100);
+            nudSection3.Value = 100;
             nudSection3.ValueChanged += nudSection3_ValueChanged;
 
             nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection4.Value = (decimal)(100);
+            nudSection4.Value = 100;
             nudSection4.ValueChanged += nudSection4_ValueChanged;
 
             nudSection5.ValueChanged -= nudSection5_ValueChanged;
-            nudSection5.Value = (decimal)(100);
+            nudSection5.Value = 100;
             nudSection5.ValueChanged += nudSection5_ValueChanged;
 
             nudSection6.ValueChanged -= nudSection6_ValueChanged;
-            nudSection6.Value = (decimal)(100);
+            nudSection6.Value = 100;
             nudSection6.ValueChanged += nudSection6_ValueChanged;
 
             nudSection7.ValueChanged -= nudSection7_ValueChanged;
-            nudSection7.Value = (decimal)(100);
+            nudSection7.Value = 100;
             nudSection7.ValueChanged += nudSection7_ValueChanged;
 
             nudSection8.ValueChanged -= nudSection8_ValueChanged;
-            nudSection8.Value = (decimal)(100);
+            nudSection8.Value = 100;
             nudSection8.ValueChanged += nudSection8_ValueChanged;
 
             UpdateSpinners();
@@ -881,7 +807,7 @@ namespace AgOpenGPS
 
         //Did user spin a section distance spinner?
         private void nudSection1_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinners(); 
+        { UpdateSpinners();
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection1.Value -= 1; }
 
         private void nudSection2_ValueChanged(object sender, EventArgs e)
@@ -889,17 +815,17 @@ namespace AgOpenGPS
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection2.Value -= 1; }
 
         private void nudSection3_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinners(); 
+        { UpdateSpinners();
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection3.Value -= 1; }
 
         private void nudSection4_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinners(); 
+        { UpdateSpinners();
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection4.Value -= 1; }
 
         private void nudSection5_ValueChanged(object sender, EventArgs e)
-        { UpdateSpinners(); 
+        { UpdateSpinners();
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection5.Value -= 1; }
- 
+
        private void nudSection6_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
             if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection6.Value -= 1; }
@@ -911,112 +837,10 @@ namespace AgOpenGPS
         private void nudSection8_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection8.Value -= 1;  }
-        
+
         #endregion Sections
 
-        #region Guidance //----------------------------------------------------------------
-
-        //Send to Autosteer to adjust PIDO values, LSB is up or down
-        private void btnPPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[2] += 1;
-            lblPValue.Text = mf.mc.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[2];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnPMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[2] -= 1;
-            if (mf.mc.autoSteerSettings[2] == 255) mf.mc.autoSteerSettings[2] = 0;
-            lblPValue.Text = mf.mc.autoSteerSettings[2].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[2];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnIPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[3] += 1;
-            lblIValue.Text = mf.mc.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[3];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnIMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[3] -= 1;
-            if (mf.mc.autoSteerSettings[3] == 255) mf.mc.autoSteerSettings[3] = 0;
-            lblIValue.Text = mf.mc.autoSteerSettings[3].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[3];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnDPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[4] += 1;
-            lblDValue.Text = mf.mc.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[4];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnDMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[4] -= 1;
-            if (mf.mc.autoSteerSettings[4] == 255) mf.mc.autoSteerSettings[4] = 0;
-            lblDValue.Text = mf.mc.autoSteerSettings[4].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[4];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnOPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[5] += 1;
-            lblOValue.Text = mf.mc.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[5];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnOMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[5] -= 1;
-            if (mf.mc.autoSteerSettings[5] == 255) mf.mc.autoSteerSettings[5] = 0;
-            lblOValue.Text = mf.mc.autoSteerSettings[5].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[5];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnSteerAngleOffsetMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[6] -= 1;
-            if (mf.mc.autoSteerSettings[6] == 0) mf.mc.autoSteerSettings[6] = 255;
-            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[6];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnSteerAngleOffsetPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[6] -= 1;
-            if (mf.mc.autoSteerSettings[6] == 255) mf.mc.autoSteerSettings[6] = 0;
-            lblSteerAngleOffset.Text = mf.mc.autoSteerSettings[6].ToString();
-            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[6];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-#endregion Guidance
-
         #region Display //----------------------------------------------------------------
-
 
         private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
         {
@@ -1057,31 +881,8 @@ namespace AgOpenGPS
 
         #endregion
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            lblPitchFromIMU.Text = (mf.pitchAngle).ToString();
-            lblRollFromIMU.Text = (mf.rollAngle).ToString();
-            lblRollOffset.Text = rollZeroSet.ToString();
-            lblPitchOffset.Text = pitchZeroSet.ToString();
-        }
-
-        private void btnRollPitchZero_Click(object sender, EventArgs e)
-        {
-            pitchZeroSet = -mf.pitchAngle;
-            rollZeroSet = -mf.rollAngle;
-        }
-
-
-
-
-
-
- 
- 
-
     }
 }
-
 
 /*
         private void CalculateSectionSpinners()
@@ -1108,7 +909,7 @@ namespace AgOpenGPS
                         lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection2.Value - nudSection1.Value,2));
                         nudSection1.Left = 31;
                         nudSection2.Left = 816;
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings1;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings1;
                         break;
                     }
                 case 2:
@@ -1124,7 +925,7 @@ namespace AgOpenGPS
                         nudSection1.Left = 31;
                         nudSection2.Left = 434;
                         nudSection3.Left = 816;
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings2;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings2;
 
                         break;
                     }
@@ -1144,7 +945,7 @@ namespace AgOpenGPS
                         nudSection2.Left = 291;
                         nudSection3.Left = 567;
                         nudSection4.Left = 816;
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings3;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings3;
                         break;
                     }
 
@@ -1167,7 +968,7 @@ namespace AgOpenGPS
                         nudSection3.Left = 434;
                         nudSection4.Left = 660;
                         nudSection5.Left = 816;
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings4;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings4;
                         break;
                     }
 
@@ -1190,7 +991,7 @@ namespace AgOpenGPS
                         nudSection3.Left = 345;
                         nudSection4.Left = 502;
                         nudSection5.Left = 660;
-                        tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettings5;
+                        tabSections.BackgroundImage = Properties.Resources.SectionSettings5;
                         break;
                     }
             }

@@ -1,6 +1,6 @@
 void calcSteeringPID(void) {
   
-  //Proportional
+  //proportional
   pValue = Kp * steerAngleError *Ko;  
   
   //Integral
@@ -13,10 +13,11 @@ void calcSteeringPID(void) {
   else steerCurrentSign = 0;
 
   //did we cross zero?
-  if (steerCurrentSign - steerPrevSign) integrated_error = 0; //zero out the integrator
+  if (steerCurrentSign - steerPrevSign) integrated_error = 0;
   steerPrevSign = steerCurrentSign;  //save a copy for next time
   
-  iValue = Ki * integrated_error;  
+  iValue = Ki * integrated_error;
+  
   if (iValue > maxIntegralValue) iValue = maxIntegralValue;
   if (iValue < -maxIntegralValue) iValue = -maxIntegralValue;
 
@@ -34,8 +35,6 @@ void calcSteeringPID(void) {
   //add throttle factor so no delay from motor resistance.
   if (pwmDrive < 0 & pwmDrive > (-255 + minPWMValue)) pwmDrive = pwmDrive - minPWMValue;
   else if (pwmDrive > 0 & pwmDrive < (255 - minPWMValue)) pwmDrive = pwmDrive + minPWMValue;
-
-  pwmDrive = int(constrain(drive, -220, 220));
 
  }
 
