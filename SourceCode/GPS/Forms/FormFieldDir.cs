@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Globalization;
 
 namespace AgOpenGPS
 {
@@ -25,7 +26,7 @@ namespace AgOpenGPS
 
             //append date time to name
             mf.currentFieldDirectory = tboxFieldName.Text.Trim() +
-                String.Format("{0}", DateTime.Now.ToString(" MMMdd"));
+                String.Format("{0}", DateTime.Now.ToString(" MMMdd", CultureInfo.InvariantCulture));
             try
             {
                 //get the directory and make sure it exists, create if not

@@ -90,7 +90,6 @@
             this.btnCountsPerDegreePlus = new System.Windows.Forms.Button();
             this.btnSteerWizard = new System.Windows.Forms.Button();
             this.tbarFreeDriveAngle = new System.Windows.Forms.TrackBar();
-            this.label19 = new System.Windows.Forms.Label();
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
             this.btnFreeDrive = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -797,30 +796,21 @@
             // 
             // tbarFreeDriveAngle
             // 
-            this.tbarFreeDriveAngle.Location = new System.Drawing.Point(214, 346);
+            this.tbarFreeDriveAngle.Location = new System.Drawing.Point(267, 346);
             this.tbarFreeDriveAngle.Maximum = 30;
             this.tbarFreeDriveAngle.Minimum = -30;
             this.tbarFreeDriveAngle.Name = "tbarFreeDriveAngle";
-            this.tbarFreeDriveAngle.Size = new System.Drawing.Size(514, 45);
+            this.tbarFreeDriveAngle.Size = new System.Drawing.Size(481, 45);
             this.tbarFreeDriveAngle.TabIndex = 224;
             this.tbarFreeDriveAngle.TickFrequency = 10;
             this.tbarFreeDriveAngle.ValueChanged += new System.EventHandler(this.tbarFreeDriveAngle_ValueChanged);
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(132, 322);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(29, 13);
-            this.label19.TabIndex = 225;
-            this.label19.Text = "Zero";
-            // 
             // btnFreeDriveZero
             // 
-            this.btnFreeDriveZero.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDriveZero.Location = new System.Drawing.Point(113, 338);
+            this.btnFreeDriveZero.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFreeDriveZero.Location = new System.Drawing.Point(154, 325);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
-            this.btnFreeDriveZero.Size = new System.Drawing.Size(79, 42);
+            this.btnFreeDriveZero.Size = new System.Drawing.Size(96, 51);
             this.btnFreeDriveZero.TabIndex = 226;
             this.btnFreeDriveZero.Text = "> 0 <";
             this.btnFreeDriveZero.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -829,10 +819,10 @@
             // 
             // btnFreeDrive
             // 
-            this.btnFreeDrive.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDrive.Location = new System.Drawing.Point(14, 338);
+            this.btnFreeDrive.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFreeDrive.Location = new System.Drawing.Point(28, 325);
             this.btnFreeDrive.Name = "btnFreeDrive";
-            this.btnFreeDrive.Size = new System.Drawing.Size(79, 42);
+            this.btnFreeDrive.Size = new System.Drawing.Size(96, 51);
             this.btnFreeDrive.TabIndex = 228;
             this.btnFreeDrive.Text = "Drive";
             this.btnFreeDrive.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -843,7 +833,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(695, 325);
+            this.label20.Location = new System.Drawing.Point(706, 325);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(24, 17);
             this.label20.TabIndex = 229;
@@ -853,7 +843,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(225, 325);
+            this.label21.Location = new System.Drawing.Point(277, 325);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(29, 17);
             this.label21.TabIndex = 230;
@@ -863,7 +853,7 @@
             // 
             this.lblFreeDriveAngle.AutoSize = true;
             this.lblFreeDriveAngle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFreeDriveAngle.Location = new System.Drawing.Point(459, 315);
+            this.lblFreeDriveAngle.Location = new System.Drawing.Point(495, 315);
             this.lblFreeDriveAngle.Name = "lblFreeDriveAngle";
             this.lblFreeDriveAngle.Size = new System.Drawing.Size(26, 30);
             this.lblFreeDriveAngle.TabIndex = 231;
@@ -880,7 +870,6 @@
             this.Controls.Add(this.label20);
             this.Controls.Add(this.btnFreeDrive);
             this.Controls.Add(this.btnFreeDriveZero);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.tbarFreeDriveAngle);
             this.Controls.Add(this.btnSteerWizard);
             this.Controls.Add(this.btnCountsPerDegreeMinus);
@@ -1003,7 +992,6 @@
         private System.Windows.Forms.Button btnCountsPerDegreePlus;
         private System.Windows.Forms.Button btnSteerWizard;
         private System.Windows.Forms.TrackBar tbarFreeDriveAngle;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnFreeDriveZero;
         private System.Windows.Forms.Button btnFreeDrive;
         private System.Windows.Forms.Label label20;

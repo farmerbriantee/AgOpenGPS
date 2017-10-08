@@ -59,7 +59,7 @@ namespace AgOpenGPS
 
         public static vec3 operator -(vec3 lhs, vec3 rhs)
         {
-            return new vec3(lhs.easting - rhs.easting, lhs.heading - rhs.heading, lhs.northing - rhs.northing);
+            return new vec3(lhs.easting - rhs.easting, lhs.northing - rhs.northing, lhs.heading - rhs.heading);
         }
 
         //public static bool operator ==(vec3 lhs, vec3 rhs)

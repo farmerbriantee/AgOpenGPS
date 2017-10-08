@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using System.Globalization;
 using System.Text;
 
 namespace AgOpenGPS
@@ -200,22 +201,21 @@ namespace AgOpenGPS
             if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
                 & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
             {
-                    //get latitude and convert to decimal degrees
-                    double.TryParse(words[2].Substring(0, 2), out latitude);
-                    double temp;
-                    double.TryParse(words[2].Substring(2), out temp);
-                    temp *= 0.01666666666666666666666666666667;
-                    latitude += temp;
-                    if (words[3] == "S")
-                    {
-                        latitude *= -1;
-                        hemisphere = 'S';
-                    }
-                    else hemisphere = 'N';
+                //get latitude and convert to decimal degrees
+                double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                temp *= 0.01666666666666666666666666666667;
+                latitude += temp;
+                if (words[3] == "S")
+                {
+                    latitude *= -1;
+                    hemisphere = 'S';
+                }
+                else hemisphere = 'N';
 
                 //get longitude and convert to decimal degrees
-                    double.TryParse(words[4].Substring(0, 3), out longitude);
-                    double.TryParse(words[4].Substring(3), out temp);
+                    double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                    double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                     longitude = longitude + temp * 0.01666666666666666666666666666667;
 
                  { if (words[5] == "W") longitude *= -1; }
@@ -224,19 +224,19 @@ namespace AgOpenGPS
                 DecDeg2UTM();
 
                 //fixQuality
-                int.TryParse(words[6], out fixQuality);
+                int.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out fixQuality);
 
                 //satellites tracked
-                int.TryParse(words[7], out satellitesTracked);
+                int.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out satellitesTracked);
 
                 //hdop
-                double.TryParse(words[8], out hdop);
+                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out hdop);
 
                 //altitude
-                double.TryParse(words[9], out altitude);
+                double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out altitude);
 
                 //age of differential
-                double.TryParse(words[12], out ageDiff);
+                double.TryParse(words[12], NumberStyles.Float, CultureInfo.InvariantCulture, out ageDiff);
 
                 theSent += nextNMEASentence;
                 updatedGGA = true;
@@ -252,9 +252,9 @@ namespace AgOpenGPS
                 & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
             {
                 //get latitude and convert to decimal degrees
-                double.TryParse(words[3].Substring(0, 2), out latitude);
+                double.TryParse(words[3].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
                 double temp;
-                double.TryParse(words[3].Substring(2), out temp);
+                double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                 latitude = latitude + temp * 0.01666666666666666666666666666667;
 
                 if (words[4] == "S")
@@ -265,8 +265,8 @@ namespace AgOpenGPS
                     else hemisphere = 'N';
 
                 //get longitude and convert to decimal degrees
-                double.TryParse(words[5].Substring(0, 3), out longitude);
-                double.TryParse(words[5].Substring(3), out temp);
+                double.TryParse(words[5].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                double.TryParse(words[5].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                 longitude = longitude + temp * 0.01666666666666666666666666666667;
 
                 if (words[6] == "W") longitude *= -1;
@@ -275,11 +275,11 @@ namespace AgOpenGPS
                 DecDeg2UTM();
 
                 //Convert from knots to kph for speed
-                double.TryParse(words[7], out speed);
+                double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
                 speed = Math.Round(speed * 1.852, 1);
 
                 //True heading
-                double.TryParse(words[8], out headingTrue);
+                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
                 //Status
                 if (String.IsNullOrEmpty(words[2]))
@@ -311,11 +311,11 @@ namespace AgOpenGPS
             if (!String.IsNullOrEmpty(words[1]) & !String.IsNullOrEmpty(words[5]))
             {
                 //kph for speed - knots read
-                double.TryParse(words[5], out speed);
+                double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
                 speed = Math.Round(speed * 1.852, 1);
 
                 //True heading
-                double.TryParse(words[1], out headingTrue);
+                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
                 updatedVTG = true;
                 theSent += nextNMEASentence;

@@ -899,14 +899,14 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panel1.Controls.Add(this.btnFileExplorer);
             this.panel1.Controls.Add(this.btnBoundaryMenu);
-            this.panel1.Controls.Add(this.btnAutoSteerConfig);
             this.panel1.Controls.Add(this.btnGPSData);
             this.panel1.Controls.Add(this.btnUnits);
             this.panel1.Controls.Add(this.btnComm);
-            this.panel1.Controls.Add(this.btnSettings);
             this.panel1.Controls.Add(this.btnTripOdometer);
             this.panel1.Controls.Add(this.btnJob);
             this.panel1.Controls.Add(this.btnSnap);
+            this.panel1.Controls.Add(this.btnPerimeter);
+            this.panel1.Controls.Add(this.btnFlag);
             this.panel1.Location = new System.Drawing.Point(258, 106);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(420, 532);
@@ -947,7 +947,7 @@
             this.btnAutoSteerConfig.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoSteerConfig.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConfig;
             this.btnAutoSteerConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAutoSteerConfig.Location = new System.Drawing.Point(296, 409);
+            this.btnAutoSteerConfig.Location = new System.Drawing.Point(5, 335);
             this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
             this.btnAutoSteerConfig.Size = new System.Drawing.Size(110, 110);
             this.btnAutoSteerConfig.TabIndex = 139;
@@ -1007,7 +1007,7 @@
             this.btnSettings.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSettings.Image = ((System.Drawing.Image)(resources.GetObject("btnSettings.Image")));
             this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSettings.Location = new System.Drawing.Point(6, 409);
+            this.btnSettings.Location = new System.Drawing.Point(5, 580);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(110, 110);
             this.btnSettings.TabIndex = 135;
@@ -1159,7 +1159,7 @@
             this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnFlag.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFlag.Image = ((System.Drawing.Image)(resources.GetObject("btnFlag.Image")));
-            this.btnFlag.Location = new System.Drawing.Point(5, 579);
+            this.btnFlag.Location = new System.Drawing.Point(296, 275);
             this.btnFlag.Name = "btnFlag";
             this.btnFlag.Size = new System.Drawing.Size(110, 110);
             this.btnFlag.TabIndex = 121;
@@ -1383,7 +1383,7 @@
             this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
             this.btnPerimeter.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPerimeter.Image = ((System.Drawing.Image)(resources.GetObject("btnPerimeter.Image")));
-            this.btnPerimeter.Location = new System.Drawing.Point(5, 335);
+            this.btnPerimeter.Location = new System.Drawing.Point(153, 275);
             this.btnPerimeter.Name = "btnPerimeter";
             this.btnPerimeter.Size = new System.Drawing.Size(110, 110);
             this.btnPerimeter.TabIndex = 108;
@@ -1422,7 +1422,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(1074, 760);
+            this.Controls.Add(this.btnAutoSteerConfig);
             this.Controls.Add(this.lblSteerAngle);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.txtDistanceOffABLine);
             this.Controls.Add(this.lblSpeedUnits);
             this.Controls.Add(this.lblHeading);
@@ -1436,7 +1438,6 @@
             this.Controls.Add(this.btnSection8Man);
             this.Controls.Add(this.btnSection7Man);
             this.Controls.Add(this.btnSection6Man);
-            this.Controls.Add(this.btnFlag);
             this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.lblEasting);
@@ -1454,7 +1455,6 @@
             this.Controls.Add(this.btnABLine);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnMenuDrawer);
-            this.Controls.Add(this.btnPerimeter);
             this.Controls.Add(this.openGLControl);
             this.Controls.Add(this.openGLControlBack);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -117,7 +117,7 @@ namespace AgOpenGPS
             isABLineSet = true;
         }
 
-        public void snapABLine()
+        public void SnapABLine()
         {
             double headingCalc;
             //calculate the heading 90 degrees to ref ABLine heading 

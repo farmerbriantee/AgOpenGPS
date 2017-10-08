@@ -1078,9 +1078,10 @@
             // 
             // nudBoundaryDistance
             // 
+            this.nudBoundaryDistance.DecimalPlaces = 1;
             this.nudBoundaryDistance.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudBoundaryDistance.Increment = new decimal(new int[] {
-            2,
+            5,
             0,
             0,
             65536});

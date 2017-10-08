@@ -9,6 +9,8 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using SharpGL;
 using AgOpenGPS.Properties;
+using System.Globalization;
+
 
 namespace AgOpenGPS
 {
@@ -1604,7 +1606,7 @@ namespace AgOpenGPS
         }
         private void btnSnap_Click(object sender, EventArgs e)
         {
-            ABLine.snapABLine();
+            ABLine.SnapABLine();
             HideMenu();
         }
         private void btnSettings_Click_1(object sender, EventArgs e)
