@@ -51,7 +51,7 @@ namespace AgOpenGPS
             if (words.Length < 5) dataSteerAngle = 999;
             else
             {
-                dataSteerAngle = double.Parse(words[0]);
+                dataSteerAngle = int.Parse(words[0]);
                 lblRawSteer.Text = Convert.ToString(dataSteerAngle);
             }
         }
