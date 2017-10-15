@@ -1,7 +1,7 @@
 void calcSteeringPID(void) {
   
   //Proportional
-  pValue = Kp * steerAngleError *Ko;  
+  pValue = steerSettings.Kp * steerAngleError *steerSettings.Ko;  
   
   //Integral
   integrated_error = integrated_error + steerAngleError;
@@ -16,13 +16,13 @@ void calcSteeringPID(void) {
   if (steerCurrentSign - steerPrevSign) integrated_error = 0; //zero out the integrator
   steerPrevSign = steerCurrentSign;  //save a copy for next time
   
-  iValue = Ki * integrated_error;  
-  if (iValue > maxIntegralValue) iValue = maxIntegralValue;
-  if (iValue < -maxIntegralValue) iValue = -maxIntegralValue;
+  iValue = steerSettings.Ki * integrated_error;  
+  if (iValue > steerSettings.maxIntegralValue) iValue = steerSettings.maxIntegralValue;
+  if (iValue < -steerSettings.maxIntegralValue) iValue = -steerSettings.maxIntegralValue;
 
   //Derivative
   dError = steerAngleError - lastLastError;
-  dValue = Kd * (dError) * Ko;
+  dValue = steerSettings.Kd * (dError) * steerSettings.Ko;
   
   //save history of errors
   lastLastError = lastError;
@@ -32,8 +32,8 @@ void calcSteeringPID(void) {
   pwmDrive = int(constrain(drive, -255, 255));
 
   //add throttle factor so no delay from motor resistance.
-  if (pwmDrive < 0 & pwmDrive > (-255 + minPWMValue)) pwmDrive = pwmDrive - minPWMValue;
-  else if (pwmDrive > 0 & pwmDrive < (255 - minPWMValue)) pwmDrive = pwmDrive + minPWMValue;
+  if (pwmDrive < 0 & pwmDrive > (-255 + steerSettings.minPWMValue)) pwmDrive = pwmDrive - steerSettings.minPWMValue;
+  else if (pwmDrive > 0 & pwmDrive < (255 - steerSettings.minPWMValue)) pwmDrive = pwmDrive + steerSettings.minPWMValue;
 
   pwmDrive = int(constrain(drive, -220, 220));
 
@@ -42,6 +42,7 @@ void calcSteeringPID(void) {
  void motorDrive(void) 
   {
     pwmDisplay = pwmDrive;
+    #ifdef STEERSW_PIN
     if (pwmDrive > 0) bitSet(PORTB, 4);  //set the correct direction
     else   
     {
@@ -49,6 +50,36 @@ void calcSteeringPID(void) {
       pwmDrive = -1 * pwmDrive;  
    }
     analogWrite(PWM_PIN, pwmDrive);
+    #endif
+    #ifdef AUTOSTEER_ENABLE
+    if (steerEnable == true)
+    {
+    analogWrite(AUTOSTEER_LED, 200);
+     }
+    else
+    {
+      analogWrite(AUTOSTEER_LED, 0);
+      pwmDrive = 0;
+    }
+    
+    if (pwmDrive > 0)
+    {
+    analogWrite(PWM_RIGHT, pwmDrive);
+    analogWrite(PWM_LEFT, 0);
+    }
+    
+    else if (pwmDrive <= 0)
+    {
+      pwmDrive = -1 * pwmDrive;  
+      analogWrite(PWM_LEFT, pwmDrive);
+      analogWrite(PWM_RIGHT, 0);
+   }
+    else{
+    //analogWrite(PWM_LEFT, 0);
+    //analogWrite(PWM_RIGHT, 0);
+    }
+    #endif
+    
   }
 
 
