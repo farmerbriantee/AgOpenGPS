@@ -254,24 +254,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM Section...")]
-        public string setPort_portNameRelay {
+        public string setPort_portNameRateRelay {
             get {
-                return ((string)(this["setPort_portNameRelay"]));
+                return ((string)(this["setPort_portNameRateRelay"]));
             }
             set {
-                this["setPort_portNameRelay"] = value;
+                this["setPort_portNameRateRelay"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setPort_wasRelayConnected {
+        public bool setPort_wasRateRelayConnected {
             get {
-                return ((bool)(this["setPort_wasRelayConnected"]));
+                return ((bool)(this["setPort_wasRateRelayConnected"]));
             }
             set {
-                this["setPort_wasRelayConnected"] = value;
+                this["setPort_wasRateRelayConnected"] = value;
             }
         }
         
@@ -932,6 +932,54 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setMenu_isPureOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Keyhole.txt")]
+        public string setAS_youTurnShape {
+            get {
+                return ((string)(this["setAS_youTurnShape"]));
+            }
+            set {
+                this["setAS_youTurnShape"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int setRate_rate1 {
+            get {
+                return ((int)(this["setRate_rate1"]));
+            }
+            set {
+                this["setRate_rate1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public int setRate_rate2 {
+            get {
+                return ((int)(this["setRate_rate2"]));
+            }
+            set {
+                this["setRate_rate2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setAS_startYouTurnAt {
+            get {
+                return ((int)(this["setAS_startYouTurnAt"]));
+            }
+            set {
+                this["setAS_startYouTurnAt"] = value;
             }
         }
     }

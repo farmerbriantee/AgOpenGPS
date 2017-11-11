@@ -8,7 +8,6 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-
         //extracted Near, Far, Right, Left clipping planes of frustum
         double[] frustum = new double[24];
 
@@ -34,7 +33,7 @@ namespace AgOpenGPS
                 gl.LoadIdentity();
 
                 //camera does translations and rotations
-                camera.SetWorldCam(gl, pivotAxlePos.easting, pivotAxlePos.northing, fixHeadingCam);
+                camera.SetWorldCam(gl, pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
 
                 //calculate the frustum planes for culling
                 CalcFrustum(gl);
@@ -180,17 +179,19 @@ namespace AgOpenGPS
                 //draw the perimter line, returns if no line to draw
                 periArea.DrawPerimeterLine();
 
-                //draw the boundary line
+                //draw the boundary
                 boundary.DrawBoundaryLine();
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier", 18, " camstep: " + testInt.ToString());
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier", 18, "head: " + Convert.ToString((double)(testDouble)));   
-                //gl.DrawText(120, 70, 1, 1, 1, "Courier", 18, " Xe: " + Convert.ToString(Xe));
-
-                //gl.DrawText(40, 75, 1, 1, 1, "Courier", 16, " SteerCT " + Convert.ToString(ct.steeringAngleCT));
-                //gl.DrawText(40, 90, 1, 1, 1, "Courier", 12, " RadiusCT " + Convert.ToString(ct.radiusCT));
-                //gl.DrawText(40, 105, 1, 0.5f, 1, "Courier", 12, " TrigSetDist(m) " + Convert.ToString(Math.Round(sectionTriggerStepDistance, 2)));
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "trig: " + distanceToStartAutoTurn.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, " dist: " + Convert.ToString(Math.Round(distPt, 2)));
+                //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Roll: " + Convert.ToString(Math.Round((double)(mc.rollRaw/16),1)));
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "InBnd: " + inside.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
+                //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Fixed: " + Convert.ToString(Math.Round(glm.toDegrees(gyroCorrected), 2)));
+                //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "L/Min: " + Convert.ToString(rc.CalculateRateLitersPerMinute()));
+                //gl.DrawText(120, 130, 1, 1, 1, "Courier", 18, "       Roll: " + Convert.ToString(glm.toDegrees(rollDistance)));
+                //gl.DrawText(120, 160, 1, 1, 1, "Courier", 18, "       Turn: " + Convert.ToString(Math.Round(turnDelta, 4)));
                 //gl.DrawText(40, 120, 1, 0.5, 1, "Courier", 12, " frame msec " + Convert.ToString((int)(frameTime)));
 
                 //draw the vehicle/implement
@@ -313,15 +314,12 @@ namespace AgOpenGPS
                     if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
                     {
                         txtDistanceOffABLine.Visible = false;
-                        //lblDelta.Visible = false;
                         btnAutoSteer.Text = "-";
                     }
                 }
-
                 else
                 {
                     txtDistanceOffABLine.Visible = false;
-                    //lblDelta.Visible = false;
                     btnAutoSteer.Text = "-";
                 }
 
@@ -526,10 +524,10 @@ namespace AgOpenGPS
 
                         //check for a boundary line
                         if (grnPixels[a] > 200)
-                        {
-                            vehicle.isSuperSectionAllowedOn = false;
-                            break;
-                        }
+                            {
+                                vehicle.isSuperSectionAllowedOn = false;
+                                break;
+                            }
                     }
                 }
             }
@@ -603,7 +601,7 @@ namespace AgOpenGPS
                             }
 
                             //minimum apllied conditions met
-                        GetMeOutaHere:
+                            GetMeOutaHere:
 
                             start = 0; end = 0; skip = 0;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
@@ -677,7 +675,7 @@ namespace AgOpenGPS
                             }
 
                             //minimum apllied conditions met
-                        GetMeOutaHere:
+                            GetMeOutaHere:
                             start = 0;
                         }
                     }
@@ -767,15 +765,13 @@ namespace AgOpenGPS
             ProcessSectionOnOffRequests();
 
             //send the byte out to section relays
-            BuildSectionRelayByte();
-            SectionControlOutToPort();
-
-            //System.Threading.Thread.Sleep(400);
+            BuildRelayByte();
+            
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
-            //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 180)       //3 counts per second X 60 seconds = 180 counts per minute.
+            //if a couple minute has elapsed save the field in case of crash and to be able to resume            
+            if (saveCounter > 240)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
@@ -787,10 +783,8 @@ namespace AgOpenGPS
                     if (isLogNMEA) FileSaveNMEA();
                 }
                 saveCounter = 0;
-            }            
+            }
             //this is the end of the "frame". Now we wait for next NMEA sentence. 
-
-
         }
                 
         //Resize is called upn window creation
@@ -810,7 +804,6 @@ namespace AgOpenGPS
 
             //  Set the modelview matrix.
             gls.MatrixMode(OpenGL.GL_MODELVIEW);
-
         }
 
         //Draw section OpenGL window, not visible
@@ -822,7 +815,6 @@ namespace AgOpenGPS
             gls.CullFace(OpenGL.GL_BACK);
 
             gls.PixelStore(OpenGL.GL_PACK_ALIGNMENT, 1);
-
         }
 
         public void DrawLightBar(double Width, double Height, double offlineDistance)

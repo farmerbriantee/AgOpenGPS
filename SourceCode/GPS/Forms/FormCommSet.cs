@@ -130,7 +130,7 @@ namespace AgOpenGPS
         // Arduino 
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRelayOpen();
+            mf.SerialPortRateRelayOpen();
             if (mf.spRelay.IsOpen)
             {
                 cboxArdPort.Enabled = false;
@@ -148,7 +148,7 @@ namespace AgOpenGPS
 
         private void btnCloseSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRelayClose();
+            mf.SerialPortRateRelayClose();
             if (mf.spRelay.IsOpen)
             {
                 cboxArdPort.Enabled = false;
@@ -243,11 +243,12 @@ namespace AgOpenGPS
             textBoxRcv.Text = mf.recvSentenceSettings;
             mf.recvSentenceSettings = "";
 
-            //Arduino phrases
-            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayStr;
-            txtBoxSendArduino.Text = mf.mc.relaySectionControl[0].ToString();
-
-            //autoSteer
+            //RateRelay phrases
+            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayRateStr;
+            txtBoxSendArduino.Text = mf.mc.relayRateControl[0] + "," + mf.mc.relayRateControl[1]
+                 + "," + mf.mc.relayRateControl[2] + "," + mf.mc.relayRateControl[3] //relay and speed x 4
+                 + "," + mf.mc.relayRateControl[4] +"," + mf.mc.relayRateControl[5]; //setpoint hi lo
+            //autoSteer phrases
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
@@ -268,16 +269,6 @@ namespace AgOpenGPS
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void cboxTCP_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboxUDP_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
      } //class
 } //namespace

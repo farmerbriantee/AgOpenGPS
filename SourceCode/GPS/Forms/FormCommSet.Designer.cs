@@ -147,6 +147,7 @@
             // cboxPort
             // 
             this.cboxPort.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cboxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
@@ -161,12 +162,12 @@
             this.cboxPort.Name = "cboxPort";
             this.cboxPort.Size = new System.Drawing.Size(96, 37);
             this.cboxPort.TabIndex = 50;
-            this.cboxPort.Text = "Port";
             this.cboxPort.SelectedIndexChanged += new System.EventHandler(this.cboxPort_SelectedIndexChanged_1);
             // 
             // cboxBaud
             // 
             this.cboxBaud.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cboxBaud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxBaud.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxBaud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxBaud.FormattingEnabled = true;
@@ -181,7 +182,6 @@
             this.cboxBaud.Name = "cboxBaud";
             this.cboxBaud.Size = new System.Drawing.Size(96, 37);
             this.cboxBaud.TabIndex = 49;
-            this.cboxBaud.Text = "Baud";
             this.cboxBaud.SelectedIndexChanged += new System.EventHandler(this.cboxBaud_SelectedIndexChanged_1);
             // 
             // label16
@@ -322,6 +322,7 @@
             // 
             // cboxArdPort
             // 
+            this.cboxArdPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxArdPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxArdPort.FormattingEnabled = true;
             this.cboxArdPort.Location = new System.Drawing.Point(25, 31);
@@ -425,6 +426,7 @@
             // cboxASPort
             // 
             this.cboxASPort.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cboxASPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxASPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxASPort.FormattingEnabled = true;
             this.cboxASPort.Location = new System.Drawing.Point(25, 31);
@@ -520,7 +522,6 @@
             this.cboxTCP.TabIndex = 67;
             this.cboxTCP.Text = " - TCP Server On (Port 7777)";
             this.cboxTCP.UseVisualStyleBackColor = true;
-            this.cboxTCP.CheckedChanged += new System.EventHandler(this.cboxTCP_CheckedChanged);
             // 
             // cboxUDP
             // 
@@ -532,7 +533,6 @@
             this.cboxUDP.TabIndex = 68;
             this.cboxUDP.Text = " - UDP Server On (Port 9999)";
             this.cboxUDP.UseVisualStyleBackColor = true;
-            this.cboxUDP.CheckedChanged += new System.EventHandler(this.cboxUDP_CheckedChanged);
             // 
             // groupBox4
             // 

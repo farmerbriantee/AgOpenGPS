@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -10,21 +11,21 @@ namespace AgOpenGPS
        //class variables
         private readonly FormGPS mf = null;
 
-        double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
-        double antennaHeight, antennaPivot, wheelbase, hitchLength;
+        private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
+        private double antennaHeight, antennaPivot, wheelbase, hitchLength;
 
-        bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
-        int numberOfSections;
+        private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
+        private int numberOfSections;
 
-        decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
-        decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
+        private decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
+        private decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
 
-        decimal triResolution, minFixStepDistance, boundaryDistance;
+        private decimal triResolution, minFixStepDistance, boundaryDistance;
 
-        bool isWorkSwEn, isWorkSwActiveLow;
+        private bool isWorkSwEn, isWorkSwActiveLow;
 
-        readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
+        private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
         //constructor
@@ -34,7 +35,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-            if (mf != null && mf.isMetric)
+            if (mf?.isMetric == true)
             {
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
@@ -121,7 +122,6 @@ namespace AgOpenGPS
 
             toolTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_toolTrailingHitchLength);
             tankTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength);
-
 
             toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
             toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
@@ -562,8 +562,8 @@ namespace AgOpenGPS
                         nudSection5.Left = 669;
                         nudSection6.Left = 821;
 
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value +
-                                nudSection5.Value + nudSection6.Value));
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value + nudSection4.Value
+                                + nudSection5.Value + nudSection6.Value));
                         tabSections.BackgroundImage = Properties.Resources.SectionSettings6;
                         break;
                     }
@@ -585,8 +585,8 @@ namespace AgOpenGPS
                         nudSection6.Left = 696;
                         nudSection7.Left = 830;
 
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
-                            nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value));
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
+                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value));
                         tabSections.BackgroundImage = Properties.Resources.SectionSettings7;
                         break;
                     }
@@ -609,8 +609,8 @@ namespace AgOpenGPS
                         nudSection7.Left = 724;
                         nudSection8.Left = 839;
 
-                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value +
-                            nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value));
+                        lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
+                            + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value));
                         tabSections.BackgroundImage = Properties.Resources.SectionSettings8;
                         break;
                     }
@@ -808,35 +808,35 @@ namespace AgOpenGPS
         //Did user spin a section distance spinner?
         private void nudSection1_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection1.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection1.Value--; }
 
         private void nudSection2_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection2.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection2.Value--; }
 
         private void nudSection3_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection3.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection3.Value--; }
 
         private void nudSection4_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection4.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection4.Value--; }
 
         private void nudSection5_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection5.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection5.Value--; }
 
        private void nudSection6_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection6.Value -= 1; }
+            if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection6.Value--; }
 
         private void nudSection7_ValueChanged(object sender, EventArgs e)
        { UpdateSpinners();
-           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection7.Value -= 1;  }
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection7.Value--;  }
 
         private void nudSection8_ValueChanged(object sender, EventArgs e)
         { UpdateSpinners();
-           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection8.Value -= 1;  }
+           if (Convert.ToDouble(lblVehicleToolWidth.Text) > maxWidth) nudSection8.Value--;  }
 
         #endregion Sections
 
@@ -883,126 +883,3 @@ namespace AgOpenGPS
 
     }
 }
-
-/*
-        private void CalculateSectionSpinners()
-        {
-            int i = numberOfSections;
-
-            nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection5.ValueChanged -= nudSection5_ValueChanged;
-
-
-            switch (i)
-            {
-
-
-                case 1:
-                    {
-                        nudSection2.Value = (nudCalc.Value * 0.5M);
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection2.Value - nudSection1.Value,2));
-                        nudSection1.Left = 31;
-                        nudSection2.Left = 816;
-                        tabSections.BackgroundImage = Properties.Resources.SectionSettings1;
-                        break;
-                    }
-                case 2:
-                    {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = 0;
-                        nudSection3.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = 0;
-                        spinSection3 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection3.Value - nudSection1.Value,2));
-                        nudSection1.Left = 31;
-                        nudSection2.Left = 434;
-                        nudSection3.Left = 816;
-                        tabSections.BackgroundImage = Properties.Resources.SectionSettings2;
-
-                        break;
-                    }
-
-                case 3:
-                    {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.16M);
-                        nudSection3.Value = (nudCalc.Value * 0.16M);
-                        nudSection4.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(-nudCalc.Value * 0.16M * 0.0254M);
-                        spinSection3 = (double)(nudCalc.Value * 0.16M * 0.0254M);
-                        spinSection4 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection4.Value - nudSection1.Value,2));
-                        nudSection1.Left = 31;
-                        nudSection2.Left = 291;
-                        nudSection3.Left = 567;
-                        nudSection4.Left = 816;
-                        tabSections.BackgroundImage = Properties.Resources.SectionSettings3;
-                        break;
-                    }
-
-                case 4:
-                    {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.25M);
-                        nudSection3.Value = 0;
-                        nudSection4.Value = (nudCalc.Value * 0.25M);
-                        nudSection5.Value = (nudCalc.Value * 0.5M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M);
-                        spinSection2 = (double)(-nudCalc.Value * 0.25M * 0.0254M);
-                        spinSection3 = 0;
-                        spinSection4 = (double)(nudCalc.Value * 0.25M * 0.0254M);
-                        spinSection5 = (double)(nudCalc.Value * 0.5M * 0.0254M);
-
-                        lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection5.Value - nudSection1.Value, 2));
-                        nudSection1.Left = 31;
-                        nudSection2.Left = 226;
-                        nudSection3.Left = 434;
-                        nudSection4.Left = 660;
-                        nudSection5.Left = 816;
-                        tabSections.BackgroundImage = Properties.Resources.SectionSettings4;
-                        break;
-                    }
-
-                case 5:
-                    {
-                        nudSection1.Value = (-nudCalc.Value * 0.5M);
-                        nudSection2.Value = (-nudCalc.Value * 0.3M);
-                        nudSection3.Value = (-nudCalc.Value * 0.1M);
-                        nudSection4.Value = (nudCalc.Value * 0.1M);
-                        nudSection5.Value = (nudCalc.Value * 0.3M);
-                        spinSection1 = (double)(-nudCalc.Value * 0.5M * 0.0254M); ;
-                        spinSection2 = (double)(-nudCalc.Value * 0.3M * 0.0254M);
-                        spinSection3 = (double)(-nudCalc.Value * 0.1M * 0.0254M);
-                        spinSection4 = (double)(nudCalc.Value * 0.1M * 0.0254M);
-                        spinSection5 = (double)(nudCalc.Value * 0.3M * 0.0254M);
-
-                        //lblVehicleToolWidth.Text = Convert.ToString(Math.Round(nudSection6.Value - nudSection1.Value, 2));
-                        nudSection1.Left = 31;
-                        nudSection2.Left = 188;
-                        nudSection3.Left = 345;
-                        nudSection4.Left = 502;
-                        nudSection5.Left = 660;
-                        tabSections.BackgroundImage = Properties.Resources.SectionSettings5;
-                        break;
-                    }
-            }
-
-            SectionFeetInchesTotalWidthLabelUpdate();
-            UpdateSpinners();
-
-            nudSection1.ValueChanged += nudSection1_ValueChanged;
-            nudSection2.ValueChanged += nudSection2_ValueChanged;
-            nudSection3.ValueChanged += nudSection3_ValueChanged;
-            nudSection4.ValueChanged += nudSection4_ValueChanged;
-            nudSection5.ValueChanged += nudSection5_ValueChanged;
-        }
-        */

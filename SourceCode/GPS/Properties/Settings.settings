@@ -59,10 +59,10 @@
     <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setPort_portNameRelay" Type="System.String" Scope="User">
+    <Setting Name="setPort_portNameRateRelay" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM Section...</Value>
     </Setting>
-    <Setting Name="setPort_wasRelayConnected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasRateRelayConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_isToolTrailing" Type="System.Boolean" Scope="User">
@@ -229,6 +229,18 @@
     </Setting>
     <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setAS_youTurnShape" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Keyhole.txt</Value>
+    </Setting>
+    <Setting Name="setRate_rate1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="setRate_rate2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="setAS_startYouTurnAt" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -432,8 +432,8 @@ namespace AgOpenGPS
                         isLightbarOn = Properties.Settings.Default.setMenu_IsLightbarOn;
                         lightbarToolStripMenuItem.Checked = isLightbarOn;
 
-                        isPureOn = Properties.Settings.Default.setMenu_isPureOn;
-                        pursuitLineToolStripMenuItem.Checked = isPureOn;
+                        isPureDisplayOn = Properties.Settings.Default.setMenu_isPureOn;
+                        pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
 
                         isSideGuideLines = Properties.Settings.Default.setMenu_IsSideGuideLines;
                         sideGuideLines.Checked = isSideGuideLines;
@@ -768,6 +768,9 @@ namespace AgOpenGPS
                         {
                             //set gui image button on
                             btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
+                            btnRightYouTurn.Visible = true;
+                            btnLeftYouTurn.Visible = true;
+
 
                             //Heading  , ,refPoint2x,z                    
                             line = reader.ReadLine();

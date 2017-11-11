@@ -1,0 +1,19 @@
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\bin\Release\SharpGL.xml
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\bin\Release\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\bin\Release\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\obj\Release\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL\obj\Release\SharpGL.pdb
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL\obj\Release\SharpGL.dll
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL\obj\Release\SharpGL.pdb
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL\bin\Release\SharpGL.XML
+C:\Users\Leno\Desktop\SharpGL\SharpGL.dll
+C:\Users\Leno\Desktop\SharpGL\SharpGL.pdb
+C:\Users\Leno\Desktop\SharpGL\SharpGL.XML
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL\bin\Release\SharpGL.XML
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.pdb
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.pdb
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.XML
+C:\Users\Leno\Desktop\SharpGL - Dev\DLLs\SharpGL.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\DLLs\SharpGL.pdb

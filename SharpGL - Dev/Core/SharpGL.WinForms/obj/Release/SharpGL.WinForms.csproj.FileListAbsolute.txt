@@ -1,0 +1,32 @@
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.WinForms.xml
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.pdb
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.xml
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.Controls.GLColourPicker.resources
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.OpenGLControl.resources
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\sharpgl-master - Copy\source\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\bin\Release\SharpGL.WinForms.xml
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.OpenGLControl.resources
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\SharpGL\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\SharpGL\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\SharpGL\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\SharpGL\SharpGL.WinForms.xml
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.OpenGLControl.resources
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\bin\Release\SharpGL.WinForms.xml
+C:\Users\Leno\Desktop\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.WinForms.pdb
+C:\Users\Leno\Desktop\SharpGL - Dev\SharpGL.WinForms.xml
+C:\Users\Leno\Desktop\SharpGL - Dev\DLLs\SharpGL.WinForms.dll
+C:\Users\Leno\Desktop\SharpGL - Dev\DLLs\SharpGL.WinForms.pdb

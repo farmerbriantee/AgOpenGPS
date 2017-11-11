@@ -6,29 +6,29 @@ namespace AgOpenGPS
 {
     public class CABLine
     {
-        public double abHeading = 0.0;
-        public double abFixHeadingDelta = 0;
+        public double abHeading;
+        public double abFixHeadingDelta;
 
         public bool isABSameAsFixHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
         public double refLineSide = 1.0;
 
-        public double distanceFromRefLine = 0.0;
-        public double distanceFromCurrentLine = 0.0;
-        public double snapDistance = 0;
+        public double distanceFromRefLine;
+        public double distanceFromCurrentLine;
+        public double snapDistance;
 
-        public bool isABLineSet = false;
-        public bool isABLineBeingSet = false;
+        public bool isABLineSet;
+        public bool isABLineBeingSet;
 
-        public double passNumber = 0.0;
+        public double passNumber;
 
-        public double howManyPathsAway = 0.0;
+        public double howManyPathsAway;
 
         //tramlines
         //Color tramColor = Color.YellowGreen;
-        public int tramPassEvery = 0;
-        public int passBasedOn = 0;
+        public int tramPassEvery;
+        public int passBasedOn;
 
         //pointers to mainform controls
         private readonly FormGPS mf;
@@ -50,9 +50,10 @@ namespace AgOpenGPS
         public vec2 pivotAxlePosAB = new vec2(0, 0);
         public vec2 goalPointAB = new vec2(0, 0);
         public vec2 radiusPointAB = new vec2(0, 0);
-        public double steerAngleAB = 0;
-        double rEastAB = 0, rNorthAB = 0;
-        public double ppRadiusAB = 0;
+        public double steerAngleAB;
+        public double rEastAB, rNorthAB;
+        public double ppRadiusAB;
+        public double minLookAheadDistance = 8.0;
 
         public CABLine(OpenGL _gl, FormGPS _f)
         {
@@ -83,10 +84,8 @@ namespace AgOpenGPS
 
         public void SetABLineByBPoint()
         {
-            refPoint2.easting = mf.fixEasting;
-            refPoint2.northing = mf.fixNorthing;
-            //Console.WriteLine(refPoint2.easting);
-            //Console.WriteLine(refPoint2.northing);
+            refPoint2.easting = mf.pn.easting;
+            refPoint2.northing = mf.pn.northing;
 
             //calculate the AB Heading
             abHeading = Math.Atan2(refPoint2.easting - refPoint1.easting, refPoint2.northing - refPoint1.northing);
@@ -138,9 +137,9 @@ namespace AgOpenGPS
             refPoint2.northing = refABLineP2.northing;
         }
 
-        public double angVel = 0;
+        public double angVel;
 
-        public void getCurrentABLine()
+        public void GetCurrentABLine()
         {
             //grab a copy from main
             pivotAxlePosAB = mf.pivotAxlePos;
@@ -154,9 +153,9 @@ namespace AgOpenGPS
             double dy = refABLineP2.northing - refABLineP1.northing;
 
             //how far are we away from the reference line at 90 degrees
-            distanceFromRefLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (refABLineP2.easting *
-                                    refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting)) /
-                                        Math.Sqrt((dy * dy) + (dx * dx));
+            distanceFromRefLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (refABLineP2.easting
+                                    * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
+                                        / Math.Sqrt((dy * dy) + (dx * dx));
 
             //sign of distance determines which side of line we are on
             if (distanceFromRefLine > 0) refLineSide = 1;
@@ -200,10 +199,13 @@ namespace AgOpenGPS
             //z2-z1
             dy = currentABLineP2.northing - currentABLineP1.northing;
 
+            //save a copy of dx,dy in youTurn
+            mf.yt.dxAB = dx; mf.yt.dyAB = dy;
+
             //how far from current AB Line is fix
-            distanceFromCurrentLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (currentABLineP2.easting *
-                        currentABLineP1.northing) - (currentABLineP2.northing * currentABLineP1.easting)) /
-                            Math.Sqrt((dy * dy) + (dx * dx));
+            distanceFromCurrentLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (currentABLineP2.easting
+                        * currentABLineP1.northing) - (currentABLineP2.northing * currentABLineP1.easting))
+                        / Math.Sqrt((dy * dy) + (dx * dx));
 
             //are we on the right side or not
             isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
@@ -216,13 +218,8 @@ namespace AgOpenGPS
             if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
             // ** Pure pursuit ** - calc point on ABLine closest to current position      
-            //if (currentABLineP1.easting == currentABLineP2.easting && currentABLineP1.northing == currentABLineP2.northing) currentABLineP1.easting -= 0.00001;
-
-            dx = currentABLineP2.easting - currentABLineP1.easting;
-            dy = currentABLineP2.northing - currentABLineP1.northing;
-
-            double U = (((pivotAxlePosAB.easting - currentABLineP1.easting) * (dx)) +
-                        ((pivotAxlePosAB.northing - currentABLineP1.northing) * (dy)))
+            double U = (((pivotAxlePosAB.easting - currentABLineP1.easting) * (dx))
+                        + ((pivotAxlePosAB.northing - currentABLineP1.northing) * (dy)))
                         / ((dx * dx) + (dy * dy));
 
             //point on AB line closest to pivot axle point
@@ -231,7 +228,7 @@ namespace AgOpenGPS
 
             //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
             double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
-            if (goalPointDistance < 7.0) goalPointDistance = 7.0;
+            if (goalPointDistance < minLookAheadDistance) goalPointDistance = minLookAheadDistance;
 
             if (abFixHeadingDelta >= glm.PIBy2)
             {
@@ -253,8 +250,8 @@ namespace AgOpenGPS
             double localHeading = glm.twoPI - mf.fixHeading;
             ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivotAxlePosAB.easting) * Math.Cos(localHeading)) + ((goalPointAB.northing - pivotAxlePosAB.northing) * Math.Sin(localHeading))));
 
-            steerAngleAB = glm.toDegrees(Math.Atan( 2 * (((goalPointAB.easting - pivotAxlePosAB.easting) * Math.Cos(localHeading)) +
-                ((goalPointAB.northing - pivotAxlePosAB.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceDSquared)) ;
+            steerAngleAB = glm.toDegrees(Math.Atan( 2 * (((goalPointAB.easting - pivotAxlePosAB.easting) * Math.Cos(localHeading))
+                + ((goalPointAB.northing - pivotAxlePosAB.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceDSquared)) ;
             if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
             if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
 
@@ -295,103 +292,119 @@ namespace AgOpenGPS
             //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading), Math.Cos(temp - mf.fixHeading))) * 10000);
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 10);
+
+            if (mf.yt.isYouTurnOn)
+            {
+                //do the pure pursuit from youTurn
+                mf.yt.DistanceFromYouTurnLine();
+
+                //now substitute what it thinks are AB line values with auto turn values
+                steerAngleAB = mf.yt.steerAngleYT;
+                distanceFromCurrentLine = mf.yt.distanceFromCurrentLine;
+
+                goalPointAB = mf.yt.goalPointYT;
+                radiusPointAB.easting = mf.yt.radiusPointYT.easting;
+                radiusPointAB.northing = mf.yt.radiusPointYT.northing;
+                ppRadiusAB = mf.yt.ppRadiusYT;
+                //angVel
+            }
         }
 
         public void DrawABLines()
         {
-                //Draw AB Points
-                gl.PointSize(8.0f);
-                gl.Begin(OpenGL.GL_POINTS);
+            //Draw AB Points
+            gl.PointSize(8.0f);
+            gl.Begin(OpenGL.GL_POINTS);
 
-                gl.Color(0.5f, 0.0f, 0.0f);
-                gl.Vertex(refPoint1.easting, refPoint1.northing, 0.0);
-                gl.Color(0.0f, 0.0f, 0.5f);
-                gl.Vertex(refPoint2.easting, refPoint2.northing, 0.0);
+            gl.Color(0.5f, 0.0f, 0.0f);
+            gl.Vertex(refPoint1.easting, refPoint1.northing, 0.0);
+            gl.Color(0.0f, 0.0f, 0.5f);
+            gl.Vertex(refPoint2.easting, refPoint2.northing, 0.0);
 
-                //gl.Color(0.6f, 0.95f, 0.95f);
-                //gl.Vertex(radiusPointAB.easting, radiusPointAB.northing, 0.0);
+            //gl.Color(0.6f, 0.95f, 0.95f);
+            //gl.Vertex(radiusPointAB.easting, radiusPointAB.northing, 0.0);
+
+            gl.End();
+            gl.PointSize(1.0f);
+
+            if (isABLineSet)
+            {
+                //Draw reference AB line
+                gl.LineWidth(2);
+                gl.Enable(OpenGL.GL_LINE_STIPPLE);
+                gl.LineStipple(1, 0x07F0);
+                gl.Begin(OpenGL.GL_LINES);
+                gl.Color(0.9f, 0.5f, 0.7f);
+                gl.Vertex(refABLineP1.easting, refABLineP1.northing, 0);
+                gl.Vertex(refABLineP2.easting, refABLineP2.northing, 0);
 
                 gl.End();
-                gl.PointSize(1.0f);
+                gl.Disable(OpenGL.GL_LINE_STIPPLE);
 
-                if (isABLineSet)
+                //draw current AB Line
+                gl.LineWidth(3);
+                gl.Begin(OpenGL.GL_LINES);
+                gl.Color(0.9f, 0.0f, 0.0f);
+
+                //calculate if tram line is here
+                if (tramPassEvery != 0)
                 {
-                    //Draw reference AB line
-                    gl.LineWidth(2);
-                    gl.Enable(OpenGL.GL_LINE_STIPPLE);
-                    gl.LineStipple(1, 0x07F0);
+                    int pass = (int)passNumber + (tramPassEvery * 300) - passBasedOn;
+                    if (pass % tramPassEvery != 0) gl.Color(0.9f, 0.0f, 0.0f);
+                    else gl.Color(0, 0.9, 0);
+                }
+
+                //based on line pass, make ref purple
+                if (Math.Abs(passBasedOn - passNumber) < 0.0000000001 && tramPassEvery != 0) gl.Color(0.990f, 0.190f, 0.990f);
+
+                gl.Vertex(currentABLineP1.easting, currentABLineP1.northing, 0.0);
+                gl.Vertex(currentABLineP2.easting, currentABLineP2.northing, 0.0);
+                gl.End();
+
+                if (mf.isSideGuideLines)
+                {
+                    //get the tool offset and width
+                    double toolOffset = mf.vehicle.toolOffset * 2;
+                    double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+
+                    gl.Color(0.0f, 0.90f, 0.50f);
+                    gl.LineWidth(1);
                     gl.Begin(OpenGL.GL_LINES);
-                    gl.Color(0.9f, 0.5f, 0.7f);
-                    gl.Vertex(refABLineP1.easting, refABLineP1.northing, 0);
-                    gl.Vertex(refABLineP2.easting, refABLineP2.northing, 0);
 
-                    gl.End();
-                    gl.Disable(OpenGL.GL_LINE_STIPPLE);
+                    //precalculate sin cos
+                    double cosHeading = Math.Cos(-abHeading);
+                    double sinHeading = Math.Sin(-abHeading);
 
-                    //draw current AB Line
-                    gl.LineWidth(3);
-                    gl.Begin(OpenGL.GL_LINES);
-                    gl.Color(0.9f, 0.0f, 0.0f);
-
-                    //calculate if tram line is here
-                    if (tramPassEvery != 0)
+                    if (isABSameAsFixHeading)
                     {
-                        int pass = (int)passNumber + (tramPassEvery*300) - passBasedOn;
-                        if (pass % tramPassEvery != 0) gl.Color(0.9f, 0.0f, 0.0f);
-                        else gl.Color(0, 0.9, 0);
+                        gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
+
+                        toolWidth *= 2;
+                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
                     }
-
-                    //based on line pass, make ref purple
-                    if (Math.Abs(passBasedOn - passNumber) < 0.0000000001 && tramPassEvery != 0) gl.Color(0.990f, 0.190f, 0.990f);
-
-                    gl.Vertex(currentABLineP1.easting, currentABLineP1.northing, 0.0);
-                    gl.Vertex(currentABLineP2.easting, currentABLineP2.northing, 0.0);
-                    gl.End();
-
-                    if (mf.isSideGuideLines)
+                    else
                     {
-                        //get the tool offset and width
-                        double toolOffset = mf.vehicle.toolOffset * 2;
-                        double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                        gl.Vertex((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
 
-                        gl.Color(0.0f, 0.90f, 0.50f);
-                        gl.LineWidth(1);
-                        gl.Begin(OpenGL.GL_LINES);
-
-                        //precalculate sin cos
-                        double cosHeading = Math.Cos(-abHeading);
-                        double sinHeading = Math.Sin(-abHeading);
-
-                        if (isABSameAsFixHeading)
-                        {
-                            gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-
-                            toolWidth *= 2;
-                            gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
-                        }
-                        else
-                        {
-                            gl.Vertex((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-
-                            toolWidth *= 2;
-                            gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                            gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
-                        }
-                        gl.End();
+                        toolWidth *= 2;
+                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
                     }
+                    gl.End();
+                }
 
-                if (mf.isPureOn)
+                if (mf.isPureDisplayOn)
                 {
                     //draw the guidance circle
                     const int numSegments = 100;
@@ -424,13 +437,50 @@ namespace AgOpenGPS
                     gl.Color(1.0f, 0.5f, 0.95f);
                     gl.Vertex(goalPointAB.easting, goalPointAB.northing, 0.0);
                     //gl.Color(0.6f, 0.95f, 0.95f);
-                    //gl.Vertex(radiusPointAB.easting, radiusPointAB.northing, 0.0);
+                    //gl.Vertex(mf.at.rEastAT, mf.at.rNorthAT, 0.0);
+                    //gl.Color(0.6f, 0.95f, 0.95f);
+                    //gl.Vertex(mf.at.turnRadiusPt.easting, mf.at.turnRadiusPt.northing, 0.0);
                     gl.End();
                     gl.PointSize(1.0f);
                 }
 
-                    gl.LineWidth(1);
+                if (mf.yt.isYouTurnOn)
+                {
+                    gl.Color(0.95f, 0.95f, 0.25f);
+                    gl.LineWidth(2);
+                    int ptCount = mf.yt.ytList.Count;
+                    if (ptCount > 0)
+                    {
+                        gl.Begin(OpenGL.GL_LINE_STRIP);
+                        for (int i = 0; i < ptCount; i++)
+                        {
+                            gl.Vertex(mf.yt.ytList[i].x, mf.yt.ytList[i].z, 0);
+                        }
+                        gl.End();
+                    }
+
+                    gl.Color(0.95f, 0.05f, 0.05f);
                 }
+
+                if (mf.yt.isRecordingYouTurn)
+                {
+                    gl.Color(0.05f, 0.05f, 0.95f);
+                    gl.PointSize(4.0f);
+                    int ptCount = mf.yt.youFileList.Count;
+                    if (ptCount > 1)
+                    {
+                        gl.Begin(OpenGL.GL_POINTS);
+                        for (int i = 1; i < ptCount; i++)
+                        {
+                            gl.Vertex(mf.yt.youFileList[i].easting + mf.yt.youFileList[0].easting, mf.yt.youFileList[i].northing + mf.yt.youFileList[0].northing, 0);
+                        }
+                        gl.End();
+                    }
+                }
+
+                gl.PointSize(1.0f);
+                gl.LineWidth(1);
+            }
         }
 
         public void ResetABLine()

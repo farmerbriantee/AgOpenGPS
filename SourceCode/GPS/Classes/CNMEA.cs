@@ -77,7 +77,6 @@ namespace AgOpenGPS
         public bool updatedGGA, updatedVTG, updatedRMC;
 
         public string rawBuffer = "";
-        public string theSent = "";
         private string[] words;
         private string nextNMEASentence = "";
 
@@ -135,8 +134,6 @@ namespace AgOpenGPS
             cr = rawBuffer.IndexOf("\r\n", StringComparison.Ordinal);
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (cr == -1 || dollar == -1) return;
-
-            theSent = "";
 
             //now we have a complete sentence or more somewhere in the portData
             while (true)
@@ -211,12 +208,12 @@ namespace AgOpenGPS
                     latitude *= -1;
                     hemisphere = 'S';
                 }
-                else hemisphere = 'N';
+                else { hemisphere = 'N'; }
 
                 //get longitude and convert to decimal degrees
-                    double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
                     double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                    longitude = longitude + temp * 0.01666666666666666666666666666667;
+                longitude += temp * 0.01666666666666666666666666666667;
 
                  { if (words[5] == "W") longitude *= -1; }
 
@@ -238,7 +235,6 @@ namespace AgOpenGPS
                 //age of differential
                 double.TryParse(words[12], NumberStyles.Float, CultureInfo.InvariantCulture, out ageDiff);
 
-                theSent += nextNMEASentence;
                 updatedGGA = true;
                 mf.recvCounter = 0;
             }
@@ -253,21 +249,20 @@ namespace AgOpenGPS
             {
                 //get latitude and convert to decimal degrees
                 double.TryParse(words[3].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double temp;
-                double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                latitude = latitude + temp * 0.01666666666666666666666666666667;
+                double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                latitude += temp * 0.01666666666666666666666666666667;
 
                 if (words[4] == "S")
                 {
-                        latitude *= -1;
-                        hemisphere = 'S';
+                    latitude *= -1;
+                    hemisphere = 'S';
                 }
-                    else hemisphere = 'N';
+                else { hemisphere = 'N'; }
 
                 //get longitude and convert to decimal degrees
                 double.TryParse(words[5].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
                 double.TryParse(words[5].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                longitude = longitude + temp * 0.01666666666666666666666666666667;
+                longitude += temp * 0.01666666666666666666666666666667;
 
                 if (words[6] == "W") longitude *= -1;
 
@@ -295,7 +290,6 @@ namespace AgOpenGPS
                     }
                 }
 
-                theSent += nextNMEASentence;
                 mf.recvCounter = 0;
                 updatedRMC = true;
 
@@ -317,9 +311,10 @@ namespace AgOpenGPS
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
+                //a valid VTG so set the flag
                 updatedVTG = true;
-                theSent += nextNMEASentence;
 
+                //average the speeds for display, not calcs
                 mf.avgSpeed[mf.ringCounter] = speed;
                 if (mf.ringCounter++ > 8) mf.ringCounter = 0;
             }
@@ -360,8 +355,8 @@ namespace AgOpenGPS
         public double Distance(double northing1, double easting1, double northing2, double easting2)
         {
             return Math.Sqrt(
-                Math.Pow(easting1 - easting2, 2) +
-                Math.Pow(northing1 - northing2, 2));
+                Math.Pow(easting1 - easting2, 2)
+                + Math.Pow(northing1 - northing2, 2));
         }
 
         //not normalized distance, no square root
@@ -373,9 +368,9 @@ namespace AgOpenGPS
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //private double pi = 3.141592653589793238462643383279502884197169399375;
-        const double sm_a = 6378137.0;
-        const double sm_b = 6356752.314;
-        const double UTMScaleFactor = 0.9996;
+        private const double sm_a = 6378137.0;
+        private const double sm_b = 6356752.314;
+        private const double UTMScaleFactor = 0.9996;
         //private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
 
         public void DecDeg2UTM()
@@ -385,14 +380,12 @@ namespace AgOpenGPS
                                 longitude * 0.01745329251994329576923690766743);
         }
 
-        //    return (degrees * 0.01745329251994329576923690766743);
-
         private double ArcLengthOfMeridian(double phi)
         {
             const double n = (sm_a - sm_b) / (sm_a + sm_b);
             double alpha = ((sm_a + sm_b) / 2.0) * (1.0 + (Math.Pow(n, 2.0) / 4.0) + (Math.Pow(n, 4.0) / 64.0));
-            double beta = (-3.0 * n / 2.0) + (9.0 * Math.Pow(n, 3.0) / 16.0) + (-3.0 * Math.Pow(n, 5.0) / 32.0);
-            double gamma = (15.0 * Math.Pow(n, 2.0) / 16.0) + (-15.0 * Math.Pow(n, 4.0) / 32.0);
+            double beta = (-3.0 * n / 2.0) + (9.0 * Math.Pow(n, 3.0) * 0.0625) + (-3.0 * Math.Pow(n, 5.0) / 32.0);
+            double gamma = (15.0 * Math.Pow(n, 2.0) * 0.0625) + (-15.0 * Math.Pow(n, 4.0) / 32.0);
             double delta = (-35.0 * Math.Pow(n, 3.0) / 48.0) + (105.0 * Math.Pow(n, 5.0) / 256.0);
             double epsilon = (315.0 * Math.Pow(n, 4.0) / 512.0);
             return alpha * (phi + (beta * Math.Sin(2.0 * phi))
@@ -401,31 +394,24 @@ namespace AgOpenGPS
                     + (epsilon * Math.Sin(8.0 * phi)));
         }
 
-        //private double UTMCentralMeridian(double zone)
-        //{
-        //    return ((-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
-        //}
-
         private double[] MapLatLonToXY(double phi, double lambda, double lambda0)
         {
             double[] xy = new double[2];
-            //double tmp;
             double ep2 = (Math.Pow(sm_a, 2.0) - Math.Pow(sm_b, 2.0)) / Math.Pow(sm_b, 2.0);
             double nu2 = ep2 * Math.Pow(Math.Cos(phi), 2.0);
             double n = Math.Pow(sm_a, 2.0) / (sm_b * Math.Sqrt(1 + nu2));
             double t = Math.Tan(phi);
             double t2 = t * t;
-            //tmp = (t2 * t2 * t2) - Math.Pow(t, 6.0);
             double l = lambda - lambda0;
             double l3Coef = 1.0 - t2 + nu2;
-            double l4Coef = 5.0 - t2 + 9 * nu2 + 4.0 * (nu2 * nu2);
-            double l5Coef = 5.0 - 18.0 * t2 + (t2 * t2) + 14.0 * nu2 - 58.0 * t2 * nu2;
-            double l6Coef = 61.0 - 58.0 * t2 + (t2 * t2) + 270.0 * nu2 - 330.0 * t2 * nu2;
-            double l7Coef = 61.0 - 479.0 * t2 + 179.0 * (t2 * t2) - (t2 * t2 * t2);
-            double l8Coef = 1385.0 - 3111.0 * t2 + 543.0 * (t2 * t2) - (t2 * t2 * t2);
+            double l4Coef = 5.0 - t2 + (9 * nu2) + (4.0 * (nu2 * nu2));
+            double l5Coef = 5.0 - (18.0 * t2) + (t2 * t2) + (14.0 * nu2) - (58.0 * t2 * nu2);
+            double l6Coef = 61.0 - (58.0 * t2) + (t2 * t2) + (270.0 * nu2) - (330.0 * t2 * nu2);
+            double l7Coef = 61.0 - (479.0 * t2) + (179.0 * (t2 * t2)) - (t2 * t2 * t2);
+            double l8Coef = 1385.0 - (3111.0 * t2) + (543.0 * (t2 * t2)) - (t2 * t2 * t2);
 
             /* Calculate easting (x) */
-            xy[0] = n * Math.Cos(phi) * l
+            xy[0] = (n * Math.Cos(phi) * l)
                 + (n / 6.0 * Math.Pow(Math.Cos(phi), 3.0) * l3Coef * Math.Pow(l, 3.0))
                 + (n / 120.0 * Math.Pow(Math.Cos(phi), 5.0) * l5Coef * Math.Pow(l, 5.0))
                 + (n / 5040.0 * Math.Pow(Math.Cos(phi), 7.0) * l7Coef * Math.Pow(l, 7.0));
@@ -444,15 +430,16 @@ namespace AgOpenGPS
         {
             double[] xy = MapLatLonToXY(lat, lon, (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
 
-            xy[0] = xy[0] * UTMScaleFactor + 500000.0;
-            xy[1] = xy[1] * UTMScaleFactor;
+            xy[0] = (xy[0] * UTMScaleFactor) + 500000.0;
+            xy[1] *= UTMScaleFactor;
             if (xy[1] < 0.0)
-                xy[1] = xy[1] + 10000000.0;
+                xy[1] += 10000000.0;
 
             //keep a copy of actual easting and northings
             actualEasting = xy[0];
             actualNorthing = xy[1];
 
+            //if a field is open, the real one is subtracted from the integer
             easting = xy[0] - utmEast;
             northing = xy[1] - utmNorth;
         }
@@ -510,8 +497,5 @@ namespace AgOpenGPS
 //                    mainForm.recvCounter = 0;
 //                    //update that RMC data is newly updated
 //                    updatedRMC = true;
-
-//                    theSent = nextNMEASentence;
-
 //                }//end $GPRMC
 //#endregion $GPRMC

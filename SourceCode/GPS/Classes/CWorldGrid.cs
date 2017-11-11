@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         public void DrawFieldSurface()
         {
-            // Enable Texture Mapping and set color to white
+            //Enable Texture Mapping and set color to white
             gl.Enable(OpenGL.GL_TEXTURE_2D);
             gl.Color(mf.redField, mf.grnField, mf.bluField);
 

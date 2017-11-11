@@ -51,6 +51,8 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>BriansRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <NoWarn>
+    </NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
@@ -63,6 +65,10 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\Keypad.dll</HintPath>
+    </Reference>
     <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Application\RepeatButtonControl.dll</HintPath>
@@ -91,6 +97,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CRate.cs" />
+    <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
@@ -134,6 +142,12 @@
     <Compile Include="Forms\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRate.Designer.cs">
+      <DependentUpon>FormRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,15 +184,27 @@
     <Compile Include="Forms\FormWizardSteer.Designer.cs">
       <DependentUpon>FormWizardSteer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormYouTurnRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYouTurnRecord.Designer.cs">
+      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Position.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTrip.cs">
+    <Compile Include="Forms\FormTrip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTrip.Designer.cs">
+    <Compile Include="Forms\FormTrip.Designer.cs">
       <DependentUpon>FormTrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormYouTurn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYouTurn.Designer.cs">
+      <DependentUpon>FormYouTurn.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -273,6 +299,9 @@
     <EmbeddedResource Include="Forms\FormJob.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRate.resx">
+      <DependentUpon>FormRate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
@@ -295,8 +324,14 @@
     <EmbeddedResource Include="Forms\FormWizardSteer.resx">
       <DependentUpon>FormWizardSteer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTrip.resx">
+    <EmbeddedResource Include="Forms\FormYouTurnRecord.resx">
+      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTrip.resx">
       <DependentUpon>FormTrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYouTurn.resx">
+      <DependentUpon>FormYouTurn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -428,6 +463,23 @@
     <None Include="btnImages\BoundaryMenu.png" />
     <None Include="btnImages\FileExplorerWindows.png" />
     <None Include="btnImages\tire.jpg" />
+    <None Include="btnImages\gyro.png" />
+    <None Include="btnImages\KeyHole.png" />
+    <None Include="btnImages\SemiCircle.png" />
+    <None Include="btnImages\Rate1Select.png" />
+    <None Include="btnImages\RateControlOff.png" />
+    <None Include="btnImages\RateControlOn.png" />
+    <None Include="btnImages\RateSelect2.png" />
+    <None Include="btnImages\AutoLeft.png" />
+    <None Include="btnImages\AutoRight.png" />
+    <None Include="btnImages\YouTurn.png" />
+    <None Include="btnImages\SettingsGear64.png" />
+    <None Include="btnImages\RunMan64.png" />
+    <None Include="btnImages\Start64.png" />
+    <None Include="btnImages\Rate64.png" />
+    <None Include="btnImages\Settings64.png" />
+    <None Include="btnImages\Menu5.png" />
+    <None Include="btnImages\Custom.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

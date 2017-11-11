@@ -9,8 +9,6 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using SharpGL;
 using AgOpenGPS.Properties;
-using System.Globalization;
-
 
 namespace AgOpenGPS
 {
@@ -19,12 +17,12 @@ namespace AgOpenGPS
     {
         #region // Class Props and instances
         //maximum sections available
-        const int MAXSECTIONS = 9;
+        private const int MAXSECTIONS = 9;
 
         //some test variables
-        double testDouble = 0;
-        bool testBool = false;
-        int testInt = 0;
+        //double testDouble = 0;
+        //bool testBool = false;
+        //int testInt = 0;
 
         //current directory of field;
         public string currentFieldDirectory = "", workingDirectory = "", vehiclefileName = "";
@@ -34,13 +32,10 @@ namespace AgOpenGPS
         public byte redField,grnField,bluField;
 
         //polygon mode for section drawing
-        private bool isDrawPolygons = false;
-
-        //for animated submenu
-        private bool isMenuHid = true;
+        private bool isDrawPolygons;
 
         //flag for free drive window to control autosteer
-        public bool isInFreeDriveMode = false;
+        public bool isInFreeDriveMode;
 
         //Flag stuff
         public byte flagColor = 0;
@@ -49,18 +44,18 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
-        public bool isPureOn = true;
+        public bool isPureDisplayOn = true;
 
         //bool for whether or not a job is active
         public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn = false;
 
         //master Manual and Auto, 3 states possible
-        public enum btnStates {Off,Auto,On};
+        public enum btnStates {Off,Auto,On}
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
 
         //section button states
-        public enum manBtn { Off, Auto, On };
+        public enum manBtn { Off, Auto, On }
 
         //if we are saving a file
         public bool isSavingFile = false, isLogNMEA = false;
@@ -70,9 +65,6 @@ namespace AgOpenGPS
         public double zoomValue = 15;
         public double triangleResolution = 1.0;
         private double previousZoom = 25;
-
-        // Storage For Our Tractor, implement, background etc Textures
-        Texture particleTexture;
         public uint[] texture = new uint[3];
 
         //create the scene camera
@@ -82,7 +74,7 @@ namespace AgOpenGPS
         public CWorldGrid worldGrid;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
-        readonly Stopwatch swFrame = new Stopwatch();
+        private readonly Stopwatch swFrame = new Stopwatch();
 
         //Time to do fix position update and draw routine
         private double frameTime = 0;
@@ -102,8 +94,21 @@ namespace AgOpenGPS
         //ABLine Instance
         public CABLine ABLine;
 
-        //Contour mode Instance
+        /// <summary>
+        /// Contour Mode Instance
+        /// </summary>
         public CContour ct;
+
+        //Auto Headland Instance
+        /// <summary>
+        /// Auto Headland Turn
+        /// </summary>
+        public CYouTurn yt;
+
+        /// <summary>
+        /// Rate control Object
+        /// </summary>
+        public CRate rc;
 
         //a brand new vehicle
         public CVehicle vehicle;
@@ -150,14 +155,20 @@ namespace AgOpenGPS
             //new instance of contour mode
             ct = new CContour(gl, this);
 
+            //new instance of auto headland turn
+            yt = new CYouTurn(gl, this);
+
             //module communication
-            mc = new CModuleComm();
+            mc = new CModuleComm(this);
 
             //perimeter list object
             periArea = new CPerimeter(gl);
 
             //boundary object
             boundary = new CBoundary(gl, glBack, this);
+
+            //rate object
+            rc = new CRate(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -172,7 +183,7 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.G))
+            if (keyData == (Keys.NumPad1))
             {
                 Form form = new FormGPSData(this);
                 form.Show();
@@ -185,12 +196,23 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.P))
+            if (keyData == (Keys.C))
             {
-                SettingsPageOpen(3);
+                SettingsCommunications();
                 return true;    // indicate that you handled this keystroke
             }
 
+            if (keyData == (Keys.A))
+            {
+                btnAutoSteer.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.D))
+            {
+                btnSectionOffAutoOn.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -198,7 +220,11 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-             //set the flag mark button to red dot
+            //tooltips of controls
+            ToolTip ToolTip1 = new ToolTip();
+            ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
+
+            //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
 
             //get the working directory, if not exist, create
@@ -216,9 +242,9 @@ namespace AgOpenGPS
             SerialPortOpenGPS();
 
             //same for SectionRelay port
-            portNameRelaySection = Settings.Default.setPort_portNameRelay;
-            wasSectionRelayConnectedLastRun = Settings.Default.setPort_wasRelayConnected;
-            if (wasSectionRelayConnectedLastRun) SerialPortRelayOpen();
+            portNameRelaySection = Settings.Default.setPort_portNameRateRelay;
+            wasRateRelayConnectedLastRun = Settings.Default.setPort_wasRateRelayConnected;
+            if (wasRateRelayConnectedLastRun) SerialPortRateRelayOpen();
 
             //same for AutoSteer port
             portNameAutoSteer = Settings.Default.setPort_portNameAutoSteer;
@@ -309,8 +335,8 @@ namespace AgOpenGPS
             isSideGuideLines = Settings.Default.setMenu_IsSideGuideLines;
             sideGuideLines.Checked = isSideGuideLines;
 
-            isPureOn = Settings.Default.setMenu_isPureOn;
-            pursuitLineToolStripMenuItem.Checked = isPureOn;
+            isPureDisplayOn = Settings.Default.setMenu_isPureOn;
+            pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
 
             openGLControlBack.Visible = false;
 
@@ -340,14 +366,45 @@ namespace AgOpenGPS
             pitchZero = Settings.Default.setIMU_pitchZero;
             rollZero = Settings.Default.setIMU_rollZero;
 
-            var point = new Point(140,95);
-            panel1.Location = point;
-            panel1.Width = 400;
+            //set up the panel menus
+            panelMenu1.Visible = true;
+            panelMenu1.Width = 107;
+            panelMenu2.Width = 0;
+            panelMenu3.Width = 0;
+            panelMenu4.Width = 0;
+            panelMenu5.Width = 0;
+            panelMenu2.Visible = false;
+            panelMenu3.Visible = false;
+            panelMenu4.Visible = false;
+            panelMenu5.Visible = false;
+            panelMenu1.Top = 97;
+            panelMenu1.Left = 0;
+            panelMenu2.Top = 97;
+            panelMenu2.Left = 0;
+            panelMenu3.Top = 97;
+            panelMenu3.Left = 0;
+            panelMenu4.Top = 97;
+            panelMenu4.Left = 0;
+            panelMenu5.Top = 97;
+            panelMenu5.Left = 0;
+            btnMenu2.BackColor = SystemColors.ButtonShadow;
+            btnMenu3.BackColor = SystemColors.ButtonShadow;
+            btnMenu4.BackColor = SystemColors.ButtonShadow;
+            btnMenu5.BackColor = SystemColors.ButtonShadow;
+
+            //turn off the turn signals lol
+            btnRightYouTurn.Visible = false;
+            btnLeftYouTurn.Visible = false;
+
 
             totalUserSquareMeters = Settings.Default.setF_UserTotalArea;
             userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
 
+            //space between points while recording a boundary
             boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
+
+            string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
+            yt.LoadYouTurnShapeFromFile(fileAndDir);
         }
 
         //form is closing so tidy up and save settings
@@ -366,21 +423,8 @@ namespace AgOpenGPS
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
 
-                        //turn all relays off
-                        mc.relaySectionControl[0] = 0;
-                        SectionControlOutToPort();
-
-                        mc.autoSteerData[mc.sdHeaderHi] = 127; //32766
-                        mc.autoSteerData[mc.sdHeaderLo] = 254;
-                        mc.autoSteerData[mc.sdRelay] = 0;
-                        mc.autoSteerData[mc.sdSpeed] = 0;
-                        mc.autoSteerData[mc.sdDistanceHi] = 125; //32020
-                        mc.autoSteerData[mc.sdDistanceLo] = 20;
-                        mc.autoSteerData[mc.sdSteerAngleHi] = 125; //32020
-                        mc.autoSteerData[mc.sdSteerAngleLo] = 20;
-
-                        //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
-                        AutoSteerDataOutToPort();
+                        //shutdown and reset all module data
+                        mc.ResetAllModuleCommValues();
                         break;
 
                     //Ignore and return
@@ -447,28 +491,26 @@ namespace AgOpenGPS
             try
             {
                 //  Background
-                particleTexture = new Texture();
-                particleTexture.Create(gl, @".\Dependencies\landscape.png");
-                texture[0] = particleTexture.TextureName;
+                ParticleTexture = new Texture();
+                ParticleTexture.Create(gl, @".\Dependencies\landscape.png");
+                texture[0] = ParticleTexture.TextureName;
             }
             catch (Exception e)
             {
                 WriteErrorLog("Loading Landscape Textures" + e);
-
                 MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", e.Message);
             }
 
             try
             {
                 //  Floor
-                particleTexture = new Texture();
-                particleTexture.Create(gl, @".\Dependencies\Floor.png");
-                texture[1] = particleTexture.TextureName;
+                ParticleTexture = new Texture();
+                ParticleTexture.Create(gl, @".\Dependencies\Floor.png");
+                texture[1] = ParticleTexture.TextureName;
             }
             catch (Exception e)
             {
                 WriteErrorLog("Loading Floor Texture" + e);
-
                MessageBox.Show("Texture File FLOOR.PNG is Missing", e.Message);
              }
 
@@ -669,7 +711,7 @@ namespace AgOpenGPS
         //line up section On Off Auto buttons based on how many there are
         public void LineUpManualBtns()
         {
-            const int top = 140;
+            const int top = 170;
 
             btnSection4Man.Top = Height - top;
             btnSection1Man.Top = Height - top;
@@ -684,7 +726,7 @@ namespace AgOpenGPS
             switch (vehicle.numOfSections)
             {
                 case 1:
-                    btnSection1Man.Left = Width / 2 - 40;
+                    btnSection1Man.Left = (Width / 2) - 40;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = false;
                     btnSection3Man.Visible = false;
@@ -696,8 +738,8 @@ namespace AgOpenGPS
                     break;
 
                 case 2:
-                    btnSection1Man.Left = Width / 2 - 90;
-                    btnSection2Man.Left = Width / 2+10;
+                    btnSection1Man.Left = (Width / 2) - 90;
+                    btnSection2Man.Left = (Width / 2) + 10;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = false;
@@ -709,9 +751,9 @@ namespace AgOpenGPS
                      break;
 
                 case 3:
-                    btnSection1Man.Left = Width / 2 - 140;
-                    btnSection2Man.Left = Width / 2 - 40;
-                    btnSection3Man.Left = Width / 2 + 60;
+                    btnSection1Man.Left = (Width / 2) - 140;
+                    btnSection2Man.Left = (Width / 2) - 40;
+                    btnSection3Man.Left = (Width / 2) + 60;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -723,10 +765,10 @@ namespace AgOpenGPS
                     break;
 
                 case 4:
-                    btnSection1Man.Left = Width / 2 - 190;
-                    btnSection2Man.Left = Width / 2 - 90;
-                    btnSection3Man.Left = Width / 2 + 10;
-                    btnSection4Man.Left = Width / 2 + 110;
+                    btnSection1Man.Left = (Width / 2) - 190;
+                    btnSection2Man.Left = (Width / 2) - 90;
+                    btnSection3Man.Left = (Width / 2) + 10;
+                    btnSection4Man.Left = (Width / 2) + 110;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -738,11 +780,11 @@ namespace AgOpenGPS
                     break;
 
                 case 5:
-                    btnSection1Man.Left = Width / 2 - 240;
-                    btnSection2Man.Left = Width / 2 - 140;
-                    btnSection3Man.Left = Width / 2 - 40;
-                    btnSection4Man.Left = Width / 2 + 60;
-                    btnSection5Man.Left = Width / 2 + 160;
+                    btnSection1Man.Left = (Width / 2) - 240;
+                    btnSection2Man.Left = (Width / 2) - 140;
+                    btnSection3Man.Left = (Width / 2) - 40;
+                    btnSection4Man.Left = (Width / 2) + 60;
+                    btnSection5Man.Left = (Width / 2) + 160;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -754,12 +796,12 @@ namespace AgOpenGPS
                     break;
 
                 case 6:
-                    btnSection1Man.Left = Width / 2 - 290;
-                    btnSection2Man.Left = Width / 2 - 190;
-                    btnSection3Man.Left = Width / 2 - 90;
-                    btnSection4Man.Left = Width / 2 + 10;
-                    btnSection5Man.Left = Width / 2 + 110;
-                    btnSection6Man.Left = Width / 2 + 210;
+                    btnSection1Man.Left = (Width / 2) - 290;
+                    btnSection2Man.Left = (Width / 2) - 190;
+                    btnSection3Man.Left = (Width / 2) - 90;
+                    btnSection4Man.Left = (Width / 2) + 10;
+                    btnSection5Man.Left = (Width / 2) + 110;
+                    btnSection6Man.Left = (Width / 2) + 210;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -771,13 +813,13 @@ namespace AgOpenGPS
                     break;
 
                 case 7:
-                    btnSection1Man.Left = Width / 2 - 340;
-                    btnSection2Man.Left = Width / 2 - 240;
-                    btnSection3Man.Left = Width / 2 - 140;
-                    btnSection4Man.Left = Width / 2 - 40;
-                    btnSection5Man.Left = Width / 2 + 60;
-                    btnSection6Man.Left = Width / 2 + 160;
-                    btnSection7Man.Left = Width / 2 + 260;
+                    btnSection1Man.Left = (Width / 2) - 340;
+                    btnSection2Man.Left = (Width / 2) - 240;
+                    btnSection3Man.Left = (Width / 2) - 140;
+                    btnSection4Man.Left = (Width / 2) - 40;
+                    btnSection5Man.Left = (Width / 2) + 60;
+                    btnSection6Man.Left = (Width / 2) + 160;
+                    btnSection7Man.Left = (Width / 2) + 260;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -790,14 +832,14 @@ namespace AgOpenGPS
                     break;
 
                 case 8:
-                    btnSection1Man.Left = Width / 2 - 390;
-                    btnSection2Man.Left = Width / 2 - 290;
-                    btnSection3Man.Left = Width / 2 - 190;
-                    btnSection4Man.Left = Width / 2 - 90;
-                    btnSection5Man.Left = Width / 2 + 10;
-                    btnSection6Man.Left = Width / 2 + 110;
-                    btnSection7Man.Left = Width / 2 + 210;
-                    btnSection8Man.Left = Width / 2 + 310;
+                    btnSection1Man.Left = (Width / 2) - 390;
+                    btnSection2Man.Left = (Width / 2) - 290;
+                    btnSection3Man.Left = (Width / 2) - 190;
+                    btnSection4Man.Left = (Width / 2) - 90;
+                    btnSection5Man.Left = (Width / 2) + 10;
+                    btnSection6Man.Left = (Width / 2) + 110;
+                    btnSection7Man.Left = (Width / 2) + 210;
+                    btnSection8Man.Left = (Width / 2) + 310;
                     btnSection1Man.Visible = true;
                     btnSection2Man.Visible = true;
                     btnSection3Man.Visible = true;
@@ -945,8 +987,11 @@ namespace AgOpenGPS
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
             btnSnap.Enabled = true;
-
             ABLine.abHeading = 0.00;
+
+            btnAutoYouTurn.Enabled = true;
+            btnRightYouTurn.Enabled = true;
+            btnLeftYouTurn.Enabled = true;
 
             btnFlag.Enabled = true;
 
@@ -997,7 +1042,7 @@ namespace AgOpenGPS
             {
                 //clean out the lists
                 section[j].patchList.Clear();
-                if (section[j].triangleList != null) section[j].triangleList.Clear();
+                section[j].triangleList?.Clear();
             }
 
             //clear out the contour Lists
@@ -1013,11 +1058,17 @@ namespace AgOpenGPS
             btnAutoSteer.Enabled = false;
             btnSnap.Enabled = false;
 
+            btnAutoYouTurn.Enabled = false;
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
+
             ct.isContourBtnOn = false;
             ct.isContourOn = false;
 
             //change images to reflect on off
             btnABLine.Image = Properties.Resources.ABLineOff;
+            btnRightYouTurn.Visible = false;
+            btnLeftYouTurn.Visible = false;
             btnContour.Image = Properties.Resources.ContourOff;
             btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
 
@@ -1042,6 +1093,21 @@ namespace AgOpenGPS
 
             //update the menu
             fieldToolStripMenuItem.Text = "Start Field";
+
+            //rate control buttons
+            btnRate1Select.Visible = false;
+            btnRate2Select.Visible = false;
+            btnRate.Image = Properties.Resources.RateControlOff;
+            rc.ShutdownRateControl();
+
+            //auto YouTurn shutdown
+            yt.isAutoYouTurnEnabled = false;
+            yt.CancelYouTurn();
+            autoTurnInProgressBar = 0;
+            btnAutoYouTurn.Text = "Off";
+
+            //reset all Port Module values
+            mc.ResetAllModuleCommValues();
         }
 
         //bring up field dialog for new/open/resume
@@ -1265,7 +1331,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         //ABLine
         private void btnABLine_Click(object sender, EventArgs e)
         {
@@ -1288,6 +1353,9 @@ namespace AgOpenGPS
 
                 //change image to reflect on off
                 btnABLine.Image = Properties.Resources.ABLineOn;
+                btnRightYouTurn.Visible = true;
+                btnLeftYouTurn.Visible = true;
+
 
                 if (result == DialogResult.Cancel)
                 {
@@ -1295,17 +1363,17 @@ namespace AgOpenGPS
                     txtDistanceOffABLine.Visible = false;
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    btnRightYouTurn.Visible = false;
+                    btnLeftYouTurn.Visible = false;
                 }
             }
         }
-
         //turn on contour guidance or off
         private void btnContour_Click(object sender, EventArgs e)
         {
             ct.isContourBtnOn = !ct.isContourBtnOn;
             btnContour.Image = ct.isContourBtnOn ? Properties.Resources.ContourOn : Properties.Resources.ContourOff;
         }
-
         //zoom up close and far away
         private void btnMinMax_Click(object sender, EventArgs e)
         {
@@ -1322,7 +1390,6 @@ namespace AgOpenGPS
             camera.camSetDistance = zoomValue * zoomValue * -1;
             SetZoom();
         }
-
         //button for Manual On Off of the sections
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
@@ -1362,7 +1429,6 @@ namespace AgOpenGPS
                     break;
             }
         }
-
         //button for Auto on-off, has the acres displayed
         private void btnSectionOffAutoOn_Click(object sender, EventArgs e)
         {
@@ -1564,64 +1630,38 @@ namespace AgOpenGPS
                 camera.camSetDistance = zoomValue * zoomValue * -1;
                 SetZoom();
         }
-
         //view tilt up down and saving in settings
         private void btnTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch -= (camera.camPitch*0.03-1);
+            camera.camPitch -= ((camera.camPitch*0.03) - 1);
             if (camera.camPitch > 0) camera.camPitch = 0;
         }
         private void btnTiltDown_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch += (camera.camPitch*0.03-1);
+            camera.camPitch += ((camera.camPitch*0.03) - 1);
             if (camera.camPitch < -80) camera.camPitch = -80;
         }
 
         //panel buttons
-        private void btnMenuDrawer_Click(object sender, EventArgs e)
-        {
-            //make sure settings are sent
-            AutoSteerSettingsOutToPort();
 
-            if (isMenuHid)
-            {
-                btnMenuDrawer.Image = Properties.Resources.ArrowLeft;
-                isMenuHid = false;
-            }
-            else
-            {
-                btnMenuDrawer.Image = Properties.Resources.ArrowRight;
-                isMenuHid = true;
-            }
-        }
-        private void HideMenu()
-        {
-            isMenuHid = true;
-            btnMenuDrawer.Image = Properties.Resources.ArrowRight;
-        }
         private void btnJob_Click(object sender, EventArgs e)
         {
-            HideMenu();
             JobNewOpenResume();
         }
         private void btnSnap_Click(object sender, EventArgs e)
         {
             ABLine.SnapABLine();
-            HideMenu();
         }
         private void btnSettings_Click_1(object sender, EventArgs e)
         {
-            HideMenu();
             SettingsPageOpen(0);
         }
         private void btnComm_Click(object sender, EventArgs e)
         {
-            HideMenu();
             SettingsCommunications();
         }
         private void btnUnits_Click(object sender, EventArgs e)
         {
-            HideMenu();
             isMetric = !isMetric;
             Settings.Default.setMenu_IsMetric = isMetric;
             Settings.Default.Save();
@@ -1640,14 +1680,11 @@ namespace AgOpenGPS
         }
         private void btnGPSData_Click(object sender, EventArgs e)
         {
-            HideMenu();
             Form form = new FormGPSData(this);
             form.Show();
         }
         private void btnAutoSteerConfig_Click(object sender, EventArgs e)
         {
-            HideMenu();
-
             //check if window already exists
             Form fc = Application.OpenForms["FormSteer"];
 
@@ -1661,19 +1698,25 @@ namespace AgOpenGPS
             Form form = new FormSteer(this);
             form.Show();
         }
-        private void btnTripOdometer_Click(object sender, EventArgs e)
+        //private void btnTripOdometer_Click(object sender, EventArgs e)
+        //{
+        //    
+        //    using (var form = new FormTrip(this))
+        //    {
+        //        var result = form.ShowDialog();
+        //        if (result == DialogResult.OK) { }
+        //    }
+        //}
+        private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
-            HideMenu();
-            using (var form = new FormTrip(this))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
-            }
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            if (yt.isAutoYouTurnEnabled) btnAutoYouTurn.Text = "Auto On";
+            else btnAutoYouTurn.Text = "Off";
         }
+
         private void btnBoundary_Click(object sender, EventArgs e)
         {
-            HideMenu();
-
             if (isJobStarted)
             {
                 using (var form = new FormBoundary(this))
@@ -1690,7 +1733,6 @@ namespace AgOpenGPS
         }
         private void btnFileExplorer_Click(object sender, EventArgs e)
         {
-            HideMenu();
             if (isJobStarted)
             {
                 FileSaveFlagsKML();
@@ -1699,30 +1741,255 @@ namespace AgOpenGPS
                         "\\AgOpenGPS\\Fields\\" + currentFieldDirectory);
         }
 
-        //private void btnFreeDrive_Click(object sender, EventArgs e)
-        //{
-        //    HideMenu();
+        private void btnRate_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormRate(this);
+                form.ShowDialog();
 
-        //    //make sure 
-        //    if (isJobStarted)
-        //    {
-        //        var form = new FormTimedMessage(3000, "Ooops, Field is Currently Open", "**** Close Field First to Free Drive ****");
-        //        form.Show();
-        //        return;
-        //    }
+                if (rc.isRateControlOn)
+                {
+                    btnRate1Select.Visible = true;
+                    btnRate2Select.Visible = true;
+                    btnRate.Image = Properties.Resources.RateControlOn;
+                    if (rc.isRate1Selected)
+                    {
+                        btnRate1Select.Text = (rc.rate1 * 0.1).ToString();
+                        btnRate2Select.Text = (rc.rate2 * 0.1).ToString();
+                        btnRate2Select.ForeColor = Color.SlateGray;
+                        btnRate1Select.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        btnRate1Select.Text = (rc.rate1 * 0.1).ToString();
+                        btnRate2Select.Text = (rc.rate2 * 0.1).ToString();
+                        btnRate1Select.ForeColor = Color.SlateGray;
+                        btnRate2Select.ForeColor = Color.Black;
+                    }
+                }
+                else
+                {
+                    btnRate1Select.Visible = false;
+                    btnRate2Select.Visible = false;
+                    btnRate.Image = Properties.Resources.RateControlOff;
+                    rc.rateSetPoint = 0.0;
+                }
+            }
+            else { TimedMessageBox(3000, "Field not Open", "Start a Field First"); }
+        }
+        private void btnRate1Select_Click(object sender, EventArgs e)
+        {
+            rc.isRate1Selected = true;
+            btnRate1Select.Text = (rc.rate1*0.1).ToString();
+            btnRate2Select.Text = (rc.rate2 * 0.1).ToString();
+            btnRate2Select.ForeColor = Color.SlateGray;
+            btnRate1Select.ForeColor = Color.Black;
+        }
+        private void btnRate2Select_Click(object sender, EventArgs e)
+        {
+            rc.isRate1Selected = false;
+            btnRate1Select.Text = (rc.rate1 * 0.1).ToString();
+            btnRate2Select.Text = (rc.rate2*0.1).ToString();
+            btnRate1Select.ForeColor = Color.SlateGray;
+            btnRate2Select.ForeColor = Color.Black;
+        }
 
-        //    Form formS = new FormDrive(this);
-        //    formS.Show();
+        private void btnLeftYouTurn_Click(object sender, EventArgs e)
+        {
+            if (yt.isAutoPointSet)
+            {
+                //is it turning left already?
+                if(!yt.isAutoTurnRight)
+                {
+                    yt.CancelYouTurn();
+                    distanceToStartAutoTurn = -1;
+                    AutoYouTurnButtonsReset();
+                    autoTurnInProgressBar = 0;
+                }
+                else
+                {
+                    yt.isAutoTurnRight = false;
+                    AutoYouTurnButtonsRightTurn();
+                }
+            }
+            else
+            {
+                if (yt.isYouTurnOn)
+                {
+                    yt.CancelYouTurn();
+                    distanceToStartAutoTurn = -1;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    yt.isYouTurnOn = true;
+                    yt.BuildYouTurnListToRight(false);
+                    AutoYouTurnButtonsLeftTurn();
+                }
+            }
+        }
+        private void btnRightYouTurn_Click(object sender, EventArgs e)
+        {
+            //is it already turning right, then cancel autoturn
+            if (yt.isAutoPointSet)
+            {
+                //is it turning right already?
+                if (yt.isAutoTurnRight)
+                {
+                    yt.CancelYouTurn();
+                    distanceToStartAutoTurn = -1;
+                    autoTurnInProgressBar = 0;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    //make it turn the other way
+                    yt.isAutoTurnRight = true;
+                    AutoYouTurnButtonsLeftTurn();
+                }
+            }
+            else
+            {
+                if (yt.isYouTurnOn)
+                {
+                    yt.CancelYouTurn();
+                    distanceToStartAutoTurn = -1;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    yt.isYouTurnOn = true;
+                    yt.BuildYouTurnListToRight(true);
+                    AutoYouTurnButtonsRightTurn();
+                }
+            }
+        }
 
-        //    //using (var form = new FormDrive(this))
-        //    //{
-        //    //    var result = form.ShowDialog();
-        //    //}
-        //}
-   // Menu Items ------------------------------------------------------------------
+        public void AutoYouTurnButtonsRightTurn()
+        {
+            btnRightYouTurn.BackColor = Color.Yellow;
+            btnRightYouTurn.Height = 120;
+            btnRightYouTurn.Width = 120;
+            btnLeftYouTurn.Height = 80;
+            btnLeftYouTurn.Width = 80;
+            btnLeftYouTurn.BackColor = SystemColors.ButtonFace;
+        }
+
+        public void AutoYouTurnButtonsLeftTurn()
+        {
+            btnRightYouTurn.BackColor = SystemColors.ButtonFace;
+            btnRightYouTurn.Height = 80;
+            btnRightYouTurn.Width = 80;
+            btnLeftYouTurn.Height = 120;
+            btnLeftYouTurn.Width = 120;
+            btnLeftYouTurn.BackColor = Color.Yellow;
+        }
+
+        public void AutoYouTurnButtonsReset()
+        {
+            btnLeftYouTurn.BackColor = SystemColors.ButtonFace;
+            btnRightYouTurn.BackColor = SystemColors.ButtonFace;
+            btnLeftYouTurn.Height = 80;
+            btnLeftYouTurn.Width = 80;
+            btnRightYouTurn.Height = 80;
+            btnRightYouTurn.Width = 80;
+        }
+
+
+        private void btnMenu1_Click(object sender, EventArgs e)
+        {
+            btnMenu1.BackColor = SystemColors.ButtonFace;
+            panelMenu1.Visible = true;
+            panelMenu2.Visible = false;
+            panelMenu3.Visible = false;
+            panelMenu4.Visible = false;
+            panelMenu5.Visible = false;
+            panelMenu1.Width = 107;
+            panelMenu2.Width = 0;
+            panelMenu3.Width = 0;
+            panelMenu4.Width = 0;
+            panelMenu5.Width = 0;
+            btnMenu2.BackColor = SystemColors.ButtonShadow;
+            btnMenu3.BackColor = SystemColors.ButtonShadow;
+            btnMenu4.BackColor = SystemColors.ButtonShadow;
+            btnMenu5.BackColor = SystemColors.ButtonShadow;
+        }
+        private void btnMenu2_Click(object sender, EventArgs e)
+        {
+            btnMenu2.BackColor = SystemColors.ButtonFace;
+            panelMenu1.Visible = false;
+            panelMenu2.Visible = true;
+            panelMenu3.Visible = false;
+            panelMenu4.Visible = false;
+            panelMenu5.Visible = false;
+            panelMenu1.Width = 0;
+            panelMenu2.Width = 107;
+            panelMenu3.Width = 0;
+            panelMenu4.Width = 0;
+            panelMenu5.Width = 0;
+            btnMenu1.BackColor = SystemColors.ButtonShadow;
+            btnMenu3.BackColor = SystemColors.ButtonShadow;
+            btnMenu5.BackColor = SystemColors.ButtonShadow;
+            btnMenu4.BackColor = SystemColors.ButtonShadow;
+        }
+        private void btnMenu3_Click(object sender, EventArgs e)
+        {
+            btnMenu3.BackColor = SystemColors.ButtonFace;
+            panelMenu1.Visible = false;
+            panelMenu2.Visible = false;
+            panelMenu3.Visible = true;
+            panelMenu4.Visible = false;
+            panelMenu5.Visible = false;
+            panelMenu1.Width = 0;
+            panelMenu2.Width = 0;
+            panelMenu3.Width = 107;
+            panelMenu4.Width = 0;
+            panelMenu5.Width = 0;
+            btnMenu2.BackColor = SystemColors.ButtonShadow;
+            btnMenu1.BackColor = SystemColors.ButtonShadow;
+            btnMenu4.BackColor = SystemColors.ButtonShadow;
+            btnMenu5.BackColor = SystemColors.ButtonShadow;
+        }
+        private void btnMenu4_Click(object sender, EventArgs e)
+        {
+            btnMenu4.BackColor = SystemColors.ButtonFace;
+            panelMenu1.Visible = false;
+            panelMenu2.Visible = false;
+            panelMenu3.Visible = false;
+            panelMenu4.Visible = true;
+            panelMenu5.Visible = false;
+            panelMenu1.Width = 0;
+            panelMenu2.Width = 0;
+            panelMenu3.Width = 0;
+            panelMenu4.Width = 107;
+            panelMenu5.Width = 0;
+            btnMenu2.BackColor = SystemColors.ButtonShadow;
+            btnMenu3.BackColor = SystemColors.ButtonShadow;
+            btnMenu1.BackColor = SystemColors.ButtonShadow;
+            btnMenu5.BackColor = SystemColors.ButtonShadow;
+        }
+        private void btnMenu5_Click(object sender, EventArgs e)
+        {
+            btnMenu5.BackColor = SystemColors.ButtonFace;
+            panelMenu1.Visible = false;
+            panelMenu2.Visible = false;
+            panelMenu3.Visible = false;
+            panelMenu4.Visible = false;
+            panelMenu5.Visible = true;
+            panelMenu1.Width = 0;
+            panelMenu2.Width = 0;
+            panelMenu3.Width = 0;
+            panelMenu4.Width = 0;
+            panelMenu5.Width = 107;
+            btnMenu2.BackColor = SystemColors.ButtonShadow;
+            btnMenu3.BackColor = SystemColors.ButtonShadow;
+            btnMenu1.BackColor = SystemColors.ButtonShadow;
+            btnMenu4.BackColor = SystemColors.ButtonShadow;
+        }
+       // Menu Items ------------------------------------------------------------------
 
         //File drop down items
-
         private void loadVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1805,7 +2072,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_IsGridOn = isGridOn;
             Settings.Default.Save();
         }
-
         private void sideGuideLines_Click(object sender, EventArgs e)
         {
             isSideGuideLines = !isSideGuideLines;
@@ -1813,15 +2079,13 @@ namespace AgOpenGPS
             Settings.Default.setMenu_IsSideGuideLines = isSideGuideLines;
             Settings.Default.Save();
         }
-
         private void pursuitLineToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isPureOn = !isPureOn;
-            pursuitLineToolStripMenuItem.Checked = isPureOn;
-            Settings.Default.setMenu_isPureOn = isPureOn;
+            isPureDisplayOn = !isPureDisplayOn;
+            pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
+            Settings.Default.setMenu_isPureOn = isPureDisplayOn;
             Settings.Default.Save();
         }
-
         private void settingsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SettingsPageOpen(0);
@@ -1858,15 +2122,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_IsAreaRight = isAreaOnRight;
             Settings.Default.Save();
         }
-        //private void toolStripBtn2D3D_ButtonClick(object sender, EventArgs e)
-        //{
-        //    if (camera.camPitch > -90) camera.camPitch = -90;
-        //    else camera.camPitch = -15;
-
-        //    Properties.Settings.Default.setCam_pitch = camera.camPitch;
-        //    Properties.Settings.Default.Save();
-        //    SetZoom();
-        //}
 
         //Tools drop down items
         private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2060,6 +2315,7 @@ namespace AgOpenGPS
         public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
+        public string GPSHeading { get { return (Math.Round(glm.toDegrees(gpsHeading), 1)) + "\u00B0"; } }
         public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }
         public string FixQuality { get
         {
@@ -2073,7 +2329,6 @@ namespace AgOpenGPS
             else if (pn.fixQuality == 7) return "Man IP";
             else if (pn.fixQuality == 8) return "Sim";
             else                         return "Unknown";    } }
-
         public string SpeedMPH
         {
             get
@@ -2095,7 +2350,27 @@ namespace AgOpenGPS
             }
         }
 
-        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString();  } }
+        public string GyroInDegrees
+        {
+            get
+            {
+                if (mc.gyroHeading != 9999)
+                    return Math.Round(mc.gyroHeading * 0.0625, 1) + "\u00B0";
+                else return "-";
+            }
+        }
+        public string RollInDegrees
+        {
+            get
+            {
+                if (mc.rollRaw != 9999)
+                    return Math.Round(mc.rollRaw * 0.0625, 1) + "\u00B0";
+                else return "-";
+            }
+        }
+        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.1) + "\u00B0"; } }
+
+        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString(); } }
         public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 2).ToString();  } }
 
         public string GridFeet { get { return Math.Round(gridZoom * 3.28084, 0).ToString(); } }
@@ -2103,10 +2378,8 @@ namespace AgOpenGPS
 
         public string Acres { get { if (totalSquareMeters < 404645) return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 2).ToString();
                                      else return Math.Round(totalSquareMeters * 0.00024710499815078974633856493327535, 1).ToString();  }  }
-
         public string Hectares { get { if (totalSquareMeters < 999900) return Math.Round(totalSquareMeters * 0.0001, 2).ToString();
                                         else return Math.Round(totalSquareMeters * 0.0001, 1).ToString(); }  }
-
         public string AcresUser { get { return Math.Round(totalUserSquareMeters * 0.00024710499815078974633856493327535, 2).ToString(); } }
         public string HectaresUser { get { return Math.Round(totalUserSquareMeters * 0.0001, 2).ToString(); } }
 
@@ -2121,25 +2394,24 @@ namespace AgOpenGPS
         public string WorkSwitchValue { get { return mc.workSwitchValue.ToString(); } }
         public string AgeDiff { get { return pn.ageDiff.ToString(); } }
 
-        //public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
-        //public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
+        public Texture ParticleTexture { get; set; }
 
-#endregion properties 
+        #endregion properties 
 
-        //Timer runs at 40 hz and is THE clock of the whole program//
+        //Timer triggers at 20 msec, 50 hz, and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
-            tmrWatchdog.Enabled = false;
+            //tmrWatchdog.Enabled = false;
             ScanForNMEA();
-            tmrWatchdog.Enabled = true;
+            //tmrWatchdog.Enabled = true;
             statusUpdateCounter++;
 
-            if (isMenuHid) { if (panel1.Width > 30) panel1.Width -= 30; else panel1.Width = 0; }
-            else { if (panel1.Width < 391) panel1.Width += 30; }
+            //if (isMenuHid) { if (panel1.Width > 40) panel1.Width -= 40; else panel1.Width = 0; }
+            //else { if (panel1.Width < 481) panel1.Width += 40; }
 
-           //every third of a second update all status
-            if (statusUpdateCounter > 0)
+            //every half of a second update all status
+            if (statusUpdateCounter > 25)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2157,9 +2429,11 @@ namespace AgOpenGPS
                     stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m";
                     stripAreaUser.Text = HectaresUser;
                     lblSpeed.Text = SpeedKPH;
-                    stripAreaRate.Text = (Math.Round(vehicle.toolWidth * pn.speed / 10,2)).ToString();
-                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth,2)).ToString() + " m";
+                    stripAreaRate.Text = (Math.Round(vehicle.toolWidth * pn.speed * 0.1, 2)).ToString();
+                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
                     toolStripStatusLabelBoundaryArea.Text = boundary.areaHectare;
+                    if (distPt > 0) strip2BoundaryDistanceAway.Text = ((int)(distPt)) + "m";
+                    else strip2BoundaryDistanceAway.Text = "***";
                 }
                 else
                 {
@@ -2172,33 +2446,26 @@ namespace AgOpenGPS
                     stripAreaUser.Text = AcresUser;
                     lblSpeed.Text = SpeedMPH;
                     //stripGridZoom.Text = "Grid: " + GridFeet + " '";
-                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed / 10) * 2.47)).ToString();
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed * 0.1) * 2.47)).ToString();
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                     toolStripStatusLabelBoundaryArea.Text = boundary.areaAcre;
+                    if (distPt > 0) strip2BoundaryDistanceAway.Text = ((int)(glm.m2ft*distPt)) + "ft";
+                    else strip2BoundaryDistanceAway.Text = "***";
                 }
 
-                //lblDelta.Text = guidanceLineHeadingDelta.ToString();
-
-                //non metric or imp fields
-                stripHz.Text = NMEAHz+"Hz "+ (int)(frameTime);
+                //not Metric/Standard units sensitive
+                if (rc.isRateControlOn) btnRate.Text = rc.rateSetPoint.ToString("N1");
+                else btnRate.Text = "Off";
+                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime);
                 lblHeading.Text = Heading;
                 btnABLine.Text = PassNumber;
-                lblSteerAngle.Text = Convert.ToString((double)(guidanceLineSteerAngle) / 10);
 
-                //stripRoll.Text = avgRoll + "\u00B0";
-                //stripPitch.Text = avgPitch + "\u00B0";
-                //stripAngularVel.Text = avgAngVel.ToString();
-                //lblIMUHeading.Text = Math.Round(modcom.imuHeading, 1) + "\u00B0";
-
-                //lblFix.Text = FixQuality;
-                //lblAgeDiff.Text = AgeDiff;
-
-                if (Math.Abs(userSquareMetersAlarm) < 0.1) stripAreaUser.BackColor = SystemColors.ControlLightLight;
-                else
-                {
-                    stripAreaUser.BackColor = totalUserSquareMeters < userSquareMetersAlarm ? SystemColors.ControlLightLight
-                                                                                                : Color.OrangeRed;
-                }
+                //strip2
+                strip2PureSteerAngle.Text = PureSteerAngle;
+                strip2Roll.Text = RollInDegrees;
+                strip2GyroHeading.Text = GyroInDegrees;
+                strip2GPSHeading.Text=GPSHeading;
+                strip2TurnProgressBar.Value = autoTurnInProgressBar;
 
                 //up in the menu a few pieces of info
                 if (isJobStarted)
@@ -2213,21 +2480,21 @@ namespace AgOpenGPS
                 }
 
                 lblZone.Text = pn.zone.ToString();
-
-                //grab the Valid sentence
-                //NMEASentence = recvSentenceSettings;// pn.currentNMEA_GGASentence + pn.currentNMEA_RMCSentence;
-
                 tboxSentence.Text = recvSentenceSettings;
+
                 //update the online indicator
                 if (recvCounter > 50)
                 {
                     stripOnlineGPS.Value = 1;
                     lblEasting.Text = "-";
-                    lblNorthing.Text ="No GPS";
+                    lblNorthing.Text = "No GPS";
                     lblZone.Text = "-";
                     tboxSentence.Text = "** No Sentence Data **";
                 }
-                else  stripOnlineGPS.Value = 100;
+                else
+                {
+                    stripOnlineGPS.Value = 100;
+                }
             }
             //wait till timer fires again.        
         }

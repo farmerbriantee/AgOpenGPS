@@ -33,9 +33,6 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label14 = new System.Windows.Forms.Label();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -53,17 +50,11 @@
             this.btnPPlus = new System.Windows.Forms.Button();
             this.unoChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblSteerAng = new System.Windows.Forms.Label();
-            this.lblP = new System.Windows.Forms.Label();
-            this.lblI = new System.Windows.Forms.Label();
-            this.lblD = new System.Windows.Forms.Label();
             this.lblPWM = new System.Windows.Forms.Label();
             this.btnPlus = new System.Windows.Forms.Button();
             this.btnMinus = new System.Windows.Forms.Button();
             this.btnAuto = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -317,36 +308,12 @@
             series2.BorderWidth = 2;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.Lime;
+            series2.Color = System.Drawing.Color.LightBlue;
             series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
-            series2.Name = "P";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Color = System.Drawing.Color.Fuchsia;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "I";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series4.Color = System.Drawing.Color.Red;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "D";
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series5.Color = System.Drawing.Color.LightBlue;
-            series5.IsVisibleInLegend = false;
-            series5.Legend = "Legend1";
-            series5.Name = "PWM";
+            series2.Name = "PWM";
             this.unoChart.Series.Add(series1);
             this.unoChart.Series.Add(series2);
-            this.unoChart.Series.Add(series3);
-            this.unoChart.Series.Add(series4);
-            this.unoChart.Series.Add(series5);
             this.unoChart.Size = new System.Drawing.Size(761, 200);
             this.unoChart.TabIndex = 179;
             // 
@@ -365,51 +332,6 @@
             this.lblSteerAng.TabIndex = 180;
             this.lblSteerAng.Text = "label1";
             // 
-            // lblP
-            // 
-            this.lblP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblP.AutoSize = true;
-            this.lblP.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblP.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblP.ForeColor = System.Drawing.Color.Lime;
-            this.lblP.Location = new System.Drawing.Point(263, 392);
-            this.lblP.Name = "lblP";
-            this.lblP.Size = new System.Drawing.Size(68, 23);
-            this.lblP.TabIndex = 181;
-            this.lblP.Text = "label2";
-            // 
-            // lblI
-            // 
-            this.lblI.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblI.AutoSize = true;
-            this.lblI.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblI.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblI.ForeColor = System.Drawing.Color.Violet;
-            this.lblI.Location = new System.Drawing.Point(397, 392);
-            this.lblI.Name = "lblI";
-            this.lblI.Size = new System.Drawing.Size(68, 23);
-            this.lblI.TabIndex = 182;
-            this.lblI.Text = "label3";
-            // 
-            // lblD
-            // 
-            this.lblD.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblD.AutoSize = true;
-            this.lblD.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblD.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblD.ForeColor = System.Drawing.Color.Red;
-            this.lblD.Location = new System.Drawing.Point(531, 392);
-            this.lblD.Name = "lblD";
-            this.lblD.Size = new System.Drawing.Size(68, 23);
-            this.lblD.TabIndex = 183;
-            this.lblD.Text = "label4";
-            // 
             // lblPWM
             // 
             this.lblPWM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -419,7 +341,7 @@
             this.lblPWM.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblPWM.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPWM.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.lblPWM.Location = new System.Drawing.Point(665, 392);
+            this.lblPWM.Location = new System.Drawing.Point(306, 392);
             this.lblPWM.Name = "lblPWM";
             this.lblPWM.Size = new System.Drawing.Size(68, 23);
             this.lblPWM.TabIndex = 184;
@@ -474,51 +396,6 @@
             this.label1.TabIndex = 188;
             this.label1.Text = "Steer";
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(238, 393);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(19, 18);
-            this.label2.TabIndex = 189;
-            this.label2.Text = "P";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(378, 393);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(12, 18);
-            this.label3.TabIndex = 190;
-            this.label3.Text = "I";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(506, 393);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 18);
-            this.label4.TabIndex = 191;
-            this.label4.Text = "D";
-            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -528,7 +405,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(613, 393);
+            this.label5.Location = new System.Drawing.Point(254, 393);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 18);
             this.label5.TabIndex = 192;
@@ -896,17 +773,11 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAuto);
             this.Controls.Add(this.btnMinus);
             this.Controls.Add(this.btnPlus);
             this.Controls.Add(this.lblPWM);
-            this.Controls.Add(this.lblD);
-            this.Controls.Add(this.lblI);
-            this.Controls.Add(this.lblP);
             this.Controls.Add(this.lblSteerAng);
             this.Controls.Add(this.unoChart);
             this.Controls.Add(this.btnSteerMinus);
@@ -955,17 +826,11 @@
         private System.Windows.Forms.Button btnPPlus;
         private System.Windows.Forms.DataVisualization.Charting.Chart unoChart;
         private System.Windows.Forms.Label lblSteerAng;
-        private System.Windows.Forms.Label lblP;
-        private System.Windows.Forms.Label lblI;
-        private System.Windows.Forms.Label lblD;
         private System.Windows.Forms.Label lblPWM;
         private System.Windows.Forms.Button btnPlus;
         private System.Windows.Forms.Button btnMinus;
         private System.Windows.Forms.Button btnAuto;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;

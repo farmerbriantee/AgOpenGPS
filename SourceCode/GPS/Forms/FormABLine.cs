@@ -34,7 +34,7 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = true;
                 btnUpABHeadingBy1.Enabled = true;
                 btnDnABHeadingBy1.Enabled = true;
-                upDnHeading = Math.Round((glm.toDegrees(mf.ABLine.abHeading)), 1);
+                upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 1);
                 nudTramRepeats.Value = mf.ABLine.tramPassEvery;
                 nudBasedOnPass.Value = mf.ABLine.passBasedOn;
             }
@@ -49,7 +49,7 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = false;
                 btnUpABHeadingBy1.Enabled = false;
                 btnDnABHeadingBy1.Enabled = false;
-                upDnHeading = Math.Round((glm.toDegrees(mf.fixHeading)), 1);
+                upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
                 nudTramRepeats.Value = 0;
                 nudBasedOnPass.Value = 0;
                 mf.ABLine.tramPassEvery=0;
@@ -59,8 +59,10 @@ namespace AgOpenGPS
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             mf.ABLine.refPoint1.easting = mf.prevFix.easting;
             mf.ABLine.refPoint1.northing = mf.prevFix.northing;
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             //Console.WriteLine(mf.ABLine.refPoint1.easting);
             //Console.WriteLine(mf.ABLine.refPoint1.northing);
             btnAPoint.Enabled = false;
@@ -97,7 +99,7 @@ namespace AgOpenGPS
 
         private void btnUpABHeadingBy1_Click(object sender, EventArgs e)
         {
-            if ((upDnHeading += 1) > 359.9) upDnHeading -= 360;
+            if ((upDnHeading++) > 359.9) upDnHeading -= 360;
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
@@ -105,13 +107,12 @@ namespace AgOpenGPS
 
         private void btnDnABHeadingBy1_Click(object sender, EventArgs e)
         {
-            if ((upDnHeading -= 1) < 0 ) upDnHeading += 360.0;
+            if ((upDnHeading--) < 0 ) upDnHeading += 360.0;
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
         }
 
- 
         private void btnABLineOk_Click(object sender, EventArgs e)
         {
             //save the ABLine
@@ -149,11 +150,11 @@ namespace AgOpenGPS
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
             {
                 double pointAToFixDistance =
-                Math.Pow((mf.ABLine.refPoint1.easting - mf.pn.easting), 2) +
-                Math.Pow((mf.ABLine.refPoint1.northing - mf.pn.northing), 2);
+                Math.Pow(mf.ABLine.refPoint1.easting - mf.pn.easting, 2)
+                + Math.Pow(mf.ABLine.refPoint1.northing - mf.pn.northing, 2);
 
                 if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
-                else lblKeepGoing.Text = "    Keep\r\n" + "Going  " + Convert.ToInt16((100 - pointAToFixDistance)).ToString();
+                else lblKeepGoing.Text = "    Keep\r\n Going  " + Convert.ToInt16(100 - pointAToFixDistance).ToString();
             }
         }
 
@@ -166,9 +167,5 @@ namespace AgOpenGPS
         {
             mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
         }
-
-
-
-
      }
 }
