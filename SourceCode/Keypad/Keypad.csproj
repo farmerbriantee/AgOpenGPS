@@ -41,12 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenericKeypad.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GenericKeypad.Designer.cs">
-      <DependentUpon>GenericKeypad.cs</DependentUpon>
-    </Compile>
     <Compile Include="NumKeypad.cs">
       <SubType>UserControl</SubType>
     </Compile>
