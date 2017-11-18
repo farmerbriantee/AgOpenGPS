@@ -324,6 +324,8 @@ namespace AgOpenGPS
 
                 //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                 AutoSteerDataOutToPort();
+                
+                SendUDPMessage(guidanceLineSteerAngle + "," + guidanceLineDistanceOff);
             }
 
             else
@@ -344,25 +346,23 @@ namespace AgOpenGPS
             if (rc.isRateControlOn)
             {
                 rc.CalculateRateLitersPerMinute();
-                mc.relayRateControl[mc.rcRateSetPointHi] = (byte)((Int16)(rc.rateSetPoint * 10.0) >> 8);
-                mc.relayRateControl[mc.rcRateSetPointLo] = (byte)(rc.rateSetPoint * 10.0);
+                mc.relayRateData[mc.rdRateSetPointHi] = (byte)((Int16)(rc.rateSetPoint * 100.0) >> 8);
+                mc.relayRateData[mc.rdRateSetPointLo] = (byte)(rc.rateSetPoint * 100.0);
 
-                mc.relayRateControl[mc.rcSpeedXFour] = (byte)(pn.speed * 4.0);
+                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
                 //relay byte is built in SerialComm function BuildRelayByte()
-
-                //send out the port
-                RateRelayControlOutToPort();
             }
             else
             {
-                mc.relayRateControl[mc.rcRateSetPointHi] = (byte)0;
-                mc.relayRateControl[mc.rcRateSetPointHi] = (byte)0;
-                mc.relayRateControl[mc.rcSpeedXFour] = (byte)(pn.speed * 4.0);
+                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
+                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
+                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
                 //relay byte is built in SerialComm fx BuildRelayByte()
 
-                //send out the port
-                RateRelayControlOutToPort();
             }
+
+            //send out the port
+            RateRelayOutToPort(mc.relayRateData, AgOpenGPS.CModuleComm.numRelayRateDataItems);
 
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);

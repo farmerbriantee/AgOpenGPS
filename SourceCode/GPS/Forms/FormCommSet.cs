@@ -245,9 +245,9 @@ namespace AgOpenGPS
 
             //RateRelay phrases
             txtBoxRecvArduino.Text = mf.mc.serialRecvRelayRateStr;
-            txtBoxSendArduino.Text = mf.mc.relayRateControl[0] + "," + mf.mc.relayRateControl[1]
-                 + "," + mf.mc.relayRateControl[2] + "," + mf.mc.relayRateControl[3] //relay and speed x 4
-                 + "," + mf.mc.relayRateControl[4] +"," + mf.mc.relayRateControl[5]; //setpoint hi lo
+            txtBoxSendArduino.Text = mf.mc.relayRateData[0] + "," + mf.mc.relayRateData[1]
+                 + "," + mf.mc.relayRateData[2] + "," + mf.mc.relayRateData[3] //relay and speed x 4
+                 + "," + mf.mc.relayRateData[4] +"," + mf.mc.relayRateData[5]; //setpoint hi lo
             //autoSteer phrases
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]

@@ -33,11 +33,11 @@
             this.lblWhenTrig = new System.Windows.Forms.Label();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnYouTurnKeyHole = new System.Windows.Forms.Button();
             this.btnYouTurnSemiCircle = new System.Windows.Forms.Button();
             this.btnYouTurnCustom = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnDistanceUp = new ProXoft.WinForms.RepeatButton();
             this.bntOK = new System.Windows.Forms.Button();
             this.btnDistanceDn = new ProXoft.WinForms.RepeatButton();
@@ -61,7 +61,7 @@
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblDistance.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistance.Location = new System.Drawing.Point(281, 42);
+            this.lblDistance.Location = new System.Drawing.Point(319, 42);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(83, 45);
             this.lblDistance.TabIndex = 126;
@@ -71,7 +71,7 @@
             // 
             this.lblWhenTrig.AutoSize = true;
             this.lblWhenTrig.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhenTrig.Location = new System.Drawing.Point(379, 51);
+            this.lblWhenTrig.Location = new System.Drawing.Point(417, 51);
             this.lblWhenTrig.Name = "lblWhenTrig";
             this.lblWhenTrig.Size = new System.Drawing.Size(132, 30);
             this.lblWhenTrig.TabIndex = 131;
@@ -82,7 +82,7 @@
             this.btnEnableAutoYouTurn.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnableAutoYouTurn.Location = new System.Drawing.Point(15, 72);
             this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
-            this.btnEnableAutoYouTurn.Size = new System.Drawing.Size(153, 80);
+            this.btnEnableAutoYouTurn.Size = new System.Drawing.Size(165, 92);
             this.btnEnableAutoYouTurn.TabIndex = 132;
             this.btnEnableAutoYouTurn.Text = "Auto YouTurn Off";
             this.btnEnableAutoYouTurn.UseVisualStyleBackColor = true;
@@ -101,32 +101,6 @@
             this.groupBox1.TabIndex = 133;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turn Shapes";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.lblWhenTrig);
-            this.groupBox2.Controls.Add(this.btnEnableAutoYouTurn);
-            this.groupBox2.Controls.Add(this.btnDistanceUp);
-            this.groupBox2.Controls.Add(this.bntOK);
-            this.groupBox2.Controls.Add(this.btnDistanceDn);
-            this.groupBox2.Controls.Add(this.lblDistance);
-            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 235);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(732, 204);
-            this.groupBox2.TabIndex = 134;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Auto YouTurn";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(200, 164);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 30);
-            this.label1.TabIndex = 133;
-            this.label1.Text = "When turn is triggered";
             // 
             // btnYouTurnKeyHole
             // 
@@ -170,12 +144,38 @@
             this.btnYouTurnCustom.UseVisualStyleBackColor = false;
             this.btnYouTurnCustom.Click += new System.EventHandler(this.btnYouTurnCustom_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lblWhenTrig);
+            this.groupBox2.Controls.Add(this.btnEnableAutoYouTurn);
+            this.groupBox2.Controls.Add(this.btnDistanceUp);
+            this.groupBox2.Controls.Add(this.bntOK);
+            this.groupBox2.Controls.Add(this.btnDistanceDn);
+            this.groupBox2.Controls.Add(this.lblDistance);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(12, 235);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(732, 204);
+            this.groupBox2.TabIndex = 134;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Auto YouTurn";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(238, 164);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(250, 30);
+            this.label1.TabIndex = 133;
+            this.label1.Text = "When turn is triggered";
+            // 
             // btnDistanceUp
             // 
             this.btnDistanceUp.BackgroundImage = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistanceUp.Location = new System.Drawing.Point(233, 90);
+            this.btnDistanceUp.Location = new System.Drawing.Point(271, 90);
             this.btnDistanceUp.Name = "btnDistanceUp";
             this.btnDistanceUp.Size = new System.Drawing.Size(71, 62);
             this.btnDistanceUp.TabIndex = 128;
@@ -201,7 +201,7 @@
             this.btnDistanceDn.BackgroundImage = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistanceDn.Location = new System.Drawing.Point(342, 90);
+            this.btnDistanceDn.Location = new System.Drawing.Point(380, 90);
             this.btnDistanceDn.Name = "btnDistanceDn";
             this.btnDistanceDn.Size = new System.Drawing.Size(71, 62);
             this.btnDistanceDn.TabIndex = 127;

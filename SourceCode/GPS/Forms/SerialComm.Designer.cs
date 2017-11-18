@@ -190,17 +190,17 @@ namespace AgOpenGPS
         {
             byte set = 1;
             byte reset = 254;
-            mc.relayRateControl[mc.rcSectionControlByte] = (byte)0;
+            mc.relayRateData[mc.rdSectionControlByte] = (byte)0;
 
             //check if super section is on
             if (section[vehicle.numOfSections].isSectionOn)
             {
-                mc.relayRateControl[mc.rcSectionControlByte] = (byte)0;
+                mc.relayRateData[mc.rdSectionControlByte] = (byte)0;
                 for (int j = 0; j < vehicle.numOfSections; j++)
                 {
                     //all the sections are on, so set them
-                    mc.relayRateControl[mc.rcSectionControlByte] 
-                        = (byte)(mc.relayRateControl[mc.rcSectionControlByte] | set);
+                    mc.relayRateData[mc.rdSectionControlByte] 
+                        = (byte)(mc.relayRateData[mc.rdSectionControlByte] | set);
 
                     //move set and reset over 1 bit left
                     set = (byte)(set << 1);
@@ -214,9 +214,9 @@ namespace AgOpenGPS
                 for (int j = 0; j < MAXSECTIONS; j++)
                 {
                     //set if on, reset bit if off
-                    if (section[j].isSectionOn) mc.relayRateControl[mc.rcSectionControlByte] 
-                            = (byte)(mc.relayRateControl[mc.rcSectionControlByte] | set);
-                    else mc.relayRateControl[mc.rcSectionControlByte] = (byte)(mc.relayRateControl[mc.rcSectionControlByte] & reset);
+                    if (section[j].isSectionOn) mc.relayRateData[mc.rdSectionControlByte] 
+                            = (byte)(mc.relayRateData[mc.rdSectionControlByte] | set);
+                    else mc.relayRateData[mc.rdSectionControlByte] = (byte)(mc.relayRateData[mc.rdSectionControlByte] & reset);
 
                     //move set and reset over 1 bit left
                     set = (byte)(set << 1);
@@ -225,16 +225,16 @@ namespace AgOpenGPS
                 }
             }
 
-            mc.autoSteerData[mc.sdRelay] = (byte)(mc.relayRateControl[mc.rcSectionControlByte]);
+            mc.autoSteerData[mc.sdRelay] = (byte)(mc.relayRateData[mc.rdSectionControlByte]);
         }
 
         //Send relay info out to relay board
-        public void RateRelayControlOutToPort()
+        public void RateRelayOutToPort(byte[] items, int numItems)
         {
             //Tell Arduino to turn section on or off accordingly
             if (spRelay.IsOpen)
             {
-                try { spRelay.Write(mc.relayRateControl, 0, CModuleComm.numRelayRateControls ); }
+                try { spRelay.Write(items, 0, numItems ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out to Section relays" + e.ToString());
@@ -255,9 +255,18 @@ namespace AgOpenGPS
 
             //the ArdRelay sentence to be parsed
             sentence = sentence.Substring(0, end);
-
             string[] words = sentence.Split(',');
-            if (words.Length < 2) return;
+            if (words.Length < 4) return;
+
+            //fill in the holes
+            //int.TryParse(words[0], out mc);
+            int.TryParse(words[1], out mc.incomingInt);
+            rc.rateActual = (double)mc.incomingInt/100.0;
+
+            int.TryParse(words[2], out mc.incomingInt);
+            rc.volumeActual = mc.incomingInt;
+
+            //int.TryParse(words[3], out mc.);
 
         }
 

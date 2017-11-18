@@ -39,10 +39,10 @@
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(574, 34);
+            this.button1.Location = new System.Drawing.Point(579, 34);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 72);
+            this.button1.Size = new System.Drawing.Size(158, 72);
             this.button1.TabIndex = 5;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -84,7 +84,7 @@
             this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(701, 125);
+            this.ClientSize = new System.Drawing.Size(750, 125);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);

@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -950,9 +950,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public int setRate_rate1 {
+        public double setRate_rate1 {
             get {
-                return ((int)(this["setRate_rate1"]));
+                return ((double)(this["setRate_rate1"]));
             }
             set {
                 this["setRate_rate1"] = value;
@@ -962,9 +962,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("80")]
-        public int setRate_rate2 {
+        public double setRate_rate2 {
             get {
-                return ((int)(this["setRate_rate2"]));
+                return ((double)(this["setRate_rate2"]));
             }
             set {
                 this["setRate_rate2"] = value;
@@ -980,6 +980,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_startYouTurnAt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public uint setRate_FlowmeterCalNumber {
+            get {
+                return ((uint)(this["setRate_FlowmeterCalNumber"]));
+            }
+            set {
+                this["setRate_FlowmeterCalNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public uint setRate_AccumulatedVolume {
+            get {
+                return ((uint)(this["setRate_AccumulatedVolume"]));
+            }
+            set {
+                this["setRate_AccumulatedVolume"] = value;
             }
         }
     }

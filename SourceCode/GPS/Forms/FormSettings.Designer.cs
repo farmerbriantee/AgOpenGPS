@@ -1341,7 +1341,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.Location = new System.Drawing.Point(859, 557);
+            this.btnCancel.Location = new System.Drawing.Point(689, 557);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 72);
             this.btnCancel.TabIndex = 3;
@@ -1353,7 +1353,7 @@
             this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bntOK.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.bntOK.Location = new System.Drawing.Point(697, 557);
+            this.bntOK.Location = new System.Drawing.Point(802, 557);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(156, 72);
             this.bntOK.TabIndex = 0;
@@ -1366,7 +1366,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(965, 628);
+            this.ClientSize = new System.Drawing.Size(965, 633);
             this.ControlBox = false;
             this.Controls.Add(this.lblInchesCm);
             this.Controls.Add(this.lblSecTotalWidthMeters);

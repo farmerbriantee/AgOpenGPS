@@ -310,6 +310,8 @@ namespace AgOpenGPS
             }
         }
 
+ 
+
         public void DrawABLines()
         {
             //Draw AB Points

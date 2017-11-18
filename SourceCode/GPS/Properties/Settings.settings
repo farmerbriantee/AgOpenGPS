@@ -233,14 +233,20 @@
     <Setting Name="setAS_youTurnShape" Type="System.String" Scope="User">
       <Value Profile="(Default)">Keyhole.txt</Value>
     </Setting>
-    <Setting Name="setRate_rate1" Type="System.Int32" Scope="User">
+    <Setting Name="setRate_rate1" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="setRate_rate2" Type="System.Int32" Scope="User">
+    <Setting Name="setRate_rate2" Type="System.Double" Scope="User">
       <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="setAS_startYouTurnAt" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setRate_FlowmeterCalNumber" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">500</Value>
+    </Setting>
+    <Setting Name="setRate_AccumulatedVolume" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

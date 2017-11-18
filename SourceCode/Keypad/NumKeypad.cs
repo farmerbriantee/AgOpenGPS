@@ -8,14 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Keypad
+namespace AgOpenGPS
+
 {
-    public partial class NumKeypad : GenericKeypad
+    public partial class NumKeypad : UserControl
     {
         public NumKeypad()
         {
             InitializeComponent();
         }
+        #region Events
+
+        public event KeyPressEventHandler ButtonPressed;
+
+        #endregion Events
+
+        #region Methods
+
+        public void RaiseButtonPressed(char WhatToSend)
+
+        {
+            KeyPressEventHandler handler = ButtonPressed;
+
+            if (handler != null)
+
+            {
+                handler(this, new KeyPressEventArgs(WhatToSend));
+            }
+        }
+
+        #endregion Methods
 
         private void btn0_Click(object sender, EventArgs e)
         {

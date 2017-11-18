@@ -1,4 +1,4 @@
-﻿namespace Keypad
+﻿namespace AgOpenGPS
 {
     partial class NumKeypad
     {

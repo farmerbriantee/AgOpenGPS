@@ -65,10 +65,6 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\Keypad.dll</HintPath>
-    </Reference>
     <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Application\RepeatButtonControl.dll</HintPath>
@@ -190,6 +186,10 @@
     <Compile Include="Forms\FormYouTurnRecord.Designer.cs">
       <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\GUI.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Position.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
@@ -206,7 +206,19 @@
     <Compile Include="Forms\FormYouTurn.Designer.cs">
       <DependentUpon>FormYouTurn.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenericKeypad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GenericKeypad.Designer.cs">
+      <DependentUpon>GenericKeypad.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="NumKeypad.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NumKeypad.Designer.cs">
+      <DependentUpon>NumKeypad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -332,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYouTurn.resx">
       <DependentUpon>FormYouTurn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumKeypad.resx">
+      <DependentUpon>NumKeypad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -488,6 +503,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Keypad\Keypad.csproj">
+      <Project>{AFCE5A35-ABC0-4BE5-9364-711F6BAD8135}</Project>
+      <Name>Keypad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

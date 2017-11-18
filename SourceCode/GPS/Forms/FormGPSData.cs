@@ -35,7 +35,7 @@ namespace AgOpenGPS
             lblHDOP.Text = mf.HDOP;
 
             tboxSerialFromRelay.Text = mf.mc.serialRecvRelayRateStr;
-            tboxSerialToRelay.Text = mf.mc.relayRateControl[0].ToString();
+            tboxSerialToRelay.Text = mf.mc.relayRateData[0].ToString();
             tboxNMEASerial.Text = mf.recvSentenceSettings;
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
 

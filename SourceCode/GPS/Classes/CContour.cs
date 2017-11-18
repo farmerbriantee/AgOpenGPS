@@ -639,8 +639,8 @@ namespace AgOpenGPS
         public void ResetContour()
         {
             stripList.Clear();
-            ptList?.Clear();
-            ctList?.Clear();
+             if (ptList != null) ptList.Clear();
+             if (ctList != null) ctList.Clear();
         }
     }//class
 }//namespace

@@ -314,7 +314,7 @@
             series2.Name = "PWM";
             this.unoChart.Series.Add(series1);
             this.unoChart.Series.Add(series2);
-            this.unoChart.Size = new System.Drawing.Size(761, 200);
+            this.unoChart.Size = new System.Drawing.Size(761, 116);
             this.unoChart.TabIndex = 179;
             // 
             // lblSteerAng
@@ -741,7 +741,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(760, 589);
+            this.ClientSize = new System.Drawing.Size(760, 505);
             this.Controls.Add(this.lblFreeDriveAngle);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);

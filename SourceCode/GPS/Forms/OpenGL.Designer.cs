@@ -183,8 +183,8 @@ namespace AgOpenGPS
                 boundary.DrawBoundaryLine();
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "trig: " + distanceToStartAutoTurn.ToString());
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, " dist: " + Convert.ToString(Math.Round(distPt, 2)));
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "zoom: " + maxFieldDistance.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, " cntr: " + Convert.ToString(fiveSecondCounter));
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Roll: " + Convert.ToString(Math.Round((double)(mc.rollRaw/16),1)));
                 //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "InBnd: " + inside.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
@@ -358,6 +358,13 @@ namespace AgOpenGPS
 
                 //draw the section control window off screen buffer
                 openGLControlBack.DoRender();
+
+                //draw the zoom window off screen buffer
+
+                if (panelMenu4.Visible)
+                openGLControlZoom.DoRender();
+
+
             }
         }
 
@@ -1042,5 +1049,226 @@ namespace AgOpenGPS
             //frustum[22] /= t;
             //frustum[23] /= t;
         } 
+
+        private void openGLControlZoom_OpenGLDraw(object sender, RenderEventArgs args)
+        {
+            OpenGL gl = openGLControlZoom.OpenGL;
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);	// Clear The Screen And The Depth Buffer
+            gl.LoadIdentity();					// Reset The View
+
+            //how big is our field
+            if (fiveSecondCounter > 148)
+            {
+                CalculateMinMax();
+                fiveSecondCounter = 0;
+            }
+
+            //back the camera up
+            gl.Translate(0, 0, -maxFieldDistance);
+
+            //rotate camera so heading matched fix heading in the world
+            //gl.Rotate(glm.toDegrees(fixHeadingSection), 0, 0, 1);
+
+            //translate to that spot in the world 
+            gl.Translate(-fieldCenterX, -fieldCenterY, -fixZ);
+
+            //calculate the frustum for the section control window
+            CalcFrustum(gl);
+
+            //to draw or not the triangle patch
+            bool isDraw;
+
+            gl.Color(redSections, grnSections, bluSections, (byte)160);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < vehicle.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                int patchCount = section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in section[j].patchList)
+                    {
+                        isDraw = false;
+                        int count2 = triList.Count;
+                        for (int i = 0; i < count2; i += 3)
+                        {
+                            //determine if point is in frustum or not
+                            if (frustum[0] * triList[i].easting + frustum[1] * triList[i].northing + frustum[3] <= 0)
+                                continue;//right
+                            if (frustum[4] * triList[i].easting + frustum[5] * triList[i].northing + frustum[7] <= 0)
+                                continue;//left
+                            if (frustum[16] * triList[i].easting + frustum[17] * triList[i].northing + frustum[19] <= 0)
+                                continue;//bottom
+                            if (frustum[20] * triList[i].easting + frustum[21] * triList[i].northing + frustum[23] <= 0)
+                                continue;//top
+
+                            //point is in frustum so draw the entire patch
+                            isDraw = true;
+                            break;
+                        }
+
+                        if (isDraw)
+                        {
+                            //draw the triangle in each triangle strip
+                            gl.Begin(OpenGL.GL_TRIANGLE_STRIP);
+                            count2 = triList.Count;
+                            int mipmap = 8;
+
+                            //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                            if (count2 >= (mipmap + 2))
+                            {
+                                int step = mipmap;
+                                for (int i = 0; i < count2; i += step)
+                                {
+                                    gl.Vertex(triList[i].easting, triList[i].northing, 0); i++;
+                                    gl.Vertex(triList[i].easting, triList[i].northing, 0); i++;
+
+                                    //too small to mipmap it
+                                    if (count2 - i <= (mipmap + 2)) step = 0;
+                                }
+                            }
+
+                            else { for (int i = 0; i < count2; i++) gl.Vertex(triList[i].easting, triList[i].northing, 0); }
+                            gl.End();
+                        }
+                    }
+                }
+            } //end of section patches
+
+            //draw the ABLine
+            if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+            {
+                //Draw reference AB line
+                gl.LineWidth(1);
+                gl.Enable(OpenGL.GL_LINE_STIPPLE);
+                gl.LineStipple(1, 0x00F0);
+
+                gl.Begin(OpenGL.GL_LINES);
+                gl.Color(0.9f, 0.5f, 0.7f);
+                gl.Vertex(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
+                gl.Vertex(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
+                gl.End();
+                gl.Disable(OpenGL.GL_LINE_STIPPLE);
+
+                //raw current AB Line
+                gl.Begin(OpenGL.GL_LINES);
+                gl.Color(0.9f, 0.0f, 0.0f);
+                gl.Vertex(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
+                gl.Vertex(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
+                gl.End();
+            }
+
+            if (boundary.isSet)
+            {
+                ////draw the perimeter line so far
+                int ptCount = boundary.ptList.Count;
+                if (ptCount < 1) return;
+                gl.LineWidth(2);
+                gl.Color(0.98f, 0.2f, 0.60f);
+                gl.Begin(OpenGL.GL_LINE_STRIP);
+                for (int h = 0; h < ptCount; h++) gl.Vertex(boundary.ptList[h].easting, boundary.ptList[h].northing, 0);
+                gl.End();
+
+                //the "close the loop" line
+                gl.Begin(OpenGL.GL_LINE_STRIP);
+                gl.Vertex(boundary.ptList[ptCount - 1].easting, boundary.ptList[ptCount - 1].northing, 0);
+                gl.Vertex(boundary.ptList[0].easting, boundary.ptList[0].northing, 0);
+                gl.End();
+            }
+
+            gl.PointSize(8.0f);
+            gl.Begin(OpenGL.GL_POINTS);
+
+            gl.Color(0.95f, 0.90f, 0.0f);
+            gl.Vertex(pivotAxlePos.easting, pivotAxlePos.northing, 0.0);
+
+
+            gl.End();
+            gl.PointSize(1.0f);
+
+        }
+
+        private void openGLControlZoom_OpenGLInitialized(object sender, EventArgs e)
+        {
+            OpenGL glz = openGLControlZoom.OpenGL;
+
+            glz.Enable(OpenGL.GL_CULL_FACE);
+            glz.CullFace(OpenGL.GL_BACK);
+        }
+
+        private void openGLControlZoom_Resized(object sender, EventArgs e)
+        {
+            //  Get the OpenGL object.
+            OpenGL glz = openGLControlZoom.OpenGL;
+
+            glz.MatrixMode(OpenGL.GL_PROJECTION);
+
+            //  Load the identity.
+            glz.LoadIdentity();
+
+            // change these at your own peril!!!! Very critical
+            //  Create a perspective transformation.
+            glz.Perspective(58.0f, 1, 1, 20000);
+
+            //  Set the modelview matrix.
+            glz.MatrixMode(OpenGL.GL_MODELVIEW);
+        }
+
+
+        double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
+        //determine mins maxs of patches and whole field.
+        private void CalculateMinMax()
+        {
+
+            minFieldX = 99999999999; minFieldY = 99999999999;
+            maxFieldX = -99999999999; maxFieldY = -99999999999;
+
+            //draw patches j= # of sections
+            for (int j = 0; j < vehicle.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                int patchCount = section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in section[j].patchList)
+                    {
+                        int count2 = triList.Count;
+                        for (int i = 0; i < count2; i += 3)
+                        {
+                            double x = triList[i].easting;
+                            double y = triList[i].northing;
+
+                            //also tally the max/min of field x and z
+                            if (minFieldX > x) minFieldX = x;
+                            if (maxFieldX < x) maxFieldX = x;
+                            if (minFieldY > y) minFieldY = y;
+                            if (maxFieldY < y) maxFieldY = y;
+                        }
+                    }
+                }
+
+                //the largest distancew across field
+                double dist = Math.Pow((minFieldX - maxFieldX),2);
+                double dist2 = Math.Pow((minFieldY - maxFieldY),2);
+
+                if (dist > dist2) maxFieldDistance = Math.Sqrt(dist);
+                else maxFieldDistance = Math.Sqrt(dist2);
+
+
+                if (maxFieldDistance < 200) maxFieldDistance = 200;
+                if (maxFieldDistance > 19900) maxFieldDistance = 19900;
+                //lblMax.Text = ((int)maxFieldDistance).ToString();
+
+                fieldCenterX = (maxFieldX + minFieldX) / 2.0;
+                fieldCenterY = (maxFieldY + minFieldY) / 2.0;
+            }
+        }
+
+        //endo of class
     }
 }

@@ -76,7 +76,7 @@ namespace AgOpenGPS
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
                 tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle;
-                //tboxSerialToAutoSteer.Text = $"32766, {mf.mc.autoSteerData[mf.mc.sdRelay]}, {mf.mc.autoSteerData[mf.mc.sdSpeed]}, {mf.mc.autoSteerData[mf.mc.sdDistanceLo]}, {driveFreeSteerAngle}";
+                tboxSerialToAutoSteer.Text = $"32766, {mf.mc.autoSteerData[mf.mc.sdRelay]}, {mf.mc.autoSteerData[mf.mc.sdSpeed]}, {mf.mc.autoSteerData[mf.mc.sdDistanceLo]}, {driveFreeSteerAngle}";
             }
 
             DrawChart();

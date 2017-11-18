@@ -6,27 +6,38 @@ namespace AgOpenGPS
         //copy of the mainform address
         private readonly FormGPS mf = null;
 
-        //Recv string for RateRelay
+        //RateRelay ---------------------------------------------------------------------------------------------
         public string serialRecvRelayRateStr;
 
-        //properties for rate control of sections and input lines, 8 bit bytes
-        public static int numRelayRateControls = 6;
-        public byte[] relayRateControl = new byte[numRelayRateControls];
-        public int rcHeaderHi = 0, rcHeaderLo = 1, rcSectionControlByte = 2, rcSpeedXFour = 3,
-                    rcRateSetPointHi = 4, rcRateSetPointLo = 5;
-       //Recv for the auto steer module
+        //For parsing incoming int on serial port
+        public int incomingInt;
+
+        // PGN - 32762 - 127.250
+        public static int numRelayRateDataItems = 6;
+        public byte[] relayRateData = new byte[numRelayRateDataItems];
+        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByte = 2, rdSpeedXFour = 3,
+                    rdRateSetPointHi = 4, rdRateSetPointLo = 5;
+
+        // PGN - 32760 - 127.248
+        public static int numRelayRateSettingsItems = 6;
+        public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
+        public int rsHeaderHi, rsHeaderLo = 1, rsAccumulatedVolumeHi = 2, rsAccumulatedVolumeLo = 3,
+            rsFlowCalFactorHi = 4, rsFlowCalFactorLo = 5;
+
+        //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
 
+        // PGN - 32766 - 127.254
         public static int numSteerDataItems = 8;
         public byte[] autoSteerData = new byte[numSteerDataItems];
-        public int sdHeaderHi = 0, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4,
-                        sdDistanceLo=5, sdSteerAngleHi=6, sdSteerAngleLo=7;
+        public int sdHeaderHi, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4, sdDistanceLo=5,
+                    sdSteerAngleHi=6, sdSteerAngleLo=7;
 
+        // PGN - 32764 - 127.252
         public static int numSteerSettingItems = 10;
         public byte[] autoSteerSettings = new byte[numSteerSettingItems];
-        public int ssHeaderHi = 0, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4,
-                        ssKo = 5, ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8,
-                        ssCountsPerDegree = 9;
+        public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5,
+                    ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
         //for the workswitch
         public bool isWorkSwitchOn, isWorkSwitchActiveLow, isWorkSwitchEnabled;
@@ -51,29 +62,37 @@ namespace AgOpenGPS
             isWorkSwitchActiveLow = true;
         }
 
+        //Reset all the byte arrays from modules
         public void ResetAllModuleCommValues()
         {
-            //set up relayRate array
-            relayRateControl[rcHeaderHi] = 127; //32762
-            relayRateControl[rcHeaderLo] = 250;
-            relayRateControl[rcSectionControlByte] = 0;
-            relayRateControl[rcRateSetPointHi] = 0;
-            relayRateControl[rcRateSetPointLo] = 0;
-            relayRateControl[rcSpeedXFour] = 0;
+            relayRateData[rdHeaderHi] = 127; // PGN - 32762
+            relayRateData[rdHeaderLo] = 250;
+            relayRateData[rdSectionControlByte] = 0;
+            relayRateData[rdRateSetPointHi] = 0;
+            relayRateData[rdRateSetPointLo] = 0;
+            relayRateData[rdSpeedXFour] = 0;
+            mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
 
-            //prefill the autosteer data
-            autoSteerData[sdHeaderHi] = 127; //32766
+            autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = (254);
             autoSteerData[sdRelay] = 0;
             autoSteerData[sdSpeed] = (0);
-            autoSteerData[sdDistanceHi] = (125); //32020
+            autoSteerData[sdDistanceHi] = (125); // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;
-            autoSteerData[sdSteerAngleHi] = (125); //32020
+            autoSteerData[sdSteerAngleHi] = (125); // PGN - 32020
             autoSteerData[sdSteerAngleLo] = 20;
+            mf.AutoSteerDataOutToPort();
 
-            //prefill the autosteer settings from settings xml
-            autoSteerSettings[ssHeaderHi] = 127;
-            autoSteerSettings[ssHeaderLo] = 252; //32764 as header
+            relayRateSettings[rsHeaderHi] = 127; // PGN - 32760
+            relayRateSettings[rsHeaderLo] = 248;
+            relayRateSettings[rsAccumulatedVolumeHi] = (byte)(Properties.Settings.Default.setRate_AccumulatedVolume >> 8);
+            relayRateSettings[rsAccumulatedVolumeLo] = (byte)(Properties.Settings.Default.setRate_AccumulatedVolume);
+            relayRateSettings[rsFlowCalFactorHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber >> 8);
+            relayRateSettings[rsFlowCalFactorLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber);
+            mf.RateRelayOutToPort(relayRateSettings, numRelayRateSettingsItems);
+
+            autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
+            autoSteerSettings[ssHeaderLo] = 252;
             autoSteerSettings[ssKp] = Properties.Settings.Default.setAS_Kp;
             autoSteerSettings[ssKi] = Properties.Settings.Default.setAS_Ki;
             autoSteerSettings[ssKd] = Properties.Settings.Default.setAS_Kd;
@@ -82,12 +101,7 @@ namespace AgOpenGPS
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
             autoSteerSettings[ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
-
-            //spit out to rate/relay module
-            mf.RateRelayControlOutToPort();
-
-            //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
-            mf.AutoSteerDataOutToPort();
+            mf.AutoSteerSettingsOutToPort();
         }
     }
 }
