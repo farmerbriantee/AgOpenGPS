@@ -46,6 +46,8 @@ namespace AgOpenGPS
         //imu and roll inclinometer
         public int steerSwitchValue, gyroHeading=9999, prevGyroHeading = 9999;
         public int rollRaw=9999; //inclinometer ?
+        public bool rkey = false;
+        public bool hkey = false;
 
         //constructor
         public CModuleComm(FormGPS _f)

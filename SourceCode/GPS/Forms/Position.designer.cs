@@ -157,7 +157,7 @@ namespace AgOpenGPS
 
             #region Roll
 
-            if (mc.rollRaw != 9999)
+            if (mc.rollRaw != 9999 && mc.rkey == false)
             {
                 //calculate how far the antenna moves based on sidehill roll
                 double roll = Math.Sin(glm.toRadians(mc.rollRaw/16.0));
@@ -508,7 +508,7 @@ namespace AgOpenGPS
             camHeading = glm.toDegrees(camHeading);
 
             //make sure there is a gyro otherwise 9999 are sent from autosteer
-            if (mc.gyroHeading != 9999)
+            if (mc.gyroHeading != 9999 && mc.hkey == false)
             {
                 //current gyro angle in radians
                 gyroRaw = (glm.toRadians((double)mc.prevGyroHeading * 0.0625));

@@ -12,6 +12,7 @@ using AgOpenGPS.Properties;
 
 namespace AgOpenGPS
 {
+    
     //the main form object
     public partial class FormGPS : Form
     {
@@ -214,6 +215,21 @@ namespace AgOpenGPS
                 btnSectionOffAutoOn.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
+
+            if (keyData == (Keys.R))
+            {
+              
+                mc.rkey = !mc.rkey;
+                return true;    // indicate that you handled this keystroke turns roll on or off
+            }
+            if (keyData == (Keys.H))
+            {
+
+                mc.hkey = !mc.hkey;
+                return true;    // indicate that you handled this keystroke turns heading from imu on or off
+            }
+
+
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -517,6 +533,11 @@ namespace AgOpenGPS
 
             // Setup a callback to be notified of connection requests
             listener.BeginAccept(OnConnectRequest, listener);
+        }
+
+        private void toolStripStatusLabel4_Click(object sender, EventArgs e)
+        {
+
         }
 
         //dialog for requesting user to save or cancel
