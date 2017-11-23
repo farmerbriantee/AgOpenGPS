@@ -1497,18 +1497,19 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mc.gyroHeading != 9999)
-                    return Math.Round(mc.gyroHeading * 0.0625, 1) + "\u00B0";
-                else return "-";
+                if (mc.gyroHeading != 9999 && mc.hkey == false)   
+                return Math.Round(mc.gyroHeading * 0.0625, 1) + "\u00B0"; 
+                else  return "-"; 
             }
         }
         public string RollInDegrees
         {
             get
             {
-                if (mc.rollRaw != 9999)
+                if (mc.rollRaw != 9999 && mc.rkey == false)
                     return Math.Round(mc.rollRaw * 0.0625, 1) + "\u00B0";
                 else return "-";
+               
             }
         }
         public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.1) + "\u00B0"; } }
@@ -1650,6 +1651,7 @@ namespace AgOpenGPS
                 //strip2
                 strip2PureSteerAngle.Text = PureSteerAngle;
                 strip2Roll.Text = RollInDegrees;
+                
                 strip2GyroHeading.Text = GyroInDegrees;
                 strip2GPSHeading.Text = GPSHeading;
                 strip2TurnProgressBar.Value = autoTurnInProgressBar;

@@ -16,3 +16,11 @@ C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\Keypad\obj\Release\Keypad.csproj.
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\Keypad\obj\Release\Keypad.csproj.CoreCompileInputs.cache
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\Keypad\obj\Release\Keypad.dll
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\Keypad\obj\Release\Keypad.pdb
+C:\Users\aortner\source\repos\AgOpenGPS\Application\Keypad.dll
+C:\Users\aortner\source\repos\AgOpenGPS\Application\Keypad.pdb
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\Keypad.csprojResolveAssemblyReference.cache
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\AgOpenGPS.NumKeypad.resources
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\Keypad.csproj.GenerateResource.Cache
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\Keypad.csproj.CoreCompileInputs.cache
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\Keypad.dll
+C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\Keypad\obj\Release\Keypad.pdb
