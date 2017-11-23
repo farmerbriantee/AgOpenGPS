@@ -97,7 +97,7 @@ namespace AgOpenGPS
         public void DrawVehicle()
         {
             //translate and rotate at pivot axle
-            gl.Translate(mf.fixEasting, mf.fixNorthing, 0);
+            gl.Translate(mf.pn.easting, mf.pn.northing, 0);
             gl.PushMatrix();
 
             //most complicated translate ever!
@@ -238,9 +238,9 @@ namespace AgOpenGPS
             gl.Color(0.9, 0.95, 0.10);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             {
-                gl.Vertex(1.2, -antennaPivot + wheelbase + 5, 0.0);
+                gl.Vertex(1.2, -antennaPivot + wheelbase + 8, 0.0);
                 gl.Vertex(0, -antennaPivot + wheelbase + 10, 0.0);
-                gl.Vertex(-1.2, -antennaPivot + wheelbase + 5, 0.0);
+                gl.Vertex(-1.2, -antennaPivot + wheelbase + 8, 0.0);
             }
             gl.End();
 

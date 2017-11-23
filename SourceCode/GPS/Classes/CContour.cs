@@ -35,7 +35,7 @@ namespace AgOpenGPS
         public double distanceFromRefLine;
         public double distanceFromCurrentLine;
 
-        int A, B, C;
+        private int A, B, C;
         public double abFixHeadingDelta, abHeading;
 
         public bool isABSameAsFixHeading = true;
@@ -65,7 +65,10 @@ namespace AgOpenGPS
         public CContour(OpenGL _gl, FormGPS _f)
         {
             mf = _f;
-            gl = _gl;
+            if (mf != null)
+            {
+                gl = _gl;
+            }
         }
 
         //start stop and add points to list
@@ -96,8 +99,13 @@ namespace AgOpenGPS
         //Add current position to stripList
         public void AddPoint()
         {
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
             vec4 point = new vec4(mf.pivotAxlePos.easting, mf.fixHeading, mf.pivotAxlePos.northing, mf.pn.altitude);
             ptList.Add(point);
+
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
         }
 
         //End the strip
@@ -238,7 +246,7 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = ((dz * mf.fixEasting) - (dx * mf.fixNorthing) + (refPoint2.easting
+            distanceFromRefLine = ((dz * mf.pn.easting) - (dx * mf.pn.northing) + (refPoint2.easting
                                     * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                         / Math.Sqrt((dz * dz) + (dx * dx));
 
@@ -251,7 +259,10 @@ namespace AgOpenGPS
 
             //offset calcs
             double toolOffset = mf.vehicle.toolOffset;
-            if (isSameWay) toolOffset = 0.0;
+            if (isSameWay)
+            {
+                toolOffset = 0.0;
+            }
             else
             {
                 if (distanceFromRefLine > 0) toolOffset *= 2.0;
@@ -267,20 +278,15 @@ namespace AgOpenGPS
             //make the new guidance line list called guideList
             ptCount = stripList[strip].Count-1;
             int start, stop;
-
             if (isSameWay)
             {
-                start = pt - 25;
-                if (start < 0) start = 0;
-                stop = pt + 60;
-                if (stop > ptCount) stop = ptCount+1;
+                start = pt - 25; if (start < 0) start = 0;
+                stop = pt + 60;  if (stop > ptCount) stop = ptCount+1;
             }
             else
             {
-                start = pt - 60;
-                if (start < 0) start = 0;
-                stop = pt + 25;
-                if (stop > ptCount) stop = ptCount+1;
+                start = pt - 60; if (start < 0) start = 0;
+                stop = pt + 25;  if (stop > ptCount) stop = ptCount+1;
             }
 
             for (int i = start; i < stop; i++)
@@ -293,8 +299,6 @@ namespace AgOpenGPS
                 ctList.Add(point);
             }
         }
-
-        double angVel;
 
         //determine distance from contour guidance line
         public void DistanceFromContourLine()
@@ -310,8 +314,8 @@ namespace AgOpenGPS
                 //find the closest 2 points to current fix
                 for (int t = 0; t < ptCount; t++)
                 {
-                    double dist = ((mf.pn.easting - ctList[t].x) * (mf.pn.easting - ctList[t].x))
-                                    + ((mf.pn.northing - ctList[t].z) * (mf.pn.northing - ctList[t].z));
+                    double dist = ((pivotAxlePosCT.easting - ctList[t].x) * (pivotAxlePosCT.easting - ctList[t].x))
+                                    + ((pivotAxlePosCT.northing - ctList[t].z) * (pivotAxlePosCT.northing - ctList[t].z));
                     if (dist < minDistA)
                     {
                         minDistB = minDistA;
@@ -341,7 +345,8 @@ namespace AgOpenGPS
                 abHeading = ctList[A].y;
 
                 //how far from current AB Line is fix
-                distanceFromCurrentLine = ((dz * mf.fixEasting) - (dx * mf.fixNorthing) + (ctList[B].x
+                distanceFromCurrentLine = ((dz * pivotAxlePosCT.easting) - (dx * pivotAxlePosCT
+                    .northing) + (ctList[B].x
                             * ctList[A].z) - (ctList[B].z * ctList[A].x))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
@@ -403,7 +408,10 @@ namespace AgOpenGPS
                                 //A++; B++;
                                 break; //tempDist contains the full length of next segment
                             }
-                            else distSoFar += tempDist;
+                            else
+                            {
+                                distSoFar += tempDist;
+                            }
                         }
 
                         double t = (goalPointDistance - distSoFar); // the remainder to yet travel
@@ -478,7 +486,7 @@ namespace AgOpenGPS
                 radiusPointCT.northing = pivotAxlePosCT.northing + (ppRadiusCT * Math.Sin(localHeading));
 
                 //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
+                double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
 
                 //clamp the steering angle to not exceed safe angular velocity
                 if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
@@ -584,7 +592,7 @@ namespace AgOpenGPS
             //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
             //gl.End();
             //}
-            if (mf.isPureOn)
+            if (mf.isPureDisplayOn)
             {
                 const int numSegments = 100;
                 {
@@ -631,8 +639,8 @@ namespace AgOpenGPS
         public void ResetContour()
         {
             stripList.Clear();
-            if (ptList != null) ptList.Clear();
-            if (ctList != null) ctList.Clear();
+             if (ptList != null) ptList.Clear();
+             if (ctList != null) ctList.Clear();
         }
     }//class
 }//namespace

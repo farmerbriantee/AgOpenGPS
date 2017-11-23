@@ -30,8 +30,8 @@ namespace AgOpenGPS
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
 
-        //list of the list of patch data individual triangles for that entire section activity
-        //public List<List<vec2>> boundaryLineList = new List<List<vec2>>();
+        // the list of possible bounds points
+        public List<vec2> bdList = new List<vec2>();
 
         //area variable
         public double area;
@@ -42,6 +42,74 @@ namespace AgOpenGPS
         public bool isOkToAddPoints;
         public bool isSet;
         public bool isDrawRightSide;
+
+        //generated box for finding closest point
+        public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
+        public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
+
+        //point at the farthest boundary segment from pivotAxle
+        public vec2 closestBoundaryPt = new vec2(-1,-1);
+
+        public void FindClosestBoundaryPoint(vec2 fromPt)
+        {
+            boxA.easting = fromPt.easting - (Math.Sin(mf.fixHeading + glm.PIBy2) *  mf.vehicle.toolWidth * 0.5);
+            boxA.northing = fromPt.northing - (Math.Cos(mf.fixHeading + glm.PIBy2)  * mf.vehicle.toolWidth * 0.5);
+
+            boxB.easting = fromPt.easting + (Math.Sin(mf.fixHeading + glm.PIBy2) *  mf.vehicle.toolWidth * 0.5);
+            boxB.northing = fromPt.northing + (Math.Cos(mf.fixHeading + glm.PIBy2)  * mf.vehicle.toolWidth * 0.5);
+
+            boxC.easting = boxB.easting + (Math.Sin(mf.fixHeading) * 2000.0);
+            boxC.northing = boxB.northing + (Math.Cos(mf.fixHeading) * 2000.0);
+
+            boxD.easting = boxA.easting + (Math.Sin(mf.fixHeading) * 2000.0);
+            boxD.northing = boxA.northing + (Math.Cos(mf.fixHeading) * 2000.0);
+
+            //determine if point is inside bounding box
+            bdList.Clear();
+            int ptCount = ptList.Count;
+            for (int p = 0; p < ptCount; p++)
+            {
+                if ((((boxB.easting - boxA.easting) * (ptList[p].northing - boxA.northing))
+                        - ((boxB.northing - boxA.northing) * (ptList[p].easting - boxA.easting))) < 0) { continue; }
+
+                if ((((boxD.easting - boxC.easting) * (ptList[p].northing - boxC.northing))
+                        - ((boxD.northing - boxC.northing) * (ptList[p].easting - boxC.easting))) < 0) { continue; }
+
+                if ((((boxC.easting - boxB.easting) * (ptList[p].northing - boxB.northing))
+                        - ((boxC.northing - boxB.northing) * (ptList[p].easting - boxB.easting))) < 0) { continue; }
+
+                if ((((boxA.easting - boxD.easting) * (ptList[p].northing - boxD.northing))
+                        - ((boxA.northing - boxD.northing) * (ptList[p].easting - boxD.easting))) < 0) { continue; }
+
+                //it's in the box, so add to list 
+                closestBoundaryPt.easting = ptList[p].easting;
+                closestBoundaryPt.northing = ptList[p].northing;
+                bdList.Add(closestBoundaryPt);
+            }
+
+            //which of the points is closest
+            closestBoundaryPt.easting = -1; closestBoundaryPt.northing = -1;
+            ptCount = bdList.Count;
+            if (ptCount == 0)
+            {
+                return;
+            }
+            else
+            {
+                //determine closest point
+                double minDistance = 9999999;
+                for (int i = 0; i < ptCount; i++)
+                {
+                    double dist = ((fromPt.easting - bdList[i].easting) * (fromPt.easting - bdList[i].easting))
+                                    + ((fromPt.northing - bdList[i].northing) * (fromPt.northing - bdList[i].northing));
+                    if (minDistance >= dist)
+                    {
+                        minDistance = dist;
+                        closestBoundaryPt = bdList[i];
+                    }
+                }
+            }
+        }
 
         public void ResetBoundary()
         {
@@ -74,15 +142,15 @@ namespace AgOpenGPS
                 else
                 {
                     //determine constant and multiple and add to list
-                    constantMultiple.easting = ptList[i].easting - (ptList[i].northing * ptList[j].easting) /
-                                    (ptList[j].northing - ptList[i].northing) + (ptList[i].northing * ptList[i].easting) /
-                                        (ptList[j].northing - ptList[i].northing);
+                    constantMultiple.easting = ptList[i].easting - ((ptList[i].northing * ptList[j].easting)
+                                    / (ptList[j].northing - ptList[i].northing)) + ((ptList[i].northing * ptList[i].easting)
+                                        / (ptList[j].northing - ptList[i].northing));
                     constantMultiple.northing = (ptList[j].easting - ptList[i].easting) / (ptList[j].northing - ptList[i].northing);
                     calcList.Add(constantMultiple);
                 }
             }
 
-            areaHectare = Math.Round((mf.boundary.area * 0.0001), 1) + " Ha";
+            areaHectare = Math.Round(mf.boundary.area * 0.0001, 1) + " Ha";
             areaAcre = Math.Round(mf.boundary.area * 0.000247105, 1) + " Ac";
         }
 
@@ -91,15 +159,14 @@ namespace AgOpenGPS
             if (calcList.Count < 10) return false;
             int j = ptList.Count - 1;
             bool oddNodes = false;
-            //vec2 testPoint = new vec2(mf.toolPos.easting, mf.toolPos.northing);
 
             //test against the constant and multiples list the test point
             for (int i = 0; i < ptList.Count; j = i++)
             {
-                if ((ptList[i].northing < testPoint.northing && ptList[j].northing >= testPoint.northing
-                || ptList[j].northing < testPoint.northing && ptList[i].northing >= testPoint.northing))
+                if ((ptList[i].northing < testPoint.northing && ptList[j].northing >= testPoint.northing)
+                || (ptList[j].northing < testPoint.northing && ptList[i].northing >= testPoint.northing))
                 {
-                    oddNodes ^= (testPoint.northing * calcList[i].northing + calcList[i].easting < testPoint.easting);
+                    oddNodes ^= ((testPoint.northing * calcList[i].northing) + calcList[i].easting < testPoint.easting);
                 }
             }
             return oddNodes; //true means inside.
@@ -110,19 +177,36 @@ namespace AgOpenGPS
             ////draw the perimeter line so far
             int ptCount = ptList.Count;
             if (ptCount < 1) return;
-            gl.LineWidth(4);
+            gl.LineWidth(2);
             gl.Color(0.98f, 0.2f, 0.60f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
             gl.End();
 
             //the "close the loop" line
-            gl.LineWidth(4);
+            gl.LineWidth(2);
             gl.Color(0.9f, 0.32f, 0.70f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
             gl.Vertex(ptList[0].easting, ptList[0].northing, 0);
             gl.End();
+
+            //gl.LineWidth(2);
+            //gl.Color(0.98f, 0.2f, 0.60f);
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            //gl.Vertex(boxD.easting, boxD.northing, 0);
+            //gl.Vertex(boxA.easting, boxA.northing, 0);
+            //gl.Vertex(boxB.easting, boxB.northing, 0);
+            //gl.Vertex(boxC.easting, boxC.northing, 0);
+            //gl.End();
+
+            //ptCount = bdList.Count;
+            //if (ptCount < 1) return;
+            //gl.PointSize(4);
+            //gl.Color(0.19f, 0.932f, 0.70f);
+            //gl.Begin(OpenGL.GL_POINTS);
+            //gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
+            //gl.End();
         }
 
         //draw a blue line in the back buffer for section control over boundary line
@@ -156,27 +240,27 @@ namespace AgOpenGPS
 
             for (int i = 0; i < ptCount; j = i++)
             {
-                area = area + (ptList[j].easting + ptList[i].easting) * (ptList[j].northing - ptList[i].northing);
+                area += (ptList[j].easting + ptList[i].easting) * (ptList[j].northing - ptList[i].northing);
             }
             area = Math.Abs(area / 2);
         }
 
         //the non precalculated version
-        public bool IsPointInPolygon()
-        {
-            bool result = false;
-            int j = ptList.Count - 1;
-            vec2 testPoint = new vec2(mf.pn.easting, mf.pn.northing);
+        //public bool IsPointInPolygon()
+        //{
+        //    bool result = false;
+        //    int j = ptList.Count - 1;
+        //    vec2 testPoint = new vec2(mf.pn.easting, mf.pn.northing);
 
-            if (j < 10) return true;
+        //    if (j < 10) return true;
 
-            for (int i = 0; i < ptList.Count; j = i++)
-            {
-                result ^= ptList[i].northing > testPoint.northing ^ ptList[j].northing > testPoint.northing &&
-                    testPoint.easting < (ptList[j].easting - ptList[i].easting) *
-                    (testPoint.northing - ptList[i].northing) / (ptList[j].northing - ptList[i].northing) + ptList[i].easting;
-            }
-            return result;
-        }
+        //    for (int i = 0; i < ptList.Count; j = i++)
+        //    {
+        //        result ^= (ptList[i].northing > testPoint.northing ^ ptList[j].northing > testPoint.northing)
+        //            && testPoint.easting < ((ptList[j].easting - ptList[i].easting)
+        //            * (testPoint.northing - ptList[i].northing) / (ptList[j].northing - ptList[i].northing)) + ptList[i].easting;
+        //    }
+        //    return result;
+        //}
     }
 }

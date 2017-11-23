@@ -8,14 +8,14 @@ namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
-        readonly FormGPS mf = null;
+        private readonly FormGPS mf = null;
         private string[] words;
 
         //chart data
         private string dataSteerAngle = "0";
-        private string dataP = "4";
-        private string dataI = "6";
-        private string dataD = "-6";
+        //private string dataP = "4";
+        //private string dataI = "6";
+        //private string dataD = "-6";
         private string dataPWM = "-10";
 
         //the trackbar angle for free drive
@@ -40,7 +40,7 @@ namespace AgOpenGPS
             btnMaxAngVelMinus.Text = mf.vehicle.maxAngularVelocity.ToString();
             btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
             btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
-            btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]) / 10).ToString();
+            btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree])).ToString();
 
             //make sure free drive is off
             btnFreeDrive.BackColor = Color.Red;
@@ -76,7 +76,7 @@ namespace AgOpenGPS
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
                 tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle;
-                //tboxSerialToAutoSteer.Text = $"32766, {mf.mc.autoSteerData[mf.mc.sdRelay]}, {mf.mc.autoSteerData[mf.mc.sdSpeed]}, {mf.mc.autoSteerData[mf.mc.sdDistanceLo]}, {driveFreeSteerAngle}";
+                tboxSerialToAutoSteer.Text = $"32766, {mf.mc.autoSteerData[mf.mc.sdRelay]}, {mf.mc.autoSteerData[mf.mc.sdSpeed]}, {mf.mc.autoSteerData[mf.mc.sdDistanceLo]}, {driveFreeSteerAngle}";
             }
 
             DrawChart();
@@ -85,7 +85,7 @@ namespace AgOpenGPS
         //Buttons
         private void btnPPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKp] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKp]++;
             btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
             Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
             Properties.Settings.Default.Save();
@@ -94,7 +94,7 @@ namespace AgOpenGPS
 
         private void btnPMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKp] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKp]--;
             btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
             Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
             Properties.Settings.Default.Save();
@@ -103,7 +103,7 @@ namespace AgOpenGPS
 
         private void btnIPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKi] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKi]++;
             btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
             Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
             Properties.Settings.Default.Save();
@@ -112,7 +112,7 @@ namespace AgOpenGPS
 
         private void btnIMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKi] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKi]--;
             btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
             Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
             Properties.Settings.Default.Save();
@@ -121,7 +121,7 @@ namespace AgOpenGPS
 
         private void btnDPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKd] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKd]++;
             btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
             Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
@@ -130,7 +130,7 @@ namespace AgOpenGPS
 
         private void btnDMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKd] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKd]--;
             btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
             Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
@@ -139,7 +139,7 @@ namespace AgOpenGPS
 
         private void btnOPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKo] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKo]++;
             btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
             Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
             Properties.Settings.Default.Save();
@@ -148,7 +148,7 @@ namespace AgOpenGPS
 
         private void btnOMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKo] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssKo]--;
             btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
             Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
             Properties.Settings.Default.Save();
@@ -174,7 +174,7 @@ namespace AgOpenGPS
 
         private void btnMaxSteerPlus_Click(object sender, EventArgs e)
         {
-            mf.vehicle.maxSteerAngle += 1;
+            mf.vehicle.maxSteerAngle++;
             btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
             Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
             Properties.Settings.Default.Save();
@@ -182,7 +182,7 @@ namespace AgOpenGPS
 
         private void btnMaxSteerMinus_Click(object sender, EventArgs e)
         {
-            mf.vehicle.maxSteerAngle -= 1;
+            mf.vehicle.maxSteerAngle--;
             if (mf.vehicle.maxSteerAngle < 3) mf.vehicle.maxSteerAngle = 3;
             btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
             Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
@@ -208,7 +208,7 @@ namespace AgOpenGPS
 
         private void btnSteerPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset]++;
             btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
             Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
             Properties.Settings.Default.Save();
@@ -217,7 +217,7 @@ namespace AgOpenGPS
 
         private void btnSteerMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset]--;
             if (mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] < 1) mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] = 1;
             btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
             Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
@@ -227,7 +227,7 @@ namespace AgOpenGPS
 
         private void btnMinPWMPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssMinPWM] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssMinPWM]++;
             btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
             Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
             Properties.Settings.Default.Save();
@@ -236,7 +236,7 @@ namespace AgOpenGPS
 
         private void btnMinPWMMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssMinPWM] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssMinPWM]--;
             if (mf.mc.autoSteerSettings[mf.mc.ssMinPWM] < 1) mf.mc.autoSteerSettings[mf.mc.ssMinPWM] = 1;
             btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
             Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
@@ -246,7 +246,7 @@ namespace AgOpenGPS
 
         private void btnMaxIntegralPlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] += 1;
+            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]++;
             btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
             Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
             Properties.Settings.Default.Save();
@@ -255,7 +255,7 @@ namespace AgOpenGPS
 
         private void btnMaxIntegralMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]--;
             if (mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] < 2) mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] = 2;
             btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
             Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
@@ -265,8 +265,9 @@ namespace AgOpenGPS
 
         private void btnCountsPerDegreePlus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] += 1;
-            btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]) / 10).ToString(CultureInfo.InvariantCulture);
+            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]++;
+            if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] > 50) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 50;
+            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] ).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
@@ -274,9 +275,9 @@ namespace AgOpenGPS
 
         private void btnCountsPerDegreeMinus_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] -= 1;
+            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]--;
             if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] < 1) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
-            btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]) / 10).ToString();
+            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] ).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
@@ -300,13 +301,13 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]) / 10).ToString();
+                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
                     btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
                     mf.AutoSteerSettingsOutToPort();
                 }
                 else
                 {
-                    btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]) / 10).ToString();
+                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
                     btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
                     mf.AutoSteerSettingsOutToPort();
                 }
@@ -365,48 +366,49 @@ namespace AgOpenGPS
             if (words.Length < 5)
             {
                 dataSteerAngle = "0";
-                dataP = "1";
-                dataI = "2";
-                dataD = "-1";
+                //dataP = "1";
+                //dataI = "2";
+                //dataD = "-1";
                 dataPWM = "-2";
             }
             else
             {
+                //word 0 - steerangle, 1 - pwmDisplay
                 dataSteerAngle = mf.mc.serialRecvAutoSteerStr.Split(',')[0];
-                dataP = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
-                dataI = mf.mc.serialRecvAutoSteerStr.Split(',')[2];
-                dataD = mf.mc.serialRecvAutoSteerStr.Split(',')[3];
-                dataPWM = mf.mc.serialRecvAutoSteerStr.Split(',')[4];
+                //dataP = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
+                //dataI = mf.mc.serialRecvAutoSteerStr.Split(',')[2];
+                //dataD = mf.mc.serialRecvAutoSteerStr.Split(',')[3];
+                dataPWM = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
 
                 lblSteerAng.Text = dataSteerAngle;
-                lblP.Text = dataP;
-                lblI.Text = dataI;
-                lblD.Text = dataD;
+                //lblP.Text = dataP;
+                //lblI.Text = dataI;
+                //lblD.Text = dataD;
                 lblPWM.Text = dataPWM;
             }
 
             //chart data            
             Series s = unoChart.Series["S"];
-            Series t = unoChart.Series["P"];
-            Series u = unoChart.Series["I"];
-            Series v = unoChart.Series["D"];
+            //Series t = unoChart.Series["P"];
+            //Series u = unoChart.Series["I"];
+            //Series v = unoChart.Series["D"];
             Series w = unoChart.Series["PWM"];
             double nextX = 1;
-            double nextX2 = 1;
-            double nextX3 = 1;
-            double nextX4 = 1;
+            //double nextX2 = 1;
+            //double nextX3 = 1;
+            //double nextX4 = 1;
             double nextX5 = 1;
 
             if (s.Points.Count > 0) nextX = s.Points[s.Points.Count - 1].XValue + 1;
-            if (t.Points.Count > 0) nextX2 = t.Points[t.Points.Count - 1].XValue + 1;
-            if (u.Points.Count > 0) nextX3 = u.Points[u.Points.Count - 1].XValue + 1;
-            if (v.Points.Count > 0) nextX4 = u.Points[u.Points.Count - 1].XValue + 1;
-            if (w.Points.Count > 0) nextX5 = u.Points[u.Points.Count - 1].XValue + 1;
+            //if (t.Points.Count > 0) nextX2 = t.Points[t.Points.Count - 1].XValue + 1;
+            //if (u.Points.Count > 0) nextX3 = u.Points[u.Points.Count - 1].XValue + 1;
+            //if (v.Points.Count > 0) nextX4 = u.Points[u.Points.Count - 1].XValue + 1;
+            if (w.Points.Count > 0) nextX5 = w.Points[w.Points.Count - 1].XValue + 1;
 
             unoChart.Series["S"].Points.AddXY(nextX, dataSteerAngle);
-            unoChart.Series["P"].Points.AddXY(nextX2, dataP);
-            unoChart.Series["I"].Points.AddXY(nextX3, dataI);
-            unoChart.Series["D"].Points.AddXY(nextX4, dataD);
+            //unoChart.Series["P"].Points.AddXY(nextX2, dataP);
+            //unoChart.Series["I"].Points.AddXY(nextX3, dataI);
+            //unoChart.Series["D"].Points.AddXY(nextX4, dataD);
             unoChart.Series["PWM"].Points.AddXY(nextX5, dataPWM);
 
             //if (isScroll)
@@ -415,18 +417,18 @@ namespace AgOpenGPS
                 {
                     s.Points.RemoveAt(0);
                 }
-                while (t.Points.Count > 100)
-                {
-                    t.Points.RemoveAt(0);
-                }
-                while (u.Points.Count > 100)
-                {
-                    u.Points.RemoveAt(0);
-                }
-                while (v.Points.Count > 100)
-                {
-                    v.Points.RemoveAt(0);
-                }
+                //while (t.Points.Count > 100)
+                //{
+                //    t.Points.RemoveAt(0);
+                //}
+                //while (u.Points.Count > 100)
+                //{
+                //    u.Points.RemoveAt(0);
+                //}
+                //while (v.Points.Count > 100)
+                //{
+                //    v.Points.RemoveAt(0);
+                //}
                 while (w.Points.Count > 100)
                 {
                     w.Points.RemoveAt(0);

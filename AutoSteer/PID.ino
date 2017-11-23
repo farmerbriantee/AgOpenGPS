@@ -35,7 +35,7 @@ void calcSteeringPID(void) {
   if (pwmDrive < 0 & pwmDrive > (-255 + minPWMValue)) pwmDrive = pwmDrive - minPWMValue;
   else if (pwmDrive > 0 & pwmDrive < (255 - minPWMValue)) pwmDrive = pwmDrive + minPWMValue;
 
-  pwmDrive = int(constrain(drive, -220, 220));
+  pwmDrive = int(constrain(drive, -200, 200));
 
  }
 

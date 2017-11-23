@@ -56,8 +56,9 @@
             // lblABHeading
             // 
             this.lblABHeading.AutoSize = true;
+            this.lblABHeading.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblABHeading.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblABHeading.Location = new System.Drawing.Point(21, 84);
+            this.lblABHeading.Location = new System.Drawing.Point(33, 98);
             this.lblABHeading.Name = "lblABHeading";
             this.lblABHeading.Size = new System.Drawing.Size(121, 38);
             this.lblABHeading.TabIndex = 63;
@@ -73,7 +74,7 @@
             // 
             this.lblFixHeading.AutoSize = true;
             this.lblFixHeading.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFixHeading.Location = new System.Drawing.Point(94, 220);
+            this.lblFixHeading.Location = new System.Drawing.Point(94, 235);
             this.lblFixHeading.Name = "lblFixHeading";
             this.lblFixHeading.Size = new System.Drawing.Size(29, 32);
             this.lblFixHeading.TabIndex = 64;
@@ -83,7 +84,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 223);
+            this.label1.Location = new System.Drawing.Point(7, 238);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 25);
             this.label1.TabIndex = 65;
@@ -95,7 +96,7 @@
             this.btnDnABHeading.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnABHeading.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnDnABHeading.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDnABHeading.Location = new System.Drawing.Point(102, 136);
+            this.btnDnABHeading.Location = new System.Drawing.Point(102, 159);
             this.btnDnABHeading.Name = "btnDnABHeading";
             this.btnDnABHeading.Size = new System.Drawing.Size(74, 69);
             this.btnDnABHeading.TabIndex = 70;
@@ -117,7 +118,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 56);
+            this.label2.Location = new System.Drawing.Point(23, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 20);
             this.label2.TabIndex = 76;
@@ -127,7 +128,7 @@
             // 
             this.nudBasedOnPass.BackColor = System.Drawing.Color.MediumOrchid;
             this.nudBasedOnPass.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBasedOnPass.Location = new System.Drawing.Point(27, 169);
+            this.nudBasedOnPass.Location = new System.Drawing.Point(27, 161);
             this.nudBasedOnPass.Minimum = new decimal(new int[] {
             100,
             0,
@@ -142,7 +143,7 @@
             // 
             this.nudTramRepeats.BackColor = System.Drawing.Color.Lime;
             this.nudTramRepeats.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTramRepeats.Location = new System.Drawing.Point(27, 79);
+            this.nudTramRepeats.Location = new System.Drawing.Point(27, 71);
             this.nudTramRepeats.Name = "nudTramRepeats";
             this.nudTramRepeats.Size = new System.Drawing.Size(98, 50);
             this.nudTramRepeats.TabIndex = 75;
@@ -152,7 +153,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(23, 146);
+            this.label3.Location = new System.Drawing.Point(23, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(114, 20);
             this.label3.TabIndex = 78;
@@ -164,9 +165,9 @@
             this.groupBox1.Controls.Add(this.nudTramRepeats);
             this.groupBox1.Controls.Add(this.nudBasedOnPass);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 270);
+            this.groupBox1.Location = new System.Drawing.Point(12, 283);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(161, 232);
+            this.groupBox1.Size = new System.Drawing.Size(161, 219);
             this.groupBox1.TabIndex = 80;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tramline - Set to 0 to disable";
@@ -177,7 +178,7 @@
             this.btnDnABHeadingBy1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnABHeadingBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnDnABHeadingBy1.Image = ((System.Drawing.Image)(resources.GetObject("btnDnABHeadingBy1.Image")));
-            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(6, 136);
+            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(6, 159);
             this.btnDnABHeadingBy1.Name = "btnDnABHeadingBy1";
             this.btnDnABHeadingBy1.Size = new System.Drawing.Size(74, 69);
             this.btnDnABHeadingBy1.TabIndex = 73;

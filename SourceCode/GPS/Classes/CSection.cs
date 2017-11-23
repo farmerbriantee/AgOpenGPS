@@ -88,6 +88,8 @@ namespace AgOpenGPS
                 triangleList = new List<vec2>();
                 patchList.Add(triangleList);
 
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
                 //left side of triangle
                 vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
                         (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
@@ -97,12 +99,20 @@ namespace AgOpenGPS
                 point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
                     (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
                 triangleList.Add(point);
+
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
             }
         }
 
         public void TurnSectionOff()
         {
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
             AddPathPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
+
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
             isSectionOn = false;
             numTriangles = 0;
 
@@ -142,18 +152,18 @@ namespace AgOpenGPS
             {
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {
-                    double temp = (triangleList[c].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing)) +
-                              (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c].northing)) +
-                                  (triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing));
+                    double temp = (triangleList[c].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing))
+                              + (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c].northing))
+                                  + (triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing));
 
                     temp = Math.Abs(temp / 2.0);
                     mf.totalSquareMeters += temp;
                     mf.totalUserSquareMeters += temp;
 
                     //temp = 0;
-                    temp = (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing)) +
-                              (triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing)) +
-                                  (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing));
+                    temp = (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing))
+                              + (triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing))
+                                  + (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing));
 
                     temp = Math.Abs(temp / 2.0);
                     mf.totalSquareMeters += temp;
