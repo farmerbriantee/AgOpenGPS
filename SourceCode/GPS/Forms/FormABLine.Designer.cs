@@ -48,9 +48,14 @@
             this.btnBPoint = new System.Windows.Forms.Button();
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnABLineOk = new System.Windows.Forms.Button();
+            this.btnRightAPointBy1 = new System.Windows.Forms.Button();
+            this.btnLeftAPointBy1 = new System.Windows.Forms.Button();
+            this.nudShiftCm = new System.Windows.Forms.NumericUpDown();
+            this.lbl_shiftCM = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudBasedOnPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudShiftCm)).BeginInit();
             this.SuspendLayout();
             // 
             // lblABHeading
@@ -58,7 +63,7 @@
             this.lblABHeading.AutoSize = true;
             this.lblABHeading.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblABHeading.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblABHeading.Location = new System.Drawing.Point(33, 98);
+            this.lblABHeading.Location = new System.Drawing.Point(32, 104);
             this.lblABHeading.Name = "lblABHeading";
             this.lblABHeading.Size = new System.Drawing.Size(121, 38);
             this.lblABHeading.TabIndex = 63;
@@ -74,7 +79,7 @@
             // 
             this.lblFixHeading.AutoSize = true;
             this.lblFixHeading.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFixHeading.Location = new System.Drawing.Point(94, 235);
+            this.lblFixHeading.Location = new System.Drawing.Point(93, 241);
             this.lblFixHeading.Name = "lblFixHeading";
             this.lblFixHeading.Size = new System.Drawing.Size(29, 32);
             this.lblFixHeading.TabIndex = 64;
@@ -84,7 +89,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 238);
+            this.label1.Location = new System.Drawing.Point(6, 244);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 25);
             this.label1.TabIndex = 65;
@@ -96,7 +101,7 @@
             this.btnDnABHeading.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnABHeading.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnDnABHeading.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDnABHeading.Location = new System.Drawing.Point(102, 159);
+            this.btnDnABHeading.Location = new System.Drawing.Point(101, 165);
             this.btnDnABHeading.Name = "btnDnABHeading";
             this.btnDnABHeading.Size = new System.Drawing.Size(74, 69);
             this.btnDnABHeading.TabIndex = 70;
@@ -108,7 +113,7 @@
             // 
             this.lblKeepGoing.AutoSize = true;
             this.lblKeepGoing.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKeepGoing.Location = new System.Drawing.Point(239, 103);
+            this.lblKeepGoing.Location = new System.Drawing.Point(349, 109);
             this.lblKeepGoing.Name = "lblKeepGoing";
             this.lblKeepGoing.Size = new System.Drawing.Size(23, 25);
             this.lblKeepGoing.TabIndex = 74;
@@ -165,7 +170,7 @@
             this.groupBox1.Controls.Add(this.nudTramRepeats);
             this.groupBox1.Controls.Add(this.nudBasedOnPass);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(12, 283);
+            this.groupBox1.Location = new System.Drawing.Point(185, 15);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(161, 219);
             this.groupBox1.TabIndex = 80;
@@ -178,7 +183,7 @@
             this.btnDnABHeadingBy1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnABHeadingBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnDnABHeadingBy1.Image = ((System.Drawing.Image)(resources.GetObject("btnDnABHeadingBy1.Image")));
-            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(6, 159);
+            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(5, 165);
             this.btnDnABHeadingBy1.Name = "btnDnABHeadingBy1";
             this.btnDnABHeadingBy1.Size = new System.Drawing.Size(74, 69);
             this.btnDnABHeadingBy1.TabIndex = 73;
@@ -192,7 +197,7 @@
             this.btnUpABHeadingBy1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpABHeadingBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnUpABHeadingBy1.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnUpABHeadingBy1.Location = new System.Drawing.Point(6, 6);
+            this.btnUpABHeadingBy1.Location = new System.Drawing.Point(5, 12);
             this.btnUpABHeadingBy1.Name = "btnUpABHeadingBy1";
             this.btnUpABHeadingBy1.Size = new System.Drawing.Size(74, 69);
             this.btnUpABHeadingBy1.TabIndex = 72;
@@ -206,7 +211,7 @@
             this.btnUpABHeading.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpABHeading.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnUpABHeading.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnUpABHeading.Location = new System.Drawing.Point(102, 6);
+            this.btnUpABHeading.Location = new System.Drawing.Point(101, 12);
             this.btnUpABHeading.Name = "btnUpABHeading";
             this.btnUpABHeading.Size = new System.Drawing.Size(74, 69);
             this.btnUpABHeading.TabIndex = 69;
@@ -220,7 +225,7 @@
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteAB.Location = new System.Drawing.Point(248, 295);
+            this.btnDeleteAB.Location = new System.Drawing.Point(12, 320);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(86, 87);
             this.btnDeleteAB.TabIndex = 0;
@@ -232,7 +237,7 @@
             // 
             this.btnBPoint.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
-            this.btnBPoint.Location = new System.Drawing.Point(244, 153);
+            this.btnBPoint.Location = new System.Drawing.Point(354, 138);
             this.btnBPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBPoint.Name = "btnBPoint";
             this.btnBPoint.Size = new System.Drawing.Size(90, 93);
@@ -244,7 +249,7 @@
             // 
             this.btnAPoint.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAPoint.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnAPoint.Location = new System.Drawing.Point(244, 6);
+            this.btnAPoint.Location = new System.Drawing.Point(354, 15);
             this.btnAPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPoint.Name = "btnAPoint";
             this.btnAPoint.Size = new System.Drawing.Size(90, 93);
@@ -257,7 +262,7 @@
             this.btnABLineOk.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnABLineOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnABLineOk.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnABLineOk.Location = new System.Drawing.Point(193, 402);
+            this.btnABLineOk.Location = new System.Drawing.Point(303, 320);
             this.btnABLineOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABLineOk.Name = "btnABLineOk";
             this.btnABLineOk.Size = new System.Drawing.Size(141, 87);
@@ -267,12 +272,63 @@
             this.btnABLineOk.UseVisualStyleBackColor = true;
             this.btnABLineOk.Click += new System.EventHandler(this.btnABLineOk_Click);
             // 
+            // btnRightAPointBy1
+            // 
+            this.btnRightAPointBy1.Enabled = false;
+            this.btnRightAPointBy1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRightAPointBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnRightAPointBy1.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnRightAPointBy1.Location = new System.Drawing.Point(370, 241);
+            this.btnRightAPointBy1.Name = "btnRightAPointBy1";
+            this.btnRightAPointBy1.Size = new System.Drawing.Size(74, 69);
+            this.btnRightAPointBy1.TabIndex = 81;
+            this.btnRightAPointBy1.Text = "right";
+            this.btnRightAPointBy1.UseVisualStyleBackColor = true;
+            this.btnRightAPointBy1.Click += new System.EventHandler(this.btnRightAPointBy1_Click);
+            // 
+            // btnLeftAPointBy1
+            // 
+            this.btnLeftAPointBy1.Enabled = false;
+            this.btnLeftAPointBy1.Font = new System.Drawing.Font("Arial Narrow", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeftAPointBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnLeftAPointBy1.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
+            this.btnLeftAPointBy1.Location = new System.Drawing.Point(186, 241);
+            this.btnLeftAPointBy1.Name = "btnLeftAPointBy1";
+            this.btnLeftAPointBy1.Size = new System.Drawing.Size(74, 69);
+            this.btnLeftAPointBy1.TabIndex = 82;
+            this.btnLeftAPointBy1.Text = "left";
+            this.btnLeftAPointBy1.UseVisualStyleBackColor = true;
+            this.btnLeftAPointBy1.Click += new System.EventHandler(this.btnLeftAPointBy1_Click);
+            // 
+            // nudShiftCm
+            // 
+            this.nudShiftCm.BackColor = System.Drawing.Color.DarkOrange;
+            this.nudShiftCm.Font = new System.Drawing.Font("Segoe UI Semibold", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudShiftCm.Location = new System.Drawing.Point(266, 260);
+            this.nudShiftCm.Name = "nudShiftCm";
+            this.nudShiftCm.Size = new System.Drawing.Size(98, 50);
+            this.nudShiftCm.TabIndex = 79;
+            // 
+            // lbl_shiftCM
+            // 
+            this.lbl_shiftCM.AutoSize = true;
+            this.lbl_shiftCM.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_shiftCM.Location = new System.Drawing.Point(262, 237);
+            this.lbl_shiftCM.Name = "lbl_shiftCM";
+            this.lbl_shiftCM.Size = new System.Drawing.Size(90, 20);
+            this.lbl_shiftCM.TabIndex = 80;
+            this.lbl_shiftCM.Text = "Shift by x cm";
+            // 
             // FormABLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(348, 514);
+            this.ClientSize = new System.Drawing.Size(449, 412);
             this.ControlBox = false;
+            this.Controls.Add(this.nudShiftCm);
+            this.Controls.Add(this.btnLeftAPointBy1);
+            this.Controls.Add(this.lbl_shiftCM);
+            this.Controls.Add(this.btnRightAPointBy1);
             this.Controls.Add(this.lblKeepGoing);
             this.Controls.Add(this.btnDnABHeadingBy1);
             this.Controls.Add(this.btnUpABHeadingBy1);
@@ -302,6 +358,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudShiftCm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +384,9 @@
         private System.Windows.Forms.NumericUpDown nudTramRepeats;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnRightAPointBy1;
+        private System.Windows.Forms.Button btnLeftAPointBy1;
+        private System.Windows.Forms.NumericUpDown nudShiftCm;
+        private System.Windows.Forms.Label lbl_shiftCM;
     }
 }

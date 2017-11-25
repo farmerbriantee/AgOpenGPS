@@ -34,9 +34,12 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = true;
                 btnUpABHeadingBy1.Enabled = true;
                 btnDnABHeadingBy1.Enabled = true;
+                btnLeftAPointBy1.Enabled = true;
+                btnRightAPointBy1.Enabled = true;
                 upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 1);
                 nudTramRepeats.Value = mf.ABLine.tramPassEvery;
                 nudBasedOnPass.Value = mf.ABLine.passBasedOn;
+                nudShiftCm.Value = 5;
             }
             else
             {
@@ -49,11 +52,14 @@ namespace AgOpenGPS
                 btnDnABHeading.Enabled = false;
                 btnUpABHeadingBy1.Enabled = false;
                 btnDnABHeadingBy1.Enabled = false;
+                btnLeftAPointBy1.Enabled = false;
+                btnRightAPointBy1.Enabled = false;
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
                 nudTramRepeats.Value = 0;
                 nudBasedOnPass.Value = 0;
                 mf.ABLine.tramPassEvery=0;
                 mf.ABLine.passBasedOn=0;
+                nudShiftCm.Value = 5;
             }
         }
 
@@ -70,6 +76,8 @@ namespace AgOpenGPS
             btnDnABHeading.Enabled = true;
             btnUpABHeadingBy1.Enabled = true;
             btnDnABHeadingBy1.Enabled = true;
+            btnLeftAPointBy1.Enabled = true;
+            btnRightAPointBy1.Enabled = true;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
         }
 
@@ -113,6 +121,30 @@ namespace AgOpenGPS
             btnABLineOk.Enabled = true;
         }
 
+        private void btnRightAPointBy1_Click(object sender, EventArgs e)
+        {
+            
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            mf.ABLine.refPoint1.easting = mf.ABLine.refPoint1.easting + Math.Cos(mf.ABLine.abHeading) * ((double)nudShiftCm.Value / 100.0 );
+            mf.ABLine.refPoint1.northing = mf.ABLine.refPoint1.northing - Math.Sin(mf.ABLine.abHeading) * ((double)nudShiftCm.Value / 100.0);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
+            mf.ABLine.SetABLineByHeading();
+            btnABLineOk.Enabled = true;
+        }
+
+        private void btnLeftAPointBy1_Click(object sender, EventArgs e)
+        {
+
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            mf.ABLine.refPoint1.easting = mf.ABLine.refPoint1.easting - Math.Cos(mf.ABLine.abHeading) * ((double)nudShiftCm.Value / 100.0);
+            mf.ABLine.refPoint1.northing = mf.ABLine.refPoint1.northing + Math.Sin(mf.ABLine.abHeading) * ((double)nudShiftCm.Value / 100.0);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+
+            mf.ABLine.SetABLineByHeading();
+            btnABLineOk.Enabled = true;
+        }
+
         private void btnABLineOk_Click(object sender, EventArgs e)
         {
             //save the ABLine
@@ -128,10 +160,13 @@ namespace AgOpenGPS
             btnBPoint.Enabled = false;
             btnDeleteAB.Enabled = false;
             btnABLineOk.Enabled = false;
+            btnLeftAPointBy1.Enabled = false;
+            btnRightAPointBy1.Enabled = false;
             nudTramRepeats.Value = 0;
             nudBasedOnPass.Value = 0;
             mf.ABLine.tramPassEvery = 0;
             mf.ABLine.passBasedOn = 0;
+            nudShiftCm.Value = 5;
 
             //save the no ABLine;
             mf.FileSaveABLine();
@@ -166,6 +201,6 @@ namespace AgOpenGPS
         private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
         {
             mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
-        }
-     }
+        } 
+    }
 }
