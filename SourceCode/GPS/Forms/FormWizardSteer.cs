@@ -9,15 +9,14 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
         private double prevSteerCount = 1.0;
         private string[] words;
-        private double dataSteerAngle = 999;
         private double countsPerDegree = 1;
         private double steerAngle = 0;
 
         private void FormWizardSteer_Load(object sender, EventArgs e)
         {
             //save a copy in case of cancel
-            prevSteerCount = ((mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree])) / 10.0;
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 10;
+            prevSteerCount = ((mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]));
+            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
             mf.AutoSteerSettingsOutToPort();
             btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
             lblWheelbase.Text = Convert.ToString(Math.Round(mf.vehicle.wheelbase,1));
@@ -35,7 +34,7 @@ namespace AgOpenGPS
 
         private void btnSaveOK_Click(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = (byte)(countsPerDegree * 10);
+            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = (byte)(countsPerDegree);
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
         }
@@ -48,12 +47,8 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             words = mf.mc.serialRecvAutoSteerStr.Split(',');
-            if (words.Length < 5) dataSteerAngle = 999;
-            else
-            {
-                dataSteerAngle = int.Parse(words[0]);
-                lblRawSteer.Text = Convert.ToString(dataSteerAngle);
-            }
+            if (words.Length == 5)
+                lblRawSteer.Text = (words[0]);
         }
 
         private void btnSteerPlus_Click(object sender, EventArgs e)

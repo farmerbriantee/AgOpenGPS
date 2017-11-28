@@ -37,6 +37,7 @@ namespace AgOpenGPS
             Close();
     }
 
+        //ctually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
             if (mf.boundary.isOkToAddPoints)
@@ -65,7 +66,7 @@ namespace AgOpenGPS
 
             if (mf.isMetric)
             {
-                lblArea.Text = Math.Round((mf.boundary.area * 0.0001), 2) + " Ha";
+                lblArea.Text = Math.Round(mf.boundary.area * 0.0001, 2) + " Ha";
             }
             else
             {

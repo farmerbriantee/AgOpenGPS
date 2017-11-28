@@ -1,10 +1,14 @@
   #include "BNO055_AOG.h"
   #include <Wire.h>
+<<<<<<< HEAD
   #include<EEPROM.h>
+=======
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
   
   #define A 0X28  //I2C address selection pin LOW
   #define B 0x29  //                        HIGH
   #define RAD2GRAD 57.2957795
+<<<<<<< HEAD
 
   #define HYDRAULIC_STEER   //Uncomment this line if you want to use Hydraulic steering
 
@@ -12,6 +16,12 @@
   
   #define LED_PIN 13   
    
+=======
+  
+  #define LED_PIN 13   
+  #define   DIR_PIN    12  //PB4
+  #define   PWM_PIN    11  //PB3  
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
   #define WORKSW_PIN 4  //PD4
   #define STEERSW_PIN 10 //PB2
 
@@ -30,6 +40,7 @@
   #define RELAY3_PIN 7  //PD7
   #define RELAY4_PIN 8  //PB0
   #define RELAY5_PIN 9  //PB1
+<<<<<<< HEAD
 
   struct Storage {
     float Kp;
@@ -55,6 +66,20 @@
   unsigned int count = 0;
   unsigned int watchdogTimer = 0;
 
+=======
+   
+  //instance of the imu
+   BNO055 IMU(A);
+
+  //loop time variables in microseconds
+  const unsigned int LOOP_TIME = 100; //100hz 
+  unsigned int lastTime = LOOP_TIME;
+  unsigned int currentTime = LOOP_TIME;
+  unsigned int dT = 50000;
+  unsigned int count = 0;
+  unsigned int watchdogTimer = 0;
+
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
   //Kalman variables
   float rollK = 0;
   float Pc = 0.0;
@@ -128,6 +153,10 @@ void setup()
 
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
+<<<<<<< HEAD
+=======
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 10 PB2
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
 
   //set up communication  
   Wire.begin();
@@ -208,10 +237,13 @@ void loop()
 
     #ifndef HYDRAULIC_STEER
     steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+<<<<<<< HEAD
     #else
     steerSwitch = (int)steerEnable;
     #endif
 
+=======
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
     steerSwitch << 1; //put steerswitch status in bit 1 position
     switchByte = workSwitch+steerSwitch;
     
@@ -224,12 +256,20 @@ void loop()
     steeringPosition += analogRead(A0);    delay(1);
     steeringPosition += analogRead(A0);    delay(1);
     steeringPosition = steeringPosition >> 2; //divide by 4    
+<<<<<<< HEAD
     steeringPosition = ( steeringPosition - steerSettings.steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
+=======
+    steeringPosition = ( steeringPosition - steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
     
     //convert position to steer angle. 6 counts per degree of steer pot position in my case
     //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
     // remove or add the minus for steerSensorCounts to do that.
+<<<<<<< HEAD
     steerAngleActual = (float)(steeringPosition)/-steerSettings.steerSensorCounts;    
+=======
+    steerAngleActual = (float)(steeringPosition)/-steerSensorCounts;    
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
            
     if (watchdogTimer < 5)
     {
@@ -240,10 +280,14 @@ void loop()
     else
     {      
       pwmDrive = 0; //turn off steering motor
+<<<<<<< HEAD
       motorDrive(); //out to motors the pwm value
       #ifdef HYDRAULIC_STEER
       steerEnable = false;         
       #endif
+=======
+      motorDrive(); //out to motors the pwm value         
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
     }
 
     //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
@@ -297,11 +341,15 @@ void loop()
       steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())/10.0); //high low bytes 
   
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
+<<<<<<< HEAD
       #ifdef HYDRAULIC_STEER
       if (distanceFromLine == 32020 | speeed < 1 | steerEnable == false )
       #else
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  
       #endif
+=======
+      if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
       {      
         watchdogTimer = 100;//turn off steering motor
       }    
@@ -318,6 +366,7 @@ void loop()
       isSettingFound = false;  //reset the flag
   
       //change the factors as required for your own PID values
+<<<<<<< HEAD
       steerSettings.Kp = (float)Serial.read() * 1.0;   // read Kp from AgOpenGPS
       steerSettings.Ki = (float)Serial.read() * 0.1;   // read Ki from AgOpenGPS
       steerSettings.Kd = (float)Serial.read() * 1.0;   // read Kd from AgOpenGPS
@@ -327,6 +376,16 @@ void loop()
       steerSettings.maxIntegralValue = Serial.read(); //
       steerSettings.steerSensorCounts = Serial.read(); //
       EEPROM.put(0, steerSettings);
+=======
+      Kp = (float)Serial.read() * 1.0;   // read Kp from AgOpenGPS
+      Ki = (float)Serial.read() * 0.1;   // read Ki from AgOpenGPS
+      Kd = (float)Serial.read() * 1.0;   // read Kd from AgOpenGPS
+      Ko = (float)Serial.read() * 0.1;   // read Ko from AgOpenGPS
+      steeringPositionZero = 412 + Serial.read();  //read steering zero offset
+      minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
+      maxIntegralValue = Serial.read(); //
+      steerSensorCounts = Serial.read(); //
+>>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
     }
 }
 #ifdef AUTOSTEER_ENABLE

@@ -1,4 +1,15 @@
-﻿v2.15 and v 2.16 Sept 2015
+﻿v2.2 Nov 15, 2017
+* Sprayer rate control
+* Auto and manual YouTurn headland turning
+* Gyro, imu, roll, code integrated into steering module
+* IMU heading fused with GPS heading
+* All port communication enumerated.
+* Fields and Vehicle saving contain all paramters
+* Boundary and distances to them are all calculated
+* Second info strip at bottom. 
+* Fixed bugs, made some new ones
+
+v2.15 and v 2.16 Sept 15, 2017
 *
 * Pure pursuit guidance
 * Removed all heading Delta strings - but maybe i shouldn't of

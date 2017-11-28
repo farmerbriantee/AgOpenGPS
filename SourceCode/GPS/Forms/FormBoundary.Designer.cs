@@ -50,7 +50,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnDelete.Location = new System.Drawing.Point(217, 167);
+            this.btnDelete.Location = new System.Drawing.Point(217, 186);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 110);
             this.btnDelete.TabIndex = 65;
@@ -80,12 +80,12 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSerialCancel.Location = new System.Drawing.Point(415, 167);
+            this.btnSerialCancel.Location = new System.Drawing.Point(415, 186);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 110);
             this.btnSerialCancel.TabIndex = 64;
-            this.btnSerialCancel.Text = "Exit";
+            this.btnSerialCancel.Text = "Cancel";
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);

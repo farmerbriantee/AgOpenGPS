@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -254,24 +254,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("COM Section...")]
-        public string setPort_portNameRelay {
+        public string setPort_portNameRateRelay {
             get {
-                return ((string)(this["setPort_portNameRelay"]));
+                return ((string)(this["setPort_portNameRateRelay"]));
             }
             set {
-                this["setPort_portNameRelay"] = value;
+                this["setPort_portNameRateRelay"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setPort_wasRelayConnected {
+        public bool setPort_wasRateRelayConnected {
             get {
-                return ((bool)(this["setPort_wasRelayConnected"]));
+                return ((bool)(this["setPort_wasRateRelayConnected"]));
             }
             set {
-                this["setPort_wasRelayConnected"] = value;
+                this["setPort_wasRateRelayConnected"] = value;
             }
         }
         
@@ -932,6 +932,78 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setMenu_isPureOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Keyhole.txt")]
+        public string setAS_youTurnShape {
+            get {
+                return ((string)(this["setAS_youTurnShape"]));
+            }
+            set {
+                this["setAS_youTurnShape"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double setRate_rate1 {
+            get {
+                return ((double)(this["setRate_rate1"]));
+            }
+            set {
+                this["setRate_rate1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public double setRate_rate2 {
+            get {
+                return ((double)(this["setRate_rate2"]));
+            }
+            set {
+                this["setRate_rate2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setAS_startYouTurnAt {
+            get {
+                return ((int)(this["setAS_startYouTurnAt"]));
+            }
+            set {
+                this["setAS_startYouTurnAt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("500")]
+        public uint setRate_FlowmeterCalNumber {
+            get {
+                return ((uint)(this["setRate_FlowmeterCalNumber"]));
+            }
+            set {
+                this["setRate_FlowmeterCalNumber"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public uint setRate_AccumulatedVolume {
+            get {
+                return ((uint)(this["setRate_AccumulatedVolume"]));
+            }
+            set {
+                this["setRate_AccumulatedVolume"] = value;
             }
         }
     }

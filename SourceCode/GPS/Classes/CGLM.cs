@@ -2,23 +2,33 @@
 
 namespace AgOpenGPS
 {
-   public static class glm
+    public static class glm
     {
-       //inches to meters
-       public static double in2m = 0.0254;
+        //inches to meters
+        public static double in2m = 0.0254;
 
-       //meters to inches
-       public static double m2in = 39.3701;
+        //meters to inches
+        public static double m2in = 39.3701;
 
-       //meters to feet
-       public static double m2ft = 3.28084;
+        //meters to feet
+        public static double m2ft = 3.28084;
 
-       //the pi's
-       public static double twoPI = 6.28318530717958647692;
+        // liters per hectare to us gal per acre
+        public static double galAc2Lha = 9.35396;
 
-       public static double PIBy2 = 1.57079632679489661923;
+        //us gal per acre to liters per hectare
+        public static double LHa2galAc = 0.106907;
 
-       public static float acos(float x)
+        public static double L2Gal = 0.264172;
+
+        public static double Gal2L = 3.785412534258;
+
+        //the pi's
+        public static double twoPI = 6.28318530717958647692;
+
+        public static double PIBy2 = 1.57079632679489661923;
+
+        public static float acos(float x)
         {
             return (float)Math.Acos(x);
         }

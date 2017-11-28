@@ -264,11 +264,11 @@ C:\Users\Leno\Desktop\Backups\AgOpenGPS_DevLookaheadRevisited_Min speed too\Sour
 C:\Users\Leno\Desktop\Backups\AgOpenGPS_DevLookaheadRevisited_Min speed too\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWebCam.resources
 C:\Users\Leno\Desktop\Backups\AgOpenGPS_DevLookaheadRevisited_Min speed too\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Leno\Desktop\Backups\AgOpenGPS_DevLookaheadRevisited_Min speed too\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
-C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormBoundary.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormBoundaryPlayer.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSteer.resources
 C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormTrip.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWizardSteer.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\Dependencies\Landscape.png
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe.config
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\Application\AgOpenGPS.exe
@@ -282,6 +282,7 @@ C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.For
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPSData.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPS.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormJob.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormRate.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSaveOrNot.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSettings.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSteer.resources
@@ -289,35 +290,19 @@ C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.For
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormVariables.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWebCam.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWizardSteer.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormYouTurnRecord.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormTrip.resources
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormYouTurn.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.exe
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.pdb
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.CoreCompileInputs.cache
+C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\Keypad.NumKeypad.resources
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\Application\Dependencies\Landscape.png
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\Application\AgOpenGPS.exe.config
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\Application\AgOpenGPS.exe
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\Application\AgOpenGPS.pdb
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormBoundary.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormBoundaryPlayer.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormFieldDir.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormABLine.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormAbout.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormCommSet.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPSData.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormGPS.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormJob.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSaveOrNot.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSettings.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormSteer.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormTimedMessage.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormVariables.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWebCam.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormWizardSteer.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormTrip.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.Properties.Resources.resources
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.GenerateResource.Cache
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.exe
-C:\Users\Leno\Downloads\AgOpenGPS-master\AgOpenGPS-master\SourceCode\GPS\obj\x86\Release\AgOpenGPS.pdb
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csprojResolveAssemblyReference.cache
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormRate.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormYouTurnRecord.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.FormYouTurn.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\Keypad.NumKeypad.resources
+C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\obj\x86\Release\AgOpenGPS.csproj.CoreCompileInputs.cache
