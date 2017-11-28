@@ -1,7 +1,7 @@
 void calcSteeringPID(void) {
   
   //Proportional
-  pValue = steerSettings.Kp * steerAngleError *steerSettings.Ko;  
+  pValue = steerSettings.Kp * steerAngleError * steerSettings.Ko;  
   
   //Integral
   integrated_error = integrated_error + steerAngleError;
@@ -35,14 +35,14 @@ void calcSteeringPID(void) {
   if (pwmDrive < 0 & pwmDrive > (-255 + steerSettings.minPWMValue)) pwmDrive = pwmDrive - steerSettings.minPWMValue;
   else if (pwmDrive > 0 & pwmDrive < (255 - steerSettings.minPWMValue)) pwmDrive = pwmDrive + steerSettings.minPWMValue;
 
-  pwmDrive = int(constrain(drive, -220, 220));
+  pwmDrive = int(constrain(drive, -200, 200));
 
  }
 
  void motorDrive(void) 
   {
     pwmDisplay = pwmDrive;
-    #ifdef STEERSW_PIN
+    #ifndef HYDRAULIC_STEER
     if (pwmDrive > 0) bitSet(PORTB, 4);  //set the correct direction
     else   
     {
@@ -50,8 +50,8 @@ void calcSteeringPID(void) {
       pwmDrive = -1 * pwmDrive;  
    }
     analogWrite(PWM_PIN, pwmDrive);
-    #endif
-    #ifdef AUTOSTEER_ENABLE
+    
+    #else
     if (steerEnable == true)
     {
     analogWrite(AUTOSTEER_LED, 200);
@@ -74,12 +74,8 @@ void calcSteeringPID(void) {
       analogWrite(PWM_LEFT, pwmDrive);
       analogWrite(PWM_RIGHT, 0);
    }
-    else{
-    //analogWrite(PWM_LEFT, 0);
-    //analogWrite(PWM_RIGHT, 0);
-    }
+    
     #endif
     
   }
-
 
