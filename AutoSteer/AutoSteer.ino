@@ -23,7 +23,6 @@
   #define   PWM_PIN    11  //PB3  
 >>>>>>> 962d2153957fa8c06889550c91f1d79b5a141105
   #define WORKSW_PIN 4  //PD4
-  #define STEERSW_PIN 10 //PB2
 
   #ifdef HYDRAULIC_STEER
   #define PWM_LEFT    10  //PB4
@@ -33,6 +32,7 @@
   #else
   #define DIR_PIN    12  //PB4
   #define PWM_PIN    11  //PB3 
+  #define STEERSW_PIN 10 //PB2
   #endif
   
   #define RELAY1_PIN 5  //PD5
