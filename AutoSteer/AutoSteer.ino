@@ -26,7 +26,8 @@
   unsigned int currentTime = LOOP_TIME;
   unsigned int dT = 50000;
   unsigned int count = 0;
-  unsigned int watchdogTimer = 0;
+  byte watchdogTimer = 0;
+  byte serialResetTimer = 0; //if serial buffer is getting full, empty it
 
   //Kalman variables
   float rollK = 0;
@@ -145,6 +146,13 @@ void loop()
 
     IMU.readIMU();
 
+        //clean out serial buffer
+    if (serialResetTimer > 10)
+    {
+      while(Serial.available() > 0) char t = Serial.read();
+      serialResetTimer = 0;
+    }
+
     // kalman SINGLE VARIABLE process
     rollK = IMU.euler.roll; 
 
@@ -191,7 +199,7 @@ void loop()
     // remove or add the minus for steerSensorCounts to do that.
     steerAngleActual = (float)(steeringPosition)/-steerSensorCounts;    
            
-    if (watchdogTimer < 5)
+    if (watchdogTimer < 10)
     {
       steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error 
       calcSteeringPID();  //do the pid                                                                                                           
@@ -213,13 +221,13 @@ void loop()
     Serial.print(",");
 
     // *******  if there is no gyro installed send 9999
-    Serial.print(9999); //heading in degrees * 16
-    //Serial.print(IMU.euler.head); //heading in degrees * 16
+    //Serial.print(9999); //heading in degrees * 16
+    Serial.print(IMU.euler.head); //heading in degrees * 16
     Serial.print(",");
 
     //*******  if no roll is installed, send 9999
-    Serial.print(9999); //roll in degrees * 16
-    //Serial.print((int)XeRoll); //roll in degrees * 16
+    //Serial.print((9999); //roll in degrees * 16
+    Serial.print((int)XeRoll); //roll in degrees * 16
     Serial.print(",");
         
     Serial.println(switchByte); //steering switch status
@@ -262,6 +270,7 @@ void loop()
       {
         bitSet(PINB, 5);   //turn LED on   
         watchdogTimer = 0;  //reset watchdog
+        serialResetTimer = 0; //if serial buffer is getting full, empty it
       } 
     }  
   
@@ -278,7 +287,7 @@ void loop()
       steeringPositionZero = 412 + Serial.read();  //read steering zero offset
       minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
       maxIntegralValue = Serial.read(); //
-      steerSensorCounts = Serial.read(); //
+      steerSensorCounts = Serial.read()*0.1; //sent as 10 times the setting displayed in AOG
     }
 }
 
