@@ -22,6 +22,8 @@ This software reads NMEA strings for the purpose of recording and mapping positi
 for Agricultural use. Also it has up to 8 Section Control to control implements application of product
 preventing over-application.
 
-Also ouputs angle delta and distance from reference line for AB line and Contour guidance.
+Also ouputs Pure pursuit steer angles from reference line for AB line and Contour guidance.
 
-Included is an application, and source folders, along with UDP, TCP/IP, and serial NMEA simulators. 
+Included is an application, and source folders,  and built in NMEA simulators. 
+
+It has English, German and some Russian Language.
