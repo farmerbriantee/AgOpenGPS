@@ -63,35 +63,35 @@ namespace AgOpenGPS
             mf = _f;
 
             //from settings grab the vehicle specifics
-            toolWidth = Properties.Settings.Default.setVehicle_toolWidth;
-            toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
-            toolTrailingHitchLength = Properties.Settings.Default.setVehicle_toolTrailingHitchLength;
-            tankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
-            toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
+            toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
+            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+            toolTrailingHitchLength = Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength;
+            tankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
+            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
 
-            isToolBehindPivot = Properties.Settings.Default.setVehicle_isToolBehindPivot;
-            isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
+            isToolBehindPivot = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
+            isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
 
-            isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
-            antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
-            antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
-            hitchLength = Properties.Settings.Default.setVehicle_hitchLength;
+            isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
+            antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+            antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
+            hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
 
-            wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
-            isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
+            wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
+            isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
 
-            toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
-            toolTurnOffDelay = Properties.Settings.Default.setVehicle_turnOffDelay;
+            toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
+            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
 
-            numOfSections = Properties.Settings.Default.setVehicle_numSections;
+            numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
             numSuperSection = numOfSections+1;
 
-            slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
-            toolMinUnappliedPixels = Properties.Settings.Default.setVehicle_minApplied;
+            slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
+            toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
 
-            goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
-            maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
-            maxSteerAngle = Properties.Settings.Default.setVehicle_maxSteerAngle;
+            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
+            maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
+            maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
         }
 
         public void DrawVehicle()
@@ -101,8 +101,8 @@ namespace AgOpenGPS
             gl.PushMatrix();
 
             //most complicated translate ever!
-            gl.Translate((Math.Sin(mf.fixHeading) * (hitchLength - antennaPivot)),
-                            (Math.Cos(mf.fixHeading) * (hitchLength - antennaPivot)), 0);
+            gl.Translate(Math.Sin(mf.fixHeading) * (hitchLength - antennaPivot),
+                            Math.Cos(mf.fixHeading) * (hitchLength - antennaPivot), 0);
 
             //settings doesn't change trailing hitch length if set to rigid, so do it here
             double trailingTank, trailingTool;
@@ -141,7 +141,10 @@ namespace AgOpenGPS
             }
 
             //no tow between hitch
-            else gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
+            else
+            {
+                gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
+            }
 
             //draw the hitch if trailing
             if (isToolTrailing)
@@ -168,6 +171,7 @@ namespace AgOpenGPS
                 gl.Vertex(mf.section[numOfSections].positionRight, trailingTool, 0);
             }
             else
+            {
                 for (int j = 0; j < mf.vehicle.numOfSections; j++)
                 {
                     //if section is on, green, if off, red color
@@ -176,12 +180,17 @@ namespace AgOpenGPS
                         if (mf.section[j].manBtnState == FormGPS.manBtn.Auto) gl.Color(0.0f, 0.97f, 0.0f);
                         else gl.Color(0.97, 0.97, 0);
                     }
-                    else gl.Color(0.97f, 0.2f, 0.2f);
+                    else
+                    {
+                        gl.Color(0.97f, 0.2f, 0.2f);
+                    }
 
                     //draw section line
                     gl.Vertex(mf.section[j].positionLeft, trailingTool, 0);
                     gl.Vertex(mf.section[j].positionRight, trailingTool, 0);
                 }
+            }
+
             gl.End();
 
             //draw section markers if close enough

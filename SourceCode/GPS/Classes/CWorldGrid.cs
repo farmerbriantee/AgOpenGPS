@@ -45,7 +45,8 @@ namespace AgOpenGPS
             //draw easting lines and westing lines to produce a grid
         public void DrawWorldGrid(double _gridZoom)
         {
-            gl.Color(mf.redField, mf.grnField, mf.bluField);
+            //gl.Color(mf.redField, mf.grnField, mf.bluField);
+            gl.Color(0, 0, 0);
             gl.Begin(OpenGL.GL_LINES);
             for (double x = eastingMin; x < eastingMax; x += _gridZoom)
             {

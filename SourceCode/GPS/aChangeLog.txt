@@ -1,4 +1,23 @@
-﻿v2.2 Nov 15, 2017
+﻿v2.3 Dec 15
+* Sequencing functions and actions on headland
+* Completely different interface
+* Headland drawing and auto gen
+* Built in Simulator
+* UDP server updated and full config form
+* Zoom extents over whole field window, OpenGL
+* Full screen antialiasing, GL_FASTEST
+* Edit the uturn functions
+* UDP is disabled - was a bit of resource hog and not used anyway.
+* Start and setup buttons off status strip simplify main display
+* Separate distances and headings for tool and pivot on headland
+* Able to turn on turn off uturn functions
+* Updated AB Lines to save and recall.
+* Side panle can be turned off.
+* touchscreen gestures with pinch zoom, rotate for camera 3D
+* Rate system is much better.
+* Added German and Russian
+
+v2.2 Nov 15, 2017
 * Sprayer rate control
 * Auto and manual YouTurn headland turning
 * Gyro, imu, roll, code integrated into steering module

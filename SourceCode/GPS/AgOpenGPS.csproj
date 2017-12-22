@@ -93,7 +93,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CHeadland.cs" />
     <Compile Include="Classes\CRate.cs" />
+    <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CFlag.cs" />
@@ -108,6 +110,13 @@
     <Compile Include="Classes\CVehicle.cs" />
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
+    <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormHeadland.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeadland.Designer.cs">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormBoundary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,12 +171,6 @@
     <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormVariables.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormVariables.Designer.cs">
-      <DependentUpon>FormVariables.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,30 +197,28 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormTrip.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormTrip.Designer.cs">
-      <DependentUpon>FormTrip.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormYouTurn.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormYouTurn.Designer.cs">
       <DependentUpon>FormYouTurn.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenericKeypad.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Forms\FormUDP.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenericKeypad.Designer.cs">
-      <DependentUpon>GenericKeypad.cs</DependentUpon>
+    <Compile Include="Forms\FormUDP.Designer.cs">
+      <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="NumKeypad.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="gStr.de.Designer.cs">
+      <DependentUpon>gStr.de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="NumKeypad.Designer.cs">
-      <DependentUpon>NumKeypad.cs</DependentUpon>
+    <Compile Include="gStr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -270,15 +271,37 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Forms\TCPComm.Designer.cs">
-      <SubType>Form</SubType>
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\UDPComm.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
+    <Compile Include="Properties\Vehicle.Designer.cs">
+      <DependentUpon>Vehicle.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Forms\FormABLine.de.resx">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormAbout.de.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.de.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCommSet.de.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.de.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.ru.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHeadland.resx">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormBoundary.resx">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,14 +331,23 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormJob.de.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormJob.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRate.resx">
       <DependentUpon>FormRate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSaveOrNot.de.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.de.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
@@ -324,11 +356,11 @@
     <EmbeddedResource Include="Forms\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
+    <EmbeddedResource Include="Forms\FormTimedMessage.de.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormVariables.resx">
-      <DependentUpon>FormVariables.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
@@ -339,14 +371,20 @@
     <EmbeddedResource Include="Forms\FormYouTurnRecord.resx">
       <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormTrip.resx">
-      <DependentUpon>FormTrip.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYouTurn.resx">
       <DependentUpon>FormYouTurn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="NumKeypad.resx">
-      <DependentUpon>NumKeypad.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormUDP.resx">
+      <DependentUpon>FormUDP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -366,6 +404,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Properties\Vehicle.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
@@ -487,7 +530,6 @@
     <None Include="btnImages\RateSelect2.png" />
     <None Include="btnImages\AutoLeft.png" />
     <None Include="btnImages\AutoRight.png" />
-    <None Include="btnImages\YouTurn.png" />
     <None Include="btnImages\SettingsGear64.png" />
     <None Include="btnImages\RunMan64.png" />
     <None Include="btnImages\Start64.png" />
@@ -495,6 +537,24 @@
     <None Include="btnImages\Settings64.png" />
     <None Include="btnImages\Menu5.png" />
     <None Include="btnImages\Custom.png" />
+    <None Include="btnImages\Headland.png" />
+    <None Include="btnImages\UDPConfig.png" />
+    <None Include="btnImages\Snap2.png" />
+    <None Include="btnImages\Youturn80.png" />
+    <None Include="btnImages\YouTurnNo.png" />
+    <None Include="btnImages\Youturn64.png" />
+    <None Include="btnImages\PointDelete.png" />
+    <None Include="btnImages\PointDone.png" />
+    <None Include="btnImages\PointStart.png" />
+    <None Include="btnImages\YouTurnReverse.png" />
+    <None Include="btnImages\YouTurnBackground.jpg" />
+    <None Include="btnImages\WideReturn.png" />
+    <None Include="btnImages\Settings48.png" />
+    <None Include="btnImages\Batman48.png" />
+    <None Include="btnImages\SettingsGear32.png" />
+    <None Include="btnImages\start.png" />
+    <None Include="btnImages\AutoSteerConf.png" />
+    <None Include="btnImages\SetupStatusStrip.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -503,12 +563,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Keypad\Keypad.csproj">
-      <Project>{AFCE5A35-ABC0-4BE5-9364-711F6BAD8135}</Project>
-      <Name>Keypad</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

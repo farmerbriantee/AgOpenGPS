@@ -99,13 +99,8 @@ namespace AgOpenGPS
         //Add current position to stripList
         public void AddPoint()
         {
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
             vec4 point = new vec4(mf.pivotAxlePos.easting, mf.fixHeading, mf.pivotAxlePos.northing, mf.pn.altitude);
             ptList.Add(point);
-
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
         }
 
         //End the strip

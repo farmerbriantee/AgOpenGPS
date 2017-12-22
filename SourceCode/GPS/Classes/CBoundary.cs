@@ -150,11 +150,11 @@ namespace AgOpenGPS
                 }
             }
 
-            areaHectare = Math.Round(mf.boundary.area * 0.0001, 1) + " Ha";
-            areaAcre = Math.Round(mf.boundary.area * 0.000247105, 1) + " Ac";
+            areaHectare = Math.Round(mf.boundz.area * 0.0001, 1) + " Ha";
+            areaAcre = Math.Round(mf.boundz.area * 0.000247105, 1) + " Ac";
         }
 
-        public bool IsPrePointInPolygon(vec2 testPoint)
+        public bool IsPointInsideBoundary(vec2 testPoint)
         {
             if (calcList.Count < 10) return false;
             int j = ptList.Count - 1;
@@ -185,7 +185,7 @@ namespace AgOpenGPS
 
             //the "close the loop" line
             gl.LineWidth(2);
-            gl.Color(0.9f, 0.32f, 0.70f);
+            gl.Color(0.9f, 0.832f, 0.170f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
             gl.Vertex(ptList[0].easting, ptList[0].northing, 0);

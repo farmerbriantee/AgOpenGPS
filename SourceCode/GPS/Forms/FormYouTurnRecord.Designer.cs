@@ -36,12 +36,13 @@
             // btnStop
             // 
             this.btnStop.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnStop.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStop.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.boundaryStop;
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStop.Location = new System.Drawing.Point(23, 12);
+            this.btnStop.Location = new System.Drawing.Point(38, 18);
+            this.btnStop.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(110, 110);
+            this.btnStop.Size = new System.Drawing.Size(120, 119);
             this.btnStop.TabIndex = 142;
             this.btnStop.Text = "Done";
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -51,12 +52,13 @@
             // btnRecord
             // 
             this.btnRecord.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRecord.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecord.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRecord.Location = new System.Drawing.Point(242, 12);
+            this.btnRecord.Location = new System.Drawing.Point(246, 18);
+            this.btnRecord.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnRecord.Name = "btnRecord";
-            this.btnRecord.Size = new System.Drawing.Size(110, 110);
+            this.btnRecord.Size = new System.Drawing.Size(120, 119);
             this.btnRecord.TabIndex = 141;
             this.btnRecord.Text = "Record";
             this.btnRecord.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -66,23 +68,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(17, 149);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(77, 164);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(335, 32);
+            this.label1.Size = new System.Drawing.Size(237, 19);
             this.label1.TabIndex = 143;
             this.label1.Text = "Turn RIGHT while recording";
             // 
             // FormYouTurnRecord
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 190);
+            this.ClientSize = new System.Drawing.Size(411, 197);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnRecord);
+            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "FormYouTurnRecord";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "YouTurn Recorder";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormYouTurnRecord_Load);

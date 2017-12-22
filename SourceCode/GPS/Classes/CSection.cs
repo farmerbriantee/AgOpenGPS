@@ -88,8 +88,6 @@ namespace AgOpenGPS
                 triangleList = new List<vec2>();
                 patchList.Add(triangleList);
 
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
                 //left side of triangle
                 vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
                         (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
@@ -99,20 +97,12 @@ namespace AgOpenGPS
                 point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
                     (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
                 triangleList.Add(point);
-
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
             }
         }
 
         public void TurnSectionOff()
         {
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
             AddPathPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
-
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
             isSectionOn = false;
             numTriangles = 0;
 

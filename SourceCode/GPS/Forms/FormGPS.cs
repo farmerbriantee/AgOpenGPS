@@ -9,6 +9,10 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using SharpGL;
 using AgOpenGPS.Properties;
+using System.Runtime.InteropServices;
+using System.Security.Permissions;
+using System.Resources;
+using System.Reflection;
 
 namespace AgOpenGPS
 {
@@ -18,14 +22,19 @@ namespace AgOpenGPS
         #region // Class Props and instances
         //maximum sections available
         private const int MAXSECTIONS = 9;
+        public const int MAXFUNCTIONS = 8;
 
-        //some test variables
-        //double testDouble = 0;
-        //bool testBool = false;
-        //int testInt = 0;
+        //The base directory where AgOpenGPS will be stored and fields and vehicles branch from
+        public string baseDirectory;
+        
+        //current directory of vehicle
+        public string  vehiclesDirectory, vehiclefileName = "";
 
-        //current directory of field;
-        public string currentFieldDirectory = "", workingDirectory = "", vehiclefileName = "";
+        //current fields and field directory
+        public string fieldsDirectory, currentFieldDirectory;
+
+        //ABLines directory
+        public string ablinesDirectory;
 
         //colors for sections and field background
         private byte redSections,grnSections,bluSections;
@@ -42,9 +51,9 @@ namespace AgOpenGPS
         private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
         private int flagNumberPicked = 0;
 
-        //Is it in 2D or 3D, metric or imperial, display lightbar, display grid
+        //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
-        public bool isPureDisplayOn = true;
+        public bool isPureDisplayOn = true, isSkyOn = true, isBigAltitudeOn = false;
 
         //bool for whether or not a job is active
         public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn = false;
@@ -86,13 +95,19 @@ namespace AgOpenGPS
         private int statusUpdateCounter = 1;
         private int fiveSecondCounter = 0;
 
-        //Parsing object of NMEA sentences
+        /// <summary>
+        /// The NMEA class that decodes it
+        /// </summary>
         public CNMEA pn;
 
-        //create an array of sections, so far only 8 section + 1 fullWidth Section
+        /// <summary>
+        /// an array of sections, so far only 8 section + 1 fullWidth Section
+        /// </summary>
         public CSection[] section = new CSection[MAXSECTIONS];
 
-        //ABLine Instance
+        /// <summary>
+        /// AB Line object
+        /// </summary>
         public CABLine ABLine;
 
         /// <summary>
@@ -102,7 +117,7 @@ namespace AgOpenGPS
 
         //Auto Headland Instance
         /// <summary>
-        /// Auto Headland Turn
+        /// Auto Headland YouTurn
         /// </summary>
         public CYouTurn yt;
 
@@ -111,27 +126,408 @@ namespace AgOpenGPS
         /// </summary>
         public CRate rc;
 
-        //a brand new vehicle
+        /// <summary>
+        /// Our vehicle including the tool
+        /// </summary>
         public CVehicle vehicle;
 
-        //module communication object
+        /// <summary>
+        /// All the structs for recv and send of information out ports
+        /// </summary>
         public CModuleComm mc;
 
-        //perimeter object for area calc
+        /// <summary>
+        /// perimeter object for area calc
+        /// </summary>     
         public CPerimeter periArea;
 
-        //boundary instance
-        public CBoundary boundary;
+        /// <summary>
+        /// The outer boundary of the field
+        /// </summary>
+        public CBoundary boundz;
+
+        /// <summary>
+        /// The headland created
+        /// </summary>
+        public CHeadland hl;
+
+        /// <summary>
+        /// The entry and exit sequences, functions, actions
+        /// </summary>
+        public CSequence seq;
+
+        /// <summary>
+        /// The internal simulator
+        /// </summary>
+        public CSim sim;
+
+        /// <summary>        
+        /// Resource manager for gloabal strings        
+        /// </summary>
+        public ResourceManager _rm;
 
         #endregion
 
-    // Main GPS Form ................................................................................
+        #region Gesture
+
+        // Private variables used to maintain the state of gestures
+        //private DrawingObject _dwo = new DrawingObject();
+        private Point _ptFirst = new Point();
+        private Point _ptSecond = new Point();
+        private int _iArguments = 0;
+
+        // One of the fields in GESTUREINFO structure is type of Int64 (8 bytes).
+        // The relevant gesture information is stored in lower 4 bytes. This
+        // bit mask is used to get 4 lower bytes from this argument.
+        private const Int64 ULL_ARGUMENTS_BIT_MASK = 0x00000000FFFFFFFF;
+
+        //-----------------------------------------------------------------------
+        // Multitouch/Touch glue (from winuser.h file)
+        // Since the managed layer between C# and WinAPI functions does not 
+        // exist at the moment for multi-touch related functions this part of 
+        // code is required to replicate definitions from winuser.h file.
+        //-----------------------------------------------------------------------
+        // Touch event window message constants [winuser.h]
+        private const int WM_GESTURENOTIFY = 0x011A;
+        private const int WM_GESTURE = 0x0119;
+
+        private const int GC_ALLGESTURES = 0x00000001;
+
+        // Gesture IDs 
+        private const int GID_BEGIN = 1;
+        private const int GID_END = 2;
+        private const int GID_ZOOM = 3;
+        private const int GID_PAN = 4;
+        private const int GID_ROTATE = 5;
+        private const int GID_TWOFINGERTAP = 6;
+        private const int GID_PRESSANDTAP = 7;
+
+        // Gesture flags - GESTUREINFO.dwFlags
+        private const int GF_BEGIN = 0x00000001;
+        private const int GF_INERTIA = 0x00000002;
+        private const int GF_END = 0x00000004;
+
+        //
+        // Gesture configuration structure
+        //   - Used in SetGestureConfig and GetGestureConfig
+        //   - Note that any setting not included in either GESTURECONFIG.dwWant
+        //     or GESTURECONFIG.dwBlock will use the parent window's preferences
+        //     or system defaults.
+        //
+        // Touch API defined structures [winuser.h]
+        [StructLayout(LayoutKind.Sequential)]
+        private struct GESTURECONFIG
+        {
+            public int dwID;    // gesture ID
+            public int dwWant;  // settings related to gesture ID that are to be
+                                // turned on
+            public int dwBlock; // settings related to gesture ID that are to be
+                                // turned off
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct POINTS
+        {
+            public short x;
+            public short y;
+        }
+
+        //
+        // Gesture information structure
+        //   - Pass the HGESTUREINFO received in the WM_GESTURE message lParam 
+        //     into the GetGestureInfo function to retrieve this information.
+        //   - If cbExtraArgs is non-zero, pass the HGESTUREINFO received in 
+        //     the WM_GESTURE message lParam into the GetGestureExtraArgs 
+        //     function to retrieve extended argument information.
+        //
+        [StructLayout(LayoutKind.Sequential)]
+        private struct GESTUREINFO
+        {
+            public int cbSize;           // size, in bytes, of this structure
+                                         // (including variable length Args 
+                                         // field)
+            public int dwFlags;          // see GF_* flags
+            public int dwID;             // gesture ID, see GID_* defines
+            public IntPtr hwndTarget;    // handle to window targeted by this 
+                                         // gesture
+            [MarshalAs(UnmanagedType.Struct)]
+            internal POINTS ptsLocation; // current location of this gesture
+            public int dwInstanceID;     // internally used
+            public int dwSequenceID;     // internally used
+            public Int64 ullArguments;   // arguments for gestures whose 
+                                         // arguments fit in 8 BYTES
+            public int cbExtraArgs;      // size, in bytes, of extra arguments, 
+                                         // if any, that accompany this gesture
+        }
+
+        // Currently touch/multitouch access is done through unmanaged code
+        // We must p/invoke into user32 [winuser.h]
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool SetGestureConfig(IntPtr hWnd, int dwReserved, int cIDs, ref GESTURECONFIG pGestureConfig, int cbSize);
+
+        [DllImport("user32")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool GetGestureInfo(IntPtr hGestureInfo, ref GESTUREINFO pGestureInfo);
+
+        // size of GESTURECONFIG structure
+        private int _gestureConfigSize;
+        // size of GESTUREINFO structure
+        private int _gestureInfoSize;
+
+        [SecurityPermission(SecurityAction.Demand)]
+        private void SetupStructSizes()
+        {
+            // Both GetGestureCommandInfo and GetTouchInputInfo need to be
+            // passed the size of the structure they will be filling
+            // we get the sizes upfront so they can be used later.
+            _gestureConfigSize = Marshal.SizeOf(new GESTURECONFIG());
+            _gestureInfoSize = Marshal.SizeOf(new GESTUREINFO());
+        }
+
+
+        //-------------------------------------------------------------
+        // Since there is no managed layer at the moment that supports
+        // event handlers for WM_GESTURENOTIFY and WM_GESTURE
+        // messages we have to override WndProc function
+        // 
+        // in 
+        //   m - Message object
+        //-------------------------------------------------------------
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+        protected override void WndProc(ref Message m)
+        {
+            bool handled;
+            handled = false;
+
+            switch (m.Msg)
+            {
+                case WM_GESTURENOTIFY:
+                    {
+                        // This is the right place to define the list of gestures
+                        // that this application will support. By populating 
+                        // GESTURECONFIG structure and calling SetGestureConfig 
+                        // function. We can choose gestures that we want to 
+                        // handle in our application. In this app we decide to 
+                        // handle all gestures.
+                        GESTURECONFIG gc = new GESTURECONFIG
+                        {
+                            dwID = 0,                // gesture ID
+                            dwWant = GC_ALLGESTURES, // settings related to gesture
+                                                     // ID that are to be turned on
+                            dwBlock = 0 // settings related to gesture ID that are
+                        };
+                        // to be     
+
+                        // We must p/invoke into user32 [winuser.h]
+                        bool bResult = SetGestureConfig(
+                            Handle, // window for which configuration is specified
+                            0,      // reserved, must be 0
+                            1,      // count of GESTURECONFIG structures
+                            ref gc, // array of GESTURECONFIG structures, dwIDs 
+                                    // will be processed in the order specified 
+                                    // and repeated occurances will overwrite 
+                                    // previous ones
+                            _gestureConfigSize // sizeof(GESTURECONFIG)
+                        );
+
+                        if (!bResult)
+                        {
+                            throw new Exception("Error in execution of SetGestureConfig");
+                        }
+                    }
+                    handled = true;
+                    break;
+
+                case WM_GESTURE:
+                    // The gesture processing code is implemented in 
+                    // the DecodeGesture method
+                    handled = DecodeGesture(ref m);
+                    break;
+
+                default:
+                    handled = false;
+                    break;
+            }
+
+            // Filter message back up to parents.
+            base.WndProc(ref m);
+
+            if (handled)
+            {
+                // Acknowledge event if handled.
+                try
+                {
+                    m.Result = new System.IntPtr(1);
+                }
+                catch (Exception excep)
+                {
+                    Debug.Print("Could not allocate result ptr");
+                    Debug.Print(excep.ToString());
+                }
+            }
+        }
+
+        // Taken from GCI_ROTATE_ANGLE_FROM_ARGUMENT.
+        // Converts from "binary radians" to traditional radians.
+        static protected double ArgToRadians(Int64 arg)
+        {
+            return ((((double)(arg) / 65535.0) * 4.0 * 3.14159265) - 2.0 * 3.14159265);
+        }
+
+
+        // Handler of gestures
+        //in:
+        //  m - Message object
+        private bool DecodeGesture(ref Message m)
+        {
+            GESTUREINFO gi;
+
+            try
+            {
+                gi = new GESTUREINFO();
+            }
+            catch (Exception excep)
+            {
+                Debug.Print("Could not allocate resources to decode gesture");
+                Debug.Print(excep.ToString());
+
+                return false;
+            }
+
+            gi.cbSize = _gestureInfoSize;
+
+            // Load the gesture information.
+            // We must p/invoke into user32 [winuser.h]
+            if (!GetGestureInfo(m.LParam, ref gi))
+            {
+                return false;
+            }
+
+            switch (gi.dwID)
+            {
+                case GID_BEGIN:
+                case GID_END:
+                    break;
+
+                case GID_ZOOM:
+                    switch (gi.dwFlags)
+                    {
+                        case GF_BEGIN:
+                            _iArguments = (int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK);
+                            _ptFirst.X = gi.ptsLocation.x;
+                            _ptFirst.Y = gi.ptsLocation.y;
+                            _ptFirst = PointToClient(_ptFirst);
+                            break;
+
+                        default:
+                            // We read here the second point of the gesture. This
+                            // is middle point between fingers in this new 
+                            // position.
+                            _ptSecond.X = gi.ptsLocation.x;
+                            _ptSecond.Y = gi.ptsLocation.y;
+                            _ptSecond = PointToClient(_ptSecond);
+                            {
+                                // The zoom factor is the ratio of the new
+                                // and the old distance. The new distance 
+                                // between two fingers is stored in 
+                                // gi.ullArguments (lower 4 bytes) and the old 
+                                // distance is stored in _iArguments.
+                                double k = (double)(_iArguments)
+                                            / (double)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK);
+                                //lblX.Text = k.ToString();
+                                zoomValue *= k;
+                                if (zoomValue < 6.0) zoomValue = 6;
+                                camera.camSetDistance = zoomValue * zoomValue * -1;
+                                SetZoom();
+                            }
+
+                            // Now we have to store new information as a starting
+                            // information for the next step in this gesture.
+                            _ptFirst = _ptSecond;
+                            _iArguments = (int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK);
+                            break;
+                    }
+                    break;
+
+                //case GID_PAN:
+                //    switch (gi.dwFlags)
+                //    {
+                //        case GF_BEGIN:
+                //            _ptFirst.X = gi.ptsLocation.x;
+                //            _ptFirst.Y = gi.ptsLocation.y;
+                //            _ptFirst = PointToClient(_ptFirst);
+                //            break;
+
+                //        default:
+                //            // We read the second point of this gesture. It is a
+                //            // middle point between fingers in this new position
+                //            _ptSecond.X = gi.ptsLocation.x;
+                //            _ptSecond.Y = gi.ptsLocation.y;
+                //            _ptSecond = PointToClient(_ptSecond);
+
+                //            // We apply move operation of the object
+                //            _dwo.Move(_ptSecond.X - _ptFirst.X, _ptSecond.Y - _ptFirst.Y);
+
+                //            Invalidate();
+
+                //            // We have to copy second point into first one to
+                //            // prepare for the next step of this gesture.
+                //            _ptFirst = _ptSecond;
+                //            break;
+                //    }
+                //    break;
+
+                case GID_ROTATE:
+                    switch (gi.dwFlags)
+                    {
+                        case GF_BEGIN:
+                            _iArguments = 32768;
+                            break;
+
+                        default:
+                            // Gesture handler returns cumulative rotation angle. However we
+                            // have to pass the delta angle to our function responsible 
+                            // to process the rotation gesture.
+                            double k = ((int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK) - _iArguments) * 0.01;
+                            camera.camPitch -= k;
+                            if (camera.camPitch < -80) camera.camPitch = -80;
+                            if (camera.camPitch > 0) camera.camPitch = 0;
+                            _iArguments = (int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK);
+                            break;
+                    }
+                    break;
+
+                    //case GID_TWOFINGERTAP:
+                    //    // Toggle drawing of diagonals
+                    //    _dwo.ToggleDrawDiagonals();
+                    //    Invalidate();
+                    //    break;
+
+                    //case GID_PRESSANDTAP:
+                    //    if (gi.dwFlags == GF_BEGIN)
+                    //    {
+                    //        // Shift drawing color
+                    //        _dwo.ShiftColor();
+                    //        Invalidate();
+                    //    }
+                    //    break;
+            }
+
+            return true;
+        }
+
+
+        #endregion Gesture
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
         public FormGPS()
         {
             //winform initialization
             InitializeComponent();
+
+            //build the gesture structures
+            SetupStructSizes();
 
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
@@ -166,40 +562,97 @@ namespace AgOpenGPS
             periArea = new CPerimeter(gl);
 
             //boundary object
-            boundary = new CBoundary(gl, glBack, this);
+            boundz = new CBoundary(gl, glBack, this);
+
+            //headland object
+            hl = new CHeadland(gl, this);
 
             //rate object
             rc = new CRate(this);
 
+            seq = new CSequence(this);
+
+            sim = new CSim(this);
+
             //start the stopwatch
             swFrame.Start();
+
+            //resource for gloabal language strings
+            _rm = new ResourceManager("AgOpenGPS.gStr", Assembly.GetExecutingAssembly());
         }
 
         //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            //reset Sim
+            if (keyData == Keys.L)
+            {
+                btnResetSim.PerformClick();
+                return true;
+            }
+
+            //speed up
+            if (keyData == Keys.K)
+            {
+                sim.stepDistance += 0.05;
+                if (sim.stepDistance > 5.8) sim.stepDistance = 5.8;
+                 tbarStepDistance.Value = (int)(sim.stepDistance* 10.0 * fixUpdateHz);
+
+                return true;
+            }
+
+            //Stop
+            if (keyData == Keys.J)
+            {
+                sim.stepDistance = 0;
+                tbarStepDistance.Value = 0;
+                return true;
+            }
+
+            //slow down
+            if (keyData == Keys.H)
+            {
+                sim.stepDistance -= 0.05;
+                if (sim.stepDistance < 0) sim.stepDistance = 0;
+                tbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+                return true;
+            }
+
+            //turn right
+            if (keyData == Keys.M)
+            {
+                sim.steerAngle += 1.0;
+                if (sim.steerAngle > 30) sim.steerAngle = 30;
+                sim.steerAngleScrollBar = sim.steerAngle;
+                lblSteerAngle.Text = sim.steerAngle.ToString();
+                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                return true;
+            }
+
+            //turn left
+            if (keyData == Keys.B)
+            {
+                sim.steerAngle -= 1.0;
+                if (sim.steerAngle < -30) sim.steerAngle = -30;
+                sim.steerAngleScrollBar = sim.steerAngle;
+                lblSteerAngle.Text = sim.steerAngle.ToString();
+                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                return true;
+            }
+
+            //zero steering
+            if (keyData == Keys.N)
+            {
+                sim.steerAngle = 0.0;
+                sim.steerAngleScrollBar = sim.steerAngle;
+                lblSteerAngle.Text = sim.steerAngle.ToString();
+                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                return true;
+            }
+
             if (keyData == (Keys.F))
             {
                 JobNewOpenResume();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.NumPad1))
-            {
-                Form form = new FormGPSData(this);
-                form.Show();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.S))
-            {
-                SettingsPageOpen(0);
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.C))
-            {
-                SettingsCommunications();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -214,6 +667,7 @@ namespace AgOpenGPS
                 btnSectionOffAutoOn.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
+
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -225,12 +679,45 @@ namespace AgOpenGPS
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
 
-            //get the working directory, if not exist, create
-            workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                + "\\AgOpenGPS\\Fields\\";
-            string dir = Path.GetDirectoryName(workingDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
-            { Directory.CreateDirectory(dir); }
+            if (Settings.Default.setF_workingDirectory == "Default")
+                baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\";
+
+            else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgOpenGPS\\";
+
+            //get the fields directory, if not exist, create
+            fieldsDirectory = baseDirectory + "Fields\\";
+            string dir = Path.GetDirectoryName(fieldsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the fields directory, if not exist, create
+            vehiclesDirectory = baseDirectory + "Vehicles\\";
+            dir = Path.GetDirectoryName(vehiclesDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //make sure current field directory exists, null if not
+            currentFieldDirectory = Settings.Default.setF_CurrentDir;
+
+            string curDir;
+            if (currentFieldDirectory != "")
+            {
+                curDir = fieldsDirectory + currentFieldDirectory + "//";
+                dir = Path.GetDirectoryName(curDir);
+                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                {
+                    currentFieldDirectory = "";
+                    Settings.Default.setF_CurrentDir = "";
+                    Settings.Default.Save();
+                }
+            }
+
+            //grab the current vehicle filename - make sure it exists
+            vehiclefileName = Vehicle.Default.setVehicle_Name;
+
+            //get the abLines directory, if not exist, create
+            ablinesDirectory = baseDirectory + "ABLines\\";
+            dir = Path.GetDirectoryName(fieldsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
 
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRate;
@@ -255,12 +742,8 @@ namespace AgOpenGPS
             //Calculate total width and each section width
             SectionCalcWidths();
 
-            isTCPServerOn = Settings.Default.setPort_isTCPOn;
-            isUDPServerOn = Settings.Default.setPort_isUDPOn;
-
-            //start servers or not
-            if (isTCPServerOn) StartTCPServer();
-            if (isUDPServerOn) StartUDPServer();
+            //start udp server
+            //StartUDPServer();
 
             //set the correct zoom and grid
             camera.camSetDistance = zoomValue * zoomValue * -1;
@@ -291,12 +774,9 @@ namespace AgOpenGPS
                 Size = Settings.Default.setWindow_Size;
             }
 
-            //don;t draw the back opengl to GDI - it still works tho
+            //don't draw the back opengl to GDI - it still works tho
             openGLControlBack.Visible = false;
 
-            //set previous job directory
-            currentFieldDirectory = Settings.Default.setF_CurrentDir;
-            vehiclefileName = Settings.Default.setVehicle_Name;
 
             //clear the flags
             flagPts.Clear();
@@ -321,6 +801,9 @@ namespace AgOpenGPS
             string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
             yt.LoadYouTurnShapeFromFile(fileAndDir);
 
+            sim.latitude = Settings.Default.setSim_lastLat;
+            sim.longitude = Settings.Default.setSim_lastLong;
+
             // load all the gui elements in gui.designer.cs
             LoadGUI();
         }
@@ -337,12 +820,23 @@ namespace AgOpenGPS
                 {
                     //OK
                     case 0:
+                        isSendConnected = false;
+                        //sendSocket.Shutdown(SocketShutdown.Both);
+                        //recvSocket.Shutdown(SocketShutdown.Both);
+
+                        Settings.Default.setSim_lastLong = pn.longitude;
+                        Settings.Default.setSim_lastLat = pn.latitude;
                         Settings.Default.setF_CurrentDir = currentFieldDirectory;
                         Settings.Default.Save();
+
                         FileSaveEverythingBeforeClosingField();
 
                         //shutdown and reset all module data
                         mc.ResetAllModuleCommValues();
+
+                        //sendSocket.Disconnect(true);
+                        //recvSocket.Disconnect(true);
+
                         break;
 
                     //Ignore and return
@@ -386,6 +880,8 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
+            if (Width < 850 && tabControl1.Visible) HideTabControl();
+            if (Width > 1100 && !tabControl1.Visible) HideTabControl();
         }
 
         // Procedures and Functions ---------------------------------------
@@ -394,7 +890,6 @@ namespace AgOpenGPS
             OpenGL gl = openGLControl.OpenGL;
             //try
             //{
-            //    //  Tractor
             //    particleTexture = new Texture();
             //    particleTexture.Create(gl, @".\Dependencies\Compass.png");
             //    texture[0] = particleTexture.TextureName;
@@ -402,7 +897,6 @@ namespace AgOpenGPS
 
             //catch (System.Exception excep)
             //{
-
             //    MessageBox.Show("Texture File Compass.png is Missing",excep.Message);
             //}
 
@@ -440,85 +934,46 @@ namespace AgOpenGPS
         {
             try
             {
-                // Initialise the delegate which updates the status
-                updateStatusDelegate = UpdateStatus;
+                // Initialise the delegate which updates the message received
+                updateRecvMessageDelegate = UpdateRecvMessage;
 
                 // Initialise the socket
-                serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                recvSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
                 // Initialise the IPEndPoint for the server and listen on port 9999
-                IPEndPoint server = new IPEndPoint(IPAddress.Any, 9999);
-
-                //IP address and port of 8888 server
-                IPAddress zeroIP = IPAddress.Parse("192.168.1.255");
-                epZero = new IPEndPoint(zeroIP, 8888);
+                IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_thisPort);
 
                 // Associate the socket with this IP address and port
-                serverSocket.Bind(server);
+                recvSocket.Bind(recv);
 
-                // Initialise the IPEndPoint for the client
+                // Initialise the send socket
+                sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for the server to send on port 9998
+                IPEndPoint server = new IPEndPoint(IPAddress.Any, 9998);
+                sendSocket.Bind(server);
+
+                //IP address and port of Auto Steer server
+                IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
+                epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
+                // Initialise the IPEndPoint for the client - async listner client only!
                 EndPoint client = new IPEndPoint(IPAddress.Any, 0);
 
                 // Start listening for incoming data
-                serverSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None,
-                                                ref client, ReceiveData, serverSocket);
-
-                //lblStatus.Text = "Listening";
+                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None,
+                                                ref client, ReceiveData, recvSocket);
+                isSendConnected = true;
             }
             catch (Exception e)
             {
                 WriteErrorLog("UDP Server" + e);
-
-                //lblStatus.Text = "Error";
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        //start the TCP Server
-        private void StartTCPServer()
-        {
-                        // Welcome and Start listening
-            //lblWelcome.Text="*** AgOpenGPS Server on Port 7777 Started: "+ DateTime.Now.ToString("G");
-
-            const int nPortListen = 7777;
-
-            // Determine the IPAddress of this machine
-            IPAddress[] localIPAddress = null;
-            //String strHostName = "";
-            try
-            {
-                // NOTE: DNS lookups are nice and all but quite time consuming.
-                //strHostName = Dns.GetHostName();
-                IPHostEntry ipEntry = Dns.GetHostEntry(string.Empty);
-                localIPAddress = ipEntry.AddressList;
-            }
-            catch (Exception e)
-            {
-                WriteErrorLog("TCP Server " + e);
-
-                MessageBox.Show("Error trying to get local address "+ e.Message);
-            }
-
-            // Verify we got an IP address. Tell the user if we did
-            if (localIPAddress == null || localIPAddress.Length < 1)
-            {
-                MessageBox.Show("Unable to get local address");
-                return;
-            }
-
-            //lblListener.Text="Listening on " + strHostName.ToString() + "  " + localIPAddress[1].ToString() + " : " + nPortListen.ToString();
-            // Create the listener socket in this machines IP address
-            //listener.Bind(new IPEndPoint(localIPAddress[1], nPortListen));
-            //listener.Bind(new IPEndPoint(IPAddress.Loopback, nPortListen)); // For use with localhost 127.0.0.1
-            listener.Bind(new IPEndPoint(IPAddress.Any, nPortListen)); // For use with localhost 127.0.0.1
-
-            //limit backlog
-            listener.Listen(10);
-
-            // Setup a callback to be notified of connection requests
-            listener.BeginAccept(OnConnectRequest, listener);
-        }
-
+ 
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -548,32 +1003,49 @@ namespace AgOpenGPS
             AutoSteerSettingsOutToPort();
         }
 
+        //show the UDP ethernet settings page
+        private void SettingsUDP()
+        {
+            using (var form = new FormUDP(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    //Clicked Save
+                }
+                else
+                {
+                    //Clicked X - No Save
+                }
+            }
+        }
+
         //function to set section positions
         public void SectionSetPosition()
         {
-            section[0].positionLeft = (double)Settings.Default.setSection_position1 + Settings.Default.setVehicle_toolOffset;
-            section[0].positionRight = (double)Settings.Default.setSection_position2 + Settings.Default.setVehicle_toolOffset;
+            section[0].positionLeft = (double)Vehicle.Default.setSection_position1 + Vehicle.Default.setVehicle_toolOffset;
+            section[0].positionRight = (double)Vehicle.Default.setSection_position2 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[1].positionLeft = (double)Settings.Default.setSection_position2 + Settings.Default.setVehicle_toolOffset;
-            section[1].positionRight = (double)Settings.Default.setSection_position3 + Settings.Default.setVehicle_toolOffset;
+            section[1].positionLeft = (double)Vehicle.Default.setSection_position2 + Vehicle.Default.setVehicle_toolOffset;
+            section[1].positionRight = (double)Vehicle.Default.setSection_position3 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[2].positionLeft = (double)Settings.Default.setSection_position3 + Settings.Default.setVehicle_toolOffset;
-            section[2].positionRight = (double)Settings.Default.setSection_position4 + Settings.Default.setVehicle_toolOffset;
+            section[2].positionLeft = (double)Vehicle.Default.setSection_position3 + Vehicle.Default.setVehicle_toolOffset;
+            section[2].positionRight = (double)Vehicle.Default.setSection_position4 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[3].positionLeft = (double)Settings.Default.setSection_position4 + Settings.Default.setVehicle_toolOffset;
-            section[3].positionRight = (double)Settings.Default.setSection_position5 + Settings.Default.setVehicle_toolOffset;
+            section[3].positionLeft = (double)Vehicle.Default.setSection_position4 + Vehicle.Default.setVehicle_toolOffset;
+            section[3].positionRight = (double)Vehicle.Default.setSection_position5 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[4].positionLeft = (double)Settings.Default.setSection_position5 + Settings.Default.setVehicle_toolOffset;
-            section[4].positionRight = (double)Settings.Default.setSection_position6 + Settings.Default.setVehicle_toolOffset;
+            section[4].positionLeft = (double)Vehicle.Default.setSection_position5 + Vehicle.Default.setVehicle_toolOffset;
+            section[4].positionRight = (double)Vehicle.Default.setSection_position6 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[5].positionLeft = (double)Settings.Default.setSection_position6 + Settings.Default.setVehicle_toolOffset;
-            section[5].positionRight = (double)Settings.Default.setSection_position7 + Settings.Default.setVehicle_toolOffset;
+            section[5].positionLeft = (double)Vehicle.Default.setSection_position6 + Vehicle.Default.setVehicle_toolOffset;
+            section[5].positionRight = (double)Vehicle.Default.setSection_position7 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[6].positionLeft = (double)Settings.Default.setSection_position7 + Settings.Default.setVehicle_toolOffset;
-            section[6].positionRight = (double)Settings.Default.setSection_position8 + Settings.Default.setVehicle_toolOffset;
+            section[6].positionLeft = (double)Vehicle.Default.setSection_position7 + Vehicle.Default.setVehicle_toolOffset;
+            section[6].positionRight = (double)Vehicle.Default.setSection_position8 + Vehicle.Default.setVehicle_toolOffset;
 
-            section[7].positionLeft = (double)Settings.Default.setSection_position8 + Settings.Default.setVehicle_toolOffset;
-            section[7].positionRight = (double)Settings.Default.setSection_position9 + Settings.Default.setVehicle_toolOffset;
+            section[7].positionLeft = (double)Vehicle.Default.setSection_position8 + Vehicle.Default.setVehicle_toolOffset;
+            section[7].positionRight = (double)Vehicle.Default.setSection_position9 + Vehicle.Default.setVehicle_toolOffset;
         }
 
         //function to calculate the width of each section and update
@@ -621,13 +1093,10 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
-            btnSnap.Enabled = true;
             ABLine.abHeading = 0.00;
 
-            btnAutoYouTurn.Enabled = true;
-            btnRightYouTurn.Enabled = true;
-            btnLeftYouTurn.Enabled = true;
-
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
             btnFlag.Enabled = true;
 
             LineUpManualBtns();
@@ -639,6 +1108,12 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            //rate control buttons
+            if (rc.isRateControlOn)
+                btnRate.PerformClick();
+
+            rc.ShutdownRateControl();  //double dam sure its off
+
             //turn auto button off
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
@@ -677,7 +1152,9 @@ namespace AgOpenGPS
             {
                 //clean out the lists
                 section[j].patchList.Clear();
-                section[j].triangleList?.Clear();
+#pragma warning disable RCS1146 // Use conditional access.
+                if (section[j].triangleList != null) section[j].triangleList.Clear();
+#pragma warning restore RCS1146 // Use conditional access.
             }
 
             //clear out the contour Lists
@@ -691,11 +1168,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
             btnAutoSteer.Enabled = false;
-            btnSnap.Enabled = false;
-
-            btnAutoYouTurn.Enabled = false;
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
+            isAutoSteerBtnOn = false;
 
             ct.isContourBtnOn = false;
             ct.isContourOn = false;
@@ -724,22 +1197,27 @@ namespace AgOpenGPS
             totalSquareMeters = 0;
 
             //reset boundary
-            boundary.ResetBoundary();
+            boundz.ResetBoundary();
+
+            //reset headland
+            hl.ResetHeadland();
 
             //update the menu
             fieldToolStripMenuItem.Text = "Start Field";
 
-            //rate control buttons
-            btnRate1Select.Visible = false;
-            btnRate2Select.Visible = false;
-            btnRate.Image = Properties.Resources.RateControlOff;
-            rc.ShutdownRateControl();
+            //turn off top level buttons
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
 
             //auto YouTurn shutdown
-            yt.isAutoYouTurnEnabled = false;
-            yt.CancelYouTurn();
-            autoTurnInProgressBar = 0;
-            btnAutoYouTurn.Text = "Off";
+            yt.isYouTurnBtnOn = false;
+            yt.ResetYouTurnAndSequenceEvents();
+            youTurnProgressBar = 0;
+
+            //turn off youturn...
+            btnEnableAutoYouTurn.Enabled = false;
+            yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
@@ -788,14 +1266,6 @@ namespace AgOpenGPS
                     //Ignore and return
                     case 1:
                         break;
-
-                    ////Don't Save
-                    //case 2:
-                    //    JobClose();
-                    //    Properties.Settings.Default.setCurrentDir = "";
-                    //    Properties.Settings.Default.Save();
-                    //    currentFieldDirectory = "";
-                    //    break;
                 }
             }
         }
@@ -847,6 +1317,132 @@ namespace AgOpenGPS
             }
         }
 
+        //called by you turn class to set control byte, click auto man buttons
+        public void DoYouTurnSequenceEvent(int function, int action)
+        {
+            switch (function)
+            {
+                case 0: //should not be here - it means no function at all
+                    TimedMessageBox(2000, "ID 0 ??????", "YouTurn fucked up");
+                    break;
+
+                case 1: //Manual button
+                    if (action == 0) //turn auto off
+                    {
+                        if (manualBtnState != btnStates.Off)
+                        {
+                            btnManualOffOn.PerformClick();
+                        }
+                    }
+                    else
+                    {
+                        if (manualBtnState != btnStates.On)
+                        {
+                            btnManualOffOn.PerformClick();
+                        }
+                    }
+                    break;
+
+                case 2: //Auto Button
+                    if (action == 0) //turn auto off
+                    {
+                        if (autoBtnState != btnStates.Off)
+                        {
+                            btnSectionOffAutoOn.PerformClick();
+                        }
+                    }
+                    else
+                    {
+                        if (autoBtnState != btnStates.Auto)
+                        {
+                            btnSectionOffAutoOn.PerformClick();
+                        }
+                    }
+                    break;
+
+                case 3: //Relay 1
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos3, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111110;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos3, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000001;
+                    }
+                    break;
+
+                case 4: //Relay 2
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos4, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111101;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos4, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000010;
+                    }
+                    break;
+
+                case 5: //Relay 3
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos5, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111011;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos5, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000100;
+                    }
+                    break;
+
+                case 6: //Relay 4
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos6, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11110111;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos6, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00001000;
+                    }
+                    break;
+
+                case 7: //Relay 5
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos7, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11101111;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos7, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00010000;
+                    }
+                    break;
+
+                case 8: //Relay 6
+                    if (action == 0)
+                    {
+                        TimedMessageBox(1000, yt.pos8, "Turn Off");
+                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11011111;
+                    }
+                    else
+                    {
+                        TimedMessageBox(1000, yt.pos8, "Turn On");
+                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00100000;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
         //take the distance from object and convert to camera data
         private void SetZoom()
         {
@@ -893,6 +1489,7 @@ namespace AgOpenGPS
                 section[j].sectionOffRequest = false;
             }
 
+            FileSaveHeadlandYouTurn();
             FileSaveOuterBoundary();
             FileSaveField();
             FileSaveContour();
@@ -936,12 +1533,13 @@ namespace AgOpenGPS
             }
         }
 
+        //message box pops up with info then goes away
         public void TimedMessageBox(int timeout, string s1, string s2)
         {
             var form = new FormTimedMessage(timeout, s1, s2);
             form.Show();
-        }         
-        
+        }
+
    }//class FormGPS
 }//namespace AgOpenGPS
 

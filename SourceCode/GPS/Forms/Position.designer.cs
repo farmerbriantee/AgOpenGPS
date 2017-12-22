@@ -56,9 +56,6 @@ namespace AgOpenGPS
         public double boundaryTriggerDistance = 4.0;
         public vec2 prevBoundaryPos = new vec2(0, 0);
 
-        //for skipping a few frames while doing calcs
-        private int youTurnCounter = 0;
-
         //are we still getting valid data from GPS, resets to 0 in NMEA RMC block, watchdog 
         public int recvCounter = 20;
 
@@ -79,8 +76,12 @@ namespace AgOpenGPS
         public int ringCounter = 0;
 
         //youturn
-        double distPt = -2;
-        double distanceToStartAutoTurn;
+        double distPivot = -2;
+        public double distTool;
+        double distanceToStartAutoTurn;  
+        
+        //the value to fill in you turn progress bar
+        public int youTurnProgressBar = 0;
 
         //IMU 
         double rollCorrectionDistance = 0;
@@ -286,7 +287,7 @@ namespace AgOpenGPS
             if (ABLine.isABLineSet && !ct.isContourBtnOn)
             {
                 ABLine.GetCurrentABLine();
-                if (yt.isRecordingYouTurn)
+                if (yt.isRecordingCustomYouTurn)
                 {
                     //save reference of first point
                     if (yt.youFileList.Count == 0)
@@ -342,6 +343,7 @@ namespace AgOpenGPS
             }
             #endregion
 
+            #region relayRatecontrol
             //do the relayRateControl
             if (rc.isRateControlOn)
             {
@@ -351,137 +353,103 @@ namespace AgOpenGPS
 
                 mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
                 //relay byte is built in SerialComm function BuildRelayByte()
+                //youturn control byte is built in SerialComm BuildYouTurnByte()
             }
             else
             {
                 mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
                 mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
                 mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                //relay byte is built in SerialComm fx BuildRelayByte()
-
+                //relay byte is built in SerialComm.cs - function BuildRelayByte()
+                //youturn control byte is built in SerialComm BuildYouTurnByte()
             }
 
             //send out the port
             RateRelayOutToPort(mc.relayRateData, AgOpenGPS.CModuleComm.numRelayRateDataItems);
 
-            //calculate lookahead at full speed, no sentence misses
-            CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);
+            #endregion
 
-            //do the youturn logic every half second
-            if (boundary.isSet && (youTurnCounter++ > (fixUpdateHz>>2)))
+            #region Youturn
+
+            //do the auto youturn logic every half second
+            if (hl.isSet && yt.isYouTurnBtnOn && isAutoSteerBtnOn)// && (youTurnCounter++ > (fixUpdateHz>>3)))
             {
-                //reset the counter
-                youTurnCounter = 0;
+                //figure out where we are
+                yt.isInBoundz = boundz.IsPointInsideBoundary(toolPos);
+                yt.isInWorkArea = hl.IsPointInsideHeadland(toolPos);
+
+                //Are we in the headland?
+                if (!yt.isInWorkArea && yt.isInBoundz) yt.isInHeadland = true;
+                else yt.isInHeadland = false;
 
                 //are we in boundary? Then calc a distance
-                if (boundary.IsPrePointInPolygon(pivotAxlePos))
+                if (yt.isInBoundz)
                 {
-                    bool isVehicleInsideBoundary = boundary.IsPrePointInPolygon(pivotAxlePos);
-                    if (isVehicleInsideBoundary)
+                    hl.FindClosestHeadlandPoint(pivotAxlePos);
+                    if ((int)hl.closestHeadlandPt.easting != -1)
                     {
-                        boundary.FindClosestBoundaryPoint(pivotAxlePos);
-                        if ((int)boundary.closestBoundaryPt.easting != -1)
-                        {
-                            distPt = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, boundary.closestBoundaryPt.northing, boundary.closestBoundaryPt.easting);
-                        }
-                        else distPt = -2;
+                        distPivot = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, 
+                                        hl.closestHeadlandPt.northing, hl.closestHeadlandPt.easting);
                     }
-                    else distPt = -2;
+                    else distPivot = -2;
                 }
-                else distPt = -2;
+                else distPivot = -2;
 
-                //trigger the "its ready to generate a youturn when 50m away" but don't make it just yet
-                if (distPt < 50.0 && distPt > 40 && !yt.isAutoTriggered && yt.isAutoYouTurnEnabled)
+                //trigger the "its ready to generate a youturn when 40m away" but don't make it just yet
+                if (distPivot < 45.0 && distPivot > 42 && !yt.isYouTurnTriggered && yt.isInWorkArea)
                 {
-                    yt.isAutoTriggered = true;
+                    //begin the whole process, all conditions are met
+                    YouTurnTrigger();
+                }
 
-                    //data buffer for pixels read from off screen buffer
-                    byte[] grnPix = new byte[401];
-
-                    //read a pixel line across full buffer width
-                    OpenGL gl = openGLControlBack.OpenGL;
-                    gl.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
-
-                    //set up the positions to scan in the array for applied
-                    int leftPos = vehicle.rpXPosition - 15;
-                    if (leftPos < 0) leftPos = 0;
-                    int rightPos = vehicle.rpXPosition + vehicle.rpWidth + 15;
-                    if (rightPos > 399) rightPos = 399;
-
-                    //do we need a left or right turn
-                    bool isGrnOnLeft = false, isGrnOnRight = false;
-
-                    //green on left means turn right
-                    for (int j = leftPos; j < vehicle.rpXPosition; j++)
-                    { if (grnPix[j] > 50) isGrnOnLeft = true; else isGrnOnLeft = false; }
-
-                    //green on right means turn left
-                    for (int j = (rightPos - 10); j < rightPos; j++)
-                    { if (grnPix[j] > 50) isGrnOnRight = true; else isGrnOnRight = false; }
-
-                    //one side or the other - but not both
-                    if (!isGrnOnLeft && isGrnOnRight || isGrnOnLeft && !isGrnOnRight)
-                    {
-                        //set point and save to start measuring from
-                        yt.isAutoPointSet = true;
-                        yt.autoYouTurnTriggerPoint = pivotAxlePos;
-
-                        if (isGrnOnRight) yt.isAutoTurnRight = false;
-                        else yt.isAutoTurnRight = true;
-                    }
-
-                    //can't determine which way to turn, so pick opposite of last turn
-                    else
-                    {
-                        yt.isAutoPointSet = true;
-                        yt.autoYouTurnTriggerPoint = pivotAxlePos;
-
-                        //just do the opposite of last turn
-                        yt.isAutoTurnRight = !yt.isLastAutoTurnRight;
-                        yt.isLastAutoTurnRight = !yt.isLastAutoTurnRight;
-                    }
-
-                    //modify the buttons to show the correct turn direction
-                    if (yt.isAutoTurnRight)
-                    {
-                        AutoYouTurnButtonsRightTurn();                    }
-                    else
-                    {
-                        AutoYouTurnButtonsLeftTurn();
-                    }
+                //Do the sequencing of functions around the turn.
+                if (yt.isSequenceTriggered)
+                {
+                    yt.DoSequenceEvent();
                 }
 
                 distanceToStartAutoTurn = -1;
 
-                //start counting down
-                if (yt.isAutoPointSet && yt.isAutoYouTurnEnabled)
+                //start counting down - this is not run if shape is drawn
+                if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
                 {
                     //if we are too much off track, pointing wrong way, kill the turn
                     if ((Math.Abs(guidanceLineSteerAngle) > 50) && (Math.Abs(ABLine.distanceFromCurrentLine) > 500))
                     {
-                        yt.CancelYouTurn();
-                        distanceToStartAutoTurn = -1;
-                        autoTurnInProgressBar = 0;
-                        AutoYouTurnButtonsReset();
+                        yt.ResetYouTurnAndSequenceEvents();
                     }
                     else
+
                     {
                         //how far have we gone since youturn request was triggered
-                        distanceToStartAutoTurn = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, yt.autoYouTurnTriggerPoint.northing, yt.autoYouTurnTriggerPoint.easting);
+                        distanceToStartAutoTurn = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, yt.youTurnTriggerPoint.northing, yt.youTurnTriggerPoint.easting);
                         
-                        autoTurnInProgressBar = (int)(distanceToStartAutoTurn / (50 + yt.startYouTurnAt) * 100);                 
+                        youTurnProgressBar = (int)(distanceToStartAutoTurn / (45 + yt.youTurnStartOffset) * 100);                 
 
-                        if (distanceToStartAutoTurn > (50 + yt.startYouTurnAt))
+                        if (distanceToStartAutoTurn > (45 + yt.youTurnStartOffset))
                         {
                             //keep from running this again since youturn is plotted now
-                            yt.isAutoPointSet = false;
-                            autoTurnInProgressBar = 0;
-                            yt.isLastAutoTurnRight = yt.isAutoTurnRight;
-                            yt.BuildYouTurnListToRight(yt.isAutoTurnRight);
+                            yt.isYouTurnTriggerPointSet = false;
+                            youTurnProgressBar = 0;
+                            yt.isLastYouTurnRight = yt.isYouTurnRight;
+                            yt.BuildYouTurnListToRight(yt.isYouTurnRight);
                         }
                     }
                 }
             }
+
+            else //make sure youturn and sequence is off - we are not in normal turn here
+            {
+                if(yt.isYouTurnTriggered | yt.isSequenceTriggered)
+                {
+                    yt.ResetYouTurnAndSequenceEvents();
+                }
+            }
+
+            #endregion
+
+            //calculate lookahead at full speed, no sentence misses
+            CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);
 
             //openGLControl_Draw routine triggered manually
             openGLControl.DoRender();
@@ -489,8 +457,62 @@ namespace AgOpenGPS
         //end of UppdateFixPosition
         }
 
-        //the value to fill in you turn progress bar
-        int autoTurnInProgressBar = 0;
+
+        //called when the 45 m mark is reached before headland
+        private void YouTurnTrigger()
+        {
+            //trigger pulled and make box double ended
+            yt.isYouTurnTriggered = true;
+            yt.isSequenceTriggered = true;
+
+            //our direction heading into turn
+            yt.isABLineSameAsHeadingAtTrigger = ABLine.isABSameAsFixHeading;
+
+            //data buffer for pixels read from off screen buffer
+            byte[] grnPix = new byte[401];
+
+            //read a pixel line across full buffer width
+            OpenGL gl = openGLControlBack.OpenGL;
+            gl.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
+
+            //set up the positions to scan in the array for applied
+            int leftPos = vehicle.rpXPosition - 15;
+            if (leftPos < 0) leftPos = 0;
+            int rightPos = vehicle.rpXPosition + vehicle.rpWidth + 15;
+            if (rightPos > 399) rightPos = 399;
+
+            //do we need a left or right turn
+            bool isGrnOnLeft = false, isGrnOnRight = false;
+
+            //green on left means turn right
+            for (int j = leftPos; j < vehicle.rpXPosition; j++)
+            { if (grnPix[j] > 50) isGrnOnLeft = true; else isGrnOnLeft = false; }
+
+            //green on right means turn left
+            for (int j = (rightPos - 10); j < rightPos; j++)
+            { if (grnPix[j] > 50) isGrnOnRight = true; else isGrnOnRight = false; }
+
+            //set point and save to start measuring from
+            yt.isYouTurnTriggerPointSet = true;
+            yt.youTurnTriggerPoint = pivotAxlePos;
+
+            //one side or the other - but not both
+            if (!isGrnOnLeft && isGrnOnRight || isGrnOnLeft && !isGrnOnRight)
+            {
+                if (isGrnOnRight) yt.isYouTurnRight = false;
+                else yt.isYouTurnRight = true;
+            }
+            else //can't determine which way to turn, so pick opposite of last turn
+            {
+                //just do the opposite of last turn
+                yt.isYouTurnRight = !yt.isLastYouTurnRight;
+                yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+            }
+
+            //modify the buttons to show the correct turn direction
+            if (yt.isYouTurnRight) AutoYouTurnButtonsRightTurn();
+            else AutoYouTurnButtonsLeftTurn();
+        }
 
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
@@ -685,14 +707,14 @@ namespace AgOpenGPS
             prevBoundaryPos.northing = pn.northing;
 
             //build the boundary line
-            if (boundary.isOkToAddPoints)
+            if (boundz.isOkToAddPoints)
             {
-                if (boundary.isDrawRightSide)
+                if (boundz.isDrawRightSide)
                 {
                     //Right side
                     vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing);
-                    boundary.ptList.Add(point);
+                    boundz.ptList.Add(point);
                 }
 
                     //draw on left side
@@ -701,7 +723,7 @@ namespace AgOpenGPS
                     //Right side
                     vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing);
-                    boundary.ptList.Add(point);
+                    boundz.ptList.Add(point);
                 }
 
             }
@@ -843,14 +865,14 @@ namespace AgOpenGPS
             //determine if section is in boundary using the section left/right positions
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
-                if (boundary.isSet)
+                if (boundz.isSet)
                 {
                     bool isLeftIn = true, isRightIn = true;
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = boundary.IsPrePointInPolygon(section[j].leftPoint);
-                        isRightIn = boundary.IsPrePointInPolygon(section[j].rightPoint);
+                        isLeftIn = boundz.IsPointInsideBoundary(section[j].leftPoint);
+                        isRightIn = boundz.IsPointInsideBoundary(section[j].rightPoint);
 
                         if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
                         else section[j].isInsideBoundary = false;
@@ -860,7 +882,7 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = boundary.IsPrePointInPolygon(section[j].rightPoint);
+                        isRightIn = boundz.IsPointInsideBoundary(section[j].rightPoint);
                         if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
                         else section[j].isInsideBoundary = false;
                     }

@@ -17,7 +17,8 @@ namespace AgOpenGPS
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
                 //if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
-
+                Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Properties.Settings.Default.set_culture);
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.set_culture);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormGPS());

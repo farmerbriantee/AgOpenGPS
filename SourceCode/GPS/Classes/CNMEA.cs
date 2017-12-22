@@ -198,9 +198,10 @@ namespace AgOpenGPS
             if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
                 & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
             {
+                double temp;
                 //get latitude and convert to decimal degrees
                 double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out  temp);
                 temp *= 0.01666666666666666666666666666667;
                 latitude += temp;
                 if (words[3] == "S")
@@ -247,9 +248,10 @@ namespace AgOpenGPS
             if (!String.IsNullOrEmpty(words[3]) & !String.IsNullOrEmpty(words[4])
                 & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
             {
+                double temp;
                 //get latitude and convert to decimal degrees
                 double.TryParse(words[3].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                 latitude += temp * 0.01666666666666666666666666666667;
 
                 if (words[4] == "S")

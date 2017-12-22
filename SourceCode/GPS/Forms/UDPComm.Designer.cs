@@ -11,46 +11,50 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-        // Server socket
-        private Socket serverSocket;
-        public bool isUDPServerOn = false;
+        // Send and Recv socket
+        private Socket sendSocket;
+        private Socket recvSocket;
 
-        //endpoint of the reply from the zero MKR1000
-        IPEndPoint epZero;
+        private bool isSendConnected;
+
+        //endpoint of the auto steer module
+        IPEndPoint epAutoSteer;
 
         // Data stream
         private byte[] buffer = new byte[1024];
 
         // Status delegate
-        private delegate void UpdateStatusDelegate(string status);
-        private UpdateStatusDelegate updateStatusDelegate = null;
+        private delegate void UpdateRecvMessageDelegate(string recvMessage);
+        private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
         private void SendUDPMessage(string message)
         {
-            try
+            if (isSendConnected)
             {
-                // Get packet as byte array
-                byte[] byteData = Encoding.ASCII.GetBytes(message);
+                try
+                {
+                    // Get packet as byte array
+                    byte[] byteData = Encoding.ASCII.GetBytes(message);
 
-                if (byteData.Length != 0)
+                    if (byteData.Length != 0)
 
-                    // Send packet to the zero
-                    serverSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epZero, new AsyncCallback(SendData), null);
-            }
-            catch (Exception e)
-            {
-                WriteErrorLog("Sending UDP Message" + e.ToString());
+                        // Send packet to the zero
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Sending UDP Message" + e.ToString());
 
-                MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-
  
         public void SendData(IAsyncResult asyncResult)
         {
             try
             {
-                serverSocket.EndSend(asyncResult);
+                sendSocket.EndSend(asyncResult);
             }
             catch (Exception e)
             {
@@ -68,18 +72,18 @@ namespace AgOpenGPS
                 EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
             
                 // Receive all data
-                int msgLen = serverSocket.EndReceiveFrom(asyncResult, ref epSender);
+                int msgLen = recvSocket.EndReceiveFrom(asyncResult, ref epSender);
 
                 byte[] localMsg = new byte[msgLen];
                 Array.Copy(buffer, localMsg, msgLen);
 
                 // Listen for more connections again...
-                serverSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
+                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
 
                 string text = Encoding.ASCII.GetString(localMsg);
 
                 // Update status through a delegate
-                Invoke(updateStatusDelegate, new object[] { text });
+                Invoke(updateRecvMessageDelegate, new object[] { text });
             }
             catch (Exception e)
             {
@@ -90,7 +94,7 @@ namespace AgOpenGPS
         }
 
         
-        private void UpdateStatus(string recvd)
+        private void UpdateRecvMessage(string recvd)
         {
             recvSentenceSettings = recvd;
             pn.rawBuffer += recvd;

@@ -54,7 +54,6 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 110);
             this.btnDelete.TabIndex = 65;
-            this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -85,7 +84,6 @@
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 110);
             this.btnSerialCancel.TabIndex = 64;
-            this.btnSerialCancel.Text = "Cancel";
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
@@ -105,7 +103,6 @@
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(121, 110);
             this.btnSerialOK.TabIndex = 63;
-            this.btnSerialOK.Text = "Next";
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialOK.UseVisualStyleBackColor = true;
             // 
@@ -121,9 +118,10 @@
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.btnSerialOK);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormBoundary";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Start Boundary";
             this.Load += new System.EventHandler(this.FormBoundary_Load);
             this.ResumeLayout(false);

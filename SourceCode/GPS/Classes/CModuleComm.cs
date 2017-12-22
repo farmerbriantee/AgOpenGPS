@@ -13,10 +13,10 @@ namespace AgOpenGPS
         public int incomingInt;
 
         // PGN - 32762 - 127.250
-        public static int numRelayRateDataItems = 6;
+        public static int numRelayRateDataItems = 7;
         public byte[] relayRateData = new byte[numRelayRateDataItems];
         public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByte = 2, rdSpeedXFour = 3,
-                    rdRateSetPointHi = 4, rdRateSetPointLo = 5;
+                    rdRateSetPointHi = 4, rdRateSetPointLo = 5, rdYouTurnControlByte = 6;
 
         // PGN - 32760 - 127.248
         public static int numRelayRateSettingsItems = 6;
@@ -40,7 +40,7 @@ namespace AgOpenGPS
                     ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
         //for the workswitch
-        public bool isWorkSwitchOn, isWorkSwitchActiveLow, isWorkSwitchEnabled;
+        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled;
         public int workSwitchValue;
 
         //imu and roll inclinometer
@@ -56,7 +56,6 @@ namespace AgOpenGPS
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
-            isWorkSwitchOn = false;
 
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
@@ -71,6 +70,7 @@ namespace AgOpenGPS
             relayRateData[rdRateSetPointHi] = 0;
             relayRateData[rdRateSetPointLo] = 0;
             relayRateData[rdSpeedXFour] = 0;
+            relayRateData[rdYouTurnControlByte] = 0;
             mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766

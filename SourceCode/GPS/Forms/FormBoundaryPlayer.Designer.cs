@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBoundaryPlayer));
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPausePlay = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,43 +39,26 @@
             // 
             // btnStop
             // 
+            resources.ApplyResources(this.btnStop, "btnStop");
             this.btnStop.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnStop.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.boundaryStop;
-            this.btnStop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStop.Location = new System.Drawing.Point(6, 5);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(110, 110);
-            this.btnStop.TabIndex = 140;
-            this.btnStop.Text = "Done";
-            this.btnStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnPausePlay
             // 
+            resources.ApplyResources(this.btnPausePlay, "btnPausePlay");
             this.btnPausePlay.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnPausePlay.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
-            this.btnPausePlay.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPausePlay.Location = new System.Drawing.Point(167, 4);
             this.btnPausePlay.Name = "btnPausePlay";
-            this.btnPausePlay.Size = new System.Drawing.Size(110, 110);
-            this.btnPausePlay.TabIndex = 139;
-            this.btnPausePlay.Text = "Record";
-            this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
             this.btnPausePlay.Click += new System.EventHandler(this.btnPausePlay_Click);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 123);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 29);
-            this.label1.TabIndex = 141;
-            this.label1.Text = "Area:";
             // 
             // timer1
             // 
@@ -84,29 +68,19 @@
             // 
             // lblArea
             // 
-            this.lblArea.AutoSize = true;
-            this.lblArea.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArea.Location = new System.Drawing.Point(101, 124);
+            resources.ApplyResources(this.lblArea, "lblArea");
             this.lblArea.Name = "lblArea";
-            this.lblArea.Size = new System.Drawing.Size(58, 29);
-            this.lblArea.TabIndex = 142;
-            this.lblArea.Text = "999";
             // 
             // FormBoundaryPlayer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 160);
             this.ControlBox = false;
             this.Controls.Add(this.lblArea);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPausePlay);
-            this.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormBoundaryPlayer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Stop Record Pause Boundary";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormBoundaryPlayer_Load);
             this.ResumeLayout(false);

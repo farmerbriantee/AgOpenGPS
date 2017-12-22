@@ -12,16 +12,59 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
         private readonly OpenGL gl;
 
-        public bool isYouTurnOn, isAutoTriggered, isAutoPointSet, isAutoTurnRight, isLastAutoTurnRight;
-        public bool isRecordingYouTurn, isAutoYouTurnEnabled;
-        public int startYouTurnAt;
+        /// <summary> /// Has the you turn shape been built and displayed? /// </summary>
+        public bool isYouTurnShapeDisplayed;
+
+        public string pos1 = "Manual Button";
+        public string pos2 = "Auto Button";
+        public string pos3 = "";
+        public string pos4 = "";
+        public string pos5 = "";
+        public string pos6 = "";
+        public string pos7 = "";
+        public string pos8 = "";
+
+        /// <summary>  /// turning right or left?/// </summary>
+        public bool isYouTurnRight;
+
+        /// <summary> /// What was the last successful you turn direction? /// </summary>
+        public bool isLastYouTurnRight;
+
+        /// <summary>/// triggered right after youTurnTriggerPoint is set /// </summary>
+        public bool isYouTurnTriggered, isSequenceTriggered;
+
+        /// <summary> /// is the start trigger point 45m from headland set? /// </summary>
+        public bool isYouTurnTriggerPointSet;
+
+        /// <summary>  /// The point 45 m from headland that starts everything  /// </summary>
+        public vec2 youTurnTriggerPoint = new vec2(0, 0);
+
+        //if not in workArea but in bounds, then we are on headland
+        public bool isInWorkArea, isInBoundz, isInHeadland;
+
+        /// <summary> /// At trigger point, was vehicle going same direction as ABLine? /// </summary>        
+        public bool isABLineSameAsHeadingAtTrigger;
+
+        //controlled by user in GUI to en/dis able
+        public bool isRecordingCustomYouTurn;
+
+        /// <summary> /// Is the youturn button enabled? /// </summary>
+        public bool isYouTurnBtnOn;
+
+        public int rowSkipsWidth = 1, rowSkipsHeight = 1;
+
+        /// <summary>  /// distance from headland as offset where to start turn shape /// </summary>
+        public int youTurnStartOffset;
+
+        /// <summary> /// 0=Not in youturn, 1=Entering headland, 2=Exiting headland /// </summary>
+        public int whereAmI = 0;
 
         //guidance values
         public double distanceFromCurrentLine;
         public double dxAB, dyAB;
         private int A, B, C;
         public double abHeading;
-        public bool isABSameAsFixHeading = true;
+        private bool isABSameAsFixHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
         //pure pursuit values
@@ -40,8 +83,6 @@ namespace AgOpenGPS
         //list of points read from file, this is the actual pattern from a bunch of sources possible
         public List<vec2> youFileList = new List<vec2>();
 
-        public vec2 autoYouTurnTriggerPoint = new vec2(0, 0);
-
         //constructor
         public CYouTurn(OpenGL _gl, FormGPS _f)
         {
@@ -49,19 +90,162 @@ namespace AgOpenGPS
             gl = _gl;
 
             //how far before or after boundary line should turn happen
-            startYouTurnAt = Properties.Settings.Default.setAS_startYouTurnAt;
+            youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;
+
+            //the youturn shape scaling.
+            rowSkipsHeight = Properties.Vehicle.Default.set_youSkipHeight;
+            rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+
+            //Fill in the strings for comboboxes - editable
+            string line = Properties.Vehicle.Default.seq_FunctionList;
+            string[] words = line.Split(',');
+
+            pos3 = words[0];
+            pos4 = words[1];
+            pos5 = words[2];
+            pos6 = words[3];
+            pos7 = words[4];
+            pos8 = words[5];
+
         }
 
-        public void CancelYouTurn()
+        //Normal copmpletion of youturn
+        public void CompleteYouTurn()
         {
-            isYouTurnOn = false;
-            isAutoTriggered = false;
-            isAutoPointSet = false;
+            isYouTurnShapeDisplayed = false;
+            isYouTurnTriggered = false;
+            isYouTurnTriggerPointSet = false;
             if (ytList.Count > 0) ytList.Clear();
             mf.AutoYouTurnButtonsReset();
-            return;
         }
 
+        //something went seriously wrong so reset everything
+        public void ResetYouTurnAndSequenceEvents()
+        {
+            //fix you turn
+            isYouTurnShapeDisplayed = false;
+            isYouTurnTriggered = false;
+            isYouTurnTriggerPointSet = false;
+            if (ytList.Count > 0) ytList.Clear();
+            mf.AutoYouTurnButtonsReset();
+            mf.youTurnProgressBar = 0;
+
+            //reset sequence
+            isSequenceTriggered = false;
+            whereAmI = 0;
+            ResetSequenceEventTriggers();
+        }
+
+        //reset trig flag to false on all array elements with a function
+        public void ResetSequenceEventTriggers()
+        {
+            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            {
+                if (mf.seq.seqEnter[i].function != 0) mf.seq.seqEnter[i].isTrig = false;
+                if (mf.seq.seqExit[i].function != 0) mf.seq.seqExit[i].isTrig = false;
+            }
+        }
+
+        //determine when if and how functions are triggered
+        public void DoSequenceEvent()
+        {
+            if (mf.yt.isSequenceTriggered)
+            {
+                //determine if Section is entry or exit based on trigger point direction
+                bool isToolHeadingSameAsABHeading;
+
+                //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
+                double abFixHeadingDelta = (Math.Abs(mf.fixHeadingSection - mf.ABLine.abHeading));
+                if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
+
+                if (abFixHeadingDelta >= glm.PIBy2) isToolHeadingSameAsABHeading = false;
+                else isToolHeadingSameAsABHeading = true;
+
+                mf.hl.FindClosestHeadlandPoint(mf.toolPos);
+                if ((int)mf.hl.closestHeadlandPt.easting != -1)
+                    mf.distTool = mf.pn.Distance(mf.toolPos.northing, mf.toolPos.easting,
+                        mf.hl.closestHeadlandPt.northing, mf.hl.closestHeadlandPt.easting);
+                else //we've lost the headland
+                {
+                    mf.yt.isSequenceTriggered = false;
+                    mf.yt.ResetSequenceEventTriggers();
+                    mf.distTool = 999;
+                    return;
+                }
+
+
+
+                if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading)
+                {
+                    //since same as AB Line, we are entering
+                    whereAmI = 1;
+                    if (isInHeadland) mf.distTool *= -1;
+                }
+                else
+                {
+                    //since opposite of AB Line at trigger we are exiting
+                    whereAmI = 2;
+                    if (isInHeadland) mf.distTool *= -1;
+                }
+
+                //did we do all the events?
+                int c = 0;
+                for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+                {
+                    //checked for any not triggered yet (false) - if there is, not done yet
+                    if (!mf.seq.seqEnter[i].isTrig) c++;
+                    if (!mf.seq.seqExit[i].isTrig) c++;
+                }
+
+                if (c == 0)
+                {
+                    //sequences all done so reset everything
+                    isSequenceTriggered = false;
+                    whereAmI = 0;
+                    ResetSequenceEventTriggers();
+                }
+
+                switch (whereAmI)
+                {
+                    case 0: //not in you turn
+                        break;
+
+                    case 1: //Entering the headland
+
+                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+                        {
+                            //have we gone past the distance and still haven't done it
+                            if (mf.distTool < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
+                            {
+                                //it shall only run once
+                                mf.seq.seqEnter[i].isTrig = true;
+
+                                //send the function and action to perform
+                                mf.DoYouTurnSequenceEvent(mf.seq.seqEnter[i].function, mf.seq.seqEnter[i].action);
+                            }
+                        }
+                        break;
+
+                    case 2: //Leaving the headland
+
+                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+                        {
+                            //have we gone past the distance and still haven't done it
+                            if (mf.distTool > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
+                            {
+                                //it shall only run once
+                                mf.seq.seqExit[i].isTrig = true;
+
+                                //send the function and action to perform
+                                mf.DoYouTurnSequenceEvent(mf.seq.seqExit[i].function, mf.seq.seqExit[i].action);
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        //get list of points from txt shape file
         public void LoadYouTurnShapeFromFile(string filename)
         {
             //if there is existing shape, delete it
@@ -105,10 +289,10 @@ namespace AgOpenGPS
             }
         }
 
-        //build the points and path 
+        //build the points and path of youturn to be scaled and transformed
         public void BuildYouTurnListToRight(bool isTurnRight)
         {
-            isYouTurnOn = true;
+            isYouTurnShapeDisplayed = true;
 
             //grab the Lookahead that ABLine uses
             minLookAheadDistance = mf.ABLine.minLookAheadDistance;
@@ -147,6 +331,18 @@ namespace AgOpenGPS
                 pt[i].z = youFileList[i].northing;
             }
 
+            //for (int i = 0; i < pt.Length; i++)
+            //{
+            //    bool started = false;
+            //    if (pt[i].x >= 5.0)
+            //    {
+            //        if (!started) started = true;
+
+            //        //create a line of 10 points
+            //        pt[i].x += ((rowSkipsWidth - 1) * 10);
+            //    }
+            //}
+
             //start of path on the origin. Mirror the shape if left turn
             if (!isTurnRight)
             {
@@ -157,8 +353,8 @@ namespace AgOpenGPS
             double scale = turnOffset * 0.1;
             for (int i = 0; i < pt.Length; i++)
             {
-                pt[i].x *= scale;
-                pt[i].z *= scale;
+                pt[i].x *= scale*rowSkipsWidth;
+                pt[i].z *= scale*rowSkipsHeight;
             }
 
             //rotate pattern to match AB Line heading
@@ -238,7 +434,7 @@ namespace AgOpenGPS
                 //return and reset if too far away or end of the line
                 if (distanceFromCurrentLine > 5 || B >= ptCount - 3)
                 {
-                    CancelYouTurn();
+                    CompleteYouTurn();
                     return;
                 }
 
@@ -342,7 +538,7 @@ namespace AgOpenGPS
             }
             else
             {
-                CancelYouTurn();
+                CompleteYouTurn();
             }
         }
     }

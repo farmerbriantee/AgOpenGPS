@@ -293,7 +293,7 @@ namespace AgOpenGPS
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 10);
 
-            if (mf.yt.isYouTurnOn)
+            if (mf.yt.isYouTurnShapeDisplayed)
             {
                 //do the pure pursuit from youTurn
                 mf.yt.DistanceFromYouTurnLine();
@@ -309,8 +309,6 @@ namespace AgOpenGPS
                 //angVel
             }
         }
-
- 
 
         public void DrawABLines()
         {
@@ -446,7 +444,7 @@ namespace AgOpenGPS
                     gl.PointSize(1.0f);
                 }
 
-                if (mf.yt.isYouTurnOn)
+                if (mf.yt.isYouTurnShapeDisplayed)
                 {
                     gl.Color(0.95f, 0.95f, 0.25f);
                     gl.LineWidth(2);
@@ -464,7 +462,7 @@ namespace AgOpenGPS
                     gl.Color(0.95f, 0.05f, 0.05f);
                 }
 
-                if (mf.yt.isRecordingYouTurn)
+                if (mf.yt.isRecordingCustomYouTurn)
                 {
                     gl.Color(0.05f, 0.05f, 0.95f);
                     gl.PointSize(4.0f);

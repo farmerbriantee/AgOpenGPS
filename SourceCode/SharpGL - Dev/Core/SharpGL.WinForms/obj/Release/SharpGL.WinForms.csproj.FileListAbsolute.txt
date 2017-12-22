@@ -38,3 +38,11 @@ C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinFor
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.CoreCompileInputs.cache
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.dll
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.pdb
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\DLLs\SharpGL.WinForms.dll
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\DLLs\SharpGL.WinForms.pdb
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csprojResolveAssemblyReference.cache
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.OpenGLControl.resources
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.GenerateResource.Cache
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.csproj.CoreCompileInputs.cache
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.dll
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL.WinForms\obj\Release\SharpGL.WinForms.pdb

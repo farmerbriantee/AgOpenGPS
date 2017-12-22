@@ -23,3 +23,9 @@ C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Re
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.csproj.CoreCompileInputs.cache
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.dll
 C:\Users\Leno\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.pdb
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\DLLs\SharpGL.dll
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\DLLs\SharpGL.pdb
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.csprojResolveAssemblyReference.cache
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.csproj.CoreCompileInputs.cache
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.dll
+C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\SharpGL - Dev\Core\SharpGL\obj\Release\SharpGL.pdb

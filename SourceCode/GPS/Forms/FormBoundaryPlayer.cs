@@ -17,20 +17,20 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-           mf.boundary.isOkToAddPoints = false;
+           mf.boundz.isOkToAddPoints = false;
 
-           if (mf.boundary.ptList.Count > 5)
+           if (mf.boundz.ptList.Count > 5)
            {
-               mf.boundary.PreCalcBoundaryLines();
-               mf.boundary.isSet = true;
+               mf.boundz.PreCalcBoundaryLines();
+               mf.boundz.isSet = true;
                mf.FileSaveOuterBoundary();
            }
            else
            {
-               mf.boundary.calcList.Clear();
-               mf.boundary.ptList.Clear();
-               mf.boundary.area = 0;
-               mf.boundary.isSet = false;
+               mf.boundz.calcList.Clear();
+               mf.boundz.ptList.Clear();
+               mf.boundz.area = 0;
+               mf.boundz.isSet = false;
            }
 
             //close window
@@ -40,15 +40,15 @@ namespace AgOpenGPS
         //ctually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-            if (mf.boundary.isOkToAddPoints)
+            if (mf.boundz.isOkToAddPoints)
             {
-                mf.boundary.isOkToAddPoints = false;
+                mf.boundz.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = "Record";
             }
             else
             {
-                mf.boundary.isOkToAddPoints = true;
+                mf.boundz.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = "Pause";
             }
@@ -56,21 +56,21 @@ namespace AgOpenGPS
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            mf.boundary.isOkToAddPoints = false;
+            mf.boundz.isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            mf.boundary.CalculateBoundaryArea();
+            mf.boundz.CalculateBoundaryArea();
 
             if (mf.isMetric)
             {
-                lblArea.Text = Math.Round(mf.boundary.area * 0.0001, 2) + " Ha";
+                lblArea.Text = Math.Round(mf.boundz.area * 0.0001, 2) + " Ha";
             }
             else
             {
-                lblArea.Text = Math.Round(mf.boundary.area * 0.000247105, 2) + " Acre";
+                lblArea.Text = Math.Round(mf.boundz.area * 0.000247105, 2) + " Acre";
             }
         }
     }

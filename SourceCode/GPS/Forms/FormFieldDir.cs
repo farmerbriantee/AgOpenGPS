@@ -30,8 +30,7 @@ namespace AgOpenGPS
             try
             {
                 //get the directory and make sure it exists, create if not
-                string dirField = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                               "\\AgOpenGPS\\Fields\\" + mf.currentFieldDirectory + "\\";
+                string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
 
                 //make sure directory exists, or create it for first save
                 string directoryName = Path.GetDirectoryName(dirField);

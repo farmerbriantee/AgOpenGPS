@@ -18,12 +18,13 @@ namespace AgOpenGPS
 
         private double rate1, rate2;
 
+
         public FormRate(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-            if (mf?.isMetric == true)
+            if (mf.isMetric)
             {
                 //no conversion
                 setting2NUD = 1.0;
@@ -59,19 +60,6 @@ namespace AgOpenGPS
             //Always in counts/Liter
             nudCalFactor.Value = Properties.Settings.Default.setRate_FlowmeterCalNumber;
 
-            //Light the button accordingly
-            mf.rc.isRate1Selected = true;
-            if (mf.rc.isRateControlOn)
-            {
-                btnRateOnOff.Text = "On";
-                btnRateOnOff.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                btnRateOnOff.Text = "Off";
-                btnRateOnOff.BackColor = SystemColors.ButtonFace;
-            }
-
             //grab the latest volume
             lblAccumulatedVolume.Text = mf.rc.volumeActual.ToString();
         }
@@ -95,7 +83,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setRate_AccumulatedVolume = 0;
             Properties.Settings.Default.Save();
 
-            mf.RateRelayOutToPort(mf.mc.relayRateSettings, AgOpenGPS.CModuleComm.numRelayRateSettingsItems);
+            mf.RateRelayOutToPort(mf.mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
             mf.mc.relayRateSettings[mf.mc.rsAccumulatedVolumeHi] = 0;
             mf.mc.relayRateSettings[mf.mc.rsAccumulatedVolumeLo] = 0;
             mf.rc.volumeActual = 0;
@@ -109,7 +97,7 @@ namespace AgOpenGPS
 
             mf.mc.relayRateSettings[mf.mc.rsFlowCalFactorHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber >> 8);
             mf.mc.relayRateSettings[mf.mc.rsFlowCalFactorLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber);
-            mf.RateRelayOutToPort(mf.mc.relayRateSettings, AgOpenGPS.CModuleComm.numRelayRateSettingsItems);
+            mf.RateRelayOutToPort(mf.mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
         }
 
         private void nudRate1_ValueChanged(object sender, EventArgs e)
@@ -172,22 +160,6 @@ namespace AgOpenGPS
             rate2 = (double)nudRate2.Value * NUD2Setting;
 
             nudRate2.ValueChanged += nudRate2_ValueChanged;
-        }
-
-        private void btnRateOnOff_Click(object sender, EventArgs e)
-        {
-            if (!mf.rc.isRateControlOn) //is it already Off?
-            {
-                mf.rc.isRateControlOn = !mf.rc.isRateControlOn;
-                btnRateOnOff.Text = "On";
-                btnRateOnOff.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                mf.rc.isRateControlOn = !mf.rc.isRateControlOn;
-                btnRateOnOff.Text = "Off";
-                btnRateOnOff.BackColor = SystemColors.ButtonFace;
-            }
         }
     }
 }

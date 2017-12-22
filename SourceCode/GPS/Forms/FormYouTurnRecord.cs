@@ -25,7 +25,7 @@ namespace AgOpenGPS
         {
             btnRecord.ForeColor = Color.Red;
             if (mf.yt.youFileList.Count > 0) mf.yt.youFileList.Clear();
-            mf.yt.isRecordingYouTurn = true;
+            mf.yt.isRecordingCustomYouTurn = true;
             btnRecord.Enabled = false;
             btnStop.Enabled = true;
         }
@@ -33,7 +33,7 @@ namespace AgOpenGPS
         private void btnStop_Click(object sender, EventArgs e)
         {
             //go make the list
-            mf.yt.isRecordingYouTurn = false;
+            mf.yt.isRecordingCustomYouTurn = false;
 
             //first one is the reference the rest are subtracted from, remove it.
             mf.yt.youFileList.RemoveAt(0);

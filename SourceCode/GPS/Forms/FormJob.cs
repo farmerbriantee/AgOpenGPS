@@ -61,8 +61,7 @@ namespace AgOpenGPS
         {
             //check if directory and file exists, maybe was deleted etc
             if (String.IsNullOrEmpty(mf.currentFieldDirectory)) btnJobResume.Enabled = false;
-            string directoryName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-                + "\\AgOpenGPS\\Fields\\" + mf.currentFieldDirectory + "\\";
+            string directoryName = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
 
             string fileAndDirectory = directoryName + "Field.txt";
 

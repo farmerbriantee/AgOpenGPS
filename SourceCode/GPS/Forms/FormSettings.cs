@@ -35,7 +35,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-            if (mf?.isMetric == true)
+            if (mf.isMetric)
             {
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
@@ -69,10 +69,10 @@ namespace AgOpenGPS
         private void FormSettings_Load(object sender, EventArgs e)
         {
             //Vehicle settings to what it is in the settings page------------------------------------------------
-            antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
-            antennaPivot = Math.Abs(Properties.Settings.Default.setVehicle_antennaPivot);
-            hitchLength = Math.Abs(Properties.Settings.Default.setVehicle_hitchLength);
-            wheelbase = Math.Abs(Properties.Settings.Default.setVehicle_wheelbase);
+            antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+            antennaPivot = Math.Abs(Properties.Vehicle.Default.setVehicle_antennaPivot);
+            hitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_hitchLength);
+            wheelbase = Math.Abs(Properties.Vehicle.Default.setVehicle_wheelbase);
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
             nudAntennaHeight.Value = (decimal)(antennaHeight * m2MetImp);
@@ -91,13 +91,13 @@ namespace AgOpenGPS
             nudWheelbase.ValueChanged += nudWheelbase_ValueChanged;
 
             //Tool    hitched, pivot behind antenna, and tool behind pivot are the default as true------------------------------------------------------
-            isToolBehindPivot = Properties.Settings.Default.setVehicle_isToolBehindPivot;
+            isToolBehindPivot = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
 
-            isToolTrailing = Properties.Settings.Default.setVehicle_isToolTrailing;
+            isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
 
-            isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
+            isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
 
-            isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
+            isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
 
             chkIsAft.CheckedChanged -= chkIsAft_CheckedChanged;
             chkIsAft.Checked = isToolBehindPivot;
@@ -120,14 +120,14 @@ namespace AgOpenGPS
             UpdateIsPivotBehindAntennaCheckbox();
             UpdateIsSteerAxleAhead();
 
-            toolTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_toolTrailingHitchLength);
-            tankTrailingHitchLength = Math.Abs(Properties.Settings.Default.setVehicle_tankTrailingHitchLength);
+            toolTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength);
+            tankTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength);
 
-            toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
-            toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
+            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
 
-            toolTurnOffDelay = Properties.Settings.Default.setVehicle_turnOffDelay;
-            toolLookAhead = Properties.Settings.Default.setVehicle_lookAhead;
+            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
+            toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
 
             nudOverlap.ValueChanged -= nudOverlap_ValueChanged;
             nudOverlap.Value = (decimal)(toolOverlap * m2MetImp);
@@ -154,7 +154,7 @@ namespace AgOpenGPS
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
 
              //Sections set to settings page ----------------------------------------------------------------------
-            numberOfSections = Properties.Settings.Default.setVehicle_numSections;
+            numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
 
             //grab number of sections
             nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
@@ -162,14 +162,14 @@ namespace AgOpenGPS
             nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
 
             //calc the 8 section widths based on settings.settings also meters to inches
-            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)m2MetImp);
-            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)m2MetImp);
-            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)m2MetImp);
-            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)m2MetImp);
-            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)m2MetImp);
-            nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)m2MetImp);
-            nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)m2MetImp);
-            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)m2MetImp);
+            nudSection1.Value = Math.Abs((Properties.Vehicle.Default.setSection_position2 - Properties.Vehicle.Default.setSection_position1) * (decimal)m2MetImp);
+            nudSection2.Value = Math.Abs((Properties.Vehicle.Default.setSection_position3 - Properties.Vehicle.Default.setSection_position2) * (decimal)m2MetImp);
+            nudSection3.Value = Math.Abs((Properties.Vehicle.Default.setSection_position4 - Properties.Vehicle.Default.setSection_position3) * (decimal)m2MetImp);
+            nudSection4.Value = Math.Abs((Properties.Vehicle.Default.setSection_position5 - Properties.Vehicle.Default.setSection_position4) * (decimal)m2MetImp);
+            nudSection5.Value = Math.Abs((Properties.Vehicle.Default.setSection_position6 - Properties.Vehicle.Default.setSection_position5) * (decimal)m2MetImp);
+            nudSection6.Value = Math.Abs((Properties.Vehicle.Default.setSection_position7 - Properties.Vehicle.Default.setSection_position6) * (decimal)m2MetImp);
+            nudSection7.Value = Math.Abs((Properties.Vehicle.Default.setSection_position8 - Properties.Vehicle.Default.setSection_position7) * (decimal)m2MetImp);
+            nudSection8.Value = Math.Abs((Properties.Vehicle.Default.setSection_position9 - Properties.Vehicle.Default.setSection_position8) * (decimal)m2MetImp);
 
             //based on number of sections and values update the page before displaying
             UpdateSpinners();
@@ -201,7 +201,7 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
-            cutoffSpeed = Properties.Settings.Default.setVehicle_slowSpeedCutoff/cutoffMetricImperial;
+            cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff/cutoffMetricImperial;
 
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
@@ -214,73 +214,73 @@ namespace AgOpenGPS
 
             if (!isPivotBehindAntenna) antennaPivot *= -1;
             mf.vehicle.antennaPivot = antennaPivot;
-            Properties.Settings.Default.setVehicle_antennaPivot = mf.vehicle.antennaPivot;
+            Properties.Vehicle.Default.setVehicle_antennaPivot = mf.vehicle.antennaPivot;
 
             mf.vehicle.isPivotBehindAntenna = isPivotBehindAntenna;
-            Properties.Settings.Default.setVehicle_isPivotBehindAntenna = mf.vehicle.isPivotBehindAntenna;
+            Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = mf.vehicle.isPivotBehindAntenna;
 
             if (!isSteerAxleAhead) wheelbase *= -1;
             mf.vehicle.wheelbase = wheelbase;
-            Properties.Settings.Default.setVehicle_wheelbase = wheelbase;
+            Properties.Vehicle.Default.setVehicle_wheelbase = wheelbase;
 
             mf.vehicle.isSteerAxleAhead = isSteerAxleAhead;
-            Properties.Settings.Default.setVehicle_isSteerAxleAhead = mf.vehicle.isSteerAxleAhead;
+            Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = mf.vehicle.isSteerAxleAhead;
 
             mf.vehicle.antennaHeight = antennaHeight;
-            Properties.Settings.Default.setVehicle_antennaHeight = mf.vehicle.antennaHeight;
+            Properties.Vehicle.Default.setVehicle_antennaHeight = mf.vehicle.antennaHeight;
 
             //Tool  ------------------------------------------------------------------------------------------
 
             //trailing hitch is always behind
             toolTrailingHitchLength *= -1;
             mf.vehicle.toolTrailingHitchLength = toolTrailingHitchLength;
-            Properties.Settings.Default.setVehicle_toolTrailingHitchLength = mf.vehicle.toolTrailingHitchLength;
+            Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength = mf.vehicle.toolTrailingHitchLength;
 
             tankTrailingHitchLength *= -1;
             mf.vehicle.tankTrailingHitchLength = tankTrailingHitchLength;
-            Properties.Settings.Default.setVehicle_tankTrailingHitchLength = mf.vehicle.tankTrailingHitchLength;
+            Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = mf.vehicle.tankTrailingHitchLength;
 
             mf.vehicle.toolLookAhead = toolLookAhead;
-            Properties.Settings.Default.setVehicle_lookAhead = mf.vehicle.toolLookAhead;
+            Properties.Vehicle.Default.setVehicle_lookAhead = mf.vehicle.toolLookAhead;
 
             mf.vehicle.toolOverlap = toolOverlap;
-            Properties.Settings.Default.setVehicle_toolOverlap = mf.vehicle.toolOverlap;
+            Properties.Vehicle.Default.setVehicle_toolOverlap = mf.vehicle.toolOverlap;
 
             mf.vehicle.toolTurnOffDelay = toolTurnOffDelay;
-            Properties.Settings.Default.setVehicle_turnOffDelay = mf.vehicle.toolTurnOffDelay;
+            Properties.Vehicle.Default.setVehicle_turnOffDelay = mf.vehicle.toolTurnOffDelay;
 
             mf.vehicle.toolOffset = toolOffset;
-            Properties.Settings.Default.setVehicle_toolOffset = mf.vehicle.toolOffset;
+            Properties.Vehicle.Default.setVehicle_toolOffset = mf.vehicle.toolOffset;
 
             mf.vehicle.isToolTrailing = isToolTrailing;
-            Properties.Settings.Default.setVehicle_isToolTrailing = mf.vehicle.isToolTrailing;
+            Properties.Vehicle.Default.setVehicle_isToolTrailing = mf.vehicle.isToolTrailing;
 
             mf.vehicle.isToolBehindPivot = isToolBehindPivot;
-            Properties.Settings.Default.setVehicle_isToolBehindPivot = mf.vehicle.isToolBehindPivot;
+            Properties.Vehicle.Default.setVehicle_isToolBehindPivot = mf.vehicle.isToolBehindPivot;
 
             if (isToolBehindPivot) hitchLength *= -1;
             mf.vehicle.hitchLength = hitchLength;
-            Properties.Settings.Default.setVehicle_hitchLength = mf.vehicle.hitchLength;
+            Properties.Vehicle.Default.setVehicle_hitchLength = mf.vehicle.hitchLength;
 
             //Sections ------------------------------------------------------------------------------------------
 
             mf.vehicle.numOfSections = numberOfSections;
             mf.vehicle.numSuperSection = numberOfSections + 1;
-            Properties.Settings.Default.setVehicle_numSections = mf.vehicle.numOfSections;
+            Properties.Vehicle.Default.setVehicle_numSections = mf.vehicle.numOfSections;
 
             //take the section widths and convert to meters and positions along tool.
             CalculateSectionPositions();
 
             //save the values in each spinner for section position widths in settings
-            Properties.Settings.Default.setSection_position1 = sectionPosition1;
-            Properties.Settings.Default.setSection_position2 = sectionPosition2;
-            Properties.Settings.Default.setSection_position3 = sectionPosition3;
-            Properties.Settings.Default.setSection_position4 = sectionPosition4;
-            Properties.Settings.Default.setSection_position5 = sectionPosition5;
-            Properties.Settings.Default.setSection_position6 = sectionPosition6;
-            Properties.Settings.Default.setSection_position7 = sectionPosition7;
-            Properties.Settings.Default.setSection_position8 = sectionPosition8;
-            Properties.Settings.Default.setSection_position9 = sectionPosition9;
+            Properties.Vehicle.Default.setSection_position1 = sectionPosition1;
+            Properties.Vehicle.Default.setSection_position2 = sectionPosition2;
+            Properties.Vehicle.Default.setSection_position3 = sectionPosition3;
+            Properties.Vehicle.Default.setSection_position4 = sectionPosition4;
+            Properties.Vehicle.Default.setSection_position5 = sectionPosition5;
+            Properties.Vehicle.Default.setSection_position6 = sectionPosition6;
+            Properties.Vehicle.Default.setSection_position7 = sectionPosition7;
+            Properties.Vehicle.Default.setSection_position8 = sectionPosition8;
+            Properties.Vehicle.Default.setSection_position9 = sectionPosition9;
 
             //line up manual buttons based on # of sections
             mf.LineUpManualBtns();
@@ -292,7 +292,7 @@ namespace AgOpenGPS
             mf.SectionCalcWidths();
 
             //update toolwidth in mainform
-            Properties.Settings.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
+            Properties.Vehicle.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
             ////Display ---load the delay slides --------------------------------------------------------------------
             mf.isAtanCam = isAtanCamera;
@@ -313,10 +313,11 @@ namespace AgOpenGPS
             mf.mc.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setF_IsWorkSwitchEnabled = isWorkSwEn;
 
-            Properties.Settings.Default.setVehicle_slowSpeedCutoff = cutoffSpeed*cutoffMetricImperial;
+            Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed*cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed*cutoffMetricImperial;
 
             Properties.Settings.Default.Save();
+            Properties.Vehicle.Default.Save();
 
             //back to FormGPS
             DialogResult = DialogResult.OK;
