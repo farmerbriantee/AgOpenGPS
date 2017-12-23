@@ -2,7 +2,7 @@
 
 AgOpenGPS (AOG) is developed primarily in C# using Visual Studio and the .NET runtime.
 
-The code is licensed under the GPLv, see the license file.
+The code is licensed under the GPLv, see the [license file](License.md).
 
 ## Known Successful Build Environments
 
