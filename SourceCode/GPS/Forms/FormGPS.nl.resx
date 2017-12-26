@@ -119,7 +119,7 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="openGLControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>929, 644</value>
+    <value>868, 692</value>
   </data>
   <data name="deleteFlagToolOpenGLContextMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -355,217 +355,223 @@
 </value>
   </data>
   <data name="txtDistanceOffABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, -1</value>
+    <value>382, 0</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 37</value>
+    <value>130, 37</value>
   </data>
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>файл</value>
+    <value>Bestand</value>
   </data>
   <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 40</value>
+    <value>313, 40</value>
   </data>
   <data name="menustripLanguage.Text" xml:space="preserve">
-    <value>Язык</value>
+    <value>Taal</value>
+  </data>
+  <data name="menuLanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 40</value>
+  </data>
+  <data name="menuLanguageDeutsch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 40</value>
+  </data>
+  <data name="menuLanguageRussian.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 40</value>
+  </data>
+  <data name="menuLanguageDutch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 40</value>
+  </data>
+  <data name="menuLanguageDutch.Text" xml:space="preserve">
+    <value>Nederlands</value>
   </data>
   <data name="setWorkingDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 40</value>
+    <value>313, 40</value>
   </data>
   <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Справочник</value>
+    <value>Mappen</value>
   </data>
   <data name="loadVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 40</value>
+    <value>313, 40</value>
   </data>
   <data name="loadVehicleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Загрузить транспорта</value>
+    <value>Voertuig laden</value>
   </data>
   <data name="saveVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 40</value>
+    <value>313, 40</value>
   </data>
   <data name="saveVehicleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сохранить</value>
+    <value>Voertuig opslaan</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>390, 6</value>
+    <value>310, 6</value>
   </data>
   <data name="fieldToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>393, 40</value>
+    <value>313, 40</value>
   </data>
   <data name="fieldToolStripMenuItem.Text" xml:space="preserve">
-    <value>Начало поля</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 37</value>
-  </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>дисплей</value>
+    <value>Start veld</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 6</value>
+    <value>296, 6</value>
   </data>
   <data name="resetALLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="resetALLToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сбросить все</value>
+    <value>Alles resetten</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 6</value>
+    <value>296, 6</value>
   </data>
   <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Цвета</value>
+    <value>Kleuren</value>
   </data>
   <data name="sectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 40</value>
+    <value>197, 40</value>
   </data>
   <data name="sectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Секция</value>
+    <value>Sectie   </value>
   </data>
   <data name="fieldToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 40</value>
+    <value>197, 40</value>
   </data>
   <data name="fieldToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Поле</value>
+    <value>Veld</value>
   </data>
   <data name="toolStripUnitsMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="toolStripUnitsMenu.Text" xml:space="preserve">
-    <value>Единицы</value>
+    <value>Eenheden</value>
   </data>
   <data name="metricToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 40</value>
+    <value>201, 40</value>
   </data>
   <data name="metricToolStrip.Text" xml:space="preserve">
-    <value>Mетрический</value>
+    <value>Metrisch</value>
   </data>
   <data name="imperialToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 40</value>
-  </data>
-  <data name="imperialToolStrip.Text" xml:space="preserve">
-    <value>Имперский</value>
+    <value>201, 40</value>
   </data>
   <data name="bigAltitudeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="bigAltitudeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Большая высота</value>
+    <value>Grote hoogte</value>
   </data>
   <data name="sideGuideLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="sideGuideLines.Text" xml:space="preserve">
-    <value>Дополнительные гиды</value>
+    <value>Extra richtlijnen</value>
   </data>
   <data name="gridToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="gridToolStripMenuItem.Text" xml:space="preserve">
-    <value>Сетка</value>
+    <value>Raster aan</value>
   </data>
   <data name="lightbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="lightbarToolStripMenuItem.Text" xml:space="preserve">
-    <value>Курсоуказатель</value>
+    <value>Lichtbalk aan</value>
   </data>
   <data name="logNMEAMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="logNMEAMenuItem.Text" xml:space="preserve">
-    <value>Журнал NMEA</value>
+    <value>NMEA loggen</value>
   </data>
   <data name="polygonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="polygonsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Вид закрашивания</value>
+    <value>Polygonen aan</value>
   </data>
   <data name="pursuitLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="pursuitLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Линия преследования</value>
+    <value>Vervolglijnen</value>
   </data>
   <data name="skyToolStripMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="skyToolStripMenu.Text" xml:space="preserve">
-    <value>Небо</value>
+    <value>Hemel aan</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 6</value>
+    <value>296, 6</value>
   </data>
   <data name="simulatorOnToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 40</value>
+    <value>299, 40</value>
   </data>
   <data name="simulatorOnToolStripMenuItem.Text" xml:space="preserve">
-    <value>Симулятор</value>
+    <value>Simulator aan</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>400, 6</value>
+    <value>296, 6</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1346, 37</value>
+    <value>1285, 37</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 37</value>
+    <value>246, 37</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>инструменты</value>
+    <value>Gereedschappen</value>
   </data>
   <data name="explorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
+    <value>375, 40</value>
   </data>
   <data name="explorerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Проводник windows</value>
+    <value>Windows verkenner</value>
   </data>
   <data name="webCamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
+    <value>375, 40</value>
   </data>
   <data name="webCamToolStripMenuItem.Text" xml:space="preserve">
-    <value>Веб камера</value>
+    <value>Camera</value>
   </data>
   <data name="fieldViewerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
+    <value>375, 40</value>
   </data>
   <data name="fieldViewerToolStripMenuItem.Text" xml:space="preserve">
-    <value>Просмотр полей</value>
+    <value>Velden bekijken</value>
   </data>
   <data name="googleEarthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
+    <value>375, 40</value>
   </data>
   <data name="googleEarthToolStripMenuItem.Text" xml:space="preserve">
-    <value>Google Earth — Flags</value>
+    <value>Google earth vlaggen</value>
   </data>
   <data name="gPSDataToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
+    <value>375, 40</value>
   </data>
   <data name="gPSDataToolStripMenuItem1.Text" xml:space="preserve">
-    <value>GPS данные</value>
+    <value>GPS gegevens</value>
   </data>
   <data name="helpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 40</value>
-  </data>
-  <data name="helpToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Помощь</value>
+    <value>375, 40</value>
   </data>
   <data name="aboutToolStripMenuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 40</value>
+    <value>171, 40</value>
   </data>
   <data name="aboutToolStripMenuHelpAbout.Text" xml:space="preserve">
-    <value>О программе</value>
+    <value>Over..</value>
   </data>
   <data name="helpToolStripMenuHelpHelp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 40</value>
+    <value>171, 40</value>
   </data>
-  <data name="helpToolStripMenuHelpHelp.Text" xml:space="preserve">
-    <value>Помощь</value>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 729</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1285, 41</value>
   </data>
   <data name="btnHideTabs.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -618,35 +624,8 @@
         AAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolStripDropDownBtnFuncs.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 39</value>
-  </data>
   <data name="toolStripDropDownBtnFuncs.Text" xml:space="preserve">
-    <value>Начать</value>
-  </data>
-  <data name="toolStripDropDownButton2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="toolStripDropDownButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 39</value>
-  </data>
-  <data name="toolStripDropDownButton2.Text" xml:space="preserve">
-    <value>Конфиг</value>
-  </data>
-  <data name="stripAreaRate.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>449, 41</value>
-  </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1346, 41</value>
-  </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>Полоса статуса1</value>
+    <value>Begin</value>
   </data>
   <data name="toolstripField.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -798,10 +777,10 @@
 </value>
   </data>
   <data name="toolstripField.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 70</value>
+    <value>260, 70</value>
   </data>
   <data name="toolstripField.Text" xml:space="preserve">
-    <value>Поле</value>
+    <value>Veld</value>
   </data>
   <data name="toolstripBoundary.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -870,10 +849,10 @@
 </value>
   </data>
   <data name="toolstripBoundary.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 70</value>
+    <value>260, 70</value>
   </data>
   <data name="toolstripBoundary.Text" xml:space="preserve">
-    <value>Граница</value>
+    <value>Grenzen</value>
   </data>
   <data name="toolstripHeadland.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1007,10 +986,10 @@
 </value>
   </data>
   <data name="toolstripHeadland.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 70</value>
+    <value>260, 70</value>
   </data>
   <data name="toolstripHeadland.Text" xml:space="preserve">
-    <value>Мыс</value>
+    <value>Kopakker</value>
   </data>
   <data name="toolstripResetTrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1116,10 +1095,10 @@
 </value>
   </data>
   <data name="toolstripResetTrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 70</value>
+    <value>260, 70</value>
   </data>
   <data name="toolstripResetTrip.Text" xml:space="preserve">
-    <value>Поездка</value>
+    <value>&gt;0&lt;Reis</value>
   </data>
   <data name="toolstripUDPConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1253,7 +1232,7 @@
 </value>
   </data>
   <data name="toolstripUDPConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 86</value>
+    <value>279, 86</value>
   </data>
   <data name="toolstripUSBPortsConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1463,10 +1442,10 @@
 </value>
   </data>
   <data name="toolstripUSBPortsConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 86</value>
+    <value>279, 86</value>
   </data>
   <data name="toolstripUSBPortsConfig.Text" xml:space="preserve">
-    <value>Порты</value>
+    <value>Poorten  </value>
   </data>
   <data name="toolstripVehicleConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1581,10 +1560,10 @@
 </value>
   </data>
   <data name="toolstripVehicleConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 86</value>
+    <value>279, 86</value>
   </data>
   <data name="toolstripVehicleConfig.Text" xml:space="preserve">
-    <value>Транспорт</value>
+    <value>Voertuig</value>
   </data>
   <data name="toolstripAutoSteerConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1778,10 +1757,10 @@
 </value>
   </data>
   <data name="toolstripAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 86</value>
+    <value>279, 86</value>
   </data>
   <data name="toolstripAutoSteerConfig.Text" xml:space="preserve">
-    <value>Автопилот</value>
+    <value>Autosteer</value>
   </data>
   <data name="toolstripYouTurnConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1822,13 +1801,16 @@
 </value>
   </data>
   <data name="toolstripYouTurnConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>306, 86</value>
+    <value>279, 86</value>
   </data>
   <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
-    <value>U разворот</value>
+    <value>Omkeren</value>
+  </data>
+  <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>427, 41</value>
   </data>
   <data name="lblSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>938, -5</value>
+    <value>877, -5</value>
   </data>
   <data name="toolStripMenuItemFlagRed.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2219,36 +2201,30 @@
         jHcnBooPpp0XreaEiW7LrmX1WXHteAeHs51+332TwfCXSYb/AXOWVBWhrp12AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 23</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Объем</value>
-  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 23</value>
+    <value>48, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Скорость</value>
+    <value>Rato</value>
   </data>
   <data name="lblSpeedUnits.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1021, 14</value>
+    <value>960, 14</value>
   </data>
   <data name="lblSpeedUnits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
+    <value>48, 17</value>
   </data>
   <data name="lblSpeedUnits.Text" xml:space="preserve">
-    <value>Ккм/ч</value>
+    <value>Km/h</value>
   </data>
   <data name="lblHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1093, -5</value>
+    <value>1032, -5</value>
   </data>
   <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAZgBCQGYAQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAWwBCQFsAQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2466,71 +2442,38 @@
         AQEY/wH+AQED/wH4AQABDxn/AQMD/wH4AQABfxn/AYcD/wH4AQEe/wH8AT8W/ws=
 </value>
   </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>O/W</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>N/Z</value>
+  </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>930, 38</value>
-  </data>
-  <data name="lblFixQuality.Location" type="System.Drawing.Point, System.Drawing">
-    <value>282, 97</value>
-  </data>
-  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 97</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>274, 174</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 23</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Точка:</value>
+    <value>869, 38</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 203</value>
+    <value>189, 203</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 23</value>
+    <value>92, 23</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Орудие:</value>
-  </data>
-  <data name="lblHeadlandDistanceFromTool.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 203</value>
+    <value>Werktuig:</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>250, 145</value>
+    <value>215, 145</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 23</value>
+    <value>66, 23</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Граница:</value>
-  </data>
-  <data name="lblHeadlandDistanceAway.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 174</value>
-  </data>
-  <data name="lblBoundaryArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 145</value>
-  </data>
-  <data name="lblRoll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 203</value>
-  </data>
-  <data name="lblGPSHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 174</value>
-  </data>
-  <data name="lblGyroHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>115, 145</value>
-  </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 203</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 145</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 174</value>
+    <value>Grens:</value>
   </data>
   <data name="btnRateConfig.Text" xml:space="preserve">
-    <value>Конфиг</value>
+    <value>Instellingen</value>
   </data>
   <data name="btnRateDn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2971,9 +2914,6 @@
         zwn7OxVuMNYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="btnSettings.Text" xml:space="preserve">
-    <value>Конфиг</value>
-  </data>
   <data name="btnAutoYouTurn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -3011,9 +2951,6 @@
         KoOi4BkznCmLVM/KKK9mMHgYu4OpwAflkupZGs0R54fNCeeHzQcy/wN+DvZU+RE2uwAAAABJRU5ErkJg
         gg==
 </value>
-  </data>
-  <data name="btnAutoYouTurn.Text" xml:space="preserve">
-    <value>Конфиг</value>
   </data>
   <data name="btnAutoSteerConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3205,9 +3142,6 @@
         8wsYFzzIx2fkgBEj9AMWLGg5MTYG41bGYPWWbCTztVxH+oA9AGqertAY6vGfJeD/DxD+D9TF1b3SXXPH
         AAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="btnAutoSteerConfig.Text" xml:space="preserve">
-    <value>Конфиг</value>
   </data>
   <data name="btnUnits.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3569,7 +3503,7 @@
 </value>
   </data>
   <data name="btnFileExplorer.Text" xml:space="preserve">
-    <value>Файлы</value>
+    <value>Bestanden</value>
   </data>
   <data name="btnUdpSettings.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3910,7 +3844,7 @@
 </value>
   </data>
   <data name="btnComm.Text" xml:space="preserve">
-    <value>Порты</value>
+    <value>Poorten</value>
   </data>
   <data name="btnGPSData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4175,13 +4109,10 @@
 </value>
   </data>
   <data name="lblPureSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1234, -4</value>
-  </data>
-  <data name="btnResetSim.Text" xml:space="preserve">
-    <value>Сброс</value>
+    <value>1173, -4</value>
   </data>
   <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>933, 554</value>
+    <value>872, 554</value>
   </data>
   <data name="btnLeftYouTurn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4322,7 +4253,7 @@
 </value>
   </data>
   <data name="btnTiltDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1031, 628</value>
+    <value>970, 676</value>
   </data>
   <data name="btnTiltUp.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4388,7 +4319,7 @@
 </value>
   </data>
   <data name="btnTiltUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>934, 628</value>
+    <value>873, 676</value>
   </data>
   <data name="btnZoomIn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4458,7 +4389,7 @@
 </value>
   </data>
   <data name="btnZoomIn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1148, 628</value>
+    <value>1087, 676</value>
   </data>
   <data name="btnZoomOut.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4530,7 +4461,7 @@
 </value>
   </data>
   <data name="btnZoomOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1256, 628</value>
+    <value>1195, 676</value>
   </data>
   <data name="btnSwapDirection.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5013,7 +4944,7 @@
 </value>
   </data>
   <data name="btnSectionOffAutoOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>815, 455</value>
+    <value>754, 455</value>
   </data>
   <data name="btnFlag.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5408,7 +5339,7 @@
 </value>
   </data>
   <data name="btnRightYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>699, 119</value>
+    <value>638, 119</value>
   </data>
   <data name="btnContour.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5499,10 +5430,10 @@
 </value>
   </data>
   <data name="btnContour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>823, 207</value>
+    <value>762, 207</value>
   </data>
   <data name="btnContour.Text" xml:space="preserve">
-    <value>Контур</value>
+    <value>Omtrek</value>
   </data>
   <data name="btnManualOffOn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5583,7 +5514,7 @@
 </value>
   </data>
   <data name="btnManualOffOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>823, 331</value>
+    <value>762, 331</value>
   </data>
   <data name="btnABLine.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5727,7 +5658,7 @@
 </value>
   </data>
   <data name="btnABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>823, 83</value>
+    <value>762, 83</value>
   </data>
   <data name="btnSection8Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5751,6 +5682,9 @@
         TfgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSection8Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 439</value>
+  </data>
   <data name="btnSection7Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEYAAAAuCAIAAAAa6/jkAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -5772,6 +5706,9 @@
         erYA4halXFgaB92WWZOMi7M0ag/s/EO2XFpCqlT/fTzPxVnKDVNLk8DU0iQwtTQJ/I+WCoW/iKH/xY+o
         TfgAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btnSection7Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 427</value>
   </data>
   <data name="btnSection6Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5795,6 +5732,9 @@
         TfgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSection6Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>139, 414</value>
+  </data>
   <data name="btnSection5Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEYAAAAuCAIAAAAa6/jkAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -5816,6 +5756,9 @@
         erYA4halXFgaB92WWZOMi7M0ag/s/EO2XFpCqlT/fTzPxVnKDVNLk8DU0iQwtTQJ/I+WCoW/iKH/xY+o
         TfgAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btnSection5Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>130, 401</value>
   </data>
   <data name="btnSection4Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5839,6 +5782,9 @@
         TfgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSection4Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 346</value>
+  </data>
   <data name="btnSection3Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEYAAAAuCAIAAAAa6/jkAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -5860,6 +5806,9 @@
         erYA4halXFgaB92WWZOMi7M0ag/s/EO2XFpCqlT/fTzPxVnKDVNLk8DU0iQwtTQJ/I+WCoW/iKH/xY+o
         TfgAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btnSection3Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>149, 333</value>
   </data>
   <data name="btnSection2Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5883,6 +5832,9 @@
         TfgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSection2Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 320</value>
+  </data>
   <data name="btnSection1Man.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEYAAAAuCAIAAAAa6/jkAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -5905,8 +5857,11 @@
         TfgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSection1Man.Location" type="System.Drawing.Point, System.Drawing">
+    <value>129, 307</value>
+  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1346, 722</value>
+    <value>1285, 770</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6012,7 +5967,7 @@
   <data name="menuLanguageRussian.Text" xml:space="preserve">
     <value>Russian</value>
   </data>
-  <data name="menuLanguageDutch.Text" xml:space="preserve">
-    <value>Nederlands</value>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Fox:</value>
   </data>
 </root>

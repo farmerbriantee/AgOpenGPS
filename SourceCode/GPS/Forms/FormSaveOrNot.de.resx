@@ -119,21 +119,22 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblQuestion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 25</value>
+    <value>76, 25</value>
   </data>
   <data name="lblQuestion.Text" xml:space="preserve">
-    <value>Rückkehr</value>
+    <value>Zurück</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 21</value>
+    <value>217, 9</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 25</value>
+    <value>155, 50</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Save and Closenzee</value>
+    <value>Speichern und 
+     Schließen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Schließen Feld</value>
+    <value>Feld schließen?</value>
   </data>
 </root>

@@ -133,6 +133,9 @@
   <data name="lblMessage2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt</value>
   </data>
+  <data name="&gt;&gt;lblMessage2.Name" xml:space="preserve">
+    <value>lblMessage2</value>
+  </data>
   <data name="&gt;&gt;lblMessage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
@@ -157,9 +160,6 @@
   </data>
   <data name="lblMessage2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="&gt;&gt;lblMessage.Parent" xml:space="preserve">
     <value>$this</value>
@@ -204,8 +204,8 @@
   <data name="lblMessage2.Location" type="System.Drawing.Point, System.Drawing">
     <value>75, 71</value>
   </data>
-  <data name="&gt;&gt;lblMessage2.Name" xml:space="preserve">
-    <value>lblMessage2</value>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>AgOpenGPS Message</value>
@@ -215,8 +215,5 @@
   </metadata>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>de</value>
   </metadata>
 </root>

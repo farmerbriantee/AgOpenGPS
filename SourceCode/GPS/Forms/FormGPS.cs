@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using System.Resources;
 using System.Reflection;
+using Microsoft.Win32;
 
 namespace AgOpenGPS
 {
@@ -973,7 +974,6 @@ namespace AgOpenGPS
             }
         }
 
- 
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -1102,7 +1102,7 @@ namespace AgOpenGPS
             LineUpManualBtns();
 
             //update the menu
-            fieldToolStripMenuItem.Text = "Close Field";
+            fieldToolStripMenuItem.Text = gStr.gsCloseField;
         }
 
         //close the current job
@@ -1203,7 +1203,7 @@ namespace AgOpenGPS
             hl.ResetHeadland();
 
             //update the menu
-            fieldToolStripMenuItem.Text = "Start Field";
+            fieldToolStripMenuItem.Text = gStr.gsStartNewField;
 
             //turn off top level buttons
             btnRightYouTurn.Enabled = false;
@@ -1232,7 +1232,7 @@ namespace AgOpenGPS
             {
                 if (stripOnlineGPS.Value == 1)
                 {
-                    var form = new FormTimedMessage(3000, "No GPS", "Is your GPS source off?");
+                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsIsGPSOff);
                     form.Show();
                     return;
                 }

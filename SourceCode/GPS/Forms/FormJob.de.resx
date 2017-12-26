@@ -118,25 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnJobOpen.Text" xml:space="preserve">
-    <value>Öffnen Sie 
-Vorhandene</value>
+    <value>Bestehendes 
+Öffnen</value>
   </data>
   <data name="btnJobNew.Text" xml:space="preserve">
-    <value>Erstelle Neu</value>
+    <value>Neu Erstellen</value>
   </data>
   <data name="btnDeleteAB.Text" xml:space="preserve">
-    <value>Rückkehr</value>
+    <value>Neustart</value>
   </data>
   <data name="btnJobResume.Text" xml:space="preserve">
-    <value>Zuletzt 
-Fortsetzen</value>
+    <value>Vorheriges 
+  Fortsetzen</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 23</value>
+    <value>147, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Bisherige Feld:</value>
+    <value>Vorheriges Feld:</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -234,6 +234,6 @@ Fortsetzen</value>
 </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Anfung Ein Feld</value>
+    <value>Feld starten</value>
   </data>
 </root>

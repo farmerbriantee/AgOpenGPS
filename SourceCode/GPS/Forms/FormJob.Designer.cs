@@ -55,8 +55,8 @@
             // 
             // btnDeleteAB
             // 
-            this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnDeleteAB, "btnDeleteAB");
+            this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnDeleteAB.Name = "btnDeleteAB";

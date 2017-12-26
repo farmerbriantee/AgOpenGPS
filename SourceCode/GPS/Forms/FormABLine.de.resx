@@ -131,7 +131,7 @@
     <value>84, 19</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Repetieren</value>
+    <value>Wiederholungen</value>
   </data>
   <data name="nudTramRepeats.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 306</value>
@@ -140,7 +140,7 @@
     <value>60, 19</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Anfang</value>
+    <value>Start</value>
   </data>
   <data name="btnDnABHeadingBy1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -265,13 +265,13 @@
     <value>86, 87</value>
   </data>
   <data name="btnAddToFile.Text" xml:space="preserve">
-    <value>Anfügen</value>
+    <value>Hinzufügen</value>
   </data>
   <data name="chField.Text" xml:space="preserve">
     <value>Feld</value>
   </data>
   <data name="chAngle.Text" xml:space="preserve">
-    <value>Engel</value>
+    <value>Winkel</value>
   </data>
   <data name="btnListDelete.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 4</value>
@@ -280,7 +280,7 @@
     <value>86, 79</value>
   </data>
   <data name="btnListDelete.Text" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Entfernen</value>
   </data>
   <data name="btnListUse.Location" type="System.Drawing.Point, System.Drawing">
     <value>167, 262</value>
@@ -289,7 +289,7 @@
     <value>86, 87</value>
   </data>
   <data name="btnListUse.Text" xml:space="preserve">
-    <value>Nutzung</value>
+    <value>Anwenden</value>
   </data>
   <data name="btnPlus90.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 276</value>

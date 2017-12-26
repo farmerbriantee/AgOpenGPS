@@ -118,6 +118,240 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Высота антенны</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 23</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Прикрепленное орудие</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Орудие</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 23</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Длина сцепления</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 23</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Длинна сцепления</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 23</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Колесная база</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 23</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Опорная точка</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 23</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Колесная база</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Высота антенны</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 23</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Точка поворота оси</value>
+  </data>
+  <data name="tabVehicle.Text" xml:space="preserve">
+    <value>Транспорт</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 69</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Tow Between Disabled
+&lt; 200 cm
+&lt; 78 дюйм</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 46</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Буксир между сцепкой
+Только длинна</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 23</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Установите в разделах</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 23</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Ширина орудия</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>691, 151</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 23</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Выключение задержки (сек)</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>741, 20</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>209, 23</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Смотреть вперед (сек)</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 46</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Заднее сцепное устройство
+Только длинна</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 46</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>AB линия
+Пропуск или перекрытие</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Коррекция орудия</value>
+  </data>
+  <data name="tabTool.Text" xml:space="preserve">
+    <value>Орудие</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 33</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
+    <value>км/ч</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>345, 25</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Выключение секций при скорости</value>
+  </data>
+  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 25</value>
+  </data>
+  <data name="lblDoNotExceed.Text" xml:space="preserve">
+    <value>* Не превышать 1570 *</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>332, 288</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 33</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Общая ширина</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 25</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Разделы</value>
+  </data>
+  <data name="tabSections.Text" xml:space="preserve">
+    <value>Разделы</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 29</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
+    <value>Фактивный низкий уровень</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>371, 29</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
+    <value>Включить рабочий переключатель</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Переключатель работы</value>
+  </data>
+  <data name="tabWorkSwitch.Text" xml:space="preserve">
+    <value>Переключатель работы</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Расстояние от границы до точки</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 87</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>279, 50</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Использовать исправления
+для камеры</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>268, 25</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>1 -&gt; Много треугольников</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Разрешение треугольника</value>
+  </data>
+  <data name="chkIsAtanCam.Size" type="System.Drawing.Size, System.Drawing">
+    <value>377, 29</value>
+  </data>
+  <data name="chkIsAtanCam.Text" xml:space="preserve">
+    <value>Использовать управление для Cam</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Снимите флажок для истинного</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>373, 25</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>Больше метров больше сглаживания</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 29</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Метр</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Расстояние назад для направления</value>
+  </data>
+  <data name="tabDisplay.Text" xml:space="preserve">
+    <value>Дисплей</value>
+  </data>
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABGAAAAHsCAYAAACdRNutAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -4935,147 +5169,34 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Teilbreiten</value>
+  <data name="tabExamples.Text" xml:space="preserve">
+    <value>Образцы</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Geräteoffset</value>
-  </data>
-  <data name="tabDisplay.Text" xml:space="preserve">
-    <value>Anzeige</value>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 23</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Einheiten</value>
+    <value>Измерения в</value>
   </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Gerätebreite</value>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 581</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>    AB Linie
-Überlapp</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Gerätebreite</value>
-  </data>
-  <data name="label36.Text" xml:space="preserve">
-    <value>Gerät angehangen</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Radabstand</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Radabstand</value>
-  </data>
-  <data name="tabExamples.Text" xml:space="preserve">
-    <value>Beispiele</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>4 -&gt; Wenige Dreiecke</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="lblDoNotExceed.Text" xml:space="preserve">
-    <value>* Obere Grenze: 1570 *</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Tow Between Disabled When
-&lt; 200 cm or
-&lt; 78 inches</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>Teilbreiten deaktivieren unter</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Look Ahead (Sek)</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>je Größer umso ruhiger</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
-    <value>Arbeitsschalter aktivieren</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Trailing Hitch
-Length Only</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Gerät ist</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dreieck Auflösung</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Arbeitsschalter</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Rückblick für Kurs</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Antennenhöhe</value>
-  </data>
-  <data name="tabSections.Text" xml:space="preserve">
-    <value>Teilbreiten</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Feldgrenze Punkt zu Punkt Distanz</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Ausschaltverzögerung (Sek)</value>
-  </data>
-  <data name="tabTool.Text" xml:space="preserve">
-    <value>  Gerät  </value>
-  </data>
-  <data name="bntOK.Text" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Antennenhöhe</value>
-  </data>
-  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
-    <value>Low Aktiv</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>1 -&gt; Viele Dreiecke</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>6 bis 10 m ist empfohlen</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>* Alles was starr verbunden ist
-Zugstange, 3-Punkt</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
-    <value>km/h</value>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 25</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Arbeitsbreite</value>
+    <value>Ширина орудия:</value>
   </data>
-  <data name="tabWorkSwitch.Text" xml:space="preserve">
-    <value>Arbeitsschalter</value>
+  <data name="lblInchesCm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 39</value>
   </data>
   <data name="lblInchesCm.Text" xml:space="preserve">
-    <value>Inch</value>
+    <value>Дюйм</value>
   </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Meter</value>
+  <data name="bntOK.Text" xml:space="preserve">
+    <value>Сохранить</value>
   </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Drehachse</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Drehpunkt ist</value>
-  </data>
-  <data name="tabVehicle.Text" xml:space="preserve">
-    <value> Fahrzeug</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Настроить</value>
   </data>
 </root>

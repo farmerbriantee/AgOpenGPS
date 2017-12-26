@@ -61,29 +61,164 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boundary Not Set.
+        /// </summary>
+        internal static string gsBoundaryNotSet {
+            get {
+                return ResourceManager.GetString("gsBoundaryNotSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boundary Too Small To Create a Headland.
+        /// </summary>
+        internal static string gsBoundaryTooSmall {
+            get {
+                return ResourceManager.GetString("gsBoundaryTooSmall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click Button Again to Stop.
+        /// </summary>
+        internal static string gsClickButtonAgainToStop {
+            get {
+                return ResourceManager.GetString("gsClickButtonAgainToStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Field.
+        /// </summary>
+        internal static string gsCloseField {
+            get {
+                return ResourceManager.GetString("gsCloseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close Field First.
+        /// </summary>
+        internal static string gsCloseFieldFirst {
+            get {
+                return ResourceManager.GetString("gsCloseFieldFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Boundary First.
+        /// </summary>
+        internal static string gsCreateBoundaryFirst {
+            get {
+                return ResourceManager.GetString("gsCreateBoundaryFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drawing Has Begun.
+        /// </summary>
+        internal static string gsDrawingHasBegun {
+            get {
+                return ResourceManager.GetString("gsDrawingHasBegun", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ft.
+        /// </summary>
+        internal static string gsFeet {
+            get {
+                return ResourceManager.GetString("gsFeet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field Is Open.
+        /// </summary>
+        internal static string gsFieldIsOpen {
+            get {
+                return ResourceManager.GetString("gsFieldIsOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field Not Open.
         /// </summary>
-        internal static string FieldNotOpen {
+        internal static string gsFieldNotOpen {
             get {
-                return ResourceManager.GetString("FieldNotOpen", resourceCulture);
+                return ResourceManager.GetString("gsFieldNotOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is your GPS source off?.
+        /// </summary>
+        internal static string gsIsGPSOff {
+            get {
+                return ResourceManager.GetString("gsIsGPSOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No GPS.
+        /// </summary>
+        internal static string gsNoGPS {
+            get {
+                return ResourceManager.GetString("gsNoGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Guidance Lines.
+        /// </summary>
+        internal static string gsNoGuidanceLines {
+            get {
+                return ResourceManager.GetString("gsNoGuidanceLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to *** No Sentence Data ***.
+        /// </summary>
+        internal static string gsNoSentenceData {
+            get {
+                return ResourceManager.GetString("gsNoSentenceData", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
-        internal static string Off {
+        internal static string gsOff {
             get {
-                return ResourceManager.GetString("Off", resourceCulture);
+                return ResourceManager.GetString("gsOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program will exit. Please Restart.
+        /// </summary>
+        internal static string gsProgramExitAndRestart {
+            get {
+                return ResourceManager.GetString("gsProgramExitAndRestart", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Start New Field.
         /// </summary>
-        internal static string StartNewField {
+        internal static string gsStartNewField {
             get {
-                return ResourceManager.GetString("StartNewField", resourceCulture);
+                return ResourceManager.GetString("gsStartNewField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn on Contour or Make AB Line.
+        /// </summary>
+        internal static string gsTurnOnContourOrABLine {
+            get {
+                return ResourceManager.GetString("gsTurnOnContourOrABLine", resourceCulture);
             }
         }
     }

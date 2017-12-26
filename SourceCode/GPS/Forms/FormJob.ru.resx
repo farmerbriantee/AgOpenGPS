@@ -117,55 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gsOff" xml:space="preserve">
-    <value>Aus</value>
+  <data name="btnJobOpen.Text" xml:space="preserve">
+    <value>Открыть 
+существующий</value>
   </data>
-  <data name="gsStartNewField" xml:space="preserve">
-    <value>Neues Feld beginnen</value>
+  <data name="btnJobNew.Text" xml:space="preserve">
+    <value>Создать новый</value>
   </data>
-  <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Feld ist nicht offen</value>
+  <data name="btnDeleteAB.Text" xml:space="preserve">
+    <value>Вернуть</value>
   </data>
-  <data name="gsBoundaryNotSet" xml:space="preserve">
-    <value>Grenzen nicht gesetzt</value>
+  <data name="btnJobResume.Text" xml:space="preserve">
+    <value>Возобновить последнее</value>
   </data>
-  <data name="gsBoundaryTooSmall" xml:space="preserve">
-    <value>Grenzen zu klein für Vorgewende</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Предыдущее поле</value>
   </data>
-  <data name="gsClickButtonAgainToStop" xml:space="preserve">
-    <value>Nochmals betätigen zum Stoppen</value>
-  </data>
-  <data name="gsCloseField" xml:space="preserve">
-    <value>Feld schließen</value>
-  </data>
-  <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Zuerst Feld schließen</value>
-  </data>
-  <data name="gsCreateBoundaryFirst" xml:space="preserve">
-    <value>Zuerst Feldgrenzen einlernen</value>
-  </data>
-  <data name="gsDrawingHasBegun" xml:space="preserve">
-    <value>Aufzeichnung gestartet</value>
-  </data>
-  <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Feld ist offen</value>
-  </data>
-  <data name="gsIsGPSOff" xml:space="preserve">
-    <value>Ist GPS ausgeschaltet?</value>
-  </data>
-  <data name="gsNoGPS" xml:space="preserve">
-    <value>Kein GPS</value>
-  </data>
-  <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Keine Führungslinien</value>
-  </data>
-  <data name="gsNoSentenceData" xml:space="preserve">
-    <value>*** Kein Datenempfang ***</value>
-  </data>
-  <data name="gsProgramExitAndRestart" xml:space="preserve">
-    <value>Programm wird geschlossen. Bitte neu starten</value>
-  </data>
-  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
-    <value>Kontur aktivieren oder AB Linie erstellen</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Запуск поля</value>
   </data>
 </root>

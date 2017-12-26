@@ -9,7 +9,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using SharpGL;
 using AgOpenGPS.Properties;
-
+using Microsoft.Win32;
 
 namespace AgOpenGPS
 {
@@ -59,7 +59,7 @@ namespace AgOpenGPS
 
             //rate control button
 
-            btnRate.Text = _rm.GetString("Off");
+            btnRate.Text = gStr.gsOff;
 
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
@@ -109,6 +109,7 @@ namespace AgOpenGPS
                 menuLanguageEnglish.Checked = true;
                 menuLanguageDeutsch.Checked = false;
                 menuLanguageRussian.Checked = false;
+                menuLanguageDutch.Checked = false;
             }
 
             if (Settings.Default.set_culture == "de")
@@ -116,6 +117,7 @@ namespace AgOpenGPS
                 menuLanguageEnglish.Checked = false;
                 menuLanguageDeutsch.Checked = true;
                 menuLanguageRussian.Checked = false;
+                menuLanguageDutch.Checked = false;
             }
 
             if (Settings.Default.set_culture == "ru")
@@ -123,6 +125,15 @@ namespace AgOpenGPS
                 menuLanguageEnglish.Checked = false;
                 menuLanguageDeutsch.Checked = false;
                 menuLanguageRussian.Checked = true;
+                menuLanguageDutch.Checked = false;
+            }
+
+            if (Settings.Default.set_culture == "nl")
+            {
+                menuLanguageEnglish.Checked = false;
+                menuLanguageDeutsch.Checked = false;
+                menuLanguageRussian.Checked = false;
+                menuLanguageDutch.Checked = true;
             }
 
         }
@@ -387,37 +398,39 @@ namespace AgOpenGPS
         {
             if (tabControl1.Visible)
             {
+                //tab will be gone
                 tabControl1.Visible = false;
                 openGLControl.Width = Width;
                 btnTiltDown.Visible = false;
                 btnTiltUp.Visible = false;
-                btnABLine.Left += 415;
-                btnContour.Left += 415;
-                btnManualOffOn.Left += 415;
-                btnSectionOffAutoOn.Left += 415;
-                btnRightYouTurn.Left += 415;
+                btnABLine.Left = Width - 120;
+                btnContour.Left = Width - 120;
+                btnManualOffOn.Left = Width - 120;
+                btnSectionOffAutoOn.Left = Width - 130;
+                btnRightYouTurn.Left = Width - 240;
                 btnZoomIn.Left = 3;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
                 LineUpManualBtns();
-                txtDistanceOffABLine.Left += 207;
-                txtDistanceOffABLine.Top += 80;
+                txtDistanceOffABLine.Left = Width/2 - 33;
+                txtDistanceOffABLine.Top = 80;
             }
             else
             {
+                //tab will be visible
                 tabControl1.Visible = true;
                 openGLControl.Width = Width - 435;
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
-                btnABLine.Left -= 415;
-                btnContour.Left -= 415;
-                btnManualOffOn.Left -= 415;
-                btnSectionOffAutoOn.Left -= 415;
-                btnRightYouTurn.Left -= 415;
+                btnABLine.Left = Width - 540;
+                btnContour.Left = Width - 540;
+                btnManualOffOn.Left = Width - 540;
+                btnSectionOffAutoOn.Left = Width - 548;
+                btnRightYouTurn.Left = Width - 660;
                 LineUpManualBtns();
                 btnZoomIn.Left = Width - 220;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-                txtDistanceOffABLine.Left -= 207;
-                txtDistanceOffABLine.Top -= 80;
+                txtDistanceOffABLine.Left = (Width - 430)/2 - 33;
+                txtDistanceOffABLine.Top = -1;
             }
         }
 
@@ -472,7 +485,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    var form = new FormTimedMessage(2000, "Ooops, No Guidance Lines", "Turn on Contour or Make AB Line");
+                    var form = new FormTimedMessage(2000,(gStr.gsNoGuidanceLines),(gStr.gsTurnOnContourOrABLine));
                     form.Show();
                 }
             }
@@ -801,7 +814,7 @@ namespace AgOpenGPS
                 //btnPerimeter.Text = "Logging";
                 btnPerimeter.Image = Properties.Resources.PeriDraw;
                 periArea.isBtnPerimeterOn = true;
-                var form = new FormTimedMessage(3000, "Drawing Has Begun", "Click Button Again to Stop");
+                var form = new FormTimedMessage(3000, gStr.gsDrawingHasBegun, gStr.gsClickButtonAgainToStop);
                 form.Show();
             }
         }
@@ -1030,7 +1043,7 @@ namespace AgOpenGPS
                     btnRateDn.Visible = false;
                     btnRateUp.Visible = false;
                     btnRate.Image = Properties.Resources.RateControlOff;
-                    btnRate.Text = _rm.GetString("Off");
+                    btnRate.Text =(gStr.gsOff);
                     lblRateAppliedActual.Text = "-";
                     rc.rateSetPoint = 0.0;
                     mc.relayRateData[mc.rdRateSetPointLo] = 0;
@@ -1038,7 +1051,7 @@ namespace AgOpenGPS
                     RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
                 }
             }
-            else { TimedMessageBox(3000, _rm.GetString("FieldNotOpen"), _rm.GetString("StartNewField")); }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
         }
         private void btnRate1Select_Click(object sender, EventArgs e)
         {
@@ -1235,7 +1248,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                var form = new FormTimedMessage(2000, "Ooops, Field Open", "Close Field First");
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }
@@ -1253,7 +1266,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                var form = new FormTimedMessage(2000, "Ooops, Field Open", "Close Field First");
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }
@@ -1267,26 +1280,36 @@ namespace AgOpenGPS
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
+                RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS",true);
+
                 if (fbd.SelectedPath != Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
                 {
+                    //save the user set directory in Registry
+                    regKey.SetValue("Directory", fbd.SelectedPath);
+                    regKey.Close();
                     Settings.Default.setF_workingDirectory = fbd.SelectedPath;
                     Settings.Default.Save();
                 }
                 else
                 {
+                    regKey.SetValue("Directory", "Default");
+                    regKey.Close();
                     Settings.Default.setF_workingDirectory = "Default";
                     Settings.Default.Save();
                 }
-                MessageBox.Show("Program will exit. Please Restart");
+
+                //restart program
+                MessageBox.Show(gStr.gsProgramExitAndRestart);
                 Close();
             }
         }
 
+        //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
             {
-                var form = new FormTimedMessage(2000, "Ooops, Field Open", "Close Field First");
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }
@@ -1294,10 +1317,16 @@ namespace AgOpenGPS
             menuLanguageEnglish.Checked = true;
             menuLanguageDeutsch.Checked = false;
             menuLanguageRussian.Checked = false;
+            menuLanguageDutch.Checked = false;
 
-            Settings.Default.set_culture = "en";
-            Settings.Default.Save();
-            MessageBox.Show("Program will exit. Please Restart");
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", "en");
+            key.Close();
+
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
 
@@ -1305,7 +1334,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                var form = new FormTimedMessage(2000, "Ooops, Field Open", "Close Field First");
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }
@@ -1313,9 +1342,16 @@ namespace AgOpenGPS
             menuLanguageEnglish.Checked = false;
             menuLanguageDeutsch.Checked = true;
             menuLanguageRussian.Checked = false;
-            Settings.Default.set_culture = "de";
-            Settings.Default.Save();
-            MessageBox.Show("Program will exit. Please Restart");
+            menuLanguageDutch.Checked = false;
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", "de");
+            key.Close();
+
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
 
@@ -1323,7 +1359,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                var form = new FormTimedMessage(2000, "Ooops, Field Open", "Close Field First");
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }
@@ -1331,13 +1367,44 @@ namespace AgOpenGPS
             menuLanguageEnglish.Checked = false;
             menuLanguageDeutsch.Checked = false;
             menuLanguageRussian.Checked = true;
-            Settings.Default.set_culture = "ru";
-            Settings.Default.Save();
-            MessageBox.Show("Program will exit. Please Restart");
+            menuLanguageDutch.Checked = false;
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", "ru");
+            key.Close();
+
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
 
         }
 
+        private void menuLanguageDutch_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
+            menuLanguageEnglish.Checked = false;
+            menuLanguageDeutsch.Checked = false;
+            menuLanguageRussian.Checked = false;
+            menuLanguageDutch.Checked = true;
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", "nl");
+            key.Close();
+
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
+            Close();
+        }
 
         //Help menu drop down items
         private void aboutToolStripMenuHelpAbout_Click(object sender, EventArgs e)
@@ -1360,7 +1427,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                MessageBox.Show("Please Close the Field First.");
+                MessageBox.Show(gStr.gsCloseFieldFirst);
             }
             else
             {
@@ -1371,7 +1438,7 @@ namespace AgOpenGPS
                 {
                     Settings.Default.Reset();
                     Settings.Default.Save();
-                    MessageBox.Show("Program will exit. Please Restart");
+                    MessageBox.Show(gStr.gsProgramExitAndRestart);
                     Application.Exit();
                 }
             }
@@ -1577,7 +1644,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form = new FormTimedMessage(2000, "Field Not Started", "Please Start a Field");
+                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
                 form.Show();
             }
         }
@@ -1713,7 +1780,7 @@ namespace AgOpenGPS
             if (boundz.isSet)
             {
                 //field too small
-                if (boundz.ptList.Count < 30) { TimedMessageBox(3000, "Boundary too small", "Unable to create Headland"); return; }
+                if (boundz.ptList.Count < 30) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
                 using (var form = new FormHeadland(this))
                 {
                     var result = form.ShowDialog();
@@ -1723,7 +1790,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-            else { TimedMessageBox(3000, "Boundary Not Set", "Create a Boundary First"); }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
         private void toolstripBoundary_Click(object sender, EventArgs e)
         {
@@ -1739,7 +1806,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-            else { TimedMessageBox(3000, _rm.GetString( "FieldNotOpen"), _rm.GetString("StartNewField") ); }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField ); }
         }
         private void toolstripField_Click(object sender, EventArgs e)
         {
@@ -2028,9 +2095,9 @@ namespace AgOpenGPS
                 {
                     stripOnlineGPS.Value = 1;
                     lblEasting.Text = "-";
-                    lblNorthing.Text = "No GPS";
+                    lblNorthing.Text = gStr.gsNoGPS;
                     lblZone.Text = "-";
-                    tboxSentence.Text = "** No Sentence Data **";
+                    tboxSentence.Text = gStr.gsNoSentenceData;
                 }
                 else stripOnlineGPS.Value = 100;
             }

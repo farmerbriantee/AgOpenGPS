@@ -257,7 +257,7 @@
     <value>57, 16</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
-    <value>Zur Zeit:</value>
+    <value>Aktuell:</value>
   </data>
   <data name="btnCloseSerial.Text" xml:space="preserve">
     <value>Trennen</value>
@@ -266,7 +266,7 @@
     <value>126, 16</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>NMEA Von GPS Port:</value>
+    <value>NMEA Daten von GPS Port:</value>
   </data>
   <data name="btnOpenSerial.Text" xml:space="preserve">
     <value>Verbinden</value>
@@ -281,37 +281,37 @@
     <value>108, 16</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>Von Section Port:</value>
+    <value>Teilbreiten empfangen:</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 16</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Zu Section Port:</value>
+    <value>Zur Teilbreitensteuerung</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>Zur Zeit:</value>
+    <value>Aktuell:</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 16</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Zu Autofähre:</value>
+    <value>Zum Auto Steer</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>Zur Zeit:</value>
+    <value>Aktuell:</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 16</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>Von Autofähre:</value>
+    <value>Von Auto Steer</value>
   </data>
   <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
     <value>Verbinden</value>
@@ -320,9 +320,33 @@
     <value>Trennen</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
-    <value>Autofähre Port</value>
+    <value>Autosteer Port</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Verbindung Einstellungen</value>
+    <value>Kommunikations Einstellungen</value>
+  </data>
+  <data name="btnRescan.Text" xml:space="preserve">
+    <value>Ports aktualisieren</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>USB Ports aktualisieren</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>GPS Port</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Teilbreite Port</value>
+  </data>
+  <data name="lblCurrentPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblCurrentBaud.Text" xml:space="preserve">
+    <value>Baud</value>
   </data>
 </root>

@@ -117,55 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gsOff" xml:space="preserve">
-    <value>Aus</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Настройка связи</value>
   </data>
-  <data name="gsStartNewField" xml:space="preserve">
-    <value>Neues Feld beginnen</value>
+  <data name="btnOpenSerial.Text" xml:space="preserve">
+    <value>соединить</value>
   </data>
-  <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Feld ist nicht offen</value>
+  <data name="btnRescan.Text" xml:space="preserve">
+    <value>Пересканировать порты</value>
   </data>
-  <data name="gsBoundaryNotSet" xml:space="preserve">
-    <value>Grenzen nicht gesetzt</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Строка NMEA из порта GPS:</value>
   </data>
-  <data name="gsBoundaryTooSmall" xml:space="preserve">
-    <value>Grenzen zu klein für Vorgewende</value>
+  <data name="btnCloseSerial.Text" xml:space="preserve">
+    <value>Отключить</value>
   </data>
-  <data name="gsClickButtonAgainToStop" xml:space="preserve">
-    <value>Nochmals betätigen zum Stoppen</value>
+  <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
+    <value>соединить</value>
   </data>
-  <data name="gsCloseField" xml:space="preserve">
-    <value>Feld schließen</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>В данный момент:</value>
   </data>
-  <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Zuerst Feld schließen</value>
+  <data name="btnCloseSerialArduino.Text" xml:space="preserve">
+    <value>Отключить</value>
   </data>
-  <data name="gsCreateBoundaryFirst" xml:space="preserve">
-    <value>Zuerst Feldgrenzen einlernen</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Обновление доступных USB-портов</value>
   </data>
-  <data name="gsDrawingHasBegun" xml:space="preserve">
-    <value>Aufzeichnung gestartet</value>
+  <data name="label2.Text" xml:space="preserve">
+    <value>В порт раздела:</value>
   </data>
-  <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Feld ist offen</value>
+  <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
+    <value>Порт</value>
   </data>
-  <data name="gsIsGPSOff" xml:space="preserve">
-    <value>Ist GPS ausgeschaltet?</value>
+  <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
+    <value>Порт</value>
   </data>
-  <data name="gsNoGPS" xml:space="preserve">
-    <value>Kein GPS</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>GPS порт</value>
   </data>
-  <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Keine Führungslinien</value>
+  <data name="label17.Text" xml:space="preserve">
+    <value>В данный момент:</value>
   </data>
-  <data name="gsNoSentenceData" xml:space="preserve">
-    <value>*** Kein Datenempfang ***</value>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Порт раздела</value>
   </data>
-  <data name="gsProgramExitAndRestart" xml:space="preserve">
-    <value>Programm wird geschlossen. Bitte neu starten</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Для автопилота:</value>
   </data>
-  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
-    <value>Kontur aktivieren oder AB Linie erstellen</value>
+  <data name="btnOpenSerialArduino.Text" xml:space="preserve">
+    <value>Соединить</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Из порта раздела:</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>К автопилоту:</value>
+  </data>
+  <data name="lblCurrentPort.Text" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.Text" xml:space="preserve">
+    <value>Отключить</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>В данный момент:</value>
+  </data>
+  <data name="lblCurrentBaud.Text" xml:space="preserve">
+    <value>Бод</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Порт автопилота</value>
   </data>
 </root>

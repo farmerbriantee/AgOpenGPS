@@ -357,32 +357,68 @@
   <data name="txtDistanceOffABLine.Location" type="System.Drawing.Point, System.Drawing">
     <value>329, 0</value>
   </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 6</value>
+  </data>
+  <data name="menuLanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 40</value>
+  </data>
+  <data name="menuLanguageEnglish.Text" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="menuLanguageDeutsch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 40</value>
+  </data>
+  <data name="menuLanguageRussian.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 40</value>
+  </data>
+  <data name="menuLanguageRussian.Text" xml:space="preserve">
+    <value>Russisch</value>
+  </data>
+  <data name="menuLanguageDutch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>285, 40</value>
+  </data>
+  <data name="menuLanguageDutch.Text" xml:space="preserve">
+    <value>Niederländisch</value>
+  </data>
   <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 40</value>
+    <value>350, 40</value>
   </data>
   <data name="menustripLanguage.Text" xml:space="preserve">
     <value>Sprache</value>
   </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 6</value>
+  </data>
+  <data name="setWorkingDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>350, 40</value>
+  </data>
+  <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ordner</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>347, 6</value>
+  </data>
   <data name="loadVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 40</value>
+    <value>350, 40</value>
   </data>
   <data name="loadVehicleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Laden Fahrzeug</value>
+    <value>Fahrzeug laden</value>
   </data>
   <data name="saveVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 40</value>
+    <value>350, 40</value>
   </data>
   <data name="saveVehicleToolStripMenuItem.Text" xml:space="preserve">
-    <value>Speichern Fahrzeug</value>
+    <value>Fahrzeug speichern</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>351, 6</value>
+    <value>347, 6</value>
   </data>
   <data name="fieldToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>354, 40</value>
+    <value>350, 40</value>
   </data>
   <data name="fieldToolStripMenuItem.Text" xml:space="preserve">
-    <value>Anfang Feld</value>
+    <value>Feld starten</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 37</value>
@@ -391,82 +427,103 @@
     <value>Datei</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 6</value>
+    <value>333, 6</value>
   </data>
   <data name="resetALLToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="resetALLToolStripMenuItem.Text" xml:space="preserve">
     <value>Alles Zurücksetzen</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 6</value>
+    <value>333, 6</value>
+  </data>
+  <data name="sectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 40</value>
+  </data>
+  <data name="sectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Teilbreite</value>
+  </data>
+  <data name="fieldToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 40</value>
+  </data>
+  <data name="fieldToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Feld</value>
   </data>
   <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
     <value>Farben</value>
   </data>
+  <data name="metricToolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 40</value>
+  </data>
+  <data name="metricToolStrip.Text" xml:space="preserve">
+    <value>Metrisch</value>
+  </data>
+  <data name="imperialToolStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 40</value>
+  </data>
   <data name="toolStripUnitsMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="toolStripUnitsMenu.Text" xml:space="preserve">
     <value>Einheiten</value>
   </data>
   <data name="bigAltitudeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
+  </data>
+  <data name="bigAltitudeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Höhenanzeige</value>
   </data>
   <data name="sideGuideLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="sideGuideLines.Text" xml:space="preserve">
-    <value>zusätzliche Anleitung</value>
+    <value>Führungslinien</value>
   </data>
   <data name="gridToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="gridToolStripMenuItem.Text" xml:space="preserve">
     <value>Raster An</value>
   </data>
   <data name="lightbarToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="lightbarToolStripMenuItem.Text" xml:space="preserve">
     <value>Lichtleiste An</value>
   </data>
   <data name="logNMEAMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="polygonsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
-  </data>
-  <data name="polygonsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Polygone An</value>
+    <value>336, 40</value>
   </data>
   <data name="pursuitLineToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="pursuitLineToolStripMenuItem.Text" xml:space="preserve">
-    <value>Verfolgungslinie</value>
+    <value>Führungslinie</value>
   </data>
   <data name="skyToolStripMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="skyToolStripMenu.Text" xml:space="preserve">
     <value>Himmel An</value>
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 6</value>
+    <value>333, 6</value>
   </data>
   <data name="simulatorOnToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>368, 40</value>
+    <value>336, 40</value>
   </data>
   <data name="simulatorOnToolStripMenuItem.Text" xml:space="preserve">
     <value>Simulator An</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>365, 6</value>
+    <value>333, 6</value>
   </data>
   <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>127, 37</value>
@@ -475,31 +532,52 @@
     <value>Anzeige</value>
   </data>
   <data name="explorerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
   </data>
   <data name="webCamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
   </data>
   <data name="fieldViewerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
+  </data>
+  <data name="fieldViewerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Feldbetrachter</value>
   </data>
   <data name="googleEarthToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
   </data>
   <data name="googleEarthToolStripMenuItem.Text" xml:space="preserve">
-    <value>Google Earth - Flagge</value>
+    <value>Google Earth - Marker</value>
   </data>
   <data name="gPSDataToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
+  </data>
+  <data name="gPSDataToolStripMenuItem1.Text" xml:space="preserve">
+    <value>GPS Daten</value>
+  </data>
+  <data name="aboutToolStripMenuHelpAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 40</value>
+  </data>
+  <data name="aboutToolStripMenuHelpAbout.Text" xml:space="preserve">
+    <value>Über</value>
+  </data>
+  <data name="helpToolStripMenuHelpHelp.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 40</value>
+  </data>
+  <data name="helpToolStripMenuHelpHelp.Text" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
   <data name="helpToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>380, 40</value>
+    <value>383, 40</value>
+  </data>
+  <data name="helpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 37</value>
+    <value>96, 37</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Werkzeuge</value>
+    <value>Gerät</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1178, 37</value>
@@ -705,7 +783,7 @@
 </value>
   </data>
   <data name="toolstripField.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 70</value>
+    <value>302, 70</value>
   </data>
   <data name="toolstripField.Text" xml:space="preserve">
     <value>Feld</value>
@@ -777,10 +855,10 @@
 </value>
   </data>
   <data name="toolstripBoundary.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 70</value>
+    <value>302, 70</value>
   </data>
   <data name="toolstripBoundary.Text" xml:space="preserve">
-    <value>Grenze</value>
+    <value>Feldgrenze</value>
   </data>
   <data name="toolstripHeadland.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -914,10 +992,10 @@
 </value>
   </data>
   <data name="toolstripHeadland.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 70</value>
+    <value>302, 70</value>
   </data>
   <data name="toolstripHeadland.Text" xml:space="preserve">
-    <value>Landspitze</value>
+    <value>Vorgewende</value>
   </data>
   <data name="toolstripResetTrip.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1023,16 +1101,10 @@
 </value>
   </data>
   <data name="toolstripResetTrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 70</value>
+    <value>302, 70</value>
   </data>
   <data name="toolstripResetTrip.Text" xml:space="preserve">
-    <value>&gt;0&lt; Ausflug</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 39</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Text" xml:space="preserve">
-    <value>Anfang</value>
+    <value>&gt;0&lt; Strecke</value>
   </data>
   <data name="toolstripUDPConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1164,9 +1236,6 @@
         dB4ag13oPDQGu9B5aAx2ofPQGOxC56Ex2IXOQ2OwC52HxmAXOg+NwS50HhqDXeg8NAa70HloDHah89AY
         7ELnoTHYhc5DY7ALnYfGYBc6CzD/A+0QTy8h4KhCAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="toolstripUDPConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 86</value>
   </data>
   <data name="toolstripUSBPortsConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1375,12 +1444,6 @@
         f+tHBfH/AJoRYWvZ/G16AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolstripUSBPortsConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 86</value>
-  </data>
-  <data name="toolstripUSBPortsConfig.Text" xml:space="preserve">
-    <value>Häfen</value>
-  </data>
   <data name="toolstripVehicleConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -1492,9 +1555,6 @@
         De31v4E/DQHS0n8A/jQEGPLOfwN/GgK6/nZLGLLiXtBlvT+UAGMsd/EeXv574A8l4F5L0O+Be9sDif8D
         zwn7OxVuMNYAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="toolstripVehicleConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 86</value>
   </data>
   <data name="toolstripVehicleConfig.Text" xml:space="preserve">
     <value>Fahrzeug</value>
@@ -1690,12 +1750,6 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolstripAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 86</value>
-  </data>
-  <data name="toolstripAutoSteerConfig.Text" xml:space="preserve">
-    <value>Auto Steuern</value>
-  </data>
   <data name="toolstripYouTurnConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -1734,17 +1788,14 @@
         gg==
 </value>
   </data>
-  <data name="toolstripYouTurnConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 86</value>
-  </data>
-  <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
-    <value>Um Drehen</value>
-  </data>
   <data name="toolStripDropDownButton2.Text" xml:space="preserve">
     <value>Konfig</value>
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>311, 41</value>
+    <value>320, 41</value>
+  </data>
+  <data name="stripEqWidth.Text" xml:space="preserve">
+    <value>Breite</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 719</value>
@@ -2170,10 +2221,10 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 23</value>
+    <value>119, 23</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Rate</value>
+    <value>Aktuelle Rate</value>
   </data>
   <data name="lblAccumulatedVolume.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2187,6 +2238,12 @@
   <data name="lblSpeedUnits.Location" type="System.Drawing.Point, System.Drawing">
     <value>853, 14</value>
   </data>
+  <data name="lblSpeedUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 17</value>
+  </data>
+  <data name="lblSpeedUnits.Text" xml:space="preserve">
+    <value>km/h</value>
+  </data>
   <data name="lblHeading.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2198,7 +2255,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAARABCQEQAQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAARgBCQEYAQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2422,6 +2479,12 @@
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>O/W</value>
+  </data>
   <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2446,6 +2509,15 @@
   <data name="label16.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 67</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 23</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Höhe:</value>
+  </data>
   <data name="lblAltitude.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2464,23 +2536,41 @@
   <data name="label15.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 174</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Drehachse:</value>
+  </data>
   <data name="label14.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 203</value>
+    <value>215, 203</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
+    <value>63, 23</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Werkzeug:</value>
+    <value>Gerät:</value>
   </data>
   <data name="lblHeadlandDistanceFromTool.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>169, 145</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 23</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Feldgrenze:</value>
   </data>
   <data name="lblHeadlandDistanceAway.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -3930,9 +4020,6 @@
   </data>
   <data name="btnComm.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="btnComm.Text" xml:space="preserve">
-    <value>Häfen</value>
   </data>
   <data name="btnGPSData.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6150,14 +6237,5 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
-  </data>
-  <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
-    <value>Verzeichnisse</value>
-  </data>
-  <data name="menuLanguageEnglish.Text" xml:space="preserve">
-    <value>Englisch</value>
-  </data>
-  <data name="menuLanguageDeutsch.Text" xml:space="preserve">
-    <value>Deutsch</value>
   </data>
 </root>

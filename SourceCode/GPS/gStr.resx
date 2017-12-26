@@ -117,13 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="FieldNotOpen" xml:space="preserve">
+  <data name="gsBoundaryNotSet" xml:space="preserve">
+    <value>Boundary Not Set</value>
+  </data>
+  <data name="gsBoundaryTooSmall" xml:space="preserve">
+    <value>Boundary Too Small To Create a Headland</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>Click Button Again to Stop</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>Close Field</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Close Field First</value>
+  </data>
+  <data name="gsCreateBoundaryFirst" xml:space="preserve">
+    <value>Create a Boundary First</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Drawing Has Begun</value>
+  </data>
+  <data name="gsFeet" xml:space="preserve">
+    <value>Ft</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Field Is Open</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
     <value>Field Not Open</value>
   </data>
-  <data name="Off" xml:space="preserve">
+  <data name="gsIsGPSOff" xml:space="preserve">
+    <value>Is your GPS source off?</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>No GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>No Guidance Lines</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>*** No Sentence Data ***</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
     <value>Off</value>
   </data>
-  <data name="StartNewField" xml:space="preserve">
+  <data name="gsProgramExitAndRestart" xml:space="preserve">
+    <value>Program will exit. Please Restart</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
     <value>Start New Field</value>
+  </data>
+  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
+    <value>Turn on Contour or Make AB Line</value>
   </data>
 </root>

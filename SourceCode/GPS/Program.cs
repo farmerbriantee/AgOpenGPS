@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using System.Threading;
+using Microsoft.Win32;
+using AgOpenGPS.Properties;
 
 namespace AgOpenGPS
 {
@@ -16,6 +18,34 @@ namespace AgOpenGPS
         {
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
+                //opening the subkey  
+                RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
+
+                //create default keys if not existing
+                if (regKey == null)
+                {
+                    RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                    //storing the values  
+                    Key.SetValue("Language", "en");
+                    Key.SetValue("Directory", "Default");
+                    Key.Close();
+
+                    Settings.Default.set_culture = "en";
+                    Settings.Default.setF_workingDirectory = "Default";
+                    Settings.Default.Save();
+                }
+
+                else
+                {
+                    Settings.Default.set_culture = regKey.GetValue("Language").ToString();
+                    Settings.Default.setF_workingDirectory = regKey.GetValue("Directory").ToString();
+                    Settings.Default.Save();
+                    regKey.Close();
+                }
+
+
+
                 //if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Properties.Settings.Default.set_culture);
                 Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Properties.Settings.Default.set_culture);

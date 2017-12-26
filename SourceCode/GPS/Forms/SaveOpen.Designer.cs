@@ -648,7 +648,7 @@ namespace AgOpenGPS
                                           section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
                                               section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
 
-                                totalSquareMeters += Math.Abs((temp / 2.0));
+                                totalSquareMeters += Math.Abs((temp * 0.5));
                             }
                         }
                     }

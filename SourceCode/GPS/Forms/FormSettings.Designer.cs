@@ -349,6 +349,7 @@
             // 
             resources.ApplyResources(this.tabTool, "tabTool");
             this.tabTool.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
+            this.tabTool.Controls.Add(this.nudOffset);
             this.tabTool.Controls.Add(this.label22);
             this.tabTool.Controls.Add(this.label8);
             this.tabTool.Controls.Add(this.nudTankHitch);
@@ -363,7 +364,6 @@
             this.tabTool.Controls.Add(this.nudForeAft);
             this.tabTool.Controls.Add(this.nudOverlap);
             this.tabTool.Controls.Add(this.label5);
-            this.tabTool.Controls.Add(this.nudOffset);
             this.tabTool.Name = "tabTool";
             this.tabTool.UseVisualStyleBackColor = true;
             // 
