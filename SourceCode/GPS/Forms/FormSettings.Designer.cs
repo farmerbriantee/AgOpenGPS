@@ -51,6 +51,7 @@
             this.nudWheelbase = new System.Windows.Forms.NumericUpDown();
             this.nudAntennaHeight = new System.Windows.Forms.NumericUpDown();
             this.tabTool = new System.Windows.Forms.TabPage();
+            this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
@@ -65,7 +66,6 @@
             this.nudForeAft = new System.Windows.Forms.NumericUpDown();
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.tabSections = new System.Windows.Forms.TabPage();
             this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -117,12 +117,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
             this.tabTool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             this.tabSections.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection8)).BeginInit();
@@ -367,6 +367,27 @@
             this.tabTool.Name = "tabTool";
             this.tabTool.UseVisualStyleBackColor = true;
             // 
+            // nudOffset
+            // 
+            resources.ApplyResources(this.nudOffset, "nudOffset");
+            this.nudOffset.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudOffset.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            -2147483648});
+            this.nudOffset.Name = "nudOffset";
+            this.nudOffset.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            -2147483648});
+            this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
+            // 
             // label22
             // 
             resources.ApplyResources(this.label22, "label22");
@@ -523,27 +544,6 @@
             // 
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            // 
-            // nudOffset
-            // 
-            resources.ApplyResources(this.nudOffset, "nudOffset");
-            this.nudOffset.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudOffset.Minimum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            -2147483648});
-            this.nudOffset.Name = "nudOffset";
-            this.nudOffset.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            -2147483648});
-            this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             // 
             // tabSections
             // 
@@ -1039,12 +1039,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             this.tabTool.ResumeLayout(false);
             this.tabTool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             this.tabSections.ResumeLayout(false);
             this.tabSections.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();

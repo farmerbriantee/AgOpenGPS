@@ -117,9 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>446, 170</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="chkIsSteerAxleAhead.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
@@ -128,16 +128,16 @@
   <data name="&gt;&gt;nudOverlap.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tabExamples.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 42</value>
+  <data name="&gt;&gt;chkIsAtanCam.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Sections</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
     <value>104, 447</value>
   </data>
@@ -180,7 +180,7 @@
   <data name="label35.Text" xml:space="preserve">
     <value>Set in Sections
 </value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label35.Parent" xml:space="preserve">
     <value>tabTool</value>
   </data>
@@ -191,7 +191,7 @@
     <value>label27</value>
   </data>
   <data name="chkIsAft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 42</value>
+    <value>180, 49</value>
   </data>
   <data name="&gt;&gt;chkIsTrailingRigid.Name" xml:space="preserve">
     <value>chkIsTrailingRigid</value>
@@ -5051,12 +5051,15 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Tool Offset</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;chkIsAtanCam.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;lblSecTotalWidthInches.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="label35.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5067,6 +5070,9 @@
   <data name="&gt;&gt;nudOffset.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="chkWorkSwActiveLow.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
+  </data>
   <data name="&gt;&gt;nudSection5.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5075,10 +5081,10 @@
   </data>
   <data name="tabDisplay.Text" xml:space="preserve">
     <value> Display</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label17.Text" xml:space="preserve">
     <value>Measurements in</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label27.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
@@ -5088,8 +5094,8 @@
   <data name="&gt;&gt;label13.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label26.Parent" xml:space="preserve">
-    <value>tabVehicle</value>
+  <data name="bntOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 72</value>
   </data>
   <data name="&gt;&gt;nudMinFixStepDistance.Name" xml:space="preserve">
     <value>nudMinFixStepDistance</value>
@@ -5109,9 +5115,6 @@
   <data name="nudAntennaHeight.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;lblSecTotalWidthMeters.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -5129,7 +5132,7 @@
   </data>
   <data name="label34.Text" xml:space="preserve">
     <value>Tool Width</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
@@ -5154,8 +5157,8 @@
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;tabExamples.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 20.25pt</value>
   </data>
   <data name="&gt;&gt;tabWorkSwitch.Parent" xml:space="preserve">
     <value>tabControl1</value>
@@ -5167,7 +5170,7 @@
     <value>Tow Between Hitch
 Length Only
 </value>
-  </data>
+  <comment>x</comment></data>
   <data name="nudSection5.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 168</value>
   </data>
@@ -5176,6 +5179,9 @@ Length Only
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 271</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>tabTool</value>
   </data>
   <data name="&gt;&gt;label23.Name" xml:space="preserve">
     <value>label23</value>
@@ -5198,9 +5204,6 @@ Length Only
   <data name="lblSecTotalWidthFeet.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 35</value>
   </data>
-  <data name="chkIsAtanCam.Text" xml:space="preserve">
-    <value>Use Fix For Cam</value>
-  </data>
   <data name="&gt;&gt;label18.Parent" xml:space="preserve">
     <value>tabVehicle</value>
   </data>
@@ -5219,8 +5222,8 @@ Length Only
   <data name="&gt;&gt;bntOK.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>761, 280</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 260</value>
   </data>
   <data name="&gt;&gt;label36.Parent" xml:space="preserve">
     <value>tabVehicle</value>
@@ -5242,9 +5245,6 @@ Length Only
   </data>
   <data name="chkWorkSwActiveLow.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
-  </data>
-  <data name="nudMinFixStepDistance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 122</value>
@@ -5273,14 +5273,11 @@ Length Only
   <data name="&gt;&gt;tabDisplay.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label22.TabIndex" type="System.Int32, mscorlib">
-    <value>116</value>
-  </data>
   <data name="&gt;&gt;chkEnableWorkSwitch.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="nudSection4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 27.75pt</value>
+  <data name="&gt;&gt;bntOK.Name" xml:space="preserve">
+    <value>bntOK</value>
   </data>
   <data name="&gt;&gt;tabWorkSwitch.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5297,7 +5294,7 @@ Length Only
   <data name="label1.Text" xml:space="preserve">
     <value>    AB Line
 Skip or Overlap</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;nudAntennaPivot.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5331,15 +5328,12 @@ Skip or Overlap</value>
   <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lblSecTotalWidthFeet.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 21.75pt, style=Bold</value>
-  </data>
   <data name="chkIsPivotBehindAntenna.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Total Width</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;nudSection7.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5354,6 +5348,9 @@ Skip or Overlap</value>
   </data>
   <data name="lblDoNotExceed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;chkWorkSwActiveLow.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -5372,10 +5369,10 @@ Skip or Overlap</value>
   </data>
   <data name="label36.Text" xml:space="preserve">
     <value>Tool Attached</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label13.Text" xml:space="preserve">
     <value>Wheelbase</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;chkIsTrailingRigid.Parent" xml:space="preserve">
     <value>tabVehicle</value>
   </data>
@@ -5397,8 +5394,11 @@ Skip or Overlap</value>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>959, 551</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="nudTurnOffDelay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 65</value>
+  </data>
+  <data name="nudCutoffSpeed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 419</value>
   </data>
   <data name="lblTurnOffBelowUnits.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5411,7 +5411,7 @@ Skip or Overlap</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Wheelbase</value>
-  </data>
+  <comment>x</comment></data>
   <data name="nudSection2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
   </data>
@@ -5444,7 +5444,7 @@ Skip or Overlap</value>
   </data>
   <data name="tabExamples.Text" xml:space="preserve">
     <value> Examples</value>
-  </data>
+  <comment>x</comment></data>
   <data name="nudOverlap.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
@@ -5490,9 +5490,6 @@ Skip or Overlap</value>
   <data name="label31.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
   </data>
-  <data name="bntOK.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5520,8 +5517,8 @@ Skip or Overlap</value>
   <data name="label34.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label28.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tabSections.Parent" xml:space="preserve">
+    <value>tabControl1</value>
   </data>
   <data name="chkEnableWorkSwitch.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
@@ -5530,7 +5527,7 @@ Skip or Overlap</value>
     <value>groupBox1</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 10</value>
+    <value>177, 17</value>
   </data>
   <data name="&gt;&gt;nudTriangleResolution.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5550,9 +5547,6 @@ Skip or Overlap</value>
   <data name="label20.TabIndex" type="System.Int32, mscorlib">
     <value>67</value>
   </data>
-  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
   <data name="&gt;&gt;label36.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
@@ -5565,8 +5559,8 @@ Skip or Overlap</value>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblDoNotExceed.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+  <data name="bntOK.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tabSections.Name" xml:space="preserve">
     <value>tabSections</value>
@@ -5583,8 +5577,8 @@ Skip or Overlap</value>
   <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
-  <data name="&gt;&gt;tabSections.Parent" xml:space="preserve">
-    <value>tabControl1</value>
+  <data name="lblDoNotExceed.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
   <data name="&gt;&gt;chkIsAft.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -5601,9 +5595,6 @@ Skip or Overlap</value>
   <data name="nudSection4.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 52</value>
   </data>
-  <data name="label31.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;nudSection8.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5613,15 +5604,15 @@ Skip or Overlap</value>
   <data name="nudTankHitch.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
   </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>453, 131</value>
+  <data name="&gt;&gt;label24.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
   </data>
   <data name="chkIsTrailingRigid.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>4 -&gt; Few triangles</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label27.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5646,11 +5637,14 @@ Skip or Overlap</value>
   <data name="&gt;&gt;nudForeAft.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="chkEnableWorkSwitch.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
     <value>544, 154</value>
   </data>
-  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>116</value>
   </data>
   <data name="&gt;&gt;chkIsSteerAxleAhead.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -5660,24 +5654,24 @@ Skip or Overlap</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Settings</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;chkIsSteerAxleAhead.Name" xml:space="preserve">
     <value>chkIsSteerAxleAhead</value>
   </data>
   <data name="&gt;&gt;nudSection4.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
-  </data>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>* Do not exceed 1570 *</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
     <value>133, 23</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;label12.Name" xml:space="preserve">
     <value>label12</value>
@@ -5686,13 +5680,10 @@ Skip or Overlap</value>
     <value>4, 4, 4, 4</value>
   </data>
   <data name="nudAntennaPivot.Location" type="System.Drawing.Point, System.Drawing">
-    <value>575, 64</value>
+    <value>702, 55</value>
   </data>
   <data name="nudMinFixStepDistance.Location" type="System.Drawing.Point, System.Drawing">
     <value>30, 49</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>249, 581</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -5725,7 +5716,7 @@ Skip or Overlap</value>
     <value>Tow Between Disabled When
 &lt; 200 cm or
 &lt; 78 inches</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 23</value>
   </data>
@@ -5741,15 +5732,15 @@ Skip or Overlap</value>
   <data name="&gt;&gt;nudAntennaHeight.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
-  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="label30.Text" xml:space="preserve">
     <value>Sections Turn Off below</value>
-  </data>
+  <comment>x</comment></data>
   <data name="chkIsSteerAxleAhead.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -5758,15 +5749,15 @@ Skip or Overlap</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
     <value>Hitch Length</value>
-  </data>
+  <comment>x</comment></data>
   <data name="chkIsAft.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
   <data name="&gt;&gt;tabVehicle.Parent" xml:space="preserve">
     <value>tabControl1</value>
   </data>
-  <data name="&gt;&gt;chkIsAtanCam.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;nudSection4.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -5782,7 +5773,7 @@ Skip or Overlap</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Look Ahead (Secs)</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label19.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5795,6 +5786,9 @@ Skip or Overlap</value>
   <data name="groupBox5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
   </data>
+  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
   <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -5803,6 +5797,9 @@ Skip or Overlap</value>
   </data>
   <data name="chkIsAft.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
+  </data>
+  <data name="&gt;&gt;tabExamples.Name" xml:space="preserve">
+    <value>tabExamples</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -5824,12 +5821,9 @@ Skip or Overlap</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>More Meters is More Smoothing</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label29.Parent" xml:space="preserve">
     <value>tabVehicle</value>
-  </data>
-  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
   </data>
   <data name="nudSection6.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -5857,7 +5851,7 @@ Skip or Overlap</value>
   </data>
   <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
     <value>Enable Work Switch</value>
-  </data>
+  <comment>x</comment></data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>34, 259</value>
   </data>
@@ -5869,9 +5863,6 @@ Skip or Overlap</value>
   </data>
   <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>15</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 23</value>
@@ -5891,12 +5882,9 @@ Skip or Overlap</value>
   <data name="label19.Text" xml:space="preserve">
     <value>Trailing Hitch
 Length Only</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label12.Parent" xml:space="preserve">
     <value>tabVehicle</value>
-  </data>
-  <data name="nudTurnOffDelay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>764, 177</value>
   </data>
   <data name="nudSection5.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -5907,6 +5895,9 @@ Length Only</value>
   <data name="lblTurnOffBelowUnits.Location" type="System.Drawing.Point, System.Drawing">
     <value>199, 435</value>
   </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>tabTool</value>
   </data>
@@ -5915,7 +5906,7 @@ Length Only</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Tool is</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
     <value>761, 151</value>
   </data>
@@ -5927,6 +5918,9 @@ Length Only</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 46</value>
+  </data>
+  <data name="tabExamples.Size" type="System.Drawing.Size, System.Drawing">
+    <value>951, 505</value>
   </data>
   <data name="&gt;&gt;tabVehicle.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -5984,9 +5978,9 @@ Length Only</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Triangle Resolution</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 170</value>
+  <comment>x</comment></data>
+  <data name="nudTurnOffDelay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>764, 177</value>
   </data>
   <data name="&gt;&gt;lblSecTotalWidthInches.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -5997,8 +5991,8 @@ Length Only</value>
   <data name="nudTankHitch.Location" type="System.Drawing.Point, System.Drawing">
     <value>21, 171</value>
   </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+  <data name="&gt;&gt;nudAntennaPivot.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 69</value>
@@ -6021,8 +6015,8 @@ Length Only</value>
   <data name="tabSections.Size" type="System.Drawing.Size, System.Drawing">
     <value>951, 505</value>
   </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>198, 64</value>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>355, 581</value>
   </data>
   <data name="&gt;&gt;label22.Parent" xml:space="preserve">
     <value>tabTool</value>
@@ -6035,12 +6029,12 @@ Length Only</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Work Switch</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;lblInchesCm.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="tabExamples.Size" type="System.Drawing.Size, System.Drawing">
-    <value>951, 505</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="lblSecTotalWidthFeet.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 21.75pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;nudHitchLength.Parent" xml:space="preserve">
     <value>tabVehicle</value>
@@ -6056,19 +6050,19 @@ Length Only</value>
   </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Distance Back for Heading</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;nudBoundaryDistance.Name" xml:space="preserve">
     <value>nudBoundaryDistance</value>
   </data>
   <data name="label25.Text" xml:space="preserve">
     <value>Antenna Height</value>
-  </data>
+  <comment>x</comment></data>
   <data name="nudSection5.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 52</value>
   </data>
   <data name="tabSections.Text" xml:space="preserve">
     <value> Sections</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label23.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -6090,8 +6084,11 @@ Length Only</value>
   <data name="nudAntennaPivot.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 65</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 33</value>
+  <data name="bntOK.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="&gt;&gt;label34.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label18.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -6107,7 +6104,7 @@ Length Only</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Boundary Point to Point Distance</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblSecTotalWidthMeters.Text" xml:space="preserve">
     <value>II</value>
   </data>
@@ -6168,20 +6165,17 @@ Length Only</value>
   <data name="nudHitchLength.UpDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="nudTurnOffDelay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 65</value>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;nudBoundaryDistance.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 23</value>
-  </data>
+  <data name="chkIsAtanCam.Text" xml:space="preserve">
+    <value>Use Fix For Cam</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="bntOK.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;lblTurnOffBelowUnits.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -6198,18 +6192,15 @@ Length Only</value>
   <data name="&gt;&gt;nudCutoffSpeed.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblSecTotalWidthFeet.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
   <data name="nudOffset.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 65</value>
   </data>
   <data name="&gt;&gt;nudSection6.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Turn Off Delay (Secs)</value>
-  </data>
+  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
+    <value>Km/H</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;lblDoNotExceed.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
@@ -6224,13 +6215,13 @@ Length Only</value>
   </data>
   <data name="tabTool.Text" xml:space="preserve">
     <value>  Tool  </value>
-  </data>
+  <comment>x</comment></data>
   <data name="nudNumberOfSections.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="bntOK.Text" xml:space="preserve">
     <value>Save</value>
-  </data>
+  <comment>x</comment></data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
   </data>
@@ -6255,6 +6246,9 @@ Length Only</value>
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Turn Off Delay (Secs)</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;nudHitchLength.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -6276,8 +6270,8 @@ Length Only</value>
   <data name="nudSection2.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 168</value>
   </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Antenna Height</value>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
   </data>
   <data name="&gt;&gt;lblVehicleToolWidth.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -6290,9 +6284,6 @@ Length Only</value>
   </data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;bntOK.Name" xml:space="preserve">
-    <value>bntOK</value>
   </data>
   <data name="nudTriangleResolution.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 65</value>
@@ -6309,8 +6300,8 @@ Length Only</value>
   <data name="nudSection4.Location" type="System.Drawing.Point, System.Drawing">
     <value>371, 168</value>
   </data>
-  <data name="&gt;&gt;tabExamples.Name" xml:space="preserve">
-    <value>tabExamples</value>
+  <data name="&gt;&gt;lblSecTotalWidthMeters.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="nudWheelbase.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6324,9 +6315,6 @@ Length Only</value>
   <data name="nudSection8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
   </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;nudSection3.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
@@ -6336,8 +6324,8 @@ Length Only</value>
   <data name="&gt;&gt;label20.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
-  <data name="&gt;&gt;label34.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="nudBoundaryDistance.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
@@ -6373,7 +6361,7 @@ Length Only</value>
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chkIsSteerAxleAhead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>88, 156</value>
+    <value>33, 50</value>
   </data>
   <data name="&gt;&gt;lblInchesCm.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -6381,8 +6369,8 @@ Length Only</value>
   <data name="nudAntennaPivot.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;label24.Parent" xml:space="preserve">
-    <value>tabVehicle</value>
+  <data name="lblSecTotalWidthMeters.Location" type="System.Drawing.Point, System.Drawing">
+    <value>518, 576</value>
   </data>
   <data name="tabVehicle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -6395,6 +6383,9 @@ Length Only</value>
   </data>
   <data name="nudHitchLength.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 379</value>
+  </data>
+  <data name="&gt;&gt;tabExamples.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 23</value>
@@ -6444,20 +6435,11 @@ Length Only</value>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>48, 260</value>
-  </data>
   <data name="&gt;&gt;tabSections.Type" xml:space="preserve">
     <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="nudAntennaPivot.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="nudCutoffSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 419</value>
   </data>
   <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
@@ -6472,7 +6454,7 @@ Length Only</value>
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 9</value>
+    <value>329, 16</value>
   </data>
   <data name="&gt;&gt;nudWheelbase.Parent" xml:space="preserve">
     <value>tabVehicle</value>
@@ -6503,7 +6485,7 @@ Length Only</value>
   </data>
   <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
     <value>Active Low</value>
-  </data>
+  <comment>x</comment></data>
   <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>488, 213</value>
   </data>
@@ -6525,8 +6507,8 @@ Length Only</value>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 25</value>
   </data>
-  <data name="chkWorkSwActiveLow.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
+  <data name="bntOK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
     <value>60</value>
@@ -6537,8 +6519,8 @@ Length Only</value>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 23</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>tabTool</value>
+  <data name="tabExamples.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 42</value>
   </data>
   <data name="&gt;&gt;label36.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -6549,8 +6531,8 @@ Length Only</value>
   <data name="tabTool.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="lblSecTotalWidthMeters.Location" type="System.Drawing.Point, System.Drawing">
-    <value>412, 576</value>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>453, 131</value>
   </data>
   <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6563,7 +6545,7 @@ Length Only</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>1 -&gt; Many Triangles</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 23</value>
   </data>
@@ -6578,9 +6560,6 @@ Length Only</value>
   </data>
   <data name="tabVehicle.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
-  </data>
-  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt</value>
   </data>
   <data name="&gt;&gt;nudForeAft.Parent" xml:space="preserve">
     <value>tabTool</value>
@@ -6600,6 +6579,9 @@ Length Only</value>
   <data name="label24.Text" xml:space="preserve">
     <value>Hitch Length
 </value>
+  <comment>x</comment></data>
+  <data name="nudSection4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 27.75pt</value>
   </data>
   <data name="&gt;&gt;bntOK.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -6624,9 +6606,9 @@ Length Only</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Uncheck for True Heading as Cam</value>
-  </data>
-  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <comment>x</comment></data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 64</value>
   </data>
   <data name="nudNumberOfSections.Location" type="System.Drawing.Point, System.Drawing">
     <value>45, 288</value>
@@ -6646,11 +6628,11 @@ Length Only</value>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;label26.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
+  </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>14</value>
-  </data>
-  <data name="&gt;&gt;lblInchesCm.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;nudTankHitch.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -6664,13 +6646,13 @@ Length Only</value>
   <data name="label31.Text" xml:space="preserve">
     <value>6 to 10m is good
 </value>
-  </data>
+  <comment>x</comment></data>
   <data name="label29.Text" xml:space="preserve">
     <value>* Anything rigidly attached to vehicle like
     Drawbar, feeder/header, 3 pt hitch</value>
-  </data>
-  <data name="&gt;&gt;chkWorkSwActiveLow.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <comment>x</comment></data>
+  <data name="tabControl1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="nudAntennaPivot.UpDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
     <value>Left</value>
@@ -6699,9 +6681,6 @@ Length Only</value>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;nudSection2.Name" xml:space="preserve">
-    <value>nudSection2</value>
-  </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 23</value>
   </data>
@@ -6719,9 +6698,6 @@ Length Only</value>
   </data>
   <data name="&gt;&gt;chkIsSteerAxleAhead.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nudAntennaPivot.Parent" xml:space="preserve">
-    <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudOffset.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -6754,7 +6730,7 @@ Length Only</value>
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="lblSecTotalWidthInches.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 576</value>
+    <value>560, 576</value>
   </data>
   <data name="&gt;&gt;nudSection3.Parent" xml:space="preserve">
     <value>tabSections</value>
@@ -6774,6 +6750,9 @@ Length Only</value>
   <data name="label36.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 33</value>
+  </data>
   <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
   </data>
@@ -6783,20 +6762,20 @@ Length Only</value>
   <data name="label12.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
-    <value>Km/H</value>
-  </data>
   <data name="&gt;&gt;nudCutoffSpeed.Name" xml:space="preserve">
     <value>nudCutoffSpeed</value>
   </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Antenna Height</value>
+  <comment>x</comment></data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>433, 85</value>
   </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 23</value>
+  </data>
   <data name="&gt;&gt;nudWheelbase.Name" xml:space="preserve">
     <value>nudWheelbase</value>
-  </data>
-  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="&gt;&gt;nudSection7.Parent" xml:space="preserve">
     <value>tabSections</value>
@@ -6806,6 +6785,9 @@ Length Only</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 288</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>761, 280</value>
   </data>
   <data name="nudTurnOffDelay.TabIndex" type="System.Int32, mscorlib">
     <value>108</value>
@@ -6823,7 +6805,7 @@ Length Only</value>
     <value>tabControl1</value>
   </data>
   <data name="lblSecTotalWidthFeet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>373, 576</value>
+    <value>479, 576</value>
   </data>
   <data name="nudSection6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -6840,11 +6822,11 @@ Length Only</value>
   <data name="tabVehicle.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
   </data>
-  <data name="chkEnableWorkSwitch.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>497, 25</value>
+    <value>624, 16</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -6895,14 +6877,11 @@ Length Only</value>
     <value>label7</value>
   </data>
   <data name="chkIsPivotBehindAntenna.Location" type="System.Drawing.Point, System.Drawing">
-    <value>480, 60</value>
-  </data>
-  <data name="bntOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 72</value>
+    <value>607, 51</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Tool Width:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblVehicleToolWidth.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 45</value>
   </data>
@@ -6936,8 +6915,8 @@ Length Only</value>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 25</value>
   </data>
-  <data name="&gt;&gt;tabTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;lblSecTotalWidthFeet.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>241, 32</value>
@@ -6957,8 +6936,8 @@ Length Only</value>
   <data name="&gt;&gt;nudTankHitch.Name" xml:space="preserve">
     <value>nudTankHitch</value>
   </data>
-  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 29</value>
+  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="nudOverlap.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 65</value>
@@ -7008,8 +6987,8 @@ Length Only</value>
   <data name="lblSecTotalWidthMeters.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 35</value>
   </data>
-  <data name="chkIsTrailingRigid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 43</value>
+  <data name="nudMinFixStepDistance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="&gt;&gt;nudNumberOfSections.ZOrder" xml:space="preserve">
     <value>15</value>
@@ -7029,8 +7008,14 @@ Length Only</value>
   <data name="nudSection4.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
   <data name="label24.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="&gt;&gt;label28.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -7040,6 +7025,9 @@ Length Only</value>
   </data>
   <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabTool.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormSettings</value>
@@ -7052,7 +7040,7 @@ Length Only</value>
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Work Switch</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;chkIsAft.Parent" xml:space="preserve">
     <value>tabVehicle</value>
   </data>
@@ -7076,6 +7064,9 @@ Length Only</value>
   </data>
   <data name="&gt;&gt;nudSection1.Parent" xml:space="preserve">
     <value>tabSections</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 29</value>
   </data>
   <data name="nudSection1.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 168</value>
@@ -7125,12 +7116,9 @@ Length Only</value>
   <data name="&gt;&gt;nudSection3.Name" xml:space="preserve">
     <value>nudSection3</value>
   </data>
-  <data name="bntOK.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
   <data name="lblInchesCm.Text" xml:space="preserve">
     <value>Inches</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label19.Parent" xml:space="preserve">
     <value>tabTool</value>
   </data>
@@ -7154,12 +7142,12 @@ Length Only</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
     <value>Meters</value>
-  </data>
+  <comment>x</comment></data>
   <data name="tabWorkSwitch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="chkIsAtanCam.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
+  <data name="&gt;&gt;nudSection2.Name" xml:space="preserve">
+    <value>nudSection2</value>
   </data>
   <data name="nudSection7.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 52</value>
@@ -7179,7 +7167,7 @@ Length Only</value>
   <data name="tabSections.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label21.TabIndex" type="System.Int32, mscorlib">
@@ -7187,7 +7175,7 @@ Length Only</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>Pivot Point</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label16.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -7212,18 +7200,24 @@ Length Only</value>
   <data name="chkEnableWorkSwitch.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 49</value>
   </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="nudLookAhead.Location" type="System.Drawing.Point, System.Drawing">
     <value>764, 46</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 23</value>
   </data>
   <data name="&gt;&gt;chkWorkSwActiveLow.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Pivot Axle Point is</value>
-  </data>
+  <comment>x</comment></data>
   <data name="tabVehicle.Text" xml:space="preserve">
     <value> Vehicle</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblSecTotalWidthInches.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -7242,8 +7236,14 @@ Length Only</value>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="chkIsAtanCam.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
   <data name="&gt;&gt;nudSection8.Name" xml:space="preserve">
     <value>nudSection8</value>
+  </data>
+  <data name="chkIsTrailingRigid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>354, 50</value>
   </data>
   <data name="label30.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>

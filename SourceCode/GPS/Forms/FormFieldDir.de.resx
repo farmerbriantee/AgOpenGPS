@@ -117,36 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox2.Text" xml:space="preserve">
-    <value>AgOpenGPS is protected under the GNU Public License
-
-Version 3, 29 June 2007
-
-Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;
-
-
-If you distribute copies of such a program, whether
-gratis or for a fee, you must pass on to the recipients the same
-freedoms that you received.  You must make sure that they, too, receive
-or can get the source code.  And you must show them these terms so they
-know their rights.
-
-Copyright (c) 2016 Brian Tischler
-
-</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
-  <data name="textBox3.Text" xml:space="preserve">
-    <value>*** Important ****
-
-This software is for discussion and learning of Precision Ag
-algorithms and techniques. It is not in any way to be used on
-any physical equipment and is meant for use by a simulator only.
-
-Any use of AgOpenGPS on real physical equipment is not allowed
-and is not recommended in any way, neither off road or on road. 
-
-AgOpenGPS is strictly an example of C# programming for
-demonstration purposes only.
-</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 23</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Geben Sie den Feldnamen ein</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 18</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 23</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>** Datum wird hinzugefügt</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>neues Feldverzeichnis</value>
   </data>
 </root>

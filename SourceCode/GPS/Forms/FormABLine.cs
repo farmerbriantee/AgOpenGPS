@@ -329,6 +329,9 @@ namespace AgOpenGPS
                 mf.ABLine.refPoint1.northing = temp;
                 mf.ABLine.SetABLineByHeading();
 
+                //save the ABLine
+                mf.FileSaveABLine();
+
                 //can go back to Mainform without seeing ABLine form.
                 DialogResult = DialogResult.Yes;
                 Close();
@@ -349,7 +352,6 @@ namespace AgOpenGPS
             mf.ABLine.SetABLineByHeading();
             tboxHeading.Text = Convert.ToString((int)upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
-
         }
     }
 }

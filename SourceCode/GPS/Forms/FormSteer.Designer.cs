@@ -111,7 +111,7 @@
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(293, 27);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(273, 27);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // label15
@@ -314,7 +314,7 @@
             series2.Name = "PWM";
             this.unoChart.Series.Add(series1);
             this.unoChart.Series.Add(series2);
-            this.unoChart.Size = new System.Drawing.Size(759, 198);
+            this.unoChart.Size = new System.Drawing.Size(739, 195);
             this.unoChart.TabIndex = 179;
             // 
             // lblSteerAng
@@ -662,9 +662,9 @@
             // btnSteerWizard
             // 
             this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerWizard.Location = new System.Drawing.Point(646, 75);
+            this.btnSteerWizard.Location = new System.Drawing.Point(645, 75);
             this.btnSteerWizard.Name = "btnSteerWizard";
-            this.btnSteerWizard.Size = new System.Drawing.Size(78, 62);
+            this.btnSteerWizard.Size = new System.Drawing.Size(78, 77);
             this.btnSteerWizard.TabIndex = 220;
             this.btnSteerWizard.Text = "Steer Wizard";
             this.btnSteerWizard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -739,7 +739,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(758, 587);
+            this.ClientSize = new System.Drawing.Size(738, 584);
             this.Controls.Add(this.lblFreeDriveAngle);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
@@ -798,6 +798,7 @@
             this.Name = "FormSteer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Auto Steer Configuration";
+            this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSteer_FormClosing);
             this.Load += new System.EventHandler(this.FormSteer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).EndInit();

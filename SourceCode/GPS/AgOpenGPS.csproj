@@ -209,6 +209,12 @@
     <Compile Include="Forms\FormUDP.Designer.cs">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Form_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_About.Designer.cs">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="gStr.de.Designer.cs">
       <DependentUpon>gStr.de.resx</DependentUpon>
@@ -219,6 +225,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.nl.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.ru.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -234,12 +255,6 @@
     </Compile>
     <Compile Include="Forms\FormABLine.Designer.cs">
       <DependentUpon>FormABLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormAbout.Designer.cs">
-      <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
@@ -284,6 +299,15 @@
     <EmbeddedResource Include="Forms\FormABLine.de.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABLine.es.resx">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABLine.fr.resx">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABLine.it.resx">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.nl.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
     </EmbeddedResource>
@@ -291,6 +315,15 @@
       <DependentUpon>FormABLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormBoundaryPlayer.de.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.es.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.fr.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.it.resx">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormBoundaryPlayer.nl.resx">
@@ -302,13 +335,49 @@
     <EmbeddedResource Include="Forms\FormCommSet.de.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCommSet.es.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCommSet.fr.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCommSet.it.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.nl.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.ru.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.de.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.es.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.fr.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.it.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.nl.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.ru.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPS.de.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.es.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.fr.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.it.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPS.nl.resx">
@@ -333,10 +402,6 @@
       <DependentUpon>FormABLine.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormAbout.resx">
-      <DependentUpon>FormAbout.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -350,6 +415,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormJob.de.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormJob.es.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormJob.fr.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormJob.it.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormJob.nl.resx">
@@ -367,6 +441,15 @@
     <EmbeddedResource Include="Forms\FormSaveOrNot.de.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSaveOrNot.es.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSaveOrNot.fr.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSaveOrNot.it.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.nl.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
@@ -377,6 +460,18 @@
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettings.de.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.es.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.fr.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.it.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.nl.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSettings.resx">
@@ -390,6 +485,18 @@
       <DependentUpon>FormSteer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.de.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.es.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.fr.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.it.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.nl.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
@@ -413,18 +520,33 @@
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.nl.resx" />
+    <EmbeddedResource Include="gStr.es.resx" />
+    <EmbeddedResource Include="gStr.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.it.resx" />
+    <EmbeddedResource Include="gStr.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.ru.resx" />
+    <EmbeddedResource Include="gStr.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

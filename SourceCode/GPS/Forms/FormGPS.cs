@@ -286,7 +286,6 @@ namespace AgOpenGPS
             _gestureInfoSize = Marshal.SizeOf(new GESTUREINFO());
         }
 
-
         //-------------------------------------------------------------
         // Since there is no managed layer at the moment that supports
         // event handlers for WM_GESTURENOTIFY and WM_GESTURE
@@ -375,7 +374,6 @@ namespace AgOpenGPS
         {
             return ((((double)(arg) / 65535.0) * 4.0 * 3.14159265) - 2.0 * 3.14159265);
         }
-
 
         // Handler of gestures
         //in:
@@ -517,7 +515,6 @@ namespace AgOpenGPS
 
             return true;
         }
-
 
         #endregion Gesture
 
@@ -973,6 +970,7 @@ namespace AgOpenGPS
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         //dialog for requesting user to save or cancel
         public int SaveOrNot()

@@ -104,38 +104,8 @@ namespace AgOpenGPS
 
             LineUpManualBtns();
 
-            if (Settings.Default.set_culture == "en")
-            {
-                menuLanguageEnglish.Checked = true;
-                menuLanguageDeutsch.Checked = false;
-                menuLanguageRussian.Checked = false;
-                menuLanguageDutch.Checked = false;
-            }
-
-            if (Settings.Default.set_culture == "de")
-            {
-                menuLanguageEnglish.Checked = false;
-                menuLanguageDeutsch.Checked = true;
-                menuLanguageRussian.Checked = false;
-                menuLanguageDutch.Checked = false;
-            }
-
-            if (Settings.Default.set_culture == "ru")
-            {
-                menuLanguageEnglish.Checked = false;
-                menuLanguageDeutsch.Checked = false;
-                menuLanguageRussian.Checked = true;
-                menuLanguageDutch.Checked = false;
-            }
-
-            if (Settings.Default.set_culture == "nl")
-            {
-                menuLanguageEnglish.Checked = false;
-                menuLanguageDeutsch.Checked = false;
-                menuLanguageRussian.Checked = false;
-                menuLanguageDutch.Checked = true;
-            }
-
+            //set the language to last used
+            SetLanguage(Settings.Default.set_culture);
         }
 
         //force all the buttons same according to two main buttons
@@ -154,6 +124,17 @@ namespace AgOpenGPS
         //line up section On Off Auto buttons based on how many there are
         public void LineUpManualBtns()
         {
+            if (tabControl1.Visible)
+            {
+                btnRightYouTurn.Left = (Width - 430) / 2 + 70;
+                btnLeftYouTurn.Left = (Width - 430) / 2 - 140;
+            }
+            else
+            {
+                btnRightYouTurn.Left = (Width) / 2 + 70;
+                btnLeftYouTurn.Left = (Width) / 2 - 140;
+            }
+
             const int top = 150;
 
             btnSection4Man.Top = Height - top;
@@ -407,11 +388,10 @@ namespace AgOpenGPS
                 btnContour.Left = Width - 120;
                 btnManualOffOn.Left = Width - 120;
                 btnSectionOffAutoOn.Left = Width - 130;
-                btnRightYouTurn.Left = Width - 240;
                 btnZoomIn.Left = 3;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
                 LineUpManualBtns();
-                txtDistanceOffABLine.Left = Width/2 - 33;
+                txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
             }
             else
@@ -425,11 +405,10 @@ namespace AgOpenGPS
                 btnContour.Left = Width - 540;
                 btnManualOffOn.Left = Width - 540;
                 btnSectionOffAutoOn.Left = Width - 548;
-                btnRightYouTurn.Left = Width - 660;
                 LineUpManualBtns();
                 btnZoomIn.Left = Width - 220;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-                txtDistanceOffABLine.Left = (Width - 430)/2 - 33;
+                txtDistanceOffABLine.Left = (Width - 430)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
             }
         }
@@ -1313,21 +1292,10 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
-
-            menuLanguageEnglish.Checked = true;
-            menuLanguageDeutsch.Checked = false;
-            menuLanguageRussian.Checked = false;
-            menuLanguageDutch.Checked = false;
-
-            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-            //storing the values  
-            key.SetValue("Language", "en");
-            key.Close();
-
+            SetLanguage("en");
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
+
         }
 
         private void menuLanguageDeutsch_Click(object sender, EventArgs e)
@@ -1338,24 +1306,13 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
-
-            menuLanguageEnglish.Checked = false;
-            menuLanguageDeutsch.Checked = true;
-            menuLanguageRussian.Checked = false;
-            menuLanguageDutch.Checked = false;
-
-            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-            //storing the values  
-            key.SetValue("Language", "de");
-            key.Close();
-
+            SetLanguage("de");
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
+
         }
 
-       private void menuLanguageRussian_Click(object sender, EventArgs e)
+        private void menuLanguageRussian_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
             {
@@ -1363,22 +1320,9 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
-
-            menuLanguageEnglish.Checked = false;
-            menuLanguageDeutsch.Checked = false;
-            menuLanguageRussian.Checked = true;
-            menuLanguageDutch.Checked = false;
-
-            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-            //storing the values  
-            key.SetValue("Language", "ru");
-            key.Close();
-
+            SetLanguage("ru");
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
-
         }
 
         private void menuLanguageDutch_Click(object sender, EventArgs e)
@@ -1389,27 +1333,104 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
+            SetLanguage("nl");
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
+            Close();
+        }
 
+        private void menuLanguageSpanish_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("es");
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
+            Close();
+        }
+
+        private void menuLanguageFrench_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("fr");
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
+            Close();
+        }
+
+        private void menuLanguageItalian_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("it");
+            MessageBox.Show(gStr.gsProgramExitAndRestart);
+            Close();
+        }
+
+        private void SetLanguage(string lang)
+        {
+            //reset them all to false
             menuLanguageEnglish.Checked = false;
             menuLanguageDeutsch.Checked = false;
             menuLanguageRussian.Checked = false;
-            menuLanguageDutch.Checked = true;
+            menuLanguageDutch.Checked = false;
+            menuLanguageSpanish.Checked = false;
+            menuLanguageFrench.Checked = false;
+            menuLanguageItalian.Checked = false;
+
+            switch (lang)
+            {
+                case "en":
+                    menuLanguageEnglish.Checked = true;
+                    break;
+
+                case "ru":
+                    menuLanguageRussian.Checked = true;
+                    break;
+
+                case "de":
+                    menuLanguageDeutsch.Checked = true;
+                    break;
+
+                case "nl":
+                    menuLanguageDutch.Checked = true;
+                    break;
+
+                case "it":
+                    menuLanguageItalian.Checked = true;
+                    break;
+
+                case "es":
+                    menuLanguageSpanish.Checked = true;
+                    break;
+
+                case "fr":
+                    menuLanguageFrench.Checked = true;
+                    break;
+            }
 
             //adding or editing "Language" subkey to the "SOFTWARE" subkey  
             RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
 
             //storing the values  
-            key.SetValue("Language", "nl");
+            key.SetValue("Language", lang);
             key.Close();
-
-            MessageBox.Show(gStr.gsProgramExitAndRestart);
-            Close();
         }
 
         //Help menu drop down items
         private void aboutToolStripMenuHelpAbout_Click(object sender, EventArgs e)
         {
-            using (var form = new FormAbout())
+            using (var form = new Form_About())
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
@@ -1438,6 +1459,8 @@ namespace AgOpenGPS
                 {
                     Settings.Default.Reset();
                     Settings.Default.Save();
+                    Vehicle.Default.Reset();
+                    Vehicle.Default.Save();
                     MessageBox.Show(gStr.gsProgramExitAndRestart);
                     Application.Exit();
                 }

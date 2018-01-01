@@ -364,7 +364,7 @@
     <value>285, 40</value>
   </data>
   <data name="menuLanguageEnglish.Text" xml:space="preserve">
-    <value>Englisch</value>
+    <value>English</value>
   </data>
   <data name="menuLanguageDeutsch.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 40</value>
@@ -373,7 +373,7 @@
     <value>285, 40</value>
   </data>
   <data name="menuLanguageRussian.Text" xml:space="preserve">
-    <value>Russisch</value>
+    <value>Russian</value>
   </data>
   <data name="menuLanguageDutch.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 40</value>
@@ -1793,9 +1793,6 @@
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
     <value>320, 41</value>
-  </data>
-  <data name="stripEqWidth.Text" xml:space="preserve">
-    <value>Breite</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 719</value>
@@ -6237,5 +6234,26 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
+  </data>
+  <data name="menuLanguageDeutsch.Text" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menuLanguageSpanish.Text" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="logNMEAMenuItem.Text" xml:space="preserve">
+    <value>NMEA loggen</value>
+  </data>
+  <data name="webCamToolStripMenuItem.Text" xml:space="preserve">
+    <value>Kamera</value>
+  </data>
+  <data name="imperialToolStrip.Text" xml:space="preserve">
+    <value>Imperal</value>
+  </data>
+  <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
+    <value>Autowenden</value>
+  </data>
+  <data name="menuLanguageFrench.Text" xml:space="preserve">
+    <value>Français</value>
   </data>
 </root>

@@ -64,7 +64,7 @@ namespace AgOpenGPS
             {
                 //normal mode
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-                tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
             }
             else
@@ -74,9 +74,8 @@ namespace AgOpenGPS
                 mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 10);
 
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-                tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle;
-                tboxSerialToAutoSteer.Text = "32766, {mf.mc.autoSteerData[mf.mc.sdRelay]}, {mf.mc.autoSteerData[mf.mc.sdSpeed]}, {mf.mc.autoSteerData[mf.mc.sdDistanceLo]}, {driveFreeSteerAngle}";
+                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle*10;
             }
 
             DrawChart();
@@ -288,7 +287,7 @@ namespace AgOpenGPS
         {
             if (mf.isJobStarted)
             {
-                var form = new FormTimedMessage(3000, "Ooops, Field is Open", "**** Close Field First ****");
+                var form = new FormTimedMessage(3000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show();
                 return;
             }

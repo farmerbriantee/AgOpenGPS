@@ -645,9 +645,6 @@
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1346, 41</value>
   </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>Полоса статуса1</value>
-  </data>
   <data name="toolstripField.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -6013,6 +6010,12 @@
     <value>Russian</value>
   </data>
   <data name="menuLanguageDutch.Text" xml:space="preserve">
-    <value>Nederlands</value>
+    <value>Niederländisch</value>
+  </data>
+  <data name="menuLanguageSpanish.Text" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="menuLanguageFrench.Text" xml:space="preserve">
+    <value>Français</value>
   </data>
 </root>

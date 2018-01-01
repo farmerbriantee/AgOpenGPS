@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;btnAddToFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 19</value>
@@ -128,21 +131,14 @@
   <data name="btnABLineOk.Location" type="System.Drawing.Point, System.Drawing">
     <value>623, 278</value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>AB Line</value>
+  <data name="&gt;&gt;btnListDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lblABHeading.Text" xml:space="preserve">
     <value>000.0</value>
   </data>
-  <data name="btnPlus90.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 278</value>
-  </data>
   <data name="btnUpABHeading.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnPlus90.TabIndex" type="System.Int32, mscorlib">
-    <value>87</value>
   </data>
   <data name="&gt;&gt;chNorthing.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -159,12 +155,10 @@
   <data name="nudTramRepeats.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 43</value>
   </data>
-  <data name="&gt;&gt;btnDnABHeading.Name" xml:space="preserve">
-    <value>btnDnABHeading</value>
-  </data>
   <data name="&gt;&gt;btnAPoint.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="nudBasedOnPass.TabIndex" type="System.Int32, mscorlib">
     <value>77</value>
   </data>
@@ -177,8 +171,8 @@
   <data name="&gt;&gt;timer1.Name" xml:space="preserve">
     <value>timer1</value>
   </data>
-  <data name="lblFixHeading.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;btnListDelete.Name" xml:space="preserve">
+    <value>btnListDelete</value>
   </data>
   <data name="btnDnABHeadingBy1.TabIndex" type="System.Int32, mscorlib">
     <value>73</value>
@@ -305,8 +299,8 @@
   <data name="btnListUse.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnAPoint.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="lblFixHeading.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 20.25pt, style=Bold</value>
@@ -317,14 +311,17 @@
   <data name="btnBPoint.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 90</value>
   </data>
-  <data name="lblABHeading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 33</value>
-  </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnBPoint.Name" xml:space="preserve">
     <value>btnBPoint</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 19</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnABLineOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -350,6 +347,9 @@
   <data name="btnUpABHeadingBy1.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
   </data>
+  <data name="&gt;&gt;btnDeleteAB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="btnAddToFile.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
@@ -359,15 +359,12 @@
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
-  <data name="btnAPoint.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
   <data name="&gt;&gt;lblKeepGoing.Name" xml:space="preserve">
     <value>lblKeepGoing</value>
   </data>
-  <data name="btnUpABHeading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 69</value>
-  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>AB Line</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;btnUpABHeading.Name" xml:space="preserve">
     <value>btnUpABHeading</value>
   </data>
@@ -377,8 +374,8 @@
   <data name="&gt;&gt;lblKeepGoing.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btnDeleteAB.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="lblFixHeading.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
   </data>
   <data name="btnDnABHeading.Text" xml:space="preserve">
     <value>10</value>
@@ -389,9 +386,6 @@
   <data name="btnAddToFile.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 87</value>
   </data>
-  <data name="btnPlus90.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 74</value>
-  </data>
   <data name="nudBasedOnPass.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 247</value>
   </data>
@@ -401,8 +395,8 @@
   <data name="btnABLineOk.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;btnUpABHeading.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -945,14 +939,11 @@
   <data name="&gt;&gt;lblABHeading.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="btnAPoint.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+  <data name="&gt;&gt;btnBPoint.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnUpABHeading.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="btnListDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 79</value>
   </data>
   <data name="btnAddToFile.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 11.25pt</value>
@@ -962,10 +953,10 @@
   </data>
   <data name="btnAddToFile.Text" xml:space="preserve">
     <value>Add</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label3.Text" xml:space="preserve">
     <value>Start</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblFixHeading.Location" type="System.Drawing.Point, System.Drawing">
     <value>169, 93</value>
   </data>
@@ -981,9 +972,6 @@
   <data name="btnListUse.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 11.25pt</value>
   </data>
-  <data name="&gt;&gt;btnPlus90.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -996,15 +984,9 @@
   <data name="&gt;&gt;btnListDelete.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;lvLines.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnPlus90.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="btnDeleteAB.Text" xml:space="preserve">
-    <value>Restart</value>
-  </data>
+  <data name="btnListUse.Text" xml:space="preserve">
+    <value>Use</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;btnDnABHeading.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1023,11 +1005,14 @@
   <data name="&gt;&gt;lblFixHeading.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="lblABHeading.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnPlus90.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 74</value>
   </data>
   <data name="&gt;&gt;nudBasedOnPass.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="lblKeepGoing.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
   </data>
   <data name="btnUpABHeading.Text" xml:space="preserve">
     <value>10</value>
@@ -1040,6 +1025,9 @@
   </data>
   <data name="nudTramRepeats.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 22pt</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="btnBPoint.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1059,8 +1047,8 @@
   <data name="btnABLineOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
-  <data name="&gt;&gt;btnBPoint.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lvLines.TabIndex" type="System.Int32, mscorlib">
+    <value>84</value>
   </data>
   <data name="chNorthing.Width" type="System.Int32, mscorlib">
     <value>100</value>
@@ -1089,11 +1077,14 @@
   <data name="btnAddToFile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
-  <data name="btnUpABHeading.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
+  <data name="&gt;&gt;lvLines.Name" xml:space="preserve">
+    <value>lvLines</value>
   </data>
-  <data name="btnPlus90.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 10pt, style=Bold</value>
+  <data name="&gt;&gt;btnABLineOk.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="btnUpABHeading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 69</value>
   </data>
   <data name="&gt;&gt;nudTramRepeats.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1106,6 +1097,9 @@
   </data>
   <data name="btnDeleteAB.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="btnListDelete.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
   <data name="&gt;&gt;lblFixHeading.Name" xml:space="preserve">
     <value>lblFixHeading</value>
@@ -1125,8 +1119,8 @@
   <data name="lblFixHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 33</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 19</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
   </data>
   <data name="&gt;&gt;nudTramRepeats.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -1137,20 +1131,11 @@
   <data name="btnABLineOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="btnListDelete.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt</value>
-  </data>
-  <data name="lblFixHeading.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="&gt;&gt;btnListUse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnListUse.Name" xml:space="preserve">
+    <value>btnListUse</value>
   </data>
   <data name="lblABHeading.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 20pt</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
   </data>
   <data name="&gt;&gt;btnDeleteAB.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -1158,14 +1143,11 @@
   <data name="&gt;&gt;btnAddToFile.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="lblKeepGoing.Location" type="System.Drawing.Point, System.Drawing">
-    <value>674, 218</value>
-  </data>
+  <data name="btnDeleteAB.Text" xml:space="preserve">
+    <value>Restart</value>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnListDelete.Name" xml:space="preserve">
-    <value>btnListDelete</value>
   </data>
   <data name="tboxHeading.TabIndex" type="System.Int32, mscorlib">
     <value>83</value>
@@ -1193,9 +1175,9 @@
   </data>
   <data name="chField.Text" xml:space="preserve">
     <value>Field</value>
-  </data>
-  <data name="&gt;&gt;btnDnABHeadingBy1.Name" xml:space="preserve">
-    <value>btnDnABHeadingBy1</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;btnPlus90.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;lblKeepGoing.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -1209,8 +1191,8 @@
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
-  <data name="&gt;&gt;btnAddToFile.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="btnListDelete.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 11.25pt</value>
   </data>
   <data name="&gt;&gt;btnABLineOk.Name" xml:space="preserve">
     <value>btnABLineOk</value>
@@ -1218,14 +1200,14 @@
   <data name="btnAPoint.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 90</value>
   </data>
-  <data name="&gt;&gt;btnUpABHeadingBy1.Name" xml:space="preserve">
-    <value>btnUpABHeadingBy1</value>
+  <data name="&gt;&gt;btnAddToFile.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="&gt;&gt;nudTramRepeats.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnListDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 79</value>
   </data>
-  <data name="&gt;&gt;btnABLineOk.ZOrder" xml:space="preserve">
-    <value>20</value>
+  <data name="btnPlus90.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 10pt, style=Bold</value>
   </data>
   <data name="btnDeleteAB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -1236,20 +1218,17 @@
   <data name="btnDnABHeading.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
   </data>
-  <data name="&gt;&gt;btnAddToFile.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="chEasting.Width" type="System.Int32, mscorlib">
-    <value>100</value>
+  <data name="&gt;&gt;btnDnABHeading.Name" xml:space="preserve">
+    <value>btnDnABHeading</value>
   </data>
   <data name="btnListDelete.TabIndex" type="System.Int32, mscorlib">
     <value>85</value>
   </data>
   <data name="btnPlus90.Text" xml:space="preserve">
     <value>+90 Degrees</value>
-  </data>
-  <data name="&gt;&gt;btnUpABHeadingBy1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <comment>x</comment></data>
+  <data name="btnUpABHeading.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 262</value>
@@ -1260,8 +1239,11 @@
   <data name="lblKeepGoing.Text" xml:space="preserve">
     <value>?</value>
   </data>
-  <data name="btnDeleteAB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 278</value>
+  <data name="&gt;&gt;btnListUse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnDnABHeadingBy1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
   </data>
   <data name="btnListUse.Location" type="System.Drawing.Point, System.Drawing">
     <value>175, 265</value>
@@ -1275,23 +1257,26 @@
   <data name="lblABHeading.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;chNorthing.Name" xml:space="preserve">
-    <value>chNorthing</value>
+  <data name="btnDeleteAB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>496, 278</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FormABLine</value>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="lvLines.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="chAngle.Text" xml:space="preserve">
     <value>Angle</value>
-  </data>
-  <data name="btnDnABHeadingBy1.Text" xml:space="preserve">
-    <value>1</value>
+  <comment>x</comment></data>
+  <data name="btnPlus90.Location" type="System.Drawing.Point, System.Drawing">
+    <value>366, 278</value>
   </data>
   <data name="chEasting.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
+  </data>
+  <data name="btnUpABHeadingBy1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
   </data>
   <data name="nudBasedOnPass.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 43</value>
@@ -1322,6 +1307,9 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Repeats</value>
+  <comment>x</comment></data>
+  <data name="lblABHeading.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnUpABHeadingBy1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 4</value>
@@ -1329,14 +1317,14 @@
   <data name="lblABHeading.Location" type="System.Drawing.Point, System.Drawing">
     <value>259, 318</value>
   </data>
-  <data name="btnListDelete.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>BottomCenter</value>
+  <data name="&gt;&gt;btnUpABHeadingBy1.Name" xml:space="preserve">
+    <value>btnUpABHeadingBy1</value>
   </data>
   <data name="&gt;&gt;chEasting.Name" xml:space="preserve">
     <value>chEasting</value>
   </data>
-  <data name="btnListUse.Text" xml:space="preserve">
-    <value>Use</value>
+  <data name="&gt;&gt;btnUpABHeadingBy1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chField.Width" type="System.Int32, mscorlib">
     <value>220</value>
@@ -1350,11 +1338,11 @@
   <data name="&gt;&gt;nudBasedOnPass.Type" xml:space="preserve">
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
+  <data name="&gt;&gt;chNorthing.Name" xml:space="preserve">
+    <value>chNorthing</value>
   </data>
-  <data name="lvLines.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
+  <data name="lblKeepGoing.Location" type="System.Drawing.Point, System.Drawing">
+    <value>674, 218</value>
   </data>
   <data name="&gt;&gt;tboxHeading.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1362,11 +1350,8 @@
   <data name="&gt;&gt;chField.Name" xml:space="preserve">
     <value>chField</value>
   </data>
-  <data name="btnUpABHeadingBy1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="tboxHeading.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 40</value>
+  <data name="&gt;&gt;btnUpABHeading.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="tboxHeading.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 20.25pt</value>
@@ -1377,8 +1362,11 @@
   <data name="nudBasedOnPass.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 22pt</value>
   </data>
-  <data name="lblKeepGoing.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>74, 320</value>
+  </data>
+  <data name="lblABHeading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 33</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -1392,8 +1380,8 @@
   <data name="lvLines.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 320</value>
+  <data name="btnPlus90.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="chNorthing.Text" xml:space="preserve">
     <value>Y</value>
@@ -1401,14 +1389,20 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>769, 361</value>
   </data>
-  <data name="&gt;&gt;lvLines.Name" xml:space="preserve">
-    <value>lvLines</value>
+  <data name="btnPlus90.TabIndex" type="System.Int32, mscorlib">
+    <value>87</value>
   </data>
-  <data name="btnBPoint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>671, 124</value>
+  <data name="lblKeepGoing.Size" type="System.Drawing.Size, System.Drawing">
+    <value>22, 25</value>
+  </data>
+  <data name="btnAPoint.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="&gt;&gt;btnUpABHeading.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblKeepGoing.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;lvLines.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1422,8 +1416,8 @@
   <data name="btnDnABHeadingBy1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 145</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;nudTramRepeats.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblFixHeading.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1431,26 +1425,26 @@
   <data name="&gt;&gt;nudTramRepeats.Name" xml:space="preserve">
     <value>nudTramRepeats</value>
   </data>
-  <data name="lblKeepGoing.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnBPoint.Location" type="System.Drawing.Point, System.Drawing">
+    <value>671, 124</value>
   </data>
-  <data name="&gt;&gt;btnListUse.Name" xml:space="preserve">
-    <value>btnListUse</value>
+  <data name="lblFixHeading.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnBPoint.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
-  <data name="btnBPoint.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
+  <data name="chEasting.Width" type="System.Int32, mscorlib">
+    <value>100</value>
   </data>
-  <data name="btnUpABHeadingBy1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 69</value>
+  <data name="btnDnABHeadingBy1.Text" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="btnListDelete.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
-  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FormABLine</value>
   </data>
   <data name="btnAPoint.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -1464,11 +1458,11 @@
   <data name="&gt;&gt;btnDeleteAB.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnListDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnBPoint.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
   </data>
-  <data name="lblKeepGoing.Size" type="System.Drawing.Size, System.Drawing">
-    <value>22, 25</value>
+  <data name="&gt;&gt;lvLines.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;chAngle.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1482,15 +1476,18 @@
   <data name="btnDnABHeadingBy1.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 69</value>
   </data>
-  <data name="btnDnABHeadingBy1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
+  <data name="&gt;&gt;btnDnABHeadingBy1.Name" xml:space="preserve">
+    <value>btnDnABHeadingBy1</value>
+  </data>
+  <data name="tboxHeading.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 40</value>
   </data>
   <data name="btnListDelete.Text" xml:space="preserve">
     <value>Remove</value>
+  <comment>x</comment></data>
+  <data name="btnUpABHeadingBy1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 69</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>nl</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

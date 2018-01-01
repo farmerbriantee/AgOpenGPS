@@ -192,7 +192,8 @@ void loop()
     steeringPosition += analogRead(A0);    delay(1);
     steeringPosition += analogRead(A0);    delay(1);
     steeringPosition = steeringPosition >> 2; //divide by 4    
-    steeringPosition = ( steeringPosition - steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
+    //steeringPosition = ( steeringPosition - steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
+    steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
     
     //convert position to steer angle. 6 counts per degree of steer pot position in my case
     //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
@@ -206,7 +207,8 @@ void loop()
       motorDrive();       //out to motors the pwm value
     }
     else
-    {      
+    {
+      //we've lost the comm to AgOpenGPS      
       pwmDrive = 0; //turn off steering motor
       motorDrive(); //out to motors the pwm value         
     }
@@ -259,7 +261,7 @@ void loop()
       distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
   
       //set point steer angle * 10 is sent
-      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())/10.0); //high low bytes 
+      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())*0.1); //high low bytes 
   
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  
@@ -287,7 +289,7 @@ void loop()
       steeringPositionZero = 412 + Serial.read();  //read steering zero offset
       minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
       maxIntegralValue = Serial.read(); //
-      steerSensorCounts = Serial.read()*0.1; //sent as 10 times the setting displayed in AOG
+      steerSensorCounts = Serial.read(); //sent as 10 times the setting displayed in AOG
     }
 }
 

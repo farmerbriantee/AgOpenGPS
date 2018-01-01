@@ -118,6 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 447</value>
+  </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>338, 48</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>* Все, что жестко привязано к транспортному средству
+Тягово-сцепное устройство, фидер / заголовок,
+3-контактный зацеп</value>
+  </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
   </data>
@@ -135,6 +146,9 @@
   </data>
   <data name="label27.Text" xml:space="preserve">
     <value>Орудие</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>368, 472</value>
   </data>
   <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 23</value>
@@ -160,6 +174,9 @@
   <data name="label12.Text" xml:space="preserve">
     <value>Опорная точка</value>
   </data>
+  <data name="chkIsPivotBehindAntenna.Location" type="System.Drawing.Point, System.Drawing">
+    <value>544, 61</value>
+  </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 23</value>
   </data>
@@ -172,11 +189,17 @@
   <data name="label25.Text" xml:space="preserve">
     <value>Высота антенны</value>
   </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>580, 26</value>
+  </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 23</value>
   </data>
   <data name="label18.Text" xml:space="preserve">
     <value>Точка поворота оси</value>
+  </data>
+  <data name="nudAntennaPivot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>639, 65</value>
   </data>
   <data name="tabVehicle.Text" xml:space="preserve">
     <value>Транспорт</value>
@@ -302,6 +325,12 @@
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Переключатель работы</value>
+  </data>
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>475, 25</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>Рекомендуется использовать от 6 до 10 метров</value>
   </data>
   <data name="groupBox5.Text" xml:space="preserve">
     <value>Расстояние от границы до точки</value>
@@ -5179,7 +5208,7 @@
     <value>Измерения в</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 581</value>
+    <value>300, 580</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 25</value>

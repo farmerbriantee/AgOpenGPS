@@ -363,32 +363,26 @@
   <data name="fileToolStripMenuItem.Text" xml:space="preserve">
     <value>Bestand</value>
   </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 6</value>
+  </data>
   <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 40</value>
   </data>
   <data name="menustripLanguage.Text" xml:space="preserve">
     <value>Taal</value>
   </data>
-  <data name="menuLanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 40</value>
-  </data>
-  <data name="menuLanguageDeutsch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 40</value>
-  </data>
-  <data name="menuLanguageRussian.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 40</value>
-  </data>
-  <data name="menuLanguageDutch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>240, 40</value>
-  </data>
-  <data name="menuLanguageDutch.Text" xml:space="preserve">
-    <value>Nederlands</value>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 6</value>
   </data>
   <data name="setWorkingDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 40</value>
   </data>
   <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Mappen</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>310, 6</value>
   </data>
   <data name="loadVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>313, 40</value>
@@ -448,13 +442,16 @@
     <value>Eenheden</value>
   </data>
   <data name="metricToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 40</value>
+    <value>216, 40</value>
   </data>
   <data name="metricToolStrip.Text" xml:space="preserve">
     <value>Metrisch</value>
   </data>
   <data name="imperialToolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 40</value>
+    <value>216, 40</value>
+  </data>
+  <data name="imperialToolStrip.Text" xml:space="preserve">
+    <value>Imperiaal</value>
   </data>
   <data name="bigAltitudeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>299, 40</value>
@@ -1099,6 +1096,12 @@
   </data>
   <data name="toolstripResetTrip.Text" xml:space="preserve">
     <value>&gt;0&lt;Reis</value>
+  </data>
+  <data name="toolStripDropDownButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 39</value>
+  </data>
+  <data name="toolStripDropDownButton2.Text" xml:space="preserve">
+    <value>Instellingen</value>
   </data>
   <data name="toolstripUDPConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1807,7 +1810,7 @@
     <value>Omkeren</value>
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>427, 41</value>
+    <value>372, 41</value>
   </data>
   <data name="lblSpeed.Location" type="System.Drawing.Point, System.Drawing">
     <value>877, -5</value>
@@ -2224,7 +2227,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAWwBCQFsAQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAXQBCQF0AQkBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -2454,8 +2457,35 @@
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>869, 38</value>
   </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>252, 97</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 23</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Fox:</value>
+  </data>
+  <data name="lblFixQuality.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 97</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>247, 67</value>
+  </data>
+  <data name="lblAltitude.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 67</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>198, 174</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Draaipunt:</value>
+  </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 203</value>
+    <value>206, 203</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 23</value>
@@ -2463,14 +2493,23 @@
   <data name="label14.Text" xml:space="preserve">
     <value>Werktuig:</value>
   </data>
+  <data name="lblHeadlandDistanceFromTool.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 203</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 145</value>
+    <value>232, 145</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 23</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Grens:</value>
+  </data>
+  <data name="lblHeadlandDistanceAway.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 174</value>
+  </data>
+  <data name="lblBoundaryArea.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 145</value>
   </data>
   <data name="btnRateConfig.Text" xml:space="preserve">
     <value>Instellingen</value>
@@ -2914,6 +2953,9 @@
         zwn7OxVuMNYAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnSettings.Text" xml:space="preserve">
+    <value>Instellingen</value>
+  </data>
   <data name="btnAutoYouTurn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -2951,6 +2993,9 @@
         KoOi4BkznCmLVM/KKK9mMHgYu4OpwAflkupZGs0R54fNCeeHzQcy/wN+DvZU+RE2uwAAAABJRU5ErkJg
         gg==
 </value>
+  </data>
+  <data name="btnAutoYouTurn.Text" xml:space="preserve">
+    <value>Instellingen</value>
   </data>
   <data name="btnAutoSteerConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3142,6 +3187,9 @@
         8wsYFzzIx2fkgBEj9AMWLGg5MTYG41bGYPWWbCTztVxH+oA9AGqertAY6vGfJeD/DxD+D9TF1b3SXXPH
         AAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="btnAutoSteerConfig.Text" xml:space="preserve">
+    <value>Instellingen</value>
   </data>
   <data name="btnUnits.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5958,16 +6006,22 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
-  <data name="menuLanguageEnglish.Text" xml:space="preserve">
-    <value>English</value>
+  <data name="menuLanguageDutch.Text" xml:space="preserve">
+    <value>Niederländisch</value>
   </data>
   <data name="menuLanguageDeutsch.Text" xml:space="preserve">
     <value>Deutsch</value>
   </data>
+  <data name="menuLanguageEnglish.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="menuLanguageRussian.Text" xml:space="preserve">
     <value>Russian</value>
   </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Fox:</value>
+  <data name="menuLanguageSpanish.Text" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="menuLanguageFrench.Text" xml:space="preserve">
+    <value>Français</value>
   </data>
 </root>

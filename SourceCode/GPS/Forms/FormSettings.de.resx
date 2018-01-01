@@ -118,6 +118,212 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 32</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>* Alles was starr verbunden ist
+Zugstange, 3-Punkt</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Antennenhöhe</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 23</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Gerät angehangen</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Gerät ist</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Unterlenkerlänge</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Unterlenkerlänge</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 23</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Radabstand</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 23</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Drehachse</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 23</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Radabstand</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 23</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Antennenhöhe</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 23</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Drehpunkt ist</value>
+  </data>
+  <data name="tabVehicle.Text" xml:space="preserve">
+    <value> Fahrzeug</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Unterlenkerlänge</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 23</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Gerätebreite</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>706, 151</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>243, 23</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Ausschaltverzögerung (Sek)</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 23</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Look Ahead (Sek)</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 46</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>    AB Linie
+Überlapp</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Geräteoffset</value>
+  </data>
+  <data name="tabTool.Text" xml:space="preserve">
+    <value>  Gerät  </value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 33</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
+    <value>km/h</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>288, 25</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Teilbreiten deaktivieren unter</value>
+  </data>
+  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 25</value>
+  </data>
+  <data name="lblDoNotExceed.Text" xml:space="preserve">
+    <value>* Obere Grenze: 1570 *</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 33</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Gerätebreite</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 25</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Teilbreiten</value>
+  </data>
+  <data name="tabSections.Text" xml:space="preserve">
+    <value>Teilbreiten</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 29</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
+    <value>Low Aktiv</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 29</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
+    <value>Arbeitsschalter aktivieren</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Arbeitsschalter</value>
+  </data>
+  <data name="tabWorkSwitch.Text" xml:space="preserve">
+    <value>Arbeitsschalter</value>
+  </data>
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 25</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>6 bis 10 m ist empfohlen</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Feldgrenze Punkt zu Punkt Distanz</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 25</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>4 -&gt; Wenige Dreiecke</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 25</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>1 -&gt; Viele Dreiecke</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Dreieck Auflösung</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>232, 25</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>je Größer umso ruhiger</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 29</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>Meter</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Rückblick für Kurs</value>
+  </data>
+  <data name="tabDisplay.Text" xml:space="preserve">
+    <value>Anzeige</value>
+  </data>
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABGAAAAHsCAYAAACdRNutAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -4935,147 +5141,31 @@
         AElFTkSuQmCC
 </value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Teilbreiten</value>
+  <data name="tabExamples.Text" xml:space="preserve">
+    <value>Beispiele</value>
   </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Geräteoffset</value>
-  </data>
-  <data name="tabDisplay.Text" xml:space="preserve">
-    <value>Anzeige</value>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 23</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Einheiten</value>
   </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Gerätebreite</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>    AB Linie
-Überlapp</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Gerätebreite</value>
-  </data>
-  <data name="label36.Text" xml:space="preserve">
-    <value>Gerät angehangen</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Radabstand</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Radabstand</value>
-  </data>
-  <data name="tabExamples.Text" xml:space="preserve">
-    <value>Beispiele</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>4 -&gt; Wenige Dreiecke</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="lblDoNotExceed.Text" xml:space="preserve">
-    <value>* Obere Grenze: 1570 *</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Tow Between Disabled When
-&lt; 200 cm or
-&lt; 78 inches</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>Teilbreiten deaktivieren unter</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Look Ahead (Sek)</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>je Größer umso ruhiger</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
-    <value>Arbeitsschalter aktivieren</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Trailing Hitch
-Length Only</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Gerät ist</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Dreieck Auflösung</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Arbeitsschalter</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Rückblick für Kurs</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Antennenhöhe</value>
-  </data>
-  <data name="tabSections.Text" xml:space="preserve">
-    <value>Teilbreiten</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Feldgrenze Punkt zu Punkt Distanz</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Ausschaltverzögerung (Sek)</value>
-  </data>
-  <data name="tabTool.Text" xml:space="preserve">
-    <value>  Gerät  </value>
-  </data>
-  <data name="bntOK.Text" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Antennenhöhe</value>
-  </data>
-  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
-    <value>Low Aktiv</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>1 -&gt; Viele Dreiecke</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Unterlenkerlänge</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>6 bis 10 m ist empfohlen</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>* Alles was starr verbunden ist
-Zugstange, 3-Punkt</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
-    <value>km/h</value>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Arbeitsbreite</value>
   </data>
-  <data name="tabWorkSwitch.Text" xml:space="preserve">
-    <value>Arbeitsschalter</value>
+  <data name="lblInchesCm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 39</value>
   </data>
   <data name="lblInchesCm.Text" xml:space="preserve">
     <value>Inch</value>
   </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Meter</value>
+  <data name="bntOK.Text" xml:space="preserve">
+    <value>Speichern</value>
   </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Drehachse</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Drehpunkt ist</value>
-  </data>
-  <data name="tabVehicle.Text" xml:space="preserve">
-    <value> Fahrzeug</value>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
 </root>

@@ -117,4 +117,65 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gsBoundaryNotSet" xml:space="preserve">
+    <value>
+Граница не установлена</value>
+  </data>
+  <data name="gsBoundaryTooSmall" xml:space="preserve">
+    <value>
+Граница слишком маленькая для создания поля</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>
+Нажмите кнопку «Снова», чтобы остановить</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>Закрыть поле</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Закрыть поле во-первых</value>
+  </data>
+  <data name="gsCreateBoundaryFirst" xml:space="preserve">
+    <value>Сначала создайте границу
+</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Рисование началось</value>
+  </data>
+  <data name="gsFeet" xml:space="preserve">
+    <value>Фут</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Поле открыто</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Поле не открыто</value>
+  </data>
+  <data name="gsIsGPSOff" xml:space="preserve">
+    <value>Ваш источник GPS отключен?</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>Нет GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Нет направляющих линий</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>*** Нет данных о сроках ***
+</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>От</value>
+  </data>
+  <data name="gsProgramExitAndRestart" xml:space="preserve">
+    <value>Программа будет закрыта. Пожалуйста, перезагрузите
+</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Начать новое поле</value>
+  </data>
+  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
+    <value>
+Включить контур или сделать линию AB</value>
+  </data>
 </root>

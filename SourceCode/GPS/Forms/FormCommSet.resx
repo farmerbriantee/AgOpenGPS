@@ -192,26 +192,20 @@
   <data name="&gt;&gt;cboxPort.Name" xml:space="preserve">
     <value>cboxPort</value>
   </data>
-  <data name="lblCurrentBaud.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
   <data name="btnOpenSerialAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 36</value>
   </data>
   <data name="&gt;&gt;cboxArdPort.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;btnSerialOK.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="txtBoxRecvArduino.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
   <data name="&gt;&gt;lblCurrentBaud.Name" xml:space="preserve">
     <value>lblCurrentBaud</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="lblCurrentPort.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -287,7 +281,7 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Communication Settings</value>
-  </data>
+  <comment>x</comment></data>
   <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt, style=Bold</value>
   </data>
@@ -296,9 +290,6 @@
   </data>
   <data name="&gt;&gt;btnCloseSerial.Name" xml:space="preserve">
     <value>btnCloseSerial</value>
-  </data>
-  <data name="cboxPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 39</value>
   </data>
   <data name="&gt;&gt;cboxASPort.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -312,8 +303,8 @@
   <data name="&gt;&gt;lblCurrentAutoSteerPort.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="btnOpenSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="btnCloseSerialArduino.TabIndex" type="System.Int32, mscorlib">
     <value>52</value>
@@ -351,9 +342,6 @@
   <data name="lblCurrentBaud.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 16</value>
   </data>
-  <data name="&gt;&gt;btnCloseSerialArduino.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="&gt;&gt;btnRescan.Name" xml:space="preserve">
     <value>btnRescan</value>
   </data>
@@ -377,7 +365,7 @@
   </data>
   <data name="btnOpenSerial.Text" xml:space="preserve">
     <value>Connect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
   </data>
@@ -390,12 +378,15 @@
   <data name="txtBoxSendArduino.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
   </data>
-  <data name="btnRescan.Text" xml:space="preserve">
-    <value>Rescan Ports</value>
+  <data name="&gt;&gt;textBoxRcv.Name" xml:space="preserve">
+    <value>textBoxRcv</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>NMEA string from GPS Port:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="txtBoxSendAutoSteer.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
   </data>
@@ -417,9 +408,12 @@
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 16</value>
   </data>
+  <data name="&gt;&gt;txtBoxRecvArduino.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="btnCloseSerial.Text" xml:space="preserve">
     <value>Disconnect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="btnSerialOK.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
@@ -429,14 +423,17 @@
   <data name="cboxBaud.Items4" xml:space="preserve">
     <value>57600</value>
   </data>
-  <data name="txtBoxSendAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+  <data name="cboxPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 39</value>
   </data>
-  <data name="btnOpenSerial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="cboxPort.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="txtBoxSendAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
   </data>
   <data name="textBoxRcv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -446,7 +443,7 @@
   </data>
   <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
     <value>Connect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -465,8 +462,8 @@
   <data name="&gt;&gt;btnCloseSerialAutoSteer.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
   </data>
   <data name="btnOpenSerial.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -476,7 +473,7 @@
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Currently:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;btnOpenSerialAutoSteer.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -494,7 +491,7 @@
   </data>
   <data name="btnCloseSerialArduino.Text" xml:space="preserve">
     <value>Disconnect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="cboxBaud.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 39</value>
   </data>
@@ -527,9 +524,6 @@
   </data>
   <data name="cboxASPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>121, 37</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -590,7 +584,7 @@
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>To Refresh Available USB Ports</value>
-  </data>
+  <comment>x</comment></data>
   <data name="txtBoxRecvArduino.TabIndex" type="System.Int32, mscorlib">
     <value>63</value>
   </data>
@@ -627,6 +621,9 @@
   <data name="&gt;&gt;label16.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
+  <data name="cboxPort.Items3" xml:space="preserve">
+    <value>38400</value>
+  </data>
   <data name="cboxPort.Items5" xml:space="preserve">
     <value>115200</value>
   </data>
@@ -659,7 +656,7 @@
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>To Section Port:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label17.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
@@ -672,17 +669,17 @@
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
+  <data name="btnRescan.Text" xml:space="preserve">
+    <value>Rescan Ports</value>
+  <comment>x</comment></data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 363</value>
   </data>
   <data name="&gt;&gt;btnCloseSerialArduino.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
+  <data name="btnOpenSerial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -855,6 +852,9 @@
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -900,6 +900,9 @@
   <data name="txtBoxRecvAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
+  <data name="lblCurrentPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 16</value>
+  </data>
   <data name="&gt;&gt;txtBoxSendAutoSteer.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -908,7 +911,7 @@
   </data>
   <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
     <value>Port</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;lblCurrentArduinoPort.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -932,7 +935,7 @@
   </data>
   <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
     <value>Port</value>
-  </data>
+  <comment>x</comment></data>
   <data name="txtBoxSendArduino.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 98</value>
   </data>
@@ -950,7 +953,7 @@
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>GPS Port</value>
-  </data>
+  <comment>x</comment></data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
     <value>19, 84</value>
   </data>
@@ -959,34 +962,34 @@
   </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Currently:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;btnOpenSerialArduino.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
   <data name="&gt;&gt;cboxPort.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="txtBoxSendArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>51</value>
   </data>
-  <data name="btnOpenSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Name" xml:space="preserve">
-    <value>textBoxRcv</value>
+  <data name="&gt;&gt;btnCloseSerialArduino.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="btnSerialOK.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 72</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;txtBoxSendAutoSteer.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 28</value>
+  <data name="btnOpenSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Section Port</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblCurrentPort.TabIndex" type="System.Int32, mscorlib">
     <value>47</value>
   </data>
@@ -1001,7 +1004,7 @@
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>From Auto Steer:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="txtBoxRecvArduino.Location" type="System.Drawing.Point, System.Drawing">
     <value>298, 98</value>
   </data>
@@ -1025,18 +1028,24 @@
   </data>
   <data name="btnOpenSerialArduino.Text" xml:space="preserve">
     <value>Connect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnOpenSerialAutoSteer.Name" xml:space="preserve">
     <value>btnOpenSerialAutoSteer</value>
   </data>
+  <data name="lblCurrentAutoSteerPort.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
   <data name="cboxArdPort.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>From Section Port:</value>
+  <comment>x</comment></data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
   </data>
   <data name="textBoxRcv.Size" type="System.Drawing.Size, System.Drawing">
     <value>559, 60</value>
@@ -1046,7 +1055,7 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>To Auto Steer:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="btnCloseSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
@@ -1086,26 +1095,17 @@
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cboxArdPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="txtBoxSendArduino.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
   <data name="&gt;&gt;btnOpenSerial.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
   <data name="&gt;&gt;txtBoxSendAutoSteer.Name" xml:space="preserve">
     <value>txtBoxSendAutoSteer</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
     <value>162, 28</value>
@@ -1131,12 +1131,12 @@
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
     <value>303, 77</value>
   </data>
-  <data name="btnOpenSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+  <data name="&gt;&gt;btnSerialOK.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="lblCurrentPort.Text" xml:space="preserve">
     <value>Port</value>
-  </data>
+  <comment>x</comment></data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
@@ -1160,16 +1160,16 @@
   </data>
   <data name="btnCloseSerialAutoSteer.Text" xml:space="preserve">
     <value>Disconnect</value>
-  </data>
+  <comment>x</comment></data>
   <data name="btnOpenSerial.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 36</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Currently:</value>
-  </data>
+  <comment>x</comment></data>
   <data name="lblCurrentBaud.Text" xml:space="preserve">
     <value>Baud</value>
-  </data>
+  <comment>x</comment></data>
   <data name="btnCloseSerial.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
@@ -1188,8 +1188,8 @@
   <data name="btnOpenSerialArduino.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 36</value>
   </data>
-  <data name="txtBoxSendArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 28</value>
   </data>
   <data name="btnCloseSerial.Location" type="System.Drawing.Point, System.Drawing">
     <value>437, 39</value>
@@ -1236,11 +1236,11 @@
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 16</value>
   </data>
-  <data name="lblCurrentAutoSteerPort.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="cboxPort.Items3" xml:space="preserve">
-    <value>38400</value>
+  <data name="lblCurrentBaud.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
   </data>
   <data name="&gt;&gt;textBoxRcv.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -1248,14 +1248,14 @@
   <data name="lblCurrentPort.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9.75pt, style=Bold</value>
   </data>
-  <data name="lblCurrentPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 16</value>
+  <data name="btnCloseSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>AutoSteer Port</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;cboxArdPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cboxBaud.ZOrder" xml:space="preserve">
     <value>1</value>

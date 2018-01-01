@@ -126,4 +126,49 @@
   <data name="gsFieldNotOpen" xml:space="preserve">
     <value>Veld niet actief</value>
   </data>
+  <data name="gsBoundaryNotSet" xml:space="preserve">
+    <value>Veldomtrek niet ingesteld</value>
+  </data>
+  <data name="gsBoundaryTooSmall" xml:space="preserve">
+    <value>Veldomtrek te klein om kopakker te maken</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>Nogmaals op knop drukken om te stoppen</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>Veld sluiten </value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Eerst veld sluiten</value>
+  </data>
+  <data name="gsCreateBoundaryFirst" xml:space="preserve">
+    <value>Eerst veldomtrek maken</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Intekenen begonnen</value>
+  </data>
+  <data name="gsFeet" xml:space="preserve">
+    <value>Voet</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Veld is actief</value>
+  </data>
+  <data name="gsIsGPSOff" xml:space="preserve">
+    <value>GPS uitgeschakeld?</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>Geen GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Geen richtlijnen</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>***Geen gegevens ontvangen ***</value>
+  </data>
+  <data name="gsProgramExitAndRestart" xml:space="preserve">
+    <value>Programma wordt afgesloten, AUB herstarten</value>
+  </data>
+  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
+    <value>Veldomtrek activeren of AB lijn instellen</value>
+  </data>
 </root>
