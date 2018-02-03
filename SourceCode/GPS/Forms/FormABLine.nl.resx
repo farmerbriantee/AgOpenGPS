@@ -241,7 +241,7 @@
     <value>Herstart</value>
   </data>
   <data name="btnAddToFile.Text" xml:space="preserve">
-    <value>Bijdoen</value>
+    <value>Bewaar</value>
   </data>
   <data name="chField.Text" xml:space="preserve">
     <value>Veld</value>

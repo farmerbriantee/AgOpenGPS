@@ -140,7 +140,8 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.lblBigElevation = new System.Windows.Forms.Label();
+            this.lblEmlidPitch = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.lblSats = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
@@ -158,7 +159,7 @@
             this.lblBoundaryArea = new System.Windows.Forms.Label();
             this.lblRoll = new System.Windows.Forms.Label();
             this.lblGPSHeading = new System.Windows.Forms.Label();
-            this.lblGyroHeading = new System.Windows.Forms.Label();
+            this.lblYawHeading = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -173,15 +174,10 @@
             this.btnRate2Select = new System.Windows.Forms.Button();
             this.btnRate1Select = new System.Windows.Forms.Button();
             this.configPage1 = new System.Windows.Forms.TabPage();
-            this.btnSettings = new System.Windows.Forms.Button();
-            this.btnAutoYouTurn = new System.Windows.Forms.Button();
-            this.btnAutoSteerConfig = new System.Windows.Forms.Button();
-            this.btnUnits = new System.Windows.Forms.Button();
             this.btnFileExplorer = new System.Windows.Forms.Button();
-            this.btnUdpSettings = new System.Windows.Forms.Button();
-            this.btnComm = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
+            this.btnABCurve = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -1079,7 +1075,10 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.lblBigElevation);
+            this.DataPage.Controls.Add(this.lblEmlidPitch);
+            this.DataPage.Controls.Add(this.btnResetSim);
+            this.DataPage.Controls.Add(this.btnResetSteerAngle);
+            this.DataPage.Controls.Add(this.label20);
             this.DataPage.Controls.Add(this.lblSats);
             this.DataPage.Controls.Add(this.label17);
             this.DataPage.Controls.Add(this.lblFixQuality);
@@ -1097,7 +1096,7 @@
             this.DataPage.Controls.Add(this.lblBoundaryArea);
             this.DataPage.Controls.Add(this.lblRoll);
             this.DataPage.Controls.Add(this.lblGPSHeading);
-            this.DataPage.Controls.Add(this.lblGyroHeading);
+            this.DataPage.Controls.Add(this.lblYawHeading);
             this.DataPage.Controls.Add(this.tboxSentence);
             this.DataPage.Controls.Add(this.label10);
             this.DataPage.Controls.Add(this.label9);
@@ -1108,11 +1107,17 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            this.DataPage.Click += new System.EventHandler(this.DataPage_Click);
             // 
-            // lblBigElevation
+            // lblEmlidPitch
             // 
-            resources.ApplyResources(this.lblBigElevation, "lblBigElevation");
-            this.lblBigElevation.Name = "lblBigElevation";
+            resources.ApplyResources(this.lblEmlidPitch, "lblEmlidPitch");
+            this.lblEmlidPitch.Name = "lblEmlidPitch";
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
             // 
             // lblSats
             // 
@@ -1199,10 +1204,10 @@
             resources.ApplyResources(this.lblGPSHeading, "lblGPSHeading");
             this.lblGPSHeading.Name = "lblGPSHeading";
             // 
-            // lblGyroHeading
+            // lblYawHeading
             // 
-            resources.ApplyResources(this.lblGyroHeading, "lblGyroHeading");
-            this.lblGyroHeading.Name = "lblGyroHeading";
+            resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
+            this.lblYawHeading.Name = "lblYawHeading";
             // 
             // label10
             // 
@@ -1313,54 +1318,12 @@
             // configPage1
             // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.configPage1.Controls.Add(this.btnSettings);
-            this.configPage1.Controls.Add(this.btnAutoYouTurn);
-            this.configPage1.Controls.Add(this.btnAutoSteerConfig);
-            this.configPage1.Controls.Add(this.btnUnits);
             this.configPage1.Controls.Add(this.btnFileExplorer);
-            this.configPage1.Controls.Add(this.btnUdpSettings);
-            this.configPage1.Controls.Add(this.btnComm);
             this.configPage1.Controls.Add(this.btnGPSData);
             this.configPage1.Controls.Add(this.btnPerimeter);
+            this.configPage1.Controls.Add(this.btnABCurve);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
-            // 
-            // btnSettings
-            // 
-            resources.ApplyResources(this.btnSettings, "btnSettings");
-            this.btnSettings.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnSettings.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.UseVisualStyleBackColor = false;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click_1);
-            // 
-            // btnAutoYouTurn
-            // 
-            resources.ApplyResources(this.btnAutoYouTurn, "btnAutoYouTurn");
-            this.btnAutoYouTurn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnAutoYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnAutoYouTurn.Name = "btnAutoYouTurn";
-            this.btnAutoYouTurn.UseVisualStyleBackColor = false;
-            this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
-            // 
-            // btnAutoSteerConfig
-            // 
-            resources.ApplyResources(this.btnAutoSteerConfig, "btnAutoSteerConfig");
-            this.btnAutoSteerConfig.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnAutoSteerConfig.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.btnAutoSteerConfig.FlatAppearance.BorderSize = 2;
-            this.btnAutoSteerConfig.Name = "btnAutoSteerConfig";
-            this.btnAutoSteerConfig.UseVisualStyleBackColor = false;
-            this.btnAutoSteerConfig.Click += new System.EventHandler(this.btnAutoSteerConfig_Click);
-            // 
-            // btnUnits
-            // 
-            this.btnUnits.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnUnits.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnUnits, "btnUnits");
-            this.btnUnits.Name = "btnUnits";
-            this.btnUnits.UseVisualStyleBackColor = false;
-            this.btnUnits.Click += new System.EventHandler(this.btnUnits_Click);
             // 
             // btnFileExplorer
             // 
@@ -1370,24 +1333,6 @@
             this.btnFileExplorer.Name = "btnFileExplorer";
             this.btnFileExplorer.UseVisualStyleBackColor = false;
             this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
-            // 
-            // btnUdpSettings
-            // 
-            this.btnUdpSettings.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnUdpSettings.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnUdpSettings, "btnUdpSettings");
-            this.btnUdpSettings.Name = "btnUdpSettings";
-            this.btnUdpSettings.UseVisualStyleBackColor = false;
-            this.btnUdpSettings.Click += new System.EventHandler(this.btnUDPSettings_Click);
-            // 
-            // btnComm
-            // 
-            this.btnComm.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnComm.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnComm, "btnComm");
-            this.btnComm.Name = "btnComm";
-            this.btnComm.UseVisualStyleBackColor = false;
-            this.btnComm.Click += new System.EventHandler(this.btnComm_Click);
             // 
             // btnGPSData
             // 
@@ -1406,6 +1351,16 @@
             this.btnPerimeter.Name = "btnPerimeter";
             this.btnPerimeter.UseVisualStyleBackColor = false;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
+            // 
+            // btnABCurve
+            // 
+            resources.ApplyResources(this.btnABCurve, "btnABCurve");
+            this.btnABCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnABCurve.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnABCurve.Image = global::AgOpenGPS.Properties.Resources.ZeroPitchRoll;
+            this.btnABCurve.Name = "btnABCurve";
+            this.btnABCurve.UseVisualStyleBackColor = false;
+            this.btnABCurve.Click += new System.EventHandler(this.btnABCurve_Click);
             // 
             // lblPureSteerAngle
             // 
@@ -1480,8 +1435,6 @@
             // 
             resources.ApplyResources(this.panelSimControls, "panelSimControls");
             this.panelSimControls.Controls.Add(this.label3);
-            this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
-            this.panelSimControls.Controls.Add(this.btnResetSim);
             this.panelSimControls.Controls.Add(this.lblSteerAngle);
             this.panelSimControls.Controls.Add(this.label11);
             this.panelSimControls.Controls.Add(this.label12);
@@ -1600,6 +1553,7 @@
             // 
             resources.ApplyResources(this.btnContour, "btnContour");
             this.btnContour.BackColor = System.Drawing.Color.Lavender;
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
             this.btnContour.Name = "btnContour";
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
@@ -1617,6 +1571,7 @@
             // 
             resources.ApplyResources(this.btnABLine, "btnABLine");
             this.btnABLine.BackColor = System.Drawing.Color.Lavender;
+            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.UseVisualStyleBackColor = false;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
@@ -1854,10 +1809,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.TextBox tboxSentence;
         private System.Windows.Forms.Label lblZone;
-        private System.Windows.Forms.Button btnAutoSteerConfig;
         private System.Windows.Forms.Button btnGPSData;
-        private System.Windows.Forms.Button btnComm;
-        private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnFileExplorer;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuHelpAbout;
@@ -1877,7 +1829,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAutoSteer;
-        private System.Windows.Forms.Button btnAutoYouTurn;
         private System.Windows.Forms.Button btnFlag;
         private ProXoft.WinForms.RepeatButton btnRateDn;
         private ProXoft.WinForms.RepeatButton btnRateUp;
@@ -1886,14 +1837,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblFieldWidthNorthSouth;
         private System.Windows.Forms.Label lblFieldWidthEastWest;
-        private System.Windows.Forms.Button btnUdpSettings;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage configPage1;
         private System.Windows.Forms.TabPage zoomPage2;
         private System.Windows.Forms.TabPage ratePage3;
         private System.Windows.Forms.TabPage DataPage;
         private System.Windows.Forms.Button btnEnableAutoYouTurn;
-        private System.Windows.Forms.Button btnUnits;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblZooom;
         private System.Windows.Forms.Timer timerSim;
@@ -1910,7 +1859,7 @@
         private System.Windows.Forms.Label lblRoll;
         private System.Windows.Forms.Label lblPureSteerAngle;
         private System.Windows.Forms.Label lblGPSHeading;
-        private System.Windows.Forms.Label lblGyroHeading;
+        private System.Windows.Forms.Label lblYawHeading;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
         private System.Windows.Forms.ToolStripMenuItem toolstripUSBPortsConfig;
         private System.Windows.Forms.ToolStripMenuItem toolstripVehicleConfig;
@@ -1947,7 +1896,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripStatusLabel stripSequenceBinary;
         private System.Windows.Forms.ToolStripMenuItem bigAltitudeToolStripMenuItem;
-        private System.Windows.Forms.Label lblBigElevation;
         private System.Windows.Forms.Button btnRateConfig;
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
@@ -1962,6 +1910,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageSpanish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageFrench;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageItalian;
+        private System.Windows.Forms.Button btnABCurve;
+        private System.Windows.Forms.Label lblEmlidPitch;
+        private System.Windows.Forms.Label label20;
     }
 }
 

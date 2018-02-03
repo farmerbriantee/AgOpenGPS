@@ -54,7 +54,7 @@ namespace AgOpenGPS
                 gl.Hint(OpenGL.GL_POLYGON_SMOOTH_HINT, OpenGL.GL_FASTEST);
 
                 ////if grid is on draw it
-                if (isGridOn) worldGrid.DrawWorldGrid(gridZoom);
+                if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
 
                 //turn on blend for paths
                 gl.Enable(OpenGL.GL_BLEND);
@@ -166,7 +166,7 @@ namespace AgOpenGPS
                         gl.Color(0.980f, 0.0f, 0.980f);
                         gl.Begin(OpenGL.GL_LINE_STRIP);
 
-                        double offSet = (zoomValue * zoomValue * 0.01);
+                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
                         gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
                         gl.Vertex(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
                         gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);

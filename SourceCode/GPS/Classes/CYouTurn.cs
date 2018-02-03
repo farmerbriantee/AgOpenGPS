@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
-using SharpGL;
-using System.IO;
 using System.Globalization;
+using System.IO;
 
 namespace AgOpenGPS
 {
@@ -10,6 +10,7 @@ namespace AgOpenGPS
     {
         //copy of the mainform address
         private readonly FormGPS mf;
+
         private readonly OpenGL gl;
 
         /// <summary> /// Has the you turn shape been built and displayed? /// </summary>
@@ -42,7 +43,7 @@ namespace AgOpenGPS
         //if not in workArea but in bounds, then we are on headland
         public bool isInWorkArea, isInBoundz, isInHeadland;
 
-        /// <summary> /// At trigger point, was vehicle going same direction as ABLine? /// </summary>        
+        /// <summary> /// At trigger point, was vehicle going same direction as ABLine? /// </summary>
         public bool isABLineSameAsHeadingAtTrigger;
 
         //controlled by user in GUI to en/dis able
@@ -61,6 +62,7 @@ namespace AgOpenGPS
 
         //guidance values
         public double distanceFromCurrentLine;
+
         public double dxAB, dyAB;
         private int A, B, C;
         public double abHeading;
@@ -69,12 +71,12 @@ namespace AgOpenGPS
 
         //pure pursuit values
         public vec2 pivotAxlePosYT = new vec2(0, 0);
+
         public vec2 goalPointYT = new vec2(0, 0);
         public vec2 radiusPointYT = new vec2(0, 0);
         public double steerAngleYT;
         public double rEastYT, rNorthYT;
         public double ppRadiusYT;
-        private double minLookAheadDistance;
         private int numShapePoints;
 
         //list of points for scaled and rotated YouTurn line
@@ -106,7 +108,60 @@ namespace AgOpenGPS
             pos6 = words[3];
             pos7 = words[4];
             pos8 = words[5];
+        }
 
+        //called when the 45 m mark is reached before headland
+        public void YouTurnTrigger()
+        {
+            //trigger pulled and make box double ended
+            isYouTurnTriggered = true;
+            isSequenceTriggered = true;
+
+            //our direction heading into turn
+            isABLineSameAsHeadingAtTrigger = mf.ABLine.isABSameAsFixHeading;
+
+            //data buffer for pixels read from off screen buffer
+            byte[] grnPix = new byte[401];
+
+            //read a pixel line across full buffer width
+            gl.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
+
+            //set up the positions to scan in the array for applied
+            int leftPos = mf.vehicle.rpXPosition - 15;
+            if (leftPos < 0) leftPos = 0;
+            int rightPos = mf.vehicle.rpXPosition + mf.vehicle.rpWidth + 15;
+            if (rightPos > 399) rightPos = 399;
+
+            //do we need a left or right turn
+            bool isGrnOnLeft = false, isGrnOnRight = false;
+
+            //green on left means turn right
+            for (int j = leftPos; j < mf.vehicle.rpXPosition; j++)
+            { isGrnOnLeft = grnPix[j] > 50; }
+
+            //green on right means turn left
+            for (int j = (rightPos - 10); j < rightPos; j++)
+            { isGrnOnRight = grnPix[j] > 50; }
+
+            //set point and save to start measuring from
+            isYouTurnTriggerPointSet = true;
+            youTurnTriggerPoint = mf.pivotAxlePos;
+
+            //one side or the other - but not both Exclusive Or
+            if (isGrnOnLeft ^ isGrnOnRight)
+            {
+                isYouTurnRight = !isGrnOnRight;
+            }
+            else //can't determine which way to turn, so pick opposite of last turn
+            {
+                //just do the opposite of last turn
+                isYouTurnRight = !isLastYouTurnRight;
+                isLastYouTurnRight = !isLastYouTurnRight;
+            }
+
+            //modify the buttons to show the correct turn direction
+            if (isYouTurnRight) mf.AutoYouTurnButtonsRightTurn();
+            else mf.AutoYouTurnButtonsLeftTurn();
         }
 
         //Normal copmpletion of youturn
@@ -158,13 +213,15 @@ namespace AgOpenGPS
                 double abFixHeadingDelta = (Math.Abs(mf.fixHeadingSection - mf.ABLine.abHeading));
                 if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
-                if (abFixHeadingDelta >= glm.PIBy2) isToolHeadingSameAsABHeading = false;
-                else isToolHeadingSameAsABHeading = true;
+                isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
 
                 mf.hl.FindClosestHeadlandPoint(mf.toolPos);
                 if ((int)mf.hl.closestHeadlandPt.easting != -1)
-                    mf.distTool = mf.pn.Distance(mf.toolPos.northing, mf.toolPos.easting,
-                        mf.hl.closestHeadlandPt.northing, mf.hl.closestHeadlandPt.easting);
+                {
+                    #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    mf.distTool = mf.pn.Distance(mf.toolPos.northing, mf.toolPos.easting, mf.hl.closestHeadlandPt.northing, mf.hl.closestHeadlandPt.easting);
+                    #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                }
                 else //we've lost the headland
                 {
                     mf.yt.isSequenceTriggered = false;
@@ -172,8 +229,6 @@ namespace AgOpenGPS
                     mf.distTool = 999;
                     return;
                 }
-
-
 
                 if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading)
                 {
@@ -294,9 +349,6 @@ namespace AgOpenGPS
         {
             isYouTurnShapeDisplayed = true;
 
-            //grab the Lookahead that ABLine uses
-            minLookAheadDistance = mf.ABLine.minLookAheadDistance;
-
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             rEastYT = mf.ABLine.rEastAB;
             rNorthYT = mf.ABLine.rNorthAB;
@@ -353,8 +405,8 @@ namespace AgOpenGPS
             double scale = turnOffset * 0.1;
             for (int i = 0; i < pt.Length; i++)
             {
-                pt[i].x *= scale*rowSkipsWidth;
-                pt[i].z *= scale*rowSkipsHeight;
+                pt[i].x *= scale * rowSkipsWidth;
+                pt[i].z *= scale * rowSkipsHeight;
             }
 
             //rotate pattern to match AB Line heading
@@ -368,12 +420,12 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    xr = (Math.Cos(-abHeading+Math.PI) * pt[i].x) - (Math.Sin(-abHeading+Math.PI) * pt[i].z);
-                    yr = (Math.Sin(-abHeading+Math.PI) * pt[i].x) + (Math.Cos(-abHeading+Math.PI) * pt[i].z);
+                    xr = (Math.Cos(-abHeading + Math.PI) * pt[i].x) - (Math.Sin(-abHeading + Math.PI) * pt[i].z);
+                    yr = (Math.Sin(-abHeading + Math.PI) * pt[i].x) + (Math.Cos(-abHeading + Math.PI) * pt[i].z);
                 }
 
-                pt[i].x = xr+rEastYT;
-                pt[i].z = yr+rNorthYT;
+                pt[i].x = xr + rEastYT;
+                pt[i].z = yr + rNorthYT;
                 pt[i].k = 0;
                 pt[i].y = Math.Atan2(pt[i].z, pt[i].x);
                 ytList.Add(pt[i]);
@@ -412,7 +464,7 @@ namespace AgOpenGPS
                 //just need to make sure the points continue ascending or heading switches all over the place
                 if (A > B) { C = A; A = B; B = C; }
 
-                //get the distance from currently active AB line                
+                //get the distance from currently active AB line
                 double dx = ytList[B].x - ytList[A].x;
                 double dz = ytList[B].z - ytList[A].z;
                 if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
@@ -438,7 +490,7 @@ namespace AgOpenGPS
                     return;
                 }
 
-                // ** Pure pursuit ** - calc point on ABLine closest to current position      
+                // ** Pure pursuit ** - calc point on ABLine closest to current position
                 double U = (((pivotAxlePosYT.easting - ytList[A].x) * (dx))
                             + ((pivotAxlePosYT.northing - ytList[A].z) * (dz)))
                             / ((dx * dx) + (dz * dz));
@@ -453,7 +505,7 @@ namespace AgOpenGPS
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
                 //minimum of Whatever AB Line is meters look ahead
-                if (goalPointDistance < minLookAheadDistance) goalPointDistance = minLookAheadDistance;
+                if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;

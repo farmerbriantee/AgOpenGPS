@@ -118,30 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblABHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 316</value>
-  </data>
-  <data name="lblFixHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 91</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 321</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 19</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Wiederholungen</value>
-  </data>
-  <data name="nudTramRepeats.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 306</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 19</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
   <data name="btnDnABHeadingBy1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -248,54 +224,6 @@
         cAO+HKA4fqiwc1CifxeiWjligce3sL+LfkOpIgOVDeyyKh5YJub/3K+fkl6/oWMpSQmG9SGiWjkSg/8k
         JAb/OYD9DzvxCaV+PHS2AAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="btnDeleteAB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 276</value>
-  </data>
-  <data name="btnDeleteAB.Text" xml:space="preserve">
-    <value>Neustart</value>
-  </data>
-  <data name="btnABLineOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>623, 276</value>
-  </data>
-  <data name="btnAddToFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 145</value>
-  </data>
-  <data name="btnAddToFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 87</value>
-  </data>
-  <data name="btnAddToFile.Text" xml:space="preserve">
-    <value>Hinzufügen</value>
-  </data>
-  <data name="chField.Text" xml:space="preserve">
-    <value>Feld</value>
-  </data>
-  <data name="chAngle.Text" xml:space="preserve">
-    <value>Winkel</value>
-  </data>
-  <data name="btnListDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 4</value>
-  </data>
-  <data name="btnListDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 79</value>
-  </data>
-  <data name="btnListDelete.Text" xml:space="preserve">
-    <value>Entfernen</value>
-  </data>
-  <data name="btnListUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 262</value>
-  </data>
-  <data name="btnListUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 87</value>
-  </data>
-  <data name="btnListUse.Text" xml:space="preserve">
-    <value>Anwenden</value>
-  </data>
-  <data name="btnPlus90.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 276</value>
-  </data>
-  <data name="btnPlus90.Text" xml:space="preserve">
-    <value>+90 Grad</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -834,8 +762,5 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>AB Linie</value>
   </data>
 </root>

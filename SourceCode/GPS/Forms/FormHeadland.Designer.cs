@@ -65,15 +65,26 @@
             // nudWidths
             // 
             this.nudWidths.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudWidths.DecimalPlaces = 1;
             this.nudWidths.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudWidths.Location = new System.Drawing.Point(735, 436);
+            this.nudWidths.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudWidths.Location = new System.Drawing.Point(721, 431);
             this.nudWidths.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
+            this.nudWidths.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudWidths.Name = "nudWidths";
-            this.nudWidths.Size = new System.Drawing.Size(84, 65);
+            this.nudWidths.Size = new System.Drawing.Size(108, 65);
             this.nudWidths.TabIndex = 71;
             this.nudWidths.Value = new decimal(new int[] {
             1,

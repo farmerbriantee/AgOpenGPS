@@ -36,7 +36,7 @@ BNO055::BNO055(uint8_t address){
     MPwrMode = Normal;    // Select magnetometer power mode
     Modr = MODR_10Hz;     // Select magnetometer ODR when in BNO055 bypass mode
     PWRMode = Normalpwr;    // Select BNO055 power mode
-    OPRMode = NDOF;       //
+    OPRMode = NDOF_FMC_OFF;       //
 }
 
 

@@ -338,9 +338,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double setIMU_pitchZero {
+        public int setIMU_pitchZero {
             get {
-                return ((double)(this["setIMU_pitchZero"]));
+                return ((int)(this["setIMU_pitchZero"]));
             }
             set {
                 this["setIMU_pitchZero"] = value;
@@ -350,9 +350,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public double setIMU_rollZero {
+        public int setIMU_rollZero {
             get {
-                return ((double)(this["setIMU_rollZero"]));
+                return ((int)(this["setIMU_rollZero"]));
             }
             set {
                 this["setIMU_rollZero"] = value;
@@ -740,6 +740,114 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setF_workingDirectory"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("68wESU")]
+        public string setIMU_UID {
+            get {
+                return ((string)(this["setIMU_UID"]));
+            }
+            set {
+                this["setIMU_UID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIMU_isRollFromDogs {
+            get {
+                return ((bool)(this["setIMU_isRollFromDogs"]));
+            }
+            set {
+                this["setIMU_isRollFromDogs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isHeadingFromBrick {
+            get {
+                return ((bool)(this["setIMU_isHeadingFromBrick"]));
+            }
+            set {
+                this["setIMU_isHeadingFromBrick"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setIMU_isHeadingFromBNO {
+            get {
+                return ((bool)(this["setIMU_isHeadingFromBNO"]));
+            }
+            set {
+                this["setIMU_isHeadingFromBNO"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isRollFromBrick {
+            get {
+                return ((bool)(this["setIMU_isRollFromBrick"]));
+            }
+            set {
+                this["setIMU_isRollFromBrick"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isRollFromGPS {
+            get {
+                return ((bool)(this["setIMU_isRollFromGPS"]));
+            }
+            set {
+                this["setIMU_isRollFromGPS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int setPort_NMEAHz {
+            get {
+                return ((int)(this["setPort_NMEAHz"]));
+            }
+            set {
+                this["setPort_NMEAHz"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isHeadingFromPAOGI {
+            get {
+                return ((bool)(this["setIMU_isHeadingFromPAOGI"]));
+            }
+            set {
+                this["setIMU_isHeadingFromPAOGI"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isRollFromPAOGI {
+            get {
+                return ((bool)(this["setIMU_isRollFromPAOGI"]));
+            }
+            set {
+                this["setIMU_isRollFromPAOGI"] = value;
             }
         }
     }

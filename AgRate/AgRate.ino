@@ -101,7 +101,7 @@ void loop()
     accumulatedCounts += countsThisLoop;
     
     //only if section(s) are on and there is flow
-    if (relay && countsThisLoop)
+    if (countsThisLoop)
     {      
       rateK =  (float)pulseDuration * 0.000001;//what is current flowrate from meter
       
@@ -157,7 +157,6 @@ void loop()
     {  
       isDataFound = false;    
       relay = Serial.read();   // read relay control from AgOpenGPS  
-      relay = 255 - relay;   
       groundSpeed = Serial.read()>>2;  //actual speed times 4, single byte
   
       // sent as 100 times value in liters per minute

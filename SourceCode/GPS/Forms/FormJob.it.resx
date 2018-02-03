@@ -133,9 +133,6 @@
   <data name="lblResumeDirectory.Size" type="System.Drawing.Size, System.Drawing">
     <value>78, 23</value>
   </data>
-  <data name="lblResumeDirectory.Text" xml:space="preserve">
-    <value>Nome1</value>
-  </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>190, 23</value>
   </data>

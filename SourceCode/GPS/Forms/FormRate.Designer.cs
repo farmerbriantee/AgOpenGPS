@@ -271,7 +271,7 @@
             // 
             this.lblVolumePerArea.AutoSize = true;
             this.lblVolumePerArea.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVolumePerArea.Location = new System.Drawing.Point(50, 275);
+            this.lblVolumePerArea.Location = new System.Drawing.Point(50, 276);
             this.lblVolumePerArea.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblVolumePerArea.Name = "lblVolumePerArea";
             this.lblVolumePerArea.Size = new System.Drawing.Size(179, 25);

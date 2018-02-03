@@ -80,10 +80,10 @@
     <Setting Name="setPort_wasAutoSteerConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_pitchZero" Type="System.Double" Scope="User">
+    <Setting Name="setIMU_pitchZero" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
+    <Setting Name="setIMU_rollZero" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setMenu_isLogNMEA" Type="System.Boolean" Scope="User">
@@ -181,6 +181,33 @@
     </Setting>
     <Setting Name="setF_workingDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)">Default</Value>
+    </Setting>
+    <Setting Name="setIMU_UID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">68wESU</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromDogs" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingFromBrick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingFromBNO" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromBrick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingFromPAOGI" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromPAOGI" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

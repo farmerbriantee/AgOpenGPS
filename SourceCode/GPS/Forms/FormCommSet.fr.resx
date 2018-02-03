@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,4 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Paramètres de Configurations</value>
+  </data>
+  <data name="btnOpenSerial.Text" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Trame NMEA du port GPS</value>
+  </data>
+  <data name="btnCloseSerial.Text" xml:space="preserve">
+    <value>Déconnecter</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Actuel</value>
+  </data>
+  <data name="btnCloseSerialArduino.Text" xml:space="preserve">
+    <value>Déconnecter</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Actualiser les ports USB disponibles</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Vers les ports de Section</value>
+  </data>
+  <data name="btnRescan.Text" xml:space="preserve">
+    <value>Actualiser les ports</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Port GPS</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Actuel</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Port section</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>De l'Auto-Guidage</value>
+  </data>
+  <data name="btnOpenSerialArduino.Text" xml:space="preserve">
+    <value>Connecter</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Du Port Section</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>A l'Auto-Guidage</value>
+  </data>
+  <data name="lblCurrentPort.Text" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.Text" xml:space="preserve">
+    <value>Déconnecter</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Actuel</value>
+  </data>
+  <data name="lblCurrentBaud.Text" xml:space="preserve">
+    <value>Baud</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value> Port Autoguidage</value>
+  </data>
 </root>

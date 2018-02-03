@@ -87,12 +87,19 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tinkerforge, Version=2.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\Tinkerforge.dll</HintPath>
+    </Reference>
     <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Application\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CAHRS.cs" />
+    <Compile Include="Classes\CAutoSteer.cs" />
+    <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CHeadland.cs" />
     <Compile Include="Classes\CRate.cs" />
     <Compile Include="Classes\CSim.cs" />
@@ -111,6 +118,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormABCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABCurve.Designer.cs">
+      <DependentUpon>FormABCurve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormHeadland.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,10 +239,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.es.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.it.resx</DependentUpon>
     </Compile>
     <Compile Include="gStr.nl.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -296,6 +319,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormABCurve.resx">
+      <DependentUpon>FormABCurve.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.de.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +360,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.de.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.es.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
@@ -370,6 +397,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPS.de.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPS.es.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
@@ -528,12 +556,18 @@
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.es.resx" />
+    <EmbeddedResource Include="gStr.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.it.resx" />
+    <EmbeddedResource Include="gStr.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>

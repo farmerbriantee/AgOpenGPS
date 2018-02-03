@@ -99,7 +99,9 @@ namespace AgOpenGPS
         //Add current position to stripList
         public void AddPoint()
         {
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             vec4 point = new vec4(mf.pivotAxlePos.easting, mf.fixHeading, mf.pivotAxlePos.northing, mf.pn.altitude);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             ptList.Add(point);
         }
 
@@ -370,7 +372,7 @@ namespace AgOpenGPS
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
                 //minimum of 4.0 meters look ahead
-                if (goalPointDistance < 3.0) goalPointDistance = 3.0;
+                if (goalPointDistance < 4.0) goalPointDistance = 4.0;
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
@@ -634,8 +636,8 @@ namespace AgOpenGPS
         public void ResetContour()
         {
             stripList.Clear();
-             if (ptList != null) ptList.Clear();
-             if (ctList != null) ctList.Clear();
+             ptList?.Clear();
+             ctList?.Clear();
         }
     }//class
 }//namespace

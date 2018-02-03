@@ -15,6 +15,13 @@ namespace AgOpenGPS
         public double camPitch;
         public double offset;
         public double camSetDistance = -75;
+
+        public double gridZoom;
+
+        public double zoomValue = 15;
+        public double triangleResolution = 1.0;
+        public double previousZoom = 25;
+
         //private double camDelta = 0;
 
         public CCamera()

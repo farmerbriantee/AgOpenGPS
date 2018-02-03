@@ -53,6 +53,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAhead;
+        public double minLookAheadDistance = 6.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
 

@@ -16,7 +16,7 @@ namespace AgOpenGPS
         private double upDnHeading = 0;
 
         //the abline stored file
-        string filename = "";
+        private string filename = "";
 
         public FormABLine(Form callingForm)
         {
@@ -48,8 +48,8 @@ namespace AgOpenGPS
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
                 nudTramRepeats.Value = 0;
                 nudBasedOnPass.Value = 0;
-                mf.ABLine.tramPassEvery=0;
-                mf.ABLine.passBasedOn=0;
+                mf.ABLine.tramPassEvery = 0;
+                mf.ABLine.passBasedOn = 0;
             }
             //make sure at least a blank AB Line file exists
             string dirABLines = mf.ablinesDirectory;
@@ -108,15 +108,16 @@ namespace AgOpenGPS
                 }
 
                 // go to bottom of list - if there is a bottom
-                if (lvLines.Items.Count > 0)  lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
+                if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
             }
-
         }
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             mf.ABLine.refPoint1.easting = mf.prevFix.easting;
-            mf.ABLine.refPoint1.northing = mf.prevFix.northing; 
+            mf.ABLine.refPoint1.northing = mf.prevFix.northing;
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
             btnUpABHeading.Enabled = true;
             btnDnABHeading.Enabled = true;
@@ -139,7 +140,7 @@ namespace AgOpenGPS
         {
             if ((upDnHeading += 10) > 359.9) upDnHeading = 0;
             upDnHeading = (int)upDnHeading;
-            tboxHeading.Text = Convert.ToString(upDnHeading,CultureInfo.InvariantCulture);
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
@@ -168,7 +169,7 @@ namespace AgOpenGPS
         private void btnDnABHeadingBy1_Click(object sender, EventArgs e)
         {
             upDnHeading--;
-            if (upDnHeading < 0 ) upDnHeading = 359;
+            if (upDnHeading < 0) upDnHeading = 359;
             upDnHeading = (int)upDnHeading;
             tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
@@ -201,12 +202,11 @@ namespace AgOpenGPS
 
             //DialogResult = DialogResult.Cancel;
             //Close();
-         }
+        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblFixHeading.Text = Convert.ToString( Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
-            lblABHeading.Text = Convert.ToString(upDnHeading) + "°";
+            lblFixHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
             lblKeepGoing.Text = "";
 
             //make sure we go at least 3 or so meters before allowing B reference point
@@ -226,13 +226,11 @@ namespace AgOpenGPS
                 btnListDelete.Enabled = true;
                 btnListUse.Enabled = true;
             }
-
             else
             {
                 btnListDelete.Enabled = false;
                 btnListUse.Enabled = false;
             }
-
         }
 
         private void nudTramRepeats_ValueChanged(object sender, EventArgs e)
@@ -247,11 +245,11 @@ namespace AgOpenGPS
 
         private void btnAddToFile_Click(object sender, EventArgs e)
         {
-            using (StreamWriter writer = new StreamWriter(filename,true))
+            using (StreamWriter writer = new StreamWriter(filename, true))
             {
                 //make it culture invariant
                 string line = mf.currentFieldDirectory + ',' + (Math.Round(glm.toDegrees(mf.ABLine.abHeading), 8)).ToString(CultureInfo.InvariantCulture)
-                +',' + (Math.Round(mf.ABLine.refPoint1.easting, 3)).ToString(CultureInfo.InvariantCulture)
+                + ',' + (Math.Round(mf.ABLine.refPoint1.easting, 3)).ToString(CultureInfo.InvariantCulture)
                 + ',' + (Math.Round(mf.ABLine.refPoint1.northing, 3)).ToString(CultureInfo.InvariantCulture);
 
                 //write out to file
@@ -266,8 +264,6 @@ namespace AgOpenGPS
                 // go to bottom of list - if there is a bottom
                 if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
             }
-
-
         }
 
         private void tboxHeading_TextChanged(object sender, EventArgs e)
@@ -277,14 +273,12 @@ namespace AgOpenGPS
             textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9.]", "");
             textboxSender.SelectionStart = cursorPosition;
             string line = tboxHeading.Text.Trim();
-            if (line == "") line = "0";
+            if (line?.Length == 0) line = "0";
             if (line == ".") line = "0";
-            upDnHeading = double.Parse(line,CultureInfo.InvariantCulture);
+            upDnHeading = double.Parse(line, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
-
-
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
@@ -309,9 +303,7 @@ namespace AgOpenGPS
                         //out to file
                         writer.WriteLine(words);
                     }
-
                 }
-
             }
         }
 
@@ -320,7 +312,6 @@ namespace AgOpenGPS
             int count = lvLines.SelectedItems.Count;
             if (count > 0)
             {
-
                 double temp = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
                 mf.ABLine.abHeading = glm.toRadians(temp);
                 temp = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);

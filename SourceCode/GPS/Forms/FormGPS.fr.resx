@@ -5577,4 +5577,184 @@
   <data name="menuLanguageFrench.Text" xml:space="preserve">
     <value>Français</value>
   </data>
+  <data name="menuLanguageEnglish.Text" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="menuLanguageDeutsch.Text" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menuLanguageRussian.Text" xml:space="preserve">
+    <value>русский</value>
+  </data>
+  <data name="menuLanguageDutch.Text" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="menuLanguageSpanish.Text" xml:space="preserve">
+    <value>Espagnol</value>
+  </data>
+  <data name="menustripLanguage.Text" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
+    <value>Répertoire</value>
+  </data>
+  <data name="loadVehicleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Charger le véhicule</value>
+  </data>
+  <data name="saveVehicleToolStripMenuItem.Text" xml:space="preserve">
+    <value>Enregistrer le véhicule</value>
+  </data>
+  <data name="fieldToolStripMenuItem.Text" xml:space="preserve">
+    <value>Charger la parcelle</value>
+  </data>
+  <data name="resetALLToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tout réinitialiser</value>
+  </data>
+  <data name="sectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="fieldToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Parcelle</value>
+  </data>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Couleurs</value>
+  </data>
+  <data name="metricToolStrip.Text" xml:space="preserve">
+    <value>Metric</value>
+  </data>
+  <data name="imperialToolStrip.Text" xml:space="preserve">
+    <value>Imperial</value>
+  </data>
+  <data name="toolStripUnitsMenu.Text" xml:space="preserve">
+    <value>Unitées</value>
+  </data>
+  <data name="bigAltitudeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Grande élévation</value>
+  </data>
+  <data name="sideGuideLines.Text" xml:space="preserve">
+    <value>Lignes de guidage</value>
+  </data>
+  <data name="gridToolStripMenuItem.Text" xml:space="preserve">
+    <value>Quadrillage ON</value>
+  </data>
+  <data name="lightbarToolStripMenuItem.Text" xml:space="preserve">
+    <value>Barre de guidage ON</value>
+  </data>
+  <data name="logNMEAMenuItem.Text" xml:space="preserve">
+    <value>connexion NMEA</value>
+  </data>
+  <data name="polygonsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Polygons ON</value>
+  </data>
+  <data name="pursuitLineToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ligne guide</value>
+  </data>
+  <data name="skyToolStripMenu.Text" xml:space="preserve">
+    <value>Ciel ON</value>
+  </data>
+  <data name="simulatorOnToolStripMenuItem.Text" xml:space="preserve">
+    <value>Simulateur ON</value>
+  </data>
+  <data name="explorerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Explorateur de fenêtres</value>
+  </data>
+  <data name="webCamToolStripMenuItem.Text" xml:space="preserve">
+    <value>Web Cam</value>
+  </data>
+  <data name="fieldViewerToolStripMenuItem.Text" xml:space="preserve">
+    <value>Visioneur de parcelle</value>
+  </data>
+  <data name="googleEarthToolStripMenuItem.Text" xml:space="preserve">
+    <value>Marqueur Google Earth</value>
+  </data>
+  <data name="gPSDataToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Donées GPS</value>
+  </data>
+  <data name="aboutToolStripMenuHelpAbout.Text" xml:space="preserve">
+    <value>A propos de </value>
+  </data>
+  <data name="helpToolStripMenuHelpHelp.Text" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="helpToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="toolstripField.Text" xml:space="preserve">
+    <value>Parcelle</value>
+  </data>
+  <data name="toolstripBoundary.Text" xml:space="preserve">
+    <value>Limite</value>
+  </data>
+  <data name="toolstripHeadland.Text" xml:space="preserve">
+    <value>Tournière</value>
+  </data>
+  <data name="toolstripResetTrip.Text" xml:space="preserve">
+    <value>&gt;0&lt; ligne</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.Text" xml:space="preserve">
+    <value>démarrer</value>
+  </data>
+  <data name="toolstripUSBPortsConfig.Text" xml:space="preserve">
+    <value>Ports</value>
+  </data>
+  <data name="toolstripVehicleConfig.Text" xml:space="preserve">
+    <value>Véhicule</value>
+  </data>
+  <data name="toolstripAutoSteerConfig.Text" xml:space="preserve">
+    <value>Auto-guidage</value>
+  </data>
+  <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
+    <value>Demi-tour</value>
+  </data>
+  <data name="toolStripDropDownButton2.Text" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>Status 1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dose actuelle</value>
+  </data>
+  <data name="lblSpeedUnits.Text" xml:space="preserve">
+    <value>KM/H</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>E/W</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>N/S</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Fix:</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Hauteur</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Pivot</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>Outils</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Limite</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Gyro </value>
+  </data>
+  <data name="btnFileExplorer.Text" xml:space="preserve">
+    <value>Archives</value>
+  </data>
+  <data name="btnComm.Text" xml:space="preserve">
+    <value>Ports</value>
+  </data>
+  <data name="btnResetSim.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="btnContour.Text" xml:space="preserve">
+    <value>Contour</value>
+  </data>
 </root>

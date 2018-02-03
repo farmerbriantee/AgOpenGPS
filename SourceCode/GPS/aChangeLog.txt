@@ -1,4 +1,10 @@
-﻿v2.3 Dec 15
+﻿v 2.3 Jan 15
+* zero Roll
+* Selectable inputs for roll/heading
+* fix bug in imu heading /gps fusion
+
+
+v2.3 Dec 15
 * Sequencing functions and actions on headland
 * Completely different interface
 * Headland drawing and auto gen
@@ -87,7 +93,7 @@ v2.1 March 2017
 *
 * NMEA Logging capability
 * BNO055 IMU drivers for angular velocity, roll, pitch
-* tilt and roll GPS compensation
+* pich and roll GPS compensation
 * completely functional with or without IMU or relays connected, no setup reqd
 * ability to set low speed section turn off
 * Parse to tryParse - much faster code for all parsing

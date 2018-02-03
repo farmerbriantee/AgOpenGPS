@@ -141,10 +141,10 @@ namespace AgOpenGPS
                     writer.WriteLine("FunctionList;" + Properties.Vehicle.Default.seq_FunctionList);
                     writer.WriteLine("ActionList;" + Properties.Vehicle.Default.seq_ActionList);
 
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("RollFromBrick," + Properties.Settings.Default.setIMU_isRollFromBrick);
+                    writer.WriteLine("HeadingFromBrick," + Properties.Settings.Default.setIMU_isHeadingFromBrick);
+                    writer.WriteLine("RollFromDogs," + Properties.Settings.Default.setIMU_isRollFromDogs);
+                    writer.WriteLine("HeadingFromBNO," + Properties.Settings.Default.setIMU_isHeadingFromBNO);
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -323,9 +323,9 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_pitchZero = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setIMU_pitchZero = int.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_rollZero = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setIMU_rollZero = int.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setMenu_isLogNMEA = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -371,11 +371,20 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(';');
                         Properties.Vehicle.Default.seq_DistanceExit = words[1];
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(';');
+                        Properties.Vehicle.Default.seq_FunctionList = words[1];
+                        line = reader.ReadLine(); words = line.Split(';');
+                        Properties.Vehicle.Default.seq_ActionList = words[1];
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setIMU_isRollFromBrick = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setIMU_isHeadingFromBrick = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setIMU_isRollFromDogs = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setIMU_isHeadingFromBNO = bool.Parse(words[1]);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -451,7 +460,7 @@ namespace AgOpenGPS
                         camera.camPitch = Properties.Settings.Default.setCam_pitch;
 
                         isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
-                        triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
+                        camera.triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
                         isMetric = Properties.Settings.Default.setMenu_isMetric;
                         metricToolStrip.Checked = isMetric;
@@ -480,8 +489,8 @@ namespace AgOpenGPS
 
                         vehicle.slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
 
-                        pitchZero = Properties.Settings.Default.setIMU_pitchZero;
-                        rollZero = Properties.Settings.Default.setIMU_rollZero;
+                        ahrs.pitchZero = Properties.Settings.Default.setIMU_pitchZero;
+                        ahrs.rollZero = Properties.Settings.Default.setIMU_rollZero;
                         isLogNMEA = Properties.Settings.Default.setMenu_isLogNMEA;
                         minFixStepDist = Properties.Settings.Default.setF_minFixStep;
 
@@ -510,6 +519,12 @@ namespace AgOpenGPS
                         words = sentence.Split(',');
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                             double.TryParse(words[i], NumberStyles.Float, CultureInfo.InvariantCulture, out seq.seqExit[i].distance);
+
+                        ahrs.isRollBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
+                        ahrs.isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
+                        ahrs.isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
+                        ahrs.isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
+
 
                         //Application.Exit();
                     }

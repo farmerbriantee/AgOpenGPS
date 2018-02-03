@@ -355,7 +355,7 @@
     <value>261, 6</value>
   </data>
   <data name="menuLanguageRussian.Text" xml:space="preserve">
-    <value>Russian</value>
+    <value>русский</value>
   </data>
   <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>264, 40</value>
@@ -5903,5 +5903,11 @@
   </data>
   <data name="toolStripDropDownButton2.Text" xml:space="preserve">
     <value>Config  </value>
+  </data>
+  <data name="menuLanguageDutch.Text" xml:space="preserve">
+    <value>Nederlands</value>
+  </data>
+  <data name="menuLanguageDeutsch.Text" xml:space="preserve">
+    <value>Deutsch</value>
   </data>
 </root>

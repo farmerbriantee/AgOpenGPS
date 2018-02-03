@@ -104,7 +104,7 @@
     <Setting Name="set_youStartYouTurnAt" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="set_youToolWidths" Type="System.Int32" Scope="User">
+    <Setting Name="set_youToolWidths" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="seq_FunctionEnter" Type="System.String" Scope="User">

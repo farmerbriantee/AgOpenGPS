@@ -18,6 +18,7 @@ namespace AgOpenGPS
 
         private void FormCommSet_Load(object sender, EventArgs e)
         {
+            cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
 
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)
@@ -181,6 +182,13 @@ namespace AgOpenGPS
             FormGPS.portNameGPS = cboxPort.Text;
         }
 
+        private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
+            Properties.Settings.Default.Save();
+            mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+        }
+
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
             mf.SerialPortOpenGPS();
@@ -258,5 +266,7 @@ namespace AgOpenGPS
             DialogResult = DialogResult.OK;
             Close();
         }
-     } //class
+
+
+    } //class
 } //namespace

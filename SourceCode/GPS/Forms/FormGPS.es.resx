@@ -5717,7 +5717,7 @@
     <value>Windows Explorer</value>
   </data>
   <data name="menuLanguageRussian.Text" xml:space="preserve">
-    <value>Ruso</value>
+    <value>русский</value>
   </data>
   <data name="gridToolStripMenuItem.Text" xml:space="preserve">
     <value>Grilla Act</value>
@@ -5747,7 +5747,7 @@
     <value>&gt;0&lt; Trip</value>
   </data>
   <data name="menuLanguageDutch.Text" xml:space="preserve">
-    <value>Niederländisch</value>
+    <value>Nederlands</value>
   </data>
   <data name="fieldToolStripMenuItem1.Text" xml:space="preserve">
     <value>Lote</value>

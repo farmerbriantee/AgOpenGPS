@@ -87,8 +87,6 @@ namespace AgOpenGPS
 
             isBigAltitudeOn = Settings.Default.setMenu_isBigAltitudeOn;
             bigAltitudeToolStripMenuItem.Checked = isBigAltitudeOn;
-            if (isBigAltitudeOn) lblBigElevation.Visible = true;
-            else lblBigElevation.Visible = false;
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -446,8 +444,7 @@ namespace AgOpenGPS
         }
 
         // Buttons //-----------------------------------------------------------------------
-
-        //auto steer off and on
+        //Auto steer off and on
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             if (isAutoSteerBtnOn)
@@ -469,6 +466,7 @@ namespace AgOpenGPS
                 }
             }
         }
+
         //ABLine
         private void btnABLine_Click(object sender, EventArgs e)
         {
@@ -531,6 +529,7 @@ namespace AgOpenGPS
                 }
             }
         }
+
         //turn on contour guidance or off
         private void btnContour_Click(object sender, EventArgs e)
         {
@@ -570,23 +569,45 @@ namespace AgOpenGPS
                 }
             }
         }
-
-        //zoom up close and far away
-        private void btnMinMax_Click(object sender, EventArgs e)
+        private void btnABCurve_Click(object sender, EventArgs e)
         {
-            //keep a copy to go back to previous zoom
-            if (zoomValue < 56)
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn)
             {
-                previousZoom = zoomValue;
-                zoomValue = 60;
+                ct.isContourBtnOn = !ct.isContourBtnOn;
+                btnContour.Image = Properties.Resources.ContourOff;
             }
-            else
-            {
-                zoomValue = previousZoom;
-            }
-            camera.camSetDistance = zoomValue * zoomValue * -1;
-            SetZoom();
+
+            //turn off youturn...
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
+            btnRightYouTurn.Visible = false;
+            btnLeftYouTurn.Visible = false;
+            btnEnableAutoYouTurn.Enabled = false;
+            yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+            yt.ResetYouTurnAndSequenceEvents();
+
+            //kill the ABLine
+            ABLine.DeleteAB();
+            ABLine.tramPassEvery = 0;
+            ABLine.passBasedOn = 0;
+
+            //save the no ABLine;
+            FileSaveABLine();
+            ABLine.isABLineBeingSet = false;
+            txtDistanceOffABLine.Visible = false;
+
+            //change image to reflect on off
+            btnABLine.Image = Properties.Resources.ABLineOff;
+            ABLine.isABLineBeingSet = false;
+
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            Form form = new FormABCurve(this);
+            form.Show();
         }
+
         //button for Manual On Off of the sections
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
@@ -810,18 +831,18 @@ namespace AgOpenGPS
         //The zoom buttons in out
         private void btnZoomIn_MouseDown(object sender, MouseEventArgs e)
         {
-            if (zoomValue <= 20) zoomValue += zoomValue * 0.1;
-            else zoomValue += zoomValue * 0.05;
-            camera.camSetDistance = zoomValue * zoomValue * -1;
+            if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.1;
+            else camera.zoomValue += camera.zoomValue * 0.05;
+            camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
         }
         private void btnZoomOut_MouseDown(object sender, MouseEventArgs e)
         {
-            if (zoomValue <= 20)
-            { if ((zoomValue -= zoomValue * 0.1) < 6.0) zoomValue = 6.0; }
-            else { if ((zoomValue -= zoomValue * 0.05) < 6.0) zoomValue = 6.0; }
+            if (camera.zoomValue <= 20)
+            { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 6.0) camera.zoomValue = 6.0; }
+            else { if ((camera.zoomValue -= camera.zoomValue * 0.05) < 6.0) camera.zoomValue = 6.0; }
 
-            camera.camSetDistance = zoomValue * zoomValue * -1;
+            camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
         }
         //view tilt up down and saving in settings
@@ -861,76 +882,22 @@ namespace AgOpenGPS
            ABLine.SnapABLine();
         }
 
-        //panel buttons
-        private void btnSettings_Click_1(object sender, EventArgs e)
-        {
-            SettingsPageOpen(0);
-        }
-        private void btnComm_Click(object sender, EventArgs e)
-        {
-            SettingsCommunications();
-        }
-        private void btnUDPSettings_Click(object sender, EventArgs e)
-        {
-            SettingsUDP();
-        }
-        private void btnUnits_Click(object sender, EventArgs e)
-        {
-            isMetric = !isMetric;
-            Settings.Default.setMenu_isMetric = isMetric;
-            Settings.Default.Save();
-            if (isMetric)
-            {
-                lblSpeedUnits.Text = "kmh";
-                metricToolStrip.Checked = true;
-                imperialToolStrip.Checked = false;
-            }
-            else
-            {
-                lblSpeedUnits.Text = "mph";
-                metricToolStrip.Checked = false;
-                imperialToolStrip.Checked = true;
-            }
-        }
+        //tab config buttons
         private void btnGPSData_Click(object sender, EventArgs e)
         {
             Form form = new FormGPSData(this);
             form.Show();
         }
-        private void btnAutoSteerConfig_Click(object sender, EventArgs e)
+        private void btnFileExplorer_Click(object sender, EventArgs e)
         {
-            //check if window already exists
-            Form fc = Application.OpenForms["FormSteer"];
-
-            if (fc != null)
+            if (isJobStarted)
             {
-                fc.Focus();
-                return;
+                FileSaveFlagsKML();
             }
-
-            //
-            Form form = new FormSteer(this);
-            form.Show();
+            Process.Start(fieldsDirectory + currentFieldDirectory);
         }
 
-        //private void btnTripOdometer_Click(object sender, EventArgs e)
-        //{
-        //    
-        //    using (var form = new FormTrip(this))
-        //    {
-        //        var result = form.ShowDialog();
-        //        if (result == DialogResult.OK) { }
-        //    }
-        //}
-
-        //the youturn form
-        private void btnAutoYouTurn_Click(object sender, EventArgs e)
-        {
-            var form = new FormYouTurn(this);
-            form.ShowDialog();
-        }
-
-        //YouTurn in the tab control
+        //YouTurn on off
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
             if (!yt.isYouTurnBtnOn)
@@ -944,15 +911,9 @@ namespace AgOpenGPS
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             }
         }
-        private void btnFileExplorer_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                FileSaveFlagsKML();
-            }
-            Process.Start(fieldsDirectory + currentFieldDirectory);
-        }
 
+        //Rate
+ 
         private void btnRateConfig_Click(object sender, EventArgs e)
         {
             var form = new FormRate(this);
@@ -968,7 +929,6 @@ namespace AgOpenGPS
                 btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
             }
         }
-
         private void btnRate_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1044,7 +1004,6 @@ namespace AgOpenGPS
             btnRate1Select.ForeColor = Color.SlateGray;
             btnRate2Select.ForeColor = Color.Black;
         }
-
         private void btnRateUp_Click(object sender, EventArgs e)
         {
             if (isMetric)
@@ -1074,7 +1033,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void btnRateDn_Click(object sender, EventArgs e)
         {
             if (isMetric)
@@ -1108,7 +1066,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void btnLeftYouTurn_Click(object sender, EventArgs e)
         {
             if (yt.isYouTurnTriggerPointSet)
@@ -1297,7 +1254,6 @@ namespace AgOpenGPS
             Close();
 
         }
-
         private void menuLanguageDeutsch_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1311,7 +1267,6 @@ namespace AgOpenGPS
             Close();
 
         }
-
         private void menuLanguageRussian_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1324,7 +1279,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
-
         private void menuLanguageDutch_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1337,7 +1291,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
-
         private void menuLanguageSpanish_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1350,7 +1303,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
-
         private void menuLanguageFrench_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1363,7 +1315,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
-
         private void menuLanguageItalian_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1376,7 +1327,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramExitAndRestart);
             Close();
         }
-
         private void SetLanguage(string lang)
         {
             //reset them all to false
@@ -1440,7 +1390,7 @@ namespace AgOpenGPS
         {
             //string appPath = Assembly.GetEntryAssembly().Location;
             //string filename = Path.Combine(Path.GetDirectoryName(appPath), "help.htm");
-            Process.Start("help.htm");
+            Process.Start("http://agopengps.gh-ortner.com/doku.php");
         }
 
         //Options Drop down menu items
@@ -1530,8 +1480,6 @@ namespace AgOpenGPS
         {
             isBigAltitudeOn = !isBigAltitudeOn;
             bigAltitudeToolStripMenuItem.Checked = isBigAltitudeOn;
-            if (isBigAltitudeOn) lblBigElevation.Visible = true;
-            else lblBigElevation.Visible = false;
             Settings.Default.setMenu_isBigAltitudeOn = isBigAltitudeOn;
             Settings.Default.Save();
         }
@@ -1919,7 +1867,7 @@ namespace AgOpenGPS
             get
             {
                 if (mc.rollRaw != 9999)
-                    return Math.Round(mc.rollRaw * 0.0625, 1) + "\u00B0";
+                    return Math.Round((mc.rollRaw - ahrs.rollZero) * 0.0625, 1) + "\u00B0";
                 else return "-";
             }
         }
@@ -1974,8 +1922,15 @@ namespace AgOpenGPS
         public string RateAccumulatedVolumeLiters { get { return rc.volumeActual.ToString("N0") + " L"; } }
         public string RateAccumulatedVolumeGallons { get { return ((double)rc.volumeActual * 0.264172875).ToString("N0") + " Gal"; } }
 
-        public string RateAppliedActualLPerHA { get { return (rc.rateActual / (rc.currentWidth * pn.speed * .0016666666666 + 0.001)).ToString("N1"); } }
-        public string RateAppliedActualGPA { get { return ((rc.rateActual / (rc.currentWidth * pn.speed * .0016666666666 + 0.1)) * glm.LHa2galAc).ToString("N1"); } }
+        public string RateAppliedActualLPerHA { get {
+                if (rc.currentWidth > 0) return (rc.rateActual / ((rc.currentWidth) * pn.speed * .0016666666666 + 0.00001)).ToString("N1");
+                else return ("0.0");
+            } }
+        public string RateAppliedActualGPA { get {
+                if (rc.currentWidth > 0)
+                    return ((rc.rateActual / ((rc.currentWidth) * pn.speed * .0016666666666 + 0.00001)) * glm.LHa2galAc).ToString("N1");
+                else return ("0.0");
+            } }
 
         public Texture ParticleTexture { get; set; }
 
@@ -1994,7 +1949,7 @@ namespace AgOpenGPS
 
 
             //every half of a second update all status
-            if (statusUpdateCounter > 10)
+            if (statusUpdateCounter > 6)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2007,54 +1962,49 @@ namespace AgOpenGPS
                     if (isMetric)
                     {
                         lblAltitude.Text = Altitude;
-                        if (isBigAltitudeOn) lblBigElevation.Text = Altitude;
-
                         ////boundary and headland
                         lblBoundaryArea.Text = boundz.areaHectare;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(distPivot)) + "m";
                         else lblHeadlandDistanceAway.Text = "***";
-
                         lblHeadlandDistanceFromTool.Text = ((int)(distTool)) + "m";
-
                     }
                     else //imperial
                     {
                         lblAltitude.Text = AltitudeFeet;
-                        if (isBigAltitudeOn) lblBigElevation.Text = AltitudeFeet;
                         ////Boundary
                         lblBoundaryArea.Text = boundz.areaAcre;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + "ft";
                         else lblHeadlandDistanceAway.Text = "***";
-
                         lblHeadlandDistanceFromTool.Text = ((int)(glm.m2ft * distTool)) + "ft";
-
                     }
 
                     //both
-                lblLatitude.Text = Latitude;
-                lblLongitude.Text = Longitude;
-                lblFixQuality.Text = FixQuality;
-                lblSats.Text = SatsTracked;
+                    lblLatitude.Text = Latitude;
+                    lblLongitude.Text = Longitude;
+                    lblFixQuality.Text = FixQuality;
+                    lblSats.Text = SatsTracked;
 
-                lblRoll.Text = RollInDegrees;
-                lblGyroHeading.Text = GyroInDegrees;
-                lblGPSHeading.Text = GPSHeading;
-                //lblTurnProgressBar.Value = youTurnProgressBar;
+                    lblRoll.Text = RollInDegrees;
+                    lblYawHeading.Text = GyroInDegrees;
+                    lblGPSHeading.Text = GPSHeading;
+                    //lblEmlidPitch.Text = pn.nPitch.ToString("N2");
 
-                //up in the menu a few pieces of info
-                if (isJobStarted)
-                {
-                    lblEasting.Text = "E: " + Math.Round(pn.easting, 1).ToString();
-                    lblNorthing.Text = "N: " + Math.Round(pn.northing, 1).ToString();
-                }
-                else
-                {
-                    lblEasting.Text = "E: " + ((int)pn.actualEasting).ToString();
-                    lblNorthing.Text = "N: " + ((int)pn.actualNorthing).ToString();
-                }
+                    //lblTurnProgressBar.Value = youTurnProgressBar;
 
-                lblZone.Text = pn.zone.ToString();
-                tboxSentence.Text = recvSentenceSettings;
+                    //up in the menu a few pieces of info
+                    if (isJobStarted)
+                    {
+                        lblEasting.Text = "E: " + Math.Round(pn.easting, 1).ToString();
+                        lblNorthing.Text = "N: " + Math.Round(pn.northing, 1).ToString();
+                    }
+                    else
+                    {
+                        lblEasting.Text = "E: " + ((int)pn.actualEasting).ToString();
+                        lblNorthing.Text = "N: " + ((int)pn.actualNorthing).ToString();
+                    }
+
+                    lblZone.Text = pn.zone.ToString();
+                    tboxSentence.Text = recvSentenceSettings;
 
                 }
 

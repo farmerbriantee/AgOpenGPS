@@ -118,12 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsCloseField" xml:space="preserve">
-    <value>Champ proche</value>
+    <value>Parcelle fermée</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
     <value>Champ non ouvert</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
     <value>Le champ est ouvert</value>
+  </data>
+  <data name="gsBoundaryNotSet" xml:space="preserve">
+    <value>Pas de limite enregistrée</value>
+  </data>
+  <data name="gsBoundaryTooSmall" xml:space="preserve">
+    <value>Limite trop petite pour crééer une ligne guide</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>Cliquer encore une fois pour stopper</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Fermer la parcelle d'abord</value>
+  </data>
+  <data name="gsCreateBoundaryFirst" xml:space="preserve">
+    <value>Crééer une limite d'abord</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Démarer l'enregistrement</value>
+  </data>
+  <data name="gsFeet" xml:space="preserve">
+    <value>Pieds</value>
+  </data>
+  <data name="gsIsGPSOff" xml:space="preserve">
+    <value>Votre source GPS est-elle OFF?</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>Pas de GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Pas de lignes de guidages</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>**Pas de réception de données**</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="gsProgramExitAndRestart" xml:space="preserve">
+    <value>Le programme va stopper. Merci de redémarrer</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Commencer une nouvelle parcelle</value>
+  </data>
+  <data name="gsTurnOnContourOrABLine" xml:space="preserve">
+    <value>Tracer le contour ou faite une ligne AB</value>
   </data>
 </root>

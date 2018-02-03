@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormABLine));
-            this.lblABHeading = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblFixHeading = new System.Windows.Forms.Label();
             this.lblKeepGoing = new System.Windows.Forms.Label();
@@ -59,12 +58,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBasedOnPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblABHeading
-            // 
-            resources.ApplyResources(this.lblABHeading, "lblABHeading");
-            this.lblABHeading.BackColor = System.Drawing.SystemColors.Control;
-            this.lblABHeading.Name = "lblABHeading";
             // 
             // timer1
             // 
@@ -132,7 +125,7 @@
             // 
             resources.ApplyResources(this.btnDeleteAB, "btnDeleteAB");
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Stop;
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Click += new System.EventHandler(this.btnDeleteAB_Click);
             // 
@@ -269,7 +262,6 @@
             this.Controls.Add(this.btnDnABHeading);
             this.Controls.Add(this.btnUpABHeading);
             this.Controls.Add(this.lblFixHeading);
-            this.Controls.Add(this.lblABHeading);
             this.Controls.Add(this.btnDeleteAB);
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
@@ -295,7 +287,6 @@
         private System.Windows.Forms.Button btnBPoint;
         private System.Windows.Forms.Button btnAPoint;
         private System.Windows.Forms.Button btnABLineOk;
-        private System.Windows.Forms.Label lblABHeading;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblFixHeading;
         private System.Windows.Forms.Button btnDnABHeadingBy1;

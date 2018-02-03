@@ -38,7 +38,7 @@
   float Zp = 0.0;
   float XeRoll = 0;
   const float varRoll = 0.1; // variance, smaller, more filtering
-  const float varProcess = 0.002;
+  const float varProcess = 0.00025; //works good for 10 hz
   
    //program flow
   bool isDataFound = false, isSettingFound = false;
@@ -54,7 +54,8 @@
   float steerAngleSetPoint = 0; //the desired angle from AgOpen
   int steeringPosition = 0, steeringPositionZero = 512; //from steering sensor
   float steerAngleError = 0; //setpoint - actual
-  float steerSensorCounts = 40;
+  float distanceError = 0; //
+  float steerSensorCounts = 4;
 
   //inclinometer variables
   int roll = 0;
@@ -146,8 +147,11 @@ void loop()
 
     IMU.readIMU();
 
-        //clean out serial buffer
-    if (serialResetTimer > 10)
+    //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
+    if (watchdogTimer++ > 250) watchdogTimer = 12; 
+
+    //clean out serial buffer to prevent buffer overflow
+    if (serialResetTimer++ > 20)
     {
       while(Serial.available() > 0) char t = Serial.read();
       serialResetTimer = 0;
@@ -160,10 +164,10 @@ void loop()
     delay(1);
     analogRead(A1); //discard
     delay(1);
-    roll = analogRead(A1);   delay(1);
-    roll += analogRead(A1);   delay(1);
-    roll += analogRead(A1);   delay(1);
-    roll += analogRead(A1);
+    roll = analogRead(A1);   delay(4);
+    roll += analogRead(A1);   delay(4);
+    roll += analogRead(A1);   delay(4);
+    roll += analogRead(A1);   delay(4);
     roll = roll >> 2; //divide by 4
     
     //inclinometer goes from -25 to 25 from 0 volts to 5 volts
@@ -187,13 +191,13 @@ void loop()
        
     //steering position and steer angle
     analogRead(A0); //discard initial reading
-    steeringPosition = analogRead(A0);    delay(1);
-    steeringPosition += analogRead(A0);    delay(1);
-    steeringPosition += analogRead(A0);    delay(1);
-    steeringPosition += analogRead(A0);    delay(1);
+    steeringPosition = analogRead(A0);    delay(4);
+    steeringPosition += analogRead(A0);    delay(4);
+    steeringPosition += analogRead(A0);    delay(4);
+    steeringPosition += analogRead(A0);    
     steeringPosition = steeringPosition >> 2; //divide by 4    
-    //steeringPosition = ( steeringPosition - steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
-    steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
+    steeringPosition = ( steeringPosition - steeringPositionZero + XeRoll/16.0);   //read the steering position sensor
+    //steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
     
     //convert position to steer angle. 6 counts per degree of steer pot position in my case
     //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
@@ -212,10 +216,7 @@ void loop()
       pwmDrive = 0; //turn off steering motor
       motorDrive(); //out to motors the pwm value         
     }
-
-    //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
-    watchdogTimer++; 
-    
+        
     //Send to agopenGPS **** you must send 5 numbers ****
     Serial.print(steerAngleActual); //The actual steering angle in degrees
     Serial.print(",");    
@@ -266,7 +267,7 @@ void loop()
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  
       {      
-        watchdogTimer = 100;//turn off steering motor
+        watchdogTimer = 12;//turn off steering motor
       }    
       else          //valid conditions to turn on autosteer
       {

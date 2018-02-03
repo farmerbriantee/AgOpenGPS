@@ -44,7 +44,7 @@ namespace AgOpenGPS
 
             //make sure free drive is off
             btnFreeDrive.BackColor = Color.Red;
-            mf.isInFreeDriveMode = false;
+            mf.ast.isInFreeDriveMode = false;
             btnFreeDriveZero.Enabled = false;
             tbarFreeDriveAngle.Enabled = false;
             tbarFreeDriveAngle.Value = 0;
@@ -54,13 +54,13 @@ namespace AgOpenGPS
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mf.isInFreeDriveMode = false;
+            mf.ast.isInFreeDriveMode = false;
         }
 
         //Timer
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (!mf.isInFreeDriveMode)
+            if (!mf.ast.isInFreeDriveMode)
             {
                 //normal mode
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
@@ -326,11 +326,11 @@ namespace AgOpenGPS
 
         private void btnFreeDrive_Click(object sender, EventArgs e)
         {
-            if (mf.isInFreeDriveMode)
+            if (mf.ast.isInFreeDriveMode)
             {
                 //turn OFF free drive mode
                 btnFreeDrive.BackColor = Color.Red;
-                mf.isInFreeDriveMode = false;
+                mf.ast.isInFreeDriveMode = false;
                 btnFreeDriveZero.Enabled = false;
                 tbarFreeDriveAngle.Enabled = false;
                 tbarFreeDriveAngle.Value = 0;
@@ -341,7 +341,7 @@ namespace AgOpenGPS
             {
                 //turn ON free drive mode
                 btnFreeDrive.BackColor = Color.LimeGreen;
-                mf.isInFreeDriveMode = true;
+                mf.ast.isInFreeDriveMode = true;
                 btnFreeDriveZero.Enabled = true;
                 tbarFreeDriveAngle.Enabled = true;
                 tbarFreeDriveAngle.Value = 0;

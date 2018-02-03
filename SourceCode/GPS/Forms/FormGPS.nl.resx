@@ -1101,7 +1101,7 @@
     <value>138, 39</value>
   </data>
   <data name="toolStripDropDownButton2.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Opties</value>
   </data>
   <data name="toolstripUDPConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2512,7 +2512,7 @@
     <value>295, 145</value>
   </data>
   <data name="btnRateConfig.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Opties</value>
   </data>
   <data name="btnRateDn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2954,7 +2954,7 @@
 </value>
   </data>
   <data name="btnSettings.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Opties</value>
   </data>
   <data name="btnAutoYouTurn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2995,7 +2995,7 @@
 </value>
   </data>
   <data name="btnAutoYouTurn.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Opties</value>
   </data>
   <data name="btnAutoSteerConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3189,7 +3189,7 @@
 </value>
   </data>
   <data name="btnAutoSteerConfig.Text" xml:space="preserve">
-    <value>Instellingen</value>
+    <value>Opties</value>
   </data>
   <data name="btnUnits.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -6016,7 +6016,7 @@
     <value>English</value>
   </data>
   <data name="menuLanguageRussian.Text" xml:space="preserve">
-    <value>Russian</value>
+    <value>русский</value>
   </data>
   <data name="menuLanguageSpanish.Text" xml:space="preserve">
     <value>Español</value>
