@@ -178,7 +178,6 @@ class BNO055{
     uint8_t readByte(uint8_t, uint8_t);
     void readBytes(uint8_t, uint8_t, uint8_t, uint8_t *);
 
-
     uint8_t GPwrMode;         // Gyro power mode
     uint8_t Gscale;         // Gyro full scale
     //uint8_t Godr = GODR_250Hz;    // Gyro sample rate

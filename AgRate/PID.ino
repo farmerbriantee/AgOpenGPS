@@ -51,7 +51,7 @@ void calcRatePID(void) {
   drive = pValue + dValue + iValue;
 
   sumSpeed+= drive;
-  sumSpeed = (constrain(sumSpeed, 0, 50)); 
+  sumSpeed = (constrain(sumSpeed, 0, 70)); 
   
   pwmDrive = int(sumSpeed);
   pwmDisplay = pwmDrive;
