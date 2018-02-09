@@ -23,7 +23,7 @@ namespace AgOpenGPS
         public double fixUpdateTime = 0.2;
 
         //for heading or Atan2 as camera
-        public bool isAtanCam = true;
+        public bool isHeadingFromFix = true;
 
         //Current fix positions
         public double fixZ = 0.0;
@@ -463,17 +463,29 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-            gpsHeading = Math.Atan2(pn.easting - stepFixPts[currentStepFix].easting, pn.northing - stepFixPts[currentStepFix].northing);
-            if (gpsHeading < 0) gpsHeading += glm.twoPI;
-            fixHeading = gpsHeading;
+            if (isHeadingFromFix)
+            {
+                gpsHeading = Math.Atan2(pn.easting - stepFixPts[currentStepFix].easting, pn.northing - stepFixPts[currentStepFix].northing);
+                if (gpsHeading < 0) gpsHeading += glm.twoPI;
+                fixHeading = gpsHeading;
 
-            //determine fix positions and heading
-            //in degrees for glRotate opengl methods.
-            int camStep = currentStepFix*4;
-            if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-            camHeading = Math.Atan2(pn.easting - stepFixPts[camStep].easting, pn.northing - stepFixPts[camStep].northing);
-            if (camHeading < 0) camHeading += glm.twoPI;
-            camHeading = glm.toDegrees(camHeading);
+                //determine fix positions and heading
+                //in degrees for glRotate opengl methods.
+                int camStep = currentStepFix * 4;
+                if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
+                camHeading = Math.Atan2(pn.easting - stepFixPts[camStep].easting, pn.northing - stepFixPts[camStep].northing);
+                if (camHeading < 0) camHeading += glm.twoPI;
+                camHeading = glm.toDegrees(camHeading);
+            }
+
+            //if from dual antenna use true heading
+            else
+            {
+                //use NMEA headings for camera and tractor graphic
+                fixHeading = glm.toRadians(pn.headingTrue);
+                camHeading = pn.headingTrue;
+            }
+
 
             //make sure there is a gyro otherwise 9999 are sent from autosteer
             if ((ahrs.isHeadingBrick | ahrs.isHeadingBNO | ahrs.isHeadingPAOGI) && mc.gyroHeading != 9999)
@@ -629,12 +641,6 @@ namespace AgOpenGPS
 
             //  ** Torriem Cam   *****
             //Default using fix Atan2 to calc cam, if unchecked in display settings use True Heading from NMEA
-            if (!isAtanCam)
-            {
-                //use NMEA headings for camera and tractor graphic
-                fixHeading = glm.toRadians(pn.headingTrue);
-                camHeading = pn.headingTrue;
-            }
 
             //check to make sure the grid is big enough
             worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);

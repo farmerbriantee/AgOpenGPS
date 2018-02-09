@@ -2,7 +2,13 @@
 * zero Roll
 * Selectable inputs for roll/heading
 * fix bug in imu heading /gps fusion
-
+* Add Google Earth to create boundary
+* Fixed UDP display of ipv4 - not 6
+* Add POAGI sentence from Emlid Reach with IMU
+* Added checkbox for choosing heading from GGA VTG
+* Fix AB Line issues
+* Template for fields from existing Boundary, Headland, Paths etc
+* Delete all section/contour data button
 
 v2.3 Dec 15
 * Sequencing functions and actions on headland

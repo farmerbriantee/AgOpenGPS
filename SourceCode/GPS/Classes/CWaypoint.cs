@@ -2,7 +2,7 @@
 
 namespace AgOpenGPS
 {
-    internal class CWaypoint
+    public class CWaypoint
     {
         //pointers to mainform controls
         private readonly FormGPS mf;

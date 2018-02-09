@@ -134,12 +134,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setCam_isAtanCam {
+        public bool setHeading_isFromPosition {
             get {
-                return ((bool)(this["setCam_isAtanCam"]));
+                return ((bool)(this["setHeading_isFromPosition"]));
             }
             set {
-                this["setCam_isAtanCam"] = value;
+                this["setHeading_isFromPosition"] = value;
             }
         }
         

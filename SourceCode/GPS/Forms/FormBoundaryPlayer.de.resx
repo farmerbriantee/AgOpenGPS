@@ -131,7 +131,7 @@
     <value>Datensatz</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 29</value>
+    <value>89, 29</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Fläche:</value>

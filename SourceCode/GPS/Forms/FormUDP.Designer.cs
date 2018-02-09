@@ -72,9 +72,9 @@
             this.groupBox4.Controls.Add(this.label10);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(23, 62);
+            this.groupBox4.Location = new System.Drawing.Point(12, 62);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(248, 232);
+            this.groupBox4.Size = new System.Drawing.Size(300, 232);
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "AgOpenGPS Server";
@@ -82,12 +82,12 @@
             // tboxHostName
             // 
             this.tboxHostName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxHostName.Location = new System.Drawing.Point(65, 79);
+            this.tboxHostName.Location = new System.Drawing.Point(57, 79);
             this.tboxHostName.Name = "tboxHostName";
             this.tboxHostName.ReadOnly = true;
-            this.tboxHostName.Size = new System.Drawing.Size(157, 30);
+            this.tboxHostName.Size = new System.Drawing.Size(221, 30);
             this.tboxHostName.TabIndex = 86;
-            this.tboxHostName.Text = "192.168.1.255";
+            this.tboxHostName.Text = "HostName";
             // 
             // label14
             // 
@@ -112,7 +112,7 @@
             // tboxThisIP
             // 
             this.tboxThisIP.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxThisIP.Location = new System.Drawing.Point(62, 120);
+            this.tboxThisIP.Location = new System.Drawing.Point(54, 120);
             this.tboxThisIP.Name = "tboxThisIP";
             this.tboxThisIP.ReadOnly = true;
             this.tboxThisIP.Size = new System.Drawing.Size(157, 30);
@@ -122,7 +122,7 @@
             // nudThisPort
             // 
             this.nudThisPort.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudThisPort.Location = new System.Drawing.Point(62, 162);
+            this.nudThisPort.Location = new System.Drawing.Point(54, 162);
             this.nudThisPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -166,7 +166,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(171, 170);
+            this.label2.Location = new System.Drawing.Point(163, 170);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 19);
             this.label2.TabIndex = 78;

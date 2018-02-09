@@ -297,7 +297,7 @@ namespace AgOpenGPS
 
             //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading), Math.Cos(temp - mf.fixHeading))) * 10000);
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
-            mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 10);
+            mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
 
             if (mf.yt.isYouTurnShapeDisplayed)
             {
@@ -322,9 +322,9 @@ namespace AgOpenGPS
             gl.PointSize(8.0f);
             gl.Begin(OpenGL.GL_POINTS);
 
-            gl.Color(0.5f, 0.0f, 0.0f);
+            gl.Color(0.95f, 0.0f, 0.0f);
             gl.Vertex(refPoint1.easting, refPoint1.northing, 0.0);
-            gl.Color(0.0f, 0.0f, 0.5f);
+            gl.Color(0.0f, 0.90f, 0.95f);
             gl.Vertex(refPoint2.easting, refPoint2.northing, 0.0);
 
             //gl.Color(0.6f, 0.95f, 0.95f);

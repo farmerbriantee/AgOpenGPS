@@ -419,10 +419,10 @@ namespace AgOpenGPS
             }
 
             try { sp.Open(); }
-            catch (Exception e)
+            catch (Exception)
             {
                 //MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
-                WriteErrorLog("Open GPS Port " + e.ToString());
+                //WriteErrorLog("Open GPS Port " + e.ToString());
 
                 //update port status labels
                 stripPortGPS.Text = " * * ";

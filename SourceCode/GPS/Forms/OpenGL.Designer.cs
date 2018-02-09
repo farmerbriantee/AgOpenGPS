@@ -793,7 +793,7 @@ namespace AgOpenGPS
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
                     //auto save the field patches, contours accumulated so far
-                    FileSaveField();
+                    FileSaveSections();
                     FileSaveContour();
 
                     //NMEA log file
@@ -1273,6 +1273,25 @@ namespace AgOpenGPS
                         }
                     }
                 }
+
+                //min max of the boundary
+                int bndCnt = boundz.ptList.Count;
+                if (bndCnt > 0)
+                {
+                    for (int i = 0; i < bndCnt; i++)
+                    {
+                        double x = boundz.ptList[i].easting;
+                        double y = boundz.ptList[i].northing;
+
+                        //also tally the max/min of field x and z
+                        if (minFieldX > x) minFieldX = x;
+                        if (maxFieldX < x) maxFieldX = x;
+                        if (minFieldY > y) minFieldY = y;
+                        if (maxFieldY < y) maxFieldY = y;
+                    }
+
+                }
+
 
                 if (maxFieldX == -9999999 | minFieldX == 9999999 | maxFieldY == -9999999 | minFieldY == 9999999)
                 {

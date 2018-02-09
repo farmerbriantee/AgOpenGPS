@@ -91,22 +91,23 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkIsAtanCam = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnRollZero = new System.Windows.Forms.GroupBox();
             this.btnRemoveZeroOffset = new System.Windows.Forms.Button();
             this.lblRollZeroOffset = new System.Windows.Forms.Label();
             this.btnZeroRoll = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cboxHeadingPAOGI = new System.Windows.Forms.CheckBox();
             this.cboxHeadingBNO = new System.Windows.Forms.CheckBox();
             this.cboxHeadingBrick = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cboxRollPAOGI = new System.Windows.Forms.CheckBox();
             this.cboxRollBrick = new System.Windows.Forms.CheckBox();
             this.cboxRollDogs = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -124,8 +125,7 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.cboxHeadingPAOGI = new System.Windows.Forms.CheckBox();
-            this.cboxRollPAOGI = new System.Windows.Forms.CheckBox();
+            this.cboxIsHeadingFromGPSTrue = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -155,10 +155,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.tabGuidance.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -795,7 +795,6 @@
             // 
             this.tabDisplay.Controls.Add(this.groupBox5);
             this.tabDisplay.Controls.Add(this.groupBox2);
-            this.tabDisplay.Controls.Add(this.groupBox1);
             this.tabDisplay.Controls.Add(this.groupBox4);
             resources.ApplyResources(this.tabDisplay, "tabDisplay");
             this.tabDisplay.Name = "tabDisplay";
@@ -887,22 +886,6 @@
             65536});
             this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.chkIsAtanCam);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // chkIsAtanCam
-            // 
-            resources.ApplyResources(this.chkIsAtanCam, "chkIsAtanCam");
-            this.chkIsAtanCam.Checked = true;
-            this.chkIsAtanCam.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIsAtanCam.Name = "chkIsAtanCam";
-            this.chkIsAtanCam.UseVisualStyleBackColor = true;
-            this.chkIsAtanCam.CheckedChanged += new System.EventHandler(this.chkIsAtanCam_CheckedChanged);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label21);
@@ -951,6 +934,7 @@
             // 
             // tabGuidance
             // 
+            this.tabGuidance.Controls.Add(this.groupBox1);
             this.tabGuidance.Controls.Add(this.label10);
             this.tabGuidance.Controls.Add(this.btnRollZero);
             this.tabGuidance.Controls.Add(this.groupBox7);
@@ -960,6 +944,13 @@
             resources.ApplyResources(this.tabGuidance, "tabGuidance");
             this.tabGuidance.Name = "tabGuidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cboxIsHeadingFromGPSTrue);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
             // 
             // label10
             // 
@@ -1003,6 +994,13 @@
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
+            // cboxHeadingPAOGI
+            // 
+            resources.ApplyResources(this.cboxHeadingPAOGI, "cboxHeadingPAOGI");
+            this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
+            this.cboxHeadingPAOGI.UseVisualStyleBackColor = true;
+            this.cboxHeadingPAOGI.CheckedChanged += new System.EventHandler(this.cboxHeadingPAOGI_CheckedChanged);
+            // 
             // cboxHeadingBNO
             // 
             resources.ApplyResources(this.cboxHeadingBNO, "cboxHeadingBNO");
@@ -1025,6 +1023,13 @@
             resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
+            // 
+            // cboxRollPAOGI
+            // 
+            resources.ApplyResources(this.cboxRollPAOGI, "cboxRollPAOGI");
+            this.cboxRollPAOGI.Name = "cboxRollPAOGI";
+            this.cboxRollPAOGI.UseVisualStyleBackColor = true;
+            this.cboxRollPAOGI.CheckedChanged += new System.EventHandler(this.cboxRollPAOGI_CheckedChanged);
             // 
             // cboxRollBrick
             // 
@@ -1134,19 +1139,12 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // cboxHeadingPAOGI
+            // cboxIsHeadingFromGPSTrue
             // 
-            resources.ApplyResources(this.cboxHeadingPAOGI, "cboxHeadingPAOGI");
-            this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
-            this.cboxHeadingPAOGI.UseVisualStyleBackColor = true;
-            this.cboxHeadingPAOGI.CheckedChanged += new System.EventHandler(this.cboxHeadingPAOGI_CheckedChanged);
-            // 
-            // cboxRollPAOGI
-            // 
-            resources.ApplyResources(this.cboxRollPAOGI, "cboxRollPAOGI");
-            this.cboxRollPAOGI.Name = "cboxRollPAOGI";
-            this.cboxRollPAOGI.UseVisualStyleBackColor = true;
-            this.cboxRollPAOGI.CheckedChanged += new System.EventHandler(this.cboxRollPAOGI_CheckedChanged);
+            resources.ApplyResources(this.cboxIsHeadingFromGPSTrue, "cboxIsHeadingFromGPSTrue");
+            this.cboxIsHeadingFromGPSTrue.Name = "cboxIsHeadingFromGPSTrue";
+            this.cboxIsHeadingFromGPSTrue.UseVisualStyleBackColor = true;
+            this.cboxIsHeadingFromGPSTrue.CheckedChanged += new System.EventHandler(this.cboxIsHeadingFromGPSTrue_CheckedChanged);
             // 
             // FormSettings
             // 
@@ -1201,13 +1199,13 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabGuidance.ResumeLayout(false);
             this.tabGuidance.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.btnRollZero.ResumeLayout(false);
             this.btnRollZero.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -1277,8 +1275,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox chkIsSteerAxleAhead;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox chkIsAtanCam;
         private System.Windows.Forms.NumericUpDown nudTriangleResolution;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
@@ -1321,5 +1317,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox cboxHeadingPAOGI;
         private System.Windows.Forms.CheckBox cboxRollPAOGI;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox cboxIsHeadingFromGPSTrue;
     }
 }

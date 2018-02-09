@@ -115,8 +115,8 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, EventArgs e)
         {
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            mf.ABLine.refPoint1.easting = mf.prevFix.easting;
-            mf.ABLine.refPoint1.northing = mf.prevFix.northing;
+            mf.ABLine.refPoint1.easting = mf.pn.easting;
+            mf.ABLine.refPoint1.northing = mf.pn.northing;
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
             btnUpABHeading.Enabled = true;
@@ -124,7 +124,7 @@ namespace AgOpenGPS
             btnUpABHeadingBy1.Enabled = true;
             btnDnABHeadingBy1.Enabled = true;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
-            tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
+            //tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
         }
 
         private void btnBPoint_Click(object sender, EventArgs e)
@@ -133,16 +133,14 @@ namespace AgOpenGPS
             btnABLineOk.Enabled = true;
             btnDeleteAB.Enabled = true;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
-            tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
         }
 
         private void btnUpABHeading_Click(object sender, EventArgs e)
         {
             if ((upDnHeading += 10) > 359.9) upDnHeading = 0;
             upDnHeading = (int)upDnHeading;
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            mf.ABLine.SetABLineByHeading();
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
         }
 
@@ -150,9 +148,8 @@ namespace AgOpenGPS
         {
             if ((upDnHeading -= 10) < 0) upDnHeading = 350;
             upDnHeading = (int)upDnHeading;
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            mf.ABLine.SetABLineByHeading();
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
         }
 
@@ -160,9 +157,8 @@ namespace AgOpenGPS
         {
             if ((upDnHeading++) > 358) upDnHeading = 0;
             upDnHeading = (int)upDnHeading;
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            mf.ABLine.SetABLineByHeading();
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
         }
 
@@ -171,9 +167,8 @@ namespace AgOpenGPS
             upDnHeading--;
             if (upDnHeading < 0) upDnHeading = 359;
             upDnHeading = (int)upDnHeading;
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            mf.ABLine.SetABLineByHeading();
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
         }
 
@@ -208,6 +203,8 @@ namespace AgOpenGPS
         {
             lblFixHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
             lblKeepGoing.Text = "";
+            lblABHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)) + "°";
+
 
             //make sure we go at least 3 or so meters before allowing B reference point
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)

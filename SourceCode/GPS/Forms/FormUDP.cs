@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Net;
+using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -37,8 +38,8 @@ namespace AgOpenGPS
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST 
             tboxHostName.Text = hostName;
 
-            IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
-            tboxThisIP.Text = ipaddress[1].ToString();
+            //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
+            tboxThisIP.Text = GetIP4Address();
 
             nudThisPort.Value = Properties.Settings.Default.setIP_thisPort;
 
@@ -47,6 +48,23 @@ namespace AgOpenGPS
 
             tboxRateRelayIP.Text = Properties.Settings.Default.setIP_rateRelayIP;
             nudRateRelayPort.Value = Properties.Settings.Default.setIP_rateRelayPort;
+        }
+
+        //get the ipv4 address only
+        public static string GetIP4Address()
+        {
+            string IP4Address = String.Empty;
+
+            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (IPA.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    IP4Address = IPA.ToString();
+                    break;
+                }
+            }
+
+            return IP4Address;
         }
 
         public Boolean CheckIPValid(String strIP)
@@ -66,8 +84,7 @@ namespace AgOpenGPS
                 if (strOctet.Length > 3 | strOctet.Length == 0) return false;
 
                 //make sure all digits
-                int temp2;
-                if (!int.TryParse(strOctet, out temp2)) return false;
+                if (!int.TryParse(strOctet, out int temp2)) return false;
 
                 //make sure not more then 255
                 temp = int.Parse(strOctet);

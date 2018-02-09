@@ -448,6 +448,23 @@ namespace AgOpenGPS
                     }
                 }
 
+                //min max of the boundary
+                int bndCnt = mf.boundz.ptList.Count;
+                if (bndCnt > 0)
+                {
+                    for (int i = 0; i < bndCnt; i ++)
+                    {
+                        double x = mf.boundz.ptList[i].easting;
+                        double y = mf.boundz.ptList[i].northing;
+
+                        //also tally the max/min of field x and z
+                        if (minFieldX > x) minFieldX = x;
+                        if (maxFieldX < x) maxFieldX = x;
+                        if (minFieldY > y) minFieldY = y;
+                        if (maxFieldY < y) maxFieldY = y;
+                    }
+                }
+
                 if (maxFieldX == -9999999 | minFieldX == 9999999 | maxFieldY == -9999999 | minFieldY == 9999999)
                 {
                     maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;

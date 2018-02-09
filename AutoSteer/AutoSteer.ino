@@ -262,7 +262,7 @@ void loop()
       distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
   
       //set point steer angle * 10 is sent
-      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())*0.1); //high low bytes 
+      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())*0.01); //high low bytes 
   
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  

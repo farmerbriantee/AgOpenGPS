@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
-using SharpGL;
 
 namespace AgOpenGPS
 {
@@ -8,6 +8,7 @@ namespace AgOpenGPS
     {
         //copy of the mainform address
         private readonly FormGPS mf;
+
         private readonly OpenGL gl;
         private readonly OpenGL glb;
 
@@ -35,28 +36,31 @@ namespace AgOpenGPS
 
         //area variable
         public double area;
+
         public string areaHectare = "";
         public string areaAcre = "";
 
         //boundary variables
         public bool isOkToAddPoints;
+
         public bool isSet;
         public bool isDrawRightSide;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
+
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
 
         //point at the farthest boundary segment from pivotAxle
-        public vec2 closestBoundaryPt = new vec2(-1,-1);
+        public vec2 closestBoundaryPt = new vec2(-1, -1);
 
         public void FindClosestBoundaryPoint(vec2 fromPt)
         {
-            boxA.easting = fromPt.easting - (Math.Sin(mf.fixHeading + glm.PIBy2) *  mf.vehicle.toolWidth * 0.5);
-            boxA.northing = fromPt.northing - (Math.Cos(mf.fixHeading + glm.PIBy2)  * mf.vehicle.toolWidth * 0.5);
+            boxA.easting = fromPt.easting - (Math.Sin(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
+            boxA.northing = fromPt.northing - (Math.Cos(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
 
-            boxB.easting = fromPt.easting + (Math.Sin(mf.fixHeading + glm.PIBy2) *  mf.vehicle.toolWidth * 0.5);
-            boxB.northing = fromPt.northing + (Math.Cos(mf.fixHeading + glm.PIBy2)  * mf.vehicle.toolWidth * 0.5);
+            boxB.easting = fromPt.easting + (Math.Sin(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
+            boxB.northing = fromPt.northing + (Math.Cos(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
 
             boxC.easting = boxB.easting + (Math.Sin(mf.fixHeading) * 2000.0);
             boxC.northing = boxB.northing + (Math.Cos(mf.fixHeading) * 2000.0);
@@ -81,7 +85,7 @@ namespace AgOpenGPS
                 if ((((boxA.easting - boxD.easting) * (ptList[p].northing - boxD.northing))
                         - ((boxA.northing - boxD.northing) * (ptList[p].easting - boxD.easting))) < 0) { continue; }
 
-                //it's in the box, so add to list 
+                //it's in the box, so add to list
                 closestBoundaryPt.easting = ptList[p].easting;
                 closestBoundaryPt.northing = ptList[p].northing;
                 bdList.Add(closestBoundaryPt);
@@ -156,7 +160,7 @@ namespace AgOpenGPS
 
         public bool IsPointInsideBoundary(vec2 testPoint)
         {
-            if (calcList.Count < 10) return false;
+            if (calcList.Count < 3) return false;
             int j = ptList.Count - 1;
             bool oddNodes = false;
 

@@ -39,8 +39,8 @@
             // 
             // btnStop
             // 
-            resources.ApplyResources(this.btnStop, "btnStop");
             this.btnStop.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.btnStop, "btnStop");
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.boundaryStop;
             this.btnStop.Name = "btnStop";
             this.btnStop.UseVisualStyleBackColor = false;
@@ -48,8 +48,8 @@
             // 
             // btnPausePlay
             // 
-            resources.ApplyResources(this.btnPausePlay, "btnPausePlay");
             this.btnPausePlay.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.btnPausePlay, "btnPausePlay");
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnPausePlay.Name = "btnPausePlay";
             this.btnPausePlay.UseVisualStyleBackColor = false;

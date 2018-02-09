@@ -55,6 +55,9 @@
             this.btnListDelete = new System.Windows.Forms.Button();
             this.btnListUse = new System.Windows.Forms.Button();
             this.btnPlus90 = new System.Windows.Forms.Button();
+            this.lblABHeading = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudBasedOnPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).BeginInit();
             this.SuspendLayout();
@@ -82,8 +85,8 @@
             // 
             // nudBasedOnPass
             // 
-            resources.ApplyResources(this.nudBasedOnPass, "nudBasedOnPass");
             this.nudBasedOnPass.BackColor = System.Drawing.Color.MediumOrchid;
+            resources.ApplyResources(this.nudBasedOnPass, "nudBasedOnPass");
             this.nudBasedOnPass.Minimum = new decimal(new int[] {
             100,
             0,
@@ -94,8 +97,8 @@
             // 
             // nudTramRepeats
             // 
-            resources.ApplyResources(this.nudTramRepeats, "nudTramRepeats");
             this.nudTramRepeats.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.nudTramRepeats, "nudTramRepeats");
             this.nudTramRepeats.Name = "nudTramRepeats";
             this.nudTramRepeats.ValueChanged += new System.EventHandler(this.nudTramRepeats_ValueChanged);
             // 
@@ -240,12 +243,31 @@
             this.btnPlus90.UseVisualStyleBackColor = true;
             this.btnPlus90.Click += new System.EventHandler(this.btnPlus90_Click);
             // 
+            // lblABHeading
+            // 
+            resources.ApplyResources(this.lblABHeading, "lblABHeading");
+            this.lblABHeading.Name = "lblABHeading";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // FormABLine
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ControlBox = false;
+            this.Controls.Add(this.lblABHeading);
+            this.Controls.Add(this.lblFixHeading);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPlus90);
             this.Controls.Add(this.btnListUse);
             this.Controls.Add(this.btnListDelete);
@@ -261,7 +283,6 @@
             this.Controls.Add(this.btnUpABHeadingBy1);
             this.Controls.Add(this.btnDnABHeading);
             this.Controls.Add(this.btnUpABHeading);
-            this.Controls.Add(this.lblFixHeading);
             this.Controls.Add(this.btnDeleteAB);
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
@@ -308,5 +329,8 @@
         private System.Windows.Forms.ColumnHeader chEasting;
         private System.Windows.Forms.ColumnHeader chNorthing;
         private System.Windows.Forms.Button btnPlus90;
+        private System.Windows.Forms.Label lblABHeading;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }

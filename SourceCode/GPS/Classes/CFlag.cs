@@ -2,14 +2,16 @@
 
 namespace AgOpenGPS
 {
-    class CFlag
+    internal class CFlag
     {
         //WGS84 Lat Long
         public double latitude = 0;
+
         public double longitude = 0;
 
         //UTM coordinates
         public double northing = 0;
+
         public double easting = 0;
 
         //color of the flag - 0 is red, 1 is green, 2 is purple

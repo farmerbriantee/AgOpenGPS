@@ -13,7 +13,7 @@ namespace AgOpenGPS
         private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
         private double antennaHeight, antennaPivot, wheelbase, hitchLength;
 
-        private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isAtanCamera;
+        private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isHeadingFromFix;
         private int numberOfSections;
 
         private decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
@@ -176,12 +176,6 @@ namespace AgOpenGPS
             //based on number of sections and values update the page before displaying
             UpdateSpinners();
 
-            isAtanCamera = Properties.Settings.Default.setCam_isAtanCam;
-
-            chkIsAtanCam.CheckedChanged -= chkIsAtanCam_CheckedChanged;
-            chkIsAtanCam.Checked = isAtanCamera;
-            chkIsAtanCam.CheckedChanged += chkIsAtanCam_CheckedChanged;
-
             triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
             nudTriangleResolution.Value = triResolution;
 
@@ -226,6 +220,13 @@ namespace AgOpenGPS
             isRollPAOGI = Properties.Settings.Default.setIMU_isRollFromPAOGI;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZero / 16).ToString("N2");
+
+            isHeadingFromFix = Properties.Settings.Default.setHeading_isFromPosition;
+
+            cboxIsHeadingFromGPSTrue.CheckedChanged -= cboxIsHeadingFromGPSTrue_CheckedChanged;
+            cboxIsHeadingFromGPSTrue.Checked = !isHeadingFromFix;
+            cboxIsHeadingFromGPSTrue.CheckedChanged += cboxIsHeadingFromGPSTrue_CheckedChanged;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -315,8 +316,8 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
             ////Display ---load the delay slides --------------------------------------------------------------------
-            mf.isAtanCam = isAtanCamera;
-            Properties.Settings.Default.setCam_isAtanCam = isAtanCamera;
+            mf.isHeadingFromFix = isHeadingFromFix;
+            Properties.Settings.Default.setHeading_isFromPosition = isHeadingFromFix;
 
             mf.boundaryTriggerDistance = (double)boundaryDistance;
             Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
@@ -905,11 +906,7 @@ namespace AgOpenGPS
             minFixStepDistance = nudMinFixStepDistance.Value;
         }
 
-        private void chkIsAtanCam_CheckedChanged(object sender, EventArgs e)
-        {
-            isAtanCamera = !isAtanCamera;
-            chkIsAtanCam.Checked = isAtanCamera;
-        }
+
 
         #endregion Display //----------------------------------------------------------------
 
@@ -1025,6 +1022,12 @@ namespace AgOpenGPS
             lblRollZeroOffset.Text = "0.00";
             Properties.Settings.Default.setIMU_rollZero = 0;
             Properties.Settings.Default.Save();
+        }
+
+        private void cboxIsHeadingFromGPSTrue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cboxIsHeadingFromGPSTrue.Checked) isHeadingFromFix = false;
+            else isHeadingFromFix = true;
         }
 
         #endregion Guidance

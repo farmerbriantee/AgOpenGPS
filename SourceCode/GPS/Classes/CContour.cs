@@ -514,7 +514,7 @@ namespace AgOpenGPS
                 }
 
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
-                mf.guidanceLineSteerAngle = (Int16)(steerAngleCT*10);
+                mf.guidanceLineSteerAngle = (Int16)(steerAngleCT*100);
                 //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading),
                 //                                    Math.Cos(temp - mf.fixHeading))) * 10000);
            }

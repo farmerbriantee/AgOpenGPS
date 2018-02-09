@@ -1,0 +1,67 @@
+Load Boundary LineSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 951 - 2/3/2018 6:27:42 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 57 - 2018-02-03 8:54:14 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 57 - 2018-02-03 8:54:14 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 57 - 2018-02-03 8:54:15 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 57 - 2018-02-03 8:54:15 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 57 - 2018-02-03 8:54:15 PM
+
+Creating new field System.NotSupportedException: The given path's format is not supported.
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at AgOpenGPS.FormFieldDir.btnOk_Click(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\FormFieldDir.cs:line 113 - 2/8/2018 9:34:15 PM
+
+Creating new field System.NotSupportedException: The given path's format is not supported.
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
+   at System.IO.Directory.CreateDirectory(String path)
+   at AgOpenGPS.FormFieldDir.btnOk_Click(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\FormFieldDir.cs:line 113 - 2/8/2018 9:39:18 PM
+
+Loading Contour fileSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 728 - 2/9/2018 7:59:34 AM
+
+FieldOpen, Loading Flags, Corrupt Flag FileSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 779 - 2/9/2018 7:59:35 AM
+
+Load AB LineSystem.FormatException: String was not recognized as a valid Boolean.
+   at System.Boolean.Parse(String value)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 839 - 2/9/2018 7:59:35 AM
+
+Load Boundary LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 936 - 2/9/2018 7:59:35 AM
+
+Load Headland LoopSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 990 - 2/9/2018 7:59:35 AM
+

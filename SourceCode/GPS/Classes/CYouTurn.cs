@@ -586,7 +586,7 @@ namespace AgOpenGPS
                 }
 
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
-                mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 10);
+                mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
             }
             else
             {

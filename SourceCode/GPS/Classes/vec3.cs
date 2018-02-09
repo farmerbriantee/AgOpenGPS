@@ -7,6 +7,23 @@ namespace AgOpenGPS
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
+    /// 
+    public class Cvec3
+    {
+        public double speed { get; set; }
+        public double easting { get; set; }
+        public double northing { get; set; }
+        public double heading { get; set; }
+
+        //constructor
+        public Cvec3(double _easting=0, double _northing=0, double _heading=0)
+        {
+            easting = _easting;
+            northing = _northing;
+            heading = _heading;
+        }
+    }
+
     public struct vec3
     {
         public double easting;
@@ -20,47 +37,47 @@ namespace AgOpenGPS
             this.heading = heading;
         }
 
-       public vec3(vec3 v)
+        public vec3(vec3 v)
         {
             easting = v.easting;
             northing = v.northing;
             heading = v.heading;
-         }
-
-        public double HeadingXZ()
-        {
-            return Math.Atan2(easting, northing);
         }
 
-        public void Normalize()
-        {
-            double length = GetLength();
-            if (Math.Abs(length) < 0.0000000000001)
-            {
-                throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
-            }
+        //public double HeadingXZ()
+        //{
+        //    return Math.Atan2(easting, northing);
+        //}
 
-            easting /= length;
-            northing /= length;
-            heading /= length;
-        }
+        //public void Normalize()
+        //{
+        //    double length = GetLength();
+        //    if (Math.Abs(length) < 0.0000000000001)
+        //    {
+        //        throw new DivideByZeroException("Trying to normalize a vector with length of zero.");
+        //    }
 
-        //Returns the length of the vector
-        public double GetLength()
-        {
-            return Math.Sqrt(easting * easting + heading * heading + northing * northing);
-        }
+        //    easting /= length;
+        //    northing /= length;
+        //    heading /= length;
+        //}
 
-        // Calculates the squared length of the vector.
-        public double GetLengthSquared()
-        {
-            return (easting * easting + heading * heading + northing * northing);
-        }
+        ////Returns the length of the vector
+        //public double GetLength()
+        //{
+        //    return Math.Sqrt((easting * easting) + (heading * heading) + (northing * northing));
+        //}
 
-        public static vec3 operator -(vec3 lhs, vec3 rhs)
-        {
-            return new vec3(lhs.easting - rhs.easting, lhs.northing - rhs.northing, lhs.heading - rhs.heading);
-        }
+        //// Calculates the squared length of the vector.
+        //public double GetLengthSquared()
+        //{
+        //    return (easting * easting) + (heading * heading) + (northing * northing);
+        //}
+
+        //public static vec3 operator -(vec3 lhs, vec3 rhs)
+        //{
+        //    return new vec3(lhs.easting - rhs.easting, lhs.northing - rhs.northing, lhs.heading - rhs.heading);
+        //}
 
         //public static bool operator ==(vec3 lhs, vec3 rhs)
         //{
@@ -71,7 +88,6 @@ namespace AgOpenGPS
         //{
         //    return (lhs.x != rhs.x && lhs.z != rhs.z && lhs.h != rhs.h);
         //}
-
     }
 
     //
@@ -104,7 +120,7 @@ namespace AgOpenGPS
         {
             this.easting = easting;
             this.northing = northing;
-       }
+        }
 
         public static vec2 operator -(vec2 lhs, vec2 rhs)
         {
@@ -143,13 +159,13 @@ namespace AgOpenGPS
         //Returns the length of the vector
         public double GetLength()
         {
-            return Math.Sqrt(easting * easting + northing * northing);
+            return Math.Sqrt((easting * easting) + (northing * northing));
         }
 
         // Calculates the squared length of the vector.
         public double GetLengthSquared()
         {
-            return (easting * easting + northing * northing);
+            return (easting * easting) + (northing * northing);
         }
     }
 
@@ -163,7 +179,7 @@ namespace AgOpenGPS
         public int pt;
 
         //specialized contour vector
-         public cvec(double x, double z, double h, int s, int p)
+        public cvec(double x, double z, double h, int s, int p)
         {
             this.x = x;
             this.z = z;
@@ -172,14 +188,14 @@ namespace AgOpenGPS
             pt = p;
         }
 
-         public cvec(vec3 v)
-         {
-             x = v.easting;
-             z = v.northing;
-             h = v.heading;
-             strip = 99999;
-             pt = 99999;
-         }
+        public cvec(vec3 v)
+        {
+            x = v.easting;
+            z = v.northing;
+            h = v.heading;
+            strip = 99999;
+            pt = 99999;
+        }
     }
 }
 

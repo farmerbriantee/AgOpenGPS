@@ -81,7 +81,7 @@ namespace AgOpenGPS
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
-                    writer.WriteLine("IsAtanCam," + Properties.Settings.Default.setCam_isAtanCam.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IsAtanCam," + Properties.Settings.Default.setHeading_isFromPosition.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("TriangleResolution," + Properties.Settings.Default.setDisplay_triangleResolution.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsMetric," + Properties.Settings.Default.setMenu_isMetric.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsGridOn," + Properties.Settings.Default.setMenu_isGridOn.ToString(CultureInfo.InvariantCulture));
@@ -277,7 +277,7 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setCam_isAtanCam = bool.Parse(words[1]);
+                        Properties.Settings.Default.setHeading_isFromPosition = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setDisplay_triangleResolution = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -459,7 +459,7 @@ namespace AgOpenGPS
 
                         camera.camPitch = Properties.Settings.Default.setCam_pitch;
 
-                        isAtanCam = Properties.Settings.Default.setCam_isAtanCam;
+                        isHeadingFromFix = Properties.Settings.Default.setHeading_isFromPosition;
                         camera.triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
                         isMetric = Properties.Settings.Default.setMenu_isMetric;
@@ -542,39 +542,52 @@ namespace AgOpenGPS
             }      //cancelled out of open file
         }//end of open file
 
-        //function to open a previously saved field, Contour, Flags, Boundary
+        //function to open a previously saved field, resume, open exisiting, open named field
         public void FileOpenField(string _openType)
         {
-            string fileAndDirectory;
+            string fileAndDirectory = "";
+            if (_openType.Contains("Field.txt"))
+            {
+                fileAndDirectory = _openType;
+                _openType = "Load";
+            }
+
+            else fileAndDirectory = "Cancel";
+
             //get the directory where the fields are stored
             //string directoryName = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)+ "\\fields\\";
-
-            if (_openType == "Resume")
+            switch (_openType)
             {
-                //Either exit or update running save
-                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Field.txt";
-                if (!File.Exists(fileAndDirectory)) return;
+                case "Resume":
+                    {
+                        //Either exit or update running save
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Field.txt";
+                        if (!File.Exists(fileAndDirectory)) fileAndDirectory = "Cancel";
+                        break;
+                    }
+
+                case "Open":
+                    {
+                        //create the dialog instance
+                        OpenFileDialog ofd = new OpenFileDialog();
+
+                        //the initial directory, fields, for the open dialog
+                        ofd.InitialDirectory = fieldsDirectory;
+
+                        //When leaving dialog put windows back where it was
+                        ofd.RestoreDirectory = true;
+
+                        //set the filter to text files only
+                        ofd.Filter = "Field files (Field.txt)|Field.txt";
+
+                        //was a file selected
+                        if (ofd.ShowDialog() == DialogResult.Cancel) fileAndDirectory = "Cancel";
+                        else fileAndDirectory = ofd.FileName;
+                        break;
+                    }
             }
 
-            //open file dialog instead
-            else
-            {
-                //create the dialog instance
-                OpenFileDialog ofd = new OpenFileDialog();
-
-                //the initial directory, fields, for the open dialog
-                ofd.InitialDirectory = fieldsDirectory;
-
-                //When leaving dialog put windows back where it was
-                ofd.RestoreDirectory = true;
-
-                //set the filter to text files only
-                ofd.Filter = "Field files (Field.txt)|Field.txt";
-
-                //was a file selected
-                if (ofd.ShowDialog() == DialogResult.Cancel) return;
-                else fileAndDirectory = ofd.FileName;
-            }
+            if (fileAndDirectory == "Cancel") return;
 
             //close the existing job and reset everything
             this.JobClose();
@@ -620,53 +633,6 @@ namespace AgOpenGPS
 
                     //create a new grid
                     worldGrid.CreateWorldGrid(pn.actualNorthing - pn.utmNorth, pn.actualEasting - pn.utmEast);
-
-                    //read the section and patch triangles...
-
-                    //read the line $Sections
-                    line = reader.ReadLine();
-
-                    //read number of sections
-                    line = reader.ReadLine();
-
-                    totalSquareMeters = 0;
-                    //totalUserSquareMeters = 0;
-                    userDistance = 0;
-
-                    vec2 vecFix = new vec2(0, 0);
-
-                    while (!reader.EndOfStream)
-                    {
-                        line = reader.ReadLine();
-                        int verts = int.Parse(line);
-
-                        section[0].triangleList = new List<vec2>();
-                        section[0].patchList.Add(section[0].triangleList);
-
-                        for (int v = 0; v < verts; v++)
-                        {
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                            vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            section[0].triangleList.Add(vecFix);
-                        }
-
-                        //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
-                        verts -= 2;
-                        if (verts >= 2)
-                        {
-                            for (int j = 0; j < verts; j++)
-                            {
-                                double temp = 0;
-                                temp = section[0].triangleList[j].easting * (section[0].triangleList[j + 1].northing - section[0].triangleList[j + 2].northing) +
-                                          section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
-                                              section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
-
-                                totalSquareMeters += Math.Abs((temp * 0.5));
-                            }
-                        }
-                    }
                 }
 
                 catch (Exception e)
@@ -680,38 +646,88 @@ namespace AgOpenGPS
                 }
             }
 
-            // Contour points ----------------------------------------------------------------------------
-
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
+            //section patches
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Section File", "But Field is Loaded");
                 form.Show();
                 //return;
             }
-
-            /*
-                May-14-17  -->  7:42:47 PM
-                Points in Patch followed by easting, heading, northing, altitude
-                $ContourDir
-                cdert_May14
-                $Offsets
-                533631,5927279,12
-                19
-                2.866,2.575,-4.07,0             
-             */
             else
             {
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
                     try
                     {
-                        //read the lines and skip them
+                        totalSquareMeters = 0;
+                        userDistance = 0;
+                        vec2 vecFix = new vec2(0, 0);
+
+                        //read header
                         line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+
+                        while (!reader.EndOfStream)
+                        {
+                            line = reader.ReadLine();
+                            int verts = int.Parse(line);
+
+                            section[0].triangleList = new List<vec2>();
+                            section[0].patchList.Add(section[0].triangleList);
+
+                            for (int v = 0; v < verts; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+                                vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                section[0].triangleList.Add(vecFix);
+                            }
+
+                            //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
+                            verts -= 2;
+                            if (verts >= 2)
+                            {
+                                for (int j = 0; j < verts; j++)
+                                {
+                                    double temp = 0;
+                                    temp = section[0].triangleList[j].easting * (section[0].triangleList[j + 1].northing - section[0].triangleList[j + 2].northing) +
+                                              section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
+                                                  section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
+
+                                    totalSquareMeters += Math.Abs((temp * 0.5));
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Loading Contour file" + e.ToString());
+
+                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                    }
+                }
+            }
+
+                    // Contour points ----------------------------------------------------------------------------
+
+                    fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
+            if (!File.Exists(fileAndDirectory))
+            {
+                var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
+                form.Show();
+                //return;
+            }
+            
+            //Points in Patch followed by easting, heading, northing, altitude
+            else
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
                         line = reader.ReadLine();
 
                         while (!reader.EndOfStream)
@@ -765,11 +781,7 @@ namespace AgOpenGPS
                 {
                     try
                     {
-                        //read the lines and skip them
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        //read header
                         line = reader.ReadLine();
 
                         line = reader.ReadLine();
@@ -829,8 +841,7 @@ namespace AgOpenGPS
                 {
                     try
                     {
-                        //read the lines and skip them
-                        line = reader.ReadLine();
+                        //read header
                         line = reader.ReadLine();
 
                         line = reader.ReadLine();
@@ -921,30 +932,13 @@ namespace AgOpenGPS
                 form.Show();
             }
 
-            //2017-June-05 09:48:52 PM
-            //Points in line followed by easting, northing
-            //$BoundaryDir
-            //gtr Jun05
-            //$Offsets
-            //555799,5921092,12
-            //$NumLinePoints
-            //27
-            //-3.1814080592639,-3.1814080592639
-            //-3.16491526875197,-3.16491526875197
-
             else
             {
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
                     try
                     {
-                        //read the lines and skip them
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        //read header
                         line = reader.ReadLine();
 
                         line = reader.ReadLine();
@@ -993,32 +987,14 @@ namespace AgOpenGPS
                 form.Show();
             }
 
-            //2017-June-05 09:48:52 PM
-            //Points in line followed by easting, northing
-            //$HeadlandDir
-            //gtr Jun05
-            //$Offsets
-            //555799,5921092,12
-            //$NumLinePoints
-            //27
-            //-3.1814080592639,-3.1814080592639
-            //-3.16491526875197,-3.16491526875197
-
             else
             {
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
                     try
                     {
-                        //read the lines and skip them
+                        //read header
                         line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-
                         line = reader.ReadLine();
                         int numPoints = int.Parse(line);
 
@@ -1064,9 +1040,6 @@ namespace AgOpenGPS
             //Bob_Feb11
             //$Offsets
             //533172,5927719,12 - offset easting, northing, zone
-            //$Sections
-            //10 - points in this patch
-            //10.1728031317344,0.723157039771303 -easting, northing
 
             if (!isJobStarted)
             {
@@ -1098,22 +1071,17 @@ namespace AgOpenGPS
                 writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," + 
                     pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + 
                     pn.zone.ToString(CultureInfo.InvariantCulture));
-
-                //write paths # of sections
-                writer.WriteLine("$Sections");
-                writer.WriteLine((vehicle.numOfSections + 1).ToString(CultureInfo.InvariantCulture));
             }
-
         }
 
         //save field Patches
-        public void FileSaveField()
+        public void FileSaveSections()
         {
             //make sure there is something to save
             if (patchSaveList.Count() > 0)
             {
                 //Append the current list to the field file
-                using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Field.txt"), true))
+                using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Sections.txt"), true))
                 {
                     //for each patch, write out the list of triangles to the file
                     foreach (var triList in patchSaveList)
@@ -1122,8 +1090,8 @@ namespace AgOpenGPS
                         writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine(triList[i].easting.ToString(CultureInfo.InvariantCulture) +
-                                "," + triList[i].northing.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine((Math.Round(triList[i].easting,4)).ToString(CultureInfo.InvariantCulture) +
+                                "," + (Math.Round(triList[i].northing,4)).ToString(CultureInfo.InvariantCulture));
                     }
                 }
 
@@ -1133,15 +1101,34 @@ namespace AgOpenGPS
         }
 
         //Create contour file
+        public void FileCreateSections()
+        {
+            //$Sections
+            //10 - points in this patch
+            //10.1728031317344,0.723157039771303 -easting, northing
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName = "Sections.txt";
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //write paths # of sections
+                writer.WriteLine("$Sections");
+            }
+        }
+
+        //Create contour file
         public void FileCreateContour()
         {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
             //12  - points in patch
             //64.697,0.168,-21.654,0 - east, heading, north, altitude
-            //$ContourDir
-            //Bob_Feb11
-            //$Offsets
-            //533172,5927719,12
 
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
@@ -1155,18 +1142,7 @@ namespace AgOpenGPS
             //write out the file
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
-                //Write out the date
-                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-                writer.WriteLine("Points in Patch followed by easting, heading, northing, altitude");
-
-                //which field directory
-                writer.WriteLine("$ContourDir");
-                writer.WriteLine(currentFieldDirectory);
-
-                //write out the easting and northing Offsets
-                writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + 
-                    "," + pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + pn.zone.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("$Contour");
             }
         }
 
@@ -1192,10 +1168,10 @@ namespace AgOpenGPS
 
                         for (int i = 0; i < count2; i++)
                         {
-                            writer.WriteLine(Math.Round((triList[i].x), 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].y, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].z, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].k, 3).ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(Math.Round((triList[i].x), 4).ToString(CultureInfo.InvariantCulture) + "," +
+                                Math.Round(triList[i].y, 4).ToString(CultureInfo.InvariantCulture) + "," +
+                                Math.Round(triList[i].z, 4).ToString(CultureInfo.InvariantCulture) + "," +
+                                Math.Round(triList[i].k, 4).ToString(CultureInfo.InvariantCulture));
                         }
                     }
                 }
@@ -1211,14 +1187,6 @@ namespace AgOpenGPS
         //save the boundary
         public void FileSaveOuterBoundary()
         {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
-            //12  - points in patch
-            //64.697,0.168,-21.654,0 - east, heading, north, altitude
-            //$ContourDir
-            //Bob_Feb11
-            //$Offsets
-            //533172,5927719,12
-
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
@@ -1229,21 +1197,7 @@ namespace AgOpenGPS
             //write out the file
             using (StreamWriter writer = new StreamWriter(dirField + "boundary.Txt"))
             {
-                //Write out the date
-                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-                writer.WriteLine("Points in line followed by easting, northing");
-
-                //which field directory
-                writer.WriteLine("$BoundaryDir");
-                writer.WriteLine(currentFieldDirectory);
-
-                //write out the easting and northing Offsets
-                writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," + 
-                                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + pn.zone.ToString(CultureInfo.InvariantCulture));
-
-                writer.WriteLine("$NumLinePoints");
-                
+                writer.WriteLine("$Boundary");                
                 writer.WriteLine(boundz.ptList.Count.ToString(CultureInfo.InvariantCulture));
                 if (boundz.ptList.Count > 0)
                 {
@@ -1275,20 +1229,7 @@ namespace AgOpenGPS
             //write out the file
             using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
             {
-                //Write out the date
-                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-                writer.WriteLine("Points in line followed by easting, northing");
-
-                //which field directory
-                writer.WriteLine("$HeadlandDir");
-                writer.WriteLine(currentFieldDirectory);
-
-                //write out the easting and northing Offsets
-                writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
-                                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + pn.zone.ToString(CultureInfo.InvariantCulture));
-
-                writer.WriteLine("$NumLinePoints");
+                writer.WriteLine("$Headland");
                 writer.WriteLine(hl.ptList.Count.ToString(CultureInfo.InvariantCulture));
                 if (hl.ptList.Count > 0)
                 {
@@ -1320,20 +1261,9 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    //Write out the date time
-                    writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-
-                    //which field directory
-                    writer.WriteLine("$FlagsDir");
-                    writer.WriteLine(currentFieldDirectory);
-
-                    //write out the easting and northing Offsets
-                    writer.WriteLine("$Offsets");
-                    writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," + 
-                                pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + pn.zone.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("$Flags");
 
                     int count2 = flagPts.Count;
-
                     writer.WriteLine(count2);
 
                     for (int i = 0; i < count2; i++)
@@ -1352,10 +1282,8 @@ namespace AgOpenGPS
                 {
                     Console.WriteLine(e.Message + "\n Cannot write to file.");
                     WriteErrorLog("Saving Flags" + e.ToString());
-
                     return;
                 }
-
             }
         }
 
@@ -1376,11 +1304,8 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    //Write out the date time
-                    writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
-
                     //write out the ABLine
-                    writer.WriteLine("$Heading");
+                    writer.WriteLine("$ABLine");
 
                     //true or false if ABLine is set
                     if (ABLine.isABLineSet) writer.WriteLine(true);
@@ -1505,6 +1430,44 @@ namespace AgOpenGPS
                                     flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
                                     @"</coordinates> </Point> ");
                     writer.WriteLine(@"  </Placemark>                                 ");
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+
+            }
+        }
+
+        //generate KML file from flag
+        public void FileMakeCurrentKML(double lat, double lon)
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "CurrentPosition.kml";
+
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+
+                int count2 = flagPts.Count;
+
+                writer.WriteLine(@"<Document>");
+
+                writer.WriteLine(@"  <Placemark>                                  ");
+                writer.WriteLine(@"<Style> <IconStyle>");
+                writer.WriteLine(@"<color>ff4400ff</color>");
+                writer.WriteLine(@"</IconStyle> </Style>");
+                writer.WriteLine(@" <name> Your Current Position </name>");
+                writer.WriteLine(@"<Point><coordinates> " +
+                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                @"</coordinates> </Point> ");
+                writer.WriteLine(@"  </Placemark>                                 ");
                 writer.WriteLine(@"</Document>");
                 writer.WriteLine(@"</kml>                                         ");
 

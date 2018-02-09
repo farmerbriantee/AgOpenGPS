@@ -29,7 +29,7 @@
     <Setting Name="setPort_wasRateRelayConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setCam_isAtanCam" Type="System.Boolean" Scope="User">
+    <Setting Name="setHeading_isFromPosition" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">

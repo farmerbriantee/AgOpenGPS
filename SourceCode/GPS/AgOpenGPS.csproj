@@ -102,6 +102,7 @@
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CHeadland.cs" />
     <Compile Include="Classes\CRate.cs" />
+    <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CBoundary.cs" />
@@ -750,6 +751,9 @@
     <None Include="btnImages\start.png" />
     <None Include="btnImages\AutoSteerConf.png" />
     <None Include="btnImages\SetupStatusStrip.png" />
+    <None Include="btnImages\Help.png" />
+    <None Include="btnImages\Webcam.png" />
+    <None Include="btnImages\skull.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

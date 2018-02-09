@@ -39,9 +39,6 @@ namespace AgOpenGPS
 
         private void btnJobNew_Click(object sender, EventArgs e)
         {
-            //start a new job
-            mf.JobNew();
-
             //back to FormGPS
             DialogResult = DialogResult.Yes;
             Close();
@@ -73,7 +70,10 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setF_CurrentDir = "";
                 Properties.Settings.Default.Save();
             }
-            else lblResumeDirectory.Text = mf.currentFieldDirectory;
+            else
+            {
+                lblResumeDirectory.Text = mf.currentFieldDirectory;
+            }
         }
     }
 }

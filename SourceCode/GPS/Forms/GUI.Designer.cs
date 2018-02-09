@@ -124,8 +124,8 @@ namespace AgOpenGPS
         {
             if (tabControl1.Visible)
             {
-                btnRightYouTurn.Left = (Width - 430) / 2 + 70;
-                btnLeftYouTurn.Left = (Width - 430) / 2 - 140;
+                btnRightYouTurn.Left = (Width - 530) / 2 + 70;
+                btnLeftYouTurn.Left = (Width - 530) / 2 - 140;
             }
             else
             {
@@ -133,7 +133,7 @@ namespace AgOpenGPS
                 btnLeftYouTurn.Left = (Width) / 2 - 140;
             }
 
-            const int top = 150;
+            const int top = 200;
 
             btnSection4Man.Top = Height - top;
             btnSection1Man.Top = Height - top;
@@ -146,7 +146,7 @@ namespace AgOpenGPS
             btnSection8Man.Top = Height - top;
 
             int first2Thirds;
-            if (tabControl1.Visible) first2Thirds = (Width - 450) / 2;
+            if (tabControl1.Visible) first2Thirds = (Width - 530) / 2;
             else first2Thirds = (Width) / 2;
 
             switch (vehicle.numOfSections)
@@ -396,17 +396,17 @@ namespace AgOpenGPS
             {
                 //tab will be visible
                 tabControl1.Visible = true;
-                openGLControl.Width = Width - 435;
+                openGLControl.Width = Width - 530;
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
-                btnABLine.Left = Width - 540;
-                btnContour.Left = Width - 540;
-                btnManualOffOn.Left = Width - 540;
-                btnSectionOffAutoOn.Left = Width - 548;
+                btnABLine.Left = Width - 625;
+                btnContour.Left = Width - 625;
+                btnManualOffOn.Left = Width - 625;
+                btnSectionOffAutoOn.Left = Width - 644;
                 LineUpManualBtns();
                 btnZoomIn.Left = Width - 220;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-                txtDistanceOffABLine.Left = (Width - 430)/2 - 60;
+                txtDistanceOffABLine.Left = (Width - 530)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
             }
         }
@@ -1177,6 +1177,98 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnFlagsGoogleEarth_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                //save new copy of flags
+                FileSaveFlagsKML();
+
+                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
+                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flags.KML");
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                form.Show();
+            }
+        }
+        private void btnWebCam_Click(object sender, EventArgs e)
+        {
+            Form form = new FormWebCam();
+            form.Show();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            Process.Start("http://agopengps.gh-ortner.com/doku.php");
+        }
+        private void btnDeleteAllData_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                DialogResult result3 = MessageBox.Show("Delete All Contours and Sections?",
+                    "Delete For sure?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+                if (result3 == DialogResult.Yes)
+                {
+                    FileCreateContour();
+                    FileCreateSections();
+
+                    if (rc.isRateControlOn)
+                        btnRate.PerformClick();
+
+                    rc.ShutdownRateControl();  //double dam sure its off
+
+                    //turn auto button off
+                    autoBtnState = btnStates.Off;
+                    btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+
+                    //turn section buttons all OFF and zero square meters
+                    for (int j = 0; j < MAXSECTIONS; j++)
+                    {
+                        section[j].isAllowedOn = false;
+                        section[j].manBtnState = manBtn.On;
+                    }
+
+                    //turn manual button off
+                    manualBtnState = btnStates.Off;
+                    btnManualOffOn.Image = Properties.Resources.ManualOff;
+
+                    //Update the button colors and text
+                    ManualAllBtnsUpdate();
+
+                    //enable disable manual buttons
+                    LineUpManualBtns();
+
+                    btnSection1Man.Enabled = false;
+                    btnSection2Man.Enabled = false;
+                    btnSection3Man.Enabled = false;
+                    btnSection4Man.Enabled = false;
+                    btnSection5Man.Enabled = false;
+                    btnSection6Man.Enabled = false;
+                    btnSection7Man.Enabled = false;
+                    btnSection8Man.Enabled = false;
+
+                    //clear the section lists
+                    for (int j = 0; j < MAXSECTIONS; j++)
+                    {
+                        //clean out the lists
+                        section[j].patchList?.Clear();
+                        section[j].triangleList?.Clear();
+                    }
+
+                    //clear out the contour Lists
+                    ct.StopContourLine();
+                    ct.ResetContour();
+                }
+                else TimedMessageBox(1500, "Nothing Deleted", "Action has been cancelled");
+            }
+        }
+
+
         // Menu Items ------------------------------------------------------------------
 
         //File drop down items
@@ -1378,19 +1470,13 @@ namespace AgOpenGPS
         }
 
         //Help menu drop down items
-        private void aboutToolStripMenuHelpAbout_Click(object sender, EventArgs e)
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new Form_About())
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
-        }
-        private void helpToolStripMenuHelpHelp_Click(object sender, EventArgs e)
-        {
-            //string appPath = Assembly.GetEntryAssembly().Location;
-            //string filename = Path.Combine(Path.GetDirectoryName(appPath), "help.htm");
-            Process.Start("http://agopengps.gh-ortner.com/doku.php");
         }
 
         //Options Drop down menu items
@@ -1589,52 +1675,6 @@ namespace AgOpenGPS
             Settings.Default.Save();
         }
 
-        //Tools drop down items
-        private void explorerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                FileSaveFlagsKML();
-            }
-            Process.Start(fieldsDirectory + currentFieldDirectory);
-        }
-        private void webCamToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Form form = new FormWebCam();
-            form.Show();
-        }
-        private void googleEarthToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                //save new copy of flags
-                FileSaveFlagsKML();
-
-                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
-                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flags.KML");
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
-                form.Show();
-            }
-        }
-        private void fieldViewerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //in the current application directory
-            //string AOGViewer = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\AOG.exe";
-            //Process.Start(AOGViewer);
-            {
-                var form = new FormTimedMessage(2000, "Not yet Implemented", "But soon....");
-                form.Show();
-            }
-        }
-        private void gPSDataToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Form form = new FormGPSData(this);
-            form.Show();
-        }
-
         //The flag context menus
         private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
         {
@@ -1796,7 +1836,7 @@ namespace AgOpenGPS
             //if a GPS is connected disable sim
             if (!sp.IsOpen)
             {
-                if (isAutoSteerBtnOn) sim.DoSimTick(guidanceLineSteerAngle / 10.0);
+                if (isAutoSteerBtnOn) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
@@ -1817,8 +1857,8 @@ namespace AgOpenGPS
         }
         private void btnResetSim_Click(object sender, EventArgs e)
         {
-            sim.latitude = 53.436026;
-            sim.longitude = -111.160047;
+            sim.latitude = 53.0;
+            sim.longitude = -111.0;
         }
 
         #region Properties // ---------------------------------------------------------------------
@@ -1871,7 +1911,7 @@ namespace AgOpenGPS
                 else return "-";
             }
         }
-        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.1) + "\u00B0"; } }
+        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01) + "\u00B0"; } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
         public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
@@ -2017,9 +2057,9 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedKPH;
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m";
-                    stripAreaUser.Text = HectaresUser;
-                    stripAreaRate.Text = (Math.Round(vehicle.toolWidth * pn.speed * 0.1, 2)).ToString();
+                    stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m\r\n"+HectaresUser;
+                    //stripAreaUser.Text = ;
+                    stripAreaRate.Text = (Math.Round(vehicle.toolWidth * pn.speed * 0.1, 2)).ToString()+ "\r\n  Ha/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
 
                     //rate
@@ -2038,9 +2078,9 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedMPH;
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString((UInt16)(userDistance * 3.28084)) + " ft";
-                    stripAreaUser.Text = AcresUser;
-                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed * 0.1) * 2.47)).ToString();
+                    stripDistance.Text = Convert.ToString((UInt16)(userDistance * 3.28084)) + " ft\r\n" + AcresUser;
+                    //stripAreaUser.Text = ;
+                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed * 0.1) * 2.47)).ToString() + "\r\n  Ac/hr";
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
 
                     //rate
@@ -2053,13 +2093,13 @@ namespace AgOpenGPS
                 }
 
                 //not Metric/Standard units sensitive
-                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime);
+                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime)+ "\r\n" + Convert.ToString(mc.relayRateData[mc.rdYouTurnControlByte], 2).PadLeft(6, '0');
                 lblHeading.Text = Heading;
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
 
                 //binary of sequences
-                stripSequenceBinary.Text = Convert.ToString(mc.relayRateData[mc.rdYouTurnControlByte], 2).PadLeft(6, '0'); ;
+                //stripSequenceBinary.Text = ; ;
                 
 
 
