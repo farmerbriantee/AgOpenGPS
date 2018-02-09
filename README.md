@@ -1,6 +1,8 @@
 
 # AgOpenGPS
 
+https://agopengps.jimdosite.com/
+
 *** Important ****
 
 This software is for discussion and learning of Precision Ag
@@ -26,4 +28,4 @@ Also ouputs Pure pursuit steer angles from reference line for AB line and Contou
 
 Included is an application, and source folders,  and built in NMEA simulators. 
 
-It has English, German and some Russian Language.
+It has English, German, SPanish, French, italian, Dutch and Russian Language.
