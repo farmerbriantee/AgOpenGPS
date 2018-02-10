@@ -3,6 +3,8 @@
 
 https://agopengps.jimdosite.com/
 
+Discussed in detail http://www.thecombineforum.com/forums/31-technology/278810-agopengps.html
+
 *** Important ****
 
 This software is for discussion and learning of Precision Ag
