@@ -88,8 +88,8 @@ namespace AgOpenGPS
 
         public void SetABLineByBPoint()
         {
-            refPoint2.easting = mf.pn.easting;
-            refPoint2.northing = mf.pn.northing;
+            refPoint2.easting = mf.pn.fix.easting;
+            refPoint2.northing = mf.pn.fix.northing;
 
             //calculate the AB Heading
             abHeading = Math.Atan2(refPoint2.easting - refPoint1.easting, refPoint2.northing - refPoint1.northing);

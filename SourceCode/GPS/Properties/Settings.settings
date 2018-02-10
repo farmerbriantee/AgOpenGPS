@@ -209,5 +209,8 @@
     <Setting Name="setIMU_isRollFromPAOGI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

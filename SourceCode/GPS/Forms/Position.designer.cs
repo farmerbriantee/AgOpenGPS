@@ -150,7 +150,7 @@ namespace AgOpenGPS
             if ((ahrs.isRollBrick | ahrs.isRollDogs | ahrs.isRollPAOGI) && mc.rollRaw != 9999)
             {
                 //for charting in GPS Data window
-                eastingBeforeRoll = pn.easting;
+                eastingBeforeRoll = pn.fix.easting;
                 rollUsed = (double)mc.rollRaw/16;
 
                 //calculate how far the antenna moves based on sidehill roll
@@ -161,35 +161,35 @@ namespace AgOpenGPS
                 // roll to left is positive  **** important!!
                 if (roll > 0)
                 {
-                    pn.easting = (Math.Cos(fixHeading) * rollCorrectionDistance) + pn.easting;
-                    pn.northing = (Math.Sin(fixHeading) * -rollCorrectionDistance) + pn.northing;
+                    pn.fix.easting = (Math.Cos(fixHeading) * rollCorrectionDistance) + pn.fix.easting;
+                    pn.fix.northing = (Math.Sin(fixHeading) * -rollCorrectionDistance) + pn.fix.northing;
                 }
                 else
                 {
-                    pn.easting = (Math.Cos(fixHeading) * -rollCorrectionDistance) + pn.easting;
-                    pn.northing = (Math.Sin(fixHeading) * rollCorrectionDistance) + pn.northing;
+                    pn.fix.easting = (Math.Cos(fixHeading) * -rollCorrectionDistance) + pn.fix.easting;
+                    pn.fix.northing = (Math.Sin(fixHeading) * rollCorrectionDistance) + pn.fix.northing;
                 }
 
                 //for charting the position after roll adjustment
-                eastingAfterRoll = pn.easting;
+                eastingAfterRoll = pn.fix.easting;
             }
             else
             {
-                eastingAfterRoll = pn.easting;
-                eastingBeforeRoll = pn.easting;
+                eastingAfterRoll = pn.fix.easting;
+                eastingBeforeRoll = pn.fix.easting;
             }
 
 
             //pitchDistance = (pitch * vehicle.antennaHeight);
-            ////pn.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.easting;
-            //pn.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.northing;
+            ////pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
 
             #endregion Roll
 
             #region Step Fix
 
             //grab the most current fix and save the distance from the last fix
-            distanceCurrentStepFix = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
+            distanceCurrentStepFix = pn.Distance(pn.fix, stepFixPts[0]);
             fixStepDist = distanceCurrentStepFix;
 
             //if  min distance isn't exceeded, keep adding old fixes till it does
@@ -225,12 +225,12 @@ namespace AgOpenGPS
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
 
                 //fill in the latest distance and fix
-                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
-                stepFixPts[0].easting = pn.easting;
-                stepFixPts[0].northing = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.fix, stepFixPts[0]);
+                stepFixPts[0].easting = pn.fix.easting;
+                stepFixPts[0].northing = pn.fix.northing;
 
                 //reload the last position that was triggered.
-                stepFixPts[(totalFixSteps - 1)].heading = pn.Distance(vHold.northing, vHold.easting, stepFixPts[(totalFixSteps - 1)].northing, stepFixPts[(totalFixSteps - 1)].easting);
+                stepFixPts[(totalFixSteps - 1)].heading = pn.Distance(vHold, stepFixPts[(totalFixSteps - 1)]);
                 stepFixPts[(totalFixSteps - 1)].easting = vHold.easting;
                 stepFixPts[(totalFixSteps - 1)].northing = vHold.northing;
             }
@@ -246,6 +246,7 @@ namespace AgOpenGPS
                 //don't add the total distance again
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
+
                 //grab sentences for logging
                 if (isLogNMEA)
                 {
@@ -256,28 +257,32 @@ namespace AgOpenGPS
                 }
 
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
-                sectionTriggerDistance = pn.Distance(pn.northing, pn.easting, prevSectionPos.northing, prevSectionPos.easting);
+                sectionTriggerDistance = pn.Distance(pn.fix, prevSectionPos);
 
                 //section on off and points, contour points
-                if (sectionTriggerDistance > sectionTriggerStepDistance)    
+                if (sectionTriggerDistance > sectionTriggerStepDistance)
+                {
+                    //CRecPathPt pt = new CRecPathPt(pn.fix, fixHeading, pn.speed);
+                    //recPath.recList.Add(pt);
                     AddSectionContourPathPoints();
+                }
 
                 //test if travelled far enough for new boundary point
-                double boundaryDistance = pn.Distance(pn.northing, pn.easting, prevBoundaryPos.northing, prevBoundaryPos.easting);
+                double boundaryDistance = pn.Distance(pn.fix, prevBoundaryPos);
                 if (boundaryDistance > boundaryTriggerDistance) AddBoundaryAndPerimiterPoint();
 
                 //calc distance travelled since last GPS fix
-                distance = pn.Distance(pn.northing, pn.easting, prevFix.northing, prevFix.easting);
+                distance = pn.Distance(pn.fix, prevFix);
                 if ((userDistance += distance) > 3000) userDistance = 0; ;//userDistance can be reset
 
                 //most recent fixes are now the prev ones
-                prevFix.easting = pn.easting; prevFix.northing = pn.northing;
+                prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
 
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
-                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
-                stepFixPts[0].easting = pn.easting;
-                stepFixPts[0].northing = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.fix, stepFixPts[0]);
+                stepFixPts[0].easting = pn.fix.easting;
+                stepFixPts[0].northing = pn.fix.northing;
             }
             #endregion fix
 
@@ -295,13 +300,13 @@ namespace AgOpenGPS
                     //save reference of first point
                     if (yt.youFileList.Count == 0)
                     {
-                        vec2 start = new vec2(pn.easting, pn.northing);
+                        vec2 start = new vec2(pn.fix.easting, pn.fix.northing);
                         yt.youFileList.Add(start);
                     }
                     else
                     {
                         //keep adding points
-                        vec2 point = new vec2(pn.easting - yt.youFileList[0].easting, pn.northing - yt.youFileList[0].northing);
+                        vec2 point = new vec2(pn.fix.easting - yt.youFileList[0].easting, pn.fix.northing - yt.youFileList[0].northing);
                         yt.youFileList.Add(point);
                     }
                 }
@@ -391,8 +396,7 @@ namespace AgOpenGPS
                     hl.FindClosestHeadlandPoint(pivotAxlePos);
                     if ((int)hl.closestHeadlandPt.easting != -1)
                     {
-                        distPivot = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, 
-                                        hl.closestHeadlandPt.northing, hl.closestHeadlandPt.easting);
+                        distPivot = pn.Distance(pivotAxlePos, hl.closestHeadlandPt);
                     }
                     else distPivot = -2;
                 }
@@ -425,7 +429,7 @@ namespace AgOpenGPS
 
                     {
                         //how far have we gone since youturn request was triggered
-                        distanceToStartAutoTurn = pn.Distance(pivotAxlePos.northing, pivotAxlePos.easting, yt.youTurnTriggerPoint.northing, yt.youTurnTriggerPoint.easting);
+                        distanceToStartAutoTurn = pn.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
                         
                         //youTurnProgressBar = (int)(distanceToStartAutoTurn / (45 + yt.youTurnStartOffset) * 100);                 
 
@@ -465,7 +469,7 @@ namespace AgOpenGPS
         {
             if (isHeadingFromFix)
             {
-                gpsHeading = Math.Atan2(pn.easting - stepFixPts[currentStepFix].easting, pn.northing - stepFixPts[currentStepFix].northing);
+                gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, pn.fix.northing - stepFixPts[currentStepFix].northing);
                 if (gpsHeading < 0) gpsHeading += glm.twoPI;
                 fixHeading = gpsHeading;
 
@@ -473,7 +477,7 @@ namespace AgOpenGPS
                 //in degrees for glRotate opengl methods.
                 int camStep = currentStepFix * 4;
                 if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-                camHeading = Math.Atan2(pn.easting - stepFixPts[camStep].easting, pn.northing - stepFixPts[camStep].northing);
+                camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
                 if (camHeading < 0) camHeading += glm.twoPI;
                 camHeading = glm.toDegrees(camHeading);
             }
@@ -541,12 +545,12 @@ namespace AgOpenGPS
        #region pivot hitch trail
 
             //translate world to the pivot axle
-            pivotAxlePos.easting = pn.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
-            pivotAxlePos.northing = pn.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
+            pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
+            pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
 
             //determine where the rigid vehicle hitch ends
-            hitchPos.easting = pn.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
-            hitchPos.northing = pn.northing + (Math.Cos(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
+            hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
+            hitchPos.northing = pn.fix.northing + (Math.Cos(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
 
             //tool attached via a trailing hitch
             if (vehicle.isToolTrailing)
@@ -643,7 +647,7 @@ namespace AgOpenGPS
             //Default using fix Atan2 to calc cam, if unchecked in display settings use True Heading from NMEA
 
             //check to make sure the grid is big enough
-            worldGrid.checkZoomWorldGrid(pn.northing, pn.easting);
+            worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
             //precalc the sin and cos of heading * -1
             sinSectionHeading = Math.Sin(-fixHeadingSection);
@@ -654,8 +658,8 @@ namespace AgOpenGPS
         private void AddBoundaryAndPerimiterPoint()
         {
             //save the north & east as previous
-            prevBoundaryPos.easting = pn.easting;
-            prevBoundaryPos.northing = pn.northing;
+            prevBoundaryPos.easting = pn.fix.easting;
+            prevBoundaryPos.northing = pn.fix.northing;
 
             //build the boundary line
             if (boundz.isOkToAddPoints)
@@ -706,8 +710,8 @@ namespace AgOpenGPS
         private void AddSectionContourPathPoints()
         {
             //save the north & east as previous
-            prevSectionPos.northing = pn.northing;
-            prevSectionPos.easting = pn.easting;
+            prevSectionPos.northing = pn.fix.northing;
+            prevSectionPos.easting = pn.fix.easting;
 
             if (isJobStarted)//add the pathpoint
             {
@@ -736,7 +740,7 @@ namespace AgOpenGPS
                 else { if (ct.isContourOn) { ct.StopContourLine(); }  }
 
                 //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pn.easting, pn.northing);
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pn.fix.easting, pn.fix.northing);
             }
         }
        
@@ -865,21 +869,21 @@ namespace AgOpenGPS
             if (!isFirstFixPositionSet)
             {
                 //reduce the huge utm coordinates
-                pn.utmEast = (int)(pn.easting);
-                pn.utmNorth = (int)(pn.northing);
-                pn.easting = pn.easting - pn.utmEast;
-                pn.northing = pn.northing - pn.utmNorth;
+                pn.utmEast = (int)(pn.fix.easting);
+                pn.utmNorth = (int)(pn.fix.northing);
+                pn.fix.easting = pn.fix.easting - pn.utmEast;
+                pn.fix.northing = pn.fix.northing - pn.utmNorth;
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;
-                worldGrid.CreateWorldGrid(pn.northing, pn.easting);
+                worldGrid.CreateWorldGrid(pn.fix.northing, pn.fix.easting);
 
                 //most recent fixes
-                prevFix.easting = pn.easting;
-                prevFix.northing = pn.northing;
+                prevFix.easting = pn.fix.easting;
+                prevFix.northing = pn.fix.northing;
 
-                stepFixPts[0].easting = pn.easting;
-                stepFixPts[0].northing = pn.northing;
+                stepFixPts[0].easting = pn.fix.easting;
+                stepFixPts[0].northing = pn.fix.northing;
                 stepFixPts[0].heading = 0;
 
                 //run once and return
@@ -891,7 +895,7 @@ namespace AgOpenGPS
             {
  
                 //most recent fixes
-                prevFix.easting = pn.easting; prevFix.northing = pn.northing;
+                prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
 
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--)
@@ -901,15 +905,15 @@ namespace AgOpenGPS
                     stepFixPts[i].heading = stepFixPts[i - 1].heading;
                 }
 
-                stepFixPts[0].heading = pn.Distance(pn.northing, pn.easting, stepFixPts[0].northing, stepFixPts[0].easting);
-                stepFixPts[0].easting = pn.easting;
-                stepFixPts[0].northing = pn.northing;
+                stepFixPts[0].heading = pn.Distance(pn.fix, stepFixPts[0]);
+                stepFixPts[0].easting = pn.fix.easting;
+                stepFixPts[0].northing = pn.fix.northing;
 
                 //keep here till valid data
                 if (startCounter > (totalFixSteps/2)) isGPSPositionInitialized = true;
 
                 //in radians
-                fixHeading = Math.Atan2(pn.easting - stepFixPts[totalFixSteps - 1].easting, pn.northing - stepFixPts[totalFixSteps - 1].northing); 
+                fixHeading = Math.Atan2(pn.fix.easting - stepFixPts[totalFixSteps - 1].easting, pn.fix.northing - stepFixPts[totalFixSteps - 1].northing); 
                 if (fixHeading < 0) fixHeading += glm.twoPI;
                 fixHeadingSection = fixHeading;
 

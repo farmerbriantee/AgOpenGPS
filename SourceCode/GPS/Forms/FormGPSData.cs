@@ -28,8 +28,8 @@ namespace AgOpenGPS
             lblZone.Text = mf.Zone;
             if (mf.isJobStarted)
             {
-                lblEasting.Text = Math.Round(mf.pn.easting, 1).ToString();
-                lblNorthing.Text = Math.Round(mf.pn.northing, 1).ToString();
+                lblEasting.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
+                lblNorthing.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
             }
             else
             {

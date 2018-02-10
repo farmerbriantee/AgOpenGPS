@@ -97,6 +97,7 @@
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabGuidance = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboxIsHeadingFromGPSTrue = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnRollZero = new System.Windows.Forms.GroupBox();
             this.btnRemoveZeroOffset = new System.Windows.Forms.Button();
@@ -125,7 +126,8 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.cboxIsHeadingFromGPSTrue = new System.Windows.Forms.CheckBox();
+            this.nudLightbarCmPerPixel = new System.Windows.Forms.NumericUpDown();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
@@ -164,6 +166,7 @@
             this.groupBox6.SuspendLayout();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -934,6 +937,8 @@
             // 
             // tabGuidance
             // 
+            this.tabGuidance.Controls.Add(this.label11);
+            this.tabGuidance.Controls.Add(this.nudLightbarCmPerPixel);
             this.tabGuidance.Controls.Add(this.groupBox1);
             this.tabGuidance.Controls.Add(this.label10);
             this.tabGuidance.Controls.Add(this.btnRollZero);
@@ -951,6 +956,13 @@
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // cboxIsHeadingFromGPSTrue
+            // 
+            resources.ApplyResources(this.cboxIsHeadingFromGPSTrue, "cboxIsHeadingFromGPSTrue");
+            this.cboxIsHeadingFromGPSTrue.Name = "cboxIsHeadingFromGPSTrue";
+            this.cboxIsHeadingFromGPSTrue.UseVisualStyleBackColor = true;
+            this.cboxIsHeadingFromGPSTrue.CheckedChanged += new System.EventHandler(this.cboxIsHeadingFromGPSTrue_CheckedChanged);
             // 
             // label10
             // 
@@ -1139,12 +1151,31 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // cboxIsHeadingFromGPSTrue
+            // nudLightbarCmPerPixel
             // 
-            resources.ApplyResources(this.cboxIsHeadingFromGPSTrue, "cboxIsHeadingFromGPSTrue");
-            this.cboxIsHeadingFromGPSTrue.Name = "cboxIsHeadingFromGPSTrue";
-            this.cboxIsHeadingFromGPSTrue.UseVisualStyleBackColor = true;
-            this.cboxIsHeadingFromGPSTrue.CheckedChanged += new System.EventHandler(this.cboxIsHeadingFromGPSTrue_CheckedChanged);
+            resources.ApplyResources(this.nudLightbarCmPerPixel, "nudLightbarCmPerPixel");
+            this.nudLightbarCmPerPixel.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudLightbarCmPerPixel.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudLightbarCmPerPixel.Name = "nudLightbarCmPerPixel";
+            this.nudLightbarCmPerPixel.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudLightbarCmPerPixel.ValueChanged += new System.EventHandler(this.nudLightbarCmPerPixel_ValueChanged);
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
             // 
             // FormSettings
             // 
@@ -1215,6 +1246,7 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1319,5 +1351,7 @@
         private System.Windows.Forms.CheckBox cboxRollPAOGI;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox cboxIsHeadingFromGPSTrue;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown nudLightbarCmPerPixel;
     }
 }

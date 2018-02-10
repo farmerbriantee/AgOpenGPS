@@ -144,6 +144,8 @@ namespace AgOpenGPS
                 // draw the current and reference AB Lines
                 else { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines(); }
 
+                //recPath.DrawLine();
+
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
                 if (flagCnt > 0)
@@ -844,19 +846,19 @@ namespace AgOpenGPS
             
             //  Dot distance is representation of how far from AB Line
             int dotDistance = (int)(offlineDistance);
+            int limit = (int)lightbarCmPerPixel * 15;
+            if (dotDistance < -limit) dotDistance = -limit;
+            if (dotDistance > limit) dotDistance = limit;
 
-            if (dotDistance < -320) dotDistance = -320;
-            if (dotDistance > 320) dotDistance = 320;
-
-            if (dotDistance < -10) dotDistance -= 30;
-            if (dotDistance > 10) dotDistance += 30;
+            //if (dotDistance < -10) dotDistance -= 30;
+            //if (dotDistance > 10) dotDistance += 30;
 
             // dot background
             gl.PointSize(8.0f);
             gl.Color(0.00f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int i = -10; i < 0; i++) gl.Vertex((i * 40), down);
-            for (int i = 1; i < 11; i++) gl.Vertex((i * 40), down);
+            for (int i = -15; i < 0; i++) gl.Vertex((i * 40), down);
+            for (int i = 1; i < 16; i++) gl.Vertex((i * 40), down);
             gl.End();
 
             gl.PointSize(4.0f);
@@ -864,17 +866,17 @@ namespace AgOpenGPS
             //red left side
             gl.Color(0.9750f, 0.0f, 0.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int i = -10; i < 0; i++) gl.Vertex((i * 40), down);
+            for (int i = -15; i < 0; i++) gl.Vertex((i * 40), down);
 
             //green right side
             gl.Color(0.0f, 0.9750f, 0.0f);
-            for (int i = 1; i < 11; i++) gl.Vertex((i * 40), down);
+            for (int i = 1; i < 16; i++) gl.Vertex((i * 40), down);
             gl.End();
 
-                //Are you on the right side of line? So its green.
-                if ((offlineDistance) < 0.0)
+            //Are you on the right side of line? So its green.
+            if ((offlineDistance) < 0.0)
                 {
-                    int dots = dotDistance * -1 / 32;
+                    int dots = (dotDistance * -1 / lightbarCmPerPixel);
 
                     gl.PointSize(32.0f);
                     gl.Color(0.0f, 0.0f, 0.0f);
@@ -892,7 +894,7 @@ namespace AgOpenGPS
 
                 else
                 {
-                    int dots = dotDistance / 32;
+                    int dots = (int)(dotDistance / lightbarCmPerPixel);
 
                     gl.PointSize(32.0f);
                     gl.Color(0.0f, 0.0f, 0.0f);
@@ -909,7 +911,7 @@ namespace AgOpenGPS
                 }
             
             //yellow center dot
-            if (dotDistance >= -10 && dotDistance <= 10)
+            if (dotDistance >= -lightbarCmPerPixel && dotDistance <= lightbarCmPerPixel)
             {
                 gl.PointSize(32.0f);                
                 gl.Color(0.0f, 0.0f, 0.0f);

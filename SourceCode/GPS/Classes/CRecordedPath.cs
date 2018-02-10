@@ -9,15 +9,13 @@ namespace AgOpenGPS
     public class CRecPathPt
     {
         public double speed { get; set; }
-        public double easting { get; set; }
-        public double northing { get; set; }
+        public vec2 v2 { get; set; }
         public double heading { get; set; }
 
         //constructor
-        public CRecPathPt(double _easting, double _northing, double _heading, double _speed)
+        public CRecPathPt(vec2 _v2, double _heading, double _speed)
         {
-            easting = _easting;
-            northing = _northing;
+            v2 = _v2;
             heading = _heading;
             speed = _speed;
         }
@@ -26,14 +24,30 @@ namespace AgOpenGPS
     public class CRecordedPath
     {
         //pointers to mainform controls
-        private readonly FormGPS mf;
         private readonly OpenGL gl;
 
-        public CRecordedPath(OpenGL _gl, FormGPS _f)
+        private readonly FormGPS mf;
+        public bool isRecordingPath;
+
+        public List<CRecPathPt> recList = new List<CRecPathPt>();
+
+        public CRecordedPath(OpenGL _gl,FormGPS _f )
         {
             //constructor
             gl = _gl;
             mf = _f;
+        }
+
+        public void DrawLine()
+        {
+            int ptCount = recList.Count;
+            if (ptCount < 1) return;
+            gl.LineWidth(1);
+            gl.Color(0.98f, 0.2f, 0.60f);
+            gl.Begin(OpenGL.GL_LINE_STRIP);
+            for (int h = 0; h < ptCount; h++) gl.Vertex(recList[h].v2.easting, recList[h].v2.northing, 0);
+            gl.End();
+
         }
 
     }

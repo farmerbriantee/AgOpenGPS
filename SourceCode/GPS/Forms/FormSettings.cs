@@ -30,6 +30,8 @@ namespace AgOpenGPS
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
+        private int lightbarCmPerPixie;
+
         //constructor
         public FormSettings(Form callingForm, int page)
         {
@@ -227,6 +229,7 @@ namespace AgOpenGPS
             cboxIsHeadingFromGPSTrue.Checked = !isHeadingFromFix;
             cboxIsHeadingFromGPSTrue.CheckedChanged += cboxIsHeadingFromGPSTrue_CheckedChanged;
 
+            nudLightbarCmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -348,6 +351,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_isRollFromPAOGI = isRollPAOGI;
             Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
 
+            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
+            mf.lightbarCmPerPixel = lightbarCmPerPixie;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -413,6 +419,7 @@ namespace AgOpenGPS
             chkIsPivotBehindAntenna.Image = chkIsPivotBehindAntenna.Checked ? Properties.Resources.PivotBehind
                                                                                     : Properties.Resources.PivotAhead;
         }
+
 
         private void UpdateIsSteerAxleAhead()
         {
@@ -928,6 +935,10 @@ namespace AgOpenGPS
 
         
         #region Guidance
+        private void nudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
+        {
+            lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
+        }
 
         private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)
         {

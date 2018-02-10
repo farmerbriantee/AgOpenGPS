@@ -115,8 +115,8 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, EventArgs e)
         {
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            mf.ABLine.refPoint1.easting = mf.pn.easting;
-            mf.ABLine.refPoint1.northing = mf.pn.northing;
+            mf.ABLine.refPoint1.easting = mf.pn.fix.easting;
+            mf.ABLine.refPoint1.northing = mf.pn.fix.northing;
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
             btnUpABHeading.Enabled = true;
@@ -210,8 +210,8 @@ namespace AgOpenGPS
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
             {
                 double pointAToFixDistance =
-                Math.Pow(mf.ABLine.refPoint1.easting - mf.pn.easting, 2)
-                + Math.Pow(mf.ABLine.refPoint1.northing - mf.pn.northing, 2);
+                Math.Pow(mf.ABLine.refPoint1.easting - mf.pn.fix.easting, 2)
+                + Math.Pow(mf.ABLine.refPoint1.northing - mf.pn.fix.northing, 2);
 
                 if (pointAToFixDistance > 100) btnBPoint.Enabled = true;
                 else lblKeepGoing.Text = Convert.ToInt16(100 - pointAToFixDistance).ToString();

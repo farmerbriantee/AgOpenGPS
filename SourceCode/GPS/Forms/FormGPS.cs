@@ -44,6 +44,9 @@ namespace AgOpenGPS
 
         public byte redField, grnField, bluField;
 
+        //how many cm off line per big pixel
+        public int lightbarCmPerPixel;
+
         //polygon mode for section drawing
         private bool isDrawPolygons;
 
@@ -181,6 +184,11 @@ namespace AgOpenGPS
         /// </summary>
         public CAHRS ahrs;
 
+        /// <summary>
+        /// Recorded Path
+        /// </summary>
+        public CRecordedPath recPath;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -219,7 +227,7 @@ namespace AgOpenGPS
             curve = new CABCurve(gl, this);
 
             //new instance of auto headland turn
-            yt = new CYouTurn(gl, this);
+            yt = new CYouTurn(gl, glBack, this);
 
             //module communication
             mc = new CModuleComm(this);
@@ -248,102 +256,14 @@ namespace AgOpenGPS
             //all the attitude, heading, roll, pitch reference system
             ahrs = new CAHRS(this);
 
+            //A recorded path
+            recPath = new CRecordedPath(gl, this);
+
             //start the stopwatch
             swFrame.Start();
 
             //resource for gloabal language strings
             _rm = new ResourceManager("AgOpenGPS.gStr", Assembly.GetExecutingAssembly());
-        }
-
-        //keystrokes for easy and quick startup
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            //reset Sim
-            if (keyData == Keys.L)
-            {
-                btnResetSim.PerformClick();
-                return true;
-            }
-
-            //speed up
-            if (keyData == Keys.K)
-            {
-                sim.stepDistance += 0.05;
-                if (sim.stepDistance > 5.8) sim.stepDistance = 5.8;
-                tbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
-
-                return true;
-            }
-
-            //Stop
-            if (keyData == Keys.J)
-            {
-                sim.stepDistance = 0;
-                tbarStepDistance.Value = 0;
-                return true;
-            }
-
-            //slow down
-            if (keyData == Keys.H)
-            {
-                sim.stepDistance -= 0.05;
-                if (sim.stepDistance < 0) sim.stepDistance = 0;
-                tbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
-                return true;
-            }
-
-            //turn right
-            if (keyData == Keys.M)
-            {
-                sim.steerAngle++;
-                if (sim.steerAngle > 30) sim.steerAngle = 30;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
-                return true;
-            }
-
-            //turn left
-            if (keyData == Keys.B)
-            {
-                sim.steerAngle--;
-                if (sim.steerAngle < -30) sim.steerAngle = -30;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
-                return true;
-            }
-
-            //zero steering
-            if (keyData == Keys.N)
-            {
-                sim.steerAngle = 0.0;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
-                return true;
-            }
-
-            if (keyData == (Keys.F))
-            {
-                JobNewOpenResume();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.A))
-            {
-                btnAutoSteer.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.D))
-            {
-                btnSectionOffAutoOn.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            // Call the base class
-            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         //Initialize items before the form Loads or is visible
@@ -474,6 +394,9 @@ namespace AgOpenGPS
 
             //sim.latitude = Settings.Default.setSim_lastLat;
             //sim.longitude = Settings.Default.setSim_lastLong;
+
+            //load th elightbar resolution
+            lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
             // load all the gui elements in gui.designer.cs
             LoadGUI();

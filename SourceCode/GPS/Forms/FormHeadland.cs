@@ -184,8 +184,7 @@ namespace AgOpenGPS
                 for (int j = 0; j < headCount; j++)
                 {
                     //make sure distance between headland and boundary is not less then width
-                    distance = mf.pn.Distance(mf.boundz.ptList[i].northing, mf.boundz.ptList[i].easting
-                                    , mf.hl.ptList[j].northing, mf.hl.ptList[j].easting);
+                    distance = mf.pn.Distance(mf.boundz.ptList[i], mf.hl.ptList[j]);
                     if (distance < (totalHeadWidth * 0.98))
                     {
                         mf.hl.ptList.RemoveAt(j);
@@ -216,8 +215,7 @@ namespace AgOpenGPS
             double spacing = mf.vehicle.toolWidth * 0.5;
             for (int i = 0; i < headCount - 1; i++)
             {
-                distance = mf.pn.Distance(mf.hl.ptList[i].northing, mf.hl.ptList[i].easting
-                                , mf.hl.ptList[i + 1].northing, mf.hl.ptList[i + 1].easting);
+                distance = mf.pn.Distance(mf.hl.ptList[i], mf.hl.ptList[i + 1]);
                 if (distance < spacing)
                 {
                     mf.hl.ptList.RemoveAt(i + 1);
@@ -232,8 +230,7 @@ namespace AgOpenGPS
             {
                 int j = i + 1;
                 if (j == headCount) j = 0;
-                distance = mf.pn.Distance(mf.hl.ptList[i].northing, mf.hl.ptList[i].easting
-                                , mf.hl.ptList[j].northing, mf.hl.ptList[j].easting);
+                distance = mf.pn.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
                 if (distance > (spacing))
                 {
                     point.easting = (mf.hl.ptList[i].easting + mf.hl.ptList[j].easting) / 2.0;

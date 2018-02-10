@@ -823,7 +823,7 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.easting, pn.northing, flagColor, nextflag);
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, flagColor, nextflag);
             flagPts.Add(flagPt);
             FileSaveFlags();
         }
@@ -1864,8 +1864,8 @@ namespace AgOpenGPS
         #region Properties // ---------------------------------------------------------------------
 
         public string Zone { get { return Convert.ToString(pn.zone); } }
-        public string FixNorthing { get { return Convert.ToString(Math.Round(pn.northing + pn.utmNorth, 2)); } }
-        public string FixEasting { get { return Convert.ToString(Math.Round(pn.easting + pn.utmEast, 2)); } }
+        public string FixNorthing { get { return Convert.ToString(Math.Round(pn.fix.northing + pn.utmNorth, 2)); } }
+        public string FixEasting { get { return Convert.ToString(Math.Round(pn.fix.easting + pn.utmEast, 2)); } }
         public string Latitude { get { return Convert.ToString(Math.Round(pn.latitude, 7)); } }
         public string Longitude { get { return Convert.ToString(Math.Round(pn.longitude, 7)); } }
 
@@ -2034,8 +2034,8 @@ namespace AgOpenGPS
                     //up in the menu a few pieces of info
                     if (isJobStarted)
                     {
-                        lblEasting.Text = "E: " + Math.Round(pn.easting, 1).ToString();
-                        lblNorthing.Text = "N: " + Math.Round(pn.northing, 1).ToString();
+                        lblEasting.Text = "E: " + Math.Round(pn.fix.easting, 1).ToString();
+                        lblNorthing.Text = "N: " + Math.Round(pn.fix.northing, 1).ToString();
                     }
                     else
                     {

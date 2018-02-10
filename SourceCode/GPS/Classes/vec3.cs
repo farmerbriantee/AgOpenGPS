@@ -8,21 +8,6 @@ namespace AgOpenGPS
     /// Represents a three dimensional vector.
     /// </summary>
     /// 
-    public class Cvec3
-    {
-        public double speed { get; set; }
-        public double easting { get; set; }
-        public double northing { get; set; }
-        public double heading { get; set; }
-
-        //constructor
-        public Cvec3(double _easting=0, double _northing=0, double _heading=0)
-        {
-            easting = _easting;
-            northing = _northing;
-            heading = _heading;
-        }
-    }
 
     public struct vec3
     {

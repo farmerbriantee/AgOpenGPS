@@ -243,7 +243,7 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            distanceFromRefLine = ((dz * mf.pn.easting) - (dx * mf.pn.northing) + (refPoint2.easting
+            distanceFromRefLine = ((dz * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (refPoint2.easting
                                     * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                         / Math.Sqrt((dz * dz) + (dx * dx));
 
@@ -381,7 +381,7 @@ namespace AgOpenGPS
                 {
                     //counting down
                     isABSameAsFixHeading = false;
-                    distSoFar = mf.pn.Distance(ctList[A].z, ctList[A].x, rNorthCT, rEastCT);
+                    distSoFar = mf.pn.Distance(ctList[A], rEastCT, rNorthCT);
                     //Is this segment long enough to contain the full lookahead distance?
                     if (distSoFar > goalPointDistance)
                     {
@@ -397,7 +397,7 @@ namespace AgOpenGPS
                         while (A > 0)
                         {
                             B--; A--;
-                            tempDist = mf.pn.Distance(ctList[B].z, ctList[B].x, ctList[A].z, ctList[A].x);
+                            tempDist = mf.pn.Distance(ctList[B], ctList[A]);
 
                             //will we go too far?
                             if ((tempDist + distSoFar) > goalPointDistance)
@@ -422,7 +422,7 @@ namespace AgOpenGPS
                 {
                     //counting up
                     isABSameAsFixHeading = true;
-                    distSoFar = mf.pn.Distance(ctList[B].z, ctList[B].x, rNorthCT, rEastCT);
+                    distSoFar = mf.pn.Distance(ctList[B], rEastCT, rNorthCT);
 
                     //Is this segment long enough to contain the full lookahead distance?
                     if (distSoFar > goalPointDistance)
@@ -440,7 +440,7 @@ namespace AgOpenGPS
                         while (B < ptCount - 1)
                         {
                             B++; A++;
-                            tempDist = mf.pn.Distance(ctList[B].z, ctList[B].x, ctList[A].z, ctList[A].x);
+                            tempDist = mf.pn.Distance(ctList[B], ctList[A]);
 
                             //will we go too far?
                             if ((tempDist + distSoFar) > goalPointDistance)

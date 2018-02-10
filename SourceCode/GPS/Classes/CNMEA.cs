@@ -112,7 +112,8 @@ FROM IMU:
         private string nextNMEASentence = "";
 
         //UTM coordinates
-        public double northing, easting;
+        //public double northing, easting;
+        public vec2 fix = new vec2(0, 0);
 
         public double actualEasting, actualNorthing;
         public double zone;
@@ -415,11 +416,37 @@ FROM IMU:
             }
         }
 
-        public double Distance(double northing1, double easting1, double northing2, double easting2)
+        public double Distance(vec2 first, vec2 second)
         {
             return Math.Sqrt(
-                Math.Pow(easting1 - easting2, 2)
-                + Math.Pow(northing1 - northing2, 2));
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public double Distance(vec2 first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+        public double Distance(vec3 first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public double Distance(vec4 first, vec4 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.x - second.x, 2)
+                + Math.Pow(first.z - second.z, 2));
+        }
+        public double Distance(vec4 first, double east, double north)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.x - east, 2)
+                + Math.Pow(first.z - north, 2));
         }
 
         //not normalized distance, no square root
@@ -504,8 +531,8 @@ FROM IMU:
             actualNorthing = xy[1];
 
             //if a field is open, the real one is subtracted from the integer
-            easting = xy[0] - utmEast;
-            northing = xy[1] - utmNorth;
+            fix.easting = xy[0] - utmEast;
+            fix.northing = xy[1] - utmNorth;
         }
     }
 }

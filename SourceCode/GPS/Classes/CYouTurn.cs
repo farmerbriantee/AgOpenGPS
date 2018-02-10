@@ -12,6 +12,8 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         private readonly OpenGL gl;
+        private readonly OpenGL glb;
+
 
         /// <summary> /// Has the you turn shape been built and displayed? /// </summary>
         public bool isYouTurnShapeDisplayed;
@@ -76,6 +78,7 @@ namespace AgOpenGPS
         public vec2 radiusPointYT = new vec2(0, 0);
         public double steerAngleYT;
         public double rEastYT, rNorthYT;
+
         public double ppRadiusYT;
         private int numShapePoints;
 
@@ -86,10 +89,11 @@ namespace AgOpenGPS
         public List<vec2> youFileList = new List<vec2>();
 
         //constructor
-        public CYouTurn(OpenGL _gl, FormGPS _f)
+        public CYouTurn(OpenGL _gl, OpenGL _glb, FormGPS _f)
         {
             mf = _f;
             gl = _gl;
+            glb = _glb;
 
             //how far before or after boundary line should turn happen
             youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;
@@ -124,7 +128,7 @@ namespace AgOpenGPS
             byte[] grnPix = new byte[401];
 
             //read a pixel line across full buffer width
-            gl.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
+            glb.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
 
             //set up the positions to scan in the array for applied
             int leftPos = mf.vehicle.rpXPosition - 15;
@@ -219,7 +223,7 @@ namespace AgOpenGPS
                 if ((int)mf.hl.closestHeadlandPt.easting != -1)
                 {
                     #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                    mf.distTool = mf.pn.Distance(mf.toolPos.northing, mf.toolPos.easting, mf.hl.closestHeadlandPt.northing, mf.hl.closestHeadlandPt.easting);
+                    mf.distTool = mf.pn.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
                     #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 }
                 else //we've lost the headland
@@ -473,7 +477,7 @@ namespace AgOpenGPS
                 abHeading = ytList[A].y;
 
                 //how far from current AB Line is fix
-                distanceFromCurrentLine = ((dz * mf.pn.easting) - (dx * mf.pn.northing) + (ytList[B].x
+                distanceFromCurrentLine = ((dz * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (ytList[B].x
                             * ytList[A].z) - (ytList[B].z * ytList[A].x))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
@@ -511,7 +515,7 @@ namespace AgOpenGPS
                 double tempDist = 0.0;
 
                 isABSameAsFixHeading = true;
-                distSoFar = mf.pn.Distance(ytList[B].z, ytList[B].x, rNorthYT, rEastYT);
+                distSoFar = mf.pn.Distance(ytList[B],  rEastYT, rNorthYT);
 
                 //Is this segment long enough to contain the full lookahead distance?
                 if (distSoFar > goalPointDistance)
@@ -529,7 +533,7 @@ namespace AgOpenGPS
                     while (B < ptCount - 1)
                     {
                         B++; A++;
-                        tempDist = mf.pn.Distance(ytList[B].z, ytList[B].x, ytList[A].z, ytList[A].x);
+                        tempDist = mf.pn.Distance(ytList[B], ytList[A]);
                         if ((tempDist + distSoFar) > goalPointDistance) break; //will we go too far?
                         distSoFar += tempDist;
                     }

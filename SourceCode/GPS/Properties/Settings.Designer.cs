@@ -850,5 +850,17 @@ namespace AgOpenGPS.Properties {
                 this["setIMU_isRollFromPAOGI"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int setDisplay_lightbarCmPerPixel {
+            get {
+                return ((int)(this["setDisplay_lightbarCmPerPixel"]));
+            }
+            set {
+                this["setDisplay_lightbarCmPerPixel"] = value;
+            }
+        }
     }
 }

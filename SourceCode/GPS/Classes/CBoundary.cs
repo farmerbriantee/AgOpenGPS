@@ -254,7 +254,7 @@ namespace AgOpenGPS
         //{
         //    bool result = false;
         //    int j = ptList.Count - 1;
-        //    vec2 testPoint = new vec2(mf.pn.easting, mf.pn.northing);
+        //    vec2 testPoint = new vec2(mf.pn.fix.easting, mf.pn.fix.northing);
 
         //    if (j < 10) return true;
 
