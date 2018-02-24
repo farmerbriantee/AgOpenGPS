@@ -80,3 +80,9 @@ Load Headland LoopSystem.FormatException: Input string was not in a correct form
    at System.Int32.Parse(String s)
    at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1060 - 2/13/2018 10:13:26 AM
 
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 88 - 2018-02-24 10:08:58 AM
+

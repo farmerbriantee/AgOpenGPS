@@ -54,11 +54,14 @@
             this.nudRateRelayPort = new System.Windows.Forms.NumericUpDown();
             this.tboxRateRelayIP = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRateRelayPort)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -355,7 +358,7 @@
             this.tboxRateRelayIP.Size = new System.Drawing.Size(167, 30);
             this.tboxRateRelayIP.TabIndex = 85;
             this.tboxRateRelayIP.Text = "192.168.1.255";
-            this.tboxRateRelayIP.TextChanged += new System.EventHandler(this.tboxRateRelayIP_TextChanged);
+            this.tboxRateRelayIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxRateRelayIP_Validating);
             // 
             // groupBox1
             // 
@@ -379,12 +382,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Module Adress and Ports";
             // 
+            // cboxIsUDPOn
+            // 
+            this.cboxIsUDPOn.AutoSize = true;
+            this.cboxIsUDPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsUDPOn.Checked = true;
+            this.cboxIsUDPOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsUDPOn.Location = new System.Drawing.Point(31, 37);
+            this.cboxIsUDPOn.Name = "cboxIsUDPOn";
+            this.cboxIsUDPOn.Size = new System.Drawing.Size(135, 39);
+            this.cboxIsUDPOn.TabIndex = 92;
+            this.cboxIsUDPOn.Text = "UDP On";
+            this.cboxIsUDPOn.UseVisualStyleBackColor = true;
+            this.cboxIsUDPOn.CheckedChanged += new System.EventHandler(this.cboxIsUDPOn_CheckedChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.cboxIsUDPOn);
+            this.groupBox2.Location = new System.Drawing.Point(12, 317);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(194, 100);
+            this.groupBox2.TabIndex = 93;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Networking";
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(590, 501);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox4);
@@ -406,6 +435,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudRateRelayPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,5 +469,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tboxHostName;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox cboxIsUDPOn;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

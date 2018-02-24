@@ -316,7 +316,7 @@ namespace AgOpenGPS
                 AutoSteerDataOutToPort();
                 
                 //autosteer data out the UDP Steer port
-                //SendUDPMessage(guidanceLineSteerAngle + "," + guidanceLineDistanceOff);
+                SendUDPMessage(guidanceLineSteerAngle + "," + guidanceLineDistanceOff);
             }
 
             else

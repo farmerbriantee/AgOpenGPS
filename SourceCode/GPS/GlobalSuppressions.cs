@@ -333,3 +333,5 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.glm.toRadians(System.Double)~System.Double")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.glm.toRadians(System.Single)~System.Single")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "type", Target = "~T:AgOpenGPS.glm")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormUDP.cboxIsUDPOn_CheckedChanged(System.Object,System.EventArgs)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormUDP.tboxRateRelayIP_Validating(System.Object,System.ComponentModel.CancelEventArgs)")]

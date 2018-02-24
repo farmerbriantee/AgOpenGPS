@@ -52,7 +52,7 @@ namespace AgOpenGPS
             }
         }
  
-        public void SendData(IAsyncResult asyncResult)
+        private void SendData(IAsyncResult asyncResult)
         {
             try
             {
@@ -94,14 +94,11 @@ namespace AgOpenGPS
                 MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         
         private void UpdateRecvMessage(string recvd)
         {
             recvSentenceSettings = recvd;
             pn.rawBuffer += recvd;
-            //textBox1.Text = pn.rawBuffer;
-            //textBox1.Text = recvd;
         }
 
         #region Gesture
@@ -552,7 +549,5 @@ namespace AgOpenGPS
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
-
-
     }
 }

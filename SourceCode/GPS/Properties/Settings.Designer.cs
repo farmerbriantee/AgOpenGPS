@@ -862,5 +862,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_lightbarCmPerPixel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setUDP_isOn {
+            get {
+                return ((bool)(this["setUDP_isOn"]));
+            }
+            set {
+                this["setUDP_isOn"] = value;
+            }
+        }
     }
 }
