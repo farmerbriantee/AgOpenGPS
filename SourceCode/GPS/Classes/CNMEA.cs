@@ -105,7 +105,7 @@ FROM IMU:
         //WGS84 Lat Long
         public double latitude, longitude;
 
-        public bool updatedGGA, updatedVTG, updatedOGI;
+        public bool updatedGGA, updatedVTG, updatedOGI, updatedHDT;
 
         public string rawBuffer = "";
         private string[] words;
@@ -121,7 +121,7 @@ FROM IMU:
         //other GIS Info
         public double altitude, speed;
 
-        public double headingTrue, hdop, ageDiff;
+        public double headingTrue, headingHDT, hdop, ageDiff;
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
@@ -184,10 +184,11 @@ FROM IMU:
 
                 //parse them accordingly
                 words = nextNMEASentence.Split(',');
-                if (words.Length < 9) return;
+                if (words.Length < 3) return;
 
                 if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
                 if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
+                if (words[0] == "$GPHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
             }// while still data
         }
@@ -375,12 +376,27 @@ FROM IMU:
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
-                //a valid VTG so set the flag
-                updatedVTG = true;
-
                 //average the speeds for display, not calcs
                 mf.avgSpeed[mf.ringCounter] = speed;
                 if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+            }
+        }
+
+        private void ParseHDT()
+        {
+            /* $GPHDT,123.456,T * 00
+
+            Field Meaning
+            0   Message ID $GPHDT
+            1   Heading in degrees
+            2   T: Indicates heading relative to True North
+            3   The checksum data, always begins with *
+                */
+
+            if (!String.IsNullOrEmpty(words[1]))
+            {
+                //True heading
+                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
             }
         }
 
@@ -415,46 +431,6 @@ FROM IMU:
                 return false;
             }
         }
-
-        public double Distance(vec2 first, vec2 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
-        public double Distance(vec2 first, vec3 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-        public double Distance(vec3 first, vec3 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
-        public double Distance(vec4 first, vec4 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.x - second.x, 2)
-                + Math.Pow(first.z - second.z, 2));
-        }
-        public double Distance(vec4 first, double east, double north)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.x - east, 2)
-                + Math.Pow(first.z - north, 2));
-        }
-
-        //not normalized distance, no square root
-        public double DistanceSquared(double northing1, double easting1, double northing2, double easting2)
-        {
-            return Math.Pow(easting1 - easting2, 2) + Math.Pow(northing1 - northing2, 2);
-        }
-
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //private double pi = 3.141592653589793238462643383279502884197169399375;

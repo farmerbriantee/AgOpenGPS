@@ -15,20 +15,20 @@ namespace AgOpenGPS
         public bool isOkToAddPoints;
 
         //closest headland segment from pivotAxle
-        public vec2 closestHeadlandPt = new vec2(-1, -1);
+        public vec3 closestHeadlandPt = new vec3(-1, -1, 0);
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
 
         //list of coordinates of headland line
-        public List<vec2> ptList = new List<vec2>();
+        public List<vec3> ptList = new List<vec3>();
 
         //the list of constants and multiples of the headland
         public List<vec2> calcList = new List<vec2>();
 
         // the list of possible headland points
-        public List<vec2> hdList = new List<vec2>();
+        public List<vec3> hdList = new List<vec3>();
 
         //constructor
         public CHeadland(OpenGL _gl, FormGPS _f)
@@ -40,7 +40,7 @@ namespace AgOpenGPS
             isOkToAddPoints = false;
         }
 
-        public void FindClosestHeadlandPoint(vec2 fromPt)
+        public void FindClosestHeadlandPoint(vec3 fromPt)
         {
             //heading is based on ABLine and going same direction as AB or not
             double headAB = mf.ABLine.abHeading;
@@ -141,6 +141,24 @@ namespace AgOpenGPS
         }
 
         public bool IsPointInsideHeadland(vec2 testPoint)
+        {
+            if (calcList.Count < 10) return false;
+            int j = ptList.Count - 1;
+            bool oddNodes = false;
+
+            //test against the constant and multiples list the test point
+            for (int i = 0; i < ptList.Count; j = i++)
+            {
+                if ((ptList[i].northing < testPoint.northing && ptList[j].northing >= testPoint.northing)
+                || (ptList[j].northing < testPoint.northing && ptList[i].northing >= testPoint.northing))
+                {
+                    oddNodes ^= ((testPoint.northing * calcList[i].northing) + calcList[i].easting < testPoint.easting);
+                }
+            }
+            return oddNodes; //true means inside.
+        }
+
+        public bool IsPointInsideHeadland(vec3 testPoint)
         {
             if (calcList.Count < 10) return false;
             int j = ptList.Count - 1;

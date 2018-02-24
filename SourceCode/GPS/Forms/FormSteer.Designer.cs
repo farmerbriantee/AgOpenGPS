@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label14 = new System.Windows.Forms.Label();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -95,7 +95,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(394, 24);
+            this.label14.Location = new System.Drawing.Point(358, 24);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 23);
             this.label14.TabIndex = 126;
@@ -107,11 +107,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(438, 22);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(402, 22);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(341, 27);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(305, 27);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // label15
@@ -133,7 +133,7 @@
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
-            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(321, 27);
+            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(291, 27);
             this.tboxSerialToAutoSteer.TabIndex = 123;
             // 
             // timer1
@@ -144,7 +144,7 @@
             // btnSteerMinus
             // 
             this.btnSteerMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerMinus.Location = new System.Drawing.Point(53, 250);
+            this.btnSteerMinus.Location = new System.Drawing.Point(53, 273);
             this.btnSteerMinus.Name = "btnSteerMinus";
             this.btnSteerMinus.Size = new System.Drawing.Size(79, 51);
             this.btnSteerMinus.TabIndex = 176;
@@ -156,7 +156,7 @@
             // btnSteerPlus
             // 
             this.btnSteerPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerPlus.Location = new System.Drawing.Point(53, 193);
+            this.btnSteerPlus.Location = new System.Drawing.Point(53, 212);
             this.btnSteerPlus.Name = "btnSteerPlus";
             this.btnSteerPlus.Size = new System.Drawing.Size(79, 51);
             this.btnSteerPlus.TabIndex = 175;
@@ -168,7 +168,7 @@
             // btnOMinus
             // 
             this.btnOMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOMinus.Location = new System.Drawing.Point(259, 127);
+            this.btnOMinus.Location = new System.Drawing.Point(261, 132);
             this.btnOMinus.Name = "btnOMinus";
             this.btnOMinus.Size = new System.Drawing.Size(79, 46);
             this.btnOMinus.TabIndex = 169;
@@ -180,7 +180,7 @@
             // btnOPlus
             // 
             this.btnOPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOPlus.Location = new System.Drawing.Point(259, 77);
+            this.btnOPlus.Location = new System.Drawing.Point(261, 77);
             this.btnOPlus.Name = "btnOPlus";
             this.btnOPlus.Size = new System.Drawing.Size(79, 46);
             this.btnOPlus.TabIndex = 168;
@@ -193,7 +193,7 @@
             // 
             this.btnIMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMinus.ForeColor = System.Drawing.Color.Fuchsia;
-            this.btnIMinus.Location = new System.Drawing.Point(402, 128);
+            this.btnIMinus.Location = new System.Drawing.Point(396, 133);
             this.btnIMinus.Name = "btnIMinus";
             this.btnIMinus.Size = new System.Drawing.Size(79, 46);
             this.btnIMinus.TabIndex = 164;
@@ -206,7 +206,7 @@
             // 
             this.btnDMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDMinus.ForeColor = System.Drawing.Color.Red;
-            this.btnDMinus.Location = new System.Drawing.Point(156, 127);
+            this.btnDMinus.Location = new System.Drawing.Point(151, 132);
             this.btnDMinus.Name = "btnDMinus";
             this.btnDMinus.Size = new System.Drawing.Size(79, 46);
             this.btnDMinus.TabIndex = 163;
@@ -219,7 +219,7 @@
             // 
             this.btnPMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPMinus.ForeColor = System.Drawing.Color.OliveDrab;
-            this.btnPMinus.Location = new System.Drawing.Point(53, 128);
+            this.btnPMinus.Location = new System.Drawing.Point(53, 133);
             this.btnPMinus.Name = "btnPMinus";
             this.btnPMinus.Size = new System.Drawing.Size(68, 46);
             this.btnPMinus.TabIndex = 162;
@@ -231,7 +231,7 @@
             // btnIPlus
             // 
             this.btnIPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIPlus.Location = new System.Drawing.Point(402, 77);
+            this.btnIPlus.Location = new System.Drawing.Point(396, 77);
             this.btnIPlus.Name = "btnIPlus";
             this.btnIPlus.Size = new System.Drawing.Size(79, 46);
             this.btnIPlus.TabIndex = 161;
@@ -243,7 +243,7 @@
             // btnDPlus
             // 
             this.btnDPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDPlus.Location = new System.Drawing.Point(156, 77);
+            this.btnDPlus.Location = new System.Drawing.Point(151, 77);
             this.btnDPlus.Name = "btnDPlus";
             this.btnDPlus.Size = new System.Drawing.Size(79, 46);
             this.btnDPlus.TabIndex = 160;
@@ -270,51 +270,51 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.unoChart.BackColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.LineWidth = 2;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.BorderWidth = 2;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 94F;
-            chartArea2.Position.Width = 97F;
-            chartArea2.Position.X = 3F;
-            chartArea2.Position.Y = 6F;
-            this.unoChart.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Far;
-            legend2.BackColor = System.Drawing.Color.DimGray;
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
-            legend2.Enabled = false;
-            legend2.ForeColor = System.Drawing.Color.White;
-            legend2.Name = "Legend1";
-            this.unoChart.Legends.Add(legend2);
-            this.unoChart.Location = new System.Drawing.Point(-1, 392);
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.LineWidth = 2;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.BorderWidth = 2;
+            chartArea1.Name = "ChartArea1";
+            chartArea1.Position.Auto = false;
+            chartArea1.Position.Height = 94F;
+            chartArea1.Position.Width = 97F;
+            chartArea1.Position.X = 3F;
+            chartArea1.Position.Y = 6F;
+            this.unoChart.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Far;
+            legend1.BackColor = System.Drawing.Color.DimGray;
+            legend1.DockedToChartArea = "ChartArea1";
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
+            legend1.Enabled = false;
+            legend1.ForeColor = System.Drawing.Color.White;
+            legend1.Name = "Legend1";
+            this.unoChart.Legends.Add(legend1);
+            this.unoChart.Location = new System.Drawing.Point(-1, 415);
             this.unoChart.Name = "unoChart";
             this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series3.BackSecondaryColor = System.Drawing.Color.White;
-            series3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Color = System.Drawing.Color.Yellow;
-            series3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "S";
-            series3.YValuesPerPoint = 6;
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series4.Color = System.Drawing.Color.LightBlue;
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "PWM";
-            this.unoChart.Series.Add(series3);
-            this.unoChart.Series.Add(series4);
-            this.unoChart.Size = new System.Drawing.Size(807, 247);
+            series1.BackSecondaryColor = System.Drawing.Color.White;
+            series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Color = System.Drawing.Color.Yellow;
+            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "S";
+            series1.YValuesPerPoint = 6;
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series2.Color = System.Drawing.Color.LightBlue;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "PWM";
+            this.unoChart.Series.Add(series1);
+            this.unoChart.Series.Add(series2);
+            this.unoChart.Size = new System.Drawing.Size(726, 197);
             this.unoChart.TabIndex = 179;
             // 
             // lblSteerAng
@@ -326,7 +326,7 @@
             this.lblSteerAng.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblSteerAng.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAng.ForeColor = System.Drawing.Color.Yellow;
-            this.lblSteerAng.Location = new System.Drawing.Point(129, 392);
+            this.lblSteerAng.Location = new System.Drawing.Point(129, 416);
             this.lblSteerAng.Name = "lblSteerAng";
             this.lblSteerAng.Size = new System.Drawing.Size(68, 23);
             this.lblSteerAng.TabIndex = 180;
@@ -341,7 +341,7 @@
             this.lblPWM.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblPWM.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPWM.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.lblPWM.Location = new System.Drawing.Point(306, 392);
+            this.lblPWM.Location = new System.Drawing.Point(306, 416);
             this.lblPWM.Name = "lblPWM";
             this.lblPWM.Size = new System.Drawing.Size(68, 23);
             this.lblPWM.TabIndex = 184;
@@ -350,7 +350,7 @@
             // btnPlus
             // 
             this.btnPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(5, 396);
+            this.btnPlus.Location = new System.Drawing.Point(5, 433);
             this.btnPlus.Name = "btnPlus";
             this.btnPlus.Size = new System.Drawing.Size(32, 47);
             this.btnPlus.TabIndex = 185;
@@ -361,7 +361,7 @@
             // btnMinus
             // 
             this.btnMinus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinus.Location = new System.Drawing.Point(5, 532);
+            this.btnMinus.Location = new System.Drawing.Point(5, 569);
             this.btnMinus.Name = "btnMinus";
             this.btnMinus.Size = new System.Drawing.Size(32, 47);
             this.btnMinus.TabIndex = 186;
@@ -373,7 +373,7 @@
             // btnAuto
             // 
             this.btnAuto.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Location = new System.Drawing.Point(5, 452);
+            this.btnAuto.Location = new System.Drawing.Point(5, 489);
             this.btnAuto.Name = "btnAuto";
             this.btnAuto.Size = new System.Drawing.Size(33, 70);
             this.btnAuto.TabIndex = 187;
@@ -390,7 +390,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(76, 393);
+            this.label1.Location = new System.Drawing.Point(76, 417);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 19);
             this.label1.TabIndex = 188;
@@ -405,7 +405,7 @@
             this.label5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(254, 393);
+            this.label5.Location = new System.Drawing.Point(254, 417);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 19);
             this.label5.TabIndex = 192;
@@ -434,7 +434,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(2, 118);
+            this.label8.Location = new System.Drawing.Point(2, 139);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(20, 25);
             this.label8.TabIndex = 195;
@@ -443,7 +443,7 @@
             // btnMinPWMMinus
             // 
             this.btnMinPWMMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinPWMMinus.Location = new System.Drawing.Point(506, 250);
+            this.btnMinPWMMinus.Location = new System.Drawing.Point(510, 273);
             this.btnMinPWMMinus.Name = "btnMinPWMMinus";
             this.btnMinPWMMinus.Size = new System.Drawing.Size(79, 51);
             this.btnMinPWMMinus.TabIndex = 197;
@@ -455,7 +455,7 @@
             // btnMinPWMPlus
             // 
             this.btnMinPWMPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinPWMPlus.Location = new System.Drawing.Point(506, 193);
+            this.btnMinPWMPlus.Location = new System.Drawing.Point(510, 212);
             this.btnMinPWMPlus.Name = "btnMinPWMPlus";
             this.btnMinPWMPlus.Size = new System.Drawing.Size(79, 51);
             this.btnMinPWMPlus.TabIndex = 196;
@@ -467,7 +467,7 @@
             // btnLookAheadMinus
             // 
             this.btnLookAheadMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLookAheadMinus.Location = new System.Drawing.Point(645, 250);
+            this.btnLookAheadMinus.Location = new System.Drawing.Point(628, 273);
             this.btnLookAheadMinus.Name = "btnLookAheadMinus";
             this.btnLookAheadMinus.Size = new System.Drawing.Size(79, 51);
             this.btnLookAheadMinus.TabIndex = 199;
@@ -479,7 +479,7 @@
             // buttonLookAheadPlus
             // 
             this.buttonLookAheadPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonLookAheadPlus.Location = new System.Drawing.Point(645, 193);
+            this.buttonLookAheadPlus.Location = new System.Drawing.Point(628, 212);
             this.buttonLookAheadPlus.Name = "buttonLookAheadPlus";
             this.buttonLookAheadPlus.Size = new System.Drawing.Size(79, 51);
             this.buttonLookAheadPlus.TabIndex = 198;
@@ -500,7 +500,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(281, 61);
+            this.label10.Location = new System.Drawing.Point(283, 61);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(41, 13);
             this.label10.TabIndex = 201;
@@ -509,7 +509,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(165, 61);
+            this.label11.Location = new System.Drawing.Point(160, 61);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 13);
             this.label11.TabIndex = 202;
@@ -518,7 +518,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(420, 61);
+            this.label12.Location = new System.Drawing.Point(404, 61);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 13);
             this.label12.TabIndex = 203;
@@ -527,7 +527,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(435, 3);
+            this.label18.Location = new System.Drawing.Point(399, 3);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(202, 13);
             this.label18.TabIndex = 207;
@@ -536,7 +536,7 @@
             // btnMaxSteerMinus
             // 
             this.btnMaxSteerMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaxSteerMinus.Location = new System.Drawing.Point(156, 250);
+            this.btnMaxSteerMinus.Location = new System.Drawing.Point(151, 273);
             this.btnMaxSteerMinus.Name = "btnMaxSteerMinus";
             this.btnMaxSteerMinus.Size = new System.Drawing.Size(79, 51);
             this.btnMaxSteerMinus.TabIndex = 209;
@@ -548,7 +548,7 @@
             // btnMaxSteerPlus
             // 
             this.btnMaxSteerPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaxSteerPlus.Location = new System.Drawing.Point(156, 193);
+            this.btnMaxSteerPlus.Location = new System.Drawing.Point(151, 212);
             this.btnMaxSteerPlus.Name = "btnMaxSteerPlus";
             this.btnMaxSteerPlus.Size = new System.Drawing.Size(79, 51);
             this.btnMaxSteerPlus.TabIndex = 208;
@@ -560,7 +560,7 @@
             // btnMaxAngVelMinus
             // 
             this.btnMaxAngVelMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaxAngVelMinus.Location = new System.Drawing.Point(403, 250);
+            this.btnMaxAngVelMinus.Location = new System.Drawing.Point(397, 273);
             this.btnMaxAngVelMinus.Name = "btnMaxAngVelMinus";
             this.btnMaxAngVelMinus.Size = new System.Drawing.Size(79, 51);
             this.btnMaxAngVelMinus.TabIndex = 212;
@@ -572,7 +572,7 @@
             // btnMaxAngVelPlus
             // 
             this.btnMaxAngVelPlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaxAngVelPlus.Location = new System.Drawing.Point(403, 193);
+            this.btnMaxAngVelPlus.Location = new System.Drawing.Point(397, 212);
             this.btnMaxAngVelPlus.Name = "btnMaxAngVelPlus";
             this.btnMaxAngVelPlus.Size = new System.Drawing.Size(79, 51);
             this.btnMaxAngVelPlus.TabIndex = 211;
@@ -585,7 +585,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(6, 248);
+            this.label13.Location = new System.Drawing.Point(6, 271);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(20, 25);
             this.label13.TabIndex = 214;
@@ -595,7 +595,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(2, 196);
+            this.label16.Location = new System.Drawing.Point(2, 215);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(27, 25);
             this.label16.TabIndex = 213;
@@ -604,7 +604,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(515, 59);
+            this.label17.Location = new System.Drawing.Point(509, 59);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(68, 13);
             this.label17.TabIndex = 217;
@@ -614,7 +614,7 @@
             // 
             this.btnMaxIntegralMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaxIntegralMinus.ForeColor = System.Drawing.Color.Fuchsia;
-            this.btnMaxIntegralMinus.Location = new System.Drawing.Point(505, 126);
+            this.btnMaxIntegralMinus.Location = new System.Drawing.Point(509, 131);
             this.btnMaxIntegralMinus.Name = "btnMaxIntegralMinus";
             this.btnMaxIntegralMinus.Size = new System.Drawing.Size(79, 46);
             this.btnMaxIntegralMinus.TabIndex = 216;
@@ -626,7 +626,7 @@
             // btnMaxIntegralPlus
             // 
             this.btnMaxIntegralPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMaxIntegralPlus.Location = new System.Drawing.Point(505, 75);
+            this.btnMaxIntegralPlus.Location = new System.Drawing.Point(509, 75);
             this.btnMaxIntegralPlus.Name = "btnMaxIntegralPlus";
             this.btnMaxIntegralPlus.Size = new System.Drawing.Size(79, 46);
             this.btnMaxIntegralPlus.TabIndex = 215;
@@ -638,7 +638,7 @@
             // btnCountsPerDegreeMinus
             // 
             this.btnCountsPerDegreeMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCountsPerDegreeMinus.Location = new System.Drawing.Point(259, 250);
+            this.btnCountsPerDegreeMinus.Location = new System.Drawing.Point(261, 273);
             this.btnCountsPerDegreeMinus.Name = "btnCountsPerDegreeMinus";
             this.btnCountsPerDegreeMinus.Size = new System.Drawing.Size(79, 51);
             this.btnCountsPerDegreeMinus.TabIndex = 219;
@@ -650,7 +650,7 @@
             // btnCountsPerDegreePlus
             // 
             this.btnCountsPerDegreePlus.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCountsPerDegreePlus.Location = new System.Drawing.Point(259, 193);
+            this.btnCountsPerDegreePlus.Location = new System.Drawing.Point(261, 212);
             this.btnCountsPerDegreePlus.Name = "btnCountsPerDegreePlus";
             this.btnCountsPerDegreePlus.Size = new System.Drawing.Size(79, 51);
             this.btnCountsPerDegreePlus.TabIndex = 218;
@@ -662,7 +662,7 @@
             // btnSteerWizard
             // 
             this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerWizard.Location = new System.Drawing.Point(645, 75);
+            this.btnSteerWizard.Location = new System.Drawing.Point(628, 75);
             this.btnSteerWizard.Name = "btnSteerWizard";
             this.btnSteerWizard.Size = new System.Drawing.Size(78, 77);
             this.btnSteerWizard.TabIndex = 220;
@@ -673,11 +673,11 @@
             // 
             // tbarFreeDriveAngle
             // 
-            this.tbarFreeDriveAngle.Location = new System.Drawing.Point(267, 346);
+            this.tbarFreeDriveAngle.Location = new System.Drawing.Point(267, 358);
             this.tbarFreeDriveAngle.Maximum = 30;
             this.tbarFreeDriveAngle.Minimum = -30;
             this.tbarFreeDriveAngle.Name = "tbarFreeDriveAngle";
-            this.tbarFreeDriveAngle.Size = new System.Drawing.Size(481, 45);
+            this.tbarFreeDriveAngle.Size = new System.Drawing.Size(440, 45);
             this.tbarFreeDriveAngle.TabIndex = 224;
             this.tbarFreeDriveAngle.TickFrequency = 10;
             this.tbarFreeDriveAngle.ValueChanged += new System.EventHandler(this.tbarFreeDriveAngle_ValueChanged);
@@ -685,9 +685,9 @@
             // btnFreeDriveZero
             // 
             this.btnFreeDriveZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDriveZero.Location = new System.Drawing.Point(154, 325);
+            this.btnFreeDriveZero.Location = new System.Drawing.Point(154, 359);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
-            this.btnFreeDriveZero.Size = new System.Drawing.Size(96, 51);
+            this.btnFreeDriveZero.Size = new System.Drawing.Size(96, 39);
             this.btnFreeDriveZero.TabIndex = 226;
             this.btnFreeDriveZero.Text = "> 0 <";
             this.btnFreeDriveZero.UseVisualStyleBackColor = true;
@@ -696,9 +696,9 @@
             // btnFreeDrive
             // 
             this.btnFreeDrive.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDrive.Location = new System.Drawing.Point(28, 325);
+            this.btnFreeDrive.Location = new System.Drawing.Point(28, 359);
             this.btnFreeDrive.Name = "btnFreeDrive";
-            this.btnFreeDrive.Size = new System.Drawing.Size(96, 51);
+            this.btnFreeDrive.Size = new System.Drawing.Size(96, 39);
             this.btnFreeDrive.TabIndex = 228;
             this.btnFreeDrive.Text = "Drive";
             this.btnFreeDrive.UseVisualStyleBackColor = true;
@@ -708,7 +708,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(706, 325);
+            this.label20.Location = new System.Drawing.Point(676, 384);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(22, 16);
             this.label20.TabIndex = 229;
@@ -718,7 +718,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(277, 325);
+            this.label21.Location = new System.Drawing.Point(277, 384);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(27, 16);
             this.label21.TabIndex = 230;
@@ -728,7 +728,7 @@
             // 
             this.lblFreeDriveAngle.AutoSize = true;
             this.lblFreeDriveAngle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFreeDriveAngle.Location = new System.Drawing.Point(497, 322);
+            this.lblFreeDriveAngle.Location = new System.Drawing.Point(477, 383);
             this.lblFreeDriveAngle.Name = "lblFreeDriveAngle";
             this.lblFreeDriveAngle.Size = new System.Drawing.Size(22, 23);
             this.lblFreeDriveAngle.TabIndex = 231;
@@ -739,7 +739,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(806, 636);
+            this.ClientSize = new System.Drawing.Size(725, 609);
             this.Controls.Add(this.lblFreeDriveAngle);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);

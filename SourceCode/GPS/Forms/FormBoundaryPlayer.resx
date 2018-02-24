@@ -128,7 +128,7 @@
     <value>12, 15</value>
   </data>
   <data name="btnStop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>110, 110</value>
+    <value>89, 98</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnStop.TabIndex" type="System.Int32, mscorlib">
@@ -159,10 +159,10 @@
     <value>TopCenter</value>
   </data>
   <data name="btnPausePlay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 15</value>
+    <value>150, 15</value>
   </data>
   <data name="btnPausePlay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>145, 124</value>
+    <value>89, 98</value>
   </data>
   <data name="btnPausePlay.TabIndex" type="System.Int32, mscorlib">
     <value>139</value>
@@ -192,7 +192,7 @@
     <value>Tahoma, 18pt</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 150</value>
+    <value>12, 125</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 29</value>
@@ -225,7 +225,7 @@
     <value>Tahoma, 18pt, style=Bold</value>
   </data>
   <data name="lblArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>107, 151</value>
+    <value>95, 126</value>
   </data>
   <data name="lblArea.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 29</value>
@@ -255,7 +255,7 @@
     <value>10, 23</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>324, 190</value>
+    <value>254, 165</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14pt</value>

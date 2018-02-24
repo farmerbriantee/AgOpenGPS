@@ -78,8 +78,8 @@
             // 
             // btnRescan
             // 
-            this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnRescan, "btnRescan");
+            this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRescan.Name = "btnRescan";
             this.btnRescan.UseVisualStyleBackColor = false;
@@ -89,12 +89,14 @@
             // 
             resources.ApplyResources(this.btnSerialOK, "btnSerialOK");
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
             // groupBox1
             // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox1.Controls.Add(this.cboxPort);
             this.groupBox1.Controls.Add(this.cboxBaud);
@@ -105,15 +107,14 @@
             this.groupBox1.Controls.Add(this.textBoxRcv);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnOpenSerial);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // cboxPort
             // 
+            resources.ApplyResources(this.cboxPort, "cboxPort");
             this.cboxPort.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cboxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxPort, "cboxPort");
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
             this.cboxPort.Items.AddRange(new object[] {
@@ -128,9 +129,9 @@
             // 
             // cboxBaud
             // 
+            resources.ApplyResources(this.cboxBaud, "cboxBaud");
             this.cboxBaud.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cboxBaud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxBaud, "cboxBaud");
             this.cboxBaud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxBaud.FormattingEnabled = true;
             this.cboxBaud.Items.AddRange(new object[] {
@@ -160,8 +161,8 @@
             // 
             // btnCloseSerial
             // 
-            this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnCloseSerial, "btnCloseSerial");
+            this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerial.Name = "btnCloseSerial";
             this.btnCloseSerial.UseVisualStyleBackColor = false;
             this.btnCloseSerial.Click += new System.EventHandler(this.btnCloseSerial_Click);
@@ -180,24 +181,24 @@
             // 
             // btnOpenSerial
             // 
-            this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnOpenSerial, "btnOpenSerial");
+            this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerial.Name = "btnOpenSerial";
             this.btnOpenSerial.UseVisualStyleBackColor = false;
             this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
             // 
             // btnCloseSerialArduino
             // 
-            this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnCloseSerialArduino, "btnCloseSerialArduino");
+            this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
             this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
             this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
             // 
             // btnOpenSerialArduino
             // 
-            this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnOpenSerialArduino, "btnOpenSerialArduino");
+            this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
             this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
             this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
@@ -214,21 +215,22 @@
             // 
             // txtBoxRecvArduino
             // 
-            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
+            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
             // 
             // cboxArdPort
             // 
-            this.cboxArdPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboxArdPort, "cboxArdPort");
+            this.cboxArdPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxArdPort.FormattingEnabled = true;
             this.cboxArdPort.Name = "cboxArdPort";
             this.cboxArdPort.SelectedIndexChanged += new System.EventHandler(this.cboxArdPort_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtBoxSendArduino);
@@ -239,7 +241,6 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
             this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -250,8 +251,8 @@
             // 
             // txtBoxSendArduino
             // 
-            this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
+            this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxSendArduino.Name = "txtBoxSendArduino";
             this.txtBoxSendArduino.ReadOnly = true;
             // 
@@ -262,6 +263,7 @@
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.txtBoxSendAutoSteer);
@@ -272,7 +274,6 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.btnOpenSerialAutoSteer);
             this.groupBox3.Controls.Add(this.btnCloseSerialAutoSteer);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
@@ -283,24 +284,24 @@
             // 
             // txtBoxSendAutoSteer
             // 
-            this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
+            this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
             this.txtBoxSendAutoSteer.ReadOnly = true;
             // 
             // cboxASPort
             // 
+            resources.ApplyResources(this.cboxASPort, "cboxASPort");
             this.cboxASPort.Cursor = System.Windows.Forms.Cursors.Default;
             this.cboxASPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxASPort, "cboxASPort");
             this.cboxASPort.FormattingEnabled = true;
             this.cboxASPort.Name = "cboxASPort";
             this.cboxASPort.SelectedIndexChanged += new System.EventHandler(this.cboxASPort_SelectedIndexChanged);
             // 
             // txtBoxRecvAutoSteer
             // 
-            this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.Window;
             resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
+            this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.Window;
             this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
             this.txtBoxRecvAutoSteer.ReadOnly = true;
             // 
@@ -321,16 +322,16 @@
             // 
             // btnOpenSerialAutoSteer
             // 
-            this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnOpenSerialAutoSteer, "btnOpenSerialAutoSteer");
+            this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialAutoSteer.Name = "btnOpenSerialAutoSteer";
             this.btnOpenSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnOpenSerialAutoSteer.Click += new System.EventHandler(this.btnOpenSerialAutoSteer_Click);
             // 
             // btnCloseSerialAutoSteer
             // 
-            this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             resources.ApplyResources(this.btnCloseSerialAutoSteer, "btnCloseSerialAutoSteer");
+            this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialAutoSteer.Name = "btnCloseSerialAutoSteer";
             this.btnCloseSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnCloseSerialAutoSteer.Click += new System.EventHandler(this.btnCloseSerialAutoSteer_Click);
@@ -342,9 +343,9 @@
             // 
             // cboxNMEAHz
             // 
+            resources.ApplyResources(this.cboxNMEAHz, "cboxNMEAHz");
             this.cboxNMEAHz.Cursor = System.Windows.Forms.Cursors.Default;
             this.cboxNMEAHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxNMEAHz, "cboxNMEAHz");
             this.cboxNMEAHz.FormattingEnabled = true;
             this.cboxNMEAHz.Items.AddRange(new object[] {
             resources.GetString("cboxNMEAHz.Items"),

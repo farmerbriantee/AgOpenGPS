@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
@@ -119,6 +120,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormDisplaySettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDisplaySettings.Designer.cs">
+      <DependentUpon>FormDisplaySettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormABCurve.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +327,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormDisplaySettings.resx">
+      <DependentUpon>FormDisplaySettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABCurve.resx">
       <DependentUpon>FormABCurve.cs</DependentUpon>
     </EmbeddedResource>

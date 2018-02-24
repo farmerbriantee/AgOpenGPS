@@ -127,7 +127,9 @@ namespace AgOpenGPS
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                     double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                     DecDeg2UTM(latK, lonK);
-                                    vec2 bndPt = new vec2(easting, northing);
+                                    vec3 bndPt = new vec3(easting, northing, 0);
+
+                                    //TODO - calculate heading!
                                     mf.boundz.ptList.Add(bndPt);
                                 }
                                 mf.boundz.CalculateBoundaryArea();

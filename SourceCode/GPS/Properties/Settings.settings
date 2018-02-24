@@ -186,13 +186,13 @@
       <Value Profile="(Default)">68wESU</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromDogs" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isHeadingFromBrick" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isHeadingFromBNO" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromBrick" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

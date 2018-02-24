@@ -26,7 +26,7 @@ namespace AgOpenGPS
         }
 
         //list of coordinates of boundary line
-        public List<vec2> ptList = new List<vec2>();
+        public List<vec3> ptList = new List<vec3>();
 
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
@@ -158,7 +158,7 @@ namespace AgOpenGPS
             areaAcre = Math.Round(mf.boundz.area * 0.000247105, 1) + " Ac";
         }
 
-        public bool IsPointInsideBoundary(vec2 testPoint)
+        public bool IsPointInsideBoundary(vec3 testPointv3)
         {
             if (calcList.Count < 3) return false;
             int j = ptList.Count - 1;
@@ -167,10 +167,28 @@ namespace AgOpenGPS
             //test against the constant and multiples list the test point
             for (int i = 0; i < ptList.Count; j = i++)
             {
-                if ((ptList[i].northing < testPoint.northing && ptList[j].northing >= testPoint.northing)
-                || (ptList[j].northing < testPoint.northing && ptList[i].northing >= testPoint.northing))
+                if ((ptList[i].northing < testPointv3.northing && ptList[j].northing >= testPointv3.northing)
+                || (ptList[j].northing < testPointv3.northing && ptList[i].northing >= testPointv3.northing))
                 {
-                    oddNodes ^= ((testPoint.northing * calcList[i].northing) + calcList[i].easting < testPoint.easting);
+                    oddNodes ^= ((testPointv3.northing * calcList[i].northing) + calcList[i].easting < testPointv3.easting);
+                }
+            }
+            return oddNodes; //true means inside.
+        }
+
+        public bool IsPointInsideBoundary(vec2 testPointv2)
+        {
+            if (calcList.Count < 3) return false;
+            int j = ptList.Count - 1;
+            bool oddNodes = false;
+
+            //test against the constant and multiples list the test point
+            for (int i = 0; i < ptList.Count; j = i++)
+            {
+                if ((ptList[i].northing < testPointv2.northing && ptList[j].northing >= testPointv2.northing)
+                || (ptList[j].northing < testPointv2.northing && ptList[i].northing >= testPointv2.northing))
+                {
+                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
                 }
             }
             return oddNodes; //true means inside.

@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.chkIsSteerAxleAhead = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -83,36 +85,6 @@
             this.nudSection1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
-            this.tabDisplay = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.nudBoundaryDistance = new System.Windows.Forms.NumericUpDown();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.nudTriangleResolution = new System.Windows.Forms.NumericUpDown();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
-            this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboxIsHeadingFromGPSTrue = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnRollZero = new System.Windows.Forms.GroupBox();
-            this.btnRemoveZeroOffset = new System.Windows.Forms.Button();
-            this.lblRollZeroOffset = new System.Windows.Forms.Label();
-            this.btnZeroRoll = new System.Windows.Forms.Button();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.cboxHeadingPAOGI = new System.Windows.Forms.CheckBox();
-            this.cboxHeadingBNO = new System.Windows.Forms.CheckBox();
-            this.cboxHeadingBrick = new System.Windows.Forms.CheckBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.cboxRollPAOGI = new System.Windows.Forms.CheckBox();
-            this.cboxRollBrick = new System.Windows.Forms.CheckBox();
-            this.cboxRollDogs = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.tboxTinkerUID = new System.Windows.Forms.TextBox();
             this.tabWorkSwitch = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
@@ -126,10 +98,9 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudLightbarCmPerPixel = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
@@ -152,21 +123,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
-            this.tabDisplay.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
-            this.tabGuidance.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.btnRollZero.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -174,8 +132,6 @@
             this.tabControl1.Controls.Add(this.tabVehicle);
             this.tabControl1.Controls.Add(this.tabTool);
             this.tabControl1.Controls.Add(this.tabSections);
-            this.tabControl1.Controls.Add(this.tabDisplay);
-            this.tabControl1.Controls.Add(this.tabGuidance);
             this.tabControl1.Controls.Add(this.tabWorkSwitch);
             this.tabControl1.Controls.Add(this.tabExamples);
             resources.ApplyResources(this.tabControl1, "tabControl1");
@@ -187,6 +143,8 @@
             // 
             this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleSettings;
             resources.ApplyResources(this.tabVehicle, "tabVehicle");
+            this.tabVehicle.Controls.Add(this.label6);
+            this.tabVehicle.Controls.Add(this.nudMinTurnRadius);
             this.tabVehicle.Controls.Add(this.label29);
             this.tabVehicle.Controls.Add(this.chkIsSteerAxleAhead);
             this.tabVehicle.Controls.Add(this.label15);
@@ -208,6 +166,32 @@
             this.tabVehicle.Controls.Add(this.nudAntennaHeight);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // nudMinTurnRadius
+            // 
+            resources.ApplyResources(this.nudMinTurnRadius, "nudMinTurnRadius");
+            this.nudMinTurnRadius.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudMinTurnRadius.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudMinTurnRadius.Name = "nudMinTurnRadius";
+            this.nudMinTurnRadius.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
             // 
             // label29
             // 
@@ -794,279 +778,6 @@
             0});
             this.nudNumberOfSections.ValueChanged += new System.EventHandler(this.nudNumberOfSections_ValueChanged);
             // 
-            // tabDisplay
-            // 
-            this.tabDisplay.Controls.Add(this.groupBox5);
-            this.tabDisplay.Controls.Add(this.groupBox2);
-            this.tabDisplay.Controls.Add(this.groupBox4);
-            resources.ApplyResources(this.tabDisplay, "tabDisplay");
-            this.tabDisplay.Name = "tabDisplay";
-            this.tabDisplay.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label31);
-            this.groupBox5.Controls.Add(this.nudBoundaryDistance);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.TabStop = false;
-            // 
-            // label31
-            // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
-            // 
-            // nudBoundaryDistance
-            // 
-            this.nudBoundaryDistance.DecimalPlaces = 1;
-            resources.ApplyResources(this.nudBoundaryDistance, "nudBoundaryDistance");
-            this.nudBoundaryDistance.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            this.nudBoundaryDistance.Maximum = new decimal(new int[] {
-            16,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.Minimum = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.Name = "nudBoundaryDistance";
-            this.nudBoundaryDistance.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.nudBoundaryDistance.ValueChanged += new System.EventHandler(this.nudBoundaryDistance_ValueChanged);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.nudTriangleResolution);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.TabStop = false;
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
-            // 
-            // nudTriangleResolution
-            // 
-            this.nudTriangleResolution.DecimalPlaces = 1;
-            resources.ApplyResources(this.nudTriangleResolution, "nudTriangleResolution");
-            this.nudTriangleResolution.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.Name = "nudTriangleResolution";
-            this.nudTriangleResolution.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudTriangleResolution.ValueChanged += new System.EventHandler(this.nudTriangleResolution_ValueChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.nudMinFixStepDistance);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.TabStop = false;
-            // 
-            // label21
-            // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Name = "label21";
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // nudMinFixStepDistance
-            // 
-            this.nudMinFixStepDistance.DecimalPlaces = 1;
-            resources.ApplyResources(this.nudMinFixStepDistance, "nudMinFixStepDistance");
-            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            4,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
-            this.nudMinFixStepDistance.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.nudMinFixStepDistance_ValueChanged);
-            // 
-            // tabGuidance
-            // 
-            this.tabGuidance.Controls.Add(this.label11);
-            this.tabGuidance.Controls.Add(this.nudLightbarCmPerPixel);
-            this.tabGuidance.Controls.Add(this.groupBox1);
-            this.tabGuidance.Controls.Add(this.label10);
-            this.tabGuidance.Controls.Add(this.btnRollZero);
-            this.tabGuidance.Controls.Add(this.groupBox7);
-            this.tabGuidance.Controls.Add(this.groupBox6);
-            this.tabGuidance.Controls.Add(this.label9);
-            this.tabGuidance.Controls.Add(this.tboxTinkerUID);
-            resources.ApplyResources(this.tabGuidance, "tabGuidance");
-            this.tabGuidance.Name = "tabGuidance";
-            this.tabGuidance.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cboxIsHeadingFromGPSTrue);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.TabStop = false;
-            // 
-            // cboxIsHeadingFromGPSTrue
-            // 
-            resources.ApplyResources(this.cboxIsHeadingFromGPSTrue, "cboxIsHeadingFromGPSTrue");
-            this.cboxIsHeadingFromGPSTrue.Name = "cboxIsHeadingFromGPSTrue";
-            this.cboxIsHeadingFromGPSTrue.UseVisualStyleBackColor = true;
-            this.cboxIsHeadingFromGPSTrue.CheckedChanged += new System.EventHandler(this.cboxIsHeadingFromGPSTrue_CheckedChanged);
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // btnRollZero
-            // 
-            this.btnRollZero.Controls.Add(this.btnRemoveZeroOffset);
-            this.btnRollZero.Controls.Add(this.lblRollZeroOffset);
-            this.btnRollZero.Controls.Add(this.btnZeroRoll);
-            resources.ApplyResources(this.btnRollZero, "btnRollZero");
-            this.btnRollZero.Name = "btnRollZero";
-            this.btnRollZero.TabStop = false;
-            // 
-            // btnRemoveZeroOffset
-            // 
-            resources.ApplyResources(this.btnRemoveZeroOffset, "btnRemoveZeroOffset");
-            this.btnRemoveZeroOffset.Name = "btnRemoveZeroOffset";
-            this.btnRemoveZeroOffset.UseVisualStyleBackColor = true;
-            this.btnRemoveZeroOffset.Click += new System.EventHandler(this.btnRemoveZeroOffset_Click);
-            // 
-            // lblRollZeroOffset
-            // 
-            resources.ApplyResources(this.lblRollZeroOffset, "lblRollZeroOffset");
-            this.lblRollZeroOffset.Name = "lblRollZeroOffset";
-            // 
-            // btnZeroRoll
-            // 
-            resources.ApplyResources(this.btnZeroRoll, "btnZeroRoll");
-            this.btnZeroRoll.Name = "btnZeroRoll";
-            this.btnZeroRoll.UseVisualStyleBackColor = true;
-            this.btnZeroRoll.Click += new System.EventHandler(this.btnZeroRoll_Click);
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.cboxHeadingPAOGI);
-            this.groupBox7.Controls.Add(this.cboxHeadingBNO);
-            this.groupBox7.Controls.Add(this.cboxHeadingBrick);
-            resources.ApplyResources(this.groupBox7, "groupBox7");
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.TabStop = false;
-            // 
-            // cboxHeadingPAOGI
-            // 
-            resources.ApplyResources(this.cboxHeadingPAOGI, "cboxHeadingPAOGI");
-            this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
-            this.cboxHeadingPAOGI.UseVisualStyleBackColor = true;
-            this.cboxHeadingPAOGI.CheckedChanged += new System.EventHandler(this.cboxHeadingPAOGI_CheckedChanged);
-            // 
-            // cboxHeadingBNO
-            // 
-            resources.ApplyResources(this.cboxHeadingBNO, "cboxHeadingBNO");
-            this.cboxHeadingBNO.Name = "cboxHeadingBNO";
-            this.cboxHeadingBNO.UseVisualStyleBackColor = true;
-            this.cboxHeadingBNO.CheckedChanged += new System.EventHandler(this.cboxHeadingBNO_CheckedChanged);
-            // 
-            // cboxHeadingBrick
-            // 
-            resources.ApplyResources(this.cboxHeadingBrick, "cboxHeadingBrick");
-            this.cboxHeadingBrick.Name = "cboxHeadingBrick";
-            this.cboxHeadingBrick.UseVisualStyleBackColor = true;
-            this.cboxHeadingBrick.CheckedChanged += new System.EventHandler(this.cboxHeadingBrick_CheckedChanged);
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.cboxRollPAOGI);
-            this.groupBox6.Controls.Add(this.cboxRollBrick);
-            this.groupBox6.Controls.Add(this.cboxRollDogs);
-            resources.ApplyResources(this.groupBox6, "groupBox6");
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.TabStop = false;
-            // 
-            // cboxRollPAOGI
-            // 
-            resources.ApplyResources(this.cboxRollPAOGI, "cboxRollPAOGI");
-            this.cboxRollPAOGI.Name = "cboxRollPAOGI";
-            this.cboxRollPAOGI.UseVisualStyleBackColor = true;
-            this.cboxRollPAOGI.CheckedChanged += new System.EventHandler(this.cboxRollPAOGI_CheckedChanged);
-            // 
-            // cboxRollBrick
-            // 
-            resources.ApplyResources(this.cboxRollBrick, "cboxRollBrick");
-            this.cboxRollBrick.Name = "cboxRollBrick";
-            this.cboxRollBrick.UseVisualStyleBackColor = true;
-            this.cboxRollBrick.CheckedChanged += new System.EventHandler(this.cboxRollBrick_CheckedChanged);
-            // 
-            // cboxRollDogs
-            // 
-            resources.ApplyResources(this.cboxRollDogs, "cboxRollDogs");
-            this.cboxRollDogs.Name = "cboxRollDogs";
-            this.cboxRollDogs.UseVisualStyleBackColor = true;
-            this.cboxRollDogs.CheckedChanged += new System.EventHandler(this.cboxRollDogs_CheckedChanged);
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // tboxTinkerUID
-            // 
-            resources.ApplyResources(this.tboxTinkerUID, "tboxTinkerUID");
-            this.tboxTinkerUID.Name = "tboxTinkerUID";
-            // 
             // tabWorkSwitch
             // 
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
@@ -1151,32 +862,6 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudLightbarCmPerPixel
-            // 
-            resources.ApplyResources(this.nudLightbarCmPerPixel, "nudLightbarCmPerPixel");
-            this.nudLightbarCmPerPixel.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nudLightbarCmPerPixel.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudLightbarCmPerPixel.Name = "nudLightbarCmPerPixel";
-            this.nudLightbarCmPerPixel.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudLightbarCmPerPixel.ValueChanged += new System.EventHandler(this.nudLightbarCmPerPixel_ValueChanged);
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
@@ -1199,6 +884,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabVehicle.ResumeLayout(false);
             this.tabVehicle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).EndInit();
@@ -1223,30 +909,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
-            this.tabDisplay.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudBoundaryDistance)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTriangleResolution)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
-            this.tabGuidance.ResumeLayout(false);
-            this.tabGuidance.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.btnRollZero.ResumeLayout(false);
-            this.btnRollZero.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1271,10 +936,8 @@
         private System.Windows.Forms.Label lblSecTotalWidthInches;
         private System.Windows.Forms.Label lblSecTotalWidthFeet;
         private System.Windows.Forms.NumericUpDown nudAntennaHeight;
-        private System.Windows.Forms.TabPage tabDisplay;
         private System.Windows.Forms.NumericUpDown nudAntennaPivot;
         private System.Windows.Forms.NumericUpDown nudWheelbase;
-        private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label18;
@@ -1307,10 +970,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox chkIsSteerAxleAhead;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.NumericUpDown nudTriangleResolution;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblSecTotalWidthMeters;
         private System.Windows.Forms.TabPage tabWorkSwitch;
         private System.Windows.Forms.CheckBox chkEnableWorkSwitch;
@@ -1323,35 +982,11 @@
         private System.Windows.Forms.Label lblTurnOffBelowUnits;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
-        private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblInchesCm;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudTankHitch;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.NumericUpDown nudBoundaryDistance;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox tboxTinkerUID;
-        private System.Windows.Forms.TabPage tabGuidance;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.CheckBox cboxRollDogs;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.CheckBox cboxHeadingBNO;
-        private System.Windows.Forms.CheckBox cboxHeadingBrick;
-        private System.Windows.Forms.GroupBox btnRollZero;
-        private System.Windows.Forms.Label lblRollZeroOffset;
-        private System.Windows.Forms.Button btnZeroRoll;
-        private System.Windows.Forms.Button btnRemoveZeroOffset;
-        private System.Windows.Forms.CheckBox cboxRollBrick;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox cboxHeadingPAOGI;
-        private System.Windows.Forms.CheckBox cboxRollPAOGI;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cboxIsHeadingFromGPSTrue;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown nudLightbarCmPerPixel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
     }
 }

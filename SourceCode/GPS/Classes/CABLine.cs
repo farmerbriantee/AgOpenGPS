@@ -51,7 +51,7 @@ namespace AgOpenGPS
         public vec2 currentABLineP2 = new vec2(0.0, 1.0);
 
         //pure pursuit values
-        public vec2 pivotAxlePosAB = new vec2(0, 0);
+        public vec3 pivotAxlePosAB = new vec3(0, 0, 0);
 
         public vec2 goalPointAB = new vec2(0, 0);
         public vec2 radiusPointAB = new vec2(0, 0);
@@ -249,7 +249,7 @@ namespace AgOpenGPS
 
             //calc "D" the distance from pivot axle to lookahead point
             double goalPointDistanceDSquared
-                = mf.pn.DistanceSquared(goalPointAB.northing, goalPointAB.easting, pivotAxlePosAB.northing, pivotAxlePosAB.easting);
+                = glm.DistanceSquared(goalPointAB.northing, goalPointAB.easting, pivotAxlePosAB.northing, pivotAxlePosAB.easting);
 
             //calculate the the new x in local coordinates and steering angle degrees based on wheelbase
             double localHeading = glm.twoPI - mf.fixHeading;
@@ -460,7 +460,7 @@ namespace AgOpenGPS
                         gl.Begin(OpenGL.GL_LINE_STRIP);
                         for (int i = 0; i < ptCount; i++)
                         {
-                            gl.Vertex(mf.yt.ytList[i].x, mf.yt.ytList[i].z, 0);
+                            gl.Vertex(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
                         }
                         gl.End();
                     }

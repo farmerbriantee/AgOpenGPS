@@ -4,14 +4,11 @@ using AgOpenGPS.Properties;
 using SharpGL;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -24,7 +21,7 @@ namespace AgOpenGPS
         //maximum sections available
         private const int MAXSECTIONS = 9;
 
-        //How many turn functions
+        //How many youturn functions
         public const int MAXFUNCTIONS = 8;
 
         //The base directory where AgOpenGPS will be stored and fields and vehicles branch from
@@ -62,7 +59,7 @@ namespace AgOpenGPS
         public bool isPureDisplayOn = true, isSkyOn = true, isBigAltitudeOn = false;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn = false;
+        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -189,6 +186,11 @@ namespace AgOpenGPS
         /// </summary>
         public CRecordedPath recPath;
 
+        /// <summary>
+        /// Generate dubins paths
+        /// </summary>
+        //public CDubins dubPath;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -258,6 +260,9 @@ namespace AgOpenGPS
 
             //A recorded path
             recPath = new CRecordedPath(gl, this);
+
+            //An instance of dubins paths
+            //dubPath = new CDubins(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -338,7 +343,7 @@ namespace AgOpenGPS
             SectionCalcWidths();
 
             //start udp server
-            StartUDPServer();
+            //StartUDPServer();
 
             //set the correct zoom and grid
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
@@ -522,6 +527,36 @@ namespace AgOpenGPS
             return texture[0];
         }// Load Bitmaps And Convert To Textures
 
+        private void btnRecPathOnOff_Click(object sender, EventArgs e)
+        {
+            //recPath.isBtnOn = !recPath.isBtnOn;
+            //if (recPath.isBtnOn)
+            //{
+            //    btnRecPathOnOff.Text = "On";
+            //    recPath.isRecordOn = false;
+            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            //}
+            //else
+            //{
+            //    btnRecPathOnOff.Text = "Off";
+            //    recPath.isRecordOn = false;
+            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            //}
+        }
+
+        private void btnRecPathPauseRecord_Click(object sender, EventArgs e)
+        {
+            //recPath.isRecordOn = !recPath.isRecordOn;
+            //if (recPath.isRecordOn)
+            //{
+            //    btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
+            //}
+            //else
+            //{
+            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            //}
+        }
+
         //start the UDP server
         private void StartUDPServer()
         {
@@ -564,6 +599,30 @@ namespace AgOpenGPS
                 WriteErrorLog("UDP Server" + e);
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnDeleteRecordedPath_Click(object sender, EventArgs e)
+        {
+            recPath.recList.Clear();
+        }
+
+        private void btnFollowOnOff_Click(object sender, EventArgs e)
+        {
+            //recPath.isBtnFollowOn = !recPath.isBtnFollowOn;
+            //if (recPath.isBtnFollowOn)
+            //{
+            //    btnFollowOnOff.Text = "Follow On";
+            //    //recPath.RestartToBeginningOfPath();
+            //}
+            //else
+            //{
+            //    btnFollowOnOff.Text = "Follow Off";
+            //}
+        }
+
+        private void btnDubins_Click(object sender, EventArgs e)
+        {
+            //recPath.StartDriving();
         }
 
         //dialog for requesting user to save or cancel
@@ -768,6 +827,8 @@ namespace AgOpenGPS
             btnABLine.Image = Properties.Resources.ABLineOff;
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
+            btnSwapDirection.Visible = false;
+
             btnContour.Image = Properties.Resources.ContourOff;
             btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
 
@@ -809,6 +870,11 @@ namespace AgOpenGPS
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+
+            ////turn off path record
+            //recPath.isBtnOn = false;
+            //btnRecPathOnOff.Text = "Off";
+            //recPath.recList.Clear();
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
@@ -1082,6 +1148,7 @@ namespace AgOpenGPS
             FileSaveSections();
             FileSaveContour();
             FileSaveFlagsKML();
+            FileSaveRecPath();
 
             JobClose();
             Text = "AgOpenGPS";
@@ -1129,7 +1196,6 @@ namespace AgOpenGPS
         }
 
         //pinch and rotate screen
-
     }//class FormGPS
 }//namespace AgOpenGPS
 

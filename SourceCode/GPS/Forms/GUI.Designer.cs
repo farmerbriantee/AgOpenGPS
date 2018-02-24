@@ -56,6 +56,7 @@ namespace AgOpenGPS
             //turn off the turn signals lol
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
+            btnSwapDirection.Visible = false;
 
             //rate control button
 
@@ -433,16 +434,6 @@ namespace AgOpenGPS
             }
         }
         
-        //Open the dialog of tabbed settings
-        private void SettingsPageOpen(int page)
-        {
-            using (var form = new FormSettings(this, page))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
-            }
-        }
-
         // Buttons //-----------------------------------------------------------------------
         //Auto steer off and on
         private void btnAutoSteer_Click(object sender, EventArgs e)
@@ -500,6 +491,7 @@ namespace AgOpenGPS
                     btnLeftYouTurn.Enabled = false;
                     btnRightYouTurn.Visible = false;
                     btnLeftYouTurn.Visible = false;
+                    btnSwapDirection.Visible = false;
 
                     btnEnableAutoYouTurn.Enabled = false;
                     yt.isYouTurnBtnOn = false;
@@ -517,6 +509,8 @@ namespace AgOpenGPS
                     btnLeftYouTurn.Enabled = true;
                     btnRightYouTurn.Visible = true;
                     btnLeftYouTurn.Visible = true;
+                    btnSwapDirection.Visible = true;
+
 
                     //auto YouTurn disabled
                     yt.isYouTurnBtnOn = false;
@@ -543,6 +537,8 @@ namespace AgOpenGPS
                 btnLeftYouTurn.Enabled = false;
                 btnRightYouTurn.Visible = false;
                 btnLeftYouTurn.Visible = false;
+                btnSwapDirection.Visible = false;
+
 
                 btnEnableAutoYouTurn.Enabled = false;
                 yt.isYouTurnBtnOn = false;
@@ -557,6 +553,7 @@ namespace AgOpenGPS
                     btnLeftYouTurn.Enabled = true;
                     btnRightYouTurn.Visible = true;
                     btnLeftYouTurn.Visible = true;
+                    btnSwapDirection.Visible = true;
 
                     //auto YouTurn shutdown
                     yt.isYouTurnBtnOn = false;
@@ -583,6 +580,8 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
+            btnSwapDirection.Visible = false;
+
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
@@ -1216,6 +1215,7 @@ namespace AgOpenGPS
                 {
                     FileCreateContour();
                     FileCreateSections();
+                    FileCreateRecPath();
 
                     if (rc.isRateControlOn)
                         btnRate.PerformClick();
@@ -1770,8 +1770,23 @@ namespace AgOpenGPS
         }
         private void toolstripVehicleConfig_Click(object sender, EventArgs e)
         {
-            SettingsPageOpen(0);
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
         }
+
+        private void toolstripDisplayConfig_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormDisplaySettings(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
+
         private void toolstripUSBPortsConfig_Click(object sender, EventArgs e)
         {
             SettingsCommunications();
@@ -1791,7 +1806,7 @@ namespace AgOpenGPS
             if (boundz.isSet)
             {
                 //field too small
-                if (boundz.ptList.Count < 30) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (boundz.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
                 using (var form = new FormHeadland(this))
                 {
                     var result = form.ShowDialog();
@@ -1837,6 +1852,7 @@ namespace AgOpenGPS
             if (!sp.IsOpen)
             {
                 if (isAutoSteerBtnOn) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
+                //if (recPath.isBtnFollowOn)sim.DoSimTick(guidanceLineSteerAngle / 100.0);
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
@@ -1914,7 +1930,6 @@ namespace AgOpenGPS
         public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01) + "\u00B0"; } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
-        public string FixHeadingSection { get { return Math.Round(fixHeadingSection, 4).ToString(); } }
 
         public string LookAhead { get { return ((int)(section[0].sectionLookAhead)).ToString(); } }
         public string StepFixNum { get { return (currentStepFix).ToString(); } }

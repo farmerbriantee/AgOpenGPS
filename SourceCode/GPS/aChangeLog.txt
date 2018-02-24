@@ -1,4 +1,9 @@
-﻿v 2.3 Jan 15
+﻿v 2.4 Mar 1
+* recorded path added but not functional
+* Dubins added to U Turn
+* Ability to set turning radius
+
+v 2.3 Jan 15
 * zero Roll
 * Selectable inputs for roll/heading
 * fix bug in imu heading /gps fusion

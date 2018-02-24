@@ -10,7 +10,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
-        private double heading, oneSide, distance;
+        private double oneSide, distance;
         private double headWidths;
 
         public FormHeadland(Form callingForm)
@@ -49,7 +49,7 @@ namespace AgOpenGPS
             {
                 //OpenGL has line 0 at bottom, Windows at top, so convert
                 Point pt = openGLHead.PointToClient(Cursor.Position);
-                vec2 plotPt;
+                vec3 plotPt = new vec3();
                 lblX.Text = (pt.X - 350).ToString();
                 lblY.Text = ((700 - pt.Y) - 350).ToString();
 
@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
                 //make sure point is in boundary
                 if (mf.boundz.IsPointInsideBoundary(plotPt)) mf.hl.ptList.Add(plotPt);
-                else mf.TimedMessageBox(2000, "Outside of boundary", "Paint inside the box!");
+                else mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the box!");
 
                 //fix up the area label
                 double area = mf.hl.CalculateHeadlandArea();
@@ -134,7 +134,7 @@ namespace AgOpenGPS
             BuildHeadland();
         }
 
-        private vec2 point, point2;
+        private vec3 point;
 
         private void BuildHeadland()
         {
@@ -142,35 +142,24 @@ namespace AgOpenGPS
             int ptCount = mf.boundz.ptList.Count;
 
             //first find out which side is inside the boundary
-            heading = Math.Atan2(mf.boundz.ptList[3].easting - mf.boundz.ptList[4].easting
-                                        , mf.boundz.ptList[3].northing - mf.boundz.ptList[4].northing);
             oneSide = glm.PIBy2;
-            point2.easting = mf.boundz.ptList[3].easting - (Math.Sin(oneSide + heading) * 2.0);
-            point2.northing = mf.boundz.ptList[3].northing - (Math.Cos(oneSide + heading) * 2.0);
+            point.easting = mf.boundz.ptList[3].easting - (Math.Sin(oneSide + mf.boundz.ptList[3].heading) * 2.0);
+            point.northing = mf.boundz.ptList[3].northing - (Math.Cos(oneSide + mf.boundz.ptList[3].heading) * 2.0);
 
-            if (!mf.boundz.IsPointInsideBoundary(point2)) oneSide *= -1.0;
-
-            //grab an array
-            vec4[] bnd = new vec4[ptCount];
-            vec2[] hlnd = new vec2[ptCount];
+            if (!mf.boundz.IsPointInsideBoundary(point)) oneSide *= -1.0;
 
             //clear the headland point list
             mf.hl.ptList.Clear();
 
             //determine how wide a headland space
             double totalHeadWidth = mf.vehicle.toolWidth * (double)nudWidths.Value;
-            bnd[0].x = mf.boundz.ptList[0].easting;
-            bnd[0].y = mf.boundz.ptList[0].northing;
 
-            for (int i = 1; i < ptCount - 1; i++)
+            for (int i = 0; i < ptCount; i++)
             {
-                bnd[i].x = mf.boundz.ptList[i].easting;
-                bnd[i].y = mf.boundz.ptList[i].northing;
-
-                bnd[i - 1].k = Math.Atan2(bnd[i - 1].x - bnd[i].x, bnd[i - 1].y - bnd[i].y);
-
-                point.easting = bnd[i - 1].x - (Math.Sin(bnd[i - 1].k + oneSide) * totalHeadWidth);
-                point.northing = bnd[i - 1].y - (Math.Cos(bnd[i - 1].k + oneSide) * totalHeadWidth);
+                //calculate the point inside the boundary
+                point.easting = mf.boundz.ptList[i].easting - (Math.Sin(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
+                point.northing = mf.boundz.ptList[i].northing - (Math.Cos(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
+                point.heading = mf.boundz.ptList[i].heading;
 
                 //only add if inside actual field boundary
                 if (mf.boundz.IsPointInsideBoundary(point)) mf.hl.ptList.Add(point);
@@ -184,7 +173,7 @@ namespace AgOpenGPS
                 for (int j = 0; j < headCount; j++)
                 {
                     //make sure distance between headland and boundary is not less then width
-                    distance = mf.pn.Distance(mf.boundz.ptList[i], mf.hl.ptList[j]);
+                    distance = glm.Distance(mf.boundz.ptList[i], mf.hl.ptList[j]);
                     if (distance < (totalHeadWidth * 0.98))
                     {
                         mf.hl.ptList.RemoveAt(j);
@@ -212,10 +201,10 @@ namespace AgOpenGPS
         {
             //make sure distance isn't too small between points on headland
             int headCount = mf.hl.ptList.Count;
-            double spacing = mf.vehicle.toolWidth * 0.5;
+            double spacing = mf.vehicle.toolWidth * 0.33;
             for (int i = 0; i < headCount - 1; i++)
             {
-                distance = mf.pn.Distance(mf.hl.ptList[i], mf.hl.ptList[i + 1]);
+                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[i + 1]);
                 if (distance < spacing)
                 {
                     mf.hl.ptList.RemoveAt(i + 1);
@@ -230,11 +219,12 @@ namespace AgOpenGPS
             {
                 int j = i + 1;
                 if (j == headCount) j = 0;
-                distance = mf.pn.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
+                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
                 if (distance > (spacing))
                 {
                     point.easting = (mf.hl.ptList[i].easting + mf.hl.ptList[j].easting) / 2.0;
                     point.northing = (mf.hl.ptList[i].northing + mf.hl.ptList[j].northing) / 2.0;
+                    point.heading = mf.hl.ptList[i].heading;
 
                     mf.hl.ptList.Insert(j, point);
                     headCount = mf.hl.ptList.Count;
@@ -286,7 +276,7 @@ namespace AgOpenGPS
             glh.Translate(0, 0, -maxFieldDistance);
 
             //rotate camera so heading matched fix heading in the world
-            //glh.Rotate(glm.toDegrees(fixHeadingSection), 0, 0, 1);
+            //glh.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
 
             //translate to that spot in the world
             glh.Translate(-fieldCenterX, -fieldCenterY, 0);
@@ -360,9 +350,9 @@ namespace AgOpenGPS
             glh.Begin(OpenGL.GL_POINTS);
 
             glh.Color(0.05f, 0.90f, 0.60f);
-            #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             glh.Vertex(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
-            #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
             glh.End();
 
@@ -449,7 +439,7 @@ namespace AgOpenGPS
                 int bndCnt = mf.boundz.ptList.Count;
                 if (bndCnt > 0)
                 {
-                    for (int i = 0; i < bndCnt; i ++)
+                    for (int i = 0; i < bndCnt; i++)
                     {
                         double x = mf.boundz.ptList[i].easting;
                         double y = mf.boundz.ptList[i].northing;

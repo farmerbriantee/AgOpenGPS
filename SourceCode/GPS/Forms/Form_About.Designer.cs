@@ -64,9 +64,9 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label6.Location = new System.Drawing.Point(14, 142);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(228, 36);
+            this.label6.Size = new System.Drawing.Size(129, 18);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Check for Updates\r\nПроверить наличие обновлений\r\n";
+            this.label6.Text = "Check for Updates\r\n";
             // 
             // label5
             // 
@@ -106,7 +106,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v2.3 Dec 2017";
+            this.label2.Text = "v2.4 Mar 2018";
             // 
             // label1
             // 

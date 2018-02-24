@@ -12,6 +12,7 @@ namespace AgOpenGPS
 
         //Our two new nmea strings
         private readonly StringBuilder sbOGI = new StringBuilder();
+        private readonly StringBuilder sbHDT = new StringBuilder();
 
         private readonly StringBuilder sbGGA = new StringBuilder();
         private readonly StringBuilder sbVTG = new StringBuilder();
@@ -47,7 +48,7 @@ namespace AgOpenGPS
         public void DoSimTick(double _st)
         {
             steerAngle = _st;
-            double temp = (stepDistance * Math.Tan(steerAngle * 0.01745329252) / 3.3);
+            double temp = (stepDistance * Math.Tan(steerAngle * 0.02045329252) / 3.3);
             headingTrue += temp;
             if (headingTrue > (2.0 * Math.PI)) headingTrue -= (2.0 * Math.PI);
             if (headingTrue < (0)) headingTrue += (2.0 * Math.PI);
@@ -67,6 +68,7 @@ namespace AgOpenGPS
             //BuildOGI();
             BuildGGA();
             BuildVTG();
+            BuildHDT();
 
             //send garbage for testing
             //sbSendText.Append("$\r\n,4,4,,,,,,*\\\\\\\\\\\\\\\\\\");
@@ -76,6 +78,8 @@ namespace AgOpenGPS
 
             sbSendText.Append(sbGGA.ToString());
             sbSendText.Append(sbVTG.ToString());
+            sbSendText.Append(sbHDT.ToString());
+
             //sbSendText.Append(sbOGI.ToString());
             mf.pn.rawBuffer += sbSendText.ToString();
             mf.recvSentenceSettings = mf.pn.rawBuffer;
@@ -178,6 +182,34 @@ namespace AgOpenGPS
                005.5,N      Ground speed, knots
                010.2,K      Ground speed, Kilometers per hour
                *48          Checksum
+            */
+        }
+
+        private void BuildHDT()
+
+        {
+            sbHDT.Clear();
+            sbHDT.Append("$GPHDT,");
+            sbHDT.Append((degrees).ToString(CultureInfo.InvariantCulture));
+            sbHDT.Append(",T*");
+
+            CalculateChecksum(sbHDT.ToString());
+            sbHDT.Append(sumStr);
+            sbHDT.Append("\r\n");
+
+            /*        Heading from True North
+An example of the HDT string is:
+
+$GPHDT,123.456,T*00
+
+Heading from true north message fields
+Field	Meaning
+0	Message ID $GPHDT
+1	Heading in degrees
+2	T: Indicates heading relative to True North
+3	The checksum data, always begins with *
+ 
+               
             */
         }
 

@@ -34,6 +34,7 @@ namespace AgOpenGPS
         public double antennaPivot;
         public double wheelbase;
         public double hitchLength;
+        public double minTurningRadius;
 
         //how many individual sections
         public int numOfSections;
@@ -53,7 +54,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAhead;
-        public double minLookAheadDistance = 6.0;
+        public double minLookAheadDistance = 3.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
 
@@ -79,6 +80,7 @@ namespace AgOpenGPS
             hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
 
             wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
+            minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
 
             toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
@@ -114,10 +116,11 @@ namespace AgOpenGPS
             }
             else { trailingTank = 0; trailingTool = 0; }
 
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             //there is a trailing tow between hitch
             if (tankTrailingHitchLength < -2.0 && isToolTrailing)
             {
-                gl.Rotate(glm.toDegrees(-mf.fixHeadingTank), 0.0, 0.0, 1.0);
+                gl.Rotate(glm.toDegrees(-mf.tankPos.heading), 0.0, 0.0, 1.0);
 
                 //draw the tank hitch
                 gl.LineWidth(2);
@@ -137,15 +140,16 @@ namespace AgOpenGPS
 
                 //move down the tank hitch, unwind, rotate to section heading
                 gl.Translate(0, trailingTank, 0);
-                gl.Rotate(glm.toDegrees(mf.fixHeadingTank), 0.0, 0.0, 1.0);
-                gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
+                gl.Rotate(glm.toDegrees(mf.tankPos.heading), 0.0, 0.0, 1.0);
+                gl.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
             }
 
             //no tow between hitch
             else
             {
-                gl.Rotate(glm.toDegrees(-mf.fixHeadingSection), 0.0, 0.0, 1.0);
+                gl.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
             }
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
             //draw the hitch if trailing
             if (isToolTrailing)

@@ -11,26 +11,21 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
-        private double antennaHeight, antennaPivot, wheelbase, hitchLength;
+        private double antennaHeight, antennaPivot, wheelbase, hitchLength, minTurningRadius;
 
-        private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead, isHeadingFromFix;
+        private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead;
         private int numberOfSections;
 
         private decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6, sectionWidth7, sectionWidth8;
 
         private decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
-
-        private decimal triResolution, minFixStepDistance, boundaryDistance;
-
         private bool isWorkSwEn, isWorkSwActiveLow;
 
-        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
 
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
-        private int lightbarCmPerPixie;
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -77,6 +72,7 @@ namespace AgOpenGPS
             antennaPivot = Math.Abs(Properties.Vehicle.Default.setVehicle_antennaPivot);
             hitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_hitchLength);
             wheelbase = Math.Abs(Properties.Vehicle.Default.setVehicle_wheelbase);
+            minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
             nudAntennaHeight.Value = (decimal)(antennaHeight * m2MetImp);
@@ -93,6 +89,10 @@ namespace AgOpenGPS
             nudWheelbase.ValueChanged -= nudWheelbase_ValueChanged;
             nudWheelbase.Value = (decimal)(wheelbase * m2MetImp);
             nudWheelbase.ValueChanged += nudWheelbase_ValueChanged;
+
+            nudMinTurnRadius.ValueChanged -= nudMinTurnRadius_ValueChanged;
+            nudMinTurnRadius.Value = (decimal)(minTurningRadius * m2MetImp);
+            nudMinTurnRadius.ValueChanged += nudMinTurnRadius_ValueChanged;
 
             //Tool    hitched, pivot behind antenna, and tool behind pivot are the default as true------------------------------------------------------
             isToolBehindPivot = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
@@ -178,15 +178,6 @@ namespace AgOpenGPS
             //based on number of sections and values update the page before displaying
             UpdateSpinners();
 
-            triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
-            nudTriangleResolution.Value = triResolution;
-
-            boundaryDistance = (decimal)Properties.Settings.Default.setF_boundaryTriggerDistance;
-            nudBoundaryDistance.Value = boundaryDistance;
-
-            minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
-            nudMinFixStepDistance.Value = minFixStepDistance;
-
             isWorkSwActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
 
             chkWorkSwActiveLow.CheckedChanged -= chkWorkSwActiveLow_CheckedChanged;
@@ -205,31 +196,6 @@ namespace AgOpenGPS
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
 
-            tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
-
-            cboxHeadingBNO.Checked = Properties.Settings.Default.setIMU_isHeadingFromBNO;
-            cboxHeadingBrick.Checked = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-            cboxRollDogs.Checked = Properties.Settings.Default.setIMU_isRollFromDogs;
-            cboxRollBrick.Checked = Properties.Settings.Default.setIMU_isRollFromBrick;
-            cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
-            cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
-
-            isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
-            isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-            isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
-            isRollBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
-            isHeadingPAOGI = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
-            isRollPAOGI = Properties.Settings.Default.setIMU_isRollFromPAOGI;
-
-            lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZero / 16).ToString("N2");
-
-            isHeadingFromFix = Properties.Settings.Default.setHeading_isFromPosition;
-
-            cboxIsHeadingFromGPSTrue.CheckedChanged -= cboxIsHeadingFromGPSTrue_CheckedChanged;
-            cboxIsHeadingFromGPSTrue.Checked = !isHeadingFromFix;
-            cboxIsHeadingFromGPSTrue.CheckedChanged += cboxIsHeadingFromGPSTrue_CheckedChanged;
-
-            nudLightbarCmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -246,6 +212,9 @@ namespace AgOpenGPS
             if (!isSteerAxleAhead) wheelbase *= -1;
             mf.vehicle.wheelbase = wheelbase;
             Properties.Vehicle.Default.setVehicle_wheelbase = wheelbase;
+
+            mf.vehicle.minTurningRadius = minTurningRadius;
+            Properties.Vehicle.Default.setVehicle_minTurningRadius = minTurningRadius;
 
             mf.vehicle.isSteerAxleAhead = isSteerAxleAhead;
             Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = mf.vehicle.isSteerAxleAhead;
@@ -318,19 +287,6 @@ namespace AgOpenGPS
             //update toolwidth in mainform
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
-            ////Display ---load the delay slides --------------------------------------------------------------------
-            mf.isHeadingFromFix = isHeadingFromFix;
-            Properties.Settings.Default.setHeading_isFromPosition = isHeadingFromFix;
-
-            mf.boundaryTriggerDistance = (double)boundaryDistance;
-            Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
-
-            mf.camera.triangleResolution = (double)triResolution;
-            Properties.Settings.Default.setDisplay_triangleResolution = mf.camera.triangleResolution;
-
-            mf.minFixStepDist = (double)minFixStepDistance;
-            Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
-
             mf.mc.isWorkSwitchActiveLow = isWorkSwActiveLow;
             Properties.Settings.Default.setF_IsWorkSwitchActiveLow = isWorkSwActiveLow;
 
@@ -339,20 +295,6 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
-
-            Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
-
-            Properties.Settings.Default.setIMU_isHeadingFromBNO = isHeadingBNO;
-            Properties.Settings.Default.setIMU_isHeadingFromBrick = isHeadingBrick;
-            Properties.Settings.Default.setIMU_isRollFromDogs = isRollDogs;
-            mf.ahrs.isRollDogs = isRollDogs;
-            Properties.Settings.Default.setIMU_isRollFromBrick = isRollBrick;
-            mf.ahrs.isRollBrick = isRollBrick;
-            Properties.Settings.Default.setIMU_isRollFromPAOGI = isRollPAOGI;
-            Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
-
-            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
-            mf.lightbarCmPerPixel = lightbarCmPerPixie;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -381,6 +323,11 @@ namespace AgOpenGPS
         private void nudHitchLength_ValueChanged(object sender, EventArgs e)
         {
             hitchLength = (double)nudHitchLength.Value * metImp2m;
+        }
+
+        private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)
+        {
+            minTurningRadius = (double)nudMinTurnRadius.Value * metImp2m;
         }
 
         private void nudWheelbase_ValueChanged(object sender, EventArgs e)
@@ -896,27 +843,6 @@ namespace AgOpenGPS
 
         #endregion Sections //---------------------------------------------------------------
 
-        #region Display //----------------------------------------------------------------
-
-        private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
-        {
-            boundaryDistance = nudBoundaryDistance.Value;
-        }
-
-        private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
-        {
-            triResolution = nudTriangleResolution.Value;
-        }
-
-        private void nudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
-        {
-            minFixStepDistance = nudMinFixStepDistance.Value;
-        }
-
-
-
-        #endregion Display //----------------------------------------------------------------
-
         #region WorkSwitch //---------------------------------------------------------
 
         private void chkWorkSwActiveLow_CheckedChanged(object sender, EventArgs e)
@@ -934,113 +860,5 @@ namespace AgOpenGPS
         #endregion WorkSwitch //---------------------------------------------------------
 
         
-        #region Guidance
-        private void nudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
-        {
-            lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
-        }
-
-        private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingBNO = cboxHeadingBNO.Checked;
-            if (isHeadingBNO)
-            {
-                cboxHeadingBrick.Checked = false;
-                isHeadingBrick = false;
-                cboxHeadingPAOGI.Checked = false;
-                isHeadingPAOGI = false;
-            }
-        }
-
-        private void cboxHeadingBrick_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingBrick = cboxHeadingBrick.Checked;
-            if (isHeadingBrick)
-            {
-                cboxHeadingBNO.Checked = false;
-                isHeadingBNO = false;
-                cboxHeadingPAOGI.Checked = false;
-                isHeadingPAOGI = false;
-            }
-        }
-
-        private void cboxHeadingPAOGI_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingPAOGI = cboxHeadingPAOGI.Checked;
-            if (isHeadingPAOGI)
-            {
-                cboxHeadingBNO.Checked = false;
-                isHeadingBNO = false;
-                cboxHeadingBrick.Checked = false;
-                isHeadingBrick = false;
-            }
-        }
-
-        private void cboxRollDogs_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollDogs = cboxRollDogs.Checked;
-            if (isRollDogs)
-            {
-                cboxRollBrick.Checked = false;
-                isRollBrick = false;
-                cboxRollPAOGI.Checked = false;
-                isRollPAOGI = false;
-            }
-        }
-
-        private void cboxRollBrick_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollBrick = cboxRollBrick.Checked;
-            if (isRollBrick)
-            {
-                cboxRollDogs.Checked = false;
-                isRollDogs = false;
-                cboxRollPAOGI.Checked = false;
-                isRollPAOGI = false;
-            }
-        }
-
-        private void cboxRollPAOGI_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollPAOGI = cboxRollPAOGI.Checked;
-            if (isRollPAOGI)
-            {
-                cboxRollDogs.Checked = false;
-                isRollDogs = false;
-                cboxRollBrick.Checked = false;
-                isRollBrick = false;
-            }
-        }
-
-        private void btnZeroRoll_Click(object sender, EventArgs e)
-        {
-            if (mf.mc.rollRaw == 9999)
-            {
-                lblRollZeroOffset.Text = "***";
-            }
-            else
-            {
-                mf.ahrs.rollZero = mf.mc.rollRaw;
-                lblRollZeroOffset.Text = ((double)mf.ahrs.rollZero / 16).ToString("N2");
-                Properties.Settings.Default.setIMU_rollZero = mf.mc.rollRaw;
-                Properties.Settings.Default.Save();
-            }
-        }
-
-        private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
-        {
-            mf.ahrs.rollZero = 0;
-            lblRollZeroOffset.Text = "0.00";
-            Properties.Settings.Default.setIMU_rollZero = 0;
-            Properties.Settings.Default.Save();
-        }
-
-        private void cboxIsHeadingFromGPSTrue_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxIsHeadingFromGPSTrue.Checked) isHeadingFromFix = false;
-            else isHeadingFromFix = true;
-        }
-
-        #endregion Guidance
     }
 }

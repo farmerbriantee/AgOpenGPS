@@ -117,1477 +117,1090 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnRescan.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnRescan.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
-  <data name="btnRescan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>54, 532</value>
-  </data>
-  <data name="btnRescan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 72</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnRescan.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="btnRescan.Text" xml:space="preserve">
-    <value>Rescan Ports</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnRescan.Name" xml:space="preserve">
-    <value>btnRescan</value>
-  </data>
-  <data name="&gt;&gt;btnRescan.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnRescan.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnRescan.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="btnSerialOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
   </data>
   <data name="btnSerialOK.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Zoom</value>
   </data>
-  <data name="btnSerialOK.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="btnSerialOK.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        7X93rWlUAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="btnSerialOK.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 532</value>
-  </data>
-  <data name="btnSerialOK.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 72</value>
-  </data>
-  <data name="btnSerialOK.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="btnSerialOK.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopLeft</value>
-  </data>
-  <data name="&gt;&gt;btnSerialOK.Name" xml:space="preserve">
-    <value>btnSerialOK</value>
-  </data>
-  <data name="&gt;&gt;btnSerialOK.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSerialOK.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnSerialOK.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Name" xml:space="preserve">
-    <value>cboxPort</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Name" xml:space="preserve">
-    <value>cboxBaud</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.Name" xml:space="preserve">
-    <value>lblCurrentPort</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.Name" xml:space="preserve">
-    <value>lblCurrentBaud</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.Name" xml:space="preserve">
-    <value>btnCloseSerial</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Name" xml:space="preserve">
-    <value>textBoxRcv</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.Name" xml:space="preserve">
-    <value>btnOpenSerial</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt, style=Bold</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 8</value>
-  </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>576, 178</value>
-  </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>GPS Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
-    <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="cboxPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt, style=Bold</value>
-  </data>
-  <data name="cboxPort.Items" xml:space="preserve">
-    <value>4800</value>
-  </data>
-  <data name="cboxPort.Items1" xml:space="preserve">
-    <value>9600</value>
-  </data>
-  <data name="cboxPort.Items2" xml:space="preserve">
-    <value>19200</value>
-  </data>
-  <data name="cboxPort.Items3" xml:space="preserve">
-    <value>38400</value>
-  </data>
-  <data name="cboxPort.Items4" xml:space="preserve">
-    <value>57600</value>
-  </data>
-  <data name="cboxPort.Items5" xml:space="preserve">
-    <value>115200</value>
-  </data>
-  <data name="cboxPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 39</value>
-  </data>
-  <data name="cboxPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 37</value>
-  </data>
-  <data name="cboxPort.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Name" xml:space="preserve">
-    <value>cboxPort</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cboxPort.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cboxBaud.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt, style=Bold</value>
-  </data>
-  <data name="cboxBaud.Items" xml:space="preserve">
-    <value>4800</value>
-  </data>
-  <data name="cboxBaud.Items1" xml:space="preserve">
-    <value>9600</value>
-  </data>
-  <data name="cboxBaud.Items2" xml:space="preserve">
-    <value>19200</value>
-  </data>
-  <data name="cboxBaud.Items3" xml:space="preserve">
-    <value>38400</value>
-  </data>
-  <data name="cboxBaud.Items4" xml:space="preserve">
-    <value>57600</value>
-  </data>
-  <data name="cboxBaud.Items5" xml:space="preserve">
-    <value>115200</value>
-  </data>
-  <data name="cboxBaud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 39</value>
-  </data>
-  <data name="cboxBaud.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 37</value>
-  </data>
-  <data name="cboxBaud.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Name" xml:space="preserve">
-    <value>cboxBaud</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;cboxBaud.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 84</value>
-  </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
-  </data>
-  <data name="label16.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="label16.Text" xml:space="preserve">
-    <value>Currently:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label16.Name" xml:space="preserve">
-    <value>label16</value>
-  </data>
-  <data name="&gt;&gt;label16.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblCurrentPort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCurrentPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt, style=Bold</value>
-  </data>
-  <data name="lblCurrentPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 84</value>
-  </data>
-  <data name="lblCurrentPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 16</value>
-  </data>
-  <data name="lblCurrentPort.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="lblCurrentPort.Text" xml:space="preserve">
-    <value>Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;lblCurrentPort.Name" xml:space="preserve">
-    <value>lblCurrentPort</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentPort.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblCurrentBaud.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCurrentBaud.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt, style=Bold</value>
-  </data>
-  <data name="lblCurrentBaud.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 84</value>
-  </data>
-  <data name="lblCurrentBaud.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 16</value>
-  </data>
-  <data name="lblCurrentBaud.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="lblCurrentBaud.Text" xml:space="preserve">
-    <value>Baud</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;lblCurrentBaud.Name" xml:space="preserve">
-    <value>lblCurrentBaud</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentBaud.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="btnCloseSerial.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnCloseSerial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnCloseSerial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>437, 39</value>
-  </data>
-  <data name="btnCloseSerial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnCloseSerial.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="btnCloseSerial.Text" xml:space="preserve">
-    <value>Disconnect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnCloseSerial.Name" xml:space="preserve">
-    <value>btnCloseSerial</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerial.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="textBoxRcv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="textBoxRcv.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="textBoxRcv.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 110</value>
-  </data>
-  <data name="textBoxRcv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="textBoxRcv.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="textBoxRcv.Size" type="System.Drawing.Size, System.Drawing">
-    <value>559, 60</value>
-  </data>
-  <data name="textBoxRcv.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Name" xml:space="preserve">
-    <value>textBoxRcv</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;textBoxRcv.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>225, 89</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 16</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>NMEA string from GPS Port:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="btnOpenSerial.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnOpenSerial.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnOpenSerial.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 39</value>
-  </data>
-  <data name="btnOpenSerial.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnOpenSerial.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="btnOpenSerial.Text" xml:space="preserve">
-    <value>Connect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnOpenSerial.Name" xml:space="preserve">
-    <value>btnOpenSerial</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerial.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="btnCloseSerialArduino.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnCloseSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnCloseSerialArduino.Location" type="System.Drawing.Point, System.Drawing">
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnCloseSerialAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
     <value>437, 28</value>
-  </data>
-  <data name="btnCloseSerialArduino.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnCloseSerialArduino.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="btnCloseSerialArduino.Text" xml:space="preserve">
-    <value>Disconnect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnCloseSerialArduino.Name" xml:space="preserve">
-    <value>btnCloseSerialArduino</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialArduino.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="btnOpenSerialArduino.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnOpenSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnOpenSerialArduino.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 28</value>
-  </data>
-  <data name="btnOpenSerialArduino.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnOpenSerialArduino.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="btnOpenSerialArduino.Text" xml:space="preserve">
-    <value>Connect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnOpenSerialArduino.Name" xml:space="preserve">
-    <value>btnOpenSerialArduino</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialArduino.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 77</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>116, 16</value>
-  </data>
-  <data name="label15.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>From Section Port:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label15.Name" xml:space="preserve">
-    <value>label15</value>
-  </data>
-  <data name="&gt;&gt;label15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="lblCurrentArduinoPort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCurrentArduinoPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt, style=Bold</value>
-  </data>
-  <data name="lblCurrentArduinoPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 48</value>
-  </data>
-  <data name="lblCurrentArduinoPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 16</value>
-  </data>
-  <data name="lblCurrentArduinoPort.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
-    <value>Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;lblCurrentArduinoPort.Name" xml:space="preserve">
-    <value>lblCurrentArduinoPort</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentArduinoPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentArduinoPort.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentArduinoPort.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="txtBoxRecvArduino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="txtBoxRecvArduino.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 98</value>
-  </data>
-  <data name="txtBoxRecvArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtBoxRecvArduino.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 27</value>
-  </data>
-  <data name="txtBoxRecvArduino.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Name" xml:space="preserve">
-    <value>txtBoxRecvArduino</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="cboxArdPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt, style=Bold</value>
-  </data>
-  <data name="cboxArdPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 31</value>
-  </data>
-  <data name="cboxArdPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 37</value>
-  </data>
-  <data name="cboxArdPort.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="&gt;&gt;cboxArdPort.Name" xml:space="preserve">
-    <value>cboxArdPort</value>
-  </data>
-  <data name="&gt;&gt;cboxArdPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxArdPort.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;cboxArdPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Name" xml:space="preserve">
-    <value>txtBoxSendArduino</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt, style=Bold</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 201</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>576, 134</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Section Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 77</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 16</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>To Section Port:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtBoxSendArduino.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="txtBoxSendArduino.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 98</value>
-  </data>
-  <data name="txtBoxSendArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtBoxSendArduino.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 27</value>
-  </data>
-  <data name="txtBoxSendArduino.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Name" xml:space="preserve">
-    <value>txtBoxSendArduino</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label17.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 28</value>
-  </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
-  </data>
-  <data name="label17.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Currently:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label17.Name" xml:space="preserve">
-    <value>label17</value>
-  </data>
-  <data name="&gt;&gt;label17.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Name" xml:space="preserve">
-    <value>txtBoxSendAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Name" xml:space="preserve">
-    <value>cboxASPort</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Name" xml:space="preserve">
-    <value>txtBoxRecvAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Name" xml:space="preserve">
-    <value>lblCurrentAutoSteerPort</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Name" xml:space="preserve">
-    <value>btnOpenSerialAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Name" xml:space="preserve">
-    <value>btnCloseSerialAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt, style=Bold</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 363</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>576, 132</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>AutoSteer Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 77</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 16</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>To Auto Steer:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="txtBoxSendAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="txtBoxSendAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 98</value>
-  </data>
-  <data name="txtBoxSendAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="txtBoxSendAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 27</value>
-  </data>
-  <data name="txtBoxSendAutoSteer.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Name" xml:space="preserve">
-    <value>txtBoxSendAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendAutoSteer.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cboxASPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt, style=Bold</value>
-  </data>
-  <data name="cboxASPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 31</value>
-  </data>
-  <data name="cboxASPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 37</value>
-  </data>
-  <data name="cboxASPort.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Name" xml:space="preserve">
-    <value>cboxASPort</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;cboxASPort.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtBoxRecvAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="txtBoxRecvAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 98</value>
-  </data>
-  <data name="txtBoxRecvAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
   </data>
   <data name="txtBoxRecvAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 27</value>
   </data>
-  <data name="txtBoxRecvAutoSteer.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Name" xml:space="preserve">
-    <value>txtBoxRecvAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvAutoSteer.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 28</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 16</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Currently:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt, style=Bold</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>162, 48</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 16</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
-    <value>Port</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Name" xml:space="preserve">
-    <value>lblCurrentAutoSteerPort</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;lblCurrentAutoSteerPort.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 77</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>From Auto Steer:</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>298, 28</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
-    <value>Connect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Name" xml:space="preserve">
-    <value>btnOpenSerialAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnOpenSerialAutoSteer.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>437, 28</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>117, 36</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="btnCloseSerialAutoSteer.Text" xml:space="preserve">
-    <value>Disconnect</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Name" xml:space="preserve">
-    <value>btnCloseSerialAutoSteer</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;btnCloseSerialAutoSteer.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 9.75pt</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 513</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 16</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>To Refresh Available USB Ports</value>
-  <comment>x</comment></data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>NMEA Hz</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="&gt;&gt;lblCurrentBaud.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboxBaud.Items1" xml:space="preserve">
+    <value>9600</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="cboxBaud.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;textBoxRcv.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="cboxArdPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="textBoxRcv.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;textBoxRcv.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialArduino.Name" xml:space="preserve">
+    <value>btnCloseSerialArduino</value>
+  </data>
+  <data name="txtBoxRecvArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="&gt;&gt;cboxASPort.Name" xml:space="preserve">
+    <value>cboxASPort</value>
+  </data>
+  <data name="&gt;&gt;cboxPort.Name" xml:space="preserve">
+    <value>cboxPort</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="&gt;&gt;cboxArdPort.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtBoxRecvArduino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentBaud.Name" xml:space="preserve">
+    <value>lblCurrentBaud</value>
+  </data>
+  <data name="lblCurrentPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnSerialOK.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="lblCurrentBaud.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnOpenSerialArduino.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 28</value>
+  </data>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>576, 178</value>
+  </data>
+  <data name="btnCloseSerialArduino.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 28</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialAutoSteer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnSerialOK.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopLeft</value>
+  </data>
   <data name="cboxNMEAHz.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt, style=Bold</value>
   </data>
-  <data name="cboxNMEAHz.Items" xml:space="preserve">
-    <value>1</value>
+  <data name="label15.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
   </data>
-  <data name="cboxNMEAHz.Items1" xml:space="preserve">
-    <value>2</value>
+  <data name="cboxArdPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 31</value>
   </data>
-  <data name="cboxNMEAHz.Items2" xml:space="preserve">
-    <value>5</value>
+  <data name="lblCurrentBaud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 84</value>
   </data>
-  <data name="cboxNMEAHz.Items3" xml:space="preserve">
-    <value>10</value>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="cboxNMEAHz.Location" type="System.Drawing.Point, System.Drawing">
-    <value>251, 562</value>
+  <data name="cboxPort.Items2" xml:space="preserve">
+    <value>19200</value>
   </data>
-  <data name="cboxNMEAHz.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 37</value>
+  <data name="&gt;&gt;txtBoxSendArduino.Name" xml:space="preserve">
+    <value>txtBoxSendArduino</value>
   </data>
-  <data name="cboxNMEAHz.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;cboxNMEAHz.Name" xml:space="preserve">
-    <value>cboxNMEAHz</value>
+  <data name="btnCloseSerial.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
   </data>
-  <data name="&gt;&gt;cboxNMEAHz.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 77</value>
   </data>
-  <data name="&gt;&gt;cboxNMEAHz.Parent" xml:space="preserve">
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>576, 134</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cboxNMEAHz.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnCloseSerialAutoSteer.Name" xml:space="preserve">
+    <value>btnCloseSerialAutoSteer</value>
+  </data>
+  <data name="cboxBaud.Items5" xml:space="preserve">
+    <value>115200</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Communication Settings</value>
+  <comment>x</comment></data>
+  <data name="groupBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt, style=Bold</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerial.Name" xml:space="preserve">
+    <value>btnCloseSerial</value>
+  </data>
+  <data name="cboxPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 39</value>
+  </data>
+  <data name="&gt;&gt;cboxASPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCloseSerial.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="groupBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentAutoSteerPort.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="btnOpenSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="btnCloseSerialArduino.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 16</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendArduino.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblCurrentArduinoPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 538</value>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 16</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 19</value>
+  <data name="lblCurrentBaud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 16</value>
   </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>68</value>
+  <data name="&gt;&gt;btnRescan.Name" xml:space="preserve">
+    <value>btnRescan</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>NMEA Hz</value>
+  <data name="cboxPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 37</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
   </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvArduino.Name" xml:space="preserve">
+    <value>txtBoxRecvArduino</value>
+  </data>
+  <data name="cboxASPort.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="btnOpenSerial.Text" xml:space="preserve">
+    <value>Connect</value>
+  <comment>x</comment></data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>96, 96</value>
+  </data>
+  <data name="&gt;&gt;cboxPort.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="txtBoxSendArduino.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="&gt;&gt;textBoxRcv.Name" xml:space="preserve">
+    <value>textBoxRcv</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>96, 96</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>595, 616</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Communication Settings</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>NMEA string from GPS Port:</value>
   <comment>x</comment></data>
-  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
-    <value>timer1</value>
+  <data name="txtBoxSendAutoSteer.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
   </data>
-  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 77</value>
+  </data>
+  <data name="&gt;&gt;btnSerialOK.Name" xml:space="preserve">
+    <value>btnSerialOK</value>
+  </data>
+  <data name="&gt;&gt;label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtBoxRecvAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 98</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvArduino.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboxNMEAHz.Items1" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="cboxNMEAHz.Items3" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="btnCloseSerial.Text" xml:space="preserve">
+    <value>Disconnect</value>
+  <comment>x</comment></data>
+  <data name="cboxNMEAHz.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnSerialOK.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="&gt;&gt;cboxPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="cboxBaud.Items4" xml:space="preserve">
+    <value>57600</value>
+  </data>
+  <data name="txtBoxSendAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cboxPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="textBoxRcv.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>576, 132</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.Text" xml:space="preserve">
+    <value>Connect</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentArduinoPort.Name" xml:space="preserve">
+    <value>lblCurrentArduinoPort</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialAutoSteer.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="btnOpenSerial.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;cboxBaud.Name" xml:space="preserve">
+    <value>cboxBaud</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Currently:</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;btnOpenSerialAutoSteer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="btnOpenSerial.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnCloseSerialArduino.Text" xml:space="preserve">
+    <value>Disconnect</value>
+  <comment>x</comment></data>
+  <data name="cboxBaud.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 39</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerial.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 16</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialAutoSteer.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="txtBoxSendArduino.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 27</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvArduino.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendArduino.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="cboxPort.Items1" xml:space="preserve">
+    <value>9600</value>
+  </data>
+  <data name="cboxASPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 37</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvAutoSteer.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblCurrentBaud.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
+  </data>
+  <data name="&gt;&gt;cboxASPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="textBoxRcv.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnRescan.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="cboxBaud.Items" xml:space="preserve">
+    <value>4800</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 16</value>
+  </data>
+  <data name="txtBoxSendAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 98</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvArduino.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt, style=Bold</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 8</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvAutoSteer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxArdPort.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtBoxRecvArduino.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 27</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerial.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>To Refresh Available USB Ports</value>
+  <comment>x</comment></data>
+  <data name="txtBoxRecvArduino.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialArduino.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 16</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 513</value>
+  </data>
+  <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialArduino.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialArduino.Name" xml:space="preserve">
+    <value>btnOpenSerialArduino</value>
+  </data>
+  <data name="cboxNMEAHz.Items2" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvAutoSteer.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;label16.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="cboxPort.Items5" xml:space="preserve">
+    <value>115200</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentAutoSteerPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>186, 16</value>
+  </data>
+  <data name="&gt;&gt;cboxArdPort.Name" xml:space="preserve">
+    <value>cboxArdPort</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentPort.Name" xml:space="preserve">
+    <value>lblCurrentPort</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentPort.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;btnRescan.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxNMEAHz.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnCloseSerialArduino.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>To Section Port:</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnRescan.Text" xml:space="preserve">
+    <value>Rescan Ports</value>
+  <comment>x</comment></data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 363</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialArduino.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="btnOpenSerial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="cboxNMEAHz.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 37</value>
+  </data>
+  <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnRescan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 72</value>
+  </data>
+  <data name="txtBoxRecvAutoSteer.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cboxPort.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="btnRescan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>54, 532</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialArduino.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cboxASPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentArduinoPort.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 28</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label15.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 201</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentAutoSteerPort.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblCurrentPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>89, 84</value>
+  </data>
+  <data name="cboxBaud.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 37</value>
+  </data>
+  <data name="btnOpenSerialArduino.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="&gt;&gt;cboxBaud.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="cboxASPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 31</value>
+  </data>
+  <data name="cboxBaud.Items3" xml:space="preserve">
+    <value>38400</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentPort.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>225, 89</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentArduinoPort.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtBoxRecvAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="lblCurrentPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 16</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendAutoSteer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtBoxRecvArduino.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 98</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Text" xml:space="preserve">
+    <value>Port</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;lblCurrentArduinoPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>29, 77</value>
+  </data>
+  <data name="cboxPort.Items4" xml:space="preserve">
+    <value>57600</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerial.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxBaud.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendArduino.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Text" xml:space="preserve">
+    <value>Port</value>
+  <comment>x</comment></data>
+  <data name="txtBoxSendArduino.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 98</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormCommSet</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="txtBoxSendAutoSteer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>244, 27</value>
   </data>
+  <data name="btnSerialOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>427, 532</value>
+  </data>
+  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>GPS Port</value>
+  <comment>x</comment></data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 84</value>
+  </data>
+  <data name="btnRescan.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 15.75pt</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Currently:</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;btnOpenSerialArduino.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtBoxSendArduino.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="&gt;&gt;btnCloseSerialArduino.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="btnSerialOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 72</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendAutoSteer.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 19</value>
+  </data>
+  <data name="btnOpenSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Section Port</value>
+  <comment>x</comment></data>
+  <data name="lblCurrentPort.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrentPort.Text" xml:space="preserve">
+    <value>Port</value>
+  <comment>x</comment></data>
+  <data name="btnSerialOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;cboxNMEAHz.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>From Auto Steer:</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;cboxPort.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cboxBaud.Items2" xml:space="preserve">
+    <value>19200</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentBaud.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerial.Name" xml:space="preserve">
+    <value>btnOpenSerial</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="textBoxRcv.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="btnOpenSerialArduino.Text" xml:space="preserve">
+    <value>Connect</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialAutoSteer.Name" xml:space="preserve">
+    <value>btnOpenSerialAutoSteer</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="cboxArdPort.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>From Section Port:</value>
+  <comment>x</comment></data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="textBoxRcv.Size" type="System.Drawing.Size, System.Drawing">
+    <value>559, 60</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentAutoSteerPort.Name" xml:space="preserve">
+    <value>lblCurrentAutoSteerPort</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>To Auto Steer:</value>
+  <comment>x</comment></data>
+  <data name="btnCloseSerialArduino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="&gt;&gt;lblCurrentBaud.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="cboxBaud.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnCloseSerial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="&gt;&gt;btnSerialOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label17.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="cboxNMEAHz.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="&gt;&gt;txtBoxRecvAutoSteer.Name" xml:space="preserve">
+    <value>txtBoxRecvAutoSteer</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxASPort.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;cboxNMEAHz.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtBoxSendArduino.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerial.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label16.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendAutoSteer.Name" xml:space="preserve">
+    <value>txtBoxSendAutoSteer</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 28</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 48</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>595, 616</value>
+  </data>
+  <data name="textBoxRcv.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="btnOpenSerial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>298, 39</value>
+  </data>
+  <data name="label16.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrentArduinoPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;btnSerialOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="cboxArdPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 37</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;btnRescan.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtBoxRecvAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="btnOpenSerialArduino.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="&gt;&gt;cboxNMEAHz.Name" xml:space="preserve">
+    <value>cboxNMEAHz</value>
+  </data>
+  <data name="&gt;&gt;btnSerialOK.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;label16.Name" xml:space="preserve">
+    <value>label16</value>
+  </data>
+  <data name="cboxPort.Items" xml:space="preserve">
+    <value>4800</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.Text" xml:space="preserve">
+    <value>Disconnect</value>
+  <comment>x</comment></data>
+  <data name="btnOpenSerial.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Currently:</value>
+  <comment>x</comment></data>
+  <data name="lblCurrentBaud.Text" xml:space="preserve">
+    <value>Baud</value>
+  <comment>x</comment></data>
+  <data name="btnCloseSerial.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="btnCloseSerialArduino.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="label16.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerial.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="btnOpenSerialArduino.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 36</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 28</value>
+  </data>
+  <data name="btnCloseSerial.Location" type="System.Drawing.Point, System.Drawing">
+    <value>437, 39</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="textBoxRcv.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 110</value>
+  </data>
+  <data name="&gt;&gt;txtBoxSendAutoSteer.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="lblCurrentAutoSteerPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 48</value>
+  </data>
+  <data name="lblCurrentArduinoPort.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 16</value>
+  </data>
+  <data name="lblCurrentBaud.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRescan.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 77</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>253, 538</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialAutoSteer.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 16</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cboxPort.Items3" xml:space="preserve">
+    <value>38400</value>
+  </data>
+  <data name="&gt;&gt;textBoxRcv.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="lblCurrentPort.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnCloseSerialAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>AutoSteer Port</value>
+  <comment>x</comment></data>
+  <data name="&gt;&gt;cboxArdPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboxBaud.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;btnOpenSerialAutoSteer.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="txtBoxSendAutoSteer.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="cboxNMEAHz.Location" type="System.Drawing.Point, System.Drawing">
+    <value>251, 562</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

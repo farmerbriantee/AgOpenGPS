@@ -129,6 +129,7 @@ namespace AgOpenGPS
                         //create the field file header info
                         mf.FileCreateField();
                         mf.FileCreateSections();
+                        mf.FileCreateRecPath();
                         mf.FileCreateContour();
                         mf.FileSaveFlags();
                         mf.FileSaveABLine();
@@ -223,6 +224,11 @@ namespace AgOpenGPS
 
                     fileToCopy = templateDirectoryName + "\\ABLine.txt";
                     destinationDirectory = directoryName + "\\ABLine.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\RecPath.txt";
+                    destinationDirectory = directoryName + "\\RecPath.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 

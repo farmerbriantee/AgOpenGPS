@@ -82,7 +82,7 @@
             1,
             0,
             0,
-            0});
+            65536});
             this.nudWidths.Name = "nudWidths";
             this.nudWidths.Size = new System.Drawing.Size(108, 65);
             this.nudWidths.TabIndex = 71;

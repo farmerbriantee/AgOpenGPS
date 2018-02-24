@@ -538,5 +538,29 @@ namespace AgOpenGPS.Properties {
                 this["seq_ActionList"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double setVehicle_minTurningRadius {
+            get {
+                return ((double)(this["setVehicle_minTurningRadius"]));
+            }
+            set {
+                this["setVehicle_minTurningRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool set_youUseDubins {
+            get {
+                return ((bool)(this["set_youUseDubins"]));
+            }
+            set {
+                this["set_youUseDubins"] = value;
+            }
+        }
     }
 }

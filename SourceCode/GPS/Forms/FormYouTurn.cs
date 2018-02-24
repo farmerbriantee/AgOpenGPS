@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.IO;
+
 //using Keypad;
 
 namespace AgOpenGPS
@@ -55,23 +51,23 @@ namespace AgOpenGPS
 
             if (Properties.Settings.Default.setAS_youTurnShape == "KeyHole.txt")
             {
-                btnYouTurnKeyHole.BackColor = Color.Yellow;
-                btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
-                btnYouTurnCustom.BackColor = Color.LimeGreen;
+                btnYouTurnKeyHole.BackColor = Color.LimeGreen;
+                btnYouTurnSemiCircle.BackColor = Color.Silver;
+                btnYouTurnCustom.BackColor = Color.Silver;
             }
 
             if (Properties.Settings.Default.setAS_youTurnShape == "SemiCircle.txt")
             {
-                btnYouTurnKeyHole.BackColor = Color.LimeGreen;
-                btnYouTurnSemiCircle.BackColor = Color.Yellow;
-                btnYouTurnCustom.BackColor = Color.LimeGreen;
+                btnYouTurnKeyHole.BackColor = Color.Silver;
+                btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
+                btnYouTurnCustom.BackColor = Color.Silver;
             }
 
             if (Properties.Settings.Default.setAS_youTurnShape == "Custom.txt")
             {
-                btnYouTurnKeyHole.BackColor = Color.LimeGreen;
-                btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
-                btnYouTurnCustom.BackColor = Color.Yellow;
+                btnYouTurnKeyHole.BackColor = Color.Silver;
+                btnYouTurnSemiCircle.BackColor = Color.Silver;
+                btnYouTurnCustom.BackColor = Color.LimeGreen;
             }
 
             cboxRowHeight.SelectedIndex = mf.yt.rowSkipsHeight - 1;
@@ -92,6 +88,28 @@ namespace AgOpenGPS
                 lblDistance.Text = Math.Abs(mf.yt.youTurnStartOffset).ToString() + " m";
                 if (mf.yt.youTurnStartOffset < 0) lblWhenTrig.Text = "Before";
                 else lblWhenTrig.Text = "After";
+            }
+
+            //update dubins button
+            if (!mf.yt.isUsingDubinsTurn)
+            {
+                btnIsUsingDubins.Text = "Using Pattern";
+                btnIsUsingDubins.BackColor = Color.Salmon;
+                btnYouTurnCustom.Enabled = true;
+                btnYouTurnKeyHole.Enabled = true;
+                btnYouTurnRecord.Enabled = true;
+                btnYouTurnWideReturn.Enabled = true;
+                btnYouTurnSemiCircle.Enabled = true;
+            }
+            else
+            {
+                btnIsUsingDubins.Text = "Using Doobie";
+                btnIsUsingDubins.BackColor = Color.LightGreen;
+                btnYouTurnCustom.Enabled = false;
+                btnYouTurnKeyHole.Enabled = false;
+                btnYouTurnRecord.Enabled = false;
+                btnYouTurnWideReturn.Enabled = false;
+                btnYouTurnSemiCircle.Enabled = false;
             }
         }
 
@@ -628,7 +646,6 @@ namespace AgOpenGPS
             cboxExitFunc7.Items.Add(mf.yt.pos6);
             cboxExitFunc7.Items.Add(mf.yt.pos7);
             cboxExitFunc7.Items.Add(mf.yt.pos8);
-
         }
 
         private void LoadEditFunctionNames()
@@ -670,10 +687,10 @@ namespace AgOpenGPS
             mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\KeyHole.txt");
             Properties.Settings.Default.setAS_youTurnShape = "KeyHole.txt";
             Properties.Settings.Default.Save();
-            btnYouTurnKeyHole.BackColor = Color.Yellow;
-            btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
-            btnYouTurnCustom.BackColor = Color.LimeGreen;
-            btnYouTurnWideReturn.BackColor = Color.LimeGreen;
+            btnYouTurnKeyHole.BackColor = Color.LimeGreen;
+            btnYouTurnSemiCircle.BackColor = Color.Silver;
+            btnYouTurnCustom.BackColor = Color.Silver;
+            btnYouTurnWideReturn.BackColor = Color.Silver;
         }
 
         private void btnYouTurnSemiCircle_Click(object sender, EventArgs e)
@@ -681,10 +698,10 @@ namespace AgOpenGPS
             mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\SemiCircle.txt");
             Properties.Settings.Default.setAS_youTurnShape = "SemiCircle.txt";
             Properties.Settings.Default.Save();
-            btnYouTurnKeyHole.BackColor = Color.LimeGreen;
-            btnYouTurnSemiCircle.BackColor = Color.Yellow;
-            btnYouTurnCustom.BackColor = Color.LimeGreen;
-            btnYouTurnWideReturn.BackColor = Color.LimeGreen;
+            btnYouTurnKeyHole.BackColor = Color.Silver;
+            btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
+            btnYouTurnCustom.BackColor = Color.Silver;
+            btnYouTurnWideReturn.BackColor = Color.Silver;
         }
 
         private void btnYouTurnWideReturn_Click(object sender, EventArgs e)
@@ -692,10 +709,10 @@ namespace AgOpenGPS
             mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\WideReturn.txt");
             Properties.Settings.Default.setAS_youTurnShape = "WideReturn.txt";
             Properties.Settings.Default.Save();
-            btnYouTurnKeyHole.BackColor = Color.LimeGreen;
-            btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
-            btnYouTurnCustom.BackColor = Color.LimeGreen;
-            btnYouTurnWideReturn.BackColor = Color.Yellow;
+            btnYouTurnKeyHole.BackColor = Color.Silver;
+            btnYouTurnSemiCircle.BackColor = Color.Silver;
+            btnYouTurnCustom.BackColor = Color.Silver;
+            btnYouTurnWideReturn.BackColor = Color.LimeGreen;
         }
 
         private void btnYouTurnCustom_Click(object sender, EventArgs e)
@@ -703,10 +720,10 @@ namespace AgOpenGPS
             mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\Custom.txt");
             Properties.Settings.Default.setAS_youTurnShape = "Custom.txt";
             Properties.Settings.Default.Save();
-            btnYouTurnKeyHole.BackColor = Color.LimeGreen;
-            btnYouTurnSemiCircle.BackColor = Color.LimeGreen;
-            btnYouTurnCustom.BackColor = Color.Yellow;
-            btnYouTurnWideReturn.BackColor = Color.LimeGreen;
+            btnYouTurnKeyHole.BackColor = Color.Silver;
+            btnYouTurnSemiCircle.BackColor = Color.Silver;
+            btnYouTurnCustom.BackColor = Color.LimeGreen;
+            btnYouTurnWideReturn.BackColor = Color.Silver;
         }
 
         private void btnYouTurnRecord_Click(object sender, EventArgs e)
@@ -720,6 +737,32 @@ namespace AgOpenGPS
             else { mf.TimedMessageBox(3000, "No AB Lines", "Start AB Line Guidance"); }
         }
 
+        private void btnIsUsingDubins_Click(object sender, EventArgs e)
+        {
+            if (mf.yt.isUsingDubinsTurn)
+            {
+                mf.yt.isUsingDubinsTurn = false;
+                btnIsUsingDubins.Text = "Using Pattern";
+                btnIsUsingDubins.BackColor = Color.Salmon;
+                btnYouTurnCustom.Enabled = true;
+                btnYouTurnKeyHole.Enabled = true;
+                btnYouTurnRecord.Enabled = true;
+                btnYouTurnWideReturn.Enabled = true;
+                btnYouTurnSemiCircle.Enabled = true;
+            }
+            else
+            {
+                mf.yt.isUsingDubinsTurn = true;
+                btnIsUsingDubins.Text = "Using Doobie";
+                btnIsUsingDubins.BackColor = Color.LightGreen;
+                btnYouTurnCustom.Enabled = false;
+                btnYouTurnKeyHole.Enabled = false;
+                btnYouTurnRecord.Enabled = false;
+                btnYouTurnWideReturn.Enabled = false;
+                btnYouTurnSemiCircle.Enabled = false;
+            }
+        }
+
         private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
@@ -730,9 +773,10 @@ namespace AgOpenGPS
             mf.yt.rowSkipsHeight = cboxRowHeight.SelectedIndex + 1;
         }
 
-        #endregion Youturn
+        #endregion YouTurn
 
         #region Sequence select
+
         private void cboxEnterFunc0_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc0.SelectedIndex == 0)
@@ -741,6 +785,7 @@ namespace AgOpenGPS
                 nudEnter0.Value = 0;
             }
         }
+
         private void cboxEnterFunc1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc1.SelectedIndex == 0)
@@ -749,6 +794,7 @@ namespace AgOpenGPS
                 nudEnter1.Value = 0;
             }
         }
+
         private void cboxEnterFunc2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc2.SelectedIndex == 0)
@@ -757,6 +803,7 @@ namespace AgOpenGPS
                 nudEnter2.Value = 0;
             }
         }
+
         private void cboxEnterFunc3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc3.SelectedIndex == 0)
@@ -765,6 +812,7 @@ namespace AgOpenGPS
                 nudEnter3.Value = 0;
             }
         }
+
         private void cboxEnterFunc4_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc4.SelectedIndex == 0)
@@ -773,6 +821,7 @@ namespace AgOpenGPS
                 nudEnter4.Value = 0;
             }
         }
+
         private void cboxEnterFunc5_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc5.SelectedIndex == 0)
@@ -781,6 +830,7 @@ namespace AgOpenGPS
                 nudEnter5.Value = 0;
             }
         }
+
         private void cboxEnterFunc6_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc6.SelectedIndex == 0)
@@ -789,6 +839,7 @@ namespace AgOpenGPS
                 nudEnter6.Value = 0;
             }
         }
+
         private void cboxEnterFunc7_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxEnterFunc7.SelectedIndex == 0)
@@ -806,6 +857,7 @@ namespace AgOpenGPS
                 nudExit0.Value = 0;
             }
         }
+
         private void cboxExitFunc1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc1.SelectedIndex == 0)
@@ -814,6 +866,7 @@ namespace AgOpenGPS
                 nudExit1.Value = 0;
             }
         }
+
         private void cboxExitFunc2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc2.SelectedIndex == 0)
@@ -822,6 +875,7 @@ namespace AgOpenGPS
                 nudExit2.Value = 0;
             }
         }
+
         private void cboxExitFunc3_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc3.SelectedIndex == 0)
@@ -830,6 +884,7 @@ namespace AgOpenGPS
                 nudExit3.Value = 0;
             }
         }
+
         private void cboxExitFunc4_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc4.SelectedIndex == 0)
@@ -838,6 +893,7 @@ namespace AgOpenGPS
                 nudExit4.Value = 0;
             }
         }
+
         private void cboxExitFunc5_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc5.SelectedIndex == 0)
@@ -846,6 +902,7 @@ namespace AgOpenGPS
                 nudExit5.Value = 0;
             }
         }
+
         private void cboxExitFunc6_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc6.SelectedIndex == 0)
@@ -854,6 +911,7 @@ namespace AgOpenGPS
                 nudExit6.Value = 0;
             }
         }
+
         private void cboxExitFunc7_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboxExitFunc7.SelectedIndex == 0)
@@ -862,9 +920,11 @@ namespace AgOpenGPS
                 nudExit7.Value = 0;
             }
         }
+
         #endregion Sequence select
 
         #region Edit names
+
         private void btnSaveNames_Click(object sender, EventArgs e)
         {
             //pos1 = tboxPos1.Text; pos2 = tboxPos2.Text; auto manual buttons are read only
@@ -935,7 +995,6 @@ namespace AgOpenGPS
 
             //flash that they have been saved
             mf.TimedMessageBox(1500, "Function Names", "Saved to Settings.....");
-
         }
 
         private void btnEditCancel_Click(object sender, EventArgs e)
@@ -969,7 +1028,8 @@ namespace AgOpenGPS
             btnOK.Enabled = true;
             btnCancel.Enabled = true;
         }
-        #endregion edit names
+
+        #endregion Edit names
 
         //private void btnResetAll_Click(object sender, EventArgs e)
         //{
@@ -985,6 +1045,7 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.set_youSkipHeight = mf.yt.rowSkipsHeight;
             Properties.Vehicle.Default.set_youSkipWidth = mf.yt.rowSkipsWidth;
+            Properties.Vehicle.Default.set_youUseDubins = mf.yt.isUsingDubinsTurn;
 
             Properties.Vehicle.Default.set_youStartYouTurnAt = mf.yt.youTurnStartOffset;
 
@@ -1046,17 +1107,16 @@ namespace AgOpenGPS
             FunctionButtonsOnOff();
         }
 
-        bool IsBitSet(byte b, int pos)
+        private bool IsBitSet(byte b, int pos)
         {
             return (b & (1 << pos)) != 0;
         }
 
         private void btnToggle3_Click(object sender, EventArgs e)
         {
-            if ( IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte],0))
+            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 0))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111110;
-
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte]|= 0b00000001;
+            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000001;
             FunctionButtonsOnOff();
         }
 
@@ -1064,7 +1124,6 @@ namespace AgOpenGPS
         {
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 1))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111101;
-
             else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000010;
             FunctionButtonsOnOff();
         }
@@ -1073,7 +1132,6 @@ namespace AgOpenGPS
         {
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 2))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111011;
-
             else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000100;
             FunctionButtonsOnOff();
         }
@@ -1082,7 +1140,6 @@ namespace AgOpenGPS
         {
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 3))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11110111;
-
             else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00001000;
             FunctionButtonsOnOff();
         }
@@ -1091,7 +1148,6 @@ namespace AgOpenGPS
         {
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 4))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11101111;
-
             else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00010000;
             FunctionButtonsOnOff();
         }
@@ -1100,7 +1156,6 @@ namespace AgOpenGPS
         {
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 5))
                 mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11011111;
-
             else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00100000;
             FunctionButtonsOnOff();
         }
@@ -1124,6 +1179,10 @@ namespace AgOpenGPS
 
             if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 5)) btnToggle8.BackColor = Color.LightGreen;
             else btnToggle8.BackColor = Color.LightSalmon;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
         }
     }
 }

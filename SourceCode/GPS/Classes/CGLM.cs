@@ -19,8 +19,10 @@ namespace AgOpenGPS
         //us gal per acre to liters per hectare
         public static double LHa2galAc = 0.106907;
 
+        //Liters to Gallons
         public static double L2Gal = 0.264172;
 
+        //Gallons to Liters
         public static double Gal2L = 3.785412534258;
 
         //the pi's
@@ -28,6 +30,73 @@ namespace AgOpenGPS
 
         public static double PIBy2 = 1.57079632679489661923;
 
+        //Degrees Radians Conversions
+        public static double toDegrees(double radians)
+        {
+            return radians * (57.295779513082325225835265587528);
+        }
+        public static double toRadians(double degrees)
+        {
+            return degrees * (0.01745329251994329576923690768489);
+        }
+
+        //Distance calcs of all kinds
+        public static double Distance(double east1, double north1, double east2, double north2)
+        {
+            return Math.Sqrt(
+                Math.Pow(east1 - east2, 2)
+                + Math.Pow(north1 - north2, 2));
+        }
+
+        public static double Distance(vec2 first, vec2 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(vec2 first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(vec3 first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(vec4 first, vec4 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(vec2 first, double east, double north)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - east, 2)
+                + Math.Pow(first.northing - north, 2));
+        }
+
+        public static double Distance(vec3 first, double east, double north)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - east, 2)
+                + Math.Pow(first.northing - north, 2));
+        }
+
+        //not normalized distance, no square root
+        public static double DistanceSquared(double northing1, double easting1, double northing2, double easting2)
+        {
+            return Math.Pow(easting1 - easting2, 2) + Math.Pow(northing1 - northing2, 2);
+        }
+
+        //float functions
         public static float acos(float x)
         {
             return (float)Math.Acos(x);
@@ -35,8 +104,8 @@ namespace AgOpenGPS
 
         public static float acosh(float x)
         {
-            if (x < (1f)) return (0f);
-            return (float)Math.Log(x + Math.Sqrt(x * x - (1f)));
+            if (x < (1f)) return 0f;
+            return (float)Math.Log(x + Math.Sqrt((x * x) - (1f)));
         }
 
         public static float asin(float x)
@@ -46,7 +115,7 @@ namespace AgOpenGPS
 
         public static float asinh(float x)
         {
-            return (x < 0f ? -1f : (x > 0f ? 1f : 0f)) * (float)Math.Log(Math.Abs(x) + Math.Sqrt(1f + x * x));
+            return (x < 0f ? -1f : (x > 0f ? 1f : 0f)) * (float)Math.Log(Math.Abs(x) + Math.Sqrt(1f + (x * x)));
         }
 
         public static float atan(float y, float x)
@@ -79,18 +148,10 @@ namespace AgOpenGPS
         {
             return radians * (57.295779513082325225835265587528f);
         }
-        public static double toDegrees(double radians)
-        {
-            return radians * (57.295779513082325225835265587528);
-        }
 
         public static float toRadians(float degrees)
         {
             return degrees * (0.01745329251994329576923690766743f);
-        }
-        public static double toRadians(double degrees)
-        {
-            return degrees * (0.01745329251994329576923690768489);
         }
 
         public static float sin(float angle)
