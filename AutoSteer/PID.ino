@@ -1,10 +1,18 @@
 void calcSteeringPID(void) {
   
   //Proportional
-  pValue = steerSettings.Kp * steerAngleError * steerSettings.Ko;  
-  
-  //Integral
-  integrated_error = integrated_error + steerAngleError;
+  pValue = steerSettings.Kp * steerAngleError *steerSettings.Ko;  
+
+  //if (abs(distanceFromLine) < 15)
+  //{
+    //Integral
+    integrated_error = integrated_error + steerAngleError;
+  //}
+  //else
+  {
+    //integrated_error = integrated_error + distanceFromLine/10;    
+  }
+
   if (integrated_error > maxIntErr) integrated_error = maxIntErr;
   if (integrated_error < -maxIntErr) integrated_error = -maxIntErr;
 
@@ -20,6 +28,9 @@ void calcSteeringPID(void) {
   if (iValue > steerSettings.maxIntegralValue) iValue = steerSettings.maxIntegralValue;
   if (iValue < -steerSettings.maxIntegralValue) iValue = -steerSettings.maxIntegralValue;
 
+
+  
+
   //Derivative
   dError = steerAngleError - lastLastError;
   dValue = steerSettings.Kd * (dError) * steerSettings.Ko;
@@ -29,14 +40,14 @@ void calcSteeringPID(void) {
   lastError = steerAngleError;
 
   drive = pValue + dValue + iValue;
-  pwmDrive = int(constrain(drive, -255, 255));
+  pwmDrive = (constrain(drive, -255, 255));
 
   //add throttle factor so no delay from motor resistance.
-  if (pwmDrive < 0 & pwmDrive > (-255 + steerSettings.minPWMValue)) pwmDrive = pwmDrive - steerSettings.minPWMValue;
-  else if (pwmDrive > 0 & pwmDrive < (255 - steerSettings.minPWMValue)) pwmDrive = pwmDrive + steerSettings.minPWMValue;
-
-  pwmDrive = int(constrain(drive, -200, 200));
-
+  if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWMValue;
+  else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWMValue;
+  
+ if (pwmDrive > 100) pwmDrive = 100;
+ if (pwmDrive < -100) pwmDrive = -100;
  }
 
  void motorDrive(void) 
@@ -78,4 +89,5 @@ void calcSteeringPID(void) {
     #endif
     
   }
+
 
