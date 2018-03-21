@@ -105,17 +105,17 @@ void setup()
   // Restore calibration data from zeroing
   bno055_offsets_t calibrationData;
   
-  calibrationData.accel_offset_x = 65506;
-  calibrationData.accel_offset_y = 65438;
-  calibrationData.accel_offset_z = 5;
+  calibrationData.accel_offset_x = 65520;
+  calibrationData.accel_offset_y = 65421;
+  calibrationData.accel_offset_z = 65421;
   calibrationData.gyro_offset_x = 65534;
   calibrationData.gyro_offset_y = 65533;
   calibrationData.gyro_offset_z = 1;
-  calibrationData.mag_offset_x = 65350;
-  calibrationData.mag_offset_y = 19;
-  calibrationData.mag_offset_z = 27;
+  calibrationData.mag_offset_x = 65305;
+  calibrationData.mag_offset_y = 119;
+  calibrationData.mag_offset_z = 65418;
   calibrationData.accel_radius = 1000;
-  calibrationData.mag_radius = 968;
+  calibrationData.mag_radius = 979;
   
   IMU.setSensorOffsets(calibrationData);
 
@@ -262,7 +262,7 @@ void loop()
       distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes     
   
       //set point steer angle * 10 is sent
-      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read())*0.01); //high low bytes 
+      steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes 
   
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  
