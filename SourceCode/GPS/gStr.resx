@@ -118,57 +118,75 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsBoundaryNotSet" xml:space="preserve">
-    <value>Boundary Not Set</value>
-  <comment>x</comment></data>
+    <value>Boundary Not Set or No Guidance line set</value>
+    <comment>x</comment>
+  </data>
   <data name="gsBoundaryTooSmall" xml:space="preserve">
     <value>Boundary Too Small To Create a Headland</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsClickButtonAgainToStop" xml:space="preserve">
     <value>Click Button Again to Stop</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsCloseField" xml:space="preserve">
     <value>Close Field</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Close Field First</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsCreateBoundaryFirst" xml:space="preserve">
-    <value>Create a Boundary First</value>
-  <comment>x</comment></data>
+    <value>Create a Boundary and an ABLine or Curve First</value>
+    <comment>x</comment>
+  </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Drawing Has Begun</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsFeet" xml:space="preserve">
     <value>Ft</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
     <value>Field Is Open</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
     <value>Field Not Open</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsIsGPSOff" xml:space="preserve">
     <value>Is your GPS source off?</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsNoGPS" xml:space="preserve">
     <value>No GPS</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>No Guidance Lines</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>*** No Sentence Data ***</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsOff" xml:space="preserve">
     <value>Off</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsProgramExitAndRestart" xml:space="preserve">
     <value>Program will exit. Please Restart</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start New Field</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="gsTurnOnContourOrABLine" xml:space="preserve">
     <value>Turn on Contour or Make AB Line</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
 </root>

@@ -66,7 +66,8 @@ namespace AgOpenGPS
         010.2,K      Ground speed, Kilometers per hour
         *48          Checksum
         *
-        * From GGA:
+$PAOGI
+ * * From GGA:
 (1 , 2) 123519 Fix taken at 1219 UTC
 (3 , 4) 4807.038,N Latitude 48 deg 07.038' N
 (5, 6) 01131.000,E Longitude 11 deg 31.000' E
@@ -96,6 +97,32 @@ FROM IMU:
 (19) T/F IMU status - Valid IMU Fusion
 
 *CHKSUM
+* 
+*             /*       Time, yaw, tilt, range for moving baseline RTK
+An example of the PTNL,AVR message string is:
+
+$PTNL,AVR,181059.6,+149.4688,Yaw,+0.0134,Tilt,,,60.191,3,2.5,6*00
+
+AVR message fields
+Field	Meaning
+0	Message ID $PTNL,AVR
+1	UTC of vector fix
+2	Yaw angle in degrees
+3	Yaw
+4	Tilt angle in degrees
+5	Tilt
+6	Reserved
+7	Reserved
+8	Range in meters
+9	GPS quality indicator:
+0: Fix not available or invalid
+1: Autonomous GPS fix
+2: Differential carrier phase solution RTK (Float)
+3: Differential carrier phase solution RTK (Fix)
+4: Differential code-based solution, DGPS
+10	PDOP
+11	Number of satellites used in solution
+12	The checksum data, always begins with *
     */
 
     #endregion NMEA_Sentence_Guide
@@ -105,11 +132,12 @@ FROM IMU:
         //WGS84 Lat Long
         public double latitude, longitude;
 
-        public bool updatedGGA, updatedVTG, updatedOGI, updatedHDT;
+        public bool updatedGGA, updatedOGI, updatedRMC;
 
         public string rawBuffer = "";
         private string[] words;
         private string nextNMEASentence = "";
+        public string fixFrom;
 
         //UTM coordinates
         //public double northing, easting;
@@ -125,14 +153,12 @@ FROM IMU:
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
-
         public bool isValidIMU;
 
         public int fixQuality;
         public int satellitesTracked;
         public string status = "q";
         public DateTime utcDateTime;
-
         public char hemisphere = 'N';
 
         //UTM numbers are huge, these cut them way down.
@@ -145,6 +171,7 @@ FROM IMU:
         {
             //constructor, grab the main form reference
             mf = f;
+            fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
         }
 
         //ParseNMEA
@@ -188,14 +215,23 @@ FROM IMU:
 
                 if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
                 if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
-                if (words[0] == "$GPHDT") ParseHDT();
+                if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
+                if (words[0] == "$GNHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
+                if (words[0] == "$PTNL") ParseAVR();
             }// while still data
         }
 
-        public string currentNMEASentenceGGA = "";
-        public string currentNMEASentenceOGI = "";
-        public string currentNMEASentenceVTG = "";
+        private void ParseAVR()
+        {
+
+            if (!String.IsNullOrEmpty(words[1]))
+            {
+                //True heading
+                double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                if (mf.ahrs.isRollPAOGI) mf.mc.rollRaw = (int)(nRoll * 16);
+            }
+        }
 
         // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
@@ -239,27 +275,30 @@ FROM IMU:
             if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
                 & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
             {
-                //get latitude and convert to decimal degrees
-                double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
-                temp *= 0.01666666666666666666666666666667;
-                latitude += temp;
-                if (words[3] == "S")
+                if (fixFrom == "GGA")
                 {
-                    latitude *= -1;
-                    hemisphere = 'S';
+                    //get latitude and convert to decimal degrees
+                    double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                    double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                    temp *= 0.01666666666666666666666666666667;
+                    latitude += temp;
+                    if (words[3] == "S")
+                    {
+                        latitude *= -1;
+                        hemisphere = 'S';
+                    }
+                    else { hemisphere = 'N'; }
+
+                    //get longitude and convert to decimal degrees
+                    double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                    double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    longitude += temp * 0.01666666666666666666666666666667;
+
+                    { if (words[5] == "W") longitude *= -1; }
+
+                    //calculate zone and UTM coords
+                    DecDeg2UTM();
                 }
-                else { hemisphere = 'N'; }
-
-                //get longitude and convert to decimal degrees
-                double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
-                double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                longitude += temp * 0.01666666666666666666666666666667;
-
-                { if (words[5] == "W") longitude *= -1; }
-
-                //calculate zone and UTM coords
-                DecDeg2UTM();
 
                 //fixQuality
                 int.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out fixQuality);
@@ -288,27 +327,30 @@ FROM IMU:
             if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
                 & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
             {
-                //get latitude and convert to decimal degrees
-                double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
-                temp *= 0.01666666666666666666666666666667;
-                latitude += temp;
-                if (words[3] == "S")
+                if (fixFrom == "OGI")
                 {
-                    latitude *= -1;
-                    hemisphere = 'S';
+                    //get latitude and convert to decimal degrees
+                    double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                    double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
+                    temp *= 0.01666666666666666666666666666667;
+                    latitude += temp;
+                    if (words[3] == "S")
+                    {
+                        latitude *= -1;
+                        hemisphere = 'S';
+                    }
+                    else { hemisphere = 'N'; }
+
+                    //get longitude and convert to decimal degrees
+                    double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                    double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    longitude += temp * 0.01666666666666666666666666666667;
+
+                    { if (words[5] == "W") longitude *= -1; }
+
+                    //calculate zone and UTM coords
+                    DecDeg2UTM();
                 }
-                else { hemisphere = 'N'; }
-
-                //get longitude and convert to decimal degrees
-                double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
-                double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                longitude += temp * 0.01666666666666666666666666666667;
-
-                { if (words[5] == "W") longitude *= -1; }
-
-                //calculate zone and UTM coords
-                DecDeg2UTM();
 
                 //fixQuality
                 int.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out fixQuality);
@@ -384,10 +426,10 @@ FROM IMU:
 
         private void ParseHDT()
         {
-            /* $GPHDT,123.456,T * 00
+            /* $GNHDT,123.456,T * 00
 
             Field Meaning
-            0   Message ID $GPHDT
+            0   Message ID $GNHDT
             1   Heading in degrees
             2   T: Indicates heading relative to True North
             3   The checksum data, always begins with *
@@ -399,6 +441,69 @@ FROM IMU:
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
             }
         }
+
+        private void ParseRMC()
+        {
+            //GPRMC parsing of the sentence 
+            //make sure there aren't missing coords in sentence
+            if (!String.IsNullOrEmpty(words[3]) & !String.IsNullOrEmpty(words[4])
+                & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
+            {
+                if (fixFrom == "RMC")
+                {
+                    double temp;
+                    //get latitude and convert to decimal degrees
+                    double.TryParse(words[3].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                    double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    latitude += temp * 0.01666666666666666666666666666667;
+
+                    if (words[4] == "S")
+                    {
+                        latitude *= -1;
+                        hemisphere = 'S';
+                    }
+                    else { hemisphere = 'N'; }
+
+                    //get longitude and convert to decimal degrees
+                    double.TryParse(words[5].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                    double.TryParse(words[5].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    longitude += temp * 0.01666666666666666666666666666667;
+
+                    if (words[6] == "W") longitude *= -1;
+
+                    //calculate zone and UTM coords
+                    DecDeg2UTM();
+                }
+
+                //Convert from knots to kph for speed
+                double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                speed = Math.Round(speed * 1.852, 1);
+
+                //True heading
+                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
+
+                //Status
+                if (String.IsNullOrEmpty(words[2]))
+                {
+                    status = "z";
+                }
+                else
+                {
+                    try { status = words[2]; }
+                    catch (Exception e)
+                    {
+                        mf.WriteErrorLog("Parse RMC" + e);
+                    }
+                }
+
+                mf.recvCounter = 0;
+                updatedRMC = true;
+
+                mf.avgSpeed[mf.ringCounter] = speed;
+                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+            }
+        }
+
 
         //checks the checksum against the string
         public bool ValidateChecksum(string Sentence)
@@ -440,12 +545,6 @@ FROM IMU:
         private const double UTMScaleFactor = 0.9996;
         //private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
 
-        public void DecDeg2UTM()
-        {
-            zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
-            GeoUTMConverterXY(latitude * 0.01745329251994329576923690766743,
-                                longitude * 0.01745329251994329576923690766743);
-        }
 
         private double ArcLengthOfMeridian(double phi)
         {
@@ -493,9 +592,12 @@ FROM IMU:
             return xy;
         }
 
-        private void GeoUTMConverterXY(double lat, double lon)
+        public void DecDeg2UTM()
         {
-            double[] xy = MapLatLonToXY(lat, lon, (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
+            zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
+            double[] xy = MapLatLonToXY(latitude * 0.01745329251994329576923690766743,
+                                        longitude * 0.01745329251994329576923690766743, 
+                                        (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
 
             xy[0] = (xy[0] * UTMScaleFactor) + 500000.0;
             xy[1] *= UTMScaleFactor;

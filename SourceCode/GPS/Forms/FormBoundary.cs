@@ -132,6 +132,11 @@ namespace AgOpenGPS
                                     //TODO - calculate heading!
                                     mf.boundz.ptList.Add(bndPt);
                                 }
+
+                                //Google earth doesn't have headings so need to calc them
+                                mf.boundz.CalculateHeadings();
+
+                                //boundary area, pre calcs etc
                                 mf.boundz.CalculateBoundaryArea();
                                 mf.boundz.PreCalcBoundaryLines();
                                 mf.boundz.isSet = true;
@@ -167,8 +172,6 @@ namespace AgOpenGPS
         {
             //save new copy of kml with selected flag and view in GoogleEarth
             mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
-
-            //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
         }
 

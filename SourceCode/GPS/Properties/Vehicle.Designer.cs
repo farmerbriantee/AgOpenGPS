@@ -562,5 +562,17 @@ namespace AgOpenGPS.Properties {
                 this["set_youUseDubins"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_antennaOffset {
+            get {
+                return ((double)(this["setVehicle_antennaOffset"]));
+            }
+            set {
+                this["setVehicle_antennaOffset"] = value;
+            }
+        }
     }
 }

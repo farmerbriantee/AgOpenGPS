@@ -10,7 +10,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
-        private double oneSide, distance;
         private double headWidths;
 
         public FormHeadland(Form callingForm)
@@ -26,13 +25,23 @@ namespace AgOpenGPS
             nudWidths.Value = (decimal)headWidths;
             nudWidths.ValueChanged += nudWidths_ValueChanged;
 
+            nudHeadlandIncludeAngle.ValueChanged -= nudWidths_ValueChanged;
+            nudHeadlandIncludeAngle.Value = (int)((mf.hl.includeAngle / glm.PIBy2) * 10) * 10;
+            nudHeadlandIncludeAngle.ValueChanged += nudWidths_ValueChanged;
+
             if (mf.hl.isSet)
             {
             }
             else
             {
                 //create a single tool width headland
-                BuildHeadland();
+                mf.hl.BuildHeadland((double)nudWidths.Value);
+                //Enable the save ok button
+                btnOK.Enabled = true;
+
+                double area = mf.hl.CalculateHeadlandArea();
+                if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
+                else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
             }
         }
 
@@ -94,7 +103,7 @@ namespace AgOpenGPS
         private void btnDone_Click(object sender, EventArgs e)
         {
             isDrawingHeadland = false;
-            FixHeadlandList();
+            mf.hl.FixHeadlandList();
 
             //pre calculate all the constants and multiples
             mf.hl.PreCalcHeadlandLines();
@@ -131,64 +140,7 @@ namespace AgOpenGPS
             headWidths = (double)nudWidths.Value;
             Properties.Vehicle.Default.set_youToolWidths = (double)nudWidths.Value;
             Properties.Vehicle.Default.Save();
-            BuildHeadland();
-        }
-
-        private vec3 point;
-
-        private void BuildHeadland()
-        {
-            //count the points from the boundary
-            int ptCount = mf.boundz.ptList.Count;
-
-            //first find out which side is inside the boundary
-            oneSide = glm.PIBy2;
-            point.easting = mf.boundz.ptList[3].easting - (Math.Sin(oneSide + mf.boundz.ptList[3].heading) * 2.0);
-            point.northing = mf.boundz.ptList[3].northing - (Math.Cos(oneSide + mf.boundz.ptList[3].heading) * 2.0);
-
-            if (!mf.boundz.IsPointInsideBoundary(point)) oneSide *= -1.0;
-
-            //clear the headland point list
-            mf.hl.ptList.Clear();
-
-            //determine how wide a headland space
-            double totalHeadWidth = mf.vehicle.toolWidth * (double)nudWidths.Value;
-
-            for (int i = 0; i < ptCount; i++)
-            {
-                //calculate the point inside the boundary
-                point.easting = mf.boundz.ptList[i].easting - (Math.Sin(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
-                point.northing = mf.boundz.ptList[i].northing - (Math.Cos(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
-                point.heading = mf.boundz.ptList[i].heading;
-
-                //only add if inside actual field boundary
-                if (mf.boundz.IsPointInsideBoundary(point)) mf.hl.ptList.Add(point);
-            }
-
-            int headCount = mf.hl.ptList.Count;
-
-            //remove the points too close to boundary
-            for (int i = 0; i < ptCount; i++)
-            {
-                for (int j = 0; j < headCount; j++)
-                {
-                    //make sure distance between headland and boundary is not less then width
-                    distance = glm.Distance(mf.boundz.ptList[i], mf.hl.ptList[j]);
-                    if (distance < (totalHeadWidth * 0.98))
-                    {
-                        mf.hl.ptList.RemoveAt(j);
-                        headCount = mf.hl.ptList.Count;
-                        j = 0;
-                    }
-                }
-            }
-
-            //fix the gaps and overlaps
-            FixHeadlandList();
-
-            //pre calculate all the constants and multiples
-            mf.hl.PreCalcHeadlandLines();
-
+            mf.hl.BuildHeadland((double)nudWidths.Value);
             //Enable the save ok button
             btnOK.Enabled = true;
 
@@ -197,43 +149,16 @@ namespace AgOpenGPS
             else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
         }
 
-        private void FixHeadlandList()
+        private void nudHeadlandIncludeAngle_ValueChanged(object sender, EventArgs e)
         {
-            //make sure distance isn't too small between points on headland
-            int headCount = mf.hl.ptList.Count;
-            double spacing = mf.vehicle.toolWidth * 0.33;
-            for (int i = 0; i < headCount - 1; i++)
-            {
-                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[i + 1]);
-                if (distance < spacing)
-                {
-                    mf.hl.ptList.RemoveAt(i + 1);
-                    headCount = mf.hl.ptList.Count;
-                    i = 0;
-                }
-            }
+            mf.hl.includeAngle = ((double)nudHeadlandIncludeAngle.Value / 100) * glm.PIBy2;
+            mf.hl.BuildHeadland((double)nudWidths.Value);
+            //Enable the save ok button
+            btnOK.Enabled = true;
 
-            //make sure distance isn't too big between points on headland
-            headCount = mf.hl.ptList.Count;
-            for (int i = 0; i < headCount; i++)
-            {
-                int j = i + 1;
-                if (j == headCount) j = 0;
-                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
-                if (distance > (spacing))
-                {
-                    point.easting = (mf.hl.ptList[i].easting + mf.hl.ptList[j].easting) / 2.0;
-                    point.northing = (mf.hl.ptList[i].northing + mf.hl.ptList[j].northing) / 2.0;
-                    point.heading = mf.hl.ptList[i].heading;
-
-                    mf.hl.ptList.Insert(j, point);
-                    headCount = mf.hl.ptList.Count;
-                    i = 0;
-                }
-            }
-
-            //line is built
-            mf.hl.isSet = true;
+            double area = mf.hl.CalculateHeadlandArea();
+            if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
+            else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
         }
 
         private void openGLHead_Resized(object sender, EventArgs e)
@@ -274,9 +199,6 @@ namespace AgOpenGPS
 
             //back the camera up
             glh.Translate(0, 0, -maxFieldDistance);
-
-            //rotate camera so heading matched fix heading in the world
-            //glh.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
 
             //translate to that spot in the world
             glh.Translate(-fieldCenterX, -fieldCenterY, 0);
@@ -350,6 +272,7 @@ namespace AgOpenGPS
             glh.Begin(OpenGL.GL_POINTS);
 
             glh.Color(0.05f, 0.90f, 0.60f);
+
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             glh.Vertex(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
@@ -364,16 +287,16 @@ namespace AgOpenGPS
             if (ptCount > 0)
             {
                 glh.Color(0.98f, 0.2f, 0.90f);
-                glh.Begin(OpenGL.GL_POINTS);
+                glh.Begin(OpenGL.GL_LINE_STRIP);
                 for (int h = 0; h < ptCount; h++) glh.Vertex(mf.boundz.ptList[h].easting, mf.boundz.ptList[h].northing, 0);
                 glh.End();
             }
 
-            ////draw the headland line so far
+            ////draw the headland line
             ptCount = mf.hl.ptList.Count;
             if (ptCount > 0)
             {
-                glh.Color(0.9038f, 0.9892f, 0.10f);
+                glh.Color(0.009038f, 0.9892f, 0.10f);
                 glh.Begin(OpenGL.GL_POINTS);
                 for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.ptList[h].easting, mf.hl.ptList[h].northing, 0);
                 glh.End();

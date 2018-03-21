@@ -49,7 +49,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4800")]
+        [global::System.Configuration.DefaultSettingValueAttribute("38400")]
         public int setPort_baudRate {
             get {
                 return ((int)(this["setPort_baudRate"]));
@@ -128,18 +128,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setPort_wasRateRelayConnected"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setHeading_isFromPosition {
-            get {
-                return ((bool)(this["setHeading_isFromPosition"]));
-            }
-            set {
-                this["setHeading_isFromPosition"] = value;
             }
         }
         
@@ -481,7 +469,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public double setF_boundaryTriggerDistance {
             get {
                 return ((double)(this["setF_boundaryTriggerDistance"]));
@@ -709,18 +697,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setMenu_isBigAltitudeOn {
-            get {
-                return ((bool)(this["setMenu_isBigAltitudeOn"]));
-            }
-            set {
-                this["setMenu_isBigAltitudeOn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en")]
         public string set_culture {
             get {
@@ -872,6 +848,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setUDP_isOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GGA")]
+        public string setGPS_fixFromWhichSentence {
+            get {
+                return ((string)(this["setGPS_fixFromWhichSentence"]));
+            }
+            set {
+                this["setGPS_fixFromWhichSentence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Fix")]
+        public string setGPS_headingFromWhichSource {
+            get {
+                return ((string)(this["setGPS_headingFromWhichSource"]));
+            }
+            set {
+                this["setGPS_headingFromWhichSource"] = value;
             }
         }
     }

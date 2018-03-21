@@ -1,7 +1,18 @@
-﻿v 2.4 Mar 1
+﻿v 2.5.1 Mar 21
+* Settings are all very stringent to version
+* Min Max error checking on loading vehicle
+* Manual switches capable (Matthias)
+* Vehicle files must be version 2.5 or higher
+
+v 2.4 Mar 1
 * recorded path added but not functional
 * Dubins added to U Turn
 * Ability to set turning radius
+* Added AB Curve
+* fixed all guidance lines to use pivot point
+* Auto headland on Curve
+* Can use contour with curve
+* Headland can eliminate unecessary points
 
 v 2.3 Jan 15
 * zero Roll

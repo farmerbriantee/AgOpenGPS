@@ -248,7 +248,6 @@ namespace AgOpenGPS
             }
         }
 
-        //Arduino port called by the Relay delegate every time
         private void SerialLineReceivedRateRelay(string sentence)
         {
             mc.serialRecvRelayRateStr = sentence;
@@ -261,19 +260,32 @@ namespace AgOpenGPS
             //the ArdRelay sentence to be parsed
             sentence = sentence.Substring(0, end);
             string[] words = sentence.Split(',');
-            if (words.Length !=3) return;
+
+            //changed by MTZ8302
+            //if (words.Length !=3) return;
+            if (words.Length != 5 & words.Length != 3) return;
 
             //fill in the holes
             //int.TryParse(words[0], out mc);
             int.TryParse(words[0], out mc.incomingInt);
-            rc.rateActual = (double)mc.incomingInt*0.01;
+            rc.rateActual = (double)mc.incomingInt * 0.01;
 
             int.TryParse(words[1], out mc.incomingInt);
             rc.volumeActual = mc.incomingInt;
 
-            //int.TryParse(words[2], out mc.);
-        }
 
+            //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
+            //read RelayToAOG from Arduino
+            if (words.Length == 5)
+            {
+                int.TryParse(words[3], out mc.incomingInt);
+                rc.RelayFromArduino = (byte)mc.incomingInt;
+
+                //read SectSWOffToAOG from Arduino
+                int.TryParse(words[4], out mc.incomingInt);
+                rc.SectSWOffFromArduino = (byte)mc.incomingInt;
+            }
+        }
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);
 

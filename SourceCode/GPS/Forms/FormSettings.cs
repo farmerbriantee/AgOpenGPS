@@ -11,7 +11,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
-        private double antennaHeight, antennaPivot, wheelbase, hitchLength, minTurningRadius;
+        private double antennaHeight, antennaOffset, antennaPivot, wheelbase, hitchLength, minTurningRadius;
 
         private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead;
         private int numberOfSections;
@@ -20,12 +20,11 @@ namespace AgOpenGPS
 
         private decimal sectionPosition1, sectionPosition2, sectionPosition3, sectionPosition4,
                     sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9;
-        private bool isWorkSwEn, isWorkSwActiveLow;
 
+        private bool isWorkSwEn, isWorkSwActiveLow;
 
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
-
 
         //constructor
         public FormSettings(Form callingForm, int page)
@@ -69,14 +68,105 @@ namespace AgOpenGPS
         {
             //Vehicle settings to what it is in the settings page------------------------------------------------
             antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+            if (nudAntennaHeight.CheckValueCm(ref antennaHeight)) nudAntennaHeight.BackColor = System.Drawing.Color.OrangeRed;
+
             antennaPivot = Math.Abs(Properties.Vehicle.Default.setVehicle_antennaPivot);
+            if (nudAntennaPivot.CheckValueCm(ref antennaPivot)) nudAntennaPivot.BackColor = System.Drawing.Color.OrangeRed;
+
             hitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_hitchLength);
+            if (nudHitchLength.CheckValueCm(ref hitchLength)) nudHitchLength.BackColor = System.Drawing.Color.OrangeRed;
+
             wheelbase = Math.Abs(Properties.Vehicle.Default.setVehicle_wheelbase);
+            if (nudWheelbase.CheckValueCm(ref wheelbase))nudWheelbase.BackColor = System.Drawing.Color.OrangeRed;
+
             minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
+            if (nudMinTurnRadius.CheckValueCm(ref minTurningRadius)) nudMinTurnRadius.BackColor = System.Drawing.Color.OrangeRed;
+
+            antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+            if (nudAntennaOffset.CheckValueCm(ref antennaOffset)) nudAntennaOffset.BackColor = System.Drawing.Color.OrangeRed;
+
+            toolTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength);
+            if (nudForeAft.CheckValueCm(ref toolTrailingHitchLength)) nudForeAft.BackColor = System.Drawing.Color.OrangeRed;
+
+            tankTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength);
+            if (nudTankHitch.CheckValueCm(ref tankTrailingHitchLength)) nudTankHitch.BackColor = System.Drawing.Color.OrangeRed;
+
+            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+            if (nudOverlap.CheckValueCm(ref toolOverlap)) nudOverlap.BackColor = System.Drawing.Color.OrangeRed;
+
+            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
+            if (nudOffset.CheckValueCm(ref toolOffset))nudOffset.BackColor = System.Drawing.Color.OrangeRed;
+
+            decimal temp;
+            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
+            temp = (decimal)toolTurnOffDelay;
+            if (nudTurnOffDelay.CheckValue(ref temp)) nudTurnOffDelay.BackColor = System.Drawing.Color.OrangeRed;
+            toolTurnOffDelay = (double)temp;
+
+            toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
+            temp = (decimal)toolLookAhead;
+            if (nudLookAhead.CheckValue(ref temp)) nudLookAhead.BackColor = System.Drawing.Color.OrangeRed;
+            toolLookAhead = (double)temp;
+
+            numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
+            temp = numberOfSections;
+            if (nudNumberOfSections.CheckValue(ref temp)) nudNumberOfSections.BackColor = System.Drawing.Color.OrangeRed;
+            numberOfSections = (int)temp;
+
+            cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
+            temp = (decimal)cutoffSpeed;
+            if (nudCutoffSpeed.CheckValue(ref temp)) nudCutoffSpeed.BackColor = System.Drawing.Color.OrangeRed;
+            cutoffSpeed = (double)temp;
+
+            isToolBehindPivot = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
+            isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
+            isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
+            isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+
+            //fix the min max based on inches - they are 2.54 times smaller then cm
+            if (!mf.isMetric)
+            {
+                nudAntennaHeight.Maximum /= 2.54M;
+                nudAntennaHeight.Minimum /= 2.54M;
+
+                nudAntennaPivot.Maximum /= 2.54M;
+                nudAntennaPivot.Minimum /= 2.54M;
+
+                nudHitchLength.Maximum /= 2.54M;
+                nudHitchLength.Minimum /= 2.54M;
+
+                nudWheelbase.Maximum /= 2.54M;
+                nudWheelbase.Minimum /= 2.54M;
+
+                nudAntennaOffset.Maximum /= 2.54M;
+                nudAntennaOffset.Minimum /= 2.54M;
+
+                nudMinTurnRadius.Maximum /= 2.54M;
+                nudMinTurnRadius.Minimum /= 2.54M;
+
+                nudTankHitch.Maximum /= 2.54M;
+                nudTankHitch.Minimum /= 2.54M;
+
+                nudForeAft.Maximum /= 2.54M;
+                nudForeAft.Minimum /= 2.54M;
+
+                nudOverlap.Maximum /= 2.54M;
+                nudOverlap.Minimum /= 2.54M;
+
+                nudOffset.Maximum /= 2.54M;
+                nudOffset.Minimum /= 2.54M;
+
+                nudCutoffSpeed.Maximum /= 1.60934M;
+                nudCutoffSpeed.Minimum /= 1.60934M;
+            }
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
             nudAntennaHeight.Value = (decimal)(antennaHeight * m2MetImp);
             nudAntennaHeight.ValueChanged += nudAntennaHeight_ValueChanged;
+
+            nudAntennaOffset.ValueChanged -= nudAntennaOffset_ValueChanged;
+            nudAntennaOffset.Value = (decimal)(antennaOffset * m2MetImp);
+            nudAntennaOffset.ValueChanged += nudAntennaOffset_ValueChanged;
 
             nudAntennaPivot.ValueChanged -= nudAntennaPivot_ValueChanged;
             nudAntennaPivot.Value = (decimal)(antennaPivot * m2MetImp);
@@ -94,15 +184,6 @@ namespace AgOpenGPS
             nudMinTurnRadius.Value = (decimal)(minTurningRadius * m2MetImp);
             nudMinTurnRadius.ValueChanged += nudMinTurnRadius_ValueChanged;
 
-            //Tool    hitched, pivot behind antenna, and tool behind pivot are the default as true------------------------------------------------------
-            isToolBehindPivot = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
-
-            isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
-
-            isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
-
-            isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
-
             chkIsAft.CheckedChanged -= chkIsAft_CheckedChanged;
             chkIsAft.Checked = isToolBehindPivot;
             chkIsAft.CheckedChanged += chkIsAft_CheckedChanged;
@@ -118,20 +199,6 @@ namespace AgOpenGPS
             chkIsSteerAxleAhead.CheckedChanged -= chkIsSteerAxleAhead_CheckedChanged;
             chkIsSteerAxleAhead.Checked = isSteerAxleAhead;
             chkIsSteerAxleAhead.CheckedChanged += chkIsSteerAxleAhead_CheckedChanged;
-
-            UpdateTrailingRigidCheckbox();
-            UpdateIsAftCheckbox();
-            UpdateIsPivotBehindAntennaCheckbox();
-            UpdateIsSteerAxleAhead();
-
-            toolTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength);
-            tankTrailingHitchLength = Math.Abs(Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength);
-
-            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
-            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
-
-            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
-            toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
 
             nudOverlap.ValueChanged -= nudOverlap_ValueChanged;
             nudOverlap.Value = (decimal)(toolOverlap * m2MetImp);
@@ -157,9 +224,6 @@ namespace AgOpenGPS
             nudLookAhead.Value = (decimal)(toolLookAhead);
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
 
-            //Sections set to settings page ----------------------------------------------------------------------
-            numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
-
             //grab number of sections
             nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
             nudNumberOfSections.Value = numberOfSections;
@@ -178,6 +242,11 @@ namespace AgOpenGPS
             //based on number of sections and values update the page before displaying
             UpdateSpinners();
 
+            UpdateTrailingRigidCheckbox();
+            UpdateIsAftCheckbox();
+            UpdateIsPivotBehindAntennaCheckbox();
+            UpdateIsSteerAxleAhead();
+
             isWorkSwActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
 
             chkWorkSwActiveLow.CheckedChanged -= chkWorkSwActiveLow_CheckedChanged;
@@ -190,12 +259,9 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
-            cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
-
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
-
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -221,6 +287,9 @@ namespace AgOpenGPS
 
             mf.vehicle.antennaHeight = antennaHeight;
             Properties.Vehicle.Default.setVehicle_antennaHeight = mf.vehicle.antennaHeight;
+
+            mf.vehicle.antennaOffset = antennaOffset;
+            Properties.Vehicle.Default.setVehicle_antennaOffset = antennaOffset;
 
             //Tool  ------------------------------------------------------------------------------------------
 
@@ -325,6 +394,11 @@ namespace AgOpenGPS
             hitchLength = (double)nudHitchLength.Value * metImp2m;
         }
 
+        private void nudAntennaOffset_ValueChanged(object sender, EventArgs e)
+        {
+            antennaOffset = (double)nudAntennaOffset.Value * metImp2m;
+        }
+
         private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)
         {
             minTurningRadius = (double)nudMinTurnRadius.Value * metImp2m;
@@ -366,7 +440,6 @@ namespace AgOpenGPS
             chkIsPivotBehindAntenna.Image = chkIsPivotBehindAntenna.Checked ? Properties.Resources.PivotBehind
                                                                                     : Properties.Resources.PivotAhead;
         }
-
 
         private void UpdateIsSteerAxleAhead()
         {
@@ -725,7 +798,7 @@ namespace AgOpenGPS
                     }
                 case 7:
                     {
-                        sectionPosition5 = sectionWidth3 / 2.0M;
+                        sectionPosition5 = sectionWidth4 / 2.0M;
                         sectionPosition4 = sectionPosition5 * -1;
                         sectionPosition3 = sectionPosition4 - sectionWidth3;
                         sectionPosition2 = sectionPosition3 - sectionWidth2;
@@ -858,7 +931,5 @@ namespace AgOpenGPS
         }
 
         #endregion WorkSwitch //---------------------------------------------------------
-
-        
     }
 }

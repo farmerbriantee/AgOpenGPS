@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
     public partial class FormCommSet : Form
     {
-      //class variables
+        //class variables
         private readonly FormGPS mf = null;
 
         //constructor
@@ -18,6 +19,10 @@ namespace AgOpenGPS
 
         private void FormCommSet_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "GGA") rbtnGGA.Checked = true;
+            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "RMC") rbtnRMC.Checked = true;
+            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
+
             cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
 
             //check if GPS port is open or closed and set buttons accordingly
@@ -126,7 +131,7 @@ namespace AgOpenGPS
             }
         }
 
-        // Arduino 
+        // Arduino
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
         {
             mf.SerialPortRateRelayOpen();
@@ -172,7 +177,7 @@ namespace AgOpenGPS
         // GPS Serial Port
         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-             mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
+            mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
             FormGPS.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
         }
 
@@ -241,7 +246,7 @@ namespace AgOpenGPS
             foreach (String s in System.IO.Ports.SerialPort.GetPortNames()) { cboxPort.Items.Add(s); }
         }
 
-        #endregion PortSettings
+        #endregion PortSettings //----------------------------------------------------------------
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -265,6 +270,15 @@ namespace AgOpenGPS
             //save
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void rbtnGGA_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkedButton = groupBox4.Controls.OfType<RadioButton>()
+                                      .FirstOrDefault(r => r.Checked);
+            Properties.Settings.Default.setGPS_fixFromWhichSentence = checkedButton.Text;
+            Properties.Settings.Default.Save();
+            mf.pn.fixFrom = checkedButton.Text;
         }
 
 

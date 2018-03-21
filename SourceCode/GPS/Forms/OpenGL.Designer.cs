@@ -3,7 +3,6 @@ using System;
 using System.Drawing;
 using SharpGL;
 
-
 namespace AgOpenGPS
 {
     public partial class FormGPS
@@ -23,7 +22,6 @@ namespace AgOpenGPS
         {
             if (isGPSPositionInitialized)
             {
-
                 //  Get the OpenGL object.
                 OpenGL gl = openGLControl.OpenGL;
                 //System.Threading.Thread.Sleep(500);
@@ -134,18 +132,34 @@ namespace AgOpenGPS
                     }
                 }
 
-
                 gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
                 gl.Color(1, 1, 1);
 
                 //draw contour line if button on 
-                if (ct.isContourBtnOn) ct.DrawContourLine();
+                if (ct.isContourBtnOn)
+                {
+                    ct.DrawContourLine();
+                }
+                else// draw the current and reference AB Lines or CurveAB Ref and line
+                {
+                    if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
+                    if (curve.isCurveBtnOn) curve.DrawCurve();
+                }
 
-                // draw the current and reference AB Lines
-                else { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines(); }
+                //if (recPath.isRecordOn)
+                recPath.DrawRecordedLine();
 
-                //recPath.DrawRecordedLine();
-                //recPath.DrawDubins();
+                if (cart.isCartOn)
+                {
+                    gl.PointSize(16.0f);
+                    gl.Begin(OpenGL.GL_POINTS);
+
+                    gl.Color(0.195f, 0.950f, 0.20f);
+                    gl.Vertex(cart.cartPos.easting, cart.cartPos.northing, 0.0);
+
+                    gl.End();
+                    gl.PointSize(1.0f);
+                }
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
@@ -194,11 +208,11 @@ namespace AgOpenGPS
                 boundz.DrawBoundaryLine();
 
                 //draw the Headland line
-                hl.DrawHeadlandLine();
+                if (hl.isSet) hl.DrawHeadlandLine();
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Head: " + saveCounter.ToString("N1"));
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Tool: " + distTool.ToString("N1"));
+                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Step: " + currentStepFix.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Side: " + curve.piSide.ToString("N1"));
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
@@ -274,7 +288,6 @@ namespace AgOpenGPS
                             else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
                             txtDistanceOffABLine.Text = dist;
                         }
-
                         else
                         {
                             txtDistanceOffABLine.ForeColor = Color.Red;
@@ -282,50 +295,63 @@ namespace AgOpenGPS
                             else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
                             txtDistanceOffABLine.Text = dist;
                         }
+                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
+                        else btnAutoSteer.Text = "Y";
+                    }
 
-                        //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
-                        //else lblDelta.ForeColor = Color.Green;
+                    else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+                    {
+                        string dist;
+                        txtDistanceOffABLine.Visible = true;
+                        //lblDelta.Visible = true;
+                        DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine * 0.1);
+                        if ((ABLine.distanceFromCurrentLine) < 0.0)
+                        {
+                            // --->
+                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
+                            else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                            txtDistanceOffABLine.Text = dist;
+                        }
+                        else
+                        {
+                            // <----
+                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+                            else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+                            txtDistanceOffABLine.Text = dist;
+                        }
+                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
+                        else btnAutoSteer.Text = "Y";
+                    }
 
+                    else if (curve.isCurveBtnOn)
+                    {
+                        string dist;
+                        txtDistanceOffABLine.Visible = true;
+                        //lblDelta.Visible = true;
+                        if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
+
+                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine * 0.1);
+                        if ((curve.distanceFromCurrentLine) < 0.0)
+                        {
+                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
+                            else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                            txtDistanceOffABLine.Text = dist;
+                        }
+                        else
+                        {
+                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
+                            else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
+                            txtDistanceOffABLine.Text = dist;
+                        }
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
                         else btnAutoSteer.Text = "Y";
                     }
 
                     else
-                    {
-                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-                        {
-                            string dist;
-
-                            txtDistanceOffABLine.Visible = true;
-                            //lblDelta.Visible = true;
-                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine * 0.1);
-                            if ((ABLine.distanceFromCurrentLine) < 0.0)
-                            {
-                                // --->
-                                txtDistanceOffABLine.ForeColor = Color.Green;
-                                if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
-                                else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                                txtDistanceOffABLine.Text = dist;
-                            }
-
-                            else
-                            {
-                                // <----
-                                txtDistanceOffABLine.ForeColor = Color.Red;
-                                if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
-                                else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                                txtDistanceOffABLine.Text = dist;
-                            }
-
-                            //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
-                            //else lblDelta.ForeColor = Color.Green;
-                            if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                            else btnAutoSteer.Text = "Y";
-                        }
-                    }
-
-                    //AB line is not set so turn off numbers
-                    if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
                     {
                         txtDistanceOffABLine.Visible = false;
                         btnAutoSteer.Text = "-";
@@ -798,7 +824,7 @@ namespace AgOpenGPS
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
                     FileSaveContour();
-                    FileSaveRecPath();
+                    //FileSaveRecPath();
 
                     //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();
@@ -1080,9 +1106,6 @@ namespace AgOpenGPS
             //back the camera up
             gl.Translate(0, 0, -maxFieldDistance);
 
-            //rotate camera so heading matched fix heading in the world
-            //gl.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
-
             //translate to that spot in the world 
             gl.Translate(-fieldCenterX, -fieldCenterY, 0);
 
@@ -1175,21 +1198,37 @@ namespace AgOpenGPS
                 gl.End();
             }
 
-                ////draw the perimeter line so far
-            int ptCount = boundz.ptList.Count;
-            if (ptCount > 0)
+            //draw curve if there is one
+            if (curve.isCurveSet)
             {
-                gl.LineWidth(2);
-                gl.Color(0.98f, 0.2f, 0.60f);
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-                for (int h = 0; h < ptCount; h++) gl.Vertex(boundz.ptList[h].easting, boundz.ptList[h].northing, 0);
-                gl.End();
+                int ptC = curve.curList.Count;
+                if (ptC > 0)
+                {
+                    gl.LineWidth(2);
+                    gl.Color(0.95f, 0.2f, 0.0f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int h = 0; h < ptC; h++) gl.Vertex(curve.curList[h].easting, curve.curList[h].northing, 0);
+                    gl.End();
+                }
+            }
+            ////draw the perimeter line so far
+            if (boundz.isSet)
+            {
+                int ptCount = boundz.ptList.Count;
+                if (ptCount > 0)
+                {
+                    gl.LineWidth(2);
+                    gl.Color(0.98f, 0.2f, 0.60f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int h = 0; h < ptCount; h++) gl.Vertex(boundz.ptList[h].easting, boundz.ptList[h].northing, 0);
+                    gl.End();
 
-                //the "close the loop" line
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-                gl.Vertex(boundz.ptList[ptCount - 1].easting, boundz.ptList[ptCount - 1].northing, 0);
-                gl.Vertex(boundz.ptList[0].easting, boundz.ptList[0].northing, 0);
-                gl.End();
+                    //the "close the loop" line
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    gl.Vertex(boundz.ptList[ptCount - 1].easting, boundz.ptList[ptCount - 1].northing, 0);
+                    gl.Vertex(boundz.ptList[0].easting, boundz.ptList[0].northing, 0);
+                    gl.End();
+                }
             }
 
             ////draw the headland line

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AgOpenGPS
+﻿namespace AgOpenGPS
 {
     public class CRate
     {
@@ -23,7 +18,14 @@ namespace AgOpenGPS
 
         public bool isRateControlOn, isRate1Selected = true;
 
-         public CRate(FormGPS _f)
+        //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany----------
+        public byte RelayFromArduino = 0;
+        public byte RelayFromArduinoOld = 0;
+        public byte SectSWOffFromArduino = 0;
+        public byte SectSWOffFromArduinoOld = 0;
+        //end adds by MTZ8302-----------------------------------------------
+
+        public CRate(FormGPS _f)
         {
             mf = _f;
         }
@@ -67,7 +69,7 @@ namespace AgOpenGPS
 
             // hectares/min to liters/min based on set rate
             if (isRate1Selected)
-                rateSetPoint = (currentWidth * mf.pn.speed)/600 * rate1;
+                rateSetPoint = (currentWidth * mf.pn.speed) / 600 * rate1;
             else
                 rateSetPoint = (currentWidth * mf.pn.speed) / 600 * rate2;
         }

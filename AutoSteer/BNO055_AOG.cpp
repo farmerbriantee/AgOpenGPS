@@ -24,9 +24,9 @@ BNO055::BNO055(uint8_t address){
     BNO055_ADDRESS = address;
 
     GPwrMode = NormalG;    // Gyro power mode
-    Gscale = GFS_125DPS;  // Gyro full scale
+    Gscale = GFS_250DPS;  // Gyro full scale
     //Godr = GODR_250Hz;    // Gyro sample rate
-    Gbw = GBW_12Hz;       // Gyro bandwidth - changed to 12 hz
+    Gbw = GBW_116Hz;       // Gyro bandwidth - changed to 116 hz
     Ascale = AFS_2G;      // Accel full scale - changed to 2G
     //Aodr = AODR_250Hz;    // Accel sample rate
     APwrMode = NormalA;    // Accel power mode
@@ -36,7 +36,7 @@ BNO055::BNO055(uint8_t address){
     MPwrMode = Normal;    // Select magnetometer power mode
     Modr = MODR_10Hz;     // Select magnetometer ODR when in BNO055 bypass mode
     PWRMode = Normalpwr;    // Select BNO055 power mode
-    OPRMode = NDOF_FMC_OFF;       //
+    OPRMode = NDOF;       //
 }
 
 

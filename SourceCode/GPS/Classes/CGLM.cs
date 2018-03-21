@@ -1,7 +1,72 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
+    public static class NudChk
+    {
+        public static bool CheckValue(this NumericUpDown numericUpDown, ref decimal value)
+        {
+            if (value < numericUpDown.Minimum)
+            {
+                value = numericUpDown.Minimum;
+                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
+                    + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
+                "Critical Settings Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return true;
+            }
+            else if (value > numericUpDown.Maximum)
+            {
+                value = numericUpDown.Maximum;
+                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
+                    + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
+                "Critical Settings Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return true;
+            }
+
+            //value is ok
+            return false;
+        }
+
+        public static bool CheckValueCm(this NumericUpDown numericUpDown, ref double value)
+        {
+            //convert to cm
+            value *= 100;
+            bool isChanged = false;
+
+            if (value < (double)numericUpDown.Minimum)
+            {
+                value = (double)numericUpDown.Minimum/2.4;
+                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
+                    + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
+                "Critical Settings Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                isChanged = true;
+            }
+            else if (value > (double)numericUpDown.Maximum)
+            {
+                value = (double)numericUpDown.Maximum/2.6;
+                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
+                    + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
+                "Critical Settings Warning",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                isChanged = true;
+            }
+
+            //revert back to meters
+            value *= 0.01;
+
+            //value is ok
+            return isChanged;
+        }
+    }
+
     public static class glm
     {
         //inches to meters
@@ -35,6 +100,7 @@ namespace AgOpenGPS
         {
             return radians * (57.295779513082325225835265587528);
         }
+
         public static double toRadians(double degrees)
         {
             return degrees * (0.01745329251994329576923690768489);
@@ -63,13 +129,6 @@ namespace AgOpenGPS
         }
 
         public static double Distance(vec3 first, vec3 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
-        public static double Distance(vec4 first, vec4 second)
         {
             return Math.Sqrt(
                 Math.Pow(first.easting - second.easting, 2)

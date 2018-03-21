@@ -46,8 +46,10 @@
             this.label20 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabIMU = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cboxIsHeadingFromGPSTrue = new System.Windows.Forms.CheckBox();
+            this.headingGroupBox = new System.Windows.Forms.GroupBox();
+            this.rbtnHeadingHDT = new System.Windows.Forms.RadioButton();
+            this.rbtnHeadingGPS = new System.Windows.Forms.RadioButton();
+            this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
             this.btnRollZero = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -79,7 +81,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.tabIMU.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -198,7 +200,7 @@
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(140, 25);
             this.label31.TabIndex = 67;
-            this.label31.Text = "4 to 8 is good\r\n";
+            this.label31.Text = "2 to 4 is good\r\n";
             // 
             // nudBoundaryDistance
             // 
@@ -216,7 +218,7 @@
             0,
             0});
             this.nudBoundaryDistance.Minimum = new decimal(new int[] {
-            3,
+            2,
             0,
             0,
             0});
@@ -281,7 +283,7 @@
             0,
             65536});
             this.nudTriangleResolution.Minimum = new decimal(new int[] {
-            10,
+            2,
             0,
             0,
             65536});
@@ -313,7 +315,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(240, 40);
+            this.label4.Location = new System.Drawing.Point(273, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 50);
             this.label4.TabIndex = 68;
@@ -362,7 +364,7 @@
             // 
             // tabIMU
             // 
-            this.tabIMU.Controls.Add(this.groupBox1);
+            this.tabIMU.Controls.Add(this.headingGroupBox);
             this.tabIMU.Controls.Add(this.btnRollZero);
             this.tabIMU.Controls.Add(this.label10);
             this.tabIMU.Controls.Add(this.groupBox7);
@@ -376,29 +378,55 @@
             this.tabIMU.Text = "IMU - GPS";
             this.tabIMU.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // headingGroupBox
             // 
-            this.groupBox1.Controls.Add(this.cboxIsHeadingFromGPSTrue);
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(505, 221);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(433, 94);
-            this.groupBox1.TabIndex = 84;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Heading By Atan of Fix Or...";
+            this.headingGroupBox.Controls.Add(this.rbtnHeadingHDT);
+            this.headingGroupBox.Controls.Add(this.rbtnHeadingGPS);
+            this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
+            this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.headingGroupBox.Location = new System.Drawing.Point(727, 221);
+            this.headingGroupBox.Name = "headingGroupBox";
+            this.headingGroupBox.Size = new System.Drawing.Size(211, 229);
+            this.headingGroupBox.TabIndex = 84;
+            this.headingGroupBox.TabStop = false;
+            this.headingGroupBox.Text = "Heading By...";
             // 
-            // cboxIsHeadingFromGPSTrue
+            // rbtnHeadingHDT
             // 
-            this.cboxIsHeadingFromGPSTrue.AutoSize = true;
-            this.cboxIsHeadingFromGPSTrue.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsHeadingFromGPSTrue.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxIsHeadingFromGPSTrue.Location = new System.Drawing.Point(34, 46);
-            this.cboxIsHeadingFromGPSTrue.Name = "cboxIsHeadingFromGPSTrue";
-            this.cboxIsHeadingFromGPSTrue.Size = new System.Drawing.Size(300, 29);
-            this.cboxIsHeadingFromGPSTrue.TabIndex = 62;
-            this.cboxIsHeadingFromGPSTrue.Text = "Use HDT Heading Instead";
-            this.cboxIsHeadingFromGPSTrue.UseVisualStyleBackColor = true;
-            this.cboxIsHeadingFromGPSTrue.CheckedChanged += new System.EventHandler(this.cboxIsHeadingFromGPSTrue_CheckedChanged);
+            this.rbtnHeadingHDT.AutoSize = true;
+            this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(53, 171);
+            this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
+            this.rbtnHeadingHDT.Size = new System.Drawing.Size(75, 29);
+            this.rbtnHeadingHDT.TabIndex = 2;
+            this.rbtnHeadingHDT.TabStop = true;
+            this.rbtnHeadingHDT.Text = "HDT";
+            this.rbtnHeadingHDT.UseVisualStyleBackColor = true;
+            // 
+            // rbtnHeadingGPS
+            // 
+            this.rbtnHeadingGPS.AutoSize = true;
+            this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingGPS.Location = new System.Drawing.Point(53, 113);
+            this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
+            this.rbtnHeadingGPS.Size = new System.Drawing.Size(73, 29);
+            this.rbtnHeadingGPS.TabIndex = 1;
+            this.rbtnHeadingGPS.TabStop = true;
+            this.rbtnHeadingGPS.Text = "GPS";
+            this.rbtnHeadingGPS.UseVisualStyleBackColor = true;
+            // 
+            // rbtnHeadingFix
+            // 
+            this.rbtnHeadingFix.AutoSize = true;
+            this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnHeadingFix.Location = new System.Drawing.Point(53, 55);
+            this.rbtnHeadingFix.Name = "rbtnHeadingFix";
+            this.rbtnHeadingFix.Size = new System.Drawing.Size(61, 29);
+            this.rbtnHeadingFix.TabIndex = 0;
+            this.rbtnHeadingFix.TabStop = true;
+            this.rbtnHeadingFix.Text = "Fix";
+            this.rbtnHeadingFix.UseVisualStyleBackColor = true;
+            this.rbtnHeadingFix.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
             // 
             // btnRollZero
             // 
@@ -667,8 +695,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabIMU.ResumeLayout(false);
             this.tabIMU.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.headingGroupBox.ResumeLayout(false);
+            this.headingGroupBox.PerformLayout();
             this.btnRollZero.ResumeLayout(false);
             this.btnRollZero.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -698,8 +726,7 @@
         private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
         private System.Windows.Forms.TabPage tabGuidance;
         private System.Windows.Forms.TabPage tabIMU;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cboxIsHeadingFromGPSTrue;
+        private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.GroupBox btnRollZero;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -721,5 +748,8 @@
         private System.Windows.Forms.TextBox tboxTinkerUID;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton rbtnHeadingHDT;
+        private System.Windows.Forms.RadioButton rbtnHeadingGPS;
+        private System.Windows.Forms.RadioButton rbtnHeadingFix;
     }
 }

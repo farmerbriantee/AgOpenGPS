@@ -19,7 +19,6 @@ namespace AgOpenGPS
 
         public bool isABLineSet;
         public bool isABLineBeingSet;
-
         public double passNumber;
 
         public double howManyPathsAway;
@@ -51,8 +50,6 @@ namespace AgOpenGPS
         public vec2 currentABLineP2 = new vec2(0.0, 1.0);
 
         //pure pursuit values
-        public vec3 pivotAxlePosAB = new vec3(0, 0, 0);
-
         public vec2 goalPointAB = new vec2(0, 0);
         public vec2 radiusPointAB = new vec2(0, 0);
         public double steerAngleAB;
@@ -143,11 +140,8 @@ namespace AgOpenGPS
 
         public double angVel;
 
-        public void GetCurrentABLine()
+        public void GetCurrentABLine(vec3 pivot)
         {
-            //grab a copy from main
-            pivotAxlePosAB = mf.pivotAxlePos;
-
             //move the ABLine over based on the overlap amount set in vehicle
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
@@ -157,7 +151,7 @@ namespace AgOpenGPS
             double dy = refABLineP2.northing - refABLineP1.northing;
 
             //how far are we away from the reference line at 90 degrees
-            distanceFromRefLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (refABLineP2.easting
+            distanceFromRefLine = ((dy * pivot.easting) - (dx * pivot.northing) + (refABLineP2.easting
                                     * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
                                         / Math.Sqrt((dy * dy) + (dx * dx));
 
@@ -207,7 +201,7 @@ namespace AgOpenGPS
             mf.yt.dxAB = dx; mf.yt.dyAB = dy;
 
             //how far from current AB Line is fix
-            distanceFromCurrentLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (currentABLineP2.easting
+            distanceFromCurrentLine = ((dy * pivot.easting) - (dx * pivot.northing) + (currentABLineP2.easting
                         * currentABLineP1.northing) - (currentABLineP2.northing * currentABLineP1.easting))
                         / Math.Sqrt((dy * dy) + (dx * dx));
 
@@ -222,8 +216,8 @@ namespace AgOpenGPS
             if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
             // ** Pure pursuit ** - calc point on ABLine closest to current position
-            double U = (((pivotAxlePosAB.easting - currentABLineP1.easting) * (dx))
-                        + ((pivotAxlePosAB.northing - currentABLineP1.northing) * (dy)))
+            double U = (((pivot.easting - currentABLineP1.easting) * (dx))
+                        + ((pivot.northing - currentABLineP1.northing) * (dy)))
                         / ((dx * dx) + (dy * dy));
 
             //point on AB line closest to pivot axle point
@@ -249,15 +243,15 @@ namespace AgOpenGPS
 
             //calc "D" the distance from pivot axle to lookahead point
             double goalPointDistanceDSquared
-                = glm.DistanceSquared(goalPointAB.northing, goalPointAB.easting, pivotAxlePosAB.northing, pivotAxlePosAB.easting);
+                = glm.DistanceSquared(goalPointAB.northing, goalPointAB.easting, pivot.northing, pivot.easting);
 
             //calculate the the new x in local coordinates and steering angle degrees based on wheelbase
             double localHeading = glm.twoPI - mf.fixHeading;
-            ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivotAxlePosAB.easting) * Math.Cos(localHeading))
-                + ((goalPointAB.northing - pivotAxlePosAB.northing) * Math.Sin(localHeading))));
+            ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
+                + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))));
 
-            steerAngleAB = glm.toDegrees(Math.Atan(2 * (((goalPointAB.easting - pivotAxlePosAB.easting) * Math.Cos(localHeading))
-                + ((goalPointAB.northing - pivotAxlePosAB.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase
+            steerAngleAB = glm.toDegrees(Math.Atan(2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
+                + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase
                 / goalPointDistanceDSquared));
             if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
             if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
@@ -266,8 +260,8 @@ namespace AgOpenGPS
             if (ppRadiusAB < -500) ppRadiusAB = -500;
             if (ppRadiusAB > 500) ppRadiusAB = 500;
 
-            radiusPointAB.easting = pivotAxlePosAB.easting + (ppRadiusAB * Math.Cos(localHeading));
-            radiusPointAB.northing = pivotAxlePosAB.northing + (ppRadiusAB * Math.Sin(localHeading));
+            radiusPointAB.easting = pivot.easting + (ppRadiusAB * Math.Cos(localHeading));
+            radiusPointAB.northing = pivot.northing + (ppRadiusAB * Math.Sin(localHeading));
 
             //Convert to millimeters
             distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
@@ -295,7 +289,6 @@ namespace AgOpenGPS
                 if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
 
-            //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading), Math.Cos(temp - mf.fixHeading))) * 10000);
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
 
@@ -312,7 +305,6 @@ namespace AgOpenGPS
                 radiusPointAB.easting = mf.yt.radiusPointYT.easting;
                 radiusPointAB.northing = mf.yt.radiusPointYT.northing;
                 ppRadiusAB = mf.yt.ppRadiusYT;
-                //angVel
             }
         }
 
@@ -326,10 +318,6 @@ namespace AgOpenGPS
             gl.Vertex(refPoint1.easting, refPoint1.northing, 0.0);
             gl.Color(0.0f, 0.90f, 0.95f);
             gl.Vertex(refPoint2.easting, refPoint2.northing, 0.0);
-
-            //gl.Color(0.6f, 0.95f, 0.95f);
-            //gl.Vertex(radiusPointAB.easting, radiusPointAB.northing, 0.0);
-
             gl.End();
             gl.PointSize(1.0f);
 

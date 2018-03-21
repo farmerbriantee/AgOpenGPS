@@ -28,12 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnCancel = new System.Windows.Forms.Button();
             this.btnBPoint = new System.Windows.Forms.Button();
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnABLineOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancel.Location = new System.Drawing.Point(153, 23);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(86, 90);
+            this.btnCancel.TabIndex = 86;
+            this.btnCancel.Text = "Delete";
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnBPoint
             // 
@@ -41,7 +56,7 @@
             this.btnBPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
             this.btnBPoint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBPoint.Location = new System.Drawing.Point(15, 138);
+            this.btnBPoint.Location = new System.Drawing.Point(15, 179);
             this.btnBPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBPoint.Name = "btnBPoint";
             this.btnBPoint.Size = new System.Drawing.Size(86, 90);
@@ -68,7 +83,7 @@
             this.btnABLineOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnABLineOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnABLineOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABLineOk.Location = new System.Drawing.Point(15, 368);
+            this.btnABLineOk.Location = new System.Drawing.Point(153, 180);
             this.btnABLineOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABLineOk.Name = "btnABLineOk";
             this.btnABLineOk.Size = new System.Drawing.Size(86, 90);
@@ -77,50 +92,24 @@
             this.btnABLineOk.UseVisualStyleBackColor = true;
             this.btnABLineOk.Click += new System.EventHandler(this.btnABLineOk_Click);
             // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(15, 253);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 90);
-            this.btnCancel.TabIndex = 86;
-            this.btnCancel.Text = "Remove";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelete.Location = new System.Drawing.Point(152, 253);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(86, 90);
-            this.btnDelete.TabIndex = 87;
-            this.btnDelete.Text = "Delete Curve";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 488);
+            this.ClientSize = new System.Drawing.Size(253, 301);
             this.ControlBox = false;
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
             this.Controls.Add(this.btnABLineOk);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormABCurve";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AB Curve";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.FormABCurve_Load);
             this.ResumeLayout(false);
 
         }
@@ -131,6 +120,5 @@
         private System.Windows.Forms.Button btnAPoint;
         private System.Windows.Forms.Button btnABLineOk;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnDelete;
     }
 }

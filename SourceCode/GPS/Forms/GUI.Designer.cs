@@ -86,9 +86,6 @@ namespace AgOpenGPS
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             skyToolStripMenu.Checked = isSkyOn;
 
-            isBigAltitudeOn = Settings.Default.setMenu_isBigAltitudeOn;
-            bigAltitudeToolStripMenuItem.Checked = isBigAltitudeOn;
-
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
             {
@@ -383,9 +380,10 @@ namespace AgOpenGPS
                 openGLControl.Width = Width;
                 btnTiltDown.Visible = false;
                 btnTiltUp.Visible = false;
-                btnABLine.Left = Width - 120;
-                btnContour.Left = Width - 120;
-                btnManualOffOn.Left = Width - 120;
+                btnABLine.Left = Width - 123;
+                btnContour.Left = Width - 123;
+                btnCurve.Left = Width - 123;
+                btnManualOffOn.Left = Width - 123;
                 btnSectionOffAutoOn.Left = Width - 130;
                 btnZoomIn.Left = 3;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
@@ -400,9 +398,10 @@ namespace AgOpenGPS
                 openGLControl.Width = Width - 530;
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
-                btnABLine.Left = Width - 625;
-                btnContour.Left = Width - 625;
-                btnManualOffOn.Left = Width - 625;
+                btnABLine.Left = Width - 630;
+                btnContour.Left = Width - 630;
+                btnCurve.Left = Width - 630;
+                btnManualOffOn.Left = Width - 630;
                 btnSectionOffAutoOn.Left = Width - 644;
                 LineUpManualBtns();
                 btnZoomIn.Left = Width - 220;
@@ -445,7 +444,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (ABLine.isABLineSet | ct.isContourBtnOn)
+                if (ABLine.isABLineSet | ct.isContourBtnOn | curve.isCurveSet)
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
@@ -462,11 +461,7 @@ namespace AgOpenGPS
         private void btnABLine_Click(object sender, EventArgs e)
         {
             //if contour is on, turn it off
-            if (ct.isContourBtnOn)
-            {
-                ct.isContourBtnOn = !ct.isContourBtnOn;
-                btnContour.Image = Properties.Resources.ContourOff;
-            }
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             using (var form = new FormABLine(this))
             {
@@ -481,21 +476,16 @@ namespace AgOpenGPS
                 {
                     ABLine.isABLineBeingSet = false;
                     txtDistanceOffABLine.Visible = false;
+
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
                     ABLine.isABLineBeingSet = false;
 
+                    DisableYouTurnButtons();
+
                     if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                    btnCurve.Enabled = true;
 
-                    btnRightYouTurn.Enabled = false;
-                    btnLeftYouTurn.Enabled = false;
-                    btnRightYouTurn.Visible = false;
-                    btnLeftYouTurn.Visible = false;
-                    btnSwapDirection.Visible = false;
-
-                    btnEnableAutoYouTurn.Enabled = false;
-                    yt.isYouTurnBtnOn = false;
-                    btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 }
 
                 //ab line is made
@@ -504,23 +494,75 @@ namespace AgOpenGPS
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOn;
                     ABLine.isABLineBeingSet = false;
+                    EnableYouTurnButtons();
+                    btnCurve.Enabled = false;
 
-                    btnRightYouTurn.Enabled = true;
-                    btnLeftYouTurn.Enabled = true;
-                    btnRightYouTurn.Visible = true;
-                    btnLeftYouTurn.Visible = true;
-                    btnSwapDirection.Visible = true;
-
-
-                    //auto YouTurn disabled
-                    yt.isYouTurnBtnOn = false;
-                    yt.ResetYouTurnAndSequenceEvents();
-                    youTurnProgressBar = 0;
-
-                    //turn off youturn...
-                    btnEnableAutoYouTurn.Enabled = true;
-                    btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 }
+            }
+        }
+
+        private void btnCurve_Click(object sender, EventArgs e)
+        {
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            //check if window already exists
+            Form fc = Application.OpenForms["FormABCurve"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            curve.isCurveBtnOn = !curve.isCurveBtnOn;
+            btnCurve.Image = curve.isCurveBtnOn ? Properties.Resources.CurveOn : Properties.Resources.CurveOff;
+
+            if (curve.isCurveBtnOn)
+            {
+                //if contour is on, turn it off
+
+                //turn off youturn...
+                btnRightYouTurn.Enabled = false;
+                btnLeftYouTurn.Enabled = false;
+                btnRightYouTurn.Visible = false;
+                btnLeftYouTurn.Visible = false;
+                btnSwapDirection.Visible = false;
+
+                btnEnableAutoYouTurn.Enabled = false;
+                yt.isYouTurnBtnOn = false;
+                btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+                yt.ResetYouTurnAndSequenceEvents();
+
+                //kill the ABLine
+                ABLine.DeleteAB();
+                ABLine.tramPassEvery = 0;
+                ABLine.passBasedOn = 0;
+
+                //save the no ABLine;
+                FileSaveABLine();
+                ABLine.isABLineBeingSet = false;
+                txtDistanceOffABLine.Visible = false;
+
+                //change image to reflect on off
+                btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isABLineBeingSet = false;
+                //btnContour.Enabled = false;
+                btnABLine.Enabled = false;
+
+                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+                Form form = new FormABCurve(this);
+                form.Show();
+            }
+            else
+            {
+                btnContour.Enabled = true;
+                btnABLine.Enabled = true;
+                curve.isOkToAddPoints = false;
+                curve.isCurveSet = false;
+                DisableYouTurnButtons();
+                //curve.ResetCurveLine();
             }
         }
 
@@ -547,7 +589,7 @@ namespace AgOpenGPS
 
             else
             {
-                if (ABLine.isABLineSet)
+                if (ABLine.isABLineSet | curve.isCurveSet)
                 {
                     btnRightYouTurn.Enabled = true;
                     btnLeftYouTurn.Enabled = true;
@@ -566,16 +608,26 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void btnABCurve_Click(object sender, EventArgs e)
+
+        public void EnableYouTurnButtons()
         {
-            //if contour is on, turn it off
-            if (ct.isContourBtnOn)
-            {
-                ct.isContourBtnOn = !ct.isContourBtnOn;
-                btnContour.Image = Properties.Resources.ContourOff;
-            }
+            btnRightYouTurn.Enabled = true;
+            btnLeftYouTurn.Enabled = true;
+            btnRightYouTurn.Visible = true;
+            btnLeftYouTurn.Visible = true;
+            btnSwapDirection.Visible = true;
+
+            //auto YouTurn disabled
+            yt.isYouTurnBtnOn = false;
+            yt.ResetYouTurnAndSequenceEvents();
 
             //turn off youturn...
+            btnEnableAutoYouTurn.Enabled = true;
+            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+        }
+
+        public void DisableYouTurnButtons()
+        {
             btnRightYouTurn.Enabled = false;
             btnLeftYouTurn.Enabled = false;
             btnRightYouTurn.Visible = false;
@@ -586,25 +638,6 @@ namespace AgOpenGPS
             yt.isYouTurnBtnOn = false;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurnAndSequenceEvents();
-
-            //kill the ABLine
-            ABLine.DeleteAB();
-            ABLine.tramPassEvery = 0;
-            ABLine.passBasedOn = 0;
-
-            //save the no ABLine;
-            FileSaveABLine();
-            ABLine.isABLineBeingSet = false;
-            txtDistanceOffABLine.Visible = false;
-
-            //change image to reflect on off
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            ABLine.isABLineBeingSet = false;
-
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            Form form = new FormABCurve(this);
-            form.Show();
         }
 
         //button for Manual On Off of the sections
@@ -652,6 +685,7 @@ namespace AgOpenGPS
             switch (autoBtnState)
             {
                 case btnStates.Off:
+
                     autoBtnState = btnStates.Auto;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOn;
 
@@ -1243,15 +1277,6 @@ namespace AgOpenGPS
                     //enable disable manual buttons
                     LineUpManualBtns();
 
-                    btnSection1Man.Enabled = false;
-                    btnSection2Man.Enabled = false;
-                    btnSection3Man.Enabled = false;
-                    btnSection4Man.Enabled = false;
-                    btnSection5Man.Enabled = false;
-                    btnSection6Man.Enabled = false;
-                    btnSection7Man.Enabled = false;
-                    btnSection8Man.Enabled = false;
-
                     //clear the section lists
                     for (int j = 0; j < MAXSECTIONS; j++)
                     {
@@ -1261,13 +1286,12 @@ namespace AgOpenGPS
                     }
 
                     //clear out the contour Lists
-                    ct.StopContourLine();
+                    ct.StopContourLine(pivotAxlePos);
                     ct.ResetContour();
                 }
                 else TimedMessageBox(1500, "Nothing Deleted", "Action has been cancelled");
             }
         }
-
 
         // Menu Items ------------------------------------------------------------------
 
@@ -1280,7 +1304,22 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
-            FileOpenVehicle();
+            if (FileOpenVehicle())
+            {
+                using (var form = new FormSettings(this, 0))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+                using (var form = new FormDisplaySettings(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+
+                TimedMessageBox(4000, "Did you make changes to the vehicle?", "Be sure to save vehicle if you did.");
+            }
+
         }
         private void saveVehicleToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1562,13 +1601,6 @@ namespace AgOpenGPS
             }
 
         }
-        private void bigAltitudeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isBigAltitudeOn = !isBigAltitudeOn;
-            bigAltitudeToolStripMenuItem.Checked = isBigAltitudeOn;
-            Settings.Default.setMenu_isBigAltitudeOn = isBigAltitudeOn;
-            Settings.Default.Save();
-        }
         private void skyToolStripMenu_Click(object sender, EventArgs e)
         {
             isSkyOn = !isSkyOn;
@@ -1803,7 +1835,7 @@ namespace AgOpenGPS
         }
         private void toolstripHeadland_Click(object sender, EventArgs e)
         {
-            if (boundz.isSet)
+            if (boundz.isSet && (ABLine.isABLineSet | curve.isCurveSet))
             {
                 //field too small
                 if (boundz.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
@@ -1851,7 +1883,7 @@ namespace AgOpenGPS
             //if a GPS is connected disable sim
             if (!sp.IsOpen)
             {
-                if (isAutoSteerBtnOn) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
+                if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
                 //if (recPath.isBtnFollowOn)sim.DoSimTick(guidanceLineSteerAngle / 100.0);
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
@@ -1873,7 +1905,7 @@ namespace AgOpenGPS
         }
         private void btnResetSim_Click(object sender, EventArgs e)
         {
-            sim.latitude = 53.0;
+            sim.latitude = 53.1;
             sim.longitude = -111.0;
         }
 
@@ -2004,7 +2036,7 @@ namespace AgOpenGPS
 
 
             //every half of a second update all status
-            if (statusUpdateCounter > 6)
+            if (statusUpdateCounter > 2)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2042,6 +2074,11 @@ namespace AgOpenGPS
                     lblRoll.Text = RollInDegrees;
                     lblYawHeading.Text = GyroInDegrees;
                     lblGPSHeading.Text = GPSHeading;
+
+                    txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
+                    txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelay] + ", " + mc.autoSteerData[mc.sdSpeed]
+                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle;
+
                     //lblEmlidPitch.Text = pn.nPitch.ToString("N2");
 
                     //lblTurnProgressBar.Value = youTurnProgressBar;
@@ -2110,6 +2147,7 @@ namespace AgOpenGPS
                 //not Metric/Standard units sensitive
                 stripHz.Text = NMEAHz + "Hz " + (int)(frameTime)+ "\r\n" + Convert.ToString(mc.relayRateData[mc.rdYouTurnControlByte], 2).PadLeft(6, '0');
                 lblHeading.Text = Heading;
+                lblHeading2.Text = lblHeading.Text;
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
 

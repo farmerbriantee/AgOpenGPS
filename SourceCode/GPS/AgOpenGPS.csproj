@@ -97,6 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CCart.cs" />
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
@@ -764,6 +765,8 @@
     <None Include="btnImages\Help.png" />
     <None Include="btnImages\Webcam.png" />
     <None Include="btnImages\skull.png" />
+    <None Include="btnImages\CurveOff.png" />
+    <None Include="btnImages\CurveOn.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

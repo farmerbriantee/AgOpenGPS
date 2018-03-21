@@ -28,10 +28,10 @@ namespace AgOpenGPS
         private readonly char EW = 'W';
         private readonly char NS = 'N';
 
-        public double latitude = 53.0;
+        public double latitude = 53.1;
         public double longitude = -111.0;
         private double latDeg, latMinu, longDeg, longMinu, latNMEA, longNMEA;
-        public double speed = 0.6, headingTrue, stepDistance = 0.5, steerAngle;
+        public double speed = 0.6, headingTrue, stepDistance = 0.2, steerAngle;
         public double steerAngleScrollBar = 0;
         private double degrees;
 
@@ -189,7 +189,7 @@ namespace AgOpenGPS
 
         {
             sbHDT.Clear();
-            sbHDT.Append("$GPHDT,");
+            sbHDT.Append("$GNHDT,");
             sbHDT.Append((degrees).ToString(CultureInfo.InvariantCulture));
             sbHDT.Append(",T*");
 
@@ -200,11 +200,11 @@ namespace AgOpenGPS
             /*        Heading from True North
 An example of the HDT string is:
 
-$GPHDT,123.456,T*00
+$GNHDT,123.456,T*00
 
 Heading from true north message fields
 Field	Meaning
-0	Message ID $GPHDT
+0	Message ID $GNHDT
 1	Heading in degrees
 2	T: Indicates heading relative to True North
 3	The checksum data, always begins with *

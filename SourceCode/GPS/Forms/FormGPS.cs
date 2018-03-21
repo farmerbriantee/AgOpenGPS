@@ -3,6 +3,7 @@
 using AgOpenGPS.Properties;
 using SharpGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -186,6 +187,11 @@ namespace AgOpenGPS
         /// </summary>
         public CRecordedPath recPath;
 
+        /// <summary>
+        /// Cart instance
+        /// </summary>
+        public CCart cart;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -257,7 +263,7 @@ namespace AgOpenGPS
             recPath = new CRecordedPath(gl, this);
 
             //An instance of dubins paths
-            //dubPath = new CDubins(this);
+            cart = new CCart(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -344,8 +350,8 @@ namespace AgOpenGPS
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
 
-            //which cam source is being used
-            isHeadingFromFix = Settings.Default.setHeading_isFromPosition;
+            //which heading source is being used
+            headingFromSource = Settings.Default.setGPS_headingFromWhichSource;
 
             //triangle resolution is how far to next triangle point trigger distance
             camera.triangleResolution = Settings.Default.setDisplay_triangleResolution;
@@ -547,10 +553,6 @@ namespace AgOpenGPS
                 IPEndPoint server = new IPEndPoint(IPAddress.Any, 9998);
                 sendSocket.Bind(server);
 
-                //IP address and port of Auto Steer server
-                IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
-                epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
-
                 // Initialise the IPEndPoint for the client - async listner client only!
                 EndPoint client = new IPEndPoint(IPAddress.Any, 0);
 
@@ -564,6 +566,114 @@ namespace AgOpenGPS
                 WriteErrorLog("UDP Server" + e);
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnMakeContourFromBoundary_Click(object sender, EventArgs e)
+        {
+            if (!boundz.isSet) return;
+
+            vec3 point = new vec3();
+
+            //count the points from the boundary
+            int ptCount = boundz.ptList.Count;
+
+            //first find out which side is inside the boundary
+            double oneSide = glm.PIBy2;
+            point.easting = boundz.ptList[3].easting - (Math.Sin(oneSide + boundz.ptList[3].heading) * 2.0);
+            point.northing = boundz.ptList[3].northing - (Math.Cos(oneSide + boundz.ptList[3].heading) * 2.0);
+
+            if (boundz.IsPointInsideBoundary(point)) oneSide *= -1.0;
+
+            //determine how wide a headland space
+            double totalHeadWidth = vehicle.toolWidth * 0.46;
+
+            ct.ptList = new List<vec3>();
+            ct.stripList.Add(ct.ptList);
+
+            for (int i = ptCount - 1; i >= 0; i--)
+            {
+                //calculate the point inside the boundary
+                point.easting = boundz.ptList[i].easting - (Math.Sin(oneSide + boundz.ptList[i].heading) * totalHeadWidth);
+                point.northing = boundz.ptList[i].northing - (Math.Cos(oneSide + boundz.ptList[i].heading) * totalHeadWidth);
+                point.heading = boundz.ptList[i].heading - Math.PI;
+                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+
+                //only add if inside actual field boundary
+                ct.ptList.Add(point);
+            }
+        }
+
+        private void btnRecPathPauseRecord_Click(object sender, EventArgs e)
+        {
+            if (recPath.isRecordOn)
+            {
+                recPath.isRecordOn = false;
+                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            }
+            else if (isJobStarted)
+            {
+                recPath.isRecordOn = true;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
+            }
+        }
+
+        private void btnCallCart_Click(object sender, EventArgs e)
+        {
+            if (cart.isCartOn && !cart.isCartCalled && !cart.isCartSentHome)
+            {
+                cart.CartCall();
+                btnCallCart.Enabled = false;
+                btnCartDone.Enabled = true;
+            }
+        }
+
+        private void btnCartDone_Click(object sender, EventArgs e)
+        {
+            if (cart.isCartOn)
+            {
+                cart.isCartCalled = false;
+                cart.isCartSentHome = true;
+                btnCallCart.Enabled = true;
+                btnCartDone.Enabled = false;
+            }
+        }
+
+        private void btnCartOnOff_Click(object sender, EventArgs e)
+        {
+            if (cart.isCartOn)
+            {
+                btnCallCart.Enabled = false;
+                btnCartDone.Enabled = false;
+                cart.isCartOn = false;
+                btnCartOnOff.Image = Resources.FlagRed;
+            }
+            else
+            {
+                btnCallCart.Enabled = true;
+                btnCartDone.Enabled = false;
+                cart.isCartOn = true;
+                btnCartOnOff.Image = Resources.FlagGrn;
+            }
+        }
+
+        private void btnOffsetBackward_Click(object sender, EventArgs e)
+        {
+            cart.offsetForward -= 0.5;
+        }
+
+        private void btnOffsetForward_Click(object sender, EventArgs e)
+        {
+            cart.offsetForward += 0.5;
+        }
+
+        private void btnOffsetInward_Click(object sender, EventArgs e)
+        {
+            cart.offsetOutward -= 0.5;
+        }
+
+        private void btnOffsetOutward_Click(object sender, EventArgs e)
+        {
+            cart.offsetOutward += 0.5;
         }
 
         //dialog for requesting user to save or cancel
@@ -669,6 +779,8 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
+            //isGPSPositionInitialized = false;
+            //offset = 0;
             AutoSteerSettingsOutToPort();
             isJobStarted = true;
             startCounter = 0;
@@ -682,14 +794,20 @@ namespace AgOpenGPS
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
             btnABLine.Enabled = true;
-            btnABCurve.Enabled = true;
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
+            btnCurve.Enabled = true;
             ABLine.abHeading = 0.00;
 
             btnRightYouTurn.Enabled = false;
             btnLeftYouTurn.Enabled = false;
             btnFlag.Enabled = true;
+
+            if (recPath.isRecordOn)
+            {
+                recPath.isRecordOn = false;
+                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            }
 
             LineUpManualBtns();
 
@@ -756,19 +874,26 @@ namespace AgOpenGPS
 
             //reset the buttons
             btnABLine.Enabled = false;
-            btnABCurve.Enabled = true;
             btnContour.Enabled = false;
             btnAutoSteer.Enabled = false;
             isAutoSteerBtnOn = false;
 
+            btnCurve.Enabled = false;
+            curve.isCurveSet = false;
+
             ct.isContourBtnOn = false;
             ct.isContourOn = false;
 
+            //curve line
+            btnCurve.Image = Properties.Resources.CurveOff;
+            curve.ResetCurveLine();
+            curve.isCurveBtnOn = false;
+            btnCurve.Enabled = false;
+
             //change images to reflect on off
             btnABLine.Image = Properties.Resources.ABLineOff;
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
+
+            DisableYouTurnButtons();
 
             btnContour.Image = Properties.Resources.ContourOff;
             btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
@@ -813,9 +938,12 @@ namespace AgOpenGPS
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
 
             ////turn off path record
-            //recPath.isBtnOn = false;
-            //btnRecPathOnOff.Text = "Off";
-            //recPath.recList.Clear();
+            recPath.recList.Clear();
+            if (recPath.isRecordOn)
+            {
+                recPath.isRecordOn = false;
+                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+            }
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
@@ -1074,7 +1202,7 @@ namespace AgOpenGPS
         private void FileSaveEverythingBeforeClosingField()
         {
             //turn off contour line if on
-            if (ct.isContourOn) ct.StopContourLine();
+            if (ct.isContourOn) ct.StopContourLine(pivotAxlePos);
 
             //turn off all the sections
             for (int j = 0; j < vehicle.numOfSections + 1; j++)

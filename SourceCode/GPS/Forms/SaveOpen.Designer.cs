@@ -81,7 +81,7 @@ namespace AgOpenGPS
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
-                    writer.WriteLine("IsAtanCam," + Properties.Settings.Default.setHeading_isFromPosition.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("HeadingFromSource," + Properties.Settings.Default.setGPS_headingFromWhichSource);
                     writer.WriteLine("TriangleResolution," + Properties.Settings.Default.setDisplay_triangleResolution.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsMetric," + Properties.Settings.Default.setMenu_isMetric.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsGridOn," + Properties.Settings.Default.setMenu_isGridOn.ToString(CultureInfo.InvariantCulture));
@@ -89,7 +89,7 @@ namespace AgOpenGPS
                     writer.WriteLine("IsAreaRight," + Properties.Settings.Default.setMenu_isAreaRight.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsPurePursuitLineOn," + Properties.Settings.Default.setMenu_isPureOn.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsGuideLinesOn," + Properties.Settings.Default.setMenu_isSideGuideLines.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("AntennaOffset," + Properties.Vehicle.Default.setVehicle_antennaOffset.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -162,7 +162,7 @@ namespace AgOpenGPS
         }
 
         //function to open a previously saved field
-        public void FileOpenVehicle()
+        public bool FileOpenVehicle()
         {
             OpenFileDialog ofd = new OpenFileDialog();
 
@@ -201,18 +201,18 @@ namespace AgOpenGPS
                         if (words[0] != "Version")
 
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.5 or higher");
                             form.Show();
-                            return;
+                            return false;
                         }
 
                         double test = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        if (test < 2.16)
+                        if (test < 2.5)
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.16 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.5 or higher");
                             form.Show();
-                            return;
+                            return false;
                         }
 
                         line = reader.ReadLine(); words = line.Split(',');
@@ -277,7 +277,7 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setHeading_isFromPosition = bool.Parse(words[1]);
+                        Properties.Settings.Default.setGPS_headingFromWhichSource = (words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setDisplay_triangleResolution = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -292,7 +292,9 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setMenu_isPureOn = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setMenu_isSideGuideLines = bool.Parse(words[1]);
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1]);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -413,6 +415,7 @@ namespace AgOpenGPS
                         vehicle.tankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
                         vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
                         vehicle.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
+                        vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
 
                         vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
                         vehicle.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
@@ -463,12 +466,12 @@ namespace AgOpenGPS
 
                         camera.camPitch = Properties.Settings.Default.setCam_pitch;
 
-                        isHeadingFromFix = Properties.Settings.Default.setHeading_isFromPosition;
+                        headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
                         camera.triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
                         isMetric = Properties.Settings.Default.setMenu_isMetric;
                         metricToolStrip.Checked = isMetric;
-                        imperialToolStrip.Checked = isMetric;
+                        imperialToolStrip.Checked = !isMetric;
 
                         isGridOn = Properties.Settings.Default.setMenu_isGridOn;
                         gridToolStripMenuItem.Checked = (isGridOn);
@@ -529,7 +532,7 @@ namespace AgOpenGPS
                         ahrs.isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
                         ahrs.isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
 
-
+                        return true;
                         //Application.Exit();
                     }
                     catch (Exception e) //FormatException e || IndexOutOfRangeException e2)
@@ -541,9 +544,12 @@ namespace AgOpenGPS
                         Properties.Settings.Default.Save();
                         MessageBox.Show("Program will Reset to Recover. Please Restart", "Vehicle file is Corrupt", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         Application.Exit();
+                        return false;
                     }
                 }
             }      //cancelled out of open file
+
+            return false;
         }//end of open file
 
         //function to open a previously saved field, resume, open exisiting, open named field
@@ -747,9 +753,8 @@ namespace AgOpenGPS
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
                                 vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                vecFix.northing = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                vecFix.heading = double.Parse(words[1], CultureInfo.InvariantCulture);
-
+                                vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
                                 ct.ptList.Add(vecFix);
                             }
                         }
@@ -885,33 +890,14 @@ namespace AgOpenGPS
                             ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 10000.0;
 
                             ABLine.isABLineSet = true;
-
-                            btnRightYouTurn.Enabled = true;
-                            btnLeftYouTurn.Enabled = true;
-                            btnRightYouTurn.Visible = true;
-                            btnLeftYouTurn.Visible = true;
-                            btnSwapDirection.Visible = true;
-
-                            //auto YouTurn shutdown
-                            yt.isYouTurnBtnOn = false;
-                            yt.ResetYouTurnAndSequenceEvents();
-                            youTurnProgressBar = 0;
-
-                            //turn off youturn...
-                            btnEnableAutoYouTurn.Enabled = true;
-                            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+                            EnableYouTurnButtons();
+                            btnCurve.Enabled = false;
                         }
 
                         //if ABLine isn't set, turn off the YouTurn
                         else
                         {
-                            btnRightYouTurn.Enabled = false;
-                            btnLeftYouTurn.Enabled = false;
-                            btnRightYouTurn.Visible = false;
-                            btnLeftYouTurn.Visible = false;
-                            btnSwapDirection.Visible = false;
-                            btnEnableAutoYouTurn.Enabled = false;
-                            yt.isYouTurnBtnOn = false;
+                            DisableYouTurnButtons();
                         }
                     }
 
@@ -957,9 +943,11 @@ namespace AgOpenGPS
                             {
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
-                                vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                vec3 vecPt = new vec3(
+                                double.Parse(words[0], CultureInfo.InvariantCulture),
                                 double.Parse(words[1], CultureInfo.InvariantCulture),
                                 double.Parse(words[2], CultureInfo.InvariantCulture));
+
                                 boundz.ptList.Add(vecPt);
                             }
 
@@ -1013,7 +1001,7 @@ namespace AgOpenGPS
                                 vec3 vecPt = new vec3(
                                     double.Parse(words[0], CultureInfo.InvariantCulture),
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture));
+                                    double.Parse(words[2], CultureInfo.InvariantCulture));
                                 hl.ptList.Add(vecPt);
                             }
 
@@ -1036,50 +1024,104 @@ namespace AgOpenGPS
             }
 
 
-            ////Either exit or update running save
-            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
-            //if (!File.Exists(fileAndDirectory))
-            //{
-            //    var form = new FormTimedMessage(4000, "Missing Recorded Path File", "But Field is Loaded");
-            //    form.Show();
-            //}
+            //Either exit or update running save
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+                        recPath.recList.Clear();
 
-            //else
-            //{
-            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
-            //    {
-            //        try
-            //        {
-            //            //read header
-            //            line = reader.ReadLine();
-            //            line = reader.ReadLine();
-            //            int numPoints = int.Parse(line);
-            //            recPath.recList.Clear();
+                        while (!reader.EndOfStream)
+                        {
+                            for (int v = 0; v < numPoints; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                CRecPathPt point = new CRecPathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    bool.Parse(words[4]));
 
-            //            while (!reader.EndOfStream)
-            //            {
-            //                for (int v = 0; v < numPoints; v++)
-            //                {
-            //                    line = reader.ReadLine();
-            //                    string[] words = line.Split(',');
-            //                    CRecPathPt point = new CRecPathPt(
-            //                        double.Parse(words[0], CultureInfo.InvariantCulture),
-            //                        double.Parse(words[1], CultureInfo.InvariantCulture),
-            //                        double.Parse(words[2], CultureInfo.InvariantCulture),
-            //                        double.Parse(words[3], CultureInfo.InvariantCulture));
-            //                    recPath.recList.Add(point);
-            //                }
-            //            }
-            //        }
+                                //add the point
+                                recPath.recList.Add(point);
+                            }
+                        }
+                    }
 
-            //        catch (Exception e)
-            //        {
-            //            var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
-            //            form.Show();
-            //            WriteErrorLog("Load Recorded Path" + e.ToString());
-            //        }
-            //    }
-            //}
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                        WriteErrorLog("Load Recorded Path" + e.ToString());
+                    }
+                }
+            }
+
+            // CurveLine  -------------------------------------------------------------------------------------------------
+
+            //Either exit or update running save
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\CurveLine.txt";
+            if (!File.Exists(fileAndDirectory))
+            {
+                var form = new FormTimedMessage(4000, "Missing Curve File", "But Field is Loaded");
+                form.Show();
+            }
+
+            else
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+
+                        // get the average heading
+                        line = reader.ReadLine();
+                        curve.aveLineHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+
+                        if (numPoints > 0)
+                        {
+                            curve.refList?.Clear();
+
+                            //load the line
+                            for (int i = 0; i < numPoints; i++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                vec3 vecPt = new vec3(
+                                double.Parse(words[0], CultureInfo.InvariantCulture),
+                                double.Parse(words[1], CultureInfo.InvariantCulture),
+                                double.Parse(words[2], CultureInfo.InvariantCulture));
+
+                                curve.refList.Add(vecPt);
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(4000, "Curve Line File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                        WriteErrorLog("Load Boundary Line" + e.ToString());
+
+                    }
+                }
+            }
+
         }//end of open file
 
         //creates the field file when starting new field
@@ -1140,8 +1182,8 @@ namespace AgOpenGPS
                         writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine((Math.Round(triList[i].easting,4)).ToString(CultureInfo.InvariantCulture) +
-                                "," + (Math.Round(triList[i].northing,4)).ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine((Math.Round(triList[i].easting,3)).ToString(CultureInfo.InvariantCulture) +
+                                "," + (Math.Round(triList[i].northing,3)).ToString(CultureInfo.InvariantCulture));
                     }
                 }
 
@@ -1173,7 +1215,6 @@ namespace AgOpenGPS
                 writer.WriteLine("$Sections");
             }
         }
-
 
         //Create contour file
         public void FileCreateContour()
@@ -1219,9 +1260,9 @@ namespace AgOpenGPS
 
                         for (int i = 0; i < count2; i++)
                         {
-                            writer.WriteLine(Math.Round((triList[i].easting), 4).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].northing, 4).ToString(CultureInfo.InvariantCulture)+ "," +
-                                Math.Round(triList[i].heading, 4).ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(Math.Round((triList[i].easting), 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                Math.Round(triList[i].northing, 3).ToString(CultureInfo.InvariantCulture)+ "," +
+                                Math.Round(triList[i].heading, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
                 }
@@ -1297,10 +1338,10 @@ namespace AgOpenGPS
             //if (!File.Exists(fileAndDirectory)) FileCreateRecPath();
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt"),true))
+            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt")))
             {
-                //writer.WriteLine("$RecPath");
-                //writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("$RecPath");
+                writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
                 if (recPath.recList.Count > 0)
                 {
                     for (int j = 0; j < recPath.recList.Count; j++)
@@ -1308,7 +1349,8 @@ namespace AgOpenGPS
                             Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
                             Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
                             Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture));
+                            Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture) + "," +
+                            (recPath.recList[j].autoBtnState).ToString());
 
                     //Clear list
                     recPath.recList.Clear();
@@ -1334,9 +1376,9 @@ namespace AgOpenGPS
                 if (hl.ptList.Count > 0)
                 {
                     for (int j = 0; j < hl.ptList.Count; j++)
-                        writer.WriteLine(hl.ptList[j].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                                         hl.ptList[j].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                                         hl.ptList[j].heading.ToString(CultureInfo.InvariantCulture));
+                        writer.WriteLine(Math.Round(hl.ptList[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
+                                         Math.Round(hl.ptList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                         Math.Round(hl.ptList[j].heading, 3).ToString(CultureInfo.InvariantCulture));
                 }
             }
         }
@@ -1416,6 +1458,51 @@ namespace AgOpenGPS
                     writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message + "\n Cannot write to file.");
+                    WriteErrorLog("Saving AB Line" + e.ToString());
+
+                    return;
+                }
+
+            }
+        }
+
+        //save all the flag markers
+        public void FileSaveCurveLine()
+        {
+            //Saturday, February 11, 2017  -->  7:26:52 AM
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //use Streamwriter to create and overwrite existing ABLine file
+            using (StreamWriter writer = new StreamWriter(dirField + "CurveLine.txt"))
+            {
+                try
+                {
+                    //write out the ABLine
+                    writer.WriteLine("$CurveLine");
+
+                    //write out the aveheading
+                    writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
+
+                    //write out the points of ref line
+                    writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
+                    if (curve.refList.Count > 0)
+                    {
+                        for (int j = 0; j < curve.refList.Count; j++)
+                            writer.WriteLine(curve.refList[j].easting.ToString(CultureInfo.InvariantCulture) + "," +
+                                                curve.refList[j].northing.ToString(CultureInfo.InvariantCulture) + "," +
+                                                    curve.refList[j].heading.ToString(CultureInfo.InvariantCulture));
+                    }
                 }
 
                 catch (Exception e)

@@ -74,9 +74,8 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label5.Location = new System.Drawing.Point(14, 102);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 18);
+            this.label5.Size = new System.Drawing.Size(0, 18);
             this.label5.TabIndex = 17;
-            this.label5.Text = "yesgogit@gmail.com";
             // 
             // label4
             // 
@@ -84,9 +83,9 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label4.Location = new System.Drawing.Point(14, 76);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 18);
+            this.label4.Size = new System.Drawing.Size(203, 18);
             this.label4.TabIndex = 18;
-            this.label4.Text = "Brian Tischler";
+            this.label4.Text = "Brian Tischler, Alberta Canada";
             // 
             // label3
             // 
@@ -104,9 +103,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label2.Location = new System.Drawing.Point(167, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 18);
+            this.label2.Size = new System.Drawing.Size(117, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v2.4 Mar 2018";
+            this.label2.Text = "v2.5.1 Mar 2018";
             // 
             // label1
             // 

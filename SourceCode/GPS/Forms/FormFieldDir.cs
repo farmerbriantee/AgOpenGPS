@@ -133,6 +133,7 @@ namespace AgOpenGPS
                         mf.FileCreateContour();
                         mf.FileSaveFlags();
                         mf.FileSaveABLine();
+                        mf.FileSaveCurveLine();
                     }
                 }
                 catch (Exception ex)
@@ -229,6 +230,11 @@ namespace AgOpenGPS
 
                     fileToCopy = templateDirectoryName + "\\RecPath.txt";
                     destinationDirectory = directoryName + "\\RecPath.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\CurveLine.txt";
+                    destinationDirectory = directoryName + "\\CurveLine.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 

@@ -122,10 +122,112 @@
     <value>Center</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label9.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 9.75pt</value>
+  </data>
+  <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 339</value>
+  </data>
+  <data name="label9.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 16</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>*Left is negative</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 245</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 23</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Antenna Offset</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="nudAntennaOffset.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 36pt, style=Bold</value>
+  </data>
+  <data name="nudAntennaOffset.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 271</value>
+  </data>
+  <data name="nudAntennaOffset.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="nudAntennaOffset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 65</value>
+  </data>
+  <data name="nudAntennaOffset.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="nudAntennaOffset.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="nudAntennaOffset.UpDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="&gt;&gt;nudAntennaOffset.Name" xml:space="preserve">
+    <value>nudAntennaOffset</value>
+  </data>
+  <data name="&gt;&gt;nudAntennaOffset.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nudAntennaOffset.Parent" xml:space="preserve">
+    <value>tabVehicle</value>
+  </data>
+  <data name="&gt;&gt;nudAntennaOffset.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
@@ -133,7 +235,7 @@
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 189</value>
+    <value>10, 137</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 23</value>
@@ -154,13 +256,16 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="nudMinTurnRadius.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="nudMinTurnRadius.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 214</value>
+    <value>12, 162</value>
+  </data>
+  <data name="nudMinTurnRadius.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="nudMinTurnRadius.Size" type="System.Drawing.Size, System.Drawing">
     <value>163, 65</value>
@@ -184,7 +289,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudMinTurnRadius.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="label29.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -218,7 +323,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="chkIsSteerAxleAhead.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -245,7 +350,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;chkIsSteerAxleAhead.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -275,7 +380,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="label36.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -305,7 +410,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label36.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="label27.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -335,7 +440,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label27.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="chkIsTrailingRigid.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -362,7 +467,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;chkIsTrailingRigid.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="chkIsAft.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -389,7 +494,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;chkIsAft.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>11</value>
   </data>
   <data name="label28.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -419,13 +524,16 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="nudHitchLength.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="nudHitchLength.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 379</value>
+  </data>
+  <data name="nudHitchLength.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="nudHitchLength.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 65</value>
@@ -449,7 +557,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudHitchLength.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -480,7 +588,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -510,7 +618,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>15</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -540,7 +648,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>16</value>
   </data>
   <data name="chkIsPivotBehindAntenna.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -567,7 +675,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;chkIsPivotBehindAntenna.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>17</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -597,7 +705,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>18</value>
   </data>
   <data name="label25.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -627,7 +735,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label25.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>19</value>
   </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -657,13 +765,16 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>20</value>
   </data>
   <data name="nudAntennaPivot.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="nudAntennaPivot.Location" type="System.Drawing.Point, System.Drawing">
     <value>702, 55</value>
+  </data>
+  <data name="nudAntennaPivot.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="nudAntennaPivot.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 65</value>
@@ -687,13 +798,16 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudAntennaPivot.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>21</value>
   </data>
   <data name="nudWheelbase.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="nudWheelbase.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 163</value>
+  </data>
+  <data name="nudWheelbase.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="nudWheelbase.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 65</value>
@@ -717,13 +831,16 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudWheelbase.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>22</value>
   </data>
   <data name="nudAntennaHeight.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
   </data>
   <data name="nudAntennaHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>201, 271</value>
+  </data>
+  <data name="nudAntennaHeight.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="nudAntennaHeight.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 65</value>
@@ -747,7 +864,7 @@
     <value>tabVehicle</value>
   </data>
   <data name="&gt;&gt;nudAntennaHeight.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>23</value>
   </data>
   <data name="tabVehicle.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 44</value>

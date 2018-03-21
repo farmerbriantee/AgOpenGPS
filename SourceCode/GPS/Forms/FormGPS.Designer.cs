@@ -65,7 +65,6 @@
             this.toolStripUnitsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.metricToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.imperialToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.bigAltitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sideGuideLines = new System.Windows.Forms.ToolStripMenuItem();
             this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -131,8 +130,12 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.lblEmlidPitch = new System.Windows.Forms.Label();
+            this.lblHeading2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.txtBoxSendAutoSteer = new System.Windows.Forms.TextBox();
+            this.txtBoxRecvAutoSteer = new System.Windows.Forms.TextBox();
             this.lblSats = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
@@ -155,9 +158,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.zoomPage2 = new System.Windows.Forms.TabPage();
+            this.btnMakeContourFromBoundary = new System.Windows.Forms.Button();
             this.btnDeleteAllData = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblZooom = new System.Windows.Forms.Label();
+            this.btnPerimeter = new System.Windows.Forms.Button();
             this.ratePage3 = new System.Windows.Forms.TabPage();
             this.btnRateConfig = new System.Windows.Forms.Button();
             this.btnRateDn = new ProXoft.WinForms.RepeatButton();
@@ -171,9 +176,15 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
-            this.btnPerimeter = new System.Windows.Forms.Button();
-            this.btnABCurve = new System.Windows.Forms.Button();
             this.autoPage4 = new System.Windows.Forms.TabPage();
+            this.btnOffsetOutward = new System.Windows.Forms.Button();
+            this.btnOffsetInward = new System.Windows.Forms.Button();
+            this.btnOffsetBackward = new System.Windows.Forms.Button();
+            this.btnOffsetForward = new System.Windows.Forms.Button();
+            this.btnCartOnOff = new System.Windows.Forms.Button();
+            this.btnCartDone = new System.Windows.Forms.Button();
+            this.btnCallCart = new System.Windows.Forms.Button();
+            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -186,6 +197,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSimControls = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
             this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
@@ -222,6 +234,7 @@
             this.zoomPage2.SuspendLayout();
             this.ratePage3.SuspendLayout();
             this.configPage1.SuspendLayout();
+            this.autoPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).BeginInit();
             this.panelSimControls.SuspendLayout();
@@ -433,7 +446,6 @@
             this.toolStripSeparator2,
             this.colorsToolStripMenuItem,
             this.toolStripUnitsMenu,
-            this.bigAltitudeToolStripMenuItem,
             this.sideGuideLines,
             this.gridToolStripMenuItem,
             this.lightbarToolStripMenuItem,
@@ -505,15 +517,6 @@
             this.imperialToolStrip.Name = "imperialToolStrip";
             resources.ApplyResources(this.imperialToolStrip, "imperialToolStrip");
             this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
-            // 
-            // bigAltitudeToolStripMenuItem
-            // 
-            this.bigAltitudeToolStripMenuItem.Checked = true;
-            this.bigAltitudeToolStripMenuItem.CheckOnClick = true;
-            this.bigAltitudeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.bigAltitudeToolStripMenuItem.Name = "bigAltitudeToolStripMenuItem";
-            resources.ApplyResources(this.bigAltitudeToolStripMenuItem, "bigAltitudeToolStripMenuItem");
-            this.bigAltitudeToolStripMenuItem.Click += new System.EventHandler(this.bigAltitudeToolStripMenuItem_Click);
             // 
             // sideGuideLines
             // 
@@ -1012,8 +1015,12 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.lblEmlidPitch);
+            this.DataPage.Controls.Add(this.lblHeading2);
+            this.DataPage.Controls.Add(this.label22);
+            this.DataPage.Controls.Add(this.label13);
             this.DataPage.Controls.Add(this.label20);
+            this.DataPage.Controls.Add(this.txtBoxSendAutoSteer);
+            this.DataPage.Controls.Add(this.txtBoxRecvAutoSteer);
             this.DataPage.Controls.Add(this.lblSats);
             this.DataPage.Controls.Add(this.label17);
             this.DataPage.Controls.Add(this.lblFixQuality);
@@ -1043,15 +1050,39 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
-            // lblEmlidPitch
+            // lblHeading2
             // 
-            resources.ApplyResources(this.lblEmlidPitch, "lblEmlidPitch");
-            this.lblEmlidPitch.Name = "lblEmlidPitch";
+            resources.ApplyResources(this.lblHeading2, "lblHeading2");
+            this.lblHeading2.Name = "lblHeading2";
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
             // 
             // label20
             // 
             resources.ApplyResources(this.label20, "label20");
             this.label20.Name = "label20";
+            // 
+            // txtBoxSendAutoSteer
+            // 
+            this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
+            this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
+            this.txtBoxSendAutoSteer.ReadOnly = true;
+            // 
+            // txtBoxRecvAutoSteer
+            // 
+            this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
+            this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
+            this.txtBoxRecvAutoSteer.ReadOnly = true;
             // 
             // lblSats
             // 
@@ -1161,16 +1192,27 @@
             // zoomPage2
             // 
             this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.zoomPage2.Controls.Add(this.btnMakeContourFromBoundary);
             this.zoomPage2.Controls.Add(this.btnDeleteAllData);
             this.zoomPage2.Controls.Add(this.openGLControlZoom);
             this.zoomPage2.Controls.Add(this.label6);
             this.zoomPage2.Controls.Add(this.lblZooom);
             this.zoomPage2.Controls.Add(this.label5);
+            this.zoomPage2.Controls.Add(this.btnPerimeter);
             this.zoomPage2.Controls.Add(this.label4);
             this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
             this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
             resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.Name = "zoomPage2";
+            // 
+            // btnMakeContourFromBoundary
+            // 
+            this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
+            this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
+            this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
+            this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
             // 
             // btnDeleteAllData
             // 
@@ -1194,6 +1236,15 @@
             this.lblZooom.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.lblZooom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblZooom.Name = "lblZooom";
+            // 
+            // btnPerimeter
+            // 
+            this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
+            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
+            this.btnPerimeter.Name = "btnPerimeter";
+            this.btnPerimeter.UseVisualStyleBackColor = false;
+            this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
             // ratePage3
             // 
@@ -1266,8 +1317,6 @@
             this.configPage1.Controls.Add(this.btnHelp);
             this.configPage1.Controls.Add(this.btnFileExplorer);
             this.configPage1.Controls.Add(this.btnGPSData);
-            this.configPage1.Controls.Add(this.btnPerimeter);
-            this.configPage1.Controls.Add(this.btnABCurve);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
             // 
@@ -1316,29 +1365,91 @@
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
-            // btnPerimeter
-            // 
-            this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
-            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
-            this.btnPerimeter.Name = "btnPerimeter";
-            this.btnPerimeter.UseVisualStyleBackColor = false;
-            this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
-            // 
-            // btnABCurve
-            // 
-            resources.ApplyResources(this.btnABCurve, "btnABCurve");
-            this.btnABCurve.BackColor = System.Drawing.Color.Transparent;
-            this.btnABCurve.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnABCurve.Name = "btnABCurve";
-            this.btnABCurve.UseVisualStyleBackColor = false;
-            this.btnABCurve.Click += new System.EventHandler(this.btnABCurve_Click);
-            // 
             // autoPage4
             // 
+            this.autoPage4.Controls.Add(this.btnOffsetOutward);
+            this.autoPage4.Controls.Add(this.btnOffsetInward);
+            this.autoPage4.Controls.Add(this.btnOffsetBackward);
+            this.autoPage4.Controls.Add(this.btnOffsetForward);
+            this.autoPage4.Controls.Add(this.btnCartOnOff);
+            this.autoPage4.Controls.Add(this.btnCartDone);
+            this.autoPage4.Controls.Add(this.btnCallCart);
+            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             this.autoPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnOffsetOutward
+            // 
+            this.btnOffsetOutward.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOffsetOutward.BackgroundImage = global::AgOpenGPS.Properties.Resources.ArrowLeft;
+            resources.ApplyResources(this.btnOffsetOutward, "btnOffsetOutward");
+            this.btnOffsetOutward.Name = "btnOffsetOutward";
+            this.btnOffsetOutward.UseVisualStyleBackColor = false;
+            this.btnOffsetOutward.Click += new System.EventHandler(this.btnOffsetOutward_Click);
+            // 
+            // btnOffsetInward
+            // 
+            this.btnOffsetInward.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOffsetInward.BackgroundImage = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            resources.ApplyResources(this.btnOffsetInward, "btnOffsetInward");
+            this.btnOffsetInward.Name = "btnOffsetInward";
+            this.btnOffsetInward.UseVisualStyleBackColor = false;
+            this.btnOffsetInward.Click += new System.EventHandler(this.btnOffsetInward_Click);
+            // 
+            // btnOffsetBackward
+            // 
+            this.btnOffsetBackward.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOffsetBackward.BackgroundImage = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            resources.ApplyResources(this.btnOffsetBackward, "btnOffsetBackward");
+            this.btnOffsetBackward.Name = "btnOffsetBackward";
+            this.btnOffsetBackward.UseVisualStyleBackColor = false;
+            this.btnOffsetBackward.Click += new System.EventHandler(this.btnOffsetBackward_Click);
+            // 
+            // btnOffsetForward
+            // 
+            this.btnOffsetForward.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnOffsetForward.BackgroundImage = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            resources.ApplyResources(this.btnOffsetForward, "btnOffsetForward");
+            this.btnOffsetForward.Name = "btnOffsetForward";
+            this.btnOffsetForward.UseVisualStyleBackColor = false;
+            this.btnOffsetForward.Click += new System.EventHandler(this.btnOffsetForward_Click);
+            // 
+            // btnCartOnOff
+            // 
+            this.btnCartOnOff.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnCartOnOff, "btnCartOnOff");
+            this.btnCartOnOff.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.btnCartOnOff.Name = "btnCartOnOff";
+            this.btnCartOnOff.UseVisualStyleBackColor = false;
+            this.btnCartOnOff.Click += new System.EventHandler(this.btnCartOnOff_Click);
+            // 
+            // btnCartDone
+            // 
+            this.btnCartDone.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnCartDone, "btnCartDone");
+            this.btnCartDone.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnCartDone.Name = "btnCartDone";
+            this.btnCartDone.UseVisualStyleBackColor = false;
+            this.btnCartDone.Click += new System.EventHandler(this.btnCartDone_Click);
+            // 
+            // btnCallCart
+            // 
+            this.btnCallCart.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnCallCart, "btnCallCart");
+            this.btnCallCart.Image = global::AgOpenGPS.Properties.Resources.boundaryPlay;
+            this.btnCallCart.Name = "btnCallCart";
+            this.btnCallCart.UseVisualStyleBackColor = false;
+            this.btnCallCart.Click += new System.EventHandler(this.btnCallCart_Click);
+            // 
+            // btnRecPathPauseRecord
+            // 
+            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
+            this.btnRecPathPauseRecord.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
+            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
+            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
             // 
             // btnResetSim
             // 
@@ -1426,6 +1537,15 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            // 
+            // btnCurve
+            // 
+            resources.ApplyResources(this.btnCurve, "btnCurve");
+            this.btnCurve.BackColor = System.Drawing.Color.Lavender;
+            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
+            this.btnCurve.Name = "btnCurve";
+            this.btnCurve.UseVisualStyleBackColor = false;
+            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
             // 
             // btnLeftYouTurn
             // 
@@ -1639,6 +1759,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
             this.Controls.Add(this.btnTiltDown);
             this.Controls.Add(this.btnTiltUp);
@@ -1697,6 +1818,7 @@
             this.ratePage3.ResumeLayout(false);
             this.ratePage3.PerformLayout();
             this.configPage1.ResumeLayout(false);
+            this.autoPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).EndInit();
             this.panelSimControls.ResumeLayout(false);
@@ -1861,7 +1983,6 @@
         public System.Windows.Forms.Button btnSectionOffAutoOn;
         private System.Windows.Forms.ToolStripStatusLabel stripEqWidth;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ToolStripMenuItem bigAltitudeToolStripMenuItem;
         private System.Windows.Forms.Button btnRateConfig;
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
@@ -1876,9 +1997,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageSpanish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageFrench;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageItalian;
-        private System.Windows.Forms.Button btnABCurve;
-        private System.Windows.Forms.Label lblEmlidPitch;
-        private System.Windows.Forms.Label label20;
         public System.Windows.Forms.TextBox txtDistanceOffABLine;
         private System.Windows.Forms.TabPage autoPage4;
         private System.Windows.Forms.Button btnFlagsGoogleEarth;
@@ -1887,6 +2005,22 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnDeleteAllData;
         private System.Windows.Forms.ToolStripMenuItem toolstripDisplayConfig;
+        private System.Windows.Forms.Button btnMakeContourFromBoundary;
+        private System.Windows.Forms.Button btnRecPathPauseRecord;
+        private System.Windows.Forms.Button btnCartDone;
+        private System.Windows.Forms.Button btnCallCart;
+        private System.Windows.Forms.Button btnCartOnOff;
+        private System.Windows.Forms.Button btnOffsetForward;
+        private System.Windows.Forms.Button btnOffsetOutward;
+        private System.Windows.Forms.Button btnOffsetInward;
+        private System.Windows.Forms.Button btnOffsetBackward;
+        public System.Windows.Forms.Button btnCurve;
+        private System.Windows.Forms.TextBox txtBoxSendAutoSteer;
+        private System.Windows.Forms.TextBox txtBoxRecvAutoSteer;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblHeading2;
+        private System.Windows.Forms.Label label22;
     }
 }
 

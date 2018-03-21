@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -9,7 +10,8 @@ namespace AgOpenGPS
 
         private decimal triResolution, minFixStepDistance, boundaryDistance;
         private int lightbarCmPerPixie;
-        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI, isHeadingFromFix;
+        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
+        private string headingFromWhichSource;
 
         public FormDisplaySettings(Form callingForm)
         {
@@ -22,13 +24,18 @@ namespace AgOpenGPS
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
+            if (nudTriangleResolution.CheckValue(ref triResolution)) nudTriangleResolution.BackColor = System.Drawing.Color.OrangeRed;
             nudTriangleResolution.Value = triResolution;
 
             boundaryDistance = (decimal)Properties.Settings.Default.setF_boundaryTriggerDistance;
+            if (nudBoundaryDistance.CheckValue(ref boundaryDistance)) nudBoundaryDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudBoundaryDistance.Value = boundaryDistance;
 
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
+            if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
+
+            nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
 
@@ -47,20 +54,20 @@ namespace AgOpenGPS
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZero / 16).ToString("N2");
 
-            isHeadingFromFix = Properties.Settings.Default.setHeading_isFromPosition;
+            headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
+            if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
+            else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
+            else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
 
-            cboxIsHeadingFromGPSTrue.CheckedChanged -= cboxIsHeadingFromGPSTrue_CheckedChanged;
-            cboxIsHeadingFromGPSTrue.Checked = !isHeadingFromFix;
-            cboxIsHeadingFromGPSTrue.CheckedChanged += cboxIsHeadingFromGPSTrue_CheckedChanged;
-
-            nudLightbarCmPerPixel.Value = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
         }
 
         private void bntOK_Click(object sender, EventArgs e)
         {
             ////Display ---load the delay slides --------------------------------------------------------------------
-            mf.isHeadingFromFix = isHeadingFromFix;
-            Properties.Settings.Default.setHeading_isFromPosition = isHeadingFromFix;
+            if (headingFromWhichSource == "Fix") Properties.Settings.Default.setGPS_headingFromWhichSource = "Fix";
+            else if (headingFromWhichSource == "GPS") Properties.Settings.Default.setGPS_headingFromWhichSource = "GPS";
+            else if (headingFromWhichSource == "HDT") Properties.Settings.Default.setGPS_headingFromWhichSource = "HDT";
+            mf.headingFromSource = headingFromWhichSource;
 
             mf.boundaryTriggerDistance = (double)boundaryDistance;
             Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
@@ -124,6 +131,13 @@ namespace AgOpenGPS
 
         #endregion DisplayCalcs
 
+        private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkedButton = headingGroupBox.Controls.OfType<RadioButton>()
+                          .FirstOrDefault(r => r.Checked);
+            headingFromWhichSource = checkedButton.Text;
+        }
+
         private void cboxRollDogs_CheckedChanged(object sender, EventArgs e)
         {
             isRollDogs = cboxRollDogs.Checked;
@@ -180,11 +194,6 @@ namespace AgOpenGPS
                 cboxHeadingBrick.Checked = false;
                 isHeadingBrick = false;
             }
-        }
-
-        private void cboxIsHeadingFromGPSTrue_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingFromFix = !cboxIsHeadingFromGPSTrue.Checked;
         }
 
         private void btnRemoveZeroOffset_Click(object sender, EventArgs e)

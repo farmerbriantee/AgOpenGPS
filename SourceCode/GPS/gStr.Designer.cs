@@ -61,7 +61,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boundary Not Set.
+        ///   Looks up a localized string similar to Boundary Not Set or No Guidance line set.
         /// </summary>
         internal static string gsBoundaryNotSet {
             get {
@@ -106,7 +106,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create a Boundary First.
+        ///   Looks up a localized string similar to Create a Boundary and an ABLine or Curve First.
         /// </summary>
         internal static string gsCreateBoundaryFirst {
             get {

@@ -16,11 +16,10 @@ namespace AgOpenGPS
         // Send and Recv socket
         private Socket sendSocket;
         private Socket recvSocket;
-
         private bool isSendConnected;
 
-        //endpoint of the auto steer module
-        IPEndPoint epAutoSteer;
+        //IP address and port of Auto Steer server
+        IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
 
         // Data stream
         private byte[] buffer = new byte[1024];
@@ -29,12 +28,15 @@ namespace AgOpenGPS
         private delegate void UpdateRecvMessageDelegate(string recvMessage);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
-        private void SendUDPMessage(string message)
+        public void SendUDPMessage(string message)
         {
+
             if (isSendConnected)
             {
                 try
                 {
+                    IPEndPoint epAutoSteer  = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
                     // Get packet as byte array
                     byte[] byteData = Encoding.ASCII.GetBytes(message);
 

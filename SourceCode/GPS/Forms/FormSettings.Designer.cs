@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.nudAntennaOffset = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
@@ -100,6 +103,7 @@
             this.bntOK = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).BeginInit();
@@ -143,6 +147,9 @@
             // 
             this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleSettings;
             resources.ApplyResources(this.tabVehicle, "tabVehicle");
+            this.tabVehicle.Controls.Add(this.label9);
+            this.tabVehicle.Controls.Add(this.label7);
+            this.tabVehicle.Controls.Add(this.nudAntennaOffset);
             this.tabVehicle.Controls.Add(this.label6);
             this.tabVehicle.Controls.Add(this.nudMinTurnRadius);
             this.tabVehicle.Controls.Add(this.label29);
@@ -167,6 +174,27 @@
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // nudAntennaOffset
+            // 
+            resources.ApplyResources(this.nudAntennaOffset, "nudAntennaOffset");
+            this.nudAntennaOffset.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nudAntennaOffset.Name = "nudAntennaOffset";
+            this.nudAntennaOffset.ValueChanged += new System.EventHandler(this.nudAntennaOffset_ValueChanged);
+            // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
@@ -181,13 +209,13 @@
             0,
             0});
             this.nudMinTurnRadius.Minimum = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
             this.nudMinTurnRadius.Name = "nudMinTurnRadius";
             this.nudMinTurnRadius.Value = new decimal(new int[] {
-            7,
+            301,
             0,
             0,
             0});
@@ -246,13 +274,13 @@
             // 
             resources.ApplyResources(this.nudHitchLength, "nudHitchLength");
             this.nudHitchLength.Maximum = new decimal(new int[] {
-            999,
+            420,
             0,
             0,
             0});
             this.nudHitchLength.Name = "nudHitchLength";
             this.nudHitchLength.Value = new decimal(new int[] {
-            7,
+            51,
             0,
             0,
             0});
@@ -306,7 +334,7 @@
             0});
             this.nudAntennaPivot.Name = "nudAntennaPivot";
             this.nudAntennaPivot.Value = new decimal(new int[] {
-            7,
+            111,
             0,
             0,
             0});
@@ -316,18 +344,18 @@
             // 
             resources.ApplyResources(this.nudWheelbase, "nudWheelbase");
             this.nudWheelbase.Maximum = new decimal(new int[] {
-            999,
+            1999,
             0,
             0,
             0});
             this.nudWheelbase.Minimum = new decimal(new int[] {
-            1,
+            200,
             0,
             0,
             0});
             this.nudWheelbase.Name = "nudWheelbase";
             this.nudWheelbase.Value = new decimal(new int[] {
-            7,
+            501,
             0,
             0,
             0});
@@ -337,18 +365,13 @@
             // 
             resources.ApplyResources(this.nudAntennaHeight, "nudAntennaHeight");
             this.nudAntennaHeight.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nudAntennaHeight.Minimum = new decimal(new int[] {
-            1,
+            1000,
             0,
             0,
             0});
             this.nudAntennaHeight.Name = "nudAntennaHeight";
             this.nudAntennaHeight.Value = new decimal(new int[] {
-            7,
+            300,
             0,
             0,
             0});
@@ -380,12 +403,12 @@
             // 
             resources.ApplyResources(this.nudOffset, "nudOffset");
             this.nudOffset.Maximum = new decimal(new int[] {
-            500,
+            2500,
             0,
             0,
             0});
             this.nudOffset.Minimum = new decimal(new int[] {
-            500,
+            2500,
             0,
             0,
             -2147483648});
@@ -411,13 +434,13 @@
             // 
             resources.ApplyResources(this.nudTankHitch, "nudTankHitch");
             this.nudTankHitch.Maximum = new decimal(new int[] {
-            1000,
+            2000,
             0,
             0,
             0});
             this.nudTankHitch.Name = "nudTankHitch";
             this.nudTankHitch.Value = new decimal(new int[] {
-            24,
+            20,
             0,
             0,
             0});
@@ -448,7 +471,7 @@
             0,
             65536});
             this.nudTurnOffDelay.Maximum = new decimal(new int[] {
-            5,
+            20,
             0,
             0,
             0});
@@ -459,7 +482,7 @@
             65536});
             this.nudTurnOffDelay.Name = "nudTurnOffDelay";
             this.nudTurnOffDelay.Value = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             65536});
@@ -480,7 +503,7 @@
             0,
             65536});
             this.nudLookAhead.Maximum = new decimal(new int[] {
-            5,
+            20,
             0,
             0,
             0});
@@ -491,7 +514,7 @@
             65536});
             this.nudLookAhead.Name = "nudLookAhead";
             this.nudLookAhead.Value = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             65536});
@@ -511,18 +534,18 @@
             // 
             resources.ApplyResources(this.nudForeAft, "nudForeAft");
             this.nudForeAft.Maximum = new decimal(new int[] {
-            1000,
+            2000,
             0,
             0,
             0});
             this.nudForeAft.Minimum = new decimal(new int[] {
-            24,
+            20,
             0,
             0,
             0});
             this.nudForeAft.Name = "nudForeAft";
             this.nudForeAft.Value = new decimal(new int[] {
-            24,
+            302,
             0,
             0,
             0});
@@ -597,13 +620,13 @@
             0,
             65536});
             this.nudCutoffSpeed.Maximum = new decimal(new int[] {
-            8,
+            30,
             0,
             0,
             0});
             this.nudCutoffSpeed.Name = "nudCutoffSpeed";
             this.nudCutoffSpeed.Value = new decimal(new int[] {
-            28,
+            11,
             0,
             0,
             65536});
@@ -619,7 +642,7 @@
             0});
             this.nudSection8.Name = "nudSection8";
             this.nudSection8.Value = new decimal(new int[] {
-            99,
+            92,
             0,
             0,
             0});
@@ -635,7 +658,7 @@
             0});
             this.nudSection7.Name = "nudSection7";
             this.nudSection7.Value = new decimal(new int[] {
-            99,
+            93,
             0,
             0,
             0});
@@ -651,7 +674,7 @@
             0});
             this.nudSection6.Name = "nudSection6";
             this.nudSection6.Value = new decimal(new int[] {
-            99,
+            94,
             0,
             0,
             0});
@@ -682,7 +705,7 @@
             0});
             this.nudSection5.Name = "nudSection5";
             this.nudSection5.Value = new decimal(new int[] {
-            99,
+            95,
             0,
             0,
             0});
@@ -698,7 +721,7 @@
             0});
             this.nudSection4.Name = "nudSection4";
             this.nudSection4.Value = new decimal(new int[] {
-            99,
+            96,
             0,
             0,
             0});
@@ -714,7 +737,7 @@
             0});
             this.nudSection3.Name = "nudSection3";
             this.nudSection3.Value = new decimal(new int[] {
-            99,
+            97,
             0,
             0,
             0});
@@ -730,7 +753,7 @@
             0});
             this.nudSection2.Name = "nudSection2";
             this.nudSection2.Value = new decimal(new int[] {
-            99,
+            98,
             0,
             0,
             0});
@@ -884,6 +907,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabVehicle.ResumeLayout(false);
             this.tabVehicle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
@@ -988,5 +1012,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown nudAntennaOffset;
     }
 }

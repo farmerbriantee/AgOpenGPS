@@ -205,7 +205,6 @@ namespace AgOpenGPS
             lblKeepGoing.Text = "";
             lblABHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)) + "°";
 
-
             //make sure we go at least 3 or so meters before allowing B reference point
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
             {

@@ -35,6 +35,7 @@ namespace AgOpenGPS
         public double wheelbase;
         public double hitchLength;
         public double minTurningRadius;
+        public double antennaOffset;
 
         //how many individual sections
         public int numOfSections;
@@ -54,7 +55,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAhead;
-        public double minLookAheadDistance = 3.0;
+        public double minLookAheadDistance = 5.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
 
@@ -78,6 +79,7 @@ namespace AgOpenGPS
             antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
             antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
             hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
+            antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
 
             wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
             minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
@@ -228,10 +230,10 @@ namespace AgOpenGPS
 
             //draw the area side marker
             gl.Color(0.95f, 0.90f, 0.0f);
-            gl.PointSize(4.0f);
+            gl.PointSize(6.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            if (mf.isAreaOnRight) gl.Vertex(2.0, -antennaPivot, 0);
-            else gl.Vertex(-2.0, -antennaPivot, 0);
+            //if (mf.isAreaOnRight) gl.Vertex(2.0, -antennaPivot, 0);
+            //else gl.Vertex(-2.0, -antennaPivot, 0);
 
             //antenna
             gl.Color(0.0f, 0.98f, 0.0f);

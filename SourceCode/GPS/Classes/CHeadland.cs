@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
-using SharpGL;
 
 namespace AgOpenGPS
 {
@@ -8,18 +8,23 @@ namespace AgOpenGPS
     {
         //copy of the mainform address
         private readonly FormGPS mf;
+
         private readonly OpenGL gl;
 
         public bool isSet;
         public bool isDrawRightSide;
         public bool isOkToAddPoints;
+        public double includeAngle;
+
+        private double oneSide, distance;
 
         //closest headland segment from pivotAxle
-        public vec3 closestHeadlandPt = new vec3(-1, -1, 0);
+        public vec3 closestHeadlandPt = new vec3(-10000, -10000, 0);
 
         //generated box for finding closest point
-        public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
-        public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
+        public vec2 boxA = new vec2(9999, 0), boxB = new vec2(9990, 2);
+
+        public vec2 boxC = new vec2(9991, 1), boxD = new vec2(9992, 3);
 
         //list of coordinates of headland line
         public List<vec3> ptList = new List<vec3>();
@@ -38,14 +43,12 @@ namespace AgOpenGPS
             isSet = false;
             isDrawRightSide = true;
             isOkToAddPoints = false;
+            includeAngle = glm.PIBy2 / 2.0;
         }
 
-        public void FindClosestHeadlandPoint(vec3 fromPt)
+        public void FindClosestHeadlandPoint(vec3 fromPt, double headAB)
         {
-            //heading is based on ABLine and going same direction as AB or not
-            double headAB = mf.ABLine.abHeading;
-            if (!mf.ABLine.isABSameAsFixHeading)
-                headAB += Math.PI;
+            //heading is based on ABLine, average Curve, and going same direction as AB or not
             //Draw a bounding box to determine if points are in it
 
             if (mf.yt.isSequenceTriggered)
@@ -56,17 +59,17 @@ namespace AgOpenGPS
                 boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
                 boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
 
-                boxC.easting = boxB.easting + (Math.Sin(headAB) * 70.0);
-                boxC.northing = boxB.northing + (Math.Cos(headAB) * 70.0);
+                boxC.easting = boxB.easting + (Math.Sin(headAB) * 60.0);
+                boxC.northing = boxB.northing + (Math.Cos(headAB) * 60.0);
 
-                boxD.easting = boxA.easting + (Math.Sin(headAB) * 70.0);
-                boxD.northing = boxA.northing + (Math.Cos(headAB) * 70.0);
+                boxD.easting = boxA.easting + (Math.Sin(headAB) * 60.0);
+                boxD.northing = boxA.northing + (Math.Cos(headAB) * 60.0);
 
-                boxA.easting -= (Math.Sin(headAB) * 50.0);
-                boxA.northing -= (Math.Cos(headAB) * 50.0);
+                boxA.easting -= (Math.Sin(headAB) * 60.0);
+                boxA.northing -= (Math.Cos(headAB) * 60.0);
 
-                boxB.easting -= (Math.Sin(headAB) * 50.0);
-                boxB.northing -= (Math.Cos(headAB) * 50.0);
+                boxB.easting -= (Math.Sin(headAB) * 60.0);
+                boxB.northing -= (Math.Cos(headAB) * 60.0);
             }
             else
             {
@@ -100,7 +103,7 @@ namespace AgOpenGPS
                 if ((((boxA.easting - boxD.easting) * (ptList[p].northing - boxD.northing))
                         - ((boxA.northing - boxD.northing) * (ptList[p].easting - boxD.easting))) < 0) { continue; }
 
-                //it's in the box, so add to list 
+                //it's in the box, so add to list
                 closestHeadlandPt.easting = ptList[p].easting;
                 closestHeadlandPt.northing = ptList[p].northing;
                 hdList.Add(closestHeadlandPt);
@@ -128,6 +131,161 @@ namespace AgOpenGPS
                     }
                 }
             }
+        }
+
+        private vec3 point;
+
+        public void BuildHeadland(double widthSet)
+        {
+            //count the points from the boundary
+            int ptCount = mf.boundz.ptList.Count;
+
+            //first find out which side is inside the boundary
+            oneSide = glm.PIBy2;
+            point.easting = mf.boundz.ptList[3].easting - (Math.Sin(oneSide + mf.boundz.ptList[3].heading) * 2.0);
+            point.northing = mf.boundz.ptList[3].northing - (Math.Cos(oneSide + mf.boundz.ptList[3].heading) * 2.0);
+
+            if (!mf.boundz.IsPointInsideBoundary(point)) oneSide *= -1.0;
+
+            //clear the headland point list
+            mf.hl.ptList.Clear();
+
+            //determine how wide a headland space
+            double totalHeadWidth = mf.vehicle.toolWidth * widthSet;
+
+            for (int i = 0; i < ptCount; i++)
+            {
+                //calculate the point inside the boundary
+                point.easting = mf.boundz.ptList[i].easting - (Math.Sin(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
+                point.northing = mf.boundz.ptList[i].northing - (Math.Cos(oneSide + mf.boundz.ptList[i].heading) * totalHeadWidth);
+                point.heading = mf.boundz.ptList[i].heading;
+
+                //only add if inside actual field boundary
+                if (mf.boundz.IsPointInsideBoundary(point)) mf.hl.ptList.Add(point);
+            }
+
+            int headCount = mf.hl.ptList.Count;
+
+            //remove the points too close to boundary
+            for (int i = 0; i < ptCount; i++)
+            {
+                for (int j = 0; j < headCount; j++)
+                {
+                    //make sure distance between headland and boundary is not less then width
+                    distance = glm.Distance(mf.boundz.ptList[i], mf.hl.ptList[j]);
+                    if (distance < (totalHeadWidth * 0.98))
+                    {
+                        mf.hl.ptList.RemoveAt(j);
+                        headCount = mf.hl.ptList.Count;
+                        j = 0;
+                    }
+                }
+            }
+
+            //fix the gaps and overlaps
+            FixHeadlandList();
+
+            //pre calculate all the constants and multiples
+            mf.hl.PreCalcHeadlandLines();
+        }
+
+        public void FixHeadlandList()
+        {
+            //make sure distance isn't too small between points on headland
+            int headCount = mf.hl.ptList.Count;
+            double spacing = mf.vehicle.toolWidth * 0.25;
+            double distance;
+            for (int i = 0; i < headCount - 1; i++)
+            {
+                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[i + 1]);
+                if (distance < spacing)
+                {
+                    mf.hl.ptList.RemoveAt(i + 1);
+                    headCount = mf.hl.ptList.Count;
+                    i = 0;
+                }
+            }
+
+            //make sure distance isn't too big between points on headland
+            vec3 point;
+            headCount = mf.hl.ptList.Count;
+            for (int i = 0; i < headCount; i++)
+            {
+                int j = i + 1;
+                if (j == headCount) j = 0;
+                distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
+                if (distance > (spacing))
+                {
+                    point.easting = (mf.hl.ptList[i].easting + mf.hl.ptList[j].easting) / 2.0;
+                    point.northing = (mf.hl.ptList[i].northing + mf.hl.ptList[j].northing) / 2.0;
+                    point.heading = mf.hl.ptList[i].heading;
+
+                    mf.hl.ptList.Insert(j, point);
+                    headCount = mf.hl.ptList.Count;
+                    i = 0;
+                }
+            }
+
+            //make sure headings are correct for calculated points
+            mf.hl.CalculateHeadings();
+
+            //must be perpendicularish to the guidance line to be a headland point
+            headCount = mf.hl.ptList.Count;
+            double ref2;
+            if (mf.ABLine.isABLineSet)
+            {
+                for (int i = 0; i < headCount; i++)
+                {
+                    ref2 = Math.PI - Math.Abs(Math.Abs(mf.ABLine.abHeading - mf.hl.ptList[i].heading) - Math.PI);
+                    if (ref2 < (glm.PIBy2 - mf.hl.includeAngle) || (ref2 > glm.PIBy2 + mf.hl.includeAngle))
+                    {
+                        mf.hl.ptList.RemoveAt(i);
+                        headCount = mf.hl.ptList.Count;
+                        i = 0;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < headCount; i++)
+                {
+                    ref2 = Math.PI - Math.Abs(Math.Abs(mf.curve.aveLineHeading - mf.hl.ptList[i].heading) - Math.PI);
+                    if (ref2 < (glm.PIBy2 - mf.hl.includeAngle) || (ref2 > glm.PIBy2 + mf.hl.includeAngle))
+                    {
+                        mf.hl.ptList.RemoveAt(i);
+                        headCount = mf.hl.ptList.Count;
+                        i = 0;
+                    }
+                }
+            }
+
+            //line is built
+            mf.hl.isSet = true;
+        }
+
+        public void CalculateHeadings()
+        {
+            //to calc heading based on next and previous points to give an average heading.
+            int cnt = ptList.Count;
+            if (cnt == 0) return;
+            vec3[] arr = new vec3[cnt];
+            cnt--;
+            ptList.CopyTo(arr);
+            ptList.Clear();
+
+            //first point needs last, first, second points
+            vec3 pt3 = arr[0];
+            pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
+            ptList.Add(pt3);
+            for (int i = 1; i < cnt; i++)
+            {
+                pt3 = arr[i];
+                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                ptList.Add(pt3);
+            }
+            pt3 = arr[cnt];
+            pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
+            ptList.Add(pt3);
         }
 
         public void ResetHeadland()
@@ -182,21 +340,13 @@ namespace AgOpenGPS
             int ptCount = ptList.Count;
             if (ptCount < 1) return;
             gl.PointSize(4);
-            gl.Color(0.9198f, 0.9272f, 0.360f);
+            gl.Color(0.8629198f, 0.969272f, 0.5360f);
             gl.Begin(OpenGL.GL_POINTS);
-            for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
+            for (int h = 1; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
             gl.End();
 
-            ////the "close the loop" line
             //gl.LineWidth(2);
-            //gl.Color(0.9f, 0.32f, 0.70f);
-            //gl.Begin(OpenGL.GL_LINE_STRIP);
-            //gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
-            //gl.Vertex(ptList[0].easting, ptList[0].northing, 0);
-            //gl.End();
-
-            //gl.LineWidth(2);
-            //gl.Color(0.98f, 0.2f, 0.60f);
+            //gl.Color(0.4f, 0.60f, 0.60f);
             //gl.Begin(OpenGL.GL_LINE_STRIP);
             //gl.Vertex(boxD.easting, boxD.northing, 0);
             //gl.Vertex(boxA.easting, boxA.northing, 0);

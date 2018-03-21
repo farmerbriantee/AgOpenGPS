@@ -9,7 +9,7 @@
       <Value Profile="(Default)">COM GPS...</Value>
     </Setting>
     <Setting Name="setPort_baudRate" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">4800</Value>
+      <Value Profile="(Default)">38400</Value>
     </Setting>
     <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">30, 30</Value>
@@ -28,9 +28,6 @@
     </Setting>
     <Setting Name="setPort_wasRateRelayConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setHeading_isFromPosition" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -117,7 +114,7 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">20</Value>
@@ -173,9 +170,6 @@
     <Setting Name="setMenu_isSkyOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setMenu_isBigAltitudeOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="set_culture" Type="System.String" Scope="User">
       <Value Profile="(Default)">en</Value>
     </Setting>
@@ -214,6 +208,12 @@
     </Setting>
     <Setting Name="setUDP_isOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setGPS_fixFromWhichSentence" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GGA</Value>
+    </Setting>
+    <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fix</Value>
     </Setting>
   </Settings>
 </SettingsFile>

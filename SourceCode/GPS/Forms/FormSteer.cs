@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -13,6 +12,7 @@ namespace AgOpenGPS
 
         //chart data
         private string dataSteerAngle = "0";
+
         //private string dataP = "4";
         //private string dataI = "6";
         //private string dataD = "-6";
@@ -70,12 +70,12 @@ namespace AgOpenGPS
             else
             {
                 //free drive mode
-                mf.mc.autoSteerData[mf.mc.sdSteerAngleHi] = (byte)((driveFreeSteerAngle * 10) >> 8);
-                mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 10);
+                mf.mc.autoSteerData[mf.mc.sdSteerAngleHi] = (byte)((driveFreeSteerAngle * 100) >> 8);
+                mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 100);
 
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
                 tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle*10;
+                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + (driveFreeSteerAngle * 100);
             }
 
             DrawChart();
@@ -266,7 +266,7 @@ namespace AgOpenGPS
         {
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]++;
             if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] > 50) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 50;
-            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] ).ToString();
+            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
@@ -276,7 +276,7 @@ namespace AgOpenGPS
         {
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]--;
             if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] < 1) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
-            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] ).ToString();
+            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
@@ -386,7 +386,7 @@ namespace AgOpenGPS
                 lblPWM.Text = dataPWM;
             }
 
-            //chart data            
+            //chart data
             Series s = unoChart.Series["S"];
             //Series t = unoChart.Series["P"];
             //Series u = unoChart.Series["I"];
@@ -447,7 +447,7 @@ namespace AgOpenGPS
         {
             if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
                 unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
-            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) *-1;
+            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
             unoChart.ChartAreas[0].AxisY.Minimum -= 50;
             unoChart.ChartAreas[0].AxisY.Maximum += 50;
             unoChart.ResetAutoValues();
