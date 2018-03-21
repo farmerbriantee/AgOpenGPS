@@ -103,9 +103,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label2.Location = new System.Drawing.Point(167, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 18);
+            this.label2.Size = new System.Drawing.Size(104, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v2.5.1 Mar 2018";
+            this.label2.Text = "v2.5 Mar 2018";
             // 
             // label1
             // 
