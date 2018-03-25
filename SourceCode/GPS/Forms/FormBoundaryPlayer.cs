@@ -19,22 +19,23 @@ namespace AgOpenGPS
         {
            mf.boundz.isOkToAddPoints = false;
 
-           if (mf.boundz.ptList.Count > 5)
-           {
-               mf.boundz.PreCalcBoundaryLines();
-               mf.boundz.isSet = true;
-               mf.FileSaveOuterBoundary();
-           }
-           else
-           {
-               mf.boundz.calcList.Clear();
-               mf.boundz.ptList.Clear();
-               mf.boundz.area = 0;
-               mf.boundz.isSet = false;
-           }
-
+            if (mf.boundz.ptList.Count > 5)
+            {
+                mf.boundz.PreCalcBoundaryLines();
+                mf.boundz.isSet = true;
+                mf.FileSaveOuterBoundary();
+            }
+            else
+            {
+                mf.boundz.calcList.Clear();
+                mf.boundz.ptList.Clear();
+                mf.boundz.area = 0;
+                mf.boundz.isSet = false;
+                mf.FileSaveOuterBoundary();
+            }
             //close window
             Close();
+
     }
 
         //ctually the record button

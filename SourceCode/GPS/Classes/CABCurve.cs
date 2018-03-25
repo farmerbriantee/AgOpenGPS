@@ -39,6 +39,7 @@ namespace AgOpenGPS
 
         public bool isSameWay;
         public double refHeading;
+        public double deltaOfRefAndAveHeadings;
 
         public bool isValid;
 
@@ -70,7 +71,6 @@ namespace AgOpenGPS
             gl = _gl;
             mf = _f;
         }
-
 
         public void GetCurrentCurveLine(vec3 pivot)
         {
@@ -139,6 +139,8 @@ namespace AgOpenGPS
             //   / Math.Sqrt((dz * dz) + (dx * dx));
             //are we going same direction as stripList was created?
             isSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - refHeading) - Math.PI) < glm.PIBy2;
+            deltaOfRefAndAveHeadings = Math.PI - Math.Abs(Math.Abs(aveLineHeading - refHeading) - Math.PI);
+            deltaOfRefAndAveHeadings = Math.Cos(deltaOfRefAndAveHeadings);
 
             //add or subtract pi by 2 depending on which side of ref line
             double piSide;
@@ -438,21 +440,21 @@ namespace AgOpenGPS
         public void AddFirstLastPoints()
         {
             int ptCnt = refList.Count - 1;
-            for (int i = 1; i < 50; i++)
+            for (int i = 1; i < 200; i++)
             {
                 vec3 pt = new vec3(refList[ptCnt]);
-                pt.easting += (Math.Sin(pt.heading) * i * 2.0);
-                pt.northing += (Math.Cos(pt.heading) * i * 2.0);
+                pt.easting += (Math.Sin(pt.heading) * i);
+                pt.northing += (Math.Cos(pt.heading) * i);
                 refList.Add(pt);
             }
 
             //and the beginning
             vec3 start = new vec3(refList[0]);
-            for (int i = 1; i < 50; i++)
+            for (int i = 1; i < 200; i++)
             {
                 vec3 pt = new vec3(start);
-                pt.easting -= (Math.Sin(pt.heading) * i * 2.0);
-                pt.northing -= (Math.Cos(pt.heading) * i * 2.0);
+                pt.easting -= (Math.Sin(pt.heading) * i);
+                pt.northing -= (Math.Cos(pt.heading) * i);
                 refList.Insert(0, pt);
             }
         }
@@ -473,12 +475,12 @@ namespace AgOpenGPS
             if (refList.Count == 0) return;
 
             gl.LineWidth(2);
-            gl.Color(0.0f, 0.692f, 0.60f);
+            gl.Color(0.30f, 0.692f, 0.60f);
             gl.Begin(OpenGL.GL_LINES);
             for (int h = 0; h < ptCount; h++) gl.Vertex(refList[h].easting, refList[h].northing, 0);
             gl.End();
 
-            //gl.Color(0.98f, 0.98f, 0.50f);
+            //gl.Color(0.64f, 0.64f, 0.750f);
             //gl.Begin(OpenGL.GL_LINE_STRIP);
             //gl.Vertex(boxA.easting, boxA.northing, 0);
             //gl.Vertex(boxB.easting, boxB.northing, 0);

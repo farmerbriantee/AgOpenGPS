@@ -211,8 +211,8 @@ namespace AgOpenGPS
                 if (hl.isSet) hl.DrawHeadlandLine();
 
                 //screen text for debug
-                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Step: " + currentStepFix.ToString());
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Side: " + curve.piSide.ToString("N1"));
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Dist: " + (headlandDistanceDelta).ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Angle: " + glm.toDegrees(headlandAngleOffPerpendicular).ToString("N1"));
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
@@ -402,8 +402,6 @@ namespace AgOpenGPS
                 //draw the zoom window off screen buffer in the second tab
                 if (tabControl1.SelectedIndex == 1)
                 openGLControlZoom.DoRender();
-
-
             }
         }
 

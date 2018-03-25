@@ -133,6 +133,7 @@ namespace AgOpenGPS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            mf.FileSaveHeadland();
         }
 
         private void nudWidths_ValueChanged(object sender, EventArgs e)

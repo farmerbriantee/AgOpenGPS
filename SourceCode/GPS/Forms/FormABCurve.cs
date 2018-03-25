@@ -6,7 +6,7 @@ namespace AgOpenGPS
     public partial class FormABCurve : Form
     {
         //access to the main GPS form and all its variables
-        private readonly FormGPS mf = null;
+        private readonly FormGPS mf;
 
         public FormABCurve(Form _mf)
         {

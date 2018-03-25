@@ -115,7 +115,7 @@ namespace AgOpenGPS
             pos8 = words[5];
         }
 
-        //called when the 45 m mark is reached before headland
+        //called when the 25 m mark is reached before headland
         public void YouTurnTrigger()
         {
             //trigger pulled and make box double ended
@@ -214,7 +214,7 @@ namespace AgOpenGPS
                 //determine if Section is entry or exit based on trigger point direction
                 bool isToolHeadingSameAsABHeading;
 
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 double headAB;
@@ -225,7 +225,7 @@ namespace AgOpenGPS
                     isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
                     headAB = mf.ABLine.abHeading;
                 }
-                else
+                else  //AB Curve
                 {
                     //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                     double abFixHeadingDelta = (Math.Abs(mf.toolPos.heading - mf.curve.refHeading));
@@ -234,35 +234,31 @@ namespace AgOpenGPS
                     headAB = mf.curve.refHeading;
                 }
 
-                if (!isToolHeadingSameAsABHeading)
-                    headAB += Math.PI;
+                if (!isToolHeadingSameAsABHeading) headAB += Math.PI;
 
                 mf.hl.FindClosestHeadlandPoint(mf.toolPos, headAB);
                 if ((int)mf.hl.closestHeadlandPt.easting != -1)
                 {
                     mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 }
                 else //we've lost the headland
                 {
                     mf.yt.isSequenceTriggered = false;
                     mf.yt.ResetSequenceEventTriggers();
-                    mf.distTool = 999;
+                    mf.distTool = -3333;
                     return;
                 }
 
-                if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading)
-                {
-                    //since same as AB Line, we are entering
-                    whereAmI = 1;
-                    if (isInHeadland) mf.distTool *= -1;
-                }
-                else
-                {
-                    //since opposite of AB Line at trigger we are exiting
-                    whereAmI = 2;
-                    if (isInHeadland) mf.distTool *= -1;
-                }
+                //make distance sign correct
+                if (isInHeadland) mf.distTool *= -1;
+                mf.distTool += (mf.headlandDistanceDelta*0.5);
+                
+                //since same as AB Line, we are entering
+                if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading) whereAmI = 1;
+                    
+                //since opposite of AB Line at trigger we are exiting    
+                else whereAmI = 2;
 
                 //did we do all the events?
                 int c = 0;
@@ -279,6 +275,7 @@ namespace AgOpenGPS
                     isSequenceTriggered = false;
                     whereAmI = 0;
                     ResetSequenceEventTriggers();
+                    mf.distTool = -2222;
                 }
 
                 switch (whereAmI)
@@ -302,7 +299,7 @@ namespace AgOpenGPS
                         }
                         break;
 
-                    case 2: //Leaving the headland
+                    case 2: //Exiting the headland
 
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                         {
@@ -373,6 +370,7 @@ namespace AgOpenGPS
             CDubins dubYouTurnPath = new CDubins();
             CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
+            double delta;
             //point on AB line closest to pivot axle point from ABLine PurePursuit
             if (mf.ABLine.isABLineSet)
             {
@@ -380,6 +378,7 @@ namespace AgOpenGPS
                 rNorthYT = mf.ABLine.rNorthAB;
                 isABSameAsFixHeading = mf.ABLine.isABSameAsFixHeading;
                 abHeading = mf.ABLine.abHeading;
+                delta = 1;
             }
             else
             {
@@ -387,16 +386,20 @@ namespace AgOpenGPS
                 rNorthYT = mf.curve.rNorthCu;
                 isABSameAsFixHeading = mf.curve.isSameWay;
                 abHeading = mf.curve.refHeading;
+                delta = mf.curve.deltaOfRefAndAveHeadings;
             }
 
             //grab the vehicle widths and offsets
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
             double toolOffset = mf.vehicle.toolOffset * 2.0;
             double turnOffset = 0;
-
+            
             //turning right
             if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
             else turnOffset = (widthMinusOverlap - toolOffset);
+
+            //to compensate for AB Curve overlap
+            turnOffset *= delta;
 
             //if using dubins to calculate youturn
             if (isUsingDubinsTurn)

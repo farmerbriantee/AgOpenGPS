@@ -3,6 +3,8 @@
 * Min Max error checking on loading vehicle
 * Manual switches capable (Matthias)
 * Vehicle files must be version 2.5 or higher
+* Variable tool width on auto headland during AB Curve
+* Extended distance on non perpendicular headlands
 
 v 2.4 Mar 1
 * recorded path added but not functional

@@ -65,16 +65,21 @@ namespace AgOpenGPS
 
             //first point needs last, first, second points
             vec3 pt3 = arr[0];
-            pt3.heading = Math.Atan2(arr[cnt].easting - arr[1].easting, arr[cnt].northing - arr[1].northing);
+            pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
+            if (pt3.heading < 0) pt3.heading += glm.twoPI;
             ptList.Add(pt3);
+
             for (int i = 1; i < cnt; i++)
             {
                 pt3 = arr[i];
                 pt3.heading = Math.Atan2(arr[i+1].easting - arr[i-1].easting, arr[i+1].northing - arr[i-1].northing);
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
                 ptList.Add(pt3);
             }
+
             pt3 = arr[cnt];
             pt3.heading = Math.Atan2(arr[0].easting - arr[cnt-1].easting, arr[0].northing - arr[cnt-1].northing);
+            if (pt3.heading < 0) pt3.heading += glm.twoPI;
             ptList.Add(pt3);
         }
 
@@ -166,6 +171,7 @@ namespace AgOpenGPS
                 {
                     constantMultiple.easting = ptList[i].easting;
                     constantMultiple.northing = 0;
+                    calcList.Add(constantMultiple);
                 }
                 else
                 {

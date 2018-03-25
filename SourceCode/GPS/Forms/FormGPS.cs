@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Media;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
@@ -88,6 +89,8 @@ namespace AgOpenGPS
 
         //Time to do fix position update and draw routine
         private double frameTime = 0;
+
+        System.Media.SoundPlayer btnSound;
 
         //For field saving in background
         private int saveCounter = 1;
@@ -191,6 +194,11 @@ namespace AgOpenGPS
         /// Cart instance
         /// </summary>
         public CCart cart;
+
+        /// <summary>
+        /// Sound for button click
+        /// </summary>
+        readonly SoundPlayer player = new SoundPlayer("button.wav");
 
         #endregion // Class Props and instances
 
@@ -1212,7 +1220,7 @@ namespace AgOpenGPS
                 section[j].sectionOffRequest = false;
             }
 
-            FileSaveHeadlandYouTurn();
+            //FileSaveHeadland();
             FileSaveOuterBoundary();
             FileSaveSections();
             FileSaveContour();

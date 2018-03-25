@@ -437,6 +437,8 @@ namespace AgOpenGPS
         //Auto steer off and on
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
+            System.Media.SystemSounds.Question.Play();
+
             if (isAutoSteerBtnOn)
             {
                 isAutoSteerBtnOn = false;
@@ -643,6 +645,8 @@ namespace AgOpenGPS
         //button for Manual On Off of the sections
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
+            System.Media.SystemSounds.Asterisk.Play();
+
             switch (manualBtnState)
             {
                 case btnStates.Off:
@@ -682,6 +686,8 @@ namespace AgOpenGPS
         //button for Auto on-off, has the acres displayed
         private void btnSectionOffAutoOn_Click(object sender, EventArgs e)
         {
+            System.Media.SystemSounds.Exclamation.Play();
+
             switch (autoBtnState)
             {
                 case btnStates.Off:
@@ -1173,29 +1179,29 @@ namespace AgOpenGPS
         public void AutoYouTurnButtonsRightTurn()
         {
             btnRightYouTurn.BackColor = Color.Yellow;
-            btnRightYouTurn.Height = 120;
-            btnRightYouTurn.Width = 120;
-            btnLeftYouTurn.Height = 64;
-            btnLeftYouTurn.Width = 64;
+            btnRightYouTurn.Height = 110;
+            btnRightYouTurn.Width = 110;
+            btnLeftYouTurn.Height = 72;
+            btnLeftYouTurn.Width = 72;
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
         }
         public void AutoYouTurnButtonsLeftTurn()
         {
             btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.Height = 64;
-            btnRightYouTurn.Width = 64;
-            btnLeftYouTurn.Height = 120;
-            btnLeftYouTurn.Width = 120;
+            btnRightYouTurn.Height = 72;
+            btnRightYouTurn.Width = 72;
+            btnLeftYouTurn.Height = 110;
+            btnLeftYouTurn.Width = 110;
             btnLeftYouTurn.BackColor = Color.Yellow;
         }
         public void AutoYouTurnButtonsReset()
         {
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
             btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnLeftYouTurn.Height = 64;
-            btnLeftYouTurn.Width = 64;
-            btnRightYouTurn.Height = 64;
-            btnRightYouTurn.Width = 64;
+            btnLeftYouTurn.Height = 72;
+            btnLeftYouTurn.Width = 72;
+            btnRightYouTurn.Height = 72;
+            btnRightYouTurn.Width = 72;
 
             // why yes it is backwards, puzzling
             if (!yt.isYouTurnRight)
@@ -2053,7 +2059,8 @@ namespace AgOpenGPS
                         lblBoundaryArea.Text = boundz.areaHectare;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(distPivot)) + "m";
                         else lblHeadlandDistanceAway.Text = "***";
-                        lblHeadlandDistanceFromTool.Text = ((int)(distTool)) + "m";
+                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = ((int)(distTool)) + "m";
+                        else lblHeadlandDistanceFromTool.Text = " * ";
                     }
                     else //imperial
                     {
@@ -2062,7 +2069,8 @@ namespace AgOpenGPS
                         lblBoundaryArea.Text = boundz.areaAcre;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + "ft";
                         else lblHeadlandDistanceAway.Text = "***";
-                        lblHeadlandDistanceFromTool.Text = ((int)(glm.m2ft * distTool)) + "ft";
+                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = ((int)(glm.m2ft * distTool)) + "ft";
+                        else lblHeadlandDistanceFromTool.Text = " * ";
                     }
 
                     //both
@@ -2078,10 +2086,6 @@ namespace AgOpenGPS
                     txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelay] + ", " + mc.autoSteerData[mc.sdSpeed]
                                             + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle;
-
-                    //lblEmlidPitch.Text = pn.nPitch.ToString("N2");
-
-                    //lblTurnProgressBar.Value = youTurnProgressBar;
 
                     //up in the menu a few pieces of info
                     if (isJobStarted)
@@ -2151,9 +2155,13 @@ namespace AgOpenGPS
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
 
+                //statusbar flash
+                if (distPivot != -3333) statusStrip1.BackColor = SystemColors.ScrollBar;
+                else statusStrip1.BackColor = Color.Tomato;
+
                 //binary of sequences
                 //stripSequenceBinary.Text = ; ;
-                
+
 
 
                 //update the online indicator

@@ -64,8 +64,8 @@ namespace AgOpenGPS
         public int ringCounter = 0;
 
         //youturn
-        double distPivot = -2;
-        public double distTool;
+        double distPivot = -2222;
+        public double distTool = -2222;
         double distanceToStartAutoTurn;  
         
         //the value to fill in you turn progress bar
@@ -126,6 +126,9 @@ namespace AgOpenGPS
         public double eastingAfterRoll;
         public double rollUsed;
         double offset = 0;
+        public double headlandDistanceDelta = 0;
+        private double headlandAngleOffPerpendicular;
+    
 
         private void UpdateFixPosition()
         {
@@ -170,18 +173,9 @@ namespace AgOpenGPS
                 double roll = Math.Sin(glm.toRadians((mc.rollRaw - ahrs.rollZero) * 0.0625));
                 rollCorrectionDistance = Math.Abs(roll * vehicle.antennaHeight);
 
-
                 // roll to left is positive  **** important!!
-                if (roll > 0)
-                {
-                    pn.fix.easting = (Math.Cos(fixHeading) * rollCorrectionDistance) + pn.fix.easting;
-                    pn.fix.northing = (Math.Sin(fixHeading) * -rollCorrectionDistance) + pn.fix.northing;
-                }
-                else
-                {
-                    pn.fix.easting = (Math.Cos(fixHeading) * -rollCorrectionDistance) + pn.fix.easting;
-                    pn.fix.northing = (Math.Sin(fixHeading) * rollCorrectionDistance) + pn.fix.northing;
-                }
+                pn.fix.easting = (Math.Cos(-fixHeading) * rollCorrectionDistance) + pn.fix.easting;
+                pn.fix.northing = (Math.Sin(-fixHeading) * rollCorrectionDistance) + pn.fix.northing;
 
                 //for charting the position after roll adjustment
                 eastingAfterRoll = pn.fix.easting;
@@ -293,7 +287,8 @@ namespace AgOpenGPS
 
             #region AutoSteer
 
-            guidanceLineDistanceOff = 32000;    //preset the values
+            //preset the values
+            guidanceLineDistanceOff = 32000;    
 
             if (ct.isContourBtnOn)
             {
@@ -396,6 +391,7 @@ namespace AgOpenGPS
 
             #region Youturn
 
+            distPivot = -2222;
             //do the auto youturn logic if everything is on.
             if (hl.isSet && yt.isYouTurnBtnOn && isAutoSteerBtnOn)
             {
@@ -426,13 +422,15 @@ namespace AgOpenGPS
                 {
                     distPivot = glm.Distance(pivotAxlePos, hl.closestHeadlandPt);
                 }
-                else distPivot = -2;
+                else distPivot = -3333;
 
                 //trigger the "its ready to generate a youturn when 25m away" but don't make it just yet
                 if (distPivot < 25.0 && distPivot > 22 && !yt.isYouTurnTriggered && yt.isInWorkArea)
                 {
                     //begin the whole process, all conditions are met
                     yt.YouTurnTrigger();
+                    headlandAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(pivotAxlePos.heading - hl.closestHeadlandPt.heading) - Math.PI);
+                    headlandDistanceDelta = Math.Abs(Math.Cos(headlandAngleOffPerpendicular) * vehicle.toolWidth*1.5);
                 }
 
                 //Do the sequencing of functions around the turn.
@@ -451,7 +449,7 @@ namespace AgOpenGPS
                     {
                         //how far have we gone since youturn request was triggered
                         distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        if (distanceToStartAutoTurn > (25 + yt.youTurnStartOffset))
+                        if (distanceToStartAutoTurn > (25 + yt.youTurnStartOffset+headlandDistanceDelta))
                         {
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;
@@ -981,6 +979,7 @@ namespace AgOpenGPS
             }
         }
 
+        //Matthias's Switch routine
         private void DoRemoteSectionSwitch()
         {
             if (rc.RelayFromArduino != rc.RelayFromArduinoOld)
@@ -1049,7 +1048,7 @@ namespace AgOpenGPS
                 }
 
                 //if Main = Auto then change section to Auto if Off signal from Arduino stopped
-                if (autoBtnState == btnStates.Auto & rc.SectSWOffFromArduino == 0)
+                if (autoBtnState == btnStates.Auto)
                 {
                     if (((rc.SectSWOffFromArduinoOld & 64) == 64) & ((rc.SectSWOffFromArduino & 64) != 64) & (section[6].manBtnState == manBtn.Off))
                     { btnSection7Man.PerformClick(); }

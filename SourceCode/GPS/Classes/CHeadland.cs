@@ -17,6 +17,7 @@ namespace AgOpenGPS
         public double includeAngle;
 
         private double oneSide, distance;
+        private const double scanWidth = 1.2;
 
         //closest headland segment from pivotAxle
         public vec3 closestHeadlandPt = new vec3(-10000, -10000, 0);
@@ -53,31 +54,31 @@ namespace AgOpenGPS
 
             if (mf.yt.isSequenceTriggered)
             {
-                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * mf.vehicle.toolFarLeftPosition); //subtract if positive
-                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * mf.vehicle.toolFarLeftPosition);
+                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth); //subtract if positive
+                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
 
-                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
-                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
+                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
 
-                boxC.easting = boxB.easting + (Math.Sin(headAB) * 60.0);
-                boxC.northing = boxB.northing + (Math.Cos(headAB) * 60.0);
+                boxC.easting = boxB.easting + (Math.Sin(headAB) * 40.0);
+                boxC.northing = boxB.northing + (Math.Cos(headAB) * 40.0);
 
-                boxD.easting = boxA.easting + (Math.Sin(headAB) * 60.0);
-                boxD.northing = boxA.northing + (Math.Cos(headAB) * 60.0);
+                boxD.easting = boxA.easting + (Math.Sin(headAB) * 40.0);
+                boxD.northing = boxA.northing + (Math.Cos(headAB) * 40.0);
 
-                boxA.easting -= (Math.Sin(headAB) * 60.0);
-                boxA.northing -= (Math.Cos(headAB) * 60.0);
+                boxA.easting -= (Math.Sin(headAB) * 40.0);
+                boxA.northing -= (Math.Cos(headAB) * 40.0);
 
-                boxB.easting -= (Math.Sin(headAB) * 60.0);
-                boxB.northing -= (Math.Cos(headAB) * 60.0);
+                boxB.easting -= (Math.Sin(headAB) * 40.0);
+                boxB.northing -= (Math.Cos(headAB) * 40.0);
             }
             else
             {
-                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * mf.vehicle.toolFarLeftPosition);
-                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * mf.vehicle.toolFarLeftPosition);
+                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
+                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
 
-                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
-                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * mf.vehicle.toolFarRightPosition);
+                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
 
                 boxC.easting = boxB.easting + (Math.Sin(headAB) * 2000.0);
                 boxC.northing = boxB.northing + (Math.Cos(headAB) * 2000.0);
@@ -104,8 +105,7 @@ namespace AgOpenGPS
                         - ((boxA.northing - boxD.northing) * (ptList[p].easting - boxD.easting))) < 0) { continue; }
 
                 //it's in the box, so add to list
-                closestHeadlandPt.easting = ptList[p].easting;
-                closestHeadlandPt.northing = ptList[p].northing;
+                closestHeadlandPt = ptList[p];
                 hdList.Add(closestHeadlandPt);
             }
 
@@ -193,7 +193,8 @@ namespace AgOpenGPS
         {
             //make sure distance isn't too small between points on headland
             int headCount = mf.hl.ptList.Count;
-            double spacing = mf.vehicle.toolWidth * 0.25;
+            //double spacing = mf.vehicle.toolWidth * 0.25;
+            double spacing = 1.5;
             double distance;
             for (int i = 0; i < headCount - 1; i++)
             {
@@ -214,7 +215,7 @@ namespace AgOpenGPS
                 int j = i + 1;
                 if (j == headCount) j = 0;
                 distance = glm.Distance(mf.hl.ptList[i], mf.hl.ptList[j]);
-                if (distance > (spacing))
+                if (distance > (spacing*1.333))
                 {
                     point.easting = (mf.hl.ptList[i].easting + mf.hl.ptList[j].easting) / 2.0;
                     point.northing = (mf.hl.ptList[i].northing + mf.hl.ptList[j].northing) / 2.0;
@@ -231,12 +232,18 @@ namespace AgOpenGPS
 
             //must be perpendicularish to the guidance line to be a headland point
             headCount = mf.hl.ptList.Count;
-            double ref2;
+            double ref2, abHead;
+
+            //fix the heading so it goes from 0 to PI
+            abHead = mf.ABLine.abHeading;
+            if (abHead > Math.PI) abHead -= Math.PI;
+
+            //remove any points
             if (mf.ABLine.isABLineSet)
             {
                 for (int i = 0; i < headCount; i++)
                 {
-                    ref2 = Math.PI - Math.Abs(Math.Abs(mf.ABLine.abHeading - mf.hl.ptList[i].heading) - Math.PI);
+                    ref2 = Math.PI - Math.Abs(Math.Abs(abHead - mf.hl.ptList[i].heading) - Math.PI);
                     if (ref2 < (glm.PIBy2 - mf.hl.includeAngle) || (ref2 > glm.PIBy2 + mf.hl.includeAngle))
                     {
                         mf.hl.ptList.RemoveAt(i);
@@ -346,7 +353,7 @@ namespace AgOpenGPS
             gl.End();
 
             //gl.LineWidth(2);
-            //gl.Color(0.4f, 0.60f, 0.60f);
+            //gl.Color(0.74f, 0.9760f, 7.60f);
             //gl.Begin(OpenGL.GL_LINE_STRIP);
             //gl.Vertex(boxD.easting, boxD.northing, 0);
             //gl.Vertex(boxA.easting, boxA.northing, 0);

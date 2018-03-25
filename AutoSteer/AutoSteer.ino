@@ -184,7 +184,7 @@ void loop()
 
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
-    steerSwitch << 1; //put steerswitch status in bit 1 position
+    steerSwitch <<= 1; //put steerswitch status in bit 1 position
     switchByte = workSwitch+steerSwitch;
     
     //SetRelays(); //turn on off sections

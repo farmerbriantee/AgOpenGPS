@@ -1359,7 +1359,7 @@ namespace AgOpenGPS
         }
 
         //save the headland
-        public void FileSaveHeadlandYouTurn()
+        public void FileSaveHeadland()
         {
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
