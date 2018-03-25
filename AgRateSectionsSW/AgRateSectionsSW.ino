@@ -31,7 +31,7 @@
   
   //loop time variables in microseconds
   const unsigned long LOOP_TIME = 200; //in msec = 5hz 
-  const unsigned long SectSWDelayTime = 1500; //time the arduino waits after manual Switch is used befor acception command from AOG in msec
+  const unsigned long SectSWDelayTime = 2000; //time the arduino waits after manual Switch is used before acception command from AOG in msec
   const unsigned long TimeoutContactFromAOG = 20000; //time the arduino waits before changing mode of main switch from "auto" to "all on" when not hearing anything from AOG
   unsigned long lastTime = LOOP_TIME;
   unsigned long currentTime = LOOP_TIME;
