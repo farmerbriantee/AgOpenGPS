@@ -264,14 +264,20 @@ Solo Lunghezza</value>
   <data name="label30.Text" xml:space="preserve">
     <value>Spegni Sezioni Sotto</value>
   </data>
+  <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>398, 436</value>
+  </data>
   <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 25</value>
   </data>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>*Non Superare 1570*</value>
   </data>
+  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>430, 386</value>
+  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 288</value>
+    <value>319, 344</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 33</value>
@@ -305,57 +311,6 @@ Solo Lunghezza</value>
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Interruttore di Lavoro</value>
-  </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 25</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>"Ottimale da 6 a 10m </value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Distanza Margine da punto a punto</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 25</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>4-&gt;Meno Triangoli</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 25</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>1 -&gt; Più Triangoli</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Risoluzione Triangolo</value>
-  </data>
-  <data name="chkIsAtanCam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>252, 29</value>
-  </data>
-  <data name="chkIsAtanCam.Text" xml:space="preserve">
-    <value>Utilità Aggiusta Camera</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Cancella Intestazione Camma</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 25</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Più Metri per Uniformare</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 29</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Metri</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Distanza Testata Dietro</value>
-  </data>
-  <data name="tabDisplay.Text" xml:space="preserve">
-    <value>Schermo</value>
   </data>
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5177,6 +5132,9 @@ Solo Lunghezza</value>
   <data name="tabExamples.Text" xml:space="preserve">
     <value>Esempi</value>
   </data>
+  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>190, 40</value>
+  </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>135, 23</value>
   </data>
@@ -5191,9 +5149,6 @@ Solo Lunghezza</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Larghezza dell'Attrezzo:</value>
-  </data>
-  <data name="bntOK.Text" xml:space="preserve">
-    <value>Salva</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Regolazione</value>

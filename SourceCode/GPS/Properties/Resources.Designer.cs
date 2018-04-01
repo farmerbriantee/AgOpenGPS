@@ -133,6 +133,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ArrowTurnLeft {
+            get {
+                object obj = ResourceManager.GetObject("ArrowTurnLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ArrowTurnRight {
+            get {
+                object obj = ResourceManager.GetObject("ArrowTurnRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AutoSteerConf {
             get {
                 object obj = ResourceManager.GetObject("AutoSteerConf", resourceCulture);
@@ -873,79 +893,9 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings1 {
+        internal static System.Drawing.Bitmap SectionSettingsBackground {
             get {
-                object obj = ResourceManager.GetObject("SectionSettings1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings2 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings3 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings4 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings4", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings5 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings5", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings6 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings6", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings7 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionSettings8 {
-            get {
-                object obj = ResourceManager.GetObject("SectionSettings8", resourceCulture);
+                object obj = ResourceManager.GetObject("SectionSettingsBackground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

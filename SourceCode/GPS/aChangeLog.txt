@@ -1,4 +1,15 @@
-﻿v 2.5.1 Mar 21
+﻿v2.6 April Fools
+* 12 Sections
+* Uturn has repeatable multi swath loops, Dew Loops
+* Minor fixes
+* Cross track error on contour button - averages 4 seconds of summed XTE
+* You turn relay out steer and rate ports
+* Fix workswitch, decode at serial recv
+* Languages were a mess, huge mess, fixed a lot of it
+* Added Lo Hi bytes for relays which now takes 2 bytes
+* Rate module has both, steer module has only first 8 sections
+
+v 2.5.1 Mar 21
 * Settings are all very stringent to version
 * Min Max error checking on loading vehicle
 * Manual switches capable (Matthias)

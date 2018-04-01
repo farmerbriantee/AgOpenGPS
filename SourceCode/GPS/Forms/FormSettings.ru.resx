@@ -118,6 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 245</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label7.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>36, 138</value>
+  </data>
+  <data name="label6.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 23</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Turn Radius</value>
+  </data>
+  <data name="nudMinTurnRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 162</value>
+  </data>
+  <data name="nudMinTurnRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 65</value>
+  </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 447</value>
   </data>
@@ -128,6 +157,9 @@
     <value>* Все, что жестко привязано к транспортному средству
 Тягово-сцепное устройство, фидер / заголовок,
 3-контактный зацеп</value>
+  </data>
+  <data name="label15.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -150,11 +182,17 @@
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
     <value>368, 472</value>
   </data>
+  <data name="label28.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
   <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 23</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
     <value>Длина сцепления</value>
+  </data>
+  <data name="label24.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 23</value>
@@ -162,11 +200,17 @@
   <data name="label24.Text" xml:space="preserve">
     <value>Длинна сцепления</value>
   </data>
+  <data name="label26.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 23</value>
   </data>
   <data name="label26.Text" xml:space="preserve">
     <value>Колесная база</value>
+  </data>
+  <data name="label12.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>140, 23</value>
@@ -177,11 +221,17 @@
   <data name="chkIsPivotBehindAntenna.Location" type="System.Drawing.Point, System.Drawing">
     <value>544, 61</value>
   </data>
+  <data name="label13.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 23</value>
   </data>
   <data name="label13.Text" xml:space="preserve">
     <value>Колесная база</value>
+  </data>
+  <data name="label25.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
   </data>
   <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 23</value>
@@ -190,7 +240,7 @@
     <value>Высота антенны</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>580, 26</value>
+    <value>639, 28</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 23</value>
@@ -272,6 +322,33 @@
   <data name="tabTool.Text" xml:space="preserve">
     <value>Орудие</value>
   </data>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 94</value>
+  </data>
+  <data name="label31.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>394, 96</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>864, 94</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
     <value>70, 33</value>
   </data>
@@ -325,61 +402,6 @@
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Переключатель работы</value>
-  </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>475, 25</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>Рекомендуется использовать от 6 до 10 метров</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Расстояние от границы до точки</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>175, 87</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 50</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Использовать исправления
-для камеры</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>268, 25</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>1 -&gt; Много треугольников</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Разрешение треугольника</value>
-  </data>
-  <data name="chkIsAtanCam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 29</value>
-  </data>
-  <data name="chkIsAtanCam.Text" xml:space="preserve">
-    <value>Использовать управление для Cam</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Снимите флажок для истинного</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>373, 25</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Больше метров больше сглаживания</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 29</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Метр</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Расстояние назад для направления</value>
-  </data>
-  <data name="tabDisplay.Text" xml:space="preserve">
-    <value>Дисплей</value>
   </data>
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

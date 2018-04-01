@@ -349,7 +349,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int setVehicle_minApplied {
             get {
                 return ((int)(this["setVehicle_minApplied"]));
@@ -572,6 +572,54 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setVehicle_antennaOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position10 {
+            get {
+                return ((decimal)(this["setSection_position10"]));
+            }
+            set {
+                this["setSection_position10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position11 {
+            get {
+                return ((decimal)(this["setSection_position11"]));
+            }
+            set {
+                this["setSection_position11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position12 {
+            get {
+                return ((decimal)(this["setSection_position12"]));
+            }
+            set {
+                this["setSection_position12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position13 {
+            get {
+                return ((decimal)(this["setSection_position13"]));
+            }
+            set {
+                this["setSection_position13"] = value;
             }
         }
     }

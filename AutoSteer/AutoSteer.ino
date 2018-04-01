@@ -44,7 +44,7 @@
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
-  byte relay = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
+  byte relay = 0, uTurn = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
   float distanceFromLine = 0; // not used
   
 
@@ -182,10 +182,11 @@ void loop()
     Zp = Xp;
     XeRoll = G * (rollK - Zp) + Xp;
 
+   
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
     steerSwitch <<= 1; //put steerswitch status in bit 1 position
-    switchByte = workSwitch+steerSwitch;
+    switchByte = workSwitch | steerSwitch;
     
     //SetRelays(); //turn on off sections
        
@@ -252,7 +253,7 @@ void loop()
     }
     
     //Data Header has been found, so the next 6 bytes are the data
-    if (Serial.available()> 5 && isDataFound)
+    if (Serial.available()>6 && isDataFound)
     {  
       isDataFound = false;    
       relay = Serial.read();   // read relay control from AgOpenGPS     
@@ -263,6 +264,8 @@ void loop()
   
       //set point steer angle * 10 is sent
       steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes 
+
+      uTurn = Serial.read();
   
       //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1 )  

@@ -55,7 +55,7 @@ namespace AgOpenGPS
             //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
 
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+            tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
 
             DrawChart();

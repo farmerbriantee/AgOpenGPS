@@ -13,10 +13,10 @@ namespace AgOpenGPS
         public int incomingInt;
 
         // PGN - 32762 - 127.250
-        public static int numRelayRateDataItems = 7;
+        public static int numRelayRateDataItems = 8;
         public byte[] relayRateData = new byte[numRelayRateDataItems];
-        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByte = 2, rdSpeedXFour = 3,
-                    rdRateSetPointHi = 4, rdRateSetPointLo = 5, rdYouTurnControlByte = 6;
+        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, rdSpeedXFour = 4,
+                    rdRateSetPointHi = 5, rdRateSetPointLo = 6, rdYouTurnControlByte = 7;
 
         // PGN - 32760 - 127.248
         public static int numRelayRateSettingsItems = 6;
@@ -28,10 +28,10 @@ namespace AgOpenGPS
         public string serialRecvAutoSteerStr;
 
         // PGN - 32766 - 127.254
-        public static int numSteerDataItems = 8;
+        public static int numSteerDataItems = 9;
         public byte[] autoSteerData = new byte[numSteerDataItems];
-        public int sdHeaderHi, sdHeaderLo=1, sdRelay=2, sdSpeed=3, sdDistanceHi=4, sdDistanceLo=5,
-                    sdSteerAngleHi=6, sdSteerAngleLo=7;
+        public int sdHeaderHi, sdHeaderLo=1, sdRelayLo=2, sdSpeed=3, sdDistanceHi=4, sdDistanceLo=5,
+                    sdSteerAngleHi=6, sdSteerAngleLo=7, sdYouTurnByte = 8; 
 
         // PGN - 32764 - 127.252
         public static int numSteerSettingItems = 10;
@@ -51,8 +51,8 @@ namespace AgOpenGPS
         public CModuleComm(FormGPS _f)
         {
             mf = _f;
-            serialRecvAutoSteerStr = "Oops";
-            serialRecvRelayRateStr = "Oops";
+            serialRecvAutoSteerStr = "Oops NC";
+            serialRecvRelayRateStr = "Oops NC";
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
@@ -66,7 +66,8 @@ namespace AgOpenGPS
         {
             relayRateData[rdHeaderHi] = 127; // PGN - 32762
             relayRateData[rdHeaderLo] = 250;
-            relayRateData[rdSectionControlByte] = 0;
+            relayRateData[rdSectionControlByteHi] = 0;
+            relayRateData[rdSectionControlByteLo] = 0;
             relayRateData[rdRateSetPointHi] = 0;
             relayRateData[rdRateSetPointLo] = 0;
             relayRateData[rdSpeedXFour] = 0;
@@ -75,12 +76,14 @@ namespace AgOpenGPS
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = (254);
-            autoSteerData[sdRelay] = 0;
+            autoSteerData[sdRelayLo] = 0;
             autoSteerData[sdSpeed] = (0);
             autoSteerData[sdDistanceHi] = (125); // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;
             autoSteerData[sdSteerAngleHi] = (125); // PGN - 32020
             autoSteerData[sdSteerAngleLo] = 20;
+            autoSteerData[sdYouTurnByte] = 0;
+
             mf.AutoSteerDataOutToPort();
 
             relayRateSettings[rsHeaderHi] = 127; // PGN - 32760

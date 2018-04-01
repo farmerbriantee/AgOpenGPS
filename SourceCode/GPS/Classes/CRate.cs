@@ -39,7 +39,8 @@
             //turn all relays off
             mf.mc.relayRateData[mf.mc.rdHeaderHi] = 127; //32762
             mf.mc.relayRateData[mf.mc.rdHeaderLo] = 250;
-            mf.mc.relayRateData[mf.mc.rdSectionControlByte] = 0;
+            mf.mc.relayRateData[mf.mc.rdSectionControlByteHi] = 0;
+            mf.mc.relayRateData[mf.mc.rdSectionControlByteLo] = 0;
             mf.mc.relayRateData[mf.mc.rdRateSetPointHi] = 0;
             mf.mc.relayRateData[mf.mc.rdRateSetPointLo] = 0;
             mf.mc.relayRateData[mf.mc.rdSpeedXFour] = 0;

@@ -5,6 +5,7 @@ using SharpGL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Net;
@@ -21,7 +22,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        private const int MAXSECTIONS = 9;
+        private const int MAXSECTIONS = 13;
 
         //How many youturn functions
         public const int MAXFUNCTIONS = 8;
@@ -89,8 +90,6 @@ namespace AgOpenGPS
 
         //Time to do fix position update and draw routine
         private double frameTime = 0;
-
-        System.Media.SoundPlayer btnSound;
 
         //For field saving in background
         private int saveCounter = 1;
@@ -194,11 +193,6 @@ namespace AgOpenGPS
         /// Cart instance
         /// </summary>
         public CCart cart;
-
-        /// <summary>
-        /// Sound for button click
-        /// </summary>
-        readonly SoundPlayer player = new SoundPlayer("button.wav");
 
         #endregion // Class Props and instances
 
@@ -684,6 +678,7 @@ namespace AgOpenGPS
             cart.offsetOutward += 0.5;
         }
 
+
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -755,6 +750,18 @@ namespace AgOpenGPS
 
             section[7].positionLeft = (double)Vehicle.Default.setSection_position8 + Vehicle.Default.setVehicle_toolOffset;
             section[7].positionRight = (double)Vehicle.Default.setSection_position9 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[8].positionLeft = (double)Vehicle.Default.setSection_position9 + Vehicle.Default.setVehicle_toolOffset;
+            section[8].positionRight = (double)Vehicle.Default.setSection_position10 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[9].positionLeft = (double)Vehicle.Default.setSection_position10+ Vehicle.Default.setVehicle_toolOffset;
+            section[9].positionRight = (double)Vehicle.Default.setSection_position11+ Vehicle.Default.setVehicle_toolOffset;
+
+            section[10].positionLeft = (double)Vehicle.Default.setSection_position11+ Vehicle.Default.setVehicle_toolOffset;
+            section[10].positionRight = (double)Vehicle.Default.setSection_position12+ Vehicle.Default.setVehicle_toolOffset;
+
+            section[11].positionLeft = (double)Vehicle.Default.setSection_position12+ Vehicle.Default.setVehicle_toolOffset;
+            section[11].positionRight = (double)Vehicle.Default.setSection_position13+ Vehicle.Default.setVehicle_toolOffset;
         }
 
         //function to calculate the width of each section and update
@@ -801,9 +808,23 @@ namespace AgOpenGPS
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
+            btnSection1Man.BackColor = Color.Red;
+            btnSection2Man.BackColor = Color.Red;
+            btnSection3Man.BackColor = Color.Red;
+            btnSection4Man.BackColor = Color.Red;
+            btnSection5Man.BackColor = Color.Red;
+            btnSection6Man.BackColor = Color.Red;
+            btnSection7Man.BackColor = Color.Red;
+            btnSection8Man.BackColor = Color.Red;
+            btnSection9Man.BackColor = Color.Red;
+            btnSection10Man.BackColor = Color.Red;
+            btnSection11Man.BackColor = Color.Red;
+            btnSection12Man.BackColor = Color.Red;
+
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
+            btnSnap.Enabled = true;
             btnCurve.Enabled = true;
             ABLine.abHeading = 0.00;
 
@@ -861,6 +882,23 @@ namespace AgOpenGPS
             btnSection6Man.Enabled = false;
             btnSection7Man.Enabled = false;
             btnSection8Man.Enabled = false;
+            btnSection9Man.Enabled = false;
+            btnSection10Man.Enabled = false;
+            btnSection11Man.Enabled = false;
+            btnSection12Man.Enabled = false;
+
+            btnSection1Man.BackColor = Color.Silver;
+            btnSection2Man.BackColor = Color.Silver;
+            btnSection3Man.BackColor = Color.Silver;
+            btnSection4Man.BackColor = Color.Silver;
+            btnSection5Man.BackColor = Color.Silver;
+            btnSection6Man.BackColor = Color.Silver;
+            btnSection7Man.BackColor = Color.Silver;
+            btnSection8Man.BackColor = Color.Silver;
+            btnSection9Man.BackColor = Color.Silver;
+            btnSection10Man.BackColor = Color.Silver;
+            btnSection11Man.BackColor = Color.Silver;
+            btnSection12Man.BackColor = Color.Silver;
 
             //job is closed
             isJobStarted = false;
@@ -884,6 +922,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
             btnAutoSteer.Enabled = false;
+            btnSnap.Enabled = false;
             isAutoSteerBtnOn = false;
 
             btnCurve.Enabled = false;
@@ -955,6 +994,16 @@ namespace AgOpenGPS
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
+
+            //reset all Dew loop stuff
+            yt.dew2Index = 0;
+            yt.isDew2Set = false;
+            yt.isDew4Set = false;
+            yt.dew4Index = 0;
+            yt.ResetYouTurnAndSequenceEvents();
+            mc.autoSteerData[mc.sdYouTurnByte] = 0;
+            mc.relayRateData[mc.rdYouTurnControlByte] = 0;
+
         }
 
         //bring up field dialog for new/open/resume
@@ -1171,7 +1220,11 @@ namespace AgOpenGPS
                         mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00100000;
                     }
                     break;
+
             }
+
+            //load the autosteer youturn byte also.
+            mc.autoSteerData[mc.sdYouTurnByte] = mc.relayRateData[mc.rdYouTurnControlByte];
         }
 
         //take the distance from object and convert to camera data

@@ -70,7 +70,6 @@ namespace AgOpenGPS
                 btnYouTurnCustom.BackColor = Color.LimeGreen;
             }
 
-            cboxRowHeight.SelectedIndex = mf.yt.rowSkipsHeight - 1;
             cboxRowWidth.SelectedIndex = mf.yt.rowSkipsWidth - 1;
 
             //populate the Enter and Exit pages.
@@ -93,7 +92,7 @@ namespace AgOpenGPS
             //update dubins button
             if (!mf.yt.isUsingDubinsTurn)
             {
-                btnIsUsingDubins.Text = "Using Pattern";
+                btnIsUsingDubins.Text = "Pattern";
                 btnIsUsingDubins.BackColor = Color.Salmon;
                 btnYouTurnCustom.Enabled = true;
                 btnYouTurnKeyHole.Enabled = true;
@@ -103,13 +102,95 @@ namespace AgOpenGPS
             }
             else
             {
-                btnIsUsingDubins.Text = "Using Doobie";
+                btnIsUsingDubins.Text = "Doobie";
                 btnIsUsingDubins.BackColor = Color.LightGreen;
                 btnYouTurnCustom.Enabled = false;
                 btnYouTurnKeyHole.Enabled = false;
                 btnYouTurnRecord.Enabled = false;
                 btnYouTurnWideReturn.Enabled = false;
                 btnYouTurnSemiCircle.Enabled = false;
+            }
+
+            if (mf.yt.isDew2Set)
+            {
+                btnDewLoop2.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                btnDewLoop2.BackColor = Color.Salmon;
+            }
+
+            if (mf.yt.isDew4Set)
+            {
+                btnDewLoop4.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                btnDewLoop4.BackColor = Color.Salmon;
+            }
+
+
+            if (mf.yt.isDew2Right)
+            {
+                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
+            }
+            else
+            {
+                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnLeft;
+            }
+
+        }
+
+        private void btnDewLoop2_Click(object sender, EventArgs e)
+        {
+            mf.yt.isDew2Set = !mf.yt.isDew2Set;
+            if (mf.yt.isDew2Set)
+            {
+                btnDewLoop2.BackColor = Color.LightGreen;
+                btnDewLoop4.BackColor = Color.Salmon;
+                mf.yt.dew4Index = 0;
+                mf.yt.dew2Index = 0;
+                mf.yt.isDew4Set = false;
+            }
+            else
+            {
+                btnDewLoop2.BackColor = Color.Salmon;
+                btnDewLoop4.BackColor = Color.Salmon;
+                mf.yt.dew4Index = 0;
+                mf.yt.dew2Index = 0;
+            }
+        }
+
+        private void btnDewLoop4_Click(object sender, EventArgs e)
+        {
+            mf.yt.isDew4Set = !mf.yt.isDew4Set;
+            if (mf.yt.isDew4Set)
+            {
+                btnDewLoop4.BackColor = Color.LightGreen;
+                btnDewLoop2.BackColor = Color.Salmon;
+                mf.yt.dew4Index = 0;
+                mf.yt.dew2Index = 0;
+                mf.yt.isDew2Set = false;
+            }
+            else
+            {
+                btnDewLoop2.BackColor = Color.Salmon;
+                btnDewLoop4.BackColor = Color.Salmon;
+                mf.yt.dew4Index = 0;
+                mf.yt.dew2Index = 0;
+            }
+        }
+
+        private void btnDewLoop2RightOrLeft_Click(object sender, EventArgs e)
+        {
+            mf.yt.isDew2Right= !mf.yt.isDew2Right;
+            if (mf.yt.isDew2Right)
+            {
+                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
+            }
+            else
+            {
+                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnLeft;
             }
         }
 
@@ -742,35 +823,48 @@ namespace AgOpenGPS
             if (mf.yt.isUsingDubinsTurn)
             {
                 mf.yt.isUsingDubinsTurn = false;
-                btnIsUsingDubins.Text = "Using Pattern";
+                btnIsUsingDubins.Text = "Pattern";
                 btnIsUsingDubins.BackColor = Color.Salmon;
                 btnYouTurnCustom.Enabled = true;
                 btnYouTurnKeyHole.Enabled = true;
                 btnYouTurnRecord.Enabled = true;
                 btnYouTurnWideReturn.Enabled = true;
                 btnYouTurnSemiCircle.Enabled = true;
+
+                btnDewLoop2.Enabled = false;
+                btnDewLoop2RightOrLeft.Enabled = false;
+                btnDewLoop4.Enabled = false;
+
+                mf.yt.dew2Index = 0;
+                mf.yt.isDew2Set = false;
+                mf.yt.isDew4Set = false;
+                mf.yt.dew4Index = 0;
             }
             else
             {
                 mf.yt.isUsingDubinsTurn = true;
-                btnIsUsingDubins.Text = "Using Doobie";
+                btnIsUsingDubins.Text = "Doobie";
                 btnIsUsingDubins.BackColor = Color.LightGreen;
                 btnYouTurnCustom.Enabled = false;
                 btnYouTurnKeyHole.Enabled = false;
                 btnYouTurnRecord.Enabled = false;
                 btnYouTurnWideReturn.Enabled = false;
                 btnYouTurnSemiCircle.Enabled = false;
+
+                btnDewLoop2.Enabled = true;
+                btnDewLoop2RightOrLeft.Enabled = true;
+                btnDewLoop4.Enabled = true;
+
+                mf.yt.dew2Index = 0;
+                mf.yt.isDew2Set = false;
+                mf.yt.isDew4Set = false;
+                mf.yt.dew4Index = 0;
             }
         }
 
         private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
-        }
-
-        private void cboxRowHeight_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.yt.rowSkipsHeight = cboxRowHeight.SelectedIndex + 1;
         }
 
         #endregion YouTurn
@@ -1181,8 +1275,5 @@ namespace AgOpenGPS
             else btnToggle8.BackColor = Color.LightSalmon;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

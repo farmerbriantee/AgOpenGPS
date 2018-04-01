@@ -117,22 +117,199 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 32</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>* Cualquier cosa enganchada de forma 
+     rígida al vehículo</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Altura Antena</value>
+  </data>
+  <data name="label36.Location" type="System.Drawing.Point, System.Drawing">
+    <value>367, 16</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>222, 23</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Implemento Enganchado</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>210, 16</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>135, 23</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Implemento es</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Largo de Lanza</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Largo de Lanza</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 23</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Ancho Eje</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 23</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Punto de Pivoteo</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 23</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Ancho Eje</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 23</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Altura Antena</value>
+  </data>
   <data name="tabVehicle.Text" xml:space="preserve">
     <value>Vehículo</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>286, 69</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Enganche Deshabilitado cuando 
+&lt;200 cm o 
+&lt;78 pulgadas</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 46</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Sólo tiro entre largo 
+de lanza</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 23</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>Config en Secciones</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 23</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Ancho Implemento</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>744, 151</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 23</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Demora Apagado (seg)</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 23</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Mirar Adelante (seg)</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 46</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Sólo Largo de Lanza 
+de Engache</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 46</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Salto o Superposic 
+Línea AB</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>749, 280</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Desfasaje Implemento</value>
   </data>
   <data name="tabTool.Text" xml:space="preserve">
     <value> Implemento</value>
   </data>
+  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 33</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
+    <value>Km/h</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 25</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Apagar Secciones abajo</value>
+  </data>
+  <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>420, 435</value>
+  </data>
+  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 25</value>
+  </data>
+  <data name="lblDoNotExceed.Text" xml:space="preserve">
+    <value>* No exceder 1570 *</value>
+  </data>
+  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>480, 386</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 350</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 33</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Ancho Total</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 25</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Secciones</value>
+  </data>
   <data name="tabSections.Text" xml:space="preserve">
     <value>Secciones</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>266, 29</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
+    <value>Habilitar Sensor de Corte</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Sensor de Corte</value>
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Sensor de Corte</value>
   </data>
-  <data name="tabDisplay.Text" xml:space="preserve">
-    <value>Monitor</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABGAAAAHsCAYAAACdRNutAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -4953,212 +5130,8 @@
   <data name="tabExamples.Text" xml:space="preserve">
     <value> Ejemplos</value>
   </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>237, 32</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>* Cualquier cosa enganchada de forma 
-     rígida al vehículo</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 23</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Altura Antena</value>
-  </data>
-  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>222, 23</value>
-  </data>
-  <data name="label36.Text" xml:space="preserve">
-    <value>Implemento Enganchado</value>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>135, 23</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Implemento es</value>
-  </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Largo de Lanza</value>
-  </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Largo de Lanza</value>
-  </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 23</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Ancho Eje</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 23</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Punto de Pivoteo</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 23</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Ancho Eje</value>
-  </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 23</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Altura Antena</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>286, 69</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Enganche Deshabilitado cuando 
-&lt;200 cm o 
-&lt;78 pulgadas</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 46</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Sólo tiro entre largo 
-de lanza</value>
-  </data>
-  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>178, 23</value>
-  </data>
-  <data name="label35.Text" xml:space="preserve">
-    <value>Config en Secciones</value>
-  </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 23</value>
-  </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Ancho Implemento</value>
-  </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>744, 151</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 23</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Demora Apagado (seg)</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 23</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Mirar Adelante (seg)</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 46</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Sólo Largo de Lanza 
-de Engache</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 46</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Salto o Superposic 
-Línea AB</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>749, 280</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 23</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Desfasaje Implemento</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 33</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
-    <value>Km/h</value>
-  </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>235, 25</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>Apagar Secciones abajo</value>
-  </data>
-  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 25</value>
-  </data>
-  <data name="lblDoNotExceed.Text" xml:space="preserve">
-    <value>* No exceder 1570 *</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Ancho Total</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 25</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Secciones</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Sensor de Corte</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>266, 29</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
-    <value>Habilitar Sensor de Corte</value>
-  </data>
-  <data name="groupBox5.Text" xml:space="preserve">
-    <value>Distancia Punto a Punto del Límite</value>
-  </data>
-  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 25</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>6 a 10m está OK</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Resolución del Triángulo</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>233, 25</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>4 -&gt; Algunos tríangulos</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Destildar p/ Rumbo Verdadero como Cam</value>
-  </data>
-  <data name="chkIsAtanCam.Size" type="System.Drawing.Size, System.Drawing">
-    <value>211, 29</value>
-  </data>
-  <data name="chkIsAtanCam.Text" xml:space="preserve">
-    <value>Usar Fijo para Cam</value>
-  </data>
-  <data name="groupBox4.Text" xml:space="preserve">
-    <value>Distancia Atrás para Rumbo</value>
-  </data>
-  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 25</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>Más Metros es Más Suave</value>
-  </data>
-  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 29</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>Metros</value>
+  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>190, 40</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 23</value>
@@ -5180,9 +5153,6 @@ Línea AB</value>
   </data>
   <data name="lblInchesCm.Text" xml:space="preserve">
     <value>Pulgadas</value>
-  </data>
-  <data name="bntOK.Text" xml:space="preserve">
-    <value>Guardar   </value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Configuración</value>

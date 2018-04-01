@@ -64,7 +64,7 @@ namespace AgOpenGPS
             {
                 //normal mode
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
             }
             else
@@ -74,7 +74,7 @@ namespace AgOpenGPS
                 mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 100);
 
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + (driveFreeSteerAngle * 100);
             }
 

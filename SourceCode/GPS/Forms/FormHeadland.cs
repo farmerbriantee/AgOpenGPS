@@ -291,6 +291,15 @@ namespace AgOpenGPS
                 glh.Begin(OpenGL.GL_LINE_STRIP);
                 for (int h = 0; h < ptCount; h++) glh.Vertex(mf.boundz.ptList[h].easting, mf.boundz.ptList[h].northing, 0);
                 glh.End();
+
+                //the "close the loop" line
+                //glh.LineWidth(4);
+                glh.Color(0.0f, 0.990f, 0.0f);
+                glh.Begin(OpenGL.GL_LINE_STRIP);
+                glh.Vertex(mf.boundz.ptList[ptCount - 1].easting, mf.boundz.ptList[ptCount - 1].northing, 0);
+                glh.Vertex(mf.boundz.ptList[0].easting, mf.boundz.ptList[0].northing, 0);
+                glh.End();
+
             }
 
             ////draw the headland line
@@ -301,6 +310,7 @@ namespace AgOpenGPS
                 glh.Begin(OpenGL.GL_POINTS);
                 for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.ptList[h].easting, mf.hl.ptList[h].northing, 0);
                 glh.End();
+
             }
 
             //plot the touch points so far

@@ -79,6 +79,8 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnHideTabs = new System.Windows.Forms.ToolStripDropDownButton();
+            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,14 +88,12 @@
             this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnHideTabs = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
@@ -130,6 +130,10 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
+            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -221,6 +225,10 @@
             this.btnSection3Man = new System.Windows.Forms.Button();
             this.btnSection2Man = new System.Windows.Forms.Button();
             this.btnSection1Man = new System.Windows.Forms.Button();
+            this.btnSection9Man = new System.Windows.Forms.Button();
+            this.btnSection10Man = new System.Windows.Forms.Button();
+            this.btnSection11Man = new System.Windows.Forms.Button();
+            this.btnSection12Man = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -610,11 +618,11 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
-            this.toolStripDropDownButton2,
-            this.stripDistance,
-            this.toolStripDropDownBtnFuncs,
-            this.stripAreaRate,
             this.btnHideTabs,
+            this.stripDistance,
+            this.toolStripDropDownButton2,
+            this.stripAreaRate,
+            this.toolStripDropDownBtnFuncs,
             this.stripEqWidth,
             this.stripPortGPS,
             this.stripOnlineGPS,
@@ -630,6 +638,20 @@
             resources.ApplyResources(this.stripHz, "stripHz");
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
+            // 
+            // btnHideTabs
+            // 
+            resources.ApplyResources(this.btnHideTabs, "btnHideTabs");
+            this.btnHideTabs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnHideTabs.Name = "btnHideTabs";
+            this.btnHideTabs.ShowDropDownArrow = false;
+            this.btnHideTabs.Click += new System.EventHandler(this.btnHideTabs_Click);
+            // 
+            // stripDistance
+            // 
+            resources.ApplyResources(this.stripDistance, "stripDistance");
+            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.stripDistance.Name = "stripDistance";
             // 
             // toolStripDropDownButton2
             // 
@@ -689,11 +711,11 @@
             this.toolstripYouTurnConfig.Name = "toolstripYouTurnConfig";
             this.toolstripYouTurnConfig.Click += new System.EventHandler(this.toolstripYouTurnConfig_Click);
             // 
-            // stripDistance
+            // stripAreaRate
             // 
-            resources.ApplyResources(this.stripDistance, "stripDistance");
-            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.stripDistance.Name = "stripDistance";
+            resources.ApplyResources(this.stripAreaRate, "stripAreaRate");
+            this.stripAreaRate.Margin = new System.Windows.Forms.Padding(0);
+            this.stripAreaRate.Name = "stripAreaRate";
             // 
             // toolStripDropDownBtnFuncs
             // 
@@ -735,20 +757,6 @@
             resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
-            // 
-            // stripAreaRate
-            // 
-            resources.ApplyResources(this.stripAreaRate, "stripAreaRate");
-            this.stripAreaRate.Margin = new System.Windows.Forms.Padding(0);
-            this.stripAreaRate.Name = "stripAreaRate";
-            // 
-            // btnHideTabs
-            // 
-            resources.ApplyResources(this.btnHideTabs, "btnHideTabs");
-            this.btnHideTabs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnHideTabs.Name = "btnHideTabs";
-            this.btnHideTabs.ShowDropDownArrow = false;
-            this.btnHideTabs.Click += new System.EventHandler(this.btnHideTabs_Click);
             // 
             // stripEqWidth
             // 
@@ -815,7 +823,7 @@
             // lblSpeed
             // 
             resources.ApplyResources(this.lblSpeed, "lblSpeed");
-            this.lblSpeed.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeed.Name = "lblSpeed";
             // 
             // contextMenuStripFlag
@@ -947,7 +955,7 @@
             // lblHeading
             // 
             resources.ApplyResources(this.lblHeading, "lblHeading");
-            this.lblHeading.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblHeading.BackColor = System.Drawing.Color.Transparent;
             this.lblHeading.Name = "lblHeading";
             // 
             // imageList1
@@ -1015,6 +1023,10 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.label21);
+            this.DataPage.Controls.Add(this.txtBoxSendArduino);
+            this.DataPage.Controls.Add(this.txtBoxRecvArduino);
+            this.DataPage.Controls.Add(this.label23);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.label22);
             this.DataPage.Controls.Add(this.label13);
@@ -1049,6 +1061,30 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // txtBoxSendArduino
+            // 
+            this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
+            this.txtBoxSendArduino.Name = "txtBoxSendArduino";
+            this.txtBoxSendArduino.ReadOnly = true;
+            // 
+            // txtBoxRecvArduino
+            // 
+            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
+            this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
+            this.txtBoxRecvArduino.ReadOnly = true;
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
             // 
             // lblHeading2
             // 
@@ -1472,6 +1508,7 @@
             // lblPureSteerAngle
             // 
             resources.ApplyResources(this.lblPureSteerAngle, "lblPureSteerAngle");
+            this.lblPureSteerAngle.BackColor = System.Drawing.Color.Transparent;
             this.lblPureSteerAngle.Name = "lblPureSteerAngle";
             // 
             // label12
@@ -1677,7 +1714,7 @@
             // btnSection8Man
             // 
             resources.ApplyResources(this.btnSection8Man, "btnSection8Man");
-            this.btnSection8Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection8Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection8Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection8Man.FlatAppearance.BorderSize = 0;
             this.btnSection8Man.Name = "btnSection8Man";
@@ -1687,7 +1724,7 @@
             // btnSection7Man
             // 
             resources.ApplyResources(this.btnSection7Man, "btnSection7Man");
-            this.btnSection7Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection7Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection7Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection7Man.FlatAppearance.BorderSize = 0;
             this.btnSection7Man.Name = "btnSection7Man";
@@ -1697,7 +1734,7 @@
             // btnSection6Man
             // 
             resources.ApplyResources(this.btnSection6Man, "btnSection6Man");
-            this.btnSection6Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection6Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection6Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection6Man.FlatAppearance.BorderSize = 0;
             this.btnSection6Man.Name = "btnSection6Man";
@@ -1707,7 +1744,7 @@
             // btnSection5Man
             // 
             resources.ApplyResources(this.btnSection5Man, "btnSection5Man");
-            this.btnSection5Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection5Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection5Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection5Man.FlatAppearance.BorderSize = 0;
             this.btnSection5Man.Name = "btnSection5Man";
@@ -1717,7 +1754,7 @@
             // btnSection4Man
             // 
             resources.ApplyResources(this.btnSection4Man, "btnSection4Man");
-            this.btnSection4Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection4Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection4Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection4Man.FlatAppearance.BorderSize = 0;
             this.btnSection4Man.Name = "btnSection4Man";
@@ -1727,7 +1764,7 @@
             // btnSection3Man
             // 
             resources.ApplyResources(this.btnSection3Man, "btnSection3Man");
-            this.btnSection3Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection3Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection3Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection3Man.FlatAppearance.BorderSize = 0;
             this.btnSection3Man.Name = "btnSection3Man";
@@ -1737,7 +1774,7 @@
             // btnSection2Man
             // 
             resources.ApplyResources(this.btnSection2Man, "btnSection2Man");
-            this.btnSection2Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection2Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection2Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection2Man.FlatAppearance.BorderSize = 0;
             this.btnSection2Man.Name = "btnSection2Man";
@@ -1747,12 +1784,52 @@
             // btnSection1Man
             // 
             resources.ApplyResources(this.btnSection1Man, "btnSection1Man");
-            this.btnSection1Man.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSection1Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection1Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.btnSection1Man.FlatAppearance.BorderSize = 0;
             this.btnSection1Man.Name = "btnSection1Man";
             this.btnSection1Man.UseVisualStyleBackColor = false;
             this.btnSection1Man.Click += new System.EventHandler(this.btnSection1Man_Click);
+            // 
+            // btnSection9Man
+            // 
+            resources.ApplyResources(this.btnSection9Man, "btnSection9Man");
+            this.btnSection9Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection9Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection9Man.FlatAppearance.BorderSize = 0;
+            this.btnSection9Man.Name = "btnSection9Man";
+            this.btnSection9Man.UseVisualStyleBackColor = false;
+            this.btnSection9Man.Click += new System.EventHandler(this.btnSection9Man_Click);
+            // 
+            // btnSection10Man
+            // 
+            resources.ApplyResources(this.btnSection10Man, "btnSection10Man");
+            this.btnSection10Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection10Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection10Man.FlatAppearance.BorderSize = 0;
+            this.btnSection10Man.Name = "btnSection10Man";
+            this.btnSection10Man.UseVisualStyleBackColor = false;
+            this.btnSection10Man.Click += new System.EventHandler(this.btnSection10Man_Click);
+            // 
+            // btnSection11Man
+            // 
+            resources.ApplyResources(this.btnSection11Man, "btnSection11Man");
+            this.btnSection11Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection11Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection11Man.FlatAppearance.BorderSize = 0;
+            this.btnSection11Man.Name = "btnSection11Man";
+            this.btnSection11Man.UseVisualStyleBackColor = false;
+            this.btnSection11Man.Click += new System.EventHandler(this.btnSection11Man_Click);
+            // 
+            // btnSection12Man
+            // 
+            resources.ApplyResources(this.btnSection12Man, "btnSection12Man");
+            this.btnSection12Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection12Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection12Man.FlatAppearance.BorderSize = 0;
+            this.btnSection12Man.Name = "btnSection12Man";
+            this.btnSection12Man.UseVisualStyleBackColor = false;
+            this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
             // 
             // FormGPS
             // 
@@ -1791,9 +1868,13 @@
             this.Controls.Add(this.btnSection2Man);
             this.Controls.Add(this.btnSection1Man);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.openGLControl);
             this.Controls.Add(this.openGLControlBack);
             this.Controls.Add(this.panelSimControls);
+            this.Controls.Add(this.btnSection12Man);
+            this.Controls.Add(this.btnSection11Man);
+            this.Controls.Add(this.btnSection10Man);
+            this.Controls.Add(this.btnSection9Man);
+            this.Controls.Add(this.openGLControl);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormGPS";
@@ -2021,6 +2102,14 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblHeading2;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnSection9Man;
+        private System.Windows.Forms.Button btnSection10Man;
+        private System.Windows.Forms.Button btnSection11Man;
+        private System.Windows.Forms.Button btnSection12Man;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtBoxSendArduino;
+        private System.Windows.Forms.TextBox txtBoxRecvArduino;
+        private System.Windows.Forms.Label label23;
     }
 }
 

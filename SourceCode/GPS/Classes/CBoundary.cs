@@ -41,18 +41,14 @@ namespace AgOpenGPS
         public string areaAcre = "";
 
         //boundary variables
-        public bool isOkToAddPoints;
-
-        public bool isSet;
-        public bool isDrawRightSide;
+        public bool isOkToAddPoints, isSet, isDrawRightSide;
 
         //generated box for finding closest point
-        public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
-
-        public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
+        public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
+        public vec2 boxC = new vec2(9001, 9001), boxD = new vec2(9002, 9003);
 
         //point at the farthest boundary segment from pivotAxle
-        public vec2 closestBoundaryPt = new vec2(-1, -1);
+        public vec2 closestBoundaryPt = new vec2(-10000, -10000);
 
         public void CalculateHeadings()
         {
@@ -230,14 +226,14 @@ namespace AgOpenGPS
             int ptCount = ptList.Count;
             if (ptCount < 1) return;
             gl.LineWidth(2);
-            gl.Color(0.98f, 0.2f, 0.60f);
+            gl.Color(0.95f, 0.2f, 0.60f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
             gl.End();
 
             //the "close the loop" line
             gl.LineWidth(2);
-            gl.Color(0.9f, 0.832f, 0.170f);
+            gl.Color(0.9f, 0.632f, 0.4170f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
             gl.Vertex(ptList[0].easting, ptList[0].northing, 0);
@@ -282,6 +278,7 @@ namespace AgOpenGPS
             glb.End();
         }
 
+        //obvious
         public void CalculateBoundaryArea()
         {
             int ptCount = ptList.Count;
@@ -296,23 +293,5 @@ namespace AgOpenGPS
             }
             area = Math.Abs(area / 2);
         }
-
-        //the non precalculated version
-        //public bool IsPointInPolygon()
-        //{
-        //    bool result = false;
-        //    int j = ptList.Count - 1;
-        //    vec2 testPoint = new vec2(mf.pn.fix.easting, mf.pn.fix.northing);
-
-        //    if (j < 10) return true;
-
-        //    for (int i = 0; i < ptList.Count; j = i++)
-        //    {
-        //        result ^= (ptList[i].northing > testPoint.northing ^ ptList[j].northing > testPoint.northing)
-        //            && testPoint.easting < ((ptList[j].easting - ptList[i].easting)
-        //            * (testPoint.northing - ptList[i].northing) / (ptList[j].northing - ptList[i].northing)) + ptList[i].easting;
-        //    }
-        //    return result;
-        //}
     }
 }

@@ -1,0 +1,42 @@
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Farm\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1050 - 3/29/2018 2:31:50 PM
+
+Opening Relay PortSystem.UnauthorizedAccessException: Access to the port 'COM4' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRateRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 326 - 4/1/2018 9:16:45 AM
+
+Opening Relay PortSystem.UnauthorizedAccessException: Access to the port 'COM4' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRateRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 326 - 4/1/2018 9:17:26 AM
+
+Opening Relay PortSystem.UnauthorizedAccessException: Access to the port 'COM4' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRateRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 326 - 4/1/2018 9:17:37 AM
+
+Opening Relay PortSystem.UnauthorizedAccessException: Access to the port 'COM4' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRateRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 326 - 4/1/2018 9:18:27 AM
+
+AutoSteer RecvSystem.InvalidOperationException: The port is closed.
+   at System.IO.Ports.SerialPort.ReadTo(String value)
+   at System.IO.Ports.SerialPort.ReadLine()
+   at AgOpenGPS.FormGPS.sp_DataReceivedAutoSteer(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 111 - 2018-04-01 9:18:47 AM
+
+Opening Relay PortSystem.IO.IOException: The port 'COM4' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRateRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 326 - 4/1/2018 3:07:28 PM
+

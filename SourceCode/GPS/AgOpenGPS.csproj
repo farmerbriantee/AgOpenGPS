@@ -767,6 +767,9 @@
     <None Include="btnImages\skull.png" />
     <None Include="btnImages\CurveOff.png" />
     <None Include="btnImages\CurveOn.png" />
+    <None Include="btnImages\SectionSettingsBackground.png" />
+    <None Include="btnImages\ArrowTurnLeft.png" />
+    <None Include="btnImages\ArrowTurnRight.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -61,7 +61,8 @@ namespace AgOpenGPS
         private double hzTime = 0;
 
         public double[] avgSpeed = new double[10];//for average speed
-        public int ringCounter = 0;
+        public double[] avgXTE = new double[20]; //for average cross track error
+        public int ringCounter = 0, avgXTECntr;
 
         //youturn
         double distPivot = -2222;
@@ -358,6 +359,19 @@ namespace AgOpenGPS
                 //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                 AutoSteerDataOutToPort();
             }
+
+            //for average cross track error
+            if (guidanceLineDistanceOff < 29000)
+            {
+                avgXTE[avgXTECntr] = Math.Abs(guidanceLineDistanceOff);
+                if (avgXTECntr++ > 18) avgXTECntr = 0;
+            }
+            else
+            {
+                avgXTE[avgXTECntr] = 0;
+                if (avgXTECntr++ > 18) avgXTECntr = 0;                    
+            }
+
             #endregion
 
             #region relayRatecontrol

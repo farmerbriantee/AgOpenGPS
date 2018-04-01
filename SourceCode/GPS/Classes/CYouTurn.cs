@@ -51,7 +51,21 @@ namespace AgOpenGPS
         public bool isRecordingCustomYouTurn;
 
         /// <summary> /// Is the youturn button enabled? /// </summary>
-        public bool isYouTurnBtnOn, isUsingDubinsTurn;
+        public bool isYouTurnBtnOn;
+
+        //
+        public bool isUsingDubinsTurn;
+
+        //Dew Loop turn 2 -> 2R,3L,2L,2R,3R,2L
+        public bool isDew2Set, isDew2Right;
+        public int dew2Index;
+        public int[] dew2Skips = new int[] { 2, 3, 2, 2, 3, 2 };
+        public bool[] dew2Direction = new bool[] { true, false, false, true, true, false };
+
+        public bool isDew4Set;
+        public int dew4Index;
+        public int[] dew4Skips = new int[] { 3, 4, 3, 3, 4, 3, 4, 2 };
+        public bool[] dew4Direction = new bool[] { true, false, false, true, true, true, true, false };
 
         public int rowSkipsWidth = 1, rowSkipsHeight = 1, lastTime = 3;
 
@@ -165,6 +179,46 @@ namespace AgOpenGPS
                 isLastYouTurnRight = !isLastYouTurnRight;
             }
 
+            if (mf.yt.isDew2Set)
+            {
+                bool dir = true;
+                if (isDew2Right) dir = dew2Direction[dew2Index];
+                else dir = !dew2Direction[dew2Index];
+
+                if (dir)
+                {
+                    isYouTurnRight = true;
+                    isLastYouTurnRight = !isYouTurnRight;
+                }
+                else
+                {
+                    isYouTurnRight = false;
+                    isLastYouTurnRight = !isYouTurnRight;
+                }
+
+                //reset index counter if done turns
+            }
+
+            if (mf.yt.isDew4Set)
+            {
+                bool dir = true;
+                if (isDew2Right) dir = dew4Direction[dew4Index];
+                else dir = !dew4Direction[dew4Index];
+
+                if (dir)
+                {
+                    isYouTurnRight = true;
+                    isLastYouTurnRight = !isYouTurnRight;
+                }
+                else
+                {
+                    isYouTurnRight = false;
+                    isLastYouTurnRight = !isYouTurnRight;
+                }
+
+                //reset index counter if done turns
+            }
+
             //modify the buttons to show the correct turn direction
             if (isYouTurnRight) mf.AutoYouTurnButtonsRightTurn();
             else mf.AutoYouTurnButtonsLeftTurn();
@@ -214,7 +268,7 @@ namespace AgOpenGPS
                 //determine if Section is entry or exit based on trigger point direction
                 bool isToolHeadingSameAsABHeading;
 
-                #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 double headAB;
@@ -240,7 +294,7 @@ namespace AgOpenGPS
                 if ((int)mf.hl.closestHeadlandPt.easting != -1)
                 {
                     mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
-                #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 }
                 else //we've lost the headland
                 {
@@ -252,12 +306,12 @@ namespace AgOpenGPS
 
                 //make distance sign correct
                 if (isInHeadland) mf.distTool *= -1;
-                mf.distTool += (mf.headlandDistanceDelta*0.5);
-                
+                mf.distTool += (mf.headlandDistanceDelta * 0.5);
+
                 //since same as AB Line, we are entering
                 if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading) whereAmI = 1;
-                    
-                //since opposite of AB Line at trigger we are exiting    
+
+                //since opposite of AB Line at trigger we are exiting
                 else whereAmI = 2;
 
                 //did we do all the events?
@@ -393,7 +447,7 @@ namespace AgOpenGPS
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
             double toolOffset = mf.vehicle.toolOffset * 2.0;
             double turnOffset = 0;
-            
+
             //turning right
             if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
             else turnOffset = (widthMinusOverlap - toolOffset);
@@ -404,7 +458,9 @@ namespace AgOpenGPS
             //if using dubins to calculate youturn
             if (isUsingDubinsTurn)
             {
+                int skips = 0;
                 double head = abHeading;
+
                 //if its straight across it makes 2 loops instead so goal is a little lower then start
                 if (!isABSameAsFixHeading) head += 3.14;
                 else head -= 0.01;
@@ -412,23 +468,51 @@ namespace AgOpenGPS
                 var start = new vec3(rEastYT, rNorthYT, head);
                 var goal = new vec3();
 
-                //also adjust for rowskips
                 head -= Math.PI;
                 if (head < 0) head += glm.twoPI;
 
+                //also adjust for rowskips if Dew loops are set
+                if (isDew2Set|isDew4Set)
+                {
+
+                    if (isDew2Set)
+                    {
+                        skips = dew2Skips[dew2Index];
+
+                        //if at end of turn, restart sequence
+                        dew2Index++;
+                        if (dew2Index >= dew2Skips.Length) dew2Index = 0;
+                    }
+
+                    if (isDew4Set)
+                    {
+                        skips = dew4Skips[dew4Index];
+
+                        //if at end of turn, restart sequence
+                        dew4Index++;
+                        if (dew4Index >= dew4Skips.Length) dew4Index = 0;
+                    }
+                }
+                else
+                {
+                    skips = rowSkipsWidth;
+                }
+
+                //calculate the turn
                 if (isTurnRight)
                 {
-                    goal.easting = rEastYT - (Math.Cos(-head) * turnOffset * rowSkipsWidth);
-                    goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset * rowSkipsWidth);
+                    goal.easting = rEastYT - (Math.Cos(-head) * turnOffset * skips);
+                    goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset * skips);
                     goal.heading = head;
                 }
                 else
                 {
-                    goal.easting = rEastYT + (Math.Cos(-head) * turnOffset * rowSkipsWidth);
-                    goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset * rowSkipsWidth);
+                    goal.easting = rEastYT + (Math.Cos(-head) * turnOffset * skips);
+                    goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset * skips);
                     goal.heading = head;
                 }
 
+                //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
             }
 

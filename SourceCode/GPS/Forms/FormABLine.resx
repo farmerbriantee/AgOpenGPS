@@ -129,7 +129,7 @@
     <value>Tahoma, 20.25pt, style=Bold</value>
   </data>
   <data name="lblFixHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 350</value>
+    <value>36, 344</value>
   </data>
   <data name="lblFixHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 33</value>
@@ -456,22 +456,22 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnDeleteAB.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt</value>
+    <value>Tahoma, 14.25pt, style=Bold</value>
   </data>
   <data name="btnDeleteAB.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
   <data name="btnDeleteAB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 329</value>
+    <value>350, 392</value>
   </data>
   <data name="btnDeleteAB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 63</value>
+    <value>93, 88</value>
   </data>
   <data name="btnDeleteAB.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="btnDeleteAB.Text" xml:space="preserve">
-    <value>Restart</value>
+    <value>Reset</value>
   <comment>x</comment></data>
   <data name="btnDeleteAB.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -495,7 +495,7 @@
     <value>Tahoma, 14.25pt</value>
   </data>
   <data name="btnBPoint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 392</value>
+    <value>126, 392</value>
   </data>
   <data name="btnBPoint.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
@@ -525,7 +525,7 @@
     <value>Tahoma, 14.25pt</value>
   </data>
   <data name="btnAPoint.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 392</value>
+    <value>9, 392</value>
   </data>
   <data name="btnAPoint.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
@@ -555,19 +555,19 @@
     <value>Tahoma, 12pt, style=Bold</value>
   </data>
   <data name="btnABLineOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 406</value>
+    <value>478, 392</value>
   </data>
   <data name="btnABLineOk.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
   <data name="btnABLineOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 74</value>
+    <value>109, 88</value>
   </data>
   <data name="btnABLineOk.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
   </data>
   <data name="btnABLineOk.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+    <value>BottomCenter</value>
   </data>
   <data name="&gt;&gt;btnABLineOk.Name" xml:space="preserve">
     <value>btnABLineOk</value>
@@ -585,22 +585,22 @@
     <value>Top, Right</value>
   </data>
   <data name="btnAddToFile.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt</value>
+    <value>Tahoma, 11.25pt, style=Bold</value>
   </data>
   <data name="btnAddToFile.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
   <data name="btnAddToFile.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 106</value>
+    <value>496, 120</value>
   </data>
   <data name="btnAddToFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 87</value>
+    <value>95, 88</value>
   </data>
   <data name="btnAddToFile.TabIndex" type="System.Int32, mscorlib">
     <value>82</value>
   </data>
   <data name="btnAddToFile.Text" xml:space="preserve">
-    <value>Add</value>
+    <value>Add to List</value>
   <comment>x</comment></data>
   <data name="btnAddToFile.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -744,7 +744,7 @@
     <value>174, 1</value>
   </data>
   <data name="lvLines.Size" type="System.Drawing.Size, System.Drawing">
-    <value>236, 337</value>
+    <value>316, 337</value>
   </data>
   <data name="lvLines.TabIndex" type="System.Int32, mscorlib">
     <value>84</value>
@@ -765,22 +765,22 @@
     <value>Top, Right</value>
   </data>
   <data name="btnListDelete.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt</value>
+    <value>Tahoma, 11.25pt, style=Bold</value>
   </data>
   <data name="btnListDelete.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
   <data name="btnListDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 4</value>
+    <value>495, 4</value>
   </data>
   <data name="btnListDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 79</value>
+    <value>95, 93</value>
   </data>
   <data name="btnListDelete.TabIndex" type="System.Int32, mscorlib">
     <value>85</value>
   </data>
   <data name="btnListDelete.Text" xml:space="preserve">
-    <value>Remove</value>
+    <value>Remove From List</value>
   <comment>x</comment></data>
   <data name="btnListDelete.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -801,22 +801,22 @@
     <value>Top, Right</value>
   </data>
   <data name="btnListUse.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 11.25pt</value>
+    <value>Tahoma, 11.25pt, style=Bold</value>
   </data>
   <data name="btnListUse.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopCenter</value>
   </data>
   <data name="btnListUse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>429, 213</value>
+    <value>496, 231</value>
   </data>
   <data name="btnListUse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 87</value>
+    <value>95, 88</value>
   </data>
   <data name="btnListUse.TabIndex" type="System.Int32, mscorlib">
     <value>86</value>
   </data>
   <data name="btnListUse.Text" xml:space="preserve">
-    <value>Use</value>
+    <value>Use Item</value>
   <comment>x</comment></data>
   <data name="btnListUse.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -843,10 +843,10 @@
     <value>TopCenter</value>
   </data>
   <data name="btnPlus90.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 409</value>
+    <value>251, 392</value>
   </data>
   <data name="btnPlus90.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 71</value>
+    <value>74, 87</value>
   </data>
   <data name="btnPlus90.TabIndex" type="System.Int32, mscorlib">
     <value>87</value>
@@ -876,7 +876,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblABHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 350</value>
+    <value>195, 344</value>
   </data>
   <data name="lblABHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 33</value>
@@ -909,7 +909,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 357</value>
+    <value>4, 351</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 19</value>
@@ -942,7 +942,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>163, 357</value>
+    <value>163, 351</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 19</value>
@@ -972,7 +972,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>514, 489</value>
+    <value>594, 489</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
@@ -1515,14 +1515,11 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
 </value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>5, 4, 5, 4</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>530, 528</value>
+    <value>610, 528</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

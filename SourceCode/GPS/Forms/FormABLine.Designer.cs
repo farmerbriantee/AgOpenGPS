@@ -127,9 +127,11 @@
             // btnDeleteAB
             // 
             resources.ApplyResources(this.btnDeleteAB, "btnDeleteAB");
+            this.btnDeleteAB.BackColor = System.Drawing.Color.Transparent;
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Stop;
+            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.Name = "btnDeleteAB";
+            this.btnDeleteAB.UseVisualStyleBackColor = false;
             this.btnDeleteAB.Click += new System.EventHandler(this.btnDeleteAB_Click);
             // 
             // btnBPoint
@@ -159,9 +161,11 @@
             // btnAddToFile
             // 
             resources.ApplyResources(this.btnAddToFile, "btnAddToFile");
+            this.btnAddToFile.BackColor = System.Drawing.Color.Transparent;
             this.btnAddToFile.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddToFile.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnAddToFile.Name = "btnAddToFile";
+            this.btnAddToFile.UseVisualStyleBackColor = false;
             this.btnAddToFile.Click += new System.EventHandler(this.btnAddToFile_Click);
             // 
             // tboxHeading

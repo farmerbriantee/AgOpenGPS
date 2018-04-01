@@ -92,6 +92,8 @@ namespace AgOpenGPS
                 if (ahrs.isRollDogs) int.TryParse(words[3], out mc.rollRaw);
 
                 int.TryParse(words[4], out mc.steerSwitchValue);
+                mc.workSwitchValue = mc.steerSwitchValue & 1;
+                mc.steerSwitchValue = mc.steerSwitchValue & 2;
             }
         }
 
@@ -193,24 +195,21 @@ namespace AgOpenGPS
         //build the byte for individual realy control
         private void BuildRelayByte()
         {
-            byte set = 1;
-            byte reset = 254;
-            mc.relayRateData[mc.rdSectionControlByte] = (byte)0;
+            int set = 1;
+            int reset = 2046;
+            mc.relayRateData[mc.rdSectionControlByteHi] = (byte)0;
+            mc.relayRateData[mc.rdSectionControlByteLo] = (byte)0;
+
+            int relay = 0;
 
             //check if super section is on
             if (section[vehicle.numOfSections].isSectionOn)
             {
-                mc.relayRateData[mc.rdSectionControlByte] = (byte)0;
                 for (int j = 0; j < vehicle.numOfSections; j++)
                 {
                     //all the sections are on, so set them
-                    mc.relayRateData[mc.rdSectionControlByte] 
-                        = (byte)(mc.relayRateData[mc.rdSectionControlByte] | set);
-
-                    //move set and reset over 1 bit left
-                    set = (byte)(set << 1);
-                    reset = (byte)(reset << 1);
-                    reset = (byte)(reset + 1);
+                    relay = relay | set;
+                    set = (set << 1);
                 }
             }
 
@@ -219,18 +218,22 @@ namespace AgOpenGPS
                 for (int j = 0; j < MAXSECTIONS; j++)
                 {
                     //set if on, reset bit if off
-                    if (section[j].isSectionOn) mc.relayRateData[mc.rdSectionControlByte] 
-                            = (byte)(mc.relayRateData[mc.rdSectionControlByte] | set);
-                    else mc.relayRateData[mc.rdSectionControlByte] = (byte)(mc.relayRateData[mc.rdSectionControlByte] & reset);
+                    if (section[j].isSectionOn) relay = relay | set;
+                    else relay = relay & reset;
 
                     //move set and reset over 1 bit left
-                    set = (byte)(set << 1);
-                    reset = (byte)(reset << 1);
-                    reset = (byte)(reset + 1);
+                    set = (set << 1);
+                    reset = (reset << 1);
+                    reset = (reset + 1);
                 }
             }
 
-            mc.autoSteerData[mc.sdRelay] = (byte)(mc.relayRateData[mc.rdSectionControlByte]);
+            //rate port gets high and low byte
+            mc.relayRateData[mc.rdSectionControlByteHi] = (byte)(relay >> 8);
+            mc.relayRateData[mc.rdSectionControlByteLo] = (byte)relay;
+
+            //autosteer gets only the first 8 sections
+            mc.autoSteerData[mc.sdRelayLo] = (byte)(mc.relayRateData[mc.rdSectionControlByteLo]);
         }
 
         //Send relay info out to relay board
