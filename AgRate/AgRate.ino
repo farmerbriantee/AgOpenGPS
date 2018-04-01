@@ -33,7 +33,7 @@
   int header = 0, tempHeader = 0;
 
   //bit 0 is section 0
-  byte relay = 0;
+  byte relayHi = 0, relayLo = 0;
   byte uTurnRelay = 0;
   
   float groundSpeed = 0; //speed from AgOpenGPS is multiplied by 4
@@ -135,7 +135,7 @@ void loop()
     Serial.print(","); 
     Serial.print( (int)((float)accumulatedCounts/flowmeterCalFactor) );
     Serial.print(","); 
-    Serial.println( countsThisLoop );      
+    Serial.println( (int)countsThisLoop );      
     //Serial.println( rateSetPoint );      
     Serial.flush();   // flush out buffer     
   } //end of timed loop
@@ -153,10 +153,11 @@ void loop()
     }
     
     //DATA Header has been found, so the next 4 bytes are the data -- 127H + 250L = 32762
-    if (Serial.available()==5 && isDataFound)
+    if (Serial.available()==6 && isDataFound)
     {  
       isDataFound = false;    
-      relay = Serial.read();   // read relay control from AgOpenGPS  
+      relayHi = Serial.read();   // read relay control from AgOpenGPS  9->12
+      relayLo = Serial.read();   // read relay control from AgOpenGPS  1 -> 8
       groundSpeed = Serial.read()>>2;  //actual speed times 4, single byte
   
       // sent as 100 times value in liters per minute
