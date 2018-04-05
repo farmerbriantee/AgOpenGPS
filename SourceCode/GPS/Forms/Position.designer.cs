@@ -374,34 +374,54 @@ namespace AgOpenGPS
 
             #endregion
 
-            #region relayRatecontrol
+            #region DualRatecontrol
             //do the relayRateControl
-            if (rc.isRateControlOn)
+            if (rcd.isRateControlOn)
             {
-                rc.CalculateRateLitersPerMinute();
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)((Int16)(rc.rateSetPoint * 100.0) >> 8);
-                mc.relayRateData[mc.rdRateSetPointLo] = (byte)(rc.rateSetPoint * 100.0);
+                if (rcd.isSingleFlowMeter)
+                {
+                    rcd.CalculateRateLitersPerMinuteSingle();
+                    mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)((Int16)(rcd.rateSetPointLeft * 100.0) >> 8);
+                    mc.relayRateData[mc.rdRateSetPointLeftLo] = (byte)(rcd.rateSetPointLeft * 100.0);
 
-                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                //relay byte is built in SerialComm function BuildRelayByte()
-                //youturn control byte is built in SerialComm BuildYouTurnByte()
+                    mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
+                    mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
+
+                    mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
+                    //relay byte is built in SerialComm function BuildRelayByte()
+                    //youturn control byte is built in SerialComm BuildYouTurnByte()
+
+                }
+                else
+                {
+                    rcd.CalculateRateLitersPerMinuteDual();
+                    mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)((Int16)(rcd.rateSetPointLeft * 100.0) >> 8);
+                    mc.relayRateData[mc.rdRateSetPointLeftLo] = (byte)(rcd.rateSetPointLeft * 100.0);
+
+                    mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)((Int16)(rcd.rateSetPointRight * 100.0) >> 8);
+                    mc.relayRateData[mc.rdRateSetPointRightLo] = (byte)(rcd.rateSetPointRight * 100.0);
+
+                    mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
+                    //relay byte is built in SerialComm function BuildRelayByte()
+                    //youturn control byte is built in SerialComm BuildYouTurnByte()
+                }
             }
             else
             {
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
+                mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)0;
+                mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)0;
+                mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)0;
+                mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)0;
                 mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
                 //relay byte is built in SerialComm.cs - function BuildRelayByte()
                 //youturn control byte is built in SerialComm BuildYouTurnByte()
             }
 
             //send out the port
-            RateRelayOutToPort(mc.relayRateData, AgOpenGPS.CModuleComm.numRelayRateDataItems);
-
-            //if the relay rate port is open
-            if (spRelay.IsOpen) DoRemoteSectionSwitch();
+            RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
 
             #endregion
+
 
             #region Youturn
 
@@ -438,8 +458,8 @@ namespace AgOpenGPS
                 }
                 else distPivot = -3333;
 
-                //trigger the "its ready to generate a youturn when 25m away" but don't make it just yet
-                if (distPivot < 25.0 && distPivot > 22 && !yt.isYouTurnTriggered && yt.isInWorkArea)
+                //trigger the "its ready to generate a youturn when 35.11m away" but don't make it just yet
+                if (distPivot < 35.11 && distPivot > 32.11 && !yt.isYouTurnTriggered && yt.isInWorkArea)
                 {
                     //begin the whole process, all conditions are met
                     yt.YouTurnTrigger();
@@ -463,7 +483,7 @@ namespace AgOpenGPS
                     {
                         //how far have we gone since youturn request was triggered
                         distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        if (distanceToStartAutoTurn > (25 + yt.youTurnStartOffset+headlandDistanceDelta))
+                        if (distanceToStartAutoTurn > (35.11 + yt.youTurnStartOffset+headlandDistanceDelta))
                         {
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;
@@ -996,14 +1016,14 @@ namespace AgOpenGPS
         //Matthias's Switch routine
         private void DoRemoteSectionSwitch()
         {
-            if (rc.RelayFromArduino != rc.RelayFromArduinoOld)
+            if (rcd.RelayFromArduino != rcd.RelayFromArduinoOld)
             {
 
                 // ON Signal from Arduino
-                if (rc.RelayFromArduino != 0)
+                if (rcd.RelayFromArduino != 0)
                 {
                     //if Main SW in Arduino is pressed ON
-                    if ((rc.RelayFromArduino & 128) == 128)
+                    if ((rcd.RelayFromArduino & 128) == 128)
                     {
                         //set butto off and then press it = ON
                         autoBtnState = btnStates.Off;
@@ -1012,51 +1032,51 @@ namespace AgOpenGPS
                     else
                     {
                         // sections ON in Arduino is pressed                     
-                        if ((rc.RelayFromArduino & 64) == 64 & vehicle.numOfSections > 6)
+                        if ((rcd.RelayFromArduino & 64) == 64 & vehicle.numOfSections > 6)
                         {
                             if (section[6].manBtnState != manBtn.Auto) section[6].manBtnState = manBtn.Auto;
                             btnSection7Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 32) == 32 & vehicle.numOfSections > 5)
+                        if ((rcd.RelayFromArduino & 32) == 32 & vehicle.numOfSections > 5)
                         {
                             if (section[5].manBtnState != manBtn.Auto) section[5].manBtnState = manBtn.Auto;
                             btnSection6Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 16) == 16 & vehicle.numOfSections > 4)
+                        if ((rcd.RelayFromArduino & 16) == 16 & vehicle.numOfSections > 4)
                         {
                             if (section[4].manBtnState != manBtn.Auto) section[4].manBtnState = manBtn.Auto;
                             btnSection5Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 8) == 8 & vehicle.numOfSections > 3)
+                        if ((rcd.RelayFromArduino & 8) == 8 & vehicle.numOfSections > 3)
                         {
                             if (section[3].manBtnState != manBtn.Auto) section[3].manBtnState = manBtn.Auto;
                             btnSection4Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 4) == 4 & vehicle.numOfSections > 2)
+                        if ((rcd.RelayFromArduino & 4) == 4 & vehicle.numOfSections > 2)
                         {
                             if (section[2].manBtnState != manBtn.Auto) section[2].manBtnState = manBtn.Auto;
                             btnSection3Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 2) == 2 & vehicle.numOfSections > 1)
+                        if ((rcd.RelayFromArduino & 2) == 2 & vehicle.numOfSections > 1)
                         {
                             if (section[1].manBtnState != manBtn.Auto) section[1].manBtnState = manBtn.Auto;
                             btnSection2Man.PerformClick();
                         }
-                        if ((rc.RelayFromArduino & 1) == 1)
+                        if ((rcd.RelayFromArduino & 1) == 1)
                         {
                             if (section[0].manBtnState != manBtn.Auto) section[0].manBtnState = manBtn.Auto;
                             btnSection1Man.PerformClick();
                         }
                     } // else
                 } //if
-                rc.RelayFromArduinoOld = rc.RelayFromArduino;
+                rcd.RelayFromArduinoOld = rcd.RelayFromArduino;
             }//do only if no changes
 
             // Switches have changed
-            if (rc.SectSWOffFromArduino != rc.SectSWOffFromArduinoOld)
+            if (rcd.SectSWOffFromArduino != rcd.SectSWOffFromArduinoOld)
             {
                 //if Main SW in Arduino is pressed OFF
-                if ((rc.SectSWOffFromArduino & 128) == 128)
+                if ((rcd.SectSWOffFromArduino & 128) == 128)
                 {   //set button on and then press it = OFF
                     autoBtnState = btnStates.Auto; btnSectionOffAutoOn.PerformClick();
                 }
@@ -1064,59 +1084,59 @@ namespace AgOpenGPS
                 //if Main = Auto then change section to Auto if Off signal from Arduino stopped
                 if (autoBtnState == btnStates.Auto)
                 {
-                    if (((rc.SectSWOffFromArduinoOld & 64) == 64) & ((rc.SectSWOffFromArduino & 64) != 64) & (section[6].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 64) == 64) & ((rcd.SectSWOffFromArduino & 64) != 64) & (section[6].manBtnState == manBtn.Off))
                     { btnSection7Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 32) == 32) & ((rc.SectSWOffFromArduino & 32) != 32) & (section[5].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 32) == 32) & ((rcd.SectSWOffFromArduino & 32) != 32) & (section[5].manBtnState == manBtn.Off))
                     { btnSection6Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 16) == 16) & ((rc.SectSWOffFromArduino & 16) != 16) & (section[4].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 16) == 16) & ((rcd.SectSWOffFromArduino & 16) != 16) & (section[4].manBtnState == manBtn.Off))
                     { btnSection5Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 8) == 8) & ((rc.SectSWOffFromArduino & 8) != 8) & (section[3].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 8) == 8) & ((rcd.SectSWOffFromArduino & 8) != 8) & (section[3].manBtnState == manBtn.Off))
                     { btnSection4Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 4) == 4) & ((rc.SectSWOffFromArduino & 4) != 4) & (section[2].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 4) == 4) & ((rcd.SectSWOffFromArduino & 4) != 4) & (section[2].manBtnState == manBtn.Off))
                     { btnSection3Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 2) == 2) & ((rc.SectSWOffFromArduino & 2) != 2) & (section[1].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 2) == 2) & ((rcd.SectSWOffFromArduino & 2) != 2) & (section[1].manBtnState == manBtn.Off))
                     { btnSection2Man.PerformClick(); }
-                    if (((rc.SectSWOffFromArduinoOld & 1) == 1) & ((rc.SectSWOffFromArduino & 1) != 1) & (section[0].manBtnState == manBtn.Off))
+                    if (((rcd.SectSWOffFromArduinoOld & 1) == 1) & ((rcd.SectSWOffFromArduino & 1) != 1) & (section[0].manBtnState == manBtn.Off))
                     { btnSection1Man.PerformClick(); }
                 }
-                rc.SectSWOffFromArduinoOld = rc.SectSWOffFromArduino;
+                rcd.SectSWOffFromArduinoOld = rcd.SectSWOffFromArduino;
             }
 
             // OFF Signal from Arduino
-            if (rc.SectSWOffFromArduino != 0)
+            if (rcd.SectSWOffFromArduino != 0)
             {
                 //if section SW in Arduino is switched to OFF; check always, if switch is locked to off GUI should not change
-                if ((rc.SectSWOffFromArduino & 64) == 64 & section[6].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 64) == 64 & section[6].manBtnState != manBtn.Off)
                 {
                     section[6].manBtnState = manBtn.On;
                     btnSection7Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 32) == 32 & section[5].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 32) == 32 & section[5].manBtnState != manBtn.Off)
                 {
                     section[5].manBtnState = manBtn.On;
                     btnSection6Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 16) == 16 & section[4].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 16) == 16 & section[4].manBtnState != manBtn.Off)
                 {
                     section[4].manBtnState = manBtn.On;
                     btnSection5Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 8) == 8 & section[3].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 8) == 8 & section[3].manBtnState != manBtn.Off)
                 {
                     section[3].manBtnState = manBtn.On;
                     btnSection4Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 4) == 4 & section[2].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 4) == 4 & section[2].manBtnState != manBtn.Off)
                 {
                     section[2].manBtnState = manBtn.On;
                     btnSection3Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 2) == 2 & section[1].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 2) == 2 & section[1].manBtnState != manBtn.Off)
                 {
                     section[1].manBtnState = manBtn.On;
                     btnSection2Man.PerformClick();
                 }
-                if ((rc.SectSWOffFromArduino & 1) == 1 & section[0].manBtnState != manBtn.Off)
+                if ((rcd.SectSWOffFromArduino & 1) == 1 & section[0].manBtnState != manBtn.Off)
                 {
                     section[0].manBtnState = manBtn.On;
                     btnSection1Man.PerformClick();

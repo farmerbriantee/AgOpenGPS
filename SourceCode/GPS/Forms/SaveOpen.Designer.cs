@@ -205,20 +205,21 @@ namespace AgOpenGPS
                         if (words[0] != "Version")
 
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.5 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version " + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
                             form.Show();
                             return false;
                         }
 
                         double test = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        double ver = Convert.ToDouble(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
 
-                        if (test < 2.6)
+                        if (test < ver)
                         {
-                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version 2.6 or higher");
+                            var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version "+ Application.ProductVersion.ToString(CultureInfo.InvariantCulture)+ " or higher");
                             form.Show();
                             return false;
                         }
-
+                         
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_toolOverlap = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -1036,7 +1037,7 @@ namespace AgOpenGPS
             }
 
 
-            //Either exit or update running save
+            //Recorded Path
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
             if (File.Exists(fileAndDirectory))
             {

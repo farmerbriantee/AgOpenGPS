@@ -1,5 +1,4 @@
-﻿
-namespace AgOpenGPS
+﻿namespace AgOpenGPS
 {
     public class CModuleComm
     {
@@ -13,16 +12,19 @@ namespace AgOpenGPS
         public int incomingInt;
 
         // PGN - 32762 - 127.250
-        public static int numRelayRateDataItems = 8;
+        public static int numRelayRateDataItems = 10;
         public byte[] relayRateData = new byte[numRelayRateDataItems];
         public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, rdSpeedXFour = 4,
-                    rdRateSetPointHi = 5, rdRateSetPointLo = 6, rdYouTurnControlByte = 7;
+                    rdRateSetPointLeftHi = 5, rdRateSetPointLeftLo = 6,
+                    rdRateSetPointRightHi = 7, rdRateSetPointRightLo = 8, rdYouTurnControlByte = 9;
 
         // PGN - 32760 - 127.248
-        public static int numRelayRateSettingsItems = 6;
+        public static int numRelayRateSettingsItems = 8;
         public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
-        public int rsHeaderHi, rsHeaderLo = 1, rsAccumulatedVolumeHi = 2, rsAccumulatedVolumeLo = 3,
-            rsFlowCalFactorHi = 4, rsFlowCalFactorLo = 5;
+        public int rsHeaderHi, rsHeaderLo = 1,
+            rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
+            rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5,
+            rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
 
         //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
@@ -30,8 +32,8 @@ namespace AgOpenGPS
         // PGN - 32766 - 127.254
         public static int numSteerDataItems = 9;
         public byte[] autoSteerData = new byte[numSteerDataItems];
-        public int sdHeaderHi, sdHeaderLo=1, sdRelayLo=2, sdSpeed=3, sdDistanceHi=4, sdDistanceLo=5,
-                    sdSteerAngleHi=6, sdSteerAngleLo=7, sdYouTurnByte = 8; 
+        public int sdHeaderHi, sdHeaderLo = 1, sdRelayLo = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
+                    sdSteerAngleHi = 6, sdSteerAngleLo = 7, sdYouTurnByte = 8;
 
         // PGN - 32764 - 127.252
         public static int numSteerSettingItems = 10;
@@ -44,8 +46,7 @@ namespace AgOpenGPS
         public int workSwitchValue;
 
         //imu and roll inclinometer
-        public int steerSwitchValue, gyroHeading=9999, prevGyroHeading = 9999;
-        public int rollRaw=9999; //inclinometer ?
+        public int steerSwitchValue, gyroHeading = 9999, prevGyroHeading = 9999, rollRaw = 9999; //inclinometer ?
 
         //constructor
         public CModuleComm(FormGPS _f)
@@ -68,8 +69,10 @@ namespace AgOpenGPS
             relayRateData[rdHeaderLo] = 250;
             relayRateData[rdSectionControlByteHi] = 0;
             relayRateData[rdSectionControlByteLo] = 0;
-            relayRateData[rdRateSetPointHi] = 0;
-            relayRateData[rdRateSetPointLo] = 0;
+            relayRateData[rdRateSetPointLeftHi] = 0;
+            relayRateData[rdRateSetPointLeftLo] = 0;
+            relayRateData[rdRateSetPointRightHi] = 0;
+            relayRateData[rdRateSetPointRightLo] = 0;
             relayRateData[rdSpeedXFour] = 0;
             relayRateData[rdYouTurnControlByte] = 0;
             mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
@@ -88,10 +91,12 @@ namespace AgOpenGPS
 
             relayRateSettings[rsHeaderHi] = 127; // PGN - 32760
             relayRateSettings[rsHeaderLo] = 248;
-            relayRateSettings[rsAccumulatedVolumeHi] = (byte)(Properties.Settings.Default.setRate_AccumulatedVolume >> 8);
-            relayRateSettings[rsAccumulatedVolumeLo] = (byte)(Properties.Settings.Default.setRate_AccumulatedVolume);
-            relayRateSettings[rsFlowCalFactorHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber >> 8);
-            relayRateSettings[rsFlowCalFactorLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber);
+            relayRateSettings[rsDualAccumulatedVolumeHi] = (byte)(Properties.Settings.Default.setRate_DualAccumulatedVolume >> 8);
+            relayRateSettings[rsDualAccumulatedVolumeLo] = (byte)(Properties.Settings.Default.setRate_DualAccumulatedVolume);
+            relayRateSettings[rsFlowCalFactorLeftHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft >> 8);
+            relayRateSettings[rsFlowCalFactorLeftLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft);
+            relayRateSettings[rsFlowCalFactorRightHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight >> 8);
+            relayRateSettings[rsFlowCalFactorRightLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight);
             mf.RateRelayOutToPort(relayRateSettings, numRelayRateSettingsItems);
 
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header

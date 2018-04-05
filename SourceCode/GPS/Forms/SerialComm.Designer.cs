@@ -269,25 +269,30 @@ namespace AgOpenGPS
             if (words.Length != 5 & words.Length != 3) return;
 
             //fill in the holes
-            //int.TryParse(words[0], out mc);
+            //left or single actual rate
             int.TryParse(words[0], out mc.incomingInt);
-            rc.rateActual = (double)mc.incomingInt * 0.01;
+            rcd.rateActualLeft = (double)mc.incomingInt * 0.01;
 
+            //right actual rate
             int.TryParse(words[1], out mc.incomingInt);
-            rc.volumeActual = mc.incomingInt;
+            rcd.rateActualRight = (double)mc.incomingInt * 0.01;
+
+            //Volume for dual and single
+            int.TryParse(words[2], out mc.incomingInt);
+            rcd.dualVolumeActual = mc.incomingInt;
 
 
             //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
             //read RelayToAOG from Arduino
-            if (words.Length == 5)
-            {
-                int.TryParse(words[3], out mc.incomingInt);
-                rc.RelayFromArduino = (byte)mc.incomingInt;
+            //if (words.Length == 5)
+            //{
+            //    int.TryParse(words[3], out mc.incomingInt);
+            //    rc.RelayFromArduino = (byte)mc.incomingInt;
 
-                //read SectSWOffToAOG from Arduino
-                int.TryParse(words[4], out mc.incomingInt);
-                rc.SectSWOffFromArduino = (byte)mc.incomingInt;
-            }
+            //    //read SectSWOffToAOG from Arduino
+            //    int.TryParse(words[4], out mc.incomingInt);
+            //    rc.SectSWOffFromArduino = (byte)mc.incomingInt;
+            //}
         }
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);
@@ -302,7 +307,7 @@ namespace AgOpenGPS
                     System.Threading.Thread.Sleep(25);
                     string sentence = spRelay.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRateRelay), sentence);                    
-                    if (spRelay.BytesToRead > 8) spRelay.DiscardInBuffer();
+                    if (spRelay.BytesToRead > 32) spRelay.DiscardInBuffer();
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception ex)

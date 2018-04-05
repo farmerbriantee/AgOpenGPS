@@ -33,12 +33,15 @@ namespace AgOpenGPS
                 lblSpeedUnits.Text = "kmh";
                 metricToolStrip.Checked = true;
                 imperialToolStrip.Checked = false;
+                lblFlowLeft.Text = "LPM"; lblFlowRight.Text = "LPM";
             }
             else
             {
                 lblSpeedUnits.Text = "mph";
                 metricToolStrip.Checked = false;
                 imperialToolStrip.Checked = true;
+                lblFlowLeft.Text = "GPM"; lblFlowRight.Text = "GPM";
+
             }
 
             //load up colors
@@ -56,8 +59,26 @@ namespace AgOpenGPS
             btnSwapDirection.Visible = false;
 
             //rate control button
+            btnDualRate.Text = gStr.gsOff;
+            if (isMetric)
+            {
+                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString();
+                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString();
+            }
+            else
+            {
+                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
+                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
+            }
 
-            btnRate.Text = gStr.gsOff;
+            if (rcd.isSingleFlowMeter)
+            {
+                btnSelectSingleDualMeter.Image = Resources.FlowMeterSingle;
+            }
+            else
+            {
+                btnSelectSingleDualMeter.Image = Resources.FlowMeterDual;
+            }
 
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
@@ -123,8 +144,8 @@ namespace AgOpenGPS
         {
             if (tabControl1.Visible)
             {
-                btnRightYouTurn.Left = (Width - 530) / 2 + 70;
-                btnLeftYouTurn.Left = (Width - 530) / 2 - 140;
+                btnRightYouTurn.Left = (Width - 630) / 2 + 70;
+                btnLeftYouTurn.Left = (Width - 630) / 2 - 140;
             }
             else
             {
@@ -144,7 +165,7 @@ namespace AgOpenGPS
             btnSection8Man.Top = Height - top;
 
             int first2Thirds;
-            if (tabControl1.Visible) first2Thirds = (Width - 530) / 2;
+            if (tabControl1.Visible) first2Thirds = (Width - 630) / 2;
             else first2Thirds = (Width) / 2;
 
             int even = 60;
@@ -312,11 +333,11 @@ namespace AgOpenGPS
                 case 9:
                     btnSection1Man.Top = Height - top;
                     btnSection2Man.Top = Height - top;
-                    btnSection3Man.Top = Height - top + 52;
+                    btnSection3Man.Top = Height - top + 42;
                     btnSection4Man.Top = Height - top;
-                    btnSection5Man.Top = Height - top + 52;
+                    btnSection5Man.Top = Height - top + 42;
                     btnSection6Man.Top = Height - top;
-                    btnSection7Man.Top = Height - top + 52;
+                    btnSection7Man.Top = Height - top + 42;
                     btnSection8Man.Top = Height - top;
                     btnSection9Man.Top = Height - top;
 
@@ -348,15 +369,15 @@ namespace AgOpenGPS
 
                 case 10:
                     btnSection1Man.Top = Height - top;
-                    btnSection2Man.Top = Height - top + 52;
+                    btnSection2Man.Top = Height - top + 42;
                     btnSection3Man.Top = Height - top;
-                    btnSection4Man.Top = Height - top + 52;
+                    btnSection4Man.Top = Height - top + 42;
                     btnSection5Man.Top = Height - top;
-                    btnSection6Man.Top = Height - top + 52;
+                    btnSection6Man.Top = Height - top + 42;
                     btnSection7Man.Top = Height - top;
-                    btnSection8Man.Top = Height - top + 52;
+                    btnSection8Man.Top = Height - top + 42;
                     btnSection9Man.Top = Height - top;
-                    btnSection10Man.Top = Height - top + 52;
+                    btnSection10Man.Top = Height - top + 42;
 
 
                     btnSection1Man.Left = (first2Thirds) - 200;
@@ -389,13 +410,13 @@ namespace AgOpenGPS
                 case 11:
                     btnSection1Man.Top = Height - top;
                     btnSection2Man.Top = Height - top;
-                    btnSection3Man.Top = Height - top + 52;
+                    btnSection3Man.Top = Height - top + 42;
                     btnSection4Man.Top = Height - top;
-                    btnSection5Man.Top = Height - top + 52;
+                    btnSection5Man.Top = Height - top + 42;
                     btnSection6Man.Top = Height - top;
-                    btnSection7Man.Top = Height - top + 52;
+                    btnSection7Man.Top = Height - top + 42;
                     btnSection8Man.Top = Height - top;
-                    btnSection9Man.Top = Height - top + 52;
+                    btnSection9Man.Top = Height - top + 42;
                     btnSection10Man.Top = Height - top;
                     btnSection11Man.Top = Height - top;
 
@@ -677,7 +698,7 @@ namespace AgOpenGPS
                 btnContour.Left = Width - 123;
                 btnCurve.Left = Width - 123;
                 btnManualOffOn.Left = Width - 123;
-                btnSectionOffAutoOn.Left = Width - 130;
+                btnSectionOffAutoOn.Left = Width - 132;
                 btnZoomIn.Left = 3;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
                 LineUpManualBtns();
@@ -688,19 +709,19 @@ namespace AgOpenGPS
             {
                 //tab will be visible
                 tabControl1.Visible = true;
-                openGLControl.Width = Width - 530;
+                openGLControl.Width = Width - 630;
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
                 panelSimControls.Visible = true;
-                btnABLine.Left = Width - 630;
-                btnContour.Left = Width - 630;
-                btnCurve.Left = Width - 630;
-                btnManualOffOn.Left = Width - 630;
-                btnSectionOffAutoOn.Left = Width - 644;
+                btnABLine.Left = Width - 730;
+                btnContour.Left = Width - 730;
+                btnCurve.Left = Width - 730;
+                btnManualOffOn.Left = Width - 730;
+                btnSectionOffAutoOn.Left = Width - 740;
                 LineUpManualBtns();
-                btnZoomIn.Left = Width - 220;
+                btnZoomIn.Left = Width - 730;
                 btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-                txtDistanceOffABLine.Left = (Width - 530)/2 - 60;
+                txtDistanceOffABLine.Left = (Width - 630)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
             }
         }
@@ -1248,158 +1269,6 @@ namespace AgOpenGPS
         }
         
         //Rate 
-        private void btnRateConfig_Click(object sender, EventArgs e)
-        {
-            var form = new FormRate(this);
-            form.ShowDialog();
-            if (isMetric)
-            {
-                btnRate1Select.Text = (rc.rate1).ToString("N1");
-                btnRate2Select.Text = (rc.rate2).ToString("N1");
-            }
-            else
-            {
-                btnRate1Select.Text = (rc.rate1 * glm.LHa2galAc).ToString("N1");
-                btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnRate_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                rc.isRateControlOn = !rc.isRateControlOn;
-
-                if (rc.isRateControlOn)
-                {
-                    mc.relayRateSettings[mc.rsFlowCalFactorHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber >> 8);
-                    mc.relayRateSettings[mc.rsFlowCalFactorLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumber);
-                    RateRelayOutToPort(mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
-
-                    //get the last saved rates from setting file - always stored in L/Ha
-                    rc.rate1 = Properties.Settings.Default.setRate_rate1;
-                    rc.rate2 = Properties.Settings.Default.setRate_rate2;
-
-
-                    btnRate1Select.Visible = true;
-                    btnRate2Select.Visible = true;
-                    btnRateDn.Visible = true;
-                    btnRateUp.Visible = true;
-                    btnRate.Image = Properties.Resources.RateControlOn;
-                    btnRate.Text = "-";
-
-                    if (isMetric)
-                    {
-                        btnRate1Select.Text = (rc.rate1).ToString("N1");
-                        btnRate2Select.Text = (rc.rate2).ToString("N1");
-                    }
-                    else
-                    {
-                        btnRate1Select.Text = (rc.rate1 * glm.LHa2galAc).ToString("N1");
-                        btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
-                    }
-
-                    if (rc.isRate1Selected)
-                    {
-                        btnRate2Select.ForeColor = Color.SlateGray;
-                        btnRate1Select.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        btnRate1Select.ForeColor = Color.SlateGray;
-                        btnRate2Select.ForeColor = Color.Black;
-                    }
-                }
-                else
-                {
-                    btnRate1Select.Visible = false;
-                    btnRate2Select.Visible = false;
-                    btnRateDn.Visible = false;
-                    btnRateUp.Visible = false;
-                    btnRate.Image = Properties.Resources.RateControlOff;
-                    btnRate.Text =(gStr.gsOff);
-                    lblRateAppliedActual.Text = "-";
-                    rc.rateSetPoint = 0.0;
-                    mc.relayRateData[mc.rdRateSetPointLo] = 0;
-                    mc.relayRateData[mc.rdRateSetPointHi] = 0;
-                    RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
-        }
-        private void btnRate1Select_Click(object sender, EventArgs e)
-        {
-            rc.isRate1Selected = true;
-            btnRate2Select.ForeColor = Color.SlateGray;
-            btnRate1Select.ForeColor = Color.Black;
-        }
-        private void btnRate2Select_Click(object sender, EventArgs e)
-        {
-            rc.isRate1Selected = false;
-            btnRate1Select.ForeColor = Color.SlateGray;
-            btnRate2Select.ForeColor = Color.Black;
-        }
-        private void btnRateUp_Click(object sender, EventArgs e)
-        {
-            if (isMetric)
-            {
-                if (rc.isRate1Selected)
-                {
-                    rc.rate1 += 1.0;
-                    btnRate1Select.Text = rc.rate1.ToString("N1");
-                }
-                else
-                {
-                    rc.rate2 += 1.0;
-                    btnRate2Select.Text = rc.rate2.ToString("N1");
-                }
-            }
-            else
-            {
-                if (rc.isRate1Selected)
-                {
-                    rc.rate1 += 1.0;
-                    btnRate1Select.Text = (rc.rate1*glm.LHa2galAc).ToString("N1");
-                }
-                else
-                {
-                    rc.rate2 += 1.0;
-                    btnRate2Select.Text = (rc.rate2*glm.LHa2galAc).ToString("N1");
-                }
-            }
-        }
-        private void btnRateDn_Click(object sender, EventArgs e)
-        {
-            if (isMetric)
-            {
-                if (rc.isRate1Selected)
-                {
-                    rc.rate1 -= 1.0;
-                    if (rc.rate1 < 2.0) rc.rate1 = 2.0;
-                    btnRate1Select.Text = rc.rate1.ToString("N1");
-                }
-                else
-                {
-                    rc.rate2 -= 1.0;
-                    if (rc.rate2 < 2.0) rc.rate2 = 2.0;
-                    btnRate2Select.Text = rc.rate2.ToString("N1");
-                }
-            }
-            else
-            {
-                if (rc.isRate1Selected)
-                {
-                    rc.rate1 -= 1.0;
-                    if (rc.rate1 < 2.0) rc.rate1 = 2.0;
-                    btnRate1Select.Text = (rc.rate1 * glm.LHa2galAc).ToString("N1");
-                }
-                else
-                {
-                    rc.rate2 -= 1.0;
-                    if (rc.rate2 < 2.0) rc.rate2 = 2.0;
-                    btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
-                }
-            }
-        }
 
         //YouTurn on off
         private void btnLeftYouTurn_Click(object sender, EventArgs e)
@@ -1478,8 +1347,8 @@ namespace AgOpenGPS
             {
                 yt.isYouTurnBtnOn = true;
                 yt.dew2Index = 0;
-                yt.isDew2Set = false;
-                yt.isDew4Set = false;
+                //yt.isDew2Set = false;
+                //yt.isDew4Set = false;
                 yt.dew4Index = 0;
                 yt.ResetYouTurnAndSequenceEvents();
                 mc.autoSteerData[mc.sdYouTurnByte] = 0;
@@ -1493,8 +1362,8 @@ namespace AgOpenGPS
                 yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 yt.dew2Index = 0;
-                yt.isDew2Set = false;
-                yt.isDew4Set = false;
+                //yt.isDew2Set = false;
+                //yt.isDew4Set = false;
                 yt.dew4Index = 0;
                 yt.ResetYouTurnAndSequenceEvents();
                 mc.autoSteerData[mc.sdYouTurnByte] = 0;
@@ -1508,6 +1377,7 @@ namespace AgOpenGPS
             btnRightYouTurn.Width = 110;
             btnLeftYouTurn.Height = 72;
             btnLeftYouTurn.Width = 72;
+            btnLeftYouTurn.Text = "";
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
         }
         public void AutoYouTurnButtonsLeftTurn()
@@ -1515,6 +1385,7 @@ namespace AgOpenGPS
             btnRightYouTurn.BackColor = Color.LightSteelBlue;
             btnRightYouTurn.Height = 72;
             btnRightYouTurn.Width = 72;
+            btnRightYouTurn.Text = "";
             btnLeftYouTurn.Height = 110;
             btnLeftYouTurn.Width = 110;
             btnLeftYouTurn.BackColor = Color.Yellow;
@@ -1527,6 +1398,8 @@ namespace AgOpenGPS
             btnLeftYouTurn.Width = 72;
             btnRightYouTurn.Height = 72;
             btnRightYouTurn.Width = 72;
+            btnLeftYouTurn.Text = "";
+            btnRightYouTurn.Text = "";
 
             // why yes it is backwards, puzzling
             if (!yt.isYouTurnRight)
@@ -1610,10 +1483,10 @@ namespace AgOpenGPS
                     FileCreateSections();
                     FileCreateRecPath();
 
-                    if (rc.isRateControlOn)
-                        btnRate.PerformClick();
+                    if (rcd.isRateControlOn)
+                        btnDualRate.PerformClick();
 
-                    rc.ShutdownRateControl();  //double dam sure its off
+                    rcd.ShutdownRateControl();  //double dam sure its off
 
                     //turn auto button off
                     autoBtnState = btnStates.Off;
@@ -1950,13 +1823,17 @@ namespace AgOpenGPS
             lblSpeedUnits.Text = "kmh";
             if (isMetric)
             {
-                btnRate1Select.Text = (rc.rate1).ToString("N1");
-                btnRate2Select.Text = (rc.rate2).ToString("N1");
+                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString("N1");
+                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString("N1");
+                lblFlowLeft.Text = "LPM"; lblFlowRight.Text = "LPM";
+
             }
             else
             {
-                btnRate1Select.Text = (rc.rate1 * glm.LHa2galAc).ToString("N1");
-                btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
+                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
+                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
+                lblFlowLeft.Text = "GPM"; lblFlowRight.Text = "GPM";
+
             }
 
         }
@@ -1978,13 +1855,15 @@ namespace AgOpenGPS
 
             if (isMetric)
             {
-                btnRate1Select.Text = (rc.rate1).ToString("N1");
-                btnRate2Select.Text = (rc.rate2).ToString("N1");
+                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString("N1");
+                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString("N1");
+                lblFlowLeft.Text = "LPM"; lblFlowRight.Text = "LPM";
             }
             else
             {
-                btnRate1Select.Text = (rc.rate1 * glm.LHa2galAc).ToString("N1");
-                btnRate2Select.Text = (rc.rate2 * glm.LHa2galAc).ToString("N1");
+                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
+                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
+                lblFlowLeft.Text = "GPM"; lblFlowRight.Text = "GPM";
             }
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2388,18 +2267,48 @@ namespace AgOpenGPS
         public string AcresUser { get { return (totalUserSquareMeters * 0.000247105).ToString("N2") + " Ac"; } }
         public string HectaresUser { get { return (totalUserSquareMeters * 0.0001).ToString("N2") + " Ha"; } }
 
-        public string RateAccumulatedVolumeLiters { get { return rc.volumeActual.ToString("N0") + " L"; } }
-        public string RateAccumulatedVolumeGallons { get { return ((double)rc.volumeActual * 0.264172875).ToString("N0") + " Gal"; } }
+        //rate control DUAL
+        public string RateDualAccumulatedVolumeLiters { get { return rcd.dualVolumeActual.ToString("N0") + " L"; } }
+        public string RateDualAccumulatedVolumeGallons { get { return ((double)rcd.dualVolumeActual * 0.264172875).ToString("N0") + " Gal"; } }
+        public string RateAppliedActualRightLPerHA
+        {
+            get
+            {
+                if (rcd.rateSetPointRight != 0)
+                    return (rcd.rateActualRight / (rcd.currentWidthRight * pn.speed * .0016666666666 + 0.0001)).ToString("N1");
+                else return "0";
+            }
+        }
+        public string RateAppliedActualRightGPA
+        {
+            get
+            {
+                if (rcd.rateSetPointRight != 0)
+                    return ((rcd.rateActualRight / (rcd.currentWidthRight * pn.speed * .0016666666666 + 0.0001)) * glm.LHa2galAc).ToString("N1");
+                else return "0";
+            }
+        }
+        public string RateAppliedActualLeftLPerHA
+        {
+            get
+            {
+                if (rcd.rateSetPointLeft != 0)
+                    return (rcd.rateActualLeft / (rcd.currentWidthLeft * pn.speed * .0016666666666 + 0.0001)).ToString("N1");
+                else return "0";
+            }
+        }
+        public string RateAppliedActualLeftGPA
+        {
+            get
+            {
+                if (rcd.rateSetPointLeft != 0)
+                    return ((rcd.rateActualLeft / (rcd.currentWidthLeft * pn.speed * .0016666666666 + 0.0001)) * glm.LHa2galAc).ToString("N1");
+                else return "0";
+            }
+        }
 
-        public string RateAppliedActualLPerHA { get {
-                if (rc.currentWidth > 0) return (rc.rateActual / ((rc.currentWidth) * pn.speed * .0016666666666 + 0.00001)).ToString("N1");
-                else return ("0.0");
-            } }
-        public string RateAppliedActualGPA { get {
-                if (rc.currentWidth > 0)
-                    return ((rc.rateActual / ((rc.currentWidth) * pn.speed * .0016666666666 + 0.00001)) * glm.LHa2galAc).ToString("N1");
-                else return ("0.0");
-            } }
+        public string DistPivotM { get { return ((int)(distPivot)) + " m"; } }
+        public string DistPivotFt { get { return ((int)(glm.m2ft * distPivot)) + " ft"; } }
 
         public Texture ParticleTexture { get; set; }
 
@@ -2431,7 +2340,7 @@ namespace AgOpenGPS
                         lblBoundaryArea.Text = boundz.areaHectare;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(distPivot)) + " m";
                         else lblHeadlandDistanceAway.Text = "***";
-                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = ((int)(distTool)) + " m";
+                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
                         else lblHeadlandDistanceFromTool.Text = " * ";
                     }
                     else //imperial
@@ -2441,7 +2350,7 @@ namespace AgOpenGPS
                         lblBoundaryArea.Text = boundz.areaAcre;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
                         else lblHeadlandDistanceAway.Text = "***";
-                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = ((int)(glm.m2ft * distTool)) + " ft";
+                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotFt;
                         else lblHeadlandDistanceFromTool.Text = " * ";
                     }
 
@@ -2459,10 +2368,6 @@ namespace AgOpenGPS
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
                                             + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.autoSteerData[mc.sdYouTurnByte];
 
-                    //from rateRelay
-                    txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
-                    txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3]  + "," + mc.relayRateData[4] //relay and speed x 4
-                        + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7]; //setpoint hi lo, youturn
 
                     //up in the menu a few pieces of info
                     if (isJobStarted)
@@ -2495,13 +2400,30 @@ namespace AgOpenGPS
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
 
                     //rate
-                    if (rc.isRateControlOn && tabControl1.SelectedIndex == 2)
+                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 2)
                     {
-                        lblAccumulatedVolume.Text = RateAccumulatedVolumeLiters;
-                        lblRateAppliedActual.Text = RateAppliedActualLPerHA;
-                        btnRate.Text = rc.rateSetPoint.ToString("N1");
+                        lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeLiters;
+                        lblRateAppliedActualRight.Text = RateAppliedActualRightLPerHA;
+                        lblRateAppliedActualLeft.Text = RateAppliedActualLeftLPerHA;
+
+                        lblFlowRateLeft.Text = rcd.rateSetPointLeft.ToString("N1");
+                        lblFlowRateRight.Text = rcd.rateSetPointRight.ToString("N1");
                     }
+
+                    //from rateRelay
+                    txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
+                    txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
+                        + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
+                    + "," + mc.relayRateData[9];
+
+
                     btnContour.Text = XTE; //cross track error
+
+                    if (yt.isSequenceTriggered) 
+                    {
+                        if (btnLeftYouTurn.Height == 110) btnLeftYouTurn.Text = DistPivotM;
+                        if (btnRightYouTurn.Height == 110) btnRightYouTurn.Text = DistPivotM;
+                    }
                 }
                 else  //Imperial Measurements
                 {
@@ -2517,11 +2439,25 @@ namespace AgOpenGPS
                     btnContour.Text = InchXTE; //cross track error
 
                     //rate
-                    if (rc.isRateControlOn && tabControl1.SelectedIndex == 2)
+                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 2)
                     {
-                        lblAccumulatedVolume.Text = RateAccumulatedVolumeGallons;
-                        lblRateAppliedActual.Text = RateAppliedActualGPA;
-                        btnRate.Text = (rc.rateSetPoint * 0.264172875).ToString("N1");
+                        lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeGallons;
+                        lblRateAppliedActualRight.Text = RateAppliedActualRightGPA;
+                        lblRateAppliedActualLeft.Text = RateAppliedActualLeftGPA;
+                        lblFlowRateLeft.Text = (rcd.rateSetPointLeft * 0.264172875).ToString("N1");
+                        lblFlowRateRight.Text = (rcd.rateSetPointRight * 0.264172875).ToString("N1");
+                    }
+
+                    //from rateRelay
+                    txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
+                    txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
+                        + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
+                    + "," + mc.relayRateData[9];
+
+                    if (yt.isSequenceTriggered)
+                    {
+                        if (btnLeftYouTurn.Height == 110) btnLeftYouTurn.Text = DistPivotFt;
+                        if (btnRightYouTurn.Height == 110) btnRightYouTurn.Text = DistPivotFt;
                     }
                 }
 
@@ -2531,8 +2467,6 @@ namespace AgOpenGPS
                 lblHeading2.Text = lblHeading.Text;
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
-
-
 
                 //statusbar flash red undefined headland
                 if (distPivot == -3333 && statusStrip1.BackColor == SystemColors.ScrollBar || distPivot != -3333 && statusStrip1.BackColor == Color.Tomato)
@@ -2572,7 +2506,5 @@ namespace AgOpenGPS
             }
             //wait till timer fires again.     
         }
-
-
     }//end class
 }//end namespace

@@ -97,13 +97,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CDualRate.cs" />
     <Compile Include="Classes\CCart.cs" />
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CHeadland.cs" />
-    <Compile Include="Classes\CRate.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
@@ -121,6 +121,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormDualRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDualRate.Designer.cs">
+      <DependentUpon>FormDualRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormDisplaySettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,12 +174,6 @@
     </Compile>
     <Compile Include="Forms\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormRate.Designer.cs">
-      <DependentUpon>FormRate.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
@@ -328,6 +328,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormDualRate.resx">
+      <DependentUpon>FormDualRate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDisplaySettings.resx">
       <DependentUpon>FormDisplaySettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -474,9 +477,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormJob.ru.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRate.resx">
-      <DependentUpon>FormRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.de.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
@@ -770,6 +770,8 @@
     <None Include="btnImages\SectionSettingsBackground.png" />
     <None Include="btnImages\ArrowTurnLeft.png" />
     <None Include="btnImages\ArrowTurnRight.png" />
+    <None Include="btnImages\FlowMeterDual.png" />
+    <None Include="btnImages\FlowMeterSingle.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

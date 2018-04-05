@@ -63,16 +63,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap A2D3D {
-            get {
-                object obj = ResourceManager.GetObject("A2D3D", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ABLineOff {
             get {
                 object obj = ResourceManager.GetObject("ABLineOff", resourceCulture);
@@ -86,16 +76,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ABLineOn {
             get {
                 object obj = ResourceManager.GetObject("ABLineOn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap AcHa {
-            get {
-                object obj = ResourceManager.GetObject("AcHa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,16 +363,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Display {
-            get {
-                object obj = ResourceManager.GetObject("Display", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap DnArrow64 {
             get {
                 object obj = ResourceManager.GetObject("DnArrow64", resourceCulture);
@@ -516,6 +486,26 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap FlagYel {
             get {
                 object obj = ResourceManager.GetObject("FlagYel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlowMeterDual {
+            get {
+                object obj = ResourceManager.GetObject("FlowMeterDual", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FlowMeterSingle {
+            get {
+                object obj = ResourceManager.GetObject("FlowMeterSingle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -673,16 +663,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Oops {
-            get {
-                object obj = ResourceManager.GetObject("Oops", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap PeriArea {
             get {
                 object obj = ResourceManager.GetObject("PeriArea", resourceCulture);
@@ -823,29 +803,9 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ResetTrip {
-            get {
-                object obj = ResourceManager.GetObject("ResetTrip", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Satellite64 {
             get {
                 object obj = ResourceManager.GetObject("Satellite64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionAuto {
-            get {
-                object obj = ResourceManager.GetObject("SectionAuto", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -866,26 +826,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap SectionMasterOn {
             get {
                 object obj = ResourceManager.GetObject("SectionMasterOn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionOff {
-            get {
-                object obj = ResourceManager.GetObject("SectionOff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap SectionOn {
-            get {
-                object obj = ResourceManager.GetObject("SectionOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -123,25 +123,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setAS_youTurnShape" Type="System.String" Scope="User">
       <Value Profile="(Default)">Keyhole.txt</Value>
-    </Setting>
-    <Setting Name="setRate_rate1" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
-    </Setting>
-    <Setting Name="setRate_rate2" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">80</Value>
-    </Setting>
-    <Setting Name="setRate_FlowmeterCalNumber" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">500</Value>
-    </Setting>
-    <Setting Name="setRate_AccumulatedVolume" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setIP_thisPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9999</Value>
@@ -160,12 +148,6 @@
     </Setting>
     <Setting Name="setMenu_isSimulatorOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="setSim_lastLat" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">53.436026</Value>
-    </Setting>
-    <Setting Name="setSim_lastLong" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-111.160047</Value>
     </Setting>
     <Setting Name="setMenu_isSkyOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -214,6 +196,24 @@
     </Setting>
     <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
       <Value Profile="(Default)">Fix</Value>
+    </Setting>
+    <Setting Name="setRate_FlowmeterCalNumberLeft" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1500</Value>
+    </Setting>
+    <Setting Name="setRate_FlowmeterCalNumberRight" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
+    <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="setRate_rateRight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="setRate_DualAccumulatedVolume" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setRate_isSingleFlowMeter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

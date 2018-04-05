@@ -134,6 +134,7 @@ namespace AgOpenGPS
                         mf.FileSaveFlags();
                         mf.FileSaveABLine();
                         mf.FileSaveCurveLine();
+                        mf.FileSaveHeadland();
                     }
                 }
                 catch (Exception ex)

@@ -140,46 +140,47 @@ namespace AgOpenGPS
             if (mf.ABLine.isABLineSet) isABLineSameAsHeadingAtTrigger = mf.ABLine.isABSameAsFixHeading;
             else isABLineSameAsHeadingAtTrigger = mf.curve.isSameWay;
 
-            //data buffer for pixels read from off screen buffer
-            byte[] grnPix = new byte[401];
+            ////data buffer for pixels read from off screen buffer
+            //byte[] grnPix = new byte[501];
 
-            //read a pixel line across full buffer width
-            glb.ReadPixels(0, 205, 399, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
+            ////read a pixel line across full buffer width
+            //glb.ReadPixels(0, 255, 499, 1, OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPix);
 
-            //set up the positions to scan in the array for applied
-            int leftPos = mf.vehicle.rpXPosition - 15;
-            if (leftPos < 0) leftPos = 0;
-            int rightPos = mf.vehicle.rpXPosition + mf.vehicle.rpWidth + 15;
-            if (rightPos > 399) rightPos = 399;
+            ////set up the positions to scan in the array for applied
+            //int leftPos = mf.vehicle.rpXPosition - 15;
+            //if (leftPos < 0) leftPos = 0;
+            //int rightPos = mf.vehicle.rpXPosition + mf.vehicle.rpWidth + 15;
+            //if (rightPos > 499) rightPos = 499;
 
-            //do we need a left or right turn
-            bool isGrnOnLeft = false, isGrnOnRight = false;
+            ////do we need a left or right turn
+            //bool isGrnOnLeft = false, isGrnOnRight = false;
 
-            //green on left means turn right
-            for (int j = leftPos; j < mf.vehicle.rpXPosition; j++)
-            { isGrnOnLeft = grnPix[j] > 50; }
+            ////green on left means turn right
+            //for (int j = leftPos; j < mf.vehicle.rpXPosition; j++)
+            //{ isGrnOnLeft = grnPix[j] > 50; }
 
-            //green on right means turn left
-            for (int j = (rightPos - 10); j < rightPos; j++)
-            { isGrnOnRight = grnPix[j] > 50; }
+            ////green on right means turn left
+            //for (int j = (rightPos - 10); j < rightPos; j++)
+            //{ isGrnOnRight = grnPix[j] > 50; }
 
-            //set point and save to start measuring from
-            isYouTurnTriggerPointSet = true;
-            youTurnTriggerPoint = mf.pivotAxlePos;
 
-            //one side or the other - but not both Exclusive Or
-            if (isGrnOnLeft ^ isGrnOnRight)
-            {
-                isYouTurnRight = !isGrnOnRight;
-            }
-            else //can't determine which way to turn, so pick opposite of last turn
+            ////one side or the other - but not both Exclusive Or
+            //if (isGrnOnLeft ^ isGrnOnRight)
+            //{
+            //    isYouTurnRight = !isGrnOnRight;
+            //}
+            //else //can't determine which way to turn, so pick opposite of last turn
             {
                 //just do the opposite of last turn
                 isYouTurnRight = !isLastYouTurnRight;
                 isLastYouTurnRight = !isLastYouTurnRight;
             }
 
-            if (mf.yt.isDew2Set)
+            //set point and save to start measuring from
+            isYouTurnTriggerPointSet = true;
+            youTurnTriggerPoint = mf.pivotAxlePos;
+
+            if (mf.yt.isDew2Set) //Loops of 2,3 skips
             {
                 bool dir = true;
                 if (isDew2Right) dir = dew2Direction[dew2Index];
@@ -195,11 +196,9 @@ namespace AgOpenGPS
                     isYouTurnRight = false;
                     isLastYouTurnRight = !isYouTurnRight;
                 }
-
-                //reset index counter if done turns
             }
 
-            if (mf.yt.isDew4Set)
+            if (mf.yt.isDew4Set) //Loops of 3,4 skips
             {
                 bool dir = true;
                 if (isDew2Right) dir = dew4Direction[dew4Index];
@@ -215,8 +214,6 @@ namespace AgOpenGPS
                     isYouTurnRight = false;
                     isLastYouTurnRight = !isYouTurnRight;
                 }
-
-                //reset index counter if done turns
             }
 
             //modify the buttons to show the correct turn direction

@@ -505,7 +505,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public byte setAS_countsPerDegree {
             get {
                 return ((byte)(this["setAS_countsPerDegree"]));
@@ -536,54 +536,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_youTurnShape"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
-        public double setRate_rate1 {
-            get {
-                return ((double)(this["setRate_rate1"]));
-            }
-            set {
-                this["setRate_rate1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("80")]
-        public double setRate_rate2 {
-            get {
-                return ((double)(this["setRate_rate2"]));
-            }
-            set {
-                this["setRate_rate2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("500")]
-        public uint setRate_FlowmeterCalNumber {
-            get {
-                return ((uint)(this["setRate_FlowmeterCalNumber"]));
-            }
-            set {
-                this["setRate_FlowmeterCalNumber"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public uint setRate_AccumulatedVolume {
-            get {
-                return ((uint)(this["setRate_AccumulatedVolume"]));
-            }
-            set {
-                this["setRate_AccumulatedVolume"] = value;
             }
         }
         
@@ -656,30 +608,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setMenu_isSimulatorOn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("53.436026")]
-        public double setSim_lastLat {
-            get {
-                return ((double)(this["setSim_lastLat"]));
-            }
-            set {
-                this["setSim_lastLat"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-111.160047")]
-        public double setSim_lastLong {
-            get {
-                return ((double)(this["setSim_lastLong"]));
-            }
-            set {
-                this["setSim_lastLong"] = value;
             }
         }
         
@@ -872,6 +800,78 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setGPS_headingFromWhichSource"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1500")]
+        public uint setRate_FlowmeterCalNumberLeft {
+            get {
+                return ((uint)(this["setRate_FlowmeterCalNumberLeft"]));
+            }
+            set {
+                this["setRate_FlowmeterCalNumberLeft"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1600")]
+        public uint setRate_FlowmeterCalNumberRight {
+            get {
+                return ((uint)(this["setRate_FlowmeterCalNumberRight"]));
+            }
+            set {
+                this["setRate_FlowmeterCalNumberRight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double setRate_rateLeft {
+            get {
+                return ((double)(this["setRate_rateLeft"]));
+            }
+            set {
+                this["setRate_rateLeft"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        public double setRate_rateRight {
+            get {
+                return ((double)(this["setRate_rateRight"]));
+            }
+            set {
+                this["setRate_rateRight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public uint setRate_DualAccumulatedVolume {
+            get {
+                return ((uint)(this["setRate_DualAccumulatedVolume"]));
+            }
+            set {
+                this["setRate_DualAccumulatedVolume"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setRate_isSingleFlowMeter {
+            get {
+                return ((bool)(this["setRate_isSingleFlowMeter"]));
+            }
+            set {
+                this["setRate_isSingleFlowMeter"] = value;
             }
         }
     }

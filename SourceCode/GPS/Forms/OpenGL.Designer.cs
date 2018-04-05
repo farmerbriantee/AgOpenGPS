@@ -15,7 +15,7 @@ namespace AgOpenGPS
         int mouseX = 0, mouseY = 0;
 
         //data buffer for pixels read from off screen buffer
-        byte[] grnPixels = new byte[80001];
+        byte[] grnPixels = new byte[125001];
 
         /// Handles the OpenGLDraw event of the openGLControl control.
         private void openGLControl_OpenGLDraw(object sender, RenderEventArgs e)
@@ -457,7 +457,7 @@ namespace AgOpenGPS
             gl.LoadIdentity();					// Reset The View
 
             //back the camera up
-            gl.Translate(0, 0, -390);
+            gl.Translate(0, 0, -480);
 
             //rotate camera so heading matched fix heading in the world
             gl.Rotate(glm.toDegrees(toolPos.heading), 0, 0, 1);
@@ -541,11 +541,11 @@ namespace AgOpenGPS
 
             //clamp the height after looking way ahead, this is for switching off super section only
             rpHeight = Math.Abs(rpHeight) * 2.0;
-            if (rpHeight > 195) rpHeight = 195;
+            if (rpHeight > 245) rpHeight = 245;
             if (rpHeight < 8) rpHeight = 8;
 
             //read the whole block of pixels up to max lookahead, one read only
-            gl.ReadPixels(vehicle.rpXPosition, 202, vehicle.rpWidth, (int)rpHeight,
+            gl.ReadPixels(vehicle.rpXPosition, 252, vehicle.rpWidth, (int)rpHeight,
                                 OpenGL.GL_GREEN, OpenGL.GL_UNSIGNED_BYTE, grnPixels);
 
             //10 % min is required for overlap, otherwise it never would be on.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -38,6 +39,8 @@ namespace AgOpenGPS
                 LinkData = "http://www.thecombineforum.com/forums/31-technology/278810-agopengps.html"
             };
             linkLabelCombineForum.Links.Add(linkCf);
+
+            label2.Text = "Version " + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + "April 4, 2018";
         }
     }
 }

@@ -116,10 +116,6 @@
             this.toolStripMenuAreaSide = new System.Windows.Forms.ToolStripMenuItem();
             this.tboxSentence = new System.Windows.Forms.TextBox();
             this.lblZone = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblAccumulatedVolume = new System.Windows.Forms.Label();
-            this.lblRateAppliedActual = new System.Windows.Forms.Label();
             this.lblSpeedUnits = new System.Windows.Forms.Label();
             this.lblHeading = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -130,10 +126,11 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
-            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
+            this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -163,17 +160,35 @@
             this.label8 = new System.Windows.Forms.Label();
             this.zoomPage2 = new System.Windows.Forms.TabPage();
             this.btnMakeContourFromBoundary = new System.Windows.Forms.Button();
-            this.btnDeleteAllData = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblZooom = new System.Windows.Forms.Label();
+            this.btnDeleteAllData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
-            this.ratePage3 = new System.Windows.Forms.TabPage();
-            this.btnRateConfig = new System.Windows.Forms.Button();
-            this.btnRateDn = new ProXoft.WinForms.RepeatButton();
-            this.btnRateUp = new ProXoft.WinForms.RepeatButton();
-            this.btnRate = new System.Windows.Forms.Button();
-            this.btnRate2Select = new System.Windows.Forms.Button();
-            this.btnRate1Select = new System.Windows.Forms.Button();
+            this.rate2Page5 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.btnSelectSingleDualMeter = new System.Windows.Forms.Button();
+            this.btnSelectRate2 = new System.Windows.Forms.Button();
+            this.btnSelectRate1 = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
+            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lblFlowRateRight = new System.Windows.Forms.Label();
+            this.lblFlowRateLeft = new System.Windows.Forms.Label();
+            this.btnRateRightDn = new ProXoft.WinForms.RepeatButton();
+            this.btnRateRightUp = new ProXoft.WinForms.RepeatButton();
+            this.lblRateSetpointRight = new System.Windows.Forms.Label();
+            this.lblFlowRight = new System.Windows.Forms.Label();
+            this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
+            this.btnDualRateConfig = new System.Windows.Forms.Button();
+            this.btnRateLeftDn = new ProXoft.WinForms.RepeatButton();
+            this.label28 = new System.Windows.Forms.Label();
+            this.lblFlowLeft = new System.Windows.Forms.Label();
+            this.lblRateAppliedActualRight = new System.Windows.Forms.Label();
+            this.lblDualAccumulatedVolume = new System.Windows.Forms.Label();
+            this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
+            this.btnDualRate = new System.Windows.Forms.Button();
+            this.lblRateSetpointLeft = new System.Windows.Forms.Label();
             this.configPage1 = new System.Windows.Forms.TabPage();
             this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
             this.btnWebCam = new System.Windows.Forms.Button();
@@ -201,22 +216,6 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSimControls = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnCurve = new System.Windows.Forms.Button();
-            this.btnLeftYouTurn = new System.Windows.Forms.Button();
-            this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
-            this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.btnSwapDirection = new System.Windows.Forms.Button();
-            this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
-            this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
-            this.btnFlag = new System.Windows.Forms.Button();
-            this.btnSnap = new System.Windows.Forms.Button();
-            this.btnAutoSteer = new System.Windows.Forms.Button();
-            this.btnRightYouTurn = new System.Windows.Forms.Button();
-            this.btnContour = new System.Windows.Forms.Button();
-            this.btnManualOffOn = new System.Windows.Forms.Button();
-            this.btnABLine = new System.Windows.Forms.Button();
             this.btnSection8Man = new System.Windows.Forms.Button();
             this.btnSection7Man = new System.Windows.Forms.Button();
             this.btnSection6Man = new System.Windows.Forms.Button();
@@ -229,6 +228,20 @@
             this.btnSection10Man = new System.Windows.Forms.Button();
             this.btnSection11Man = new System.Windows.Forms.Button();
             this.btnSection12Man = new System.Windows.Forms.Button();
+            this.btnCurve = new System.Windows.Forms.Button();
+            this.btnLeftYouTurn = new System.Windows.Forms.Button();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.btnSwapDirection = new System.Windows.Forms.Button();
+            this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
+            this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
+            this.btnFlag = new System.Windows.Forms.Button();
+            this.btnSnap = new System.Windows.Forms.Button();
+            this.btnAutoSteer = new System.Windows.Forms.Button();
+            this.btnRightYouTurn = new System.Windows.Forms.Button();
+            this.btnContour = new System.Windows.Forms.Button();
+            this.btnManualOffOn = new System.Windows.Forms.Button();
+            this.btnABLine = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -240,7 +253,7 @@
             this.tabControl1.SuspendLayout();
             this.DataPage.SuspendLayout();
             this.zoomPage2.SuspendLayout();
-            this.ratePage3.SuspendLayout();
+            this.rate2Page5.SuspendLayout();
             this.configPage1.SuspendLayout();
             this.autoPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).BeginInit();
@@ -312,7 +325,7 @@
             resources.ApplyResources(this.openGLControlBack, "openGLControlBack");
             this.openGLControlBack.Name = "openGLControlBack";
             this.openGLControlBack.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
-            this.openGLControlBack.RenderContextType = SharpGL.RenderContextType.HiddenWindow;
+            this.openGLControlBack.RenderContextType = SharpGL.RenderContextType.NativeWindow;
             this.openGLControlBack.RenderTrigger = SharpGL.RenderTrigger.Manual;
             this.openGLControlBack.OpenGLInitialized += new System.EventHandler(this.openGLControlBack_OpenGLInitialized);
             this.openGLControlBack.OpenGLDraw += new SharpGL.RenderEventHandler(this.openGLControlBack_OpenGLDraw);
@@ -918,34 +931,6 @@
             this.lblZone.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblZone.Name = "lblZone";
             // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Name = "label2";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Name = "label1";
-            // 
-            // lblAccumulatedVolume
-            // 
-            resources.ApplyResources(this.lblAccumulatedVolume, "lblAccumulatedVolume");
-            this.lblAccumulatedVolume.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblAccumulatedVolume.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAccumulatedVolume.Name = "lblAccumulatedVolume";
-            // 
-            // lblRateAppliedActual
-            // 
-            resources.ApplyResources(this.lblRateAppliedActual, "lblRateAppliedActual");
-            this.lblRateAppliedActual.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblRateAppliedActual.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblRateAppliedActual.Name = "lblRateAppliedActual";
-            // 
             // lblSpeedUnits
             // 
             resources.ApplyResources(this.lblSpeedUnits, "lblSpeedUnits");
@@ -1012,7 +997,7 @@
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.DataPage);
             this.tabControl1.Controls.Add(this.zoomPage2);
-            this.tabControl1.Controls.Add(this.ratePage3);
+            this.tabControl1.Controls.Add(this.rate2Page5);
             this.tabControl1.Controls.Add(this.configPage1);
             this.tabControl1.Controls.Add(this.autoPage4);
             this.tabControl1.ImageList = this.imageList1;
@@ -1023,10 +1008,11 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.label21);
-            this.DataPage.Controls.Add(this.txtBoxSendArduino);
-            this.DataPage.Controls.Add(this.txtBoxRecvArduino);
-            this.DataPage.Controls.Add(this.label23);
+            this.DataPage.Controls.Add(this.label26);
+            this.DataPage.Controls.Add(this.label25);
+            this.DataPage.Controls.Add(this.label24);
+            this.DataPage.Controls.Add(this.btnTiltUp);
+            this.DataPage.Controls.Add(this.btnTiltDown);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.label22);
             this.DataPage.Controls.Add(this.label13);
@@ -1062,29 +1048,36 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
-            // label21
+            // label26
             // 
-            resources.ApplyResources(this.label21, "label21");
-            this.label21.Name = "label21";
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
             // 
-            // txtBoxSendArduino
+            // label25
             // 
-            this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
-            this.txtBoxSendArduino.Name = "txtBoxSendArduino";
-            this.txtBoxSendArduino.ReadOnly = true;
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
             // 
-            // txtBoxRecvArduino
+            // label24
             // 
-            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
-            this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
-            this.txtBoxRecvArduino.ReadOnly = true;
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
             // 
-            // label23
+            // btnTiltUp
             // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
+            resources.ApplyResources(this.btnTiltUp, "btnTiltUp");
+            this.btnTiltUp.BackColor = System.Drawing.Color.Lavender;
+            this.btnTiltUp.Name = "btnTiltUp";
+            this.btnTiltUp.UseVisualStyleBackColor = false;
+            this.btnTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltUp_MouseDown);
+            // 
+            // btnTiltDown
+            // 
+            resources.ApplyResources(this.btnTiltDown, "btnTiltDown");
+            this.btnTiltDown.BackColor = System.Drawing.Color.Lavender;
+            this.btnTiltDown.Name = "btnTiltDown";
+            this.btnTiltDown.UseVisualStyleBackColor = false;
+            this.btnTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltDown_MouseDown);
             // 
             // lblHeading2
             // 
@@ -1229,15 +1222,15 @@
             // 
             this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.zoomPage2.Controls.Add(this.btnMakeContourFromBoundary);
-            this.zoomPage2.Controls.Add(this.btnDeleteAllData);
             this.zoomPage2.Controls.Add(this.openGLControlZoom);
             this.zoomPage2.Controls.Add(this.label6);
             this.zoomPage2.Controls.Add(this.lblZooom);
             this.zoomPage2.Controls.Add(this.label5);
-            this.zoomPage2.Controls.Add(this.btnPerimeter);
             this.zoomPage2.Controls.Add(this.label4);
             this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
             this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
+            this.zoomPage2.Controls.Add(this.btnDeleteAllData);
+            this.zoomPage2.Controls.Add(this.btnPerimeter);
             resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.Name = "zoomPage2";
             // 
@@ -1249,15 +1242,6 @@
             this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
             this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
             this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
-            // 
-            // btnDeleteAllData
-            // 
-            this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
-            this.btnDeleteAllData.Name = "btnDeleteAllData";
-            this.btnDeleteAllData.UseVisualStyleBackColor = false;
-            this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
             // 
             // label6
             // 
@@ -1273,6 +1257,15 @@
             this.lblZooom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblZooom.Name = "lblZooom";
             // 
+            // btnDeleteAllData
+            // 
+            this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
+            this.btnDeleteAllData.Name = "btnDeleteAllData";
+            this.btnDeleteAllData.UseVisualStyleBackColor = false;
+            this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
+            // 
             // btnPerimeter
             // 
             this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
@@ -1282,68 +1275,206 @@
             this.btnPerimeter.UseVisualStyleBackColor = false;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
-            // ratePage3
+            // rate2Page5
             // 
-            this.ratePage3.BackColor = System.Drawing.SystemColors.ScrollBar;
-            resources.ApplyResources(this.ratePage3, "ratePage3");
-            this.ratePage3.Controls.Add(this.btnRateConfig);
-            this.ratePage3.Controls.Add(this.btnRateDn);
-            this.ratePage3.Controls.Add(this.label2);
-            this.ratePage3.Controls.Add(this.label1);
-            this.ratePage3.Controls.Add(this.lblRateAppliedActual);
-            this.ratePage3.Controls.Add(this.lblAccumulatedVolume);
-            this.ratePage3.Controls.Add(this.btnRateUp);
-            this.ratePage3.Controls.Add(this.btnRate);
-            this.ratePage3.Controls.Add(this.btnRate2Select);
-            this.ratePage3.Controls.Add(this.btnRate1Select);
-            this.ratePage3.Name = "ratePage3";
+            this.rate2Page5.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.rate2Page5.Controls.Add(this.label30);
+            this.rate2Page5.Controls.Add(this.btnSelectSingleDualMeter);
+            this.rate2Page5.Controls.Add(this.btnSelectRate2);
+            this.rate2Page5.Controls.Add(this.btnSelectRate1);
+            this.rate2Page5.Controls.Add(this.label21);
+            this.rate2Page5.Controls.Add(this.txtBoxSendArduino);
+            this.rate2Page5.Controls.Add(this.txtBoxRecvArduino);
+            this.rate2Page5.Controls.Add(this.label23);
+            this.rate2Page5.Controls.Add(this.lblFlowRateRight);
+            this.rate2Page5.Controls.Add(this.lblFlowRateLeft);
+            this.rate2Page5.Controls.Add(this.btnRateRightDn);
+            this.rate2Page5.Controls.Add(this.btnRateRightUp);
+            this.rate2Page5.Controls.Add(this.lblRateSetpointRight);
+            this.rate2Page5.Controls.Add(this.lblFlowRight);
+            this.rate2Page5.Controls.Add(this.lblRateAppliedActualLeft);
+            this.rate2Page5.Controls.Add(this.btnDualRateConfig);
+            this.rate2Page5.Controls.Add(this.btnRateLeftDn);
+            this.rate2Page5.Controls.Add(this.label28);
+            this.rate2Page5.Controls.Add(this.lblFlowLeft);
+            this.rate2Page5.Controls.Add(this.lblRateAppliedActualRight);
+            this.rate2Page5.Controls.Add(this.lblDualAccumulatedVolume);
+            this.rate2Page5.Controls.Add(this.btnRateLeftUp);
+            this.rate2Page5.Controls.Add(this.btnDualRate);
+            this.rate2Page5.Controls.Add(this.lblRateSetpointLeft);
+            resources.ApplyResources(this.rate2Page5, "rate2Page5");
+            this.rate2Page5.Name = "rate2Page5";
             // 
-            // btnRateConfig
+            // label30
             // 
-            this.btnRateConfig.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRateConfig, "btnRateConfig");
-            this.btnRateConfig.Name = "btnRateConfig";
-            this.btnRateConfig.UseVisualStyleBackColor = false;
-            this.btnRateConfig.Click += new System.EventHandler(this.btnRateConfig_Click);
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.Name = "label30";
             // 
-            // btnRateDn
+            // btnSelectSingleDualMeter
             // 
-            resources.ApplyResources(this.btnRateDn, "btnRateDn");
-            this.btnRateDn.Name = "btnRateDn";
-            this.btnRateDn.UseVisualStyleBackColor = true;
-            this.btnRateDn.Click += new System.EventHandler(this.btnRateDn_Click);
+            resources.ApplyResources(this.btnSelectSingleDualMeter, "btnSelectSingleDualMeter");
+            this.btnSelectSingleDualMeter.Image = global::AgOpenGPS.Properties.Resources.FlowMeterSingle;
+            this.btnSelectSingleDualMeter.Name = "btnSelectSingleDualMeter";
+            this.btnSelectSingleDualMeter.UseVisualStyleBackColor = true;
+            this.btnSelectSingleDualMeter.Click += new System.EventHandler(this.btnSelectSingleDualMeter_Click);
             // 
-            // btnRateUp
+            // btnSelectRate2
             // 
-            resources.ApplyResources(this.btnRateUp, "btnRateUp");
-            this.btnRateUp.Name = "btnRateUp";
-            this.btnRateUp.UseVisualStyleBackColor = true;
-            this.btnRateUp.Click += new System.EventHandler(this.btnRateUp_Click);
+            this.btnSelectRate2.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.btnSelectRate2, "btnSelectRate2");
+            this.btnSelectRate2.Image = global::AgOpenGPS.Properties.Resources.RateSelect2;
+            this.btnSelectRate2.Name = "btnSelectRate2";
+            this.btnSelectRate2.UseVisualStyleBackColor = false;
+            this.btnSelectRate2.Click += new System.EventHandler(this.btnSelectRate2_Click);
             // 
-            // btnRate
+            // btnSelectRate1
             // 
-            this.btnRate.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnRate.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnRate, "btnRate");
-            this.btnRate.Name = "btnRate";
-            this.btnRate.UseVisualStyleBackColor = false;
-            this.btnRate.Click += new System.EventHandler(this.btnRate_Click);
+            this.btnSelectRate1.BackColor = System.Drawing.Color.LightSkyBlue;
+            resources.ApplyResources(this.btnSelectRate1, "btnSelectRate1");
+            this.btnSelectRate1.Image = global::AgOpenGPS.Properties.Resources.Rate1Select;
+            this.btnSelectRate1.Name = "btnSelectRate1";
+            this.btnSelectRate1.UseVisualStyleBackColor = false;
+            this.btnSelectRate1.Click += new System.EventHandler(this.btnSelectRate1_Click);
             // 
-            // btnRate2Select
+            // label21
             // 
-            this.btnRate2Select.BackColor = System.Drawing.Color.AntiqueWhite;
-            resources.ApplyResources(this.btnRate2Select, "btnRate2Select");
-            this.btnRate2Select.Name = "btnRate2Select";
-            this.btnRate2Select.UseVisualStyleBackColor = false;
-            this.btnRate2Select.Click += new System.EventHandler(this.btnRate2Select_Click);
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
             // 
-            // btnRate1Select
+            // txtBoxSendArduino
             // 
-            this.btnRate1Select.BackColor = System.Drawing.Color.Aquamarine;
-            resources.ApplyResources(this.btnRate1Select, "btnRate1Select");
-            this.btnRate1Select.Name = "btnRate1Select";
-            this.btnRate1Select.UseVisualStyleBackColor = false;
-            this.btnRate1Select.Click += new System.EventHandler(this.btnRate1Select_Click);
+            this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
+            this.txtBoxSendArduino.Name = "txtBoxSendArduino";
+            this.txtBoxSendArduino.ReadOnly = true;
+            // 
+            // txtBoxRecvArduino
+            // 
+            this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
+            this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
+            this.txtBoxRecvArduino.ReadOnly = true;
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // lblFlowRateRight
+            // 
+            resources.ApplyResources(this.lblFlowRateRight, "lblFlowRateRight");
+            this.lblFlowRateRight.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblFlowRateRight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblFlowRateRight.Name = "lblFlowRateRight";
+            // 
+            // lblFlowRateLeft
+            // 
+            resources.ApplyResources(this.lblFlowRateLeft, "lblFlowRateLeft");
+            this.lblFlowRateLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblFlowRateLeft.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblFlowRateLeft.Name = "lblFlowRateLeft";
+            // 
+            // btnRateRightDn
+            // 
+            resources.ApplyResources(this.btnRateRightDn, "btnRateRightDn");
+            this.btnRateRightDn.Name = "btnRateRightDn";
+            this.btnRateRightDn.UseVisualStyleBackColor = true;
+            this.btnRateRightDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateRightDn_MouseDown);
+            // 
+            // btnRateRightUp
+            // 
+            resources.ApplyResources(this.btnRateRightUp, "btnRateRightUp");
+            this.btnRateRightUp.Name = "btnRateRightUp";
+            this.btnRateRightUp.UseVisualStyleBackColor = true;
+            this.btnRateRightUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateRightUp_MouseDown);
+            // 
+            // lblRateSetpointRight
+            // 
+            resources.ApplyResources(this.lblRateSetpointRight, "lblRateSetpointRight");
+            this.lblRateSetpointRight.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblRateSetpointRight.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblRateSetpointRight.Name = "lblRateSetpointRight";
+            // 
+            // lblFlowRight
+            // 
+            resources.ApplyResources(this.lblFlowRight, "lblFlowRight");
+            this.lblFlowRight.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblFlowRight.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblFlowRight.Name = "lblFlowRight";
+            // 
+            // lblRateAppliedActualLeft
+            // 
+            resources.ApplyResources(this.lblRateAppliedActualLeft, "lblRateAppliedActualLeft");
+            this.lblRateAppliedActualLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblRateAppliedActualLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.lblRateAppliedActualLeft.Name = "lblRateAppliedActualLeft";
+            // 
+            // btnDualRateConfig
+            // 
+            this.btnDualRateConfig.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDualRateConfig, "btnDualRateConfig");
+            this.btnDualRateConfig.Image = global::AgOpenGPS.Properties.Resources.Settings48;
+            this.btnDualRateConfig.Name = "btnDualRateConfig";
+            this.btnDualRateConfig.UseVisualStyleBackColor = false;
+            this.btnDualRateConfig.Click += new System.EventHandler(this.btnDualRateConfig_Click);
+            // 
+            // btnRateLeftDn
+            // 
+            resources.ApplyResources(this.btnRateLeftDn, "btnRateLeftDn");
+            this.btnRateLeftDn.Name = "btnRateLeftDn";
+            this.btnRateLeftDn.UseVisualStyleBackColor = true;
+            this.btnRateLeftDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateLeftDn_MouseDown);
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label28.Name = "label28";
+            // 
+            // lblFlowLeft
+            // 
+            resources.ApplyResources(this.lblFlowLeft, "lblFlowLeft");
+            this.lblFlowLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblFlowLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.lblFlowLeft.Name = "lblFlowLeft";
+            // 
+            // lblRateAppliedActualRight
+            // 
+            resources.ApplyResources(this.lblRateAppliedActualRight, "lblRateAppliedActualRight");
+            this.lblRateAppliedActualRight.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblRateAppliedActualRight.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblRateAppliedActualRight.Name = "lblRateAppliedActualRight";
+            // 
+            // lblDualAccumulatedVolume
+            // 
+            resources.ApplyResources(this.lblDualAccumulatedVolume, "lblDualAccumulatedVolume");
+            this.lblDualAccumulatedVolume.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblDualAccumulatedVolume.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblDualAccumulatedVolume.Name = "lblDualAccumulatedVolume";
+            // 
+            // btnRateLeftUp
+            // 
+            resources.ApplyResources(this.btnRateLeftUp, "btnRateLeftUp");
+            this.btnRateLeftUp.Name = "btnRateLeftUp";
+            this.btnRateLeftUp.UseVisualStyleBackColor = true;
+            this.btnRateLeftUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateLeftUp_MouseDown);
+            // 
+            // btnDualRate
+            // 
+            this.btnDualRate.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnDualRate.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnDualRate, "btnDualRate");
+            this.btnDualRate.Name = "btnDualRate";
+            this.btnDualRate.UseVisualStyleBackColor = false;
+            this.btnDualRate.Click += new System.EventHandler(this.btnDualRate_Click);
+            // 
+            // lblRateSetpointLeft
+            // 
+            resources.ApplyResources(this.lblRateSetpointLeft, "lblRateSetpointLeft");
+            this.lblRateSetpointLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.lblRateSetpointLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.lblRateSetpointLeft.Name = "lblRateSetpointLeft";
             // 
             // configPage1
             // 
@@ -1575,142 +1706,6 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
-            // btnCurve
-            // 
-            resources.ApplyResources(this.btnCurve, "btnCurve");
-            this.btnCurve.BackColor = System.Drawing.Color.Lavender;
-            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
-            this.btnCurve.Name = "btnCurve";
-            this.btnCurve.UseVisualStyleBackColor = false;
-            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
-            // 
-            // btnLeftYouTurn
-            // 
-            this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
-            this.btnLeftYouTurn.Name = "btnLeftYouTurn";
-            this.btnLeftYouTurn.UseVisualStyleBackColor = false;
-            this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
-            // 
-            // btnTiltDown
-            // 
-            resources.ApplyResources(this.btnTiltDown, "btnTiltDown");
-            this.btnTiltDown.BackColor = System.Drawing.Color.Lavender;
-            this.btnTiltDown.Name = "btnTiltDown";
-            this.btnTiltDown.UseVisualStyleBackColor = false;
-            this.btnTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltDown_MouseDown);
-            // 
-            // btnTiltUp
-            // 
-            resources.ApplyResources(this.btnTiltUp, "btnTiltUp");
-            this.btnTiltUp.BackColor = System.Drawing.Color.Lavender;
-            this.btnTiltUp.Name = "btnTiltUp";
-            this.btnTiltUp.UseVisualStyleBackColor = false;
-            this.btnTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltUp_MouseDown);
-            // 
-            // btnZoomIn
-            // 
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
-            // btnZoomOut
-            // 
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            // 
-            // btnSwapDirection
-            // 
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click);
-            // 
-            // btnEnableAutoYouTurn
-            // 
-            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
-            this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
-            this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
-            this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
-            // 
-            // btnSectionOffAutoOn
-            // 
-            resources.ApplyResources(this.btnSectionOffAutoOn, "btnSectionOffAutoOn");
-            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Lavender;
-            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
-            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
-            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
-            // 
-            // btnFlag
-            // 
-            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnFlag, "btnFlag");
-            this.btnFlag.Name = "btnFlag";
-            this.btnFlag.UseVisualStyleBackColor = false;
-            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
-            // 
-            // btnSnap
-            // 
-            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSnap, "btnSnap");
-            this.btnSnap.Name = "btnSnap";
-            this.btnSnap.UseVisualStyleBackColor = false;
-            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
-            // 
-            // btnAutoSteer
-            // 
-            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoSteer.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
-            this.btnAutoSteer.Name = "btnAutoSteer";
-            this.btnAutoSteer.UseVisualStyleBackColor = false;
-            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
-            // 
-            // btnRightYouTurn
-            // 
-            resources.ApplyResources(this.btnRightYouTurn, "btnRightYouTurn");
-            this.btnRightYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnRightYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnRightYouTurn.Name = "btnRightYouTurn";
-            this.btnRightYouTurn.UseVisualStyleBackColor = false;
-            this.btnRightYouTurn.Click += new System.EventHandler(this.btnRightYouTurn_Click);
-            // 
-            // btnContour
-            // 
-            resources.ApplyResources(this.btnContour, "btnContour");
-            this.btnContour.BackColor = System.Drawing.Color.Lavender;
-            this.btnContour.Name = "btnContour";
-            this.btnContour.UseVisualStyleBackColor = false;
-            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // btnManualOffOn
-            // 
-            resources.ApplyResources(this.btnManualOffOn, "btnManualOffOn");
-            this.btnManualOffOn.BackColor = System.Drawing.Color.Lavender;
-            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnManualOffOn.Name = "btnManualOffOn";
-            this.btnManualOffOn.UseVisualStyleBackColor = false;
-            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
-            // 
-            // btnABLine
-            // 
-            resources.ApplyResources(this.btnABLine, "btnABLine");
-            this.btnABLine.BackColor = System.Drawing.Color.Lavender;
-            this.btnABLine.Name = "btnABLine";
-            this.btnABLine.UseVisualStyleBackColor = false;
-            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
-            // 
             // btnSection8Man
             // 
             resources.ApplyResources(this.btnSection8Man, "btnSection8Man");
@@ -1831,6 +1826,126 @@
             this.btnSection12Man.UseVisualStyleBackColor = false;
             this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
             // 
+            // btnCurve
+            // 
+            resources.ApplyResources(this.btnCurve, "btnCurve");
+            this.btnCurve.BackColor = System.Drawing.Color.Lavender;
+            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
+            this.btnCurve.Name = "btnCurve";
+            this.btnCurve.UseVisualStyleBackColor = false;
+            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
+            // 
+            // btnLeftYouTurn
+            // 
+            this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
+            this.btnLeftYouTurn.Name = "btnLeftYouTurn";
+            this.btnLeftYouTurn.UseVisualStyleBackColor = false;
+            this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
+            // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
+            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
+            // 
+            // btnZoomOut
+            // 
+            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
+            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
+            // 
+            // btnSwapDirection
+            // 
+            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
+            this.btnSwapDirection.Name = "btnSwapDirection";
+            this.btnSwapDirection.UseVisualStyleBackColor = false;
+            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click);
+            // 
+            // btnEnableAutoYouTurn
+            // 
+            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
+            this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
+            this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
+            this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
+            // 
+            // btnSectionOffAutoOn
+            // 
+            resources.ApplyResources(this.btnSectionOffAutoOn, "btnSectionOffAutoOn");
+            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Lavender;
+            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
+            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
+            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
+            // 
+            // btnFlag
+            // 
+            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFlag, "btnFlag");
+            this.btnFlag.Name = "btnFlag";
+            this.btnFlag.UseVisualStyleBackColor = false;
+            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
+            // 
+            // btnSnap
+            // 
+            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSnap, "btnSnap");
+            this.btnSnap.Name = "btnSnap";
+            this.btnSnap.UseVisualStyleBackColor = false;
+            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
+            // 
+            // btnAutoSteer
+            // 
+            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteer.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
+            this.btnAutoSteer.Name = "btnAutoSteer";
+            this.btnAutoSteer.UseVisualStyleBackColor = false;
+            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
+            // 
+            // btnRightYouTurn
+            // 
+            resources.ApplyResources(this.btnRightYouTurn, "btnRightYouTurn");
+            this.btnRightYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnRightYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnRightYouTurn.Name = "btnRightYouTurn";
+            this.btnRightYouTurn.UseVisualStyleBackColor = false;
+            this.btnRightYouTurn.Click += new System.EventHandler(this.btnRightYouTurn_Click);
+            // 
+            // btnContour
+            // 
+            resources.ApplyResources(this.btnContour, "btnContour");
+            this.btnContour.BackColor = System.Drawing.Color.Lavender;
+            this.btnContour.Name = "btnContour";
+            this.btnContour.UseVisualStyleBackColor = false;
+            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
+            // 
+            // btnManualOffOn
+            // 
+            resources.ApplyResources(this.btnManualOffOn, "btnManualOffOn");
+            this.btnManualOffOn.BackColor = System.Drawing.Color.Lavender;
+            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnManualOffOn.Name = "btnManualOffOn";
+            this.btnManualOffOn.UseVisualStyleBackColor = false;
+            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
+            // 
+            // btnABLine
+            // 
+            resources.ApplyResources(this.btnABLine, "btnABLine");
+            this.btnABLine.BackColor = System.Drawing.Color.Lavender;
+            this.btnABLine.Name = "btnABLine";
+            this.btnABLine.UseVisualStyleBackColor = false;
+            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
@@ -1838,8 +1953,6 @@
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
-            this.Controls.Add(this.btnTiltDown);
-            this.Controls.Add(this.btnTiltUp);
             this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.tabControl1);
@@ -1868,13 +1981,13 @@
             this.Controls.Add(this.btnSection2Man);
             this.Controls.Add(this.btnSection1Man);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.openGLControlBack);
             this.Controls.Add(this.panelSimControls);
             this.Controls.Add(this.btnSection12Man);
             this.Controls.Add(this.btnSection11Man);
             this.Controls.Add(this.btnSection10Man);
             this.Controls.Add(this.btnSection9Man);
             this.Controls.Add(this.openGLControl);
+            this.Controls.Add(this.openGLControlBack);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormGPS";
@@ -1896,8 +2009,8 @@
             this.DataPage.PerformLayout();
             this.zoomPage2.ResumeLayout(false);
             this.zoomPage2.PerformLayout();
-            this.ratePage3.ResumeLayout(false);
-            this.ratePage3.PerformLayout();
+            this.rate2Page5.ResumeLayout(false);
+            this.rate2Page5.PerformLayout();
             this.configPage1.ResumeLayout(false);
             this.autoPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).EndInit();
@@ -1990,19 +2103,10 @@
         private System.Windows.Forms.ToolStripMenuItem pursuitLineToolStripMenuItem;
         private System.Windows.Forms.Button btnRightYouTurn;
         private System.Windows.Forms.Button btnLeftYouTurn;
-        private System.Windows.Forms.Button btnRate;
-        private System.Windows.Forms.Button btnRate1Select;
-        private System.Windows.Forms.Button btnRate2Select;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Label lblAccumulatedVolume;
-        private System.Windows.Forms.Label lblRateAppliedActual;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAutoSteer;
         private System.Windows.Forms.Button btnFlag;
-        private ProXoft.WinForms.RepeatButton btnRateDn;
-        private ProXoft.WinForms.RepeatButton btnRateUp;
         private SharpGL.OpenGLControl openGLControlZoom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -2011,7 +2115,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage configPage1;
         private System.Windows.Forms.TabPage zoomPage2;
-        private System.Windows.Forms.TabPage ratePage3;
         private System.Windows.Forms.TabPage DataPage;
         private System.Windows.Forms.Button btnEnableAutoYouTurn;
         private System.Windows.Forms.Label label6;
@@ -2064,7 +2167,6 @@
         public System.Windows.Forms.Button btnSectionOffAutoOn;
         private System.Windows.Forms.ToolStripStatusLabel stripEqWidth;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnRateConfig;
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDeutsch;
@@ -2106,10 +2208,34 @@
         private System.Windows.Forms.Button btnSection10Man;
         private System.Windows.Forms.Button btnSection11Man;
         private System.Windows.Forms.Button btnSection12Man;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TabPage rate2Page5;
+        private System.Windows.Forms.Label lblFlowRateRight;
+        private System.Windows.Forms.Label lblFlowRateLeft;
+        private ProXoft.WinForms.RepeatButton btnRateRightDn;
+        private ProXoft.WinForms.RepeatButton btnRateRightUp;
+        private System.Windows.Forms.Label lblRateSetpointRight;
+        private System.Windows.Forms.Label lblFlowRight;
+        private System.Windows.Forms.Label lblRateAppliedActualLeft;
+        private System.Windows.Forms.Button btnDualRateConfig;
+        private ProXoft.WinForms.RepeatButton btnRateLeftDn;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label lblFlowLeft;
+        private System.Windows.Forms.Label lblRateAppliedActualRight;
+        private System.Windows.Forms.Label lblDualAccumulatedVolume;
+        private ProXoft.WinForms.RepeatButton btnRateLeftUp;
+        private System.Windows.Forms.Button btnDualRate;
+        private System.Windows.Forms.Label lblRateSetpointLeft;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBoxSendArduino;
         private System.Windows.Forms.TextBox txtBoxRecvArduino;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnSelectRate2;
+        private System.Windows.Forms.Button btnSelectRate1;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button btnSelectSingleDualMeter;
     }
 }
 

@@ -1,4 +1,9 @@
-﻿v2.6 April Fools
+﻿v 2.7 Apr 5, 2018
+* single and dual flowmeter
+* AOG-Rate has dual flow firmware - no pid code
+* Increased to 50 m width now
+
+v2.6 April Fools
 * 12 Sections
 * Uturn has repeatable multi swath loops, Dew Loops
 * Minor fixes
@@ -8,6 +13,8 @@
 * Languages were a mess, huge mess, fixed a lot of it
 * Added Lo Hi bytes for relays which now takes 2 bytes
 * Rate module has both, steer module has only first 8 sections
+* Rate module PGN's reflect extra section byte
+* Steer module serial decoders match what is sent
 
 v 2.5.1 Mar 21
 * Settings are all very stringent to version
