@@ -265,7 +265,6 @@ namespace AgOpenGPS
             string[] words = sentence.Split(',');
 
             //changed by MTZ8302
-            //if (words.Length !=3) return;
             if (words.Length != 5 & words.Length != 3) return;
 
             //fill in the holes
@@ -284,15 +283,15 @@ namespace AgOpenGPS
 
             //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
             //read RelayToAOG from Arduino
-            //if (words.Length == 5)
-            //{
-            //    int.TryParse(words[3], out mc.incomingInt);
-            //    rc.RelayFromArduino = (byte)mc.incomingInt;
+            if (words.Length == 5)
+            {
+                int.TryParse(words[3], out mc.incomingInt);
+                rcd.RelayFromArduino = (byte)mc.incomingInt;
 
-            //    //read SectSWOffToAOG from Arduino
-            //    int.TryParse(words[4], out mc.incomingInt);
-            //    rc.SectSWOffFromArduino = (byte)mc.incomingInt;
-            //}
+                //read SectSWOffToAOG from Arduino
+                int.TryParse(words[4], out mc.incomingInt);
+                rcd.SectSWOffFromArduino = (byte)mc.incomingInt;
+            }
         }
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);

@@ -63,33 +63,39 @@ namespace AgOpenGPS
 
         public void CalculateRateLitersPerMinuteDual()
         {
+            //return if not even or if single section
+            //if (mf.vehicle.numOfSections % 2 != 0 | mf.vehicle.numOfSections == 1) return;
+
+            int center = mf.vehicle.numOfSections >> 1;
+
             //determine current width based on sections off on
             currentWidthLeft = 0;
             currentWidthRight = 0;
+
             // is supersection on?
             if (mf.section[mf.vehicle.numOfSections].isSectionOn)
             {
-                rateSetPointLeft = (mf.section[0].sectionWidth * mf.pn.speed) / 600 * rateLeft;
-                rateSetPointRight = (mf.section[1].sectionWidth * mf.pn.speed) / 600 * rateRight;
-                currentWidthLeft = mf.section[0].sectionWidth;
-                currentWidthRight = mf.section[1].sectionWidth;
+                currentWidthLeft = mf.vehicle.toolWidth * 0.5;
+                currentWidthRight = currentWidthLeft;
             }
+                
+            //add up each side
             else
             {
-                if (mf.section[0].isSectionOn)
+                for (int i = 0; i < center; i++)
                 {
-                    rateSetPointLeft = (mf.section[0].sectionWidth * mf.pn.speed) / 600 * rateLeft;
-                    currentWidthLeft = mf.section[0].sectionWidth;
+                    if (mf.section[i].isSectionOn) currentWidthLeft += mf.section[i].sectionWidth;
                 }
-                else rateSetPointLeft = 0;
 
-                if (mf.section[1].isSectionOn)
+                for (int i = center; i < center * 2; i++)
                 {
-                    rateSetPointRight = (mf.section[1].sectionWidth * mf.pn.speed) / 600 * rateRight;
-                    currentWidthRight = mf.section[1].sectionWidth;
+                    if (mf.section[i].isSectionOn) currentWidthRight += mf.section[i].sectionWidth;
                 }
-                else rateSetPointRight = 0;
             }
+
+            //determine flow based on width and speed
+            rateSetPointLeft = (currentWidthLeft * mf.pn.speed) / 600 * rateLeft;
+            rateSetPointRight = (currentWidthRight * mf.pn.speed) / 600 * rateRight;
         }
 
         public void CalculateRateLitersPerMinuteSingle()
