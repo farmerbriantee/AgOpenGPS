@@ -20,7 +20,7 @@
 void calcRatePID(void) {
   
   //Proportional
-  pValue = 0.35 * rateError;// *Ko;  
+  pValue = 0.5 * rateErrorLeft;// *Ko;  
 /*  
   //Integral
   integrated_error = integrated_error + rateError;
@@ -51,7 +51,7 @@ void calcRatePID(void) {
   drive = pValue + dValue + iValue;
 
   sumSpeed+= drive;
-  sumSpeed = (constrain(sumSpeed, 0, 70)); 
+  sumSpeed = (constrain(sumSpeed, 0, 50)); 
   
   pwmDrive = int(sumSpeed);
   pwmDisplay = pwmDrive;
