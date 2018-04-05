@@ -23,11 +23,12 @@ demonstration purposes only and shall not be used for any other purpose.
 Ag Precision Mapping and Section Control Software
 
 This software reads NMEA strings for the purpose of recording and mapping position information 
-for Agricultural use. Also it has up to 8 Section Control to control implements application of product
+for Agricultural use. Also it has up to 12 sections of Section Control to control implements application of product
 preventing over-application.
 
-Also ouputs Pure pursuit steer angles from reference line for AB line and Contour guidance.
+Also ouputs Pure pursuit steer angles from reference line for AB line, AB Curve and Contour guidance. Auto Headland called UTurn on Curve 
+and AB Line with loops for narrow equipment
 
-Included is an application, and source folders,  and built in NMEA simulators. 
+Included is an application, and source folders, ino's for steering and rate control and a built in NMEA simulators. 
 
 It has English, German, SPanish, French, italian, Dutch and Russian Language.
