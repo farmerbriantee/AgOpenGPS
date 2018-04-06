@@ -3000,7 +3000,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAQQBEQEEAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAARQBEQEUAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -5559,7 +5559,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="lblRateSetpointRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>466, 280</value>
+    <value>466, 299</value>
   </data>
   <data name="lblRateSetpointRight.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 45</value>
@@ -5589,16 +5589,16 @@ FlowMeter</value>
     <value>True</value>
   </data>
   <data name="lblFlowRight.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+    <value>Tahoma, 12pt, style=Bold</value>
   </data>
   <data name="lblFlowRight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lblFlowRight.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 395</value>
+    <value>468, 396</value>
   </data>
   <data name="lblFlowRight.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 23</value>
+    <value>92, 19</value>
   </data>
   <data name="lblFlowRight.TabIndex" type="System.Int32, mscorlib">
     <value>194</value>
@@ -5870,16 +5870,16 @@ FlowMeter</value>
     <value>True</value>
   </data>
   <data name="lblFlowLeft.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
+    <value>Tahoma, 12pt, style=Bold</value>
   </data>
   <data name="lblFlowLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="lblFlowLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 394</value>
+    <value>232, 395</value>
   </data>
   <data name="lblFlowLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 23</value>
+    <value>80, 19</value>
   </data>
   <data name="lblFlowLeft.TabIndex" type="System.Int32, mscorlib">
     <value>188</value>
@@ -6229,7 +6229,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="lblRateSetpointLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 279</value>
+    <value>231, 299</value>
   </data>
   <data name="lblRateSetpointLeft.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 45</value>

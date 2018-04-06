@@ -853,8 +853,8 @@ namespace AgOpenGPS
         {
             var form = new FormDualRate(this);
             form.ShowDialog();
-            btnSelectRate1.BackColor = Color.Cyan;
-            btnSelectRate2.BackColor = Color.AliceBlue;
+            btnSelectRate1.BackColor = Color.LightSkyBlue;
+            btnSelectRate2.BackColor = Color.LightGray;
             if (isMetric)
             {
                 lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
@@ -906,6 +906,12 @@ namespace AgOpenGPS
 
         private void btnSelectSingleDualMeter_Click(object sender, EventArgs e)
         {
+            if (rcd.isSingleFlowMeter && vehicle.numOfSections % 2 != 0)
+            {
+                TimedMessageBox(3000, "Dual Flow Meters Needs Even # Sections", "Go to Vehicle Config and Select Even # of Sections");
+                return;
+            }
+
             rcd.isSingleFlowMeter = !rcd.isSingleFlowMeter;
             if (rcd.isSingleFlowMeter)
             {
@@ -914,7 +920,6 @@ namespace AgOpenGPS
             else
             {
                 btnSelectSingleDualMeter.Image = Resources.FlowMeterDual;
-                if (vehicle.numOfSections != 2) TimedMessageBox(3000, "Dual Flow Meters Needs Even # Sections", "Go to Vehicle Config and Select Even # of Sections");
             }
 
             Settings.Default.setRate_isSingleFlowMeter = rcd.isSingleFlowMeter;

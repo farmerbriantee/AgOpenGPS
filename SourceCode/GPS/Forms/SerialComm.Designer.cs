@@ -267,7 +267,6 @@ namespace AgOpenGPS
             //changed by MTZ8302
             if (words.Length != 5 & words.Length != 3) return;
 
-            //fill in the holes
             //left or single actual rate
             int.TryParse(words[0], out mc.incomingInt);
             rcd.rateActualLeft = (double)mc.incomingInt * 0.01;
@@ -279,7 +278,6 @@ namespace AgOpenGPS
             //Volume for dual and single
             int.TryParse(words[2], out mc.incomingInt);
             rcd.dualVolumeActual = mc.incomingInt;
-
 
             //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
             //read RelayToAOG from Arduino
