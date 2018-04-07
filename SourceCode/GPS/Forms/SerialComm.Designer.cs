@@ -265,7 +265,7 @@ namespace AgOpenGPS
             string[] words = sentence.Split(',');
 
             //changed by MTZ8302
-            if (words.Length != 5 & words.Length != 3) return;
+            if (words.Length != 8 & words.Length != 3) return;
 
             //left or single actual rate
             int.TryParse(words[0], out mc.incomingInt);
@@ -280,15 +280,22 @@ namespace AgOpenGPS
             rcd.dualVolumeActual = mc.incomingInt;
 
             //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
+            //MTZ8302 April 2018
             //read RelayToAOG from Arduino
-            if (words.Length == 5)
+            if (words.Length == 8)
             {
                 int.TryParse(words[3], out mc.incomingInt);
-                rcd.RelayFromArduino = (byte)mc.incomingInt;
-
-                //read SectSWOffToAOG from Arduino
+                rcd.RelayFromArduinoHi = (byte)mc.incomingInt;
                 int.TryParse(words[4], out mc.incomingInt);
-                rcd.SectSWOffFromArduino = (byte)mc.incomingInt;
+                rcd.RelayFromArduinoLo = (byte)mc.incomingInt;
+                //read SectSWOffToAOG from Arduino
+                int.TryParse(words[5], out mc.incomingInt);
+                rcd.SectSWOffFromArduinoHi = (byte)mc.incomingInt;
+                int.TryParse(words[6], out mc.incomingInt);
+                rcd.SectSWOffFromArduinoLo = (byte)mc.incomingInt;
+                //read MainSW+RateSW
+                int.TryParse(words[7], out mc.incomingInt);
+                rcd.SectMainSWFromArduino = (byte)mc.incomingInt;
             }
         }
         //the delegate for thread

@@ -27,11 +27,23 @@ namespace AgOpenGPS
         public bool isSingleFlowMeter;
 
         //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany----------
-        public byte RelayFromArduino = 0;
-
-        public byte RelayFromArduinoOld = 0;
-        public byte SectSWOffFromArduino = 0;
-        public byte SectSWOffFromArduinoOld = 0;
+        //MTZ8302 April 2018
+        public int RelayFromArduinoLo = 0;
+        public int RelayFromArduinoOldLo = 0;
+        public int SectSWOffFromArduinoLo = 0;
+        public int SectSWOffFromArduinoOldLo = 0;
+        public int RelayFromArduinoHi = 0;
+        public int RelayFromArduinoOldHi = 0;
+        public int SectSWOffFromArduinoHi = 0;
+        public int SectSWOffFromArduinoOldHi = 0;
+        public int SectMainSWFromArduino = 0;
+        public int SectMainSWFromArduinoOld = 0;
+        public int RateStepsFromArudino = 0;
+        public int RateStepsFromArduinoOld = 0;
+        public bool RateStepsLeft = true;
+        public bool RateUp = true;
+        public bool RateStepsLeftOld = true;
+        public bool RateUpOld = true;
         //end adds by MTZ8302-----------------------------------------------
 
         public CDualRate(FormGPS _f)
