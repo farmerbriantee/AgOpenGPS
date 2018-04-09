@@ -1602,6 +1602,17 @@ namespace AgOpenGPS
                 Close();
             }
         }
+        private void enterSimCoordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSimCoords(this, sim.latitude, sim.longitude))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+
+        }
+
+
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
@@ -2145,8 +2156,8 @@ namespace AgOpenGPS
         }
         private void btnResetSim_Click(object sender, EventArgs e)
         {
-            sim.latitude = 53.1;
-            sim.longitude = -111.0;
+            sim.latitude = Properties.Settings.Default.setGPS_Latitude;
+            sim.longitude = Properties.Settings.Default.setGPS_Longitude;
         }
 
         #region Properties // ---------------------------------------------------------------------

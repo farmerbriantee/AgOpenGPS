@@ -874,5 +874,29 @@ namespace AgOpenGPS.Properties {
                 this["setRate_isSingleFlowMeter"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("52")]
+        public double setGPS_Latitude {
+            get {
+                return ((double)(this["setGPS_Latitude"]));
+            }
+            set {
+                this["setGPS_Latitude"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("111")]
+        public double setGPS_Longitude {
+            get {
+                return ((double)(this["setGPS_Longitude"]));
+            }
+            set {
+                this["setGPS_Longitude"] = value;
+            }
+        }
     }
 }

@@ -215,5 +215,11 @@
     <Setting Name="setRate_isSingleFlowMeter" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="setGPS_Latitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">52</Value>
+    </Setting>
+    <Setting Name="setGPS_Longitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">111</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
