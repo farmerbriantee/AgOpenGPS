@@ -14,7 +14,7 @@ namespace AgOpenGPS
         private double antennaHeight, antennaOffset, antennaPivot, wheelbase, hitchLength, minTurningRadius;
 
         private bool isToolTrailing, isToolBehindPivot, isPivotBehindAntenna, isSteerAxleAhead;
-        private int numberOfSections;
+        private int numberOfSections, minApplied;
 
         private decimal sectionWidth1, sectionWidth2, sectionWidth3, sectionWidth4, sectionWidth5, sectionWidth6,
                         sectionWidth7, sectionWidth8, sectionWidth9, sectionWidth10, sectionWidth11, sectionWidth12;
@@ -105,6 +105,10 @@ namespace AgOpenGPS
             if (nudTurnOffDelay.CheckValue(ref temp)) nudTurnOffDelay.BackColor = System.Drawing.Color.OrangeRed;
             toolTurnOffDelay = (double)temp;
 
+            minApplied = Properties.Vehicle.Default.setVehicle_minApplied;
+            temp = minApplied;
+            if (nudMinApplied.CheckValue(ref temp)) nudMinApplied.BackColor = System.Drawing.Color.OrangeRed;
+
             toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
             temp = (decimal)toolLookAhead;
             if (nudLookAhead.CheckValue(ref temp)) nudLookAhead.BackColor = System.Drawing.Color.OrangeRed;
@@ -185,6 +189,10 @@ namespace AgOpenGPS
             nudMinTurnRadius.ValueChanged -= nudMinTurnRadius_ValueChanged;
             nudMinTurnRadius.Value = (decimal)(minTurningRadius * m2MetImp);
             nudMinTurnRadius.ValueChanged += nudMinTurnRadius_ValueChanged;
+
+            nudMinApplied.ValueChanged -= nudMinApplied_ValueChanged;
+            nudMinApplied.Value = (decimal)(minApplied);
+            nudMinApplied.ValueChanged += nudMinApplied_ValueChanged;
 
             chkIsAft.CheckedChanged -= chkIsAft_CheckedChanged;
             chkIsAft.Checked = isToolBehindPivot;
@@ -335,6 +343,9 @@ namespace AgOpenGPS
             mf.vehicle.numOfSections = numberOfSections;
             mf.vehicle.numSuperSection = numberOfSections + 1;
             Properties.Vehicle.Default.setVehicle_numSections = mf.vehicle.numOfSections;
+
+            mf.vehicle.toolMinUnappliedPixels = minApplied;
+            Properties.Vehicle.Default.setVehicle_minApplied = minApplied;
 
             //take the section widths and convert to meters and positions along tool.
             CalculateSectionPositions();
@@ -761,6 +772,11 @@ namespace AgOpenGPS
         private void nudCutoffSpeed_ValueChanged(object sender, EventArgs e)
         {
             cutoffSpeed = (double)nudCutoffSpeed.Value;
+        }
+
+        private void nudMinApplied_ValueChanged(object sender, EventArgs e)
+        {
+            minApplied = (int)nudMinApplied.Value;
         }
 
         //update tool width label at bottom of window

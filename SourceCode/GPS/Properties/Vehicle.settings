@@ -84,7 +84,7 @@
       <Value Profile="(Default)">-1.5</Value>
     </Setting>
     <Setting Name="setVehicle_minApplied" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>

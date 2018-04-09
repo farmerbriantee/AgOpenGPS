@@ -117,6 +117,8 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.nudMinApplied = new System.Windows.Forms.NumericUpDown();
+            this.label41 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
@@ -149,24 +151,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Controls.Add(this.tabVehicle);
             this.tabControl1.Controls.Add(this.tabTool);
             this.tabControl1.Controls.Add(this.tabSections);
             this.tabControl1.Controls.Add(this.tabWorkSwitch);
             this.tabControl1.Controls.Add(this.tabExamples);
+            resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             // 
             // tabVehicle
             // 
-            resources.ApplyResources(this.tabVehicle, "tabVehicle");
             this.tabVehicle.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleSettings;
+            resources.ApplyResources(this.tabVehicle, "tabVehicle");
             this.tabVehicle.Controls.Add(this.label7);
             this.tabVehicle.Controls.Add(this.label9);
             this.tabVehicle.Controls.Add(this.nudAntennaOffset);
@@ -399,8 +402,8 @@
             // 
             // tabTool
             // 
-            resources.ApplyResources(this.tabTool, "tabTool");
             this.tabTool.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
+            resources.ApplyResources(this.tabTool, "tabTool");
             this.tabTool.Controls.Add(this.nudOffset);
             this.tabTool.Controls.Add(this.label22);
             this.tabTool.Controls.Add(this.label8);
@@ -483,8 +486,8 @@
             // 
             // nudTurnOffDelay
             // 
-            resources.ApplyResources(this.nudTurnOffDelay, "nudTurnOffDelay");
             this.nudTurnOffDelay.DecimalPlaces = 1;
+            resources.ApplyResources(this.nudTurnOffDelay, "nudTurnOffDelay");
             this.nudTurnOffDelay.Increment = new decimal(new int[] {
             2,
             0,
@@ -515,8 +518,8 @@
             // 
             // nudLookAhead
             // 
-            resources.ApplyResources(this.nudLookAhead, "nudLookAhead");
             this.nudLookAhead.DecimalPlaces = 1;
+            resources.ApplyResources(this.nudLookAhead, "nudLookAhead");
             this.nudLookAhead.Increment = new decimal(new int[] {
             2,
             0,
@@ -599,8 +602,10 @@
             // 
             // tabSections
             // 
-            resources.ApplyResources(this.tabSections, "tabSections");
             this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettingsBackground;
+            resources.ApplyResources(this.tabSections, "tabSections");
+            this.tabSections.Controls.Add(this.label41);
+            this.tabSections.Controls.Add(this.nudMinApplied);
             this.tabSections.Controls.Add(this.label31);
             this.tabSections.Controls.Add(this.label21);
             this.tabSections.Controls.Add(this.label20);
@@ -772,8 +777,8 @@
             // 
             // nudCutoffSpeed
             // 
-            resources.ApplyResources(this.nudCutoffSpeed, "nudCutoffSpeed");
             this.nudCutoffSpeed.DecimalPlaces = 1;
+            resources.ApplyResources(this.nudCutoffSpeed, "nudCutoffSpeed");
             this.nudCutoffSpeed.Increment = new decimal(new int[] {
             1,
             0,
@@ -963,17 +968,17 @@
             // 
             // tabWorkSwitch
             // 
-            resources.ApplyResources(this.tabWorkSwitch, "tabWorkSwitch");
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
+            resources.ApplyResources(this.tabWorkSwitch, "tabWorkSwitch");
             this.tabWorkSwitch.Controls.Add(this.groupBox3);
             this.tabWorkSwitch.Name = "tabWorkSwitch";
             this.tabWorkSwitch.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
             this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
@@ -1045,6 +1050,32 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // nudMinApplied
+            // 
+            resources.ApplyResources(this.nudMinApplied, "nudMinApplied");
+            this.nudMinApplied.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudMinApplied.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudMinApplied.Name = "nudMinApplied";
+            this.nudMinApplied.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudMinApplied.ValueChanged += new System.EventHandler(this.nudMinApplied_ValueChanged);
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
             // FormSettings
             // 
             resources.ApplyResources(this, "$this");
@@ -1100,6 +1131,7 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1195,5 +1227,7 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.NumericUpDown nudMinApplied;
     }
 }

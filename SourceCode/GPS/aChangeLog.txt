@@ -2,6 +2,7 @@
 * single and dual flowmeter
 * AOG-Rate has dual flow firmware - no pid code
 * Increased to 50 m width now
+* Added to change minApplied area factor
 
 v2.6 April Fools
 * 12 Sections
