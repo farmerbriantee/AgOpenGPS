@@ -14,7 +14,7 @@
     <ProjectGuid>{C5F80730-F44F-4478-BDAE-6634EFC2CA88}</ProjectGuid>
     <RootNamespace>
     </RootNamespace>
-    <ProjectName>AOG_SectionControl</ProjectName>
+    <ProjectName>AutoSteer</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -48,8 +48,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\AOG_SectionControl;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\libraries;$(ProjectDir)..\..\..\Documents\Arduino\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.8.1\include;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <ForcedIncludeFiles>$(ProjectDir)__vm\.AOG_SectionControl.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\AutoSteer;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries\Wire\src\utility;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\libraries;$(ProjectDir)..\..\..\Documents\Arduino\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\libraries;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\cores\arduino;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\arduino\avr\variants\eightanaloginputs;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\avr\include\avr\;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.8.1\include;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.2\include;$(ProjectDir)..\..\..\..\..\Program Files (x86)\Arduino\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>$(ProjectDir)__vm\.AutoSteer.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_ATmega328p__;__AVR_ATmega328P__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=10805;ARDUINO_AVR_NANO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -75,19 +75,10 @@
     <ProjectCapability Include="VisualMicro" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AOG_SectionControl.ino">
+    <None Include="AutoSteer.ino">
       <FileType>CppCode</FileType>
     </None>
     <None Include="PID.ino">
-      <FileType>CppCode</FileType>
-    </None>
-    <None Include="RateControl_MotorDrive.ino">
-      <FileType>CppCode</FileType>
-    </None>
-    <None Include="ReadRateSW_buildBytes.ino">
-      <FileType>CppCode</FileType>
-    </None>
-    <None Include="ReadSwitches_buildBytes.ino">
       <FileType>CppCode</FileType>
     </None>
     <None Include="Relays.ino">
@@ -95,7 +86,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.AOG_SectionControl.vsarduino.h" />
+    <ClInclude Include="BNO055_AOG.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="__vm\.AutoSteer.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BNO055_AOG.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
