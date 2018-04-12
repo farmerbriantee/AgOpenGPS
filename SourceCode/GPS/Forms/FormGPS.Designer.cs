@@ -50,12 +50,13 @@
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.setWorkingDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.enterSimCoordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.loadVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveVehicleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.fieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enterSimCoordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.resetALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,12 +128,22 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.lblHeading2 = new System.Windows.Forms.Label();
+            this.lblFixQuality = new System.Windows.Forms.Label();
+            this.lblAltitude = new System.Windows.Forms.Label();
+            this.lblLongitude = new System.Windows.Forms.Label();
+            this.lblLatitude = new System.Windows.Forms.Label();
+            this.lblHeadlandDistanceFromTool = new System.Windows.Forms.Label();
+            this.lblHeadlandDistanceAway = new System.Windows.Forms.Label();
+            this.lblBoundaryArea = new System.Windows.Forms.Label();
+            this.lblRoll = new System.Windows.Forms.Label();
+            this.lblGPSHeading = new System.Windows.Forms.Label();
+            this.lblYawHeading = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
-            this.lblHeading2 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -140,22 +151,12 @@
             this.txtBoxRecvAutoSteer = new System.Windows.Forms.TextBox();
             this.lblSats = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.lblFixQuality = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblAltitude = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.lblLongitude = new System.Windows.Forms.Label();
-            this.lblLatitude = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.lblHeadlandDistanceFromTool = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblHeadlandDistanceAway = new System.Windows.Forms.Label();
-            this.lblBoundaryArea = new System.Windows.Forms.Label();
-            this.lblRoll = new System.Windows.Forms.Label();
-            this.lblGPSHeading = new System.Windows.Forms.Label();
-            this.lblYawHeading = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -243,7 +244,6 @@
             this.btnContour = new System.Windows.Forms.Button();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             this.contextMenuStripOpenGL.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
@@ -434,6 +434,17 @@
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             // 
+            // enterSimCoordsToolStripMenuItem
+            // 
+            this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
+            resources.ApplyResources(this.enterSimCoordsToolStripMenuItem, "enterSimCoordsToolStripMenuItem");
+            this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
+            // 
             // loadVehicleToolStripMenuItem
             // 
             this.loadVehicleToolStripMenuItem.Name = "loadVehicleToolStripMenuItem";
@@ -462,12 +473,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // enterSimCoordsToolStripMenuItem
-            // 
-            this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
-            resources.ApplyResources(this.enterSimCoordsToolStripMenuItem, "enterSimCoordsToolStripMenuItem");
-            this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -1058,6 +1063,61 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
+            // lblHeading2
+            // 
+            resources.ApplyResources(this.lblHeading2, "lblHeading2");
+            this.lblHeading2.Name = "lblHeading2";
+            // 
+            // lblFixQuality
+            // 
+            resources.ApplyResources(this.lblFixQuality, "lblFixQuality");
+            this.lblFixQuality.Name = "lblFixQuality";
+            // 
+            // lblAltitude
+            // 
+            resources.ApplyResources(this.lblAltitude, "lblAltitude");
+            this.lblAltitude.Name = "lblAltitude";
+            // 
+            // lblLongitude
+            // 
+            resources.ApplyResources(this.lblLongitude, "lblLongitude");
+            this.lblLongitude.Name = "lblLongitude";
+            // 
+            // lblLatitude
+            // 
+            resources.ApplyResources(this.lblLatitude, "lblLatitude");
+            this.lblLatitude.Name = "lblLatitude";
+            // 
+            // lblHeadlandDistanceFromTool
+            // 
+            resources.ApplyResources(this.lblHeadlandDistanceFromTool, "lblHeadlandDistanceFromTool");
+            this.lblHeadlandDistanceFromTool.Name = "lblHeadlandDistanceFromTool";
+            // 
+            // lblHeadlandDistanceAway
+            // 
+            resources.ApplyResources(this.lblHeadlandDistanceAway, "lblHeadlandDistanceAway");
+            this.lblHeadlandDistanceAway.Name = "lblHeadlandDistanceAway";
+            // 
+            // lblBoundaryArea
+            // 
+            resources.ApplyResources(this.lblBoundaryArea, "lblBoundaryArea");
+            this.lblBoundaryArea.Name = "lblBoundaryArea";
+            // 
+            // lblRoll
+            // 
+            resources.ApplyResources(this.lblRoll, "lblRoll");
+            this.lblRoll.Name = "lblRoll";
+            // 
+            // lblGPSHeading
+            // 
+            resources.ApplyResources(this.lblGPSHeading, "lblGPSHeading");
+            this.lblGPSHeading.Name = "lblGPSHeading";
+            // 
+            // lblYawHeading
+            // 
+            resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
+            this.lblYawHeading.Name = "lblYawHeading";
+            // 
             // label26
             // 
             resources.ApplyResources(this.label26, "label26");
@@ -1088,11 +1148,6 @@
             this.btnTiltDown.Name = "btnTiltDown";
             this.btnTiltDown.UseVisualStyleBackColor = false;
             this.btnTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltDown_MouseDown);
-            // 
-            // lblHeading2
-            // 
-            resources.ApplyResources(this.lblHeading2, "lblHeading2");
-            this.lblHeading2.Name = "lblHeading2";
             // 
             // label22
             // 
@@ -1133,20 +1188,10 @@
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
-            // lblFixQuality
-            // 
-            resources.ApplyResources(this.lblFixQuality, "lblFixQuality");
-            this.lblFixQuality.Name = "lblFixQuality";
-            // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            // 
-            // lblAltitude
-            // 
-            resources.ApplyResources(this.lblAltitude, "lblAltitude");
-            this.lblAltitude.Name = "lblAltitude";
             // 
             // label19
             // 
@@ -1158,16 +1203,6 @@
             resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
             // 
-            // lblLongitude
-            // 
-            resources.ApplyResources(this.lblLongitude, "lblLongitude");
-            this.lblLongitude.Name = "lblLongitude";
-            // 
-            // lblLatitude
-            // 
-            resources.ApplyResources(this.lblLatitude, "lblLatitude");
-            this.lblLatitude.Name = "lblLatitude";
-            // 
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
@@ -1178,40 +1213,10 @@
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
             // 
-            // lblHeadlandDistanceFromTool
-            // 
-            resources.ApplyResources(this.lblHeadlandDistanceFromTool, "lblHeadlandDistanceFromTool");
-            this.lblHeadlandDistanceFromTool.Name = "lblHeadlandDistanceFromTool";
-            // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            // 
-            // lblHeadlandDistanceAway
-            // 
-            resources.ApplyResources(this.lblHeadlandDistanceAway, "lblHeadlandDistanceAway");
-            this.lblHeadlandDistanceAway.Name = "lblHeadlandDistanceAway";
-            // 
-            // lblBoundaryArea
-            // 
-            resources.ApplyResources(this.lblBoundaryArea, "lblBoundaryArea");
-            this.lblBoundaryArea.Name = "lblBoundaryArea";
-            // 
-            // lblRoll
-            // 
-            resources.ApplyResources(this.lblRoll, "lblRoll");
-            this.lblRoll.Name = "lblRoll";
-            // 
-            // lblGPSHeading
-            // 
-            resources.ApplyResources(this.lblGPSHeading, "lblGPSHeading");
-            this.lblGPSHeading.Name = "lblGPSHeading";
-            // 
-            // lblYawHeading
-            // 
-            resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
-            this.lblYawHeading.Name = "lblYawHeading";
             // 
             // label10
             // 
@@ -1955,11 +1960,6 @@
             this.btnABLine.Name = "btnABLine";
             this.btnABLine.UseVisualStyleBackColor = false;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
             // 
             // FormGPS
             // 

@@ -1154,6 +1154,39 @@
   <data name="tabSections.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="lblVehicleToolWidth.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblVehicleToolWidth.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 24pt</value>
+  </data>
+  <data name="lblVehicleToolWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 382</value>
+  </data>
+  <data name="lblVehicleToolWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 39</value>
+  </data>
+  <data name="lblVehicleToolWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="lblVehicleToolWidth.Text" xml:space="preserve">
+    <value>100</value>
+  </data>
+  <data name="&gt;&gt;lblVehicleToolWidth.Name" xml:space="preserve">
+    <value>lblVehicleToolWidth</value>
+  </data>
+  <data name="&gt;&gt;lblVehicleToolWidth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblVehicleToolWidth.Parent" xml:space="preserve">
+    <value>tabSections</value>
+  </data>
+  <data name="&gt;&gt;lblVehicleToolWidth.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="label41.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1185,7 +1218,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label41.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="nudMinApplied.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
@@ -1209,7 +1242,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudMinApplied.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label31.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1242,7 +1275,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label21.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1275,7 +1308,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label20.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1308,7 +1341,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label40.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1341,7 +1374,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label40.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1374,7 +1407,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label38.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1407,7 +1440,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label38.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label37.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1440,7 +1473,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label37.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label33.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1473,7 +1506,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label32.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1506,7 +1539,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1539,7 +1572,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1572,7 +1605,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1605,7 +1638,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="nudSection12.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1629,7 +1662,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection12.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="nudSection11.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1653,7 +1686,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection11.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="nudSection10.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1677,7 +1710,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection10.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="nudSection9.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1701,7 +1734,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection9.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="lblTurnOffBelowUnits.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1734,7 +1767,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;lblTurnOffBelowUnits.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="label30.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1767,7 +1800,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="nudCutoffSpeed.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
@@ -1791,7 +1824,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudCutoffSpeed.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="nudSection8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1815,7 +1848,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection8.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="nudSection7.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1839,7 +1872,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection7.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="nudSection6.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1863,7 +1896,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection6.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="lblDoNotExceed.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1875,7 +1908,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>55, 478</value>
+    <value>366, 470</value>
   </data>
   <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
     <value>233, 25</value>
@@ -1896,73 +1929,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;lblDoNotExceed.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="lblVehicleToolWidth.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblVehicleToolWidth.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 27.75pt, style=Bold</value>
-  </data>
-  <data name="lblVehicleToolWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 461</value>
-  </data>
-  <data name="lblVehicleToolWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 45</value>
-  </data>
-  <data name="lblVehicleToolWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="lblVehicleToolWidth.Text" xml:space="preserve">
-    <value>II</value>
-  </data>
-  <data name="&gt;&gt;lblVehicleToolWidth.Name" xml:space="preserve">
-    <value>lblVehicleToolWidth</value>
-  </data>
-  <data name="&gt;&gt;lblVehicleToolWidth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblVehicleToolWidth.Parent" xml:space="preserve">
-    <value>tabSections</value>
-  </data>
-  <data name="&gt;&gt;lblVehicleToolWidth.ZOrder" xml:space="preserve">
     <value>25</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt</value>
-  </data>
-  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 470</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 33</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Total Width</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tabSections</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>26</value>
   </data>
   <data name="nudSection5.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1986,7 +1953,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection5.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>26</value>
   </data>
   <data name="nudSection4.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2010,7 +1977,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection4.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>27</value>
   </data>
   <data name="nudSection3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2034,7 +2001,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection3.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>28</value>
   </data>
   <data name="nudSection2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2058,7 +2025,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection2.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>29</value>
   </data>
   <data name="nudSection1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2082,7 +2049,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudSection1.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>30</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2115,7 +2082,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>31</value>
   </data>
   <data name="nudNumberOfSections.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 36pt, style=Bold</value>
@@ -2139,7 +2106,7 @@
     <value>tabSections</value>
   </data>
   <data name="&gt;&gt;nudNumberOfSections.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>32</value>
   </data>
   <data name="tabSections.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -7058,7 +7025,7 @@
     <value>Tahoma, 18pt</value>
   </data>
   <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
-    <value>170, 40</value>
+    <value>190, 40</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>

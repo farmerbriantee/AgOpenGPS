@@ -162,10 +162,10 @@ void loop()
 		delay(1);
 		analogRead(A1); //discard
 		delay(1);
-		roll = analogRead(A1);   delay(4);
-		roll += analogRead(A1);   delay(4);
-		roll += analogRead(A1);   delay(4);
-		roll += analogRead(A1);   delay(4);
+		roll = analogRead(A1);   delay(2);
+		roll += analogRead(A1);   delay(2);
+		roll += analogRead(A1);   delay(2);
+		roll += analogRead(A1);
 		roll = roll >> 2; //divide by 4
 
 		//inclinometer goes from -25 to 25 from 0 volts to 5 volts
@@ -189,9 +189,9 @@ void loop()
 
 		//steering position and steer angle
 		analogRead(A0); //discard initial reading
-		steeringPosition = analogRead(A0);    delay(4);
-		steeringPosition += analogRead(A0);    delay(4);
-		steeringPosition += analogRead(A0);    delay(4);
+		steeringPosition = analogRead(A0);    delay(2);
+		steeringPosition += analogRead(A0);    delay(2);
+		steeringPosition += analogRead(A0);    delay(2);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
 		steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / 16.0);   //read the steering position sensor

@@ -265,25 +265,13 @@ Solo Lunghezza</value>
     <value>Spegni Sezioni Sotto</value>
   </data>
   <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 436</value>
+    <value>385, 461</value>
   </data>
   <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 25</value>
   </data>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>*Non Superare 1570*</value>
-  </data>
-  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 386</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 344</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Larghezza Totale</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 25</value>

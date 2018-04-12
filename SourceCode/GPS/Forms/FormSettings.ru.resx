@@ -355,6 +355,9 @@
   <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
     <value>км/ч</value>
   </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>615, 341</value>
+  </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>345, 25</value>
   </data>
@@ -366,15 +369,6 @@
   </data>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>* Не превышать 1570 *</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>332, 288</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Общая ширина</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 25</value>

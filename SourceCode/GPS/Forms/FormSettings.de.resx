@@ -289,12 +289,6 @@ Zugstange, 3-Punkt</value>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>* Obere Grenze: 1570 *</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Gerätebreite</value>
-  </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>111, 25</value>
   </data>

@@ -269,25 +269,13 @@ Línea AB</value>
     <value>Apagar Secciones abajo</value>
   </data>
   <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>420, 435</value>
+    <value>423, 471</value>
   </data>
   <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 25</value>
   </data>
   <data name="lblDoNotExceed.Text" xml:space="preserve">
     <value>* No exceder 1570 *</value>
-  </data>
-  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>480, 386</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 350</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Ancho Total</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 25</value>

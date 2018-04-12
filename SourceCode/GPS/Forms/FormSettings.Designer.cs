@@ -72,6 +72,8 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.tabSections = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
+            this.nudMinApplied = new System.Windows.Forms.NumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -95,8 +97,6 @@
             this.nudSection7 = new System.Windows.Forms.NumericUpDown();
             this.nudSection6 = new System.Windows.Forms.NumericUpDown();
             this.lblDoNotExceed = new System.Windows.Forms.Label();
-            this.lblVehicleToolWidth = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.nudSection5 = new System.Windows.Forms.NumericUpDown();
             this.nudSection4 = new System.Windows.Forms.NumericUpDown();
             this.nudSection3 = new System.Windows.Forms.NumericUpDown();
@@ -117,8 +117,7 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.nudMinApplied = new System.Windows.Forms.NumericUpDown();
-            this.label41 = new System.Windows.Forms.Label();
+            this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
@@ -135,6 +134,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudForeAft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             this.tabSections.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).BeginInit();
@@ -151,7 +151,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -604,6 +603,7 @@
             // 
             this.tabSections.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionSettingsBackground;
             resources.ApplyResources(this.tabSections, "tabSections");
+            this.tabSections.Controls.Add(this.lblVehicleToolWidth);
             this.tabSections.Controls.Add(this.label41);
             this.tabSections.Controls.Add(this.nudMinApplied);
             this.tabSections.Controls.Add(this.label31);
@@ -629,8 +629,6 @@
             this.tabSections.Controls.Add(this.nudSection7);
             this.tabSections.Controls.Add(this.nudSection6);
             this.tabSections.Controls.Add(this.lblDoNotExceed);
-            this.tabSections.Controls.Add(this.lblVehicleToolWidth);
-            this.tabSections.Controls.Add(this.label4);
             this.tabSections.Controls.Add(this.nudSection5);
             this.tabSections.Controls.Add(this.nudSection4);
             this.tabSections.Controls.Add(this.nudSection3);
@@ -640,6 +638,32 @@
             this.tabSections.Controls.Add(this.nudNumberOfSections);
             this.tabSections.Name = "tabSections";
             this.tabSections.UseVisualStyleBackColor = true;
+            // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.Name = "label41";
+            // 
+            // nudMinApplied
+            // 
+            resources.ApplyResources(this.nudMinApplied, "nudMinApplied");
+            this.nudMinApplied.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudMinApplied.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudMinApplied.Name = "nudMinApplied";
+            this.nudMinApplied.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudMinApplied.ValueChanged += new System.EventHandler(this.nudMinApplied_ValueChanged);
             // 
             // label31
             // 
@@ -850,16 +874,6 @@
             resources.ApplyResources(this.lblDoNotExceed, "lblDoNotExceed");
             this.lblDoNotExceed.Name = "lblDoNotExceed";
             // 
-            // lblVehicleToolWidth
-            // 
-            resources.ApplyResources(this.lblVehicleToolWidth, "lblVehicleToolWidth");
-            this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // nudSection5
             // 
             resources.ApplyResources(this.nudSection5, "nudSection5");
@@ -1050,31 +1064,10 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // nudMinApplied
+            // lblVehicleToolWidth
             // 
-            resources.ApplyResources(this.nudMinApplied, "nudMinApplied");
-            this.nudMinApplied.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.nudMinApplied.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudMinApplied.Name = "nudMinApplied";
-            this.nudMinApplied.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudMinApplied.ValueChanged += new System.EventHandler(this.nudMinApplied_ValueChanged);
-            // 
-            // label41
-            // 
-            resources.ApplyResources(this.label41, "label41");
-            this.label41.Name = "label41";
+            resources.ApplyResources(this.lblVehicleToolWidth, "lblVehicleToolWidth");
+            this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             // 
             // FormSettings
             // 
@@ -1114,6 +1107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).EndInit();
             this.tabSections.ResumeLayout(false);
             this.tabSections.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSection10)).EndInit();
@@ -1131,7 +1125,6 @@
             this.tabWorkSwitch.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinApplied)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1151,8 +1144,6 @@
         private System.Windows.Forms.NumericUpDown nudSection3;
         private System.Windows.Forms.NumericUpDown nudSection2;
         private System.Windows.Forms.NumericUpDown nudSection1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lblVehicleToolWidth;
         private System.Windows.Forms.Label lblSecTotalWidthInches;
         private System.Windows.Forms.Label lblSecTotalWidthFeet;
         private System.Windows.Forms.NumericUpDown nudAntennaHeight;
@@ -1229,5 +1220,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nudMinApplied;
+        private System.Windows.Forms.Label lblVehicleToolWidth;
     }
 }

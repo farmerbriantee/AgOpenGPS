@@ -420,6 +420,9 @@ namespace AgOpenGPS
             //send out the port
             RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
 
+            //if the relay rate port is open, check switches
+            if (spRelay.IsOpen) DoRemoteSectionSwitch();
+
             #endregion
 
 

@@ -117,19 +117,271 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 245</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label7.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 23</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Weinig driehoeken</value>
+  </data>
+  <data name="label6.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 23</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Veel driehoeken</value>
+  </data>
+  <data name="nudMinTurnRadius.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 162</value>
+  </data>
+  <data name="nudMinTurnRadius.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 65</value>
+  </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 32</value>
+  </data>
+  <data name="label29.Text" xml:space="preserve">
+    <value>* Alles wat direct aan het voertuig wordt
+bevestigd b.v. strooier, ploeg, kopeg</value>
+  </data>
+  <data name="label15.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>Antennehoogte</value>
+  </data>
+  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 23</value>
+  </data>
+  <data name="label36.Text" xml:space="preserve">
+    <value>Aangehangen werktuig</value>
+  </data>
+  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
+    <value>235, 16</value>
+  </data>
+  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 23</value>
+  </data>
+  <data name="label27.Text" xml:space="preserve">
+    <value>Werktuig is</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 477</value>
+  </data>
+  <data name="label28.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 23</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>Lengte dissel werktuig</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>180, 353</value>
+  </data>
+  <data name="label24.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 23</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>Lengte dissel werktuig</value>
+  </data>
+  <data name="label26.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 23</value>
+  </data>
+  <data name="label26.Text" xml:space="preserve">
+    <value>Wielbasis</value>
+  </data>
+  <data name="label12.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 23</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>Draaipunt</value>
+  </data>
+  <data name="label13.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 23</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>Wielbasis</value>
+  </data>
+  <data name="label25.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>No</value>
+  </data>
+  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 23</value>
+  </data>
+  <data name="label25.Text" xml:space="preserve">
+    <value>Antennehoogte</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 23</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>Draaipunt is</value>
+  </data>
   <data name="tabVehicle.Text" xml:space="preserve">
     <value> Voertuig</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 69</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>Dolly vervalt wanneer 
+&lt;200cm of
+&lt;78 inch</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 46</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Lengte dissel 
+van Dolly</value>
+  </data>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 23</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>Werktuig breedte</value>
+  </data>
+  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
+    <value>761, 128</value>
+  </data>
+  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 46</value>
+  </data>
+  <data name="label23.Text" xml:space="preserve">
+    <value>Uitschakelvertraging
+ (sec)</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>170, 23</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Vooruit kijken (sec)</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 46</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>Alleen lengte 
+dissel werktuig</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 46</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>AB lijn
+tussenruimte/ overlap</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 23</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Werktuig afstand</value>
   </data>
   <data name="tabTool.Text" xml:space="preserve">
     <value> Werktuig</value>
   </data>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>230, 94</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label31.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>395, 94</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>864, 94</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 33</value>
+  </data>
+  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
+    <value>Km/h</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 25</value>
+  </data>
+  <data name="label30.Text" xml:space="preserve">
+    <value>Secties uitschakelen onder</value>
+  </data>
+  <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
+    <value>423, 469</value>
+  </data>
+  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 25</value>
+  </data>
+  <data name="lblDoNotExceed.Text" xml:space="preserve">
+    <value>*Bovengrens: 1570 *</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 25</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Secties</value>
+  </data>
   <data name="tabSections.Text" xml:space="preserve">
     <value>Secties</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 29</value>
+  </data>
+  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
+    <value>Laag aktief</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>269, 29</value>
+  </data>
+  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
+    <value>Werkschakelaar activeren</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Werkschakelaar</value>
   </data>
   <data name="tabWorkSwitch.Text" xml:space="preserve">
     <value>Werkschakelaar</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tabExamples.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABGAAAAHsCAYAAACdRNutAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -4953,242 +5205,6 @@
   <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
     <value>190, 40</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 245</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label7.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 23</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Weinig driehoeken</value>
-  </data>
-  <data name="label6.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 23</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Veel driehoeken</value>
-  </data>
-  <data name="nudMinTurnRadius.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 162</value>
-  </data>
-  <data name="nudMinTurnRadius.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 65</value>
-  </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 32</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>* Alles wat direct aan het voertuig wordt
-bevestigd b.v. strooier, ploeg, kopeg</value>
-  </data>
-  <data name="label15.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>Antennehoogte</value>
-  </data>
-  <data name="label36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 23</value>
-  </data>
-  <data name="label36.Text" xml:space="preserve">
-    <value>Aangehangen werktuig</value>
-  </data>
-  <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 16</value>
-  </data>
-  <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 23</value>
-  </data>
-  <data name="label27.Text" xml:space="preserve">
-    <value>Werktuig is</value>
-  </data>
-  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 477</value>
-  </data>
-  <data name="label28.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 23</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>Lengte dissel werktuig</value>
-  </data>
-  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 353</value>
-  </data>
-  <data name="label24.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 23</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>Lengte dissel werktuig</value>
-  </data>
-  <data name="label26.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="label26.Text" xml:space="preserve">
-    <value>Wielbasis</value>
-  </data>
-  <data name="label12.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>93, 23</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>Draaipunt</value>
-  </data>
-  <data name="label13.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 23</value>
-  </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>Wielbasis</value>
-  </data>
-  <data name="label25.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>No</value>
-  </data>
-  <data name="label25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>138, 23</value>
-  </data>
-  <data name="label25.Text" xml:space="preserve">
-    <value>Antennehoogte</value>
-  </data>
-  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 23</value>
-  </data>
-  <data name="label18.Text" xml:space="preserve">
-    <value>Draaipunt is</value>
-  </data>
-  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 69</value>
-  </data>
-  <data name="label22.Text" xml:space="preserve">
-    <value>Dolly vervalt wanneer 
-&lt;200cm of
-&lt;78 inch</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 46</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Lengte dissel 
-van Dolly</value>
-  </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 23</value>
-  </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>Werktuig breedte</value>
-  </data>
-  <data name="label23.Location" type="System.Drawing.Point, System.Drawing">
-    <value>761, 128</value>
-  </data>
-  <data name="label23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 46</value>
-  </data>
-  <data name="label23.Text" xml:space="preserve">
-    <value>Uitschakelvertraging
- (sec)</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 23</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Vooruit kijken (sec)</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 46</value>
-  </data>
-  <data name="label19.Text" xml:space="preserve">
-    <value>Alleen lengte 
-dissel werktuig</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 46</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>AB lijn
-tussenruimte/ overlap</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 23</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Werktuig afstand</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 33</value>
-  </data>
-  <data name="lblTurnOffBelowUnits.Text" xml:space="preserve">
-    <value>Km/h</value>
-  </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 25</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>Secties uitschakelen onder</value>
-  </data>
-  <data name="lblDoNotExceed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>427, 418</value>
-  </data>
-  <data name="lblDoNotExceed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 25</value>
-  </data>
-  <data name="lblDoNotExceed.Text" xml:space="preserve">
-    <value>*Bovengrens: 1570 *</value>
-  </data>
-  <data name="lblVehicleToolWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>473, 373</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>382, 340</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>188, 33</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Totale breedte</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 25</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Secties</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Werkschakelaar</value>
-  </data>
-  <data name="chkWorkSwActiveLow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 29</value>
-  </data>
-  <data name="chkWorkSwActiveLow.Text" xml:space="preserve">
-    <value>Laag aktief</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>269, 29</value>
-  </data>
-  <data name="chkEnableWorkSwitch.Text" xml:space="preserve">
-    <value>Werkschakelaar activeren</value>
-  </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 23</value>
   </data>
@@ -5209,34 +5225,6 @@ tussenruimte/ overlap</value>
   </data>
   <data name="lblInchesCm.Text" xml:space="preserve">
     <value>Inch</value>
-  </data>
-  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>864, 94</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="label20.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="label20.Text" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>395, 94</value>
-  </data>
-  <data name="label21.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="label21.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>230, 94</value>
-  </data>
-  <data name="label31.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="label31.Text" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Opties</value>
