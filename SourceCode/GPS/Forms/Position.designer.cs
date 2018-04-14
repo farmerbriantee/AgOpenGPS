@@ -425,7 +425,6 @@ namespace AgOpenGPS
 
             #endregion
 
-
             #region Youturn
 
             distPivot = -2222;
@@ -617,7 +616,7 @@ namespace AgOpenGPS
                 fixHeading = gyroCorrected;
             }
 
-       #region pivot hitch trail
+            #region pivot hitch trail
 
             //translate world to the pivot axle
             pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
@@ -653,7 +652,7 @@ namespace AgOpenGPS
                     }
 
                     //criteria for a forced reset to put tool directly behind vehicle
-                    if (over > 2.0 | startCounter < 51 )
+                    if (over > 2.0 | startCounter < 51)
                     {
                         tankPos.heading = fixHeading;
                         tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (vehicle.tankTrailingHitchLength));
@@ -689,7 +688,7 @@ namespace AgOpenGPS
                 }
 
                 //criteria for a forced reset to put tool directly behind vehicle
-                if (over > 1.9 | startCounter < 51 )
+                if (over > 1.9 | startCounter < 51)
                 {
                     toolPos.heading = tankPos.heading;
                     toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (vehicle.toolTrailingHitchLength));
@@ -705,10 +704,10 @@ namespace AgOpenGPS
                 toolPos.northing = hitchPos.northing;
             }
 
-#endregion
-                //used to increase triangle count when going around corners, less on straight
-                //pick the slow moving side edge of tool
-                double metersPerSec = pn.speed * 0.277777777;
+            #endregion
+            //used to increase triangle count when going around corners, less on straight
+            //pick the slow moving side edge of tool
+            double metersPerSec = pn.speed * 0.277777777;
 
             //whichever is less
             if (vehicle.toolFarLeftSpeed < vehicle.toolFarRightSpeed)

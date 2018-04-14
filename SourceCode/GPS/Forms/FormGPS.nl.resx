@@ -351,9 +351,6 @@
         4r8U8P8Lvnz5P2LeR3Fu/YbdAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 6</value>
-  </data>
   <data name="menuLanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 40</value>
   </data>
@@ -378,47 +375,20 @@
   <data name="menuLanguageItalian.Size" type="System.Drawing.Size, System.Drawing">
     <value>285, 40</value>
   </data>
-  <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
-  </data>
   <data name="menustripLanguage.Text" xml:space="preserve">
     <value>Taal</value>
-  </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 6</value>
-  </data>
-  <data name="setWorkingDirectoryToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
   </data>
   <data name="setWorkingDirectoryToolStripMenuItem.Text" xml:space="preserve">
     <value>Mappen</value>
   </data>
-  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 6</value>
-  </data>
-  <data name="loadVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
-  </data>
   <data name="loadVehicleToolStripMenuItem.Text" xml:space="preserve">
     <value>Voertuig laden</value>
-  </data>
-  <data name="saveVehicleToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
   </data>
   <data name="saveVehicleToolStripMenuItem.Text" xml:space="preserve">
     <value>Voertuig opslaan</value>
   </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>310, 6</value>
-  </data>
-  <data name="fieldToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
-  </data>
   <data name="fieldToolStripMenuItem.Text" xml:space="preserve">
     <value>Start veld</value>
-  </data>
-  <data name="aboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>313, 40</value>
   </data>
   <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 38</value>
@@ -2173,7 +2143,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAUgBEQFIAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAVABEQFQAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA

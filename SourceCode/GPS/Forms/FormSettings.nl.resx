@@ -5229,4 +5229,7 @@ tussenruimte/ overlap</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Opties</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Totale breedte</value>
+  </data>
 </root>

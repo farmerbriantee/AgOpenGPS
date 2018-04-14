@@ -5145,4 +5145,7 @@ Línea AB</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Configuración</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Ancho Total</value>
+  </data>
 </root>

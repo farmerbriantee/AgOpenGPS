@@ -128,10 +128,47 @@ namespace AgOpenGPS
                                     double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                     DecDeg2UTM(latK, lonK);
                                     vec3 bndPt = new vec3(easting, northing, 0);
-
-                                    //TODO - calculate heading!
                                     mf.boundz.ptList.Add(bndPt);
                                 }
+
+                                //fix the points if there are gaps bigger then 
+
+                                //make sure distance isn't too small between points on headland
+                                int headCount = mf.boundz.ptList.Count;
+                                //double spacing = mf.vehicle.toolWidth * 0.25;
+                                double spacing = 3.0;
+                                double distance;
+                                for (int i = 0; i < headCount - 1; i++)
+                                {
+                                    distance = glm.Distance(mf.boundz.ptList[i], mf.boundz.ptList[i + 1]);
+                                    if (distance < spacing)
+                                    {
+                                        mf.boundz.ptList.RemoveAt(i + 1);
+                                        headCount = mf.boundz.ptList.Count;
+                                        i = 0;
+                                    }
+                                }
+
+                                //make sure distance isn't too big between points on headland
+                                vec3 point;
+                                headCount = mf.boundz.ptList.Count;
+                                for (int i = 0; i < headCount; i++)
+                                {
+                                    int j = i + 1;
+                                    if (j == headCount) j = 0;
+                                    distance = glm.Distance(mf.boundz.ptList[i], mf.boundz.ptList[j]);
+                                    if (distance > (spacing * 1.333))
+                                    {
+                                        point.easting = (mf.boundz.ptList[i].easting + mf.boundz.ptList[j].easting) / 2.0;
+                                        point.northing = (mf.boundz.ptList[i].northing + mf.boundz.ptList[j].northing) / 2.0;
+                                        point.heading = mf.boundz.ptList[i].heading;
+
+                                        mf.boundz.ptList.Insert(j, point);
+                                        headCount = mf.boundz.ptList.Count;
+                                        i = 0;
+                                    }
+                                }
+
 
                                 //Google earth doesn't have headings so need to calc them
                                 mf.boundz.CalculateHeadings();

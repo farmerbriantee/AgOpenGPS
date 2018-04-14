@@ -128,6 +128,9 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.btnFixOffset = new System.Windows.Forms.Button();
+            this.lblFixOffset = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
@@ -1023,6 +1026,9 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.btnFixOffset);
+            this.DataPage.Controls.Add(this.lblFixOffset);
+            this.DataPage.Controls.Add(this.label2);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.lblFixQuality);
             this.DataPage.Controls.Add(this.lblAltitude);
@@ -1062,6 +1068,25 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            // 
+            // btnFixOffset
+            // 
+            this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnFixOffset.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFixOffset, "btnFixOffset");
+            this.btnFixOffset.Name = "btnFixOffset";
+            this.btnFixOffset.UseVisualStyleBackColor = false;
+            this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
+            // 
+            // lblFixOffset
+            // 
+            resources.ApplyResources(this.lblFixOffset, "lblFixOffset");
+            this.lblFixOffset.Name = "lblFixOffset";
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
             // lblHeading2
             // 
@@ -2253,6 +2278,9 @@
         private System.Windows.Forms.Button btnSelectSingleDualMeter;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.Label lblFixOffset;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnFixOffset;
     }
 }
 

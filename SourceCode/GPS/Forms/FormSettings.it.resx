@@ -5141,4 +5141,7 @@ Solo Lunghezza</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Regolazione</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Larghezza Totale</value>
+  </data>
 </root>

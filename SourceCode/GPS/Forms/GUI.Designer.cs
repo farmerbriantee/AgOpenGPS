@@ -1267,7 +1267,16 @@ namespace AgOpenGPS
             flagPts.Add(flagPt);
             FileSaveFlags();
         }
-        
+
+        private void btnFixOffset_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormShiftPos(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
         //Rate 
 
         //YouTurn on off
@@ -1609,10 +1618,7 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
-
         }
-
-
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
@@ -2265,6 +2271,9 @@ namespace AgOpenGPS
             }
         }
 
+        public string FixOffset { get { return (pn.fixOffset.easting.ToString("N2") + ", " + pn.fixOffset.northing.ToString("N2")); } }
+        public string FixOffsetInch { get { return ((pn.fixOffset.easting*glm.m2in).ToString("N0")+ ", " + (pn.fixOffset.northing*glm.m2in).ToString("N0")); } }
+
         public string Altitude { get { return Convert.ToString(Math.Round(pn.altitude,3)); } }
         public string AltitudeFeet { get { return Convert.ToString((Math.Round((pn.altitude * 3.28084),3))); } }
 
@@ -2353,6 +2362,7 @@ namespace AgOpenGPS
                         else lblHeadlandDistanceAway.Text = "***";
                         if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
                         else lblHeadlandDistanceFromTool.Text = " * ";
+                        lblFixOffset.Text = FixOffset;
                     }
                     else //imperial
                     {
@@ -2363,6 +2373,7 @@ namespace AgOpenGPS
                         else lblHeadlandDistanceAway.Text = "***";
                         if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotFt;
                         else lblHeadlandDistanceFromTool.Text = " * ";
+                        lblFixOffset.Text = FixOffsetInch;
                     }
 
                     //both

@@ -5157,4 +5157,7 @@ Zugstange, 3-Punkt</value>
   <data name="$this.Text" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Gerätebreite</value>
+  </data>
 </root>

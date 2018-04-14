@@ -143,6 +143,9 @@ Field	Meaning
         //public double northing, easting;
         public vec2 fix = new vec2(0, 0);
 
+        //used to offset the antenna position to compensate for drift
+        public vec2 fixOffset = new vec2(0, 0);
+
         public double actualEasting, actualNorthing;
         public double zone;
 
@@ -609,8 +612,8 @@ Field	Meaning
             actualNorthing = xy[1];
 
             //if a field is open, the real one is subtracted from the integer
-            fix.easting = xy[0] - utmEast;
-            fix.northing = xy[1] - utmNorth;
+            fix.easting = xy[0] - utmEast + fixOffset.easting;
+            fix.northing = xy[1] - utmNorth+ fixOffset.northing;
         }
     }
 }

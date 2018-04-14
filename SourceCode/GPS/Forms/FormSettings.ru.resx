@@ -5244,4 +5244,7 @@
   <data name="$this.Text" xml:space="preserve">
     <value>Настроить</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Общая ширина</value>
+  </data>
 </root>

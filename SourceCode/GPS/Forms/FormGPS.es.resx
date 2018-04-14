@@ -5453,4 +5453,13 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 </value>
   </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Volumen</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Dosis Real</value>
+  </data>
+  <data name="btnRateConfig.Text" xml:space="preserve">
+    <value>Config  </value>
+  </data>
 </root>

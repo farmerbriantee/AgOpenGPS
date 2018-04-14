@@ -926,6 +926,8 @@ namespace AgOpenGPS
             Settings.Default.Save();
         }
 
+
+
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {

@@ -121,6 +121,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="FormShiftPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormShiftPos.Designer.cs">
+      <DependentUpon>FormShiftPos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormDualRate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormShiftPos.resx">
+      <DependentUpon>FormShiftPos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDualRate.resx">
       <DependentUpon>FormDualRate.cs</DependentUpon>
     </EmbeddedResource>
