@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module fritzingVersion='0.9.2b' moduleId='BNO055'>
+<version>1</version>
+<date>2015-07-13</date>
+<author>Dean Cording</author>
+<description>A MEMS accelerometer, magnetometer and gyroscope on a single die with a high speed ARM Cortex-M0 based processor to digest all the sensor data, abstract the sensor fusion and real time requirements away, and spit out data you can use in quaternions, Euler angles or vectors.</description>
+<title>9-DOF Absolute Orientation IMU Fusion Breakout - BNO055</title>
+<url>https://www.adafruit.com/products/2472</url>
+<tags>
+<tag>adafruit</tag>
+<tag>accelerometer</tag>
+<tag>magnetometer</tag>
+<tag>gyroscope</tag>
+<tag>9DOF</tag>
+</tags>
+<properties>
+<property name='family'>BNO055</property>
+<property name='variant'>breakout</property>
+</properties>
+<views>
+<breadboardView>
+<layers image='breadboard/BNO055.svg'>
+<layer layerId='breadboard'/>
+</layers>
+</breadboardView>
+<schematicView>
+<layers image='schematic/BNO055.svg'>
+<layer layerId='schematic'/>
+</layers>
+</schematicView>
+<pcbView>
+<layers image='pcb/BNO055.svg'>
+<layer layerId='copper1'/>
+<layer layerId='silkscreen'/>
+<layer layerId='copper0'/>
+</layers>
+</pcbView>
+<iconView>
+<layers image='breadboard/BNO055.svg'>
+<layer layerId='icon'/>
+</layers>
+</iconView>
+</views>
+<connectors>
+<connector id='connector16' type='male' name='5.0V'>
+<description>VIN 3.3V-5.0V</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector16pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector16pin' terminalId='connector16terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector16pad'/><p layer='copper1' svgId='connector16pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector17' type='male' name='3.3V'>
+<description>Onboard 3.3V regulator output</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector17pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector17pin' terminalId='connector17terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector17pad'/><p layer='copper1' svgId='connector17pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector18' type='male' name='GND'>
+<description>GND</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector18pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector18pin' terminalId='connector18terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector18pad'/><p layer='copper1' svgId='connector18pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector19' type='male' name='SDA_5V'>
+<description>SDA</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector19pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector19pin' terminalId='connector19terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector19pad'/><p layer='copper1' svgId='connector19pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector20' type='male' name='SCL_5V'>
+<description>SCL</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector20pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector20pin' terminalId='connector20terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector20pad'/><p layer='copper1' svgId='connector20pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector21' type='male' name='RST_5V'>
+<description>Reset</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector21pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector21pin' terminalId='connector21terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector21pad'/><p layer='copper1' svgId='connector21pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector22' type='male' name='PS0_3V'>
+<description>PS0</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector22pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector22pin' terminalId='connector22terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector22pad'/><p layer='copper1' svgId='connector22pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector23' type='male' name='PS1_3V'>
+<description>PS1</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector23pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector23pin' terminalId='connector23terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector23pad'/><p layer='copper1' svgId='connector23pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector24' type='male' name='INT_3V'>
+<description>Interrupt</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector24pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector24pin' terminalId='connector24terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector24pad'/><p layer='copper1' svgId='connector24pad'/></pcbView>
+</views>
+</connector>
+<connector id='connector25' type='male' name='I2CADDR_3V'>
+<description>Alternate I2C address</description><views>
+<breadboardView>
+<p layer='breadboard' svgId='connector25pin'/></breadboardView>
+<schematicView>
+<p layer='schematic' svgId='connector25pin' terminalId='connector25terminal'/></schematicView>
+<pcbView>
+<p layer='copper0' svgId='connector25pad'/><p layer='copper1' svgId='connector25pad'/></pcbView>
+</views>
+</connector>
+</connectors>
+<buses>
+</buses>
+</module>
