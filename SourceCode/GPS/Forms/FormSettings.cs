@@ -697,7 +697,7 @@ namespace AgOpenGPS
 
                         lblVehicleToolWidth.Text = Convert.ToString((int)(nudSection1.Value + nudSection2.Value + nudSection3.Value
                             + nudSection4.Value + nudSection5.Value + nudSection6.Value + nudSection7.Value + nudSection8.Value
-                            + nudSection9.Value + nudSection10.Value + nudSection11.Value));
+                            + nudSection9.Value ));
                         break;
                     }
 

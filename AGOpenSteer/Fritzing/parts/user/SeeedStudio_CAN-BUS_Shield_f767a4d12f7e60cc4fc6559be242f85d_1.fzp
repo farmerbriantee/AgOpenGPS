@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module referenceFile="canbus_shield-v12.fzp" fritzingVersion="0.5.2b.02.18.4756" moduleId="SeeedStudio_CAN-BUS_Shield_f767a4d12f7e60cc4fc6559be242f85d_1">
+ <version>4</version>
+ <date>Sun Oct 12 2014</date>
+ <author>Matthew McMillan</author>
+ <description>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'.Lucida Grande UI'; font-size:13pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:18px; background-color:#ffffff;">&lt;span style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#595757; background-color:#ffffff;">This CAN-BUS Shield adopts MCP2515 CAN Bus controller with SPI interface and MCP2551 CAN transceiver to give your Arduino/Seeeduino CAN-BUS capibility. With an OBD-II converter cable added on and the OBD-II library imported, you are ready to build an onboard diagnostic device or data logger.&lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:18px; background-color:#ffffff;">&lt;span style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#595757; background-color:#ffffff;"> &lt;/span>&lt;/p>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:18px; background-color:#ffffff;">&lt;span style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; font-weight:600; color:#595757;">Features&lt;/span>&lt;/p>
+&lt;ul style="margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;">&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666; background-color:#ffffff;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:18px;">&lt;span style=" font-size:14px;">Implements CAN V2.0B at up to 1 Mb/s&lt;/span>&lt;/li>
+&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14px;">SPI Interface up to 10 MHz&lt;/span>&lt;/li>
+&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14px;">Standard (11 bit) and extended (29 bit) data and remote frames&lt;/span>&lt;/li>
+&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14px;">Two receive buffers with prioritized message storage&lt;/span>&lt;/li>
+&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14px;">Industrial standard 9 pin sub-D connector&lt;/span>&lt;/li>
+&lt;li style=" font-family:'Helvetica,Arial,sans-serif'; font-size:14px; color:#666666;" style=" margin-top:0px; margin-bottom:0px; margin-left:15px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-size:14px;">Two LED indicators&lt;/span>&lt;/li>&lt;/ul>&lt;/body>&lt;/html></description>
+ <title>SeeedStudio Can-Bus Shield</title>
+ <url>http://www.seeedstudio.com/depot/CANBUS-Shield-p-1240.html</url>
+ <tags>
+  <tag>MCP2515</tag>
+  <tag>Can</tag>
+  <tag>Bus</tag>
+  <tag>OBD</tag>
+  <tag>Automobile</tag>
+ </tags>
+ <properties>
+  <property name="layer"></property>
+  <property name="family">can bus shield</property>
+  <property name="part number"></property>
+  <property name="variant">variant 1.0</property>
+ </properties>
+ <views>
+  <breadboardView>
+   <layers image="breadboard/SeeedStudio_CAN-BUS_Shield_ba4fcb75503002554a9d8664d4bc890e_6_breadboard.svg">
+    <layer layerId="breadboard"/>
+   </layers>
+  </breadboardView>
+  <schematicView>
+   <layers image="schematic/SeeedStudio_CAN-BUS_Shield_ba4fcb75503002554a9d8664d4bc890e_6_schematic.svg">
+    <layer layerId="schematic"/>
+   </layers>
+  </schematicView>
+  <pcbView>
+   <layers image="pcb/SeeedStudio_CAN-BUS_Shield_ba4fcb75503002554a9d8664d4bc890e_6_pcb.svg">
+    <layer layerId="copper1"/>
+    <layer layerId="silkscreen"/>
+    <layer layerId="copper0"/>
+   </layers>
+  </pcbView>
+  <iconView>
+   <layers image="icon/SeeedStudio_CAN-BUS_Shield_ba4fcb75503002554a9d8664d4bc890e_6_icon.svg">
+    <layer layerId="icon"/>
+   </layers>
+  </iconView>
+ </views>
+ <connectors>
+  <connector type="male" name="5V" id="connector22">
+   <description>5V</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector22pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector22pin" terminalId="connector22terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector22pad"/>
+     <p layer="copper1" svgId="connector22pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="GND" id="connector28">
+   <description>GND</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector28pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector28pin" terminalId="connector28terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector28pad"/>
+     <p layer="copper1" svgId="connector28pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="CANH" id="connector29">
+   <description>CANH</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector29pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector29pin" terminalId="connector29terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector29pad"/>
+     <p layer="copper1" svgId="connector29pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="CANL" id="connector30">
+   <description>CANL</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector30pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector30pin" terminalId="connector30terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector30pad"/>
+     <p layer="copper1" svgId="connector30pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="SS" id="connector92">
+   <description>SS</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector92pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector92pin" terminalId="connector92terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector92pad"/>
+     <p layer="copper1" svgId="connector92pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="MOSI" id="connector93">
+   <description>MOSI</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector93pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector93pin" terminalId="connector93terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector93pad"/>
+     <p layer="copper1" svgId="connector93pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="MISO" id="connector94">
+   <description>MISO</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector94pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector94pin" terminalId="connector94terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector94pad"/>
+     <p layer="copper1" svgId="connector94pad"/>
+    </pcbView>
+   </views>
+  </connector>
+  <connector type="female" name="SCK" id="connector95">
+   <description>SCK</description>
+   <views>
+    <breadboardView>
+     <p layer="breadboard" svgId="connector95pin"/>
+    </breadboardView>
+    <schematicView>
+     <p layer="schematic" svgId="connector95pin" terminalId="connector95terminal"/>
+    </schematicView>
+    <pcbView>
+     <p layer="copper0" svgId="connector95pad"/>
+     <p layer="copper1" svgId="connector95pad"/>
+    </pcbView>
+   </views>
+  </connector>
+ </connectors>
+ <buses>
+  <bus id="vcc">
+   <nodeMember connectorId="connector22"/>
+   <nodeMember connectorId="connector27"/>
+   <nodeMember connectorId="connector76"/>
+  </bus>
+  <bus id="gnd">
+   <nodeMember connectorId="connector23"/>
+   <nodeMember connectorId="connector28"/>
+   <nodeMember connectorId="connector96"/>
+   <nodeMember connectorId="connector97"/>
+   <nodeMember connectorId="connector98"/>
+  </bus>
+  <bus id="lcd">
+   <nodeMember connectorId="connector24"/>
+   <nodeMember connectorId="connector88"/>
+  </bus>
+ </buses>
+</module>
