@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module fritzingVersion="0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806" icon="Search.png" search="pin header">
+    <title>Search</title>
+    <instances>
+        <instance moduleIdRef="AVR_SPI_PROG-PTH" modelIndex="61318" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/avr_spi_prog-pth.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Dagu_DGServo_9g_Pan_and_tilt" modelIndex="61320" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Dagu DGServo 9g (Pan and tilt).fzp">
+            <property name="part number" value="RS001B"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Mega_Shield-v13" modelIndex="61066" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Mega_Shield-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-8p-125h" modelIndex="61323" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-8p-125h_4.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-8P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-6p-125v" modelIndex="61325" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-6p-125v_17.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-6P-1.25V"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-EM406" modelIndex="61327" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-em406.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-6p-125h" modelIndex="61329" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-6p-125h_18.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-6P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_Leonardo_Rev3(fix)" modelIndex="61331" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_Leonardo_Rev3(fix).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0571_smd-5p-v" modelIndex="61333" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0571_smd-5p-v_8.fzp" flippedSMD="true">
+            <property name="part number" value="0533980571"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="polarizedheader4pin_0.156in" modelIndex="61337" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/polarizedheader4pin_0.156in.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-POLAR_LOCK" modelIndex="61339" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-polar_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="MP3 Shield-v13" modelIndex="61341" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/MP3 Shield-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M40-OFFSET" modelIndex="61345" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m40-offset.fzp">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Modkit Shield-v1a" modelIndex="48752" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Modkit Shield-v1a.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Joystick_Shield-v14" modelIndex="61074" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Joystick_Shield-v14.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-POLAR_LOCK" modelIndex="61349" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-polar_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-3p-125v" modelIndex="61351" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-3p-125v_42.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-3P-1.25V"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="quadstep-v12" modelIndex="61353" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/quadstep-v12.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05X2-RA" modelIndex="61355" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05x2-ra.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-2p-125h" modelIndex="5725" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-2p-125h_42.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-2P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="PWM-Shield-v12" modelIndex="61358" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/PWM-Shield-v12.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M08-BM08B-SRSS-TB" modelIndex="61360" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m08-bm08b-srss-tb.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_Ethernet" modelIndex="61362" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_Ethernet.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Gizwits_WiFi_Witty_ESP_12F" modelIndex="61364" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Gizwits_WiFi_Witty_ESP_12F.fzp">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Dagu_DGServo_9g_End_view" modelIndex="61367" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Dagu DGServo 9g (End view).fzp">
+            <property name="part number" value="RS001B"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMD-STRAIGHT" modelIndex="61369" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smd-straight.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="cellular shield-v12" modelIndex="61371" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/cellular shield-v12.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Dagu_DGServo_9g_header_male" modelIndex="61373" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Dagu DGServo 9g header (male).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Breadboard Power Supply - SMD v12" modelIndex="61100" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Breadboard Power Supply - SMD v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_MEGA_2560-Rev3(fix)" modelIndex="61377" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_MEGA_2560-Rev3(fix).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0219_smd-2p-h" modelIndex="5723" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0219_smd-2p-h_48.fzp" flippedSMD="true">
+            <property name="part number" value="0532610219"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M08-SMD-COMBO" modelIndex="61382" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m08-smd-combo.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="jlpcb-128" modelIndex="5710" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/jlpcb-128.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMD-STRAIGHT-ALT" modelIndex="61387" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smd-straight-alt.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-5p-125v" modelIndex="61389" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-5p-125v_25.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-5P-1.25V"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05X2-RAF" modelIndex="61391" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05x2-raf.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="5DOF-v25" modelIndex="61393" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/5DOF-v25.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="mega_pro-v13" modelIndex="61395" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/mega_pro-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02--JST-2MM-SMT" modelIndex="61397" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02--jst-2mm-smt.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_MINI_PROG-SMD" modelIndex="61403" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_mini_prog-smd.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M03-SCREW_LOCK" modelIndex="61407" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m03-screw_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ISD1932 Breakout-v11" modelIndex="61115" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ISD1932 Breakout-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="TB6612FNG Breakout v11" modelIndex="61410" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Motor Driver 1A Dual TB6612FNG v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0771_smd-7p-v" modelIndex="61412" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0771_smd-7p-v_8.fzp" flippedSMD="true">
+            <property name="part number" value="0533980771"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M12-MACHINE-PIN_LOCK" modelIndex="61418" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m12-machine-pin_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0619_smd-6p-h" modelIndex="61420" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0619_smd-6p-h_16.fzp" flippedSMD="true">
+            <property name="part number" value="0532610619"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0271_smd-2p-v" modelIndex="5724" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0271_smd-2p-v_18.fzp" flippedSMD="true">
+            <property name="part number" value="0533980271"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0419_smd-4p-h" modelIndex="61423" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0419_smd-4p-h_32.fzp" flippedSMD="true">
+            <property name="part number" value="0532610419"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0819_smd-8p-h" modelIndex="61425" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0819_smd-8p-h_4.fzp" flippedSMD="true">
+            <property name="part number" value="0532610819"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-SPRING-2.54-RA" modelIndex="61427" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-spring-2.54-ra.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M03-SMD" modelIndex="61429" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m03-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="FTDI Basic-v13_3.3v" modelIndex="61431" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/FTDI Basic-v13_3.3v.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="screwshield-v15" modelIndex="61433" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/screwshield-v15.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="xbeeshield-v13" modelIndex="61125" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/xbeeshield-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="FTDI Basic-v13" modelIndex="61131" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/FTDI Basic-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="DRV8825_breakout" modelIndex="61441" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/DRV8825_breakout.fzp">
+            <property name="part number" value="DRV 8825"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05-SMD" modelIndex="61445" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Ardumoto v13" modelIndex="48730" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Ardumoto v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05-SMD2" modelIndex="61448" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05-smd2.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M10X2-2X10_LOCK" modelIndex="61452" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m10x2-2x10_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Joystick-Breakout-v11" modelIndex="61454" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Joystick-Breakout-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-2p-125v" modelIndex="5726" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-2p-125v_50.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-2P-1.25V"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M08-SMD-STRAIGHT-ALT" modelIndex="61457" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m08-smd-straight-alt.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PRG_6-PTH" modelIndex="61459" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prg_6-pth.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-1X06-SMD_EDGE_FEMALE" modelIndex="61461" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-1x06-smd_edge_female.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-SMD" modelIndex="61463" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-4p-125v" modelIndex="61467" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-4p-125v_8.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-4P-1.25V"/>
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMD-STRAIGHT-COMBO" modelIndex="61469" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smd-straight-combo.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PROG2-PTH" modelIndex="61471" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prog2-pth.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-SNAP-MALE" modelIndex="61475" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-snap-male.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="HIH-4030_Breakout-v10" modelIndex="61477" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/HIH-4030_Breakout-v10.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PRG_6-NS" modelIndex="61479" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prg_6-ns.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-JST-PTH-2" modelIndex="61481" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-jst-pth-2.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="sx1509-breakout" modelIndex="61483" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sx1509-breakout.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_ADK_MEGA_2560-Rev3(iscp)" modelIndex="61485" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_ADK_MEGA_2560-Rev3(icsp).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Dagu_DGServo_9g_header_connector_female" modelIndex="61487" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Dagu DGServo 9g header connector (female).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-SNAP-FEMALE" modelIndex="61489" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-snap-female.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="intel-arduino_galileo_gen2" modelIndex="61166" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/intel-arduino_galileo_gen2.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="arduino_Uno_Rev3(fix)" modelIndex="5689" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/arduino_Uno_Rev3(fix).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="intel-arduino_galileo" modelIndex="61168" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/intel-arduino_galileo.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M04-POLAR_LOCK" modelIndex="61494" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m04-polar_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ArduinoBluetoothMatev13" modelIndex="61496" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ArduinoBluetoothMatev13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_bt07" modelIndex="61498" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_bt07.fzp">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Raspberry_Pi_Zero_rev1.1" modelIndex="5713" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Raspberry_Pi_Zero_1.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino Voice Shield-v16" modelIndex="61501" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino Voice Shield-v16.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="cb9c6041c0b15c9c1a63560527d7693a" modelIndex="61175" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Peppermill Power Board.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="arduino_uno(rev3)-icsp_only" modelIndex="61504" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/arduino_uno(rev3)-icsp(1).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Shield_Eth06-PoE" modelIndex="5737" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Shield_Eth06-PoE.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ludusProtoShield" modelIndex="61181" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ludusProtoShield.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05X2-SHD_SMD" modelIndex="61508" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05x2-shd_smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0871_smd-8p-v" modelIndex="61510" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0871_smd-8p-v_1.fzp" flippedSMD="true">
+            <property name="part number" value="0533980871"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M16-MACHIINE-PIN_LOCK" modelIndex="61512" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m16-machiine-pin_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M04-SMD" modelIndex="61516" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m04-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PRG_6-OFFSET_PADS" modelIndex="61518" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prg_6-offset_pads.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="RN41-v14" modelIndex="61520" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/RN41-v14.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="jlpcb-089" modelIndex="5741" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/jlpcb-089.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ITG-3200-v11" modelIndex="61523" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ITG-3200-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M04-SMD2" modelIndex="61525" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m04-smd2.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M11-SMD" modelIndex="61527" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m11-smd.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Dagu_DGServo_9g_Top_view" modelIndex="61529" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Dagu DGServo 9g (Top view).fzp">
+            <property name="part number" value="RS001B"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M08-SMD-STRAIGHT" modelIndex="61531" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m08-smd-straight.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ad5330 breakout-v11" modelIndex="61533" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ad5330 breakout-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M04-JST-PTH" modelIndex="61535" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m04-jst-pth.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PROG-" modelIndex="61537" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prog-.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Rotoshield-1.0a" modelIndex="48732" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Rotoshield-1.0a.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_ADK_MEGA_2560-Rev3(fix)" modelIndex="61540" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_ADK_MEGA_2560-Rev3(fix).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PRG_6-2X3_LOCK" modelIndex="61544" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prg_6-2x3_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-7p-125h" modelIndex="61546" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-7p-125h_10.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-7P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="BMP085 Breakout-v13" modelIndex="61548" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/BMP085 Breakout-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Color-LCD-Shield-v14" modelIndex="61550" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Color-LCD-Shield-v14.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-5p-125h" modelIndex="61552" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-5p-125h_26.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-5P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-RA_LOCK" modelIndex="61554" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-ra_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-AVR_SPI_PROG2-SMD" modelIndex="61560" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-avr_spi_prog2-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino DUE V02b" modelIndex="61562" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_DUE_V02b.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="arduinoXbeere" modelIndex="61564" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/arduinoXbeere.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-8p-125v" modelIndex="61566" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-8p-125v_5.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-8P-1.25V"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-OFFSET" modelIndex="61568" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-offset.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01--SMTSO-256-ET" modelIndex="61570" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01--smtso-256-et.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-4UCON-15767" modelIndex="61572" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-4ucon-15767.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M03-JST-PTH" modelIndex="61574" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m03-jst-pth.fzp">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-SMTRA-256-8-6" modelIndex="61578" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-smtra-256-8-6.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Trackballer-v12" modelIndex="61228" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Trackballer-v12.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M01-SMD-4.5X1.5" modelIndex="61581" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m01-smd-4.5x1.5.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M10-2MMSMD" modelIndex="61583" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m10-2mmsmd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M03-" modelIndex="61585" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m03-.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-JST-PTH-2-KIT" modelIndex="61587" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-jst-pth-2-kit.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M03-POLAR_LOCK" modelIndex="61589" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m03-polar_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M10X2-SPECIAL" modelIndex="61591" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m10x2-special.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="atlas-sientific_RJ-11" modelIndex="61593" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/atlas-sientific_RJ-11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMDF" modelIndex="61595" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smdf.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0371_smd-3p-v" modelIndex="61597" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0371_smd-3p-v_10.fzp" flippedSMD="true">
+            <property name="part number" value="0533980371"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="arduino_Yun(rev1)_v1" modelIndex="5714" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/arduino_Yun(rev1)_v1.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="JST-VHR-3N" modelIndex="5728" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/JST-VHR-3N.fzp">
+            <property name="part number" value="JST-VHR-3N"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0519_smd-5p-h" modelIndex="61601" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0519_smd-5p-h_24.fzp" flippedSMD="true">
+            <property name="part number" value="0532610519"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="HMC5883L_Breakout-v11" modelIndex="61603" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/HMC5883L_Breakout-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="linino_one_rev1" modelIndex="5717" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/linino_one(rev1).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="NCP1400_5V_Step-Up_v11" modelIndex="61238" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/NCP1400_5V_Step-Up_v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-RA" modelIndex="61607" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-ra.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-3p-125h" modelIndex="61609" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-3p-125h_34.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-3P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="JST-B3P-VH" modelIndex="5727" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/JST-B3P-VH.fzp">
+            <property name="part number" value="JST-B3P-VH"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="GPSShield-v15" modelIndex="61241" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/GPSShield-v15.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Touch_Shield-v11" modelIndex="61613" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Touch_Shield-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="arduino_uno(rev3)-icsp" modelIndex="61615" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/arduino_uno(rev3)-icsp.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="WiFly_Shield-v17" modelIndex="61617" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/WiFly_Shield-v17.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="atlas-sientific_Debugger" modelIndex="61619" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/atlas-sientific_Debugger.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino Pro" modelIndex="61251" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_Pro.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="microSD_Shield-v13" modelIndex="61622" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/microSD_Shield-v13.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="LilyPad-Simple-v25" modelIndex="61259" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/LilyPad-Simple-v25.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-4p-125h" modelIndex="61627" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-4p-125h_8.fzp" flippedSMD="true">
+            <property name="part number" value="DF13A-4P-1.25H"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMD-FEMALE-V2" modelIndex="61629" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smd-female-v2.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0319_smd-3p-h" modelIndex="61631" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0319_smd-3p-h_40.fzp" flippedSMD="true">
+            <property name="part number" value="0532610319"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="74HC595 Shift Reg Breakout-v11" modelIndex="61633" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/74HC595 Shift Reg Breakout-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-3.5MM_LOCK" modelIndex="61637" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-3.5mm_lock.fzp">
+            <views>
+                <iconView layer="breadboard">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="intel-arduino_galileo_gen2-(simple)" modelIndex="5715" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/intel-arduino_galileo_gen2-simple.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02-ROCKER" modelIndex="61641" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02-rocker.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="hirose-df13-7p-125v" modelIndex="61643" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/hirose-df13-7p-125v_9.fzp" flippedSMD="true">
+            <property name="part number" value="DF13#-7P-1.25V"/>
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M02--JST-2-PTH-NO_SILK" modelIndex="61645" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m02--jst-2-pth-no_silk.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="10x2-Epaper-Breakout-Board-v11" modelIndex="61647" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/10x2-Epaper-Breakout-Board-v11.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M05X2-PTH" modelIndex="61649" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m05x2-pth.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="intel-arduino_galileo-(simple)" modelIndex="61294" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/intel-arduino_galileo-simple.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="ProtoShield-v25" modelIndex="61296" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/ProtoShield-v25.fzp">
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0471_smd-4p-v" modelIndex="61653" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0471_smd-4p-v_16.fzp" flippedSMD="true">
+            <property name="part number" value="0533980471"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M06-SMD" modelIndex="61655" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m06-smd.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M04-SCREW_LOCK" modelIndex="61657" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m04-screw_lock.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="SparkFun-Connectors-M11-SMD_NO_HOLES" modelIndex="61659" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/sparkfun-connectors-m11-smd_no_holes.fzp" flippedSMD="true">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53261-0719_smd-7p-h" modelIndex="61661" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53261-0719_smd-7p-h_8.fzp" flippedSMD="true">
+            <property name="part number" value="0532610719"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Molex-Picoblade-53398-0671_smd-6p-v" modelIndex="61663" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Molex-Picoblade-53398-0671_smd-6p-v_8.fzp" flippedSMD="true">
+            <property name="part number" value="0533980671"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="atlas-sientific_Serial Port Connector" modelIndex="61668" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/atlas-sientific_Serial Port Connector.fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="Arduino_Micro_Rev03(fix)" modelIndex="61670" path="/home/paul/Desktop/fritzing-0.9.3b.linux.AMD64/fritzing-parts/core/Arduino_Micro_Rev03(fix).fzp">
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="mystery_part_sip_3_100mil" modelIndex="5612" path="/home/paul/.config/Fritzing/partfactory/250615d1ba24596e1aec16aedd168ba4/core/mystery_part_sip_3_100mil.fzp">
+            <property name="chip label" value="?"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="generic_female_pin_header_2_100mil" modelIndex="5721" path="/home/paul/.config/Fritzing/partfactory/250615d1ba24596e1aec16aedd168ba4/core/generic_female_pin_header_2_100mil.fzp">
+            <property name="form" value="♀ (female)"/>
+            <views>
+                <iconView layer="icon">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+        <instance moduleIdRef="generic_shrouded_pin_header_10_100mil" modelIndex="5722" path="/home/paul/.config/Fritzing/partfactory/250615d1ba24596e1aec16aedd168ba4/core/generic_shrouded_pin_header_10_100mil.fzp">
+            <property name="form" value="♂ (shrouded male)"/>
+            <views>
+                <iconView layer="">
+                    <geometry z="0" x="-1" y="-1"/>
+                </iconView>
+            </views>
+        </instance>
+    </instances>
+</module>
