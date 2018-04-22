@@ -538,6 +538,7 @@ namespace AgOpenGPS
 
                 // Associate the socket with this IP address and port
                 recvSocket.Bind(recv);
+                recvSocket.Bind(recv);
 
                 // Initialise the send socket
                 sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -678,115 +679,115 @@ namespace AgOpenGPS
             }
 
             if (isJobStarted)
+            {
+                rcd.isRateControlOn = !rcd.isRateControlOn;
+
+                if (rcd.isRateControlOn)
                 {
-                    rcd.isRateControlOn = !rcd.isRateControlOn;
+                    mc.relayRateSettings[mc.rsFlowCalFactorLeftHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft >> 8);
+                    mc.relayRateSettings[mc.rsFlowCalFactorLeftLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft);
+                    mc.relayRateSettings[mc.rsFlowCalFactorRightHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight >> 8);
+                    mc.relayRateSettings[mc.rsFlowCalFactorRightLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight);
+                    RateRelayOutToPort(mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
 
-                    if (rcd.isRateControlOn)
-                    {
-                        mc.relayRateSettings[mc.rsFlowCalFactorLeftHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft >> 8);
-                        mc.relayRateSettings[mc.rsFlowCalFactorLeftLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft);
-                        mc.relayRateSettings[mc.rsFlowCalFactorRightHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight >> 8);
-                        mc.relayRateSettings[mc.rsFlowCalFactorRightLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight);
-                        RateRelayOutToPort(mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
+                    //get the last saved rates from setting file - always stored in L/Ha
+                    rcd.rateLeft = Properties.Settings.Default.setRate_rateLeft;
+                    rcd.rateRight = Properties.Settings.Default.setRate_rateRight;
+                    btnSelectSingleDualMeter.Enabled = false;
 
-                        //get the last saved rates from setting file - always stored in L/Ha
-                        rcd.rateLeft = Properties.Settings.Default.setRate_rateLeft;
-                        rcd.rateRight = Properties.Settings.Default.setRate_rateRight;
-                        btnSelectSingleDualMeter.Enabled = false;
-
-                        if (rcd.isSingleFlowMeter)
-                        {
-                            btnRateRightDn.Visible = false;
-                            btnRateRightUp.Visible = false;
-                            btnRateLeftDn.Visible = true;
-                            btnRateLeftUp.Visible = true;
-                            btnSelectRate1.Visible = true;
-                            btnSelectRate2.Visible = true;
-
-                            lblFlowRateRight.Visible = false;
-                            lblRateAppliedActualRight.Visible = false;
-                            lblRateSetpointRight.Visible = false;
-                            lblFlowRight.Visible = false;
-
-                            lblFlowRateLeft.Visible = true;
-                            lblRateAppliedActualLeft.Visible = true;
-                            lblRateSetpointLeft.Visible = true;
-                            lblFlowLeft.Visible = true;
-                        }
-                        else
-                        {
-                            btnRateRightDn.Visible = true;
-                            btnRateRightUp.Visible = true;
-                            btnRateLeftDn.Visible = true;
-                            btnRateLeftUp.Visible = true;
-
-                            btnSelectRate1.Visible = false;
-                            btnSelectRate2.Visible = false;
-
-                            lblFlowRateRight.Visible = true;
-                            lblRateAppliedActualRight.Visible = true;
-                            lblRateSetpointRight.Visible = true;
-                            lblFlowRight.Visible = true;
-
-                            lblFlowRateLeft.Visible = true;
-                            lblRateAppliedActualLeft.Visible = true;
-                            lblRateSetpointLeft.Visible = true;
-                            lblFlowLeft.Visible = true;
-                        }
-
-                        btnDualRate.Image = Properties.Resources.RateControlOn;
-                        btnDualRate.Text = "On";
-
-                        if (isMetric)
-                        {
-                            lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
-                            lblRateSetpointRight.Text = (rcd.rateRight).ToString("N1");
-                        }
-                        else
-                        {
-                            lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                            lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-                        }
-                    }
-                    else
+                    if (rcd.isSingleFlowMeter)
                     {
                         btnRateRightDn.Visible = false;
                         btnRateRightUp.Visible = false;
-                        btnRateLeftDn.Visible = false;
-                        btnRateLeftUp.Visible = false;
-                        btnSelectRate1.Visible = false;
-                        btnSelectRate2.Visible = false;
+                        btnRateLeftDn.Visible = true;
+                        btnRateLeftUp.Visible = true;
+                        btnSelectRate1.Visible = true;
+                        btnSelectRate2.Visible = true;
 
                         lblFlowRateRight.Visible = false;
                         lblRateAppliedActualRight.Visible = false;
                         lblRateSetpointRight.Visible = false;
                         lblFlowRight.Visible = false;
 
-                        lblFlowRateLeft.Visible = false;
-                        lblRateAppliedActualLeft.Visible = false;
-                        lblRateSetpointLeft.Visible = false;
-                        lblFlowLeft.Visible = false;
+                        lblFlowRateLeft.Visible = true;
+                        lblRateAppliedActualLeft.Visible = true;
+                        lblRateSetpointLeft.Visible = true;
+                        lblFlowLeft.Visible = true;
+                    }
+                    else
+                    {
+                        btnRateRightDn.Visible = true;
+                        btnRateRightUp.Visible = true;
+                        btnRateLeftDn.Visible = true;
+                        btnRateLeftUp.Visible = true;
 
-                        btnSelectSingleDualMeter.Enabled = true;
+                        btnSelectRate1.Visible = false;
+                        btnSelectRate2.Visible = false;
 
-                        btnDualRate.Image = Properties.Resources.RateControlOff;
-                        btnDualRate.Text = "Off";
-                        lblRateAppliedActualRight.Text = "-";
-                        lblRateAppliedActualLeft.Text = "-";
-                        lblFlowRateLeft.Text = "-";
-                        lblFlowRateRight.Text = "-";
+                        lblFlowRateRight.Visible = true;
+                        lblRateAppliedActualRight.Visible = true;
+                        lblRateSetpointRight.Visible = true;
+                        lblFlowRight.Visible = true;
 
-                        rcd.rateSetPointLeft = 0.0;
-                        rcd.rateSetPointRight = 0.0;
+                        lblFlowRateLeft.Visible = true;
+                        lblRateAppliedActualLeft.Visible = true;
+                        lblRateSetpointLeft.Visible = true;
+                        lblFlowLeft.Visible = true;
+                    }
 
-                        mc.relayRateData[mc.rdRateSetPointLeftLo] = 0;
-                        mc.relayRateData[mc.rdRateSetPointLeftHi] = 0;
-                        mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
-                        mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
-                        RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
+                    btnDualRate.Image = Properties.Resources.RateControlOn;
+                    btnDualRate.Text = "On";
+
+                    if (isMetric)
+                    {
+                        lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
+                        lblRateSetpointRight.Text = (rcd.rateRight).ToString("N1");
+                    }
+                    else
+                    {
+                        lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
+                        lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
                     }
                 }
-                else { TimedMessageBox(1500, "Field not Open", "Start a Field First"); }
+                else
+                {
+                    btnRateRightDn.Visible = false;
+                    btnRateRightUp.Visible = false;
+                    btnRateLeftDn.Visible = false;
+                    btnRateLeftUp.Visible = false;
+                    btnSelectRate1.Visible = false;
+                    btnSelectRate2.Visible = false;
+
+                    lblFlowRateRight.Visible = false;
+                    lblRateAppliedActualRight.Visible = false;
+                    lblRateSetpointRight.Visible = false;
+                    lblFlowRight.Visible = false;
+
+                    lblFlowRateLeft.Visible = false;
+                    lblRateAppliedActualLeft.Visible = false;
+                    lblRateSetpointLeft.Visible = false;
+                    lblFlowLeft.Visible = false;
+
+                    btnSelectSingleDualMeter.Enabled = true;
+
+                    btnDualRate.Image = Properties.Resources.RateControlOff;
+                    btnDualRate.Text = "Off";
+                    lblRateAppliedActualRight.Text = "-";
+                    lblRateAppliedActualLeft.Text = "-";
+                    lblFlowRateLeft.Text = "-";
+                    lblFlowRateRight.Text = "-";
+
+                    rcd.rateSetPointLeft = 0.0;
+                    rcd.rateSetPointRight = 0.0;
+
+                    mc.relayRateData[mc.rdRateSetPointLeftLo] = 0;
+                    mc.relayRateData[mc.rdRateSetPointLeftHi] = 0;
+                    mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
+                    mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
+                    RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
+                }
+            }
+            else { TimedMessageBox(1500, "Field not Open", "Start a Field First"); }
         }
 
         private void btnRateLeftUp_MouseDown(object sender, MouseEventArgs e)
@@ -925,8 +926,6 @@ namespace AgOpenGPS
             Settings.Default.setRate_isSingleFlowMeter = rcd.isSingleFlowMeter;
             Settings.Default.Save();
         }
-
-
 
         //dialog for requesting user to save or cancel
         public int SaveOrNot()

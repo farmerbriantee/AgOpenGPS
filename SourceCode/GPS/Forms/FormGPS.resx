@@ -408,7 +408,7 @@
     <value>4, 6, 4, 6</value>
   </data>
   <data name="openGLControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>753, 669</value>
+    <value>746, 660</value>
   </data>
   <data name="openGLControl.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -432,7 +432,7 @@
     <value>Tahoma, 21.75pt</value>
   </data>
   <data name="txtDistanceOffABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, -1</value>
+    <value>368, -1</value>
   </data>
   <data name="txtDistanceOffABLine.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 4</value>
@@ -717,7 +717,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1363, 38</value>
+    <value>1356, 38</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -2166,7 +2166,7 @@
     <value>None</value>
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>708, 56</value>
+    <value>701, 56</value>
   </data>
   <data name="stripEqWidth.Text" xml:space="preserve">
     <value>Width</value>
@@ -2217,10 +2217,10 @@
     <value>Arduino</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 705</value>
+    <value>0, 696</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1363, 56</value>
+    <value>1356, 56</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>95</value>
@@ -2328,7 +2328,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1065, -5</value>
+    <value>1058, -5</value>
   </data>
   <data name="lblSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 41</value>
@@ -2942,7 +2942,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSpeedUnits.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1148, 14</value>
+    <value>1141, 14</value>
   </data>
   <data name="lblSpeedUnits.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 17</value>
@@ -2978,7 +2978,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1236, -5</value>
+    <value>1229, -5</value>
   </data>
   <data name="lblHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 40</value>
@@ -3009,7 +3009,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAcgBEQHIAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAdABEQHQAREBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -7794,7 +7794,7 @@ FlowMeter</value>
     <value>118, 68</value>
   </data>
   <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>756, 39</value>
+    <value>749, 39</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>607, 610</value>
@@ -7893,7 +7893,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="lblPureSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>852, -3</value>
+    <value>845, -3</value>
   </data>
   <data name="lblPureSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>107, 39</value>
@@ -8130,7 +8130,7 @@ FlowMeter</value>
     <value>1</value>
   </data>
   <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>760, 652</value>
+    <value>753, 652</value>
   </data>
   <data name="panelSimControls.Size" type="System.Drawing.Size, System.Drawing">
     <value>597, 47</value>
@@ -8172,7 +8172,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection8Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 603</value>
+    <value>269, 594</value>
   </data>
   <data name="btnSection8Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8214,7 +8214,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection7Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 589</value>
+    <value>257, 580</value>
   </data>
   <data name="btnSection7Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8256,7 +8256,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection6Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 571</value>
+    <value>235, 562</value>
   </data>
   <data name="btnSection6Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8298,7 +8298,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection5Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 553</value>
+    <value>214, 544</value>
   </data>
   <data name="btnSection5Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8340,7 +8340,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection4Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 607</value>
+    <value>188, 598</value>
   </data>
   <data name="btnSection4Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8382,7 +8382,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection3Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 593</value>
+    <value>167, 584</value>
   </data>
   <data name="btnSection3Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8424,7 +8424,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection2Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 575</value>
+    <value>144, 566</value>
   </data>
   <data name="btnSection2Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8466,7 +8466,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection1Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 557</value>
+    <value>127, 548</value>
   </data>
   <data name="btnSection1Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8508,7 +8508,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection9Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 629</value>
+    <value>127, 620</value>
   </data>
   <data name="btnSection9Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8550,7 +8550,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection10Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 642</value>
+    <value>153, 633</value>
   </data>
   <data name="btnSection10Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8592,7 +8592,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection11Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>185, 651</value>
+    <value>185, 642</value>
   </data>
   <data name="btnSection11Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8634,7 +8634,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSection12Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>214, 664</value>
+    <value>214, 655</value>
   </data>
   <data name="btnSection12Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -8676,7 +8676,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 331</value>
+    <value>646, 331</value>
   </data>
   <data name="btnCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 90</value>
@@ -8986,7 +8986,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnZoomOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>666, 57</value>
+    <value>659, 57</value>
   </data>
   <data name="btnZoomOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 42</value>
@@ -9565,7 +9565,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnSectionOffAutoOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>644, 531</value>
+    <value>637, 531</value>
   </data>
   <data name="btnSectionOffAutoOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 118</value>
@@ -10098,7 +10098,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnRightYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 120</value>
+    <value>423, 120</value>
   </data>
   <data name="btnRightYouTurn.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -10214,7 +10214,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnContour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 131</value>
+    <value>646, 131</value>
   </data>
   <data name="btnContour.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 90</value>
@@ -10331,7 +10331,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnManualOffOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 431</value>
+    <value>646, 431</value>
   </data>
   <data name="btnManualOffOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 90</value>
@@ -10472,7 +10472,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>653, 231</value>
+    <value>646, 231</value>
   </data>
   <data name="btnABLine.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 90</value>
@@ -10505,7 +10505,7 @@ FlowMeter</value>
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1363, 761</value>
+    <value>1356, 752</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>

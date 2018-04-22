@@ -30,6 +30,7 @@ namespace AgOpenGPS
 
         //the result is placed in these two
         public double utmLat = 0;
+
         public double utmLon = 0;
 
         public bool isCartOn, isCartCalled, isCartSentHome;
@@ -68,8 +69,8 @@ namespace AgOpenGPS
 
         public void CalculatePosition(vec3 currentPos)
         {
-            cartPos.easting = currentPos.easting - Math.Cos(-currentPos.heading) * offsetOutward;
-            cartPos.northing = currentPos.northing - Math.Sin(-currentPos.heading) * offsetOutward;
+            cartPos.easting = currentPos.easting - (Math.Cos(-currentPos.heading) * offsetOutward);
+            cartPos.northing = currentPos.northing - (Math.Sin(-currentPos.heading) * offsetOutward);
 
             cartPos.easting += Math.Cos(-currentPos.heading + glm.PIBy2) * offsetForward;
             cartPos.northing += Math.Sin(-currentPos.heading + glm.PIBy2) * offsetForward;
@@ -164,32 +165,26 @@ namespace AgOpenGPS
             /* Precalculate polynomial coefficients for x**n.
                -- x**1 does not have a polynomial coefficient. */
             x2poly = -1.0 - nuf2;
-
-            x3poly = -1.0 - 2 * tf2 - nuf2;
-
-            x4poly = 5.0 + 3.0 * tf2 + 6.0 * nuf2 - 6.0 * tf2 * nuf2
-                - 3.0 * (nuf2 * nuf2) - 9.0 * tf2 * (nuf2 * nuf2);
-
-            x5poly = 5.0 + 28.0 * tf2 + 24.0 * tf4 + 6.0 * nuf2 + 8.0 * tf2 * nuf2;
-
-            x6poly = -61.0 - 90.0 * tf2 - 45.0 * tf4 - 107.0 * nuf2
-                + 162.0 * tf2 * nuf2;
-
-            x7poly = -61.0 - 662.0 * tf2 - 1320.0 * tf4 - 720.0 * (tf4 * tf2);
-
-            x8poly = 1385.0 + 3633.0 * tf2 + 4095.0 * tf4 + 1575 * (tf4 * tf2);
+            x3poly = -1.0 - (2 * tf2) - nuf2;
+            x4poly = 5.0 + (3.0 * tf2) + (6.0 * nuf2) - (6.0 * tf2 * nuf2)
+                - (3.0 * (nuf2 * nuf2)) - (9.0 * tf2 * (nuf2 * nuf2));
+            x5poly = 5.0 + (28.0 * tf2) + (24.0 * tf4) + (6.0 * nuf2) + (8.0 * tf2 * nuf2);
+            x6poly = -61.0 - (90.0 * tf2) - (45.0 * tf4) - (107.0 * nuf2)
+                + (162.0 * tf2 * nuf2);
+            x7poly = -61.0 - (662.0 * tf2) - (1320.0 * tf4) - (720.0 * (tf4 * tf2));
+            x8poly = 1385.0 + (3633.0 * tf2) + (4095.0 * tf4) + (1575 * (tf4 * tf2));
 
             /* Calculate latitude */
-            latlon[0] = phif + x2frac * x2poly * (X * X)
-                + x4frac * x4poly * Math.Pow(X, 4.0)
-                + x6frac * x6poly * Math.Pow(X, 6.0)
-                + x8frac * x8poly * Math.Pow(X, 8.0);
+            latlon[0] = phif + (x2frac * x2poly * (X * X))
+                + (x4frac * x4poly * Math.Pow(X, 4.0))
+                + (x6frac * x6poly * Math.Pow(X, 6.0))
+                + (x8frac * x8poly * Math.Pow(X, 8.0));
 
             /* Calculate longitude */
-            latlon[1] = cmeridian + x1frac * X
-                + x3frac * x3poly * Math.Pow(X, 3.0)
-                + x5frac * x5poly * Math.Pow(X, 5.0)
-                + x7frac * x7poly * Math.Pow(X, 7.0);
+            latlon[1] = cmeridian + (x1frac * X)
+                + (x3frac * x3poly * Math.Pow(X, 3.0))
+                + (x5frac * x5poly * Math.Pow(X, 5.0))
+                + (x7frac * x7poly * Math.Pow(X, 7.0));
 
             utmLat = latlon[0] * 57.295779513082325225835265587528;
             utmLon = latlon[1] * 57.295779513082325225835265587528;
@@ -198,7 +193,6 @@ namespace AgOpenGPS
         private double FootpointLatitude(double y)
         {
             double y_, alpha_, beta_, gamma_, delta_, epsilon_, n;
-            double result;
 
             /* Precalculate n (Eq. 10.18) */
             n = (sm_a - sm_b) / (sm_a + sm_b);
@@ -227,12 +221,10 @@ namespace AgOpenGPS
             epsilon_ = (1097.0 * Math.Pow(n, 4.0) / 512.0);
 
             /* Now calculate the sum of the series (Eq. 10.21) */
-            result = y_ + (beta_ * Math.Sin(2.0 * y_))
+            return y_ + (beta_ * Math.Sin(2.0 * y_))
                 + (gamma_ * Math.Sin(4.0 * y_))
                 + (delta_ * Math.Sin(6.0 * y_))
                 + (epsilon_ * Math.Sin(8.0 * y_));
-
-            return result;
         }
     }
 }

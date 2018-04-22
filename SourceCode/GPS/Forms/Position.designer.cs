@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
                 //calculate how far the antenna moves based on sidehill roll
                 double roll = Math.Sin(glm.toRadians((mc.rollRaw - ahrs.rollZero) * 0.0625));
-                rollCorrectionDistance = roll * vehicle.antennaHeight;
+                rollCorrectionDistance = Math.Abs(roll * vehicle.antennaHeight);
 
                 // roll to left is positive  **** important!!
                 pn.fix.easting = (Math.Cos(-fixHeading) * rollCorrectionDistance) + pn.fix.easting;

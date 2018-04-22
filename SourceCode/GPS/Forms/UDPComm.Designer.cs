@@ -28,32 +28,44 @@ namespace AgOpenGPS
         private delegate void UpdateRecvMessageDelegate(string recvMessage);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
-        public void SendUDPMessage(string message)
+        //send byte array version
+        public void SendUDPMessage(byte[] byteData)
         {
-
             if (isSendConnected)
             {
                 try
                 {
                     IPEndPoint epAutoSteer  = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
-
-                    // Get packet as byte array
-                    byte[] byteData = Encoding.ASCII.GetBytes(message);
-
                     if (byteData.Length != 0)
-
-                        // Send packet to the zero
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
                 catch (Exception e)
                 {
                     WriteErrorLog("Sending UDP Message" + e.ToString());
-
                     MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
- 
+
+        //string version of send udp
+        public void SendUDPMessage(string message)
+        {
+            if (isSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+                    byte[] byteData = Encoding.ASCII.GetBytes(message);
+                    if (byteData.Length != 0)
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Sending UDP Message" + e.ToString());
+                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
         private void SendData(IAsyncResult asyncResult)
         {
             try

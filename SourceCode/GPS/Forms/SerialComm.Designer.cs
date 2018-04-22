@@ -43,6 +43,7 @@ namespace AgOpenGPS
 
         public void AutoSteerDataOutToPort()
         {
+            SendUDPMessage(mc.autoSteerData);
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
