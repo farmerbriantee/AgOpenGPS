@@ -16,7 +16,7 @@ namespace AgOpenGPS
         // Send and Recv socket
         private Socket sendSocket;
         private Socket recvSocket;
-        private bool isSendConnected;
+        private bool isUDPSendConnected;
 
         //IP address and port of Auto Steer server
         IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
@@ -28,33 +28,18 @@ namespace AgOpenGPS
         private delegate void UpdateRecvMessageDelegate(string recvMessage);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
-        //send byte array version
-        public void SendUDPMessage(byte[] byteData)
-        {
-            if (isSendConnected)
-            {
-                try
-                {
-                    IPEndPoint epAutoSteer  = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
-                    if (byteData.Length != 0)
-                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
-                }
-                catch (Exception e)
-                {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
 
-        //string version of send udp
+
+        //sends ascii text message
         public void SendUDPMessage(string message)
         {
-            if (isSendConnected)
+            if (isUDPSendConnected)
             {
                 try
                 {
                     IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
+                    // Get packet as byte array to send
                     byte[] byteData = Encoding.ASCII.GetBytes(message);
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
@@ -66,6 +51,28 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        //sends byte array
+        public void SendUDPMessage(byte[] byteData)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
+                    // Send packet to the zero
+                    if (byteData.Length != 0)                        
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Sending UDP Message" + e.ToString());
+                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void SendData(IAsyncResult asyncResult)
         {
             try
@@ -75,7 +82,6 @@ namespace AgOpenGPS
             catch (Exception e)
             {
                 WriteErrorLog(" UDP Send Data" + e.ToString());
-
                 MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -94,7 +100,7 @@ namespace AgOpenGPS
                 Array.Copy(buffer, localMsg, msgLen);
 
                 // Listen for more connections again...
-                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
+                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData),epSender);
 
                 string text = Encoding.ASCII.GetString(localMsg);
 
@@ -473,6 +479,7 @@ namespace AgOpenGPS
 
         #endregion Gesture
 
+        #region keystrokes
         //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -563,5 +570,6 @@ namespace AgOpenGPS
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
+        #endregion
     }
 }

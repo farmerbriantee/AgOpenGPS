@@ -43,7 +43,8 @@ namespace AgOpenGPS
 
         public void AutoSteerDataOutToPort()
         {
-            SendUDPMessage(mc.autoSteerData);
+            if (Properties.Settings.Default.setUDP_isOn) SendUDPMessage(mc.autoSteerData);
+
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
@@ -53,8 +54,7 @@ namespace AgOpenGPS
                     WriteErrorLog("Out Data to Steering Port " + e.ToString());
                     SerialPortAutoSteerClose();
                 }
-            }
- 
+            } 
         }
 
         public void AutoSteerSettingsOutToPort()

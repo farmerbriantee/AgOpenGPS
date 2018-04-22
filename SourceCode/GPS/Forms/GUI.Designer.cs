@@ -699,8 +699,10 @@ namespace AgOpenGPS
                 btnCurve.Left = Width - 123;
                 btnManualOffOn.Left = Width - 123;
                 btnSectionOffAutoOn.Left = Width - 132;
-                btnZoomIn.Left = 3;
-                btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
+                btnZoomIn.Left = 5;
+                btnZoomIn.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+                btnZoomOut.Left = Width - 113;
+                btnZoomOut.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
@@ -719,8 +721,10 @@ namespace AgOpenGPS
                 btnManualOffOn.Left = Width - 730;
                 btnSectionOffAutoOn.Left = Width - 740;
                 LineUpManualBtns();
-                btnZoomIn.Left = Width - 730;
-                btnZoomIn.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+                btnZoomIn.Left = Width - 610;
+                btnZoomIn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+                btnZoomOut.Left = Width - 470;
+                btnZoomOut.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                 txtDistanceOffABLine.Left = (Width - 630)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
             }

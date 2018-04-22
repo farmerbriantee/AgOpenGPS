@@ -1705,6 +1705,7 @@
             this.tbarSteerAngle.Minimum = -300;
             this.tbarSteerAngle.Name = "tbarSteerAngle";
             this.tbarSteerAngle.TickFrequency = 30;
+            this.tbarSteerAngle.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.tbarSteerAngle.Scroll += new System.EventHandler(this.tbarSteerAngle_Scroll);
             // 
             // tbarStepDistance
@@ -1886,8 +1887,8 @@
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
             resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.UseVisualStyleBackColor = false;
             this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
