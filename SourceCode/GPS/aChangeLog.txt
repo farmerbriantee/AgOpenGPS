@@ -4,6 +4,9 @@
 * Increased to 50 m width now
 * boundary when imported from KML adds more points
 * Able to set offset for position (poor man's RTK)
+* AB Curve Smoothing
+* zoom in status
+* 
 
 v2.6 April Fools
 * 12 Sections

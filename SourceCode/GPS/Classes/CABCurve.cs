@@ -4,21 +4,6 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CCurvePt
-    {
-        public double easting { get; set; }
-        public double northing { get; set; }
-        public double heading { get; set; }
-
-        //constructor
-        public CCurvePt(double _easting, double _heading, double _northing)
-        {
-            easting = _easting;
-            northing = _northing;
-            heading = _heading;
-        }
-    }
-
     public class CABCurve
     {
         //pointers to mainform controls
@@ -59,8 +44,12 @@ namespace AgOpenGPS
         public double rEastCu, rNorthCu;
         public double ppRadiusCu;
 
+        public bool isSmoothWindowOpen;
+
         //the list of points of the ref line.
         public List<vec3> refList = new List<vec3>();
+
+        public List<vec3> smooList = new List<vec3>();
 
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
@@ -70,6 +59,75 @@ namespace AgOpenGPS
             //constructor
             gl = _gl;
             mf = _f;
+        }
+
+        //for calculating for display the averaged new line
+        public void SmoothAB(int smPts)
+        {
+            //count the reference list of original curve
+            int cnt = refList.Count;
+
+            //just go back if not very long
+            if (!isCurveSet | cnt < 400) return;
+
+            //the temp array
+            vec3[] arr = new vec3[cnt];
+
+            //read the points before and after the setpoint
+            for (int s = 0; s < smPts / 2; s++)
+            {
+                arr[s].easting = refList[s].easting;
+                arr[s].northing = refList[s].northing;
+            }
+
+            for (int s = cnt - (smPts / 2); s < cnt; s++)
+            {
+                arr[s].easting = refList[s].easting;
+                arr[s].northing = refList[s].northing;
+            }
+
+            //average them - center weighted average
+            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
+            {
+                for (int j = -smPts / 2; j < smPts / 2; j++)
+                {
+                    arr[i].easting += refList[j + i].easting;
+                    arr[i].northing += refList[j + i].northing;
+                }
+                arr[i].easting /= smPts;
+                arr[i].northing /= smPts;
+                arr[i].heading = refList[i].heading;
+            }
+
+            //make a list to draw
+            smooList?.Clear();
+            for (int i = 0; i < cnt; i++)
+            {
+                smooList.Add(arr[i]);
+            }
+        }
+
+        //turning the visual line into the real reference line to use
+        public void SaveSmoothAsRefList()
+        {
+            //oops no smooth list generated
+            int cnt = smooList.Count;
+            if (cnt == 0) return;
+
+            //eek
+            refList?.Clear();
+
+            //copy to an array to calculate all the new headings
+            vec3[] arr = new vec3[cnt];
+            smooList.CopyTo(arr);
+
+            //calculate new headings on smoothed line
+            for (int i = 1; i < cnt - 1; i++)
+            {
+                arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                refList.Add(arr[i]);
+            }
         }
 
         public void GetCurrentCurveLine(vec3 pivot)
@@ -396,7 +454,6 @@ namespace AgOpenGPS
                     radiusPointCu.northing = mf.yt.radiusPointYT.northing;
                     ppRadiusCu = mf.yt.ppRadiusYT;
                 }
-
             }
             else
             {
@@ -421,8 +478,8 @@ namespace AgOpenGPS
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = (Math.Sin(headingAt90+arr[i].heading) * Math.Abs(distanceFromCurrentLine) * 0.001) + arr[i].easting;
-                arr[i].northing = (Math.Cos(headingAt90+arr[i].heading) * Math.Abs(distanceFromCurrentLine) * 0.001) + arr[i].northing;
+                arr[i].easting = (Math.Sin(headingAt90 + arr[i].heading) * Math.Abs(distanceFromCurrentLine) * 0.001) + arr[i].easting;
+                arr[i].northing = (Math.Cos(headingAt90 + arr[i].heading) * Math.Abs(distanceFromCurrentLine) * 0.001) + arr[i].northing;
                 refList.Add(arr[i]);
             }
         }
@@ -501,6 +558,19 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) gl.Vertex(refList[h].easting, refList[h].northing, 0);
             gl.End();
 
+            //just draw ref and smoothed line if smoothing window is open
+            if (isSmoothWindowOpen)
+            {
+                ptCount = smooList.Count;
+                if (smooList.Count == 0) return;
+
+                gl.LineWidth(2);
+                gl.Color(0.930f, 0.92f, 0.260f);
+                gl.Begin(OpenGL.GL_LINES);
+                for (int h = 0; h < ptCount; h++) gl.Vertex(smooList[h].easting, smooList[h].northing, 0);
+                gl.End();
+            }
+
             //gl.Color(0.64f, 0.64f, 0.750f);
             //gl.Begin(OpenGL.GL_LINE_STRIP);
             //gl.Vertex(boxA.easting, boxA.northing, 0);
@@ -509,63 +579,67 @@ namespace AgOpenGPS
             //gl.Vertex(boxD.easting, boxD.northing, 0);
             //gl.End();
 
-            ptCount = curList.Count;
-            if (ptCount > 0 | !isCurveSet)
+            //normal. Smoothing window is not open.
+            else
             {
-                gl.Color(0.95f, 0.2f, 0.0f);
-                gl.Begin(OpenGL.GL_LINE_STRIP);
-                for (int h = 0; h < ptCount; h++) gl.Vertex(curList[h].easting, curList[h].northing, 0);
-                gl.End();
-
-                if (mf.isPureDisplayOn && isValid)
+                ptCount = curList.Count;
+                if (ptCount > 0 | !isCurveSet)
                 {
-                    const int numSegments = 100;
-                    if (ppRadiusCu < 100 && ppRadiusCu > -100 && mf.isPureDisplayOn)
-                    {
-                        gl.Color(0.95f, 0.30f, 0.950f);
-                        double theta = glm.twoPI / (numSegments);
-                        double c = Math.Cos(theta);//precalculate the sine and cosine
-                        double s = Math.Sin(theta);
-                        double x = ppRadiusCu;//we start at angle = 0
-                        double y = 0;
-
-                        gl.LineWidth(1);
-                        gl.Begin(OpenGL.GL_LINE_LOOP);
-                        for (int ii = 0; ii < numSegments; ii++)
-                        {
-                            //glVertex2f(x + cx, y + cy);//output vertex
-                            gl.Vertex(x + radiusPointCu.easting, y + radiusPointCu.northing);//output vertex
-                            double t = x;//apply the rotation matrix
-                            x = (c * x) - (s * y);
-                            y = (s * t) + (c * y);
-                        }
-                        gl.End();
-                    }
-
-                    //Draw lookahead Point
-                    gl.PointSize(4.0f);
-                    gl.Begin(OpenGL.GL_POINTS);
-                    gl.Color(1.0f, 0.5f, 0.95f);
-                    gl.Vertex(goalPointCu.easting, goalPointCu.northing, 0.0);
+                    gl.Color(0.95f, 0.2f, 0.0f);
+                    gl.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int h = 0; h < ptCount; h++) gl.Vertex(curList[h].easting, curList[h].northing, 0);
                     gl.End();
-                }
 
-                if (mf.yt.isYouTurnShapeDisplayed)
-                {
-                    gl.Color(0.95f, 0.95f, 0.25f);
-                    gl.LineWidth(2);
-                    ptCount = mf.yt.ytList.Count;
-                    if (ptCount > 0)
+                    if (mf.isPureDisplayOn && isValid)
                     {
-                        gl.Begin(OpenGL.GL_LINE_STRIP);
-                        for (int i = 0; i < ptCount; i++)
+                        const int numSegments = 100;
+                        if (ppRadiusCu < 100 && ppRadiusCu > -100 && mf.isPureDisplayOn)
                         {
-                            gl.Vertex(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
+                            gl.Color(0.95f, 0.30f, 0.950f);
+                            double theta = glm.twoPI / (numSegments);
+                            double c = Math.Cos(theta);//precalculate the sine and cosine
+                            double s = Math.Sin(theta);
+                            double x = ppRadiusCu;//we start at angle = 0
+                            double y = 0;
+
+                            gl.LineWidth(1);
+                            gl.Begin(OpenGL.GL_LINE_LOOP);
+                            for (int ii = 0; ii < numSegments; ii++)
+                            {
+                                //glVertex2f(x + cx, y + cy);//output vertex
+                                gl.Vertex(x + radiusPointCu.easting, y + radiusPointCu.northing);//output vertex
+                                double t = x;//apply the rotation matrix
+                                x = (c * x) - (s * y);
+                                y = (s * t) + (c * y);
+                            }
+                            gl.End();
                         }
+
+                        //Draw lookahead Point
+                        gl.PointSize(4.0f);
+                        gl.Begin(OpenGL.GL_POINTS);
+                        gl.Color(1.0f, 0.5f, 0.95f);
+                        gl.Vertex(goalPointCu.easting, goalPointCu.northing, 0.0);
                         gl.End();
                     }
 
-                    gl.Color(0.95f, 0.05f, 0.05f);
+                    if (mf.yt.isYouTurnShapeDisplayed)
+                    {
+                        gl.Color(0.95f, 0.95f, 0.25f);
+                        gl.LineWidth(2);
+                        ptCount = mf.yt.ytList.Count;
+                        if (ptCount > 0)
+                        {
+                            gl.Begin(OpenGL.GL_LINE_STRIP);
+                            for (int i = 0; i < ptCount; i++)
+                            {
+                                gl.Vertex(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
+                            }
+                            gl.End();
+                        }
+
+                        gl.Color(0.95f, 0.05f, 0.05f);
+                    }
                 }
             }
             gl.PointSize(1.0f);

@@ -699,10 +699,6 @@ namespace AgOpenGPS
                 btnCurve.Left = Width - 123;
                 btnManualOffOn.Left = Width - 123;
                 btnSectionOffAutoOn.Left = Width - 132;
-                btnZoomIn.Left = 5;
-                btnZoomIn.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
-                btnZoomOut.Left = Width - 113;
-                btnZoomOut.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
@@ -721,10 +717,6 @@ namespace AgOpenGPS
                 btnManualOffOn.Left = Width - 730;
                 btnSectionOffAutoOn.Left = Width - 740;
                 LineUpManualBtns();
-                btnZoomIn.Left = Width - 610;
-                btnZoomIn.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-                btnZoomOut.Left = Width - 470;
-                btnZoomOut.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
                 txtDistanceOffABLine.Left = (Width - 630)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
             }
@@ -1205,6 +1197,24 @@ namespace AgOpenGPS
             }
             Process.Start(fieldsDirectory + currentFieldDirectory);
         }
+        private void toolStripZoomOut_Click(object sender, EventArgs e)
+        {
+
+            if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
+            else camera.zoomValue += camera.zoomValue * 0.05;
+            camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
+            SetZoom();
+        }
+
+        private void toolStripZoomIn_Click(object sender, EventArgs e)
+        {
+            if (camera.zoomValue <= 20)
+            { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
+            else { if ((camera.zoomValue -= camera.zoomValue * 0.05) < 6.0) camera.zoomValue = 6.0; }
+
+            camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
+            SetZoom();
+        }
 
         //The zoom buttons in out
         private void btnZoomIn_MouseDown(object sender, MouseEventArgs e)
@@ -1281,7 +1291,15 @@ namespace AgOpenGPS
             }
         }
 
-        //Rate 
+
+        private void btnSmoothAB_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSmoothAB(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
 
         //YouTurn on off
         private void btnLeftYouTurn_Click(object sender, EventArgs e)

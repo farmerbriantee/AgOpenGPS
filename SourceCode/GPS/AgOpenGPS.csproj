@@ -121,11 +121,17 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
-    <Compile Include="FormShiftPos.cs">
+    <Compile Include="Forms\FormShiftPos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormShiftPos.Designer.cs">
+    <Compile Include="Forms\FormShiftPos.Designer.cs">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSmoothAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSmoothAB.Designer.cs">
+      <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormDualRate.cs">
       <SubType>Form</SubType>
@@ -340,7 +346,7 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormShiftPos.resx">
+    <EmbeddedResource Include="Forms\FormShiftPos.resx">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDualRate.resx">
@@ -537,6 +543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSimCoords.resx">
       <DependentUpon>FormSimCoords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSmoothAB.resx">
+      <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>

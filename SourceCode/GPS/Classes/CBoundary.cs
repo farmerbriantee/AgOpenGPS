@@ -65,6 +65,7 @@ namespace AgOpenGPS
             if (pt3.heading < 0) pt3.heading += glm.twoPI;
             ptList.Add(pt3);
 
+            //middle points
             for (int i = 1; i < cnt; i++)
             {
                 pt3 = arr[i];
@@ -73,6 +74,7 @@ namespace AgOpenGPS
                 ptList.Add(pt3);
             }
 
+            //last and first point
             pt3 = arr[cnt];
             pt3.heading = Math.Atan2(arr[0].easting - arr[cnt-1].easting, arr[0].northing - arr[cnt-1].northing);
             if (pt3.heading < 0) pt3.heading += glm.twoPI;

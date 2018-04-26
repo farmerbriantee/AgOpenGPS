@@ -97,6 +97,8 @@
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripZoomOut = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
             this.stripPortArduino = new System.Windows.Forms.ToolStripStatusLabel();
@@ -128,12 +130,13 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.btnFixOffset = new System.Windows.Forms.Button();
             this.lblFixOffset = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.lblHeadlandDistanceFromTool = new System.Windows.Forms.Label();
@@ -195,6 +198,8 @@
             this.btnDualRate = new System.Windows.Forms.Button();
             this.lblRateSetpointLeft = new System.Windows.Forms.Label();
             this.configPage1 = new System.Windows.Forms.TabPage();
+            this.btnFixOffset = new System.Windows.Forms.Button();
+            this.btnSmoothAB = new System.Windows.Forms.Button();
             this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
             this.btnWebCam = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
@@ -235,8 +240,6 @@
             this.btnSection12Man = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.btnSwapDirection = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
@@ -650,11 +653,13 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
             this.btnHideTabs,
-            this.stripDistance,
+            this.stripEqWidth,
             this.toolStripDropDownButton2,
             this.stripAreaRate,
             this.toolStripDropDownBtnFuncs,
-            this.stripEqWidth,
+            this.stripDistance,
+            this.toolStripZoomOut,
+            this.toolStripZoomIn,
             this.stripPortGPS,
             this.stripOnlineGPS,
             this.stripPortArduino,
@@ -796,6 +801,24 @@
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
             this.stripEqWidth.Spring = true;
+            // 
+            // toolStripZoomOut
+            // 
+            resources.ApplyResources(this.toolStripZoomOut, "toolStripZoomOut");
+            this.toolStripZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripZoomOut.Image = global::AgOpenGPS.Properties.Resources.ZoomOut48;
+            this.toolStripZoomOut.Name = "toolStripZoomOut";
+            this.toolStripZoomOut.ShowDropDownArrow = false;
+            this.toolStripZoomOut.Click += new System.EventHandler(this.toolStripZoomOut_Click);
+            // 
+            // toolStripZoomIn
+            // 
+            resources.ApplyResources(this.toolStripZoomIn, "toolStripZoomIn");
+            this.toolStripZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripZoomIn.Image = global::AgOpenGPS.Properties.Resources.ZoomIn48;
+            this.toolStripZoomIn.Name = "toolStripZoomIn";
+            this.toolStripZoomIn.ShowDropDownArrow = false;
+            this.toolStripZoomIn.Click += new System.EventHandler(this.toolStripZoomIn_Click);
             // 
             // stripPortGPS
             // 
@@ -1026,12 +1049,13 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.btnFixOffset);
             this.DataPage.Controls.Add(this.lblFixOffset);
             this.DataPage.Controls.Add(this.label2);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.lblFixQuality);
             this.DataPage.Controls.Add(this.lblAltitude);
+            this.DataPage.Controls.Add(this.btnZoomOut);
+            this.DataPage.Controls.Add(this.btnZoomIn);
             this.DataPage.Controls.Add(this.lblLongitude);
             this.DataPage.Controls.Add(this.lblLatitude);
             this.DataPage.Controls.Add(this.lblHeadlandDistanceFromTool);
@@ -1069,15 +1093,6 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
-            // btnFixOffset
-            // 
-            this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnFixOffset.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnFixOffset, "btnFixOffset");
-            this.btnFixOffset.Name = "btnFixOffset";
-            this.btnFixOffset.UseVisualStyleBackColor = false;
-            this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
-            // 
             // lblFixOffset
             // 
             resources.ApplyResources(this.lblFixOffset, "lblFixOffset");
@@ -1102,6 +1117,22 @@
             // 
             resources.ApplyResources(this.lblAltitude, "lblAltitude");
             this.lblAltitude.Name = "lblAltitude";
+            // 
+            // btnZoomOut
+            // 
+            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
+            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
+            // 
+            // btnZoomIn
+            // 
+            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
             // 
             // lblLongitude
             // 
@@ -1519,6 +1550,8 @@
             // configPage1
             // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.configPage1.Controls.Add(this.btnFixOffset);
+            this.configPage1.Controls.Add(this.btnSmoothAB);
             this.configPage1.Controls.Add(this.btnFlagsGoogleEarth);
             this.configPage1.Controls.Add(this.btnWebCam);
             this.configPage1.Controls.Add(this.btnHelp);
@@ -1526,6 +1559,24 @@
             this.configPage1.Controls.Add(this.btnGPSData);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
+            // 
+            // btnFixOffset
+            // 
+            this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnFixOffset.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFixOffset, "btnFixOffset");
+            this.btnFixOffset.Name = "btnFixOffset";
+            this.btnFixOffset.UseVisualStyleBackColor = false;
+            this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
+            // 
+            // btnSmoothAB
+            // 
+            this.btnSmoothAB.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnSmoothAB.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSmoothAB, "btnSmoothAB");
+            this.btnSmoothAB.Name = "btnSmoothAB";
+            this.btnSmoothAB.UseVisualStyleBackColor = false;
+            this.btnSmoothAB.Click += new System.EventHandler(this.btnSmoothAB_Click);
             // 
             // btnFlagsGoogleEarth
             // 
@@ -1705,7 +1756,6 @@
             this.tbarSteerAngle.Minimum = -300;
             this.tbarSteerAngle.Name = "tbarSteerAngle";
             this.tbarSteerAngle.TickFrequency = 30;
-            this.tbarSteerAngle.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.tbarSteerAngle.Scroll += new System.EventHandler(this.tbarSteerAngle_Scroll);
             // 
             // tbarStepDistance
@@ -1885,22 +1935,6 @@
             this.btnLeftYouTurn.UseVisualStyleBackColor = false;
             this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
             // 
-            // btnZoomIn
-            // 
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
-            // btnZoomOut
-            // 
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            // 
             // btnSwapDirection
             // 
             this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
@@ -1994,8 +2028,6 @@
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
-            this.Controls.Add(this.btnZoomIn);
-            this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.btnSwapDirection);
@@ -2282,6 +2314,9 @@
         private System.Windows.Forms.Label lblFixOffset;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFixOffset;
+        private System.Windows.Forms.Button btnSmoothAB;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripZoomOut;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripZoomIn;
     }
 }
 
