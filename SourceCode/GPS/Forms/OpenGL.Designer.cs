@@ -332,7 +332,7 @@ namespace AgOpenGPS
                         //lblDelta.Visible = true;
                         if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
 
-                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine * 0.1);
+                        DrawLightBar(openGLControl.Width, openGLControl.Height, curve.distanceFromCurrentLine * 0.1);
                         if ((curve.distanceFromCurrentLine) < 0.0)
                         {
                             txtDistanceOffABLine.ForeColor = Color.Green;

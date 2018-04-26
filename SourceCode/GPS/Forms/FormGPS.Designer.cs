@@ -82,7 +82,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnHideTabs = new System.Windows.Forms.ToolStripDropDownButton();
-            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,7 +96,7 @@
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripZoomOut = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
@@ -683,11 +683,13 @@
             this.btnHideTabs.ShowDropDownArrow = false;
             this.btnHideTabs.Click += new System.EventHandler(this.btnHideTabs_Click);
             // 
-            // stripDistance
+            // stripEqWidth
             // 
-            resources.ApplyResources(this.stripDistance, "stripDistance");
-            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.stripDistance.Name = "stripDistance";
+            this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
+            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
+            this.stripEqWidth.Name = "stripEqWidth";
+            this.stripEqWidth.Spring = true;
             // 
             // toolStripDropDownButton2
             // 
@@ -794,13 +796,11 @@
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
             // 
-            // stripEqWidth
+            // stripDistance
             // 
-            this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
-            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
-            this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Spring = true;
+            resources.ApplyResources(this.stripDistance, "stripDistance");
+            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.stripDistance.Name = "stripDistance";
             // 
             // toolStripZoomOut
             // 

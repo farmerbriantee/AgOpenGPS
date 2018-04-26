@@ -432,7 +432,7 @@
     <value>Tahoma, 21.75pt</value>
   </data>
   <data name="txtDistanceOffABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, -1</value>
+    <value>331, -1</value>
   </data>
   <data name="txtDistanceOffABLine.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 4</value>
@@ -3045,7 +3045,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAARABEgEQARIBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAARgBEgEYARIBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -10965,10 +10965,10 @@ FlowMeter</value>
   <data name="&gt;&gt;btnHideTabs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;stripDistance.Name" xml:space="preserve">
-    <value>stripDistance</value>
+  <data name="&gt;&gt;stripEqWidth.Name" xml:space="preserve">
+    <value>stripEqWidth</value>
   </data>
-  <data name="&gt;&gt;stripDistance.Type" xml:space="preserve">
+  <data name="&gt;&gt;stripEqWidth.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripDropDownButton2.Name" xml:space="preserve">
@@ -11049,10 +11049,10 @@ FlowMeter</value>
   <data name="&gt;&gt;toolstripResetTrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;stripEqWidth.Name" xml:space="preserve">
-    <value>stripEqWidth</value>
+  <data name="&gt;&gt;stripDistance.Name" xml:space="preserve">
+    <value>stripDistance</value>
   </data>
-  <data name="&gt;&gt;stripEqWidth.Type" xml:space="preserve">
+  <data name="&gt;&gt;stripDistance.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripZoomOut.Name" xml:space="preserve">
