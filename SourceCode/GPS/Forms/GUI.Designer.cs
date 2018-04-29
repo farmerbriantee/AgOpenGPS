@@ -1159,8 +1159,6 @@ namespace AgOpenGPS
                 periArea.isBtnPerimeterOn = false;
                 //btnPerimeter.Text = "Paused";
                 btnPerimeter.Image = Properties.Resources.PeriDone;
-
-
                 return;
             }
 
@@ -1294,10 +1292,18 @@ namespace AgOpenGPS
 
         private void btnSmoothAB_Click(object sender, EventArgs e)
         {
-            using (var form = new FormSmoothAB(this))
+            if (isJobStarted && curve.isCurveBtnOn)
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                using (var form = new FormSmoothAB(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+            }
+
+            else
+            {
+                TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
             }
         }
 

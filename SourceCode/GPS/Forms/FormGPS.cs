@@ -472,8 +472,8 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
-            if (Width < 1000 && tabControl1.Visible) HideTabControl();
-            if (Width > 1200 && !tabControl1.Visible) HideTabControl();
+            if (Width < 850 && tabControl1.Visible) HideTabControl();
+            if (Width > 1000 && !tabControl1.Visible) HideTabControl();
         }
 
         // Procedures and Functions ---------------------------------------

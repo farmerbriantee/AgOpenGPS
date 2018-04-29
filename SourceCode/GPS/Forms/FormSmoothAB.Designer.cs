@@ -31,11 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSmoothAB));
             this.btnSouth = new ProXoft.WinForms.RepeatButton();
             this.btnNorth = new ProXoft.WinForms.RepeatButton();
-            this.nudNorth = new System.Windows.Forms.NumericUpDown();
             this.bntOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.nudNorth)).BeginInit();
+            this.lblSmooth = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSouth
@@ -44,7 +43,7 @@
             this.btnSouth.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.btnSouth.Image = ((System.Drawing.Image)(resources.GetObject("btnSouth.Image")));
             this.btnSouth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSouth.Location = new System.Drawing.Point(169, 112);
+            this.btnSouth.Location = new System.Drawing.Point(33, 12);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(72, 72);
             this.btnSouth.TabIndex = 195;
@@ -57,33 +56,12 @@
             this.btnNorth.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.btnNorth.Image = ((System.Drawing.Image)(resources.GetObject("btnNorth.Image")));
             this.btnNorth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNorth.Location = new System.Drawing.Point(169, 11);
+            this.btnNorth.Location = new System.Drawing.Point(130, 12);
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(72, 72);
             this.btnNorth.TabIndex = 196;
             this.btnNorth.UseVisualStyleBackColor = true;
             this.btnNorth.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnNorth_MouseDown);
-            // 
-            // nudNorth
-            // 
-            this.nudNorth.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold);
-            this.nudNorth.Location = new System.Drawing.Point(8, 60);
-            this.nudNorth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudNorth.Name = "nudNorth";
-            this.nudNorth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudNorth.Size = new System.Drawing.Size(118, 65);
-            this.nudNorth.TabIndex = 194;
-            this.nudNorth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.nudNorth.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.nudNorth.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
             // 
             // bntOK
             // 
@@ -93,9 +71,9 @@
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.FileDontSave;
             this.bntOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(8, 279);
+            this.bntOK.Location = new System.Drawing.Point(12, 179);
             this.bntOK.Name = "bntOK";
-            this.bntOK.Size = new System.Drawing.Size(108, 93);
+            this.bntOK.Size = new System.Drawing.Size(93, 93);
             this.bntOK.TabIndex = 197;
             this.bntOK.Text = "For Now";
             this.bntOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -106,13 +84,13 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(8, 168);
+            this.btnCancel.Location = new System.Drawing.Point(130, 298);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(108, 88);
+            this.btnCancel.Size = new System.Drawing.Size(93, 82);
             this.btnCancel.TabIndex = 198;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -127,32 +105,45 @@
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.FileSave;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSave.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSave.Location = new System.Drawing.Point(138, 279);
+            this.btnSave.Location = new System.Drawing.Point(130, 179);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(108, 93);
+            this.btnSave.Size = new System.Drawing.Size(93, 93);
             this.btnSave.TabIndex = 199;
             this.btnSave.Text = "To File";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblSmooth
+            // 
+            this.lblSmooth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSmooth.AutoSize = true;
+            this.lblSmooth.BackColor = System.Drawing.Color.Transparent;
+            this.lblSmooth.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSmooth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSmooth.Location = new System.Drawing.Point(73, 96);
+            this.lblSmooth.Name = "lblSmooth";
+            this.lblSmooth.Size = new System.Drawing.Size(87, 58);
+            this.lblSmooth.TabIndex = 200;
+            this.lblSmooth.Text = "99";
+            // 
             // FormSmoothAB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(253, 379);
+            this.ClientSize = new System.Drawing.Size(231, 393);
             this.ControlBox = false;
+            this.Controls.Add(this.lblSmooth);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
             this.Controls.Add(this.btnSouth);
             this.Controls.Add(this.btnNorth);
-            this.Controls.Add(this.nudNorth);
             this.Name = "FormSmoothAB";
             this.Text = "Smooth AB Curve";
             this.Load += new System.EventHandler(this.FormSmoothAB_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudNorth)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -160,9 +151,9 @@
 
         private ProXoft.WinForms.RepeatButton btnSouth;
         private ProXoft.WinForms.RepeatButton btnNorth;
-        private System.Windows.Forms.NumericUpDown nudNorth;
         private System.Windows.Forms.Button bntOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblSmooth;
     }
 }

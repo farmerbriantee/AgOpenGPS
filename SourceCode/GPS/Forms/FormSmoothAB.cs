@@ -7,6 +7,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
+        private int smoothCount = 20;
 
         public FormSmoothAB(Form callingForm)
         {
@@ -26,6 +27,8 @@ namespace AgOpenGPS
         private void FormSmoothAB_Load(object sender, EventArgs e)
         {
             mf.curve.isSmoothWindowOpen = true;
+            smoothCount = 20;
+            lblSmooth.Text = "**";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -37,14 +40,16 @@ namespace AgOpenGPS
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
         {
-            nudNorth.UpButton();
-            mf.curve.SmoothAB((int)nudNorth.Value * 2);
+            if (smoothCount++ > 100) smoothCount = 100;
+            mf.curve.SmoothAB(smoothCount * 2);
+            lblSmooth.Text = smoothCount.ToString();
         }
 
         private void btnSouth_MouseDown(object sender, MouseEventArgs e)
         {
-            nudNorth.DownButton();
-            mf.curve.SmoothAB((int)nudNorth.Value * 2);
+            if (smoothCount-- < 2) smoothCount = 2;
+            mf.curve.SmoothAB(smoothCount * 2);
+            lblSmooth.Text = smoothCount.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
