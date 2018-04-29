@@ -185,7 +185,7 @@ void loop()
 		steerSwitch <<= 1; //put steerswitch status in bit 1 position
 		switchByte = workSwitch | steerSwitch;
 
-		//SetRelays(); //turn on off sections
+		SetRelays(); //turn on off sections
 
 		//steering position and steer angle
 		analogRead(A0); //discard initial reading
@@ -194,8 +194,8 @@ void loop()
 		steeringPosition += analogRead(A0);    delay(2);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
-		steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / 16.0);   //read the steering position sensor
-		//steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
+		//steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / 16.0);   //read the steering position sensor
+		steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
 
 		//convert position to steer angle. 6 counts per degree of steer pot position in my case
 		//  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
@@ -261,8 +261,6 @@ void loop()
 		//set point steer angle * 10 is sent
 		steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes
 
-		uTurn = Serial.read();
-
 		//auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
 		if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1)
 		{
@@ -274,6 +272,9 @@ void loop()
 			watchdogTimer = 0;  //reset watchdog
 			serialResetTimer = 0; //if serial buffer is getting full, empty it
 		}
+
+    //uturn byte read in
+    uTurn = Serial.read();
 	}
 
 	//Settings Header has been found, 8 bytes are the settings
