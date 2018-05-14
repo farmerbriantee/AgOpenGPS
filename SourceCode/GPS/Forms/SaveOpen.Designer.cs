@@ -46,7 +46,7 @@ namespace AgOpenGPS
                 using (StreamWriter writer = new StreamWriter(saveDialog.FileName))
                 {
                     writer.WriteLine("Version," + Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("Overlap," + Properties.Vehicle.Default.setVehicle_toolOverlap.ToString(CultureInfo.InvariantCulture).ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Overlap," + Properties.Vehicle.Default.setVehicle_toolOverlap.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ToolTrailingHitchLength," + Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("TankTrailingHitchLength," + Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("AntennaHeight," + Properties.Vehicle.Default.setVehicle_antennaHeight.ToString(CultureInfo.InvariantCulture));
@@ -212,7 +212,10 @@ namespace AgOpenGPS
 
                         double test = double.Parse(words[1], CultureInfo.InvariantCulture);
                         double ver = Convert.ToDouble(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
+                        if (ver > 9) ver *= 0.1;
+                        {
 
+                        }
                         if (test < ver)
                         {
                             var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version "+ Application.ProductVersion.ToString(CultureInfo.InvariantCulture)+ " or higher");
