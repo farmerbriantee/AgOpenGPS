@@ -182,9 +182,8 @@ void loop()
 
 		workSwitch = digitalRead(WORKSW_PIN);  // read work switch
 		steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
-    switchByte = 0;
-		switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
-		switchByte = workSwitch | switchByte;
+		steerSwitch <<= 1; //put steerswitch status in bit 1 position
+		switchByte = workSwitch | steerSwitch;
 
 		SetRelays(); //turn on off sections
 
@@ -195,8 +194,8 @@ void loop()
 		steeringPosition += analogRead(A0);    delay(2);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
-		steeringPosition = (steeringPosition - steeringPositionZero + XeRoll * Kd);   //read the steering position sensor
-		//steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
+		//steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / 16.0);   //read the steering position sensor
+		steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
 
 		//convert position to steer angle. 6 counts per degree of steer pot position in my case
 		//  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
@@ -219,7 +218,7 @@ void loop()
 		//Send to agopenGPS **** you must send 5 numbers ****
 		Serial.print(steerAngleActual); //The actual steering angle in degrees
 		Serial.print(",");
-		Serial.print(steerAngleSetPoint);   //the pwm value to solenoids or motor
+		Serial.print(pwmDisplay);   //the pwm value to solenoids or motor
 		Serial.print(",");
 
 		// *******  if there is no gyro installed send 9999
@@ -287,10 +286,6 @@ void loop()
 		Kp = (float)Serial.read() * 1.0;   // read Kp from AgOpenGPS
 		Ki = (float)Serial.read() * 0.1;   // read Ki from AgOpenGPS
 		Kd = (float)Serial.read() * 1.0;   // read Kd from AgOpenGPS
-
-    //invert the roll compensation 
-    Kd = Kd/24;
-    
 		Ko = (float)Serial.read() * 0.1;   // read Ko from AgOpenGPS
 		steeringPositionZero = 412 + Serial.read();  //read steering zero offset
 		minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
