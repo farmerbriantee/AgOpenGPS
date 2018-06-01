@@ -97,7 +97,7 @@ FROM IMU:
 (19) T/F IMU status - Valid IMU Fusion
 
 *CHKSUM
-* 
+*
 *             /*       Time, yaw, tilt, range for moving baseline RTK
 An example of the PTNL,AVR message string is:
 
@@ -156,6 +156,7 @@ Field	Meaning
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
+
         public bool isValidIMU;
 
         public int fixQuality;
@@ -219,7 +220,7 @@ Field	Meaning
                 if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
                 if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
                 if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
-                if (words[0] == "$GNHDT") ParseHDT();
+                if (words[0] == "$GNHDT" | words[0] == "$GPHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
             }// while still data
@@ -227,7 +228,6 @@ Field	Meaning
 
         private void ParseAVR()
         {
-
             if (!String.IsNullOrEmpty(words[1]))
             {
                 //True heading
@@ -447,7 +447,7 @@ Field	Meaning
 
         private void ParseRMC()
         {
-            //GPRMC parsing of the sentence 
+            //GPRMC parsing of the sentence
             //make sure there aren't missing coords in sentence
             if (!String.IsNullOrEmpty(words[3]) & !String.IsNullOrEmpty(words[4])
                 & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
@@ -507,7 +507,6 @@ Field	Meaning
             }
         }
 
-
         //checks the checksum against the string
         public bool ValidateChecksum(string Sentence)
         {
@@ -539,6 +538,7 @@ Field	Meaning
                 return false;
             }
         }
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //private double pi = 3.141592653589793238462643383279502884197169399375;
@@ -547,7 +547,6 @@ Field	Meaning
         private const double sm_b = 6356752.314;
         private const double UTMScaleFactor = 0.9996;
         //private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
-
 
         private double ArcLengthOfMeridian(double phi)
         {
@@ -599,7 +598,7 @@ Field	Meaning
         {
             zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
             double[] xy = MapLatLonToXY(latitude * 0.01745329251994329576923690766743,
-                                        longitude * 0.01745329251994329576923690766743, 
+                                        longitude * 0.01745329251994329576923690766743,
                                         (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
 
             xy[0] = (xy[0] * UTMScaleFactor) + 500000.0;
@@ -613,7 +612,7 @@ Field	Meaning
 
             //if a field is open, the real one is subtracted from the integer
             fix.easting = xy[0] - utmEast + fixOffset.easting;
-            fix.northing = xy[1] - utmNorth+ fixOffset.northing;
+            fix.northing = xy[1] - utmNorth + fixOffset.northing;
         }
     }
 }

@@ -168,7 +168,7 @@
             // btnOMinus
             // 
             this.btnOMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOMinus.Location = new System.Drawing.Point(222, 132);
+            this.btnOMinus.Location = new System.Drawing.Point(126, 131);
             this.btnOMinus.Name = "btnOMinus";
             this.btnOMinus.Size = new System.Drawing.Size(79, 46);
             this.btnOMinus.TabIndex = 169;
@@ -180,20 +180,21 @@
             // btnOPlus
             // 
             this.btnOPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOPlus.Location = new System.Drawing.Point(222, 77);
+            this.btnOPlus.Location = new System.Drawing.Point(126, 76);
             this.btnOPlus.Name = "btnOPlus";
             this.btnOPlus.Size = new System.Drawing.Size(79, 46);
             this.btnOPlus.TabIndex = 168;
-            this.btnOPlus.Text = "O";
+            this.btnOPlus.Text = "P*";
             this.btnOPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnOPlus.UseVisualStyleBackColor = true;
             this.btnOPlus.Click += new System.EventHandler(this.btnOPlus_Click);
             // 
             // btnIMinus
             // 
+            this.btnIMinus.Enabled = false;
             this.btnIMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMinus.ForeColor = System.Drawing.Color.Fuchsia;
-            this.btnIMinus.Location = new System.Drawing.Point(323, 133);
+            this.btnIMinus.Location = new System.Drawing.Point(338, 131);
             this.btnIMinus.Name = "btnIMinus";
             this.btnIMinus.Size = new System.Drawing.Size(79, 46);
             this.btnIMinus.TabIndex = 164;
@@ -206,7 +207,7 @@
             // 
             this.btnDMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDMinus.ForeColor = System.Drawing.Color.Red;
-            this.btnDMinus.Location = new System.Drawing.Point(126, 132);
+            this.btnDMinus.Location = new System.Drawing.Point(234, 131);
             this.btnDMinus.Name = "btnDMinus";
             this.btnDMinus.Size = new System.Drawing.Size(79, 46);
             this.btnDMinus.TabIndex = 163;
@@ -230,8 +231,9 @@
             // 
             // btnIPlus
             // 
+            this.btnIPlus.Enabled = false;
             this.btnIPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIPlus.Location = new System.Drawing.Point(323, 77);
+            this.btnIPlus.Location = new System.Drawing.Point(338, 75);
             this.btnIPlus.Name = "btnIPlus";
             this.btnIPlus.Size = new System.Drawing.Size(79, 46);
             this.btnIPlus.TabIndex = 161;
@@ -243,11 +245,11 @@
             // btnDPlus
             // 
             this.btnDPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDPlus.Location = new System.Drawing.Point(126, 77);
+            this.btnDPlus.Location = new System.Drawing.Point(234, 76);
             this.btnDPlus.Name = "btnDPlus";
             this.btnDPlus.Size = new System.Drawing.Size(79, 46);
             this.btnDPlus.TabIndex = 160;
-            this.btnDPlus.Text = "D";
+            this.btnDPlus.Text = "Draft";
             this.btnDPlus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDPlus.UseVisualStyleBackColor = true;
             this.btnDPlus.Click += new System.EventHandler(this.btnDPlus_Click);
@@ -299,7 +301,7 @@
             series1.BorderWidth = 2;
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.Yellow;
+            series1.Color = System.Drawing.Color.OrangeRed;
             series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
@@ -308,7 +310,7 @@
             series2.BorderWidth = 2;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.LightBlue;
+            series2.Color = System.Drawing.Color.Lime;
             series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
             series2.Name = "PWM";
@@ -325,8 +327,8 @@
             this.lblSteerAng.AutoSize = true;
             this.lblSteerAng.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblSteerAng.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerAng.ForeColor = System.Drawing.Color.Yellow;
-            this.lblSteerAng.Location = new System.Drawing.Point(129, 416);
+            this.lblSteerAng.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblSteerAng.Location = new System.Drawing.Point(180, 416);
             this.lblSteerAng.Name = "lblSteerAng";
             this.lblSteerAng.Size = new System.Drawing.Size(68, 23);
             this.lblSteerAng.TabIndex = 180;
@@ -340,8 +342,8 @@
             this.lblPWM.AutoSize = true;
             this.lblPWM.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblPWM.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPWM.ForeColor = System.Drawing.Color.LightSkyBlue;
-            this.lblPWM.Location = new System.Drawing.Point(306, 416);
+            this.lblPWM.ForeColor = System.Drawing.Color.Lime;
+            this.lblPWM.Location = new System.Drawing.Point(340, 416);
             this.lblPWM.Name = "lblPWM";
             this.lblPWM.Size = new System.Drawing.Size(68, 23);
             this.lblPWM.TabIndex = 184;
@@ -390,11 +392,11 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(76, 417);
+            this.label1.Location = new System.Drawing.Point(82, 417);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 19);
+            this.label1.Size = new System.Drawing.Size(94, 19);
             this.label1.TabIndex = 188;
-            this.label1.Text = "Steer";
+            this.label1.Text = "Steer Actual";
             // 
             // label5
             // 
@@ -405,11 +407,11 @@
             this.label5.BackColor = System.Drawing.SystemColors.ControlDark;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(254, 417);
+            this.label5.Location = new System.Drawing.Point(268, 417);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 19);
+            this.label5.Size = new System.Drawing.Size(67, 19);
             this.label5.TabIndex = 192;
-            this.label5.Text = "PWM";
+            this.label5.Text = "SetPoint";
             // 
             // label6
             // 
@@ -500,25 +502,26 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(238, 61);
+            this.label10.Location = new System.Drawing.Point(142, 60);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.Size = new System.Drawing.Size(49, 13);
             this.label10.TabIndex = 201;
-            this.label10.Text = "Overall";
+            this.label10.Text = "Multiplier";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(135, 61);
+            this.label11.Location = new System.Drawing.Point(242, 50);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.Size = new System.Drawing.Size(64, 26);
             this.label11.TabIndex = 202;
-            this.label11.Text = "Derivative";
+            this.label11.Text = "Roll Effect\r\nOn Steering";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(338, 61);
+            this.label12.Enabled = false;
+            this.label12.Location = new System.Drawing.Point(353, 59);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 13);
             this.label12.TabIndex = 203;
@@ -604,6 +607,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.Enabled = false;
             this.label17.Location = new System.Drawing.Point(427, 61);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(68, 13);
@@ -612,6 +616,7 @@
             // 
             // btnMaxIntegralMinus
             // 
+            this.btnMaxIntegralMinus.Enabled = false;
             this.btnMaxIntegralMinus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaxIntegralMinus.ForeColor = System.Drawing.Color.Fuchsia;
             this.btnMaxIntegralMinus.Location = new System.Drawing.Point(421, 131);
@@ -625,6 +630,7 @@
             // 
             // btnMaxIntegralPlus
             // 
+            this.btnMaxIntegralPlus.Enabled = false;
             this.btnMaxIntegralPlus.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMaxIntegralPlus.Location = new System.Drawing.Point(421, 75);
             this.btnMaxIntegralPlus.Name = "btnMaxIntegralPlus";

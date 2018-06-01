@@ -1,4 +1,12 @@
-﻿v 2.7 Apr 5, 2018
+﻿v2.7 May 31
+* Proportional and multiplier now instead of PID
+* D is used for roll gain to add to steering
+* I is just disabled for now
+* Added  GPHDT to parsing
+* Fixed edge case not added to pre calc calclist in Headland class
+* Auto Steer chart has actual and setpoint steer angles. 
+
+v 2.7 Apr 5, 2018
 * single and dual flowmeter
 * AOG-Rate has dual flow firmware - no pid code
 * Increased to 50 m width now

@@ -1,6 +1,0 @@
-Opening Steer PortSystem.IO.IOException: The port 'COM4' does not exist.
-   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
-   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
-   at System.IO.Ports.SerialPort.Open()
-   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 134 - 5/14/2018 1:09:13 AM
-

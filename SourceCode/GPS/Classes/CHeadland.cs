@@ -194,7 +194,7 @@ namespace AgOpenGPS
             //make sure distance isn't too small between points on headland
             int headCount = mf.hl.ptList.Count;
             //double spacing = mf.vehicle.toolWidth * 0.25;
-            double spacing = 1.5;
+            const double spacing = 1.5;
             double distance;
             for (int i = 0; i < headCount - 1; i++)
             {
@@ -381,6 +381,7 @@ namespace AgOpenGPS
                 {
                     constantMultiple.easting = ptList[i].easting;
                     constantMultiple.northing = 0;
+                    calcList.Add(constantMultiple);
                 }
                 else
                 {

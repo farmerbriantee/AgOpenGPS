@@ -121,6 +121,7 @@ namespace AgOpenGPS
         private void btnDPlus_Click(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssKd]++;
+            if (mf.mc.autoSteerSettings[mf.mc.ssKd] > 24) mf.mc.autoSteerSettings[mf.mc.ssKd] = 24;
             btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
             Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
@@ -130,6 +131,7 @@ namespace AgOpenGPS
         private void btnDMinus_Click(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssKd]--;
+            if (mf.mc.autoSteerSettings[mf.mc.ssKd] == 255) mf.mc.autoSteerSettings[mf.mc.ssKd] = 0;
             btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
             Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();

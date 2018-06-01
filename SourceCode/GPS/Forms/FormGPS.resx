@@ -3045,7 +3045,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAASABEgEgARIBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAASgBEgEoARIBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -7768,7 +7768,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnOffsetOutward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 158</value>
+    <value>349, 77</value>
   </data>
   <data name="btnOffsetOutward.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 58</value>
@@ -7804,7 +7804,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnOffsetInward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>404, 158</value>
+    <value>499, 77</value>
   </data>
   <data name="btnOffsetInward.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 58</value>
@@ -7840,7 +7840,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnOffsetBackward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>329, 218</value>
+    <value>424, 137</value>
   </data>
   <data name="btnOffsetBackward.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 58</value>
@@ -7876,7 +7876,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnOffsetForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>329, 98</value>
+    <value>424, 17</value>
   </data>
   <data name="btnOffsetForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 58</value>
@@ -7909,7 +7909,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnCartOnOff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>33, 315</value>
+    <value>33, 253</value>
   </data>
   <data name="btnCartOnOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 82</value>
@@ -7945,7 +7945,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnCartDone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 315</value>
+    <value>372, 253</value>
   </data>
   <data name="btnCartDone.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 82</value>
@@ -7981,7 +7981,7 @@ FlowMeter</value>
     <value>NoControl</value>
   </data>
   <data name="btnCallCart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 315</value>
+    <value>201, 253</value>
   </data>
   <data name="btnCallCart.Size" type="System.Drawing.Size, System.Drawing">
     <value>116, 82</value>
@@ -10577,7 +10577,7 @@ FlowMeter</value>
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>83</value>
+    <value>53</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>96, 96</value>
