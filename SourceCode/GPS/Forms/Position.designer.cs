@@ -333,6 +333,10 @@ namespace AgOpenGPS
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {
+                if (ahrs.isHeadingPAOGI)
+                {
+                    guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + (pn.nRoll * ((double)mc.autoSteerSettings[mc.ssKd]) * 4.166666));
+                }
 
                 //fill up0 the auto steer array with new values
                 mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0);
@@ -461,7 +465,7 @@ namespace AgOpenGPS
                 else distPivot = -3333;
 
                 //trigger the "its ready to generate a youturn when 35.11m away" but don't make it just yet
-                if (distPivot < 35.11 && distPivot > 32.11 && !yt.isYouTurnTriggered && yt.isInWorkArea)
+                if (distPivot < 45.11 && distPivot > 42.11 && !yt.isYouTurnTriggered && yt.isInWorkArea)
                 {
                     //begin the whole process, all conditions are met
                     yt.YouTurnTrigger();
@@ -485,7 +489,7 @@ namespace AgOpenGPS
                     {
                         //how far have we gone since youturn request was triggered
                         distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        if (distanceToStartAutoTurn > (35.11 + yt.youTurnStartOffset+headlandDistanceDelta))
+                        if (distanceToStartAutoTurn > (45.11 + yt.youTurnStartOffset+headlandDistanceDelta))
                         {
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;

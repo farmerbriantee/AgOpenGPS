@@ -454,10 +454,9 @@ Field	Meaning
             {
                 if (fixFrom == "RMC")
                 {
-                    double temp;
                     //get latitude and convert to decimal degrees
                     double.TryParse(words[3].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                    double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    double.TryParse(words[3].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
                     latitude += temp * 0.01666666666666666666666666666667;
 
                     if (words[4] == "S")

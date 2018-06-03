@@ -11,10 +11,14 @@ namespace AgOpenGPS
 
         private readonly OpenGL gl;
 
-        public bool isSet;
+        public bool isSet, isStartPointSet;
         public bool isDrawRightSide;
         public bool isOkToAddPoints;
         public double includeAngle;
+
+        //point to start field
+        public vec3 startPoint = new vec3(0, 0, 0);
+        public vec3 headingPoint = new vec3(0, 0, 0);
 
         private double oneSide, distance;
         private const double scanWidth = 1.2;
@@ -60,17 +64,17 @@ namespace AgOpenGPS
                 boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
                 boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
 
-                boxC.easting = boxB.easting + (Math.Sin(headAB) * 40.0);
-                boxC.northing = boxB.northing + (Math.Cos(headAB) * 40.0);
+                boxC.easting = boxB.easting + (Math.Sin(headAB) * 60.0);
+                boxC.northing = boxB.northing + (Math.Cos(headAB) * 60.0);
 
-                boxD.easting = boxA.easting + (Math.Sin(headAB) * 40.0);
-                boxD.northing = boxA.northing + (Math.Cos(headAB) * 40.0);
+                boxD.easting = boxA.easting + (Math.Sin(headAB) * 60.0);
+                boxD.northing = boxA.northing + (Math.Cos(headAB) * 60.0);
 
-                boxA.easting -= (Math.Sin(headAB) * 40.0);
-                boxA.northing -= (Math.Cos(headAB) * 40.0);
+                boxA.easting -= (Math.Sin(headAB) * 60.0);
+                boxA.northing -= (Math.Cos(headAB) * 60.0);
 
-                boxB.easting -= (Math.Sin(headAB) * 40.0);
-                boxB.northing -= (Math.Cos(headAB) * 40.0);
+                boxB.easting -= (Math.Sin(headAB) * 60.0);
+                boxB.northing -= (Math.Cos(headAB) * 60.0);
             }
             else
             {

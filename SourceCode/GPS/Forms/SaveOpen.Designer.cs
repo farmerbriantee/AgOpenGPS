@@ -1002,7 +1002,19 @@ namespace AgOpenGPS
                     {
                         //read header
                         line = reader.ReadLine();
+
+                        //read the startPoint for autonomous start or skip for old files
                         line = reader.ReadLine();
+                        if (line == "$StartPoint")
+                        {
+                            line = reader.ReadLine();
+                            string[] words = line.Split(',');
+                            hl.startPoint.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+                            hl.startPoint.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            hl.startPoint.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                        }
+
                         int numPoints = int.Parse(line);
 
                         if (numPoints > 0)
@@ -1027,6 +1039,10 @@ namespace AgOpenGPS
                             double area = hl.CalculateHeadlandArea();
                             if (area > 0) hl.isSet = true;
                             else hl.isSet = false;
+                            if (hl.startPoint.easting == 0 &&
+                              hl.startPoint.northing == 0 &&
+                              hl.startPoint.heading == 0) hl.isStartPointSet = false;
+                            else hl.isStartPointSet = true;
                         }
                     }
 
@@ -1388,6 +1404,11 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
             {
                 writer.WriteLine("$Headland");
+                writer.WriteLine("$StartPoint");
+                writer.WriteLine(hl.startPoint.easting.ToString(CultureInfo.InvariantCulture) + "," + 
+                                hl.startPoint.northing.ToString(CultureInfo.InvariantCulture) + "," + 
+                                hl.startPoint.heading.ToString(CultureInfo.InvariantCulture));
+
                 writer.WriteLine(hl.ptList.Count.ToString(CultureInfo.InvariantCulture));
                 if (hl.ptList.Count > 0)
                 {

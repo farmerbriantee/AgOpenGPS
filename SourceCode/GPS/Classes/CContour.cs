@@ -18,8 +18,9 @@ namespace AgOpenGPS
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
+
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
-        public vec2 boxE = new vec2(3, 4), boxF = new vec2(4,5);
+        public vec2 boxE = new vec2(3, 4), boxF = new vec2(4, 5);
 
         //current contour patch and point closest to current fix
         public int closestRefPatch, closestRefPoint;
@@ -46,6 +47,7 @@ namespace AgOpenGPS
 
         //pure pursuit values
         public bool isValid;
+
         public vec2 goalPointCT = new vec2(0, 0);
         public vec2 radiusPointCT = new vec2(0, 0);
         public double steerAngleCT;
@@ -140,13 +142,13 @@ namespace AgOpenGPS
             double cosH = Math.Cos(pivot.heading) * 1.5 * mf.vehicle.toolWidth;
             double sin2H = Math.Sin(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
             double cos2H = Math.Cos(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
-            double sin3H = Math.Sin(pivot.heading + glm.PIBy2)*0.5;
-            double cos3H = Math.Cos(pivot.heading + glm.PIBy2)*0.5;
+            double sin3H = Math.Sin(pivot.heading + glm.PIBy2) * 0.5;
+            double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * 0.5;
 
             //build a frustum box ahead of fix to find adjacent paths and points
             boxA.easting = pivot.easting - (sin2H);
             boxA.northing = pivot.northing - (cos2H);
-            boxA.easting -= (sinH*0.5);
+            boxA.easting -= (sinH * 0.5);
             boxA.northing -= (cosH * 0.5);
 
             boxB.easting = pivot.easting + (sin2H);
@@ -156,7 +158,7 @@ namespace AgOpenGPS
 
             boxC.easting = boxB.easting + (sinH);
             boxC.northing = boxB.northing + (cosH);
-            
+
             boxD.easting = boxA.easting + (sinH);
             boxD.northing = boxA.northing + (cosH);
 
@@ -329,13 +331,30 @@ namespace AgOpenGPS
                 stop = pt + 25; if (stop > ptCount) stop = ptCount + 1;
             }
 
+            double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
+            bool fail = false;
+
             for (int i = start; i < stop; i++)
             {
                 var point = new vec3(
                     stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].heading);
-                ctList.Add(point);
+                //ctList.Add(point);
+
+                //make sure its not closer then 1 eq width
+                for (int j = start; j < stop; j++)
+                {
+                    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                    if (check < distSq)
+                    {
+                        fail = true;
+                        break;
+                    }
+                }
+
+                if (!fail) ctList.Add(point);
+                fail = false;
             }
         }
 
@@ -560,7 +579,10 @@ namespace AgOpenGPS
                 }
 
                 //opposite way so right is left
-                else if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
+                else if (isOnRightSideCurrentLine)
+                {
+                    distanceFromCurrentLine *= -1.0;
+                }
 
                 //fill in the autosteer variables
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
@@ -577,22 +599,22 @@ namespace AgOpenGPS
         //draw the red follow me line
         public void DrawContourLine()
         {
-            gl.Color(0.98f, 0.98f, 0.50f);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            //for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
-            gl.Vertex(boxE.easting, boxE.northing, 0);
-            gl.Vertex(boxA.easting, boxA.northing, 0);
-            gl.Vertex(boxD.easting, boxD.northing, 0);
-            gl.Vertex(boxE.easting, boxE.northing, 0);
-            gl.End();
+            //gl.Color(0.98f, 0.98f, 0.50f);
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            ////for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
+            //gl.Vertex(boxE.easting, boxE.northing, 0);
+            //gl.Vertex(boxA.easting, boxA.northing, 0);
+            //gl.Vertex(boxD.easting, boxD.northing, 0);
+            //gl.Vertex(boxE.easting, boxE.northing, 0);
+            //gl.End();
 
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            //for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
-            gl.Vertex(boxF.easting, boxF.northing, 0);
-            gl.Vertex(boxC.easting, boxC.northing, 0);
-            gl.Vertex(boxB.easting, boxB.northing, 0);
-            gl.Vertex(boxF.easting, boxF.northing, 0);
-            gl.End();
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            ////for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
+            //gl.Vertex(boxF.easting, boxF.northing, 0);
+            //gl.Vertex(boxC.easting, boxC.northing, 0);
+            //gl.Vertex(boxB.easting, boxB.northing, 0);
+            //gl.Vertex(boxF.easting, boxF.northing, 0);
+            //gl.End();
 
             ////draw the guidance line
             int ptCount = ctList.Count;
@@ -628,23 +650,23 @@ namespace AgOpenGPS
             //    }
             //}
 
-            ptCount = conList.Count;
-            if (ptCount > 0)
-            {
-                //draw closest point and side of line points
-                gl.Color(0.5f, 0.900f, 0.90f);
-                gl.PointSize(4.0f);
-                gl.Begin(OpenGL.GL_POINTS);
-                for (int i = 0; i < ptCount; i++) gl.Vertex(conList[i].x, conList[i].z, 0);
-                gl.End();
+            //ptCount = conList.Count;
+            //if (ptCount > 0)
+            //{
+            //    //draw closest point and side of line points
+            //    gl.Color(0.5f, 0.900f, 0.90f);
+            //    gl.PointSize(4.0f);
+            //    gl.Begin(OpenGL.GL_POINTS);
+            //    for (int i = 0; i < ptCount; i++) gl.Vertex(conList[i].x, conList[i].z, 0);
+            //    gl.End();
 
-                //gl.Color(0.35f, 0.30f, 0.90f);
-                //gl.PointSize(6.0f);
-                //gl.Begin(OpenGL.GL_POINTS);
-                //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-                //gl.End();
-            }
-            if (mf.isPureDisplayOn && isValid)
+            //    //gl.Color(0.35f, 0.30f, 0.90f);
+            //    //gl.PointSize(6.0f);
+            //    //gl.Begin(OpenGL.GL_POINTS);
+            //    //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
+            //    //gl.End();
+            //}
+            if (mf.isPureDisplayOn)
             {
                 const int numSegments = 100;
                 {

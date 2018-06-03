@@ -11,6 +11,8 @@ namespace AgOpenGPS
 
         private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
         private double headWidths;
+        private bool isDrawingHeadland;
+        private bool isDrawingStart, isDrawingHeading;
 
         public FormHeadland(Form callingForm)
         {
@@ -25,14 +27,11 @@ namespace AgOpenGPS
             nudWidths.Value = (decimal)headWidths;
             nudWidths.ValueChanged += nudWidths_ValueChanged;
 
-            nudHeadlandIncludeAngle.ValueChanged -= nudWidths_ValueChanged;
+            nudHeadlandIncludeAngle.ValueChanged -= nudHeadlandIncludeAngle_ValueChanged;
             nudHeadlandIncludeAngle.Value = (int)((mf.hl.includeAngle / glm.PIBy2) * 10) * 10;
-            nudHeadlandIncludeAngle.ValueChanged += nudWidths_ValueChanged;
+            nudHeadlandIncludeAngle.ValueChanged += nudHeadlandIncludeAngle_ValueChanged;
 
-            if (mf.hl.isSet)
-            {
-            }
-            else
+            if (!mf.hl.isSet)
             {
                 //create a single tool width headland
                 mf.hl.BuildHeadland((double)nudWidths.Value);
@@ -51,39 +50,89 @@ namespace AgOpenGPS
         }
 
         private Point fixPt;
+        private bool doneDrawingPtAndDirection = false;
 
         private void openGLHead_MouseDown(object sender, MouseEventArgs e)
         {
+            Point pt = openGLHead.PointToClient(Cursor.Position);
+            lblX.Text = (pt.X - 350).ToString();
+            lblY.Text = ((800 - pt.Y) - 400).ToString();
+
+            //Convert to Origin in the center of window, 800 pixels
+            fixPt.X = pt.X - 400;
+            fixPt.Y = ((800 - pt.Y) - 400);
+            vec3 plotPt = new vec3
+            {
+                //convert screen coordinates to field coordinates
+                easting = ((double)fixPt.X) * (double)maxFieldDistance / 770.0,
+                northing = ((double)fixPt.Y) * (double)maxFieldDistance / 770.0,
+                heading = 0
+            };
+
+            plotPt.easting += fieldCenterX;
+            plotPt.northing += fieldCenterY;
+
             if (isDrawingHeadland)
             {
-                //OpenGL has line 0 at bottom, Windows at top, so convert
-                Point pt = openGLHead.PointToClient(Cursor.Position);
-                vec3 plotPt = new vec3();
-                lblX.Text = (pt.X - 350).ToString();
-                lblY.Text = ((700 - pt.Y) - 350).ToString();
-
-                //Convert to Origin in the center of window, 700 pixels
-                fixPt.X = pt.X - 350;
-                fixPt.Y = ((700 - pt.Y) - 350);
-
-                //convert screen coordinates to field coordinates
-                plotPt.easting = ((double)fixPt.X) * (double)maxFieldDistance / 670.0;
-                plotPt.easting += fieldCenterX;
-                plotPt.northing = ((double)fixPt.Y) * (double)maxFieldDistance / 670.0;
-                plotPt.northing += fieldCenterY;
-
                 //make sure point is in boundary
                 if (mf.boundz.IsPointInsideBoundary(plotPt)) mf.hl.ptList.Add(plotPt);
-                else mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the box!");
+                else mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the boundary!");
 
                 //fix up the area label
                 double area = mf.hl.CalculateHeadlandArea();
                 if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
                 else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
             }
-        }
 
-        private bool isDrawingHeadland;
+            if (isDrawingStart)
+            {
+                if (mf.boundz.IsPointInsideBoundary(plotPt))
+                {
+                    mf.hl.startPoint.easting = plotPt.easting;
+                    mf.hl.startPoint.northing = plotPt.northing;
+                    isDrawingStart = false;
+                    doneDrawingPtAndDirection = true;
+                }
+                else
+                {
+                    mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the boundary!");
+                }
+            }
+
+            if (isDrawingHeading)
+            {
+                if (mf.boundz.IsPointInsideBoundary(plotPt))
+                {
+                    doneDrawingPtAndDirection = false;
+                    mf.hl.headingPoint.easting = plotPt.easting;
+                    mf.hl.headingPoint.northing = plotPt.northing;
+                    mf.hl.startPoint.heading = Math.Atan2(mf.hl.headingPoint.easting - mf.hl.startPoint.easting,
+                        mf.hl.headingPoint.northing - mf.hl.startPoint.northing);
+                    if (mf.hl.startPoint.heading < 0) mf.hl.startPoint.heading += glm.twoPI;
+
+                    isDrawingHeading = false;
+                    mf.hl.isStartPointSet = true;
+                    btnStart.Enabled = true;
+                    btnDeleteLastPoint.Enabled = false;
+                    btnDone.Enabled = false;
+
+                    btnOK.Enabled = true;
+                    btnCancel.Enabled = true;
+                    nudWidths.Enabled = true;
+                    nudHeadlandIncludeAngle.Enabled = true;
+                    btnStartPt.Enabled = true;
+                    lblStartEasting.Text = "East: " + mf.hl.startPoint.easting.ToString("N1");
+                    lblStartNorthing.Text = "North: " + mf.hl.startPoint.northing.ToString("N1");
+                    lblStartHeading.Text = "Dir:" + (glm.toDegrees(mf.hl.startPoint.heading)).ToString("N1");
+                }
+                else
+                {
+                    mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the boundary!");
+                }
+            }
+
+            if (doneDrawingPtAndDirection) isDrawingHeading = true;
+        }
 
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -98,20 +147,37 @@ namespace AgOpenGPS
             btnOK.Enabled = false;
             btnCancel.Enabled = false;
             nudWidths.Enabled = false;
+            nudHeadlandIncludeAngle.Enabled = false;
+            btnStartPt.Enabled = false;
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
             isDrawingHeadland = false;
-            mf.hl.FixHeadlandList();
 
-            //pre calculate all the constants and multiples
-            mf.hl.PreCalcHeadlandLines();
+            if (mf.hl.ptList.Count > 3)
+            {
+                mf.hl.FixHeadlandList();
 
-            //area calc
-            double area = mf.hl.CalculateHeadlandArea();
-            if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
-            else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
+                //pre calculate all the constants and multiples
+                mf.hl.PreCalcHeadlandLines();
+
+                //area calc
+                double area = mf.hl.CalculateHeadlandArea();
+                if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
+                else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
+            }
+            else
+            {
+                mf.hl.ptList.Clear();
+                mf.hl.isSet = false;
+                mf.hl.startPoint.easting = 0;
+                mf.hl.startPoint.northing = 0;
+                mf.hl.startPoint.heading = 0;
+                mf.hl.headingPoint.easting = 0;
+                mf.hl.headingPoint.northing = 0;
+                mf.hl.headingPoint.heading = 0;
+            }
 
             btnStart.Enabled = true;
             btnDeleteLastPoint.Enabled = false;
@@ -120,6 +186,8 @@ namespace AgOpenGPS
             btnOK.Enabled = true;
             btnCancel.Enabled = true;
             nudWidths.Enabled = true;
+            nudHeadlandIncludeAngle.Enabled = true;
+            btnStartPt.Enabled = true;
         }
 
         private void btnDeleteLastPoint_Click(object sender, EventArgs e)
@@ -134,6 +202,40 @@ namespace AgOpenGPS
         private void btnOK_Click(object sender, EventArgs e)
         {
             mf.FileSaveHeadland();
+        }
+
+        private void nudHeadlandIncludeAngle_ValueChanged_1(object sender, EventArgs e)
+        {
+            mf.hl.includeAngle = ((double)nudHeadlandIncludeAngle.Value / 100) * glm.PIBy2;
+            mf.hl.FixHeadlandList();
+            //Enable the save ok button
+            btnOK.Enabled = true;
+
+            double area = mf.hl.CalculateHeadlandArea();
+            if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
+            else lblArea.Text = Math.Round(area * 0.000247105, 1) + " Ac";
+        }
+
+        private void btnStartPt_Click(object sender, EventArgs e)
+        {
+            mf.TimedMessageBox(2000, "Create the field Start Point", "And then click a direction");
+
+            mf.hl.headingPoint.easting = 0;
+            mf.hl.headingPoint.northing = 0;
+            mf.hl.startPoint.heading = 0;
+
+            isDrawingStart = true;
+            mf.hl.isStartPointSet = false;
+
+            btnStart.Enabled = false;
+            btnDeleteLastPoint.Enabled = false;
+            btnDone.Enabled = false;
+
+            btnOK.Enabled = false;
+            btnCancel.Enabled = false;
+            nudWidths.Enabled = false;
+            nudHeadlandIncludeAngle.Enabled = false;
+            btnStartPt.Enabled = false;
         }
 
         private void nudWidths_ValueChanged(object sender, EventArgs e)
@@ -153,9 +255,12 @@ namespace AgOpenGPS
         private void nudHeadlandIncludeAngle_ValueChanged(object sender, EventArgs e)
         {
             mf.hl.includeAngle = ((double)nudHeadlandIncludeAngle.Value / 100) * glm.PIBy2;
-            mf.hl.BuildHeadland((double)nudWidths.Value);
+            mf.hl.FixHeadlandList();
             //Enable the save ok button
             btnOK.Enabled = true;
+
+            //pre calculate all the constants and multiples
+            mf.hl.PreCalcHeadlandLines();
 
             double area = mf.hl.CalculateHeadlandArea();
             if (mf.isMetric) lblArea.Text = Math.Round(area * 0.0001, 1) + " Ha";
@@ -271,19 +376,36 @@ namespace AgOpenGPS
 
             glh.PointSize(8.0f);
             glh.Begin(OpenGL.GL_POINTS);
-
-            glh.Color(0.05f, 0.90f, 0.60f);
+            glh.Color(0.95f, 0.90f, 0.60f);
 
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             glh.Vertex(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
+            //draw the pivot, startPt and Heading Pt and line
+            glh.Color(0.95f, 0.0f, 0.0f);
+            glh.Vertex(mf.hl.startPoint.easting, mf.hl.startPoint.northing, 0);
+            glh.Color(0.90f, 0.90f, 0.0f);
+            glh.Vertex(mf.hl.headingPoint.easting, mf.hl.headingPoint.northing, 0);
             glh.End();
+
+            if (mf.hl.isStartPointSet)
+            {
+                glh.LineWidth(4);
+                glh.Color(0.95f, 0.0f, 0.30f);
+                glh.Begin(OpenGL.GL_LINE_STRIP);
+                glh.Vertex(mf.hl.startPoint.easting, mf.hl.startPoint.northing, 0);
+                glh.Color(0.90f, 0.90f, 0.30f);
+                glh.Vertex(mf.hl.headingPoint.easting, mf.hl.headingPoint.northing, 0);
+                glh.End();
+            }
 
             //set pointsize
             glh.PointSize(4.0f);
 
             ////draw the outside boundary
+            glh.LineWidth(2);
+
             int ptCount = mf.boundz.ptList.Count;
             if (ptCount > 0)
             {
@@ -299,7 +421,6 @@ namespace AgOpenGPS
                 glh.Vertex(mf.boundz.ptList[ptCount - 1].easting, mf.boundz.ptList[ptCount - 1].northing, 0);
                 glh.Vertex(mf.boundz.ptList[0].easting, mf.boundz.ptList[0].northing, 0);
                 glh.End();
-
             }
 
             ////draw the headland line
@@ -310,7 +431,6 @@ namespace AgOpenGPS
                 glh.Begin(OpenGL.GL_POINTS);
                 for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.ptList[h].easting, mf.hl.ptList[h].northing, 0);
                 glh.End();
-
             }
 
             //plot the touch points so far
@@ -330,6 +450,43 @@ namespace AgOpenGPS
                     glh.Begin(OpenGL.GL_LINE_STRIP);
                     glh.Vertex(mf.hl.ptList[ptCount - 1].easting, mf.hl.ptList[ptCount - 1].northing, 0);
                     glh.Vertex(mf.hl.ptList[0].easting, mf.hl.ptList[0].northing, 0);
+                    glh.End();
+                }
+            }
+
+            //draw the ABLine
+            if (mf.ABLine.isABLineSet | mf.ABLine.isABLineBeingSet)
+            {
+                //Draw reference AB line
+                glh.LineWidth(1);
+                glh.Enable(OpenGL.GL_LINE_STIPPLE);
+                glh.LineStipple(1, 0x00F0);
+
+                glh.Begin(OpenGL.GL_LINES);
+                glh.Color(0.9f, 0.45f, 0.87f);
+                glh.Vertex(mf.ABLine.refABLineP1.easting, mf.ABLine.refABLineP1.northing, 0);
+                glh.Vertex(mf.ABLine.refABLineP2.easting, mf.ABLine.refABLineP2.northing, 0);
+                glh.End();
+                glh.Disable(OpenGL.GL_LINE_STIPPLE);
+
+                //raw current AB Line
+                glh.Begin(OpenGL.GL_LINES);
+                glh.Color(0.9f, 0.0f, 0.50f);
+                glh.Vertex(mf.ABLine.currentABLineP1.easting, mf.ABLine.currentABLineP1.northing, 0.0);
+                glh.Vertex(mf.ABLine.currentABLineP2.easting, mf.ABLine.currentABLineP2.northing, 0.0);
+                glh.End();
+            }
+
+            //draw curve if there is one
+            if (mf.curve.isCurveSet)
+            {
+                int ptC = mf.curve.curList.Count;
+                if (ptC > 0)
+                {
+                    glh.LineWidth(2);
+                    glh.Color(0.95f, 0.25f, 0.50f);
+                    glh.Begin(OpenGL.GL_LINE_STRIP);
+                    for (int h = 0; h < ptC; h++) glh.Vertex(mf.curve.curList[h].easting, mf.curve.curList[h].northing, 0);
                     glh.End();
                 }
             }

@@ -267,7 +267,7 @@ namespace AgOpenGPS
         private void btnCountsPerDegreePlus_Click(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]++;
-            if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] > 50) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 50;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] > 50) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 50;
             btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
@@ -277,7 +277,7 @@ namespace AgOpenGPS
         private void btnCountsPerDegreeMinus_Click(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]--;
-            if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] < 1) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
+            //if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] < 1) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
             btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();

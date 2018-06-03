@@ -58,6 +58,7 @@ namespace AgOpenGPS
 
         //Dew Loop turn 2 -> 2R,3L,2L,2R,3R,2L
         public bool isDew2Set, isDew2Right;
+
         public int dew2Index;
         public int[] dew2Skips = new int[] { 2, 3, 2, 2, 3, 2 };
         public bool[] dew2Direction = new bool[] { true, false, false, true, true, false };
@@ -162,7 +163,6 @@ namespace AgOpenGPS
             ////green on right means turn left
             //for (int j = (rightPos - 10); j < rightPos; j++)
             //{ isGrnOnRight = grnPix[j] > 50; }
-
 
             ////one side or the other - but not both Exclusive Or
             //if (isGrnOnLeft ^ isGrnOnRight)
@@ -462,6 +462,10 @@ namespace AgOpenGPS
                 if (!isABSameAsFixHeading) head += 3.14;
                 else head -= 0.01;
 
+                //move the start forward 4 meters
+                rEastYT += (Math.Sin(head) * 4);
+                rNorthYT += (Math.Cos(head) * 4);
+
                 var start = new vec3(rEastYT, rNorthYT, head);
                 var goal = new vec3();
 
@@ -469,9 +473,8 @@ namespace AgOpenGPS
                 if (head < 0) head += glm.twoPI;
 
                 //also adjust for rowskips if Dew loops are set
-                if (isDew2Set|isDew4Set)
+                if (isDew2Set | isDew4Set)
                 {
-
                     if (isDew2Set)
                     {
                         skips = dew2Skips[dew2Index];
@@ -633,7 +636,7 @@ namespace AgOpenGPS
                 double distSoFar;
 
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.5 * 0.27777777;
 
                 //minimum of Whatever AB Line is meters look ahead
                 if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;

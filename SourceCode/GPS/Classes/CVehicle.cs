@@ -15,6 +15,7 @@ namespace AgOpenGPS
         public double toolFarLeftSpeed = 0;
         public double toolFarRightPosition = 0;
         public double toolFarRightSpeed = 0;
+        //public double toolFarLeftContourSpeed = 0, toolFarRightContourSpeed = 0;
 
         public double toolOverlap;
         public double toolTrailingHitchLength, tankTrailingHitchLength;
@@ -55,7 +56,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAhead;
-        public double minLookAheadDistance = 5.0;
+        public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
 

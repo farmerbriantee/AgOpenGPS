@@ -1,4 +1,12 @@
-﻿v2.7 May 31
+﻿v2.7 June 2
+* Contour mod to remove backwards movement
+* StartPoint and direction for auto in headland form
+* Fixed inclusion angle on headland to not jump back to eq width
+* Set uTurn to trigger at 45m, headland boxes set at 60m
+* Fix Dubins to trigger ahead 4m of pivot point
+* Added PAOGI to modify steerangle based on roll
+
+v2.7 May 31
 * Proportional and multiplier now instead of PID
 * D is used for roll gain to add to steering
 * I is just disabled for now
