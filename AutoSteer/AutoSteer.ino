@@ -262,6 +262,9 @@ void loop()
 		//set point steer angle * 10 is sent
 		steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes
 
+    //uturn byte read in
+    uTurn = Serial.read();
+    
 		//auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
 		if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1)
 		{
@@ -271,11 +274,10 @@ void loop()
 		{
 			bitSet(PINB, 5);   //turn LED on
 			watchdogTimer = 0;  //reset watchdog
-			serialResetTimer = 0; //if serial buffer is getting full, empty it
 		}
 
-    //uturn byte read in
-    uTurn = Serial.read();
+    //just rec'd so buffer is not full
+    serialResetTimer = 0; //if serial buffer is getting full, empty it  
 	}
 
 	//Settings Header has been found, 8 bytes are the settings
@@ -295,6 +297,6 @@ void loop()
 		steeringPositionZero = 412 + Serial.read();  //read steering zero offset
 		minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
 		maxIntegralValue = Serial.read(); //
-		steerSensorCounts = Serial.read(); //sent as 10 times the setting displayed in AOG
+		steerSensorCounts = Serial.read(); //sent as 1.0 times the setting displayed in AOG
 	}
 }

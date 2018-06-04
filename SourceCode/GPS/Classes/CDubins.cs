@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-/* Special thanks to erik.nordeus@gmail.com for his core dubins code originally written 
+/* Special thanks to erik.nordeus@gmail.com for his core dubins code originally written
  * in Unity. Converted to work as a class in C# from Unity C Script
  *  http://www.habrador.com/about/
  */
@@ -90,7 +90,6 @@ namespace AgOpenGPS
 
                 //Generate the final coordinates of the path from tangent points and segment lengths
                 GeneratePathCoordinates();
-
             }
 
             //No paths could be found
