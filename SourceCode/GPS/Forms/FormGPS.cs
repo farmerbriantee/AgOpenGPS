@@ -591,6 +591,8 @@ namespace AgOpenGPS
                 //only add if inside actual field boundary
                 ct.ptList.Add(point);
             }
+
+            TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
         }
 
         private void btnRecPathPauseRecord_Click(object sender, EventArgs e)

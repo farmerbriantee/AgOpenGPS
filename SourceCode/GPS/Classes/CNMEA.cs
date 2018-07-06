@@ -220,7 +220,7 @@ Field	Meaning
                 if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
                 if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
                 if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
-                if (words[0] == "$GNHDT" | words[0] == "$GPHDT") ParseHDT();
+                if (words[0] == "$GNHDT" | words[0] == "$GPHDT" | words[0] == "$HEHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
             }// while still data

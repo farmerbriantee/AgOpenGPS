@@ -465,7 +465,7 @@ namespace AgOpenGPS
                 else distPivot = -3333;
 
                 //trigger the "its ready to generate a youturn when 35.11m away" but don't make it just yet
-                if (distPivot < 45.11 && distPivot > 42.11 && !yt.isYouTurnTriggered && yt.isInWorkArea)
+                if (distPivot < 10.11 && distPivot > 9.11 && !yt.isYouTurnTriggered && yt.isInWorkArea)
                 {
                     //begin the whole process, all conditions are met
                     yt.YouTurnTrigger();
@@ -489,7 +489,7 @@ namespace AgOpenGPS
                     {
                         //how far have we gone since youturn request was triggered
                         distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        if (distanceToStartAutoTurn > (45.11 + yt.youTurnStartOffset+headlandDistanceDelta))
+                        if (distanceToStartAutoTurn > (10.11 + yt.youTurnStartOffset+headlandDistanceDelta))
                         {
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;

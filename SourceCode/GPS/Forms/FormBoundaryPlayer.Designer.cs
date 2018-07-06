@@ -80,6 +80,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.btnPausePlay);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormBoundaryPlayer";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormBoundaryPlayer_Load);

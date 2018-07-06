@@ -322,13 +322,13 @@ namespace AgOpenGPS
             int start, stop;
             if (isSameWay)
             {
-                start = pt - 25; if (start < 0) start = 0;
-                stop = pt + 60; if (stop > ptCount) stop = ptCount + 1;
+                start = pt - 35; if (start < 0) start = 0;
+                stop = pt + 40; if (stop > ptCount) stop = ptCount + 1;
             }
             else
             {
-                start = pt - 60; if (start < 0) start = 0;
-                stop = pt + 25; if (stop > ptCount) stop = ptCount + 1;
+                start = pt - 40; if (start < 0) start = 0;
+                stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
             }
 
             double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;

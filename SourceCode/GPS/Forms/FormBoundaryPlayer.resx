@@ -136,7 +136,8 @@
   </data>
   <data name="btnStop.Text" xml:space="preserve">
     <value>Done</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="btnStop.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
@@ -169,7 +170,8 @@
   </data>
   <data name="btnPausePlay.Text" xml:space="preserve">
     <value>Record</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="btnPausePlay.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
   </data>
@@ -202,7 +204,8 @@
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Area:</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
@@ -269,7 +272,8 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Stop Record Pause Boundary</value>
-  <comment>x</comment></data>
+    <comment>x</comment>
+  </data>
   <data name="&gt;&gt;timer1.Name" xml:space="preserve">
     <value>timer1</value>
   </data>
