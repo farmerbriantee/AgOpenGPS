@@ -51,6 +51,7 @@ void calcSteeringPID(void) {
   
  if (pwmDrive > 200) pwmDrive = 200;
  if (pwmDrive < -200) pwmDrive = -200;
+ pwmDrive = pwmDrive * multiMap(speeed,_in,_out,5) / 100;
  }
 
  void motorDrive(void) 
