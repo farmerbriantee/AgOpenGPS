@@ -63,6 +63,20 @@ int roll = 0;
 int pwmDrive = 0, drive = 0, pwmDisplay = 0;
 float pValue = 0, iValue = 0, dValue = 0;
 byte minPWMValue = 10;
+int _in[]={5,10,15,25,30}; // note: the _in array should have increasing values, represents speed
+int _out[]={100,90,70,55,40}; // represents % of pwmdrive sent to motor as relation to speed
+int multiMap(int val, int* _in, int* _out, uint8_t size)
+   {   // take care that the value is within range
+    if (val <= _in[0]) return _out[0];  
+    if (val >= _in[size-1]) return _out[size-1];
+      // search right interval
+    uint8_t pos = 1;  // _in[0] already tested
+    while(val > _in[pos]) pos++;
+      // this will handle all exact "points" in the _in array
+    if (val == _in[pos]) return _out[pos];
+      // interpolate in the right segment for the rest
+    return (val - _in[pos-1]) * (_out[pos] - _out[pos-1]) / (_in[pos] - _in[pos-1]) + _out[pos-1];
+   }
 
 //PID variables
 float Ko = 0.0f;  //overall gain
