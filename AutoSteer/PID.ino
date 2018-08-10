@@ -1,8 +1,8 @@
 void calcSteeringPID(void) {
   
   //Proportional
-  pValue = steerSettings.Kp * steerAngleError *steerSettings.Ko;  
-
+  pValue = steerSettings.Kp * steerAngleError * steerSettings.Ko;   
+/*
   //if (abs(distanceFromLine) < 15)
   //{
     //Integral
@@ -24,36 +24,38 @@ void calcSteeringPID(void) {
   if (steerCurrentSign - steerPrevSign) integrated_error = 0; //zero out the integrator
   steerPrevSign = steerCurrentSign;  //save a copy for next time
   
-  iValue = steerSettings.Ki * integrated_error;  
-  if (iValue > steerSettings.maxIntegralValue) iValue = steerSettings.maxIntegralValue;
-  if (iValue < -steerSettings.maxIntegralValue) iValue = -steerSettings.maxIntegralValue;
+  iValue = Ki * integrated_error;  
+  if (iValue > maxIntegralValue) iValue = maxIntegralValue;
+  if (iValue < -maxIntegralValue) iValue = -maxIntegralValue;
 
 
   
 
   //Derivative
   dError = steerAngleError - lastLastError;
-  dValue = steerSettings.Kd * (dError) * steerSettings.Ko;
+  dValue = Kd * (dError) * Ko;
   
   //save history of errors
   lastLastError = lastError;
   lastError = steerAngleError;
+  
 
   drive = pValue + dValue + iValue;
+  */
+  drive = pValue;
   pwmDrive = (constrain(drive, -255, 255));
 
   //add throttle factor so no delay from motor resistance.
-  if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWMValue;
-  else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWMValue;
-  
- if (pwmDrive > 100) pwmDrive = 100;
- if (pwmDrive < -100) pwmDrive = -100;
+  if (pwmDrive < 0 & pwmDrive > (-255 + steerSettings.minPWMValue)) pwmDrive = pwmDrive - steerSettings.minPWMValue;
+  else if (pwmDrive > 0 & pwmDrive < (255 - steerSettings.minPWMValue)) pwmDrive = pwmDrive + steerSettings.minPWMValue;
+
+  pwmDrive = (constrain(drive, -200, 200));
  }
 
  void motorDrive(void) 
   {
     pwmDisplay = pwmDrive;
-    #ifndef HYDRAULIC_STEER
+     #ifndef HYDRAULIC_STEER
     if (pwmDrive > 0) bitSet(PORTB, 4);  //set the correct direction
     else   
     {
@@ -87,7 +89,6 @@ void calcSteeringPID(void) {
    }
     
     #endif
-    
   }
 
 
