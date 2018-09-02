@@ -595,7 +595,7 @@ Field	Meaning
 
         public void DecDeg2UTM()
         {
-            zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
+            if (!mf.isJobStarted) zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
             double[] xy = MapLatLonToXY(latitude * 0.01745329251994329576923690766743,
                                         longitude * 0.01745329251994329576923690766743,
                                         (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
