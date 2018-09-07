@@ -184,7 +184,7 @@ Field	Meaning
             if (rawBuffer == null) return;
 
             //find end of a sentence
-            int cr = rawBuffer.IndexOf("\r\n", StringComparison.Ordinal);
+            int cr = rawBuffer.IndexOf("\n", StringComparison.Ordinal);
             if (cr == -1) return; // No end found, wait for more data
 
             // Find start of next sentence
@@ -194,7 +194,7 @@ Field	Meaning
             //if the $ isn't first, get rid of the tail of corrupt sentence
             if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
 
-            cr = rawBuffer.IndexOf("\r\n", StringComparison.Ordinal);
+            cr = rawBuffer.IndexOf("\n", StringComparison.Ordinal);
             if (cr == -1) return; // No end found, wait for more data
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (dollar == -1) return;
@@ -202,7 +202,7 @@ Field	Meaning
             //if the $ isn't first, get rid of the tail of corrupt sentence
             if (dollar >= cr) rawBuffer = rawBuffer.Substring(dollar);
 
-            cr = rawBuffer.IndexOf("\r\n", StringComparison.Ordinal);
+            cr = rawBuffer.IndexOf("\n", StringComparison.Ordinal);
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (cr == -1 || dollar == -1) return;
 
@@ -226,13 +226,32 @@ Field	Meaning
             }// while still data
         }
 
+        private double rollK, Pc, G, Xp, Zp, XeRoll;
+        private double P = 1.0;
+        private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
+        private readonly double varProcess = 0.0003;
+
         private void ParseAVR()
         {
             if (!String.IsNullOrEmpty(words[1]))
             {
                 //True heading
                 double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                if (mf.ahrs.isRollPAOGI) mf.mc.rollRaw = (int)(nRoll * 16);
+                if (mf.ahrs.isRollPAOGI)
+                //input to the kalman filter
+                {
+                    rollK = nRoll;
+
+                    //Kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    mf.mc.rollRaw = (int)(XeRoll * 16);
+                }
             }
         }
 
@@ -249,14 +268,14 @@ Field	Meaning
                 rawBuffer = rawBuffer.Substring(start);
 
                 // Find end of sentence
-                int end = rawBuffer.IndexOf("\r\n", StringComparison.Ordinal);
+                int end = rawBuffer.IndexOf("\n", StringComparison.Ordinal);
                 if (end == -1) return null;
 
                 //the NMEA sentence to be parsed
-                sentence = rawBuffer.Substring(0, end + 2);
+                sentence = rawBuffer.Substring(0, end + 1);
 
                 //remove the processed sentence from the rawBuffer
-                rawBuffer = rawBuffer.Substring(end + 2);
+                rawBuffer = rawBuffer.Substring(end + 1);
             }
 
             //if sentence has valid checksum, its all good
@@ -281,10 +300,11 @@ Field	Meaning
                 if (fixFrom == "GGA")
                 {
                     //get latitude and convert to decimal degrees
-                    double.TryParse(words[2].Substring(0, 2), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
-                    double.TryParse(words[2].Substring(2), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
-                    temp *= 0.01666666666666666666666666666667;
-                    latitude += temp;
+                    int decim = words[2].IndexOf(".", StringComparison.Ordinal);
+                    decim -= 2;
+                    double.TryParse(words[2].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                    double.TryParse(words[2].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);                   
+                    latitude += temp * 0.01666666666666666666666666666667;
                     if (words[3] == "S")
                     {
                         latitude *= -1;
@@ -293,10 +313,11 @@ Field	Meaning
                     else { hemisphere = 'N'; }
 
                     //get longitude and convert to decimal degrees
-                    double.TryParse(words[4].Substring(0, 3), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
-                    double.TryParse(words[4].Substring(3), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
+                    decim = words[4].IndexOf(".", StringComparison.Ordinal);
+                    decim -= 2;
+                    double.TryParse(words[4].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                    double.TryParse(words[4].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
                     longitude += temp * 0.01666666666666666666666666666667;
-
                     { if (words[5] == "W") longitude *= -1; }
 
                     //calculate zone and UTM coords

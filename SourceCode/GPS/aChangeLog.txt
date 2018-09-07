@@ -5,6 +5,8 @@
 * Set uTurn to trigger at 45m, headland boxes set at 60m
 * Fix Dubins to trigger ahead 4m of pivot point
 * Added PAOGI to modify steerangle based on roll
+* Added Kalman to AVR PArse for dual antenna
+
 
 v2.7 May 31
 * Proportional and multiplier now instead of PID
