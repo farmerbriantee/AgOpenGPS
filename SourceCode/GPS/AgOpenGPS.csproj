@@ -798,8 +798,8 @@
     <None Include="btnImages\ArrowTurnRight.png" />
     <None Include="btnImages\FlowMeterDual.png" />
     <None Include="btnImages\FlowMeterSingle.png" />
-    <Content Include="Dependencies\Floor.png" />
-    <Content Include="Dependencies\Landscape.png">
+    <Content Include="Dependencies\floor.png" />
+    <Content Include="Dependencies\landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ALicense.txt" />
@@ -808,7 +808,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

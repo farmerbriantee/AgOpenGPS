@@ -502,20 +502,20 @@ namespace AgOpenGPS
             catch (Exception e)
             {
                 WriteErrorLog("Loading Landscape Textures" + e);
-                MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", e.Message);
+                MessageBox.Show("Texture File landscape.png is Missing", e.Message);
             }
 
             try
             {
                 //  Floor
                 ParticleTexture = new Texture();
-                ParticleTexture.Create(gl, @".\Dependencies\Floor.png");
+                ParticleTexture.Create(gl, @".\Dependencies\floor.png");
                 texture[1] = ParticleTexture.TextureName;
             }
             catch (Exception e)
             {
                 WriteErrorLog("Loading Floor Texture" + e);
-                MessageBox.Show("Texture File FLOOR.PNG is Missing", e.Message);
+                MessageBox.Show("Texture File floor.png is Missing", e.Message);
             }
 
             return texture[0];
