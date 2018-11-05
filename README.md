@@ -1,7 +1,7 @@
 
-# AgOpenGPS
+# AgOpenGPS  ****  Use AgOpen for Newest Version
 
-Name Change - it is now AgOpen. All development will continue there. This version has been deprecated. 
+ All development will be in AgOpen. This version has been deprecated. 
 
 https://agopengps.jimdosite.com/
 
