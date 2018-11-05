@@ -1,6 +1,8 @@
 
 # AgOpenGPS
 
+Name Change - it is now AgOpen. All development will continue there. This version has been deprecated. 
+
 https://agopengps.jimdosite.com/
 
 Discussed in detail http://www.thecombineforum.com/forums/31-technology/278810-agopengps.html
