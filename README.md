@@ -1,7 +1,5 @@
 
-# AgOpenGPS  ****  Use AgOpen for Newest Version
-
- All development will be in AgOpen. This version has been deprecated. 
+# AgOpenGPS  ****  Guidance software
 
 https://agopengps.jimdosite.com/
 
