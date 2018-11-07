@@ -1189,7 +1189,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetDiagnosticYouTurn();
+            yt.ResetCreatedYouTurn();
 
             using (var form = new FormABLine(this))
             {
@@ -1233,7 +1233,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetDiagnosticYouTurn();
+            yt.ResetCreatedYouTurn();
 
             //check if window already exists
             Form fc = Application.OpenForms["FormABCurve"];
@@ -1352,7 +1352,7 @@ namespace AgOpenGPS
             System.Media.SystemSounds.Question.Play();
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetDiagnosticYouTurn();
+            yt.ResetCreatedYouTurn();
 
             if (isAutoSteerBtnOn)
             {
@@ -1771,7 +1771,7 @@ namespace AgOpenGPS
                 else
                 {
                     yt.isYouTurnShapeDisplayed = true;
-                    yt.BuildYouTurnListToRight(false, true);
+                    yt.BuildManualYouTurn(false, true);
                     AutoYouTurnButtonsLeftTurn();
                 }
             }
@@ -1805,7 +1805,7 @@ namespace AgOpenGPS
                 else
                 {
                     yt.isYouTurnShapeDisplayed = true;
-                    yt.BuildYouTurnListToRight(true, true);
+                    yt.BuildManualYouTurn(true, true);
                     AutoYouTurnButtonsRightTurn();
                 }
             }
@@ -1836,7 +1836,7 @@ namespace AgOpenGPS
             if (!yt.isYouTurnBtnOn)
             {
                 //new direction so reset where to put turn diagnostic
-                yt.ResetDiagnosticYouTurn();
+                yt.ResetCreatedYouTurn();
 
                 yt.isYouTurnBtnOn = true;
                 yt.dew2Index = 0;
@@ -1861,7 +1861,7 @@ namespace AgOpenGPS
                 yt.ResetYouTurn();
 
                 //new direction so reset where to put turn diagnostic
-                yt.ResetDiagnosticYouTurn();
+                yt.ResetCreatedYouTurn();
 
                 //mc.autoSteerData[mc.sdX] = 0;
                 mc.machineControlData[mc.cnYouTurn] = 0;
@@ -1890,7 +1890,7 @@ namespace AgOpenGPS
         public void AutoYouTurnButtonsReset()
         {
             //new direction so reset where to put turn diagnostic
-            yt.ResetDiagnosticYouTurn();
+            yt.ResetCreatedYouTurn();
 
             //fix the buttons
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
@@ -2691,20 +2691,21 @@ namespace AgOpenGPS
         }
         private void toolstripHeadland_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr[0].isSet && (ABLine.isABLineSet | curve.isCurveSet))
-            {
-                //field too small
-                //if (bnd.bndArr[0].bndLine.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-                //using (var form = new FormHeadland(this))
-                //{
-                //    var result = form.ShowDialog();
-                //    if (result == DialogResult.OK)
-                //    {
+            //if (bnd.bndArr[0].isSet && (ABLine.isABLineSet | curve.isCurveSet))
+            //{
+            //    //field too small
+            //    //if (bnd.bndArr[0].bndLine.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+            //    //using (var form = new FormHeadland(this))
+            //    //{
+            //    //    var result = form.ShowDialog();
+            //    //    if (result == DialogResult.OK)
+            //    //    {
 
-                //    }
-                //}
-            }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            //    //    }
+            //    //}
+            //}
+            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            TimedMessageBox(1500, "Headlands not Implemented", "Some time soon they will be functional");
         }
         private void toolstripBoundary_Click(object sender, EventArgs e)
         {

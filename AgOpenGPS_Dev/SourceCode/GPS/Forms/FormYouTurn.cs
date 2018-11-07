@@ -1212,7 +1212,7 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
             Close();
             mf.turn.BuildTurnLines();
-            mf.yt.ResetDiagnosticYouTurn();
+            mf.yt.ResetCreatedYouTurn();
         }
 
         private void btnTurnAllOff_Click(object sender, EventArgs e)

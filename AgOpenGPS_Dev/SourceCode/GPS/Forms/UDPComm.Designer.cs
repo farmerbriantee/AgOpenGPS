@@ -115,6 +115,14 @@ namespace AgOpenGPS
 
         private void UpdateRecvMessage(int port, byte[] data)
         {
+            //if it starts with a $, its an nmea sentence
+            if (data[0] == 36)
+            {
+                pn.rawBuffer += Encoding.ASCII.GetString(data);
+                recvSentenceSettings = pn.rawBuffer;
+                return;
+            }
+
             //quick check
             if (data.Length != 10) return;
 
@@ -167,13 +175,6 @@ namespace AgOpenGPS
                         break;
                     }
             }
-
-            //else if (data[0] == 0x7F && data[1] == 0xF1)
-            //{
-            //    mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
-            //}
-
-
         }
 
         #region Gesture
