@@ -274,22 +274,22 @@ namespace AgOpenGPS
         {
             if (e.Delta > 0)
             {
-                if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
-                else camera.zoomValue += camera.zoomValue * 0.05;
+                if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.02;
+                else camera.zoomValue += camera.zoomValue * 0.01;
                 camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                 SetZoom();
             }
             else
             {
                 if (camera.zoomValue <= 20)
-                { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
-                else { if ((camera.zoomValue -= camera.zoomValue * 0.05) < 6.0) camera.zoomValue = 6.0; }
+                { if ((camera.zoomValue -= camera.zoomValue * 0.02) < 6.0) camera.zoomValue = 6.0; }
+                else { if ((camera.zoomValue -= camera.zoomValue * 0.01) < 6.0) camera.zoomValue = 6.0; }
 
                 camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                 SetZoom();
             }
-
         }
+
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {

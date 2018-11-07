@@ -458,7 +458,7 @@ namespace AgOpenGPS
                 //if we are too much off track, kill the diagnostic creation, start again
                 if (crossTrackError > 200 && !yt.isYouTurnShapeDisplayed)
                 {
-                    yt.ResetDiagnosticYouTurn();
+                    yt.ResetCreatedYouTurn();
                     distancePivotToTurnLine = -4444;
                 }
                 else
@@ -508,7 +508,7 @@ namespace AgOpenGPS
                                     double toolTurnWidth = vehicle.toolWidth * yt.skips;
 
                                     //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
-                                    yt.distanceTurnBeforeLine = 3.0 + yt.turnDiagnosticAdjuster;
+                                    yt.distanceTurnBeforeLine = 3.0 + yt.turnDistanceAdjuster;
                                     yt.distanceCrossLineCalc = yt.distanceTurnBeforeLine;
 
                                     if (vehicle.minTurningRadius * 2 < toolTurnWidth)
@@ -544,27 +544,27 @@ namespace AgOpenGPS
                                     if (!yt.isYouTurnTriggered && !yt.isYouTurnShapeDisplayed)
                                     {
                                         yt.BuildDubinsYouTurn(yt.isYouTurnRight, (distancePivotToTurnLine - yt.distanceTurnBeforeLine));
-                                        lblStepsFromTurnLine.Text = yt.turnDiagnosticAdjuster.ToString();
+                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                     }
                                     else
                                     {
-                                        yt.turnDiagnosticAdjuster = 0;
-                                        lblStepsFromTurnLine.Text = yt.turnDiagnosticAdjuster.ToString();
+                                        yt.turnDistanceAdjuster = 0;
+                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                     }
                                 }
 
                                 else  //Patterns
                                 {
-                                    yt.distanceTurnBeforeLine = yt.turnDiagnosticAdjuster;
+                                    yt.distanceTurnBeforeLine = yt.turnDistanceAdjuster;
                                     if (!yt.isYouTurnTriggered && !yt.isYouTurnShapeDisplayed)
                                     {
                                         yt.BuildPatternYouTurn(yt.isYouTurnRight, (distancePivotToTurnLine - yt.distanceTurnBeforeLine));
-                                        lblStepsFromTurnLine.Text = yt.turnDiagnosticAdjuster.ToString();
+                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                     }
                                     else
                                     {
-                                        yt.turnDiagnosticAdjuster = 0;
-                                        lblStepsFromTurnLine.Text = yt.turnDiagnosticAdjuster.ToString();
+                                        yt.turnDistanceAdjuster = 0;
+                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                     }
 
                                 }
@@ -601,8 +601,9 @@ namespace AgOpenGPS
                         {
                             if (yt.youTurnPhase != 3)
                             {
+                                yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight);
                             }
-                            else
+                            else //wait to trigger the actual turn
                             {
                                 //distance from current pivot to first point of youturn pattern
                                 distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
@@ -613,7 +614,7 @@ namespace AgOpenGPS
                                     yt.YouTurnTrigger();
                             }
 
-                            //start counting down - this is not run if shape is drawn
+                            //Turn is triggered - this is not run if shape is drawn
                             if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
                             {
                                 //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
