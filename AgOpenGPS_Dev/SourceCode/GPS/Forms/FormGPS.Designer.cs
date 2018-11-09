@@ -80,6 +80,7 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -145,7 +146,6 @@
             this.lblLidarDistance = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
@@ -222,6 +222,9 @@
             this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnDrivePath = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
+            this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -247,8 +250,6 @@
             this.btnContourPriority = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
-            this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
             this.btnFlag = new System.Windows.Forms.Button();
@@ -259,6 +260,7 @@
             this.btnABLine = new System.Windows.Forms.Button();
             this.oglMain = new OpenTK.GLControl();
             this.oglBack = new OpenTK.GLControl();
+            this.btnSnap = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -293,8 +295,8 @@
             // 
             // toolStripSeparator5
             // 
-            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
             // 
             // googleEarthOpenGLContextMenu
             // 
@@ -313,7 +315,6 @@
             // 
             // fileToolStripMenuItem
             // 
-            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator9,
             this.menustripLanguage,
@@ -330,15 +331,15 @@
             this.shortcutKeysToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // toolStripSeparator9
             // 
-            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             // 
             // menustripLanguage
             // 
-            resources.ApplyResources(this.menustripLanguage, "menustripLanguage");
             this.menustripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLanguageEnglish,
             this.menuLanguageDeutsch,
@@ -348,120 +349,120 @@
             this.menuLanguageFrench,
             this.menuLanguageItalian});
             this.menustripLanguage.Name = "menustripLanguage";
+            resources.ApplyResources(this.menustripLanguage, "menustripLanguage");
             // 
             // menuLanguageEnglish
             // 
-            resources.ApplyResources(this.menuLanguageEnglish, "menuLanguageEnglish");
             this.menuLanguageEnglish.CheckOnClick = true;
             this.menuLanguageEnglish.Name = "menuLanguageEnglish";
+            resources.ApplyResources(this.menuLanguageEnglish, "menuLanguageEnglish");
             this.menuLanguageEnglish.Click += new System.EventHandler(this.menuLanguageEnglish_Click);
             // 
             // menuLanguageDeutsch
             // 
-            resources.ApplyResources(this.menuLanguageDeutsch, "menuLanguageDeutsch");
             this.menuLanguageDeutsch.CheckOnClick = true;
             this.menuLanguageDeutsch.Name = "menuLanguageDeutsch";
+            resources.ApplyResources(this.menuLanguageDeutsch, "menuLanguageDeutsch");
             this.menuLanguageDeutsch.Click += new System.EventHandler(this.menuLanguageDeutsch_Click);
             // 
             // menuLanguageRussian
             // 
-            resources.ApplyResources(this.menuLanguageRussian, "menuLanguageRussian");
             this.menuLanguageRussian.CheckOnClick = true;
             this.menuLanguageRussian.Name = "menuLanguageRussian";
+            resources.ApplyResources(this.menuLanguageRussian, "menuLanguageRussian");
             this.menuLanguageRussian.Click += new System.EventHandler(this.menuLanguageRussian_Click);
             // 
             // menuLanguageDutch
             // 
-            resources.ApplyResources(this.menuLanguageDutch, "menuLanguageDutch");
             this.menuLanguageDutch.CheckOnClick = true;
             this.menuLanguageDutch.Name = "menuLanguageDutch";
+            resources.ApplyResources(this.menuLanguageDutch, "menuLanguageDutch");
             this.menuLanguageDutch.Click += new System.EventHandler(this.menuLanguageDutch_Click);
             // 
             // menuLanguageSpanish
             // 
-            resources.ApplyResources(this.menuLanguageSpanish, "menuLanguageSpanish");
             this.menuLanguageSpanish.CheckOnClick = true;
             this.menuLanguageSpanish.Name = "menuLanguageSpanish";
+            resources.ApplyResources(this.menuLanguageSpanish, "menuLanguageSpanish");
             this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
             // 
             // menuLanguageFrench
             // 
-            resources.ApplyResources(this.menuLanguageFrench, "menuLanguageFrench");
             this.menuLanguageFrench.CheckOnClick = true;
             this.menuLanguageFrench.Name = "menuLanguageFrench";
+            resources.ApplyResources(this.menuLanguageFrench, "menuLanguageFrench");
             this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
             // 
             // menuLanguageItalian
             // 
-            resources.ApplyResources(this.menuLanguageItalian, "menuLanguageItalian");
             this.menuLanguageItalian.Name = "menuLanguageItalian";
+            resources.ApplyResources(this.menuLanguageItalian, "menuLanguageItalian");
             this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
             // 
             // toolStripSeparator11
             // 
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             this.toolStripSeparator11.Name = "toolStripSeparator11";
+            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
             // setWorkingDirectoryToolStripMenuItem
             // 
-            resources.ApplyResources(this.setWorkingDirectoryToolStripMenuItem, "setWorkingDirectoryToolStripMenuItem");
             this.setWorkingDirectoryToolStripMenuItem.Name = "setWorkingDirectoryToolStripMenuItem";
+            resources.ApplyResources(this.setWorkingDirectoryToolStripMenuItem, "setWorkingDirectoryToolStripMenuItem");
             this.setWorkingDirectoryToolStripMenuItem.Click += new System.EventHandler(this.setWorkingDirectoryToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
             // 
-            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             this.toolStripSeparator10.Name = "toolStripSeparator10";
+            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
             // 
             // enterSimCoordsToolStripMenuItem
             // 
-            resources.ApplyResources(this.enterSimCoordsToolStripMenuItem, "enterSimCoordsToolStripMenuItem");
             this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
+            resources.ApplyResources(this.enterSimCoordsToolStripMenuItem, "enterSimCoordsToolStripMenuItem");
             this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
             // 
             // toolStripSeparator12
             // 
-            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
             this.toolStripSeparator12.Name = "toolStripSeparator12";
+            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
             // 
             // loadVehicleToolStripMenuItem
             // 
-            resources.ApplyResources(this.loadVehicleToolStripMenuItem, "loadVehicleToolStripMenuItem");
             this.loadVehicleToolStripMenuItem.Name = "loadVehicleToolStripMenuItem";
+            resources.ApplyResources(this.loadVehicleToolStripMenuItem, "loadVehicleToolStripMenuItem");
             this.loadVehicleToolStripMenuItem.Click += new System.EventHandler(this.loadVehicleToolStripMenuItem_Click);
             // 
             // saveVehicleToolStripMenuItem
             // 
-            resources.ApplyResources(this.saveVehicleToolStripMenuItem, "saveVehicleToolStripMenuItem");
             this.saveVehicleToolStripMenuItem.Name = "saveVehicleToolStripMenuItem";
+            resources.ApplyResources(this.saveVehicleToolStripMenuItem, "saveVehicleToolStripMenuItem");
             this.saveVehicleToolStripMenuItem.Click += new System.EventHandler(this.saveVehicleToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
-            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
             // 
             // fieldToolStripMenuItem
             // 
-            resources.ApplyResources(this.fieldToolStripMenuItem, "fieldToolStripMenuItem");
             this.fieldToolStripMenuItem.Name = "fieldToolStripMenuItem";
+            resources.ApplyResources(this.fieldToolStripMenuItem, "fieldToolStripMenuItem");
             this.fieldToolStripMenuItem.Click += new System.EventHandler(this.fieldToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
-            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // shortcutKeysToolStripMenuItem
             // 
-            resources.ApplyResources(this.shortcutKeysToolStripMenuItem, "shortcutKeysToolStripMenuItem");
             this.shortcutKeysToolStripMenuItem.Name = "shortcutKeysToolStripMenuItem";
+            resources.ApplyResources(this.shortcutKeysToolStripMenuItem, "shortcutKeysToolStripMenuItem");
             this.shortcutKeysToolStripMenuItem.Click += new System.EventHandler(this.shortcutKeysToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
-            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.resetALLToolStripMenuItem,
@@ -480,136 +481,137 @@
             this.toolStripSeparator7});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            resources.ApplyResources(this.settingsToolStripMenuItem, "settingsToolStripMenuItem");
             // 
             // toolStripSeparator1
             // 
-            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             this.toolStripSeparator1.Name = "toolStripSeparator1";
+            resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
             // resetALLToolStripMenuItem
             // 
-            resources.ApplyResources(this.resetALLToolStripMenuItem, "resetALLToolStripMenuItem");
             this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
+            resources.ApplyResources(this.resetALLToolStripMenuItem, "resetALLToolStripMenuItem");
             this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator2
             // 
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // colorsToolStripMenuItem
             // 
-            resources.ApplyResources(this.colorsToolStripMenuItem, "colorsToolStripMenuItem");
             this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sectionToolStripMenuItem,
             this.fieldToolStripMenuItem1});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            resources.ApplyResources(this.colorsToolStripMenuItem, "colorsToolStripMenuItem");
             // 
             // sectionToolStripMenuItem
             // 
-            resources.ApplyResources(this.sectionToolStripMenuItem, "sectionToolStripMenuItem");
             this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
+            resources.ApplyResources(this.sectionToolStripMenuItem, "sectionToolStripMenuItem");
             this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
             // 
             // fieldToolStripMenuItem1
             // 
-            resources.ApplyResources(this.fieldToolStripMenuItem1, "fieldToolStripMenuItem1");
             this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
+            resources.ApplyResources(this.fieldToolStripMenuItem1, "fieldToolStripMenuItem1");
             this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
             // 
             // toolStripUnitsMenu
             // 
-            resources.ApplyResources(this.toolStripUnitsMenu, "toolStripUnitsMenu");
             this.toolStripUnitsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.metricToolStrip,
             this.imperialToolStrip});
             this.toolStripUnitsMenu.Name = "toolStripUnitsMenu";
+            resources.ApplyResources(this.toolStripUnitsMenu, "toolStripUnitsMenu");
             // 
             // metricToolStrip
             // 
-            resources.ApplyResources(this.metricToolStrip, "metricToolStrip");
             this.metricToolStrip.CheckOnClick = true;
             this.metricToolStrip.Name = "metricToolStrip";
+            resources.ApplyResources(this.metricToolStrip, "metricToolStrip");
             this.metricToolStrip.Click += new System.EventHandler(this.metricToolStrip_Click);
             // 
             // imperialToolStrip
             // 
-            resources.ApplyResources(this.imperialToolStrip, "imperialToolStrip");
             this.imperialToolStrip.CheckOnClick = true;
             this.imperialToolStrip.Name = "imperialToolStrip";
+            resources.ApplyResources(this.imperialToolStrip, "imperialToolStrip");
             this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
             // 
             // sideGuideLines
             // 
-            resources.ApplyResources(this.sideGuideLines, "sideGuideLines");
             this.sideGuideLines.Checked = true;
             this.sideGuideLines.CheckOnClick = true;
             this.sideGuideLines.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sideGuideLines.Name = "sideGuideLines";
+            resources.ApplyResources(this.sideGuideLines, "sideGuideLines");
             this.sideGuideLines.Click += new System.EventHandler(this.sideGuideLines_Click);
             // 
             // gridToolStripMenuItem
             // 
-            resources.ApplyResources(this.gridToolStripMenuItem, "gridToolStripMenuItem");
             this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
+            resources.ApplyResources(this.gridToolStripMenuItem, "gridToolStripMenuItem");
             this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
             // 
             // lightbarToolStripMenuItem
             // 
-            resources.ApplyResources(this.lightbarToolStripMenuItem, "lightbarToolStripMenuItem");
             this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
+            resources.ApplyResources(this.lightbarToolStripMenuItem, "lightbarToolStripMenuItem");
             this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
             // 
             // logNMEAMenuItem
             // 
-            resources.ApplyResources(this.logNMEAMenuItem, "logNMEAMenuItem");
             this.logNMEAMenuItem.Name = "logNMEAMenuItem";
+            resources.ApplyResources(this.logNMEAMenuItem, "logNMEAMenuItem");
             this.logNMEAMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
             // 
             // polygonsToolStripMenuItem
             // 
-            resources.ApplyResources(this.polygonsToolStripMenuItem, "polygonsToolStripMenuItem");
             this.polygonsToolStripMenuItem.Checked = true;
             this.polygonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.polygonsToolStripMenuItem.Name = "polygonsToolStripMenuItem";
+            resources.ApplyResources(this.polygonsToolStripMenuItem, "polygonsToolStripMenuItem");
             this.polygonsToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
             // 
             // pursuitLineToolStripMenuItem
             // 
-            resources.ApplyResources(this.pursuitLineToolStripMenuItem, "pursuitLineToolStripMenuItem");
             this.pursuitLineToolStripMenuItem.Checked = true;
             this.pursuitLineToolStripMenuItem.CheckOnClick = true;
             this.pursuitLineToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pursuitLineToolStripMenuItem.Name = "pursuitLineToolStripMenuItem";
+            resources.ApplyResources(this.pursuitLineToolStripMenuItem, "pursuitLineToolStripMenuItem");
             this.pursuitLineToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
             // 
             // skyToolStripMenu
             // 
-            resources.ApplyResources(this.skyToolStripMenu, "skyToolStripMenu");
             this.skyToolStripMenu.Checked = true;
             this.skyToolStripMenu.CheckOnClick = true;
             this.skyToolStripMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.skyToolStripMenu.Name = "skyToolStripMenu";
+            resources.ApplyResources(this.skyToolStripMenu, "skyToolStripMenu");
             this.skyToolStripMenu.Click += new System.EventHandler(this.skyToolStripMenu_Click);
             // 
             // toolStripSeparator6
             // 
-            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             this.toolStripSeparator6.Name = "toolStripSeparator6";
+            resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
             // simulatorOnToolStripMenuItem
             // 
-            resources.ApplyResources(this.simulatorOnToolStripMenuItem, "simulatorOnToolStripMenuItem");
             this.simulatorOnToolStripMenuItem.Checked = true;
             this.simulatorOnToolStripMenuItem.CheckOnClick = true;
             this.simulatorOnToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
+            resources.ApplyResources(this.simulatorOnToolStripMenuItem, "simulatorOnToolStripMenuItem");
             this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
-            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
             // 
             // menuStrip1
             // 
@@ -631,6 +633,7 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
+            this.toolStripBatman,
             this.toolStripZoomIn,
             this.toolStripBtnCamera,
             this.toolStripZoomOut,
@@ -650,6 +653,15 @@
             resources.ApplyResources(this.stripHz, "stripHz");
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
+            // 
+            // toolStripBatman
+            // 
+            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
+            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
+            this.toolStripBatman.Name = "toolStripBatman";
+            this.toolStripBatman.ShowDropDownArrow = false;
+            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
             // 
             // toolStripZoomIn
             // 
@@ -702,8 +714,8 @@
             // 
             // stripEqWidth
             // 
-            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
             this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
             this.stripEqWidth.Spring = true;
@@ -724,16 +736,16 @@
             // 
             // toolStripDeleteApplied
             // 
-            resources.ApplyResources(this.toolStripDeleteApplied, "toolStripDeleteApplied");
             this.toolStripDeleteApplied.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripAreYouSure});
+            resources.ApplyResources(this.toolStripDeleteApplied, "toolStripDeleteApplied");
             this.toolStripDeleteApplied.Image = global::AgOpenGPS.Properties.Resources.skull;
             this.toolStripDeleteApplied.Name = "toolStripDeleteApplied";
             // 
             // toolStripAreYouSure
             // 
-            resources.ApplyResources(this.toolStripAreYouSure, "toolStripAreYouSure");
             this.toolStripAreYouSure.Name = "toolStripAreYouSure";
+            resources.ApplyResources(this.toolStripAreYouSure, "toolStripAreYouSure");
             this.toolStripAreYouSure.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
             // 
             // toolStripBtnMakeBndContour
@@ -788,22 +800,22 @@
             // 
             // toolstripUDPConfig
             // 
-            resources.ApplyResources(this.toolstripUDPConfig, "toolstripUDPConfig");
             this.toolstripUDPConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripUDPConfig, "toolstripUDPConfig");
             this.toolstripUDPConfig.Name = "toolstripUDPConfig";
             this.toolstripUDPConfig.Click += new System.EventHandler(this.toolstripUDPConfig_Click);
             // 
             // toolstripUSBPortsConfig
             // 
-            resources.ApplyResources(this.toolstripUSBPortsConfig, "toolstripUSBPortsConfig");
             this.toolstripUSBPortsConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripUSBPortsConfig, "toolstripUSBPortsConfig");
             this.toolstripUSBPortsConfig.Name = "toolstripUSBPortsConfig";
             this.toolstripUSBPortsConfig.Click += new System.EventHandler(this.toolstripUSBPortsConfig_Click);
             // 
             // toolstripDisplayConfig
             // 
-            resources.ApplyResources(this.toolstripDisplayConfig, "toolstripDisplayConfig");
             this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripDisplayConfig, "toolstripDisplayConfig");
             this.toolstripDisplayConfig.Name = "toolstripDisplayConfig";
             this.toolstripDisplayConfig.Click += new System.EventHandler(this.toolstripDisplayConfig_Click);
             // 
@@ -815,22 +827,22 @@
             // 
             // toolstripAutoSteerConfig
             // 
-            resources.ApplyResources(this.toolstripAutoSteerConfig, "toolstripAutoSteerConfig");
             this.toolstripAutoSteerConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripAutoSteerConfig, "toolstripAutoSteerConfig");
             this.toolstripAutoSteerConfig.Name = "toolstripAutoSteerConfig";
             this.toolstripAutoSteerConfig.Click += new System.EventHandler(this.toolstripAutoSteerConfig_Click);
             // 
             // toolstripVehicleConfig
             // 
-            resources.ApplyResources(this.toolstripVehicleConfig, "toolstripVehicleConfig");
             this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripVehicleConfig, "toolstripVehicleConfig");
             this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
             this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
             // 
             // toolstripYouTurnConfig
             // 
-            resources.ApplyResources(this.toolstripYouTurnConfig, "toolstripYouTurnConfig");
             this.toolstripYouTurnConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripYouTurnConfig, "toolstripYouTurnConfig");
             this.toolstripYouTurnConfig.Name = "toolstripYouTurnConfig";
             this.toolstripYouTurnConfig.Click += new System.EventHandler(this.toolstripYouTurnConfig_Click);
             // 
@@ -855,36 +867,36 @@
             // 
             // toolstripField
             // 
-            resources.ApplyResources(this.toolstripField, "toolstripField");
             this.toolstripField.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripField, "toolstripField");
             this.toolstripField.Name = "toolstripField";
             this.toolstripField.Click += new System.EventHandler(this.toolstripField_Click);
             // 
             // toolstripBoundary
             // 
-            resources.ApplyResources(this.toolstripBoundary, "toolstripBoundary");
             this.toolstripBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripBoundary, "toolstripBoundary");
             this.toolstripBoundary.Name = "toolstripBoundary";
             this.toolstripBoundary.Click += new System.EventHandler(this.toolstripBoundary_Click);
             // 
             // toolstripHeadland
             // 
-            resources.ApplyResources(this.toolstripHeadland, "toolstripHeadland");
             this.toolstripHeadland.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripHeadland, "toolstripHeadland");
             this.toolstripHeadland.Name = "toolstripHeadland";
             this.toolstripHeadland.Click += new System.EventHandler(this.toolstripHeadland_Click);
             // 
             // toolstripResetTrip
             // 
-            resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
             this.toolstripResetTrip.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
             // 
             // stripPortGPS
             // 
-            resources.ApplyResources(this.stripPortGPS, "stripPortGPS");
             this.stripPortGPS.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
+            resources.ApplyResources(this.stripPortGPS, "stripPortGPS");
             this.stripPortGPS.ForeColor = System.Drawing.Color.Red;
             this.stripPortGPS.Name = "stripPortGPS";
             // 
@@ -1069,7 +1081,6 @@
             // 
             // DataPage
             // 
-            resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
             this.DataPage.Controls.Add(this.lblStepsFromTurnLine);
             this.DataPage.Controls.Add(this.lblAltitude);
@@ -1082,7 +1093,6 @@
             this.DataPage.Controls.Add(this.lblLidarDistance);
             this.DataPage.Controls.Add(this.label3);
             this.DataPage.Controls.Add(this.label1);
-            this.DataPage.Controls.Add(this.btnPauseDrivingPath);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.lblFixQuality);
             this.DataPage.Controls.Add(this.btnZoomOut);
@@ -1117,6 +1127,7 @@
             this.DataPage.Controls.Add(this.lblEasting);
             this.DataPage.Controls.Add(this.lblNorthing);
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
+            resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
             // lblStepsFromTurnLine
@@ -1169,14 +1180,6 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // btnPauseDrivingPath
-            // 
-            resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
-            this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
-            this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
-            this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
-            this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
             // 
             // lblHeading2
             // 
@@ -1282,15 +1285,15 @@
             // 
             // txtBoxSendAutoSteer
             // 
-            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
             this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
             this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
             this.txtBoxSendAutoSteer.ReadOnly = true;
             // 
             // txtBoxRecvAutoSteer
             // 
-            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
             this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
             this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
             this.txtBoxRecvAutoSteer.ReadOnly = true;
             // 
@@ -1346,7 +1349,6 @@
             // 
             // zoomPage2
             // 
-            resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.zoomPage2.Controls.Add(this.oglZoom);
             this.zoomPage2.Controls.Add(this.label6);
@@ -1355,12 +1357,13 @@
             this.zoomPage2.Controls.Add(this.label4);
             this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
             this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
+            resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.Name = "zoomPage2";
             // 
             // oglZoom
             // 
-            resources.ApplyResources(this.oglZoom, "oglZoom");
             this.oglZoom.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.oglZoom, "oglZoom");
             this.oglZoom.Name = "oglZoom";
             this.oglZoom.VSync = false;
             this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
@@ -1383,7 +1386,6 @@
             // 
             // rate2Page5
             // 
-            resources.ApplyResources(this.rate2Page5, "rate2Page5");
             this.rate2Page5.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.rate2Page5.Controls.Add(this.label30);
             this.rate2Page5.Controls.Add(this.label21);
@@ -1409,6 +1411,7 @@
             this.rate2Page5.Controls.Add(this.btnRateLeftDn);
             this.rate2Page5.Controls.Add(this.btnRateLeftUp);
             this.rate2Page5.Controls.Add(this.btnDualRate);
+            resources.ApplyResources(this.rate2Page5, "rate2Page5");
             this.rate2Page5.Name = "rate2Page5";
             // 
             // label30
@@ -1423,15 +1426,15 @@
             // 
             // txtBoxSendArduino
             // 
-            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
             this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
             this.txtBoxSendArduino.Name = "txtBoxSendArduino";
             this.txtBoxSendArduino.ReadOnly = true;
             // 
             // txtBoxRecvArduino
             // 
-            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
             this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
             // 
@@ -1519,16 +1522,16 @@
             // 
             // btnSelectRate2
             // 
-            resources.ApplyResources(this.btnSelectRate2, "btnSelectRate2");
             this.btnSelectRate2.BackColor = System.Drawing.Color.LightGray;
+            resources.ApplyResources(this.btnSelectRate2, "btnSelectRate2");
             this.btnSelectRate2.Name = "btnSelectRate2";
             this.btnSelectRate2.UseVisualStyleBackColor = false;
             this.btnSelectRate2.Click += new System.EventHandler(this.btnSelectRate2_Click);
             // 
             // btnSelectRate1
             // 
-            resources.ApplyResources(this.btnSelectRate1, "btnSelectRate1");
             this.btnSelectRate1.BackColor = System.Drawing.Color.LightSkyBlue;
+            resources.ApplyResources(this.btnSelectRate1, "btnSelectRate1");
             this.btnSelectRate1.Name = "btnSelectRate1";
             this.btnSelectRate1.UseVisualStyleBackColor = false;
             this.btnSelectRate1.Click += new System.EventHandler(this.btnSelectRate1_Click);
@@ -1549,8 +1552,8 @@
             // 
             // btnDualRateConfig
             // 
-            resources.ApplyResources(this.btnDualRateConfig, "btnDualRateConfig");
             this.btnDualRateConfig.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDualRateConfig, "btnDualRateConfig");
             this.btnDualRateConfig.Name = "btnDualRateConfig";
             this.btnDualRateConfig.UseVisualStyleBackColor = false;
             this.btnDualRateConfig.Click += new System.EventHandler(this.btnDualRateConfig_Click);
@@ -1571,16 +1574,15 @@
             // 
             // btnDualRate
             // 
-            resources.ApplyResources(this.btnDualRate, "btnDualRate");
             this.btnDualRate.BackColor = System.Drawing.Color.AliceBlue;
             this.btnDualRate.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnDualRate, "btnDualRate");
             this.btnDualRate.Name = "btnDualRate";
             this.btnDualRate.UseVisualStyleBackColor = false;
             this.btnDualRate.Click += new System.EventHandler(this.btnDualRate_Click);
             // 
             // configPage1
             // 
-            resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.configPage1.Controls.Add(this.btnMakeContourFromBoundary);
             this.configPage1.Controls.Add(this.btnSmoothAB);
@@ -1592,13 +1594,14 @@
             this.configPage1.Controls.Add(this.btnDeleteAllData);
             this.configPage1.Controls.Add(this.btnGPSData);
             this.configPage1.Controls.Add(this.btnPerimeter);
+            resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
             // 
             // btnMakeContourFromBoundary
             // 
-            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
             this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
             this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
             this.btnMakeContourFromBoundary.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
             this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
@@ -1606,9 +1609,9 @@
             // 
             // btnSmoothAB
             // 
-            resources.ApplyResources(this.btnSmoothAB, "btnSmoothAB");
             this.btnSmoothAB.BackColor = System.Drawing.Color.AliceBlue;
             this.btnSmoothAB.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSmoothAB, "btnSmoothAB");
             this.btnSmoothAB.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
             this.btnSmoothAB.Name = "btnSmoothAB";
             this.btnSmoothAB.UseVisualStyleBackColor = false;
@@ -1616,126 +1619,153 @@
             // 
             // btnFixOffset
             // 
-            resources.ApplyResources(this.btnFixOffset, "btnFixOffset");
             this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFixOffset.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFixOffset, "btnFixOffset");
             this.btnFixOffset.Name = "btnFixOffset";
             this.btnFixOffset.UseVisualStyleBackColor = false;
             this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
             // 
             // btnFlagsGoogleEarth
             // 
-            resources.ApplyResources(this.btnFlagsGoogleEarth, "btnFlagsGoogleEarth");
             this.btnFlagsGoogleEarth.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFlagsGoogleEarth.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFlagsGoogleEarth, "btnFlagsGoogleEarth");
             this.btnFlagsGoogleEarth.Name = "btnFlagsGoogleEarth";
             this.btnFlagsGoogleEarth.UseVisualStyleBackColor = false;
             this.btnFlagsGoogleEarth.Click += new System.EventHandler(this.btnFlagsGoogleEarth_Click);
             // 
             // btnWebCam
             // 
-            resources.ApplyResources(this.btnWebCam, "btnWebCam");
             this.btnWebCam.BackColor = System.Drawing.Color.AliceBlue;
             this.btnWebCam.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnWebCam, "btnWebCam");
             this.btnWebCam.Name = "btnWebCam";
             this.btnWebCam.UseVisualStyleBackColor = false;
             this.btnWebCam.Click += new System.EventHandler(this.btnWebCam_Click);
             // 
             // btnHelp
             // 
-            resources.ApplyResources(this.btnHelp, "btnHelp");
             this.btnHelp.BackColor = System.Drawing.Color.AliceBlue;
             this.btnHelp.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnHelp, "btnHelp");
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // btnFileExplorer
             // 
-            resources.ApplyResources(this.btnFileExplorer, "btnFileExplorer");
             this.btnFileExplorer.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFileExplorer.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFileExplorer, "btnFileExplorer");
             this.btnFileExplorer.Name = "btnFileExplorer";
             this.btnFileExplorer.UseVisualStyleBackColor = false;
             this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
             // 
             // btnDeleteAllData
             // 
-            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
             this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
             this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
             this.btnDeleteAllData.Name = "btnDeleteAllData";
             this.btnDeleteAllData.UseVisualStyleBackColor = false;
             this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
             // 
             // btnGPSData
             // 
-            resources.ApplyResources(this.btnGPSData, "btnGPSData");
             this.btnGPSData.BackColor = System.Drawing.Color.AliceBlue;
             this.btnGPSData.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnGPSData, "btnGPSData");
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
             // btnPerimeter
             // 
-            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
             this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
             this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
+            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
             this.btnPerimeter.Name = "btnPerimeter";
             this.btnPerimeter.UseVisualStyleBackColor = false;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
             // autoPage4
             // 
-            resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
             this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             this.autoPage4.Controls.Add(this.btnLidarOnOff);
             this.autoPage4.Controls.Add(this.btnGeneratePath);
             this.autoPage4.Controls.Add(this.btnDriveGenPath);
+            this.autoPage4.Controls.Add(this.btnDrivePath);
+            this.autoPage4.Controls.Add(this.btnManualAutoDrive);
+            this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
+            resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             // 
             // btnDeleteRecPath
             // 
-            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
             this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
             this.btnDeleteRecPath.Name = "btnDeleteRecPath";
             this.btnDeleteRecPath.UseVisualStyleBackColor = false;
             this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
             // 
             // btnRecPathPauseRecord
             // 
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
             this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
             this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
             this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
             this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
             // 
             // btnLidarOnOff
             // 
-            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
             this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
             this.btnLidarOnOff.Name = "btnLidarOnOff";
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
             // 
             // btnGeneratePath
             // 
-            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
             this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
             this.btnGeneratePath.Name = "btnGeneratePath";
             this.btnGeneratePath.UseVisualStyleBackColor = false;
             this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
             // 
             // btnDriveGenPath
             // 
-            resources.ApplyResources(this.btnDriveGenPath, "btnDriveGenPath");
             this.btnDriveGenPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDriveGenPath, "btnDriveGenPath");
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            // 
+            // btnDrivePath
+            // 
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
+            // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            // 
+            // btnPauseDrivingPath
+            // 
+            this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
+            this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
+            this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
+            this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
             // 
             // btnResetSim
             // 
@@ -1773,8 +1803,8 @@
             // 
             // toolStripMenuItem2
             // 
-            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
             // panelSimControls
             // 
@@ -1925,17 +1955,17 @@
             // 
             // btnSwapDirection
             // 
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
             this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
             this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
             this.btnSwapDirection.Name = "btnSwapDirection";
             this.btnSwapDirection.UseVisualStyleBackColor = false;
             this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
             // 
             // btnContourPriority
             // 
-            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
             this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.ContourPriorityRight;
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.UseVisualStyleBackColor = false;
@@ -1951,33 +1981,17 @@
             // 
             // btnLeftYouTurn
             // 
-            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
             this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
             this.btnLeftYouTurn.Name = "btnLeftYouTurn";
             this.btnLeftYouTurn.UseVisualStyleBackColor = false;
             this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
             // 
-            // btnManualAutoDrive
-            // 
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
-            // 
-            // btnDrivePath
-            // 
-            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnDrivePath.Name = "btnDrivePath";
-            this.btnDrivePath.UseVisualStyleBackColor = false;
-            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
-            // 
             // btnEnableAutoYouTurn
             // 
-            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
             this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
             this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
             this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
             this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
@@ -1992,18 +2006,18 @@
             // 
             // btnFlag
             // 
-            resources.ApplyResources(this.btnFlag, "btnFlag");
             this.btnFlag.BackColor = System.Drawing.Color.Transparent;
             this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnFlag, "btnFlag");
             this.btnFlag.Name = "btnFlag";
             this.btnFlag.UseVisualStyleBackColor = false;
             this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
             // 
             // btnAutoSteer
             // 
-            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
             this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
             this.btnAutoSteer.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
             this.btnAutoSteer.Name = "btnAutoSteer";
             this.btnAutoSteer.UseVisualStyleBackColor = false;
             this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
@@ -2056,26 +2070,34 @@
             // 
             // oglBack
             // 
-            resources.ApplyResources(this.oglBack, "oglBack");
             this.oglBack.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.oglBack, "oglBack");
             this.oglBack.Name = "oglBack";
             this.oglBack.VSync = false;
             this.oglBack.Load += new System.EventHandler(this.oglBack_Load);
             this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
             this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
             // 
+            // btnSnap
+            // 
+            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSnap, "btnSnap");
+            this.btnSnap.Name = "btnSnap";
+            this.btnSnap.UseVisualStyleBackColor = false;
+            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click_1);
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.Controls.Add(this.btnSnap);
             this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.btnContourPriority);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
-            this.Controls.Add(this.btnManualAutoDrive);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.btnDrivePath);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnEnableAutoYouTurn);
@@ -2365,6 +2387,8 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label lblConvergenceAngle;
         private System.Windows.Forms.Label lblStepsFromTurnLine;
+        private System.Windows.Forms.Button btnSnap;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripBatman;
     }
 }
 

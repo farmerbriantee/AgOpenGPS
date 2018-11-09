@@ -603,7 +603,7 @@ namespace AgOpenGPS
                             {
                                 yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight);
                             }
-                            else //wait to trigger the actual turn
+                            else //wait to trigger the actual turn since its made and waiting
                             {
                                 //distance from current pivot to first point of youturn pattern
                                 distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);

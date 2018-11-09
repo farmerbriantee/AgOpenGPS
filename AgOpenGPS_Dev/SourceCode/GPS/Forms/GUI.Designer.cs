@@ -717,15 +717,15 @@ namespace AgOpenGPS
                 btnTiltDown.Visible = false;
                 btnTiltUp.Visible = false;
                 panelSimControls.Visible = false;
-                btnContourPriority.Left = Width - 113;
+                //btnContourPriority.Left = Width - 113;
                 btnABLine.Left = Width - 113;
                 btnContour.Left = Width - 113;
                 btnCurve.Left = Width - 113;
                 btnManualOffOn.Left = Width - 113;
                 btnSectionOffAutoOn.Left = Width - 116;
-                LineUpManualBtns();
                 txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
+                LineUpManualBtns();
             }
             else
             {
@@ -735,7 +735,7 @@ namespace AgOpenGPS
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
                 panelSimControls.Visible = true;
-                btnContourPriority.Left = Width - 715;
+                //btnContourPriority.Left = Width - 715;
                 btnABLine.Left = Width - 715;
                 btnContour.Left = Width - 715;
                 btnCurve.Left = Width - 715;
@@ -1697,11 +1697,7 @@ namespace AgOpenGPS
             if (camera.camPitch < -80) camera.camPitch = -80;
         }
 
-        private void btnSwapDirection_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void btnSnap_Click(object sender, EventArgs e)
+        private void btnSnap_Click_1(object sender, EventArgs e)
         {
             if (ABLine.isABLineSet) ABLine.SnapABLine();
             else if (curve.isCurveSet) curve.SnapABCurve();
@@ -2731,6 +2727,13 @@ namespace AgOpenGPS
         {
             HideTabControl();
         }
+
+
+        private void toolStripBatman_Click(object sender, EventArgs e)
+        {
+            HideTabControl();
+        }
+
 
         //camera tool buttons
         private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
