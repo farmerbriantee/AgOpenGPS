@@ -155,7 +155,6 @@ namespace AgOpenGPS
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
-
                 }
 
                 //little show to say saved and where
@@ -1339,9 +1338,9 @@ namespace AgOpenGPS
                     if (bnd.bndArr[i].bndLine.Count > 0)
                     {
                         for (int j = 0; j < bnd.bndArr[i].bndLine.Count; j++)
-                            writer.WriteLine(bnd.bndArr[i].bndLine[j].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                                                bnd.bndArr[i].bndLine[j].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                                                    bnd.bndArr[i].bndLine[j].heading.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(Math.Round(bnd.bndArr[i].bndLine[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                Math.Round(bnd.bndArr[i].bndLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(bnd.bndArr[i].bndLine[j].heading,5).ToString(CultureInfo.InvariantCulture));
                     }
                 }
             }
@@ -1552,9 +1551,9 @@ namespace AgOpenGPS
                     if (curve.refList.Count > 0)
                     {
                         for (int j = 0; j < curve.refList.Count; j++)
-                            writer.WriteLine(curve.refList[j].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                                                curve.refList[j].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                                                    curve.refList[j].heading.ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
                     }
                 }
 

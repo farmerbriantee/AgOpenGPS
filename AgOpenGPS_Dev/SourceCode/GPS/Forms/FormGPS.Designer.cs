@@ -251,6 +251,7 @@
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
+            this.contextMenuStripYouTurn = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
@@ -261,6 +262,7 @@
             this.oglMain = new OpenTK.GLControl();
             this.oglBack = new OpenTK.GLControl();
             this.btnSnap = new System.Windows.Forms.Button();
+            this.toolStripComboBoxSkips = new System.Windows.Forms.ToolStripComboBox();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -273,6 +275,7 @@
             this.configPage1.SuspendLayout();
             this.autoPage4.SuspendLayout();
             this.panelSimControls.SuspendLayout();
+            this.contextMenuStripYouTurn.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
@@ -1991,10 +1994,20 @@
             // btnEnableAutoYouTurn
             // 
             this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnEnableAutoYouTurn.ContextMenuStrip = this.contextMenuStripYouTurn;
             resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
             this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
             this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
             this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
+            // 
+            // contextMenuStripYouTurn
+            // 
+            resources.ApplyResources(this.contextMenuStripYouTurn, "contextMenuStripYouTurn");
+            this.contextMenuStripYouTurn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.contextMenuStripYouTurn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBoxSkips});
+            this.contextMenuStripYouTurn.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
+            this.contextMenuStripYouTurn.Name = "contextMenuStripFlag";
             // 
             // btnSectionOffAutoOn
             // 
@@ -2087,6 +2100,17 @@
             this.btnSnap.UseVisualStyleBackColor = false;
             this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click_1);
             // 
+            // toolStripComboBoxSkips
+            // 
+            resources.ApplyResources(this.toolStripComboBoxSkips, "toolStripComboBoxSkips");
+            this.toolStripComboBoxSkips.Items.AddRange(new object[] {
+            resources.GetString("toolStripComboBoxSkips.Items"),
+            resources.GetString("toolStripComboBoxSkips.Items1"),
+            resources.GetString("toolStripComboBoxSkips.Items2"),
+            resources.GetString("toolStripComboBoxSkips.Items3"),
+            resources.GetString("toolStripComboBoxSkips.Items4")});
+            this.toolStripComboBoxSkips.Name = "toolStripComboBoxSkips";
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
@@ -2152,6 +2176,7 @@
             this.autoPage4.ResumeLayout(false);
             this.panelSimControls.ResumeLayout(false);
             this.panelSimControls.PerformLayout();
+            this.contextMenuStripYouTurn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2389,6 +2414,8 @@
         private System.Windows.Forms.Label lblStepsFromTurnLine;
         private System.Windows.Forms.Button btnSnap;
         private System.Windows.Forms.ToolStripDropDownButton toolStripBatman;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripYouTurn;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxSkips;
     }
 }
 
