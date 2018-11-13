@@ -37,6 +37,10 @@
             this.lblTemplateChosen = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.tboxTask = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tboxVehicle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -91,11 +95,37 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // tboxTask
+            // 
+            resources.ApplyResources(this.tboxTask, "tboxTask");
+            this.tboxTask.Name = "tboxTask";
+            this.tboxTask.TextChanged += new System.EventHandler(this.tboxTask_TextChanged);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // tboxVehicle
+            // 
+            resources.ApplyResources(this.tboxVehicle, "tboxVehicle");
+            this.tboxVehicle.Name = "tboxVehicle";
+            this.tboxVehicle.TextChanged += new System.EventHandler(this.tboxVehicle_TextChanged);
+            // 
             // FormFieldDir
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tboxVehicle);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tboxTask);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblTemplateChosen);
@@ -120,5 +150,9 @@
         private System.Windows.Forms.Label lblTemplateChosen;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox tboxTask;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tboxVehicle;
     }
 }

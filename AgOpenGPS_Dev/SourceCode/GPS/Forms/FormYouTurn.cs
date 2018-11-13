@@ -849,7 +849,6 @@ namespace AgOpenGPS
         private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
-            mf.yt.skips = mf.yt.rowSkipsWidth;
         }
 
         #endregion YouTurn

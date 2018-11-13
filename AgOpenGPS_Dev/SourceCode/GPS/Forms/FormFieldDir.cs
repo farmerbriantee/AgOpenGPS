@@ -27,6 +27,7 @@ namespace AgOpenGPS
             btnTemplate.Enabled = false;
             btnSave.Enabled = false;
             lblTemplateChosen.Text = "None Selected";
+            tboxVehicle.Text = mf.vehiclefileName;
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -46,6 +47,22 @@ namespace AgOpenGPS
                 btnTemplate.Enabled = true;
                 btnSave.Enabled = true;
             }
+        }
+
+        private void tboxTask_TextChanged(object sender, EventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = textboxSender.SelectionStart;
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            textboxSender.SelectionStart = cursorPosition;
+        }
+
+        private void tboxVehicle_TextChanged(object sender, EventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = textboxSender.SelectionStart;
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            textboxSender.SelectionStart = cursorPosition;
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -93,7 +110,17 @@ namespace AgOpenGPS
             }
 
             //append date time to name
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim() + String.Format("{0}", DateTime.Now.ToString("-yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture));
+
+            mf.currentFieldDirectory = tboxFieldName.Text.Trim() + "_";
+
+            //task
+            if (!String.IsNullOrEmpty(tboxTask.Text.Trim())) mf.currentFieldDirectory += tboxTask.Text.Trim() + "_";
+
+            //vehicle
+            if (!String.IsNullOrEmpty(tboxVehicle.Text.Trim())) mf.currentFieldDirectory += tboxVehicle.Text.Trim() + "_";
+
+            //date
+            mf.currentFieldDirectory += String.Format("{0}", DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture));
 
             //get the directory and make sure it exists, create if not
             string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
