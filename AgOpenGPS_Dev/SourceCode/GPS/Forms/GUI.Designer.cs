@@ -2020,6 +2020,13 @@ namespace AgOpenGPS
             }
         }
 
+        //skips
+        private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
+            yt.ResetCreatedYouTurn();
+        }
+
         // Menu Items ------------------------------------------------------------------
 
         //File drop down items
@@ -2623,6 +2630,7 @@ namespace AgOpenGPS
         {
             var form = new FormYouTurn(this);
             form.ShowDialog();
+            cboxRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
         }
         private void toolstripAutoSteerConfig_Click(object sender, EventArgs e)
         {
@@ -2728,12 +2736,10 @@ namespace AgOpenGPS
             HideTabControl();
         }
 
-
         private void toolStripBatman_Click(object sender, EventArgs e)
         {
             HideTabControl();
         }
-
 
         //camera tool buttons
         private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3137,10 +3143,10 @@ namespace AgOpenGPS
                 //tboxRecvUDP.Text = mc.recvUDPSentence;
 
                 //statusbar flash red undefined headland
-                if (distancePivotToTurnLine == -3333 && statusStrip1.BackColor == SystemColors.ControlLight 
-                    || distancePivotToTurnLine != -3333 && statusStrip1.BackColor == Color.Tomato)
+                if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight 
+                    || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
                 {
-                    if (distancePivotToTurnLine != -3333)
+                    if (!mc.isOutOfBounds)
                     {
                         statusStrip1.BackColor = SystemColors.ControlLight;
                         menuStrip1.BackColor = SystemColors.ControlLight;

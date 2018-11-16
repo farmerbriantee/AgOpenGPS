@@ -231,7 +231,7 @@ namespace AgOpenGPS
         }
 
         //while waiting to turn this runs making sure the UTurn isn't out of bounds, and builds it.
-        public void BuildABLineDubinsYouTurn(bool isTurnRight)
+        public bool BuildABLineDubinsYouTurn(bool isTurnRight)
         {
             double headAB = mf.ABLine.abHeading;
             if (!mf.ABLine.isABSameAsVehicleHeading) headAB += Math.PI;
@@ -288,7 +288,7 @@ namespace AgOpenGPS
                     else
                         distanceTurnBeforeLine += (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
                 }
-            }                      
+            }
             else //turn Radius is wider then equipment width so ohmega turn
             {
                 distanceTurnBeforeLine += (2 * mf.vehicle.minTurningRadius);
@@ -416,7 +416,7 @@ namespace AgOpenGPS
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
             int count = ytList.Count;
-            if (count == 0) return;
+            if (count == 0) return false;
 
             // Phase 0 - back up the turn till it is out of bounds.
             // Phase 1 - move it forward till out of bounds.
@@ -478,19 +478,24 @@ namespace AgOpenGPS
                     }
 
                     //turn keeps approaching vehicle and running out of space - end of field?
-                    if (isOutOfBounds && turnDiagDistance > 5)
+                    if (isOutOfBounds && turnDiagDistance > 3)
                     {
                         turnDistanceAdjuster += 2;
+                        isTurnCreationTooClose = false;
                     }
                     else
                     {
-                        //Full emergency stop code goes here
+                        isTurnCreationTooClose = true;
+
+                        //set the flag to Critical stop machine
+                        if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
                     }
                     break;
 
                 case 2:
                     break;
             }
+            return true;
         }
 
         public bool BuildABLinePatternYouTurn(bool isTurnRight)
@@ -653,13 +658,20 @@ namespace AgOpenGPS
                     }
 
                     if (!isOutOfBounds) youTurnPhase = 2;
-                    if (isOutOfBounds && _turnDiagDistance > 5)
+
+                    //turn keeps approaching vehicle and running out of space - end of field?
+                    if (isOutOfBounds && _turnDiagDistance > 3)
                     {
                         turnDistanceAdjuster += 2;
+                        isTurnCreationTooClose = false;
                     }
                     else
                     {
-                        //Full emergency stop code goes here
+                        isTurnCreationTooClose = true;
+
+                        //set the flag to Critical stop machine
+                        if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                        break;
                     }
                     break;
             }
@@ -667,7 +679,7 @@ namespace AgOpenGPS
             return isOutOfBounds;
         }
 
-        public void BuildCurvePatternYouTurn(bool isTurnRight, vec3 pivotPos)
+        public bool BuildCurvePatternYouTurn(bool isTurnRight, vec3 pivotPos)
         {
             if (youTurnPhase > 0)
             {
@@ -737,13 +749,14 @@ namespace AgOpenGPS
             {
                 case 0: //find the crossing points
                     if (FindCurveTurnPoints()) youTurnPhase = 1;
+                    else mf.mc.isOutOfBounds = true;
                     ytList?.Clear();
                     break;
 
                 case 1:
-                    //now check to make sure we are not in an inner turn boundary - drive thru is ok
+                    //now check to make sure turn is not in an inner turn boundary - drive thru is ok
                     int count = ytList.Count;
-                    if (count == 0) return;
+                    if (count == 0) return false;
                     isOutOfBounds = false;
 
                     //Out of bounds?
@@ -786,7 +799,7 @@ namespace AgOpenGPS
                         crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
                         crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
                         crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
-                        return;
+                        return true;
                     }
 
                     //keep moving infield till pattern is all inside
@@ -807,18 +820,20 @@ namespace AgOpenGPS
                     crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
 
                     double tooClose = glm.Distance(ytList[0], pivotPos);
+                    isTurnCreationTooClose = tooClose < 3;
 
                     //set the flag to Critical stop machine
-                    isTurnCreationTooClose = tooClose < 5;
+                    if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
                     break;
 
                 case 2:
                     youTurnPhase = 3;
                     break;
             }
+            return true;
         }
 
-        public void BuildCurveDubinsYouTurn(bool isTurnRight, vec3 pivotPos)
+        public bool BuildCurveDubinsYouTurn(bool isTurnRight, vec3 pivotPos)
         {
             if (youTurnPhase > 0)
             {
@@ -966,7 +981,7 @@ namespace AgOpenGPS
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
                 int count = ytList.Count;
-                if (count == 0) return;
+                return count == 0;
             }
 
             switch (youTurnPhase)
@@ -979,8 +994,7 @@ namespace AgOpenGPS
                 case 1:
                     //now check to make sure we are not in an inner turn boundary - drive thru is ok
                     int count = ytList.Count;
-                    if (count == 0) return;
-                    isOutOfBounds = false;
+                    if (count == 0) return false;
 
                     //Are we out of bounds?
                     for (int j = 0; j < count;)
@@ -1024,7 +1038,7 @@ namespace AgOpenGPS
                         crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
                         crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
                         crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
-                        return;
+                        return true;
                     }
 
                     //keep moving infield till pattern is all inside
@@ -1044,15 +1058,17 @@ namespace AgOpenGPS
                     crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
 
                     double tooClose = glm.Distance(ytList[0], pivotPos);
+                    isTurnCreationTooClose = tooClose < 3;
 
                     //set the flag to Critical stop machine
-                    isTurnCreationTooClose = tooClose < 5;
+                    if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
                     break;
 
                 case 2:
                     youTurnPhase = 3;
                     break;
             }
+            return true;
         }
 
         //called to initiate turn

@@ -5,6 +5,9 @@
         //copy of the mainform address
         private readonly FormGPS mf = null;
 
+        //Critical Safety Properties
+        public bool isOutOfBounds = true;
+
         //RateRelay ---------------------------------------------------------------------------------------------
         public string serialRecvRelayRateStr;
 
