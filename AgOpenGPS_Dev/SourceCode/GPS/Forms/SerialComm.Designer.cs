@@ -83,6 +83,12 @@ namespace AgOpenGPS
                 mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
             }
 
+            //gone out of bounds so full stop.
+            if (mc.isOutOfBounds)
+            {
+                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            }
+
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {

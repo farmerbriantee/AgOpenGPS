@@ -449,131 +449,139 @@ namespace AgOpenGPS
             //-2222 means it fell out of the loop completely
             //-3333 means unable to find a nearest point at all even though inside the work area of field
             // -4444 means cross trac error too high
-            distancePivotToTurnLine = -2222;
+            distancePivotToTurnLine = -4444;
 
-            //do the auto youturn logic if everything is on.
-            if (bnd.bndArr[0].isSet && yt.isYouTurnBtnOn && isAutoSteerBtnOn)
+            //always force out of bounds and change only if in bounds after proven so
+            mc.isOutOfBounds = true;
+
+            //if an outer boundary is set, then apply critical stop logic
+            if (bnd.bndArr[0].isSet)
             {
-                //if we are too much off track, kill the diagnostic creation, start again
-                if (crossTrackError > 200 && !yt.isYouTurnShapeDisplayed)
+                //Are we inside outer and outside inner all turn boundaries
+                if (IsInWorkingArea())
                 {
-                    yt.ResetCreatedYouTurn();
-                    distancePivotToTurnLine = -4444;
-                }
-                else
-                {
-                    //now check to make sure we are not in an inner turn boundary - drive thru is ok
-                    if (IsInWorkingArea())  //we are good to go!
-                    {                        
-                        if (ABLine.isABLineSet)
+                    //reset critical stop for bounds violation
+                    mc.isOutOfBounds = false;
+
+                    //do the auto youturn logic if everything is on.
+                    if (yt.isYouTurnBtnOn && isAutoSteerBtnOn)
+                    {
+                        //if we are too much off track, kill the diagnostic creation, start again
+                        if (crossTrackError > 200 && !yt.isYouTurnShapeDisplayed)
                         {
-                            if (yt.isUsingDubinsTurn)
+                            yt.ResetCreatedYouTurn();
+                        }
+                        else
+                        {
+                            //now check to make sure we are not in an inner turn boundary - drive thru is ok
+                            if (ABLine.isABLineSet)
                             {
-                                if (yt.youTurnPhase != 3)
+                                if (yt.isUsingDubinsTurn)
                                 {
-                                    //if not triggered then make proposed turn to evaluate - only ran to build
+                                    if (yt.youTurnPhase != 3)
                                     {
-                                        yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
-                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                        //if not triggered then make proposed turn to evaluate - only ran to build
+                                        {
+                                            yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
+                                            lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //distance from current pivot to first point of youturn pattern
+                                        distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
+
+                                        //if we are close enough to pattern, trigger.
+                                        if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                                            yt.YouTurnTrigger();
                                     }
                                 }
-                                else
+                                else // patterns
                                 {
-                                    //distance from current pivot to first point of youturn pattern
-                                    distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
+                                    if (yt.youTurnPhase != 3)
+                                    {
+                                        yt.BuildABLinePatternYouTurn(yt.isYouTurnRight);
+                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                    }
 
-                                    //if we are close enough to pattern, trigger.
-                                    if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
-                                        yt.YouTurnTrigger();
-                                }
-                            }
+                                    else
+                                    {
+                                        //distance from current pivot to first point of youturn pattern
+                                        distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
 
-
-                            else // patterns
-                            {
-                                if (yt.youTurnPhase != 3)
-                                {
-                                    yt.BuildABLinePatternYouTurn(yt.isYouTurnRight);
-                                    lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
-                                }
-
-                                else
-                                {
-                                    //distance from current pivot to first point of youturn pattern
-                                    distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
-
-                                    //if we are close enough to pattern, trigger.
-                                    if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                                        //if we are close enough to pattern, trigger.
+                                        if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
                                             yt.YouTurnTrigger();
+                                    }
+                                }
+                            }
 
+                            else  // AB Curve ********************************************************************************************************************
+                            {
+                                if (yt.isUsingDubinsTurn)
+                                {
+                                    if (yt.youTurnPhase != 3)
+                                    {
+                                        yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                    }
+                                    else //wait to trigger the actual turn since its made and waiting
+                                    {
+                                        //distance from current pivot to first point of youturn pattern
+                                        distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
 
+                                        //if we are close enough to pattern, trigger.
+                                        if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                                            yt.YouTurnTrigger();
+                                    }
+                                }
+                                else //using Patterns
+                                {
+                                    if (yt.youTurnPhase != 3)
+                                    {
+                                        yt.BuildCurvePatternYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                    }
+                                    else //wait to trigger the actual turn since its made and waiting
+                                    {
+                                        //distance from current pivot to first point of youturn pattern
+                                        distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
 
+                                        //if we are close enough to pattern, trigger.
+                                        if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                                            yt.YouTurnTrigger();
+                                    }
+                                }
+                            }
+
+                            //Turn is triggered - this is not run if shape is drawn
+                            if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
+                            {
+                                //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
+                                if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
+                                {
+                                    yt.ResetYouTurn();
+                                }
+                                else
+                                {
+                                    //keep from running this again since youturn is plotted now
+                                    yt.isYouTurnTriggerPointSet = false;
+                                    yt.isLastYouTurnRight = yt.isYouTurnRight;
+                                    yt.isYouTurnShapeDisplayed = true;
                                 }
                             }
                         }
-
-                        else  // AB Curve ********************************************************************************************************************
-                        {
-                            if (yt.isUsingDubinsTurn)
-                            {
-                                if (yt.youTurnPhase != 3)
-                                {
-                                    yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
-                                }
-                                else //wait to trigger the actual turn since its made and waiting
-                                {
-                                    //distance from current pivot to first point of youturn pattern
-                                    distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
-
-                                    //if we are close enough to pattern, trigger.
-                                    if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
-                                        yt.YouTurnTrigger();
-                                }
-                            }
-                            else //using Patterns
-                            {
-                                if (yt.youTurnPhase != 3)
-                                {
-                                    yt.BuildCurvePatternYouTurn(yt.isYouTurnRight, pivotAxlePos);
-                                }
-                                else //wait to trigger the actual turn since its made and waiting
-                                {
-                                    //distance from current pivot to first point of youturn pattern
-                                    distancePivotToTurnLine = glm.Distance(yt.ytList[2], pivotAxlePos);
-
-                                    //if we are close enough to pattern, trigger.
-                                    if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
-                                        yt.YouTurnTrigger();
-                                }
-                            }
-                        }
-
-                        //Turn is triggered - this is not run if shape is drawn
-                        if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
-                        {
-                            //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
-                            if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
-                            {
-                                yt.ResetYouTurn();
-                            }
-                            else
-                            {
-                                //keep from running this again since youturn is plotted now
-                                yt.isYouTurnTriggerPointSet = false;
-                                yt.isLastYouTurnRight = yt.isYouTurnRight;
-                                yt.isYouTurnShapeDisplayed = true;
-                            }
-                        }
-
                     } // end of isInWorkingArea
 
-                    // here is stop logic for out of bounds - in an inner or out the outer turn border.
-                    else
-                    {
-                        //yt.ResetDiagnosticYouTurn();
-                        //yt.ResetYouTurn();
-                    }
                 }
+                // here is stop logic for out of bounds - in an inner or out the outer turn border.
+                else
+                {
+                    mc.isOutOfBounds = true;
+                    if (yt.isYouTurnBtnOn) yt.ResetCreatedYouTurn();
+                }
+            }
+            else
+            {
+                mc.isOutOfBounds = false;
             }
 
             #endregion

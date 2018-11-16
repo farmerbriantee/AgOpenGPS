@@ -189,114 +189,90 @@ namespace AgOpenGPS
 
         //determine closest point on left side
         public void BuildContourGuidanceLine(vec3 pivot)
+        {
+            //2 triangles EAD and CBF
+            double sinH = Math.Sin(pivot.heading) * 2.0 * mf.vehicle.toolWidth;
+            double cosH = Math.Cos(pivot.heading) * 2.0 * mf.vehicle.toolWidth;
+
+            //narrow equipment needs bigger bounding box.
+            if (mf.vehicle.toolWidth < 8)
             {
-                //2 triangles EAD and CBF
-                double sinH = Math.Sin(pivot.heading) * 1.5 * mf.vehicle.toolWidth;
-                double cosH = Math.Cos(pivot.heading) * 1.5 * mf.vehicle.toolWidth;
-                double sin2H = Math.Sin(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
-                double cos2H = Math.Cos(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
-                double sin3H = Math.Sin(pivot.heading + glm.PIBy2) * 0.5;
-                double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * 0.5;
+                sinH = Math.Sin(pivot.heading) * 4 * mf.vehicle.toolWidth;
+                cosH = Math.Cos(pivot.heading) * 4 * mf.vehicle.toolWidth;
+            }
 
-                //build a frustum box ahead of fix to find adjacent paths and points
-                boxA.easting = pivot.easting - sin2H;
-                boxA.northing = pivot.northing - cos2H;
-                boxA.easting -= (sinH * 0.5);
-                boxA.northing -= (cosH * 0.5);
+            double sin2H = Math.Sin(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
+            double cos2H = Math.Cos(pivot.heading + glm.PIBy2) * 1.5 * mf.vehicle.toolWidth;
+            double sin3H = Math.Sin(pivot.heading + glm.PIBy2) * 0.5;
+            double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * 0.5;
 
-                boxB.easting = pivot.easting + sin2H;
-                boxB.northing = pivot.northing + cos2H;
-                boxB.easting -= (sinH * 0.5);
-                boxB.northing -= (cosH * 0.5);
+            //build a frustum box ahead of fix to find adjacent paths and points
+            boxA.easting = pivot.easting - sin2H;
+            boxA.northing = pivot.northing - cos2H;
+            boxA.easting -= (sinH * 0.25);
+            boxA.northing -= (cosH * 0.25);
 
-                boxC.easting = boxB.easting + sinH;
-                boxC.northing = boxB.northing + cosH;
+            boxB.easting = pivot.easting + sin2H;
+            boxB.northing = pivot.northing + cos2H;
+            boxB.easting -= (sinH * 0.25);
+            boxB.northing -= (cosH * 0.25);
 
-                boxD.easting = boxA.easting + sinH;
-                boxD.northing = boxA.northing + cosH;
+            boxC.easting = boxB.easting + sinH;
+            boxC.northing = boxB.northing + cosH;
 
-                boxE.easting = pivot.easting - sin3H;
-                boxE.northing = pivot.northing - cos3H;
+            boxD.easting = boxA.easting + sinH;
+            boxD.northing = boxA.northing + cosH;
 
-                boxF.easting = pivot.easting + sin3H;
-                boxF.northing = pivot.northing + cos3H;
+            boxE.easting = pivot.easting - sin3H;
+            boxE.northing = pivot.northing - cos3H;
 
-                conList.Clear();
-                ctList.Clear();
-                int ptCount;
+            boxF.easting = pivot.easting + sin3H;
+            boxF.northing = pivot.northing + cos3H;
 
-                //check if no strips yet, return
-                int stripCount = stripList.Count;
-                if (stripCount == 0) return;
+            conList.Clear();
+            ctList.Clear();
+            int ptCount;
 
-                cvec pointC = new cvec();
-                if (isRightPriority)
+            //check if no strips yet, return
+            int stripCount = stripList.Count;
+            if (stripCount == 0) return;
+
+            cvec pointC = new cvec();
+            if (isRightPriority)
+            {
+                //determine if points are in right side frustum box
+                for (int s = 0; s < stripCount; s++)
                 {
-                    //determine if points are in right side frustum box
-                    for (int s = 0; s < stripCount; s++)
+                    ptCount = stripList[s].Count;
+                    for (int p = 0; p < ptCount; p++)
                     {
-                        ptCount = stripList[s].Count;
-                        for (int p = 0; p < ptCount; p++)
+                        if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+
+                        if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
+                                - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
+
+                        if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
+                                - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                        //in the box so is it parallelish or perpedicularish to current heading
+                        ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                        if (ref2 < 1.2 || ref2 > 1.9)
                         {
-                            if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
-                                    - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
-
-                            if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
-                                    - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
-
-                            if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
-                                    - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
-
-                            //in the box so is it parallelish or perpedicularish to current heading
-                            ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
-                            if (ref2 < 1.2 || ref2 > 1.9)
-                            {
-                                //it's in the box and parallelish so add to list
-                                pointC.x = stripList[s][p].easting;
-                                pointC.z = stripList[s][p].northing;
-                                pointC.h = stripList[s][p].heading;
-                                pointC.strip = s;
-                                pointC.pt = p;
-                                conList.Add(pointC);
-                            }
-                        }
-                    }
-
-                    if (conList.Count == 0)
-                    {
-                        //determine if points are in frustum box
-                        for (int s = 0; s < stripCount; s++)
-                        {
-                            ptCount = stripList[s].Count;
-                            for (int p = 0; p < ptCount; p++)
-                            {
-                                if ((((boxE.easting - boxA.easting) * (stripList[s][p].northing - boxA.northing))
-                                        - ((boxE.northing - boxA.northing) * (stripList[s][p].easting - boxA.easting))) < 0) { continue; }
-
-                                if ((((boxD.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
-                                        - ((boxD.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
-
-                                if ((((boxA.easting - boxD.easting) * (stripList[s][p].northing - boxD.northing))
-                                        - ((boxA.northing - boxD.northing) * (stripList[s][p].easting - boxD.easting))) < 0) { continue; }
-
-                                //in the box so is it parallelish or perpedicularish to current heading
-                                ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
-                                if (ref2 < 1.2 || ref2 > 1.9)
-                                {
-                                    //it's in the box and parallelish so add to list
-                                    pointC.x = stripList[s][p].easting;
-                                    pointC.z = stripList[s][p].northing;
-                                    pointC.h = stripList[s][p].heading;
-                                    pointC.strip = s;
-                                    pointC.pt = p;
-                                    conList.Add(pointC);
-                                }
-                            }
+                            //it's in the box and parallelish so add to list
+                            pointC.x = stripList[s][p].easting;
+                            pointC.z = stripList[s][p].northing;
+                            pointC.h = stripList[s][p].heading;
+                            pointC.strip = s;
+                            pointC.pt = p;
+                            conList.Add(pointC);
                         }
                     }
                 }
-                else
+
+                if (conList.Count == 0)
                 {
+                    //determine if points are in frustum box
                     for (int s = 0; s < stripCount; s++)
                     {
                         ptCount = stripList[s].Count;
@@ -325,156 +301,188 @@ namespace AgOpenGPS
                             }
                         }
                     }
-
-                    if (conList.Count == 0)
+                }
+            }
+            else
+            {
+                for (int s = 0; s < stripCount; s++)
+                {
+                    ptCount = stripList[s].Count;
+                    for (int p = 0; p < ptCount; p++)
                     {
-                        //determine if points are in frustum box
-                        for (int s = 0; s < stripCount; s++)
+                        if ((((boxE.easting - boxA.easting) * (stripList[s][p].northing - boxA.northing))
+                                - ((boxE.northing - boxA.northing) * (stripList[s][p].easting - boxA.easting))) < 0) { continue; }
+
+                        if ((((boxD.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
+                                - ((boxD.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
+
+                        if ((((boxA.easting - boxD.easting) * (stripList[s][p].northing - boxD.northing))
+                                - ((boxA.northing - boxD.northing) * (stripList[s][p].easting - boxD.easting))) < 0) { continue; }
+
+                        //in the box so is it parallelish or perpedicularish to current heading
+                        ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                        if (ref2 < 1.2 || ref2 > 1.9)
                         {
-                            ptCount = stripList[s].Count;
-                            for (int p = 0; p < ptCount; p++)
-                            {
-                                if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
-                                        - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
-
-                                if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
-                                        - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
-
-                                if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
-                                        - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
-
-                                //in the box so is it parallelish or perpedicularish to current heading
-                                ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
-                                if (ref2 < 1.2 || ref2 > 1.9)
-                                {
-                                    //it's in the box and parallelish so add to list
-                                    pointC.x = stripList[s][p].easting;
-                                    pointC.z = stripList[s][p].northing;
-                                    pointC.h = stripList[s][p].heading;
-                                    pointC.strip = s;
-                                    pointC.pt = p;
-                                    conList.Add(pointC);
-                                }
-                            }
+                            //it's in the box and parallelish so add to list
+                            pointC.x = stripList[s][p].easting;
+                            pointC.z = stripList[s][p].northing;
+                            pointC.h = stripList[s][p].heading;
+                            pointC.strip = s;
+                            pointC.pt = p;
+                            conList.Add(pointC);
                         }
                     }
                 }
 
-                //no points in the box, exit
-                ptCount = conList.Count;
-                if (ptCount == 0)
+                if (conList.Count == 0)
                 {
-                    distanceFromCurrentLine = 9999;
-                    distanceFromCurrentLine = 32000;
-                    mf.guidanceLineDistanceOff = 32000;
-                    return;
-                }
-
-                //determine closest point
-                minDistance = 99999;
-                for (int i = 0; i < ptCount; i++)
-                {
-                    double dist = ((pivot.easting - conList[i].x) * (pivot.easting - conList[i].x))
-                                    + ((pivot.northing - conList[i].z) * (pivot.northing - conList[i].z));
-                    if (minDistance >= dist)
+                    //determine if points are in frustum box
+                    for (int s = 0; s < stripCount; s++)
                     {
-                        minDistance = dist;
-                        closestRefPoint = i;
+                        ptCount = stripList[s].Count;
+                        for (int p = 0; p < ptCount; p++)
+                        {
+                            if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                    - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+
+                            if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
+                                    - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
+
+                            if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
+                                    - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                            //in the box so is it parallelish or perpedicularish to current heading
+                            ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                            if (ref2 < 1.2 || ref2 > 1.9)
+                            {
+                                //it's in the box and parallelish so add to list
+                                pointC.x = stripList[s][p].easting;
+                                pointC.z = stripList[s][p].northing;
+                                pointC.h = stripList[s][p].heading;
+                                pointC.strip = s;
+                                pointC.pt = p;
+                                conList.Add(pointC);
+                            }
+                        }
                     }
                 }
+            }
 
-                //now we have closest point, the distance squared from it, and which patch and point its from
-                int strip = conList[closestRefPoint].strip;
-                int pt = conList[closestRefPoint].pt;
-                refX = stripList[strip][pt].easting;
-                refZ = stripList[strip][pt].northing;
-                refHeading = stripList[strip][pt].heading;
+            //no points in the box, exit
+            ptCount = conList.Count;
+            if (ptCount == 0)
+            {
+                distanceFromCurrentLine = 9999;
+                distanceFromCurrentLine = 32000;
+                mf.guidanceLineDistanceOff = 32000;
+                return;
+            }
 
-                //are we going same direction as stripList was created?
-                bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4;
-
-                //which side of the patch are we on is next
-                //calculate endpoints of reference line based on closest point
-                refPoint1.easting = refX - (Math.Sin(refHeading) * 50.0);
-                refPoint1.northing = refZ - (Math.Cos(refHeading) * 50.0);
-
-                refPoint2.easting = refX + (Math.Sin(refHeading) * 50.0);
-                refPoint2.northing = refZ + (Math.Cos(refHeading) * 50.0);
-
-                //x2-x1
-                double dx = refPoint2.easting - refPoint1.easting;
-                //z2-z1
-                double dz = refPoint2.northing - refPoint1.northing;
-
-                //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-                distanceFromRefLine = ((dz * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (refPoint2.easting
-                                        * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
-                                            / Math.Sqrt((dz * dz) + (dx * dx));
-
-                //add or subtract pi by 2 depending on which side of ref line
-                double piSide;
-
-                //sign of distance determines which side of line we are on
-                if (distanceFromRefLine > 0) piSide = glm.PIBy2;
-                else piSide = -glm.PIBy2;
-
-                //offset calcs
-                double toolOffset = mf.vehicle.toolOffset;
-                if (isSameWay)
+            //determine closest point
+            minDistance = 99999;
+            for (int i = 0; i < ptCount; i++)
+            {
+                double dist = ((pivot.easting - conList[i].x) * (pivot.easting - conList[i].x))
+                                + ((pivot.northing - conList[i].z) * (pivot.northing - conList[i].z));
+                if (minDistance >= dist)
                 {
-                    toolOffset = 0.0;
-                }
-                else
-                {
-                    if (distanceFromRefLine > 0) toolOffset *= 2.0;
-                    else toolOffset *= -2.0;
-                }
-
-                //move the Guidance Line over based on the overlap, width, and offset amount set in vehicle
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap + toolOffset;
-
-                //absolute the distance
-                distanceFromRefLine = Math.Abs(distanceFromRefLine);
-
-                //make the new guidance line list called guideList
-                ptCount = stripList[strip].Count - 1;
-                int start, stop;
-
-                start = pt - 45; if (start < 0) start = 0;
-                stop = pt + 45; if (stop > ptCount) stop = ptCount + 1;
-
-                //double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
-                //bool fail = false;
-
-                for (int i = start; i < stop; i++)
-                {
-                    var point = new vec3(
-                        stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                        stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                        stripList[strip][i].heading);
-                    ctList.Add(point);
-
-                    //var point = new vec3(
-                    //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    //    stripList[strip][i].heading);
-                    ////ctList.Add(point);
-
-                    ////make sure its not closer then 1 eq width
-                    //for (int j = start; j < stop; j++)
-                    //{
-                    //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
-                    //    if (check < distSq)
-                    //    {
-                    //        fail = true;
-                    //        break;
-                    //    }
-                    //}
-
-                    //if (!fail) ctList.Add(point);
-                    //fail = false;
+                    minDistance = dist;
+                    closestRefPoint = i;
                 }
             }
+
+            //now we have closest point, the distance squared from it, and which patch and point its from
+            int strip = conList[closestRefPoint].strip;
+            int pt = conList[closestRefPoint].pt;
+            refX = stripList[strip][pt].easting;
+            refZ = stripList[strip][pt].northing;
+            refHeading = stripList[strip][pt].heading;
+
+            //are we going same direction as stripList was created?
+            bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - refHeading) - Math.PI) < 1.4;
+
+            //which side of the patch are we on is next
+            //calculate endpoints of reference line based on closest point
+            refPoint1.easting = refX - (Math.Sin(refHeading) * 50.0);
+            refPoint1.northing = refZ - (Math.Cos(refHeading) * 50.0);
+
+            refPoint2.easting = refX + (Math.Sin(refHeading) * 50.0);
+            refPoint2.northing = refZ + (Math.Cos(refHeading) * 50.0);
+
+            //x2-x1
+            double dx = refPoint2.easting - refPoint1.easting;
+            //z2-z1
+            double dz = refPoint2.northing - refPoint1.northing;
+
+            //how far are we away from the reference line at 90 degrees - 2D cross product and distance
+            distanceFromRefLine = ((dz * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (refPoint2.easting
+                                    * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
+                                        / Math.Sqrt((dz * dz) + (dx * dx));
+
+            //add or subtract pi by 2 depending on which side of ref line
+            double piSide;
+
+            //sign of distance determines which side of line we are on
+            if (distanceFromRefLine > 0) piSide = glm.PIBy2;
+            else piSide = -glm.PIBy2;
+
+            //offset calcs
+            double toolOffset = mf.vehicle.toolOffset;
+            if (isSameWay)
+            {
+                toolOffset = 0.0;
+            }
+            else
+            {
+                if (distanceFromRefLine > 0) toolOffset *= 2.0;
+                else toolOffset *= -2.0;
+            }
+
+            //move the Guidance Line over based on the overlap, width, and offset amount set in vehicle
+            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap + toolOffset;
+
+            //absolute the distance
+            distanceFromRefLine = Math.Abs(distanceFromRefLine);
+
+            //make the new guidance line list called guideList
+            ptCount = stripList[strip].Count - 1;
+            int start, stop;
+
+            start = pt - 45; if (start < 0) start = 0;
+            stop = pt + 45; if (stop > ptCount) stop = ptCount + 1;
+
+            //double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
+            //bool fail = false;
+
+            for (int i = start; i < stop; i++)
+            {
+                var point = new vec3(
+                    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].heading);
+                ctList.Add(point);
+
+                //var point = new vec3(
+                //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].heading);
+                ////ctList.Add(point);
+
+                ////make sure its not closer then 1 eq width
+                //for (int j = start; j < stop; j++)
+                //{
+                //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                //    if (check < distSq)
+                //    {
+                //        fail = true;
+                //        break;
+                //    }
+                //}
+
+                //if (!fail) ctList.Add(point);
+                //fail = false;
+            }
+        }
 
         //determine distance from contour guidance line
         public void DistanceFromContourLine(vec3 pivot)
@@ -722,22 +730,22 @@ namespace AgOpenGPS
         //draw the red follow me line
         public void DrawContourLine()
         {
-            //gl.Color(0.98f, 0.98f, 0.50f);
-            //gl.Begin(OpenGL.GL_LINE_STRIP);
-            ////for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
-            //gl.Vertex(boxE.easting, boxE.northing, 0);
-            //gl.Vertex(boxA.easting, boxA.northing, 0);
-            //gl.Vertex(boxD.easting, boxD.northing, 0);
-            //gl.Vertex(boxE.easting, boxE.northing, 0);
-            //gl.End();
+            GL.Color3(0.98f, 0.98f, 0.50f);
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
+            GL.Vertex3(boxA.easting, boxA.northing, 0);
+            GL.Vertex3(boxD.easting, boxD.northing, 0);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
+            GL.End();
 
-            //gl.Begin(OpenGL.GL_LINE_STRIP);
-            ////for (int h = 0; h < ptCount; h++) gl.Vertex(guideList[h].x, 0, guideList[h].z);
-            //gl.Vertex(boxF.easting, boxF.northing, 0);
-            //gl.Vertex(boxC.easting, boxC.northing, 0);
-            //gl.Vertex(boxB.easting, boxB.northing, 0);
-            //gl.Vertex(boxF.easting, boxF.northing, 0);
-            //gl.End();
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.Vertex3(boxC.easting, boxC.northing, 0);
+            GL.Vertex3(boxB.easting, boxB.northing, 0);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.End();
 
             ////draw the guidance line
             int ptCount = ctList.Count;
@@ -747,48 +755,49 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
-            //gl.PointSize(2.0f);
-            //gl.Begin(OpenGL.GL_POINTS);
+            GL.PointSize(2.0f);
+            GL.Begin(PrimitiveType.Points);
 
-            //gl.Color(0.7f, 0.7f, 0.25f);
-            //for (int h = 0; h < ptCount; h++) gl.Vertex(ctList[h].easting, ctList[h].northing, 0);
+            GL.Color3(0.7f, 0.7f, 0.25f);
+            for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
-            //gl.End();
-            //gl.PointSize(1.0f);
+            GL.End();
+            GL.PointSize(1.0f);
 
-            ////draw the reference line
-            //gl.PointSize(3.0f);
-            ////if (isContourBtnOn)
-            //{
-            //    ptCount = stripList.Count;
-            //    if (ptCount > 0)
-            //    {
-            //        ptCount = stripList[closestRefPatch].Count;
-            //        gl.Begin(OpenGL.GL_POINTS);
-            //        for (int i = 0; i < ptCount; i++)
-            //        {
-            //            gl.Vertex(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
-            //        }
-            //        gl.End();
-            //    }
-            //}
+            //draw the reference line
+            GL.PointSize(3.0f);
+            //if (isContourBtnOn)
+            {
+                ptCount = stripList.Count;
+                if (ptCount > 0)
+                {
+                    ptCount = stripList[closestRefPatch].Count;
+                    GL.Begin(PrimitiveType.Points);
+                    for (int i = 0; i < ptCount; i++)
+                    {
+                        GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
+                    }
+                    GL.End();
+                }
+            }
 
-            //ptCount = conList.Count;
-            //if (ptCount > 0)
-            //{
-            //    //draw closest point and side of line points
-            //    gl.Color(0.5f, 0.900f, 0.90f);
-            //    gl.PointSize(4.0f);
-            //    gl.Begin(OpenGL.GL_POINTS);
-            //    for (int i = 0; i < ptCount; i++) gl.Vertex(conList[i].x, conList[i].z, 0);
-            //    gl.End();
+            ptCount = conList.Count;
+            if (ptCount > 0)
+            {
+                //draw closest point and side of line points
+                GL.Color3(0.5f, 0.900f, 0.90f);
+                GL.PointSize(4.0f);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
+                GL.End();
 
-            //    //gl.Color(0.35f, 0.30f, 0.90f);
-            //    //gl.PointSize(6.0f);
-            //    //gl.Begin(OpenGL.GL_POINTS);
-            //    //gl.Vertex(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-            //    //gl.End();
-            //}
+                GL.Color3(0.35f, 0.30f, 0.90f);
+                GL.PointSize(6.0f);
+                GL.Begin(PrimitiveType.Points);
+                GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
+                GL.End();
+            }
+
             if (mf.isPureDisplayOn)
             {
                 const int numSegments = 100;

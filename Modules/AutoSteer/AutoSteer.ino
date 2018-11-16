@@ -112,6 +112,8 @@ void setup()
 	//use external 32K crystal
 	IMU.setExtCrystalUse(true);
 
+ SetRelays();
+
 	//PWM rate settings Adjust to desired PWM Rate
 	//TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 divisor to     8 for PWM frequency of  3921.16 Hz
 	TCCR1B = TCCR1B & B11111000 | B00000011;    // set timer 1 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
@@ -178,7 +180,7 @@ void loop()
 		switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
 		switchByte = workSwitch | switchByte;
 
-		SetRelays(); //turn on off sections
+    SetRelays(); //turn on off sections
 
 		//steering position and steer angle
 		analogRead(A0); //discard initial reading
@@ -231,7 +233,7 @@ void loop()
 			calcSteeringPID();  //do the pid
 			motorDrive();       //out to motors the pwm value
 		
-   
+		}
 		else
 		{
 			//we've lost the comm to AgOpenGPS
@@ -317,3 +319,4 @@ void loop()
 		steerSensorCounts = Serial.read(); //sent as 10 times the setting displayed in AOG
 	}
 }
+

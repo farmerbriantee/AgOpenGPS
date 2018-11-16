@@ -424,6 +424,9 @@ namespace AgOpenGPS
             //load th elightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
+            yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+            cboxRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+
             // load all the gui elements in gui.designer.cs
             LoadGUI();
         }
