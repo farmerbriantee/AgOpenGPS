@@ -16,7 +16,7 @@ namespace AgOpenGPS
         public double eastingMax;
         public double eastingMin;
 
-        private double texZoomE = 4, texZoomN = 4;
+        private double texZoomE = 20, texZoomN = 20;
 
         public CWorldGrid( FormGPS _f)
         {
@@ -60,10 +60,10 @@ namespace AgOpenGPS
 
         public void CreateWorldGrid(double northing, double easting)
         {
-            northingMax = northing + 2000.0;
-            northingMin = northing - 2000.0;
-            eastingMax = easting + 2000.0;
-            eastingMin = easting - 2000.0;
+            northingMax = northing + 16000.0;
+            northingMin = northing - 16000.0;
+            eastingMax = easting + 16000.0;
+            eastingMin = easting - 16000.0;
         }
 
         public void checkZoomWorldGrid(double northing, double easting)

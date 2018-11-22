@@ -3,6 +3,23 @@ using System;
 
 namespace AgOpenGPS
 {
+    public class CQuicks
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double heading { get; set; }
+        public string fieldName { get; set; }
+
+        //constructor
+        public CQuicks(string _fieldName = "North South", double _heading = 0, double _X = 0, double _Y = 0)
+        {
+            fieldName = _fieldName;
+            X = _X;
+            Y = _Y;
+            heading = _heading;
+        }
+    }
+
     public class CABLine
     {
         public double abHeading;

@@ -483,7 +483,7 @@ namespace AgOpenGPS
                                         //if not triggered then make proposed turn to evaluate - only ran to build
                                         {
                                             yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
-                                            lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                            //lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                         }
                                     }
                                     else
@@ -501,7 +501,7 @@ namespace AgOpenGPS
                                     if (yt.youTurnPhase != 3)
                                     {
                                         yt.BuildABLinePatternYouTurn(yt.isYouTurnRight);
-                                        lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                        //lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                     }
 
                                     else
@@ -1051,6 +1051,7 @@ namespace AgOpenGPS
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
                 lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                lblpConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;

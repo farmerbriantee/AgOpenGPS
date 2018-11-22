@@ -80,21 +80,16 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripZoomOut = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnSmoothABCurve = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripBtnHideTabs = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripBtnSnap = new System.Windows.Forms.ToolStripMenuItem();
             this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +105,7 @@
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
             this.lblNorthing = new System.Windows.Forms.Label();
@@ -135,25 +131,53 @@
             this.lblFieldWidthNorthSouth = new System.Windows.Forms.Label();
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.autoPage4 = new System.Windows.Forms.TabPage();
+            this.btnDeleteRecPath = new System.Windows.Forms.Button();
+            this.btnLidarOnOff = new System.Windows.Forms.Button();
+            this.btnGeneratePath = new System.Windows.Forms.Button();
+            this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
+            this.btnPauseDrivingPath = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
+            this.btnDrivePath = new System.Windows.Forms.Button();
+            this.rate2Page5 = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
+            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lblFlowRateLeft = new System.Windows.Forms.Label();
+            this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.lblFlowLeft = new System.Windows.Forms.Label();
+            this.lblDualAccumulatedVolume = new System.Windows.Forms.Label();
+            this.lblRateSetpointLeft = new System.Windows.Forms.Label();
+            this.btnSelectRate2 = new System.Windows.Forms.Button();
+            this.btnSelectRate1 = new System.Windows.Forms.Button();
+            this.btnDualRateConfig = new System.Windows.Forms.Button();
+            this.btnRateLeftDn = new ProXoft.WinForms.RepeatButton();
+            this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
+            this.btnDualRate = new System.Windows.Forms.Button();
+            this.configPage1 = new System.Windows.Forms.TabPage();
+            this.btnFixOffset = new System.Windows.Forms.Button();
+            this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
+            this.btnWebCam = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.btnFileExplorer = new System.Windows.Forms.Button();
+            this.btnGPSData = new System.Windows.Forms.Button();
+            this.btnPerimeter = new System.Windows.Forms.Button();
+            this.zoomPage2 = new System.Windows.Forms.TabPage();
+            this.oglZoom = new OpenTK.GLControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.cboxRowWidth = new System.Windows.Forms.ComboBox();
-            this.lblStepsFromTurnLine = new System.Windows.Forms.Label();
+            this.lblLongitude = new System.Windows.Forms.Label();
+            this.lblLatitude = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
             this.lblConvergenceAngle = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblLookAhead = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblMachineControl = new System.Windows.Forms.Label();
             this.lblLidarDistance = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
-            this.lblFixQuality = new System.Windows.Forms.Label();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.lblLongitude = new System.Windows.Forms.Label();
-            this.lblLatitude = new System.Windows.Forms.Label();
             this.lblBoundaryDistanceAway = new System.Windows.Forms.Label();
             this.lblBoundaryArea = new System.Windows.Forms.Label();
             this.lblRoll = new System.Windows.Forms.Label();
@@ -161,15 +185,12 @@
             this.lblYawHeading = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
-            this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
             this.label22 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.txtBoxSendAutoSteer = new System.Windows.Forms.TextBox();
             this.txtBoxRecvAutoSteer = new System.Windows.Forms.TextBox();
             this.lblSats = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -178,64 +199,46 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.zoomPage2 = new System.Windows.Forms.TabPage();
-            this.oglZoom = new OpenTK.GLControl();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblZooom = new System.Windows.Forms.Label();
-            this.rate2Page5 = new System.Windows.Forms.TabPage();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
-            this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.lblFlowRateRight = new System.Windows.Forms.Label();
-            this.lblFlowRateLeft = new System.Windows.Forms.Label();
-            this.lblRateSetpointRight = new System.Windows.Forms.Label();
-            this.lblFlowRight = new System.Windows.Forms.Label();
-            this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.lblFlowLeft = new System.Windows.Forms.Label();
-            this.lblRateAppliedActualRight = new System.Windows.Forms.Label();
-            this.lblDualAccumulatedVolume = new System.Windows.Forms.Label();
-            this.lblRateSetpointLeft = new System.Windows.Forms.Label();
-            this.btnSelectSingleDualMeter = new System.Windows.Forms.Button();
-            this.btnSelectRate2 = new System.Windows.Forms.Button();
-            this.btnSelectRate1 = new System.Windows.Forms.Button();
-            this.btnRateRightDn = new ProXoft.WinForms.RepeatButton();
-            this.btnRateRightUp = new ProXoft.WinForms.RepeatButton();
-            this.btnDualRateConfig = new System.Windows.Forms.Button();
-            this.btnRateLeftDn = new ProXoft.WinForms.RepeatButton();
-            this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
-            this.btnDualRate = new System.Windows.Forms.Button();
-            this.configPage1 = new System.Windows.Forms.TabPage();
-            this.btnMakeContourFromBoundary = new System.Windows.Forms.Button();
-            this.btnSmoothAB = new System.Windows.Forms.Button();
-            this.btnFixOffset = new System.Windows.Forms.Button();
-            this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
-            this.btnWebCam = new System.Windows.Forms.Button();
-            this.btnHelp = new System.Windows.Forms.Button();
-            this.btnFileExplorer = new System.Windows.Forms.Button();
-            this.btnDeleteAllData = new System.Windows.Forms.Button();
-            this.btnGPSData = new System.Windows.Forms.Button();
-            this.btnPerimeter = new System.Windows.Forms.Button();
-            this.autoPage4 = new System.Windows.Forms.TabPage();
-            this.btnDeleteRecPath = new System.Windows.Forms.Button();
-            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
-            this.btnLidarOnOff = new System.Windows.Forms.Button();
-            this.btnGeneratePath = new System.Windows.Forms.Button();
-            this.btnDriveGenPath = new System.Windows.Forms.Button();
-            this.btnDrivePath = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
-            this.btnPauseDrivingPath = new System.Windows.Forms.Button();
+            this.lblMachineControl = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cboxRowWidth = new System.Windows.Forms.ComboBox();
+            this.lblFixQuality = new System.Windows.Forms.Label();
+            this.panelBatman = new System.Windows.Forms.Panel();
+            this.lblpConvergenceAngle = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblpGPSHeading = new System.Windows.Forms.Label();
+            this.lblpYawHeading = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.lblpRoll = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.lblpLookAhead = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
+            this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
+            this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
+            this.lblpEasting = new System.Windows.Forms.Label();
+            this.lblpLongitude = new System.Windows.Forms.Label();
+            this.lblpNorthing = new System.Windows.Forms.Label();
+            this.lblpLatitude = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.lblpSats = new System.Windows.Forms.Label();
+            this.lblpAltitude = new System.Windows.Forms.Label();
+            this.lblpZone = new System.Windows.Forms.Label();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
-            this.lblPureSteerAngle = new System.Windows.Forms.Label();
             this.lblSteerAngle = new System.Windows.Forms.Label();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.panelSimFrame = new System.Windows.Forms.Panel();
             this.panelSimControls = new System.Windows.Forms.Panel();
             this.hsbarSteerAngle = new System.Windows.Forms.HScrollBar();
             this.hsbarStepDistance = new System.Windows.Forms.HScrollBar();
+            this.btnTiltDown = new ProXoft.WinForms.RepeatButton();
+            this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnSection8Man = new System.Windows.Forms.Button();
             this.btnSection7Man = new System.Windows.Forms.Button();
             this.btnSection6Man = new System.Windows.Forms.Button();
@@ -248,6 +251,21 @@
             this.btnSection10Man = new System.Windows.Forms.Button();
             this.btnSection11Man = new System.Windows.Forms.Button();
             this.btnSection12Man = new System.Windows.Forms.Button();
+            this.contextMenuStripAB = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuOriginal = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuAB1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuAB2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuPlus90 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuChoose = new System.Windows.Forms.ToolStripMenuItem();
+            this.oglMain = new OpenTK.GLControl();
+            this.oglBack = new OpenTK.GLControl();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnSwapDirection = new System.Windows.Forms.Button();
             this.btnContourPriority = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
@@ -257,24 +275,24 @@
             this.btnFlag = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnRightYouTurn = new System.Windows.Forms.Button();
-            this.btnContour = new System.Windows.Forms.Button();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
-            this.oglMain = new OpenTK.GLControl();
-            this.oglBack = new OpenTK.GLControl();
-            this.btnSnap = new System.Windows.Forms.Button();
+            this.btnContour = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
             this.contextMenuArea.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.DataPage.SuspendLayout();
-            this.zoomPage2.SuspendLayout();
+            this.autoPage4.SuspendLayout();
             this.rate2Page5.SuspendLayout();
             this.configPage1.SuspendLayout();
-            this.autoPage4.SuspendLayout();
+            this.zoomPage2.SuspendLayout();
+            this.DataPage.SuspendLayout();
+            this.panelBatman.SuspendLayout();
+            this.panelSimFrame.SuspendLayout();
             this.panelSimControls.SuspendLayout();
+            this.contextMenuStripAB.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
@@ -635,16 +653,14 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
-            this.toolStripBatman,
-            this.toolStripZoomIn,
             this.toolStripBtnCamera,
-            this.toolStripZoomOut,
             this.stripEqWidth,
             this.toolStripBtnDropDownSpecialFunctions,
             this.stripAreaRate,
             this.toolStripDropDownButton2,
             this.stripDistance,
             this.toolStripDropDownBtnFuncs,
+            this.toolStripBatman,
             this.stripPortGPS,
             this.stripOnlineGPS});
             this.statusStrip1.Name = "statusStrip1";
@@ -656,23 +672,6 @@
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
             // 
-            // toolStripBatman
-            // 
-            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
-            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
-            this.toolStripBatman.Name = "toolStripBatman";
-            this.toolStripBatman.ShowDropDownArrow = false;
-            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
-            // 
-            // toolStripZoomIn
-            // 
-            resources.ApplyResources(this.toolStripZoomIn, "toolStripZoomIn");
-            this.toolStripZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomIn.Name = "toolStripZoomIn";
-            this.toolStripZoomIn.ShowDropDownArrow = false;
-            this.toolStripZoomIn.Click += new System.EventHandler(this.toolStripZoomIn_Click);
-            // 
             // toolStripBtnCamera
             // 
             resources.ApplyResources(this.toolStripBtnCamera, "toolStripBtnCamera");
@@ -681,38 +680,26 @@
             this.CameraNorthToolStripMenuItem,
             this.CameraFollowingToolStripMenuItem,
             this.CameraTopToolStripMenuItem});
-            this.toolStripBtnCamera.Image = global::AgOpenGPS.Properties.Resources.Camera54;
             this.toolStripBtnCamera.Name = "toolStripBtnCamera";
             this.toolStripBtnCamera.ShowDropDownArrow = false;
             // 
             // CameraNorthToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraNorthToolStripMenuItem, "CameraNorthToolStripMenuItem");
-            this.CameraNorthToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
             this.CameraNorthToolStripMenuItem.Name = "CameraNorthToolStripMenuItem";
             this.CameraNorthToolStripMenuItem.Click += new System.EventHandler(this.CameraNorthToolStripMenuItem_Click);
             // 
             // CameraFollowingToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraFollowingToolStripMenuItem, "CameraFollowingToolStripMenuItem");
-            this.CameraFollowingToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
             this.CameraFollowingToolStripMenuItem.Name = "CameraFollowingToolStripMenuItem";
             this.CameraFollowingToolStripMenuItem.Click += new System.EventHandler(this.CameraFollowingToolStripMenuItem_Click);
             // 
             // CameraTopToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraTopToolStripMenuItem, "CameraTopToolStripMenuItem");
-            this.CameraTopToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
             this.CameraTopToolStripMenuItem.Name = "CameraTopToolStripMenuItem";
             this.CameraTopToolStripMenuItem.Click += new System.EventHandler(this.CameraTopToolStripMenuItem_Click);
-            // 
-            // toolStripZoomOut
-            // 
-            resources.ApplyResources(this.toolStripZoomOut, "toolStripZoomOut");
-            this.toolStripZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomOut.Name = "toolStripZoomOut";
-            this.toolStripZoomOut.ShowDropDownArrow = false;
-            this.toolStripZoomOut.Click += new System.EventHandler(this.toolStripZoomOut_Click);
             // 
             // stripEqWidth
             // 
@@ -729,10 +716,7 @@
             this.toolStripBtnDropDownSpecialFunctions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDeleteApplied,
             this.toolStripBtnMakeBndContour,
-            this.toolStripBtnSmoothABCurve,
-            this.toolStripBtnHideTabs,
-            this.toolStripBtnSnap});
-            this.toolStripBtnDropDownSpecialFunctions.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
+            this.toolStripBtnSmoothABCurve});
             this.toolStripBtnDropDownSpecialFunctions.Name = "toolStripBtnDropDownSpecialFunctions";
             this.toolStripBtnDropDownSpecialFunctions.ShowDropDownArrow = false;
             // 
@@ -741,7 +725,6 @@
             this.toolStripDeleteApplied.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripAreYouSure});
             resources.ApplyResources(this.toolStripDeleteApplied, "toolStripDeleteApplied");
-            this.toolStripDeleteApplied.Image = global::AgOpenGPS.Properties.Resources.skull;
             this.toolStripDeleteApplied.Name = "toolStripDeleteApplied";
             // 
             // toolStripAreYouSure
@@ -753,30 +736,14 @@
             // toolStripBtnMakeBndContour
             // 
             resources.ApplyResources(this.toolStripBtnMakeBndContour, "toolStripBtnMakeBndContour");
-            this.toolStripBtnMakeBndContour.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.toolStripBtnMakeBndContour.Name = "toolStripBtnMakeBndContour";
             this.toolStripBtnMakeBndContour.Click += new System.EventHandler(this.toolStripBtnMakeBndContour_Click);
             // 
             // toolStripBtnSmoothABCurve
             // 
             resources.ApplyResources(this.toolStripBtnSmoothABCurve, "toolStripBtnSmoothABCurve");
-            this.toolStripBtnSmoothABCurve.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
             this.toolStripBtnSmoothABCurve.Name = "toolStripBtnSmoothABCurve";
             this.toolStripBtnSmoothABCurve.Click += new System.EventHandler(this.toolStripBtnSmoothABCurve_Click);
-            // 
-            // toolStripBtnHideTabs
-            // 
-            resources.ApplyResources(this.toolStripBtnHideTabs, "toolStripBtnHideTabs");
-            this.toolStripBtnHideTabs.Image = global::AgOpenGPS.Properties.Resources.Batman48;
-            this.toolStripBtnHideTabs.Name = "toolStripBtnHideTabs";
-            this.toolStripBtnHideTabs.Click += new System.EventHandler(this.toolStripBtnHideTabs_Click);
-            // 
-            // toolStripBtnSnap
-            // 
-            resources.ApplyResources(this.toolStripBtnSnap, "toolStripBtnSnap");
-            this.toolStripBtnSnap.Image = global::AgOpenGPS.Properties.Resources.Snap2;
-            this.toolStripBtnSnap.Name = "toolStripBtnSnap";
-            this.toolStripBtnSnap.Click += new System.EventHandler(this.toolStripBtnSnap_Click);
             // 
             // stripAreaRate
             // 
@@ -795,7 +762,6 @@
             this.toolstripAutoSteerConfig,
             this.toolstripVehicleConfig,
             this.toolstripYouTurnConfig});
-            this.toolStripDropDownButton2.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
@@ -862,7 +828,6 @@
             this.toolstripBoundary,
             this.toolstripHeadland,
             this.toolstripResetTrip});
-            this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.start;
             this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownBtnFuncs.Name = "toolStripDropDownBtnFuncs";
             this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
@@ -894,6 +859,14 @@
             resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
+            // 
+            // toolStripBatman
+            // 
+            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
+            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Name = "toolStripBatman";
+            this.toolStripBatman.ShowDropDownArrow = false;
+            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
             // 
             // stripPortGPS
             // 
@@ -1071,378 +1044,116 @@
             // tabControl1
             // 
             resources.ApplyResources(this.tabControl1, "tabControl1");
-            this.tabControl1.Controls.Add(this.DataPage);
-            this.tabControl1.Controls.Add(this.zoomPage2);
+            this.tabControl1.Controls.Add(this.autoPage4);
             this.tabControl1.Controls.Add(this.rate2Page5);
             this.tabControl1.Controls.Add(this.configPage1);
-            this.tabControl1.Controls.Add(this.autoPage4);
+            this.tabControl1.Controls.Add(this.zoomPage2);
+            this.tabControl1.Controls.Add(this.DataPage);
             this.tabControl1.ImageList = this.imageList1;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             // 
-            // DataPage
-            // 
-            this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.label11);
-            this.DataPage.Controls.Add(this.cboxRowWidth);
-            this.DataPage.Controls.Add(this.lblStepsFromTurnLine);
-            this.DataPage.Controls.Add(this.lblAltitude);
-            this.DataPage.Controls.Add(this.lblZone);
-            this.DataPage.Controls.Add(this.lblConvergenceAngle);
-            this.DataPage.Controls.Add(this.label2);
-            this.DataPage.Controls.Add(this.lblLookAhead);
-            this.DataPage.Controls.Add(this.label12);
-            this.DataPage.Controls.Add(this.lblMachineControl);
-            this.DataPage.Controls.Add(this.lblLidarDistance);
-            this.DataPage.Controls.Add(this.label3);
-            this.DataPage.Controls.Add(this.label1);
-            this.DataPage.Controls.Add(this.lblHeading2);
-            this.DataPage.Controls.Add(this.lblFixQuality);
-            this.DataPage.Controls.Add(this.btnZoomOut);
-            this.DataPage.Controls.Add(this.btnZoomIn);
-            this.DataPage.Controls.Add(this.lblLongitude);
-            this.DataPage.Controls.Add(this.lblLatitude);
-            this.DataPage.Controls.Add(this.lblBoundaryDistanceAway);
-            this.DataPage.Controls.Add(this.lblBoundaryArea);
-            this.DataPage.Controls.Add(this.lblRoll);
-            this.DataPage.Controls.Add(this.lblGPSHeading);
-            this.DataPage.Controls.Add(this.lblYawHeading);
-            this.DataPage.Controls.Add(this.label25);
-            this.DataPage.Controls.Add(this.label24);
-            this.DataPage.Controls.Add(this.btnTiltUp);
-            this.DataPage.Controls.Add(this.btnTiltDown);
-            this.DataPage.Controls.Add(this.label22);
-            this.DataPage.Controls.Add(this.label13);
-            this.DataPage.Controls.Add(this.label20);
-            this.DataPage.Controls.Add(this.txtBoxSendAutoSteer);
-            this.DataPage.Controls.Add(this.txtBoxRecvAutoSteer);
-            this.DataPage.Controls.Add(this.lblSats);
-            this.DataPage.Controls.Add(this.label17);
-            this.DataPage.Controls.Add(this.label16);
-            this.DataPage.Controls.Add(this.label19);
-            this.DataPage.Controls.Add(this.label18);
-            this.DataPage.Controls.Add(this.label15);
-            this.DataPage.Controls.Add(this.label7);
-            this.DataPage.Controls.Add(this.tboxSentence);
-            this.DataPage.Controls.Add(this.label10);
-            this.DataPage.Controls.Add(this.label9);
-            this.DataPage.Controls.Add(this.label8);
-            this.DataPage.Controls.Add(this.lblEasting);
-            this.DataPage.Controls.Add(this.lblNorthing);
-            this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
-            resources.ApplyResources(this.DataPage, "DataPage");
-            this.DataPage.Name = "DataPage";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
-            // cboxRowWidth
-            // 
-            this.cboxRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxRowWidth, "cboxRowWidth");
-            this.cboxRowWidth.FormattingEnabled = true;
-            this.cboxRowWidth.Items.AddRange(new object[] {
-            resources.GetString("cboxRowWidth.Items"),
-            resources.GetString("cboxRowWidth.Items1"),
-            resources.GetString("cboxRowWidth.Items2"),
-            resources.GetString("cboxRowWidth.Items3"),
-            resources.GetString("cboxRowWidth.Items4"),
-            resources.GetString("cboxRowWidth.Items5"),
-            resources.GetString("cboxRowWidth.Items6")});
-            this.cboxRowWidth.Name = "cboxRowWidth";
-            this.cboxRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxRowWidth_SelectedIndexChanged);
-            // 
-            // lblStepsFromTurnLine
-            // 
-            resources.ApplyResources(this.lblStepsFromTurnLine, "lblStepsFromTurnLine");
-            this.lblStepsFromTurnLine.Name = "lblStepsFromTurnLine";
-            // 
-            // lblAltitude
-            // 
-            resources.ApplyResources(this.lblAltitude, "lblAltitude");
-            this.lblAltitude.Name = "lblAltitude";
-            // 
-            // lblConvergenceAngle
-            // 
-            resources.ApplyResources(this.lblConvergenceAngle, "lblConvergenceAngle");
-            this.lblConvergenceAngle.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblConvergenceAngle.Name = "lblConvergenceAngle";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // lblLookAhead
-            // 
-            resources.ApplyResources(this.lblLookAhead, "lblLookAhead");
-            this.lblLookAhead.Name = "lblLookAhead";
-            // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // lblMachineControl
-            // 
-            resources.ApplyResources(this.lblMachineControl, "lblMachineControl");
-            this.lblMachineControl.Name = "lblMachineControl";
-            // 
-            // lblLidarDistance
-            // 
-            resources.ApplyResources(this.lblLidarDistance, "lblLidarDistance");
-            this.lblLidarDistance.Name = "lblLidarDistance";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
-            // lblHeading2
-            // 
-            resources.ApplyResources(this.lblHeading2, "lblHeading2");
-            this.lblHeading2.Name = "lblHeading2";
-            // 
-            // lblFixQuality
-            // 
-            resources.ApplyResources(this.lblFixQuality, "lblFixQuality");
-            this.lblFixQuality.Name = "lblFixQuality";
-            // 
-            // btnZoomOut
-            // 
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            // 
-            // btnZoomIn
-            // 
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
-            // lblLongitude
-            // 
-            resources.ApplyResources(this.lblLongitude, "lblLongitude");
-            this.lblLongitude.Name = "lblLongitude";
-            // 
-            // lblLatitude
-            // 
-            resources.ApplyResources(this.lblLatitude, "lblLatitude");
-            this.lblLatitude.Name = "lblLatitude";
-            // 
-            // lblBoundaryDistanceAway
-            // 
-            resources.ApplyResources(this.lblBoundaryDistanceAway, "lblBoundaryDistanceAway");
-            this.lblBoundaryDistanceAway.Name = "lblBoundaryDistanceAway";
-            // 
-            // lblBoundaryArea
-            // 
-            resources.ApplyResources(this.lblBoundaryArea, "lblBoundaryArea");
-            this.lblBoundaryArea.Name = "lblBoundaryArea";
-            // 
-            // lblRoll
-            // 
-            resources.ApplyResources(this.lblRoll, "lblRoll");
-            this.lblRoll.Name = "lblRoll";
-            // 
-            // lblGPSHeading
-            // 
-            resources.ApplyResources(this.lblGPSHeading, "lblGPSHeading");
-            this.lblGPSHeading.Name = "lblGPSHeading";
-            // 
-            // lblYawHeading
-            // 
-            resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
-            this.lblYawHeading.Name = "lblYawHeading";
-            // 
-            // label25
-            // 
-            resources.ApplyResources(this.label25, "label25");
-            this.label25.Name = "label25";
-            // 
-            // label24
-            // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Name = "label24";
-            // 
-            // btnTiltUp
-            // 
-            resources.ApplyResources(this.btnTiltUp, "btnTiltUp");
-            this.btnTiltUp.BackColor = System.Drawing.Color.Lavender;
-            this.btnTiltUp.Name = "btnTiltUp";
-            this.btnTiltUp.UseVisualStyleBackColor = false;
-            this.btnTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltUp_MouseDown);
-            // 
-            // btnTiltDown
-            // 
-            resources.ApplyResources(this.btnTiltDown, "btnTiltDown");
-            this.btnTiltDown.BackColor = System.Drawing.Color.Lavender;
-            this.btnTiltDown.Name = "btnTiltDown";
-            this.btnTiltDown.UseVisualStyleBackColor = false;
-            this.btnTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltDown_MouseDown);
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Name = "label22";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // txtBoxSendAutoSteer
-            // 
-            this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
-            this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
-            this.txtBoxSendAutoSteer.ReadOnly = true;
-            // 
-            // txtBoxRecvAutoSteer
-            // 
-            this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
-            this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
-            this.txtBoxRecvAutoSteer.ReadOnly = true;
-            // 
-            // lblSats
-            // 
-            resources.ApplyResources(this.lblSats, "lblSats");
-            this.lblSats.Name = "lblSats";
-            // 
-            // label17
-            // 
-            resources.ApplyResources(this.label17, "label17");
-            this.label17.Name = "label17";
-            // 
-            // label16
-            // 
-            resources.ApplyResources(this.label16, "label16");
-            this.label16.Name = "label16";
-            // 
-            // label19
-            // 
-            resources.ApplyResources(this.label19, "label19");
-            this.label19.Name = "label19";
-            // 
-            // label18
-            // 
-            resources.ApplyResources(this.label18, "label18");
-            this.label18.Name = "label18";
-            // 
-            // label15
-            // 
-            resources.ApplyResources(this.label15, "label15");
-            this.label15.Name = "label15";
-            // 
-            // label7
-            // 
-            resources.ApplyResources(this.label7, "label7");
-            this.label7.Name = "label7";
-            // 
-            // label10
-            // 
-            resources.ApplyResources(this.label10, "label10");
-            this.label10.Name = "label10";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // zoomPage2
-            // 
-            this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.zoomPage2.Controls.Add(this.oglZoom);
-            this.zoomPage2.Controls.Add(this.label6);
-            this.zoomPage2.Controls.Add(this.lblZooom);
-            this.zoomPage2.Controls.Add(this.label5);
-            this.zoomPage2.Controls.Add(this.label4);
-            this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
-            this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
-            resources.ApplyResources(this.zoomPage2, "zoomPage2");
-            this.zoomPage2.Name = "zoomPage2";
-            // 
-            // oglZoom
-            // 
-            this.oglZoom.BackColor = System.Drawing.Color.Black;
-            resources.ApplyResources(this.oglZoom, "oglZoom");
-            this.oglZoom.Name = "oglZoom";
-            this.oglZoom.VSync = false;
-            this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
-            this.oglZoom.Paint += new System.Windows.Forms.PaintEventHandler(this.oglZoom_Paint);
-            this.oglZoom.Resize += new System.EventHandler(this.oglZoom_Resize);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Name = "label6";
-            // 
-            // lblZooom
-            // 
-            resources.ApplyResources(this.lblZooom, "lblZooom");
-            this.lblZooom.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblZooom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblZooom.Name = "lblZooom";
+            // autoPage4
+            // 
+            this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
+            this.autoPage4.Controls.Add(this.btnLidarOnOff);
+            this.autoPage4.Controls.Add(this.btnGeneratePath);
+            this.autoPage4.Controls.Add(this.btnDriveGenPath);
+            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
+            this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
+            this.autoPage4.Controls.Add(this.btnManualAutoDrive);
+            this.autoPage4.Controls.Add(this.btnDrivePath);
+            resources.ApplyResources(this.autoPage4, "autoPage4");
+            this.autoPage4.Name = "autoPage4";
+            // 
+            // btnDeleteRecPath
+            // 
+            this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
+            this.btnDeleteRecPath.Name = "btnDeleteRecPath";
+            this.btnDeleteRecPath.UseVisualStyleBackColor = false;
+            this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
+            // 
+            // btnLidarOnOff
+            // 
+            this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
+            this.btnLidarOnOff.Name = "btnLidarOnOff";
+            this.btnLidarOnOff.UseVisualStyleBackColor = false;
+            this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
+            // 
+            // btnGeneratePath
+            // 
+            this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
+            this.btnGeneratePath.Name = "btnGeneratePath";
+            this.btnGeneratePath.UseVisualStyleBackColor = false;
+            this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
+            // 
+            // btnDriveGenPath
+            // 
+            this.btnDriveGenPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDriveGenPath, "btnDriveGenPath");
+            this.btnDriveGenPath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.btnDriveGenPath.Name = "btnDriveGenPath";
+            this.btnDriveGenPath.UseVisualStyleBackColor = false;
+            this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            // 
+            // btnRecPathPauseRecord
+            // 
+            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
+            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
+            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
+            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
+            // 
+            // btnPauseDrivingPath
+            // 
+            this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
+            this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
+            this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
+            this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
+            // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            // 
+            // btnDrivePath
+            // 
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
             // 
             // rate2Page5
             // 
             this.rate2Page5.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.rate2Page5.Controls.Add(this.label30);
             this.rate2Page5.Controls.Add(this.label21);
             this.rate2Page5.Controls.Add(this.txtBoxSendArduino);
             this.rate2Page5.Controls.Add(this.txtBoxRecvArduino);
             this.rate2Page5.Controls.Add(this.label23);
-            this.rate2Page5.Controls.Add(this.lblFlowRateRight);
             this.rate2Page5.Controls.Add(this.lblFlowRateLeft);
-            this.rate2Page5.Controls.Add(this.lblRateSetpointRight);
-            this.rate2Page5.Controls.Add(this.lblFlowRight);
             this.rate2Page5.Controls.Add(this.lblRateAppliedActualLeft);
             this.rate2Page5.Controls.Add(this.label28);
             this.rate2Page5.Controls.Add(this.lblFlowLeft);
-            this.rate2Page5.Controls.Add(this.lblRateAppliedActualRight);
             this.rate2Page5.Controls.Add(this.lblDualAccumulatedVolume);
             this.rate2Page5.Controls.Add(this.lblRateSetpointLeft);
-            this.rate2Page5.Controls.Add(this.btnSelectSingleDualMeter);
             this.rate2Page5.Controls.Add(this.btnSelectRate2);
             this.rate2Page5.Controls.Add(this.btnSelectRate1);
-            this.rate2Page5.Controls.Add(this.btnRateRightDn);
-            this.rate2Page5.Controls.Add(this.btnRateRightUp);
             this.rate2Page5.Controls.Add(this.btnDualRateConfig);
             this.rate2Page5.Controls.Add(this.btnRateLeftDn);
             this.rate2Page5.Controls.Add(this.btnRateLeftUp);
             this.rate2Page5.Controls.Add(this.btnDualRate);
             resources.ApplyResources(this.rate2Page5, "rate2Page5");
             this.rate2Page5.Name = "rate2Page5";
-            // 
-            // label30
-            // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
             // 
             // label21
             // 
@@ -1468,33 +1179,12 @@
             resources.ApplyResources(this.label23, "label23");
             this.label23.Name = "label23";
             // 
-            // lblFlowRateRight
-            // 
-            resources.ApplyResources(this.lblFlowRateRight, "lblFlowRateRight");
-            this.lblFlowRateRight.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblFlowRateRight.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblFlowRateRight.Name = "lblFlowRateRight";
-            // 
             // lblFlowRateLeft
             // 
             resources.ApplyResources(this.lblFlowRateLeft, "lblFlowRateLeft");
             this.lblFlowRateLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.lblFlowRateLeft.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblFlowRateLeft.Name = "lblFlowRateLeft";
-            // 
-            // lblRateSetpointRight
-            // 
-            resources.ApplyResources(this.lblRateSetpointRight, "lblRateSetpointRight");
-            this.lblRateSetpointRight.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblRateSetpointRight.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblRateSetpointRight.Name = "lblRateSetpointRight";
-            // 
-            // lblFlowRight
-            // 
-            resources.ApplyResources(this.lblFlowRight, "lblFlowRight");
-            this.lblFlowRight.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblFlowRight.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblFlowRight.Name = "lblFlowRight";
             // 
             // lblRateAppliedActualLeft
             // 
@@ -1517,13 +1207,6 @@
             this.lblFlowLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
             this.lblFlowLeft.Name = "lblFlowLeft";
             // 
-            // lblRateAppliedActualRight
-            // 
-            resources.ApplyResources(this.lblRateAppliedActualRight, "lblRateAppliedActualRight");
-            this.lblRateAppliedActualRight.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblRateAppliedActualRight.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblRateAppliedActualRight.Name = "lblRateAppliedActualRight";
-            // 
             // lblDualAccumulatedVolume
             // 
             resources.ApplyResources(this.lblDualAccumulatedVolume, "lblDualAccumulatedVolume");
@@ -1537,13 +1220,6 @@
             this.lblRateSetpointLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.lblRateSetpointLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
             this.lblRateSetpointLeft.Name = "lblRateSetpointLeft";
-            // 
-            // btnSelectSingleDualMeter
-            // 
-            resources.ApplyResources(this.btnSelectSingleDualMeter, "btnSelectSingleDualMeter");
-            this.btnSelectSingleDualMeter.Name = "btnSelectSingleDualMeter";
-            this.btnSelectSingleDualMeter.UseVisualStyleBackColor = true;
-            this.btnSelectSingleDualMeter.Click += new System.EventHandler(this.btnSelectSingleDualMeter_Click);
             // 
             // btnSelectRate2
             // 
@@ -1560,20 +1236,6 @@
             this.btnSelectRate1.Name = "btnSelectRate1";
             this.btnSelectRate1.UseVisualStyleBackColor = false;
             this.btnSelectRate1.Click += new System.EventHandler(this.btnSelectRate1_Click);
-            // 
-            // btnRateRightDn
-            // 
-            resources.ApplyResources(this.btnRateRightDn, "btnRateRightDn");
-            this.btnRateRightDn.Name = "btnRateRightDn";
-            this.btnRateRightDn.UseVisualStyleBackColor = true;
-            this.btnRateRightDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateRightDn_MouseDown);
-            // 
-            // btnRateRightUp
-            // 
-            resources.ApplyResources(this.btnRateRightUp, "btnRateRightUp");
-            this.btnRateRightUp.Name = "btnRateRightUp";
-            this.btnRateRightUp.UseVisualStyleBackColor = true;
-            this.btnRateRightUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateRightUp_MouseDown);
             // 
             // btnDualRateConfig
             // 
@@ -1609,38 +1271,15 @@
             // configPage1
             // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.configPage1.Controls.Add(this.btnMakeContourFromBoundary);
-            this.configPage1.Controls.Add(this.btnSmoothAB);
             this.configPage1.Controls.Add(this.btnFixOffset);
             this.configPage1.Controls.Add(this.btnFlagsGoogleEarth);
             this.configPage1.Controls.Add(this.btnWebCam);
             this.configPage1.Controls.Add(this.btnHelp);
             this.configPage1.Controls.Add(this.btnFileExplorer);
-            this.configPage1.Controls.Add(this.btnDeleteAllData);
             this.configPage1.Controls.Add(this.btnGPSData);
             this.configPage1.Controls.Add(this.btnPerimeter);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
-            // 
-            // btnMakeContourFromBoundary
-            // 
-            this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
-            this.btnMakeContourFromBoundary.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
-            this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
-            this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
-            this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
-            // 
-            // btnSmoothAB
-            // 
-            this.btnSmoothAB.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnSmoothAB.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSmoothAB, "btnSmoothAB");
-            this.btnSmoothAB.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
-            this.btnSmoothAB.Name = "btnSmoothAB";
-            this.btnSmoothAB.UseVisualStyleBackColor = false;
-            this.btnSmoothAB.Click += new System.EventHandler(this.btnSmoothAB_Click);
             // 
             // btnFixOffset
             // 
@@ -1687,15 +1326,6 @@
             this.btnFileExplorer.UseVisualStyleBackColor = false;
             this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
             // 
-            // btnDeleteAllData
-            // 
-            this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
-            this.btnDeleteAllData.Name = "btnDeleteAllData";
-            this.btnDeleteAllData.UseVisualStyleBackColor = false;
-            this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
-            // 
             // btnGPSData
             // 
             this.btnGPSData.BackColor = System.Drawing.Color.AliceBlue;
@@ -1714,107 +1344,448 @@
             this.btnPerimeter.UseVisualStyleBackColor = false;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
-            // autoPage4
+            // zoomPage2
             // 
-            this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
-            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
-            this.autoPage4.Controls.Add(this.btnLidarOnOff);
-            this.autoPage4.Controls.Add(this.btnGeneratePath);
-            this.autoPage4.Controls.Add(this.btnDriveGenPath);
-            this.autoPage4.Controls.Add(this.btnDrivePath);
-            this.autoPage4.Controls.Add(this.btnManualAutoDrive);
-            this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
-            resources.ApplyResources(this.autoPage4, "autoPage4");
-            this.autoPage4.Name = "autoPage4";
+            this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
+            this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
+            this.zoomPage2.Controls.Add(this.label4);
+            this.zoomPage2.Controls.Add(this.label5);
+            this.zoomPage2.Controls.Add(this.oglZoom);
+            resources.ApplyResources(this.zoomPage2, "zoomPage2");
+            this.zoomPage2.Name = "zoomPage2";
             // 
-            // btnDeleteRecPath
+            // oglZoom
             // 
-            this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
-            this.btnDeleteRecPath.Name = "btnDeleteRecPath";
-            this.btnDeleteRecPath.UseVisualStyleBackColor = false;
-            this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
+            this.oglZoom.BackColor = System.Drawing.Color.Black;
+            resources.ApplyResources(this.oglZoom, "oglZoom");
+            this.oglZoom.Name = "oglZoom";
+            this.oglZoom.VSync = false;
+            this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
+            this.oglZoom.Paint += new System.Windows.Forms.PaintEventHandler(this.oglZoom_Paint);
+            this.oglZoom.Resize += new System.EventHandler(this.oglZoom_Resize);
             // 
-            // btnRecPathPauseRecord
+            // DataPage
             // 
-            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
-            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
-            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
+            this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.lblLongitude);
+            this.DataPage.Controls.Add(this.lblLatitude);
+            this.DataPage.Controls.Add(this.lblAltitude);
+            this.DataPage.Controls.Add(this.lblZone);
+            this.DataPage.Controls.Add(this.lblConvergenceAngle);
+            this.DataPage.Controls.Add(this.label2);
+            this.DataPage.Controls.Add(this.lblLookAhead);
+            this.DataPage.Controls.Add(this.label12);
+            this.DataPage.Controls.Add(this.lblLidarDistance);
+            this.DataPage.Controls.Add(this.label1);
+            this.DataPage.Controls.Add(this.lblHeading2);
+            this.DataPage.Controls.Add(this.lblBoundaryDistanceAway);
+            this.DataPage.Controls.Add(this.lblBoundaryArea);
+            this.DataPage.Controls.Add(this.lblRoll);
+            this.DataPage.Controls.Add(this.lblGPSHeading);
+            this.DataPage.Controls.Add(this.lblYawHeading);
+            this.DataPage.Controls.Add(this.label25);
+            this.DataPage.Controls.Add(this.label24);
+            this.DataPage.Controls.Add(this.label22);
+            this.DataPage.Controls.Add(this.label13);
+            this.DataPage.Controls.Add(this.label20);
+            this.DataPage.Controls.Add(this.txtBoxSendAutoSteer);
+            this.DataPage.Controls.Add(this.txtBoxRecvAutoSteer);
+            this.DataPage.Controls.Add(this.lblSats);
+            this.DataPage.Controls.Add(this.label16);
+            this.DataPage.Controls.Add(this.label19);
+            this.DataPage.Controls.Add(this.label18);
+            this.DataPage.Controls.Add(this.label15);
+            this.DataPage.Controls.Add(this.label7);
+            this.DataPage.Controls.Add(this.tboxSentence);
+            this.DataPage.Controls.Add(this.label10);
+            this.DataPage.Controls.Add(this.label9);
+            this.DataPage.Controls.Add(this.label8);
+            this.DataPage.Controls.Add(this.lblEasting);
+            this.DataPage.Controls.Add(this.lblNorthing);
+            this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
+            resources.ApplyResources(this.DataPage, "DataPage");
+            this.DataPage.Name = "DataPage";
             // 
-            // btnLidarOnOff
+            // lblLongitude
             // 
-            this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
-            this.btnLidarOnOff.Name = "btnLidarOnOff";
-            this.btnLidarOnOff.UseVisualStyleBackColor = false;
-            this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
+            resources.ApplyResources(this.lblLongitude, "lblLongitude");
+            this.lblLongitude.Name = "lblLongitude";
             // 
-            // btnGeneratePath
+            // lblLatitude
             // 
-            this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
-            this.btnGeneratePath.Name = "btnGeneratePath";
-            this.btnGeneratePath.UseVisualStyleBackColor = false;
-            this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
+            resources.ApplyResources(this.lblLatitude, "lblLatitude");
+            this.lblLatitude.Name = "lblLatitude";
             // 
-            // btnDriveGenPath
+            // lblAltitude
             // 
-            this.btnDriveGenPath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDriveGenPath, "btnDriveGenPath");
-            this.btnDriveGenPath.Name = "btnDriveGenPath";
-            this.btnDriveGenPath.UseVisualStyleBackColor = false;
-            this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            resources.ApplyResources(this.lblAltitude, "lblAltitude");
+            this.lblAltitude.Name = "lblAltitude";
             // 
-            // btnDrivePath
+            // lblConvergenceAngle
             // 
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
-            this.btnDrivePath.Name = "btnDrivePath";
-            this.btnDrivePath.UseVisualStyleBackColor = false;
-            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
+            resources.ApplyResources(this.lblConvergenceAngle, "lblConvergenceAngle");
+            this.lblConvergenceAngle.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblConvergenceAngle.Name = "lblConvergenceAngle";
             // 
-            // btnManualAutoDrive
+            // label2
             // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
             // 
-            // btnPauseDrivingPath
+            // lblLookAhead
             // 
-            this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
-            resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
-            this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
-            this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
-            this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
+            resources.ApplyResources(this.lblLookAhead, "lblLookAhead");
+            this.lblLookAhead.Name = "lblLookAhead";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // lblLidarDistance
+            // 
+            resources.ApplyResources(this.lblLidarDistance, "lblLidarDistance");
+            this.lblLidarDistance.Name = "lblLidarDistance";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // lblHeading2
+            // 
+            resources.ApplyResources(this.lblHeading2, "lblHeading2");
+            this.lblHeading2.Name = "lblHeading2";
+            // 
+            // lblBoundaryDistanceAway
+            // 
+            resources.ApplyResources(this.lblBoundaryDistanceAway, "lblBoundaryDistanceAway");
+            this.lblBoundaryDistanceAway.Name = "lblBoundaryDistanceAway";
+            // 
+            // lblBoundaryArea
+            // 
+            resources.ApplyResources(this.lblBoundaryArea, "lblBoundaryArea");
+            this.lblBoundaryArea.Name = "lblBoundaryArea";
+            // 
+            // lblRoll
+            // 
+            resources.ApplyResources(this.lblRoll, "lblRoll");
+            this.lblRoll.Name = "lblRoll";
+            // 
+            // lblGPSHeading
+            // 
+            resources.ApplyResources(this.lblGPSHeading, "lblGPSHeading");
+            this.lblGPSHeading.Name = "lblGPSHeading";
+            // 
+            // lblYawHeading
+            // 
+            resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
+            this.lblYawHeading.Name = "lblYawHeading";
+            // 
+            // label25
+            // 
+            resources.ApplyResources(this.label25, "label25");
+            this.label25.Name = "label25";
+            // 
+            // label24
+            // 
+            resources.ApplyResources(this.label24, "label24");
+            this.label24.Name = "label24";
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
+            // 
+            // txtBoxSendAutoSteer
+            // 
+            this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
+            this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
+            this.txtBoxSendAutoSteer.ReadOnly = true;
+            // 
+            // txtBoxRecvAutoSteer
+            // 
+            this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
+            this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
+            this.txtBoxRecvAutoSteer.ReadOnly = true;
+            // 
+            // lblSats
+            // 
+            resources.ApplyResources(this.lblSats, "lblSats");
+            this.lblSats.Name = "lblSats";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
+            // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.Name = "label19";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // lblMachineControl
+            // 
+            resources.ApplyResources(this.lblMachineControl, "lblMachineControl");
+            this.lblMachineControl.Name = "lblMachineControl";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // cboxRowWidth
+            // 
+            this.cboxRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cboxRowWidth, "cboxRowWidth");
+            this.cboxRowWidth.FormattingEnabled = true;
+            this.cboxRowWidth.Items.AddRange(new object[] {
+            resources.GetString("cboxRowWidth.Items"),
+            resources.GetString("cboxRowWidth.Items1"),
+            resources.GetString("cboxRowWidth.Items2"),
+            resources.GetString("cboxRowWidth.Items3"),
+            resources.GetString("cboxRowWidth.Items4"),
+            resources.GetString("cboxRowWidth.Items5"),
+            resources.GetString("cboxRowWidth.Items6")});
+            this.cboxRowWidth.Name = "cboxRowWidth";
+            this.cboxRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxRowWidth_SelectedIndexChanged);
+            // 
+            // lblFixQuality
+            // 
+            resources.ApplyResources(this.lblFixQuality, "lblFixQuality");
+            this.lblFixQuality.Name = "lblFixQuality";
+            // 
+            // panelBatman
+            // 
+            this.panelBatman.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panelBatman.Controls.Add(this.lblpConvergenceAngle);
+            this.panelBatman.Controls.Add(this.label3);
+            this.panelBatman.Controls.Add(this.lblpGPSHeading);
+            this.panelBatman.Controls.Add(this.lblpYawHeading);
+            this.panelBatman.Controls.Add(this.label35);
+            this.panelBatman.Controls.Add(this.label39);
+            this.panelBatman.Controls.Add(this.lblpRoll);
+            this.panelBatman.Controls.Add(this.label33);
+            this.panelBatman.Controls.Add(this.lblpLookAhead);
+            this.panelBatman.Controls.Add(this.label26);
+            this.panelBatman.Controls.Add(this.label43);
+            this.panelBatman.Controls.Add(this.cboxpRowWidth);
+            this.panelBatman.Controls.Add(this.btnpTiltUp);
+            this.panelBatman.Controls.Add(this.btnpTiltDown);
+            this.panelBatman.Controls.Add(this.lblpEasting);
+            this.panelBatman.Controls.Add(this.lblpLongitude);
+            this.panelBatman.Controls.Add(this.lblpNorthing);
+            this.panelBatman.Controls.Add(this.lblpLatitude);
+            this.panelBatman.Controls.Add(this.label37);
+            this.panelBatman.Controls.Add(this.label38);
+            this.panelBatman.Controls.Add(this.label34);
+            this.panelBatman.Controls.Add(this.lblpSats);
+            this.panelBatman.Controls.Add(this.lblpAltitude);
+            this.panelBatman.Controls.Add(this.lblpZone);
+            resources.ApplyResources(this.panelBatman, "panelBatman");
+            this.panelBatman.Name = "panelBatman";
+            // 
+            // lblpConvergenceAngle
+            // 
+            resources.ApplyResources(this.lblpConvergenceAngle, "lblpConvergenceAngle");
+            this.lblpConvergenceAngle.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblpConvergenceAngle.Name = "lblpConvergenceAngle";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // lblpGPSHeading
+            // 
+            resources.ApplyResources(this.lblpGPSHeading, "lblpGPSHeading");
+            this.lblpGPSHeading.Name = "lblpGPSHeading";
+            // 
+            // lblpYawHeading
+            // 
+            resources.ApplyResources(this.lblpYawHeading, "lblpYawHeading");
+            this.lblpYawHeading.Name = "lblpYawHeading";
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // lblpRoll
+            // 
+            resources.ApplyResources(this.lblpRoll, "lblpRoll");
+            this.lblpRoll.Name = "lblpRoll";
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.Name = "label33";
+            // 
+            // lblpLookAhead
+            // 
+            resources.ApplyResources(this.lblpLookAhead, "lblpLookAhead");
+            this.lblpLookAhead.Name = "lblpLookAhead";
+            // 
+            // label26
+            // 
+            resources.ApplyResources(this.label26, "label26");
+            this.label26.Name = "label26";
+            // 
+            // label43
+            // 
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.Name = "label43";
+            // 
+            // cboxpRowWidth
+            // 
+            resources.ApplyResources(this.cboxpRowWidth, "cboxpRowWidth");
+            this.cboxpRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxpRowWidth.FormattingEnabled = true;
+            this.cboxpRowWidth.Items.AddRange(new object[] {
+            resources.GetString("cboxpRowWidth.Items"),
+            resources.GetString("cboxpRowWidth.Items1"),
+            resources.GetString("cboxpRowWidth.Items2"),
+            resources.GetString("cboxpRowWidth.Items3"),
+            resources.GetString("cboxpRowWidth.Items4"),
+            resources.GetString("cboxpRowWidth.Items5"),
+            resources.GetString("cboxpRowWidth.Items6")});
+            this.cboxpRowWidth.Name = "cboxpRowWidth";
+            this.cboxpRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxpRowWidth_SelectedIndexChanged);
+            // 
+            // btnpTiltUp
+            // 
+            resources.ApplyResources(this.btnpTiltUp, "btnpTiltUp");
+            this.btnpTiltUp.BackColor = System.Drawing.Color.Lavender;
+            this.btnpTiltUp.Name = "btnpTiltUp";
+            this.btnpTiltUp.UseVisualStyleBackColor = false;
+            this.btnpTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltUp_MouseDown);
+            // 
+            // btnpTiltDown
+            // 
+            resources.ApplyResources(this.btnpTiltDown, "btnpTiltDown");
+            this.btnpTiltDown.BackColor = System.Drawing.Color.Lavender;
+            this.btnpTiltDown.Name = "btnpTiltDown";
+            this.btnpTiltDown.UseVisualStyleBackColor = false;
+            this.btnpTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltDown_MouseDown);
+            // 
+            // lblpEasting
+            // 
+            resources.ApplyResources(this.lblpEasting, "lblpEasting");
+            this.lblpEasting.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblpEasting.Name = "lblpEasting";
+            // 
+            // lblpLongitude
+            // 
+            resources.ApplyResources(this.lblpLongitude, "lblpLongitude");
+            this.lblpLongitude.Name = "lblpLongitude";
+            // 
+            // lblpNorthing
+            // 
+            resources.ApplyResources(this.lblpNorthing, "lblpNorthing");
+            this.lblpNorthing.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblpNorthing.Name = "lblpNorthing";
+            // 
+            // lblpLatitude
+            // 
+            resources.ApplyResources(this.lblpLatitude, "lblpLatitude");
+            this.lblpLatitude.Name = "lblpLatitude";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
+            // 
+            // lblpSats
+            // 
+            resources.ApplyResources(this.lblpSats, "lblpSats");
+            this.lblpSats.Name = "lblpSats";
+            // 
+            // lblpAltitude
+            // 
+            resources.ApplyResources(this.lblpAltitude, "lblpAltitude");
+            this.lblpAltitude.Name = "lblpAltitude";
+            // 
+            // lblpZone
+            // 
+            resources.ApplyResources(this.lblpZone, "lblpZone");
+            this.lblpZone.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblpZone.Name = "lblpZone";
             // 
             // btnResetSim
             // 
-            resources.ApplyResources(this.btnResetSim, "btnResetSim");
             this.btnResetSim.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnResetSim.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnResetSim, "btnResetSim");
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.UseVisualStyleBackColor = false;
             this.btnResetSim.Click += new System.EventHandler(this.btnResetSim_Click);
             // 
             // btnResetSteerAngle
             // 
-            resources.ApplyResources(this.btnResetSteerAngle, "btnResetSteerAngle");
             this.btnResetSteerAngle.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnResetSteerAngle.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnResetSteerAngle, "btnResetSteerAngle");
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.UseVisualStyleBackColor = false;
             this.btnResetSteerAngle.Click += new System.EventHandler(this.btnResetSteerAngle_Click);
-            // 
-            // lblPureSteerAngle
-            // 
-            resources.ApplyResources(this.lblPureSteerAngle, "lblPureSteerAngle");
-            this.lblPureSteerAngle.BackColor = System.Drawing.Color.Transparent;
-            this.lblPureSteerAngle.Name = "lblPureSteerAngle";
             // 
             // lblSteerAngle
             // 
@@ -1831,14 +1802,25 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             resources.ApplyResources(this.toolStripMenuItem2, "toolStripMenuItem2");
             // 
+            // panelSimFrame
+            // 
+            this.panelSimFrame.Controls.Add(this.panelSimControls);
+            this.panelSimFrame.Controls.Add(this.label11);
+            this.panelSimFrame.Controls.Add(this.cboxRowWidth);
+            this.panelSimFrame.Controls.Add(this.btnTiltDown);
+            this.panelSimFrame.Controls.Add(this.btnTiltUp);
+            this.panelSimFrame.Controls.Add(this.lblMachineControl);
+            resources.ApplyResources(this.panelSimFrame, "panelSimFrame");
+            this.panelSimFrame.Name = "panelSimFrame";
+            // 
             // panelSimControls
             // 
-            resources.ApplyResources(this.panelSimControls, "panelSimControls");
             this.panelSimControls.Controls.Add(this.lblSteerAngle);
             this.panelSimControls.Controls.Add(this.hsbarSteerAngle);
-            this.panelSimControls.Controls.Add(this.hsbarStepDistance);
-            this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
             this.panelSimControls.Controls.Add(this.btnResetSim);
+            this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
+            this.panelSimControls.Controls.Add(this.hsbarStepDistance);
+            resources.ApplyResources(this.panelSimControls, "panelSimControls");
             this.panelSimControls.Name = "panelSimControls";
             // 
             // hsbarSteerAngle
@@ -1857,6 +1839,22 @@
             this.hsbarStepDistance.Maximum = 300;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
+            // 
+            // btnTiltDown
+            // 
+            this.btnTiltDown.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnTiltDown, "btnTiltDown");
+            this.btnTiltDown.Name = "btnTiltDown";
+            this.btnTiltDown.UseVisualStyleBackColor = false;
+            this.btnTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltDown_MouseDown);
+            // 
+            // btnTiltUp
+            // 
+            this.btnTiltUp.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnTiltUp, "btnTiltUp");
+            this.btnTiltUp.Name = "btnTiltUp";
+            this.btnTiltUp.UseVisualStyleBackColor = false;
+            this.btnTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnTiltUp_MouseDown);
             // 
             // btnSection8Man
             // 
@@ -1978,108 +1976,77 @@
             this.btnSection12Man.UseVisualStyleBackColor = false;
             this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
             // 
-            // btnSwapDirection
+            // contextMenuStripAB
             // 
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
+            resources.ApplyResources(this.contextMenuStripAB, "contextMenuStripAB");
+            this.contextMenuStripAB.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator15,
+            this.toolStripMenuOriginal,
+            this.toolStripSeparator13,
+            this.toolStripMenuAB1,
+            this.toolStripSeparator14,
+            this.toolStripMenuAB2,
+            this.toolStripSeparator16,
+            this.toolStripMenuPlus90,
+            this.toolStripSeparator17,
+            this.toolStripMenuChoose});
+            this.contextMenuStripAB.Name = "contextMenuStripAB";
+            this.contextMenuStripAB.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripAB_Opening);
             // 
-            // btnContourPriority
+            // toolStripSeparator15
             // 
-            this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
-            this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.ContourPriorityRight;
-            this.btnContourPriority.Name = "btnContourPriority";
-            this.btnContourPriority.UseVisualStyleBackColor = false;
-            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
             // 
-            // btnCurve
+            // toolStripMenuOriginal
             // 
-            resources.ApplyResources(this.btnCurve, "btnCurve");
-            this.btnCurve.BackColor = System.Drawing.Color.Lavender;
-            this.btnCurve.Name = "btnCurve";
-            this.btnCurve.UseVisualStyleBackColor = false;
-            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
+            this.toolStripMenuOriginal.Name = "toolStripMenuOriginal";
+            resources.ApplyResources(this.toolStripMenuOriginal, "toolStripMenuOriginal");
+            this.toolStripMenuOriginal.Click += new System.EventHandler(this.toolStripMenuOriginal_Click);
             // 
-            // btnLeftYouTurn
+            // toolStripSeparator13
             // 
-            this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
-            this.btnLeftYouTurn.Name = "btnLeftYouTurn";
-            this.btnLeftYouTurn.UseVisualStyleBackColor = false;
-            this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
             // 
-            // btnEnableAutoYouTurn
+            // toolStripMenuAB1
             // 
-            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
-            this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
-            this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
-            this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
+            this.toolStripMenuAB1.Name = "toolStripMenuAB1";
+            resources.ApplyResources(this.toolStripMenuAB1, "toolStripMenuAB1");
+            this.toolStripMenuAB1.Click += new System.EventHandler(this.toolStripMenuAB1_Click);
             // 
-            // btnSectionOffAutoOn
+            // toolStripSeparator14
             // 
-            resources.ApplyResources(this.btnSectionOffAutoOn, "btnSectionOffAutoOn");
-            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Lavender;
-            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
-            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
-            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
             // 
-            // btnFlag
+            // toolStripMenuAB2
             // 
-            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnFlag, "btnFlag");
-            this.btnFlag.Name = "btnFlag";
-            this.btnFlag.UseVisualStyleBackColor = false;
-            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
+            this.toolStripMenuAB2.Name = "toolStripMenuAB2";
+            resources.ApplyResources(this.toolStripMenuAB2, "toolStripMenuAB2");
+            this.toolStripMenuAB2.Click += new System.EventHandler(this.toolStripMenuAB2_Click);
             // 
-            // btnAutoSteer
+            // toolStripSeparator16
             // 
-            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoSteer.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
-            this.btnAutoSteer.Name = "btnAutoSteer";
-            this.btnAutoSteer.UseVisualStyleBackColor = false;
-            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
             // 
-            // btnRightYouTurn
+            // toolStripMenuPlus90
             // 
-            resources.ApplyResources(this.btnRightYouTurn, "btnRightYouTurn");
-            this.btnRightYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnRightYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnRightYouTurn.Name = "btnRightYouTurn";
-            this.btnRightYouTurn.UseVisualStyleBackColor = false;
-            this.btnRightYouTurn.Click += new System.EventHandler(this.btnRightYouTurn_Click);
+            this.toolStripMenuPlus90.Name = "toolStripMenuPlus90";
+            resources.ApplyResources(this.toolStripMenuPlus90, "toolStripMenuPlus90");
+            this.toolStripMenuPlus90.Click += new System.EventHandler(this.toolStripMenuPlus90_Click);
             // 
-            // btnContour
+            // toolStripSeparator17
             // 
-            resources.ApplyResources(this.btnContour, "btnContour");
-            this.btnContour.BackColor = System.Drawing.Color.Lavender;
-            this.btnContour.Name = "btnContour";
-            this.btnContour.UseVisualStyleBackColor = false;
-            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
+            this.toolStripSeparator17.Name = "toolStripSeparator17";
+            resources.ApplyResources(this.toolStripSeparator17, "toolStripSeparator17");
             // 
-            // btnManualOffOn
+            // toolStripMenuChoose
             // 
-            resources.ApplyResources(this.btnManualOffOn, "btnManualOffOn");
-            this.btnManualOffOn.BackColor = System.Drawing.Color.Lavender;
-            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnManualOffOn.Name = "btnManualOffOn";
-            this.btnManualOffOn.UseVisualStyleBackColor = false;
-            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
-            // 
-            // btnABLine
-            // 
-            resources.ApplyResources(this.btnABLine, "btnABLine");
-            this.btnABLine.BackColor = System.Drawing.Color.Lavender;
-            this.btnABLine.Name = "btnABLine";
-            this.btnABLine.UseVisualStyleBackColor = false;
-            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
+            this.toolStripMenuChoose.Name = "toolStripMenuChoose";
+            resources.ApplyResources(this.toolStripMenuChoose, "toolStripMenuChoose");
+            this.toolStripMenuChoose.Click += new System.EventHandler(this.toolStripMenuChoose_Click);
             // 
             // oglMain
             // 
@@ -2103,35 +2070,162 @@
             this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
             this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
             // 
-            // btnSnap
+            // btnZoomOut
             // 
-            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSnap, "btnSnap");
-            this.btnSnap.Name = "btnSnap";
-            this.btnSnap.UseVisualStyleBackColor = false;
-            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click_1);
+            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
+            this.btnZoomOut.BackColor = System.Drawing.Color.Transparent;
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
+            // 
+            // btnZoomIn
+            // 
+            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.BackColor = System.Drawing.Color.Transparent;
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
+            // 
+            // btnSwapDirection
+            // 
+            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
+            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSwapDirection.Name = "btnSwapDirection";
+            this.btnSwapDirection.UseVisualStyleBackColor = false;
+            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
+            // 
+            // btnContourPriority
+            // 
+            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
+            this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
+            this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnContourPriority.Name = "btnContourPriority";
+            this.btnContourPriority.UseVisualStyleBackColor = false;
+            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
+            // 
+            // btnCurve
+            // 
+            resources.ApplyResources(this.btnCurve, "btnCurve");
+            this.btnCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnCurve.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
+            this.btnCurve.Name = "btnCurve";
+            this.btnCurve.UseVisualStyleBackColor = false;
+            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
+            // 
+            // btnLeftYouTurn
+            // 
+            this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnLeftYouTurn, "btnLeftYouTurn");
+            this.btnLeftYouTurn.Name = "btnLeftYouTurn";
+            this.btnLeftYouTurn.UseVisualStyleBackColor = false;
+            this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
+            // 
+            // btnEnableAutoYouTurn
+            // 
+            resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
+            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnEnableAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnEnableAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
+            this.btnEnableAutoYouTurn.Name = "btnEnableAutoYouTurn";
+            this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
+            this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
+            // 
+            // btnSectionOffAutoOn
+            // 
+            resources.ApplyResources(this.btnSectionOffAutoOn, "btnSectionOffAutoOn");
+            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
+            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
+            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
+            // 
+            // btnFlag
+            // 
+            resources.ApplyResources(this.btnFlag, "btnFlag");
+            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.btnFlag.Name = "btnFlag";
+            this.btnFlag.UseVisualStyleBackColor = false;
+            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
+            // 
+            // btnAutoSteer
+            // 
+            resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
+            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            this.btnAutoSteer.Name = "btnAutoSteer";
+            this.btnAutoSteer.UseVisualStyleBackColor = false;
+            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
+            // 
+            // btnRightYouTurn
+            // 
+            resources.ApplyResources(this.btnRightYouTurn, "btnRightYouTurn");
+            this.btnRightYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnRightYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnRightYouTurn.Name = "btnRightYouTurn";
+            this.btnRightYouTurn.UseVisualStyleBackColor = false;
+            this.btnRightYouTurn.Click += new System.EventHandler(this.btnRightYouTurn_Click);
+            // 
+            // btnManualOffOn
+            // 
+            resources.ApplyResources(this.btnManualOffOn, "btnManualOffOn");
+            this.btnManualOffOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            this.btnManualOffOn.Name = "btnManualOffOn";
+            this.btnManualOffOn.UseVisualStyleBackColor = false;
+            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
+            // 
+            // btnABLine
+            // 
+            resources.ApplyResources(this.btnABLine, "btnABLine");
+            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnABLine.ContextMenuStrip = this.contextMenuStripAB;
+            this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
+            this.btnABLine.Name = "btnABLine";
+            this.btnABLine.UseVisualStyleBackColor = false;
+            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
+            // 
+            // btnContour
+            // 
+            resources.ApplyResources(this.btnContour, "btnContour");
+            this.btnContour.BackColor = System.Drawing.Color.Transparent;
+            this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            this.btnContour.Name = "btnContour";
+            this.btnContour.UseVisualStyleBackColor = false;
+            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Controls.Add(this.btnSnap);
+            this.Controls.Add(this.panelSimFrame);
             this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.btnContourPriority);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnEnableAutoYouTurn);
-            this.Controls.Add(this.lblPureSteerAngle);
             this.Controls.Add(this.btnSectionOffAutoOn);
             this.Controls.Add(this.btnFlag);
             this.Controls.Add(this.btnAutoSteer);
             this.Controls.Add(this.btnRightYouTurn);
+            this.Controls.Add(this.lblFixQuality);
+            this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.btnContour);
+            this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnManualOffOn);
             this.Controls.Add(this.btnABLine);
             this.Controls.Add(this.lblSpeedUnits);
@@ -2142,16 +2236,17 @@
             this.Controls.Add(this.btnSection6Man);
             this.Controls.Add(this.btnSection5Man);
             this.Controls.Add(this.btnSection4Man);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnSection3Man);
             this.Controls.Add(this.btnSection2Man);
             this.Controls.Add(this.btnSection1Man);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.panelSimControls);
             this.Controls.Add(this.btnSection12Man);
             this.Controls.Add(this.btnSection11Man);
             this.Controls.Add(this.btnSection10Man);
             this.Controls.Add(this.btnSection9Man);
             this.Controls.Add(this.oglMain);
+            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.oglBack);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MainMenuStrip = this.menuStrip1;
@@ -2167,16 +2262,21 @@
             this.contextMenuStripFlag.ResumeLayout(false);
             this.contextMenuArea.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            this.DataPage.ResumeLayout(false);
-            this.DataPage.PerformLayout();
-            this.zoomPage2.ResumeLayout(false);
-            this.zoomPage2.PerformLayout();
+            this.autoPage4.ResumeLayout(false);
             this.rate2Page5.ResumeLayout(false);
             this.rate2Page5.PerformLayout();
             this.configPage1.ResumeLayout(false);
-            this.autoPage4.ResumeLayout(false);
+            this.zoomPage2.ResumeLayout(false);
+            this.zoomPage2.PerformLayout();
+            this.DataPage.ResumeLayout(false);
+            this.DataPage.PerformLayout();
+            this.panelBatman.ResumeLayout(false);
+            this.panelBatman.PerformLayout();
+            this.panelSimFrame.ResumeLayout(false);
+            this.panelSimFrame.PerformLayout();
             this.panelSimControls.ResumeLayout(false);
             this.panelSimControls.PerformLayout();
+            this.contextMenuStripAB.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2201,7 +2301,6 @@
         private System.Windows.Forms.Button btnSection3Man;
         private System.Windows.Forms.Button btnSection4Man;
         private System.Windows.Forms.Button btnSection5Man;
-        private System.Windows.Forms.Button btnContour;
         private System.Windows.Forms.ToolStripStatusLabel stripHz;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnPerimeter;
@@ -2265,8 +2364,6 @@
         private System.Windows.Forms.TabPage configPage1;
         private System.Windows.Forms.TabPage zoomPage2;
         private System.Windows.Forms.TabPage DataPage;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblZooom;
         private System.Windows.Forms.Timer timerSim;
         private System.Windows.Forms.Button btnResetSteerAngle;
         private System.Windows.Forms.Label lblSteerAngle;
@@ -2277,7 +2374,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblRoll;
-        private System.Windows.Forms.Label lblPureSteerAngle;
         private System.Windows.Forms.Label lblGPSHeading;
         private System.Windows.Forms.Label lblYawHeading;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
@@ -2301,10 +2397,9 @@
         private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblAltitude;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblFixQuality;
         private System.Windows.Forms.Label lblSats;
-        private System.Windows.Forms.Panel panelSimControls;
+        private System.Windows.Forms.Panel panelSimFrame;
         public System.Windows.Forms.Button btnSectionOffAutoOn;
         private System.Windows.Forms.ToolStripStatusLabel stripEqWidth;
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
@@ -2321,13 +2416,10 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageItalian;
         public System.Windows.Forms.TextBox txtDistanceOffABLine;
         private System.Windows.Forms.TabPage autoPage4;
-        private System.Windows.Forms.Button btnFlagsGoogleEarth;
         private System.Windows.Forms.Button btnWebCam;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Button btnDeleteAllData;
         private System.Windows.Forms.ToolStripMenuItem toolstripDisplayConfig;
-        private System.Windows.Forms.Button btnMakeContourFromBoundary;
         private System.Windows.Forms.Button btnRecPathPauseRecord;
         public System.Windows.Forms.Button btnCurve;
         private System.Windows.Forms.TextBox txtBoxSendAutoSteer;
@@ -2343,18 +2435,12 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TabPage rate2Page5;
-        private System.Windows.Forms.Label lblFlowRateRight;
         private System.Windows.Forms.Label lblFlowRateLeft;
-        private ProXoft.WinForms.RepeatButton btnRateRightDn;
-        private ProXoft.WinForms.RepeatButton btnRateRightUp;
-        private System.Windows.Forms.Label lblRateSetpointRight;
-        private System.Windows.Forms.Label lblFlowRight;
         private System.Windows.Forms.Label lblRateAppliedActualLeft;
         private System.Windows.Forms.Button btnDualRateConfig;
         private ProXoft.WinForms.RepeatButton btnRateLeftDn;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label lblFlowLeft;
-        private System.Windows.Forms.Label lblRateAppliedActualRight;
         private System.Windows.Forms.Label lblDualAccumulatedVolume;
         private ProXoft.WinForms.RepeatButton btnRateLeftUp;
         private System.Windows.Forms.Button btnDualRate;
@@ -2365,14 +2451,9 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnSelectRate2;
         private System.Windows.Forms.Button btnSelectRate1;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Button btnSelectSingleDualMeter;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Button btnFixOffset;
-        private System.Windows.Forms.Button btnSmoothAB;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripZoomOut;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripZoomIn;
         private System.Windows.Forms.Button btnGeneratePath;
         public System.Windows.Forms.Button btnABLine;
         public System.Windows.Forms.Button btnEnableAutoYouTurn;
@@ -2389,15 +2470,12 @@
         private System.Windows.Forms.HScrollBar hsbarStepDistance;
         private System.Windows.Forms.HScrollBar hsbarSteerAngle;
         private System.Windows.Forms.ToolStripMenuItem toolStripBtnMakeBndContour;
-        private System.Windows.Forms.ToolStripMenuItem toolStripBtnSnap;
         private System.Windows.Forms.ToolStripMenuItem toolStripBtnSmoothABCurve;
         private System.Windows.Forms.ToolStripMenuItem toolStripDeleteApplied;
         private System.Windows.Forms.ToolStripMenuItem toolStripAreYouSure;
-        private System.Windows.Forms.ToolStripMenuItem toolStripBtnHideTabs;
         public System.Windows.Forms.Button btnContourPriority;
         private System.Windows.Forms.Button btnSwapDirection;
         private System.Windows.Forms.Label lblMachineControl;
-        private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ToolStripMenuItem toolStripAutoSteerChart;
         private System.Windows.Forms.ToolStripMenuItem shortcutKeysToolStripMenuItem;
         private System.Windows.Forms.Label lblLookAhead;
@@ -2411,11 +2489,48 @@
         private OpenTK.GLControl oglBack;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label lblConvergenceAngle;
-        private System.Windows.Forms.Label lblStepsFromTurnLine;
-        private System.Windows.Forms.Button btnSnap;
         private System.Windows.Forms.ToolStripDropDownButton toolStripBatman;
         private System.Windows.Forms.ComboBox cboxRowWidth;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripAB;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuAB1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuAB2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuChoose;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuOriginal;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuPlus90;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+        private System.Windows.Forms.Panel panelBatman;
+        private System.Windows.Forms.Label lblpEasting;
+        private System.Windows.Forms.Label lblpLongitude;
+        private System.Windows.Forms.Label lblpNorthing;
+        private System.Windows.Forms.Label lblpLatitude;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label lblpSats;
+        private System.Windows.Forms.Label lblpAltitude;
+        private System.Windows.Forms.Label lblpZone;
+        public System.Windows.Forms.Label lblpConvergenceAngle;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.ComboBox cboxpRowWidth;
+        private ProXoft.WinForms.RepeatButton btnpTiltUp;
+        private ProXoft.WinForms.RepeatButton btnpTiltDown;
+        private System.Windows.Forms.Label lblpRoll;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label lblpLookAhead;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblpGPSHeading;
+        private System.Windows.Forms.Label lblpYawHeading;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Button btnFlagsGoogleEarth;
+        private System.Windows.Forms.Button btnContour;
+        private System.Windows.Forms.Panel panelSimControls;
+        private System.Windows.Forms.Label label3;
     }
 }
 

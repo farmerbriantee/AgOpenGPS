@@ -96,6 +96,11 @@ namespace AgOpenGPS
         /// </summary>
         public CABLine ABLine;
 
+        // couple of quick AB's
+        public CQuicks AB0 = new CQuicks("Original", 2, 2, 2);
+        public CQuicks AB1 = new CQuicks("North South", 0, 0, 0);
+        public CQuicks AB2 = new CQuicks("East West", 90, 0, 0);
+
         /// <summary>
         /// Contour Mode Instance
         /// </summary>
@@ -276,6 +281,7 @@ namespace AgOpenGPS
             {
                 if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.02;
                 else camera.zoomValue += camera.zoomValue * 0.01;
+                if (camera.zoomValue > 120) camera.zoomValue = 120;
                 camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
                 SetZoom();
             }
@@ -494,8 +500,8 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
-            if (Width < 850 && tabControl1.Visible) HideTabControl();
-            if (Width > 1000 && !tabControl1.Visible) HideTabControl();
+            //if (Width < 850 && tabControl1.Visible) HideTabControl();
+            //if (Width > 1000 && !tabControl1.Visible) HideTabControl();
         }
 
         // Procedures and Functions ---------------------------------------
@@ -546,6 +552,28 @@ namespace AgOpenGPS
             {
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File FLOOR.PNG is Missing", ex2.Message);
+            }
+            try
+            {
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Vehicle.png");
+                if (File.Exists(text2))
+                {
+                    using (Bitmap bitmap2 = new Bitmap(text2))
+                    {
+                        GL.GenTextures(1, out texture[2]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[2]);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
+                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+                        bitmap2.UnlockBits(bitmapData2);
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                //WriteErrorLog("Loading Floor Texture" + ex2);
+                MessageBox.Show("Texture File Vehicle.PNG is Missing", ex2.Message);
             }
             return texture[0];
         }// Load Bitmaps And Convert To Textures
@@ -739,6 +767,8 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnFlag.Enabled = true;
 
+            btnContourPriority.Image = Properties.Resources.Snap2;
+
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
@@ -760,17 +790,17 @@ namespace AgOpenGPS
 
             rcd.ShutdownRateControl();  //double dam sure its off
 
-            btnRateRightDn.Visible = false;
-            btnRateRightUp.Visible = false;
+            //btnRateRightDn.Visible = false;
+            //btnRateRightUp.Visible = false;
             btnRateLeftDn.Visible = false;
             btnRateLeftUp.Visible = false;
             btnSelectRate1.Visible = false;
             btnSelectRate2.Visible = false;
 
-            lblFlowRateRight.Visible = false;
-            lblRateAppliedActualRight.Visible = false;
-            lblRateSetpointRight.Visible = false;
-            lblFlowRight.Visible = false;
+            //lblFlowRateRight.Visible = false;
+            //lblRateAppliedActualRight.Visible = false;
+            //lblRateSetpointRight.Visible = false;
+            //lblFlowRight.Visible = false;
 
             lblFlowRateLeft.Visible = false;
             lblRateAppliedActualLeft.Visible = false;
@@ -779,10 +809,10 @@ namespace AgOpenGPS
 
             btnDualRate.Image = Properties.Resources.RateControlOff;
             btnDualRate.Text = "Off";
-            lblRateAppliedActualRight.Text = "-";
+            //lblRateAppliedActualRight.Text = "-";
             lblRateAppliedActualLeft.Text = "-";
             lblFlowRateLeft.Text = "-";
-            lblFlowRateRight.Text = "-";
+            //lblFlowRateRight.Text = "-";
 
             //turn auto button off
             autoBtnState = btnStates.Off;
@@ -853,6 +883,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
             btnContourPriority.Enabled = false;
+            btnContourPriority.Image = Properties.Resources.Snap2;
             btnAutoSteer.Enabled = false;
             isAutoSteerBtnOn = false;
 
@@ -982,6 +1013,11 @@ namespace AgOpenGPS
                         break;
                 }
             }
+        }
+
+        private void repeatButton1_Click(object sender, EventArgs e)
+        {
+
         }
 
         //Does the logic to process section on off requests

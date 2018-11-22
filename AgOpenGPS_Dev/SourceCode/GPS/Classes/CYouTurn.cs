@@ -981,7 +981,7 @@ namespace AgOpenGPS
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
                 int count = ytList.Count;
-                return count == 0;
+                if (count == 0) return false;
             }
 
             switch (youTurnPhase)
@@ -997,6 +997,7 @@ namespace AgOpenGPS
                     if (count == 0) return false;
 
                     //Are we out of bounds?
+                    isOutOfBounds = false;
                     for (int j = 0; j < count;)
                     {
                         if (!mf.turn.turnArr[0].IsPointInsideTurn(ytList[j]))

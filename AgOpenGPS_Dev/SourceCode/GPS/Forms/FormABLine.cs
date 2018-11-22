@@ -177,6 +177,13 @@ namespace AgOpenGPS
         {
             //save the ABLine
             mf.FileSaveABLine();
+
+            //update the default
+            mf.AB0.fieldName = mf.currentFieldDirectory;
+            mf.AB0.heading = glm.toDegrees(mf.ABLine.abHeading);
+            mf.AB0.X = mf.ABLine.refPoint1.easting;
+            mf.AB0.Y = mf.ABLine.refPoint1.northing;
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -196,8 +203,8 @@ namespace AgOpenGPS
             //save the no ABLine;
             mf.FileSaveABLine();
 
-            //DialogResult = DialogResult.Cancel;
-            //Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -319,6 +326,12 @@ namespace AgOpenGPS
 
                 //save the ABLine
                 mf.FileSaveABLine();
+
+                //update the default
+                mf.AB0.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
+                mf.AB0.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
+                mf.AB0.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
+                mf.AB0.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
 
                 //can go back to Mainform without seeing ABLine form.
                 DialogResult = DialogResult.Yes;
