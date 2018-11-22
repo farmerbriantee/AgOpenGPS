@@ -111,37 +111,41 @@ namespace AgOpenGPS
             }
 
             //make sure distance isn't too small between points on headland
-            int headCount = bndLine.Count;
+            int bndCount = bndLine.Count;
 
-            const double spacing = 2;
+            double spacing = 2;
             double distance;
-            for (int i = 0; i < headCount - 1; i++)
+            for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(bndLine[i], bndLine[i + 1]);
                 if (distance < spacing)
                 {
                     bndLine.RemoveAt(i + 1);
-                    headCount = bndLine.Count;
-                    i = 0;
+                    bndCount = bndLine.Count;
+                    i = -1;
                 }
             }
 
-            ////make sure distance isn't too big between points on boundary
-            //headCount = bndLine.Count;
-            //for (int i = 0; i < headCount; i++)
-            //{
-            //    int j = i + 1;
-            //    if (j == headCount) j = 0;
-            //    distance = glm.Distance(bndLine[i], bndLine[j]);
-            //    if (distance > (spacing * 1.15))
-            //    {
-            //        CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0, (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
+            //make sure distance isn't too big between points on boundary
+            bndCount = bndLine.Count;
+            spacing *= 1.2;
 
-            //        bndLine.Insert(j, pointB);
-            //        headCount = bndLine.Count;
-            //        i = 0;
-            //    }
-            //}
+            for (int i = 0; i < bndCount; i++)
+            {
+                int j = i + 1;
+
+                if (j == bndCount) j = 0;
+                distance = glm.Distance(bndLine[i], bndLine[j]);
+                if (distance > spacing)
+                {
+                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0, 
+                        (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
+
+                    bndLine.Insert(j, pointB);
+                    bndCount = bndLine.Count;
+                    i = -1;
+                }
+            }
 
             //make sure headings are correct for calculated points
             CalculateBoundaryHeadings();

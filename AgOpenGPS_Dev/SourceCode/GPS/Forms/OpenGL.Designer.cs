@@ -29,7 +29,7 @@ namespace AgOpenGPS
         {
             oglMain.MakeCurrent();
             LoadGLTextures();
-            GL.ClearColor(0.22f, 0.2858f, 0.16f, 1.0f);
+            GL.ClearColor(0.5122f, 0.58f, 0.75f, 1.0f);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
             GL.CullFace(CullFaceMode.Back);
             SetZoom();
@@ -66,7 +66,7 @@ namespace AgOpenGPS
                 camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
-                GL.Disable(EnableCap.DepthTest);
+                //GL.Disable(EnableCap.DepthTest);
                 GL.Disable(EnableCap.Texture2D);
                 //GL.Enable(EnableCap.LineSmooth);
                 GL.Enable(EnableCap.Blend);
@@ -77,7 +77,6 @@ namespace AgOpenGPS
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
-
 
                 //section patch color
                 GL.Color4(redSections, grnSections, bluSections, (byte)160);
@@ -236,17 +235,18 @@ namespace AgOpenGPS
                 vehicle.DrawVehicle();
 
                 //Back to normal
-                GL.Color3(0.98f, 0.98f, 0.98f);
-                GL.Disable(EnableCap.Blend);
+                GL.Color3(0.498f, 0.498f, 0.698f);
+                GL.Enable(EnableCap.Blend);
                 GL.Enable(EnableCap.DepthTest);
 
-                //// 2D Ortho --------------------------
+                // 2D Ortho --------------------------
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.PushMatrix();
                 GL.LoadIdentity();
 
                 //negative and positive on width, 0 at top to bottom ortho view
-                GL.Ortho(-(double)Width / 2, (double)Width / 2, (double)Height, 0,0,0);
+                GL.Ortho(-(double)Width / 2, (double)Width / 2,  (double)Height, 0, -1, 1);
+                //GL.Viewport(0, 0, Width, Height);
 
                 //  Create the appropriate modelview matrix.
                 GL.MatrixMode(MatrixMode.Modelview);
@@ -255,11 +255,12 @@ namespace AgOpenGPS
 
                 if (isSkyOn)
                 {
+                    //GL.Translate(0, 0, 0.9);
                     ////draw the background when in 3D
                     if (camera.camPitch < -60)
                     {
                         //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                        double hite = (camera.camPitch + 60) / -20 * 0.34;
+                        double hite = (camera.camPitch + 60) / -20 * 0.43;
                         //hite = 0.001;
 
                         //the background
@@ -271,8 +272,8 @@ namespace AgOpenGPS
                         GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
                         GL.TexCoord2(0, 0); GL.Vertex2(winRightPos, 0.0); // Top Right
                         GL.TexCoord2(1, 0); GL.Vertex2(winLeftPos, 0.0); // Top Left
-                        GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite * (double)Height); // Bottom Right
-                        GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * (double)Height); // Bottom Left
+                        GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite*Height); // Bottom Right
+                        GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * Height); // Bottom Left
                         GL.End();						// Done Building Triangle Strip
 
                         //disable, straight color
@@ -283,6 +284,7 @@ namespace AgOpenGPS
                 //LightBar if AB Line is set and turned on or contour
                 if (isLightbarOn)
                 {
+                    GL.Disable(EnableCap.DepthTest);
                     if (ct.isContourBtnOn)
                     {
                         string dist;
@@ -306,7 +308,7 @@ namespace AgOpenGPS
                             txtDistanceOffABLine.Text = dist;
                         }
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = "Y";
+                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
@@ -332,7 +334,7 @@ namespace AgOpenGPS
                             txtDistanceOffABLine.Text = dist;
                         }
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = "Y";
+                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else if (curve.isCurveBtnOn)
@@ -358,7 +360,7 @@ namespace AgOpenGPS
                             txtDistanceOffABLine.Text = dist;
                         }
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = "Y";
+                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else
@@ -384,6 +386,7 @@ namespace AgOpenGPS
                 //reset point size
                 GL.PointSize(1.0f);
                 GL.Flush();
+                oglMain.SwapBuffers();
 
                 if (leftMouseDownOnOpenGL)
                 {
@@ -410,11 +413,10 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window off screen buffer in the second tab
-                if (tabControl1.SelectedIndex == 1 && statusUpdateCounter > 6)
+                if (tabControl1.SelectedIndex == 3 && statusUpdateCounter > 8)
                     oglZoom.Refresh();
             }
 
-            oglMain.SwapBuffers();
         }
 
         //Draw section OpenGL window, not visible
@@ -962,6 +964,7 @@ namespace AgOpenGPS
                 }
             }
 
+            //draw all the boundaries
             bnd.DrawBoundaryLines();
 
             GL.PointSize(8.0f);
@@ -970,17 +973,15 @@ namespace AgOpenGPS
             GL.Vertex3(pivotAxlePos.easting, pivotAxlePos.northing, 0.0);
             GL.End();
             GL.PointSize(1.0f);
-
             GL.Flush();
-
             oglZoom.SwapBuffers();
-
         }    
 
         public void DrawLightBar(double Width, double Height, double offlineDistance)
         {
             double down = 20;
             GL.LineWidth(1);
+            //GL.Translate(0, 0, 0.01);
             
             //  Dot distance is representation of how far from AB Line
             int dotDistance = (int)(offlineDistance);
@@ -1001,6 +1002,7 @@ namespace AgOpenGPS
 
             GL.PointSize(4.0f);
 
+            //GL.Translate(0, 0, 0.01);
             //red left side
             GL.Color3(0.9750f, 0.0f, 0.0f);
             GL.Begin(PrimitiveType.Points);
@@ -1012,6 +1014,7 @@ namespace AgOpenGPS
             GL.End();
 
             //Are you on the right side of line? So its green.
+            //GL.Translate(0, 0, 0.01);
             if ((offlineDistance) < 0.0)
                 {
                     int dots = (dotDistance * -1 / lightbarCmPerPixel);
@@ -1242,7 +1245,7 @@ namespace AgOpenGPS
                     lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
                 }
 
-                lblZooom.Text = ((int)(maxFieldDistance)).ToString();
+                //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
             }
         }
     }
