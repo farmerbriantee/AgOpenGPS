@@ -47,25 +47,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.nudAutoSteerPort = new System.Windows.Forms.NumericUpDown();
             this.tboxAutoSteerIP = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.nudRateRelayPort = new System.Windows.Forms.NumericUpDown();
-            this.tboxRateRelayIP = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRateRelayPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.tboxHostName);
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.label1);
@@ -192,7 +188,7 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(310, 414);
+            this.btnSerialCancel.Location = new System.Drawing.Point(310, 340);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
             this.btnSerialCancel.TabIndex = 71;
@@ -205,7 +201,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialOK.Image")));
-            this.btnSerialOK.Location = new System.Drawing.Point(422, 414);
+            this.btnSerialOK.Location = new System.Drawing.Point(422, 340);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(156, 76);
             this.btnSerialOK.TabIndex = 70;
@@ -218,7 +214,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(179, 123);
+            this.label3.Location = new System.Drawing.Point(179, 150);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 19);
             this.label3.TabIndex = 84;
@@ -230,15 +226,15 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(8, 38);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 23);
+            this.label4.Size = new System.Drawing.Size(110, 23);
             this.label4.TabIndex = 83;
-            this.label4.Text = "Auto Steer";
+            this.label4.Text = "Module Port";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(30, 78);
+            this.label5.Location = new System.Drawing.Point(30, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(27, 23);
             this.label5.TabIndex = 82;
@@ -248,7 +244,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(15, 121);
+            this.label6.Location = new System.Drawing.Point(15, 148);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 23);
             this.label6.TabIndex = 81;
@@ -257,7 +253,7 @@
             // nudAutoSteerPort
             // 
             this.nudAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAutoSteerPort.Location = new System.Drawing.Point(70, 116);
+            this.nudAutoSteerPort.Location = new System.Drawing.Point(70, 143);
             this.nudAutoSteerPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -280,104 +276,26 @@
             // tboxAutoSteerIP
             // 
             this.tboxAutoSteerIP.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxAutoSteerIP.Location = new System.Drawing.Point(70, 74);
+            this.tboxAutoSteerIP.Location = new System.Drawing.Point(70, 95);
             this.tboxAutoSteerIP.Name = "tboxAutoSteerIP";
             this.tboxAutoSteerIP.Size = new System.Drawing.Size(167, 30);
             this.tboxAutoSteerIP.TabIndex = 79;
             this.tboxAutoSteerIP.Text = "192.168.1.255";
             this.tboxAutoSteerIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxAutoSteerIP_Validating);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(179, 283);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 19);
-            this.label8.TabIndex = 90;
-            this.label8.Text = "7777";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(8, 201);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(113, 23);
-            this.label11.TabIndex = 89;
-            this.label11.Text = "Rate Control";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(30, 238);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(27, 23);
-            this.label12.TabIndex = 88;
-            this.label12.Text = "IP";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(15, 281);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(43, 23);
-            this.label13.TabIndex = 87;
-            this.label13.Text = "Port";
-            // 
-            // nudRateRelayPort
-            // 
-            this.nudRateRelayPort.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudRateRelayPort.Location = new System.Drawing.Point(70, 276);
-            this.nudRateRelayPort.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-            this.nudRateRelayPort.Minimum = new decimal(new int[] {
-            1025,
-            0,
-            0,
-            0});
-            this.nudRateRelayPort.Name = "nudRateRelayPort";
-            this.nudRateRelayPort.Size = new System.Drawing.Size(96, 30);
-            this.nudRateRelayPort.TabIndex = 86;
-            this.nudRateRelayPort.Value = new decimal(new int[] {
-            7777,
-            0,
-            0,
-            0});
-            // 
-            // tboxRateRelayIP
-            // 
-            this.tboxRateRelayIP.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxRateRelayIP.Location = new System.Drawing.Point(70, 234);
-            this.tboxRateRelayIP.Name = "tboxRateRelayIP";
-            this.tboxRateRelayIP.Size = new System.Drawing.Size(167, 30);
-            this.tboxRateRelayIP.TabIndex = 85;
-            this.tboxRateRelayIP.Text = "192.168.1.255";
-            this.tboxRateRelayIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxRateRelayIP_Validating);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.tboxRateRelayIP);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.tboxAutoSteerIP);
-            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.nudAutoSteerPort);
-            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.nudRateRelayPort);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(318, 62);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(257, 319);
+            this.groupBox1.Size = new System.Drawing.Size(257, 232);
             this.groupBox1.TabIndex = 91;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Module Adress and Ports";
@@ -407,11 +325,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Networking";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(30, 203);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(192, 23);
+            this.label8.TabIndex = 94;
+            this.label8.Text = "All modules use 8888.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(14, 204);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(219, 23);
+            this.label11.TabIndex = 95;
+            this.label11.Text = "All modules send to 9999";
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 501);
+            this.ClientSize = new System.Drawing.Size(590, 427);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -432,7 +370,6 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudRateRelayPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -454,12 +391,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown nudAutoSteerPort;
         private System.Windows.Forms.TextBox tboxAutoSteerIP;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.NumericUpDown nudRateRelayPort;
-        private System.Windows.Forms.TextBox tboxRateRelayIP;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox tboxThisIP;
         private System.Windows.Forms.NumericUpDown nudThisPort;
@@ -471,5 +402,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox cboxIsUDPOn;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label8;
     }
 }

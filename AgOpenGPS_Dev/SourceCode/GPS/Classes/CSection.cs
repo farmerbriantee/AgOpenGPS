@@ -151,8 +151,8 @@ namespace AgOpenGPS
                                   + (triangleList[c - 2].easting * (triangleList[c].northing - triangleList[c - 1].northing));
 
                     temp = Math.Abs(temp / 2.0);
-                    mf.totalSquareMeters += temp;
-                    mf.totalUserSquareMeters += temp;
+                    mf.fd.workedAreaTotal += temp;
+                    mf.fd.workedAreaTotalUser += temp;
 
                     //temp = 0;
                     temp = (triangleList[c - 1].easting * (triangleList[c - 2].northing - triangleList[c - 3].northing))
@@ -160,8 +160,8 @@ namespace AgOpenGPS
                                   + (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing));
 
                     temp = Math.Abs(temp / 2.0);
-                    mf.totalSquareMeters += temp;
-                    mf.totalUserSquareMeters += temp;
+                    mf.fd.workedAreaTotal += temp;
+                    mf.fd.workedAreaTotalUser += temp;
                 }
             }
 

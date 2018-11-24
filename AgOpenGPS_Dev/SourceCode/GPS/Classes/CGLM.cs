@@ -40,7 +40,7 @@ namespace AgOpenGPS
 
             if (value < (double)numericUpDown.Minimum)
             {
-                value = (double)numericUpDown.Minimum/2.4;
+                value = (double)numericUpDown.Minimum / 2.4;
                 MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
                     + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
                 "Critical Settings Warning",
@@ -50,7 +50,7 @@ namespace AgOpenGPS
             }
             else if (value > (double)numericUpDown.Maximum)
             {
-                value = (double)numericUpDown.Maximum/2.6;
+                value = (double)numericUpDown.Maximum / 2.6;
                 MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
                     + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
                 "Critical Settings Warning",
@@ -77,6 +77,18 @@ namespace AgOpenGPS
 
         //meters to feet
         public static double m2ft = 3.28084;
+
+        //Hectare to Acres
+        public static double ha2ac = 2.47105;
+
+        //Acres to Hectare
+        public static double ac2ha = 0.404686;
+
+        //Meters to Acres
+        public static double m2ac = 0.000247105;
+
+        //Meters to Hectare
+        public static double m2ha = 0.0001;
 
         // liters per hectare to us gal per acre
         public static double galAc2Lha = 9.35396;
@@ -141,12 +153,14 @@ namespace AgOpenGPS
                 Math.Pow(first.easting - second.easting, 2)
                 + Math.Pow(first.northing - second.northing, 2));
         }
+
         public static double Distance(CBndPt first, CTurnPt second)
         {
             return Math.Sqrt(
                 Math.Pow(first.easting - second.easting, 2)
                 + Math.Pow(first.northing - second.northing, 2));
         }
+
         public static double Distance(CTurnPt first, vec3 second)
         {
             return Math.Sqrt(

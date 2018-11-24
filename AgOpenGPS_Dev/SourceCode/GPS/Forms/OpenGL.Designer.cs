@@ -413,10 +413,14 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window off screen buffer in the second tab
-                if (tabControl1.SelectedIndex == 3 && statusUpdateCounter > 8)
+                //if (tabControl1.SelectedIndex == 3 && statusUpdateCounter > 8)
+                //how big is our field
+                if (threeSeconds != zoomUpdateCounter)
+                {
+                    zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
+                }
             }
-
         }
 
         //Draw section OpenGL window, not visible
@@ -826,6 +830,7 @@ namespace AgOpenGPS
             oglZoom.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
+            GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
         }
 
         private void oglZoom_Resize(object sender, EventArgs e)
@@ -841,6 +846,8 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
 
+        private int zoomUpdateCounter = 0;
+
         private void oglZoom_Paint(object sender, PaintEventArgs e)
         {
             oglZoom.MakeCurrent();
@@ -848,12 +855,7 @@ namespace AgOpenGPS
             GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
             GL.LoadIdentity();                  // Reset The View
 
-            //how big is our field
-            if (fiveSecondCounter > 85)
-            {
-                CalculateMinMax();
-                fiveSecondCounter = 0;
-            }
+            CalculateMinMax();
 
             //back the camera up
             GL.Translate(0, 0, -maxFieldDistance);

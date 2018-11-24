@@ -94,6 +94,7 @@ namespace AgOpenGPS
             {
                 SendUDPMessage(mc.machineControlData);
                 SendUDPMessage(mc.autoSteerData);
+                SendUDPMessage(mc.relayRateData);
             }
 
             //Tell Arduino the steering parameter values
