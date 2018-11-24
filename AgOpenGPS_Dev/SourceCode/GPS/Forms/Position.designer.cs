@@ -38,7 +38,7 @@ namespace AgOpenGPS
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
 
         //a distance between previous and current fix
-        private double distance = 0.0, userDistance = 0;
+        private double distance = 0.0;
   
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
@@ -58,7 +58,7 @@ namespace AgOpenGPS
         List<CFlag> flagPts = new List<CFlag>();
 
         //tally counters for display
-        public double totalSquareMeters = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
+        //public double totalSquareMetersWorked = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
         //used to determine NMEA sentence frequency
         private double hzTime = 0;
@@ -273,7 +273,7 @@ namespace AgOpenGPS
 
                 //calc distance travelled since last GPS fix
                 distance = glm.Distance(pn.fix, prevFix);
-                if ((userDistance += distance) > 3000) userDistance = 0; ;//userDistance can be reset
+                if ((fd.distanceUser += distance) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
 
                 //most recent fixes are now the prev ones
                 prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
@@ -439,7 +439,8 @@ namespace AgOpenGPS
             RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
 
             //if the relay rate port is open, check switches
-            if (spRelay.IsOpen) DoRemoteSectionSwitch();
+            //if (spRelay.IsOpen) DoRemoteSectionSwitch();
+            if ((spRelay.IsOpen) | (isUDPSendConnected)) DoRemoteSectionSwitch();
 
             #endregion
 
@@ -1051,7 +1052,6 @@ namespace AgOpenGPS
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
                 lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
-                lblpConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;

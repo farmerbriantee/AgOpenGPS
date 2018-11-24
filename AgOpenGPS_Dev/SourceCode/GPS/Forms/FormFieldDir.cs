@@ -156,7 +156,6 @@ namespace AgOpenGPS
                         mf.pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(mf.pn.latitude))
                                                     * Math.Tan(glm.toRadians(mf.pn.longitude - mf.pn.centralMeridian)));
                         mf.lblConvergenceAngle.Text = Math.Round(glm.toDegrees(mf.pn.convergenceAngle), 3).ToString();
-                        mf.lblpConvergenceAngle.Text = Math.Round(glm.toDegrees(mf.pn.convergenceAngle), 3).ToString();
 
                         //make sure directory exists, or create it
                         if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))

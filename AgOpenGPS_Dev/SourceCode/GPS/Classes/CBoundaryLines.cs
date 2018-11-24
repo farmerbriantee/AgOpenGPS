@@ -39,8 +39,6 @@ namespace AgOpenGPS
 
         //area variable
         public double area;
-        public string areaHectare = "";
-        public string areaAcre = "";
 
         //boundary variables
         public bool isOkToAddPoints, isSet, isDriveThru, isDrawRightSide;
@@ -81,8 +79,6 @@ namespace AgOpenGPS
             calcList.Clear();
             bndLine.Clear();
             area = 0;
-            areaAcre = "";
-            areaHectare = "";
             isSet = false;
             isOkToAddPoints = false;
             isDriveThru = false;
@@ -193,9 +189,6 @@ namespace AgOpenGPS
                     calcList.Add(constantMultiple);
                 }
             }
-
-            areaHectare = Math.Round(area * 0.0001, 3) + " Ha";
-            areaAcre = Math.Round(area * 0.000247105, 3) + " Ac";
         }
 
         public bool IsPointInsideBoundary(vec3 testPointv3)

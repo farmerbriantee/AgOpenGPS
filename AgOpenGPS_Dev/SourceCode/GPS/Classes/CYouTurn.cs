@@ -1500,23 +1500,23 @@ namespace AgOpenGPS
         public void DrawYouTurn()
         {
             {
-                GL.PointSize(8);
-                GL.Begin(PrimitiveType.Points);
-                {
-                    GL.Color3(0.95f, 0.05f, 0.05f);
-                    GL.Vertex3(crossingCurvePoint.easting, crossingCurvePoint.northing, 0);
-                    GL.Color3(0.05f, 9, 0.05f);
-                    GL.Vertex3(crossingTurnLinePoint.easting, crossingTurnLinePoint.northing, 0);
-                }
-                GL.End();
+                //GL.PointSize(8);
+                //GL.Begin(PrimitiveType.Points);
+                //{
+                //    GL.Color3(0.95f, 0.05f, 0.05f);
+                //    GL.Vertex3(crossingCurvePoint.easting, crossingCurvePoint.northing, 0);
+                //    GL.Color3(0.05f, 9, 0.05f);
+                //    GL.Vertex3(crossingTurnLinePoint.easting, crossingTurnLinePoint.northing, 0);
+                //}
+                //GL.End();
 
                 int ptCount = ytList.Count;
                 if (ptCount == 0) return;
 
                 if (!isOutOfBounds)
-                    GL.Color3(0.295f, 0.95f, 0.25f);
+                    GL.Color3(0.95f, 0.5f, 0.0f);
                 else
-                    GL.Color3(0.95f, 0.395f, 0.325f);
+                    GL.Color3(0.95f, 0.4395f, 0.4325f);
                 GL.LineWidth(4);
                 {
                     GL.Begin(PrimitiveType.LineStrip);

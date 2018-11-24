@@ -93,7 +93,7 @@ namespace AgOpenGPS
             slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
             toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
 
-            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;  
+            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
             goalPointLookAheadMinimum = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
             goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
 
@@ -146,7 +146,6 @@ namespace AgOpenGPS
                 GL.Translate(0.0, trailingTank, 0.0);
                 GL.Rotate(glm.toDegrees(mf.tankPos.heading), 0.0, 0.0, 1.0);
                 GL.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
-
             }
 
             //no tow between hitch
@@ -218,6 +217,8 @@ namespace AgOpenGPS
 
             GL.PopMatrix();
             GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+
+            if (mf.camera.camFollowing)
             GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
 
             //draw the vehicle Body

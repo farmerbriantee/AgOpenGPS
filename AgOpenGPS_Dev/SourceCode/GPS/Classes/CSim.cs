@@ -21,10 +21,10 @@ namespace AgOpenGPS
         private readonly StringBuilder sbSendText = new StringBuilder();
 
         //GPS related properties
-        private readonly int fixQuality = 3, sats = 7;
+        private readonly int fixQuality = 5, sats = 12;
 
         private readonly double HDOP = 0.9;
-        private readonly double altitude = 20.09876;
+        private readonly double altitude = 319.1;
         private  char EW = 'W';
         private  char NS = 'N';
 

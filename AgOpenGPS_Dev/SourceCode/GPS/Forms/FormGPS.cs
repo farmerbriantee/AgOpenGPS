@@ -66,7 +66,7 @@ namespace AgOpenGPS
         //used to update the screen status bar etc
         private int statusUpdateCounter = 1;
 
-        private int fiveSecondCounter = 0;
+        private int threeSecondCounter = 0, threeSeconds = 0, oneSecondCounter = 0, oneSecond = 0;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
@@ -187,6 +187,11 @@ namespace AgOpenGPS
         public CRecordedPath recPath;
 
         /// <summary>
+        /// Most of the displayed field data for GUI
+        /// </summary>
+        public CFieldData fd;
+
+        /// <summary>
         /// Generated Path
         /// </summary>
         //public CGenPath genPath;
@@ -264,6 +269,9 @@ namespace AgOpenGPS
 
             //A recorded path
             recPath = new CRecordedPath(this);
+
+            //fieldData all in one place
+            fd = new CFieldData(this);
 
             //A generated Path
             //genPath = new CGenPath(gl, this);
@@ -414,8 +422,8 @@ namespace AgOpenGPS
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 
-            totalUserSquareMeters = Settings.Default.setF_UserTotalArea;
-            userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
+            fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
+            fd.userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
 
             //space between points while recording a boundary
             boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
@@ -429,9 +437,6 @@ namespace AgOpenGPS
 
             //load th elightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
-
-            yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
-            cboxRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
 
             // load all the gui elements in gui.designer.cs
             LoadGUI();
@@ -490,8 +495,8 @@ namespace AgOpenGPS
             }
 
             Settings.Default.setCam_pitch = camera.camPitch;
-            Settings.Default.setF_UserTotalArea = totalUserSquareMeters;
-            Settings.Default.setF_UserTripAlarm = userSquareMetersAlarm;
+            Settings.Default.setF_UserTotalArea = fd.workedAreaTotalUser;
+            Settings.Default.setF_UserTripAlarm = fd.userSquareMetersAlarm;
 
             Settings.Default.Save();
         }
@@ -921,13 +926,16 @@ namespace AgOpenGPS
             ABLine.ResetABLine();
 
             //reset acre and distance counters
-            totalSquareMeters = 0;
+            fd.workedAreaTotal = 0;
 
             //reset boundaries
             bnd.ResetBoundaries();
 
             //reset turn lines
             turn.ResetTurnLines();
+
+            //reset GUI areas
+            fd.UpdateFieldBoundaryGUIAreas();
 
             //reset headland
             //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
@@ -1013,6 +1021,8 @@ namespace AgOpenGPS
                         break;
                 }
             }
+
+            //update GUI areas
         }
 
         private void repeatButton1_Click(object sender, EventArgs e)

@@ -40,6 +40,8 @@ namespace AgOpenGPS
 
         private void LoadGUI()
         {
+            //set the language to last used
+            SetLanguage(Settings.Default.set_culture);
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
@@ -134,13 +136,23 @@ namespace AgOpenGPS
                 panelSimControls.Visible = false;
                 timerSim.Enabled = false;
             }
-            panelSimFrame.Visible = true;
 
             LineUpManualBtns();
-            tabControl1.SelectedIndex = 4;
+            tabControl1.SelectedIndex = 3;
 
-            //set the language to last used
-            SetLanguage(Settings.Default.set_culture);
+            yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+
+            //default to come up in mini panel
+            tabControl1.Visible = true;
+            SwapBatmanPanels();
+
+        }
+
+        //All the GUI based information of field properties need updating
+        private void UpdateFieldCalculations()
+        {
+
         }
 
         //force all the buttons same according to two main buttons
@@ -161,23 +173,23 @@ namespace AgOpenGPS
         }
 
         //hide the left panel
-        public void HideTabControl()
+        public void SwapBatmanPanels()
         {
             if (tabControl1.Visible)
             {
                 //tab will be gone, batman panel shows
                 tabControl1.Visible = false;
                 panelBatman.Visible = true;
-                oglMain.Left = 180;
-                oglMain.Width = Width - 180 - 195;
-                //btnSwapDirection.Left = Width - 190;
-                //btnContourPriority.Left = Width - 190;
-                //btnFlag.Left = Width - 190;
-                //btnEnableAutoYouTurn.Left = Width - 190;
-                //btnAutoSteer.Left = Width - 190;
-                //btnZoomIn.Left = Width - 190;
-                panelSimFrame.Width = 180;
-                txtDistanceOffABLine.Left = (Width - 185-195)/2 + 140;
+                oglMain.Left = 210;
+                btnpTiltDown.Left = 215;
+                btnpTiltUp.Left = 215;
+                btnZoomIn.Left = 215;
+                btnZoomOut.Left = 215;
+                btnZoomExtents.Left = 215;
+                //btnContourPriority.Left = 215;
+                cboxpRowWidth.Left = 215;
+                oglMain.Width = Width - 210 - 105;
+                txtDistanceOffABLine.Left = (Width - 210-105)/2 + 140;
                 LineUpManualBtns();
             }
             else
@@ -185,20 +197,17 @@ namespace AgOpenGPS
                 //tab will be visible
                 tabControl1.Visible = true;
                 panelBatman.Visible = false;
-                oglMain.Left = 420;
-                oglMain.Width = Width - 420 - 195;
-                //btnSwapDirection.Left = 425;
-                //btnContourPriority.Left = 425;
-                //btnFlag.Left = 425;
-                //btnEnableAutoYouTurn.Left = 425;
-                //btnAutoSteer.Left = 425;
-                //btnZoomIn.Left = 425;
-
-                //panelSimControls.Visible = false;
-                panelSimFrame.Width = 420;
-
+                oglMain.Left = 340;
+                oglMain.Width = Width - 340 - 105;
+                btnpTiltDown.Left = 345;
+                btnpTiltUp.Left = 345;
+                btnZoomIn.Left = 345;
+                btnZoomOut.Left = 345;
+                btnZoomExtents.Left = 345;
+                //btnContourPriority.Left = 345;
+                cboxpRowWidth.Left = 345;
                 LineUpManualBtns();
-                txtDistanceOffABLine.Left = (Width - 420 - 195)/2 + 380;
+                txtDistanceOffABLine.Left = (Width - 340 - 105)/2 + 300;
                 txtDistanceOffABLine.Top = -1;
             }
         }
@@ -208,13 +217,13 @@ namespace AgOpenGPS
         {
             if (tabControl1.Visible)
             {
-                btnRightYouTurn.Left = (Width - 420 - 195) / 2 + 500;
-                btnLeftYouTurn.Left = (Width - 420-195) / 2 + 240;
+                btnRightYouTurn.Left = (Width - 340 - 105) / 2 + 470;
+                btnLeftYouTurn.Left = (Width - 340-105) / 2 + 125;
             }
             else
             {
-                btnRightYouTurn.Left = (Width-180-195) / 2 + 280;
-                btnLeftYouTurn.Left = (Width-180-195) / 2 - 20;
+                btnRightYouTurn.Left = (Width-210-105) / 2 + 330;
+                btnLeftYouTurn.Left = (Width-210-105) / 2 + 0;
             }
             int top = 140;
             if (vehicle.numOfSections > 8) top = 180;
@@ -229,8 +238,8 @@ namespace AgOpenGPS
             btnSection8Man.Top = Height - top;
 
             int first2Thirds;
-            if (tabControl1.Visible) first2Thirds = (Width - 420-195) / 2 + 420;
-            else first2Thirds = (Width-180-195) / 2 + 180;
+            if (tabControl1.Visible) first2Thirds = (Width - 340-195) / 2 + 340;
+            else first2Thirds = (Width-200-195) / 2 + 200;
 
             int even = 60;
             int offset = 7;
@@ -1767,16 +1776,6 @@ namespace AgOpenGPS
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
         }
-        private void btnTiltUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            camera.camPitch -= ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch > 0) camera.camPitch = 0;
-        }
-        private void btnTiltDown_MouseDown(object sender, MouseEventArgs e)
-        {
-            camera.camPitch += ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch < -80) camera.camPitch = -80;
-        }
         private void btnpTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
             camera.camPitch -= ((camera.camPitch * 0.02) - 1);
@@ -1787,6 +1786,13 @@ namespace AgOpenGPS
             camera.camPitch += ((camera.camPitch * 0.02) - 1);
             if (camera.camPitch < -80) camera.camPitch = -80;
         }
+        private void btnZoomExtents_Click(object sender, EventArgs e)
+        {            
+            if (camera.camSetDistance < -400) camera.camSetDistance = -300;
+            else camera.camSetDistance = -5 * maxFieldDistance;
+            SetZoom();
+        }
+
 
         private void btnFlag_Click(object sender, EventArgs e)
         {
@@ -2096,26 +2102,16 @@ namespace AgOpenGPS
                     //clear out the contour Lists
                     ct.StopContourLine(pivotAxlePos);
                     ct.ResetContour();
-                    totalSquareMeters = 0;
+                    fd.workedAreaTotal = 0;
                 }
                 else TimedMessageBox(1500, "Nothing Deleted", "Action has been cancelled");
             }
         }
 
-        //skips
-        private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
-            yt.ResetCreatedYouTurn();
-            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-            Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
-            Properties.Vehicle.Default.Save();
-        }
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
             yt.ResetCreatedYouTurn();
-            cboxRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
             Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
             Properties.Vehicle.Default.Save();
         }
@@ -2690,7 +2686,7 @@ namespace AgOpenGPS
                     //clear out the contour Lists
                     ct.StopContourLine(pivotAxlePos);
                     ct.ResetContour();
-                    totalSquareMeters = 0;
+                    fd.workedAreaTotal = 0;
 
                     //clear the section lists
                     for (int j = 0; j < MAXSECTIONS; j++)
@@ -2725,7 +2721,6 @@ namespace AgOpenGPS
         {
             var form = new FormYouTurn(this);
             form.ShowDialog();
-            cboxRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
         }
         private void toolstripAutoSteerConfig_Click(object sender, EventArgs e)
@@ -2786,8 +2781,8 @@ namespace AgOpenGPS
         }
         private void toolstripResetTrip_Click_1(object sender, EventArgs e)
         {
-            userDistance = 0;
-            totalUserSquareMeters = 0;
+            fd.distanceUser = 0;
+            fd.workedAreaTotalUser = 0;
         }
         private void toolstripHeadland_Click(object sender, EventArgs e)
         {
@@ -2829,11 +2824,11 @@ namespace AgOpenGPS
         }
         private void toolStripBtnHideTabs_Click(object sender, EventArgs e)
         {
-            HideTabControl();
+            SwapBatmanPanels();
         }
         private void toolStripBatman_Click(object sender, EventArgs e)
         {
-            HideTabControl();
+            SwapBatmanPanels();
         }
 
         //camera tool buttons
@@ -2868,7 +2863,7 @@ namespace AgOpenGPS
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
             sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 500) * 0.1;
-            lblSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
+            btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
         {
@@ -2878,7 +2873,7 @@ namespace AgOpenGPS
         {
             sim.steerAngleScrollBar = 0;
             hsbarSteerAngle.Value = 500;
-            lblSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
+            btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void btnResetSim_Click(object sender, EventArgs e)
         {
@@ -3001,13 +2996,6 @@ namespace AgOpenGPS
 
         public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString(); } }
         public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 2).ToString(); } }
-        public string Acres { get {
-                if (totalSquareMeters < 404048) return (totalSquareMeters * 0.000247105).ToString("N2");
-                    else return (totalSquareMeters * 0.000247105).ToString("N1");  }  }
-        public string Hectares { get { if (totalSquareMeters < 99000) return (totalSquareMeters * 0.0001).ToString("N2");
-                    else return (totalSquareMeters * 0.0001).ToString("N1"); }  }
-        public string AcresUser { get { return (totalUserSquareMeters * 0.000247105).ToString("N2") + " Ac"; } }
-        public string HectaresUser { get { return (totalUserSquareMeters * 0.0001).ToString("N2") + " Ha"; } }
 
         //rate control DUAL
         public string RateDualAccumulatedVolumeLiters { get { return rcd.dualVolumeActual.ToString("N0") + " L"; } }
@@ -3074,8 +3062,19 @@ namespace AgOpenGPS
         {
             //go see if data ready for draw and position updates
             ScanForNMEA();
+
             statusUpdateCounter++;
-            if (fiveSecondCounter++ > 100) { fiveSecondCounter = 0; }
+
+            if (threeSecondCounter++ > 60)
+            {
+                threeSecondCounter = 0;
+                threeSeconds++;
+            }
+            if (oneSecondCounter ++ > 20)
+            {
+                oneSecondCounter = 0;
+                oneSecond++; 
+            }
 
             //every half of a second update all status
             if (statusUpdateCounter > 9)
@@ -3086,12 +3085,12 @@ namespace AgOpenGPS
                 //counter used for saving field in background
                 saveCounter++;
 
-                if (tabControl1.SelectedIndex == 0 && tabControl1.Visible)
+                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
                 {
                     if (isMetric)
                     {
                         lblAltitude.Text = Altitude;
-                        lblBoundaryArea.Text = bnd.bndArr[0].areaHectare;
+                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
                         lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
                         //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
                         //else lblBoundaryDistanceAway.Text = "***";
@@ -3102,7 +3101,7 @@ namespace AgOpenGPS
                     {
                         lblAltitude.Text = AltitudeFeet;
                         ////Boundary
-                        lblBoundaryArea.Text = bnd.bndArr[0].areaAcre;
+                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
                         lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
                         //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
                         //else lblBoundaryDistanceAway.Text = "***";
@@ -3147,67 +3146,51 @@ namespace AgOpenGPS
                     if (isMetric)
                     {
                         lblpAltitude.Text = Altitude;
-                        //lblpBoundaryArea.Text = bnd.bndArr[0].areaHectare;
-                        //lblpBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
-                        //if (distPivot > 0) lblpBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
-                        //else lblpBoundaryDistanceAway.Text = "***";
-                        //if (distTool > -2220) lblpHeadlandDistanceFromTool.Text = DistPivotM;
-                        //else lblpHeadlandDistanceFromTool.Text = " * ";
+                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                        lblpAreaWorked.Text = fd.WorkedHectares;
+                        lblpFieldAreaRemain.Text =  fd.WorkedAreaRemainHectares;
+
                     }
                     else //imperial
                     {
                         lblpAltitude.Text = AltitudeFeet;
-                        ////Boundary
-                        //lblpBoundaryArea.Text = bnd.bndArr[0].areaAcre;
-                        //lblpBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
-                        //if (distPivot > 0) lblpBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
-                        //else lblpBoundaryDistanceAway.Text = "***";
-                        //lblpHeadlandDistanceFromTool.Text = DistPivotFt;
+                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                        lblpAreaWorked.Text = fd.WorkedAcres;
+                        lblpFieldAreaRemain.Text =  fd.WorkedAreaRemainAcres;
                     }
 
                     //both
-                    lblpLatitude.Text = Latitude;
-                    lblpLongitude.Text = Longitude;
-                    lblpSats.Text = SatsTracked;
-
+                    lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
                     lblpRoll.Text = RollInDegrees;
                     lblpYawHeading.Text = GyroInDegrees;
                     lblpGPSHeading.Text = GPSHeading;
-                    //lblpMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
-                    lblpLookAhead.Text = test1.ToString("N1") + " m";
-
-                    //txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
-                    //txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
-                    //                        + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
+                    lblpTimeToFinish.Text = fd.TimeTillFinished;
 
 
                     //up in the menu a few pieces of info
                     if (isJobStarted)
                     {
-                        lblpEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
-                        lblpNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
+                        //lblpEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
+                        //lblpNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
                     }
                     else
                     {
-                        lblpEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
-                        lblpNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
+                        //lblpEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
+                        //lblpNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
                     }
-
-                    lblpZone.Text = pn.zone.ToString();
-                    //tboxSentence.Text = recvSentenceSettings;
                 }
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
                     //Hectares on the master section soft control and sections
-                    btnSectionOffAutoOn.Text = Hectares;
+                    btnSectionOffAutoOn.Text = fd.WorkedHectares;
                     btnPerimeter.Text = PeriAreaHectares;    //area button
                     lblSpeed.Text = SpeedKPH;
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString((UInt16)(userDistance)) + " m\r\n" + HectaresUser;
-                    stripAreaRate.Text = (Math.Round(vehicle.toolWidth * pn.speed * 0.1, 2)).ToString() + "\r\n  Ha/hr";
+                    stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
+                    lblAreaRate.Text = fd.WorkRateHectares;
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
 
                     //rate
@@ -3244,13 +3227,13 @@ namespace AgOpenGPS
                 else  //Imperial Measurements
                 {
                     //acres on the master section soft control and sections
-                    btnSectionOffAutoOn.Text = Acres;
+                    btnSectionOffAutoOn.Text = fd.WorkedAcres;
                     btnPerimeter.Text = PeriAreaAcres; 
                     lblSpeed.Text = SpeedMPH;
 
                     //status strip values
-                    stripDistance.Text = Convert.ToString((UInt16)(userDistance * 3.28084)) + " ft\r\n" + AcresUser;
-                    stripAreaRate.Text = ((int)((vehicle.toolWidth * pn.speed * 0.1) * 2.47)).ToString() + "\r\n  Ac/hr";
+                    stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                    lblAreaRate.Text = fd.WorkRateAcres;
                     stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                     btnContour.Text = InchXTE; //cross track error
 
@@ -3283,7 +3266,7 @@ namespace AgOpenGPS
                 }
 
                 //not Metric/Standard units sensitive
-                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime);
+                lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
                 lblFixQuality.Text = FixQuality;
                 lblHeading.Text = Heading;
                 lblHeading2.Text = lblHeading.Text;
@@ -3306,6 +3289,8 @@ namespace AgOpenGPS
                         lblHeading.BackColor = SystemColors.ControlLight;
                         lblSpeedUnits.BackColor = SystemColors.ControlLight;
                         txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
+                        lblHz.BackColor = SystemColors.ControlLight;
+                        lblFixQuality.BackColor = SystemColors.ControlLight;
                     }
                     else
                     {
@@ -3316,6 +3301,8 @@ namespace AgOpenGPS
                         lblHeading.BackColor = Color.Tomato;
                         lblSpeedUnits.BackColor = Color.Tomato;
                         txtDistanceOffABLine.BackColor = Color.Tomato;
+                        lblHz.BackColor = Color.Tomato;
+                        lblFixQuality.BackColor = Color.Tomato;
                     }
                 }
 

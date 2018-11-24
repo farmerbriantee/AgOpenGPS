@@ -174,8 +174,43 @@ namespace AgOpenGPS
                     {
                         break;
                     }
+
+                //Sections
+                case 5555:
+                    {
+                        //check header
+                        if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
+
+                        //left or single actual rate
+                        //int.TryParse(data[0], out mc.incomingInt);
+                        rcd.rateActualLeft = (double)data[2] * 0.01;
+
+                        //right actual rate
+                        rcd.rateActualRight = (double)data[3] * 0.01;
+
+                        //Volume for dual and single
+                        rcd.dualVolumeActual = data[4];
+
+                        //read Relay from Arduino = if high then AOG has to switch on = manual
+                        rcd.RelayFromArduinoHi = data[5];
+                        rcd.RelayFromArduinoLo = data[6];
+
+                        //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
+                        rcd.SectSWOffFromArduinoHi = data[7];
+                        rcd.SectSWOffFromArduinoLo = data[8];
+
+                        //read MainSW+RateSW
+                        rcd.SectMainSWFromArduino = data[9];
+                        break;
+                    }
+
+
+
+
             }
         }
+
+
 
         #region Gesture
 
@@ -579,7 +614,7 @@ namespace AgOpenGPS
                 sim.steerAngle++;
                 if (sim.steerAngle > 30) sim.steerAngle = 30;
                 sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
+                btnResetSteerAngle.Text = sim.steerAngle.ToString();
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }
@@ -590,7 +625,7 @@ namespace AgOpenGPS
                 sim.steerAngle--;
                 if (sim.steerAngle < -30) sim.steerAngle = -30;
                 sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
+                btnResetSteerAngle.Text = sim.steerAngle.ToString();
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }
@@ -600,7 +635,7 @@ namespace AgOpenGPS
             {
                 sim.steerAngle = 0.0;
                 sim.steerAngleScrollBar = sim.steerAngle;
-                lblSteerAngle.Text = sim.steerAngle.ToString();
+                btnResetSteerAngle.Text = sim.steerAngle.ToString();
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }

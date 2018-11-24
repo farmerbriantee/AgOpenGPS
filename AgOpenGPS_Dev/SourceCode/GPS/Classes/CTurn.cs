@@ -216,6 +216,9 @@ namespace AgOpenGPS
 
         public void BuildTurnLines()
         {
+            //uodate the GUI values for boundaries
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+
             if (!mf.bnd.bndArr[0].isSet)
             {
                 mf.TimedMessageBox(1500, " Error", "No Boundaries Made");

@@ -663,7 +663,6 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
                         pn.convergenceAngle = double.Parse(line);
                         lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
-                        lblpConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
                 }
 
@@ -692,8 +691,8 @@ namespace AgOpenGPS
                 {
                     try
                     {
-                        totalSquareMeters = 0;
-                        userDistance = 0;
+                        fd.workedAreaTotal = 0;
+                        fd.distanceUser = 0;
                         vec2 vecFix = new vec2(0, 0);
 
                         //read header
@@ -727,7 +726,7 @@ namespace AgOpenGPS
                                               section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
                                                   section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
 
-                                    totalSquareMeters += Math.Abs((temp * 0.5));
+                                    fd.workedAreaTotal += Math.Abs((temp * 0.5));
                                 }
                             }
                         }

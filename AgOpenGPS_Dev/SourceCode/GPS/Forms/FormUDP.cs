@@ -25,8 +25,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIP_autoSteerIP = tboxAutoSteerIP.Text;
             Properties.Settings.Default.setIP_autoSteerPort = (int)nudAutoSteerPort.Value;
 
-            Properties.Settings.Default.setIP_rateRelayIP = tboxRateRelayIP.Text;
-            Properties.Settings.Default.setIP_rateRelayPort = (int)nudRateRelayPort.Value;
+            //Properties.Settings.Default.setIP_rateRelayIP = tboxRateRelayIP.Text;
+            //Properties.Settings.Default.setIP_rateRelayPort = (int)nudRateRelayPort.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
 
@@ -48,8 +48,8 @@ namespace AgOpenGPS
             tboxAutoSteerIP.Text = Properties.Settings.Default.setIP_autoSteerIP;
             nudAutoSteerPort.Value = Properties.Settings.Default.setIP_autoSteerPort;
 
-            tboxRateRelayIP.Text = Properties.Settings.Default.setIP_rateRelayIP;
-            nudRateRelayPort.Value = Properties.Settings.Default.setIP_rateRelayPort;
+            //tboxRateRelayIP.Text = Properties.Settings.Default.setIP_rateRelayIP;
+            //nudRateRelayPort.Value = Properties.Settings.Default.setIP_rateRelayPort;
 
             cboxIsUDPOn.CheckedChanged -= cboxIsUDPOn_CheckedChanged;
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
@@ -109,15 +109,15 @@ namespace AgOpenGPS
             }
         }
 
-        private void tboxRateRelayIP_Validating(object sender, CancelEventArgs e)
-        {
-            if (!CheckIPValid(tboxRateRelayIP.Text))
-            {
-                tboxRateRelayIP.Text = "127.0.0.1";
-                tboxRateRelayIP.Focus();
-                mf.TimedMessageBox(2000, "Invalid IP Address", "Set to Default Local 127.0.0.1");
-            }
-        }
+        //private void tboxRateRelayIP_Validating(object sender, CancelEventArgs e)
+        //{
+        //    if (!CheckIPValid(tboxRateRelayIP.Text))
+        //    {
+        //        tboxRateRelayIP.Text = "127.0.0.1";
+        //        tboxRateRelayIP.Focus();
+        //        mf.TimedMessageBox(2000, "Invalid IP Address", "Set to Default Local 127.0.0.1");
+        //    }
+        //}
 
         private void cboxIsUDPOn_CheckedChanged(object sender, EventArgs e)
         {
