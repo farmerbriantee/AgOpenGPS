@@ -97,7 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CFieldData.cs" />
+    <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryLines.cs" />
     <Compile Include="Classes\CDualRate.cs" />
     <Compile Include="Classes\CDubins.cs" />

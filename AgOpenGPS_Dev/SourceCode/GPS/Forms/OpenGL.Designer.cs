@@ -260,8 +260,7 @@ namespace AgOpenGPS
                     if (camera.camPitch < -60)
                     {
                         //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                        double hite = (camera.camPitch + 60) / -20 * 0.43;
-                        //hite = 0.001;
+                        double hite = (camera.camPitch + 63) * -0.026;
 
                         //the background
                         double winLeftPos = -(double)Width / 2;

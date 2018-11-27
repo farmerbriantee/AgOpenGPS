@@ -525,7 +525,7 @@ namespace AgOpenGPS
             int ctCount = ctList.Count;
             if (ctCount < 6) return;
 
-            const double spacing = 2;
+            const double spacing = 1;
             double distance;
             for (int i = 0; i < ctCount - 1; i++)
             {

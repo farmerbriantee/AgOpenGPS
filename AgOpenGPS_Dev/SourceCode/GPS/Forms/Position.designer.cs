@@ -468,7 +468,7 @@ namespace AgOpenGPS
                     if (yt.isYouTurnBtnOn && isAutoSteerBtnOn)
                     {
                         //if we are too much off track, kill the diagnostic creation, start again
-                        if (crossTrackError > 200 && !yt.isYouTurnShapeDisplayed)
+                        if (crossTrackError > 20 && !yt.isYouTurnShapeDisplayed)
                         {
                             yt.ResetCreatedYouTurn();
                         }
@@ -571,7 +571,6 @@ namespace AgOpenGPS
                             }
                         }
                     } // end of isInWorkingArea
-
                 }
                 // here is stop logic for out of bounds - in an inner or out the outer turn border.
                 else

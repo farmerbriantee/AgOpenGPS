@@ -40,8 +40,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (workedAreaTotal < 404048) return (workedAreaTotal * 0.000247105).ToString("N2") + " Ac";
-                else return (workedAreaTotal * 0.000247105).ToString("N1") + " Ac"; 
+                if (workedAreaTotal < 404048) return (workedAreaTotal * 0.000247105).ToString("N2");
+                else return (workedAreaTotal * 0.000247105).ToString("N1");
             }
         }
 
@@ -49,8 +49,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (workedAreaTotal < 99000) return (workedAreaTotal * 0.0001).ToString("N2") + " Ha"; 
-                else return (workedAreaTotal * 0.0001).ToString("N1") + " Ha"; ;
+                if (workedAreaTotal < 99000) return (workedAreaTotal * 0.0001).ToString("N2");
+                else return (workedAreaTotal * 0.0001).ToString("N1");
             }
         }
 
@@ -78,14 +78,14 @@ namespace AgOpenGPS
         {
             get
             {
-                return (((areaBoundaryOuterLessInner -workedAreaTotal) * glm.m2ha) / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hours";
+                if (mf.pn.speed > 0.1)
+                    return (((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha) / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hours";
+                else return "\u221E Hours";
             }
         }
 
-
         public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + " Ha/hr"; } }
         public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + " Ac/hr"; } }
-
 
         //constructor
         public CFieldData(FormGPS _f)
