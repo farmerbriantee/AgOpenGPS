@@ -476,23 +476,22 @@ namespace AgOpenGPS
                     {
                         youTurnPhase = 2;
                     }
-
-                    //turn keeps approaching vehicle and running out of space - end of field?
-                    if (isOutOfBounds && turnDiagDistance > 3)
-                    {
-                        turnDistanceAdjuster += 2;
-                        isTurnCreationTooClose = false;
-                    }
                     else
                     {
-                        isTurnCreationTooClose = true;
+                        //turn keeps approaching vehicle and running out of space - end of field?
+                        if (isOutOfBounds && turnDiagDistance > 3)
+                        {
+                            turnDistanceAdjuster += 2;
+                            isTurnCreationTooClose = false;
+                        }
+                        else
+                        {
+                            isTurnCreationTooClose = true;
 
-                        //set the flag to Critical stop machine
-                        if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                            //set the flag to Critical stop machine
+                            if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                        }
                     }
-                    break;
-
-                case 2:
                     break;
             }
             return true;
@@ -657,21 +656,26 @@ namespace AgOpenGPS
                         j += 5;
                     }
 
-                    if (!isOutOfBounds) youTurnPhase = 2;
-
-                    //turn keeps approaching vehicle and running out of space - end of field?
-                    if (isOutOfBounds && _turnDiagDistance > 3)
+                    if (!isOutOfBounds)
                     {
-                        turnDistanceAdjuster += 2;
-                        isTurnCreationTooClose = false;
+                        youTurnPhase = 2;
                     }
                     else
                     {
-                        isTurnCreationTooClose = true;
+                        //turn keeps approaching vehicle and running out of space - end of field?
+                        if (isOutOfBounds && _turnDiagDistance > 3)
+                        {
+                            turnDistanceAdjuster += 2;
+                            isTurnCreationTooClose = false;
+                        }
+                        else
+                        {
+                            isTurnCreationTooClose = true;
 
-                        //set the flag to Critical stop machine
-                        if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
-                        break;
+                            //set the flag to Critical stop machine
+                            if (isTurnCreationTooClose) mf.mc.isOutOfBounds = true;
+                            break;
+                        }
                     }
                     break;
             }

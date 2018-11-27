@@ -1662,6 +1662,7 @@
             // 
             // cboxpRowWidth
             // 
+            this.cboxpRowWidth.BackColor = System.Drawing.Color.Lavender;
             this.cboxpRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             resources.ApplyResources(this.cboxpRowWidth, "cboxpRowWidth");
             this.cboxpRowWidth.FormattingEnabled = true;
@@ -1947,7 +1948,7 @@
             // 
             // btnZoomExtents
             // 
-            this.btnZoomExtents.BackColor = System.Drawing.Color.Transparent;
+            this.btnZoomExtents.BackColor = System.Drawing.Color.Lavender;
             this.btnZoomExtents.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnZoomExtents.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnZoomExtents.FlatAppearance.BorderSize = 2;
@@ -1959,7 +1960,7 @@
             // 
             // btnpTiltUp
             // 
-            this.btnpTiltUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnpTiltUp.BackColor = System.Drawing.Color.Lavender;
             resources.ApplyResources(this.btnpTiltUp, "btnpTiltUp");
             this.btnpTiltUp.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnpTiltUp.FlatAppearance.BorderSize = 2;
@@ -1970,7 +1971,7 @@
             // 
             // btnpTiltDown
             // 
-            this.btnpTiltDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnpTiltDown.BackColor = System.Drawing.Color.Lavender;
             resources.ApplyResources(this.btnpTiltDown, "btnpTiltDown");
             this.btnpTiltDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnpTiltDown.FlatAppearance.BorderSize = 2;
@@ -1981,7 +1982,7 @@
             // 
             // btnZoomOut
             // 
-            this.btnZoomOut.BackColor = System.Drawing.Color.Transparent;
+            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
             resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
             this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnZoomOut.FlatAppearance.BorderSize = 2;
@@ -1991,7 +1992,7 @@
             // 
             // btnZoomIn
             // 
-            this.btnZoomIn.BackColor = System.Drawing.Color.Transparent;
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
             resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
             this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnZoomIn.FlatAppearance.BorderSize = 2;
@@ -2002,7 +2003,7 @@
             // btnSwapDirection
             // 
             resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwapDirection.BackColor = System.Drawing.Color.Lavender;
             this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSwapDirection.FlatAppearance.BorderSize = 2;
@@ -2013,7 +2014,7 @@
             // btnContourPriority
             // 
             resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
-            this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
+            this.btnContourPriority.BackColor = System.Drawing.Color.Lavender;
             this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnContourPriority.FlatAppearance.BorderSize = 2;
             this.btnContourPriority.Name = "btnContourPriority";
@@ -2023,7 +2024,7 @@
             // btnCurve
             // 
             resources.ApplyResources(this.btnCurve, "btnCurve");
-            this.btnCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnCurve.BackColor = System.Drawing.Color.Lavender;
             this.btnCurve.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
             this.btnCurve.FlatAppearance.BorderSize = 3;
             this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
@@ -2043,7 +2044,7 @@
             // btnEnableAutoYouTurn
             // 
             resources.ApplyResources(this.btnEnableAutoYouTurn, "btnEnableAutoYouTurn");
-            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Lavender;
             this.btnEnableAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnEnableAutoYouTurn.FlatAppearance.BorderSize = 2;
             this.btnEnableAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
@@ -2054,7 +2055,7 @@
             // btnSectionOffAutoOn
             // 
             resources.ApplyResources(this.btnSectionOffAutoOn, "btnSectionOffAutoOn");
-            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Lavender;
             this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSectionOffAutoOn.FlatAppearance.BorderSize = 2;
             this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
@@ -2065,7 +2066,7 @@
             // btnFlag
             // 
             resources.ApplyResources(this.btnFlag, "btnFlag");
-            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlag.BackColor = System.Drawing.Color.Lavender;
             this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnFlag.FlatAppearance.BorderSize = 2;
@@ -2077,7 +2078,7 @@
             // btnAutoSteer
             // 
             resources.ApplyResources(this.btnAutoSteer, "btnAutoSteer");
-            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteer.BackColor = System.Drawing.Color.Lavender;
             this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnAutoSteer.FlatAppearance.BorderSize = 2;
             this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
@@ -2097,7 +2098,7 @@
             // btnManualOffOn
             // 
             resources.ApplyResources(this.btnManualOffOn, "btnManualOffOn");
-            this.btnManualOffOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnManualOffOn.BackColor = System.Drawing.Color.Lavender;
             this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnManualOffOn.FlatAppearance.BorderSize = 2;
             this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
@@ -2108,7 +2109,7 @@
             // btnABLine
             // 
             resources.ApplyResources(this.btnABLine, "btnABLine");
-            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnABLine.BackColor = System.Drawing.Color.Lavender;
             this.btnABLine.ContextMenuStrip = this.contextMenuStripAB;
             this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnABLine.FlatAppearance.BorderSize = 2;
@@ -2120,7 +2121,7 @@
             // btnContour
             // 
             resources.ApplyResources(this.btnContour, "btnContour");
-            this.btnContour.BackColor = System.Drawing.Color.Transparent;
+            this.btnContour.BackColor = System.Drawing.Color.Lavender;
             this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnContour.FlatAppearance.BorderSize = 2;
             this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;

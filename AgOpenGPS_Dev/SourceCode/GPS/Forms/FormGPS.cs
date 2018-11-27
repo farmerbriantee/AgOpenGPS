@@ -60,13 +60,17 @@ namespace AgOpenGPS
         //Time to do fix position update and draw routine
         private double frameTime = 0;
 
-        //For field saving in background
+        //For field saving in background 
         private int saveCounter = 1;
 
         //used to update the screen status bar etc
-        private int statusUpdateCounter = 1;
+        //private int statusUpdateCounter = 1;
+        private int displayUpdateOneSecondCounter = 0, displayUpdateHalfSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
 
-        private int threeSecondCounter = 0, threeSeconds = 0, oneSecondCounter = 0, oneSecond = 0;
+        private int threeSecondCounter = 0, threeSeconds = 0;
+        private int oneSecondCounter = 0, oneSecond = 0;
+        private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
+        //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
