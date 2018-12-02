@@ -1406,12 +1406,9 @@ namespace AgOpenGPS
                 //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                if (distanceFromCurrentLine < 1.0)
-                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
-                else
-                    goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
-
-                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+                //update base on autosteer settings and distance from line
+                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+                mf.test1 = goalPointDistance;
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
@@ -1518,9 +1515,9 @@ namespace AgOpenGPS
                 if (ptCount == 0) return;
 
                 if (!isOutOfBounds)
-                    GL.Color3(0.95f, 0.5f, 0.0f);
+                    GL.Color3(0.395f, 0.925f, 0.30f);
                 else
-                    GL.Color3(0.95f, 0.4395f, 0.4325f);
+                    GL.Color3(0.9495f, 0.395f, 0.325f);
                 GL.LineWidth(4);
                 {
                     GL.Begin(PrimitiveType.LineStrip);

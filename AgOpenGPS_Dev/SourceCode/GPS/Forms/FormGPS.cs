@@ -52,7 +52,7 @@ namespace AgOpenGPS
         public bool isSavingFile = false, isLogNMEA = false;
 
         //texture holders
-        public uint[] texture = new uint[3];
+        public uint[] texture = new uint[4];
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
@@ -583,6 +583,28 @@ namespace AgOpenGPS
             {
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File Vehicle.PNG is Missing", ex2.Message);
+            }
+            try
+            {
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Compass.png");
+                if (File.Exists(text2))
+                {
+                    using (Bitmap bitmap2 = new Bitmap(text2))
+                    {
+                        GL.GenTextures(1, out texture[3]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[3]);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
+                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+                        bitmap2.UnlockBits(bitmapData2);
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                //WriteErrorLog("Loading Floor Texture" + ex2);
+                MessageBox.Show("Texture File Compass.PNG is Missing", ex2.Message);
             }
             return texture[0];
         }// Load Bitmaps And Convert To Textures

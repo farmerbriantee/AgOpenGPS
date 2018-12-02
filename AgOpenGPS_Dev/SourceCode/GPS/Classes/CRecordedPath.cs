@@ -346,13 +346,8 @@ namespace AgOpenGPS
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
             double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-            if (distanceFromCurrentLine < 1.0)
-                goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-            else
-                goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-
-            if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
-
+            //update base on autosteer settings and distance from line
+            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
             mf.test1 = goalPointDistance;
 
             // used for calculating the length squared of next segment.
@@ -471,11 +466,13 @@ namespace AgOpenGPS
             double distSoFar;
 
             //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-            //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-            double goalPointDistance = mf.vehicle.goalPointLookAhead;
+            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+            //double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
-            //minimum of 4.0 meters look ahead
-            if (goalPointDistance < 4.0) goalPointDistance = 4.0;
+            //update base on autosteer settings and distance from line
+            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+            mf.test1 = goalPointDistance;
+
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;

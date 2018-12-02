@@ -60,9 +60,6 @@ namespace AgOpenGPS
         //tally counters for display
         //public double totalSquareMetersWorked = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
-        //used to determine NMEA sentence frequency
-        private double hzTime = 0;
-
         public double[] avgSpeed = new double[10];//for average speed
         public double[] avgXTE = new double[20]; //for average cross track error
         public int ringCounter = 0, avgXTECntr, crossTrackError;
@@ -96,12 +93,6 @@ namespace AgOpenGPS
             {
                 //if saving a file ignore any movement
                 if (isSavingFile) return;
-
-                //accumulate time over multiple frames  
-                hzTime = swFrame.ElapsedMilliseconds;
-
-                //reset the timer         
-                swFrame.Reset();
 
                 //start the watch and time till it gets back here
                 swFrame.Start();
@@ -468,7 +459,7 @@ namespace AgOpenGPS
                     if (yt.isYouTurnBtnOn && isAutoSteerBtnOn)
                     {
                         //if we are too much off track, kill the diagnostic creation, start again
-                        if (crossTrackError > 20 && !yt.isYouTurnShapeDisplayed)
+                        if (crossTrackError > 1500 && !yt.isYouTurnShapeDisplayed)
                         {
                             yt.ResetCreatedYouTurn();
                         }
@@ -481,9 +472,16 @@ namespace AgOpenGPS
                                 {
                                     if (yt.youTurnPhase != 3)
                                     {
-                                        //if not triggered then make proposed turn to evaluate - only ran to build
+                                        if (crossTrackError > 500)
                                         {
-                                            yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
+                                            yt.ResetCreatedYouTurn();
+                                        }
+                                        else
+                                        {
+
+                                            //if not triggered then make proposed turn to evaluate - only ran to build
+                                            
+                                                yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
                                             //lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
                                         }
                                     }
@@ -501,8 +499,15 @@ namespace AgOpenGPS
                                 {
                                     if (yt.youTurnPhase != 3)
                                     {
-                                        yt.BuildABLinePatternYouTurn(yt.isYouTurnRight);
-                                        //lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                        if (crossTrackError > 500)
+                                        {
+                                            yt.ResetCreatedYouTurn();
+                                        }
+                                        else
+                                        {
+                                            yt.BuildABLinePatternYouTurn(yt.isYouTurnRight);
+                                            //lblStepsFromTurnLine.Text = yt.turnDistanceAdjuster.ToString();
+                                        }
                                     }
 
                                     else
@@ -516,14 +521,20 @@ namespace AgOpenGPS
                                     }
                                 }
                             }
-
                             else  // AB Curve ********************************************************************************************************************
                             {
                                 if (yt.isUsingDubinsTurn)
                                 {
                                     if (yt.youTurnPhase != 3)
                                     {
-                                        yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                        if (crossTrackError > 500)
+                                        {
+                                            yt.ResetCreatedYouTurn();
+                                        }
+                                        else
+                                        {
+                                            yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                        }
                                     }
                                     else //wait to trigger the actual turn since its made and waiting
                                     {
@@ -539,7 +550,14 @@ namespace AgOpenGPS
                                 {
                                     if (yt.youTurnPhase != 3)
                                     {
-                                        yt.BuildCurvePatternYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                        if (crossTrackError > 500)
+                                        {
+                                            yt.ResetCreatedYouTurn();
+                                        }
+                                        else
+                                        {
+                                            yt.BuildCurvePatternYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                                        }
                                     }
                                     else //wait to trigger the actual turn since its made and waiting
                                     {
@@ -589,8 +607,7 @@ namespace AgOpenGPS
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);
 
-            //openGLControl_Draw routine triggered manually
-            //openGLControl.DoRender();
+            //update main window
             oglMain.MakeCurrent();
             oglMain.Refresh();
 
@@ -717,9 +734,7 @@ namespace AgOpenGPS
                         tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (vehicle.tankTrailingHitchLength));
                         tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (vehicle.tankTrailingHitchLength));
                     }
-
                 }
-
                 else
                 {
                     tankPos.heading = fixHeading;
@@ -735,7 +750,6 @@ namespace AgOpenGPS
                     toolPos.northing = tankPos.northing + t * (tankPos.northing - toolPos.northing);
                     toolPos.heading = Math.Atan2(tankPos.easting - toolPos.easting, tankPos.northing - toolPos.northing);
                 }
-
 
                 ////the tool is seriously jacknifed or just starting out so just spring it back.
                 over = Math.Abs(Math.PI - Math.Abs(Math.Abs(toolPos.heading - tankPos.heading) - Math.PI));

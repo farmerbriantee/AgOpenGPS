@@ -226,21 +226,11 @@ namespace AgOpenGPS
             //absolute the distance
             distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
-            //double goalPointDistance = mf.vehicle.goalPointLookAhead;
-            //if (distanceFromCurrentLine < mf.vehicle.goalPointDistanceFromLine )
-            //    goalPointDistance -= goalPointDistance * (mf.vehicle.goalPointDistanceFromLine - distanceFromCurrentLine);
-            //if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
-
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
             double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-            if (distanceFromCurrentLine < 1.0)
-                goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-            else
-                goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-
-            if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
-
+            //update base on autosteer settings and distance from line
+            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
             mf.test1 = goalPointDistance;
 
             //Subtract the two headings, if > 1.57 its going the opposite heading as refAB

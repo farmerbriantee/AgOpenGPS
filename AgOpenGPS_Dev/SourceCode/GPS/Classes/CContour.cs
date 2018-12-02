@@ -86,8 +86,8 @@ namespace AgOpenGPS
                 stripList.Add(ptList);
             }
 
-            pivot.easting -= (Math.Sin(pivot.heading) * 5.0);
-            pivot.northing -= (Math.Cos(pivot.heading) * 5.0);
+            //pivot.easting -= (Math.Sin(pivot.heading) * 5.0);
+            //pivot.northing -= (Math.Cos(pivot.heading) * 5.0);
 
             vec3 point = new vec3(pivot.easting, pivot.northing, pivot.heading);
             ptList.Add(point);
@@ -106,8 +106,8 @@ namespace AgOpenGPS
             //make sure its long enough to bother
             if (ptList.Count > 10)
             {
-                pivot.easting += (Math.Sin(pivot.heading) * 5.0);
-                pivot.northing += (Math.Cos(pivot.heading) * 5.0);
+                //pivot.easting += (Math.Sin(pivot.heading) * 5.0);
+                //pivot.northing += (Math.Cos(pivot.heading) * 5.0);
 
                 vec3 point = new vec3(pivot.easting, pivot.northing, mf.fixHeading);
                 ptList.Add(point);
@@ -453,8 +453,8 @@ namespace AgOpenGPS
             ptCount = stripList[strip].Count - 1;
             int start, stop;
 
-            start = pt - 45; if (start < 0) start = 0;
-            stop = pt + 45; if (stop > ptCount) stop = ptCount + 1;
+            start = pt - 35; if (start < 0) start = 0;
+            stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
 
             double distSq = widthMinusOverlap * widthMinusOverlap * 0.92;
             bool fail = false;
@@ -525,7 +525,7 @@ namespace AgOpenGPS
             int ctCount = ctList.Count;
             if (ctCount < 6) return;
 
-            const double spacing = 1;
+            const double spacing = 0.8;
             double distance;
             for (int i = 0; i < ctCount - 1; i++)
             {
@@ -538,7 +538,55 @@ namespace AgOpenGPS
                 }
             }
 
-            //if (ctCount > 5) CalculateContourHeadings();
+            {
+                int smPts = 2;
+
+                //count the reference list of original curve
+                int cnt = ctList.Count;
+
+                //just go back if not very long
+                if ( cnt < 10) return;
+
+                //the temp array
+                vec3[] arr = new vec3[cnt];
+
+                //read the points before and after the setpoint
+                for (int s = 0; s < smPts; s++)
+                {
+                    arr[s].easting = ctList[s].easting;
+                    arr[s].northing = ctList[s].northing;
+                    arr[s].heading = ctList[s].heading;
+
+                }
+
+                for (int s = cnt - (smPts); s < cnt; s++)
+                {
+                    arr[s].easting = ctList[s].easting;
+                    arr[s].northing = ctList[s].northing;
+                    arr[s].heading = ctList[s].heading;
+
+                }
+
+                //average them - center weighted average
+                for (int i = smPts; i < cnt - (smPts); i++)
+                {
+                    for (int j = -smPts; j < smPts; j++)
+                    {
+                        arr[i].easting += ctList[j + i].easting;
+                        arr[i].northing += ctList[j + i].northing;
+                    }
+                    arr[i].easting /= (smPts*2);
+                    arr[i].northing /= (smPts*2);
+                    arr[i].heading = ctList[i].heading;
+                }
+
+                //make a list to draw
+                ctList?.Clear();
+                for (int i = 0; i < cnt; i++)
+                {
+                    ctList.Add(arr[i]);
+                }
+            }
         }
 
         public void CalculateContourHeadings()
@@ -650,14 +698,11 @@ namespace AgOpenGPS
                 //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                if (distanceFromCurrentLine < 1.0)
-                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
-                else
-                    goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
-
-                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+                //update base on autosteer settings and distance from line
+                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
 
                 mf.test1 = goalPointDistance;
+
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
 
@@ -904,13 +949,13 @@ namespace AgOpenGPS
                     GL.End();
 
                     //Draw lookahead Point
-                    GL.PointSize(4.0f);
+                    GL.PointSize(6.0f);
                     GL.Begin(PrimitiveType.Points);
 
                     //GL.Color(1.0f, 1.0f, 0.25f);
                     //GL.Vertex(rEast, rNorth, 0.0);
 
-                    GL.Color3(1.0f, 0.5f, 0.95f);
+                    GL.Color3(1.0f, 0.95f, 0.095f);
                     GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);
                     GL.End();
                     GL.PointSize(1.0f);

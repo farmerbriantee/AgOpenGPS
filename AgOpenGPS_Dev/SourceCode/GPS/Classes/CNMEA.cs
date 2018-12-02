@@ -187,6 +187,7 @@ Field	Meaning
             fix.easting = xy[0] - utmEast + fixOffset.easting;
             fix.northing = xy[1] - utmNorth + fixOffset.northing;
 
+            //compensate for the fact the zones lines are a grid and the world is round
             fix.easting = (Math.Cos(-convergenceAngle) * fix.easting) - (Math.Sin(-convergenceAngle) * fix.northing);
             fix.northing = (Math.Sin(-convergenceAngle) * fix.easting) + (Math.Cos(-convergenceAngle) * fix.northing);
         }

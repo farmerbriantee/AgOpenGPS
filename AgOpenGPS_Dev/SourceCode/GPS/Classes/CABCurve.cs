@@ -76,12 +76,14 @@ namespace AgOpenGPS
             {
                 arr[s].easting = refList[s].easting;
                 arr[s].northing = refList[s].northing;
+                arr[s].heading = refList[s].heading;
             }
 
             for (int s = cnt - (smPts / 2); s < cnt; s++)
             {
                 arr[s].easting = refList[s].easting;
                 arr[s].northing = refList[s].northing;
+                arr[s].heading = refList[s].heading;
             }
 
             //average them - center weighted average
@@ -302,13 +304,8 @@ namespace AgOpenGPS
                 //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
                 double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                if (distanceFromCurrentLine < 1.0)
-                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-                else
-                    goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
-
-                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
-
+                //update base on autosteer settings and distance from line
+                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
                 mf.test1 = goalPointDistance;
 
                 // used for calculating the length squared of next segment.
