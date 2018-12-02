@@ -825,6 +825,7 @@
     <None Include="btnImages\Camera3D64.png" />
     <None Include="btnImages\CameraNorth64.png" />
     <None Include="btnImages\Extents.png" />
+    <None Include="btnImages\Start48.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

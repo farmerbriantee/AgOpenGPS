@@ -475,8 +475,8 @@ namespace AgOpenGPS
                 //WriteErrorLog("Open GPS Port " + e.ToString());
 
                 //update port status labels
-                stripPortGPS.Text = " * * ";
-                stripPortGPS.ForeColor = Color.Red;
+                //stripPortGPS.Text = " * * ";
+                //stripPortGPS.ForeColor = Color.Red;
                 stripOnlineGPS.Value = 1;
 
                 //SettingsPageOpen(0);
@@ -491,8 +491,8 @@ namespace AgOpenGPS
                 sp.DiscardInBuffer();
 
                 //update port status label
-                stripPortGPS.Text = portNameGPS + " " + baudRateGPS.ToString();
-                stripPortGPS.ForeColor = Color.ForestGreen;
+                //stripPortGPS.Text = portNameGPS + " " + baudRateGPS.ToString();
+                //stripPortGPS.ForeColor = Color.ForestGreen;
 
                 Properties.Settings.Default.setPort_portNameGPS = portNameGPS;
                 Properties.Settings.Default.setPort_baudRate = baudRateGPS;
@@ -513,8 +513,8 @@ namespace AgOpenGPS
                 }
 
                 //update port status labels
-                stripPortGPS.Text = " * * " + baudRateGPS.ToString();
-                stripPortGPS.ForeColor = Color.ForestGreen;
+                //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
+                //stripPortGPS.ForeColor = Color.ForestGreen;
                 stripOnlineGPS.Value = 1;
 
                 sp.Dispose();

@@ -60,6 +60,7 @@ namespace AgOpenGPS
                     oglMain_Resize(oglMain, EventArgs.Empty);
                 }
                 isInit = true;
+
                 //  Clear the color and depth buffer.
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();
@@ -68,12 +69,7 @@ namespace AgOpenGPS
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
                 GL.Disable(EnableCap.Texture2D);
-                //GL.Enable(EnableCap.LineSmooth);
                 GL.Enable(EnableCap.Blend);
-
-                //gl.Hint(OpenGL.GL_LINE_SMOOTH_HINT, OpenGL.GL_FASTEST);
-                //gl.Hint(OpenGL.GL_POINT_SMOOTH_HINT, OpenGL.GL_FASTEST);
-                //gl.Hint(OpenGL.GL_POLYGON_SMOOTH_HINT, OpenGL.GL_FASTEST);
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -139,13 +135,10 @@ namespace AgOpenGPS
                                     for (int i = 0; i < count2; i += step)
                                     {
                                         GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-
-                                        //too small to mipmap it
-                                        if (count2 - i <= (mipmap + 2)) step = 0;
+                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;                                        
+                                        if (count2 - i <= (mipmap + 2)) step = 0;//too small to mipmap it
                                     }
                                 }
-
                                 else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                 GL.End();
                             }
@@ -192,17 +185,15 @@ namespace AgOpenGPS
                     if (flagNumberPicked != 0)
                     {
                         ////draw the box around flag
+                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
                         GL.LineWidth(4);
                         GL.Color3(0.980f, 0.0f, 0.980f);
                         GL.Begin(PrimitiveType.LineStrip);
-
-                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-
                         GL.End();
 
                         //draw the flag with a black dot inside
@@ -237,7 +228,7 @@ namespace AgOpenGPS
                 //Back to normal
                 GL.Color3(0.498f, 0.498f, 0.698f);
                 GL.Enable(EnableCap.Blend);
-                GL.Enable(EnableCap.DepthTest);
+                //GL.Enable(EnableCap.DepthTest);
 
                 // 2D Ortho --------------------------
                 GL.MatrixMode(MatrixMode.Projection);
@@ -245,7 +236,7 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
 
                 //negative and positive on width, 0 at top to bottom ortho view
-                GL.Ortho(-(double)Width / 2, (double)Width / 2,  (double)Height, 0, -1, 1);
+                GL.Ortho(-(double)oglMain.Width / 2, (double)oglMain.Width / 2,  (double)oglMain.Height, 0, -1, 1);
                 //GL.Viewport(0, 0, Width, Height);
 
                 //  Create the appropriate modelview matrix.
@@ -263,7 +254,7 @@ namespace AgOpenGPS
                         double hite = (camera.camPitch + 63) * -0.026;
 
                         //the background
-                        double winLeftPos = -(double)Width / 2;
+                        double winLeftPos = -(double)oglMain.Width / 2;
                         double winRightPos = -winLeftPos;
                         GL.Enable(EnableCap.Texture2D);
                         GL.BindTexture(TextureTarget.Texture2D, texture[0]);		// Select Our Texture
@@ -271,9 +262,19 @@ namespace AgOpenGPS
                         GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
                         GL.TexCoord2(0, 0); GL.Vertex2(winRightPos, 0.0); // Top Right
                         GL.TexCoord2(1, 0); GL.Vertex2(winLeftPos, 0.0); // Top Left
-                        GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite*Height); // Bottom Right
-                        GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * Height); // Bottom Left
+                        GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite * oglMain.Height); // Bottom Right
+                        GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * oglMain.Height); // Bottom Left
                         GL.End();						// Done Building Triangle Strip
+
+                        //GL.BindTexture(TextureTarget.Texture2D, texture[3]);		// Select Our Texture
+                        // GL.Translate(400, 200, 0);
+                        //GL.Rotate(camHeading, 0, 0, 1);
+                        //GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
+                        //GL.TexCoord2(1, 0); GL.Vertex2(0.1 * winRightPos, -0.1 * Height); // Top Right
+                        //GL.TexCoord2(0, 0); GL.Vertex2(0.1 * winLeftPos, -0.1 * Height); // Top Left
+                        //GL.TexCoord2(1, 1); GL.Vertex2(0.1 * winRightPos, 0.1 * Height); // Bottom Right
+                        //GL.TexCoord2(0, 1); GL.Vertex2(0.1 * winLeftPos,  0.1 * Height); // Bottom Left
+                        //GL.End();						// Done Building Triangle Strip
 
                         //disable, straight color
                         GL.Disable(EnableCap.Texture2D);
@@ -411,14 +412,18 @@ namespace AgOpenGPS
                 //draw the section control window off screen buffer
                 oglBack.Refresh();
 
-                //draw the zoom window off screen buffer in the second tab
-                //if (tabControl1.SelectedIndex == 3 && statusUpdateCounter > 8)
-                //how big is our field
-                if (threeSeconds != zoomUpdateCounter)
+                //draw the zoom window
+                if (threeSeconds != zoomUpdateCounter && !tabControl1.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
                 }
+
+                //stop the timer and calc how long it took to do calcs and draw
+                frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+
+                //reset the timer         
+                swFrame.Reset();
             }
         }
 
@@ -803,9 +808,6 @@ namespace AgOpenGPS
             //send the byte out to section relays
             BuildRelayByte();
 
-            //stop the timer and calc how long it took to do calcs and draw
-            frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
-
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
             if (saveCounter > 240)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
@@ -905,7 +907,7 @@ namespace AgOpenGPS
                             //draw the triangle in each triangle strip
                             GL.Begin(PrimitiveType.TriangleStrip);
                             count2 = triList.Count;
-                            int mipmap = 8;
+                            int mipmap = 16;
 
                             //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
                             if (count2 >= (mipmap + 2))
@@ -974,6 +976,7 @@ namespace AgOpenGPS
             GL.Vertex3(pivotAxlePos.easting, pivotAxlePos.northing, 0.0);
             GL.End();
             GL.PointSize(1.0f);
+
             GL.Flush();
             oglZoom.SwapBuffers();
         }    
@@ -986,7 +989,7 @@ namespace AgOpenGPS
             
             //  Dot distance is representation of how far from AB Line
             int dotDistance = (int)(offlineDistance);
-            int limit = (int)lightbarCmPerPixel * 15;
+            int limit = (int)lightbarCmPerPixel * 13;
             if (dotDistance < -limit) dotDistance = -limit;
             if (dotDistance > limit) dotDistance = limit;
 
@@ -997,8 +1000,8 @@ namespace AgOpenGPS
             GL.PointSize(8.0f);
             GL.Color3(0.00f, 0.0f, 0.0f);
             GL.Begin(PrimitiveType.Points);
-            for (int i = -15; i < 0; i++) GL.Vertex2((i * 40), down);
-            for (int i = 1; i < 16; i++) GL.Vertex2((i * 40), down);
+            for (int i = -13; i < 0; i++) GL.Vertex2((i * 32), down);
+            for (int i = 1; i < 14; i++) GL.Vertex2((i * 32), down);
             GL.End();
 
             GL.PointSize(4.0f);
@@ -1007,11 +1010,11 @@ namespace AgOpenGPS
             //red left side
             GL.Color3(0.9750f, 0.0f, 0.0f);
             GL.Begin(PrimitiveType.Points);
-            for (int i = -15; i < 0; i++) GL.Vertex2((i * 40), down);
+            for (int i = -13; i < 0; i++) GL.Vertex2((i * 32), down);
 
             //green right side
             GL.Color3(0.0f, 0.9750f, 0.0f);
-            for (int i = 1; i < 16; i++) GL.Vertex2((i * 40), down);
+            for (int i = 1; i < 14; i++) GL.Vertex2((i * 32), down);
             GL.End();
 
             //Are you on the right side of line? So its green.
@@ -1023,13 +1026,13 @@ namespace AgOpenGPS
                     GL.PointSize(24.0f);
                     GL.Color3(0.0f, 0.0f, 0.0f);
                     GL.Begin(PrimitiveType.Points);
-                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * 40), down);
+                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * 32), down);
                     GL.End();
 
                     GL.PointSize(16.0f);
                     GL.Color3(0.0f, 0.980f, 0.0f);
                     GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < dots; i++) GL.Vertex2((i * 40 + 40), down);
+                    for (int i = 0; i < dots; i++) GL.Vertex2((i * 32 + 32), down);
                     GL.End();
                     //return;
                 }
@@ -1041,13 +1044,13 @@ namespace AgOpenGPS
                     GL.PointSize(24.0f);
                     GL.Color3(0.0f, 0.0f, 0.0f);
                     GL.Begin(PrimitiveType.Points);
-                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * -40), down);
+                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * -32), down);
                     GL.End();
 
                     GL.PointSize(16.0f);
                     GL.Color3(0.980f, 0.30f, 0.0f);
                     GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < dots; i++) GL.Vertex2((i * -40 - 40), down);
+                    for (int i = 0; i < dots; i++) GL.Vertex2((i * -32 - 32), down);
                     GL.End();
                     //return;
                 }

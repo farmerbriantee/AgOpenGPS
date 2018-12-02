@@ -3189,7 +3189,7 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedKPH;
 
                     //status strip values
-                    stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
+                    stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
                     //rate
                     if (rcd.isRateControlOn && tabControl1.SelectedIndex == 2)
@@ -3232,7 +3232,7 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedMPH;
 
                     //status strip values
-                    stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                    stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
                     btnContour.Text = InchXTE; //cross track error
 
                     //rate
@@ -3271,6 +3271,7 @@ namespace AgOpenGPS
                 lblHeading.Text = Heading;
                 lblHeading2.Text = lblHeading.Text;
                 lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
+                lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
 
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight
@@ -3352,8 +3353,6 @@ namespace AgOpenGPS
 
                     //not Metric/Standard units sensitive
                     btnABLine.Text = PassNumber;
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
-
 
                     //update the online indicator
                     if (recvCounter > 50)

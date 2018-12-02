@@ -920,6 +920,7 @@ namespace AgOpenGPS
                             ABLine.isABLineSet = true;
                             EnableYouTurnButtons();
                             btnCurve.Enabled = false;
+                            btnContourPriority.Enabled = true;
                         }
 
                         //if ABLine isn't set, turn off the YouTurn

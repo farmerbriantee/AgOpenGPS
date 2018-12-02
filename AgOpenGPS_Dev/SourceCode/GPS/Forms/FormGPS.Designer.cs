@@ -103,7 +103,6 @@
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblNorthing = new System.Windows.Forms.Label();
@@ -250,6 +249,7 @@
             this.toolStripMenuChoose = new System.Windows.Forms.ToolStripMenuItem();
             this.oglMain = new OpenTK.GLControl();
             this.oglBack = new OpenTK.GLControl();
+            this.lblHz = new System.Windows.Forms.Label();
             this.btnZoomExtents = new System.Windows.Forms.Button();
             this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
             this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
@@ -267,7 +267,6 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.lblHz = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -646,7 +645,6 @@
             this.toolStripDropDownButton2,
             this.stripDistance,
             this.toolStripDropDownBtnFuncs,
-            this.stripPortGPS,
             this.stripOnlineGPS,
             this.toolStripBatman});
             this.statusStrip1.Name = "statusStrip1";
@@ -736,6 +734,7 @@
             this.toolstripAutoSteerConfig,
             this.toolstripVehicleConfig,
             this.toolstripYouTurnConfig});
+            this.toolStripDropDownButton2.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
@@ -802,6 +801,7 @@
             this.toolstripBoundary,
             this.toolstripHeadland,
             this.toolstripResetTrip});
+            this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.Start48;
             this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownBtnFuncs.Name = "toolStripDropDownBtnFuncs";
             this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
@@ -833,13 +833,6 @@
             resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
-            // 
-            // stripPortGPS
-            // 
-            this.stripPortGPS.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
-            resources.ApplyResources(this.stripPortGPS, "stripPortGPS");
-            this.stripPortGPS.ForeColor = System.Drawing.Color.Red;
-            this.stripPortGPS.Name = "stripPortGPS";
             // 
             // stripOnlineGPS
             // 
@@ -1102,6 +1095,7 @@
             // 
             this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnDrivePath.Name = "btnDrivePath";
             this.btnDrivePath.UseVisualStyleBackColor = false;
             this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
@@ -1946,6 +1940,12 @@
             this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
             this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
             // 
+            // lblHz
+            // 
+            resources.ApplyResources(this.lblHz, "lblHz");
+            this.lblHz.BackColor = System.Drawing.Color.Transparent;
+            this.lblHz.Name = "lblHz";
+            // 
             // btnZoomExtents
             // 
             this.btnZoomExtents.BackColor = System.Drawing.Color.Lavender;
@@ -2129,19 +2129,13 @@
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
-            // lblHz
-            // 
-            resources.ApplyResources(this.lblHz, "lblHz");
-            this.lblHz.BackColor = System.Drawing.Color.Transparent;
-            this.lblHz.Name = "lblHz";
-            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.lblHz);
             this.Controls.Add(this.btnZoomExtents);
             this.Controls.Add(this.panelSimControls);
@@ -2220,7 +2214,6 @@
         private System.Windows.Forms.ToolStripMenuItem polygonsToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel stripDistance;
-        private System.Windows.Forms.ToolStripStatusLabel stripPortGPS;
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveVehicleToolStripMenuItem;

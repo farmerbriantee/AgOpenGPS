@@ -109,7 +109,7 @@ namespace AgOpenGPS
         //Scrollbars    
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
-            if (hsbarLookAheadMin.Value > hsbarLookAhead.Value) hsbarLookAheadMin.Value = hsbarLookAhead.Value;
+            //if (hsbarLookAheadMin.Value > hsbarLookAhead.Value) hsbarLookAheadMin.Value = hsbarLookAhead.Value;
             mf.vehicle.goalPointLookAhead = hsbarLookAhead.Value * 0.1;
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
             Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;

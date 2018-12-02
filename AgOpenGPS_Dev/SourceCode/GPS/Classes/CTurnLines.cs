@@ -105,22 +105,22 @@ namespace AgOpenGPS
                 }
             }
 
-            ////make sure distance isn't too big between points on Turn
-            //bndCount = turnLine.Count;
-            //for (int i = 0; i < bndCount; i++)
-            //{
-            //    int j = i + 1;
-            //    if (j == bndCount) j = 0;
-            //    distance = glm.Distance(turnLine[i], turnLine[j]);
-            //    if (distance > (spacing * 1.5))
-            //    {
-            //        CTurnPt pointB = new CTurnPt((turnLine[i].easting + turnLine[j].easting) / 2.0, (turnLine[i].northing + turnLine[j].northing) / 2.0, turnLine[i].heading);
+            //make sure distance isn't too big between points on Turn
+            bndCount = turnLine.Count;
+            for (int i = 0; i < bndCount; i++)
+            {
+                int j = i + 1;
+                if (j == bndCount) j = 0;
+                distance = glm.Distance(turnLine[i], turnLine[j]);
+                if (distance > (spacing * 1.25))
+                {
+                    CTurnPt pointB = new CTurnPt((turnLine[i].easting + turnLine[j].easting) / 2.0, (turnLine[i].northing + turnLine[j].northing) / 2.0, turnLine[i].heading);
 
-            //        turnLine.Insert(j, pointB);
-            //        bndCount = turnLine.Count;
-            //        i = -1;
-            //    }
-            //}
+                    turnLine.Insert(j, pointB);
+                    bndCount = turnLine.Count;
+                    i = -1;
+                }
+            }
 
             //make sure headings are correct for calculated points
             CalculateTurnHeadings();
