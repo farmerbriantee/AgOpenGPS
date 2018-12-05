@@ -1023,14 +1023,9 @@
             // autoPage4
             // 
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
-            this.autoPage4.Controls.Add(this.btnLidarOnOff);
             this.autoPage4.Controls.Add(this.btnGeneratePath);
             this.autoPage4.Controls.Add(this.btnDriveGenPath);
-            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
-            this.autoPage4.Controls.Add(this.btnManualAutoDrive);
-            this.autoPage4.Controls.Add(this.btnDrivePath);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             // 
@@ -1085,16 +1080,16 @@
             // 
             // btnManualAutoDrive
             // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
             this.btnManualAutoDrive.Name = "btnManualAutoDrive";
             this.btnManualAutoDrive.UseVisualStyleBackColor = false;
             this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // btnDrivePath
             // 
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
             this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnDrivePath.Name = "btnDrivePath";
             this.btnDrivePath.UseVisualStyleBackColor = false;
@@ -1314,6 +1309,9 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.btnLidarOnOff);
+            this.DataPage.Controls.Add(this.btnRecPathPauseRecord);
+            this.DataPage.Controls.Add(this.btnDeleteRecPath);
             this.DataPage.Controls.Add(this.lblLongitude);
             this.DataPage.Controls.Add(this.lblLatitude);
             this.DataPage.Controls.Add(this.lblAltitude);
@@ -2136,7 +2134,9 @@
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBatman);
+            this.Controls.Add(this.btnManualAutoDrive);
             this.Controls.Add(this.lblHz);
+            this.Controls.Add(this.btnDrivePath);
             this.Controls.Add(this.btnZoomExtents);
             this.Controls.Add(this.panelSimControls);
             this.Controls.Add(this.btnSwapDirection);

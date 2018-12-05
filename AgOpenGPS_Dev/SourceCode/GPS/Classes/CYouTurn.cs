@@ -415,8 +415,16 @@ namespace AgOpenGPS
 
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
+            vec3 pt = new vec3();
+
             int count = ytList.Count;
             if (count == 0) return false;
+
+            pt.easting = ytList[0].easting + (Math.Sin(head) * 4);
+            pt.northing = ytList[0].northing + (Math.Cos(head) * 4);
+            pt.heading = ytList[0].heading;
+
+            ytList.Insert(0, pt);
 
             // Phase 0 - back up the turn till it is out of bounds.
             // Phase 1 - move it forward till out of bounds.
@@ -1394,27 +1402,18 @@ namespace AgOpenGPS
                 rEastYT = ytList[A].easting + (U * dx);
                 rNorthYT = ytList[A].northing + (U * dz);
 
+                //update base on autosteer settings and distance from line
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
+                mf.test1 = goalPointDistance;
+
                 //used for accumulating distance to find goal point
                 double distSoFar;
 
-                //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-                //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.5 * 0.27777777;
-
-                //minimum of Whatever AB Line is meters look ahead
-                //if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
-
-                //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
-                //update base on autosteer settings and distance from line
-                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
-                mf.test1 = goalPointDistance;
+                isABSameAsFixHeading = true;
+                distSoFar = glm.Distance(ytList[B], rEastYT, rNorthYT);
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
-
-                isABSameAsFixHeading = true;
-                distSoFar = glm.Distance(ytList[B], rEastYT, rNorthYT);
 
                 //Is this segment long enough to contain the full lookahead distance?
                 if (distSoFar > goalPointDistance)

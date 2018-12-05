@@ -226,11 +226,8 @@ namespace AgOpenGPS
             //absolute the distance
             distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
-            //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
             //update base on autosteer settings and distance from line
-            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
             mf.test1 = goalPointDistance;
 
             //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
@@ -245,10 +242,6 @@ namespace AgOpenGPS
             //point on AB line closest to pivot axle point
             rEastAB = currentABLineP1.easting + (U * dx);
             rNorthAB = currentABLineP1.northing + (U * dy);
-
-            //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-            //double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
-            //if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
 
             if (abFixHeadingDelta >= glm.PIBy2)
             {

@@ -71,7 +71,7 @@ namespace AgOpenGPS
 
         public bool StartDrivingRecordedPath()
         {
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.3;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.5;
             //create the dubins path based on start and goal to start of recorded path
 
             recListCount = recList.Count;
@@ -204,9 +204,22 @@ namespace AgOpenGPS
         {
             CDubins dubPath = new CDubins();
 
+            //
+            pivotAxlePosRP = mf.pivotAxlePos;
+
+            //bump it forward
+            vec3 pt2 = new vec3
+            {
+                easting = pivotAxlePosRP.easting + (Math.Sin(pivotAxlePosRP.heading) * 5),
+                northing = pivotAxlePosRP.northing + (Math.Cos(pivotAxlePosRP.heading) * 5),
+                heading = pivotAxlePosRP.heading
+            };
+
             //get the dubins path vec3 point coordinates of turn
             dubinsList.Clear();
-            dubinsList = dubPath.GenerateDubins(mf.pivotAxlePos, goal);
+            dubinsList = dubPath.GenerateDubins(pt2, goal);
+
+            dubinsList.Insert(0, mf.pivotAxlePos);
 
             //transfer point list to recPath class point style
             dubList.Clear();
@@ -343,11 +356,8 @@ namespace AgOpenGPS
             //used for accumulating distance to find goal point
             double distSoFar;
 
-            //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
             //update base on autosteer settings and distance from line
-            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
             mf.test1 = goalPointDistance;
 
             // used for calculating the length squared of next segment.
@@ -465,14 +475,9 @@ namespace AgOpenGPS
             //used for accumulating distance to find goal point
             double distSoFar;
 
-            //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-            //double goalPointDistance = mf.vehicle.goalPointLookAhead;
-
             //update base on autosteer settings and distance from line
-            goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
             mf.test1 = goalPointDistance;
-
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;
