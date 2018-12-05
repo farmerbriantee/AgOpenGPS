@@ -174,13 +174,12 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     //autosteer settings
     if (data[0] == 0x7F && data[1] == 0xFC)
     {
-      steerSettings.Kp = (float)data[2] * 1.0;   // read Kp from AgOpenGPS
-      steerSettings.Ki = (float)data[3] * 0.001;   // read Ki from AgOpenGPS
-      steerSettings.Kd = (float)data[4] * 1.0;   // read Kd from AgOpenGPS
-      steerSettings.Ko = (float)data[5] * 0.1;   // read Ko from AgOpenGPS
-      byte offset = Serial.read();
+      steerSettings.Kp = (float)data[2] * 1.0;       // read Kp from AgOpenGPS
+      steerSettings.Ki = (float)data[3] * 0.001;     // read Ki from AgOpenGPS
+      steerSettings.Kd = (float)data[4] * 1.0;       // read Kd from AgOpenGPS
+      steerSettings.Ko = (float)data[5] * 0.1;       // read Ko from AgOpenGPS
       steerSettings.steeringPositionZero = (SteerPosZero-127) + data[6];//read steering zero offset  
-      steerZero = (SteerPosZero-127) + 2 * offset; //double offset for JRK
+      steerZero = (SteerPosZero-127) + 2 * data[6];  //double offset for JRK
       
       steerSettings.minPWMValue = data[7]; //read the minimum amount of PWM for instant on
       steerSettings.maxIntegralValue = data[8]*0.1; //
