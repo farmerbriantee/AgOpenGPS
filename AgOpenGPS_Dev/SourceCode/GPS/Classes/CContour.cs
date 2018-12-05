@@ -139,7 +139,7 @@ namespace AgOpenGPS
 
             vec3 point = new vec3();
             //determine how wide a headland space
-            double totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5 - 0.2;
+            double totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5) - 0.2;
 
             //outside boundary
 
@@ -488,39 +488,8 @@ namespace AgOpenGPS
                 fail = false;
             }
 
-            ////if no boundaries, just return.
-            //if (!mf.bnd.bndArr[0].isSet) return;
-
-            //int count = ctList.Count;
-            //bool isOutOfBounds = false;
-
-            ////quick check to not be out of bounds
-            //if (count > 0)
-            //{
-            //    for (int j = 0; j < count;)
-            //    {
-            //        if (!mf.bnd.bndArr[0].IsPointInsideBoundary(ctList[j]))
-            //        {
-            //            ctList.Clear();
-            //            break;
-            //        }
-
-            //        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
-            //        {
-            //            //make sure not inside a non drivethru boundary
-            //            if (!mf.bnd.bndArr[i].isSet) continue;
-            //            if (mf.bnd.bndArr[i].isDriveThru) continue;
-            //            if (mf.bnd.bndArr[i].IsPointInsideBoundary(ctList[j]))
-            //            {
-            //                isOutOfBounds = true;
-            //                ctList.Clear();
-            //                break;
-            //            }
-            //        }
-            //        if (isOutOfBounds) break;
-            //        j += 10;
-            //    }
-            //}
+            //if no boundaries, just return.
+            if (!mf.bnd.bndArr[0].isSet) return;
 
             int ctCount = ctList.Count;
             if (ctCount < 6) return;
@@ -539,16 +508,17 @@ namespace AgOpenGPS
             }
 
             {
-                int smPts = 2;
-
                 //count the reference list of original curve
                 int cnt = ctList.Count;
 
                 //just go back if not very long
-                if ( cnt < 10) return;
+                if (cnt < 10) return;
 
                 //the temp array
                 vec3[] arr = new vec3[cnt];
+
+                //how many samples
+                const int smPts = 2;
 
                 //read the points before and after the setpoint
                 for (int s = 0; s < smPts; s++)
@@ -556,27 +526,25 @@ namespace AgOpenGPS
                     arr[s].easting = ctList[s].easting;
                     arr[s].northing = ctList[s].northing;
                     arr[s].heading = ctList[s].heading;
-
                 }
 
-                for (int s = cnt - (smPts); s < cnt; s++)
+                for (int s = cnt - smPts; s < cnt; s++)
                 {
                     arr[s].easting = ctList[s].easting;
                     arr[s].northing = ctList[s].northing;
                     arr[s].heading = ctList[s].heading;
-
                 }
 
                 //average them - center weighted average
-                for (int i = smPts; i < cnt - (smPts); i++)
+                for (int i = smPts; i < cnt - smPts; i++)
                 {
                     for (int j = -smPts; j < smPts; j++)
                     {
                         arr[i].easting += ctList[j + i].easting;
                         arr[i].northing += ctList[j + i].northing;
                     }
-                    arr[i].easting /= (smPts*2);
-                    arr[i].northing /= (smPts*2);
+                    arr[i].easting /= (smPts * 2);
+                    arr[i].northing /= (smPts * 2);
                     arr[i].heading = ctList[i].heading;
                 }
 
@@ -638,7 +606,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                //just need to make sure the points continue ascending or heading switches all over the place
+                //just need to make sure the points continue ascending in list order or heading switches all over the place
                 if (A > B) { C = A; A = B; B = C; }
 
                 //get the distance from currently active AB line
@@ -695,12 +663,8 @@ namespace AgOpenGPS
                 //used for accumulating distance to find goal point
                 double distSoFar;
 
-                //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
                 //update base on autosteer settings and distance from line
-                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
-
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
                 mf.test1 = goalPointDistance;
 
                 // used for calculating the length squared of next segment.

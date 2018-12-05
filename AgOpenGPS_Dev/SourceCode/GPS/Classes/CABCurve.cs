@@ -301,11 +301,8 @@ namespace AgOpenGPS
                 //used for accumulating distance to find goal point
                 double distSoFar;
 
-                //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
                 //update base on autosteer settings and distance from line
-                goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine, goalPointDistance);
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
                 mf.test1 = goalPointDistance;
 
                 // used for calculating the length squared of next segment.

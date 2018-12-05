@@ -321,8 +321,6 @@ namespace AgOpenGPS
                 guidanceLineDistanceOff = 32020;
             }
 
-            //if (genPath.isDrivingGenLine | genPath.isBtnDriveGenPathOn) genPath.UpdatePosition();
-
             //if the whole path driving driving process is green
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
 

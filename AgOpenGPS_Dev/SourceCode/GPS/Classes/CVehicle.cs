@@ -54,7 +54,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead, goalPointLookAheadMinimum, goalPointDistanceMultiplier;
+        public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier;
         public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
@@ -93,22 +93,25 @@ namespace AgOpenGPS
             slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
             toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
 
-            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            goalPointLookAheadMinimum = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
+            goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
+            goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
             goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
         }
 
-        public double UpdateGoalPointDistance(double distanceFromCurrentLine, double goalPointDistance)
+        public double UpdateGoalPointDistance(double distanceFromCurrentLine)
         {
+            //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
+            double goalPointDistance = mf.pn.speed * goalPointLookAheadSeconds * 0.27777777;
+
             if (distanceFromCurrentLine < 1.0)
                 goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
             else
                 goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
 
-            if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+            if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimumDistance) goalPointDistance = mf.vehicle.goalPointLookAheadMinimumDistance;
 
             mf.test1 = goalPointDistance;
 
@@ -123,8 +126,8 @@ namespace AgOpenGPS
             GL.PushMatrix();
 
             //translate down to the hitch pin
-            GL.Translate(Math.Sin(mf.fixHeading) * (hitchLength),
-                            Math.Cos(mf.fixHeading) * (hitchLength), 0);
+            GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
+                            Math.Cos(mf.fixHeading) * hitchLength, 0);
 
             //settings doesn't change trailing hitch length if set to rigid, so do it here
             double trailingTank, trailingTool;

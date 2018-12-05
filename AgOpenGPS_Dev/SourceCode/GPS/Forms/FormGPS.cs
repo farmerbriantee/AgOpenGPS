@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
         //used to update the screen status bar etc
         //private int statusUpdateCounter = 1;
-        private int displayUpdateOneSecondCounter = 0, displayUpdateHalfSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
+        private int displayUpdateHalfSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
 
         private int threeSecondCounter = 0, threeSeconds = 0;
         private int oneSecondCounter = 0, oneSecond = 0;
@@ -1049,11 +1049,6 @@ namespace AgOpenGPS
             }
 
             //update GUI areas
-        }
-
-        private void repeatButton1_Click(object sender, EventArgs e)
-        {
-
         }
 
         //Does the logic to process section on off requests
