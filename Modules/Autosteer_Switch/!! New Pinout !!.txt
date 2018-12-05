@@ -1,0 +1,25 @@
+!! Attention New Pinout !!
+
+Now all AIO Sketches are using the same Pinout!
+
+Please check your wiring carefully before upload!
+
+Encoder (if mounted)                                 :   Arduino Pin = 2
+Autosteer Switch / Autosteer Button  :   Arduino Pin = 3
+Workswitch                                                   :   Arduino Pin = 4
+PWM_PIN                                                      :   Arduino Pin = 5
+DIR_PIN                                                          :   Arduino Pin = 6
+Autosteer LED (if mounted)                    :   Arduino Pin = 7
+Wheel Angle Sensor   (w.o.ADS1115)  :   Arduino Pin = A0
+DOGS2 Inclinometer  (if mounted)       :   Arduino Pin = A1
+
+// Pin 10, 11, 12, 13 are reserved for the Ethernetmodule (SPI)
+
+Relay1_PIN                                                   :   Arduino Pin = 8
+Relay2_PIN                                                   :   Arduino Pin = 9
+Relay3_PIN                                                   :   Arduino Pin = A2
+Relay4_PIN                                                   :   Arduino Pin = A3
+Relay5_PIN     serial/USB only               :   Arduino Pin = 10
+Relay6_PIN     serial/USB only               :   Arduino Pin = 11
+Relay7_PIN     serial/USB only               :   Arduino Pin = 12
+Relay8_PIN     serial/USB only               :   Arduino Pin = 13
