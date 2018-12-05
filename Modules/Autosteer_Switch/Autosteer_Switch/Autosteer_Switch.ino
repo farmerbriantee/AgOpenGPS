@@ -59,26 +59,24 @@
   #include <EtherCard.h>
   #include <IPAddress.h> 
 
-  //Array to send data back to AgOpenGPS
-  byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
-
-  // ethernet interface ip address
-  static byte myip[] = { 192,168,1,77 };
-  // gateway ip address
-  static byte gwip[] = { 192,168,1,1 };
-  //DNS- you just need one anyway
-  static byte myDNS[] = { 8,8,8,8 };
-  //mask
-  static byte mask[] = { 255,255,255,0 };
-  //this is port of this autosteer module
-  unsigned int portMy = 5577; 
-
+  //Ethernet Communication
+  static byte myip[]  = { 192, 168, 1, 77 }; // ethernet interface ip address
+  static byte gwip[]  = { 192, 168, 1, 1 }; // gateway ip address
+  static byte myDNS[] = { 8, 8, 8, 8 };    //DNS- you just need one anyway
+  static byte mask[]  = { 255, 255, 255, 0 }; //mask
+  unsigned int portMy = 5577;              //this is port of this module Autosteer = 5577
+  
   //sending back to where and which port
   static byte ipDestination[] = {192, 168, 1, 255};
   unsigned int portDestination = 9999; //AOG port that listens
+
   // ethernet mac address - must be unique on your network
   static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
-  byte Ethernet::buffer[200]; // udp send and receive buffer
+ 
+  //Array to send data back to AgOpenGPS
+  byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
+  // udp send and receive buffer
+  byte Ethernet::buffer[200]; 
 #endif
 
 
@@ -164,10 +162,9 @@ float pValue = 0, iValue = 0, dValue = 0;
 void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
-  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2	pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output //Pin 5
-  //pinMode(RELAY1_PIN, OUTPUT); //configure RELAY2 for output //Pin 6
-  pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
+  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin 
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 
+  pinMode(DIR_PIN, OUTPUT); 
   pinMode(PWM_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
 
@@ -381,9 +378,7 @@ void loop()
     transmitSerial();
 #endif
     
-Serial.print("Steerposzero:  ");
-Serial.println(steerSettings.steeringPositionZero);
-	} //end of timed loop
+} //end of timed loop
 
   
 #if (EtherNet)
