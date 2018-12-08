@@ -1308,8 +1308,6 @@ namespace AgOpenGPS
 
             if (curve.isCurveBtnOn)
             {
-                //if contour is on, turn it off
-
                 //turn off youturn...
                 btnRightYouTurn.Enabled = false;
                 btnLeftYouTurn.Enabled = false;
@@ -1338,6 +1336,7 @@ namespace AgOpenGPS
                 btnABLine.Enabled = false;
 
                 if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                btnContourPriority.Enabled = true;
 
                 Form form = new FormABCurve(this);
                 form.Show();
@@ -1349,6 +1348,7 @@ namespace AgOpenGPS
                 curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 DisableYouTurnButtons();
+                btnContourPriority.Enabled = false;
                 //curve.ResetCurveLine();
             }
         }
@@ -1438,16 +1438,6 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     curve.SnapABCurve();
-                    DialogResult result3 = MessageBox.Show("Save AB Curve Snap?",
-                            "Save or Not",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question,
-                            MessageBoxDefaultButton.Button2);
-                    if (result3 == DialogResult.Yes)
-                    {
-                        FileSaveABLine();
-                    }
-
                 }
                 else
                 {
