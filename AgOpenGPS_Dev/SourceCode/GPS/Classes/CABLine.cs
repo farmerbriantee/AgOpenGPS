@@ -228,7 +228,7 @@ namespace AgOpenGPS
 
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
-            mf.test1 = goalPointDistance;
+            mf.lookaheadActual = goalPointDistance;
 
             //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
             abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));

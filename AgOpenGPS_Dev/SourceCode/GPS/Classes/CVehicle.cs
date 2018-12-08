@@ -113,7 +113,7 @@ namespace AgOpenGPS
 
             if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimumDistance) goalPointDistance = mf.vehicle.goalPointLookAheadMinimumDistance;
 
-            mf.test1 = goalPointDistance;
+            mf.lookaheadActual = goalPointDistance;
 
             return goalPointDistance;
         }
