@@ -584,7 +584,7 @@ namespace AgOpenGPS
                     GL.PointSize(2);
 
                     GL.Color3(0.95f, 0.2f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
