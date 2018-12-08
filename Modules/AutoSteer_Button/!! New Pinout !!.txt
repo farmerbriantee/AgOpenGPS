@@ -22,4 +22,4 @@ Relay4_PIN                           :   Arduino Pin = A3
 Relay5_PIN     serial/USB only       :   Arduino Pin = 10
 Relay6_PIN     serial/USB only       :   Arduino Pin = 11
 Relay7_PIN     serial/USB only       :   Arduino Pin = 12
-Relay8_PIN     serial/USB only       :   Arduino Pin = 13
+Relay8_PIN serial/USB only : Arduino Pin = 13
