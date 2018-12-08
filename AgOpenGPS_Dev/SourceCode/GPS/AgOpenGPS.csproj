@@ -123,6 +123,13 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="CSelf.cs" />
+    <Compile Include="FormSelf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelf.Designer.cs">
+      <DependentUpon>FormSelf.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +373,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormSelf.resx">
+      <DependentUpon>FormSelf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSim.resx">
       <DependentUpon>FormSim.cs</DependentUpon>
     </EmbeddedResource>

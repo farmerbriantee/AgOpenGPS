@@ -19,7 +19,7 @@ namespace AgOpenGPS
         double camDistanceFactor = -2;
         int mouseX = 0, mouseY = 0;
 
-        public double test1, test2;
+        public double lookaheadActual, test2;
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[125001];
@@ -864,12 +864,6 @@ namespace AgOpenGPS
             //translate to that spot in the world 
             GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
-            //calculate the frustum for the section control window
-            CalcFrustum();
-
-            //to draw or not the triangle patch
-            bool isDraw;
-
             GL.Color3(redSections, grnSections, bluSections);
 
             //draw patches j= # of sections
@@ -883,49 +877,28 @@ namespace AgOpenGPS
                     //for every new chunk of patch
                     foreach (var triList in section[j].patchList)
                     {
-                        isDraw = false;
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
                         int count2 = triList.Count;
-                        for (int i = 0; i < count2; i += 3)
+                        int mipmap = 16;
+
+                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                        if (count2 >= (mipmap + 2))
                         {
-                            //determine if point is in frustum or not
-                            if (frustum[0] * triList[i].easting + frustum[1] * triList[i].northing + frustum[3] <= 0)
-                                continue;//right
-                            if (frustum[4] * triList[i].easting + frustum[5] * triList[i].northing + frustum[7] <= 0)
-                                continue;//left
-                            if (frustum[16] * triList[i].easting + frustum[17] * triList[i].northing + frustum[19] <= 0)
-                                continue;//bottom
-                            if (frustum[20] * triList[i].easting + frustum[21] * triList[i].northing + frustum[23] <= 0)
-                                continue;//top
-
-                            //point is in frustum so draw the entire patch
-                            isDraw = true;
-                            break;
-                        }
-
-                        if (isDraw)
-                        {
-                            //draw the triangle in each triangle strip
-                            GL.Begin(PrimitiveType.TriangleStrip);
-                            count2 = triList.Count;
-                            int mipmap = 16;
-
-                            //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                            if (count2 >= (mipmap + 2))
+                            int step = mipmap;
+                            for (int i = 0; i < count2; i += step)
                             {
-                                int step = mipmap;
-                                for (int i = 0; i < count2; i += step)
-                                {
-                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
-                                    //too small to mipmap it
-                                    if (count2 - i <= (mipmap + 2)) step = 0;
-                                }
+                                //too small to mipmap it
+                                //if (count2 - i <= (mipmap + 2)) step = 0;
                             }
-
-                            else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
-                            GL.End();
                         }
+
+                        else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        GL.End();
+
                     }
                 }
             } //end of section patches

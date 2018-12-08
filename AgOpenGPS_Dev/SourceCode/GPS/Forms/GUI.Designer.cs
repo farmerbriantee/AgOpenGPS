@@ -1056,23 +1056,29 @@ namespace AgOpenGPS
         //the original autonomous buttons
         private void btnGeneratePath_Click(object sender, EventArgs e)
         {
-            //if (bnd.isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            //{
-            //    //field too small or moving
-            //    if (bnd.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
-
-            //    using (var form = new FormGenerate(this))
-            //    {
-            //        var result = form.ShowDialog();
-            //        if (result == DialogResult.OK)
-            //        {
-            //        }
-            //    }
-            //}
-            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
-        private void btnDriveGenPath_Click(object sender, EventArgs e)
+
+        private void btnGenerateSelf_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            {
+                //field too small or moving
+                if (bnd.bndArr[0].bndLine.Count < 24) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+
+                using (var form = new FormSelf(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+
+        }
+
+        private void btnGoSelf_Click(object sender, EventArgs e)
         {
             ////if already running? Stop it
             //if (genPath.isBtnDriveGenPathOn)
@@ -1098,6 +1104,11 @@ namespace AgOpenGPS
             //        genPath.isBtnDriveGenPathOn = true;
             //    }
             //}
+        }
+
+
+        private void btnDriveGenPath_Click(object sender, EventArgs e)
+        {
         }
         private void btnManualAutoDrive_Click(object sender, EventArgs e)
         {
@@ -3150,7 +3161,7 @@ namespace AgOpenGPS
                     lblYawHeading.Text = GyroInDegrees;
                     lblGPSHeading.Text = GPSHeading;
                     lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
-                    lblLookAhead.Text = test1.ToString("N1") + " m";
+                    lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
 
                     txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]

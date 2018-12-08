@@ -358,7 +358,7 @@ namespace AgOpenGPS
 
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
-            mf.test1 = goalPointDistance;
+            mf.lookaheadActual = goalPointDistance;
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;
@@ -477,7 +477,7 @@ namespace AgOpenGPS
 
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
-            mf.test1 = goalPointDistance;
+            mf.lookaheadActual = goalPointDistance;
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;

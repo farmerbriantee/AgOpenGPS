@@ -1404,7 +1404,7 @@ namespace AgOpenGPS
 
                 //update base on autosteer settings and distance from line
                 double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
-                mf.test1 = goalPointDistance;
+                mf.lookaheadActual = goalPointDistance;
 
                 //used for accumulating distance to find goal point
                 double distSoFar;
