@@ -19,7 +19,7 @@
   
   #define IMU_Installed 0               // set to 1 to enable BNO055 IMU
   
-  #define Inclinometer_Installed 2      // set to 1 if DOGS2 Inclinometer is installed
+  #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
                                         // set to 2 if MMA8452 installed
 
   #define Relay_Type 0                  // set to 0 if up to 8 Section Relays will be used
