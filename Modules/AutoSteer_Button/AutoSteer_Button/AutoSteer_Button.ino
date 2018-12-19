@@ -18,7 +18,7 @@
   
   #define IMU_Installed  0      // set to 1 to enable BNO055 IMU
   
-  #define Inclinometer_Installed 0  // set to 1 if DOGS2 Inclinometer is installed
+  #define Inclinometer_Installed 2  // set to 1 if DOGS2 Inclinometer is installed
                                     // set to 2 if MMA8452 installed
 
   #define SWEncoder  0          // Steering Wheel ENCODER Installed
@@ -134,7 +134,7 @@
   const float varProcess = 0.00025; //smaller is more filtering
 
   //program flow
-  bool isDataFound = false, isSettingFound = false;
+  bool isDataFound = false, isSettingFound = false, MMAinitialized = false;
   int header = 0, tempHeader = 0, temp, EEread = 0;
   bool steerEnable = false;
   int buttonState;             // the current reading from the Autosteer Button
@@ -209,10 +209,13 @@ void setup()
 
 #if Inclinometer_Installed ==2
   // MMA8452 (1) Inclinometer
-  bool initialized = accelerometer.init();
-  accelerometer.setDataRate(MMA_800hz);
-  accelerometer.setRange(MMA_RANGE_8G);
-  accelerometer.setHighPassFilter(false); 
+  MMAinitialized = accelerometer.init();
+  if (MMAinitialized){
+	  accelerometer.setDataRate(MMA_800hz);
+    accelerometer.setRange(MMA_RANGE_8G);
+    accelerometer.setHighPassFilter(false); 
+  }
+  else Serial.println("MMA init fails!!");
 #endif
 
   //PWM rate settings Adjust to desired PWM Rate
@@ -308,11 +311,13 @@ void loop()
 #endif
 
 #if Inclinometer_Installed ==2   // MMA8452 (1) Inclinometer
+  if (MMAinitialized){
     accelerometer.getRawData(&x_, &y_, &z_);
     roll=x_; //Conversion uint to int
     if (roll > 4200)  roll =  4200;
     if (roll < -4200) roll = -4200;
     rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees)
+  }
 #endif
  
     //Kalman filter
