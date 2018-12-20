@@ -59,24 +59,26 @@
   #include <EtherCard.h>
   #include <IPAddress.h> 
 
-  //Ethernet Communication
-  static byte myip[]  = { 192, 168, 1, 77 }; // ethernet interface ip address
-  static byte gwip[]  = { 192, 168, 1, 1 }; // gateway ip address
-  static byte myDNS[] = { 8, 8, 8, 8 };    //DNS- you just need one anyway
-  static byte mask[]  = { 255, 255, 255, 0 }; //mask
-  unsigned int portMy = 5577;              //this is port of this module Autosteer = 5577
-  
+  //Array to send data back to AgOpenGPS
+  byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
+
+  // ethernet interface ip address
+  static byte myip[] = { 192,168,1,77 };
+  // gateway ip address
+  static byte gwip[] = { 192,168,1,1 };
+  //DNS- you just need one anyway
+  static byte myDNS[] = { 8,8,8,8 };
+  //mask
+  static byte mask[] = { 255,255,255,0 };
+  //this is port of this autosteer module
+  unsigned int portMy = 5577; 
+
   //sending back to where and which port
   static byte ipDestination[] = {192, 168, 1, 255};
   unsigned int portDestination = 9999; //AOG port that listens
-
   // ethernet mac address - must be unique on your network
   static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
- 
-  //Array to send data back to AgOpenGPS
-  byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
-  // udp send and receive buffer
-  byte Ethernet::buffer[200]; 
+  byte Ethernet::buffer[200]; // udp send and receive buffer
 #endif
 
 
@@ -136,7 +138,7 @@ const float varRoll = 0.1; // variance,
 const float varProcess = 0.0001; //smaller is more filtering
 
 //Program flow
-bool isDataFound = false, isSettingFound = false;
+bool isDataFound = false, isSettingFound = false, MMAinitialized = false;
 int header = 0, tempHeader = 0, temp, EEread = 0;
 byte relay = 0, uTurn = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
 float distanceFromLine = 0, corr = 0;
@@ -162,9 +164,10 @@ float pValue = 0, iValue = 0, dValue = 0;
 void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
-  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin 
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 
-  pinMode(DIR_PIN, OUTPUT); 
+  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2	pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output //Pin 5
+  //pinMode(RELAY1_PIN, OUTPUT); //configure RELAY2 for output //Pin 6
+  pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
   pinMode(PWM_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
 
@@ -194,10 +197,13 @@ void setup()
 	
 #if (Inclinometer_Installed ==2)
       // MMA8452 (1) Inclinometer
-      bool initialized = accelerometer.init();
-      accelerometer.setDataRate(MMA_800hz);
-      accelerometer.setRange(MMA_RANGE_8G);
-      accelerometer.setHighPassFilter(false); 
+      MMAinitialized = accelerometer.init();
+      if (MMAinitialized){
+	accelerometer.setDataRate(MMA_800hz);
+        accelerometer.setRange(MMA_RANGE_8G);
+        accelerometer.setHighPassFilter(false); 
+      }
+      else Serial.println("MMA init fails!!");
 #endif
 
 	//PWM rate settings Adjust to desired PWM Rate
@@ -283,11 +289,13 @@ void loop()
 
 #if Inclinometer_Installed ==2
    // MMA8452 (1) Inclinometer
-  accelerometer.getRawData(&x_, &y_, &z_);
-  roll=x_; //Conversion uint to int
-  if (roll > 4200)  roll =  4200;
-  if (roll < -4200) roll = -4200;
-  rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees) 
+  if (MMAinitialized){
+    accelerometer.getRawData(&x_, &y_, &z_);
+    roll=x_; //Conversion uint to int
+    if (roll > 4200)  roll =  4200;
+    if (roll < -4200) roll = -4200;
+    rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees) 
+  }
 #endif
 	
     //Kalman filter
@@ -378,7 +386,7 @@ void loop()
     transmitSerial();
 #endif
     
-} //end of timed loop
+	} //end of timed loop
 
   
 #if (EtherNet)

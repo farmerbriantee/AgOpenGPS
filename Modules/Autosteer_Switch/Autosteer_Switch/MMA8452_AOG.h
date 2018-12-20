@@ -182,7 +182,7 @@ class MMA8452
 
 		void standby(bool standby);
 		uint8_t read(uint8_t reg);
-		void readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numuint8_ts);
+		bool readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numuint8_ts);
 		void write(uint8_t reg, uint8_t value);
 
 		bool singleTapEnabled;

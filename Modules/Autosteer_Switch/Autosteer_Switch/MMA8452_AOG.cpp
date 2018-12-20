@@ -12,12 +12,13 @@
 bool MMA8452::init()
 {
 	// Check who-am-i register
-	uint8_t reg = read(WHO_AM_I);
-	if (reg != 0x2A)
-	{
-		// this will always return 0x2A, connections probably wrong
-		return false;
-	}
+	uint8_t reg = 0;
+	if (!readMultiple(WHO_AM_I, &reg, 1)) return false; // catch read fail!!
+	if (reg != 0x2A && reg != 0x1A )
+	 {
+	  // 8452 will always return 0x2A, 8451 returns 0x1A, otherwise connections probably wrong
+	  return false;
+	 }
 
 	// range on startup is always 2g, we'll need to know the range for G calculation
 	range = MMA_RANGE_2G;
@@ -188,14 +189,17 @@ void MMA8452::write(uint8_t reg, uint8_t value)
 	if (needsStandby) standby(false);
 }
 
-void MMA8452::readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numBytes)
+bool MMA8452::readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numBytes)
 {
 #ifdef ARDUINO
 	Wire.beginTransmission(MMA8452_ADDRESS);
 	Wire.write(reg);
 	Wire.endTransmission(false);
 	Wire.requestFrom((uint8_t)MMA8452_ADDRESS, numBytes);
-	while (Wire.available() < numBytes) {};
+	long timeout=millis();
+	while (Wire.available() < numBytes) {
+	   if ((millis() - timeout)> 2000) return false;
+	  }
 	while (numBytes--)
 	{
 		*buffer++ = Wire.read();
@@ -211,6 +215,7 @@ void MMA8452::readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numBytes)
 	*buffer++ = i2c_readNak();
 	i2c_stop();
 #endif
+return true;
 }
 
 float MMA8452::convertGCounts(uint16_t data)
