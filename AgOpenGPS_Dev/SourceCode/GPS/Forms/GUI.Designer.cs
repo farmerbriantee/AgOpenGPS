@@ -1056,29 +1056,23 @@ namespace AgOpenGPS
         //the original autonomous buttons
         private void btnGeneratePath_Click(object sender, EventArgs e)
         {
+            //if (bnd.isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            //{
+            //    //field too small or moving
+            //    if (bnd.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+
+            //    using (var form = new FormGenerate(this))
+            //    {
+            //        var result = form.ShowDialog();
+            //        if (result == DialogResult.OK)
+            //        {
+            //        }
+            //    }
+            //}
+            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
-
-        private void btnGenerateSelf_Click(object sender, EventArgs e)
-        {
-            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            {
-                //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 24) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
-
-                using (var form = new FormSelf(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                    }
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
-
-        }
-
-        private void btnGoSelf_Click(object sender, EventArgs e)
+        private void btnDriveGenPath_Click(object sender, EventArgs e)
         {
             ////if already running? Stop it
             //if (genPath.isBtnDriveGenPathOn)
@@ -1104,11 +1098,6 @@ namespace AgOpenGPS
             //        genPath.isBtnDriveGenPathOn = true;
             //    }
             //}
-        }
-
-
-        private void btnDriveGenPath_Click(object sender, EventArgs e)
-        {
         }
         private void btnManualAutoDrive_Click(object sender, EventArgs e)
         {
@@ -1308,6 +1297,8 @@ namespace AgOpenGPS
 
             if (curve.isCurveBtnOn)
             {
+                //if contour is on, turn it off
+
                 //turn off youturn...
                 btnRightYouTurn.Enabled = false;
                 btnLeftYouTurn.Enabled = false;
@@ -1336,7 +1327,6 @@ namespace AgOpenGPS
                 btnABLine.Enabled = false;
 
                 if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                btnContourPriority.Enabled = true;
 
                 Form form = new FormABCurve(this);
                 form.Show();
@@ -1348,7 +1338,6 @@ namespace AgOpenGPS
                 curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 DisableYouTurnButtons();
-                btnContourPriority.Enabled = false;
                 //curve.ResetCurveLine();
             }
         }
@@ -1438,6 +1427,16 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     curve.SnapABCurve();
+                    DialogResult result3 = MessageBox.Show("Save AB Curve Snap?",
+                            "Save or Not",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button2);
+                    if (result3 == DialogResult.Yes)
+                    {
+                        FileSaveABLine();
+                    }
+
                 }
                 else
                 {

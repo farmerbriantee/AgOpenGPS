@@ -65,6 +65,10 @@ namespace AgOpenGPS
             hsbarDistanceFromLine.Value = (Int16)(mf.vehicle.goalPointDistanceMultiplier * 10);
             lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
 
+            //** todo add save of settings
+            hsbarLookAheadUturnMult.Value = (Int16)(mf.vehicle.goalPointLookAheadUturnMult * 10);
+            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
+
             mf.vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             hsbarMaxAngularVelocity.Value = (Int16)mf.vehicle.maxAngularVelocity;
             lblMaxAngularVelocity.Text = hsbarMaxAngularVelocity.Value.ToString();
@@ -131,6 +135,12 @@ namespace AgOpenGPS
             lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimumDistance.ToString();
             Properties.Vehicle.Default.setVehicle_lookAheadMinimum = mf.vehicle.goalPointLookAheadMinimumDistance;
             Properties.Vehicle.Default.Save();
+        }
+
+        private void hsbarLookAheadUturnMult_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAheadUturnMult = hsbarLookAheadUturnMult.Value * 0.1;
+            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
         }
 
         private void hsbarCountsPerDegree_ValueChanged(object sender, EventArgs e)
@@ -311,5 +321,6 @@ namespace AgOpenGPS
         {
             mf.toolStripAutoSteerChart.PerformClick();
         }
+
     }
 }

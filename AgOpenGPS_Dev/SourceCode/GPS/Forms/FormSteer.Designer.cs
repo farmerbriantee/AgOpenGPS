@@ -87,6 +87,9 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
             this.btnExit = new System.Windows.Forms.Button();
+            this.hsbarLookAheadUturnMult = new System.Windows.Forms.HScrollBar();
+            this.lblLookAheadUturnMult = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabLook.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -213,6 +216,9 @@
             // tabLook
             // 
             this.tabLook.BackColor = System.Drawing.Color.PowderBlue;
+            this.tabLook.Controls.Add(this.hsbarLookAheadUturnMult);
+            this.tabLook.Controls.Add(this.lblLookAheadUturnMult);
+            this.tabLook.Controls.Add(this.label2);
             this.tabLook.Controls.Add(this.btnChart);
             this.tabLook.Controls.Add(this.hsbarLookAheadMin);
             this.tabLook.Controls.Add(this.hsbarDistanceFromLine);
@@ -756,6 +762,38 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // hsbarLookAheadUturnMult
+            // 
+            this.hsbarLookAheadUturnMult.LargeChange = 1;
+            this.hsbarLookAheadUturnMult.Location = new System.Drawing.Point(17, 289);
+            this.hsbarLookAheadUturnMult.Maximum = 10;
+            this.hsbarLookAheadUturnMult.Minimum = 1;
+            this.hsbarLookAheadUturnMult.Name = "hsbarLookAheadUturnMult";
+            this.hsbarLookAheadUturnMult.Size = new System.Drawing.Size(287, 23);
+            this.hsbarLookAheadUturnMult.TabIndex = 295;
+            this.hsbarLookAheadUturnMult.Value = 4;
+            this.hsbarLookAheadUturnMult.ValueChanged += new System.EventHandler(this.hsbarLookAheadUturnMult_ValueChanged);
+            // 
+            // lblLookAheadUturnMult
+            // 
+            this.lblLookAheadUturnMult.AutoSize = true;
+            this.lblLookAheadUturnMult.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLookAheadUturnMult.Location = new System.Drawing.Point(310, 276);
+            this.lblLookAheadUturnMult.Name = "lblLookAheadUturnMult";
+            this.lblLookAheadUturnMult.Size = new System.Drawing.Size(108, 45);
+            this.lblLookAheadUturnMult.TabIndex = 296;
+            this.lblLookAheadUturnMult.Text = "-888";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(30, 262);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(261, 23);
+            this.label2.TabIndex = 294;
+            this.label2.Text = "UTurn Look Ahead (Multiplier)";
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -848,5 +886,8 @@
         private System.Windows.Forms.Label lblDistanceFromLine;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnChart;
+        private System.Windows.Forms.HScrollBar hsbarLookAheadUturnMult;
+        private System.Windows.Forms.Label lblLookAheadUturnMult;
+        private System.Windows.Forms.Label label2;
     }
 }

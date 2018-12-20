@@ -54,7 +54,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier;
+        public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier, goalPointLookAheadUturnMult;
         public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
@@ -96,6 +96,7 @@ namespace AgOpenGPS
             goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
             goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
             goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
+            goalPointLookAheadUturnMult = 0.4;
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
