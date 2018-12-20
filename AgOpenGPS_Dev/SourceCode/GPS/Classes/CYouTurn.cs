@@ -420,11 +420,20 @@ namespace AgOpenGPS
             int count = ytList.Count;
             if (count == 0) return false;
 
-            pt.easting = ytList[0].easting + (Math.Sin(head) * 4);
-            pt.northing = ytList[0].northing + (Math.Cos(head) * 4);
+            pt.easting = ytList[0].easting + (Math.Sin(head) * 5);
+            pt.northing = ytList[0].northing + (Math.Cos(head) * 5);
             pt.heading = ytList[0].heading;
 
             ytList.Insert(0, pt);
+
+            for (int i = 2; i < 14; i++)
+            {
+                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
+                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
+                pt.heading = head;
+
+                ytList.Add(pt);
+            }
 
             // Phase 0 - back up the turn till it is out of bounds.
             // Phase 1 - move it forward till out of bounds.
@@ -992,8 +1001,27 @@ namespace AgOpenGPS
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
+                vec3 pt = new vec3();
+
                 int count = ytList.Count;
                 if (count == 0) return false;
+
+                pt.easting = ytList[0].easting + (Math.Sin(head) * 5);
+                pt.northing = ytList[0].northing + (Math.Cos(head) * 5);
+                pt.heading = ytList[0].heading;
+
+                ytList.Insert(0, pt);
+
+                for (int i = 2; i < 14; i++)
+                {
+                    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
+                    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
+                    pt.heading = head;
+
+                    ytList.Add(pt);
+                }
+
+
             }
 
             switch (youTurnPhase)
@@ -1404,6 +1432,10 @@ namespace AgOpenGPS
 
                 //update base on autosteer settings and distance from line
                 double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
+
+                //sharp turns on you turn.
+                goalPointDistance =  mf.vehicle.goalPointLookAheadUturnMult* goalPointDistance;
+
                 mf.lookaheadActual = goalPointDistance;
 
                 //used for accumulating distance to find goal point
@@ -1451,6 +1483,8 @@ namespace AgOpenGPS
 
                 steerAngleYT = glm.toDegrees(Math.Atan(2 * (((goalPointYT.easting - pivot.easting) * Math.Cos(localHeading))
                     + ((goalPointYT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+
+                //steerAngleYT *= 1.2;
 
                 if (steerAngleYT < -mf.vehicle.maxSteerAngle) steerAngleYT = -mf.vehicle.maxSteerAngle;
                 if (steerAngleYT > mf.vehicle.maxSteerAngle) steerAngleYT = mf.vehicle.maxSteerAngle;
