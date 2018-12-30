@@ -53,6 +53,7 @@ void receiveSerial(){
     speeed = Serial.read() >> 2;  //actual speed times 4, single byte
 
     //distance from the guidance line in mm
+    olddist = distanceFromLine;
     distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
 
     //set point steer angle * 10 is sent
