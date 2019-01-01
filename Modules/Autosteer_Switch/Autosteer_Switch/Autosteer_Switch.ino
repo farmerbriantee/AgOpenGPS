@@ -167,12 +167,20 @@ void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2	pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output //Pin 5
-  //pinMode(RELAY1_PIN, OUTPUT); //configure RELAY2 for output //Pin 6
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2
+ 
   pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
   pinMode(PWM_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
-
+  pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
+  pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
+  pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
+  pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
+  //pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
+  //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
+  //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
+  //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
+	
   //set up communication
   Wire.begin();
   Serial.begin(38400);
