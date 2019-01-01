@@ -100,7 +100,7 @@
   BNO055 IMU(A);  // create an instance
 #endif
 
-#ifdef JRK_2_POLOLU
+#if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
   #include <JrkG2.h>   // get from https://github.com/pololu/jrk-g2-arduino
   JrkG2I2C jrk;
   #define SteerPosZero 2046
@@ -338,7 +338,7 @@ void loop()
     
     steeringPosition = ( steeringPosition -steerSettings.steeringPositionZero);   //center the steering position sensor
 
-#ifdef JRK_2_POLOLU  // JRK_2_POLOLU AD In
+#if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
     steeringPosition = jrk.getScaledFeedback();  
     steeringPosition = ( steeringPosition -steerZero);   //center the steering position sensor
 #endif      
