@@ -134,7 +134,6 @@
             this.cboxEnterFunc0 = new System.Windows.Forms.ComboBox();
             this.cboxEnterAction0 = new System.Windows.Forms.ComboBox();
             this.nudEnter0 = new System.Windows.Forms.NumericUpDown();
-            this.tabDistance = new System.Windows.Forms.TabPage();
             this.btnTurnAllOff = new System.Windows.Forms.Button();
             this.label47 = new System.Windows.Forms.Label();
             this.btnToggle6 = new System.Windows.Forms.Button();
@@ -154,13 +153,8 @@
             this.lblTriggerDistance = new System.Windows.Forms.Label();
             this.tabYouTurn = new System.Windows.Forms.TabPage();
             this.label46 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnDewLoop4 = new System.Windows.Forms.Button();
             this.cboxRowWidth = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnDewLoop2RightOrLeft = new System.Windows.Forms.Button();
-            this.btnDewLoop2 = new System.Windows.Forms.Button();
-            this.label45 = new System.Windows.Forms.Label();
             this.btnIsUsingDubins = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnYouTurnWideReturn = new System.Windows.Forms.Button();
@@ -168,6 +162,11 @@
             this.btnYouTurnSemiCircle = new System.Windows.Forms.Button();
             this.btnYouTurnRecord = new System.Windows.Forms.Button();
             this.btnYouTurnCustom = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnDewLoop4 = new System.Windows.Forms.Button();
+            this.btnDewLoop2RightOrLeft = new System.Windows.Forms.Button();
+            this.btnDewLoop2 = new System.Windows.Forms.Button();
+            this.label45 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabHelp.SuspendLayout();
             this.tabEdit.SuspendLayout();
@@ -189,7 +188,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter0)).BeginInit();
-            this.tabDistance.SuspendLayout();
             this.tabYouTurn.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -202,7 +200,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(765, 371);
+            this.btnCancel.Location = new System.Drawing.Point(775, 371);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 111);
@@ -216,7 +214,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOK.Location = new System.Drawing.Point(765, 546);
+            this.btnOK.Location = new System.Drawing.Point(775, 546);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(88, 109);
@@ -387,7 +385,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(504, 154);
+            this.label44.Location = new System.Drawing.Point(422, 342);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(73, 23);
@@ -398,7 +396,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(491, 547);
+            this.label43.Location = new System.Drawing.Point(405, 541);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(126, 23);
@@ -660,11 +658,6 @@
             0,
             0,
             0});
-            this.nudExit7.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit7.Name = "nudExit7";
             this.nudExit7.Size = new System.Drawing.Size(78, 43);
             this.nudExit7.TabIndex = 86;
@@ -718,11 +711,6 @@
             0,
             0,
             0});
-            this.nudExit5.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit5.Name = "nudExit5";
             this.nudExit5.Size = new System.Drawing.Size(78, 43);
             this.nudExit5.TabIndex = 82;
@@ -737,11 +725,6 @@
             0,
             0,
             0});
-            this.nudExit6.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit6.Name = "nudExit6";
             this.nudExit6.Size = new System.Drawing.Size(78, 43);
             this.nudExit6.TabIndex = 81;
@@ -950,11 +933,6 @@
             0,
             0,
             0});
-            this.nudExit4.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit4.Name = "nudExit4";
             this.nudExit4.Size = new System.Drawing.Size(78, 43);
             this.nudExit4.TabIndex = 46;
@@ -997,11 +975,6 @@
             0,
             0,
             0});
-            this.nudExit3.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit3.Name = "nudExit3";
             this.nudExit3.Size = new System.Drawing.Size(78, 43);
             this.nudExit3.TabIndex = 43;
@@ -1044,11 +1017,6 @@
             0,
             0,
             0});
-            this.nudExit2.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit2.Name = "nudExit2";
             this.nudExit2.Size = new System.Drawing.Size(78, 43);
             this.nudExit2.TabIndex = 40;
@@ -1091,11 +1059,6 @@
             0,
             0,
             0});
-            this.nudExit1.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit1.Name = "nudExit1";
             this.nudExit1.Size = new System.Drawing.Size(78, 43);
             this.nudExit1.TabIndex = 37;
@@ -1138,11 +1101,6 @@
             0,
             0,
             0});
-            this.nudExit0.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudExit0.Name = "nudExit0";
             this.nudExit0.Size = new System.Drawing.Size(78, 43);
             this.nudExit0.TabIndex = 34;
@@ -1215,11 +1173,6 @@
             0,
             0,
             0});
-            this.nudEnter7.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter7.Name = "nudEnter7";
             this.nudEnter7.Size = new System.Drawing.Size(78, 43);
             this.nudEnter7.TabIndex = 72;
@@ -1284,11 +1237,6 @@
             0,
             0,
             0});
-            this.nudEnter5.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter5.Name = "nudEnter5";
             this.nudEnter5.Size = new System.Drawing.Size(78, 43);
             this.nudEnter5.TabIndex = 67;
@@ -1303,11 +1251,6 @@
             0,
             0,
             0});
-            this.nudEnter6.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter6.Name = "nudEnter6";
             this.nudEnter6.Size = new System.Drawing.Size(78, 43);
             this.nudEnter6.TabIndex = 66;
@@ -1494,11 +1437,6 @@
             0,
             0,
             0});
-            this.nudEnter4.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter4.Name = "nudEnter4";
             this.nudEnter4.Size = new System.Drawing.Size(78, 43);
             this.nudEnter4.TabIndex = 31;
@@ -1541,11 +1479,6 @@
             0,
             0,
             0});
-            this.nudEnter3.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter3.Name = "nudEnter3";
             this.nudEnter3.Size = new System.Drawing.Size(78, 43);
             this.nudEnter3.TabIndex = 28;
@@ -1588,11 +1521,6 @@
             0,
             0,
             0});
-            this.nudEnter2.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter2.Name = "nudEnter2";
             this.nudEnter2.Size = new System.Drawing.Size(78, 43);
             this.nudEnter2.TabIndex = 25;
@@ -1635,11 +1563,6 @@
             0,
             0,
             0});
-            this.nudEnter1.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter1.Name = "nudEnter1";
             this.nudEnter1.Size = new System.Drawing.Size(78, 43);
             this.nudEnter1.TabIndex = 22;
@@ -1683,36 +1606,9 @@
             0,
             0,
             0});
-            this.nudEnter0.Minimum = new decimal(new int[] {
-            25,
-            0,
-            0,
-            -2147483648});
             this.nudEnter0.Name = "nudEnter0";
             this.nudEnter0.Size = new System.Drawing.Size(78, 43);
             this.nudEnter0.TabIndex = 19;
-            // 
-            // tabDistance
-            // 
-            this.tabDistance.Controls.Add(this.btnTurnAllOff);
-            this.tabDistance.Controls.Add(this.label47);
-            this.tabDistance.Controls.Add(this.btnToggle6);
-            this.tabDistance.Controls.Add(this.btnToggle3);
-            this.tabDistance.Controls.Add(this.btnToggle7);
-            this.tabDistance.Controls.Add(this.btnToggle8);
-            this.tabDistance.Controls.Add(this.btnToggle5);
-            this.tabDistance.Controls.Add(this.btnDistanceDn);
-            this.tabDistance.Controls.Add(this.btnToggle4);
-            this.tabDistance.Controls.Add(this.label12);
-            this.tabDistance.Controls.Add(this.btnDistanceUp);
-            this.tabDistance.Controls.Add(this.lblDistance);
-            this.tabDistance.Controls.Add(this.lblWhenTrig);
-            this.tabDistance.Location = new System.Drawing.Point(4, 54);
-            this.tabDistance.Name = "tabDistance";
-            this.tabDistance.Size = new System.Drawing.Size(744, 594);
-            this.tabDistance.TabIndex = 5;
-            this.tabDistance.Text = "Distances";
-            this.tabDistance.UseVisualStyleBackColor = true;
             // 
             // btnTurnAllOff
             // 
@@ -1720,10 +1616,10 @@
             this.btnTurnAllOff.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTurnAllOff.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTurnAllOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTurnAllOff.Location = new System.Drawing.Point(612, 423);
+            this.btnTurnAllOff.Location = new System.Drawing.Point(663, 37);
             this.btnTurnAllOff.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTurnAllOff.Name = "btnTurnAllOff";
-            this.btnTurnAllOff.Size = new System.Drawing.Size(61, 111);
+            this.btnTurnAllOff.Size = new System.Drawing.Size(61, 120);
             this.btnTurnAllOff.TabIndex = 132;
             this.btnTurnAllOff.Text = "Turn All Off";
             this.btnTurnAllOff.Click += new System.EventHandler(this.btnTurnAllOff_Click);
@@ -1731,14 +1627,13 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Enabled = false;
             this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(142, 121);
+            this.label47.Location = new System.Drawing.Point(616, 365);
             this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(111, 25);
+            this.label47.Size = new System.Drawing.Size(84, 25);
             this.label47.TabIndex = 162;
-            this.label47.Text = "Headland";
+            this.label47.Text = "Length";
             // 
             // btnToggle6
             // 
@@ -1747,7 +1642,7 @@
             this.btnToggle6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle6.Location = new System.Drawing.Point(-6, 496);
+            this.btnToggle6.Location = new System.Drawing.Point(29, 110);
             this.btnToggle6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle6.Name = "btnToggle6";
             this.btnToggle6.Size = new System.Drawing.Size(180, 47);
@@ -1763,7 +1658,7 @@
             this.btnToggle3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle3.Location = new System.Drawing.Point(-6, 423);
+            this.btnToggle3.Location = new System.Drawing.Point(29, 37);
             this.btnToggle3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle3.Name = "btnToggle3";
             this.btnToggle3.Size = new System.Drawing.Size(180, 47);
@@ -1779,7 +1674,7 @@
             this.btnToggle7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle7.Location = new System.Drawing.Point(199, 496);
+            this.btnToggle7.Location = new System.Drawing.Point(234, 110);
             this.btnToggle7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle7.Name = "btnToggle7";
             this.btnToggle7.Size = new System.Drawing.Size(180, 47);
@@ -1795,7 +1690,7 @@
             this.btnToggle8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle8.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle8.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle8.Location = new System.Drawing.Point(411, 496);
+            this.btnToggle8.Location = new System.Drawing.Point(446, 110);
             this.btnToggle8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle8.Name = "btnToggle8";
             this.btnToggle8.Size = new System.Drawing.Size(180, 47);
@@ -1811,7 +1706,7 @@
             this.btnToggle5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle5.Location = new System.Drawing.Point(411, 423);
+            this.btnToggle5.Location = new System.Drawing.Point(446, 37);
             this.btnToggle5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle5.Name = "btnToggle5";
             this.btnToggle5.Size = new System.Drawing.Size(180, 47);
@@ -1823,10 +1718,9 @@
             // btnDistanceDn
             // 
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDistanceDn.Enabled = false;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceDn.Image")));
-            this.btnDistanceDn.Location = new System.Drawing.Point(70, 178);
+            this.btnDistanceDn.Location = new System.Drawing.Point(641, 480);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
             this.btnDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1841,7 +1735,7 @@
             this.btnToggle4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle4.Location = new System.Drawing.Point(199, 423);
+            this.btnToggle4.Location = new System.Drawing.Point(234, 37);
             this.btnToggle4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle4.Name = "btnToggle4";
             this.btnToggle4.Size = new System.Drawing.Size(180, 47);
@@ -1853,22 +1747,20 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Enabled = false;
             this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(75, 71);
+            this.label12.Location = new System.Drawing.Point(579, 390);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 25);
+            this.label12.Size = new System.Drawing.Size(84, 25);
             this.label12.TabIndex = 148;
-            this.label12.Text = "Turn";
+            this.label12.Text = "Meters";
             // 
             // btnDistanceUp
             // 
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDistanceUp.Enabled = false;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceUp.Image")));
-            this.btnDistanceUp.Location = new System.Drawing.Point(180, 178);
+            this.btnDistanceUp.Location = new System.Drawing.Point(545, 480);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
             this.btnDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1880,9 +1772,8 @@
             // 
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.SystemColors.Control;
-            this.lblDistance.Enabled = false;
             this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistance.Location = new System.Drawing.Point(139, 57);
+            this.lblDistance.Location = new System.Drawing.Point(576, 424);
             this.lblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(95, 45);
@@ -1892,20 +1783,19 @@
             // lblWhenTrig
             // 
             this.lblWhenTrig.AutoSize = true;
-            this.lblWhenTrig.Enabled = false;
             this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhenTrig.Location = new System.Drawing.Point(59, 121);
+            this.lblWhenTrig.Location = new System.Drawing.Point(540, 365);
             this.lblWhenTrig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWhenTrig.Name = "lblWhenTrig";
-            this.lblWhenTrig.Size = new System.Drawing.Size(80, 25);
+            this.lblWhenTrig.Size = new System.Drawing.Size(76, 25);
             this.lblWhenTrig.TabIndex = 147;
-            this.lblWhenTrig.Text = "Before";
+            this.lblWhenTrig.Text = "UTurn";
             // 
             // label48
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(114, 366);
+            this.label48.Location = new System.Drawing.Point(301, 365);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(179, 50);
@@ -1917,7 +1807,7 @@
             this.btnTriggerDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceDn.Image")));
-            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(221, 481);
+            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(402, 480);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
             this.btnTriggerDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1930,7 +1820,7 @@
             this.btnTriggerDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceUp.Image")));
-            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(108, 481);
+            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(306, 480);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
             this.btnTriggerDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1943,7 +1833,7 @@
             this.lblTriggerDistance.AutoSize = true;
             this.lblTriggerDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblTriggerDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTriggerDistance.Location = new System.Drawing.Point(152, 425);
+            this.lblTriggerDistance.Location = new System.Drawing.Point(339, 424);
             this.lblTriggerDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTriggerDistance.Name = "lblTriggerDistance";
             this.lblTriggerDistance.Size = new System.Drawing.Size(95, 45);
@@ -1952,19 +1842,27 @@
             // 
             // tabYouTurn
             // 
+            this.tabYouTurn.Controls.Add(this.btnTurnAllOff);
             this.tabYouTurn.Controls.Add(this.btnTriggerDistanceDn);
+            this.tabYouTurn.Controls.Add(this.btnToggle6);
+            this.tabYouTurn.Controls.Add(this.label47);
             this.tabYouTurn.Controls.Add(this.btnTriggerDistanceUp);
             this.tabYouTurn.Controls.Add(this.label46);
-            this.tabYouTurn.Controls.Add(this.label2);
-            this.tabYouTurn.Controls.Add(this.btnDewLoop4);
+            this.tabYouTurn.Controls.Add(this.btnToggle3);
             this.tabYouTurn.Controls.Add(this.label48);
+            this.tabYouTurn.Controls.Add(this.btnToggle5);
+            this.tabYouTurn.Controls.Add(this.btnDistanceUp);
+            this.tabYouTurn.Controls.Add(this.btnToggle4);
             this.tabYouTurn.Controls.Add(this.lblTriggerDistance);
+            this.tabYouTurn.Controls.Add(this.btnToggle8);
+            this.tabYouTurn.Controls.Add(this.btnToggle7);
+            this.tabYouTurn.Controls.Add(this.lblWhenTrig);
             this.tabYouTurn.Controls.Add(this.cboxRowWidth);
+            this.tabYouTurn.Controls.Add(this.lblDistance);
             this.tabYouTurn.Controls.Add(this.label1);
-            this.tabYouTurn.Controls.Add(this.btnDewLoop2RightOrLeft);
-            this.tabYouTurn.Controls.Add(this.btnDewLoop2);
-            this.tabYouTurn.Controls.Add(this.label45);
+            this.tabYouTurn.Controls.Add(this.label12);
             this.tabYouTurn.Controls.Add(this.btnIsUsingDubins);
+            this.tabYouTurn.Controls.Add(this.btnDistanceDn);
             this.tabYouTurn.Controls.Add(this.groupBox1);
             this.tabYouTurn.Location = new System.Drawing.Point(4, 54);
             this.tabYouTurn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -1979,39 +1877,12 @@
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(27, 24);
+            this.label46.Location = new System.Drawing.Point(27, 389);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(96, 50);
             this.label46.TabIndex = 157;
             this.label46.Text = "Dubins/\r\nPattern";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(339, 24);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 25);
-            this.label2.TabIndex = 156;
-            this.label2.Text = "Direction";
-            this.label2.Visible = false;
-            // 
-            // btnDewLoop4
-            // 
-            this.btnDewLoop4.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnDewLoop4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDewLoop4.Location = new System.Drawing.Point(453, 122);
-            this.btnDewLoop4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop4.Name = "btnDewLoop4";
-            this.btnDewLoop4.Size = new System.Drawing.Size(246, 39);
-            this.btnDewLoop4.TabIndex = 155;
-            this.btnDewLoop4.Text = "3R,4L,3L,3R,4R,3R,4R,2L ";
-            this.btnDewLoop4.UseVisualStyleBackColor = false;
-            this.btnDewLoop4.Visible = false;
-            this.btnDewLoop4.Click += new System.EventHandler(this.btnDewLoop4_Click);
             // 
             // cboxRowWidth
             // 
@@ -2026,7 +1897,7 @@
             "4",
             "5",
             "6"});
-            this.cboxRowWidth.Location = new System.Drawing.Point(195, 77);
+            this.cboxRowWidth.Location = new System.Drawing.Point(165, 479);
             this.cboxRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxRowWidth.Name = "cboxRowWidth";
             this.cboxRowWidth.Size = new System.Drawing.Size(52, 47);
@@ -2037,60 +1908,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(190, 39);
+            this.label1.Location = new System.Drawing.Point(160, 441);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 11;
             this.label1.Text = "Skips";
             // 
-            // btnDewLoop2RightOrLeft
-            // 
-            this.btnDewLoop2RightOrLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnDewLoop2RightOrLeft.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop2RightOrLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowTurnRight;
-            this.btnDewLoop2RightOrLeft.Location = new System.Drawing.Point(344, 63);
-            this.btnDewLoop2RightOrLeft.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop2RightOrLeft.Name = "btnDewLoop2RightOrLeft";
-            this.btnDewLoop2RightOrLeft.Size = new System.Drawing.Size(83, 84);
-            this.btnDewLoop2RightOrLeft.TabIndex = 154;
-            this.btnDewLoop2RightOrLeft.UseVisualStyleBackColor = false;
-            this.btnDewLoop2RightOrLeft.Visible = false;
-            this.btnDewLoop2RightOrLeft.Click += new System.EventHandler(this.btnDewLoop2RightOrLeft_Click);
-            // 
-            // btnDewLoop2
-            // 
-            this.btnDewLoop2.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnDewLoop2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDewLoop2.Location = new System.Drawing.Point(453, 63);
-            this.btnDewLoop2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop2.Name = "btnDewLoop2";
-            this.btnDewLoop2.Size = new System.Drawing.Size(246, 39);
-            this.btnDewLoop2.TabIndex = 153;
-            this.btnDewLoop2.Text = "2R,3L,2L,2R,3R,2L";
-            this.btnDewLoop2.UseVisualStyleBackColor = false;
-            this.btnDewLoop2.Visible = false;
-            this.btnDewLoop2.Click += new System.EventHandler(this.btnDewLoop2_Click);
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(525, 24);
-            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(116, 25);
-            this.label45.TabIndex = 152;
-            this.label45.Text = "Dew Loop";
-            this.label45.Visible = false;
-            // 
             // btnIsUsingDubins
             // 
             this.btnIsUsingDubins.BackColor = System.Drawing.Color.PaleGreen;
             this.btnIsUsingDubins.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIsUsingDubins.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 77);
+            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 442);
             this.btnIsUsingDubins.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnIsUsingDubins.Name = "btnIsUsingDubins";
             this.btnIsUsingDubins.Size = new System.Drawing.Size(91, 84);
@@ -2107,7 +1937,7 @@
             this.groupBox1.Controls.Add(this.btnYouTurnRecord);
             this.groupBox1.Controls.Add(this.btnYouTurnCustom);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(29, 179);
+            this.groupBox1.Location = new System.Drawing.Point(52, 187);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -2189,16 +2019,88 @@
             this.btnYouTurnCustom.UseVisualStyleBackColor = false;
             this.btnYouTurnCustom.Click += new System.EventHandler(this.btnYouTurnCustom_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Enabled = false;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(368, 90);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 25);
+            this.label2.TabIndex = 156;
+            this.label2.Text = "Direction";
+            this.label2.Visible = false;
+            // 
+            // btnDewLoop4
+            // 
+            this.btnDewLoop4.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnDewLoop4.Enabled = false;
+            this.btnDewLoop4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDewLoop4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDewLoop4.Location = new System.Drawing.Point(482, 188);
+            this.btnDewLoop4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDewLoop4.Name = "btnDewLoop4";
+            this.btnDewLoop4.Size = new System.Drawing.Size(246, 39);
+            this.btnDewLoop4.TabIndex = 155;
+            this.btnDewLoop4.Text = "3R,4L,3L,3R,4R,3R,4R,2L ";
+            this.btnDewLoop4.UseVisualStyleBackColor = false;
+            this.btnDewLoop4.Visible = false;
+            this.btnDewLoop4.Click += new System.EventHandler(this.btnDewLoop4_Click);
+            // 
+            // btnDewLoop2RightOrLeft
+            // 
+            this.btnDewLoop2RightOrLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnDewLoop2RightOrLeft.Enabled = false;
+            this.btnDewLoop2RightOrLeft.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDewLoop2RightOrLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowTurnRight;
+            this.btnDewLoop2RightOrLeft.Location = new System.Drawing.Point(373, 129);
+            this.btnDewLoop2RightOrLeft.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDewLoop2RightOrLeft.Name = "btnDewLoop2RightOrLeft";
+            this.btnDewLoop2RightOrLeft.Size = new System.Drawing.Size(83, 84);
+            this.btnDewLoop2RightOrLeft.TabIndex = 154;
+            this.btnDewLoop2RightOrLeft.UseVisualStyleBackColor = false;
+            this.btnDewLoop2RightOrLeft.Visible = false;
+            this.btnDewLoop2RightOrLeft.Click += new System.EventHandler(this.btnDewLoop2RightOrLeft_Click);
+            // 
+            // btnDewLoop2
+            // 
+            this.btnDewLoop2.BackColor = System.Drawing.Color.PaleGreen;
+            this.btnDewLoop2.Enabled = false;
+            this.btnDewLoop2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDewLoop2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDewLoop2.Location = new System.Drawing.Point(482, 129);
+            this.btnDewLoop2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btnDewLoop2.Name = "btnDewLoop2";
+            this.btnDewLoop2.Size = new System.Drawing.Size(246, 39);
+            this.btnDewLoop2.TabIndex = 153;
+            this.btnDewLoop2.Text = "2R,3L,2L,2R,3R,2L";
+            this.btnDewLoop2.UseVisualStyleBackColor = false;
+            this.btnDewLoop2.Visible = false;
+            this.btnDewLoop2.Click += new System.EventHandler(this.btnDewLoop2_Click);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Enabled = false;
+            this.label45.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(554, 90);
+            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(116, 25);
+            this.label45.TabIndex = 152;
+            this.label45.Text = "Dew Loop";
+            this.label45.Visible = false;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabYouTurn);
-            this.tabControl1.Controls.Add(this.tabDistance);
             this.tabControl1.Controls.Add(this.tabEnter);
             this.tabControl1.Controls.Add(this.tabExit);
             this.tabControl1.Controls.Add(this.tabEdit);
             this.tabControl1.Controls.Add(this.tabHelp);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(135, 50);
+            this.tabControl1.ItemSize = new System.Drawing.Size(148, 50);
             this.tabControl1.Location = new System.Drawing.Point(10, 12);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl1.Name = "tabControl1";
@@ -2211,11 +2113,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 667);
+            this.ClientSize = new System.Drawing.Size(874, 667);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnDewLoop4);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.btnDewLoop2);
+            this.Controls.Add(this.btnDewLoop2RightOrLeft);
             this.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -2247,13 +2154,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEnter0)).EndInit();
-            this.tabDistance.ResumeLayout(false);
-            this.tabDistance.PerformLayout();
             this.tabYouTurn.ResumeLayout(false);
             this.tabYouTurn.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -2363,7 +2269,6 @@
         private System.Windows.Forms.ComboBox cboxEnterFunc0;
         private System.Windows.Forms.ComboBox cboxEnterAction0;
         private System.Windows.Forms.NumericUpDown nudEnter0;
-        private System.Windows.Forms.TabPage tabDistance;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label48;
         private ProXoft.WinForms.RepeatButton btnTriggerDistanceDn;

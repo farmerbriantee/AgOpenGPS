@@ -1053,52 +1053,54 @@ namespace AgOpenGPS
             Settings.Default.Save();
         }
 
-        //the original autonomous buttons
-        private void btnGeneratePath_Click(object sender, EventArgs e)
-        {
-            //if (bnd.isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            //{
-            //    //field too small or moving
-            //    if (bnd.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
-            //    using (var form = new FormGenerate(this))
-            //    {
-            //        var result = form.ShowDialog();
-            //        if (result == DialogResult.OK)
-            //        {
-            //        }
-            //    }
-            //}
-            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
-        }
-        private void btnDriveGenPath_Click(object sender, EventArgs e)
+        private void btnGenerateSelf_Click(object sender, EventArgs e)
         {
-            ////if already running? Stop it
-            //if (genPath.isBtnDriveGenPathOn)
-            //{
-            //    btnDriveGenPath.Image = Properties.Resources.AutoGo;
-            //    genPath.StopDrivingRecordedPath();
-            //    genPath.isBtnDriveGenPathOn = false;
-            //}
-            //else
-            //{
-            //    //start the recorded path driving process
-            //    if (!genPath.StartDrivingRecordedPath())
-            //    {
-            //        btnDriveGenPath.Image = Properties.Resources.AutoGo;
-            //        TimedMessageBox(1000, "No Generated Path", "Can't Drive, Create a Path First");
-            //        genPath.isBtnDriveGenPathOn = false;
-            //        //Cancel the recPath - something went seriously wrong
-            //        genPath.StopDrivingRecordedPath();
-            //    }
-            //    else
-            //    {
-            //        btnDriveGenPath.Image = Properties.Resources.AutoStop;
-            //        genPath.isBtnDriveGenPathOn = true;
-            //    }
-            //}
+            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            {
+                //field too small or moving
+                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+
+                using (var form = new FormSelf(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
+
+        private void btnGoSelf_Click(object sender, EventArgs e)
+        {
+            if (!self.isPausedSelfDriving)
+            {
+                //already running?
+                if (self.isSelfDriving)
+                {
+                    self.StopSelfDriving();
+                    return;
+                }
+
+                if (!self.StartSelfDriving())
+                {
+                    //Cancel the self - something went seriously wrong
+                    self.StopSelfDriving();
+                }
+                else
+                {
+                    btnGoSelf.Image = Properties.Resources.AutoStop;
+                }
+            }
+            else
+            {
+                self.isPausedSelfDriving = false;
+                btnPauseDrivingPath.BackColor = Color.Lime;
+            }
+        }
+
         private void btnManualAutoDrive_Click(object sender, EventArgs e)
         {
             if (isInAutoDrive)
@@ -1160,6 +1162,9 @@ namespace AgOpenGPS
                 }
 
                 //start the recorded path driving process
+                if (ABLine.isABLineSet) ABLine.DeleteAB();
+                if (curve.isCurveSet) curve.ResetCurveLine();
+
                 if (!recPath.StartDrivingRecordedPath())
                 {
                     //Cancel the recPath - something went seriously wrong
@@ -1297,8 +1302,6 @@ namespace AgOpenGPS
 
             if (curve.isCurveBtnOn)
             {
-                //if contour is on, turn it off
-
                 //turn off youturn...
                 btnRightYouTurn.Enabled = false;
                 btnLeftYouTurn.Enabled = false;
@@ -1327,6 +1330,7 @@ namespace AgOpenGPS
                 btnABLine.Enabled = false;
 
                 if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                btnContourPriority.Enabled = true;
 
                 Form form = new FormABCurve(this);
                 form.Show();
@@ -1338,6 +1342,7 @@ namespace AgOpenGPS
                 curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 DisableYouTurnButtons();
+                btnContourPriority.Enabled = false;
                 //curve.ResetCurveLine();
             }
         }
@@ -1381,7 +1386,6 @@ namespace AgOpenGPS
                     //auto YouTurn shutdown
                     yt.isYouTurnBtnOn = false;
                     yt.ResetYouTurn();
-                    youTurnProgressBar = 0;
 
                     //turn off youturn...
                     btnEnableAutoYouTurn.Enabled = true;
@@ -1427,16 +1431,6 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     curve.SnapABCurve();
-                    DialogResult result3 = MessageBox.Show("Save AB Curve Snap?",
-                            "Save or Not",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Question,
-                            MessageBoxDefaultButton.Button2);
-                    if (result3 == DialogResult.Yes)
-                    {
-                        FileSaveABLine();
-                    }
-
                 }
                 else
                 {
@@ -1858,14 +1852,13 @@ namespace AgOpenGPS
         //YouTurn on off
         private void btnLeftYouTurn_Click(object sender, EventArgs e)
         {
-            if (yt.isYouTurnTriggerPointSet)
+            if (yt.isYouTurnTriggered)
             {
                 //is it turning left already?
                 if (!yt.isYouTurnRight)
                 {
                     yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
-                    youTurnProgressBar = 0;
                 }
                 else
                 {
@@ -1875,14 +1868,14 @@ namespace AgOpenGPS
             }
             else
             {
-                if (yt.isYouTurnShapeDisplayed)
+                if (yt.isYouTurnTriggered)
                 {
                     yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
                 }
                 else
                 {
-                    yt.isYouTurnShapeDisplayed = true;
+                    yt.isYouTurnTriggered = true;
                     yt.BuildManualYouTurn(false, true);
                     AutoYouTurnButtonsLeftTurn();
                 }
@@ -1891,13 +1884,12 @@ namespace AgOpenGPS
         private void btnRightYouTurn_Click(object sender, EventArgs e)
         {
             //is it already turning right, then cancel autoturn
-            if (yt.isYouTurnTriggerPointSet)
+            if (yt.isYouTurnTriggered)
             {
                 //is it turning right already?
                 if (yt.isYouTurnRight)
                 {
                     yt.ResetYouTurn();
-                    youTurnProgressBar = 0;
                     AutoYouTurnButtonsReset();
                 }
                 else
@@ -1909,14 +1901,14 @@ namespace AgOpenGPS
             }
             else
             {
-                if (yt.isYouTurnShapeDisplayed)
+                if (yt.isYouTurnTriggered)
                 {
                     yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
                 }
                 else
                 {
-                    yt.isYouTurnShapeDisplayed = true;
+                    yt.isYouTurnTriggered = true;
                     yt.BuildManualYouTurn(true, true);
                     AutoYouTurnButtonsRightTurn();
                 }
@@ -1924,7 +1916,7 @@ namespace AgOpenGPS
         }
         private void btnSwapDirection_Click_1(object sender, EventArgs e)
         {
-            if (!yt.isYouTurnTriggerPointSet)
+            if (!yt.isYouTurnTriggered)
             {
                 //is it turning right already?
                 if (yt.isYouTurnRight)
@@ -1951,6 +1943,8 @@ namespace AgOpenGPS
                 yt.ResetCreatedYouTurn();
 
                 yt.isYouTurnBtnOn = true;
+                yt.isTurnCreationTooClose = false;
+                yt.isTurnCreationNotCrossingError = false;
                 yt.dew2Index = 0;
                 //yt.isDew2Set = false;
                 //yt.isDew4Set = false;
@@ -2885,6 +2879,7 @@ namespace AgOpenGPS
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 //else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                //else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
 
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
@@ -3215,13 +3210,13 @@ namespace AgOpenGPS
                     {
                         if (yt.isYouTurnRight)
                         {
-                            if (!yt.isYouTurnShapeDisplayed) btnLeftYouTurn.Text = DistPivotM;
-                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel"; }
+                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
+                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
                         }
                         else
                         {
-                            if (!yt.isYouTurnShapeDisplayed) btnRightYouTurn.Text = DistPivotM;
-                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel"; }
+                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
+                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
                         }
                     }
                 }
@@ -3255,12 +3250,12 @@ namespace AgOpenGPS
                     {
                         if (yt.isYouTurnRight)
                         {
-                            if (!yt.isYouTurnShapeDisplayed) btnLeftYouTurn.Text = DistPivotFt;
+                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
                             else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel"; }
                         }
                         else
                         {
-                            if (!yt.isYouTurnShapeDisplayed) btnRightYouTurn.Text = DistPivotFt;
+                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
                             else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel"; }
                         }
                     }

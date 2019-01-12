@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+﻿using System.Globalization;
 
 namespace AgOpenGPS
 {
@@ -12,6 +8,7 @@ namespace AgOpenGPS
 
         //an array of events to take place
         public SeqEvent[] seqEnter;
+
         public SeqEvent[] seqExit;
 
         public string pos1 = "Manual Button";
@@ -26,10 +23,7 @@ namespace AgOpenGPS
         /// <summary> /// 0=Not in youturn, 1=Entering headland, 2=Exiting headland /// </summary>
         public int whereAmI = 0;
 
-        public bool isSequenceTriggered, isInHeadland;
-
-        /// <summary> /// At trigger point, was vehicle going same direction as ABLine? /// </summary>
-        public bool isABLineSameAsHeadingAtTrigger;
+        public bool isSequenceTriggered, isEntering;
 
         public struct SeqEvent
         {
@@ -206,89 +200,89 @@ namespace AgOpenGPS
 
             //if (!isToolHeadingSameAsABHeading) headAB += Math.PI;
 
-//#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            //#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
-//            mf.hl.FindClosestHeadlandPoint(mf.toolPos, mf.toolPos.heading);
-//            if ((int)mf.hl.closestHeadlandPt.easting != -20000)
-//            {
-//                mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
-//            }
-//            else //we've lost the headland
-//            {
-//                isEnteringDriveThru = false;
-//                isExitingDriveThru = false;
-//                ResetSequenceEventTriggers();
-//                mf.distTool = -3333;
-//                return;
-//            }
-//#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            //            mf.hl.FindClosestHeadlandPoint(mf.toolPos, mf.toolPos.heading);
+            //            if ((int)mf.hl.closestHeadlandPt.easting != -20000)
+            //            {
+            //                mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
+            //            }
+            //            else //we've lost the headland
+            //            {
+            //                isEnteringDriveThru = false;
+            //                isExitingDriveThru = false;
+            //                ResetSequenceEventTriggers();
+            //                mf.distTool = -3333;
+            //                return;
+            //            }
+            //#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
-//            //make distance sign correct
-//            if (isInHeadland) mf.distTool *= -1;
-//            mf.distTool += (mf.headlandDistanceDelta * 0.5);
+            //            //make distance sign correct
+            //            if (isInHeadland) mf.distTool *= -1;
+            //            mf.distTool += (mf.headlandDistanceDelta * 0.5);
 
-//            //we are entering
-//            if (isEnteringDriveThru) whereAmI = 1;
+            //            //we are entering
+            //            if (isEnteringDriveThru) whereAmI = 1;
 
-//            //we are exiting
-//            else whereAmI = 2;
+            //            //we are exiting
+            //            else whereAmI = 2;
 
-//            //did we do all the events?
-//            int c = 0;
-//            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-//            {
-//                //checked for any not triggered yet (false) - if there is, not done yet
-//                if (!mf.seq.seqEnter[i].isTrig) c++;
-//                if (!mf.seq.seqExit[i].isTrig) c++;
-//            }
+            //            //did we do all the events?
+            //            int c = 0;
+            //            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            //            {
+            //                //checked for any not triggered yet (false) - if there is, not done yet
+            //                if (!mf.seq.seqEnter[i].isTrig) c++;
+            //                if (!mf.seq.seqExit[i].isTrig) c++;
+            //            }
 
-//            if (c == 0)
-//            {
-//                //sequences all done so reset everything
-//                isEnteringDriveThru = false;
-//                isExitingDriveThru = false;
-//                whereAmI = 0;
-//                ResetSequenceEventTriggers();
-//                mf.distTool = -2222;
-//            }
+            //            if (c == 0)
+            //            {
+            //                //sequences all done so reset everything
+            //                isEnteringDriveThru = false;
+            //                isExitingDriveThru = false;
+            //                whereAmI = 0;
+            //                ResetSequenceEventTriggers();
+            //                mf.distTool = -2222;
+            //            }
 
-//            switch (whereAmI)
-//            {
-//                case 0: //not in you turn
-//                    break;
+            //            switch (whereAmI)
+            //            {
+            //                case 0: //not in you turn
+            //                    break;
 
-//                case 1: //Entering the headland
+            //                case 1: //Entering the headland
 
-//                    for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-//                    {
-//                        //have we gone past the distance and still haven't done it
-//                        if (mf.distTool < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
-//                        {
-//                            //it shall only run once
-//                            mf.seq.seqEnter[i].isTrig = true;
+            //                    for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            //                    {
+            //                        //have we gone past the distance and still haven't done it
+            //                        if (mf.distTool < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
+            //                        {
+            //                            //it shall only run once
+            //                            mf.seq.seqEnter[i].isTrig = true;
 
-//                            //send the function and action to perform
-//                            mf.DoYouTurnSequenceEvent(mf.seq.seqEnter[i].function, mf.seq.seqEnter[i].action);
-//                        }
-//                    }
-//                    break;
+            //                            //send the function and action to perform
+            //                            mf.DoYouTurnSequenceEvent(mf.seq.seqEnter[i].function, mf.seq.seqEnter[i].action);
+            //                        }
+            //                    }
+            //                    break;
 
-//                case 2: //Exiting the headland
+            //                case 2: //Exiting the headland
 
-//                    for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-//                    {
-//                        //have we gone past the distance and still haven't done it
-//                        if (mf.distTool > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
-//                        {
-//                            //it shall only run once
-//                            mf.seq.seqExit[i].isTrig = true;
+            //                    for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            //                    {
+            //                        //have we gone past the distance and still haven't done it
+            //                        if (mf.distTool > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
+            //                        {
+            //                            //it shall only run once
+            //                            mf.seq.seqExit[i].isTrig = true;
 
-//                            //send the function and action to perform
-//                            mf.DoYouTurnSequenceEvent(mf.seq.seqExit[i].function, mf.seq.seqExit[i].action);
-//                        }
-//                    }
-//                    break;
-//            }
+            //                            //send the function and action to perform
+            //                            mf.DoYouTurnSequenceEvent(mf.seq.seqExit[i].function, mf.seq.seqExit[i].action);
+            //                        }
+            //                    }
+            //                    break;
+            //            }
         }
 
         //determine when if and how functions are triggered
@@ -297,55 +291,13 @@ namespace AgOpenGPS
             if (isSequenceTriggered)
             {
                 //determine if Section is entry or exit based on trigger point direction
-                bool isToolHeadingSameAsABHeading;
+                //bool isToolHeadingSameAsABHeading;
 
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
-                //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
-                double headAB;
-                if (mf.ABLine.isABLineSet)
-                {
-                    double abFixHeadingDelta = (Math.Abs(mf.toolPos.heading - mf.ABLine.abHeading));
-                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
-                    isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
-                    headAB = mf.ABLine.abHeading;
-                }
-                else  //AB Curve
-                {
-                    //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
-                    double abFixHeadingDelta = (Math.Abs(mf.toolPos.heading - mf.curve.refHeading));
-                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
-                    isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
-                    headAB = mf.curve.refHeading;
-                }
-
-//                if (!isToolHeadingSameAsABHeading) headAB += Math.PI;
-
-//                mf.hl.FindClosestHeadlandPoint(mf.toolPos, headAB, 0); //************  TODO fix bndNum **************88
-//                if ((int)mf.hl.closestHeadlandPt.easting != -20000)
-//                {
-//                    mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
-//#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-//                }
-//                else //we've lost the headland
-//                {
-//                    isSequenceTriggered = false;
-//                    ResetSequenceEventTriggers();
-//                    mf.distTool = -3333;
-//                    return;
-//                }
-
-                //make distance sign correct
-                if (isInHeadland) mf.distanceToolToTurnLine *= -1;
-                mf.distanceToolToTurnLine += (mf.headlandDistanceDelta * 0.5);
-
-                //since same as AB Line, we are entering
-                if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading) whereAmI = 1;
-
-                //since opposite of AB Line at trigger we are exiting
+                if (mf.yt.onA <= 0) whereAmI = 1;
                 else whereAmI = 2;
 
-                //did we do all the events?
                 int c = 0;
                 for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                 {
@@ -356,11 +308,13 @@ namespace AgOpenGPS
 
                 if (c == 0)
                 {
-                    //sequences all done so reset everything
+                    //sequences all done so reset everything and leave
                     isSequenceTriggered = false;
                     whereAmI = 0;
                     ResetSequenceEventTriggers();
                     mf.distanceToolToTurnLine = -2222;
+                    isSequenceTriggered = false;
+                    return;
                 }
 
                 switch (whereAmI)
@@ -373,7 +327,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                         {
                             //have we gone past the distance and still haven't done it
-                            if (mf.distanceToolToTurnLine < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
+                            if (System.Math.Abs(mf.yt.onA) < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
                             {
                                 //it shall only run once
                                 mf.seq.seqEnter[i].isTrig = true;
@@ -389,7 +343,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                         {
                             //have we gone past the distance and still haven't done it
-                            if (mf.distanceToolToTurnLine > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
+                            if (mf.yt.onA > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
                             {
                                 //it shall only run once
                                 mf.seq.seqExit[i].isTrig = true;

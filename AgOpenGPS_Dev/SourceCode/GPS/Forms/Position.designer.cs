@@ -323,6 +323,7 @@ namespace AgOpenGPS
 
             //if the whole path driving driving process is green
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
+            //if (self.isSelfDriving) self.UpdatePosition();
 
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
@@ -447,8 +448,8 @@ namespace AgOpenGPS
             //if an outer boundary is set, then apply critical stop logic
             if (bnd.bndArr[0].isSet)
             {
-                //Are we inside outer and outside inner all turn boundaries
-                if (IsInWorkingArea())
+                //Are we inside outer and outside inner all turn boundaries, no turn creation problems
+                if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -457,7 +458,7 @@ namespace AgOpenGPS
                     if (yt.isYouTurnBtnOn && isAutoSteerBtnOn)
                     {
                         //if we are too much off track > 1.3m, kill the diagnostic creation, start again
-                        if (crossTrackError > 1300 && !yt.isYouTurnShapeDisplayed)
+                        if (crossTrackError > 1300 && !yt.isYouTurnTriggered)
                         {
                             yt.ResetCreatedYouTurn();
                         }
@@ -495,20 +496,20 @@ namespace AgOpenGPS
                             }                            
 
                             //Turn is triggered - this is not run if shape is drawn
-                            if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
+                            if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
                             {
                                 //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
                                 if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
                                 {
                                     yt.ResetYouTurn();
                                 }
-                                else
-                                {
-                                    //keep from running this again since youturn is plotted now
-                                    yt.isYouTurnTriggerPointSet = false;
-                                    yt.isLastYouTurnRight = yt.isYouTurnRight;
-                                    yt.isYouTurnShapeDisplayed = true;
-                                }
+                                //else
+                                //{
+                                //    //keep from running this again since youturn is plotted now
+                                //    yt.isYouTurnTriggerPointSet = false;
+                                //    yt.isLastYouTurnRight = yt.isYouTurnRight;
+                                //    yt.isYouTurnInProgress = true;
+                                //}
                             }
                         }
                     } // end of isInWorkingArea
@@ -1040,14 +1041,14 @@ namespace AgOpenGPS
         public bool IsInWorkingArea()
         {
             //first where are we, must be inside outer and outside of inner non drive thru turn borders
-            if (turn.turnArr[0].IsPointInsideTurn(pivotAxlePos))
+            if (turn.turnArr[0].IsPointInTurnWorkArea(pivotAxlePos))
             {
                 for (int i = 1; i < MAXBOUNDARIES; i++)
                 {
                     //make sure not inside a non drivethru boundary
                     if (!bnd.bndArr[i].isSet) continue;
                     if (bnd.bndArr[i].isDriveThru) continue;
-                    if (turn.turnArr[i].IsPointInsideTurn(pivotAxlePos))
+                    if (turn.turnArr[i].IsPointInTurnWorkArea(pivotAxlePos))
                     {
                         distancePivotToTurnLine = -3333;
                         return false;

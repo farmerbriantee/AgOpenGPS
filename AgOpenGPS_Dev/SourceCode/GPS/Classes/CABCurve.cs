@@ -24,8 +24,6 @@ namespace AgOpenGPS
         public double refHeading;
         public double deltaOfRefAndAveHeadings;
 
-        public bool isValid;
-
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
 
@@ -133,7 +131,6 @@ namespace AgOpenGPS
         public void GetCurrentCurveLine(vec3 pivot)
         {
             //determine closest point
-            isValid = false;
             double minDistance = 9999999;
             int ptCount = refList.Count;
             int ptCnt = ptCount - 1;
@@ -280,23 +277,23 @@ namespace AgOpenGPS
                 rEastCu = curList[A].easting + (U * dx);
                 rNorthCu = curList[A].northing + (U * dz);
 
-                double minx, maxx, miny, maxy;
+                //double minx, maxx, miny, maxy;
 
-                minx = Math.Min(curList[A].northing, curList[B].northing);
-                maxx = Math.Max(curList[A].northing, curList[B].northing);
+                //minx = Math.Min(curList[A].northing, curList[B].northing);
+                //maxx = Math.Max(curList[A].northing, curList[B].northing);
 
-                miny = Math.Min(curList[A].easting, curList[B].easting);
-                maxy = Math.Max(curList[A].easting, curList[B].easting);
+                //miny = Math.Min(curList[A].easting, curList[B].easting);
+                //maxy = Math.Max(curList[A].easting, curList[B].easting);
 
-                isValid = rNorthCu >= minx && rNorthCu <= maxx && (rEastCu >= miny && rEastCu <= maxy);
+                //isValid = rNorthCu >= minx && rNorthCu <= maxx && (rEastCu >= miny && rEastCu <= maxy);
 
-                if (!isValid)
-                {
-                    //invalid distance so tell AS module
-                    distanceFromCurrentLine = 32000;
-                    mf.guidanceLineDistanceOff = 32000;
-                    return;
-                }
+                //if (!isValid)
+                //{
+                //    //invalid distance so tell AS module
+                //    distanceFromCurrentLine = 32000;
+                //    mf.guidanceLineDistanceOff = 32000;
+                //    return;
+                //}
 
                 //used for accumulating distance to find goal point
                 double distSoFar;
@@ -440,10 +437,11 @@ namespace AgOpenGPS
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
                 mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
 
-                if (mf.yt.isYouTurnShapeDisplayed)
+                if (mf.yt.isYouTurnTriggered)
                 {
                     //do the pure pursuit from youTurn
                     mf.yt.DistanceFromYouTurnLine();
+                    mf.seq.DoSequenceEvent();
 
                     //now substitute what it thinks are AB line values with auto turn values
                     steerAngleCu = mf.yt.steerAngleYT;
@@ -584,16 +582,15 @@ namespace AgOpenGPS
                     GL.PointSize(2);
 
                     GL.Color3(0.95f, 0.2f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
-                    if (mf.isPureDisplayOn && isValid)
+                    if (mf.isPureDisplayOn)
                     {
-                        const int numSegments = 100;
-                        if (ppRadiusCu < 100 && ppRadiusCu > -100 && mf.isPureDisplayOn)
+                        if (ppRadiusCu < 100 && ppRadiusCu > -100 )
                         {
-                            GL.Color3(0.95f, 0.30f, 0.950f);
+                            const int numSegments = 100;
                             double theta = glm.twoPI / numSegments;
                             double c = Math.Cos(theta);//precalculate the sine and cosine
                             double s = Math.Sin(theta);
@@ -601,6 +598,7 @@ namespace AgOpenGPS
                             double y = 0;
 
                             GL.LineWidth(1);
+                            GL.Color3(0.95f, 0.30f, 0.950f);
                             GL.Begin(PrimitiveType.LineLoop);
                             for (int ii = 0; ii < numSegments; ii++)
                             {
@@ -623,14 +621,14 @@ namespace AgOpenGPS
 
                     mf.yt.DrawYouTurn();
 
-                    if (mf.yt.isYouTurnShapeDisplayed)
+                    if (mf.yt.isYouTurnTriggered)
                     {
                         GL.Color3(0.95f, 0.95f, 0.25f);
                         GL.LineWidth(4);
                         ptCount = mf.yt.ytList.Count;
                         if (ptCount > 0)
                         {
-                            GL.Begin(PrimitiveType.LineStrip);
+                            GL.Begin(PrimitiveType.Points);
                             for (int i = 0; i < ptCount; i++)
                             {
                                 GL.Vertex3(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);

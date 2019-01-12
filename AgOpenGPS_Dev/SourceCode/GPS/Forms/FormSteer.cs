@@ -113,12 +113,19 @@ namespace AgOpenGPS
         //Scrollbars    
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
-            //if (hsbarLookAheadMin.Value > hsbarLookAhead.Value) hsbarLookAheadMin.Value = hsbarLookAhead.Value;
             mf.vehicle.goalPointLookAheadSeconds = hsbarLookAhead.Value * 0.1;
             lblLookAhead.Text = mf.vehicle.goalPointLookAheadSeconds.ToString();
             Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAheadSeconds;
             Properties.Vehicle.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            //mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarLookAheadUturnMult_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAheadUturnMult = hsbarLookAheadUturnMult.Value * 0.1;
+            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
+            Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = mf.vehicle.goalPointLookAheadUturnMult;
+            Properties.Vehicle.Default.Save();
         }
 
         private void hsbarDistanceFromLine_ValueChanged(object sender, EventArgs e)
@@ -135,12 +142,6 @@ namespace AgOpenGPS
             lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimumDistance.ToString();
             Properties.Vehicle.Default.setVehicle_lookAheadMinimum = mf.vehicle.goalPointLookAheadMinimumDistance;
             Properties.Vehicle.Default.Save();
-        }
-
-        private void hsbarLookAheadUturnMult_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointLookAheadUturnMult = hsbarLookAheadUturnMult.Value * 0.1;
-            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
         }
 
         private void hsbarCountsPerDegree_ValueChanged(object sender, EventArgs e)
@@ -321,6 +322,5 @@ namespace AgOpenGPS
         {
             mf.toolStripAutoSteerChart.PerformClick();
         }
-
     }
 }

@@ -58,9 +58,9 @@ namespace AgOpenGPS
                     imu.OrientationCallback += OrientCB;
 
                     // Set period for Orientation callback to 0.1s (100ms)
-                    imu.SetOrientationPeriod(200);
+                    imu.SetOrientationPeriod(100);
 
-                    //set the mode without mag
+                    //set the mode with mag
                     imu.SetSensorFusionMode(1);
 
                     imu.LedsOff();

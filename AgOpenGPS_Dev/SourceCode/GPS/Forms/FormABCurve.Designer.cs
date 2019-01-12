@@ -32,6 +32,7 @@
             this.btnBPoint = new System.Windows.Forms.Button();
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnABLineOk = new System.Windows.Forms.Button();
+            this.lblCurveExists = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -41,7 +42,7 @@
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(153, 23);
+            this.btnCancel.Location = new System.Drawing.Point(153, 52);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 90);
             this.btnCancel.TabIndex = 86;
@@ -69,7 +70,7 @@
             this.btnAPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPoint.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
             this.btnAPoint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAPoint.Location = new System.Drawing.Point(15, 23);
+            this.btnAPoint.Location = new System.Drawing.Point(15, 52);
             this.btnAPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPoint.Name = "btnAPoint";
             this.btnAPoint.Size = new System.Drawing.Size(86, 90);
@@ -92,12 +93,24 @@
             this.btnABLineOk.UseVisualStyleBackColor = true;
             this.btnABLineOk.Click += new System.EventHandler(this.btnABLineOk_Click);
             // 
+            // lblCurveExists
+            // 
+            this.lblCurveExists.AutoSize = true;
+            this.lblCurveExists.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurveExists.Location = new System.Drawing.Point(33, 9);
+            this.lblCurveExists.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCurveExists.Name = "lblCurveExists";
+            this.lblCurveExists.Size = new System.Drawing.Size(156, 25);
+            this.lblCurveExists.TabIndex = 87;
+            this.lblCurveExists.Text = "Curve Not Set";
+            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 303);
             this.ControlBox = false;
+            this.Controls.Add(this.lblCurveExists);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
@@ -111,6 +124,7 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormABCurve_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -120,5 +134,6 @@
         private System.Windows.Forms.Button btnAPoint;
         private System.Windows.Forms.Button btnABLineOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblCurveExists;
     }
 }
