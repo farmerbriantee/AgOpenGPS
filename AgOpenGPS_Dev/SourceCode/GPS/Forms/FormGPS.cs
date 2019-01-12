@@ -198,7 +198,7 @@ namespace AgOpenGPS
         /// <summary>
         /// Generated Path
         /// </summary>
-        //public CGenPath genPath;
+        public CSelf self;
 
         #endregion // Class Props and instances
 
@@ -278,7 +278,7 @@ namespace AgOpenGPS
             fd = new CFieldData(this);
 
             //A generated Path
-            //genPath = new CGenPath(gl, this);
+            //self = new CSelf(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -542,7 +542,7 @@ namespace AgOpenGPS
             }
             try
             {
-                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "floor.png");
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Floor.png");
                 if (File.Exists(text2))
                 {
                     using (Bitmap bitmap2 = new Bitmap(text2))
@@ -976,7 +976,6 @@ namespace AgOpenGPS
             //auto YouTurn shutdown
             yt.isYouTurnBtnOn = false;
             yt.ResetYouTurn();
-            youTurnProgressBar = 0;
 
             //turn off youturn...
             btnEnableAutoYouTurn.Enabled = false;

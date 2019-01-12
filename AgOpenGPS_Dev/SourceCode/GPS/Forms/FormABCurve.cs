@@ -21,6 +21,7 @@ namespace AgOpenGPS
             mf.curve.ResetCurveLine();
             mf.FileSaveCurveLine();
             mf.DisableYouTurnButtons();
+            lblCurveExists.Text = "Curve Not Set";
         }
 
         private void btnABLineOk_Click(object sender, System.EventArgs e)
@@ -43,6 +44,7 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
             //clear out the reference list
+            lblCurveExists.Text = "Curve Being Set";
             mf.curve.refList?.Clear();
             mf.curve.isOkToAddPoints = true;
             btnBPoint.Enabled = true;
@@ -91,6 +93,11 @@ namespace AgOpenGPS
             {
                 btnBPoint.Enabled = false;
                 btnAPoint.Enabled = false;
+                lblCurveExists.Text = "Curve Set";
+            }
+            else
+            {
+                lblCurveExists.Text = "Curve Not Set";
             }
         }
     }

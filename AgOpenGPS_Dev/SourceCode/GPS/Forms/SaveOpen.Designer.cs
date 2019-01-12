@@ -128,6 +128,7 @@ namespace AgOpenGPS
                     writer.WriteLine("minPWM," + Properties.Settings.Default.setAS_minSteerPWM.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("MaxIntegral," + Properties.Settings.Default.setAS_maxIntegral.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("CountsPerDegree," + Properties.Settings.Default.setAS_countsPerDegree.ToString(CultureInfo.InvariantCulture));
+
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
 
@@ -149,9 +150,16 @@ namespace AgOpenGPS
                     writer.WriteLine("HeadingFromBrick," + Properties.Settings.Default.setIMU_isHeadingFromBrick);
                     writer.WriteLine("RollFromDogs," + Properties.Settings.Default.setIMU_isRollFromDogs);
                     writer.WriteLine("HeadingFromBNO," + Properties.Settings.Default.setIMU_isHeadingFromBNO);
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
+
+                    writer.WriteLine("GoalPointLookAheadUTurnMult," +
+                        Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult.ToString(CultureInfo.InvariantCulture));
+
+                    writer.WriteLine("GoalPointLookAheadMinumum," +
+                        Properties.Vehicle.Default.setVehicle_lookAheadMinimum.ToString(CultureInfo.InvariantCulture));
+
+                    writer.WriteLine("GoalPointLookAheadDistanceFromLine," +
+                        Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine.ToString(CultureInfo.InvariantCulture));
+
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -404,11 +412,18 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_isHeadingFromBNO = bool.Parse(words[1]);
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = 0.7;
+                        else Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadMinimum = 3;
+                        else Properties.Vehicle.Default.setVehicle_lookAheadMinimum = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
+                        else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -429,8 +444,12 @@ namespace AgOpenGPS
                         vehicle.toolTrailingHitchLength = Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength;
                         vehicle.tankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
                         vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
-                        vehicle.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
                         vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+
+                        vehicle.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
+                        vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
+                        vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
+                        vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
 
                         vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
                         vehicle.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
@@ -661,7 +680,7 @@ namespace AgOpenGPS
                     {
                         line = reader.ReadLine();
                         line = reader.ReadLine();
-                        pn.convergenceAngle = double.Parse(line);
+                        pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
                         lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
                 }

@@ -154,7 +154,7 @@ namespace AgOpenGPS
             }
         }
 
-        public bool IsPointInsideTurn(vec3 testPointv3)
+        public bool IsPointInTurnWorkArea(vec3 testPointv3)
         {
             if (calcList.Count < 3) return false;
             int j = turnLine.Count - 1;
@@ -172,7 +172,7 @@ namespace AgOpenGPS
             return oddNodes; //true means inside.
         }
 
-        public bool IsPointInsideTurn(vec2 testPointv2)
+        public bool IsPointInTurnWorkArea(vec2 testPointv2)
         {
             if (calcList.Count < 3) return false;
             int j = turnLine.Count - 1;

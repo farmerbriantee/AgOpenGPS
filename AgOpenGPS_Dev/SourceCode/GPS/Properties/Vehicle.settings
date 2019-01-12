@@ -161,5 +161,8 @@
     <Setting Name="setVehicle_lookAheadMinimum" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
+    <Setting Name="setVehicle_goalPointLookAheadUturnMult" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

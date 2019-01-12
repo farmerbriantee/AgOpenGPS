@@ -765,12 +765,12 @@
             // hsbarLookAheadUturnMult
             // 
             this.hsbarLookAheadUturnMult.LargeChange = 1;
-            this.hsbarLookAheadUturnMult.Location = new System.Drawing.Point(17, 289);
+            this.hsbarLookAheadUturnMult.Location = new System.Drawing.Point(17, 291);
             this.hsbarLookAheadUturnMult.Maximum = 10;
             this.hsbarLookAheadUturnMult.Minimum = 1;
             this.hsbarLookAheadUturnMult.Name = "hsbarLookAheadUturnMult";
             this.hsbarLookAheadUturnMult.Size = new System.Drawing.Size(287, 23);
-            this.hsbarLookAheadUturnMult.TabIndex = 295;
+            this.hsbarLookAheadUturnMult.TabIndex = 298;
             this.hsbarLookAheadUturnMult.Value = 4;
             this.hsbarLookAheadUturnMult.ValueChanged += new System.EventHandler(this.hsbarLookAheadUturnMult_ValueChanged);
             // 
@@ -778,20 +778,20 @@
             // 
             this.lblLookAheadUturnMult.AutoSize = true;
             this.lblLookAheadUturnMult.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLookAheadUturnMult.Location = new System.Drawing.Point(310, 276);
+            this.lblLookAheadUturnMult.Location = new System.Drawing.Point(310, 278);
             this.lblLookAheadUturnMult.Name = "lblLookAheadUturnMult";
             this.lblLookAheadUturnMult.Size = new System.Drawing.Size(108, 45);
-            this.lblLookAheadUturnMult.TabIndex = 296;
+            this.lblLookAheadUturnMult.TabIndex = 299;
             this.lblLookAheadUturnMult.Text = "-888";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 262);
+            this.label2.Location = new System.Drawing.Point(30, 264);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(261, 23);
-            this.label2.TabIndex = 294;
+            this.label2.TabIndex = 297;
             this.label2.Text = "UTurn Look Ahead (Multiplier)";
             // 
             // FormSteer

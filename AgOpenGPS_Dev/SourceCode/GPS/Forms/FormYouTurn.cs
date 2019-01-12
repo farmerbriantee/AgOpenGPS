@@ -856,7 +856,7 @@ namespace AgOpenGPS
         #region distance
         private void btnDistanceDn_Click(object sender, EventArgs e)
         {
-            if (mf.yt.youTurnStartOffset-- < -48) mf.yt.youTurnStartOffset = -49;
+            if (mf.yt.youTurnStartOffset-- < 4) mf.yt.youTurnStartOffset = 3;
             lblDistance.Text = Math.Abs(mf.yt.youTurnStartOffset).ToString() + " m";
             if (mf.yt.youTurnStartOffset < 0) lblWhenTrig.Text = "Before";
             else lblWhenTrig.Text = "After";

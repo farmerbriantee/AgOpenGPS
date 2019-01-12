@@ -149,7 +149,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    //create the dubins path based on start and goal to start of recorded path
+                    //create the dubins path based on start and goal to start trip home
                     GetDubinsPath(homePos);
                     dubListCount = dubList.Count;
 
@@ -210,8 +210,8 @@ namespace AgOpenGPS
             //bump it forward
             vec3 pt2 = new vec3
             {
-                easting = pivotAxlePosRP.easting + (Math.Sin(pivotAxlePosRP.heading) * 5),
-                northing = pivotAxlePosRP.northing + (Math.Cos(pivotAxlePosRP.heading) * 5),
+                easting = pivotAxlePosRP.easting + (Math.Sin(pivotAxlePosRP.heading) * 4),
+                northing = pivotAxlePosRP.northing + (Math.Cos(pivotAxlePosRP.heading) * 4),
                 heading = pivotAxlePosRP.heading
             };
 
@@ -536,18 +536,17 @@ namespace AgOpenGPS
 
             if (mf.isPureDisplayOn)
             {
-                const int numSegments = 100;
+                if (ppRadiusRP < 50 && ppRadiusRP > -50)
                 {
-                    GL.Color3(0.95f, 0.630f, 0.950f);
-
+                    const int numSegments = 100;
                     double theta = glm.twoPI / numSegments;
                     double c = Math.Cos(theta);//precalculate the sine and cosine
                     double s = Math.Sin(theta);
-
                     double x = ppRadiusRP;//we start at angle = 0
                     double y = 0;
 
                     GL.LineWidth(1);
+                    GL.Color3(0.95f, 0.630f, 0.950f);
                     GL.Begin(PrimitiveType.LineLoop);
                     for (int ii = 0; ii < numSegments; ii++)
                     {
@@ -570,7 +569,6 @@ namespace AgOpenGPS
 
                     GL.Color3(1.0f, 0.5f, 0.95f);
                     GL.Vertex3(goalPointRP.easting, goalPointRP.northing, 0.0);
-
                     GL.End();
                     GL.PointSize(1.0f);
                 }

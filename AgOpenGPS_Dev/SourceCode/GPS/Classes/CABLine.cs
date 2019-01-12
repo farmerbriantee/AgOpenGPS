@@ -265,16 +265,6 @@ namespace AgOpenGPS
             ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
                 + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))));
 
-            //make sure pp doesn't generate a radius smaller then turn radius
-            //if (ppRadiusAB > 0)
-            //{
-            //    if (ppRadiusAB < mf.vehicle.minTurningRadius * 0.95) ppRadiusAB = mf.vehicle.minTurningRadius * 0.95;
-            //}
-            //else if (ppRadiusAB > -mf.vehicle.minTurningRadius * 0.95)
-            //{
-            //    ppRadiusAB = -mf.vehicle.minTurningRadius * 0.95;
-            //}
-
             steerAngleAB = glm.toDegrees(Math.Atan(2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
                 + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase
                 / goalPointDistanceDSquared));
@@ -317,10 +307,12 @@ namespace AgOpenGPS
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
 
-            if (mf.yt.isYouTurnShapeDisplayed)
+            if (mf.yt.isYouTurnTriggered)
             {
                 //do the pure pursuit from youTurn
                 mf.yt.DistanceFromYouTurnLine();
+
+                mf.seq.DoSequenceEvent();
 
                 //now substitute what it thinks are AB line values with auto turn values
                 steerAngleAB = mf.yt.steerAngleYT;
@@ -428,60 +420,41 @@ namespace AgOpenGPS
                     //draw the guidance circle
                     const int numSegments = 100;
                     {
-                        GL.Color3(0.95f, 0.30f, 0.950f);
-                        double theta = glm.twoPI / numSegments;
-                        double c = Math.Cos(theta);//precalculate the sine and cosine
-                        double s = Math.Sin(theta);
-
-                        double x = ppRadiusAB;//we start at angle = 0
-                        double y = 0;
-
-                        GL.LineWidth(1);
-                        GL.Begin(PrimitiveType.LineLoop);
-                        for (int ii = 0; ii < numSegments; ii++)
+                        if (ppRadiusAB < 50 && ppRadiusAB > -50 && mf.isPureDisplayOn)
                         {
-                            //output vertex
-                            GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
+                            GL.Color3(0.95f, 0.30f, 0.950f);
+                            double theta = glm.twoPI / numSegments;
+                            double c = Math.Cos(theta);//precalculate the sine and cosine
+                            double s = Math.Sin(theta);
 
-                            //apply the rotation matrix
-                            double t = x;
-                            x = (c * x) - (s * y);
-                            y = (s * t) + (c * y);
+                            double x = ppRadiusAB;//we start at angle = 0
+                            double y = 0;
+                            GL.LineWidth(1);
+                            GL.Begin(PrimitiveType.LineLoop);
+                            for (int ii = 0; ii < numSegments; ii++)
+                            {
+                                //output vertex
+                                GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
+
+                                //apply the rotation matrix
+                                double t = x;
+                                x = (c * x) - (s * y);
+                                y = (s * t) + (c * y);
+                            }
+                            GL.End();
                         }
-                        GL.End();
                     }
+
                     //Draw lookahead Point
                     GL.PointSize(8.0f);
                     GL.Begin(PrimitiveType.Points);
                     GL.Color3(1.0f, 1.0f, 0.0f);
                     GL.Vertex3(goalPointAB.easting, goalPointAB.northing, 0.0);
-                    //GL.Color(0.6f, 0.95f, 0.95f);
-                    //GL.Vertex(mf.at.rEastAT, mf.at.rNorthAT, 0.0);
-                    //GL.Color(0.6f, 0.95f, 0.95f);
-                    //GL.Vertex(mf.at.turnRadiusPt.easting, mf.at.turnRadiusPt.northing, 0.0);
                     GL.End();
                     GL.PointSize(1.0f);
                 }
 
                 mf.yt.DrawYouTurn();
-
-                if (mf.yt.isYouTurnShapeDisplayed)
-                {
-                    GL.Color3(0.95f, 0.95f, 0.25f);
-                    GL.LineWidth(4);
-                    int ptCount = mf.yt.ytList.Count;
-                    if (ptCount > 0)
-                    {
-                        GL.Begin(PrimitiveType.LineStrip);
-                        for (int i = 0; i < ptCount; i++)
-                        {
-                            GL.Vertex3(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
-                        }
-                        GL.End();
-                    }
-
-                    GL.Color3(0.95f, 0.05f, 0.05f);
-                }
 
                 if (mf.yt.isRecordingCustomYouTurn)
                 {
@@ -513,7 +486,7 @@ namespace AgOpenGPS
             refABLineP2 = new vec2(0.0, 1.0);
 
             currentABLineP1 = new vec2(0.0, 0.0);
-            currentABLineP2 = new vec2(0.0, 1.0);
+            currentABLineP2 = new vec2(0.0, 0.2);
 
             abHeading = 0.0;
             isABLineSet = false;

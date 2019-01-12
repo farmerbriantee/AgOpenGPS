@@ -96,7 +96,7 @@ namespace AgOpenGPS
             goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
             goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
             goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
-            goalPointLookAheadUturnMult = 0.4;
+            goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
@@ -252,15 +252,15 @@ namespace AgOpenGPS
             ////disable, straight color
             //GL.Disable(EnableCap.Texture2D);
 
-            GL.Begin(PrimitiveType.TriangleFan);
-            GL.Color3(0.820, 0.50, 0.59);
-            GL.Vertex3(0, antennaPivot, 0);
-            GL.Vertex3(1.8, 0, 0.0);
-            GL.Color3(0.20, 0.0, 0.9);
-            GL.Vertex3(0, wheelbase, 0.0);
-            GL.Vertex3(-1.8, 0, 0.0);
-            GL.Vertex3(1.8, 0, 0.0);
-            GL.End();
+            //GL.Begin(PrimitiveType.LineStrip);
+            //GL.Color3(0.820, 0.50, 0.59);
+            ////GL.Vertex3(0, antennaPivot, 0);
+            ////GL.Vertex3(1.8, 0, 0.0);
+            ////GL.Color3(0.20, 0.0, 0.9);
+            ////GL.Vertex3(0, wheelbase, 0.0);
+            //GL.Vertex3(-1.8, 0, 0.0);
+            //GL.Vertex3(1.8, 0, 0.0);
+            //GL.End();
 
             //draw the area side marker
             //GL.Color3(0.95f, 0.90f, 0.0f);
@@ -284,12 +284,12 @@ namespace AgOpenGPS
             //GL.Vertex3(1.8, 0, 0);
             GL.End();
 
-            GL.LineWidth(1);
-            GL.Color3(0,0,0);
+            GL.LineWidth(2);
+            GL.Color3(0.9,0.8,0.7);
             GL.Begin(PrimitiveType.LineLoop);
             {
-                GL.Vertex3(-1.8, 0, 0);
-                GL.Vertex3(1.8, 0, 0);
+                GL.Vertex3(-1.2, 0, 0);
+                GL.Vertex3(1.2, 0, 0);
                 GL.Vertex3(0, wheelbase, 0);
             }
             GL.End();

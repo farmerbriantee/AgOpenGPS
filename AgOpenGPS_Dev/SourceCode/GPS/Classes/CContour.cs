@@ -887,18 +887,17 @@ namespace AgOpenGPS
 
             if (mf.isPureDisplayOn)
             {
-                const int numSegments = 100;
+                if (ppRadiusCT < 50 && ppRadiusCT > -50)
                 {
-                    GL.Color3(0.95f, 0.30f, 0.950f);
-
+                    const int numSegments = 100;
                     double theta = glm.twoPI / numSegments;
                     double c = Math.Cos(theta);//precalculate the sine and cosine
                     double s = Math.Sin(theta);
-
                     double x = ppRadiusCT;//we start at angle = 0
                     double y = 0;
 
                     GL.LineWidth(1);
+                    GL.Color3(0.95f, 0.30f, 0.950f);
                     GL.Begin(PrimitiveType.LineLoop);
                     for (int ii = 0; ii < numSegments; ii++)
                     {
@@ -911,19 +910,19 @@ namespace AgOpenGPS
                         y = (s * t) + (c * y);
                     }
                     GL.End();
-
-                    //Draw lookahead Point
-                    GL.PointSize(6.0f);
-                    GL.Begin(PrimitiveType.Points);
-
-                    //GL.Color(1.0f, 1.0f, 0.25f);
-                    //GL.Vertex(rEast, rNorth, 0.0);
-
-                    GL.Color3(1.0f, 0.95f, 0.095f);
-                    GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);
-                    GL.End();
-                    GL.PointSize(1.0f);
                 }
+
+                //Draw lookahead Point
+                GL.PointSize(6.0f);
+                GL.Begin(PrimitiveType.Points);
+
+                //GL.Color(1.0f, 1.0f, 0.25f);
+                //GL.Vertex(rEast, rNorth, 0.0);
+
+                GL.Color3(1.0f, 0.95f, 0.095f);
+                GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);
+                GL.End();
+                GL.PointSize(1.0f);
             }
         }
 

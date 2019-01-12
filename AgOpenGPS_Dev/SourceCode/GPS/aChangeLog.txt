@@ -1,4 +1,10 @@
-﻿v2.8 Aug 20, 2018
+﻿v2.8 Dec 2018
+* sequence works with uturn pattern
+* fixed heading generation on many items
+* dynamic uturn generation on curve and ab line
+* saves all steer parameters
+
+v2.8 Aug 20, 2018
 * Removed the eq control for now
 * Smarter better turn control for uturn
 * Skips go from 0 instead of 1

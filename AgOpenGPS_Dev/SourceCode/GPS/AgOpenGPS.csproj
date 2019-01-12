@@ -123,6 +123,13 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Classes\CSelf.cs" />
+    <Compile Include="FormSelf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelf.Designer.cs">
+      <DependentUpon>FormSelf.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSim.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,6 +373,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormSelf.resx">
+      <DependentUpon>FormSelf.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSim.resx">
       <DependentUpon>FormSim.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +384,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPS.de.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
       <DependentUpon>FormShortcutKeys.cs</DependentUpon>
@@ -392,18 +403,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.de.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.es.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.fr.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.it.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.nl.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABLine.ru.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>

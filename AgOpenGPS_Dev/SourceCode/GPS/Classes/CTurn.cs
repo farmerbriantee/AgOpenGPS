@@ -52,79 +52,107 @@ namespace AgOpenGPS
         public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
         {
             //initial scan is straight ahead of pivot point of vehicle to find the right turnLine/boundary
+            vec3 pt = new vec3();
 
-            //isYouTurnRight actuall means turning left - Painful, but it switches later
-            boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
-            boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
+            bool isFound = false;
+            int closestTurnNum = 99;
 
-            boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
-            boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
-
-            boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
-            boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
-
-            boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
-            boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
-
-            int ptCount, i;
-
-            //determine if point is inside bounding box
-            turnClosestList.Clear();
-            vec4 inBox;
-            for (i = 0; i < FormGPS.MAXHEADS; i++)
+            for (int b = 1; b < 1000; b+=2)
             {
-                //skip the drive thru
-                if (mf.bnd.bndArr[i].isDriveThru) continue;
+                pt.easting = fromPt.easting + (Math.Sin(headAB) * b);
+                pt.northing = fromPt.northing + (Math.Cos(headAB) * b);
 
-                ptCount = turnArr[i].turnLine.Count;
-                for (int p = 0; p < ptCount; p++)
+                if (turnArr[0].IsPointInTurnWorkArea(pt))
                 {
-                    if ((((boxB.easting - boxA.easting) * (turnArr[i].turnLine[p].northing - boxA.northing))
-                            - ((boxB.northing - boxA.northing) * (turnArr[i].turnLine[p].easting - boxA.easting))) < 0) { continue; }
-
-                    if ((((boxD.easting - boxC.easting) * (turnArr[i].turnLine[p].northing - boxC.northing))
-                            - ((boxD.northing - boxC.northing) * (turnArr[i].turnLine[p].easting - boxC.easting))) < 0) { continue; }
-
-                    if ((((boxC.easting - boxB.easting) * (turnArr[i].turnLine[p].northing - boxB.northing))
-                            - ((boxC.northing - boxB.northing) * (turnArr[i].turnLine[p].easting - boxB.easting))) < 0) { continue; }
-
-                    if ((((boxA.easting - boxD.easting) * (turnArr[i].turnLine[p].northing - boxD.northing))
-                            - ((boxA.northing - boxD.northing) * (turnArr[i].turnLine[p].easting - boxD.easting))) < 0) { continue; }
-
-                    //it's in the box, so add to list
-                    inBox.easting = turnArr[i].turnLine[p].easting;
-                    inBox.northing = turnArr[i].turnLine[p].northing;
-                    inBox.heading = turnArr[i].turnLine[p].heading;
-                    inBox.index = i;
-
-                    //which turn/headland is it from
-                    turnClosestList.Add(inBox);
-                }
-            }
-
-            //which of the points is closest
-            closestTurnPt.easting = -20000; closestTurnPt.northing = -20000;
-            ptCount = turnClosestList.Count;
-            if (ptCount != 0)
-            {
-                //determine closest point
-                double minDistance = 9999999;
-                for (i = 0; i < ptCount; i++)
-                {
-                    double dist = ((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
-                                    + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing));
-                    if (minDistance >= dist)
+                    for (int t = 1; t < FormGPS.MAXBOUNDARIES; t++)
                     {
-                        minDistance = dist;
-
-                        closestTurnPt.easting = turnClosestList[i].easting;
-                        closestTurnPt.northing = turnClosestList[i].northing;
-                        closestTurnPt.heading = turnClosestList[i].heading;
-                        mf.turn.closestTurnNum = (int)turnClosestList[i].index;
+                        if (!mf.bnd.bndArr[t].isSet) continue;
+                        if (mf.bnd.bndArr[t].isDriveThru) continue;
+                        if (mf.turn.turnArr[t].IsPointInTurnWorkArea(pt))
+                        {
+                            isFound = true;
+                            closestTurnNum = t;
+                            break;
+                        }
                     }
                 }
-                if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+                else
+                {
+                    isFound = true;
+                    closestTurnNum = 0;
+                    break;
+                }
+                if (isFound) break;
             }
+
+
+            //boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
+            //boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
+
+            //boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+            //boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
+
+            //boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+            //boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
+
+            //boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+            //boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
+
+            //int ptCount;
+
+            ////determine if point is inside bounding box
+            ////turnClosestList.Clear();
+            //vec4 inBox;
+
+            //ptCount = turnArr[turnNum].turnLine.Count;
+            //for (int p = 0; p < ptCount; p++)
+            //{
+            //    if ((((boxB.easting - boxA.easting) * (turnArr[turnNum].turnLine[p].northing - boxA.northing))
+            //            - ((boxB.northing - boxA.northing) * (turnArr[turnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+
+            //    if ((((boxD.easting - boxC.easting) * (turnArr[turnNum].turnLine[p].northing - boxC.northing))
+            //            - ((boxD.northing - boxC.northing) * (turnArr[turnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+
+            //    if ((((boxC.easting - boxB.easting) * (turnArr[turnNum].turnLine[p].northing - boxB.northing))
+            //            - ((boxC.northing - boxB.northing) * (turnArr[turnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+
+            //    if ((((boxA.easting - boxD.easting) * (turnArr[turnNum].turnLine[p].northing - boxD.northing))
+            //            - ((boxA.northing - boxD.northing) * (turnArr[turnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+
+            //    //it's in the box, so add to list
+            //    inBox.easting = turnArr[turnNum].turnLine[p].easting;
+            //    inBox.northing = turnArr[turnNum].turnLine[p].northing;
+            //    inBox.heading = turnArr[turnNum].turnLine[p].heading;
+            //    inBox.index = turnNum;
+
+            //    //which turn/headland is it from
+            //    turnClosestList.Add(inBox);
+            //}
+            
+
+            ////which of the points is closest
+            //closestTurnPt.easting = -20000; closestTurnPt.northing = -20000;
+            //ptCount = turnClosestList.Count;
+            //if (ptCount != 0)
+            //{
+            //    //determine closest point
+            //    double minDistance = 9999999;
+            //    for (int i = 0; i < ptCount; i++)
+            //    {
+            //        double dist = ((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
+            //                        + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing));
+            //        if (minDistance >= dist)
+            //        {
+            //            minDistance = dist;
+
+            //            closestTurnPt.easting = turnClosestList[i].easting;
+            //            closestTurnPt.northing = turnClosestList[i].northing;
+            //            closestTurnPt.heading = turnClosestList[i].heading;
+            //            mf.turn.closestTurnNum = (int)turnClosestList[i].index;
+            //        }
+            //    }
+            //    if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+            //}
 
             //second scan is straight ahead of outside of tool based on turn direction
             double scanWidthL, scanWidthR;
@@ -155,33 +183,90 @@ namespace AgOpenGPS
             //determine if point is inside bounding box of the 1 turn chosen above
             turnClosestList.Clear();
 
-            i = mf.turn.closestTurnNum;
+            mf.turn.closestTurnNum = closestTurnNum;
+            vec4 inBox;
 
-            ptCount = turnArr[i].turnLine.Count;
+            int ptCount = turnArr[closestTurnNum].turnLine.Count;
             for (int p = 0; p < ptCount; p++)
             {
-                if ((((boxB.easting - boxA.easting) * (turnArr[i].turnLine[p].northing - boxA.northing))
-                        - ((boxB.northing - boxA.northing) * (turnArr[i].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+                if ((((boxB.easting - boxA.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxA.northing))
+                        - ((boxB.northing - boxA.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
 
-                if ((((boxD.easting - boxC.easting) * (turnArr[i].turnLine[p].northing - boxC.northing))
-                        - ((boxD.northing - boxC.northing) * (turnArr[i].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+                if ((((boxD.easting - boxC.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxC.northing))
+                        - ((boxD.northing - boxC.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
 
-                if ((((boxC.easting - boxB.easting) * (turnArr[i].turnLine[p].northing - boxB.northing))
-                        - ((boxC.northing - boxB.northing) * (turnArr[i].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+                if ((((boxC.easting - boxB.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxB.northing))
+                        - ((boxC.northing - boxB.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
 
-                if ((((boxA.easting - boxD.easting) * (turnArr[i].turnLine[p].northing - boxD.northing))
-                        - ((boxA.northing - boxD.northing) * (turnArr[i].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+                if ((((boxA.easting - boxD.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxD.northing))
+                        - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
                 //it's in the box, so add to list
-                inBox.easting = turnArr[i].turnLine[p].easting;
-                inBox.northing = turnArr[i].turnLine[p].northing;
-                inBox.heading = turnArr[i].turnLine[p].heading;
-                inBox.index = i;
+                inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
+                inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
+                inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
+                inBox.index = closestTurnNum;
 
                 //which turn/headland is it from
                 turnClosestList.Add(inBox);
             }
 
+            if (turnClosestList.Count == 0)
+            {
+                if (isYouTurnRight) //its actually left
+                {
+                    scanWidthL = -scanWidth - (mf.vehicle.toolWidth * 0.5);
+                    scanWidthR = 0;
+                }
+                else
+                {
+                    scanWidthL = 0;
+                    scanWidthR = scanWidth + (mf.vehicle.toolWidth * 0.5);
+                }
+
+                //isYouTurnRight actuall means turning left - Painful, but it switches later
+                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthL);
+                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthL);
+
+                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthR);
+                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthR);
+
+                boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+                boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
+
+                boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+                boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
+
+                //determine if point is inside bounding box of the 1 turn chosen above
+                turnClosestList.Clear();
+
+                mf.turn.closestTurnNum = closestTurnNum;
+
+                ptCount = turnArr[closestTurnNum].turnLine.Count;
+                for (int p = 0; p < ptCount; p++)
+                {
+                    if ((((boxB.easting - boxA.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxA.northing))
+                            - ((boxB.northing - boxA.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+
+                    if ((((boxD.easting - boxC.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxC.northing))
+                            - ((boxD.northing - boxC.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+
+                    if ((((boxC.easting - boxB.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxB.northing))
+                            - ((boxC.northing - boxB.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+
+                    if ((((boxA.easting - boxD.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxD.northing))
+                            - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+
+                    //it's in the box, so add to list
+                    inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
+                    inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
+                    inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
+                    inBox.index = closestTurnNum;
+
+                    //which turn/headland is it from
+                    turnClosestList.Add(inBox);
+                }
+            }
             //which of the points is closest
             //closestTurnPt.easting = -20000; closestTurnPt.northing = -20000;
             ptCount = turnClosestList.Count;
@@ -189,7 +274,7 @@ namespace AgOpenGPS
             {
                 //determine closest point
                 double minDistance = 9999999;
-                for (i = 0; i < ptCount; i++)
+                for (int i = 0; i < ptCount; i++)
                 {
                     double dist = ((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
                                     + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing));
@@ -205,7 +290,7 @@ namespace AgOpenGPS
                 if (closestTurnPt2.heading < 0) closestTurnPt.heading += glm.twoPI;
 
                 //point must be in the neighborhood of center point
-                if (glm.Distance(closestTurnPt2.easting, closestTurnPt2.northing, closestTurnPt.easting, closestTurnPt.northing) < mf.vehicle.toolWidth)
+                //if (glm.Distance(closestTurnPt2.easting, closestTurnPt2.northing, closestTurnPt.easting, closestTurnPt.northing) < mf.vehicle.toolWidth)
                 {
                     closestTurnPt.easting = closestTurnPt2.easting;
                     closestTurnPt.northing = closestTurnPt2.northing;
@@ -279,7 +364,7 @@ namespace AgOpenGPS
                 turnArr[j].PreCalcTurnLines();
             }
 
-            mf.TimedMessageBox(800, "Turn Lines", "Turn limits Created");
+            //mf.TimedMessageBox(800, "Turn Lines", "Turn limits Created");
         }
 
         public void DrawTurnLines()
