@@ -100,8 +100,10 @@
   BNO055 IMU(A);  // create an instance
 #endif
 
-#ifdef JRK_2_POLOLU
-  #include <JrkG2.h>   // get from https://github.com/pololu/jrk-g2-arduino
+#if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
+  #include <JrkG2.h> 
+  // add this library via:  Tools->Manage Libraries
+  // or get from https://github.com/pololu/jrk-g2-arduino
   JrkG2I2C jrk;
   #define SteerPosZero 2046
   #define Invert_WAS 1
@@ -165,12 +167,20 @@ void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2	pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output //Pin 5
-  //pinMode(RELAY1_PIN, OUTPUT); //configure RELAY2 for output //Pin 6
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2
+ 
   pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
   pinMode(PWM_PIN, OUTPUT);
   pinMode(LED_PIN, OUTPUT);
-
+  pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
+  pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
+  pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
+  pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
+  //pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
+  //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
+  //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
+  //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
+	
   //set up communication
   Wire.begin();
   Serial.begin(38400);
@@ -338,7 +348,7 @@ void loop()
     
     steeringPosition = ( steeringPosition -steerSettings.steeringPositionZero);   //center the steering position sensor
 
-#ifdef JRK_2_POLOLU  // JRK_2_POLOLU AD In
+#if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
     steeringPosition = jrk.getScaledFeedback();  
     steeringPosition = ( steeringPosition -steerZero);   //center the steering position sensor
 #endif      

@@ -23,7 +23,7 @@ void calcSteeringPID(void)
   if (pwmDrive > 255) pwmDrive = 255;
   if (pwmDrive < -255) pwmDrive = -255;
 
-#ifdef JRK_2_POLOLU 
+#if (Output_Driver == 3) // JRK2 Pololu Driver
   pValue = steerAngleSetPoint * steerSettings.steerSensorCounts + steerZero;
   pwmDrive=1; //  !=0
 #endif
