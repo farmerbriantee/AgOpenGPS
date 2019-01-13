@@ -64,7 +64,7 @@ namespace AgOpenGPS
             int cnt = refList.Count;
 
             //just go back if not very long
-            if (!isCurveSet | cnt < 400) return;
+            if (!isCurveSet || cnt < 400) return;
 
             //the temp array
             vec3[] arr = new vec3[cnt];
@@ -577,7 +577,7 @@ namespace AgOpenGPS
             else
             {
                 ptCount = curList.Count;
-                if (ptCount > 0 | !isCurveSet)
+                if (ptCount > 0 || !isCurveSet)
                 {
                     GL.PointSize(2);
 
