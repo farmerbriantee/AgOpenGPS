@@ -72,6 +72,7 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.tabSections = new System.Windows.Forms.TabPage();
+            this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.nudMinApplied = new System.Windows.Forms.NumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
@@ -117,7 +118,6 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.lblVehicleToolWidth = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
@@ -371,7 +371,7 @@
             0,
             0});
             this.nudWheelbase.Minimum = new decimal(new int[] {
-            200,
+            50,
             0,
             0,
             0});
@@ -638,6 +638,11 @@
             this.tabSections.Controls.Add(this.nudNumberOfSections);
             this.tabSections.Name = "tabSections";
             this.tabSections.UseVisualStyleBackColor = true;
+            // 
+            // lblVehicleToolWidth
+            // 
+            resources.ApplyResources(this.lblVehicleToolWidth, "lblVehicleToolWidth");
+            this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             // 
             // label41
             // 
@@ -1063,11 +1068,6 @@
             this.bntOK.Name = "bntOK";
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // lblVehicleToolWidth
-            // 
-            resources.ApplyResources(this.lblVehicleToolWidth, "lblVehicleToolWidth");
-            this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             // 
             // FormSettings
             // 
