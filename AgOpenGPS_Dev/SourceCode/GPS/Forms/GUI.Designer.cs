@@ -1056,49 +1056,49 @@ namespace AgOpenGPS
 
         private void btnGenerateSelf_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            {
-                //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+            //if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            //{
+            //    //field too small or moving
+            //    if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
-                using (var form = new FormSelf(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                    }
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            //    using (var form = new FormSelf(this))
+            //    {
+            //        var result = form.ShowDialog();
+            //        if (result == DialogResult.OK)
+            //        {
+            //        }
+            //    }
+            //}
+            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
 
         private void btnGoSelf_Click(object sender, EventArgs e)
         {
-            if (!self.isPausedSelfDriving)
-            {
-                //already running?
-                if (self.isSelfDriving)
-                {
-                    self.StopSelfDriving();
-                    return;
-                }
+            //if (!self.isPausedSelfDriving)
+            //{
+            //    //already running?
+            //    if (self.isSelfDriving)
+            //    {
+            //        self.StopSelfDriving();
+            //        return;
+            //    }
 
-                if (!self.StartSelfDriving())
-                {
-                    //Cancel the self - something went seriously wrong
-                    self.StopSelfDriving();
-                }
-                else
-                {
-                    btnGoSelf.Image = Properties.Resources.AutoStop;
-                }
-            }
-            else
-            {
-                self.isPausedSelfDriving = false;
-                btnPauseDrivingPath.BackColor = Color.Lime;
-            }
+            //    if (!self.StartSelfDriving())
+            //    {
+            //        //Cancel the self - something went seriously wrong
+            //        self.StopSelfDriving();
+            //    }
+            //    else
+            //    {
+            //        btnGoSelf.Image = Properties.Resources.AutoStop;
+            //    }
+            //}
+            //else
+            //{
+            //    self.isPausedSelfDriving = false;
+            //    btnPauseDrivingPath.BackColor = Color.Lime;
+            //}
         }
 
         private void btnManualAutoDrive_Click(object sender, EventArgs e)
@@ -2879,8 +2879,6 @@ namespace AgOpenGPS
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 //else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                //else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }

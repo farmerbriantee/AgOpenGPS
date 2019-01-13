@@ -164,11 +164,6 @@ namespace AgOpenGPS
                 recPath.DrawRecordedLine();
                 recPath.DrawDubins();
 
-                //draw generated path
-                //genPath.DrawGeneratedPath();
-                //self.DrawDubins();
-
-
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
                 if (flagCnt > 0)

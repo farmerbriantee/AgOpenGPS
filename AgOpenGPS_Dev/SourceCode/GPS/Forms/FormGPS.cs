@@ -195,11 +195,6 @@ namespace AgOpenGPS
         /// </summary>
         public CFieldData fd;
 
-        /// <summary>
-        /// Generated Path
-        /// </summary>
-        public CSelf self;
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -276,9 +271,6 @@ namespace AgOpenGPS
 
             //fieldData all in one place
             fd = new CFieldData(this);
-
-            //A generated Path
-            //self = new CSelf(this);
 
             //start the stopwatch
             swFrame.Start();

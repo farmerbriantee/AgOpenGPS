@@ -323,7 +323,6 @@ namespace AgOpenGPS
 
             //if the whole path driving driving process is green
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
-            //if (self.isSelfDriving) self.UpdatePosition();
 
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
@@ -449,7 +448,7 @@ namespace AgOpenGPS
             if (bnd.bndArr[0].isSet)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (IsInWorkingArea() && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
