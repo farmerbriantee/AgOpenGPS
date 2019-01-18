@@ -409,7 +409,7 @@ void loop()
   
   if (watchdogTimer < 10)
     { 
-      bitSet(PORTD, 7);   //turn LED on
+      digitalWrite(LED_PIN, 1);   //turn LED on
       steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
       calcSteeringPID();  //do the pid
       motorDrive();       //out to motors the pwm value
@@ -419,6 +419,6 @@ void loop()
       //we've lost the comm to AgOpenGPS
       pwmDrive = 0; //turn off steering motor
       motorDrive(); //out to motors the pwm value
-      bitClear(PORTD, 7); //turn LED off
+      digitalWrite(LED_PIN, 0); //turn LED off
     }
 } // end of main loop
