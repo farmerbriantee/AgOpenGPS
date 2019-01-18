@@ -107,10 +107,10 @@ void motorDrive(void)
     if (pwmDrive >  250) pwmDrive =  250; 
     if (pwmDrive < -250) pwmDrive = -250;
   
-  if (steerEnable == true) bitSet(PORTD, 6); // turn on /off Power
+  if (steerEnable == true) analogWrite(DIR_PIN, 255); // turn on /off Power
   else 
     {
-      bitClear(PORTD, 6);  
+      analogWrite(DIR_PIN, 0);  
       pwmDrive=0;
     }
    
