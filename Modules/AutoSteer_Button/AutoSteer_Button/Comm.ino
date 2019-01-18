@@ -67,19 +67,19 @@ void receiveSerial(){
         if (distanceFromLine == 32020 | speeed < 1 | pulseCount >= pulseCountMax )
       {      
         steerEnable = false;
-        bitClear(PORTD, 7);       //turn LED off
+        digitalWrite(LED_PIN, 0);       //turn LED off
         watchdogTimer = 12;       //turn off steering motor
       }    
       else                        //valid conditions to turn on autosteer
       { if (olddist == 32020) steerEnable = true; // Take over AOG State on startup
         if (steerEnable == true) 
            {
-            bitSet(PORTD, 7);     //turn LED on   
+            digitalWrite(LED_PIN, 1);     //turn LED on   
             watchdogTimer = 0;    //reset watchdog
            }
         else 
            {
-            bitClear(PORTD, 7);   //turn LED off
+            digitalWrite(LED_PIN, 0);   //turn LED off
             watchdogTimer = 12;   //turn off steering motor
            }
       }    
@@ -169,19 +169,19 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     if (distanceFromLine == 32020 | speeed < 1 | pulseCount >= pulseCountMax )
     {
       steerEnable = false;
-      bitClear(PORTD, 7);       //turn LED off
+      digitalWrite(LED_PIN, 0);       //turn LED off
       watchdogTimer = 12;       //turn off steering motor
     }
     else                        //valid conditions to turn on autosteer
     { if (olddist == 32020) steerEnable = true; // Take over AOG State on startup
       if (steerEnable == true)
       {
-        bitSet(PORTD, 7);     //turn LED on
+        digitalWrite(LED_PIN, 1);     //turn LED on
         watchdogTimer = 0;    //reset watchdog
       }
       else
       {
-        bitClear(PORTD, 7);   //turn LED off
+        digitalWrite(LED_PIN, 0);   //turn LED off
         watchdogTimer = 12;   //turn off steering motor
       }
     }
