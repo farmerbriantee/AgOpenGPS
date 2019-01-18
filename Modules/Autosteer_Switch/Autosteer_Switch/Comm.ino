@@ -61,11 +61,11 @@ void receiveSerial(){
     if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1)
       {
        watchdogTimer = 12; //turn off steering motor
-       bitClear(PORTD, 7); //turn LED off
+       digitalWrite(LED_PIN, 0); //turn LED off
       }
     else          //valid conditions to turn on autosteer
       {
-       bitSet(PORTD, 7);   //turn LED on
+       digitalWrite(LED_PIN, 1);   //turn LED on
        watchdogTimer = 0;  //reset watchdog
        serialResetTimer = 0; //if serial buffer is getting full, empty it
       }
@@ -156,11 +156,11 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       if (distanceFromLine == 32020 | speeed < 1 | steerSwitch == 1)
       {
         watchdogTimer = 12;//turn off steering motor
-        bitClear(PORTD, 7); //turn LED off
+        digitalWrite(LED_PIN, 0); //turn LED off
       }
       else          //valid conditions to turn on autosteer
       {
-        bitSet(PORTD, 7);   //turn LED on
+        digitalWrite(LED_PIN, 1);   //turn LED on
         watchdogTimer = 0;  //reset watchdog
       }
       uTurn = 0; // no uTurn byte with Ethernet Mode
