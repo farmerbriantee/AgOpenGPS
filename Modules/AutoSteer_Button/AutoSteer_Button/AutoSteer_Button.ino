@@ -248,8 +248,8 @@ void setup()
 #endif
 
   // Reset Output
-  bitClear(PORTD, 7); // Turn off Autosteer LED
-  bitClear(PORTD, 6); // Set Motordir to left //turn off PWM Coil 2 // Turn off Danfoss Valve
+  digitalWrite(LED_PIN, 0); // Turn off Autosteer LED
+  digitalWrite(DIR_PIN, 0); // Set Motordir to left //turn off PWM Coil 2 // Turn off Danfoss Valve
   pwmDrive = 0;       // turn Motor off       //turn off PWM Coil 1 // Center Danfoss Valve
   motorDrive();
   
