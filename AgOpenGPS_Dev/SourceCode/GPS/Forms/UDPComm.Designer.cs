@@ -131,13 +131,17 @@ namespace AgOpenGPS
                 //autosteer
                 case 5577:
                     {
-                        if (ahrs.isHeadingBNO)
+                        //if (ahrs.isHeadingBNO)
+                        //by Matthias Hammer Jan 2019
+                        if ((ahrs.isHeadingBNO) & (!ahrs.isBNOSeparate))
                         {
                             mc.prevGyroHeading = mc.gyroHeading;
                             mc.gyroHeading = (Int16)((data[4] << 8) + data[5]);
                         }
 
-                        if (ahrs.isRollDogs)
+                        //if (ahrs.isRollDogs)
+                        //by Matthias Hammer Jan 2019
+                        if ((ahrs.isRollDogs) & (!ahrs.isDogsSeparate))
                         {
                             mc.rollRaw = (Int16)((data[6] << 8) + data[7]);
                         }
@@ -172,9 +176,36 @@ namespace AgOpenGPS
                 //IMU
                 case 5544:
                     {
+                        //by Matthias Hammer Jan 2019
+                        if ((data[0] == 127) & (data[1] == 238))
+                        {
+                            if (ahrs.isBNOSeparate)
+                            {
+                                if (ahrs.isHeadingBNO)
+                                {
+                                    mc.prevGyroHeading = mc.gyroHeading;
+                                    mc.gyroHeading = (Int16)((data[4] << 8) + data[5]);
+                                }
+                            }
+                            else
+                            {
+                                if ((data[4] != 0) | (data[5] != 0)) { ahrs.isBNOSeparate = true; }
+                            }
+
+                            if (ahrs.isDogsSeparate)
+                            {
+                                if (ahrs.isRollDogs)
+                                {
+                                    mc.rollRaw = (Int16)((data[6] << 8) + data[7]);
+                                }
+                            }
+                            else
+                            {
+                                if ((data[6] != 0) | (data[7] != 0)) { ahrs.isDogsSeparate = true; }
+                            }
+                        }
                         break;
                     }
-
                 //Sections
                 case 5555:
                     {
