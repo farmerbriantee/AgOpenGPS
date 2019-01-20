@@ -22,6 +22,9 @@ namespace AgOpenGPS
 
         //flags for desired sources
         public bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
+        //by Matthias Hammer Jan 2019
+        public bool isBNOSeparate = false;
+        public bool isDogsSeparate = false;
 
         //actual value in degrees* 16 to modify the imu*16 values
         public int rollZero, pitchZero;
