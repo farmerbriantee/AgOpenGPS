@@ -448,7 +448,7 @@ namespace AgOpenGPS
             if (bnd.bndArr[0].isSet)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInWorkingArea() && !yt.isTurnCreationNotCrossingError)
+                if (IsInWorkingArea())
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -498,7 +498,7 @@ namespace AgOpenGPS
                             if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
                             {
                                 //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
-                                if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
+                                if (Math.Abs(guidanceLineDistanceOff) > 1500)
                                 {
                                     yt.ResetYouTurn();
                                 }

@@ -65,7 +65,6 @@ namespace AgOpenGPS
             hsbarDistanceFromLine.Value = (Int16)(mf.vehicle.goalPointDistanceMultiplier * 10);
             lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
 
-            //** todo add save of settings
             hsbarLookAheadUturnMult.Value = (Int16)(mf.vehicle.goalPointLookAheadUturnMult * 10);
             lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
 

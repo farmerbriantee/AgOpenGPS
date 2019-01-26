@@ -1,4 +1,13 @@
-﻿v2.8 Dec 2018
+﻿v2.8 Jan 2019
+* Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
+* Fixed point fixing on boundary, gaps at end not filling
+* Turn Lines point distance based on eq width
+* Fixed input ouput text boxes not labelled correct
+* Headings calc fixed in contour and AB Curve. 
+* Manual UTurn eludes fixing. Need a software dept meeting. Someone needs firing. 
+* Firing helped, UTurn manual mostly works. 
+
+v2.8 Dec 2018
 * sequence works with uturn pattern
 * fixed heading generation on many items
 * dynamic uturn generation on curve and ab line

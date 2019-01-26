@@ -464,11 +464,10 @@ namespace AgOpenGPS
 
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
+            AddSequenceLines(head);
 
             int count = ytList.Count;
             if (count == 0) return false;
-
-            AddSequenceLines(head);
 
             if (youTurnPhase == 3) return true;
 
@@ -1136,12 +1135,10 @@ namespace AgOpenGPS
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
-                //vec3 pt = new vec3();
+                AddSequenceLines(head);
 
                 int count = ytList.Count;
                 if (count == 0) return false;
-
-                AddSequenceLines(head);
             }
 
             switch (youTurnPhase)
@@ -1445,8 +1442,8 @@ namespace AgOpenGPS
                 else head -= 0.01;
 
                 //move the start forward 3 meters
-                rEastYT += (Math.Sin(head) * 3);
-                rNorthYT += (Math.Cos(head) * 3);
+                rEastYT += (Math.Sin(head) * 5);
+                rNorthYT += (Math.Cos(head) * 5);
 
                 var start = new vec3(rEastYT, rNorthYT, head);
                 var goal = new vec3();
@@ -1475,6 +1472,25 @@ namespace AgOpenGPS
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
+
+                vec3 pt;
+                for (int a = 0; a < 3; a++)
+                {
+                    pt.easting = ytList[0].easting + (Math.Sin(head));
+                    pt.northing = ytList[0].northing + (Math.Cos(head));
+                    pt.heading = ytList[0].heading;
+                    ytList.Insert(0, pt);
+                }
+
+                int count = ytList.Count;
+
+                for (int i = 1; i <= 7; i++)
+                {
+                    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
+                    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
+                    pt.heading = head;
+                    ytList.Add(pt);
+                }
             }
         }
 
