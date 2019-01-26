@@ -25,13 +25,13 @@
 #define RELAY3_PIN  7  //PD7
 #define RELAY4_PIN  8  //PB0
 #define RELAY5_PIN  9  //PB1
-#define RELAY6_PIN 12  //PB4
-#define RELAY7_PIN 13  //PB5
-#define RELAY8_PIN A0  //PC0
-#define RELAY9_PIN A1  //PC1
-#define RELAY10_PIN A2 //PC2
-#define RELAY11_PIN A3 //PC3
-#define RELAY12_PIN A4 //PC4
+#define RELAY6_PIN A0  //PC0
+#define RELAY7_PIN A1  //PC1
+#define RELAY8_PIN A2  //PC2
+#define RELAY9_PIN A3  //PC3
+#define RELAY10_PIN A2 //PC4
+#define RELAY11_PIN 12 //PB4
+#define RELAY12_PIN 13 //PB5
 
 #define AUTO_SW     A7  // Section Switches
 #define SECT1_SW    A6
