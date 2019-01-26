@@ -10,6 +10,8 @@
     if (bitRead(relayLo,7)) digitalWrite(RELAY8_PIN , ON); else digitalWrite(RELAY8_PIN , OFF);
     if (bitRead(relayHi,0)) digitalWrite(RELAY9_PIN , ON); else digitalWrite(RELAY9_PIN , OFF);
     if (bitRead(relayHi,1)) digitalWrite(RELAY10_PIN , ON); else digitalWrite(RELAY10_PIN , OFF);
+ #if (!EtherNet) 
     if (bitRead(relayHi,2)) digitalWrite(RELAY11_PIN , ON); else digitalWrite(RELAY11_PIN , OFF);
     if (bitRead(relayHi,3)) digitalWrite(RELAY12_PIN , ON); else digitalWrite(RELAY12_PIN , OFF);
+ #endif
  }
