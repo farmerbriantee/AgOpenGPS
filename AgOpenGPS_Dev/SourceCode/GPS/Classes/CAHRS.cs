@@ -47,7 +47,7 @@ namespace AgOpenGPS
             pitchZero = Properties.Settings.Default.setIMU_pitchZero;
 
             //usb IMU Tinker
-            if (isHeadingBrick | isRollBrick)
+            if (isHeadingBrick || isRollBrick)
             {
                 ipcon = new IPConnection(); // Create IP connection
                 imu = new BrickIMUV2(CAHRS.UID, ipcon); // Create device object

@@ -133,7 +133,9 @@
             this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.btnDeleteRecPath = new System.Windows.Forms.Button();
+            this.btnGenerateSelf = new System.Windows.Forms.Button();
             this.btnDrivePath = new System.Windows.Forms.Button();
+            this.btnGoSelf = new System.Windows.Forms.Button();
             this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.rate2Page5 = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
@@ -193,8 +195,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnGoSelf = new System.Windows.Forms.Button();
-            this.btnGenerateSelf = new System.Windows.Forms.Button();
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
@@ -1066,6 +1066,14 @@
             this.btnDeleteRecPath.UseVisualStyleBackColor = false;
             this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
             // 
+            // btnGenerateSelf
+            // 
+            resources.ApplyResources(this.btnGenerateSelf, "btnGenerateSelf");
+            this.btnGenerateSelf.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnGenerateSelf.Name = "btnGenerateSelf";
+            this.btnGenerateSelf.UseVisualStyleBackColor = false;
+            this.btnGenerateSelf.Click += new System.EventHandler(this.btnGenerateSelf_Click);
+            // 
             // btnDrivePath
             // 
             resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
@@ -1074,6 +1082,15 @@
             this.btnDrivePath.Name = "btnDrivePath";
             this.btnDrivePath.UseVisualStyleBackColor = false;
             this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
+            // 
+            // btnGoSelf
+            // 
+            resources.ApplyResources(this.btnGoSelf, "btnGoSelf");
+            this.btnGoSelf.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnGoSelf.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.btnGoSelf.Name = "btnGoSelf";
+            this.btnGoSelf.UseVisualStyleBackColor = false;
+            this.btnGoSelf.Click += new System.EventHandler(this.btnGoSelf_Click);
             // 
             // btnManualAutoDrive
             // 
@@ -1501,23 +1518,6 @@
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            // 
-            // btnGoSelf
-            // 
-            resources.ApplyResources(this.btnGoSelf, "btnGoSelf");
-            this.btnGoSelf.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnGoSelf.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnGoSelf.Name = "btnGoSelf";
-            this.btnGoSelf.UseVisualStyleBackColor = false;
-            this.btnGoSelf.Click += new System.EventHandler(this.btnGoSelf_Click);
-            // 
-            // btnGenerateSelf
-            // 
-            resources.ApplyResources(this.btnGenerateSelf, "btnGenerateSelf");
-            this.btnGenerateSelf.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnGenerateSelf.Name = "btnGenerateSelf";
-            this.btnGenerateSelf.UseVisualStyleBackColor = false;
-            this.btnGenerateSelf.Click += new System.EventHandler(this.btnGenerateSelf_Click);
             // 
             // oglZoom
             // 

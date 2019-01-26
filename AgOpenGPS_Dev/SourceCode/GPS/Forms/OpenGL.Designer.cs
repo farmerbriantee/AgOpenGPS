@@ -1142,86 +1142,91 @@ namespace AgOpenGPS
             minFieldX = 9999999; minFieldY = 9999999;
             maxFieldX = -9999999; maxFieldY = -9999999;
 
-            //draw patches j= # of sections
-            for (int j = 0; j < vehicle.numSuperSection; j++)
+
+            //min max of the boundary
+            if (bnd.bndArr[0].isSet)
             {
-                //every time the section turns off and on is a new patch
-                int patchCount = section[j].patchList.Count;
-
-                if (patchCount > 0)
+                int bndCnt = bnd.bndArr[0].bndLine.Count;
+                for (int i = 0; i < bndCnt; i++)
                 {
-                    //for every new chunk of patch
-                    foreach (var triList in section[j].patchList)
-                    {
-                        int count2 = triList.Count;
-                        for (int i = 0; i < count2; i += 3)
-                        {
-                            double x = triList[i].easting;
-                            double y = triList[i].northing;
+                    double x = bnd.bndArr[0].bndLine[i].easting;
+                    double y = bnd.bndArr[0].bndLine[i].northing;
 
-                            //also tally the max/min of field x and z
-                            if (minFieldX > x) minFieldX = x;
-                            if (maxFieldX < x) maxFieldX = x;
-                            if (minFieldY > y) minFieldY = y;
-                            if (maxFieldY < y) maxFieldY = y;
+                    //also tally the max/min of field x and z
+                    if (minFieldX > x) minFieldX = x;
+                    if (maxFieldX < x) maxFieldX = x;
+                    if (minFieldY > y) minFieldY = y;
+                    if (maxFieldY < y) maxFieldY = y;
+                }
+
+            }
+            else
+            {
+                //draw patches j= # of sections
+                for (int j = 0; j < vehicle.numSuperSection; j++)
+                {
+                    //every time the section turns off and on is a new patch
+                    int patchCount = section[j].patchList.Count;
+
+                    if (patchCount > 0)
+                    {
+                        //for every new chunk of patch
+                        foreach (var triList in section[j].patchList)
+                        {
+                            int count2 = triList.Count;
+                            for (int i = 0; i < count2; i += 3)
+                            {
+                                double x = triList[i].easting;
+                                double y = triList[i].northing;
+
+                                //also tally the max/min of field x and z
+                                if (minFieldX > x) minFieldX = x;
+                                if (maxFieldX < x) maxFieldX = x;
+                                if (minFieldY > y) minFieldY = y;
+                                if (maxFieldY < y) maxFieldY = y;
+                            }
                         }
                     }
                 }
-
-                //min max of the boundary
-                int bndCnt = bnd.bndArr[0].bndLine.Count;
-                if (bndCnt > 0)
-                {
-                    for (int i = 0; i < bndCnt; i++)
-                    {
-                        double x = bnd.bndArr[0].bndLine[i].easting;
-                        double y = bnd.bndArr[0].bndLine[i].northing;
-
-                        //also tally the max/min of field x and z
-                        if (minFieldX > x) minFieldX = x;
-                        if (maxFieldX < x) maxFieldX = x;
-                        if (minFieldY > y) minFieldY = y;
-                        if (maxFieldY < y) maxFieldY = y;
-                    }
-
-                }
-
-
-                if (maxFieldX == -9999999 | minFieldX == 9999999 | maxFieldY == -9999999 | minFieldY == 9999999)
-                {
-                    maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
-                }
-                else
-                {
-                    //the largest distancew across field
-                    double dist = Math.Abs(minFieldX - maxFieldX);
-                    double dist2 = Math.Abs(minFieldY - maxFieldY);
-
-                    if (dist > dist2) maxFieldDistance = (dist);
-                    else maxFieldDistance = (dist2);
-
-
-                    if (maxFieldDistance < 200) maxFieldDistance = 200;
-                    if (maxFieldDistance > 19900) maxFieldDistance = 19900;
-                    //lblMax.Text = ((int)maxFieldDistance).ToString();
-
-                    fieldCenterX = (maxFieldX + minFieldX) / 2.0;
-                    fieldCenterY = (maxFieldY + minFieldY) / 2.0;
-                }
-
-                if (isMetric)
-                {
-                    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-                }
-                else
-                {
-                    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-                }
-
-                //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
             }
+
+
+            if (maxFieldX == -9999999 | minFieldX == 9999999 | maxFieldY == -9999999 | minFieldY == 9999999)
+            {
+                maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
+            }
+            else
+            {
+                //the largest distancew across field
+                double dist = Math.Abs(minFieldX - maxFieldX);
+                double dist2 = Math.Abs(minFieldY - maxFieldY);
+
+                if (dist > dist2) maxFieldDistance = (dist);
+                else maxFieldDistance = (dist2);
+
+
+                if (maxFieldDistance < 200) maxFieldDistance = 200;
+                if (maxFieldDistance > 19900) maxFieldDistance = 19900;
+                //lblMax.Text = ((int)maxFieldDistance).ToString();
+
+                fieldCenterX = (maxFieldX + minFieldX) / 2.0;
+                fieldCenterY = (maxFieldY + minFieldY) / 2.0;
+            }
+
+            if (isMetric)
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            }
+            else
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            }
+
+            //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
+
         }
+
     }
 }

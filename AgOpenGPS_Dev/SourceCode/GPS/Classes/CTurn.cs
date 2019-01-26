@@ -41,6 +41,7 @@ namespace AgOpenGPS
 
         //point at the farthest turn segment from pivotAxle
         public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
+
         public vec3 closestTurnPt2 = new vec3(-10000, -10000, 9);
 
         public void ResetTurnLines()
@@ -57,7 +58,7 @@ namespace AgOpenGPS
             bool isFound = false;
             int closestTurnNum = 99;
 
-            for (int b = 1; b < 1000; b+=2)
+            for (int b = 1; b < 1000; b += 2)
             {
                 pt.easting = fromPt.easting + (Math.Sin(headAB) * b);
                 pt.northing = fromPt.northing + (Math.Cos(headAB) * b);
@@ -84,7 +85,6 @@ namespace AgOpenGPS
                 }
                 if (isFound) break;
             }
-
 
             //boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
             //boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
@@ -128,7 +128,6 @@ namespace AgOpenGPS
             //    //which turn/headland is it from
             //    turnClosestList.Add(inBox);
             //}
-            
 
             ////which of the points is closest
             //closestTurnPt.easting = -20000; closestTurnPt.northing = -20000;
@@ -294,7 +293,7 @@ namespace AgOpenGPS
                 {
                     closestTurnPt.easting = closestTurnPt2.easting;
                     closestTurnPt.northing = closestTurnPt2.northing;
-                    closestTurnPt.heading =  closestTurnPt2.heading;
+                    closestTurnPt.heading = closestTurnPt2.heading;
                 }
             }
         }
@@ -334,7 +333,7 @@ namespace AgOpenGPS
                     turnArr[0].turnLine.Add(tPnt);
                 }
             }
-            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine);
+            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth * 0.4);
             turnArr[0].PreCalcTurnLines();
 
             //inside boundaries
@@ -360,7 +359,7 @@ namespace AgOpenGPS
                         turnArr[j].turnLine.Add(tPnt);
                     }
                 }
-                turnArr[j].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine);
+                turnArr[j].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.vehicle.toolWidth * 0.4);
                 turnArr[j].PreCalcTurnLines();
             }
 

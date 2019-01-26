@@ -3673,7 +3673,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAVgBHAFYARwBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAWABHAFgARwBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -7200,7 +7200,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblConvergenceAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 102</value>
+    <value>125, 102</value>
   </data>
   <data name="lblConvergenceAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 19</value>
@@ -7269,7 +7269,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>105, 102</value>
+    <value>93, 102</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>36, 19</value>
@@ -7731,7 +7731,7 @@
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 477</value>
+    <value>7, 429</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 13</value>
@@ -7764,7 +7764,7 @@
     <value>NoControl</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 429</value>
+    <value>12, 477</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 13</value>
@@ -10923,7 +10923,7 @@
     <value>800, 740</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>AgOpenGPS - Ban Shredded Cheese, Make America Grate Again </value>
+    <value>AgOpenGPS - Be So Good They Can't Ignore You</value>
   </data>
   <data name="&gt;&gt;deleteFlagToolOpenGLContextMenu.Name" xml:space="preserve">
     <value>deleteFlagToolOpenGLContextMenu</value>
