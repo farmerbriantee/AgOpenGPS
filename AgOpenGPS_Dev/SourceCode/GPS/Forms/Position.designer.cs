@@ -498,7 +498,7 @@ namespace AgOpenGPS
                             if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
                             {
                                 //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
-                                if (Math.Abs(guidanceLineDistanceOff) > 1500)
+                                if (Math.Abs(guidanceLineDistanceOff) > 2500)
                                 {
                                     yt.ResetYouTurn();
                                 }

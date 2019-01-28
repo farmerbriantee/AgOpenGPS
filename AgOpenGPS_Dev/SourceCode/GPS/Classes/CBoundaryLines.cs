@@ -100,7 +100,6 @@ namespace AgOpenGPS
             {
                 //outside an outer boundary means its wound clockwise
                 if (!IsPointInsideBoundary(point)) ReverseWinding();
-               spacing = 3;
             }
             else
             {
@@ -110,7 +109,6 @@ namespace AgOpenGPS
             }
 
             //make sure distance isn't too small between points on headland
-
             int bndCount = bndLine.Count;
             double distance;
             for (int i = 0; i < bndCount - 1; i++)
@@ -149,22 +147,22 @@ namespace AgOpenGPS
             bndCount = bndLine.Count;
             spacing *= 1.35;
 
-            for (int i = 0; i < bndCount; i++)
-            {
-                int j = i + 1;
+            //for (int i = 0; i < bndCount; i++)
+            //{
+            //    int j = i + 1;
 
-                if (j == bndCount) j = 0;
-                distance = glm.Distance(bndLine[i], bndLine[j]);
-                if (distance > spacing)
-                {
-                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
-                        (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
+            //    if (j == bndCount) j = 0;
+            //    distance = glm.Distance(bndLine[i], bndLine[j]);
+            //    if (distance > spacing)
+            //    {
+            //        CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+            //            (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
-                    bndLine.Insert(j, pointB);
-                    bndCount = bndLine.Count;
-                    i = -1;
-                }
-            }
+            //        bndLine.Insert(j, pointB);
+            //        bndCount = bndLine.Count;
+            //        i = -1;
+            //    }
+            //}
 
             //make sure headings are correct for calculated points
             CalculateBoundaryHeadings();
