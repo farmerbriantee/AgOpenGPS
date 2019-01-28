@@ -48,14 +48,18 @@ void calcRatePIDLeft(void) {
    
     if (pwmDriveLeft >= 0) 
     {
+     #if(!EtherNet) 
       analogWrite(PWM1_PIN, pwmDriveLeft);
       analogWrite(DIR1_PIN, 0);   //Set DIR PIN low
+     #endif
     }
     
     else if (pwmDriveLeft <= 0)
     {
       pwmDriveLeft = -1 * pwmDriveLeft;  
+     #if(!EtherNet) 
       analogWrite(DIR1_PIN, pwmDriveLeft);
       analogWrite(PWM1_PIN, 0);//Set PWM PIN low
+     #endif
     } 
   }

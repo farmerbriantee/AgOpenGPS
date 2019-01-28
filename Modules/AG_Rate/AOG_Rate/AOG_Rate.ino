@@ -1,20 +1,53 @@
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
 //##########################################################################################################
-
 //High-Active Relays
-#define ON  1             // set to 0 for Low-active relays
-#define OFF 0             // set to 1 for Low-active relays
+  #define ON  1           // set to 0 for Low-active relays
+  #define OFF 0           // set to 1 for Low-active relays
+
+//Ethernet Details
+  #define EtherNet 1      // 0 = Serial/USB communcation with AOG
+                          // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
 
 //##########################################################################################################
 //### End of Setup Zone ####################################################################################
 //##########################################################################################################
+  
+  #include "Var.h";
+
+#if (EtherNet)
+  #include <EtherCard.h>
+  #include <IPAddress.h> 
+
+  //Array to send data back to AgOpenGPS
+  byte toSend[] = {0x7F,0xF9,0,0,0,0,0,0,0,0};
+
+  // ethernet interface ip address
+  static byte myip[] = { 192,168,1,71 };
+  // gateway ip address
+  static byte gwip[] = { 192,168,1,1 };
+  //DNS- you just need one anyway
+  static byte myDNS[] = { 8,8,8,8 };
+  //mask
+  static byte mask[] = { 255,255,255,0 };
+  //this is port of this AG_rate module
+  unsigned int portMy = 5555;
+
+  //sending back to where and which port
+  static byte ipDestination[] = {192, 168, 1, 255};
+  unsigned int portDestination = 9999; //AOG port that listens
+  // ethernet mac address - must be unique on your network
+  static byte mymac[] = { 0x70,0x69,0x69,0x2F,0x31,0x35 };
+  byte Ethernet::buffer[200]; // udp send and receive buffer
+#endif
 
 // Pin Configuration
 #define WORKSW_PIN 4  //PD4
 
-#define DIR1_PIN   10  //PB2  // Flow Control Valve 1 Left
-#define PWM1_PIN   11  //PB3  // "
+#if (!EtherNet)
+ #define DIR1_PIN   10  //PB2  // Flow Control Valve 1 Left
+ #define PWM1_PIN   11  //PB3  //   "
+#endif
 
 //TODO -> pins for pwm of second valve ( maybe 5+6 )
 #define DIR2_PIN    0  //P??  // Flow Control Valve 2 Right
@@ -32,16 +65,15 @@
 #define RELAY7_PIN A1  //PC1
 #define RELAY8_PIN A2  //PC2
 #define RELAY9_PIN A3  //PC3
-#define RELAY10_PIN A2 //PC4
-#define RELAY11_PIN 12 //PB4
-#define RELAY12_PIN 13 //PB5
+#define RELAY10_PIN A4 //PC4
+#if (!EtherNet)
+ #define RELAY11_PIN 12 //PB4
+ #define RELAY12_PIN 13 //PB5
+#endif
 
 #define AUTO_SW     A7  // Section Switches
 #define SECT1_SW    A6
 #define SECT2_SW    A5
-
-
-#include "Var.h";
 
 
 //loop time variables in microseconds
@@ -67,15 +99,17 @@ void setup()
   pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output //Pin 7
   pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output //Pin 8
   pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output //Pin 9
-  pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output //Pin 12
-  pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output //Pin 13
-  pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output //Pin A0
-  pinMode(RELAY9_PIN, OUTPUT); //configure RELAY9 for output //Pin A1
-  pinMode(RELAY10_PIN, OUTPUT); //configure RELAY10 for output //Pin A2
-  pinMode(RELAY11_PIN, OUTPUT); //configure RELAY11 for output //Pin A3
-  pinMode(RELAY12_PIN, OUTPUT); //configure RELAY12 for output //Pin A4
+  pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output //Pin A0
+  pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output //Pin A1
+  pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output //Pin A2
+  pinMode(RELAY9_PIN, OUTPUT); //configure RELAY9 for output //Pin A3
+  pinMode(RELAY10_PIN, OUTPUT); //configure RELAY10 for output //Pin A4
+ #if (!EtherNet) 
+  pinMode(RELAY11_PIN, OUTPUT); //configure RELAY11 for output //Pin 12
+  pinMode(RELAY12_PIN, OUTPUT); //configure RELAY12 for output //Pin 13
   pinMode(DIR1_PIN, OUTPUT);
   pinMode(PWM1_PIN, OUTPUT);
+ #endif
   
   pinMode(WORKSW_PIN, INPUT_PULLUP);
 
@@ -83,6 +117,19 @@ void setup()
   pinMode(SECT1_SW, INPUT);
   pinMode(SECT2_SW, INPUT_PULLUP);
   
+#if (EtherNet)
+ if (ether.begin(sizeof Ethernet::buffer, mymac, 10) == 0)
+    Serial.println(F("Failed to access Ethernet controller"));
+
+  //set up connection
+  ether.staticSetup(myip, gwip, myDNS, mask); 
+  ether.printIp("IP:  ", ether.myip);
+  ether.printIp("GW:  ", ether.gwip);
+  ether.printIp("DNS: ", ether.dnsip);
+
+  //register udpSerialPrint() to port 8888
+  ether.udpServerListenOnPort(&udpRateRecv, 8888);
+#endif
   
   //set up communication
   Serial.begin(38400);
@@ -237,86 +284,37 @@ void loop()
 
 		//Left side or single meter
 		calcRatePIDLeft();
-		motorDriveLeft();
+	#if (!EtherNet) // Since pins are reserved for Ethernet no Ratecontrol possible
+	  motorDriveLeft();
+  #endif
 
 		//Also needs right side for dual
 		calcRatePIDRight();
 		motorDriveRight();
 
-		//Send to agopenGPS, once per second
-		Serial.print(rateAppliedLPMLeft); //100 x actual!
-		Serial.print(",");
-		Serial.print(rateAppliedLPMRight); //100 x actual!
-		Serial.print(",");
-		Serial.print((int)((float)accumulatedCountsLeft / (float)flowmeterCalFactorLeft +
-			(float)accumulatedCountsRight / (float)flowmeterCalFactorRight));
-    
-    Serial.print(",");
-    Serial.print(RelayToAOG[1]);
-    Serial.print(",");
-    Serial.print(RelayToAOG[0]);
-    Serial.print(",");
-    Serial.print(SectSWOffToAOG[1]);
-    Serial.print(",");
-    Serial.print(SectSWOffToAOG[0]);
-    Serial.print(",");
-    Serial.print(SectMainToAOG);
-    Serial.println();
-		// flush out buffer
-		Serial.flush();
+  
+  #if (EtherNet)
+    transmitEthernet();
+  #else 
+    transmitSerial();
+	#endif
+  	
 	} //end of timed loop
 
-	  //****************************************************************************************
-	  //This runs continuously, outside of the timed loop, keeps checking UART for new data
-	  // header high/low, relayHi/Lo byte, speed byte, rateSetPoint hi/lo
-	if (Serial.available() > 0 && !isDataFound && !isSettingFound) //find the header,
-	{
-		int temp = Serial.read();
-		header = tempHeader << 8 | temp;               //high,low bytes to make int
-		tempHeader = temp;                             //save for next time
-		if (header == 32762) isDataFound = true;     //Do we have a match?
-		if (header == 32760) isSettingFound = true;     //Do we have a match?
-	}
+	//****************************************************************************************
+	//This runs continuously, outside of the timed loop, keeps checking for new data
+	// header high/low, relayHi/Lo byte, speed byte, rateSetPoint hi/lo
+   
+ #if (EtherNet)
+  delay(10); 
+  //this must be called for ethercard functions to work.
+  ether.packetLoop(ether.packetReceive());  
+ #else
+  receiveSerial();
+ #endif
+	
+} //end of main loop
 
-	//DATA Header has been found, so the next 4 bytes are the data -- 127H + 250L = 32762
-	if (Serial.available() == 8 && isDataFound)
-	{
-		isDataFound = false;
-		relayHi = Serial.read();   // read relay control from AgOpenGPS
-		relayLo = Serial.read();   // read relay control from AgOpenGPS
-		groundSpeed = Serial.read() >> 2;  //actual speed times 4, single byte
-
-		// sent as 100 times value in liters per minute
-		rateSetPointLeft = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
-		rateSetPointLeft *= 0.01;
-		rateSetPointRight = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
-		rateSetPointRight *= 0.01;
-
-		//UTurn byte
-		uTurn = Serial.read();
-
-		//reset watchdog as we just heard from AgOpenGPS
-		watchdogTimer = 0;
-	}
-
-	//SETTINGS Header has been found,  6 bytes are the settings -- 127H + 248L = 32760
-	if (Serial.available() == 6 && isSettingFound)
-	{
-		isSettingFound = false;  //reset the flag
-
-		//accumulated volume, 0 it if 32700 is sent
-		float tempf = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
-		if (tempf == 32700)
-		{
-			accumulatedCountsLeft = 0;
-			accumulatedCountsRight = 0;
-		}
-
-		//flow meter cal factor in counts per Liter
-		flowmeterCalFactorLeft = ((float)(Serial.read() << 8 | Serial.read()));   //high,low bytes
-		flowmeterCalFactorRight = ((float)(Serial.read() << 8 | Serial.read()));   //high,low bytes
-	}
-}
 
 //ISR
 void pinLeftChangeISR() {
