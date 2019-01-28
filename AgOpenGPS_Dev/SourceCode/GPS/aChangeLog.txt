@@ -1,4 +1,9 @@
 ﻿v2.8 Jan 2019
+* sin and cos precalcs for speed up
+* removed position.cs check on going off line of UTurn
+* Last point of UTurn List OR 2.5 meters offline UTurn will cancel turn
+
+v2.8 Jan 2019
 * Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
 * Fixed point fixing on boundary, gaps at end not filling
 * Turn Lines point distance based on eq width

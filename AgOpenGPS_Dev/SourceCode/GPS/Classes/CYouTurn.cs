@@ -1319,10 +1319,8 @@ namespace AgOpenGPS
         public void CompleteYouTurn()
         {
             isYouTurnTriggered = false;
-            //isYouTurnTriggerPointSet = false;
-            if (ytList.Count > 0) ytList.Clear();
             mf.AutoYouTurnButtonsReset();
-            ResetCreatedYouTurn();
+            // Done above in Reset - ResetCreatedYouTurn();
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
         }
@@ -1544,7 +1542,7 @@ namespace AgOpenGPS
                 onA = closestPt - onA;
 
                 //return and reset if too far away or end of the line
-                if (minDistA > 2)
+                if (minDistA > 2.5 || closestPt == ptCount-1)
                 {
                     CompleteYouTurn();
                     return;
