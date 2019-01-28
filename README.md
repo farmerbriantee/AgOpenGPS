@@ -31,4 +31,4 @@ and AB Line with loops for narrow equipment
 
 Included is an application, and source folders, ino's for steering and rate control and a built in NMEA simulators. 
 
-It has English, German, SPanish, French, italian, Dutch and Russian Language.
+It has English, German, SPanish, French, italian, Dutch and Russian Language - But haven't been updated in far too long.
