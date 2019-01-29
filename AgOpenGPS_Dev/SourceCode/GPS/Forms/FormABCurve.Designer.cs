@@ -33,6 +33,7 @@
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnABLineOk = new System.Windows.Forms.Button();
             this.lblCurveExists = new System.Windows.Forms.Label();
+            this.btnPausePlay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -104,12 +105,30 @@
             this.lblCurveExists.TabIndex = 87;
             this.lblCurveExists.Text = "Curve Not Set";
             // 
+            // btnPausePlay
+            // 
+            this.btnPausePlay.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnPausePlay.Enabled = false;
+            this.btnPausePlay.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+            this.btnPausePlay.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPausePlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPausePlay.Location = new System.Drawing.Point(15, 309);
+            this.btnPausePlay.Name = "btnPausePlay";
+            this.btnPausePlay.Size = new System.Drawing.Size(86, 90);
+            this.btnPausePlay.TabIndex = 140;
+            this.btnPausePlay.Text = "Pause";
+            this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPausePlay.UseVisualStyleBackColor = false;
+            this.btnPausePlay.Click += new System.EventHandler(this.btnPausePlay_Click);
+            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 303);
+            this.ClientSize = new System.Drawing.Size(270, 433);
             this.ControlBox = false;
+            this.Controls.Add(this.btnPausePlay);
             this.Controls.Add(this.lblCurveExists);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnBPoint);
@@ -135,5 +154,6 @@
         private System.Windows.Forms.Button btnABLineOk;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblCurveExists;
+        private System.Windows.Forms.Button btnPausePlay;
     }
 }

@@ -502,13 +502,6 @@ namespace AgOpenGPS
                                 {
                                     yt.ResetYouTurn();
                                 }
-                                //else
-                                //{
-                                //    //keep from running this again since youturn is plotted now
-                                //    yt.isYouTurnTriggerPointSet = false;
-                                //    yt.isLastYouTurnRight = yt.isYouTurnRight;
-                                //    yt.isYouTurnInProgress = true;
-                                //}
                             }
                         }
                     } // end of isInWorkingArea

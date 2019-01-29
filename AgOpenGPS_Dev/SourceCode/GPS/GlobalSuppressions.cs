@@ -508,3 +508,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormSettings.nudSection11_ValueChanged(System.Object,System.EventArgs)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormSettings.nudSection12_ValueChanged(System.Object,System.EventArgs)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormSettings.nudSection9_ValueChanged(System.Object,System.EventArgs)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>", Scope = "member", Target = "~M:AgOpenGPS.FormABCurve.btnPausePlay_Click(System.Object,System.EventArgs)")]

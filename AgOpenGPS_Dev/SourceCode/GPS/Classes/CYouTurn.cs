@@ -1526,23 +1526,23 @@ namespace AgOpenGPS
                 //just need to make sure the points continue ascending or heading switches all over the place
                 if (A > B) { C = A; A = B; B = C; }
 
-                minDistA = 100;
-                int closestPt = 0;
-                for (int i = 0; i < ptCount; i++)
-                {
-                    double distancePiv = glm.Distance(ytList[i], mf.pivotAxlePos);
-                    if (distancePiv < minDistA)
-                    {
-                        minDistA = distancePiv;
-                        closestPt = i;
-                    }
-                }
+                //minDistA = 100;
+                //int closestPt = 0;
+                //for (int i = 0; i < ptCount; i++)
+                //{
+                //    double distancePiv = glm.Distance(ytList[i], mf.pivotAxlePos);
+                //    if (distancePiv < minDistA)
+                //    {
+                //        minDistA = distancePiv;
+                //        closestPt = i;
+                //    }
+                //}
 
                 onA = ptCount / 2;
-                onA = closestPt - onA;
+                onA = B - onA;
 
                 //return and reset if too far away or end of the line
-                if (minDistA > 2.5 || closestPt == ptCount-1)
+                if (B >= ptCount-1)
                 {
                     CompleteYouTurn();
                     return;
