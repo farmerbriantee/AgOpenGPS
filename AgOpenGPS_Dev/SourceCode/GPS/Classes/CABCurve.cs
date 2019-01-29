@@ -105,6 +105,28 @@ namespace AgOpenGPS
             }
         }
 
+        public void CalculateTurnHeadings()
+        {
+            //to calc heading based on next and previous points to give an average heading.
+            int cnt = refList.Count;
+            vec3[] arr = new vec3[cnt];
+            cnt--;
+            refList.CopyTo(arr);
+            refList.Clear();
+
+            //first point needs last, first, second points
+            vec3 pt3 = arr[0];
+
+            //middle points
+            for (int i = 1; i < cnt; i++)
+            {
+                pt3 = arr[i];
+                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                refList.Add(pt3);
+            }
+        }
+
         //turning the visual line into the real reference line to use
         public void SaveSmoothAsRefList()
         {
@@ -549,8 +571,15 @@ namespace AgOpenGPS
 
             GL.LineWidth(2);
             GL.Color3(0.30f, 0.692f, 0.60f);
-            GL.Begin(PrimitiveType.Lines);
+            GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
+            GL.Color3(0.930f, 0.0692f, 0.260f);
+            if (!mf.curve.isCurveSet)
+            {
+                ptCount--;
+                GL.Vertex3(refList[ptCount].easting, refList[ptCount].northing, 0);
+                GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
+            }
             GL.End();
 
             //just draw ref and smoothed line if smoothing window is open
