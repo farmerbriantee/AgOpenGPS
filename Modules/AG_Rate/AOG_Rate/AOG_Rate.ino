@@ -5,8 +5,13 @@
   #define ON  1           // set to 0 for Low-active relays
   #define OFF 0           // set to 1 for Low-active relays
 
+  #define AutoMan 0       // 0 = Auto/Manual Switch not installed
+                          // 1 = Auto/Manual Switch installed
+                          
+  #define SectSw 0        // 0 = Section Switches not installed
+                          // 1 = Section Switches installed
 //Ethernet Details
-  #define EtherNet 1      // 0 = Serial/USB communcation with AOG
+  #define EtherNet 0      // 0 = Serial/USB communcation with AOG
                           // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
 
 //##########################################################################################################
@@ -229,12 +234,12 @@ void loop()
 
     // read the workswitch
     if (digitalRead(WORKSW_PIN)) SectMainToAOG = 1; else SectMainToAOG = 2;
-    
+  #if AutoMan   
     // read the Auto/Manual Switch (A7 is only analogRead, no Pullup)
     if (analogRead(AUTO_SW)>500) autoMode=1; else autoMode=0;
-
+  #endif
     
-    
+  #if SectSw  
     // read Section 1 Switch (A6 is only analogRead, no Pullup)
     if (analogRead(SECT1_SW)<500){
         SectSWOffToAOG[0] |= 0x01;    // Sw Off means permanent Off in Auto-Mode
@@ -274,23 +279,28 @@ void loop()
           autoModeold=0;
         }
       }
-    //turn on appropriate sections
+   #else
+      SectSWOffToAOG[0] = 0;    // Sw Off means permanent Off in Auto-Mode
+      RelayToAOG[0]     = 0;    // Sw Off means permanent Off in Manual-Mode
+   #endif
+   
+      //turn on appropriate sections
 
-		SetRelays();
+      SetRelays();
 
-		//Do the PID - this placed in code depending on valve style
-		rateErrorLeft = rateSetPointLeft - rateKLeft;
-		rateErrorRight = rateSetPointRight - rateKRight;
+      //Do the PID - this placed in code depending on valve style
+      rateErrorLeft = rateSetPointLeft - rateKLeft;
+      rateErrorRight = rateSetPointRight - rateKRight;
 
-		//Left side or single meter
-		calcRatePIDLeft();
-	#if (!EtherNet) // Since pins are reserved for Ethernet no Ratecontrol possible
-	  motorDriveLeft();
-  #endif
+      //Left side or single meter
+      calcRatePIDLeft();
+ #if (!EtherNet) // Since pins are reserved for Ethernet no Ratecontrol possible
+      motorDriveLeft();
+ #endif
 
-		//Also needs right side for dual
-		calcRatePIDRight();
-		motorDriveRight();
+      //Also needs right side for dual
+      calcRatePIDRight();
+      motorDriveRight();
 
   
   #if (EtherNet)
