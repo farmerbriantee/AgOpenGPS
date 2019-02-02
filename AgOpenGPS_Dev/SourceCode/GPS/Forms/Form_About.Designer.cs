@@ -43,13 +43,15 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label6.Location = new System.Drawing.Point(14, 142);
+            this.label6.Location = new System.Drawing.Point(14, 78);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(129, 18);
             this.label6.TabIndex = 16;
@@ -68,17 +70,17 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label4.Location = new System.Drawing.Point(14, 76);
+            this.label4.Location = new System.Drawing.Point(14, 53);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(203, 36);
+            this.label4.Size = new System.Drawing.Size(203, 18);
             this.label4.TabIndex = 18;
-            this.label4.Text = "(Formerly AgOpenGPS)\r\nBrian Tischler, Alberta Canada";
+            this.label4.Text = "Brian Tischler, Alberta Canada";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label3.Location = new System.Drawing.Point(12, 331);
+            this.label3.Location = new System.Drawing.Point(12, 225);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 18);
             this.label3.TabIndex = 15;
@@ -90,9 +92,9 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label2.Location = new System.Drawing.Point(167, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 18);
+            this.label2.Size = new System.Drawing.Size(116, 18);
             this.label2.TabIndex = 14;
-            this.label2.Text = "v2.8 Mar 2018";
+            this.label2.Text = "v2.8 2 Feb 2019";
             // 
             // label1
             // 
@@ -100,16 +102,16 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Underline);
             this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 29);
+            this.label1.Size = new System.Drawing.Size(138, 29);
             this.label1.TabIndex = 13;
             this.label1.Text = "AgOpenGPS";
             // 
             // linkLabelGit
             // 
             this.linkLabelGit.AutoSize = true;
-            this.linkLabelGit.Location = new System.Drawing.Point(14, 182);
+            this.linkLabelGit.Location = new System.Drawing.Point(14, 99);
             this.linkLabelGit.Name = "linkLabelGit";
-            this.linkLabelGit.Size = new System.Drawing.Size(211, 13);
+            this.linkLabelGit.Size = new System.Drawing.Size(233, 13);
             this.linkLabelGit.TabIndex = 11;
             this.linkLabelGit.TabStop = true;
             this.linkLabelGit.Text = "https://github.com/farmerbriantee/AgOpenGPS";
@@ -118,7 +120,7 @@
             // linkLabelCombineForum
             // 
             this.linkLabelCombineForum.AutoSize = true;
-            this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 356);
+            this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 250);
             this.linkLabelCombineForum.Name = "linkLabelCombineForum";
             this.linkLabelCombineForum.Size = new System.Drawing.Size(404, 13);
             this.linkLabelCombineForum.TabIndex = 12;
@@ -142,7 +144,7 @@
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(371, 33);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(215, 13);
+            this.label7.Size = new System.Drawing.Size(234, 13);
             this.label7.TabIndex = 25;
             this.label7.Text = "AgOpenGPS is protected under the MIT License";
             // 
@@ -170,22 +172,22 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(14, 275);
+            this.label12.Location = new System.Drawing.Point(14, 182);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(310, 39);
+            this.label12.Size = new System.Drawing.Size(316, 39);
             this.label12.TabIndex = 29;
-            this.label12.Text = "Any use of AgOpenGPS on real physical equipment is not allowed\r\nand is not recommend" +
-    "ed in any way, neither off road or on road. \r\n\r\n";
+            this.label12.Text = "Any use of AgOpenGPS on real physical equipment is not allowed\r\nand is not recomm" +
+    "ended in any way, neither off road or on road. \r\n\r\n";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 231);
+            this.label13.Location = new System.Drawing.Point(12, 138);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(252, 26);
+            this.label13.Size = new System.Drawing.Size(274, 26);
             this.label13.TabIndex = 30;
-            this.label13.Text = "AgOpenGPS is strictly an example of C# programming for\r\ndemonstration purposes only." +
-    "\r\n";
+            this.label13.Text = "AgOpenGPS is strictly an example of C# programming for\r\ndemonstration purposes on" +
+    "ly.\r\n";
             // 
             // label9
             // 
@@ -197,11 +199,34 @@
             this.label9.Text = "If you distribute copies of this program, whether gratis or\r\nfor a fee, you must " +
     "pass on to the recipients the same\r\nfreedoms that you received.  ";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label11.Location = new System.Drawing.Point(125, 279);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(162, 90);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Andreas Ortner, Austria\r\nWilhelm Eder, Germany\r\nMTZ8302, Germany\r\nKevin Bouwman, " +
+    "USA\r\n\r\n";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label14.Location = new System.Drawing.Point(14, 279);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(105, 36);
+            this.label14.TabIndex = 33;
+            this.label14.Text = "Special Thx to \r\nContributors:\r\n";
+            // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(677, 378);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -241,5 +266,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label14;
     }
 }

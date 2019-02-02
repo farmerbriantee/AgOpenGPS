@@ -1810,10 +1810,13 @@ namespace AgOpenGPS
             if (camera.camPitch < -80) camera.camPitch = -80;
         }
         private void btnZoomExtents_Click(object sender, EventArgs e)
-        {            
-            if (camera.camSetDistance < -400) camera.camSetDistance = -300;
-            else camera.camSetDistance = -5 * maxFieldDistance;
-            SetZoom();
+        {
+            if (isJobStarted)
+            {
+                if (camera.camSetDistance < -400) camera.camSetDistance = -300;
+                else camera.camSetDistance = -5 * maxFieldDistance;
+                SetZoom();
+            }
         }
 
 

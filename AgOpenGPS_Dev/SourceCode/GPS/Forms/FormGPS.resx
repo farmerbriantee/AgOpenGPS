@@ -976,7 +976,7 @@
     <value>None</value>
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>536, 56</value>
+    <value>567, 56</value>
   </data>
   <data name="stripEqWidth.Text" xml:space="preserve">
     <value>Width</value>
@@ -2887,7 +2887,7 @@
     <value>84, 54</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 635</value>
+    <value>0, 689</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>1152, 56</value>
@@ -3673,7 +3673,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAWgBHAFoARwBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAXABHAFwARwBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -8190,7 +8190,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="oglZoom.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 4</value>
@@ -8850,7 +8850,7 @@
     <value>0, 38</value>
   </data>
   <data name="panelBatman.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 596</value>
+    <value>210, 650</value>
   </data>
   <data name="panelBatman.TabIndex" type="System.Int32, mscorlib">
     <value>182</value>
@@ -8868,7 +8868,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelBatman.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="cboxpRowWidth.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -9042,7 +9042,7 @@
     <value>3</value>
   </data>
   <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 596</value>
+    <value>339, 650</value>
   </data>
   <data name="panelSimControls.Size" type="System.Drawing.Size, System.Drawing">
     <value>367, 37</value>
@@ -9081,7 +9081,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection8Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>530, 448</value>
+    <value>530, 502</value>
   </data>
   <data name="btnSection8Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9123,7 +9123,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection7Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>518, 434</value>
+    <value>518, 488</value>
   </data>
   <data name="btnSection7Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9165,7 +9165,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection6Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 416</value>
+    <value>496, 470</value>
   </data>
   <data name="btnSection6Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9207,7 +9207,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection5Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>475, 398</value>
+    <value>475, 452</value>
   </data>
   <data name="btnSection5Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9249,7 +9249,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection4Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>540, 375</value>
+    <value>540, 429</value>
   </data>
   <data name="btnSection4Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9291,7 +9291,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection3Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 361</value>
+    <value>519, 415</value>
   </data>
   <data name="btnSection3Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9333,7 +9333,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection2Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 343</value>
+    <value>496, 397</value>
   </data>
   <data name="btnSection2Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9375,7 +9375,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection1Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>479, 325</value>
+    <value>479, 379</value>
   </data>
   <data name="btnSection1Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9417,7 +9417,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection9Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 476</value>
+    <value>446, 530</value>
   </data>
   <data name="btnSection9Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9459,7 +9459,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection10Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 489</value>
+    <value>472, 543</value>
   </data>
   <data name="btnSection10Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9501,7 +9501,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection11Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 498</value>
+    <value>504, 552</value>
   </data>
   <data name="btnSection11Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9543,7 +9543,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection12Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>521, 513</value>
+    <value>521, 567</value>
   </data>
   <data name="btnSection12Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9636,7 +9636,7 @@
     <value>2, 1, 2, 1</value>
   </data>
   <data name="oglMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 595</value>
+    <value>738, 649</value>
   </data>
   <data name="oglMain.TabIndex" type="System.Int32, mscorlib">
     <value>180</value>
@@ -10819,7 +10819,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1152, 691</value>
+    <value>1152, 745</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>

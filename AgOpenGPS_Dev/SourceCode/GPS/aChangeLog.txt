@@ -1,4 +1,9 @@
-﻿v2.8 Jan 2019
+﻿v2.8 Feb 2019
+* Flag for drive around boundaries added
+* Zoom Extents only works if field loaded
+* Fixed About with recent changes, added contributors.
+
+v2.8 Jan 2019
 * Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
 * Fixed point fixing on boundary, gaps at end not filling
 * Turn Lines point distance based on eq width
