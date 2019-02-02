@@ -979,7 +979,7 @@ namespace AgOpenGPS
                         for (int k = 0; k < MAXBOUNDARIES; k++)
                         {
                             //True or False OR points from older boundary files
-                            line = reader.ReadLine(); 
+                            line = reader.ReadLine();
 
                             //Check for older boundary files, then above line string is num of points
                             if (line == "True" || line == "False")
@@ -987,6 +987,13 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].isDriveThru = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
+
+                            if (line == "True" || line == "False")
+                            {
+                                bnd.bndArr[k].isDriveAround = bool.Parse(line);
+                                line = reader.ReadLine(); //number of points
+                            }
+
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 0)
@@ -1424,6 +1431,7 @@ namespace AgOpenGPS
                 for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
                 {
                     writer.WriteLine(bnd.bndArr[i].isDriveThru);
+                    writer.WriteLine(bnd.bndArr[i].isDriveAround);
 
                     writer.WriteLine(bnd.bndArr[i].bndLine.Count.ToString(CultureInfo.InvariantCulture));
                     if (bnd.bndArr[i].bndLine.Count > 0)

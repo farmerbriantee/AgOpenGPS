@@ -28,6 +28,7 @@ namespace AgOpenGPS
             isSet = false;
             isOkToAddPoints = false;
             isDriveThru = false;
+            isDriveAround = false;
             isDrawRightSide = true;
         }
 
@@ -41,7 +42,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveThru, isDrawRightSide;
+        public bool isOkToAddPoints, isSet, isDriveThru, isDriveAround, isDrawRightSide;
 
         public void CalculateBoundaryHeadings()
         {
