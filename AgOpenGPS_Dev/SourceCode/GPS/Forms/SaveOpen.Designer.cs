@@ -218,11 +218,9 @@ namespace AgOpenGPS
                         }
 
                         double test = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        double ver = Convert.ToDouble(Application.ProductVersion.ToString(CultureInfo.InvariantCulture));
-                        if (ver > 9) ver *= 0.1;
-                        {
+                        string vers = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+                        double ver = double.Parse(vers, CultureInfo.InvariantCulture);
 
-                        }
                         if (test < ver)
                         {
                             var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version "+ Application.ProductVersion.ToString(CultureInfo.InvariantCulture)+ " or higher");

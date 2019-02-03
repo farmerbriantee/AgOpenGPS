@@ -2,6 +2,7 @@
 * Flag for drive around boundaries added
 * Zoom Extents only works if field loaded
 * Fixed About with recent changes, added contributors.
+* Fix version for vehicle cultural - I hope finally.
 
 v2.8 Jan 2019
 * Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
