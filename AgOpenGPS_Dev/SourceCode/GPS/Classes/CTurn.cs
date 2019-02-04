@@ -9,7 +9,7 @@ namespace AgOpenGPS
         //copy of the mainform address
         private readonly FormGPS mf;
 
-        private readonly double boxLength, scanWidth;
+        private readonly double boxLength;
 
         /// <summary>
         /// array of turns
@@ -21,7 +21,7 @@ namespace AgOpenGPS
         {
             mf = _f;
             turnSelected = 0;
-            scanWidth = 1.5;
+            //scanWidth = 1.5;
             boxLength = 2000;
 
             //Turns array
@@ -96,62 +96,62 @@ namespace AgOpenGPS
 
             //second scan is straight ahead of outside of tool based on turn direction
             double scanWidthL, scanWidthR;
-            //if (isYouTurnRight) //its actually left
-            //{
-            //    scanWidthL = -scanWidth - (mf.vehicle.toolWidth * 0.5);
-            //    scanWidthR = scanWidth - (mf.vehicle.toolWidth * 0.5);
-            //}
-            //else
-            //{
-            //    scanWidthL = -scanWidth + (mf.vehicle.toolWidth * 0.5);
-            //    scanWidthR = scanWidth + (mf.vehicle.toolWidth * 0.5);
-            //}
+            if (isYouTurnRight) //its actually left
+            {
+                scanWidthL = -(mf.vehicle.toolWidth * 0.25) - (mf.vehicle.toolWidth * 0.5);
+                scanWidthR = (mf.vehicle.toolWidth * 0.25) - (mf.vehicle.toolWidth * 0.5);
+            }
+            else
+            {
+                scanWidthL = -(mf.vehicle.toolWidth * 0.25) + (mf.vehicle.toolWidth * 0.5);
+                scanWidthR = (mf.vehicle.toolWidth * 0.25) + (mf.vehicle.toolWidth * 0.5);
+            }
 
-            ////isYouTurnRight actuall means turning left - Painful, but it switches later
-            //boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthL);
-            //boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthL);
+            //isYouTurnRight actuall means turning left - Painful, but it switches later
+            boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthL);
+            boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthL);
 
-            //boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthR);
-            //boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthR);
+            boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthR);
+            boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthR);
 
-            //boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
-            //boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
+            boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+            boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
 
-            //boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
-            //boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
+            boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+            boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
 
-            ////determine if point is inside bounding box of the 1 turn chosen above
-            //turnClosestList.Clear();
+            //determine if point is inside bounding box of the 1 turn chosen above
+            turnClosestList.Clear();
 
-            //mf.turn.closestTurnNum = closestTurnNum;
+            mf.turn.closestTurnNum = closestTurnNum;
             vec4 inBox;
 
             int ptCount = turnArr[closestTurnNum].turnLine.Count;
-            //for (int p = 0; p < ptCount; p++)
-            //{
-            //    if ((((boxB.easting - boxA.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxA.northing))
-            //            - ((boxB.northing - boxA.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+            for (int p = 0; p < ptCount; p++)
+            {
+                if ((((boxB.easting - boxA.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxA.northing))
+                        - ((boxB.northing - boxA.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
 
-            //    if ((((boxD.easting - boxC.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxC.northing))
-            //            - ((boxD.northing - boxC.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+                if ((((boxD.easting - boxC.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxC.northing))
+                        - ((boxD.northing - boxC.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
 
-            //    if ((((boxC.easting - boxB.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxB.northing))
-            //            - ((boxC.northing - boxB.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+                if ((((boxC.easting - boxB.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxB.northing))
+                        - ((boxC.northing - boxB.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
 
-            //    if ((((boxA.easting - boxD.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxD.northing))
-            //            - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+                if ((((boxA.easting - boxD.easting) * (turnArr[closestTurnNum].turnLine[p].northing - boxD.northing))
+                        - ((boxA.northing - boxD.northing) * (turnArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
-            //    //it's in the box, so add to list
-            //    inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
-            //    inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
-            //    inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
-            //    inBox.index = closestTurnNum;
+                //it's in the box, so add to list
+                inBox.easting = turnArr[closestTurnNum].turnLine[p].easting;
+                inBox.northing = turnArr[closestTurnNum].turnLine[p].northing;
+                inBox.heading = turnArr[closestTurnNum].turnLine[p].heading;
+                inBox.index = closestTurnNum;
 
-            //    //which turn/headland is it from
-            //    turnClosestList.Add(inBox);
-            //}
+                //which turn/headland is it from
+                turnClosestList.Add(inBox);
+            }
 
-            //if (turnClosestList.Count == 0)
+            if (turnClosestList.Count == 0)
             {
                 if (isYouTurnRight) //its actually left
                 {
@@ -222,7 +222,7 @@ namespace AgOpenGPS
                     double distRay = ((rayPt.easting - turnClosestList[i].easting) * (rayPt.easting - turnClosestList[i].easting))
                                     + ((rayPt.northing - turnClosestList[i].northing) * (rayPt.northing - turnClosestList[i].northing));
 
-                    if (minDistance >= dist && distRay < (mf.vehicle.toolWidth * 2))
+                    if (minDistance >= dist && distRay < (mf.vehicle.toolWidth * mf.vehicle.toolWidth * 3))
                     {
                         minDistance = dist;
 
@@ -329,14 +329,14 @@ namespace AgOpenGPS
             GL.Vertex3(closestTurnPt.easting, closestTurnPt.northing, 0);
             GL.End();
 
-            GL.LineWidth(1);
-            GL.Color3(0.92f, 0.62f, 0.42f);
-            GL.Begin(PrimitiveType.LineStrip);
-            GL.Vertex3(boxD.easting, boxD.northing, 0);
-            GL.Vertex3(boxA.easting, boxA.northing, 0);
-            GL.Vertex3(boxB.easting, boxB.northing, 0);
-            GL.Vertex3(boxC.easting, boxC.northing, 0);
-            GL.End();
+            //GL.LineWidth(1);
+            //GL.Color3(0.92f, 0.62f, 0.42f);
+            //GL.Begin(PrimitiveType.LineStrip);
+            //GL.Vertex3(boxD.easting, boxD.northing, 0);
+            //GL.Vertex3(boxA.easting, boxA.northing, 0);
+            //GL.Vertex3(boxB.easting, boxB.northing, 0);
+            //GL.Vertex3(boxC.easting, boxC.northing, 0);
+            //GL.End();
         }
     }
 }
