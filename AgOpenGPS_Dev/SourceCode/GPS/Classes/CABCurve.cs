@@ -578,7 +578,9 @@ namespace AgOpenGPS
             {
                 ptCount--;
                 GL.Vertex3(refList[ptCount].easting, refList[ptCount].northing, 0);
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             }
             GL.End();
 
