@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-64")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-32")]
         public double setCam_pitch {
             get {
                 return ((double)(this["setCam_pitch"]));
@@ -896,6 +896,150 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setGPS_Longitude"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("69.75.31.235")]
+        public string setNTRIP_casterIP {
+            get {
+                return ((string)(this["setNTRIP_casterIP"]));
+            }
+            set {
+                this["setNTRIP_casterIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2101")]
+        public int setNTRIP_casterPort {
+            get {
+                return ((int)(this["setNTRIP_casterPort"]));
+            }
+            set {
+                this["setNTRIP_casterPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SRG")]
+        public string setNTRIP_mount {
+            get {
+                return ((string)(this["setNTRIP_mount"]));
+            }
+            set {
+                this["setNTRIP_mount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string setNTRIP_userName {
+            get {
+                return ((string)(this["setNTRIP_userName"]));
+            }
+            set {
+                this["setNTRIP_userName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string setNTRIP_userPassword {
+            get {
+                return ((string)(this["setNTRIP_userPassword"]));
+            }
+            set {
+                this["setNTRIP_userPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setNTRIP_isOn {
+            get {
+                return ((bool)(this["setNTRIP_isOn"]));
+            }
+            set {
+                this["setNTRIP_isOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        public int setNTRIP_sendGGAInterval {
+            get {
+                return ((int)(this["setNTRIP_sendGGAInterval"]));
+            }
+            set {
+                this["setNTRIP_sendGGAInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setNTRIP_sendToUDPPort {
+            get {
+                return ((int)(this["setNTRIP_sendToUDPPort"]));
+            }
+            set {
+                this["setNTRIP_sendToUDPPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("53")]
+        public double setNTRIP_manualLat {
+            get {
+                return ((double)(this["setNTRIP_manualLat"]));
+            }
+            set {
+                this["setNTRIP_manualLat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-111")]
+        public double setNTRIP_manualLon {
+            get {
+                return ((double)(this["setNTRIP_manualLon"]));
+            }
+            set {
+                this["setNTRIP_manualLon"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("www.rtk2go.com")]
+        public string setNTRIP_casterURL {
+            get {
+                return ((string)(this["setNTRIP_casterURL"]));
+            }
+            set {
+                this["setNTRIP_casterURL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setNTRIP_isGGAManual {
+            get {
+                return ((bool)(this["setNTRIP_isGGAManual"]));
+            }
+            set {
+                this["setNTRIP_isGGAManual"] = value;
             }
         }
     }

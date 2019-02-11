@@ -123,10 +123,16 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
-    <Compile Include="FormSim.cs">
+    <Compile Include="Forms\FormNtrip.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSim.Designer.cs">
+    <Compile Include="Forms\FormNtrip.Designer.cs">
+      <DependentUpon>FormNtrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSim.Designer.cs">
       <DependentUpon>FormSim.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSwapAB.cs">
@@ -347,6 +353,10 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NTRIPComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGPS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -366,7 +376,10 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormSim.resx">
+    <EmbeddedResource Include="Forms\FormNtrip.resx">
+      <DependentUpon>FormNtrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSim.resx">
       <DependentUpon>FormSim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSwapAB.resx">
@@ -832,6 +845,7 @@
     <None Include="btnImages\CameraNorth64.png" />
     <None Include="btnImages\Extents.png" />
     <None Include="btnImages\Start48.png" />
+    <None Include="btnImages\NtripSettings.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -805,8 +805,8 @@ namespace AgOpenGPS
             //send the byte out to section relays
             BuildRelayByte();
 
-            //if a couple minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 240)       //2 counts per second X 60 seconds = 120 counts per minute.
+            //if a minute has elapsed save the field in case of crash and to be able to resume            
+            if (saveCounter > 60)    
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {

@@ -63,9 +63,11 @@ namespace AgOpenGPS
         //For field saving in background 
         private int saveCounter = 1;
 
+        //for the NTRIP CLient counting
+        private int ntripCounter = 10; 
+
         //used to update the screen status bar etc
-        //private int statusUpdateCounter = 1;
-        private int displayUpdateHalfSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
+        private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
 
         private int threeSecondCounter = 0, threeSeconds = 0;
         private int oneSecondCounter = 0, oneSecond = 0;
@@ -373,9 +375,6 @@ namespace AgOpenGPS
             //Calculate total width and each section width
             SectionCalcWidths();
 
-            //start udp server if required
-            if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
-
             //set the correct zoom and grid
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
@@ -385,6 +384,21 @@ namespace AgOpenGPS
 
             //triangle resolution is how far to next triangle point trigger distance
             triangleResolution = Settings.Default.setDisplay_triangleResolution;
+
+            //start udp server if required
+            if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
+
+            //start NTRIP if required
+            if (Properties.Settings.Default.setNTRIP_isOn)
+            {
+                isNTRIP_RequiredOn = true;
+                btnStartStopNtrip.Text = "Stop";
+            }
+            else
+            {
+                isNTRIP_RequiredOn = false;
+                btnStartStopNtrip.Text = "Start";
+            }
 
             //remembered window position
             if (Settings.Default.setWindow_Maximized)
@@ -638,6 +652,13 @@ namespace AgOpenGPS
             }
         }
 
+        //start the NTRIP Client
+        private void StartNTRIPClient()
+        {
+            //isNTRIP_Starting = true;
+            //StartNTRIP();
+        }
+
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -675,6 +696,26 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK)
                 {
                     //Clicked Save
+                }
+                else
+                {
+                    //Clicked X - No Save
+                }
+            }
+        }
+
+        //show the UDP ethernet settings page
+        private void SettingsNTRIP()
+        {
+            using (var form = new FormNtrip(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (isNTRIP_Connected)
+                    {
+                        SettingsShutDownNTRIP();
+                    }
                 }
                 else
                 {
@@ -721,6 +762,26 @@ namespace AgOpenGPS
 
             section[11].positionLeft = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
+        }
+
+        private void btnStartStopNtrip_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.setNTRIP_isOn)
+            {
+                if (isNTRIP_RequiredOn && isNTRIP_Connected)
+                {
+                    ShutDownNTRIP();
+                    btnStartStopNtrip.Text = "Start";
+                }
+                else
+                {
+                    isNTRIP_RequiredOn = true;
+                }
+            }
+            else
+            {
+                TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
+            }
         }
 
         //function to calculate the width of each section and update
@@ -1212,7 +1273,7 @@ namespace AgOpenGPS
             }
 
             //load the autosteer youturn byte also.
-            //mc.autoSteerData[mc.sdX] = mc.machineControlData[mc.cnYouTurnByte];
+            mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
         }
 
         //take the distance from object and convert to camera data

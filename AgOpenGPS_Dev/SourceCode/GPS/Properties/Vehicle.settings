@@ -15,16 +15,16 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setSection_position1" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-8.0</Value>
+      <Value Profile="(Default)">-6.0</Value>
     </Setting>
     <Setting Name="setSection_position2" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-3.0</Value>
+      <Value Profile="(Default)">-1.0</Value>
     </Setting>
     <Setting Name="setSection_position3" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">3.0</Value>
+      <Value Profile="(Default)">1.0</Value>
     </Setting>
     <Setting Name="setSection_position4" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">8.0</Value>
+      <Value Profile="(Default)">6.0</Value>
     </Setting>
     <Setting Name="setSection_position5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -36,7 +36,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_isToolTrailing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -51,7 +51,7 @@
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2.5</Value>
+      <Value Profile="(Default)">4.2</Value>
     </Setting>
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
@@ -87,13 +87,13 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">7</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">35</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="set_youSkipWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -102,7 +102,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="set_youStartYouTurnAt" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="set_youToolWidths" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
@@ -132,7 +132,7 @@
       <Value Profile="(Default)">Turn Off,Turn On</Value>
     </Setting>
     <Setting Name="setVehicle_minTurningRadius" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="set_youUseDubins" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -153,16 +153,16 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="set_youTriggerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="setVehicle_lookAheadDistanceFromLine" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_lookAheadMinimum" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAheadUturnMult" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.7</Value>
+      <Value Profile="(Default)">0.8</Value>
     </Setting>
   </Settings>
 </SettingsFile>

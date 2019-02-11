@@ -71,6 +71,27 @@ namespace AgOpenGPS
             }
         }
 
+        //sends byte array
+        public void SendUDPMessageNTRIP(byte[] byteData)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, 2233);
+
+                    // Send packet to the zero
+                    if (byteData.Length != 0)
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Sending UDP Message" + e.ToString());
+                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private void SendData(IAsyncResult asyncResult)
         {
             try
@@ -613,7 +634,7 @@ namespace AgOpenGPS
             }
 
             //speed up
-            if (keyData == Keys.K)
+            if (keyData == Keys.Up)
             {
                 sim.stepDistance += 0.05;
                 if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
@@ -623,7 +644,7 @@ namespace AgOpenGPS
             }
 
             //Stop
-            if (keyData == Keys.J)
+            if (keyData == Keys.OemPeriod)
             {
                 sim.stepDistance = 0;
                 hsbarStepDistance.Value = 0;
@@ -631,7 +652,7 @@ namespace AgOpenGPS
             }
 
             //slow down
-            if (keyData == Keys.H)
+            if (keyData == Keys.Down)
             {
                 sim.stepDistance -= 0.05;
                 if (sim.stepDistance < 0) sim.stepDistance = 0;
@@ -640,7 +661,7 @@ namespace AgOpenGPS
             }
 
             //turn right
-            if (keyData == Keys.M)
+            if (keyData == Keys.Right)
             {
                 sim.steerAngle++;
                 if (sim.steerAngle > 30) sim.steerAngle = 30;
@@ -651,7 +672,7 @@ namespace AgOpenGPS
             }
 
             //turn left
-            if (keyData == Keys.B)
+            if (keyData == Keys.Left)
             {
                 sim.steerAngle--;
                 if (sim.steerAngle < -30) sim.steerAngle = -30;
@@ -662,7 +683,7 @@ namespace AgOpenGPS
             }
 
             //zero steering
-            if (keyData == Keys.N)
+            if (keyData == Keys.OemQuestion)
             {
                 sim.steerAngle = 0.0;
                 sim.steerAngleScrollBar = sim.steerAngle;

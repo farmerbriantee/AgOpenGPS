@@ -19,6 +19,8 @@ namespace AgOpenGPS
 
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
         public vec2 boxE = new vec2(3, 4), boxF = new vec2(4, 5);
+        public vec2 boxG = new vec2(6, 6), boxH = new vec2(7, 7);
+
 
         //current contour patch and point closest to current fix
         public int closestRefPatch, closestRefPoint;
@@ -193,46 +195,81 @@ namespace AgOpenGPS
         //determine closest point on left side
         public void BuildContourGuidanceLine(vec3 pivot)
         {
-            //2 triangles EAD and CBF
-            double sinH = Math.Sin(pivot.heading) * 2.0 * mf.vehicle.toolWidth;
-            double cosH = Math.Cos(pivot.heading) * 2.0 * mf.vehicle.toolWidth;
-            double sin2H = Math.Sin(pivot.heading + glm.PIBy2) * 1.33 * mf.vehicle.toolWidth;
-            double cos2H = Math.Cos(pivot.heading + glm.PIBy2) * 1.33 * mf.vehicle.toolWidth;
+            double toolWid = mf.vehicle.toolWidth;
+
+            double sinH = Math.Sin(pivot.heading) * 2.0 * toolWid;
+            double cosH = Math.Cos(pivot.heading) * 2.0 * toolWid;
+
+            double sin2HL = 0;
+            double cos2HL = 0;
+            double sin2HR = 0;
+            double cos2HR = 0;
+
+            if (mf.vehicle.toolOffset < 0)
+            {
+                //sticks out more left
+                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+
+                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+            }
+            else
+            {
+                //sticks out more right
+                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+
+                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+            }
 
             //narrow equipment needs bigger bounding box.
             if (mf.vehicle.toolWidth < 6)
             {
-                sinH = Math.Sin(pivot.heading) * 4 * mf.vehicle.toolWidth;
-                cosH = Math.Cos(pivot.heading) * 4 * mf.vehicle.toolWidth;
-                //sin2H = Math.Sin(pivot.heading + glm.PIBy2) * 1.2 * mf.vehicle.toolWidth;
-                //cos2H = Math.Cos(pivot.heading + glm.PIBy2) * 1.2 * mf.vehicle.toolWidth;
+                sinH = Math.Sin(pivot.heading) * 4 * toolWid;
+                cosH = Math.Cos(pivot.heading) * 4 * toolWid;
             }
 
-            double sin3H = Math.Sin(pivot.heading + glm.PIBy2) * mf.vehicle.toolWidth * 0.25;
-            double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * mf.vehicle.toolWidth * 0.25;
+            double sin3H = Math.Sin(pivot.heading + glm.PIBy2) * 0.5;
+            double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * 0.5;
 
             //build a frustum box ahead of fix to find adjacent paths and points
-            boxA.easting = pivot.easting - sin2H;
-            boxA.northing = pivot.northing - cos2H;
-            boxA.easting -= (sinH * 0.25);
+
+            //left
+            boxA.easting = pivot.easting - sin2HL; 
+            boxA.northing = pivot.northing - cos2HL;
+            boxA.easting -= (sinH * 0.25); //bottom left outside
             boxA.northing -= (cosH * 0.25);
 
-            boxB.easting = pivot.easting + sin2H;
-            boxB.northing = pivot.northing + cos2H;
+            boxD.easting = boxA.easting + sinH; //top left outside
+            boxD.northing = boxA.northing + cosH;
+
+            boxE.easting = pivot.easting - sin3H; // inside bottom
+            boxE.northing = pivot.northing - cos3H;
+
+            boxG.easting = boxE.easting + sinH*0.3; //inside top
+            boxG.northing = boxE.northing + cosH*0.3;
+
+
+
+
+
+            //right
+            boxB.easting = pivot.easting + sin2HR;
+            boxB.northing = pivot.northing + cos2HR;
             boxB.easting -= (sinH * 0.25);
             boxB.northing -= (cosH * 0.25);
 
             boxC.easting = boxB.easting + sinH;
             boxC.northing = boxB.northing + cosH;
 
-            boxD.easting = boxA.easting + sinH;
-            boxD.northing = boxA.northing + cosH;
-
-            boxE.easting = pivot.easting - sin3H;
-            boxE.northing = pivot.northing - cos3H;
-
             boxF.easting = pivot.easting + sin3H;
             boxF.northing = pivot.northing + cos3H;
+
+            boxH.easting = boxF.easting + sinH * 0.3; //inside top
+            boxH.northing = boxF.northing + cosH * 0.3;
+
 
             conList.Clear();
             ctList.Clear();
@@ -251,14 +288,19 @@ namespace AgOpenGPS
                     ptCount = stripList[s].Count;
                     for (int p = 0; p < ptCount; p++)
                     {
-                        if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
-                                - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+                        //FHCBF
+                        if ((((boxH.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                - ((boxH.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
 
                         if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
                                 - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
 
                         if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
                                 - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                        if ((((boxF.easting - boxH.easting) * (stripList[s][p].northing - boxH.northing))
+                                - ((boxF.northing - boxH.northing) * (stripList[s][p].easting - boxH.easting))) < 0) { continue; }
+
 
                         //in the box so is it parallelish or perpedicularish to current heading
                         ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
@@ -283,14 +325,18 @@ namespace AgOpenGPS
                         ptCount = stripList[s].Count;
                         for (int p = 0; p < ptCount; p++)
                         {
+                            //EADGE
+                            if ((((boxG.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
+                                    - ((boxG.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
+
                             if ((((boxE.easting - boxA.easting) * (stripList[s][p].northing - boxA.northing))
                                     - ((boxE.northing - boxA.northing) * (stripList[s][p].easting - boxA.easting))) < 0) { continue; }
 
-                            if ((((boxD.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
-                                    - ((boxD.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
-
                             if ((((boxA.easting - boxD.easting) * (stripList[s][p].northing - boxD.northing))
                                     - ((boxA.northing - boxD.northing) * (stripList[s][p].easting - boxD.easting))) < 0) { continue; }
+
+                            if ((((boxD.easting - boxG.easting) * (stripList[s][p].northing - boxG.northing))
+                                    - ((boxD.northing - boxG.northing) * (stripList[s][p].easting - boxG.easting))) < 0) { continue; }
 
                             //in the box so is it parallelish or perpedicularish to current heading
                             ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
@@ -315,14 +361,19 @@ namespace AgOpenGPS
                     ptCount = stripList[s].Count;
                     for (int p = 0; p < ptCount; p++)
                     {
+                        //EADGE
+                        if ((((boxG.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
+                                - ((boxG.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
+
                         if ((((boxE.easting - boxA.easting) * (stripList[s][p].northing - boxA.northing))
                                 - ((boxE.northing - boxA.northing) * (stripList[s][p].easting - boxA.easting))) < 0) { continue; }
 
-                        if ((((boxD.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
-                                - ((boxD.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
-
                         if ((((boxA.easting - boxD.easting) * (stripList[s][p].northing - boxD.northing))
                                 - ((boxA.northing - boxD.northing) * (stripList[s][p].easting - boxD.easting))) < 0) { continue; }
+
+                        if ((((boxD.easting - boxG.easting) * (stripList[s][p].northing - boxG.northing))
+                                - ((boxD.northing - boxG.northing) * (stripList[s][p].easting - boxG.easting))) < 0) { continue; }
+
 
                         //in the box so is it parallelish or perpedicularish to current heading
                         ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
@@ -347,14 +398,17 @@ namespace AgOpenGPS
                         ptCount = stripList[s].Count;
                         for (int p = 0; p < ptCount; p++)
                         {
-                            if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
-                                    - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+                            if ((((boxH.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                    - ((boxH.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
 
                             if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
                                     - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
 
                             if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
                                     - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                            if ((((boxF.easting - boxH.easting) * (stripList[s][p].northing - boxH.northing))
+                                    - ((boxF.northing - boxH.northing) * (stripList[s][p].easting - boxH.easting))) < 0) { continue; }
 
                             //in the box so is it parallelish or perpedicularish to current heading
                             ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
@@ -503,7 +557,7 @@ namespace AgOpenGPS
                 {
                     ctList.RemoveAt(i + 1);
                     ctCount = ctList.Count;
-                    i = -1;
+                    i--;
                 }
             }
 
@@ -565,8 +619,6 @@ namespace AgOpenGPS
             cnt--;
             ctList.CopyTo(arr);
             ctList.Clear();
-
-            //first point needs last, first, second points
 
             //middle points
             for (int i = 1; i < cnt; i++)
@@ -825,31 +877,33 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
-            GL.PointSize(2.0f);
-            GL.Begin(PrimitiveType.Points);
+            //GL.PointSize(2.0f);
+            //GL.Begin(PrimitiveType.Points);
 
-            GL.Color3(0.7f, 0.7f, 0.25f);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
+            //GL.Color3(0.7f, 0.7f, 0.25f);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
+            //GL.End();
+            //GL.PointSize(1.0f);
+
+            GL.Color3(0.98f, 0.98f, 0.50f);
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
+            GL.Vertex3(boxA.easting, boxA.northing, 0);
+            GL.Vertex3(boxD.easting, boxD.northing, 0);
+            GL.Vertex3(boxG.easting, boxG.northing, 0);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
             GL.End();
-            GL.PointSize(1.0f);
 
-            //GL.Color3(0.98f, 0.98f, 0.50f);
-            //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            //GL.Vertex3(boxE.easting, boxE.northing, 0);
-            //GL.Vertex3(boxA.easting, boxA.northing, 0);
-            //GL.Vertex3(boxD.easting, boxD.northing, 0);
-            //GL.Vertex3(boxE.easting, boxE.northing, 0);
-            //GL.End();
-
-            //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            //GL.Vertex3(boxF.easting, boxF.northing, 0);
-            //GL.Vertex3(boxC.easting, boxC.northing, 0);
-            //GL.Vertex3(boxB.easting, boxB.northing, 0);
-            //GL.Vertex3(boxF.easting, boxF.northing, 0);
-            //GL.End();
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.Vertex3(boxH.easting, boxH.northing, 0);
+            GL.Vertex3(boxC.easting, boxC.northing, 0);
+            GL.Vertex3(boxB.easting, boxB.northing, 0);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.End();
 
             //draw the reference line
             //GL.PointSize(3.0f);

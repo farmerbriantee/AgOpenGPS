@@ -402,7 +402,7 @@
     <value>Tahoma, 21.75pt</value>
   </data>
   <data name="txtDistanceOffABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>676, 3</value>
+    <value>645, 3</value>
   </data>
   <data name="txtDistanceOffABLine.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 4</value>
@@ -666,7 +666,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1152, 38</value>
+    <value>1091, 38</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>49</value>
@@ -976,10 +976,22 @@
     <value>None</value>
   </data>
   <data name="stripEqWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>567, 56</value>
+    <value>486, 56</value>
   </data>
   <data name="stripEqWidth.Text" xml:space="preserve">
     <value>Width</value>
+  </data>
+  <data name="stripDistance.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="stripDistance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt</value>
+  </data>
+  <data name="stripDistance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 56</value>
+  </data>
+  <data name="stripDistance.Text" xml:space="preserve">
+    <value>8888 ft</value>
   </data>
   <data name="toolStripBtnDropDownSpecialFunctions.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1313,6 +1325,27 @@
   <data name="toolStripDropDownButton2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="toolStripNTRIPConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripNTRIPConfig.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 27.75pt</value>
+  </data>
+  <data name="toolStripNTRIPConfig.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="toolStripNTRIPConfig.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="toolStripNTRIPConfig.Size" type="System.Drawing.Size, System.Drawing">
+    <value>339, 70</value>
+  </data>
+  <data name="toolStripNTRIPConfig.Text" xml:space="preserve">
+    <value>NTRIP</value>
+  </data>
+  <data name="toolstripUDPConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolstripUDPConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 26.25pt</value>
   </data>
@@ -1451,10 +1484,13 @@
     <value>None</value>
   </data>
   <data name="toolstripUDPConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripUDPConfig.Text" xml:space="preserve">
     <value>UDP</value>
+  </data>
+  <data name="toolstripUSBPortsConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolstripUSBPortsConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1670,10 +1706,13 @@
     <value>None</value>
   </data>
   <data name="toolstripUSBPortsConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripUSBPortsConfig.Text" xml:space="preserve">
     <value>Ports</value>
+  </data>
+  <data name="toolstripDisplayConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolstripDisplayConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1822,10 +1861,13 @@
     <value>None</value>
   </data>
   <data name="toolstripDisplayConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripDisplayConfig.Text" xml:space="preserve">
     <value>GPS IMU</value>
+  </data>
+  <data name="toolStripAutoSteerChart.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolStripAutoSteerChart.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -1881,10 +1923,13 @@
     <value>None</value>
   </data>
   <data name="toolStripAutoSteerChart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolStripAutoSteerChart.Text" xml:space="preserve">
     <value>Steer Chart</value>
+  </data>
+  <data name="toolstripAutoSteerConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolstripAutoSteerConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2087,10 +2132,13 @@
     <value>None</value>
   </data>
   <data name="toolstripAutoSteerConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripAutoSteerConfig.Text" xml:space="preserve">
     <value>Auto Steer</value>
+  </data>
+  <data name="toolstripVehicleConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolstripVehicleConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2211,10 +2259,13 @@
     <value>None</value>
   </data>
   <data name="toolstripVehicleConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripVehicleConfig.Text" xml:space="preserve">
     <value>Vehicle</value>
+  </data>
+  <data name="toolstripYouTurnConfig.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolstripYouTurnConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 27.75pt</value>
@@ -2261,13 +2312,13 @@
     <value>None</value>
   </data>
   <data name="toolstripYouTurnConfig.Size" type="System.Drawing.Size, System.Drawing">
-    <value>340, 86</value>
+    <value>339, 70</value>
   </data>
   <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
     <value>U Turn</value>
   </data>
   <data name="toolStripDropDownButton2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt</value>
+    <value>Tahoma, 15.75pt</value>
   </data>
   <data name="toolStripDropDownButton2.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
     <value>None</value>
@@ -2276,22 +2327,10 @@
     <value>Magenta</value>
   </data>
   <data name="toolStripDropDownButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 55</value>
+    <value>110, 55</value>
   </data>
   <data name="toolStripDropDownButton2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>Overlay</value>
-  </data>
-  <data name="stripDistance.AutoSize" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="stripDistance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt</value>
-  </data>
-  <data name="stripDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 56</value>
-  </data>
-  <data name="stripDistance.Text" xml:space="preserve">
-    <value>8888 ft</value>
   </data>
   <data name="toolStripDropDownBtnFuncs.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2806,7 +2845,7 @@
     <value>Magenta</value>
   </data>
   <data name="toolStripDropDownBtnFuncs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 55</value>
+    <value>110, 55</value>
   </data>
   <data name="toolStripDropDownBtnFuncs.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>Overlay</value>
@@ -2887,10 +2926,10 @@
     <value>84, 54</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 689</value>
+    <value>0, 645</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1152, 56</value>
+    <value>1091, 56</value>
   </data>
   <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>95</value>
@@ -2992,7 +3031,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSpeed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>912, 5</value>
+    <value>851, 5</value>
   </data>
   <data name="lblSpeed.Size" type="System.Drawing.Size, System.Drawing">
     <value>87, 31</value>
@@ -3603,7 +3642,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblSpeedUnits.Location" type="System.Drawing.Point, System.Drawing">
-    <value>998, 13</value>
+    <value>937, 13</value>
   </data>
   <data name="lblSpeedUnits.Size" type="System.Drawing.Size, System.Drawing">
     <value>38, 17</value>
@@ -3639,7 +3678,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1041, 5</value>
+    <value>980, 5</value>
   </data>
   <data name="lblHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 31</value>
@@ -3673,7 +3712,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAXABHAFwARwBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAYgBHQGIAR0BQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -3922,7 +3961,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>21</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3955,7 +3994,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>19</value>
   </data>
   <data name="lblFieldWidthNorthSouth.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3988,7 +4027,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblFieldWidthNorthSouth.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>18</value>
   </data>
   <data name="lblFieldWidthEastWest.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4021,10 +4060,13 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblFieldWidthEastWest.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>16</value>
   </data>
   <data name="tabControl1.Appearance" type="System.Windows.Forms.TabAppearance, System.Windows.Forms">
     <value>Buttons</value>
+  </data>
+  <data name="btnLidarOnOff.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnLidarOnOff.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
@@ -4080,7 +4122,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnLidarOnOff.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 164</value>
+    <value>11, 387</value>
   </data>
   <data name="btnLidarOnOff.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 75</value>
@@ -4173,16 +4215,16 @@
     <value>NoControl</value>
   </data>
   <data name="btnRecPathPauseRecord.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 164</value>
+    <value>118, 195</value>
   </data>
   <data name="btnRecPathPauseRecord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 75</value>
+    <value>97, 98</value>
   </data>
   <data name="btnRecPathPauseRecord.TabIndex" type="System.Int32, mscorlib">
     <value>142</value>
   </data>
   <data name="btnRecPathPauseRecord.Text" xml:space="preserve">
-    <value>P/Rec</value>
+    <value>Record Path</value>
   </data>
   <data name="btnRecPathPauseRecord.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>BottomCenter</value>
@@ -4261,10 +4303,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnPauseDrivingPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 78</value>
+    <value>118, 78</value>
   </data>
   <data name="btnPauseDrivingPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 75</value>
+    <value>97, 98</value>
   </data>
   <data name="btnPauseDrivingPath.TabIndex" type="System.Int32, mscorlib">
     <value>174</value>
@@ -4394,10 +4436,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnDeleteRecPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 164</value>
+    <value>11, 195</value>
   </data>
   <data name="btnDeleteRecPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 75</value>
+    <value>97, 98</value>
   </data>
   <data name="btnDeleteRecPath.TabIndex" type="System.Int32, mscorlib">
     <value>175</value>
@@ -4422,6 +4464,9 @@
   </data>
   <data name="btnGenerateSelf.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
+  </data>
+  <data name="btnGenerateSelf.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="btnGenerateSelf.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
@@ -4564,7 +4609,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnGenerateSelf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 276</value>
+    <value>121, 387</value>
   </data>
   <data name="btnGenerateSelf.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -4600,10 +4645,10 @@
     <value>NoControl</value>
   </data>
   <data name="btnDrivePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 75</value>
+    <value>7, 78</value>
   </data>
   <data name="btnDrivePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 80</value>
+    <value>97, 98</value>
   </data>
   <data name="btnDrivePath.TabIndex" type="System.Int32, mscorlib">
     <value>152</value>
@@ -4623,6 +4668,9 @@
   <data name="btnGoSelf.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
+  <data name="btnGoSelf.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="btnGoSelf.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
   </data>
@@ -4633,7 +4681,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnGoSelf.Location" type="System.Drawing.Point, System.Drawing">
-    <value>231, 276</value>
+    <value>233, 387</value>
   </data>
   <data name="btnGoSelf.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -4799,7 +4847,7 @@
     <value>233, 78</value>
   </data>
   <data name="btnManualAutoDrive.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 80</value>
+    <value>97, 98</value>
   </data>
   <data name="btnManualAutoDrive.TabIndex" type="System.Int32, mscorlib">
     <value>152</value>
@@ -4822,6 +4870,9 @@
   <data name="&gt;&gt;btnManualAutoDrive.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="autoPage4.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="autoPage4.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 72</value>
   </data>
@@ -4830,9 +4881,6 @@
   </data>
   <data name="autoPage4.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
-  </data>
-  <data name="autoPage4.Text" xml:space="preserve">
-    <value>Auto</value>
   </data>
   <data name="&gt;&gt;autoPage4.Name" xml:space="preserve">
     <value>autoPage4</value>
@@ -8214,7 +8262,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;oglZoom.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>22</value>
   </data>
   <data name="lblFixQuality.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8252,6 +8300,240 @@
   <data name="panelBatman.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
   </data>
+  <data name="lblUturnByte.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblUturnByte.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblUturnByte.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt, style=Bold</value>
+  </data>
+  <data name="lblUturnByte.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblUturnByte.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 516</value>
+  </data>
+  <data name="lblUturnByte.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 19</value>
+  </data>
+  <data name="lblUturnByte.TabIndex" type="System.Int32, mscorlib">
+    <value>272</value>
+  </data>
+  <data name="lblUturnByte.Text" xml:space="preserve">
+    <value>101010</value>
+  </data>
+  <data name="&gt;&gt;lblUturnByte.Name" xml:space="preserve">
+    <value>lblUturnByte</value>
+  </data>
+  <data name="&gt;&gt;lblUturnByte.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblUturnByte.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;lblUturnByte.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="label6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 516</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 19</value>
+  </data>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>275</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>UTurn:</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblWatch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblWatch.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblWatch.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblWatch.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblWatch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 555</value>
+  </data>
+  <data name="lblWatch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 13</value>
+  </data>
+  <data name="lblWatch.TabIndex" type="System.Int32, mscorlib">
+    <value>274</value>
+  </data>
+  <data name="lblWatch.Text" xml:space="preserve">
+    <value>Waiting for GPS</value>
+  </data>
+  <data name="&gt;&gt;lblWatch.Name" xml:space="preserve">
+    <value>lblWatch</value>
+  </data>
+  <data name="&gt;&gt;lblWatch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblWatch.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;lblWatch.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnStartStopNtrip.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnStartStopNtrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 542</value>
+  </data>
+  <data name="btnStartStopNtrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 32</value>
+  </data>
+  <data name="btnStartStopNtrip.TabIndex" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <data name="btnStartStopNtrip.Text" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="&gt;&gt;btnStartStopNtrip.Name" xml:space="preserve">
+    <value>btnStartStopNtrip</value>
+  </data>
+  <data name="&gt;&gt;btnStartStopNtrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnStartStopNtrip.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;btnStartStopNtrip.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblNTRIPSeconds.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblNTRIPSeconds.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNTRIPSeconds.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblNTRIPSeconds.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNTRIPSeconds.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 576</value>
+  </data>
+  <data name="lblNTRIPSeconds.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="lblNTRIPSeconds.TabIndex" type="System.Int32, mscorlib">
+    <value>273</value>
+  </data>
+  <data name="lblNTRIPSeconds.Text" xml:space="preserve">
+    <value>NTRIP Off</value>
+  </data>
+  <data name="&gt;&gt;lblNTRIPSeconds.Name" xml:space="preserve">
+    <value>lblNTRIPSeconds</value>
+  </data>
+  <data name="&gt;&gt;lblNTRIPSeconds.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNTRIPSeconds.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;lblNTRIPSeconds.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblNtripBytes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="lblNtripBytes.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNtripBytes.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 8.25pt, style=Bold</value>
+  </data>
+  <data name="lblNtripBytes.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblNtripBytes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 577</value>
+  </data>
+  <data name="lblNtripBytes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 13</value>
+  </data>
+  <data name="lblNtripBytes.TabIndex" type="System.Int32, mscorlib">
+    <value>271</value>
+  </data>
+  <data name="lblNtripBytes.Text" xml:space="preserve">
+    <value>0 kb</value>
+  </data>
+  <data name="&gt;&gt;lblNtripBytes.Name" xml:space="preserve">
+    <value>lblNtripBytes</value>
+  </data>
+  <data name="&gt;&gt;lblNtripBytes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNtripBytes.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;lblNtripBytes.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="pbarNtrip.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="pbarNtrip.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pbarNtrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 592</value>
+  </data>
+  <data name="pbarNtrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>202, 12</value>
+  </data>
+  <data name="pbarNtrip.TabIndex" type="System.Int32, mscorlib">
+    <value>270</value>
+  </data>
+  <data name="&gt;&gt;pbarNtrip.Name" xml:space="preserve">
+    <value>pbarNtrip</value>
+  </data>
+  <data name="&gt;&gt;pbarNtrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pbarNtrip.Parent" xml:space="preserve">
+    <value>panelBatman</value>
+  </data>
+  <data name="&gt;&gt;pbarNtrip.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="lblpTimeToFinish.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -8262,7 +8544,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpTimeToFinish.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 427</value>
+    <value>82, 387</value>
   </data>
   <data name="lblpTimeToFinish.Size" type="System.Drawing.Size, System.Drawing">
     <value>106, 19</value>
@@ -8283,7 +8565,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpTimeToFinish.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>7</value>
   </data>
   <data name="label17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8295,7 +8577,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 427</value>
+    <value>4, 387</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 19</value>
@@ -8316,7 +8598,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>8</value>
   </data>
   <data name="lblpAreaWorked.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8328,7 +8610,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpAreaWorked.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 367</value>
+    <value>54, 329</value>
   </data>
   <data name="lblpAreaWorked.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 19</value>
@@ -8349,7 +8631,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpAreaWorked.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>9</value>
   </data>
   <data name="label26.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8361,7 +8643,7 @@
     <value>NoControl</value>
   </data>
   <data name="label26.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 367</value>
+    <value>8, 329</value>
   </data>
   <data name="label26.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 19</value>
@@ -8382,7 +8664,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label26.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>10</value>
   </data>
   <data name="lblpFieldAreaRemain.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8394,7 +8676,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpFieldAreaRemain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 393</value>
+    <value>54, 355</value>
   </data>
   <data name="lblpFieldAreaRemain.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 19</value>
@@ -8415,7 +8697,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpFieldAreaRemain.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>11</value>
   </data>
   <data name="lblpBoundaryArea.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8427,7 +8709,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpBoundaryArea.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 343</value>
+    <value>54, 305</value>
   </data>
   <data name="lblpBoundaryArea.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 19</value>
@@ -8448,7 +8730,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpBoundaryArea.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>12</value>
   </data>
   <data name="lblpFieldAreaRemainPercent.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8460,7 +8742,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpFieldAreaRemainPercent.Location" type="System.Drawing.Point, System.Drawing">
-    <value>141, 393</value>
+    <value>144, 355</value>
   </data>
   <data name="lblpFieldAreaRemainPercent.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 19</value>
@@ -8481,7 +8763,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpFieldAreaRemainPercent.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>13</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8493,16 +8775,16 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 304</value>
+    <value>40, 414</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>88, 19</value>
+    <value>46, 19</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>258</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Work Rate:</value>
+    <value>Rate:</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
@@ -8514,7 +8796,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>14</value>
   </data>
   <data name="lblAreaRate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8526,7 +8808,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblAreaRate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>89, 304</value>
+    <value>82, 414</value>
   </data>
   <data name="lblAreaRate.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 19</value>
@@ -8547,7 +8829,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblAreaRate.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>15</value>
   </data>
   <data name="lblpGPSHeading.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8559,7 +8841,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpGPSHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 271</value>
+    <value>140, 275</value>
   </data>
   <data name="lblpGPSHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 19</value>
@@ -8580,7 +8862,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpGPSHeading.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>17</value>
   </data>
   <data name="lblpYawHeading.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8592,7 +8874,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblpYawHeading.Location" type="System.Drawing.Point, System.Drawing">
-    <value>44, 271</value>
+    <value>44, 275</value>
   </data>
   <data name="lblpYawHeading.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 19</value>
@@ -8613,7 +8895,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpYawHeading.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>20</value>
   </data>
   <data name="label35.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8625,7 +8907,7 @@
     <value>NoControl</value>
   </data>
   <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 271</value>
+    <value>3, 275</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 19</value>
@@ -8646,7 +8928,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>23</value>
   </data>
   <data name="label39.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8658,7 +8940,7 @@
     <value>NoControl</value>
   </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 271</value>
+    <value>100, 275</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 19</value>
@@ -8679,7 +8961,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label39.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>24</value>
   </data>
   <data name="lblpRoll.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8712,7 +8994,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpRoll.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>25</value>
   </data>
   <data name="label33.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8745,7 +9027,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>26</value>
   </data>
   <data name="lblpAltitude.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8778,7 +9060,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;lblpAltitude.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>27</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8790,7 +9072,7 @@
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 343</value>
+    <value>12, 305</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>48, 19</value>
@@ -8811,7 +9093,7 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>28</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8823,7 +9105,7 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 393</value>
+    <value>6, 355</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 19</value>
@@ -8844,13 +9126,13 @@
     <value>panelBatman</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>29</value>
   </data>
   <data name="panelBatman.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 38</value>
   </data>
   <data name="panelBatman.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 650</value>
+    <value>210, 605</value>
   </data>
   <data name="panelBatman.TabIndex" type="System.Int32, mscorlib">
     <value>182</value>
@@ -8868,7 +9150,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelBatman.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <data name="cboxpRowWidth.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -8898,7 +9180,7 @@
     <value>6</value>
   </data>
   <data name="cboxpRowWidth.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 541</value>
+    <value>343, 523</value>
   </data>
   <data name="cboxpRowWidth.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 3, 2, 3</value>
@@ -8961,7 +9243,7 @@
     <value>323, 2</value>
   </data>
   <data name="btnResetSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 33</value>
+    <value>50, 33</value>
   </data>
   <data name="btnResetSteerAngle.TabIndex" type="System.Int32, mscorlib">
     <value>162</value>
@@ -9042,10 +9324,10 @@
     <value>3</value>
   </data>
   <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>339, 650</value>
+    <value>339, 601</value>
   </data>
   <data name="panelSimControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 37</value>
+    <value>376, 37</value>
   </data>
   <data name="panelSimControls.TabIndex" type="System.Int32, mscorlib">
     <value>224</value>
@@ -9081,7 +9363,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection8Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>530, 502</value>
+    <value>530, 444</value>
   </data>
   <data name="btnSection8Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9123,7 +9405,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection7Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>518, 488</value>
+    <value>518, 430</value>
   </data>
   <data name="btnSection7Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9165,7 +9447,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection6Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 470</value>
+    <value>496, 412</value>
   </data>
   <data name="btnSection6Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9207,7 +9489,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection5Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>475, 452</value>
+    <value>475, 394</value>
   </data>
   <data name="btnSection5Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9249,7 +9531,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection4Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>540, 429</value>
+    <value>540, 371</value>
   </data>
   <data name="btnSection4Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9291,7 +9573,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection3Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>519, 415</value>
+    <value>519, 357</value>
   </data>
   <data name="btnSection3Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9333,7 +9615,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection2Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>496, 397</value>
+    <value>496, 339</value>
   </data>
   <data name="btnSection2Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9375,7 +9657,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection1Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>479, 379</value>
+    <value>479, 321</value>
   </data>
   <data name="btnSection1Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9417,7 +9699,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection9Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>446, 530</value>
+    <value>446, 472</value>
   </data>
   <data name="btnSection9Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9459,7 +9741,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection10Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 543</value>
+    <value>472, 485</value>
   </data>
   <data name="btnSection10Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9501,7 +9783,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection11Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 552</value>
+    <value>504, 494</value>
   </data>
   <data name="btnSection11Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9543,7 +9825,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSection12Man.Location" type="System.Drawing.Point, System.Drawing">
-    <value>521, 567</value>
+    <value>521, 509</value>
   </data>
   <data name="btnSection12Man.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 30</value>
@@ -9630,13 +9912,13 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="oglMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>330, 36</value>
+    <value>330, 39</value>
   </data>
   <data name="oglMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 1, 2, 1</value>
   </data>
   <data name="oglMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>738, 649</value>
+    <value>678, 604</value>
   </data>
   <data name="oglMain.TabIndex" type="System.Int32, mscorlib">
     <value>180</value>
@@ -9657,7 +9939,7 @@
     <value>Top, Right</value>
   </data>
   <data name="oglBack.Location" type="System.Drawing.Point, System.Drawing">
-    <value>425, 111</value>
+    <value>366, 111</value>
   </data>
   <data name="oglBack.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 1, 2, 1</value>
@@ -9723,7 +10005,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnZoomExtents.Location" type="System.Drawing.Point, System.Drawing">
-    <value>344, 452</value>
+    <value>341, 435</value>
   </data>
   <data name="btnZoomExtents.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -9756,7 +10038,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnpTiltUp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 119</value>
+    <value>341, 102</value>
   </data>
   <data name="btnpTiltUp.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -9786,7 +10068,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnpTiltDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 200</value>
+    <value>341, 183</value>
   </data>
   <data name="btnpTiltDown.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -9888,7 +10170,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnZoomOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 362</value>
+    <value>341, 345</value>
   </data>
   <data name="btnZoomOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -9988,7 +10270,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnZoomIn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 281</value>
+    <value>341, 264</value>
   </data>
   <data name="btnZoomIn.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 64</value>
@@ -10151,7 +10433,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSwapDirection.Location" type="System.Drawing.Point, System.Drawing">
-    <value>982, 87</value>
+    <value>921, 87</value>
   </data>
   <data name="btnSwapDirection.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10215,7 +10497,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnContourPriority.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 41</value>
+    <value>1009, 41</value>
   </data>
   <data name="btnContourPriority.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10257,7 +10539,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnCurve.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 137</value>
+    <value>1009, 137</value>
   </data>
   <data name="btnCurve.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10410,7 +10692,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnEnableAutoYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>982, 370</value>
+    <value>921, 370</value>
   </data>
   <data name="btnEnableAutoYouTurn.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10452,7 +10734,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnSectionOffAutoOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 521</value>
+    <value>1009, 521</value>
   </data>
   <data name="btnSectionOffAutoOn.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -10494,7 +10776,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnFlag.Location" type="System.Drawing.Point, System.Drawing">
-    <value>982, 183</value>
+    <value>921, 183</value>
   </data>
   <data name="btnFlag.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10536,7 +10818,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>982, 464</value>
+    <value>921, 464</value>
   </data>
   <data name="btnAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
@@ -10660,7 +10942,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnRightYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>855, 97</value>
+    <value>794, 97</value>
   </data>
   <data name="btnRightYouTurn.Size" type="System.Drawing.Size, System.Drawing">
     <value>94, 86</value>
@@ -10705,7 +10987,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnManualOffOn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 425</value>
+    <value>1009, 425</value>
   </data>
   <data name="btnManualOffOn.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10744,7 +11026,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnABLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 329</value>
+    <value>1009, 329</value>
   </data>
   <data name="btnABLine.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10786,7 +11068,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnContour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1070, 233</value>
+    <value>1009, 233</value>
   </data>
   <data name="btnContour.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 80</value>
@@ -10819,7 +11101,7 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1152, 745</value>
+    <value>1091, 701</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
@@ -11225,6 +11507,12 @@
   <data name="&gt;&gt;stripEqWidth.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;stripDistance.Name" xml:space="preserve">
+    <value>stripDistance</value>
+  </data>
+  <data name="&gt;&gt;stripDistance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripBtnDropDownSpecialFunctions.Name" xml:space="preserve">
     <value>toolStripBtnDropDownSpecialFunctions</value>
   </data>
@@ -11260,6 +11548,12 @@
   </data>
   <data name="&gt;&gt;toolStripDropDownButton2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripDropDownButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripNTRIPConfig.Name" xml:space="preserve">
+    <value>toolStripNTRIPConfig</value>
+  </data>
+  <data name="&gt;&gt;toolStripNTRIPConfig.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolstripUDPConfig.Name" xml:space="preserve">
     <value>toolstripUDPConfig</value>
@@ -11302,12 +11596,6 @@
   </data>
   <data name="&gt;&gt;toolstripYouTurnConfig.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;stripDistance.Name" xml:space="preserve">
-    <value>stripDistance</value>
-  </data>
-  <data name="&gt;&gt;stripDistance.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripDropDownBtnFuncs.Name" xml:space="preserve">
     <value>toolStripDropDownBtnFuncs</value>

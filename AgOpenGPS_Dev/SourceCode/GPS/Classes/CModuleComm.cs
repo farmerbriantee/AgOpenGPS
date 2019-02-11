@@ -42,7 +42,7 @@
         public byte[] autoSteerData = new byte[numSteerDataItems];
 
         public int sdHeaderHi, sdHeaderLo = 1, sdRelayLo = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
-                    sdSteerAngleHi = 6, sdSteerAngleLo = 7;
+                    sdSteerAngleHi = 6, sdSteerAngleLo = 7, sdYouTurnByte = 8;
 
         // PGN - 32764 - 127.252 0xFC
         public static int numSteerSettingItems = 10;
@@ -108,6 +108,7 @@
             autoSteerData[sdDistanceLo] = 20;
             autoSteerData[sdSteerAngleHi] = 125; // PGN - 32020
             autoSteerData[sdSteerAngleLo] = 20;
+            autoSteerData[sdYouTurnByte] = 0;
             mf.AutoSteerDataOutToPort();
 
             relayRateSettings[rsHeaderHi] = 127; // PGN - 32760
