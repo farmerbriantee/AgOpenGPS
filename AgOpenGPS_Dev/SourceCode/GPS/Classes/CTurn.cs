@@ -212,34 +212,31 @@ namespace AgOpenGPS
             ptCount = turnClosestList.Count;
             if (ptCount != 0)
             {
+                double totalDist = 0.75 * Math.Sqrt(((fromPt.easting - rayPt.easting) * (fromPt.easting - rayPt.easting))
+                + ((fromPt.northing - rayPt.northing) * (fromPt.northing - rayPt.northing)));
+
                 //determine closest point
                 double minDistance = 9999999;
                 for (int i = 0; i < ptCount; i++)
                 {
-                    double dist = ((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
-                                    + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing));
+                    double dist = Math.Sqrt(((fromPt.easting - turnClosestList[i].easting) * (fromPt.easting - turnClosestList[i].easting))
+                                    + ((fromPt.northing - turnClosestList[i].northing) * (fromPt.northing - turnClosestList[i].northing)));
 
-                    double distRay = ((rayPt.easting - turnClosestList[i].easting) * (rayPt.easting - turnClosestList[i].easting))
-                                    + ((rayPt.northing - turnClosestList[i].northing) * (rayPt.northing - turnClosestList[i].northing));
+                    //double distRay = ((rayPt.easting - turnClosestList[i].easting) * (rayPt.easting - turnClosestList[i].easting))
+                    //                + ((rayPt.northing - turnClosestList[i].northing) * (rayPt.northing - turnClosestList[i].northing));
 
-                    if (minDistance >= dist && distRay < (mf.vehicle.toolWidth * mf.vehicle.toolWidth * 3))
+                    if (minDistance >= dist && dist > totalDist)
                     {
                         minDistance = dist;
-
-                        closestTurnPt2.easting = turnClosestList[i].easting;
-                        closestTurnPt2.northing = turnClosestList[i].northing;
-                        closestTurnPt2.heading = turnClosestList[i].heading;
+                        closestTurnPt.easting = turnClosestList[i].easting;
+                        closestTurnPt.northing = turnClosestList[i].northing;
+                        closestTurnPt.heading = turnClosestList[i].heading;
                     }
                 }
-                if (closestTurnPt2.heading < 0) closestTurnPt.heading += glm.twoPI;
+                if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
 
                 //point must be in the neighborhood of center point
                 //if (glm.Distance(closestTurnPt2.easting, closestTurnPt2.northing, closestTurnPt.easting, closestTurnPt.northing) < mf.vehicle.toolWidth)
-                {
-                    closestTurnPt.easting = closestTurnPt2.easting;
-                    closestTurnPt.northing = closestTurnPt2.northing;
-                    closestTurnPt.heading = closestTurnPt2.heading;
-                }
             }
         }
 

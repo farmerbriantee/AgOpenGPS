@@ -73,7 +73,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-8.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-6.0")]
         public decimal setSection_position1 {
             get {
                 return ((decimal)(this["setSection_position1"]));
@@ -85,7 +85,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-3.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1.0")]
         public decimal setSection_position2 {
             get {
                 return ((decimal)(this["setSection_position2"]));
@@ -97,7 +97,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
         public decimal setSection_position3 {
             get {
                 return ((decimal)(this["setSection_position3"]));
@@ -109,7 +109,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6.0")]
         public decimal setSection_position4 {
             get {
                 return ((decimal)(this["setSection_position4"]));
@@ -157,7 +157,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public double setVehicle_lookAhead {
             get {
                 return ((double)(this["setVehicle_lookAhead"]));
@@ -217,7 +217,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.2")]
         public double setVehicle_wheelbase {
             get {
                 return ((double)(this["setVehicle_wheelbase"]));
@@ -361,7 +361,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
         public double setVehicle_goalPointLookAhead {
             get {
                 return ((double)(this["setVehicle_goalPointLookAhead"]));
@@ -373,7 +373,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
         public double setVehicle_maxAngularVelocity {
             get {
                 return ((double)(this["setVehicle_maxAngularVelocity"]));
@@ -385,7 +385,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("35")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public double setVehicle_maxSteerAngle {
             get {
                 return ((double)(this["setVehicle_maxSteerAngle"]));
@@ -421,7 +421,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int set_youStartYouTurnAt {
             get {
                 return ((int)(this["set_youStartYouTurnAt"]));
@@ -541,7 +541,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public double setVehicle_minTurningRadius {
             get {
                 return ((double)(this["setVehicle_minTurningRadius"]));
@@ -625,7 +625,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8")]
         public double set_youTriggerDistance {
             get {
                 return ((double)(this["set_youTriggerDistance"]));
@@ -637,7 +637,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public double setVehicle_lookAheadDistanceFromLine {
             get {
                 return ((double)(this["setVehicle_lookAheadDistanceFromLine"]));
@@ -661,7 +661,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
         public double setVehicle_goalPointLookAheadUturnMult {
             get {
                 return ((double)(this["setVehicle_goalPointLookAheadUturnMult"]));

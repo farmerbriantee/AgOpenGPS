@@ -773,6 +773,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NtripSettings {
+            get {
+                object obj = ResourceManager.GetObject("NtripSettings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap OK64 {
             get {
                 object obj = ResourceManager.GetObject("OK64", resourceCulture);

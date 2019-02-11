@@ -84,12 +84,14 @@
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnSmoothABCurve = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripNTRIPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripDisplayConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -97,7 +99,6 @@
             this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
@@ -198,6 +199,12 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.lblWatch = new System.Windows.Forms.Label();
+            this.btnStartStopNtrip = new System.Windows.Forms.Button();
+            this.lblNTRIPSeconds = new System.Windows.Forms.Label();
+            this.lblUturnByte = new System.Windows.Forms.Label();
+            this.lblNtripBytes = new System.Windows.Forms.Label();
+            this.pbarNtrip = new System.Windows.Forms.ProgressBar();
             this.lblpTimeToFinish = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblpAreaWorked = new System.Windows.Forms.Label();
@@ -267,6 +274,7 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -631,7 +639,7 @@
             // 
             // tmrWatchdog
             // 
-            this.tmrWatchdog.Interval = 50;
+            this.tmrWatchdog.Interval = 20;
             this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
             // 
             // statusStrip1
@@ -641,9 +649,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBtnCamera,
             this.stripEqWidth,
+            this.stripDistance,
             this.toolStripBtnDropDownSpecialFunctions,
             this.toolStripDropDownButton2,
-            this.stripDistance,
             this.toolStripDropDownBtnFuncs,
             this.stripOnlineGPS,
             this.toolStripBatman});
@@ -687,6 +695,12 @@
             this.stripEqWidth.Name = "stripEqWidth";
             this.stripEqWidth.Spring = true;
             // 
+            // stripDistance
+            // 
+            resources.ApplyResources(this.stripDistance, "stripDistance");
+            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.stripDistance.Name = "stripDistance";
+            // 
             // toolStripBtnDropDownSpecialFunctions
             // 
             resources.ApplyResources(this.toolStripBtnDropDownSpecialFunctions, "toolStripBtnDropDownSpecialFunctions");
@@ -727,6 +741,7 @@
             // 
             resources.ApplyResources(this.toolStripDropDownButton2, "toolStripDropDownButton2");
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripNTRIPConfig,
             this.toolstripUDPConfig,
             this.toolstripUSBPortsConfig,
             this.toolstripDisplayConfig,
@@ -739,24 +754,31 @@
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
             // 
+            // toolStripNTRIPConfig
+            // 
+            resources.ApplyResources(this.toolStripNTRIPConfig, "toolStripNTRIPConfig");
+            this.toolStripNTRIPConfig.Image = global::AgOpenGPS.Properties.Resources.NtripSettings;
+            this.toolStripNTRIPConfig.Name = "toolStripNTRIPConfig";
+            this.toolStripNTRIPConfig.Click += new System.EventHandler(this.toolStripNTRIPConfig_Click);
+            // 
             // toolstripUDPConfig
             // 
-            this.toolstripUDPConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripUDPConfig, "toolstripUDPConfig");
+            this.toolstripUDPConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripUDPConfig.Name = "toolstripUDPConfig";
             this.toolstripUDPConfig.Click += new System.EventHandler(this.toolstripUDPConfig_Click);
             // 
             // toolstripUSBPortsConfig
             // 
-            this.toolstripUSBPortsConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripUSBPortsConfig, "toolstripUSBPortsConfig");
+            this.toolstripUSBPortsConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripUSBPortsConfig.Name = "toolstripUSBPortsConfig";
             this.toolstripUSBPortsConfig.Click += new System.EventHandler(this.toolstripUSBPortsConfig_Click);
             // 
             // toolstripDisplayConfig
             // 
-            this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripDisplayConfig, "toolstripDisplayConfig");
+            this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripDisplayConfig.Name = "toolstripDisplayConfig";
             this.toolstripDisplayConfig.Click += new System.EventHandler(this.toolstripDisplayConfig_Click);
             // 
@@ -768,30 +790,24 @@
             // 
             // toolstripAutoSteerConfig
             // 
-            this.toolstripAutoSteerConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripAutoSteerConfig, "toolstripAutoSteerConfig");
+            this.toolstripAutoSteerConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripAutoSteerConfig.Name = "toolstripAutoSteerConfig";
             this.toolstripAutoSteerConfig.Click += new System.EventHandler(this.toolstripAutoSteerConfig_Click);
             // 
             // toolstripVehicleConfig
             // 
-            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripVehicleConfig, "toolstripVehicleConfig");
+            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
             this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
             // 
             // toolstripYouTurnConfig
             // 
-            this.toolstripYouTurnConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripYouTurnConfig, "toolstripYouTurnConfig");
+            this.toolstripYouTurnConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripYouTurnConfig.Name = "toolstripYouTurnConfig";
             this.toolstripYouTurnConfig.Click += new System.EventHandler(this.toolstripYouTurnConfig_Click);
-            // 
-            // stripDistance
-            // 
-            resources.ApplyResources(this.stripDistance, "stripDistance");
-            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.stripDistance.Name = "stripDistance";
             // 
             // toolStripDropDownBtnFuncs
             // 
@@ -1539,6 +1555,13 @@
             // 
             resources.ApplyResources(this.panelBatman, "panelBatman");
             this.panelBatman.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.panelBatman.Controls.Add(this.lblUturnByte);
+            this.panelBatman.Controls.Add(this.label6);
+            this.panelBatman.Controls.Add(this.lblWatch);
+            this.panelBatman.Controls.Add(this.btnStartStopNtrip);
+            this.panelBatman.Controls.Add(this.lblNTRIPSeconds);
+            this.panelBatman.Controls.Add(this.lblNtripBytes);
+            this.panelBatman.Controls.Add(this.pbarNtrip);
             this.panelBatman.Controls.Add(this.lblpTimeToFinish);
             this.panelBatman.Controls.Add(this.label17);
             this.panelBatman.Controls.Add(this.lblpAreaWorked);
@@ -1563,6 +1586,40 @@
             this.panelBatman.Controls.Add(this.label11);
             this.panelBatman.Controls.Add(this.label14);
             this.panelBatman.Name = "panelBatman";
+            // 
+            // lblWatch
+            // 
+            resources.ApplyResources(this.lblWatch, "lblWatch");
+            this.lblWatch.Name = "lblWatch";
+            // 
+            // btnStartStopNtrip
+            // 
+            resources.ApplyResources(this.btnStartStopNtrip, "btnStartStopNtrip");
+            this.btnStartStopNtrip.Name = "btnStartStopNtrip";
+            this.btnStartStopNtrip.UseVisualStyleBackColor = true;
+            this.btnStartStopNtrip.Click += new System.EventHandler(this.btnStartStopNtrip_Click);
+            // 
+            // lblNTRIPSeconds
+            // 
+            resources.ApplyResources(this.lblNTRIPSeconds, "lblNTRIPSeconds");
+            this.lblNTRIPSeconds.Name = "lblNTRIPSeconds";
+            // 
+            // lblUturnByte
+            // 
+            resources.ApplyResources(this.lblUturnByte, "lblUturnByte");
+            this.lblUturnByte.Name = "lblUturnByte";
+            // 
+            // lblNtripBytes
+            // 
+            resources.ApplyResources(this.lblNtripBytes, "lblNtripBytes");
+            this.lblNtripBytes.Name = "lblNtripBytes";
+            // 
+            // pbarNtrip
+            // 
+            resources.ApplyResources(this.pbarNtrip, "pbarNtrip");
+            this.pbarNtrip.BackColor = System.Drawing.Color.Maroon;
+            this.pbarNtrip.Maximum = 256;
+            this.pbarNtrip.Name = "pbarNtrip";
             // 
             // lblpTimeToFinish
             // 
@@ -1713,9 +1770,9 @@
             // 
             resources.ApplyResources(this.hsbarSteerAngle, "hsbarSteerAngle");
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Maximum = 1000;
+            this.hsbarSteerAngle.Maximum = 600;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Value = 500;
+            this.hsbarSteerAngle.Value = 300;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
             // 
             // hsbarStepDistance
@@ -2129,6 +2186,11 @@
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
@@ -2444,6 +2506,14 @@
         public System.Windows.Forms.Button btnGoSelf;
         private System.Windows.Forms.Button btnGenerateSelf;
         public System.Windows.Forms.Button btnSwapDirection;
+        private System.Windows.Forms.Label lblNtripBytes;
+        private System.Windows.Forms.ProgressBar pbarNtrip;
+        private System.Windows.Forms.ToolStripMenuItem toolStripNTRIPConfig;
+        private System.Windows.Forms.Label lblUturnByte;
+        private System.Windows.Forms.Label lblNTRIPSeconds;
+        private System.Windows.Forms.Button btnStartStopNtrip;
+        private System.Windows.Forms.Label lblWatch;
+        private System.Windows.Forms.Label label6;
     }
 }
 

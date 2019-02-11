@@ -203,6 +203,7 @@ namespace AgOpenGPS
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = (Width - 340 - 100)/2 + 300;
                 txtDistanceOffABLine.Top = -1;
+                tabControl1.SelectedIndex = 3;
             }
         }
 
@@ -2780,6 +2781,11 @@ namespace AgOpenGPS
             formG.Show();
         }
 
+        private void toolStripNTRIPConfig_Click(object sender, EventArgs e)
+        {
+            SettingsNTRIP();
+        }
+
 
         private void toolstripVehicleConfig_Click(object sender, EventArgs e)
         {
@@ -2877,7 +2883,7 @@ namespace AgOpenGPS
         private void timerSim_Tick(object sender, EventArgs e)
         {
             //if a GPS is connected disable sim
-            if (!sp.IsOpen)
+            //if (!sp.IsOpen)
             {
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 //else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
@@ -2887,7 +2893,7 @@ namespace AgOpenGPS
         }
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
-            sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 500) * 0.1;
+            sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 300) * 0.1;
             btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
@@ -2897,7 +2903,7 @@ namespace AgOpenGPS
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {
             sim.steerAngleScrollBar = 0;
-            hsbarSteerAngle.Value = 500;
+            hsbarSteerAngle.Value = 300;
             btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void btnResetSim_Click(object sender, EventArgs e)
@@ -3082,99 +3088,64 @@ namespace AgOpenGPS
 
         #endregion properties 
 
-        //Timer triggers at 50 msec, 20 hz, and is THE clock of the whole program//
+        //Timer triggers at 25 msec, 40 hz, and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
             ScanForNMEA();
 
-            if (threeSecondCounter++ > 59)
+            if (threeSecondCounter++ > 74)
             {
                 threeSecondCounter = 0;
                 threeSeconds++;
             }
-            if (oneSecondCounter++ > 19)
+            if (oneSecondCounter++ > 24)
             {
                 oneSecondCounter = 0;
                 oneSecond++;
             }
 
-            if (oneHalfSecondCounter++ > 9)
+            if (oneHalfSecondCounter++ > 13)
             {
                 oneHalfSecondCounter = 0;
                 oneHalfSecond++;
             }
 
-            //every half of a second update all status
-            if (displayUpdateHalfSecondCounter != oneHalfSecond)
+            //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
+            if (displayUpdateOneSecondCounter != oneSecond)
             {
                 //reset the counter
-                displayUpdateHalfSecondCounter = oneHalfSecond;
+                displayUpdateOneSecondCounter = oneSecond;
 
                 //counter used for saving field in background
                 saveCounter++;
 
-                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                //count up the ntrip clock only if eberything is alive
+                if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
                 {
-                    if (isMetric)
-                    {
-                        lblAltitude.Text = Altitude;
-                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                        lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
-                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
-                        //else lblBoundaryDistanceAway.Text = "***";
-                        //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
-                        //else lblHeadlandDistanceFromTool.Text = " * ";
-                    }
-                    else //imperial
-                    {
-                        lblAltitude.Text = AltitudeFeet;
-                        ////Boundary
-                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                        lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
-                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
-                        //else lblBoundaryDistanceAway.Text = "***";
-                        //lblHeadlandDistanceFromTool.Text = DistPivotFt;
-                    }
-
-                    //both
-                    lblLatitude.Text = Latitude;
-                    lblLongitude.Text = Longitude;
-                    lblSats.Text = SatsTracked;
-
-                    lblRoll.Text = RollInDegrees;
-                    lblYawHeading.Text = GyroInDegrees;
-                    lblGPSHeading.Text = GPSHeading;
-                    lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
-                    lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
-
-                    txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
-                    txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
-                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
-
-
-                    //up in the menu a few pieces of info
-                    if (isJobStarted)
-                    {
-                        lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
-                        lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
-                    }
-                    else
-                    {
-                        lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
-                        lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
-                    }
-
-                    lblZone.Text = pn.zone.ToString();
-                    tboxSentence.Text = recvSentenceSettings;
-
+                    ntripCounter++;
+                    if (NTRIP_Watchdog++ > 10 && isNTRIP_Connected) ReconnectRequest();
                 }
 
-                if (panelBatman.Visible)
+                if (isNTRIP_RequiredOn && !isNTRIP_Connected)
                 {
-                    lblpRoll.Text = RollInDegrees;
-                    lblpYawHeading.Text = GyroInDegrees;
-                    lblpGPSHeading.Text = GPSHeading;
+                    if (!isNTRIP_Starting && ntripCounter > 20)
+                    {
+                        StartNTRIP();
+                    }
+                }
+
+                //display items
+                lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(6, '0');
+
+                if (isNTRIP_RequiredOn)
+                {
+                    //update byte counter and up counter
+                    if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
+                    else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
+                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 23);
+
+                    pbarNtrip.Value = (byte)(tripBytes / 10);
                 }
 
                 //the main formgps window
@@ -3262,13 +3233,6 @@ namespace AgOpenGPS
                     }
                 }
 
-                //not Metric/Standard units sensitive
-                lblFixQuality.Text = FixQuality;
-                lblHeading.Text = Heading;
-                lblHeading2.Text = lblHeading.Text;
-                lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
-                lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
-
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight
                     || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
@@ -3297,71 +3261,172 @@ namespace AgOpenGPS
                     }
                 }
 
+                //not Metric/Standard units sensitive
+                lblFixQuality.Text = FixQuality;
+                lblHeading.Text = Heading;
+                lblHeading2.Text = lblHeading.Text;
+                lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
+                lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
 
-                /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
 
-                //every 3 second update status
-                if (displayUpdateThreeSecondCounter != threeSeconds)
-                {
-                    //reset the counter
-                    displayUpdateThreeSecondCounter = threeSeconds;                    
-
-                    if (panelBatman.Visible)
-                    {
-                        if (isMetric)
-                        {
-                            lblpAltitude.Text = Altitude;
-                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                            lblpAreaWorked.Text = fd.WorkedHectares;
-                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
-                            lblAreaRate.Text = fd.WorkRateHectares;
-                        }
-                        else //imperial
-                        {
-                            lblpAltitude.Text = AltitudeFeet;
-                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                            lblpAreaWorked.Text = fd.WorkedAcres;
-                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
-                            lblAreaRate.Text = fd.WorkRateAcres;
-                        }
-
-                        //both
-                        lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
-                        lblpTimeToFinish.Text = fd.TimeTillFinished;
-                    }
-
-                    //the main formgps window
-                    if (isMetric)  //metric or imperial
-                    {
-                        //Hectares on the master section soft control and sections
-                        btnPerimeter.Text = PeriAreaHectares;    //area button
-
-                        //status strip values
-                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
-                    }
-                    else  //Imperial Measurements
-                    {
-                        btnPerimeter.Text = PeriAreaAcres;
-
-                        //status strip values
-                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
-                    }
-
-                    //not Metric/Standard units sensitive
-                    btnABLine.Text = PassNumber;
-
-                    //update the online indicator
-                    if (recvCounter > 50)
-                    {
-                        stripOnlineGPS.Value = 1;
-                        lblEasting.Text = "-";
-                        lblNorthing.Text = gStr.gsNoGPS;
-                        lblZone.Text = "-";
-                        tboxSentence.Text = gStr.gsNoSentenceData;
-                    }
-                    else stripOnlineGPS.Value = 100;
-                }                   
             }
+
+            //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
+            if (displayUpdateHalfSecondCounter != oneHalfSecond)
+            {
+                //reset the counter
+                displayUpdateHalfSecondCounter = oneHalfSecond;
+
+
+                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                {
+                    //both
+                    lblLatitude.Text = Latitude;
+                    lblLongitude.Text = Longitude;
+
+                    lblRoll.Text = RollInDegrees;
+                    lblYawHeading.Text = GyroInDegrees;
+                    lblGPSHeading.Text = GPSHeading;
+                    lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
+                    lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
+
+                    txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
+                    txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
+                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
+
+
+                    //up in the menu a few pieces of info
+                    if (isJobStarted)
+                    {
+                        lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
+                        lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
+                    }
+                    else
+                    {
+                        lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
+                        lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
+                    }
+
+                    tboxSentence.Text = recvSentenceSettings;
+
+                }
+
+                if (panelBatman.Visible)
+                {
+                    lblpRoll.Text = RollInDegrees;
+                    lblpYawHeading.Text = GyroInDegrees;
+                    lblpGPSHeading.Text = GPSHeading;
+                }
+
+            } //end every 1/2 second
+            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
+
+            //every 3 second update status
+            if (displayUpdateThreeSecondCounter != threeSeconds)
+            {
+                //reset the counter
+                displayUpdateThreeSecondCounter = threeSeconds;
+
+                if (panelBatman.Visible)
+                {
+                    if (isMetric)
+                    {
+                        lblpAltitude.Text = Altitude;
+                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                        lblpAreaWorked.Text = fd.WorkedHectares;
+                        lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
+                        lblAreaRate.Text = fd.WorkRateHectares;
+                    }
+                    else //imperial
+                    {
+                        lblpAltitude.Text = AltitudeFeet;
+                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                        lblpAreaWorked.Text = fd.WorkedAcres;
+                        lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
+                        lblAreaRate.Text = fd.WorkRateAcres;
+                    }
+
+                    //both
+                    lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
+                    lblpTimeToFinish.Text = fd.TimeTillFinished;
+
+                    //watchdog for Ntrip
+                    if (NTRIP_Watchdog > 3) lblWatch.Text = "Waiting";
+                    else lblWatch.Text = "Listening";
+
+                    if (sendGGAInterval > 0 && isNTRIP_Sending)
+                    {
+                        lblWatch.Text = "Sending GGA";
+                        isNTRIP_Sending = false;
+                    }
+                }
+
+
+                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                {
+                    if (isMetric)
+                    {
+                        lblAltitude.Text = Altitude;
+                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                        lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
+                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
+                        //else lblBoundaryDistanceAway.Text = "***";
+                        //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
+                        //else lblHeadlandDistanceFromTool.Text = " * ";
+                    }
+                    else //imperial
+                    {
+                        lblAltitude.Text = AltitudeFeet;
+                        ////Boundary
+                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                        lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
+                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
+                        //else lblBoundaryDistanceAway.Text = "***";
+                        //lblHeadlandDistanceFromTool.Text = DistPivotFt;
+                    }
+
+                    //both
+                    lblSats.Text = SatsTracked;
+                    lblZone.Text = pn.zone.ToString();
+                    tboxSentence.Text = recvSentenceSettings;
+
+                }
+
+
+
+
+                //the main formgps window
+                if (isMetric)  //metric or imperial
+                {
+                    //Hectares on the master section soft control and sections
+                    btnPerimeter.Text = PeriAreaHectares;    //area button
+
+                    //status strip values
+                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+                }
+                else  //Imperial Measurements
+                {
+                    btnPerimeter.Text = PeriAreaAcres;
+
+                    //status strip values
+                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+                }
+
+                //not Metric/Standard units sensitive
+                btnABLine.Text = PassNumber;
+
+                //update the online indicator
+                if (recvCounter > 50)
+                {
+                    stripOnlineGPS.Value = 1;
+                    lblEasting.Text = "-";
+                    lblNorthing.Text = gStr.gsNoGPS;
+                    lblZone.Text = "-";
+                    tboxSentence.Text = gStr.gsNoSentenceData;
+                }
+                else stripOnlineGPS.Value = 100;
+
+            }//end every 3 seconds
         }//wait till timer fires again.  
     }//end class
 }//end namespace
