@@ -72,13 +72,13 @@ namespace AgOpenGPS
         }
 
         //sends byte array
-        public void SendUDPMessageNTRIP(byte[] byteData)
+        public void SendUDPMessageNTRIP(byte[] byteData, int port)
         {
             if (isUDPSendConnected)
             {
                 try
                 {
-                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, 2233);
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, port);
 
                     // Send packet to the zero
                     if (byteData.Length != 0)

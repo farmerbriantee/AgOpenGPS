@@ -200,7 +200,7 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    SendUDPMessageNTRIP(data);
+                    SendUDPMessageNTRIP(data, toUDP_Port);
 
                 }
                 catch (Exception ex)
