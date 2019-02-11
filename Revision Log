@@ -1,14 +1,24 @@
-v 2.3 Jan 15
-* zero Roll
-* Selectable inputs for roll/heading
-* fix bug in imu heading /gps fusion
-* Add Google Earth to create boundary
-* Fixed UDP display of ipv4 - not 6
-* Add POAGI sentence from Emlid Reach with IMU
-* Added checkbox for choosing heading from GGA VTG
-* Fix AB Line issues
-* Template for fields from existing Boundary, Headland, Paths etc
-* Delete all section/contour data button
+v 3.0 Feb 2018
+* NTRIP Client
+* Fixed offset for contour
+* Uturn byte sent with autosteer data
+* offset in UTUrn doesn't work quite right.
+
+v2.8 Feb 2019
+* Flag for drive around boundaries added
+* Zoom Extents only works if field loaded
+* Fixed About with recent changes, added contributors.
+* Fix version for vehicle cultural - I hope finally.
+* Multi boundary import from google earth
+
+v2.8 Jan 2019
+* Fixed left turn bug - yes there was one, adding tails never updated list count, cut off early
+* Fixed point fixing on boundary, gaps at end not filling
+* Turn Lines point distance based on eq width
+* Fixed input ouput text boxes not labelled correct
+* Headings calc fixed in contour and AB Curve. 
+* Manual UTurn eludes fixing. Need a software dept meeting. Someone needs firing. 
+* Firing helped, UTurn manual mostly works. 
 
 v2.3 Dec 15
 * Sequencing functions and actions on headland
