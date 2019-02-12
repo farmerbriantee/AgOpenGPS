@@ -17,9 +17,12 @@ bool MMA8452::init()
 	if (reg != 0x2A && reg != 0x1A )
 	 {
 	  // 8452 will always return 0x2A, 8451 returns 0x1A, otherwise connections probably wrong
+	  Serial.print("MMA not responding, should be 0x2A or 0x1A, is:");
+          Serial.println(reg,HEX);	
 	  return false;
 	 }
-
+        if (reg==0x2A) Serial.println("MMA 8452 found!");
+	if (reg==0x1A) Serial.println("MMA 8451 found!");
 	// range on startup is always 2g, we'll need to know the range for G calculation
 	range = MMA_RANGE_2G;
 	active = true; // active by default
