@@ -886,24 +886,24 @@ namespace AgOpenGPS
             //GL.End();
             //GL.PointSize(1.0f);
 
-            GL.Color3(0.98f, 0.98f, 0.50f);
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.Vertex3(boxA.easting, boxA.northing, 0);
-            GL.Vertex3(boxD.easting, boxD.northing, 0);
-            GL.Vertex3(boxG.easting, boxG.northing, 0);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.End();
+            //GL.Color3(0.98f, 0.98f, 0.50f);
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.Vertex3(boxA.easting, boxA.northing, 0);
+            //GL.Vertex3(boxD.easting, boxD.northing, 0);
+            //GL.Vertex3(boxG.easting, boxG.northing, 0);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.End();
 
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.Vertex3(boxH.easting, boxH.northing, 0);
-            GL.Vertex3(boxC.easting, boxC.northing, 0);
-            GL.Vertex3(boxB.easting, boxB.northing, 0);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.End();
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.Vertex3(boxH.easting, boxH.northing, 0);
+            //GL.Vertex3(boxC.easting, boxC.northing, 0);
+            //GL.Vertex3(boxB.easting, boxB.northing, 0);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.End();
 
             //draw the reference line
             //GL.PointSize(3.0f);
