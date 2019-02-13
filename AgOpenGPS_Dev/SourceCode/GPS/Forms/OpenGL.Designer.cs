@@ -164,6 +164,37 @@ namespace AgOpenGPS
                 recPath.DrawRecordedLine();
                 recPath.DrawDubins();
 
+                //draw Boundaries
+                bnd.DrawBoundaryLines();
+
+                //draw the turnLines
+                turn.DrawTurnLines();
+                gf.DrawGeoFenceLines();
+                turn.DrawClosestPoint();
+
+                //if (bnd.bndArr[0].isSet) mazeGrid.DrawArr();
+
+
+                //GL.PointSize(4.0f);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Color3(0.915f, 0.920f, 0.150f);
+                //if (recPath.mazeList != null)
+                //{
+                //    int ptCount = recPath.mazeList.Count;
+                //    for (int h = 0; h < ptCount; h++)
+                //    {
+                //        GL.Vertex3(recPath.mazeList[h].easting, recPath.mazeList[h].northing, 0);
+
+                //    }
+                //    GL.End();
+                //}
+
+
+                //draw generated path
+                //genPath.DrawGeneratedPath();
+                //self.DrawDubins();
+
+
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
                 if (flagCnt > 0)
@@ -204,13 +235,6 @@ namespace AgOpenGPS
 
                 //draw the perimter line, returns if no line to draw
                 if (periArea.isBtnPerimeterOn) periArea.DrawPerimeterLine();
-
-                //draw Boundaries
-                bnd.DrawBoundaryLines();
-
-                //draw the turnLines
-                turn.DrawTurnLines();
-                turn.DrawClosestPoint();
 
                 ////Draw closest headland point if youturn on
                 //if (yt.isYouTurnBtnOn)
@@ -805,8 +829,8 @@ namespace AgOpenGPS
             //send the byte out to section relays
             BuildRelayByte();
 
-            //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 60)    
+            //if a couple minute has elapsed save the field in case of crash and to be able to resume            
+            if (saveCounter > 240)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
@@ -1134,15 +1158,16 @@ namespace AgOpenGPS
             frustum[23] = clip[15] - clip[13];
         }
 
-        double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
+        public double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
         //determine mins maxs of patches and whole field.
-        private void CalculateMinMax()
+        public void CalculateMinMax()
         {
 
             minFieldX = 9999999; minFieldY = 9999999;
             maxFieldX = -9999999; maxFieldY = -9999999;
 
 
+            //min max of the boundary
             //min max of the boundary
             if (bnd.bndArr[0].isSet)
             {
@@ -1204,7 +1229,6 @@ namespace AgOpenGPS
                 if (dist > dist2) maxFieldDistance = (dist);
                 else maxFieldDistance = (dist2);
 
-
                 if (maxFieldDistance < 200) maxFieldDistance = 200;
                 if (maxFieldDistance > 19900) maxFieldDistance = 19900;
                 //lblMax.Text = ((int)maxFieldDistance).ToString();
@@ -1212,6 +1236,11 @@ namespace AgOpenGPS
                 fieldCenterX = (maxFieldX + minFieldX) / 2.0;
                 fieldCenterY = (maxFieldY + minFieldY) / 2.0;
             }
+
+            minFieldX -= 8;
+            minFieldY -= 8;
+            maxFieldX += 8;
+            maxFieldY += 8;
 
             if (isMetric)
             {
@@ -1227,6 +1256,5 @@ namespace AgOpenGPS
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 
         }
-
     }
 }

@@ -61,7 +61,7 @@
             // 
             this.btnLeftRight.Enabled = false;
             this.btnLeftRight.Image = ((System.Drawing.Image)(resources.GetObject("btnLeftRight.Image")));
-            this.btnLeftRight.Location = new System.Drawing.Point(685, 14);
+            this.btnLeftRight.Location = new System.Drawing.Point(713, 14);
             this.btnLeftRight.Name = "btnLeftRight";
             this.btnLeftRight.Size = new System.Drawing.Size(121, 109);
             this.btnLeftRight.TabIndex = 67;
@@ -72,11 +72,11 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(684, 333);
+            this.btnDelete.Location = new System.Drawing.Point(712, 333);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 109);
             this.btnDelete.TabIndex = 65;
-            this.btnDelete.Text = "Delete 1";
+            this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -85,7 +85,7 @@
             // 
             this.btnOuter.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOuter.Image = ((System.Drawing.Image)(resources.GetObject("btnOuter.Image")));
-            this.btnOuter.Location = new System.Drawing.Point(526, 14);
+            this.btnOuter.Location = new System.Drawing.Point(554, 14);
             this.btnOuter.Name = "btnOuter";
             this.btnOuter.Size = new System.Drawing.Size(121, 109);
             this.btnOuter.TabIndex = 65;
@@ -101,7 +101,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSerialCancel.Location = new System.Drawing.Point(832, 333);
+            this.btnSerialCancel.Location = new System.Drawing.Point(860, 333);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 109);
@@ -120,7 +120,7 @@
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
             this.btnGo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGo.Location = new System.Drawing.Point(833, 14);
+            this.btnGo.Location = new System.Drawing.Point(861, 14);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(121, 109);
@@ -134,11 +134,11 @@
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBoundaryFromGE.Image")));
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(685, 180);
+            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(713, 193);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
-            this.btnLoadBoundaryFromGE.Size = new System.Drawing.Size(121, 109);
+            this.btnLoadBoundaryFromGE.Size = new System.Drawing.Size(121, 84);
             this.btnLoadBoundaryFromGE.TabIndex = 68;
-            this.btnLoadBoundaryFromGE.Text = "Load 1";
+            this.btnLoadBoundaryFromGE.Text = "Load KML";
             this.btnLoadBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadBoundaryFromGE.UseVisualStyleBackColor = true;
             this.btnLoadBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
@@ -148,9 +148,9 @@
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenGoogleEarth.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenGoogleEarth.Image")));
             this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(526, 180);
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(554, 192);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
-            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(121, 109);
+            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(121, 84);
             this.btnOpenGoogleEarth.TabIndex = 69;
             this.btnOpenGoogleEarth.Text = "Google Earth";
             this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -215,7 +215,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(157, 118);
+            this.label3.Location = new System.Drawing.Point(173, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 25);
             this.label3.TabIndex = 90;
@@ -225,7 +225,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(304, 118);
+            this.label4.Location = new System.Drawing.Point(317, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 25);
             this.label4.TabIndex = 91;
@@ -235,7 +235,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(20, 118);
+            this.label5.Location = new System.Drawing.Point(37, 118);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 25);
             this.label5.TabIndex = 92;
@@ -266,17 +266,16 @@
             // chField
             // 
             this.chField.Text = "Line";
-            this.chField.Width = 110;
+            this.chField.Width = 130;
             // 
             // chAngle
             // 
             this.chAngle.Text = "Drive Thru";
             this.chAngle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chAngle.Width = 165;
+            this.chAngle.Width = 150;
             // 
             // chAround
             // 
-            this.chAround.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chAround.Width = 100;
             // 
             // chEasting
@@ -334,7 +333,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(403, 118);
+            this.label7.Location = new System.Drawing.Point(412, 118);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(80, 25);
             this.label7.TabIndex = 98;
@@ -345,9 +344,9 @@
             this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadMultiBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadMultiBoundaryFromGE.Image")));
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(832, 180);
+            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(860, 194);
             this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
-            this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(121, 109);
+            this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(121, 84);
             this.btnLoadMultiBoundaryFromGE.TabIndex = 99;
             this.btnLoadMultiBoundaryFromGE.Text = "Load Multi";
             this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -359,7 +358,7 @@
             this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteAll.Location = new System.Drawing.Point(525, 333);
+            this.btnDeleteAll.Location = new System.Drawing.Point(553, 333);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(121, 109);
             this.btnDeleteAll.TabIndex = 100;
@@ -372,7 +371,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 449);
+            this.ClientSize = new System.Drawing.Size(1001, 449);
             this.ControlBox = false;
             this.Controls.Add(this.btnDeleteAll);
             this.Controls.Add(this.btnLoadMultiBoundaryFromGE);

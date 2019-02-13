@@ -42,8 +42,6 @@ namespace AgOpenGPS
         //point at the farthest turn segment from pivotAxle
         public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
 
-        public vec3 closestTurnPt2 = new vec3(-10000, -10000, 9);
-
         public void ResetTurnLines()
         {
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
@@ -73,6 +71,7 @@ namespace AgOpenGPS
                     {
                         if (!mf.bnd.bndArr[t].isSet) continue;
                         if (mf.bnd.bndArr[t].isDriveThru) continue;
+                        if (mf.bnd.bndArr[t].isDriveAround) continue;
                         if (mf.turn.turnArr[t].IsPointInTurnWorkArea(pt))
                         {
                             isFound = true;
@@ -234,15 +233,36 @@ namespace AgOpenGPS
                     }
                 }
                 if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+            }
+        }
 
-                //point must be in the neighborhood of center point
-                //if (glm.Distance(closestTurnPt2.easting, closestTurnPt2.northing, closestTurnPt.easting, closestTurnPt.northing) < mf.vehicle.toolWidth)
+        public bool PointInsideWorkArea(vec2 pt)
+        {
+            //if inside outer boundary, then potentially add
+            if (turnArr[0].IsPointInTurnWorkArea(pt))
+            {
+                for (int b = 1; b < FormGPS.MAXBOUNDARIES; b++)
+                {
+                    if (mf.bnd.bndArr[b].isSet)
+                    {
+                        if (turnArr[b].IsPointInTurnWorkArea(pt))
+                        {
+                            //point is in an inner turn area but inside outer
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
         public void BuildTurnLines()
         {
-            //uodate the GUI values for boundaries
+            //update the GUI values for boundaries
             mf.fd.UpdateFieldBoundaryGUIAreas();
 
             if (!mf.bnd.bndArr[0].isSet)
@@ -282,7 +302,7 @@ namespace AgOpenGPS
             for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
             {
                 turnArr[j].turnLine.Clear();
-                if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru) continue;
+                if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround) continue;
 
                 ptCount = mf.bnd.bndArr[j].bndLine.Count;
 
@@ -310,17 +330,30 @@ namespace AgOpenGPS
 
         public void DrawTurnLines()
         {
+            GL.LineWidth(1);
+            GL.Color3(0.3555f, 0.9232f, 0.20f);
+            //GL.PointSize(2);
+            GL.Begin(PrimitiveType.LineStrip);
+
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
             {
-                if (mf.bnd.bndArr[i].isSet)
-                    turnArr[i].DrawTurnLine();
+                if (!mf.bnd.bndArr[i].isSet && mf.bnd.bndArr[i].isDriveAround) continue;
+                //turnArr[i].DrawTurnLine();
+                {
+                    ////draw the turn line oject
+                    int ptCount = mf.turn.turnArr[i].turnLine.Count;
+                    if (ptCount < 1) continue;
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.turn.turnArr[i].turnLine[h].easting, mf.turn.turnArr[i].turnLine[h].northing, 0);
+                    //GL.Vertex3(turnLine[0].easting, turnLine[0].northing, 0);
+                }
             }
+            GL.End();
         }
 
         //draws the derived closest point
         public void DrawClosestPoint()
         {
-            GL.PointSize(4.0f);
+            GL.PointSize(6.0f);
             GL.Color3(0.219f, 0.932f, 0.070f);
             GL.Begin(PrimitiveType.Points);
             GL.Vertex3(closestTurnPt.easting, closestTurnPt.northing, 0);

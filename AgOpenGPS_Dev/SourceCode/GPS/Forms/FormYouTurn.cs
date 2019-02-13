@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //using Keypad;
@@ -1211,6 +1212,11 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
             Close();
             mf.turn.BuildTurnLines();
+            mf.gf.BuildGeoFenceLines();
+
+            //Task.Run(() =>  mf.mazeGrid.BuildMazeGridArray());
+            mf.mazeGrid.BuildMazeGridArray();
+
             mf.yt.ResetCreatedYouTurn();
         }
 
