@@ -27,8 +27,8 @@ namespace AgOpenGPS
             area = 0;
             isSet = false;
             isOkToAddPoints = false;
-            isDriveThru = false;
             isDriveAround = false;
+            isDriveThru = false;
             isDrawRightSide = true;
         }
 
@@ -42,7 +42,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveThru, isDriveAround, isDrawRightSide;
+        public bool isOkToAddPoints, isSet, isDriveAround, isDriveThru, isDrawRightSide;
 
         public void CalculateBoundaryHeadings()
         {
@@ -95,7 +95,7 @@ namespace AgOpenGPS
             vec3 point = new vec3(bndLine[3].easting - (Math.Sin(oneSide + bndLine[3].heading) * 2.0),
             bndLine[3].northing - (Math.Cos(oneSide + bndLine[3].heading) * 2.0), 0.0);
 
-            double spacing = 3;
+            double spacing = 4;
             //make sure boundaries are wound correctly
             if (bndNum == 0)
             {
@@ -106,7 +106,7 @@ namespace AgOpenGPS
             {
                 //inside an inner boundary means its wound clockwise
                 if (IsPointInsideBoundary(point)) ReverseWinding();
-                spacing = 2;
+                spacing = 3;
             }
 
             //make sure distance isn't too small between points on headland
@@ -119,7 +119,7 @@ namespace AgOpenGPS
                 {
                     bndLine.RemoveAt(i + 1);
                     bndCount = bndLine.Count;
-                    i = -1;
+                    i--;
                 }
             }
 
@@ -140,30 +140,30 @@ namespace AgOpenGPS
 
                     bndLine.Insert(j, pointB);
                     bndCount = bndLine.Count;
-                    i = -1;
+                    i--;
                 }
             }
 
-            //make sure distance isn't too big between points on boundary - yes again!
+            //make sure distance isn't too big between points on boundary
             bndCount = bndLine.Count;
-            spacing *= 1.35;
+            spacing *= 1.33;
 
-            //for (int i = 0; i < bndCount; i++)
-            //{
-            //    int j = i + 1;
+            for (int i = 0; i < bndCount; i++)
+            {
+                int j = i + 1;
 
-            //    if (j == bndCount) j = 0;
-            //    distance = glm.Distance(bndLine[i], bndLine[j]);
-            //    if (distance > spacing)
-            //    {
-            //        CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
-            //            (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
+                if (j == bndCount) j = 0;
+                distance = glm.Distance(bndLine[i], bndLine[j]);
+                if (distance > spacing)
+                {
+                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+                        (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
-            //        bndLine.Insert(j, pointB);
-            //        bndCount = bndLine.Count;
-            //        i = -1;
-            //    }
-            //}
+                    bndLine.Insert(j, pointB);
+                    bndCount = bndLine.Count;
+                    i--;
+                }
+            }
 
             //make sure headings are correct for calculated points
             CalculateBoundaryHeadings();
@@ -254,12 +254,12 @@ namespace AgOpenGPS
             ////draw the perimeter line so far
             int ptCount = bndLine.Count;
             if (ptCount < 1) return;
-            GL.LineWidth(2);
-            if (isDriveThru) GL.Color3(0.25f, 0.952f, 0.960f);
-            else GL.Color3(0.95f, 0.2f, 0.860f);
+            GL.LineWidth(1);
+            if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
+            else GL.Color3(0.25f, 0.2f, 0.90f);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
-            GL.Color3(0.95f, 0.72f, 0.0f);
+            GL.Color3(0.95f, 0.972f, 0.90f);
             GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
             GL.End();
 

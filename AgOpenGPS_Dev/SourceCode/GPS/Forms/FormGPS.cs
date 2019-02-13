@@ -102,6 +102,12 @@ namespace AgOpenGPS
         /// </summary>
         public CABLine ABLine;
 
+        /// <summary>
+        /// The grid for collision Avoidance
+        /// </summary>
+        public CMazeGrid mazeGrid;
+
+
         // couple of quick AB's
         public CQuicks AB0 = new CQuicks("Original", 2, 2, 2);
         public CQuicks AB1 = new CQuicks("North South", 0, 0, 0);
@@ -197,6 +203,13 @@ namespace AgOpenGPS
         /// </summary>
         public CFieldData fd;
 
+        /// <summary>
+        /// GeoFence around everything you cannot cross
+        /// </summary>
+        public CGeoFence gf;
+
+
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -246,6 +259,9 @@ namespace AgOpenGPS
             //Turn object
             turn = new CTurn(this);
 
+            //GeoFence
+            gf = new CGeoFence(this);
+
             ////headland object
             //hl = new CHeadland(gl, this);
 
@@ -273,6 +289,9 @@ namespace AgOpenGPS
 
             //fieldData all in one place
             fd = new CFieldData(this);
+
+            //The grid for obstacle avoidance
+            mazeGrid = new CMazeGrid(this);
 
             //start the stopwatch
             swFrame.Start();

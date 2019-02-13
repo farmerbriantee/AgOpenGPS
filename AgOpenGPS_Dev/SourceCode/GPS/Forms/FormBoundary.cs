@@ -20,9 +20,9 @@ namespace AgOpenGPS
             if (mf.isMetric)
             {
                 //outer metric
-                lvLines.Items[0].SubItems[2].Text = " -";
+                lvLines.Items[0].SubItems[2].Text = "NA";
                 if (mf.bnd.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bnd.bndArr[0].area * 0.0001, 2) + " Ha";
-                else lvLines.Items[0].SubItems[1].Text = " *";
+                else lvLines.Items[0].SubItems[1].Text = "*";
 
                 //inner metric
                 for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
@@ -31,7 +31,7 @@ namespace AgOpenGPS
                     {
                         lvLines.Items[i].SubItems[2].Text = mf.bnd.bndArr[i].isDriveThru.ToString();
                         lvLines.Items[i].SubItems[3].Text = mf.bnd.bndArr[i].isDriveAround.ToString();
-                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 3) + " Ha";
+                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2) + " Ha";
                     }
                     else
                     {
@@ -44,7 +44,7 @@ namespace AgOpenGPS
             else
             {
                 //outer
-                lvLines.Items[0].SubItems[2].Text = "-";
+                lvLines.Items[0].SubItems[2].Text = "NA";
                 if (mf.bnd.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bnd.bndArr[0].area * 0.000247105, 2) + " Ac";
                 else lvLines.Items[0].SubItems[1].Text = "*";
 
@@ -55,7 +55,7 @@ namespace AgOpenGPS
                     {
                         lvLines.Items[i].SubItems[2].Text = mf.bnd.bndArr[i].isDriveThru.ToString();
                         lvLines.Items[i].SubItems[3].Text = mf.bnd.bndArr[i].isDriveAround.ToString();
-                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 3) + " Ac";
+                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
                     }
                     else
                     {
@@ -82,13 +82,13 @@ namespace AgOpenGPS
 
             //create a 6 row by 3 column ListView
             ListViewItem itm;
-            const string line = "Outer,False,False, - ";
+            const string line = "Outer,False,False,0.0";
             string[] words = line.Split(',');
             itm = new ListViewItem(words);
             lvLines.Items.Add(itm);
             for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
             {
-                words[0] = "In - " + i.ToString();
+                words[0] = "Inner " + i.ToString();
                 itm = new ListViewItem(words);
                 lvLines.Items.Add(itm);
             }
@@ -182,9 +182,9 @@ namespace AgOpenGPS
         {
             mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
-            //mf.gf.BuildGeoFenceLines();
+            mf.gf.BuildGeoFenceLines();
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
-            //mf.mazeGrid.BuildMazeGridArray();
+            mf.mazeGrid.BuildMazeGridArray();
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)

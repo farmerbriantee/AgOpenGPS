@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -32,12 +33,16 @@ namespace AgOpenGPS
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = false;
             }
 
-            //turn lines made from boundaries
-            mf.FileSaveBoundary();
-            mf.turn.BuildTurnLines();
-
             //stop it all for adding
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+
+            //turn lines made from boundaries
+            mf.CalculateMinMax();
+            mf.FileSaveBoundary();
+            mf.turn.BuildTurnLines();
+            mf.gf.BuildGeoFenceLines();
+            //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
+            mf.mazeGrid.BuildMazeGridArray();
 
             //close window
             Close();

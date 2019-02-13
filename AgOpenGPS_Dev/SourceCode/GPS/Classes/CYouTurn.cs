@@ -11,12 +11,6 @@ namespace AgOpenGPS
         //copy of the mainform address
         private readonly FormGPS mf;
 
-        /// <summary> /// Has the you turn shape been built and we are driving it? /// </summary>
-        //public bool isYouTurnInProgress;
-
-        /// <summary> /// is the start trigger point 45m from headland set? /// </summary>
-        //public bool isYouTurnTriggerPointSet;
-
         /// <summary>/// triggered right after youTurnTriggerPoint is set /// </summary>
         public bool isYouTurnTriggered;
 
@@ -26,7 +20,7 @@ namespace AgOpenGPS
         /// <summary> /// What was the last successful you turn direction? /// </summary>
         public bool isLastYouTurnRight;
 
-        public bool isEnteringDriveThru = false, isExitingDriveThru = false;
+        //public bool isEnteringDriveThru = false, isExitingDriveThru = false;
 
         //if not in workArea but in bounds, then we are on headland
         public bool isInWorkArea, isInBoundz;
@@ -41,7 +35,7 @@ namespace AgOpenGPS
         public bool isUsingDubinsTurn;
 
         public double boundaryAngleOffPerpendicular;
-        public double distanceTurnBeforeLine = 0, tangencyAngle, distanceCrossLineCalc;
+        public double distanceTurnBeforeLine = 0, tangencyAngle;
 
         //Dew Loop turn 2 -> 2R,3L,2L,2R,3R,2L
         public bool isDew2Set, isDew2Right, isDew4Set;
@@ -141,6 +135,7 @@ namespace AgOpenGPS
                         //make sure not inside a non drivethru boundary
                         if (!mf.bnd.bndArr[i].isSet) continue;
                         if (mf.bnd.bndArr[i].isDriveThru) continue;
+                        if (mf.bnd.bndArr[i].isDriveAround) continue;
                         if (mf.turn.turnArr[i].IsPointInTurnWorkArea(mf.curve.curList[j]))
                         {
                             crossingCurvePoint.easting = mf.curve.curList[j - 1].easting;
@@ -177,6 +172,7 @@ namespace AgOpenGPS
                         //make sure not inside a non drivethru boundary
                         if (!mf.bnd.bndArr[i].isSet) continue;
                         if (mf.bnd.bndArr[i].isDriveThru) continue;
+                        if (mf.bnd.bndArr[i].isDriveAround) continue;
                         if (mf.turn.turnArr[i].IsPointInTurnWorkArea(mf.curve.curList[j]))
                         {
                             crossingCurvePoint.easting = mf.curve.curList[j].easting;
@@ -279,195 +275,292 @@ namespace AgOpenGPS
             }
         }
 
-        //while waiting to turn this runs making sure the UTurn isn't out of bounds, and builds it.
+        //list of points of collision path avoidance
+        public List<vec3> mazeList = new List<vec3>();
+
+        public bool BuildDriveAround()
+        {
+            double headAB = mf.ABLine.abHeading;
+            if (!mf.ABLine.isABSameAsVehicleHeading) headAB += Math.PI;
+
+            double cosHead = Math.Cos(headAB);
+            double sinHead = Math.Sin(headAB);
+
+            vec3 start = new vec3();
+            vec3 stop = new vec3();
+            vec3 pt2 = new vec3();
+
+            //grab the pure pursuit point right on ABLine
+            vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
+
+            //how far are we from any geoFence
+            mf.gf.FindPointsDriveAround(onPurePoint, headAB, ref start, ref stop);
+
+            //not an inside border
+            if (start.easting == 88888) return false;
+
+            //get the dubins path vec3 point coordinates of path
+            ytList?.Clear();
+
+            //find a path from start to goal - diagnostic, but also used later
+            mazeList = mf.mazeGrid.SearchForPath(start, stop);
+
+            //you can't get anywhere!
+            if (mazeList == null) return false;
+
+            //not really changing direction so need to fake a turn twice.
+            mf.btnSwapDirection.PerformClick();
+
+            //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
+            List<vec3> shortestDubinsList = new List<vec3>();
+
+            //Dubins at the start and stop of mazePath
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.0;
+            CDubins dubPath = new CDubins();
+
+            //start is navigateable - maybe
+            int cnt = mazeList.Count;
+            int cut = 8;
+            if (cnt < 18) cut = 3;
+
+            if (cnt > 0)
+            {
+                pt2.easting = start.easting - (sinHead * mf.vehicle.minTurningRadius * 1.5);
+                pt2.northing = start.northing - (cosHead * mf.vehicle.minTurningRadius * 1.5);
+                pt2.heading = headAB;
+
+                shortestDubinsList = dubPath.GenerateDubins(pt2, mazeList[cut - 1], mf.gf);
+                for (int i = 1; i < shortestDubinsList.Count; i++)
+                {
+                    vec3 pt = new vec3(shortestDubinsList[i].easting, shortestDubinsList[i].northing, shortestDubinsList[i].heading);
+                    ytList.Add(pt);
+                }
+
+                for (int i = cut; i < mazeList.Count - cut; i++)
+                {
+                    vec3 pt = new vec3(mazeList[i].easting, mazeList[i].northing, mazeList[i].heading);
+                    ytList.Add(pt);
+                }
+
+                pt2.easting = stop.easting + (sinHead * mf.vehicle.minTurningRadius * 1.5);
+                pt2.northing = stop.northing + (cosHead * mf.vehicle.minTurningRadius * 1.5);
+                pt2.heading = headAB;
+
+                shortestDubinsList = dubPath.GenerateDubins(mazeList[cnt - cut], pt2, mf.gf);
+
+                for (int i = 1; i < shortestDubinsList.Count; i++)
+                {
+                    vec3 pt = new vec3(shortestDubinsList[i].easting, shortestDubinsList[i].northing, shortestDubinsList[i].heading);
+                    ytList.Add(pt);
+                }
+            }
+
+            if (ytList.Count > 10) youTurnPhase = 3;
+
+            vec3 pt3 = new vec3();
+
+            for (int a = 0; a < youTurnStartOffset; a++)
+            {
+                pt3.easting = ytList[0].easting - sinHead;
+                pt3.northing = ytList[0].northing - cosHead;
+                pt3.heading = headAB;
+                ytList.Insert(0, pt3);
+            }
+
+            int count = ytList.Count;
+
+            for (int i = 1; i <= youTurnStartOffset; i++)
+            {
+                pt3.easting = ytList[count - 1].easting + (sinHead * i);
+                pt3.northing = ytList[count - 1].northing + (cosHead * i);
+                pt3.heading = headAB;
+                ytList.Add(pt3);
+            }
+
+            return true;
+        }
+
         public bool BuildABLineDubinsYouTurn(bool isTurnRight)
         {
             double headAB = mf.ABLine.abHeading;
             if (!mf.ABLine.isABSameAsVehicleHeading) headAB += Math.PI;
 
-            //grab the pure pursuit point right on ABLine
-            vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
-
-            //how far are we from any turn boundary
-            mf.turn.FindClosestTurnPoint(isYouTurnRight, onPurePoint, headAB);
-
-            //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
-            if ((int)mf.turn.closestTurnPt.easting != -20000)
+            if (youTurnPhase == 0)
             {
-                mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, mf.turn.closestTurnPt);
-            }
-            else
-            {
-                //Full emergency stop code goes here, it thinks its auto turn, but its not!
-                mf.distancePivotToTurnLine = -3333;
-            }
+                if (BuildDriveAround()) return true;
 
-            //delta between AB heading and boundary closest point heading
-            boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(mf.turn.closestTurnPt.heading - headAB) - Math.PI);
-            boundaryAngleOffPerpendicular -= glm.PIBy2;
-            boundaryAngleOffPerpendicular *= -1;
-            if (boundaryAngleOffPerpendicular > 1.25) boundaryAngleOffPerpendicular = 1.25;
-            if (boundaryAngleOffPerpendicular < -1.25) boundaryAngleOffPerpendicular = -1.25;
+                //grab the pure pursuit point right on ABLine
+                vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
 
-            //for calculating innner circles of turn
-            tangencyAngle = (glm.PIBy2 - Math.Abs(boundaryAngleOffPerpendicular)) * 0.5;
+                //how far are we from any turn boundary
+                mf.turn.FindClosestTurnPoint(isYouTurnRight, onPurePoint, headAB);
 
-            //baseline away from boundary to start calculations
-            double toolTurnWidth = mf.vehicle.toolWidth * rowSkipsWidth;
-
-            //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
-            distanceTurnBeforeLine = 3.0 + turnDistanceAdjuster;
-            distanceCrossLineCalc = distanceTurnBeforeLine;
-
-            if (mf.vehicle.minTurningRadius * 2 < toolTurnWidth)
-            {
-                if (boundaryAngleOffPerpendicular < 0)
+                //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
+                if ((int)mf.turn.closestTurnPt.easting != -20000)
                 {
-                    //which is actually left
-                    if (isYouTurnRight)
-                        distanceTurnBeforeLine += (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle));//short
-                    else
-                        distanceTurnBeforeLine += (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                    mf.distancePivotToTurnLine = glm.Distance(mf.pivotAxlePos, mf.turn.closestTurnPt);
                 }
                 else
                 {
-                    //which is actually left
-                    if (isYouTurnRight)
-                        distanceTurnBeforeLine += (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
-                    else
-                        distanceTurnBeforeLine += (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                    //Full emergency stop code goes here, it thinks its auto turn, but its not!
+                    mf.distancePivotToTurnLine = -3333;
                 }
-            }
-            else //turn Radius is wider then equipment width so ohmega turn
-            {
-                distanceTurnBeforeLine += (2 * mf.vehicle.minTurningRadius);
-            }
 
-            //used for distance calc for other part of turn
-            distanceCrossLineCalc = distanceTurnBeforeLine - distanceCrossLineCalc;
+                //delta between AB heading and boundary closest point heading
+                boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(mf.turn.closestTurnPt.heading - headAB) - Math.PI);
+                boundaryAngleOffPerpendicular -= glm.PIBy2;
+                boundaryAngleOffPerpendicular *= -1;
+                if (boundaryAngleOffPerpendicular > 1.25) boundaryAngleOffPerpendicular = 1.25;
+                if (boundaryAngleOffPerpendicular < -1.25) boundaryAngleOffPerpendicular = -1.25;
 
-            CDubins dubYouTurnPath = new CDubins();
-            CDubins.turningRadius = mf.vehicle.minTurningRadius;
+                //for calculating innner circles of turn
+                tangencyAngle = (glm.PIBy2 - Math.Abs(boundaryAngleOffPerpendicular)) * 0.5;
 
-            //point on AB line closest to pivot axle point from ABLine PurePursuit
-            rEastYT = mf.ABLine.rEastAB;
-            rNorthYT = mf.ABLine.rNorthAB;
-            isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
-            double head = mf.ABLine.abHeading;
+                //baseline away from boundary to start calculations
+                double toolTurnWidth = mf.vehicle.toolWidth * rowSkipsWidth;
 
-            //grab the vehicle widths and offsets
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-            double toolOffset = mf.vehicle.toolOffset * 2.0;
-            double turnOffset = 0;
+                //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
+                distanceTurnBeforeLine = 0;
 
-            //turning right
-            if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
-            else turnOffset = (widthMinusOverlap - toolOffset);
+                if (mf.vehicle.minTurningRadius * 2 < toolTurnWidth)
+                {
+                    if (boundaryAngleOffPerpendicular < 0)
+                    {
+                        //which is actually left
+                        if (isYouTurnRight)
+                            distanceTurnBeforeLine += (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle));//short
+                        else
+                            distanceTurnBeforeLine += (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                    }
+                    else
+                    {
+                        //which is actually left
+                        if (isYouTurnRight)
+                            distanceTurnBeforeLine += (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                        else
+                            distanceTurnBeforeLine += (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                    }
+                }
+                else //turn Radius is wider then equipment width so ohmega turn
+                {
+                    distanceTurnBeforeLine += (2 * mf.vehicle.minTurningRadius);
+                }
 
-            double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
-            if (!isABSameAsFixHeading) head += Math.PI;
+                //used for distance calc for other part of turn
 
-            double turnDiagDistance = mf.distancePivotToTurnLine - distanceTurnBeforeLine;
+                CDubins dubYouTurnPath = new CDubins();
+                CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
-            //move the start forward 2 meters
-            if (youTurnPhase < 2)
-            {
+                //point on AB line closest to pivot axle point from ABLine PurePursuit
+                rEastYT = mf.ABLine.rEastAB;
+                rNorthYT = mf.ABLine.rNorthAB;
+                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
+                double head = mf.ABLine.abHeading;
+
+                //grab the vehicle widths and offsets
+                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                double toolOffset = mf.vehicle.toolOffset * 2.0;
+                double turnOffset = 0;
+
+                //turning right
+                if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
+                else turnOffset = (widthMinusOverlap - toolOffset);
+
+                double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
+                if (!isABSameAsFixHeading) head += Math.PI;
+
+                double turnDiagDistance = mf.distancePivotToTurnLine;
+
+                //move the start forward 2 meters
                 rEastYT += (Math.Sin(head) * turnDiagDistance);
                 rNorthYT += (Math.Cos(head) * turnDiagDistance);
-            }
-            else
-            {
-                turnDistanceAdjuster += 5;
-                rEastYT += (Math.Sin(head) * (turnDiagDistance - 2));
-                rNorthYT += (Math.Cos(head) * (turnDiagDistance - 2));
-                youTurnPhase = 3;
-            }
 
-            var start = new vec3(rEastYT, rNorthYT, head);
-            var goal = new vec3();
+                var start = new vec3(rEastYT, rNorthYT, head);
+                var goal = new vec3();
 
-            turnRadius *= rowSkipsWidth;
-            turnOffset *= rowSkipsWidth;
+                turnRadius *= rowSkipsWidth;
+                turnOffset *= rowSkipsWidth;
 
-            //move the cross line calc to not include first turn
-            goal.easting = rEastYT + (Math.Sin(head) * distanceCrossLineCalc);
-            goal.northing = rNorthYT + (Math.Cos(head) * distanceCrossLineCalc);
+                //move the cross line calc to not include first turn
+                goal.easting = rEastYT + (Math.Sin(head) * distanceTurnBeforeLine);
+                goal.northing = rNorthYT + (Math.Cos(head) * distanceTurnBeforeLine);
 
-            //headland angle relative to vehicle heading to head along the boundary left or right
-            double bndAngle = head - boundaryAngleOffPerpendicular + glm.PIBy2;
+                //headland angle relative to vehicle heading to head along the boundary left or right
+                double bndAngle = head - boundaryAngleOffPerpendicular + glm.PIBy2;
 
-            //now we go the other way to turn round
-            head -= Math.PI;
-            if (head < 0) head += glm.twoPI;
+                //now we go the other way to turn round
+                head -= Math.PI;
+                if (head < 0) head += glm.twoPI;
 
-            if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
-            {
-                //are we right of boundary
-                if (boundaryAngleOffPerpendicular > 0)
+                if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
                 {
-                    if (!isYouTurnRight) //which is actually right now
+                    //are we right of boundary
+                    if (boundaryAngleOffPerpendicular > 0)
                     {
-                        goal.easting += (Math.Sin(bndAngle) * turnRadius);
-                        goal.northing += (Math.Cos(bndAngle) * turnRadius);
+                        if (!isYouTurnRight) //which is actually right now
+                        {
+                            goal.easting += (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing += (Math.Cos(bndAngle) * turnRadius);
 
-                        double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
-                        goal.easting += (Math.Sin(head) * dis);
-                        goal.northing += (Math.Cos(head) * dis);
+                            double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                        else //going left
+                        {
+                            goal.easting -= (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing -= (Math.Cos(bndAngle) * turnRadius);
+
+                            double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
                     }
-                    else //going left
+                    else // going left of boundary
                     {
-                        goal.easting -= (Math.Sin(bndAngle) * turnRadius);
-                        goal.northing -= (Math.Cos(bndAngle) * turnRadius);
+                        if (!isYouTurnRight) //pointing to right
+                        {
+                            goal.easting += (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing += (Math.Cos(bndAngle) * turnRadius);
 
-                        double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
-                        goal.easting += (Math.Sin(head) * dis);
-                        goal.northing += (Math.Cos(head) * dis);
-                    }
-                }
-                else // going left of boundary
-                {
-                    if (!isYouTurnRight) //pointing to right
-                    {
-                        goal.easting += (Math.Sin(bndAngle) * turnRadius);
-                        goal.northing += (Math.Cos(bndAngle) * turnRadius);
+                            double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                        else
+                        {
+                            goal.easting -= (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing -= (Math.Cos(bndAngle) * turnRadius);
 
-                        double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
-                        goal.easting += (Math.Sin(head) * dis);
-                        goal.northing += (Math.Cos(head) * dis);
+                            double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
                     }
-                    else
-                    {
-                        goal.easting -= (Math.Sin(bndAngle) * turnRadius);
-                        goal.northing -= (Math.Cos(bndAngle) * turnRadius);
-
-                        double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
-                        goal.easting += (Math.Sin(head) * dis);
-                        goal.northing += (Math.Cos(head) * dis);
-                    }
-                }
-            }
-            else
-            {
-                if (!isTurnRight)
-                {
-                    goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
-                    goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
                 }
                 else
                 {
-                    goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
-                    goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
+                    if (!isTurnRight)
+                    {
+                        goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
+                    }
+                    else
+                    {
+                        goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
+                    }
                 }
+
+                goal.heading = head;
+
+                //generate the turn points
+                ytList = dubYouTurnPath.GenerateDubins(start, goal);
+                AddSequenceLines(head);
+                int count = ytList.Count;
+                if (count == 0) return false;
+                else youTurnPhase = 1;
             }
-
-            goal.heading = head;
-
-            //generate the turn points
-            ytList = dubYouTurnPath.GenerateDubins(start, goal);
-            AddSequenceLines(head);
-
-            int count = ytList.Count;
-            if (count == 0) return false;
 
             if (youTurnPhase == 3) return true;
 
@@ -479,33 +572,26 @@ namespace AgOpenGPS
             isOutOfBounds = false;
             switch (youTurnPhase)
             {
-                case 0:
-                    turnDistanceAdjuster -= 2;
-                    for (int j = 0; j < count;)
-                    {
-                        if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
-                        if (isOutOfBounds) break;
+                case 1:
+                    //the temp array
+                    mf.distancePivotToTurnLine = glm.Distance(ytList[0], mf.pivotAxlePos);
+                    double cosHead = Math.Cos(headAB);
+                    double sinHead = Math.Sin(headAB);
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
-                        {
-                            //make sure not inside a non drivethru boundary
-                            if (!mf.bnd.bndArr[i].isSet) continue;
-                            if (mf.bnd.bndArr[i].isDriveThru) continue;
-                            if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
-                            {
-                                isOutOfBounds = true;
-                                break;
-                            }
-                        }
-                        if (isOutOfBounds) break;
-                        j += 4;
+                    int cnt = ytList.Count;
+                    vec3[] arr2 = new vec3[cnt];
+
+                    ytList.CopyTo(arr2);
+                    ytList.Clear();
+
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        arr2[i].easting -= (sinHead * 2);
+                        arr2[i].northing -= (cosHead * 2);
+                        ytList.Add(arr2[i]);
                     }
 
-                    if (isOutOfBounds) youTurnPhase = 1;
-                    break;
-
-                case 1:
-                    for (int j = 0; j < count;)
+                    for (int j = 0; j < cnt; j += 2)
                     {
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
@@ -515,6 +601,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
                             if (mf.bnd.bndArr[i].isDriveThru) continue;
+                            if (mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -522,19 +609,17 @@ namespace AgOpenGPS
                             }
                         }
                         if (isOutOfBounds) break;
-                        j += 4;
                     }
 
                     if (!isOutOfBounds)
                     {
-                        youTurnPhase = 2;
+                        youTurnPhase = 3;
                     }
                     else
                     {
                         //turn keeps approaching vehicle and running out of space - end of field?
-                        if (isOutOfBounds && turnDiagDistance > 3)
+                        if (isOutOfBounds && mf.distancePivotToTurnLine > 3)
                         {
-                            turnDistanceAdjuster += 2;
                             isTurnCreationTooClose = false;
                         }
                         else
@@ -713,7 +798,7 @@ namespace AgOpenGPS
                 case 0:
                     //if (turnDiagnosticAdjuster == 0) turnDiagnosticAdjuster = turnRadius;
                     turnDistanceAdjuster -= 2;
-                    for (int j = 0; j < count;)
+                    for (int j = 0; j < count; j += 2)
                     {
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
@@ -723,6 +808,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
                             if (mf.bnd.bndArr[i].isDriveThru) continue;
+                            if (mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -730,14 +816,13 @@ namespace AgOpenGPS
                             }
                         }
                         if (isOutOfBounds) break;
-                        j += 4;
                     }
 
                     if (isOutOfBounds) youTurnPhase = 1;
                     break;
 
                 case 1:
-                    for (int j = 0; j < count;)
+                    for (int j = 0; j < count; j += 2)
                     {
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
@@ -747,6 +832,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
                             if (mf.bnd.bndArr[i].isDriveThru) continue;
+                            if (mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -754,7 +840,6 @@ namespace AgOpenGPS
                             }
                         }
                         if (isOutOfBounds) break;
-                        j += 4;
                     }
 
                     if (!isOutOfBounds)
@@ -915,7 +1000,7 @@ namespace AgOpenGPS
                     isOutOfBounds = false;
 
                     //Out of bounds?
-                    for (int j = 0; j < count;)
+                    for (int j = 0; j < count; j += 2)
                     {
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
@@ -925,6 +1010,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
                             if (mf.bnd.bndArr[i].isDriveThru) continue;
+                            if (mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -932,7 +1018,6 @@ namespace AgOpenGPS
                             }
                         }
                         if (isOutOfBounds) break;
-                        j += 5;
                     }
 
                     //first check if not out of bounds, add a bit more to clear turn line, set to phase 2
@@ -1135,10 +1220,12 @@ namespace AgOpenGPS
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
-                AddSequenceLines(head);
+                //vec3 pt = new vec3();
 
                 int count = ytList.Count;
                 if (count == 0) return false;
+
+                AddSequenceLines(head);
             }
 
             switch (youTurnPhase)
@@ -1155,7 +1242,7 @@ namespace AgOpenGPS
 
                     //Are we out of bounds?
                     isOutOfBounds = false;
-                    for (int j = 0; j < count;)
+                    for (int j = 0; j < count; j += 2)
                     {
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j]))
                         {
@@ -1168,6 +1255,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
                             if (mf.bnd.bndArr[i].isDriveThru) continue;
+                            if (mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -1175,7 +1263,6 @@ namespace AgOpenGPS
                             }
                         }
                         if (isOutOfBounds) break;
-                        j += 5;
                     }
 
                     //first check if not out of bounds, add a bit more to clear turn line, set to phase 2
@@ -1320,7 +1407,6 @@ namespace AgOpenGPS
         {
             isYouTurnTriggered = false;
             mf.AutoYouTurnButtonsReset();
-            // Done above in Reset - ResetCreatedYouTurn();
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
         }
@@ -1440,8 +1526,8 @@ namespace AgOpenGPS
                 else head -= 0.01;
 
                 //move the start forward 3 meters
-                rEastYT += (Math.Sin(head) * 5);
-                rNorthYT += (Math.Cos(head) * 5);
+                rEastYT += (Math.Sin(head) * 2);
+                rNorthYT += (Math.Cos(head) * 2);
 
                 var start = new vec3(rEastYT, rNorthYT, head);
                 var goal = new vec3();
@@ -1489,6 +1575,7 @@ namespace AgOpenGPS
                     pt.heading = head;
                     ytList.Add(pt);
                 }
+
             }
         }
 
@@ -1526,23 +1613,30 @@ namespace AgOpenGPS
                 //just need to make sure the points continue ascending or heading switches all over the place
                 if (A > B) { C = A; A = B; B = C; }
 
-                //minDistA = 100;
-                //int closestPt = 0;
-                //for (int i = 0; i < ptCount; i++)
-                //{
-                //    double distancePiv = glm.Distance(ytList[i], mf.pivotAxlePos);
-                //    if (distancePiv < minDistA)
-                //    {
-                //        minDistA = distancePiv;
-                //        closestPt = i;
-                //    }
-                //}
+                minDistA = 100;
+                int closestPt = 0;
+                for (int i = 0; i < ptCount; i++)
+                {
+                    double distancePiv = glm.Distance(ytList[i], mf.toolPos);
+                    if (distancePiv < minDistA)
+                    {
+                        minDistA = distancePiv;
+                        closestPt = i;
+                    }
+                }
 
                 onA = ptCount / 2;
-                onA = B - onA;
+                if (closestPt < onA)
+                {
+                    onA = -closestPt;
+                }
+                else
+                {
+                    onA = ptCount - closestPt;
+                }
 
                 //return and reset if too far away or end of the line
-                if (B >= ptCount-1)
+                if (B >= ptCount - 1)
                 {
                     CompleteYouTurn();
                     return;

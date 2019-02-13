@@ -104,6 +104,10 @@
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
+    <Compile Include="Classes\CGeoFence.cs" />
+    <Compile Include="Classes\CGeoFenceLines.cs" />
+    <Compile Include="Classes\CMazeGrid.cs" />
+    <Compile Include="Classes\CMazePath.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CYouTurn.cs" />

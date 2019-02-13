@@ -147,6 +147,13 @@ namespace AgOpenGPS
                 + Math.Pow(first.northing - second.northing, 2));
         }
 
+        public static double Distance(CBndPt first, vec2 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
         public static double Distance(CBndPt first, CBndPt second)
         {
             return Math.Sqrt(

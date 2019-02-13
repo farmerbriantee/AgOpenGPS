@@ -155,7 +155,7 @@ namespace AgOpenGPS
             sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000",CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
             sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000",CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
             sbGGA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',').Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',').Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',').Append(altitude.ToString(CultureInfo.InvariantCulture));
-            sbGGA.Append(",M,46.9,M,5,0*");
+            sbGGA.Append(",M,46.9,M,,,*");
 
             CalculateChecksum(sbGGA.ToString());
             sbGGA.Append(sumStr);

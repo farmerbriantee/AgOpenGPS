@@ -30,13 +30,14 @@ namespace AgOpenGPS
             else mazeScale = (int)(mazeX / 150);
 
             if (mazeScale < 4) mazeScale = 4;
+            //mazeScale = 4;
 
             mazeRowYDim = (int)mazeY / mazeScale;
             mazeColXDim = (int)mazeX / mazeScale;
             mazeArr = new int[mazeRowYDim * mazeColXDim];
 
             //row is Y, col is X   int[Y,X] [i,j] [row,col]
-            vec2 pot = new vec2();
+            vec3 pot = new vec3();
 
             //mf.yt.triggerDistanceOffset += mazeScale;
             //mf.turn.BuildTurnLines();
@@ -49,7 +50,7 @@ namespace AgOpenGPS
                 {
                     pot.easting = (j * mazeScale) + (int)mf.minFieldX;
                     pot.northing = (i * mazeScale) + (int)mf.minFieldY;
-                    if (!mf.turn.PointInsideWorkArea(pot))
+                    if (!mf.gf.IsPointInsideGeoFences(pot))
                     {
                         mazeArr[(i * mazeColXDim) + j] = 1;
                         arr[i, j] = 1;
@@ -66,7 +67,7 @@ namespace AgOpenGPS
             {
                 for (int j = 0; j < mazeColXDim; j++)
                 {
-                    if (i > 0 && i < mazeRowYDim - 2 && j > 0 && j < mazeColXDim - 2)
+                    if (i > 0 && i < mazeRowYDim - 1 && j > 0 && j < mazeColXDim - 1)
                     {
                         if (arr[i, j] == 1 && arr[i + 1, j] == 0) arr[i + 1, j] = 2;
                         if (arr[i, j] == 1 && arr[i - 1, j] == 0) arr[i - 1, j] = 2;
@@ -80,9 +81,36 @@ namespace AgOpenGPS
             {
                 for (int j = 0; j < mazeColXDim; j++)
                 {
-                    if (arr[i, j] == 2) mazeArr[(i * mazeColXDim) + j] = 1;
+                    if (arr[i, j] == 2)
+                    {
+                        mazeArr[(i * mazeColXDim) + j] = 1;
+                        arr[i, j] = 1;
+                    }
                 }
             }
+
+            //for (int i = 0; i < mazeRowYDim; i++)
+            //{
+            //    for (int j = 0; j < mazeColXDim; j++)
+            //    {
+            //        if (i > 0 && i < mazeRowYDim - 1 && j > 0 && j < mazeColXDim - 1)
+            //        {
+            //            if (arr[i, j] == 1 && arr[i + 1, j] == 0) arr[i + 1, j] = 2;
+            //            if (arr[i, j] == 1 && arr[i - 1, j] == 0) arr[i - 1, j] = 2;
+            //            if (arr[i, j] == 1 && arr[i, j + 1] == 0) arr[i, j + 1] = 2;
+            //            if (arr[i, j] == 1 && arr[i, j - 1] == 0) arr[i, j - 1] = 2;
+            //        }
+            //    }
+            //}
+
+            //for (int i = 0; i < mazeRowYDim; i++)
+            //{
+            //    for (int j = 0; j < mazeColXDim; j++)
+            //    {
+            //        if (arr[i, j] == 2)
+            //            mazeArr[(i * mazeColXDim) + j] = 1;
+            //    }
+            //}
         }
 
         public List<vec3> SearchForPath(vec3 start, vec3 stop)
@@ -177,7 +205,7 @@ namespace AgOpenGPS
             //clear the list and reload with calc headings - first and last droppped
             mazeList?.Clear();
 
-            for (int i = (mazeScale * 2); i < cnt - (mazeScale * 2); i++)
+            for (int i = mazeScale; i < cnt - mazeScale; i++)
             {
                 vec3 pt3 = arr[i];
                 pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
@@ -188,18 +216,18 @@ namespace AgOpenGPS
             return mazeList;
         }
 
-        public int ConvertToGrid(vec3 pt)
-        {
-            pt.northing = (pt.northing - mf.minFieldY) / mazeScale;
-            pt.easting = (pt.easting - mf.minFieldX) / mazeScale;
-            return (int)((pt.northing * mazeColXDim) + pt.easting);
-        }
+        //public int ConvertToGrid(vec3 pt)
+        //{
+        //    pt.northing = (pt.northing - mf.minFieldY) / mazeScale;
+        //    pt.easting = (pt.easting - mf.minFieldX) / mazeScale;
+        //    return (int)((pt.northing * mazeColXDim) + pt.easting);
+        //}
 
         public void DrawArr()
         {
-            GL.PointSize(2.0f);
+            GL.PointSize(1.0f);
             GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.75f, 0.7520f, 0.730f);
+            GL.Color3(0.95f, 0.7520f, 0.7530f);
             int ptCount = mazeRowYDim * mazeColXDim;
             for (int h = 0; h < ptCount; h++)
             {

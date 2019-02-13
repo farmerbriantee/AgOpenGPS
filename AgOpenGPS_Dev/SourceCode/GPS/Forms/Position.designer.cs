@@ -448,7 +448,7 @@ namespace AgOpenGPS
             if (bnd.bndArr[0].isSet)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInWorkingArea())
+                if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -492,17 +492,24 @@ namespace AgOpenGPS
                                 //if we are close enough to pattern, trigger.
                                 if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
                                     yt.YouTurnTrigger();
-                            }                            
-
-                            //Turn is triggered - this is not run if shape is drawn
-                            if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
-                            {
-                                //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
-                                if (Math.Abs(guidanceLineDistanceOff) > 2500)
-                                {
-                                    yt.ResetYouTurn();
-                                }
                             }
+
+                            ////Turn is triggered - this is not run if shape is drawn
+                            //if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
+                            //{
+                            //    //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
+                            //    //if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
+                            //    //{
+                            //    //    yt.ResetYouTurn();
+                            //    //}
+                            //    //else
+                            //    //{
+                            //    //    //keep from running this again since youturn is plotted now
+                            //    //    yt.isYouTurnTriggerPointSet = false;
+                            //    //    yt.isLastYouTurnRight = yt.isYouTurnRight;
+                            //    //    yt.isYouTurnInProgress = true;
+                            //    //}
+                            //}
                         }
                     } // end of isInWorkingArea
                 }
@@ -510,7 +517,11 @@ namespace AgOpenGPS
                 else
                 {
                     mc.isOutOfBounds = true;
-                    if (yt.isYouTurnBtnOn) yt.ResetCreatedYouTurn();
+                    if (yt.isYouTurnBtnOn)
+                    {
+                        yt.ResetCreatedYouTurn();
+                        sim.stepDistance = 0 / 17.86;
+                    }
                 }
             }
             else
@@ -519,7 +530,6 @@ namespace AgOpenGPS
             }
 
             #endregion
-
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);
 
@@ -1032,15 +1042,15 @@ namespace AgOpenGPS
 
         public bool IsInWorkingArea()
         {
-            //first where are we, must be inside outer and outside of inner non drive thru turn borders
-            if (turn.turnArr[0].IsPointInTurnWorkArea(pivotAxlePos))
+            //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
+            if (gf.geoFenceArr[0].IsPointInGeoFenceArea(pivotAxlePos))
             {
                 for (int i = 1; i < MAXBOUNDARIES; i++)
                 {
                     //make sure not inside a non drivethru boundary
                     if (!bnd.bndArr[i].isSet) continue;
                     if (bnd.bndArr[i].isDriveThru) continue;
-                    if (turn.turnArr[i].IsPointInTurnWorkArea(pivotAxlePos))
+                    if (gf.geoFenceArr[i].IsPointInGeoFenceArea(pivotAxlePos))
                     {
                         distancePivotToTurnLine = -3333;
                         return false;

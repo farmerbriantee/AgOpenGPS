@@ -986,6 +986,7 @@ namespace AgOpenGPS
                                 line = reader.ReadLine(); //number of points
                             }
 
+                            //Check for latest boundary files, then above line string is num of points
                             if (line == "True" || line == "False")
                             {
                                 bnd.bndArr[k].isDriveAround = bool.Parse(line);
@@ -1019,7 +1020,11 @@ namespace AgOpenGPS
                             if (reader.EndOfStream) break;
                         }
 
+                        CalculateMinMax();
                         turn.BuildTurnLines();
+                        gf.BuildGeoFenceLines();
+
+                        mazeGrid.BuildMazeGridArray();
                     }
 
                     catch (Exception e)
@@ -1238,24 +1243,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                                                                              
         }//end of open file
 
         //creates the field file when starting new field
