@@ -639,7 +639,7 @@
             // 
             // tmrWatchdog
             // 
-            this.tmrWatchdog.Interval = 20;
+            this.tmrWatchdog.Interval = 50;
             this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
             // 
             // statusStrip1

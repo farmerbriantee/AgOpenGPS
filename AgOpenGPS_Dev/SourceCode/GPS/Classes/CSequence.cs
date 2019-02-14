@@ -300,7 +300,10 @@ namespace AgOpenGPS
                     whereAmI = 1;
                     mf.yt.onA = -mf.yt.onA;
                 }
-                else whereAmI = 2;
+                else
+                {
+                    whereAmI = 2;
+                }
 
                 int c = 0;
                 for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)

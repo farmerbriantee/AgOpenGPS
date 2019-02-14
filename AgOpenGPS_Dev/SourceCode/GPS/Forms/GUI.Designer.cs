@@ -3088,24 +3088,24 @@ namespace AgOpenGPS
 
         #endregion properties 
 
-        //Timer triggers at 25 msec, 40 hz, and is THE clock of the whole program//
+        //Timer triggers at 50 msec, 20 hz, and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
             ScanForNMEA();
 
-            if (threeSecondCounter++ > 74)
+            if (threeSecondCounter++ > 50)
             {
                 threeSecondCounter = 0;
                 threeSeconds++;
             }
-            if (oneSecondCounter++ > 24)
+            if (oneSecondCounter++ > 20)
             {
                 oneSecondCounter = 0;
                 oneSecond++;
             }
 
-            if (oneHalfSecondCounter++ > 13)
+            if (oneHalfSecondCounter++ > 10)
             {
                 oneHalfSecondCounter = 0;
                 oneHalfSecond++;
@@ -3120,13 +3120,13 @@ namespace AgOpenGPS
                 //counter used for saving field in background
                 saveCounter++;
 
-                //count up the ntrip clock only if eberything is alive
+                //count up the ntrip clock only if everything is alive
                 if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
                 {
-                    ntripCounter++;
-                    if (NTRIP_Watchdog++ > 10 && isNTRIP_Connected) ReconnectRequest();
+                    IncrementNTRIPWatchDog();
                 }
 
+                //Have we lost connection
                 if (isNTRIP_RequiredOn && !isNTRIP_Connected)
                 {
                     if (!isNTRIP_Starting && ntripCounter > 20)
@@ -3143,7 +3143,7 @@ namespace AgOpenGPS
                     //update byte counter and up counter
                     if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
                     else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
-                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 23);
+                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 21);
 
                     pbarNtrip.Value = (byte)(tripBytes / 10);
                 }
@@ -3174,7 +3174,6 @@ namespace AgOpenGPS
                     txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
                         + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
                     + "," + mc.relayRateData[9];
-
 
                     btnContour.Text = XTE; //cross track error
 
@@ -3351,7 +3350,7 @@ namespace AgOpenGPS
                     lblpTimeToFinish.Text = fd.TimeTillFinished;
 
                     //watchdog for Ntrip
-                    if (NTRIP_Watchdog > 3) lblWatch.Text = "Waiting";
+                    if (NTRIP_Watchdog > 10) lblWatch.Text = "Waiting";
                     else lblWatch.Text = "Listening";
 
                     if (sendGGAInterval > 0 && isNTRIP_Sending)
