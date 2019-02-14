@@ -79,14 +79,6 @@ namespace AgOpenGPS
                 this.tmr.Tick += new EventHandler(NTRIPtick);
             }
 
-
-            //broadCasterIP = "89.216.55.251";
-            //broadCasterPort = 9000;
-            //mount = "MAX";
-            //username = "pgivanovic";
-            //password = "903742";
-            //ggaSentence = "$GPGGA,092530.589,4516.371,N,01950.609,E,1,12,1.0, 0.0,M,0.0,M,,*66" + "\r\n";
-
             //toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
             //sendGGAInterval = Properties.Settings.Default.setNTRIP_sendGGAInterval; //how often to send fixes
 
@@ -122,7 +114,7 @@ namespace AgOpenGPS
             }
 
             //make sure connection is made
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(1000);
 
             //send the authourization info for Broadcaster
 
@@ -160,6 +152,10 @@ namespace AgOpenGPS
                 if (sendGGAInterval > 0)
                 {
                     tmr.Enabled = true;
+                    System.Threading.Thread.Sleep(500);
+
+                    //send GGA once again
+                    SendGGA();
                 }
 
                 //say its connected
@@ -226,7 +222,7 @@ namespace AgOpenGPS
             try
             {
                 isNTRIP_Sending = true;
-                //string str = "$GPGGA,092530.589,4516.371,N,01950.609,E,1,12,1.0, 0.0,M,0.0,M,,*66" + "\r\n"; //this line can be removed if no position feedback is needed
+                //string str = "$GPGGA,092530.589,4516.371,N,01950.609,E,1,12,1.0,0.0,M,0.0,M,5,0*66" + "\r\n"; //this line can be removed if no position feedback is needed
                 BuildGGA();
                 string str = sbGGA.ToString();
 
@@ -417,23 +413,19 @@ namespace AgOpenGPS
             sbGGA.Clear();
             sbGGA.Append("$GPGGA,");
             sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
-            sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
-            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
-            sbGGA.Append("2,08,0.9,250");
-            sbGGA.Append(",M,46.9,M,,,*");
-            
+            sbGGA.Append(Math.Abs(latNMEA).ToString("0000.000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
+            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.000", CultureInfo.InvariantCulture)).Append(',').Append(EW);
+            sbGGA.Append(",1,10,1,43.4,M,46.4,M,5,0*");
+
             sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
             sbGGA.Append("\r\n");
             /*
-        $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
+        $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,5,0*47
            0     1      2      3    4      5 6  7  8   9    10 11  12 13  14
                 Time      Lat       Lon     FixSatsOP Alt */
         }
     }
 }
-
-
-
 
 //public static void StartClient()
 //{

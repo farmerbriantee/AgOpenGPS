@@ -331,9 +331,9 @@ namespace AgOpenGPS
         public void DrawTurnLines()
         {
             GL.LineWidth(1);
-            GL.Color3(0.8555f, 0.9232f, 0.60f);
-            GL.PointSize(2);
-            GL.Begin(PrimitiveType.Points);
+            GL.Color3(0.3555f, 0.9232f, 0.20f);
+            //GL.PointSize(2);
+            GL.Begin(PrimitiveType.LineStrip);
 
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
             {
