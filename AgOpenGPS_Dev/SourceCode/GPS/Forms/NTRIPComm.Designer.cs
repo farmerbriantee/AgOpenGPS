@@ -418,9 +418,10 @@ namespace AgOpenGPS
             sbGGA.Append("$GPGGA,");
             sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
             sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
-            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW);
-            sbGGA.Append(",1,10,1,43.4,M,46.4,M,5,0*");
-
+            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
+            sbGGA.Append("2,08,0.9,250");
+            sbGGA.Append(",M,46.9,M,,,*");
+            
             sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
             sbGGA.Append("\r\n");
             /*

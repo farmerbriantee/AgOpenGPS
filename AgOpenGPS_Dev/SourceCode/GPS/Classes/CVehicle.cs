@@ -240,17 +240,17 @@ namespace AgOpenGPS
             //GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
 
             //draw the vehicle Body
-            GL.Color3(0.95f, 0.95f, 0.95f);
-            GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
-            GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-            GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
-            GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
-            GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight + wheelbase); // Bottom Right
-            GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight + wheelbase); // Bottom Left
-            GL.End();                       // Done Building Triangle Strip
-            //disable, straight color
-            GL.Disable(EnableCap.Texture2D);
+            //GL.Color3(0.95f, 0.95f, 0.95f);
+            //GL.Enable(EnableCap.Texture2D);
+            //GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
+            //GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+            //GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
+            //GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
+            //GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight+wheelbase); // Bottom Right
+            //GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight+wheelbase); // Bottom Left
+            //GL.End();                       // Done Building Triangle Strip
+            ////disable, straight color
+            //GL.Disable(EnableCap.Texture2D);
 
             //GL.Begin(PrimitiveType.LineStrip);
             //GL.Color3(0.820, 0.50, 0.59);
@@ -284,22 +284,22 @@ namespace AgOpenGPS
             //GL.Vertex3(1.8, 0, 0);
             GL.End();
 
-            //GL.LineWidth(2);
-            //GL.Color3(0.9,0.8,0.7);
-            //GL.Begin(PrimitiveType.LineLoop);
-            //{
-            //    GL.Vertex3(-1.2, 0, 0);
-            //    GL.Vertex3(1.2, 0, 0);
-            //    GL.Vertex3(0, wheelbase, 0);
-            //}
-            //GL.End();
+            GL.LineWidth(2);
+            GL.Color3(0.9,0.8,0.7);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Vertex3(-1.2, 0, 0);
+                GL.Vertex3(1.2, 0, 0);
+                GL.Vertex3(0, wheelbase, 0);
+            }
+            GL.End();
 
-            ////draw the rigid hitch
-            //GL.Color3(0.37f, 0.37f, 0.97f);
-            //GL.Begin(PrimitiveType.Lines);
-            //GL.Vertex3(0, hitchLength, 0);
-            //GL.Vertex3(0, 0, 0);
-            //GL.End();
+            //draw the rigid hitch
+            GL.Color3(0.37f, 0.37f, 0.97f);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(0, hitchLength, 0);
+            GL.Vertex3(0, 0, 0);
+            GL.End();
 
             GL.LineWidth(1);
         }
