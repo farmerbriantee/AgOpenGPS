@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -25,7 +20,7 @@ namespace AgOpenGPS
 
         private void FormNtrip_Load(object sender, EventArgs e)
         {
-            string hostName = Dns.GetHostName(); // Retrieve the Name of HOST 
+            string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
             //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
@@ -84,18 +79,14 @@ namespace AgOpenGPS
             string actualIP = tboxEnterURL.Text.Trim();
             try
             {
-            IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-
+                IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
                 tboxCasterIP.Text = "";
-
                 tboxCasterIP.Text = addresslist[0].ToString().Trim();
-
             }
             catch (Exception)
             {
                 mf.TimedMessageBox(1500, "No IP Located", "Can't Find: " + actualIP);
             }
-
         }
 
         public Boolean CheckIPValid(String strIP)
@@ -112,14 +103,14 @@ namespace AgOpenGPS
             foreach (String strOctet in arrOctets)
             {
                 //check if at least 3 digits but not more OR 0 length
-                if (strOctet.Length > 3 | strOctet.Length == 0) return false;
+                if (strOctet.Length > 3 || strOctet.Length == 0) return false;
 
                 //make sure all digits
                 if (!int.TryParse(strOctet, out int temp2)) return false;
 
                 //make sure not more then 255
                 temp = int.Parse(strOctet);
-                if (temp > MAXVALUE | temp < 0) return false;
+                if (temp > MAXVALUE || temp < 0) return false;
             }
             return true;
         }
@@ -141,21 +132,17 @@ namespace AgOpenGPS
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
 
             Properties.Settings.Default.setNTRIP_isOn = cboxIsNTRIPOn.Checked;
-
             Properties.Settings.Default.setNTRIP_userName = tboxUserName.Text;
             Properties.Settings.Default.setNTRIP_userPassword = tboxUserPassword.Text;
             Properties.Settings.Default.setNTRIP_mount = tboxMount.Text;
 
             Properties.Settings.Default.setNTRIP_sendGGAInterval = (int)nudGGAInterval.Value;
-
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
             Properties.Settings.Default.setNTRIP_manualLat = (double)nudLatitude.Value;
             Properties.Settings.Default.setNTRIP_manualLon = (double)nudLongitude.Value;
 
             Properties.Settings.Default.setNTRIP_casterURL = tboxEnterURL.Text;
-
-            if (cboxGGAManual.Text == "Use Manual Fix") Properties.Settings.Default.setNTRIP_isGGAManual = true;
-            else Properties.Settings.Default.setNTRIP_isGGAManual = false;
+            Properties.Settings.Default.setNTRIP_isGGAManual = cboxGGAManual.Text == "Use Manual Fix";
 
             Properties.Settings.Default.Save();
             Close();
@@ -181,17 +168,14 @@ namespace AgOpenGPS
 
         private void cboxIsNTRIPOn_CheckedChanged(object sender, EventArgs e)
         {
-
         }
 
         private void nudGGAInterval_ValueChanged(object sender, EventArgs e)
         {
-
         }
 
         private void nudSendToUDPPort_ValueChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

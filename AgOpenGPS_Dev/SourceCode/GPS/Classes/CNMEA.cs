@@ -230,10 +230,10 @@ Field	Meaning
                 words = nextNMEASentence.Split(',');
                 if (words.Length < 3) return;
 
-                if (words[0] == "$GPGGA" | words[0] == "$GNGGA") ParseGGA();
-                if (words[0] == "$GPVTG" | words[0] == "$GNVTG") ParseVTG();
-                if (words[0] == "$GPRMC" | words[0] == "$GNRMC") ParseRMC();
-                if (words[0] == "$GNHDT" | words[0] == "$GPHDT") ParseHDT();
+                if (words[0] == "$GPGGA" || words[0] == "$GNGGA") ParseGGA();
+                if (words[0] == "$GPVTG" || words[0] == "$GNVTG") ParseVTG();
+                if (words[0] == "$GPRMC" || words[0] == "$GNRMC") ParseRMC();
+                if (words[0] == "$GNHDT" || words[0] == "$GPHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
             }// while still data
@@ -308,8 +308,8 @@ Field	Meaning
             //        Time      Lat       Lon
 
             //is the sentence GGA
-            if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
-                & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
+            if (!String.IsNullOrEmpty(words[2]) && !String.IsNullOrEmpty(words[3])
+                && !String.IsNullOrEmpty(words[4]) && !String.IsNullOrEmpty(words[5]))
             {
                 if (fixFrom == "GGA")
                 {
@@ -364,8 +364,8 @@ Field	Meaning
         {
             //PAOGI parsing of the sentence
             //make sure there aren't missing coords in sentence
-            if (!String.IsNullOrEmpty(words[2]) & !String.IsNullOrEmpty(words[3])
-                & !String.IsNullOrEmpty(words[4]) & !String.IsNullOrEmpty(words[5]))
+            if (!String.IsNullOrEmpty(words[2]) && !String.IsNullOrEmpty(words[3])
+                && !String.IsNullOrEmpty(words[4]) && !String.IsNullOrEmpty(words[5]))
             {
                 if (fixFrom == "OGI")
                 {
@@ -449,7 +449,7 @@ Field	Meaning
         {
             //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
             //is the sentence GGA
-            if (!String.IsNullOrEmpty(words[1]) & !String.IsNullOrEmpty(words[5]))
+            if (!String.IsNullOrEmpty(words[1]) && !String.IsNullOrEmpty(words[5]))
             {
                 //kph for speed - knots read
                 double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
@@ -486,8 +486,8 @@ Field	Meaning
         {
             //GPRMC parsing of the sentence
             //make sure there aren't missing coords in sentence
-            if (!String.IsNullOrEmpty(words[3]) & !String.IsNullOrEmpty(words[4])
-                & !String.IsNullOrEmpty(words[5]) & !String.IsNullOrEmpty(words[6]))
+            if (!String.IsNullOrEmpty(words[3]) && !String.IsNullOrEmpty(words[4])
+                && !String.IsNullOrEmpty(words[5]) && !String.IsNullOrEmpty(words[6]))
             {
                 if (fixFrom == "RMC")
                 {

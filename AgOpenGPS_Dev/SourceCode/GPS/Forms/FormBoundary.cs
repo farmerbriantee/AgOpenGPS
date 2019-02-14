@@ -247,7 +247,6 @@ namespace AgOpenGPS
             btnLoadBoundaryFromGE.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
-
         }
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
@@ -298,14 +297,12 @@ namespace AgOpenGPS
 
                 if (bndCount > 0)
                 {
-
                 }
 
                 try
                 {
                     for (int i = 0; i < bndCount; i++)
                     {
-
                         //step thru the file till first boundary
                         while (!reader.EndOfStream)
                         {
@@ -353,19 +350,17 @@ namespace AgOpenGPS
                             mf.bnd.bndArr[i].PreCalcBoundaryLines();
                             mf.bnd.bndArr[i].isSet = true;
                             mf.bnd.bndArr[i].isDriveAround = true;
-
                         }
                         else
                         {
                             mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
                         }
                     }
-                                       
+
                     mf.FileSaveBoundary();
                     UpdateChart();
                     cboxSelectBoundary.Enabled = true;
                 }
-
                 catch (Exception)
                 {
                     return;

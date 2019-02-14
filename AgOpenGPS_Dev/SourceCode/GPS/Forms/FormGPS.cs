@@ -60,11 +60,11 @@ namespace AgOpenGPS
         //Time to do fix position update and draw routine
         private double frameTime = 0;
 
-        //For field saving in background 
+        //For field saving in background
         private int saveCounter = 1;
 
         //for the NTRIP CLient counting
-        private int ntripCounter = 10; 
+        private int ntripCounter = 10;
 
         //used to update the screen status bar etc
         private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
@@ -107,9 +107,9 @@ namespace AgOpenGPS
         /// </summary>
         public CMazeGrid mazeGrid;
 
-
         // couple of quick AB's
         public CQuicks AB0 = new CQuicks("Original", 2, 2, 2);
+
         public CQuicks AB1 = new CQuicks("North South", 0, 0, 0);
         public CQuicks AB2 = new CQuicks("East West", 90, 0, 0);
 
@@ -208,8 +208,6 @@ namespace AgOpenGPS
         /// </summary>
         public CGeoFence gf;
 
-
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -298,6 +296,9 @@ namespace AgOpenGPS
 
             //resource for gloabal language strings
             _rm = new ResourceManager("AgOpenGPS.gStr", Assembly.GetExecutingAssembly());
+
+            // Add Message Event handler for Form decoupling from client socket thread
+            updateRTCM_DataEvent = new UpdateRTCM_Data(OnAddMessage);
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)

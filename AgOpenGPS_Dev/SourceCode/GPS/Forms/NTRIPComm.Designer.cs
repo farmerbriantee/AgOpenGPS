@@ -43,6 +43,7 @@ namespace AgOpenGPS
         public bool isNTRIP_Connected = false;
         public bool isNTRIP_Starting = false;
         public bool isNTRIP_Sending = false;
+        public bool isRunGGAInterval = false;
 
         private void NTRIPtick(object o, EventArgs e)
         {
@@ -57,6 +58,16 @@ namespace AgOpenGPS
             isNTRIP_Starting = false;
         }
 
+        private void IncrementNTRIPWatchDog()
+        {
+            ntripCounter++;
+            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
+            if (sendGGAInterval > 0)
+            {
+                if (ntripCounter == 35) tmr.Interval = sendGGAInterval * 1000;
+            }
+        }
+
         //set up connection to Caster
         public void StartNTRIP()
         {
@@ -67,23 +78,20 @@ namespace AgOpenGPS
             password = Properties.Settings.Default.setNTRIP_userPassword; //Insert your password!
             toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
             sendGGAInterval = Properties.Settings.Default.setNTRIP_sendGGAInterval; //how often to send fixes
+
+            //if we had a timer already, kill it
             if (tmr != null)
             {
                 tmr.Dispose();
             }
 
+            //create new timer at fast rate to start
             if (sendGGAInterval > 0)
             {
                 this.tmr = new System.Windows.Forms.Timer();
-                this.tmr.Interval = sendGGAInterval * 1000;
+                this.tmr.Interval = 6000;
                 this.tmr.Tick += new EventHandler(NTRIPtick);
             }
-
-            //toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
-            //sendGGAInterval = Properties.Settings.Default.setNTRIP_sendGGAInterval; //how often to send fixes
-
-            //// Add Message Event handler for Form decoupling from client socket thread
-            updateRTCM_DataEvent = new UpdateRTCM_Data(OnAddMessage);
 
             try
             {
@@ -114,7 +122,7 @@ namespace AgOpenGPS
             }
 
             //make sure connection is made
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(2000);
 
             //send the authourization info for Broadcaster
 
@@ -126,7 +134,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            // Read the message from the text box and send it
+            // Read the message from settings and send it
             try
             {
                 string auth = ToBase64(username + ":" + password);
@@ -141,7 +149,7 @@ namespace AgOpenGPS
                 string str = "GET /" + mount + " HTTP/1.1\r\n";
                 str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
                 str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
-                str += GGASentence; //this line can be removed if no position feedback is needed
+                //str += GGASentence; //this line can be removed if no position feedback is needed
                 str += "Accept: */*\r\nConnection: close\r\n";
                 str += "\r\n";
 
@@ -152,10 +160,7 @@ namespace AgOpenGPS
                 if (sendGGAInterval > 0)
                 {
                     tmr.Enabled = true;
-                    System.Threading.Thread.Sleep(500);
-
-                    //send GGA once again
-                    SendGGA();
+                    //SendGGA();
                 }
 
                 //say its connected
@@ -208,7 +213,9 @@ namespace AgOpenGPS
 
         public void SendGGA()
         {
-            if (!isNTRIP_Connected) return;
+            //return;
+            if (!isNTRIP_Connected)
+                return;
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
@@ -405,9 +412,9 @@ namespace AgOpenGPS
 
             char NS = 'W';
             char EW = 'N';
-            if (pn.latitude >= 0) NS = 'N';
+            if (latitude >= 0) NS = 'N';
             else NS = 'S';
-            if (pn.longitude >= 0) EW = 'E';
+            if (longitude >= 0) EW = 'E';
             else EW = 'W';
 
             sbGGA.Clear();
