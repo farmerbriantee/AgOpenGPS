@@ -199,10 +199,11 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.lblUturnByte = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblWatch = new System.Windows.Forms.Label();
             this.btnStartStopNtrip = new System.Windows.Forms.Button();
             this.lblNTRIPSeconds = new System.Windows.Forms.Label();
-            this.lblUturnByte = new System.Windows.Forms.Label();
             this.lblNtripBytes = new System.Windows.Forms.Label();
             this.pbarNtrip = new System.Windows.Forms.ProgressBar();
             this.lblpTimeToFinish = new System.Windows.Forms.Label();
@@ -274,7 +275,6 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -1587,6 +1587,16 @@
             this.panelBatman.Controls.Add(this.label14);
             this.panelBatman.Name = "panelBatman";
             // 
+            // lblUturnByte
+            // 
+            resources.ApplyResources(this.lblUturnByte, "lblUturnByte");
+            this.lblUturnByte.Name = "lblUturnByte";
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
             // lblWatch
             // 
             resources.ApplyResources(this.lblWatch, "lblWatch");
@@ -1603,11 +1613,6 @@
             // 
             resources.ApplyResources(this.lblNTRIPSeconds, "lblNTRIPSeconds");
             this.lblNTRIPSeconds.Name = "lblNTRIPSeconds";
-            // 
-            // lblUturnByte
-            // 
-            resources.ApplyResources(this.lblUturnByte, "lblUturnByte");
-            this.lblUturnByte.Name = "lblUturnByte";
             // 
             // lblNtripBytes
             // 
@@ -2185,11 +2190,6 @@
             this.btnContour.Name = "btnContour";
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // label6
-            // 
-            resources.ApplyResources(this.label6, "label6");
-            this.label6.Name = "label6";
             // 
             // FormGPS
             // 
