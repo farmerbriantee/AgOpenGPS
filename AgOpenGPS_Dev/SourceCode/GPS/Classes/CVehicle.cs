@@ -1,7 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
-using System;
 using OpenTK.Graphics.OpenGL;
+using System;
 
 namespace AgOpenGPS
 {
@@ -39,15 +39,18 @@ namespace AgOpenGPS
 
         //how many individual sections
         public int numOfSections;
+
         public int numSuperSection;
 
         //used for super section off on
         public int toolMinUnappliedPixels;
+
         public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
         //read pixel values
         public int rpXPosition;
+
         public int rpWidth;
 
         //min vehicle speed allowed before turning shit off
@@ -55,6 +58,7 @@ namespace AgOpenGPS
 
         //autosteer values
         public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier, goalPointLookAheadUturnMult;
+
         public double minLookAheadDistance = 2.0;
         public double maxSteerAngle;
         public double maxAngularVelocity;
@@ -88,7 +92,7 @@ namespace AgOpenGPS
             toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
 
             numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
-            numSuperSection = numOfSections+1;
+            numSuperSection = numOfSections + 1;
 
             slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
             toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
@@ -176,12 +180,12 @@ namespace AgOpenGPS
             //draw the hitch if trailing
             if (isToolTrailing)
             {
-				GL.LineWidth(2f);
-				GL.Color3(0.7f, 0.7f, 0.97f);
-				GL.Begin(PrimitiveType.Lines);
-				GL.Vertex3(0.0, trailingTool, 0.0);
-				GL.Vertex3(0, 0, 0);
-				GL.End();
+                GL.LineWidth(2f);
+                GL.Color3(0.7f, 0.7f, 0.97f);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(0.0, trailingTool, 0.0);
+                GL.Vertex3(0, 0, 0);
+                GL.End();
             }
 
             //draw the sections
@@ -239,28 +243,18 @@ namespace AgOpenGPS
             //if (mf.camera.camFollowing)
             //GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
 
-            //draw the vehicle Body
-            GL.Color3(0.95f, 0.95f, 0.95f);
-            GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
-            GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-            GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
-            GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
-            GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight + wheelbase); // Bottom Right
-            GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight + wheelbase); // Bottom Left
-            GL.End();                       // Done Building Triangle Strip
-            //disable, straight color
-            GL.Disable(EnableCap.Texture2D);
-
-            //GL.Begin(PrimitiveType.LineStrip);
-            //GL.Color3(0.820, 0.50, 0.59);
-            ////GL.Vertex3(0, antennaPivot, 0);
-            ////GL.Vertex3(1.8, 0, 0.0);
-            ////GL.Color3(0.20, 0.0, 0.9);
-            ////GL.Vertex3(0, wheelbase, 0.0);
-            //GL.Vertex3(-1.8, 0, 0.0);
-            //GL.Vertex3(1.8, 0, 0.0);
-            //GL.End();
+            ////draw the vehicle Body
+            //GL.Color3(0.95f, 0.95f, 0.95f);
+            //GL.Enable(EnableCap.Texture2D);
+            //GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
+            //GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+            //GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
+            //GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
+            //GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight + wheelbase); // Bottom Right
+            //GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight + wheelbase); // Bottom Left
+            //GL.End();                       // Done Building Triangle Strip
+            ////disable, straight color
+            //GL.Disable(EnableCap.Texture2D);
 
             //draw the area side marker
             //GL.Color3(0.95f, 0.90f, 0.0f);
@@ -284,25 +278,24 @@ namespace AgOpenGPS
             //GL.Vertex3(1.8, 0, 0);
             GL.End();
 
-            //GL.LineWidth(2);
-            //GL.Color3(0.9,0.8,0.7);
-            //GL.Begin(PrimitiveType.LineLoop);
-            //{
-            //    GL.Vertex3(-1.2, 0, 0);
-            //    GL.Vertex3(1.2, 0, 0);
-            //    GL.Vertex3(0, wheelbase, 0);
-            //}
-            //GL.End();
+            GL.LineWidth(2);
+            GL.Color3(0.9, 0.8, 0.7);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Vertex3(-1.2, 0, 0);
+                GL.Vertex3(1.2, 0, 0);
+                GL.Vertex3(0, wheelbase, 0);
+            }
+            GL.End();
 
-            ////draw the rigid hitch
-            //GL.Color3(0.37f, 0.37f, 0.97f);
-            //GL.Begin(PrimitiveType.Lines);
-            //GL.Vertex3(0, hitchLength, 0);
-            //GL.Vertex3(0, 0, 0);
-            //GL.End();
+            //draw the rigid hitch
+            GL.Color3(0.37f, 0.37f, 0.97f);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Vertex3(0, hitchLength, 0);
+            GL.Vertex3(0, 0, 0);
+            GL.End();
 
             GL.LineWidth(1);
         }
     }
 }
-

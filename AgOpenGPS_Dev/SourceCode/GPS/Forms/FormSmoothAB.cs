@@ -7,6 +7,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
+
         private int smoothCount = 20;
 
         public FormSmoothAB(Form callingForm)

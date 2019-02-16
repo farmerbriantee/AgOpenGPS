@@ -1575,7 +1575,6 @@ namespace AgOpenGPS
                     pt.heading = head;
                     ytList.Add(pt);
                 }
-
             }
         }
 

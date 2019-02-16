@@ -214,7 +214,6 @@
             this.lblpBoundaryArea = new System.Windows.Forms.Label();
             this.lblpFieldAreaRemainPercent = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblAreaRate = new System.Windows.Forms.Label();
             this.lblpGPSHeading = new System.Windows.Forms.Label();
             this.lblpYawHeading = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -275,6 +274,7 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
+            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -647,6 +647,7 @@
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblAreaRate,
             this.toolStripBtnCamera,
             this.stripEqWidth,
             this.stripDistance,
@@ -1570,7 +1571,6 @@
             this.panelBatman.Controls.Add(this.lblpBoundaryArea);
             this.panelBatman.Controls.Add(this.lblpFieldAreaRemainPercent);
             this.panelBatman.Controls.Add(this.label3);
-            this.panelBatman.Controls.Add(this.lblAreaRate);
             this.panelBatman.Controls.Add(this.lblFieldWidthEastWest);
             this.panelBatman.Controls.Add(this.lblpGPSHeading);
             this.panelBatman.Controls.Add(this.lblFieldWidthNorthSouth);
@@ -1665,11 +1665,6 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            // 
-            // lblAreaRate
-            // 
-            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
-            this.lblAreaRate.Name = "lblAreaRate";
             // 
             // lblpGPSHeading
             // 
@@ -2191,6 +2186,12 @@
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
+            // lblAreaRate
+            // 
+            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
+            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.lblAreaRate.Name = "lblAreaRate";
+            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
@@ -2491,7 +2492,6 @@
         private System.Windows.Forms.Button btnContour;
         private System.Windows.Forms.Panel panelSimControls;
         private System.Windows.Forms.Button btnZoomExtents;
-        private System.Windows.Forms.Label lblAreaRate;
         private System.Windows.Forms.Label lblHz;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
@@ -2514,6 +2514,7 @@
         private System.Windows.Forms.Button btnStartStopNtrip;
         private System.Windows.Forms.Label lblWatch;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripStatusLabel lblAreaRate;
     }
 }
 

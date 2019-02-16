@@ -11,8 +11,10 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
         private bool isBtnRollOn = true;
+
         //chart data
         private string eastValue = "0";
+
         private string eastAdjValue = "-1";
         private string rollValue = "1";
 
@@ -72,14 +74,14 @@ namespace AgOpenGPS
             yMax = (int)(mf.eastingAfterRoll + 2);
             yMin = (int)(mf.eastingAfterRoll - 2);
 
-            #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             eastAdjValue = mf.eastingAfterRoll.ToString("N2");
             eastValue = mf.eastingBeforeRoll.ToString("N2");
-            rollValue = ((mf.rollUsed/10) + yMin + 2).ToString("N2");
+            rollValue = ((mf.rollUsed / 10) + yMin + 2).ToString("N2");
             lblEast.Text = eastValue;
             lblAdjEast.Text = eastAdjValue;
             lblRoll.Text = mf.rollUsed.ToString("N2");
-            #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
             //chart data
             Series s = unoChart.Series["East"];

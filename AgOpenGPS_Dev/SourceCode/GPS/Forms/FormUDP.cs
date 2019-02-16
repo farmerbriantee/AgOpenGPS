@@ -37,7 +37,7 @@ namespace AgOpenGPS
 
         private void FormUDp_Load(object sender, EventArgs e)
         {
-            string hostName = Dns.GetHostName(); // Retrieve the Name of HOST 
+            string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
             //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
@@ -121,7 +121,6 @@ namespace AgOpenGPS
 
         private void cboxIsUDPOn_CheckedChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

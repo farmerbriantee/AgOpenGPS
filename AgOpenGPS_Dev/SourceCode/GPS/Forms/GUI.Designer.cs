@@ -3126,13 +3126,30 @@ namespace AgOpenGPS
                     IncrementNTRIPWatchDog();
                 }
 
-                //Have we lost connection
-                if (isNTRIP_RequiredOn && !isNTRIP_Connected)
+                //Have we connection
+                if (isNTRIP_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
                 {
                     if (!isNTRIP_Starting && ntripCounter > 20)
                     {
                         StartNTRIP();
                     }
+                }
+
+                if (isNTRIP_Connecting)
+                {
+                    if (ntripCounter > 28)
+                    {
+                        TimedMessageBox(2000, " Socket Connection Problem ", " Not Connecting to Caster ");
+                        ReconnectRequest();
+                    }
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        //TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
+                        //ReconnectRequest();
+                        //return;
+                        SendAuthorization();
+                    }
+
                 }
 
                 //display items
@@ -3143,9 +3160,23 @@ namespace AgOpenGPS
                     //update byte counter and up counter
                     if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
                     else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
-                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 21);
+                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 22);
 
-                    pbarNtrip.Value = (byte)(tripBytes / 10);
+                    pbarNtrip.Value = (byte)(tripBytes * 0.02);
+
+                    //watchdog for Ntrip
+                    if (isNTRIP_Connecting) lblWatch.Text = "Authorizing";
+                    else
+                    {
+                        if (NTRIP_Watchdog > 10) lblWatch.Text = "Waiting";
+                        else lblWatch.Text = "Listening";
+                    }
+
+                    if (sendGGAInterval > 0 && isNTRIP_Sending)
+                    {
+                        lblWatch.Text = "Sending GGA";
+                        isNTRIP_Sending = false;
+                    }
                 }
 
                 //the main formgps window
@@ -3348,16 +3379,6 @@ namespace AgOpenGPS
                     //both
                     lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
                     lblpTimeToFinish.Text = fd.TimeTillFinished;
-
-                    //watchdog for Ntrip
-                    if (NTRIP_Watchdog > 10) lblWatch.Text = "Waiting";
-                    else lblWatch.Text = "Listening";
-
-                    if (sendGGAInterval > 0 && isNTRIP_Sending)
-                    {
-                        lblWatch.Text = "Sending GGA";
-                        isNTRIP_Sending = false;
-                    }
                 }
 
 

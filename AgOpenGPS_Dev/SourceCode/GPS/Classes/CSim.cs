@@ -12,6 +12,7 @@ namespace AgOpenGPS
 
         //Our two new nmea strings
         private readonly StringBuilder sbOGI = new StringBuilder();
+
         private readonly StringBuilder sbHDT = new StringBuilder();
 
         private readonly StringBuilder sbGGA = new StringBuilder();
@@ -25,8 +26,8 @@ namespace AgOpenGPS
 
         private readonly double HDOP = 0.9;
         private readonly double altitude = 319.1;
-        private  char EW = 'W';
-        private  char NS = 'N';
+        private char EW = 'W';
+        private char NS = 'N';
 
         public double latitude, longitude;
 
@@ -152,8 +153,8 @@ namespace AgOpenGPS
             sbGGA.Clear();
             sbGGA.Append("$GPGGA,");
             sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
-            sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000",CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
-            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000",CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
+            sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
+            sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
             sbGGA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',').Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',').Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',').Append(altitude.ToString(CultureInfo.InvariantCulture));
             sbGGA.Append(",M,46.9,M,,,*");
 
@@ -215,8 +216,7 @@ Field	Meaning
 1	Heading in degrees
 2	T: Indicates heading relative to True North
 3	The checksum data, always begins with *
- 
-               
+
             */
         }
 

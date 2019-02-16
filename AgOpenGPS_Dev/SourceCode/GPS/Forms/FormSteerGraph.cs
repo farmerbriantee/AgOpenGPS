@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -21,6 +15,7 @@ namespace AgOpenGPS
 
         //chart data
         private string dataSteerAngle = "0";
+
         private string dataPWM = "-1";
 
         public FormSteerGraph(Form callingForm)

@@ -17,44 +17,42 @@ namespace AgOpenGPS
 
         private void FormShiftPos_Load(object sender, EventArgs e)
         {
-            nudEast.Value = (decimal)mf.pn.fixOffset.easting*100;
-            nudNorth.Value = (decimal)mf.pn.fixOffset.northing*100;
+            nudEast.Value = (decimal)mf.pn.fixOffset.easting * 100;
+            nudNorth.Value = (decimal)mf.pn.fixOffset.northing * 100;
         }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
         {
             nudNorth.UpButton();
-            mf.pn.fixOffset.northing = (double)nudNorth.Value/100;
+            mf.pn.fixOffset.northing = (double)nudNorth.Value / 100;
         }
 
         private void btnSouth_MouseDown(object sender, MouseEventArgs e)
         {
             nudNorth.DownButton();
-            mf.pn.fixOffset.northing = (double)nudNorth.Value/100;
+            mf.pn.fixOffset.northing = (double)nudNorth.Value / 100;
         }
 
         private void btnWest_MouseDown(object sender, MouseEventArgs e)
         {
             nudEast.DownButton();
-            mf.pn.fixOffset.easting = (double)nudEast.Value/100;
+            mf.pn.fixOffset.easting = (double)nudEast.Value / 100;
         }
 
         private void btnEast_MouseDown(object sender, MouseEventArgs e)
         {
             nudEast.UpButton();
-            mf.pn.fixOffset.easting = (double)nudEast.Value/100;
+            mf.pn.fixOffset.easting = (double)nudEast.Value / 100;
         }
 
         private void nudNorth_ValueChanged(object sender, EventArgs e)
         {
-            mf.pn.fixOffset.northing = (double)nudNorth.Value/100;
-
+            mf.pn.fixOffset.northing = (double)nudNorth.Value / 100;
         }
 
         private void nudEast_ValueChanged(object sender, EventArgs e)
         {
-            mf.pn.fixOffset.easting = (double)nudEast.Value/100;
-
+            mf.pn.fixOffset.easting = (double)nudEast.Value / 100;
         }
 
         private void btnZero_Click(object sender, EventArgs e)

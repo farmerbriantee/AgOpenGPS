@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -51,7 +50,7 @@ namespace AgOpenGPS
         //actually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-         if (mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints)
+            if (mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints)
             {
                 for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;

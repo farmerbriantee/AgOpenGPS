@@ -29,6 +29,7 @@ namespace AgOpenGPS
         //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany----------
         //MTZ8302 April 2018
         public int RelayFromArduinoLo = 0;
+
         public int RelayFromArduinoOldLo = 0;
         public int SectSWOffFromArduinoLo = 0;
         public int SectSWOffFromArduinoOldLo = 0;
@@ -90,7 +91,7 @@ namespace AgOpenGPS
                 currentWidthLeft = mf.vehicle.toolWidth * 0.5;
                 currentWidthRight = currentWidthLeft;
             }
-                
+
             //add up each side
             else
             {

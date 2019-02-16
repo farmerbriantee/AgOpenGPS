@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Collections.Generic;
-using OpenTK.Graphics.OpenGL;
 
 namespace AgOpenGPS
 {
@@ -619,7 +619,7 @@ namespace AgOpenGPS
 
                     if (mf.isPureDisplayOn)
                     {
-                        if (ppRadiusCu < 100 && ppRadiusCu > -100 )
+                        if (ppRadiusCu < 100 && ppRadiusCu > -100)
                         {
                             const int numSegments = 100;
                             double theta = glm.twoPI / numSegments;

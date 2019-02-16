@@ -5,7 +5,7 @@ namespace AgOpenGPS
 {
     public partial class FormSaveOrNot : Form
     {
-              //class variables
+        //class variables
         //private readonly FormGPS mf = null;
 
         public FormSaveOrNot()
@@ -30,4 +30,3 @@ namespace AgOpenGPS
         }
     }
 }
-

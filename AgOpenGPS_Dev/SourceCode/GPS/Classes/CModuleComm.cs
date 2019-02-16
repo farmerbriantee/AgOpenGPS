@@ -57,11 +57,12 @@
 
         public byte[] machineControlData = new byte[numMachineControlItems];
 
-        public int cnHeaderHi, cnHeaderLo = 1, cnPedalControl = 2,  cnSpeed = 3, cnRelayLo = 4, cnYouTurn = 5;
+        public int cnHeaderHi, cnHeaderLo = 1, cnPedalControl = 2, cnSpeed = 3, cnRelayLo = 4, cnYouTurn = 5;
 
         //LIDAR
         //UDP sentence just rec'd
         public string recvUDPSentence = "Inital UDP";
+
         public int lidarDistance;
 
         //for the workswitch

@@ -21,7 +21,6 @@ namespace AgOpenGPS
         public vec2 boxE = new vec2(3, 4), boxF = new vec2(4, 5);
         public vec2 boxG = new vec2(6, 6), boxH = new vec2(7, 7);
 
-
         //current contour patch and point closest to current fix
         public int closestRefPatch, closestRefPoint;
 
@@ -237,7 +236,7 @@ namespace AgOpenGPS
             //build a frustum box ahead of fix to find adjacent paths and points
 
             //left
-            boxA.easting = pivot.easting - sin2HL; 
+            boxA.easting = pivot.easting - sin2HL;
             boxA.northing = pivot.northing - cos2HL;
             boxA.easting -= (sinH * 0.25); //bottom left outside
             boxA.northing -= (cosH * 0.25);
@@ -248,12 +247,8 @@ namespace AgOpenGPS
             boxE.easting = pivot.easting - sin3H; // inside bottom
             boxE.northing = pivot.northing - cos3H;
 
-            boxG.easting = boxE.easting + sinH*0.3; //inside top
-            boxG.northing = boxE.northing + cosH*0.3;
-
-
-
-
+            boxG.easting = boxE.easting + sinH * 0.3; //inside top
+            boxG.northing = boxE.northing + cosH * 0.3;
 
             //right
             boxB.easting = pivot.easting + sin2HR;
@@ -269,7 +264,6 @@ namespace AgOpenGPS
 
             boxH.easting = boxF.easting + sinH * 0.3; //inside top
             boxH.northing = boxF.northing + cosH * 0.3;
-
 
             conList.Clear();
             ctList.Clear();
@@ -300,7 +294,6 @@ namespace AgOpenGPS
 
                         if ((((boxF.easting - boxH.easting) * (stripList[s][p].northing - boxH.northing))
                                 - ((boxF.northing - boxH.northing) * (stripList[s][p].easting - boxH.easting))) < 0) { continue; }
-
 
                         //in the box so is it parallelish or perpedicularish to current heading
                         ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
@@ -373,7 +366,6 @@ namespace AgOpenGPS
 
                         if ((((boxD.easting - boxG.easting) * (stripList[s][p].northing - boxG.northing))
                                 - ((boxD.northing - boxG.northing) * (stripList[s][p].easting - boxG.easting))) < 0) { continue; }
-
 
                         //in the box so is it parallelish or perpedicularish to current heading
                         ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);

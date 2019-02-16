@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
