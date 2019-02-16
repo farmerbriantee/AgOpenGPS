@@ -1,5 +1,4 @@
-﻿
-namespace AgOpenGPS
+﻿namespace AgOpenGPS
 {
     public class CWaypoint
     {

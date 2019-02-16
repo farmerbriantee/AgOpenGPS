@@ -63,10 +63,10 @@ namespace AgOpenGPS
             btnPausePlay.Enabled = false;
 
             int cnt = mf.curve.refList.Count;
-            if ( cnt > 3)
+            if (cnt > 3)
             {
                 //make sure distance isn't too big between points on Turn
-                for (int i = 0; i < cnt-1; i++)
+                for (int i = 0; i < cnt - 1; i++)
                 {
                     int j = i + 1;
                     //if (j == cnt) j = 0;
@@ -82,7 +82,7 @@ namespace AgOpenGPS
                         i = -1;
                     }
                 }
-                
+
                 //calculate average heading of line
                 double x = 0, y = 0;
                 mf.curve.isCurveSet = true;
@@ -177,7 +177,6 @@ namespace AgOpenGPS
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = "Record";
                 btnBPoint.Enabled = false;
-
             }
             else
             {

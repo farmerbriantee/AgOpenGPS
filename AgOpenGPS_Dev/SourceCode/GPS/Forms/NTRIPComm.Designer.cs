@@ -42,6 +42,7 @@ namespace AgOpenGPS
         public bool isNTRIP_RequiredOn = false;
         public bool isNTRIP_Connected = false;
         public bool isNTRIP_Starting = false;
+        public bool isNTRIP_Connecting = false;
         public bool isNTRIP_Sending = false;
         public bool isRunGGAInterval = false;
 
@@ -56,16 +57,26 @@ namespace AgOpenGPS
             ntripCounter = 10;
             isNTRIP_Connected = false;
             isNTRIP_Starting = false;
+            isNTRIP_Connecting = false;
+
+            //if we had a timer already, kill it
+            if (tmr != null)
+            {
+                tmr.Dispose();
+            }
         }
 
         private void IncrementNTRIPWatchDog()
         {
+            //increment once every second
             ntripCounter++;
+
+            //Thinks is connected but not receiving anything
             if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
-            if (sendGGAInterval > 0)
-            {
-                if (ntripCounter == 35) tmr.Interval = sendGGAInterval * 1000;
-            }
+
+            //Once all connected set the timer GGA to NTRIP Settings
+            if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
+            
         }
 
         //set up connection to Caster
@@ -89,7 +100,7 @@ namespace AgOpenGPS
             if (sendGGAInterval > 0)
             {
                 this.tmr = new System.Windows.Forms.Timer();
-                this.tmr.Interval = 6000;
+                this.tmr.Interval = 5000;
                 this.tmr.Tick += new EventHandler(NTRIPtick);
             }
 
@@ -121,8 +132,13 @@ namespace AgOpenGPS
                 return;
             }
 
+            isNTRIP_Connecting = true;
             //make sure connection is made
-            System.Threading.Thread.Sleep(2000);
+            //System.Threading.Thread.Sleep(2000);
+        }
+
+        private void SendAuthorization()
+        {
 
             //send the authourization info for Broadcaster
 
@@ -137,15 +153,16 @@ namespace AgOpenGPS
             // Read the message from settings and send it
             try
             {
+                //string str = "GET /SRG HTTP / 1.1\r\nUser - Agent: NTRIP LefebureNTRIPClient/ 20131124\r\nAccept: */*\r\nConnection: close\r\n";
+
+                //encode user and password
                 string auth = ToBase64(username + ":" + password);
 
+                //grab location sentence
                 BuildGGA();
                 GGASentence = sbGGA.ToString();
 
-
-                // Convert to byte array and send.
-                //string str = "GET /SRG HTTP / 1.1\r\nUser - Agent: NTRIP LefebureNTRIPClient/ 20131124\r\nAccept: */*\r\nConnection: close\r\n";
-
+                //Build authorization string
                 string str = "GET /" + mount + " HTTP/1.1\r\n";
                 str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
                 str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
@@ -153,19 +170,18 @@ namespace AgOpenGPS
                 str += "Accept: */*\r\nConnection: close\r\n";
                 str += "\r\n";
 
+                // Convert to byte array and send.
                 Byte[] byteDateLine = Encoding.ASCII.GetBytes(str.ToCharArray());
                 clientSocket.Send(byteDateLine, byteDateLine.Length, 0);
 
                 //enable to periodically send GGA sentence to server.
-                if (sendGGAInterval > 0)
-                {
-                    tmr.Enabled = true;
-                    //SendGGA();
-                }
+                if (sendGGAInterval > 0) tmr.Enabled = true;
 
                 //say its connected
                 isNTRIP_Connected = true;
                 isNTRIP_Starting = false;
+                isNTRIP_Connecting = false;
+
                 btnStartStopNtrip.Text = "Stop";
 
             }
@@ -178,11 +194,14 @@ namespace AgOpenGPS
 
         public void OnAddMessage(byte[] data)
         {
+            //update gui with stats
             lblNtripBytes.Text = (tripBytes)/1000 +  " Kb";
             tripBytes += (uint)data.Length;
 
+            //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
 
+            //serial send out GPS port
             if (toUDP_Port == 0)
             {
                 try
@@ -197,6 +216,8 @@ namespace AgOpenGPS
                     WriteErrorLog("NTRIP Data Serial Send" + ex.ToString());
                 }
             }
+
+            //send out UDP Port
             else
             {
                 try
@@ -213,13 +234,13 @@ namespace AgOpenGPS
 
         public void SendGGA()
         {
-            //return;
+            //timer may have brought us here so return if not connected
             if (!isNTRIP_Connected)
                 return;
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
-                TimedMessageBox(1000, "NTRIP Not Connected", " During Send $PGGGA");
+                TimedMessageBox(1000, "NTRIP Not Connected to Send GGA", " Restarting and Reconnecting to Caster");
                 ReconnectRequest();
 
                 return;
@@ -229,7 +250,6 @@ namespace AgOpenGPS
             try
             {
                 isNTRIP_Sending = true;
-                //string str = "$GPGGA,092530.589,4516.371,N,01950.609,E,1,12,1.0,0.0,M,0.0,M,5,0*66" + "\r\n"; //this line can be removed if no position feedback is needed
                 BuildGGA();
                 string str = sbGGA.ToString();
 

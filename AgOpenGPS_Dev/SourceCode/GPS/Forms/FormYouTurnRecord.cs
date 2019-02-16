@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -85,7 +80,7 @@ namespace AgOpenGPS
                 mf.yt.youFileList.Add(pt[i]);
             }
 
-            //create the file. 
+            //create the file.
             string dir = System.Reflection.Assembly.GetExecutingAssembly().Location;
             dir = System.IO.Path.GetDirectoryName(dir);
             dir += @"\YouTurnShapes\Custom.txt";

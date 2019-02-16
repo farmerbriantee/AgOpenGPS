@@ -131,6 +131,7 @@ Field	Meaning
     {
         //WGS84 Lat Long
         public double latitude, longitude;
+
         public double actualEasting, actualNorthing;
         public double zone;
         public double centralMeridian, convergenceAngle;
@@ -151,10 +152,12 @@ Field	Meaning
 
         //other GIS Info
         public double altitude, speed;
+
         public double headingTrue, headingHDT, hdop, ageDiff;
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
+
         public bool isValidIMU;
         public int fixQuality;
         public int satellitesTracked;
@@ -178,7 +181,7 @@ Field	Meaning
         //ParseNMEA
         public void UpdateNorthingEasting()
         {
-            double[] xy = DecDeg2UTM(latitude,longitude);
+            double[] xy = DecDeg2UTM(latitude, longitude);
             //keep a copy of actual easting and northings
             actualEasting = xy[0];
             actualNorthing = xy[1];
@@ -239,7 +242,7 @@ Field	Meaning
             }// while still data
         }
 
-        private double rollK,Pc,G,Xp,Zp,XeRoll;
+        private double rollK, Pc, G, Xp, Zp, XeRoll;
         private double P = 1.0;
         private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
         private readonly double varProcess = 0.0003;
@@ -577,6 +580,7 @@ Field	Meaning
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         private const double sm_a = 6378137.0;
+
         private const double sm_b = 6356752.314;
         private const double UTMScaleFactor = 0.9996;
         //private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
@@ -627,7 +631,7 @@ Field	Meaning
             return xy;
         }
 
-        public double [] DecDeg2UTM(double latitude, double longitude)
+        public double[] DecDeg2UTM(double latitude, double longitude)
         {
             //only calculate the zone once!
             if (!mf.isFirstFixPositionSet) zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;

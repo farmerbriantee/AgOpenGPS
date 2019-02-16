@@ -792,10 +792,13 @@ namespace AgOpenGPS
                 {
                     ShutDownNTRIP();
                     btnStartStopNtrip.Text = "Start";
+                    lblWatch.Text = "Stopped";
+                    lblNTRIPSeconds.Text = "Offline ";
                 }
                 else
                 {
                     isNTRIP_RequiredOn = true;
+                    lblWatch.Text = "Waiting";
                 }
             }
             else

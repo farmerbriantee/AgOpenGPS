@@ -10,7 +10,8 @@ namespace AgOpenGPS
         {
             InitializeComponent();
         }
-               private class ComboBoxItem
+
+        private class ComboBoxItem
         {
             public ComboBoxItem(WebCameraId id)
             {
@@ -18,6 +19,7 @@ namespace AgOpenGPS
             }
 
             private readonly WebCameraId _id;
+
             public WebCameraId Id
             {
                 get { return _id; }

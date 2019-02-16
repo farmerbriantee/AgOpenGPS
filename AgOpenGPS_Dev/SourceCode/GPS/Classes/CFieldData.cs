@@ -31,10 +31,12 @@ namespace AgOpenGPS
 
         //USer tally string
         public string WorkedUserHectares { get { return (workedAreaTotalUser * glm.m2ha).ToString("N2") + " Ha"; } }
+
         public string WorkedUserHectares2 { get { return (workedAreaTotalUser * glm.m2ha).ToString("N2"); } }
 
         //user tally string
         public string WorkedUserAcres { get { return (workedAreaTotalUser * glm.m2ac).ToString("N2") + " Ac"; } }
+
         public string WorkedUserAcres2 { get { return (workedAreaTotalUser * glm.m2ac).ToString("N2"); } }
 
         //String of Area worked
@@ -86,8 +88,8 @@ namespace AgOpenGPS
             }
         }
 
-        public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + " Ha/hr"; } }
-        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + " Ac/hr"; } }
+        public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
+        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\rAc/hr"; } }
 
         //constructor
         public CFieldData(FormGPS _f)

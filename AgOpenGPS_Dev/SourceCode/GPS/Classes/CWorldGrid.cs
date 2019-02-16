@@ -10,17 +10,19 @@ namespace AgOpenGPS
 
         //Z
         public double northingMax;
+
         public double northingMin;
 
         //X
         public double eastingMax;
+
         public double eastingMin;
 
         private double texZoomE = 20, texZoomN = 20;
 
-        public CWorldGrid( FormGPS _f)
+        public CWorldGrid(FormGPS _f)
         {
-           mf = _f;
+            mf = _f;
         }
 
         public void DrawFieldSurface()

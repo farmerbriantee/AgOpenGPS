@@ -1,5 +1,5 @@
-﻿using System;
-using OpenTK.Graphics.OpenGL;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 
 namespace AgOpenGPS
 {
@@ -77,7 +77,7 @@ namespace AgOpenGPS
             }
             else
             {
-                GL.Translate(-camPosX,-camPosY,-camPosZ);
+                GL.Translate(-camPosX, -camPosY, -camPosZ);
             }
         }
     }

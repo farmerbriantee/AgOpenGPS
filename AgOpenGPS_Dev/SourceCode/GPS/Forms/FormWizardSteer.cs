@@ -7,6 +7,7 @@ namespace AgOpenGPS
     {
         //parent form which is the steering form
         private readonly FormGPS mf = null;
+
         private double prevSteerCount = 1.0;
         private string[] words;
         private double countsPerDegree = 1;
@@ -18,7 +19,7 @@ namespace AgOpenGPS
             prevSteerCount = ((mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]));
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
             mf.AutoSteerSettingsOutToPort();
-            lblWheelbase.Text = Convert.ToString(Math.Round(mf.vehicle.wheelbase,2));
+            lblWheelbase.Text = Convert.ToString(Math.Round(mf.vehicle.wheelbase, 2));
             nudRadius.Enabled = false;
             btnCalculate.Enabled = false;
         }
@@ -44,10 +45,10 @@ namespace AgOpenGPS
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             //diameter entered so /2 for radius
-            steerAngle = glm.toDegrees( Math.Asin(mf.vehicle.wheelbase / ((double)(nudRadius.Value) / 2.0)));
-            lblSteerAngle.Text = Math.Round(steerAngle,1).ToString();
+            steerAngle = glm.toDegrees(Math.Asin(mf.vehicle.wheelbase / ((double)(nudRadius.Value) / 2.0)));
+            lblSteerAngle.Text = Math.Round(steerAngle, 1).ToString();
             countsPerDegree = (double)(nudRawData.Value) / steerAngle;
-            lblCountsPerDegree.Text = Math.Round(countsPerDegree,1).ToString();
+            lblCountsPerDegree.Text = Math.Round(countsPerDegree, 1).ToString();
         }
 
         private void nudRawData_ValueChanged(object sender, EventArgs e)

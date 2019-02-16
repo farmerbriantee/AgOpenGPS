@@ -22,6 +22,7 @@ namespace AgOpenGPS
 
         //is this section on or off
         public bool isSectionOn = false;
+
         public bool isAllowedOn = false;
         public bool isSectionRequiredOn = false;
 
@@ -46,14 +47,17 @@ namespace AgOpenGPS
 
         //used by readpixel to determine color in pixel array
         public int rpSectionWidth = 0;
+
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
         public vec2 leftPoint;
+
         public vec2 rightPoint;
 
         //used to determine left and right point
         public vec2 lastLeftPoint;
+
         public vec2 lastRightPoint;
 
         public double sectionLookAhead = 6;
@@ -138,9 +142,9 @@ namespace AgOpenGPS
             numTriangles++;
 
             //quick count
-            int c = triangleList.Count-1;
+            int c = triangleList.Count - 1;
 
-            //when closing a job the triangle patches all are emptied but the section delay keeps going. 
+            //when closing a job the triangle patches all are emptied but the section delay keeps going.
             //Prevented by quick check.
             if (c >= 3)
             {

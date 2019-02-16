@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //using Keypad;
@@ -183,7 +182,7 @@ namespace AgOpenGPS
 
         private void btnDewLoop2RightOrLeft_Click(object sender, EventArgs e)
         {
-            mf.yt.isDew2Right= !mf.yt.isDew2Right;
+            mf.yt.isDew2Right = !mf.yt.isDew2Right;
             if (mf.yt.isDew2Right)
             {
                 btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
@@ -855,6 +854,7 @@ namespace AgOpenGPS
         #endregion YouTurn
 
         #region distance
+
         private void btnDistanceDn_Click(object sender, EventArgs e)
         {
             if (mf.yt.youTurnStartOffset-- < 4) mf.yt.youTurnStartOffset = 3;
@@ -883,7 +883,8 @@ namespace AgOpenGPS
             if (mf.yt.triggerDistanceOffset < 0) mf.yt.triggerDistanceOffset = 0;
             lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
         }
-        #endregion Distance
+
+        #endregion distance
 
         #region Sequence select
 

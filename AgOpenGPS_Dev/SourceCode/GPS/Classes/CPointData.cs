@@ -8,10 +8,12 @@ namespace AgOpenGPS
     {
         //WGS84 Lat Long
         public double latitude = 0;
+
         public double longitude = 0;
 
         //UTM coordinates
         public double northing = 0;
+
         public double easting = 0;
 
         //other GIS Info
@@ -21,7 +23,7 @@ namespace AgOpenGPS
         //public DateTime utcDateTime;
 
         //public CPointData(double latitude, double longitude, double northing, double easting, double altitude, double speed, double headingTrue, DateTime utcDateTime)
-        public CPointData(  double _easting, double _northing, double _lati, double _longi)
+        public CPointData(double _easting, double _northing, double _lati, double _longi)
         {
             latitude = Math.Round(_lati, 7);
             longitude = Math.Round(_longi, 7);

@@ -66,7 +66,7 @@ namespace AgOpenGPS
 
             //grab the latest volume
             if (mf.isMetric) lblDualAccumulatedVolume.Text = mf.rcd.dualVolumeActual.ToString();
-            else lblDualAccumulatedVolume.Text = Math.Round((mf.rcd.dualVolumeActual*glm.L2Gal),0).ToString();
+            else lblDualAccumulatedVolume.Text = Math.Round((mf.rcd.dualVolumeActual * glm.L2Gal), 0).ToString();
         }
 
         private void bntOK_Click(object sender, EventArgs e)

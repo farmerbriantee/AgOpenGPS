@@ -63,7 +63,7 @@ namespace AgOpenGPS
 
             mf.vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
             hsbarDistanceFromLine.Value = (Int16)(mf.vehicle.goalPointDistanceMultiplier * 10);
-            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
+            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier + 1).ToString();
 
             hsbarLookAheadUturnMult.Value = (Int16)(mf.vehicle.goalPointLookAheadUturnMult * 10);
             lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
@@ -109,7 +109,7 @@ namespace AgOpenGPS
             }
         }
 
-        //Scrollbars    
+        //Scrollbars
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.goalPointLookAheadSeconds = hsbarLookAhead.Value * 0.1;
@@ -130,7 +130,7 @@ namespace AgOpenGPS
         private void hsbarDistanceFromLine_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.goalPointDistanceMultiplier = hsbarDistanceFromLine.Value * 0.1;
-            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
+            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier + 1).ToString();
             Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = mf.vehicle.goalPointDistanceMultiplier;
             Properties.Vehicle.Default.Save();
         }

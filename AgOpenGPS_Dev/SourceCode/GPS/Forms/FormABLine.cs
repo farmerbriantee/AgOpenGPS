@@ -280,7 +280,7 @@ namespace AgOpenGPS
             if (line?.Length == 0) line = "0";
             if (line == ".") line = "0";
             upDnHeading = double.Parse(line, CultureInfo.InvariantCulture);
-            mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading,6));
+            mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading, 6));
             mf.ABLine.SetABLineByHeading();
             btnABLineOk.Enabled = true;
         }
