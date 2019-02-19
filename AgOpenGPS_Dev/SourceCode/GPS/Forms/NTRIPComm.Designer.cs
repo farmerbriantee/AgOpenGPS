@@ -195,7 +195,6 @@ namespace AgOpenGPS
         public void OnAddMessage(byte[] data)
         {
             //update gui with stats
-            lblNtripBytes.Text = (tripBytes)/1000 +  " Kb";
             tripBytes += (uint)data.Length;
 
             //reset watchdog since we have updated data
