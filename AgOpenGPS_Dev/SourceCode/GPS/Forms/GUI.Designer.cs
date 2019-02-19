@@ -1419,12 +1419,12 @@ namespace AgOpenGPS
                 {
                     ABLine.SnapABLine();
 
-                    DialogResult result3 = MessageBox.Show("Save AB Line Snap?",
-                                                "Save or Not",
-                                                MessageBoxButtons.YesNo,
-                                                MessageBoxIcon.Question,
-                                                MessageBoxDefaultButton.Button2);
-                    if (result3 == DialogResult.Yes)
+                    //DialogResult result3 = MessageBox.Show("Save AB Line Snap?",
+                    //                            "Save or Not",
+                    //                            MessageBoxButtons.YesNo,
+                    //                            MessageBoxIcon.Question,
+                    //                            MessageBoxDefaultButton.Button2);
+                    //if (result3 == DialogResult.Yes)
                     {
                         FileSaveABLine();
                     }
@@ -3163,6 +3163,7 @@ namespace AgOpenGPS
                     else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 22);
 
                     pbarNtrip.Value = (byte)(tripBytes * 0.02);
+                    lblNtripBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " Kb";
 
                     //watchdog for Ntrip
                     if (isNTRIP_Connecting) lblWatch.Text = "Authorizing";
