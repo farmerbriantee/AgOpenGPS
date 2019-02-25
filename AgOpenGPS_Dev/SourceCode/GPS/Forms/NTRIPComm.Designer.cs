@@ -83,6 +83,18 @@ namespace AgOpenGPS
         public void StartNTRIP()
         {
             broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+
+            string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
+            try
+            {
+                IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
+                broadCasterIP = addresslist[0].ToString().Trim();
+            }
+            catch (Exception)
+            {
+                TimedMessageBox(2500, "No IP Located", "Can't Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+            }
+                                          
             broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
             mount = Properties.Settings.Default.setNTRIP_mount; //Insert the correct mount
             username = Properties.Settings.Default.setNTRIP_userName; //Insert your username!
