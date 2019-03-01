@@ -734,7 +734,7 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.D)) //auto section on off
+            if (keyData == (Keys.NumPad1)) //auto section on off
             {
                 btnSectionOffAutoOn.PerformClick();
                 return true;    // indicate that you handled this keystroke

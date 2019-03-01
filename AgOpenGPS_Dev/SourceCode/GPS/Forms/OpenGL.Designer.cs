@@ -795,33 +795,11 @@ namespace AgOpenGPS
                         section[j].sectionOnRequest = false;
                         section[j].sectionOffRequest = true;
                     }
-
-                    //digital input Master control (WorkSwitch)
-                    if (isJobStarted && mc.isWorkSwitchEnabled)
-                    {
-                        //check condition of work switch
-                        if (mc.isWorkSwitchActiveLow)
-                        {
-                            if (mc.workSwitchValue == 0)
-                            { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
-                            else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
-                        }
-                        else
-                        {
-                            if (mc.workSwitchValue == 1)
-                            { section[j].sectionOnRequest = true; section[j].sectionOffRequest = false; }
-                            else { section[j].sectionOnRequest = false; section[j].sectionOffRequest = true; }
-                        }
-                    }
                 }
             }
 
-            //double check the work switch to enable/disable auto section button
-            if (isJobStarted)
-            {
-                if (!mc.isWorkSwitchEnabled) btnSectionOffAutoOn.Enabled = true;
-                else btnSectionOffAutoOn.Enabled = false;
-            }
+        //Checks the workswitch if required
+	    if (isJobStarted && mc.isWorkSwitchEnabled) { workSwitch.CheckWorkSwitch(); }
 
             //Determine if sections want to be on or off
             ProcessSectionOnOffRequests();
