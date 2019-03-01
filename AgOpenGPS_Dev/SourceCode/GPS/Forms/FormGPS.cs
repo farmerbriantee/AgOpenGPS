@@ -208,6 +208,11 @@ namespace AgOpenGPS
         /// </summary>
         public CGeoFence gf;
 
+        /// <summary>
+        /// Class containing workswitch functionality
+        /// </summary>
+        public CWorkSwitch workSwitch;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -299,6 +304,9 @@ namespace AgOpenGPS
 
             // Add Message Event handler for Form decoupling from client socket thread
             updateRTCM_DataEvent = new UpdateRTCM_Data(OnAddMessage);
+
+            // Access to workswitch functionality
+            workSwitch = new CWorkSwitch(this);
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
