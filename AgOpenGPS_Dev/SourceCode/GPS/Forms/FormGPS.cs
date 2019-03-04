@@ -796,16 +796,18 @@ namespace AgOpenGPS
         {
             if (Properties.Settings.Default.setNTRIP_isOn)
             {
-                if (isNTRIP_RequiredOn && isNTRIP_Connected)
+                if (isNTRIP_RequiredOn)
                 {
                     ShutDownNTRIP();
                     btnStartStopNtrip.Text = "Start";
                     lblWatch.Text = "Stopped";
                     lblNTRIPSeconds.Text = "Offline ";
+                    isNTRIP_RequiredOn = false;
                 }
-                else
+                else 
                 {
                     isNTRIP_RequiredOn = true;
+                    btnStartStopNtrip.Text = "Stop";
                     lblWatch.Text = "Waiting";
                 }
             }
