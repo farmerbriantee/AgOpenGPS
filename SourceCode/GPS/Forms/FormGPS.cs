@@ -470,6 +470,7 @@ namespace AgOpenGPS
             //workswitch stuff
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
+            mc.isWorkSwitchManual = Settings.Default.setF_IsWorkSwitchManual;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 

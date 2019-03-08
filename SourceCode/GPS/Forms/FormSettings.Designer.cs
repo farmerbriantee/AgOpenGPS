@@ -106,6 +106,7 @@
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
             this.tabWorkSwitch = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkWorkSwitchManual = new System.Windows.Forms.CheckBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
             this.tabExamples = new System.Windows.Forms.TabPage();
@@ -1383,16 +1384,27 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkWorkSwitchManual);
             this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
             this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.groupBox3.Location = new System.Drawing.Point(454, 27);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(466, 158);
+            this.groupBox3.Size = new System.Drawing.Size(466, 200);
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Work Switch";
             // 
+            // checkWorkSwitchManual
+            //
+            this.checkWorkSwitchManual.Location = new System.Drawing.Point(46, 152);
+            this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
+            this.checkWorkSwitchManual.Size = new System.Drawing.Size(305, 29);
+            this.checkWorkSwitchManual.TabIndex = 0;
+            this.checkWorkSwitchManual.Text = "Work Switch Controls Manual";
+            this.checkWorkSwitchManual.UseVisualStyleBackColor = true;
+            this.checkWorkSwitchManual.CheckedChanged += new System.EventHandler(this.checkWorkSwitchManual_CheckedChanged);
+            //
             // chkWorkSwActiveLow
             // 
             this.chkWorkSwActiveLow.AutoSize = true;
@@ -1648,6 +1660,7 @@
         private System.Windows.Forms.TabPage tabWorkSwitch;
         private System.Windows.Forms.CheckBox chkEnableWorkSwitch;
         private System.Windows.Forms.CheckBox chkWorkSwActiveLow;
+        private System.Windows.Forms.CheckBox checkWorkSwitchManual;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblDoNotExceed;
         private System.Windows.Forms.NumericUpDown nudSection8;
