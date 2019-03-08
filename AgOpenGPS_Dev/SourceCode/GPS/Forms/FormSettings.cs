@@ -23,7 +23,7 @@ namespace AgOpenGPS
                         sectionPosition5, sectionPosition6, sectionPosition7, sectionPosition8, sectionPosition9,
                         sectionPosition10, sectionPosition11, sectionPosition12, sectionPosition13;
 
-        private bool isWorkSwEn, isWorkSwActiveLow;
+        private bool isWorkSwEn, isWorkSwActiveLow, isWorkSwitchManual;
 
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
@@ -273,6 +273,12 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
+            isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
+
+            checkWorkSwitchManual.CheckedChanged -= checkWorkSwitchManual_CheckedChanged;
+            checkWorkSwitchManual.Checked = isWorkSwitchManual;
+            checkWorkSwitchManual.CheckedChanged += checkWorkSwitchManual_CheckedChanged;
+
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
@@ -382,6 +388,9 @@ namespace AgOpenGPS
 
             mf.mc.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setF_IsWorkSwitchEnabled = isWorkSwEn;
+
+            mf.mc.isWorkSwitchManual = isWorkSwitchManual;
+            Properties.Settings.Default.setF_IsWorkSwitchManual = isWorkSwitchManual;
 
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
@@ -1168,6 +1177,12 @@ namespace AgOpenGPS
         {
             isWorkSwEn = !isWorkSwEn;
             chkEnableWorkSwitch.Checked = isWorkSwEn;
+        }
+
+        private void checkWorkSwitchManual_CheckedChanged(object sender, EventArgs e)
+        {
+            isWorkSwitchManual = !isWorkSwitchManual;
+            checkWorkSwitchManual.Checked = isWorkSwitchManual;
         }
 
         #endregion WorkSwitch //---------------------------------------------------------

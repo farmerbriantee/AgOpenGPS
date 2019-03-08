@@ -2280,7 +2280,7 @@
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveVehicleToolStripMenuItem;
-        private System.Windows.Forms.Button btnManualOffOn;
+        public System.Windows.Forms.Button btnManualOffOn;
         private System.Windows.Forms.Button btnSection1Man;
         private System.Windows.Forms.Button btnSection2Man;
         private System.Windows.Forms.Button btnSection3Man;

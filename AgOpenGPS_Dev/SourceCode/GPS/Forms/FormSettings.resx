@@ -2406,6 +2406,33 @@ or Overlap</value>
   <data name="tabWorkSwitch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="checkWorkSwitchManual.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkWorkSwitchManual.Location" type="System.Drawing.Point, System.Drawing">
+    <value>46, 154</value>
+  </data>
+  <data name="checkWorkSwitchManual.Size" type="System.Drawing.Size, System.Drawing">
+    <value>363, 29</value>
+  </data>
+  <data name="checkWorkSwitchManual.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="checkWorkSwitchManual.Text" xml:space="preserve">
+    <value>Manual - Leave unchecked for Auto</value>
+  </data>
+  <data name="&gt;&gt;checkWorkSwitchManual.Name" xml:space="preserve">
+    <value>checkWorkSwitchManual</value>
+  </data>
+  <data name="&gt;&gt;checkWorkSwitchManual.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkWorkSwitchManual.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;checkWorkSwitchManual.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="chkWorkSwActiveLow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2437,7 +2464,7 @@ or Overlap</value>
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;chkWorkSwActiveLow.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="chkEnableWorkSwitch.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2470,7 +2497,7 @@ or Overlap</value>
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;chkEnableWorkSwitch.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 15.75pt</value>
@@ -2479,7 +2506,7 @@ or Overlap</value>
     <value>454, 27</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>466, 158</value>
+    <value>466, 200</value>
   </data>
   <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>

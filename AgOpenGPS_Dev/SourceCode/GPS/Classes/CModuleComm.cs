@@ -66,7 +66,7 @@
         public int lidarDistance;
 
         //for the workswitch
-        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled;
+        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual;
 
         public int workSwitchValue;
 

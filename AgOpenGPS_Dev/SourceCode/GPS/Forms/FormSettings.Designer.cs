@@ -109,6 +109,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
+            this.checkWorkSwitchManual = new System.Windows.Forms.CheckBox();
             this.tabExamples = new System.Windows.Forms.TabPage();
             this.lblSecTotalWidthInches = new System.Windows.Forms.Label();
             this.lblSecTotalWidthFeet = new System.Windows.Forms.Label();
@@ -995,6 +996,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.checkWorkSwitchManual);
             this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
             this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
             resources.ApplyResources(this.groupBox3, "groupBox3");
@@ -1014,6 +1016,13 @@
             this.chkEnableWorkSwitch.Name = "chkEnableWorkSwitch";
             this.chkEnableWorkSwitch.UseVisualStyleBackColor = true;
             this.chkEnableWorkSwitch.CheckedChanged += new System.EventHandler(this.chkEnableWorkSwitch_CheckedChanged);
+            // 
+            // checkWorkSwitchManual
+            // 
+            resources.ApplyResources(this.checkWorkSwitchManual, "checkWorkSwitchManual");
+            this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
+            this.checkWorkSwitchManual.UseVisualStyleBackColor = true;
+            this.checkWorkSwitchManual.CheckedChanged += new System.EventHandler(this.checkWorkSwitchManual_CheckedChanged);
             // 
             // tabExamples
             // 
@@ -1185,6 +1194,7 @@
         private System.Windows.Forms.TabPage tabWorkSwitch;
         private System.Windows.Forms.CheckBox chkEnableWorkSwitch;
         private System.Windows.Forms.CheckBox chkWorkSwActiveLow;
+        private System.Windows.Forms.CheckBox checkWorkSwitchManual;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lblDoNotExceed;
         private System.Windows.Forms.NumericUpDown nudSection8;
