@@ -504,6 +504,27 @@ namespace AgOpenGPS
             }
         }
 
+        public void MoveABCurve(double dist)
+        {
+            double headingAt90;
+
+            //calculate the heading 90 degrees to ref ABLine heading
+            if (isABSameAsVehicleHeading) headingAt90 = glm.PIBy2;
+            else headingAt90 = -glm.PIBy2;
+
+            int cnt = refList.Count;
+            vec3[] arr = new vec3[cnt];
+            refList.CopyTo(arr);
+            refList.Clear();
+
+            for (int i = 0; i < cnt; i++)
+            {
+                arr[i].easting = (Math.Sin(headingAt90 + arr[i].heading) * dist) + arr[i].easting;
+                arr[i].northing = (Math.Cos(headingAt90 + arr[i].heading) * dist) + arr[i].northing;
+                refList.Add(arr[i]);
+            }
+        }
+
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
         {
             bool isValid = false;

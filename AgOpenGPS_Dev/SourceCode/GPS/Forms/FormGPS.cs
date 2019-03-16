@@ -792,6 +792,7 @@ namespace AgOpenGPS
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
         }
 
+
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.setNTRIP_isOn)

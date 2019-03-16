@@ -9,7 +9,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private decimal triResolution, minFixStepDistance, boundaryDistance;
-        private int lightbarCmPerPixie;
+        private int lightbarCmPerPixie, snapDistance, snapDistanceSmall;
         private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
         private string headingFromWhichSource;
 
@@ -36,6 +36,8 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = minFixStepDistance;
 
             nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
+            nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
+            nudSnapDistanceSmall.Value = Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
 
@@ -81,15 +83,21 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setIMU_isHeadingFromBNO = isHeadingBNO;
             Properties.Settings.Default.setIMU_isHeadingFromBrick = isHeadingBrick;
+
             Properties.Settings.Default.setIMU_isRollFromDogs = isRollDogs;
             mf.ahrs.isRollDogs = isRollDogs;
+
             Properties.Settings.Default.setIMU_isRollFromBrick = isRollBrick;
             mf.ahrs.isRollBrick = isRollBrick;
+
             Properties.Settings.Default.setIMU_isRollFromPAOGI = isRollPAOGI;
             Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
 
             Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
             mf.lightbarCmPerPixel = lightbarCmPerPixie;
+
+            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
+            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -123,6 +131,19 @@ namespace AgOpenGPS
             lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
         }
 
+         private void nudSnapDistance_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+
+            snapDistance = (int)nudSnapDistance.Value;
+        }
+
+        private void nudSnapDistanceSmall_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+            snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
+        }
+
         private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
         {
             boundaryDistance = nudBoundaryDistance.Value;
@@ -147,6 +168,7 @@ namespace AgOpenGPS
                 isRollPAOGI = false;
             }
         }
+
 
         private void cboxRollPAOGI_CheckedChanged(object sender, EventArgs e)
         {

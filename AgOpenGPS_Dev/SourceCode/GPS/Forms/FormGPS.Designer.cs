@@ -79,6 +79,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,11 +200,13 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.btnSnapRight = new System.Windows.Forms.Button();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblWatch = new System.Windows.Forms.Label();
             this.btnStartStopNtrip = new System.Windows.Forms.Button();
             this.lblNTRIPSeconds = new System.Windows.Forms.Label();
+            this.btnSnapLeft = new System.Windows.Forms.Button();
             this.lblNtripBytes = new System.Windows.Forms.Label();
             this.pbarNtrip = new System.Windows.Forms.ProgressBar();
             this.lblpTimeToFinish = new System.Windows.Forms.Label();
@@ -213,7 +216,6 @@
             this.lblpFieldAreaRemain = new System.Windows.Forms.Label();
             this.lblpBoundaryArea = new System.Windows.Forms.Label();
             this.lblpFieldAreaRemainPercent = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblpGPSHeading = new System.Windows.Forms.Label();
             this.lblpYawHeading = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -264,6 +266,11 @@
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnSwapDirection = new System.Windows.Forms.Button();
             this.btnContourPriority = new System.Windows.Forms.Button();
+            this.contextMenuSnap = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
@@ -274,7 +281,8 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnSmallSnapRight = new System.Windows.Forms.Button();
+            this.btnSmallSnapLeft = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -288,6 +296,7 @@
             this.panelBatman.SuspendLayout();
             this.panelSimControls.SuspendLayout();
             this.contextMenuStripAB.SuspendLayout();
+            this.contextMenuSnap.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
@@ -658,6 +667,12 @@
             this.toolStripBatman});
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // lblAreaRate
+            // 
+            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
+            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.lblAreaRate.Name = "lblAreaRate";
             // 
             // toolStripBtnCamera
             // 
@@ -1556,11 +1571,15 @@
             // 
             resources.ApplyResources(this.panelBatman, "panelBatman");
             this.panelBatman.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.panelBatman.Controls.Add(this.btnSmallSnapRight);
+            this.panelBatman.Controls.Add(this.btnSmallSnapLeft);
+            this.panelBatman.Controls.Add(this.btnSnapRight);
             this.panelBatman.Controls.Add(this.lblUturnByte);
             this.panelBatman.Controls.Add(this.label6);
             this.panelBatman.Controls.Add(this.lblWatch);
             this.panelBatman.Controls.Add(this.btnStartStopNtrip);
             this.panelBatman.Controls.Add(this.lblNTRIPSeconds);
+            this.panelBatman.Controls.Add(this.btnSnapLeft);
             this.panelBatman.Controls.Add(this.lblNtripBytes);
             this.panelBatman.Controls.Add(this.pbarNtrip);
             this.panelBatman.Controls.Add(this.lblpTimeToFinish);
@@ -1570,7 +1589,6 @@
             this.panelBatman.Controls.Add(this.lblpFieldAreaRemain);
             this.panelBatman.Controls.Add(this.lblpBoundaryArea);
             this.panelBatman.Controls.Add(this.lblpFieldAreaRemainPercent);
-            this.panelBatman.Controls.Add(this.label3);
             this.panelBatman.Controls.Add(this.lblFieldWidthEastWest);
             this.panelBatman.Controls.Add(this.lblpGPSHeading);
             this.panelBatman.Controls.Add(this.lblFieldWidthNorthSouth);
@@ -1586,6 +1604,17 @@
             this.panelBatman.Controls.Add(this.label11);
             this.panelBatman.Controls.Add(this.label14);
             this.panelBatman.Name = "panelBatman";
+            // 
+            // btnSnapRight
+            // 
+            resources.ApplyResources(this.btnSnapRight, "btnSnapRight");
+            this.btnSnapRight.BackColor = System.Drawing.Color.Lavender;
+            this.btnSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSnapRight.FlatAppearance.BorderSize = 2;
+            this.btnSnapRight.Name = "btnSnapRight";
+            this.btnSnapRight.UseVisualStyleBackColor = false;
+            this.btnSnapRight.Click += new System.EventHandler(this.btnSnapRight_Click);
             // 
             // lblUturnByte
             // 
@@ -1613,6 +1642,17 @@
             // 
             resources.ApplyResources(this.lblNTRIPSeconds, "lblNTRIPSeconds");
             this.lblNTRIPSeconds.Name = "lblNTRIPSeconds";
+            // 
+            // btnSnapLeft
+            // 
+            resources.ApplyResources(this.btnSnapLeft, "btnSnapLeft");
+            this.btnSnapLeft.BackColor = System.Drawing.Color.Lavender;
+            this.btnSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSnapLeft.FlatAppearance.BorderSize = 2;
+            this.btnSnapLeft.Name = "btnSnapLeft";
+            this.btnSnapLeft.UseVisualStyleBackColor = false;
+            this.btnSnapLeft.Click += new System.EventHandler(this.btnSnapLeft_Click);
             // 
             // lblNtripBytes
             // 
@@ -1660,11 +1700,6 @@
             // 
             resources.ApplyResources(this.lblpFieldAreaRemainPercent, "lblpFieldAreaRemainPercent");
             this.lblpFieldAreaRemainPercent.Name = "lblpFieldAreaRemainPercent";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
             // 
             // lblpGPSHeading
             // 
@@ -2072,11 +2107,42 @@
             // 
             resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
             this.btnContourPriority.BackColor = System.Drawing.Color.Lavender;
+            this.btnContourPriority.ContextMenuStrip = this.contextMenuSnap;
             this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnContourPriority.FlatAppearance.BorderSize = 2;
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.UseVisualStyleBackColor = false;
             this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
+            // 
+            // contextMenuSnap
+            // 
+            this.contextMenuSnap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5,
+            this.toolStripMenuItem6});
+            this.contextMenuSnap.Name = "contextMenuSnap";
+            resources.ApplyResources(this.contextMenuSnap, "contextMenuSnap");
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            resources.ApplyResources(this.toolStripMenuItem3, "toolStripMenuItem3");
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
             // 
             // btnCurve
             // 
@@ -2186,11 +2252,27 @@
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
             // 
-            // lblAreaRate
+            // btnSmallSnapRight
             // 
-            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
-            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.lblAreaRate.Name = "lblAreaRate";
+            resources.ApplyResources(this.btnSmallSnapRight, "btnSmallSnapRight");
+            this.btnSmallSnapRight.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallSnapRight.FlatAppearance.BorderSize = 2;
+            this.btnSmallSnapRight.Name = "btnSmallSnapRight";
+            this.btnSmallSnapRight.UseVisualStyleBackColor = false;
+            this.btnSmallSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
+            // 
+            // btnSmallSnapLeft
+            // 
+            resources.ApplyResources(this.btnSmallSnapLeft, "btnSmallSnapLeft");
+            this.btnSmallSnapLeft.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallSnapLeft.FlatAppearance.BorderSize = 2;
+            this.btnSmallSnapLeft.Name = "btnSmallSnapLeft";
+            this.btnSmallSnapLeft.UseVisualStyleBackColor = false;
+            this.btnSmallSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
             // 
             // FormGPS
             // 
@@ -2264,6 +2346,7 @@
             this.panelBatman.PerformLayout();
             this.panelSimControls.ResumeLayout(false);
             this.contextMenuStripAB.ResumeLayout(false);
+            this.contextMenuSnap.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2493,7 +2576,6 @@
         private System.Windows.Forms.Panel panelSimControls;
         private System.Windows.Forms.Button btnZoomExtents;
         private System.Windows.Forms.Label lblHz;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblpFieldAreaRemain;
         private System.Windows.Forms.Label lblpBoundaryArea;
@@ -2515,6 +2597,15 @@
         private System.Windows.Forms.Label lblWatch;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripStatusLabel lblAreaRate;
+        private System.Windows.Forms.ContextMenuStrip contextMenuSnap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        private System.Windows.Forms.Button btnSnapRight;
+        private System.Windows.Forms.Button btnSnapLeft;
+        private System.Windows.Forms.Button btnSmallSnapRight;
+        private System.Windows.Forms.Button btnSmallSnapLeft;
     }
 }
 

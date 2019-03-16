@@ -153,6 +153,27 @@ namespace AgOpenGPS
             refPoint2.northing = refABLineP2.northing;
         }
 
+        public void MoveABLine(double dist)
+        {
+            double headingCalc;
+
+            //calculate the heading 90 degrees to ref ABLine heading
+            headingCalc = isABSameAsVehicleHeading ? abHeading + glm.PIBy2 : abHeading - glm.PIBy2;
+
+            //calculate the new points for the reference line and points
+            refPoint1.easting = (Math.Sin(headingCalc) * dist) + refPoint1.easting;
+            refPoint1.northing = (Math.Cos(headingCalc) * dist) + refPoint1.northing;
+
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 4000.0);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 4000.0);
+
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 4000.0);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 4000.0);
+
+            refPoint2.easting = refABLineP2.easting;
+            refPoint2.northing = refABLineP2.northing;
+        }
+
         public double angVel;
 
         public void GetCurrentABLine(vec3 pivot)
