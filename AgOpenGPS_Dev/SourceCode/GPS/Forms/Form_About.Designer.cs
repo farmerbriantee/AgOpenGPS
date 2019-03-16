@@ -70,7 +70,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label4.Location = new System.Drawing.Point(14, 169);
+            this.label4.Location = new System.Drawing.Point(14, 153);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(203, 18);
             this.label4.TabIndex = 18;
@@ -132,7 +132,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(371, 33);
+            this.label7.Location = new System.Drawing.Point(431, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(234, 13);
             this.label7.TabIndex = 25;
@@ -141,7 +141,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(362, 107);
+            this.label10.Location = new System.Drawing.Point(422, 98);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(268, 39);
             this.label10.TabIndex = 26;
@@ -151,7 +151,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(362, 157);
+            this.label8.Location = new System.Drawing.Point(422, 148);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(307, 52);
             this.label8.TabIndex = 27;
@@ -172,7 +172,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(362, 210);
+            this.label13.Location = new System.Drawing.Point(422, 201);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(274, 26);
             this.label13.TabIndex = 30;
@@ -182,7 +182,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(362, 57);
+            this.label9.Location = new System.Drawing.Point(422, 48);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(268, 39);
             this.label9.TabIndex = 31;
@@ -193,18 +193,18 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label11.Location = new System.Drawing.Point(125, 200);
+            this.label11.Location = new System.Drawing.Point(125, 186);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(162, 90);
+            this.label11.Size = new System.Drawing.Size(207, 108);
             this.label11.TabIndex = 32;
             this.label11.Text = "Andreas Ortner, Austria\r\nWilhelm Eder, Germany\r\nMTZ8302, Germany\r\nKevin Bouwman, " +
-    "USA\r\n\r\n";
+    "USA\r\nPetar Starcev Serbia, Novi Sad\r\n\r\n";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label14.Location = new System.Drawing.Point(14, 200);
+            this.label14.Location = new System.Drawing.Point(14, 186);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(105, 36);
             this.label14.TabIndex = 33;
@@ -224,7 +224,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 348);
+            this.ClientSize = new System.Drawing.Size(748, 351);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);

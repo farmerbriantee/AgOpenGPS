@@ -1441,6 +1441,112 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnSmallSnapLeft_Click(object sender, EventArgs e)
+        {
+            if (!ct.isContourBtnOn)
+            {
+                if (ABLine.isABLineSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+
+                    ABLine.MoveABLine(-dist);
+                    FileSaveABLine();
+                }
+                else if (curve.isCurveSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+
+                    curve.MoveABCurve(-dist);
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrABLine));
+                    form.Show();
+                }
+            }
+        }
+
+        private void btnSnapLeft_Click(object sender, EventArgs e)
+        {
+            if (!ct.isContourBtnOn)
+            {
+                if (ABLine.isABLineSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
+
+                    ABLine.MoveABLine(-dist);
+                    FileSaveABLine();
+                }
+                else if (curve.isCurveSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
+
+                    curve.MoveABCurve(-dist);
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrABLine));
+                    form.Show();
+                }
+            }
+        }
+
+        private void btnSmallSnapRight_Click(object sender, EventArgs e)
+        {
+            if (!ct.isContourBtnOn)
+            {
+                if (ABLine.isABLineSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+                    ABLine.MoveABLine(dist);
+                    FileSaveABLine();
+                }
+                else if (curve.isCurveSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+                    curve.MoveABCurve(dist);
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrABLine));
+                    form.Show();
+                }
+            }
+        }
+
+        private void btnSnapRight_Click(object sender, EventArgs e)
+        {
+            if (!ct.isContourBtnOn)
+            {
+                if (ABLine.isABLineSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
+
+                    ABLine.MoveABLine(dist);
+                    FileSaveABLine();
+                }
+                else if (curve.isCurveSet)
+                {
+                    //snap distance is in cm
+                    double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
+                    curve.MoveABCurve(dist);
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrABLine));
+                    form.Show();
+                }
+            }
+        }
+
+
         //AB Line context menu
         private void contextMenuStripAB_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {

@@ -1042,5 +1042,29 @@ namespace AgOpenGPS.Properties {
                 this["setNTRIP_isGGAManual"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int setDisplay_snapDistance {
+            get {
+                return ((int)(this["setDisplay_snapDistance"]));
+            }
+            set {
+                this["setDisplay_snapDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int setDisplay_snapDistanceSmall {
+            get {
+                return ((int)(this["setDisplay_snapDistanceSmall"]));
+            }
+            set {
+                this["setDisplay_snapDistanceSmall"] = value;
+            }
+        }
     }
 }
