@@ -557,7 +557,7 @@ namespace AgOpenGPS
             }
 
             //if only one section, or going slow no need for super section 
-            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff || !ABLine.isOnTramLine)
+            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff)
                 vehicle.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -790,7 +790,7 @@ namespace AgOpenGPS
                     }
 
                     //if going too slow turn off sections
-                    if (pn.speed < vehicle.slowSpeedCutoff || !ABLine.isOnTramLine)
+                    if (pn.speed < vehicle.slowSpeedCutoff )
                     {
                         section[j].sectionOnRequest = false;
                         section[j].sectionOffRequest = true;
