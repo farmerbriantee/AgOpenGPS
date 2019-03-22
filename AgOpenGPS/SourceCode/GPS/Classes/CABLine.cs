@@ -43,6 +43,7 @@ namespace AgOpenGPS
         //tramlines
         //Color tramColor = Color.YellowGreen;
         public int tramPassEvery;
+        public bool isOnTramLine;
 
         public int passBasedOn;
 
@@ -76,6 +77,7 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
+            isOnTramLine = true;
         }
 
         public void DeleteAB()
@@ -379,15 +381,24 @@ namespace AgOpenGPS
                 GL.Color3(0.9f, 0.0f, 0.0f);
 
                 //calculate if tram line is here
+                isOnTramLine = true;
                 if (tramPassEvery != 0)
                 {
                     int pass = (int)passNumber + (tramPassEvery * 300) - passBasedOn;
-                    if (pass % tramPassEvery != 0) GL.Color3(0.9f, 0.0f, 0.0f);
-                    else GL.Color3(0, 0.9, 0);
+                    if (pass % tramPassEvery != 0)
+                    {
+                        GL.Color3(0.9f, 0.0f, 0.0f);
+                        isOnTramLine = false;
+                    }
+                    else
+                    {
+                        GL.Color3(0, 0.9, 0);
+                        isOnTramLine = true;
+                    }
                 }
 
                 //based on line pass, make ref purple
-                if (Math.Abs(passBasedOn - passNumber) < 0.0000000001 && tramPassEvery != 0) GL.Color3(0.990f, 0.190f, 0.990f);
+                if (Math.Abs(passBasedOn - (int)passNumber) <= 0 && tramPassEvery != 0) GL.Color3(0.990f, 0.190f, 0.990f);
 
                 GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
                 GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);

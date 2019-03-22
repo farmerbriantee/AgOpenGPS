@@ -89,7 +89,7 @@ namespace AgOpenGPS
         }
 
         public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
-        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\rAc/hr"; } }
+        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\nAc/hr"; } }
 
         //constructor
         public CFieldData(FormGPS _f)
