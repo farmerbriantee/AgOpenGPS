@@ -255,10 +255,6 @@ namespace AgOpenGPS
                         rcd.SectMainSWFromArduino = data[9];
                         break;
                     }
-
-
-
-
             }
         }
 

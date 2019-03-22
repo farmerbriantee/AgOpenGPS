@@ -3,6 +3,8 @@
 * Fixed offset for contour
 * Uturn byte sent with autosteer data
 * offset in UTUrn doesn't work quite right.
+* Added tramline section control
+
 
 v2.8 Feb 2019
 * Flag for drive around boundaries added
