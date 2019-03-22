@@ -200,6 +200,8 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.btnSmallSnapRight = new System.Windows.Forms.Button();
+            this.btnSmallSnapLeft = new System.Windows.Forms.Button();
             this.btnSnapRight = new System.Windows.Forms.Button();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -281,8 +283,6 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.btnSmallSnapRight = new System.Windows.Forms.Button();
-            this.btnSmallSnapLeft = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -877,6 +877,7 @@
             // 
             resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
             this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
             this.toolStripBatman.Name = "toolStripBatman";
             this.toolStripBatman.ShowDropDownArrow = false;
             this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
@@ -1605,6 +1606,28 @@
             this.panelBatman.Controls.Add(this.label14);
             this.panelBatman.Name = "panelBatman";
             // 
+            // btnSmallSnapRight
+            // 
+            resources.ApplyResources(this.btnSmallSnapRight, "btnSmallSnapRight");
+            this.btnSmallSnapRight.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallSnapRight.FlatAppearance.BorderSize = 2;
+            this.btnSmallSnapRight.Name = "btnSmallSnapRight";
+            this.btnSmallSnapRight.UseVisualStyleBackColor = false;
+            this.btnSmallSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
+            // 
+            // btnSmallSnapLeft
+            // 
+            resources.ApplyResources(this.btnSmallSnapLeft, "btnSmallSnapLeft");
+            this.btnSmallSnapLeft.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallSnapLeft.FlatAppearance.BorderSize = 2;
+            this.btnSmallSnapLeft.Name = "btnSmallSnapLeft";
+            this.btnSmallSnapLeft.UseVisualStyleBackColor = false;
+            this.btnSmallSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
+            // 
             // btnSnapRight
             // 
             resources.ApplyResources(this.btnSnapRight, "btnSnapRight");
@@ -2251,28 +2274,6 @@
             this.btnContour.Name = "btnContour";
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // btnSmallSnapRight
-            // 
-            resources.ApplyResources(this.btnSmallSnapRight, "btnSmallSnapRight");
-            this.btnSmallSnapRight.BackColor = System.Drawing.Color.Lavender;
-            this.btnSmallSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSmallSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSmallSnapRight.FlatAppearance.BorderSize = 2;
-            this.btnSmallSnapRight.Name = "btnSmallSnapRight";
-            this.btnSmallSnapRight.UseVisualStyleBackColor = false;
-            this.btnSmallSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
-            // 
-            // btnSmallSnapLeft
-            // 
-            resources.ApplyResources(this.btnSmallSnapLeft, "btnSmallSnapLeft");
-            this.btnSmallSnapLeft.BackColor = System.Drawing.Color.Lavender;
-            this.btnSmallSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSmallSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSmallSnapLeft.FlatAppearance.BorderSize = 2;
-            this.btnSmallSnapLeft.Name = "btnSmallSnapLeft";
-            this.btnSmallSnapLeft.UseVisualStyleBackColor = false;
-            this.btnSmallSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
             // 
             // FormGPS
             // 
