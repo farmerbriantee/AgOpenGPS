@@ -1448,6 +1448,7 @@ namespace AgOpenGPS
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
                     ABLine.MoveABLine(-dist);
@@ -1456,6 +1457,7 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
                     curve.MoveABCurve(-dist);
@@ -1475,6 +1477,7 @@ namespace AgOpenGPS
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     ABLine.MoveABLine(-dist);
@@ -1483,6 +1486,7 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     curve.MoveABCurve(-dist);
@@ -1502,6 +1506,7 @@ namespace AgOpenGPS
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
                     ABLine.MoveABLine(dist);
                     FileSaveABLine();
@@ -1509,6 +1514,7 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
                     curve.MoveABCurve(dist);
                 }
@@ -1527,6 +1533,7 @@ namespace AgOpenGPS
                 if (ABLine.isABLineSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     ABLine.MoveABLine(dist);
@@ -1535,6 +1542,7 @@ namespace AgOpenGPS
                 else if (curve.isCurveSet)
                 {
                     //snap distance is in cm
+                    yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
                     curve.MoveABCurve(dist);
                 }

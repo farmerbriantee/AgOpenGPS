@@ -262,8 +262,21 @@ namespace AgOpenGPS
             if (mazeList == null) return;
 
             //start is navigateable - maybe
-            if (mazeList.Count > 0)
+            int cnt = mazeList.Count;
+
+            if (cnt > 0)
             {
+                {
+                    int turnRadius = (int)(3 * mf.vehicle.minTurningRadius);
+                    if (cnt > 2 * turnRadius)
+                    {
+                        mazeList.RemoveRange(0, turnRadius);
+                        cnt = mazeList.Count;
+                        mazeList.RemoveRange(cnt - turnRadius, turnRadius);
+                    }
+                }
+
+
                 shortestDubinsList = dubPath.GenerateDubins(pt2, mazeList[0], mf.gf);
                 for (int i = 0; i < shortestDubinsList.Count; i++)
                 {
