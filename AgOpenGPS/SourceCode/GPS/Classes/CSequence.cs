@@ -334,7 +334,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                         {
                             //have we gone past the distance and still haven't done it
-                            if (mf.yt.onA > mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
+                            if (mf.yt.onA >= mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
                             {
                                 //it shall only run once
                                 mf.seq.seqEnter[i].isTrig = true;
@@ -350,7 +350,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                         {
                             //have we gone past the distance and still haven't done it
-                            if (mf.yt.onA < mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
+                            if (mf.yt.onA <= mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
                             {
                                 //it shall only run once
                                 mf.seq.seqExit[i].isTrig = true;

@@ -1058,10 +1058,10 @@
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.autoPage4.Controls.Add(this.btnLidarOnOff);
             this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
+            this.autoPage4.Controls.Add(this.btnDrivePath);
             this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
             this.autoPage4.Controls.Add(this.btnGenerateSelf);
-            this.autoPage4.Controls.Add(this.btnDrivePath);
             this.autoPage4.Controls.Add(this.btnGoSelf);
             this.autoPage4.Controls.Add(this.btnManualAutoDrive);
             resources.ApplyResources(this.autoPage4, "autoPage4");
@@ -2280,8 +2280,8 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.lblHz);
             this.Controls.Add(this.btnZoomExtents);
             this.Controls.Add(this.panelSimControls);

@@ -1616,7 +1616,7 @@ namespace AgOpenGPS
                 int closestPt = 0;
                 for (int i = 0; i < ptCount; i++)
                 {
-                    double distancePiv = glm.Distance(ytList[i], mf.toolPos);
+                    double distancePiv = glm.Distance(ytList[i], mf.pivotAxlePos);
                     if (distancePiv < minDistA)
                     {
                         minDistA = distancePiv;
