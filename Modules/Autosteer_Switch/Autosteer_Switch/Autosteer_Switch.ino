@@ -25,6 +25,10 @@
   #define Relay_Type 0                  // set to 0 if up to 8 Section Relays will be used
                                         // set to 1 if up to 8 uTurn Relays will be used (only Serial Mode)
   
+  #define useSteerSwitch 0              // set to 1 if a Steerswitch is installed
+  #define PinMapping 0                  // 0 = default Mapping (like the included Schematics)
+                                        // 1 = PCB (Autosteer with Power Supply)
+  
   //Ethernet Details
   #define EtherNet 0      // 0 = Serial/USB communcation with AOG
                           // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
@@ -34,6 +38,8 @@
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
 
+// Pin Configuaration
+#if (PinMapping == 0 )  // Default Mapping
   #define STEERSW_PIN 3  //PD3
   #define WORKSW_PIN  4  //PD4
   #define PWM_PIN     5  //PD5  
@@ -50,7 +56,10 @@
   //#define RELAY6_PIN 11  //PB3  serial Mode only
   //#define RELAY7_PIN 12  //PB4  serial Mode only
   //#define RELAY8_PIN 13  //PB5  serial Mode only
-  
+
+#else (PinMapping == 1)
+//...place alternate mapping here
+#endif
 
   #include <Wire.h>
   #include <EEPROM.h>
@@ -101,7 +110,7 @@
 #endif
 
 #if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
-  #include <JrkG2.h> 
+  #include <JrkG2.h>   
   // add this library via:  Tools->Manage Libraries
   // or get from https://github.com/pololu/jrk-g2-arduino
   JrkG2I2C jrk;
@@ -166,12 +175,12 @@ float pValue = 0, iValue = 0, dValue = 0;
 void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
-  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2
+  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin D3 
+  pinMode(DIR_PIN, OUTPUT);            // direction pin of PWM Board
+  pinMode(PWM_PIN, OUTPUT);            // PWM pin
+  pinMode(LED_PIN, OUTPUT);            // Autosteer LED indicates AS on
  
-  pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
-  pinMode(PWM_PIN, OUTPUT);
-  pinMode(LED_PIN, OUTPUT);
   pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
   pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
   pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
@@ -180,7 +189,7 @@ void setup()
   //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
   //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
   //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
-	
+  
   //set up communication
   Wire.begin();
   Serial.begin(38400);
@@ -268,33 +277,33 @@ void loop()
 	 *  Process accordingly updating values
 	 */
 
-	currentTime = millis();
-	unsigned int time = currentTime;
+currentTime = millis();
+unsigned int time = currentTime;
 
-	if (currentTime - lastTime >= LOOP_TIME)
-	{
-		dT = currentTime - lastTime;
-		lastTime = currentTime;
+if (currentTime - lastTime >= LOOP_TIME)
+ {
+     dT = currentTime - lastTime;
+     lastTime = currentTime;
 
 #if (IMU_Installed)
-    IMU.readIMU();
+     IMU.readIMU();
 #endif
 
-		//If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
-		if (watchdogTimer++ > 250) watchdogTimer = 12;
+     //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
+     if (watchdogTimer++ > 250) watchdogTimer = 12;
 
 #if (Inclinometer_Installed ==1)
-    //DOGS2 inclinometer
-		delay(1);
-		analogRead(Dogs2_Roll); //discard
-		delay(1);
-		roll = analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);
-		roll = roll >> 2; //divide by 4
-		//inclinometer goes from -25 to 25 from 0 volts to 5 volts
-    rollK = map(roll, -1023, 1023, -400, 400); //16 counts per degree
+     //DOGS2 inclinometer
+     delay(1);
+     analogRead(Dogs2_Roll); //discard
+     delay(1);
+     roll = analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);
+     roll = roll >> 2; //divide by 4
+     //inclinometer goes from -25 to 25 from 0 volts to 5 volts
+     rollK = map(roll, -1023, 1023, -400, 400); //16 counts per degree
 #endif
 
 #if Inclinometer_Installed ==2
@@ -317,7 +326,8 @@ void loop()
     XeRoll = G * (rollK - Zp) + Xp;
 
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
-    steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+    if (useSteerSwitch) steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch 
+    else steerSwitch = 0; //permanetely On
     switchByte = 0;
     switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
     switchByte = workSwitch | switchByte;
