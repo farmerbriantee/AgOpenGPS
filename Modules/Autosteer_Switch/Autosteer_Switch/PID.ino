@@ -38,13 +38,23 @@ void motorDrive(void)
    // Dir + PWM Signal
     
     pwmDisplay = pwmDrive;
-if (pwmDrive >= 0) analogWrite(DIR_PIN, 255);  //set the correct direction
-    else   
-    {
-      analogWrite(DIR_PIN, 0); 
-      pwmDrive = -1 * pwmDrive;  
-   }
-    analogWrite(PWM_PIN, pwmDrive);
+
+#if (PinMapping == 0 )
+  if (pwmDrive >= 0) analogWrite(DIR_PIN, 255);  //set the correct direction
+  else{
+       analogWrite(DIR_PIN, 0); 
+       pwmDrive = -1 * pwmDrive;  
+      }
+#endif 
+
+#if (PinMapping == 1 )
+  if (pwmDrive >= 0) digitalWrite(DIR_PIN, HIGH);  //set the correct direction
+  else{
+       digitalWrite(DIR_PIN, LOW); 
+       pwmDrive = -1 * pwmDrive;  
+      }
+#endif
+    analogWrite(PWM1_PIN, pwmDrive);
   }
 #endif
 
@@ -57,9 +67,10 @@ void motorDrive(void)
    
   pwmDisplay = pwmDrive; 
   
+#if (PinMapping == 0 )
   if (pwmDrive > 0)
     {
-      analogWrite(PWM_PIN, pwmDrive);
+      analogWrite(PWM1_PIN, pwmDrive);
       analogWrite(DIR_PIN, 0);//Set DIR PIN low
     }
     
@@ -67,8 +78,24 @@ void motorDrive(void)
     {
       pwmDrive = -1 * pwmDrive;  
       analogWrite(DIR_PIN, pwmDrive);
-      analogWrite(PWM_PIN, 0);//Set PWM PIN low
-    } 
+      analogWrite(PWM1_PIN, 0);//Set PWM PIN low
+    }
+#endif 
+
+#if (PinMapping == 1 )
+  if (pwmDrive > 0)
+    {
+      analogWrite(PWM1_PIN, pwmDrive);
+      analogWrite(PWM2_PIN, 0);//Set DIR PIN low
+    }
+    
+  if (pwmDrive <= 0)
+    {
+      pwmDrive = -1 * pwmDrive;  
+      analogWrite(PWM2_PIN, pwmDrive);
+      analogWrite(PWM1_PIN, 0);//Set PWM PIN low
+    }
+#endif
   }
 #endif
 
