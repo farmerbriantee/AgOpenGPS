@@ -20,7 +20,8 @@
   #define IMU_Installed 0               // set to 1 to enable BNO055 IMU
   
   #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
-                                        // set to 2 if MMA8452 installed
+                                        // set to 2 if MMA8452 is installed (Address 0x1C) (SA0 = Low)
+                                        // set to 3 if MMA8452 is installed (Address 0x1D) (SA0 = High, Sparkfun)
 
   #define Relay_Type 0                  // set to 0 if up to 8 Section Relays will be used
                                         // set to 1 if up to 8 uTurn Relays will be used (only Serial Mode)
@@ -112,7 +113,7 @@
   Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
 #endif
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
     #include "MMA8452_AOG.h"  // MMA8452 (1) Inclinometer
     MMA8452 accelerometer;
 #endif
@@ -249,7 +250,7 @@ void setup()
   IMU.setExtCrystalUse(true);
 #endif  
 	
-#if (Inclinometer_Installed ==2)
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
       // MMA8452 (1) Inclinometer
       MMAinitialized = accelerometer.init();
       if (MMAinitialized){
@@ -341,7 +342,7 @@ if (currentTime - lastTime >= LOOP_TIME)
      rollK = map(roll, -1023, 1023, -400, 400); //16 counts per degree
 #endif
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
    // MMA8452 (1) Inclinometer
   if (MMAinitialized){
     accelerometer.getRawData(&x_, &y_, &z_);
