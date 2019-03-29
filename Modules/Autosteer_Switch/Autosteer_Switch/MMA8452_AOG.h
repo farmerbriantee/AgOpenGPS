@@ -60,7 +60,13 @@
 // Reserved 0x40-0x7F
 
 // I2C address set in hardware (tied high or low)
-#define SA0 0
+#if Inclinometer_Installed == 2 
+  #define SA0 0
+#endif
+#if Inclinometer_Installed == 3
+  #define SA0 1
+#endif
+
 #if SA0
 #define MMA8452_ADDRESS 0x1D
 #else

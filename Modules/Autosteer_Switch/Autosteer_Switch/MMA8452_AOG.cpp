@@ -21,7 +21,7 @@ bool MMA8452::init()
           Serial.println(reg,HEX);	
 	  return false;
 	 }
-        if (reg==0x2A) Serial.println("MMA 8452 found!");
+  if (reg==0x2A) Serial.println("MMA 8452 found!");
 	if (reg==0x1A) Serial.println("MMA 8451 found!");
 	// range on startup is always 2g, we'll need to know the range for G calculation
 	range = MMA_RANGE_2G;
