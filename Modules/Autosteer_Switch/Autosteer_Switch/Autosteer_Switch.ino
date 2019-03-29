@@ -27,7 +27,7 @@
   
   #define useSteerSwitch 0              // set to 1 if a Steerswitch is installed
   #define PinMapping 0                  // 0 = default Mapping (like the included Schematics)
-                                        // 1 = PCB (Autosteer with Power Supply)
+                                        // 1 = PCB Basic Autosteer
   
   //Ethernet Details
   #define EtherNet 0      // 0 = Serial/USB communcation with AOG
@@ -42,7 +42,7 @@
 #if (PinMapping == 0 )  // Default Mapping
   #define STEERSW_PIN 3  //PD3
   #define WORKSW_PIN  4  //PD4
-  #define PWM_PIN     5  //PD5  
+  #define PWM1_PIN    5  //PD5  
   #define DIR_PIN     6  //PD6
   #define LED_PIN     7  //PD7 Autosteer LED
   #define W_A_S      A0  //PC0 Wheel Angle Sensor
@@ -58,7 +58,23 @@
   //#define RELAY8_PIN 13  //PB5  serial Mode only
 
 #else (PinMapping == 1)
-//...place alternate mapping here
+// PCB Basic Autosteer
+  #define STEERSW_PIN 6  //PD6
+  #define WORKSW_PIN  8  //PB0
+  #define IMP_PIN     7  //PD7
+  #define PWM1_PIN    3  //PD3  
+  #define DIR_PIN     4  //PD4
+  #define PWM2_PIN    9  //PB1
+  #define LED_PIN     5  //PD5 Autosteer LED
+  #define W_A_S      A0  //PC0 Wheel Angle Sensor
+  #define Dogs2_Roll A1  //PC1 EADOGS2 Inclinometer
+  //ethercard 10,11,12,13   
+  #define RELAY1_PIN A2  //PC2
+  #define RELAY2_PIN A3  //PC3
+  //#define RELAY3_PIN A0  //PC0
+  //#define RELAY4_PIN A1  //PC1
+  
+  
 #endif
 
   #include <Wire.h>
@@ -175,20 +191,39 @@ float pValue = 0, iValue = 0, dValue = 0;
 void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
-  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin D3 
+  pinMode(WORKSW_PIN, INPUT_PULLUP);    
+  pinMode(STEERSW_PIN, INPUT_PULLUP);   
   pinMode(DIR_PIN, OUTPUT);            // direction pin of PWM Board
-  pinMode(PWM_PIN, OUTPUT);            // PWM pin
+  pinMode(PWM1_PIN, OUTPUT);           // PWM pin
   pinMode(LED_PIN, OUTPUT);            // Autosteer LED indicates AS on
- 
-  pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
-  pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
-  pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
-  pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
-  //pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
-  //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
-  //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
-  //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
+  #if defined (PWM2_PIN) 
+    pinMode(PWM2_PIN, OUTPUT); //second PWM Pin
+  #endif
+  
+  #if defined (RELAY1_PIN)
+    pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
+  #endif
+  #if defined (RELAY2_PIN)
+    pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
+  #endif
+  #if defined (RELAY3_PIN)
+    pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
+  #endif
+  #if defined (RELAY4_PIN)
+    pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
+  #endif
+  #if defined (RELAY5_PIN)
+    pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
+  #endif
+  #if defined (RELAY6_PIN)
+    pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
+  #endif
+  #if defined (RELAY7_PIN)
+    pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
+  #endif
+  #if defined (RELAY8_PIN)
+    pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
+  #endif
   
   //set up communication
   Wire.begin();
