@@ -20,10 +20,15 @@
   #define IMU_Installed 0               // set to 1 to enable BNO055 IMU
   
   #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
-                                        // set to 2 if MMA8452 installed
+                                        // set to 2 if MMA8452 is installed (Address 0x1C) (SA0 = Low)
+                                        // set to 3 if MMA8452 is installed (Address 0x1D) (SA0 = High, Sparkfun)
 
   #define Relay_Type 0                  // set to 0 if up to 8 Section Relays will be used
                                         // set to 1 if up to 8 uTurn Relays will be used (only Serial Mode)
+  
+  #define useSteerSwitch 0              // set to 1 if a Steerswitch is installed
+  #define PinMapping 0                  // 0 = default Mapping (like the included Schematics)
+                                        // 1 = PCB Basic Autosteer
   
   //Ethernet Details
   #define EtherNet 0      // 0 = Serial/USB communcation with AOG
@@ -34,9 +39,11 @@
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
 
+// Pin Configuaration
+#if (PinMapping == 0 )  // Default Mapping
   #define STEERSW_PIN 3  //PD3
   #define WORKSW_PIN  4  //PD4
-  #define PWM_PIN     5  //PD5  
+  #define PWM1_PIN    5  //PD5  
   #define DIR_PIN     6  //PD6
   #define LED_PIN     7  //PD7 Autosteer LED
   #define W_A_S      A0  //PC0 Wheel Angle Sensor
@@ -50,7 +57,26 @@
   //#define RELAY6_PIN 11  //PB3  serial Mode only
   //#define RELAY7_PIN 12  //PB4  serial Mode only
   //#define RELAY8_PIN 13  //PB5  serial Mode only
+
+#else (PinMapping == 1)
+// PCB Basic Autosteer
+  #define STEERSW_PIN 6  //PD6
+  #define WORKSW_PIN  8  //PB0
+  #define IMP_PIN     7  //PD7
+  #define PWM1_PIN    3  //PD3  
+  #define DIR_PIN     4  //PD4
+  #define PWM2_PIN    9  //PB1
+  #define LED_PIN     5  //PD5 Autosteer LED
+  #define W_A_S      A0  //PC0 Wheel Angle Sensor
+  #define Dogs2_Roll A1  //PC1 EADOGS2 Inclinometer
+  //ethercard 10,11,12,13   
+  #define RELAY1_PIN A2  //PC2
+  #define RELAY2_PIN A3  //PC3
+  //#define RELAY3_PIN A0  //PC0
+  //#define RELAY4_PIN A1  //PC1
   
+  
+#endif
 
   #include <Wire.h>
   #include <EEPROM.h>
@@ -87,7 +113,7 @@
   Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
 #endif
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
     #include "MMA8452_AOG.h"  // MMA8452 (1) Inclinometer
     MMA8452 accelerometer;
 #endif
@@ -101,7 +127,7 @@
 #endif
 
 #if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
-  #include <JrkG2.h> 
+  #include <JrkG2.h>   
   // add this library via:  Tools->Manage Libraries
   // or get from https://github.com/pololu/jrk-g2-arduino
   JrkG2I2C jrk;
@@ -166,21 +192,40 @@ float pValue = 0, iValue = 0, dValue = 0;
 void setup()
 {    
   //keep pulled high and drag low to activate, noise free safe    
-  pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2
- 
-  pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
-  pinMode(PWM_PIN, OUTPUT);
-  pinMode(LED_PIN, OUTPUT);
-  pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
-  pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
-  pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
-  pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
-  //pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
-  //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
-  //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
-  //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
-	
+  pinMode(WORKSW_PIN, INPUT_PULLUP);    
+  pinMode(STEERSW_PIN, INPUT_PULLUP);   
+  pinMode(DIR_PIN, OUTPUT);            // direction pin of PWM Board
+  pinMode(PWM1_PIN, OUTPUT);           // PWM pin
+  pinMode(LED_PIN, OUTPUT);            // Autosteer LED indicates AS on
+  #if defined (PWM2_PIN) 
+    pinMode(PWM2_PIN, OUTPUT); //second PWM Pin
+  #endif
+  
+  #if defined (RELAY1_PIN)
+    pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
+  #endif
+  #if defined (RELAY2_PIN)
+    pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
+  #endif
+  #if defined (RELAY3_PIN)
+    pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
+  #endif
+  #if defined (RELAY4_PIN)
+    pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
+  #endif
+  #if defined (RELAY5_PIN)
+    pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
+  #endif
+  #if defined (RELAY6_PIN)
+    pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
+  #endif
+  #if defined (RELAY7_PIN)
+    pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
+  #endif
+  #if defined (RELAY8_PIN)
+    pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
+  #endif
+  
   //set up communication
   Wire.begin();
   Serial.begin(38400);
@@ -205,7 +250,7 @@ void setup()
   IMU.setExtCrystalUse(true);
 #endif  
 	
-#if (Inclinometer_Installed ==2)
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
       // MMA8452 (1) Inclinometer
       MMAinitialized = accelerometer.init();
       if (MMAinitialized){
@@ -268,36 +313,36 @@ void loop()
 	 *  Process accordingly updating values
 	 */
 
-	currentTime = millis();
-	unsigned int time = currentTime;
+currentTime = millis();
+unsigned int time = currentTime;
 
-	if (currentTime - lastTime >= LOOP_TIME)
-	{
-		dT = currentTime - lastTime;
-		lastTime = currentTime;
+if (currentTime - lastTime >= LOOP_TIME)
+ {
+     dT = currentTime - lastTime;
+     lastTime = currentTime;
 
 #if (IMU_Installed)
-    IMU.readIMU();
+     IMU.readIMU();
 #endif
 
-		//If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
-		if (watchdogTimer++ > 250) watchdogTimer = 12;
+     //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
+     if (watchdogTimer++ > 250) watchdogTimer = 12;
 
 #if (Inclinometer_Installed ==1)
-    //DOGS2 inclinometer
-		delay(1);
-		analogRead(Dogs2_Roll); //discard
-		delay(1);
-		roll = analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);   delay(1);
-		roll += analogRead(Dogs2_Roll);
-		roll = roll >> 2; //divide by 4
-		//inclinometer goes from -25 to 25 from 0 volts to 5 volts
-    rollK = map(roll, -1023, 1023, -400, 400); //16 counts per degree
+     //DOGS2 inclinometer
+     delay(1);
+     analogRead(Dogs2_Roll); //discard
+     delay(1);
+     roll = analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);   delay(1);
+     roll += analogRead(Dogs2_Roll);
+     roll = roll >> 2; //divide by 4
+     //inclinometer goes from -25 to 25 from 0 volts to 5 volts
+     rollK = map(roll, -1023, 1023, -400, 400); //16 counts per degree
 #endif
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
    // MMA8452 (1) Inclinometer
   if (MMAinitialized){
     accelerometer.getRawData(&x_, &y_, &z_);
@@ -317,7 +362,8 @@ void loop()
     XeRoll = G * (rollK - Zp) + Xp;
 
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
-    steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+    if (useSteerSwitch) steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch 
+    else steerSwitch = 0; //permanetely On
     switchByte = 0;
     switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
     switchByte = workSwitch | switchByte;
