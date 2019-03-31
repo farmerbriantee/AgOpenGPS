@@ -805,7 +805,7 @@ namespace AgOpenGPS
                     lblNTRIPSeconds.Text = "Offline ";
                     isNTRIP_RequiredOn = false;
                 }
-                else 
+                else
                 {
                     isNTRIP_RequiredOn = true;
                     btnStartStopNtrip.Text = "Stop";
@@ -850,6 +850,9 @@ namespace AgOpenGPS
         {
             //isGPSPositionInitialized = false;
             //offset = 0;
+            //pn.latStart = pn.latitude;
+            //pn.lonStart = pn.longitude;
+
             AutoSteerSettingsOutToPort();
             isJobStarted = true;
             startCounter = 0;
@@ -907,6 +910,10 @@ namespace AgOpenGPS
                 btnDualRate.PerformClick();
 
             rcd.ShutdownRateControl();  //double dam sure its off
+
+            //reset the lat lon start pos
+            pn.latStart = 0;
+            pn.lonStart = 0;
 
             //btnRateRightDn.Visible = false;
             //btnRateRightUp.Visible = false;

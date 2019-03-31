@@ -60,7 +60,7 @@ namespace AgOpenGPS
             int ptCount = geoFenceLine.Count;
             if (ptCount < 1) return;
             GL.LineWidth(1);
-            GL.Color3(0.9555f, 0.0232f, 0.0f);
+            GL.Color3(0.6555f, 0.3232f, 0.0f);
             //GL.PointSize(4);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(geoFenceLine[h].easting, geoFenceLine[h].northing, 0);

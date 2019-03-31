@@ -247,8 +247,8 @@ namespace AgOpenGPS
             boxE.easting = pivot.easting - sin3H; // inside bottom
             boxE.northing = pivot.northing - cos3H;
 
-            boxG.easting = boxE.easting + sinH * 0.3; //inside top
-            boxG.northing = boxE.northing + cosH * 0.3;
+            boxG.easting = boxE.easting + (sinH * 0.3); //inside top
+            boxG.northing = boxE.northing + (cosH * 0.3);
 
             //right
             boxB.easting = pivot.easting + sin2HR;
@@ -262,8 +262,8 @@ namespace AgOpenGPS
             boxF.easting = pivot.easting + sin3H;
             boxF.northing = pivot.northing + cos3H;
 
-            boxH.easting = boxF.easting + sinH * 0.3; //inside top
-            boxH.northing = boxF.northing + cosH * 0.3;
+            boxH.easting = boxF.easting + (sinH * 0.3); //inside top
+            boxH.northing = boxF.northing + (cosH * 0.3);
 
             conList.Clear();
             ctList.Clear();
@@ -502,7 +502,7 @@ namespace AgOpenGPS
             start = pt - 35; if (start < 0) start = 0;
             stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
 
-            double distSq = widthMinusOverlap * widthMinusOverlap * 0.92;
+            double distSq = widthMinusOverlap * widthMinusOverlap * 0.875;
             bool fail = false;
 
             for (int i = start; i < stop; i++)
@@ -878,24 +878,24 @@ namespace AgOpenGPS
             //GL.End();
             //GL.PointSize(1.0f);
 
-            GL.Color3(0.98f, 0.98f, 0.50f);
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.Vertex3(boxA.easting, boxA.northing, 0);
-            GL.Vertex3(boxD.easting, boxD.northing, 0);
-            GL.Vertex3(boxG.easting, boxG.northing, 0);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.End();
+            //GL.Color3(0.98f, 0.98f, 0.50f);
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.Vertex3(boxA.easting, boxA.northing, 0);
+            //GL.Vertex3(boxD.easting, boxD.northing, 0);
+            //GL.Vertex3(boxG.easting, boxG.northing, 0);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.End();
 
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.Vertex3(boxH.easting, boxH.northing, 0);
-            GL.Vertex3(boxC.easting, boxC.northing, 0);
-            GL.Vertex3(boxB.easting, boxB.northing, 0);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.End();
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.Vertex3(boxH.easting, boxH.northing, 0);
+            //GL.Vertex3(boxC.easting, boxC.northing, 0);
+            //GL.Vertex3(boxB.easting, boxB.northing, 0);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.End();
 
             //draw the reference line
             //GL.PointSize(3.0f);
@@ -943,7 +943,7 @@ namespace AgOpenGPS
                     double y = 0;
 
                     GL.LineWidth(1);
-                    GL.Color3(0.95f, 0.30f, 0.950f);
+                    GL.Color3(0.795f, 0.230f, 0.7950f);
                     GL.Begin(PrimitiveType.LineLoop);
                     for (int ii = 0; ii < numSegments; ii++)
                     {

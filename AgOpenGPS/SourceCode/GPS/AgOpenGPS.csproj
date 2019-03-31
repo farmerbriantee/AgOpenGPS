@@ -724,12 +724,6 @@
     <None Include="btnImages\SectionOn.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />
-    <None Include="btnImages\SectionSettings.jpg" />
-    <None Include="btnImages\SectionSettings1.jpg" />
-    <None Include="btnImages\SectionSettings2.jpg" />
-    <None Include="btnImages\SectionSettings3.jpg" />
-    <None Include="btnImages\SectionSettings4.jpg" />
-    <None Include="btnImages\SectionSettings5.jpg" />
     <None Include="btnImages\JobActive.png" />
     <None Include="btnImages\JobClosed.png" />
     <None Include="btnImages\FileSave.png" />
@@ -756,20 +750,13 @@
     <None Include="btnImages\TiltUp.png" />
     <None Include="btnImages\FlagDeleteAll.png" />
     <None Include="btnImages\GoogleEarth.png" />
-    <None Include="btnImages\2D3D.png" />
-    <None Include="btnImages\AcHa.png" />
     <None Include="btnImages\Satellite64.png" />
     <None Include="btnImages\AreaSide.png" />
-    <None Include="btnImages\Display.png" />
-    <None Include="btnImages\A2D3D.png" />
     <None Include="btnImages\DnArrow64.png" />
     <None Include="btnImages\Color.png" />
     <None Include="btnImages\ColorField.png" />
     <None Include="btnImages\WorkSwitch.png" />
     <None Include="btnImages\WorkSwitch.jpg" />
-    <None Include="btnImages\SectionSettings6.jpg" />
-    <None Include="btnImages\SectionSettings7.jpg" />
-    <None Include="btnImages\SectionSettings8.jpg" />
     <None Include="btnImages\AutoSteerOff.png" />
     <None Include="btnImages\AutoSteerOn.png" />
     <None Include="btnImages\ZeroPitchRoll.png" />
@@ -851,6 +838,9 @@
     <None Include="btnImages\Extents.png" />
     <None Include="btnImages\Start48.png" />
     <None Include="btnImages\NtripSettings.png" />
+    <None Include="btnImages\HideContour.png" />
+    <None Include="btnImages\RecPath.png" />
+    <None Include="btnImages\LonLat.gif" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

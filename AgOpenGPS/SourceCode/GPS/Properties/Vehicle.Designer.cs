@@ -670,5 +670,17 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_goalPointLookAheadUturnMult"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double set_geoFenceDistance {
+            get {
+                return ((double)(this["set_geoFenceDistance"]));
+            }
+            set {
+                this["set_geoFenceDistance"] = value;
+            }
+        }
     }
 }

@@ -1066,5 +1066,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_snapDistanceSmall"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDisplay_isLargePanel {
+            get {
+                return ((bool)(this["setDisplay_isLargePanel"]));
+            }
+            set {
+                this["setDisplay_isLargePanel"] = value;
+            }
+        }
     }
 }

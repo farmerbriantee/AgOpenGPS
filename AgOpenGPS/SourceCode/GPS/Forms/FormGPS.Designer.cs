@@ -84,11 +84,18 @@
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteContourPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnSmoothABCurve = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -132,13 +139,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.autoPage4 = new System.Windows.Forms.TabPage();
             this.btnLidarOnOff = new System.Windows.Forms.Button();
-            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
-            this.btnDeleteRecPath = new System.Windows.Forms.Button();
             this.btnGenerateSelf = new System.Windows.Forms.Button();
-            this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnGoSelf = new System.Windows.Forms.Button();
             this.btnManualAutoDrive = new System.Windows.Forms.Button();
+            this.btnDeleteRecPath = new System.Windows.Forms.Button();
+            this.btnDrivePath = new System.Windows.Forms.Button();
+            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
             this.rate2Page5 = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
@@ -165,6 +172,10 @@
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.btnSmallRight2 = new System.Windows.Forms.Button();
+            this.btnSmallLeft2 = new System.Windows.Forms.Button();
+            this.btnBigRight2 = new System.Windows.Forms.Button();
+            this.btnBigLeft2 = new System.Windows.Forms.Button();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
@@ -197,6 +208,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
@@ -227,7 +239,6 @@
             this.lblpAltitude = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
@@ -261,18 +272,18 @@
             this.oglMain = new OpenTK.GLControl();
             this.oglBack = new OpenTK.GLControl();
             this.lblHz = new System.Windows.Forms.Label();
-            this.btnZoomExtents = new System.Windows.Forms.Button();
-            this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
-            this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.btnSwapDirection = new System.Windows.Forms.Button();
-            this.btnContourPriority = new System.Windows.Forms.Button();
             this.contextMenuSnap = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnZoomExtents = new System.Windows.Forms.Button();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
+            this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
+            this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
+            this.btnSwapDirection = new System.Windows.Forms.Button();
+            this.btnContourPriority = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
@@ -625,9 +636,7 @@
             // 
             // simulatorOnToolStripMenuItem
             // 
-            this.simulatorOnToolStripMenuItem.Checked = true;
             this.simulatorOnToolStripMenuItem.CheckOnClick = true;
-            this.simulatorOnToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
             resources.ApplyResources(this.simulatorOnToolStripMenuItem, "simulatorOnToolStripMenuItem");
             this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
@@ -658,6 +667,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblAreaRate,
             this.toolStripBtnCamera,
+            this.toolStripDropDownButton1,
             this.stripEqWidth,
             this.stripDistance,
             this.toolStripBtnDropDownSpecialFunctions,
@@ -682,26 +692,78 @@
             this.CameraNorthToolStripMenuItem,
             this.CameraFollowingToolStripMenuItem,
             this.CameraTopToolStripMenuItem});
+            this.toolStripBtnCamera.Image = global::AgOpenGPS.Properties.Resources.Camera54;
             this.toolStripBtnCamera.Name = "toolStripBtnCamera";
             this.toolStripBtnCamera.ShowDropDownArrow = false;
             // 
             // CameraNorthToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraNorthToolStripMenuItem, "CameraNorthToolStripMenuItem");
+            this.CameraNorthToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
             this.CameraNorthToolStripMenuItem.Name = "CameraNorthToolStripMenuItem";
             this.CameraNorthToolStripMenuItem.Click += new System.EventHandler(this.CameraNorthToolStripMenuItem_Click);
             // 
             // CameraFollowingToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraFollowingToolStripMenuItem, "CameraFollowingToolStripMenuItem");
+            this.CameraFollowingToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
             this.CameraFollowingToolStripMenuItem.Name = "CameraFollowingToolStripMenuItem";
             this.CameraFollowingToolStripMenuItem.Click += new System.EventHandler(this.CameraFollowingToolStripMenuItem_Click);
             // 
             // CameraTopToolStripMenuItem
             // 
             resources.ApplyResources(this.CameraTopToolStripMenuItem, "CameraTopToolStripMenuItem");
+            this.CameraTopToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
             this.CameraTopToolStripMenuItem.Name = "CameraTopToolStripMenuItem";
             this.CameraTopToolStripMenuItem.Click += new System.EventHandler(this.CameraTopToolStripMenuItem_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            resources.ApplyResources(this.toolStripDropDownButton1, "toolStripDropDownButton1");
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.goPathMenu,
+            this.pausePathMenu,
+            this.toolStripMenuItem7});
+            this.toolStripDropDownButton1.Image = global::AgOpenGPS.Properties.Resources.RecPath;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.ShowDropDownArrow = false;
+            // 
+            // goPathMenu
+            // 
+            this.goPathMenu.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            resources.ApplyResources(this.goPathMenu, "goPathMenu");
+            this.goPathMenu.Name = "goPathMenu";
+            this.goPathMenu.Click += new System.EventHandler(this.goPathMenu_Click);
+            // 
+            // pausePathMenu
+            // 
+            this.pausePathMenu.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+            resources.ApplyResources(this.pausePathMenu, "pausePathMenu");
+            this.pausePathMenu.Name = "pausePathMenu";
+            this.pausePathMenu.Click += new System.EventHandler(this.pausePathMenu_Click);
+            // 
+            // toolStripMenuItem7
+            // 
+            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordPathMenu,
+            this.deletePathMenu});
+            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
+            resources.ApplyResources(this.toolStripMenuItem7, "toolStripMenuItem7");
+            // 
+            // recordPathMenu
+            // 
+            this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            resources.ApplyResources(this.recordPathMenu, "recordPathMenu");
+            this.recordPathMenu.Name = "recordPathMenu";
+            this.recordPathMenu.Click += new System.EventHandler(this.recordPathMenu_Click);
+            // 
+            // deletePathMenu
+            // 
+            this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            resources.ApplyResources(this.deletePathMenu, "deletePathMenu");
+            this.deletePathMenu.Name = "deletePathMenu";
+            this.deletePathMenu.Click += new System.EventHandler(this.deletePathMenu_Click);
             // 
             // stripEqWidth
             // 
@@ -723,8 +785,10 @@
             this.toolStripBtnDropDownSpecialFunctions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripBtnDropDownSpecialFunctions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDeleteApplied,
+            this.deleteContourPathsToolStripMenuItem,
             this.toolStripBtnMakeBndContour,
             this.toolStripBtnSmoothABCurve});
+            this.toolStripBtnDropDownSpecialFunctions.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
             this.toolStripBtnDropDownSpecialFunctions.Name = "toolStripBtnDropDownSpecialFunctions";
             this.toolStripBtnDropDownSpecialFunctions.ShowDropDownArrow = false;
             // 
@@ -740,6 +804,13 @@
             this.toolStripAreYouSure.Name = "toolStripAreYouSure";
             resources.ApplyResources(this.toolStripAreYouSure, "toolStripAreYouSure");
             this.toolStripAreYouSure.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
+            // 
+            // deleteContourPathsToolStripMenuItem
+            // 
+            resources.ApplyResources(this.deleteContourPathsToolStripMenuItem, "deleteContourPathsToolStripMenuItem");
+            this.deleteContourPathsToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.HideContour;
+            this.deleteContourPathsToolStripMenuItem.Name = "deleteContourPathsToolStripMenuItem";
+            this.deleteContourPathsToolStripMenuItem.Click += new System.EventHandler(this.deleteContourPathsToolStripMenuItem_Click);
             // 
             // toolStripBtnMakeBndContour
             // 
@@ -1057,13 +1128,13 @@
             // 
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.autoPage4.Controls.Add(this.btnLidarOnOff);
-            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
-            this.autoPage4.Controls.Add(this.btnDrivePath);
             this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
-            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
             this.autoPage4.Controls.Add(this.btnGenerateSelf);
             this.autoPage4.Controls.Add(this.btnGoSelf);
             this.autoPage4.Controls.Add(this.btnManualAutoDrive);
+            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
+            this.autoPage4.Controls.Add(this.btnDrivePath);
+            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             // 
@@ -1075,29 +1146,14 @@
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
             // 
-            // btnRecPathPauseRecord
-            // 
-            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
-            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
-            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
-            // 
             // btnPauseDrivingPath
             // 
             this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
             resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
+            this.btnPauseDrivingPath.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
             this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
             this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
-            // 
-            // btnDeleteRecPath
-            // 
-            this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
-            this.btnDeleteRecPath.Name = "btnDeleteRecPath";
-            this.btnDeleteRecPath.UseVisualStyleBackColor = false;
-            this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
             // 
             // btnGenerateSelf
             // 
@@ -1106,15 +1162,6 @@
             this.btnGenerateSelf.Name = "btnGenerateSelf";
             this.btnGenerateSelf.UseVisualStyleBackColor = false;
             this.btnGenerateSelf.Click += new System.EventHandler(this.btnGenerateSelf_Click);
-            // 
-            // btnDrivePath
-            // 
-            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnDrivePath.Name = "btnDrivePath";
-            this.btnDrivePath.UseVisualStyleBackColor = false;
-            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
             // 
             // btnGoSelf
             // 
@@ -1132,6 +1179,31 @@
             this.btnManualAutoDrive.Name = "btnManualAutoDrive";
             this.btnManualAutoDrive.UseVisualStyleBackColor = false;
             this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            // 
+            // btnDeleteRecPath
+            // 
+            this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
+            this.btnDeleteRecPath.Name = "btnDeleteRecPath";
+            this.btnDeleteRecPath.UseVisualStyleBackColor = false;
+            this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
+            // 
+            // btnDrivePath
+            // 
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
+            // 
+            // btnRecPathPauseRecord
+            // 
+            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
+            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
+            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
+            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
             // 
             // rate2Page5
             // 
@@ -1347,6 +1419,10 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.btnSmallRight2);
+            this.DataPage.Controls.Add(this.btnSmallLeft2);
+            this.DataPage.Controls.Add(this.btnBigRight2);
+            this.DataPage.Controls.Add(this.btnBigLeft2);
             this.DataPage.Controls.Add(this.lblLongitude);
             this.DataPage.Controls.Add(this.lblLatitude);
             this.DataPage.Controls.Add(this.lblAltitude);
@@ -1386,6 +1462,50 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            // 
+            // btnSmallRight2
+            // 
+            resources.ApplyResources(this.btnSmallRight2, "btnSmallRight2");
+            this.btnSmallRight2.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallRight2.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallRight2.FlatAppearance.BorderSize = 2;
+            this.btnSmallRight2.Name = "btnSmallRight2";
+            this.btnSmallRight2.UseVisualStyleBackColor = false;
+            this.btnSmallRight2.Click += new System.EventHandler(this.btnSmallRight2_Click);
+            // 
+            // btnSmallLeft2
+            // 
+            resources.ApplyResources(this.btnSmallLeft2, "btnSmallLeft2");
+            this.btnSmallLeft2.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallLeft2.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSmallLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallLeft2.FlatAppearance.BorderSize = 2;
+            this.btnSmallLeft2.Name = "btnSmallLeft2";
+            this.btnSmallLeft2.UseVisualStyleBackColor = false;
+            this.btnSmallLeft2.Click += new System.EventHandler(this.btnSmallLeft2_Click);
+            // 
+            // btnBigRight2
+            // 
+            resources.ApplyResources(this.btnBigRight2, "btnBigRight2");
+            this.btnBigRight2.BackColor = System.Drawing.Color.Lavender;
+            this.btnBigRight2.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnBigRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigRight2.FlatAppearance.BorderSize = 2;
+            this.btnBigRight2.Name = "btnBigRight2";
+            this.btnBigRight2.UseVisualStyleBackColor = false;
+            this.btnBigRight2.Click += new System.EventHandler(this.btnBigRight2_Click);
+            // 
+            // btnBigLeft2
+            // 
+            resources.ApplyResources(this.btnBigLeft2, "btnBigLeft2");
+            this.btnBigLeft2.BackColor = System.Drawing.Color.Lavender;
+            this.btnBigLeft2.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnBigLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigLeft2.FlatAppearance.BorderSize = 2;
+            this.btnBigLeft2.Name = "btnBigLeft2";
+            this.btnBigLeft2.UseVisualStyleBackColor = false;
+            this.btnBigLeft2.Click += new System.EventHandler(this.btnBigLeft2_Click);
             // 
             // lblLongitude
             // 
@@ -1551,6 +1671,23 @@
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            // 
+            // cboxpRowWidth
+            // 
+            this.cboxpRowWidth.BackColor = System.Drawing.Color.Lavender;
+            this.cboxpRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.cboxpRowWidth, "cboxpRowWidth");
+            this.cboxpRowWidth.FormattingEnabled = true;
+            this.cboxpRowWidth.Items.AddRange(new object[] {
+            resources.GetString("cboxpRowWidth.Items"),
+            resources.GetString("cboxpRowWidth.Items1"),
+            resources.GetString("cboxpRowWidth.Items2"),
+            resources.GetString("cboxpRowWidth.Items3"),
+            resources.GetString("cboxpRowWidth.Items4"),
+            resources.GetString("cboxpRowWidth.Items5"),
+            resources.GetString("cboxpRowWidth.Items6")});
+            this.cboxpRowWidth.Name = "cboxpRowWidth";
+            this.cboxpRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxpRowWidth_SelectedIndexChanged);
             // 
             // oglZoom
             // 
@@ -1768,23 +1905,6 @@
             // 
             resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            // 
-            // cboxpRowWidth
-            // 
-            this.cboxpRowWidth.BackColor = System.Drawing.Color.Lavender;
-            this.cboxpRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxpRowWidth, "cboxpRowWidth");
-            this.cboxpRowWidth.FormattingEnabled = true;
-            this.cboxpRowWidth.Items.AddRange(new object[] {
-            resources.GetString("cboxpRowWidth.Items"),
-            resources.GetString("cboxpRowWidth.Items1"),
-            resources.GetString("cboxpRowWidth.Items2"),
-            resources.GetString("cboxpRowWidth.Items3"),
-            resources.GetString("cboxpRowWidth.Items4"),
-            resources.GetString("cboxpRowWidth.Items5"),
-            resources.GetString("cboxpRowWidth.Items6")});
-            this.cboxpRowWidth.Name = "cboxpRowWidth";
-            this.cboxpRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxpRowWidth_SelectedIndexChanged);
             // 
             // btnResetSim
             // 
@@ -2061,82 +2181,6 @@
             this.lblHz.BackColor = System.Drawing.Color.Transparent;
             this.lblHz.Name = "lblHz";
             // 
-            // btnZoomExtents
-            // 
-            this.btnZoomExtents.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomExtents.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnZoomExtents.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnZoomExtents.FlatAppearance.BorderSize = 2;
-            resources.ApplyResources(this.btnZoomExtents, "btnZoomExtents");
-            this.btnZoomExtents.Image = global::AgOpenGPS.Properties.Resources.Extents;
-            this.btnZoomExtents.Name = "btnZoomExtents";
-            this.btnZoomExtents.UseVisualStyleBackColor = false;
-            this.btnZoomExtents.Click += new System.EventHandler(this.btnZoomExtents_Click);
-            // 
-            // btnpTiltUp
-            // 
-            this.btnpTiltUp.BackColor = System.Drawing.Color.Lavender;
-            resources.ApplyResources(this.btnpTiltUp, "btnpTiltUp");
-            this.btnpTiltUp.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnpTiltUp.FlatAppearance.BorderSize = 2;
-            this.btnpTiltUp.Image = global::AgOpenGPS.Properties.Resources.TiltUp;
-            this.btnpTiltUp.Name = "btnpTiltUp";
-            this.btnpTiltUp.UseVisualStyleBackColor = false;
-            this.btnpTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltUp_MouseDown);
-            // 
-            // btnpTiltDown
-            // 
-            this.btnpTiltDown.BackColor = System.Drawing.Color.Lavender;
-            resources.ApplyResources(this.btnpTiltDown, "btnpTiltDown");
-            this.btnpTiltDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnpTiltDown.FlatAppearance.BorderSize = 2;
-            this.btnpTiltDown.Image = global::AgOpenGPS.Properties.Resources.TiltDown;
-            this.btnpTiltDown.Name = "btnpTiltDown";
-            this.btnpTiltDown.UseVisualStyleBackColor = false;
-            this.btnpTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltDown_MouseDown);
-            // 
-            // btnZoomOut
-            // 
-            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnZoomOut.FlatAppearance.BorderSize = 2;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            // 
-            // btnZoomIn
-            // 
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnZoomIn.FlatAppearance.BorderSize = 2;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
-            // btnSwapDirection
-            // 
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Lavender;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSwapDirection.FlatAppearance.BorderSize = 2;
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
-            // 
-            // btnContourPriority
-            // 
-            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
-            this.btnContourPriority.BackColor = System.Drawing.Color.Lavender;
-            this.btnContourPriority.ContextMenuStrip = this.contextMenuSnap;
-            this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnContourPriority.FlatAppearance.BorderSize = 2;
-            this.btnContourPriority.Name = "btnContourPriority";
-            this.btnContourPriority.UseVisualStyleBackColor = false;
-            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
-            // 
             // contextMenuSnap
             // 
             this.contextMenuSnap.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2166,6 +2210,82 @@
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
+            // 
+            // btnZoomExtents
+            // 
+            this.btnZoomExtents.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomExtents.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnZoomExtents.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnZoomExtents.FlatAppearance.BorderSize = 2;
+            resources.ApplyResources(this.btnZoomExtents, "btnZoomExtents");
+            this.btnZoomExtents.Image = global::AgOpenGPS.Properties.Resources.Extents;
+            this.btnZoomExtents.Name = "btnZoomExtents";
+            this.btnZoomExtents.UseVisualStyleBackColor = false;
+            this.btnZoomExtents.Click += new System.EventHandler(this.btnZoomExtents_Click);
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
+            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
+            this.btnZoomOut.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnZoomOut.FlatAppearance.BorderSize = 2;
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
+            // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
+            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnZoomIn.FlatAppearance.BorderSize = 2;
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
+            // 
+            // btnpTiltUp
+            // 
+            this.btnpTiltUp.BackColor = System.Drawing.Color.Lavender;
+            resources.ApplyResources(this.btnpTiltUp, "btnpTiltUp");
+            this.btnpTiltUp.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnpTiltUp.FlatAppearance.BorderSize = 2;
+            this.btnpTiltUp.Image = global::AgOpenGPS.Properties.Resources.TiltUp;
+            this.btnpTiltUp.Name = "btnpTiltUp";
+            this.btnpTiltUp.UseVisualStyleBackColor = false;
+            this.btnpTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltUp_MouseDown);
+            // 
+            // btnpTiltDown
+            // 
+            this.btnpTiltDown.BackColor = System.Drawing.Color.Lavender;
+            resources.ApplyResources(this.btnpTiltDown, "btnpTiltDown");
+            this.btnpTiltDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnpTiltDown.FlatAppearance.BorderSize = 2;
+            this.btnpTiltDown.Image = global::AgOpenGPS.Properties.Resources.TiltDown;
+            this.btnpTiltDown.Name = "btnpTiltDown";
+            this.btnpTiltDown.UseVisualStyleBackColor = false;
+            this.btnpTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltDown_MouseDown);
+            // 
+            // btnSwapDirection
+            // 
+            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
+            this.btnSwapDirection.BackColor = System.Drawing.Color.Lavender;
+            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSwapDirection.FlatAppearance.BorderSize = 2;
+            this.btnSwapDirection.Name = "btnSwapDirection";
+            this.btnSwapDirection.UseVisualStyleBackColor = false;
+            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
+            // 
+            // btnContourPriority
+            // 
+            resources.ApplyResources(this.btnContourPriority, "btnContourPriority");
+            this.btnContourPriority.BackColor = System.Drawing.Color.Lavender;
+            this.btnContourPriority.ContextMenuStrip = this.contextMenuSnap;
+            this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnContourPriority.FlatAppearance.BorderSize = 2;
+            this.btnContourPriority.Name = "btnContourPriority";
+            this.btnContourPriority.UseVisualStyleBackColor = false;
+            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
             // 
             // btnCurve
             // 
@@ -2282,9 +2402,12 @@
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panelBatman);
-            this.Controls.Add(this.lblHz);
             this.Controls.Add(this.btnZoomExtents);
+            this.Controls.Add(this.btnZoomIn);
+            this.Controls.Add(this.btnZoomOut);
+            this.Controls.Add(this.lblHz);
             this.Controls.Add(this.panelSimControls);
+            this.Controls.Add(this.cboxpRowWidth);
             this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.btnContourPriority);
             this.Controls.Add(this.btnCurve);
@@ -2292,7 +2415,6 @@
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnEnableAutoYouTurn);
-            this.Controls.Add(this.cboxpRowWidth);
             this.Controls.Add(this.btnSectionOffAutoOn);
             this.Controls.Add(this.btnpTiltDown);
             this.Controls.Add(this.btnpTiltUp);
@@ -2300,9 +2422,7 @@
             this.Controls.Add(this.btnAutoSteer);
             this.Controls.Add(this.btnRightYouTurn);
             this.Controls.Add(this.lblFixQuality);
-            this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.btnContour);
-            this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnManualOffOn);
             this.Controls.Add(this.btnABLine);
             this.Controls.Add(this.lblSpeedUnits);
@@ -2607,6 +2727,17 @@
         private System.Windows.Forms.Button btnSnapLeft;
         private System.Windows.Forms.Button btnSmallSnapRight;
         private System.Windows.Forms.Button btnSmallSnapLeft;
+        private System.Windows.Forms.ToolStripMenuItem deleteContourPathsToolStripMenuItem;
+        private System.Windows.Forms.Button btnSmallRight2;
+        private System.Windows.Forms.Button btnSmallLeft2;
+        private System.Windows.Forms.Button btnBigRight2;
+        private System.Windows.Forms.Button btnBigLeft2;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem recordPathMenu;
+        private System.Windows.Forms.ToolStripMenuItem deletePathMenu;
+        private System.Windows.Forms.ToolStripMenuItem pausePathMenu;
+        public System.Windows.Forms.ToolStripMenuItem goPathMenu;
     }
 }
 

@@ -79,17 +79,14 @@ namespace AgOpenGPS
             if (mf.yt.isYouTurnBtnOn)
             {
                 lblDistance.Text = Math.Abs(mf.yt.youTurnStartOffset).ToString() + " m";
-                if (mf.yt.youTurnStartOffset < 0) lblWhenTrig.Text = "Before";
-                else lblWhenTrig.Text = "After";
             }
             else
             {
                 lblDistance.Text = Math.Abs(mf.yt.youTurnStartOffset).ToString() + " m";
-                if (mf.yt.youTurnStartOffset < 0) lblWhenTrig.Text = "Before";
-                else lblWhenTrig.Text = "After";
             }
 
             lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
+            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance + "m";
 
             //update dubins button
             if (!mf.yt.isUsingDubinsTurn)
@@ -884,6 +881,19 @@ namespace AgOpenGPS
             lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
         }
 
+        private void btnGeoFenceDistanceUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (mf.yt.geoFenceDistance++ > 50) mf.yt.geoFenceDistance = 50;
+            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance.ToString() + "m";
+        }
+
+        private void btnGeoFenceDistanceDn_MouseDown(object sender, MouseEventArgs e)
+        {
+            mf.yt.geoFenceDistance--;
+            if (mf.yt.geoFenceDistance < 0) mf.yt.geoFenceDistance = 0;
+            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance.ToString() + "m";
+        }
+
         #endregion distance
 
         #region Sequence select
@@ -1160,6 +1170,7 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.set_youStartYouTurnAt = mf.yt.youTurnStartOffset;
             Properties.Vehicle.Default.set_youTriggerDistance = mf.yt.triggerDistanceOffset;
+            Properties.Vehicle.Default.set_geoFenceDistance = mf.yt.geoFenceDistance;
             //mf.hl.boxLength = 3.0 * mf.yt.triggerDistanceOffset;
 
             StringBuilder sbEntry = new StringBuilder();
