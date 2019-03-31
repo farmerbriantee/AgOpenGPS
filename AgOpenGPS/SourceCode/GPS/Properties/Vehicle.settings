@@ -164,5 +164,8 @@
     <Setting Name="setVehicle_goalPointLookAheadUturnMult" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.8</Value>
     </Setting>
+    <Setting Name="set_geoFenceDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

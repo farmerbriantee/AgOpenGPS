@@ -210,7 +210,7 @@ namespace AgOpenGPS
             vec3 point = new vec3();
 
             //determine how wide a headland space
-            double totalHeadWidth = mf.vehicle.toolWidth * 0.5;
+            double totalHeadWidth = mf.yt.geoFenceDistance;
 
             //outside boundary - count the points from the boundary
             geoFenceArr[0].geoFenceLine.Clear();

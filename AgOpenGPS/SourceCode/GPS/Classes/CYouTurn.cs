@@ -51,7 +51,7 @@ namespace AgOpenGPS
         public int youTurnStartOffset;
 
         //guidance values
-        public double distanceFromCurrentLine, triggerDistanceOffset, dxAB, dyAB;
+        public double distanceFromCurrentLine, triggerDistanceOffset, geoFenceDistance, dxAB, dyAB;
 
         private int A, B, C;
         private bool isABSameAsFixHeading = true, isOnRightSideCurrentLine = true;
@@ -89,6 +89,7 @@ namespace AgOpenGPS
             mf = _f;
 
             triggerDistanceOffset = Properties.Vehicle.Default.set_youTriggerDistance;
+            geoFenceDistance = Properties.Vehicle.Default.set_geoFenceDistance;
 
             //how far before or after boundary line should turn happen
             youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;

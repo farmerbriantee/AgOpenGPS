@@ -1,4 +1,14 @@
-﻿v 3.0 Feb 2018
+﻿v3.0 March 2019
+* Fixed path from generating if at any portion it runs out of bounds.
+* Shortened maze path by 2x turn radius, prevents crazy loops at startfinish
+* Sim coords set now has field and gps coords + manual. Forces exit.
+* Field create includes lat lon of GPS at creation of new field.
+* Added buttons for Rec Path control at bottom
+* Hide all contour paths button.
+* Remembers sidebar large or small when exiting and starts same way.
+* Many other fixes
+
+v 3.0 Feb 2019
 * NTRIP Client
 * Fixed offset for contour
 * Uturn byte sent with autosteer data

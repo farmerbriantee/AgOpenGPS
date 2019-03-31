@@ -331,23 +331,23 @@ namespace AgOpenGPS
         public void DrawTurnLines()
         {
             GL.LineWidth(1);
-            GL.Color3(0.3555f, 0.9232f, 0.20f);
+            GL.Color3(0.3555f, 0.6232f, 0.20f);
             //GL.PointSize(2);
-            GL.Begin(PrimitiveType.LineStrip);
 
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
             {
                 if (!mf.bnd.bndArr[i].isSet && mf.bnd.bndArr[i].isDriveAround) continue;
                 //turnArr[i].DrawTurnLine();
                 {
+                    GL.Begin(PrimitiveType.LineStrip);
                     ////draw the turn line oject
                     int ptCount = mf.turn.turnArr[i].turnLine.Count;
                     if (ptCount < 1) continue;
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.turn.turnArr[i].turnLine[h].easting, mf.turn.turnArr[i].turnLine[h].northing, 0);
-                    //GL.Vertex3(turnLine[0].easting, turnLine[0].northing, 0);
+                    GL.Vertex3(mf.turn.turnArr[i].turnLine[0].easting, mf.turn.turnArr[i].turnLine[0].northing, 0);
+                    GL.End();
                 }
             }
-            GL.End();
         }
 
         //draws the derived closest point

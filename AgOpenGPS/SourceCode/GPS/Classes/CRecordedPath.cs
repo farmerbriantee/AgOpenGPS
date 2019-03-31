@@ -163,9 +163,10 @@ namespace AgOpenGPS
                     shuttleListCount = shuttleDubinsList.Count;
 
                     //its too small
-                    if (shuttleListCount < 5)
+                    if (shuttleListCount < 3)
                     {
                         StopDrivingRecordedPath();
+                        return;
                     }
 
                     //set all the flags
@@ -179,12 +180,6 @@ namespace AgOpenGPS
 
             if (isFollowingDubinsHome)
             {
-                mf.sim.stepDistance = shuttleDubinsList[C].speed / 17.86;
-                pivotAxlePosRP = mf.pivotAxlePos;
-
-                FindGoalPointDubinsPath(shuttleListCount);
-                PurePursuit();
-
                 int cnt = shuttleDubinsList.Count;
                 pathCount = cnt - B;
                 if (pathCount < 3)
@@ -194,7 +189,14 @@ namespace AgOpenGPS
                     //if (distSqr < 3)
                     //{
                     StopDrivingRecordedPath();
+                    return;
                 }
+
+                mf.sim.stepDistance = shuttleDubinsList[C].speed / 17.86;
+                pivotAxlePosRP = mf.pivotAxlePos;
+
+                FindGoalPointDubinsPath(shuttleListCount);
+                PurePursuit();
             }
 
             //if paused, set the sim to 0
@@ -211,6 +213,7 @@ namespace AgOpenGPS
             mf.sim.stepDistance = 0;
             isDrivingRecordedPath = false;
             mf.btnDrivePath.Image = Properties.Resources.AutoGo;
+            mf.goPathMenu.Image = Properties.Resources.AutoGo;
             isPausedDrivingRecordedPath = false;
         }
 
@@ -276,13 +279,20 @@ namespace AgOpenGPS
                     }
                 }
 
-
                 shortestDubinsList = dubPath.GenerateDubins(pt2, mazeList[0], mf.gf);
-                for (int i = 0; i < shortestDubinsList.Count; i++)
+                if (shortestDubinsList.Count > 0)
                 {
-                    CRecPathPt pt = new CRecPathPt(shortestDubinsList[i].easting, shortestDubinsList[i].northing, shortestDubinsList[i].heading, 10.0, false);
-                    shuttleDubinsList.Add(pt);
+                    for (int i = 0; i < shortestDubinsList.Count; i++)
+                    {
+                        CRecPathPt pt = new CRecPathPt(shortestDubinsList[i].easting, shortestDubinsList[i].northing, shortestDubinsList[i].heading, 10.0, false);
+                        shuttleDubinsList.Add(pt);
+                    }
                 }
+                else
+                {
+                    return; //unable to generate a dubins to the start
+                }
+
                 for (int i = 0; i < mazeList.Count; i++)
                 {
                     CRecPathPt pt = new CRecPathPt(mazeList[i].easting, mazeList[i].northing, mazeList[i].heading, 15.0, false);
@@ -297,9 +307,6 @@ namespace AgOpenGPS
                     shuttleDubinsList.Add(pt);
                 }
                 return;
-            }
-            else
-            {
             }
         }
 

@@ -681,6 +681,17 @@ namespace AgOpenGPS
                         pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
                         lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
+
+                    //start positions
+                    if (!reader.EndOfStream)
+                    {
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        offs = line.Split(',');
+
+                        pn.latStart = double.Parse(offs[0], CultureInfo.InvariantCulture);
+                        pn.lonStart = double.Parse(offs[1], CultureInfo.InvariantCulture);
+                    }
                 }
 
                 catch (Exception e)
@@ -1288,6 +1299,10 @@ namespace AgOpenGPS
 
                 writer.WriteLine("Convergence");
                 writer.WriteLine(pn.convergenceAngle.ToString(CultureInfo.InvariantCulture));
+
+                writer.WriteLine("StartFix");
+                writer.WriteLine(pn.latitude.ToString(CultureInfo.InvariantCulture) + "," + pn.longitude.ToString(CultureInfo.InvariantCulture));
+
             }
         }
 

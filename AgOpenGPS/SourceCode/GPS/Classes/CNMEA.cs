@@ -131,6 +131,7 @@ Field	Meaning
     {
         //WGS84 Lat Long
         public double latitude, longitude;
+        public double latStart, lonStart;
 
         public double actualEasting, actualNorthing;
         public double zone;
@@ -176,6 +177,8 @@ Field	Meaning
             //constructor, grab the main form reference
             mf = f;
             fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
+            latStart = 0;
+            lonStart = 0;
         }
 
         //ParseNMEA

@@ -673,6 +673,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HideContour {
+            get {
+                object obj = ResourceManager.GetObject("HideContour", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Home64 {
             get {
                 object obj = ResourceManager.GetObject("Home64", resourceCulture);
@@ -726,6 +736,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap LetterBBlue {
             get {
                 object obj = ResourceManager.GetObject("LetterBBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LonLat {
+            get {
+                object obj = ResourceManager.GetObject("LonLat", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -926,6 +946,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap RateSelect2 {
             get {
                 object obj = ResourceManager.GetObject("RateSelect2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap RecPath {
+            get {
+                object obj = ResourceManager.GetObject("RecPath", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

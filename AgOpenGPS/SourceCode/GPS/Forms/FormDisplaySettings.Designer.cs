@@ -70,12 +70,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tboxTinkerUID = new System.Windows.Forms.TextBox();
             this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.nudSnapDistanceSmall = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabDisplay.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -92,10 +90,10 @@
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabGuidance.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -646,9 +644,9 @@
             this.cboxRollDogs.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.cboxRollDogs.Location = new System.Drawing.Point(20, 42);
             this.cboxRollDogs.Name = "cboxRollDogs";
-            this.cboxRollDogs.Size = new System.Drawing.Size(245, 29);
+            this.cboxRollDogs.Size = new System.Drawing.Size(237, 29);
             this.cboxRollDogs.TabIndex = 72;
-            this.cboxRollDogs.Text = "DOGS2 Inclinometer";
+            this.cboxRollDogs.Text = "DOGS2 or MMA Roll";
             this.cboxRollDogs.UseVisualStyleBackColor = true;
             this.cboxRollDogs.CheckedChanged += new System.EventHandler(this.cboxRollDogs_CheckedChanged);
             // 
@@ -682,70 +680,16 @@
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.nudSnapDistance);
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(61, 268);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(373, 142);
-            this.groupBox1.TabIndex = 61;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Snap Distance";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(206, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(158, 29);
-            this.label8.TabIndex = 67;
-            this.label8.Text = "Centimeters";
-            // 
-            // nudSnapDistance
-            // 
-            this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSnapDistance.Location = new System.Drawing.Point(23, 40);
-            this.nudSnapDistance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudSnapDistance.Name = "nudSnapDistance";
-            this.nudSnapDistance.Size = new System.Drawing.Size(163, 85);
-            this.nudSnapDistance.TabIndex = 66;
-            this.nudSnapDistance.Value = new decimal(new int[] {
-            499,
-            0,
-            0,
-            0});
-            this.nudSnapDistance.ValueChanged += new System.EventHandler(this.nudSnapDistance_ValueChanged);
-            // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.label5);
             this.groupBox8.Controls.Add(this.nudSnapDistanceSmall);
             this.groupBox8.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.groupBox8.Location = new System.Drawing.Point(61, 65);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(373, 142);
+            this.groupBox8.Size = new System.Drawing.Size(274, 142);
             this.groupBox8.TabIndex = 68;
             this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Small Snap Distance";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(206, 96);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 29);
-            this.label5.TabIndex = 67;
-            this.label5.Text = "Centimeters";
+            this.groupBox8.Text = "Small Snap Distance (cm)";
             // 
             // nudSnapDistanceSmall
             // 
@@ -757,7 +701,7 @@
             0,
             0});
             this.nudSnapDistanceSmall.Name = "nudSnapDistanceSmall";
-            this.nudSnapDistanceSmall.Size = new System.Drawing.Size(163, 85);
+            this.nudSnapDistanceSmall.Size = new System.Drawing.Size(184, 85);
             this.nudSnapDistanceSmall.TabIndex = 66;
             this.nudSnapDistanceSmall.Value = new decimal(new int[] {
             499,
@@ -765,6 +709,36 @@
             0,
             0});
             this.nudSnapDistanceSmall.ValueChanged += new System.EventHandler(this.nudSnapDistanceSmall_ValueChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.nudSnapDistance);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.groupBox1.Location = new System.Drawing.Point(61, 268);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(274, 142);
+            this.groupBox1.TabIndex = 61;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Snap Distance (cm)";
+            // 
+            // nudSnapDistance
+            // 
+            this.nudSnapDistance.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSnapDistance.Location = new System.Drawing.Point(23, 40);
+            this.nudSnapDistance.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudSnapDistance.Name = "nudSnapDistance";
+            this.nudSnapDistance.Size = new System.Drawing.Size(184, 85);
+            this.nudSnapDistance.TabIndex = 66;
+            this.nudSnapDistance.Value = new decimal(new int[] {
+            499,
+            0,
+            0,
+            0});
+            this.nudSnapDistance.ValueChanged += new System.EventHandler(this.nudSnapDistance_ValueChanged);
             // 
             // FormDisplaySettings
             // 
@@ -801,12 +775,10 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabGuidance.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -856,10 +828,8 @@
         private System.Windows.Forms.RadioButton rbtnHeadingGPS;
         private System.Windows.Forms.RadioButton rbtnHeadingFix;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudSnapDistance;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown nudSnapDistanceSmall;
     }
 }
