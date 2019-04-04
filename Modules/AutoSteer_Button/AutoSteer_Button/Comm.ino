@@ -50,7 +50,7 @@ void receiveSerial(){
   {
     isDataFound = false;
     relay = Serial.read();   // read relay control from AgOpenGPS
-    speeed = Serial.read() >> 2;  //actual speed times 4, single byte
+    speeed = Serial.read() * 0.25;  //actual speed times 4, single byte
 
     //distance from the guidance line in mm
     olddist = distanceFromLine;
@@ -64,7 +64,7 @@ void receiveSerial(){
     
 
     //auto Steer is off if 32020,Speed is too slow, Wheelencoder above Max
-        if (distanceFromLine == 32020 | speeed < 1 | pulseCount >= pulseCountMax )
+        if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | pulseCount >= pulseCountMax )
       {      
         steerEnable = false;
         digitalWrite(LED_PIN, 0);       //turn LED off
@@ -155,7 +155,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     if (data[0] == 0x7F && data[1] == 0xFE) //Data
     {
       relay = data[2];   // read relay control from AgOpenGPS     
-      speeed = data[3] >> 2;  //actual speed times 4, single byte
+      speeed = data[3] * 0.25;  //actual speed times 4, single byte
   
       //distance from the guidance line in mm
       olddist = distanceFromLine;
@@ -166,7 +166,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       steerAngleSetPoint *= 0.01;  
 
      //auto Steer is off if 32020,Speed is too slow, Wheelencoder above Max
-    if (distanceFromLine == 32020 | speeed < 1 | pulseCount >= pulseCountMax )
+    if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | pulseCount >= pulseCountMax )
     {
       steerEnable = false;
       digitalWrite(LED_PIN, 0);       //turn LED off
