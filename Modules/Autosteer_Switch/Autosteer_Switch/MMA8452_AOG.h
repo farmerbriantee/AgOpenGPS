@@ -11,6 +11,10 @@
 #include <util/delay.h>
 #endif
 
+// I2C address set in hardware (tied high or low)
+
+#define MMA_ADDRESS 0x1C
+
 //Register Map
 #define STATUS        0x00  // Real time status
 #define OUT_X_MSB     0x01  // [7:0] are 8 MSBs of 12-bit sample
@@ -59,19 +63,6 @@
 #define OFF_Z       0x31  // Z-axis offset adjust
 // Reserved 0x40-0x7F
 
-// I2C address set in hardware (tied high or low)
-#if Inclinometer_Installed == 2 
-  #define SA0 0
-#endif
-#if Inclinometer_Installed == 3
-  #define SA0 1
-#endif
-
-#if SA0
-#define MMA8452_ADDRESS 0x1D
-#else
-#define MMA8452_ADDRESS 0x1C
-#endif
 
 typedef enum {
 	MMA_RANGE_2G = 0,
@@ -151,10 +142,10 @@ typedef enum {
 
 class MMA8452
 {
-
 	public:
+    MMA8452(uint8_t i2cAddress = MMA_ADDRESS);
 		bool init();
-
+    
 		void setRange(mma8452_range_t range);
 		mma8452_range_t getRange();
 
@@ -179,8 +170,8 @@ class MMA8452
 		// 2mG/LSB
 		void setOffsets(int8_t x, int8_t y, int8_t z);
 
-		void setActive(bool active = true);
-
+    void setActive(bool active = true);
+    
 	private:
 		bool active;
 
@@ -188,12 +179,13 @@ class MMA8452
 
 		void standby(bool standby);
 		uint8_t read(uint8_t reg);
-		bool readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numuint8_ts);
+    bool readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numuint8_ts);
 		void write(uint8_t reg, uint8_t value);
 
 		bool singleTapEnabled;
 		bool doubleTapEnabled;
-
+    uint8_t MMA8452_ADDRESS;
+    
 		float convertGCounts(uint16_t data);
 		int8_t convertTo2sComplement(int8_t value);
 };

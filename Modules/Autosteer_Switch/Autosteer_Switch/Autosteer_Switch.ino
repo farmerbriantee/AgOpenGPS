@@ -20,8 +20,8 @@
   #define IMU_Installed 0               // set to 1 to enable BNO055 IMU
   
   #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
-                                        // set to 2 if MMA8452 is installed (Address 0x1C) (SA0 = Low)
-                                        // set to 3 if MMA8452 is installed (Address 0x1D) (SA0 = High, Sparkfun)
+                                        // set to 2 if MMA8452 is installed (Address 0x1C) (SA0=LOW)
+                                        // set to 3 if MMA8452 is installed (Address 0x1D) (SA0=HIGH, Sparkfun)
 
   #define Relay_Type 0                  // set to 0 if up to 8 Section Relays will be used
                                         // set to 1 if up to 8 uTurn Relays will be used (only Serial Mode)
@@ -35,6 +35,8 @@
                           // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
   #define CS_Pin 10       // Arduino Nano= 10 depending how CS of Ethernet Controller ENC28J60 is Connected
 
+  #define   maxspeed  20     // km/h  above -> steering off
+  #define   minspeed  1      // km/h  below -> sterring off (minimum = 0.25)
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
@@ -115,7 +117,11 @@
 
 #if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
     #include "MMA8452_AOG.h"  // MMA8452 (1) Inclinometer
-    MMA8452 accelerometer;
+    #if Inclinometer_Installed == 3
+      MMA8452 accelerometer(0x1D);
+    #else
+      MMA8452 accelerometer;
+    #endif
 #endif
 
 #if IMU_Installed
@@ -168,8 +174,8 @@ const float varProcess = 0.0001; //smaller is more filtering
 //Program flow
 bool isDataFound = false, isSettingFound = false, MMAinitialized = false;
 int header = 0, tempHeader = 0, temp, EEread = 0;
-byte relay = 0, uTurn = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
-float distanceFromLine = 0, corr = 0;
+byte relay = 0, uTurn = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
+float distanceFromLine = 0, corr = 0, speeed = 0;
 
 //steering variables
 float steerAngleActual = 0;
