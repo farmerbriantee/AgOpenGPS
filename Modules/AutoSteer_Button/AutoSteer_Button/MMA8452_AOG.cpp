@@ -21,7 +21,7 @@ bool MMA8452::init()
           Serial.println(reg,HEX);	
 	  return false;
 	 }
-        if (reg==0x2A) Serial.println("MMA 8452 found!");
+  if (reg==0x2A) Serial.println("MMA 8452 found!");
 	if (reg==0x1A) Serial.println("MMA 8451 found!");
 	// range on startup is always 2g, we'll need to know the range for G calculation
 	range = MMA_RANGE_2G;
@@ -140,6 +140,14 @@ void MMA8452::setActive(bool newActive)
 	standby(!active);
 }
 
+/**************************************************************************/
+// Instantiates a new MMA class 
+/**************************************************************************/
+MMA8452::MMA8452(uint8_t i2cAddress) 
+{
+   MMA8452_ADDRESS = i2cAddress;
+}
+
 // -- private --
 
 void MMA8452::standby(bool standby)
@@ -194,6 +202,7 @@ void MMA8452::write(uint8_t reg, uint8_t value)
 
 bool MMA8452::readMultiple(uint8_t reg, uint8_t *buffer, uint8_t numBytes)
 {
+
 #ifdef ARDUINO
 	Wire.beginTransmission(MMA8452_ADDRESS);
 	Wire.write(reg);

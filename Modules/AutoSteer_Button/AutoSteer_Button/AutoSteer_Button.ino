@@ -18,8 +18,9 @@
   
   #define IMU_Installed  0      // set to 1 to enable BNO055 IMU
   
-  #define Inclinometer_Installed 0  // set to 1 if DOGS2 Inclinometer is installed
-                                    // set to 2 if MMA8452 installed
+  #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
+                                        // set to 2 if MMA8452 is installed (Address 0x1C) (SA0=LOW)
+                                        // set to 3 if MMA8452 is installed (Address 0x1D) (SA0=HIGH, Sparkfun)
 
   #define SWEncoder  0          // Steering Wheel ENCODER Installed
   #define pulseCountMax 3       // Switch off Autosteer after X Pulses from Steering wheel encoder  
@@ -33,6 +34,8 @@
   
   #define CS_Pin 10             // Arduino Nano= 10 depending how CS of Ethernet Controller ENC28J60 is Connected
 
+  #define maxspeed  20          // km/h  above -> steering off
+  #define minspeed  1           // km/h  below -> sterring off (min = 0.25)
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
@@ -91,9 +94,13 @@
   Adafruit_ADS1115 ads; // Use this for the 16-bit version ADS1115
 #endif
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
     #include "MMA8452_AOG.h"  // MMA8452 (1) Inclinometer
-    MMA8452 accelerometer;
+    #if Inclinometer_Installed == 3
+      MMA8452 accelerometer(0x1D); // SA0=HIGH
+    #else
+      MMA8452 accelerometer;       //Default=0x1C (SA=LOW)
+    #endif
 #endif
 
 #if IMU_Installed
@@ -141,8 +148,8 @@
   int lastButtonState = HIGH;   // the previous reading from the Autosteer Button
   unsigned long lastDebounceTime = 0;  // the last time the output was toggled
 
-  byte relay = 0, uTurn = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
-  float distanceFromLine = 0, corr = 0;
+  byte relay = 0, uTurn = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
+  float distanceFromLine = 0, corr = 0, speeed = 0;
   float olddist = 0;
   
   //steering variables
@@ -175,12 +182,12 @@ void setup()
 { 
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //Pin D4 PD4
-  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PB2  
+  pinMode(STEERSW_PIN, INPUT_PULLUP);  //Pin 11 PD3  
 
   //preset Outputs
   pinMode(DIR_PIN, OUTPUT); // direction pin of PWM Board
   pinMode(PWM_PIN, OUTPUT);
-  pinMode(LED_PIN, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);  
   pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
   pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
   pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
@@ -189,7 +196,7 @@ void setup()
   //pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
   //pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
   //pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
-	
+  
   //set up communication
   Wire.begin();
   Serial.begin(38400);
@@ -214,7 +221,7 @@ void setup()
   IMU.setExtCrystalUse(true);
 #endif  
 
-#if Inclinometer_Installed ==2
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
   // MMA8452 (1) Inclinometer
   MMAinitialized = accelerometer.init();
   if (MMAinitialized){
@@ -317,7 +324,7 @@ void loop()
 
 #endif
 
-#if Inclinometer_Installed ==2   // MMA8452 (1) Inclinometer
+#if Inclinometer_Installed ==2 | Inclinometer_Installed ==3   // MMA8452 (1) Inclinometer
   if (MMAinitialized){
     accelerometer.getRawData(&x_, &y_, &z_);
     roll=x_; //Conversion uint to int
