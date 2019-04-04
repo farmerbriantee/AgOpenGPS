@@ -14,7 +14,7 @@
         //For parsing incoming int on serial port
         public int incomingInt;
 
-        // PGN - 32762 - 127.250
+        // PGN - 32762 - 127.250 0x7FFA
         public static int numRelayRateDataItems = 10;
 
         public byte[] relayRateData = new byte[numRelayRateDataItems];
@@ -23,7 +23,7 @@
                     rdRateSetPointLeftHi = 5, rdRateSetPointLeftLo = 6,
                     rdRateSetPointRightHi = 7, rdRateSetPointRightLo = 8;
 
-        // PGN - 32760 - 127.248
+        // PGN - 32760 - 127.248 0x7FF9
         public static int numRelayRateSettingsItems = 10;
 
         public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
@@ -36,7 +36,7 @@
         //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
 
-        // PGN - 32766 - 127.254 0xFD
+        // PGN - 32766 - 127.254 0x7FFD
         public static int numSteerDataItems = 10;
 
         public byte[] autoSteerData = new byte[numSteerDataItems];
@@ -44,7 +44,7 @@
         public int sdHeaderHi, sdHeaderLo = 1, sdRelayLo = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
                     sdSteerAngleHi = 6, sdSteerAngleLo = 7, sdYouTurnByte = 8;
 
-        // PGN - 32764 - 127.252 0xFC
+        // PGN - 32764 - 127.252 0x7FFC
         public static int numSteerSettingItems = 10;
 
         public byte[] autoSteerSettings = new byte[numSteerSettingItems];
@@ -52,7 +52,7 @@
         public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5,
                     ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
-        //PGN 32758 - 127.246 0xF6
+        //PGN 32758 - 127.246 0x7FF6
         public static int numMachineControlItems = 10;
 
         public byte[] machineControlData = new byte[numMachineControlItems];

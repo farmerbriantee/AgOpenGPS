@@ -665,6 +665,7 @@
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBatman,
             this.lblAreaRate,
             this.toolStripBtnCamera,
             this.toolStripDropDownButton1,
@@ -673,8 +674,7 @@
             this.toolStripBtnDropDownSpecialFunctions,
             this.toolStripDropDownButton2,
             this.toolStripDropDownBtnFuncs,
-            this.stripOnlineGPS,
-            this.toolStripBatman});
+            this.stripOnlineGPS});
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 

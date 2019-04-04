@@ -106,7 +106,7 @@
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 109);
             this.btnSerialCancel.TabIndex = 64;
-            this.btnSerialCancel.Text = "Return";
+            this.btnSerialCancel.Text = "Save and Return";
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
