@@ -3479,7 +3479,7 @@ namespace AgOpenGPS
                     stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
                     //rate
-                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 2)
+                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
                     {
                         lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeLiters;
                         //lblRateAppliedActualRight.Text = RateAppliedActualRightLPerHA;

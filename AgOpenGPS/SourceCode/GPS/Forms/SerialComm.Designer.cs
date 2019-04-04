@@ -132,7 +132,7 @@ namespace AgOpenGPS
             //spit it out no matter what it says
             mc.serialRecvAutoSteerStr = sentence;
 
-            //0 - steer angle, 1 - pwm, 2 - heading in degrees * 16, 3 - roll in degrees * 16, 4 - steerSwitch position
+            //0 - actual steer angle*100, 1 - setpoint steer angle*100, 2 - heading in degrees * 16, 3 - roll in degrees * 16, 4 - steerSwitch position
 
             string[] words = mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length == 5)
@@ -307,7 +307,7 @@ namespace AgOpenGPS
             string[] words = sentence.Split(',');
 
             //changed by MTZ8302
-            if (words.Length != 8 & words.Length != 3) return;
+            if (words.Length != 8) return;
 
             //left or single actual rate
             int.TryParse(words[0], out mc.incomingInt);
@@ -324,22 +324,20 @@ namespace AgOpenGPS
             //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
             //MTZ8302 April 2018
             //read RelayToAOG from Arduino
-            if (words.Length == 8)
-            {
-                int.TryParse(words[3], out mc.incomingInt);
-                rcd.RelayFromArduinoHi = (byte)mc.incomingInt;
-                int.TryParse(words[4], out mc.incomingInt);
-                rcd.RelayFromArduinoLo = (byte)mc.incomingInt;
-                //read SectSWOffToAOG from Arduino
-                int.TryParse(words[5], out mc.incomingInt);
-                rcd.SectSWOffFromArduinoHi = (byte)mc.incomingInt;
-                int.TryParse(words[6], out mc.incomingInt);
-                rcd.SectSWOffFromArduinoLo = (byte)mc.incomingInt;
-                //read MainSW+RateSW
-                int.TryParse(words[7], out mc.incomingInt);
-                rcd.SectMainSWFromArduino = (byte)mc.incomingInt;
-            }
+            int.TryParse(words[3], out mc.incomingInt);
+            rcd.RelayFromArduinoHi = (byte)mc.incomingInt;
+            int.TryParse(words[4], out mc.incomingInt);
+            rcd.RelayFromArduinoLo = (byte)mc.incomingInt;
+            //read SectSWOffToAOG from Arduino
+            int.TryParse(words[5], out mc.incomingInt);
+            rcd.SectSWOffFromArduinoHi = (byte)mc.incomingInt;
+            int.TryParse(words[6], out mc.incomingInt);
+            rcd.SectSWOffFromArduinoLo = (byte)mc.incomingInt;
+            //read MainSW+RateSW
+            int.TryParse(words[7], out mc.incomingInt);
+            rcd.SectMainSWFromArduino = (byte)mc.incomingInt;
         }
+
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);
 

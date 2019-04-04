@@ -183,7 +183,6 @@ namespace AgOpenGPS
             mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
-            //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
         }
 
@@ -239,8 +238,8 @@ namespace AgOpenGPS
             for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) mf.bnd.bndArr[j].ResetBoundary();
             mf.FileSaveBoundary();
             UpdateChart();
-            cboxSelectBoundary.Enabled = true;
             cboxSelectBoundary.SelectedIndex = 0;
+            cboxSelectBoundary.Enabled = true;
 
             btnLeftRight.Enabled = false;
             btnOuter.Enabled = false;
@@ -252,6 +251,11 @@ namespace AgOpenGPS
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
             ResetAllBoundary();
+            mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
+            mf.turn.BuildTurnLines();
+            mf.gf.BuildGeoFenceLines();
+            //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
+            mf.mazeGrid.BuildMazeGridArray();
         }
 
         private void btnLoadMultiBoundaryFromGE_Click(object sender, EventArgs e)

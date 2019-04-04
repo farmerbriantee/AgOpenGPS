@@ -172,10 +172,14 @@ namespace AgOpenGPS
                         mc.steerSwitchValue = mc.steerSwitchValue & 2;
 
                         //build string for display
-                        double steerAngle = (Int16)((data[2] << 8) + data[3]);
-                        steerAngle *= 0.01;
-                        mc.serialRecvAutoSteerStr = steerAngle.ToString("N2") + "," + (((double)(guidanceLineSteerAngle)) * 0.01).ToString("N2")
-                              + "," + (mc.gyroHeading * 0.0625).ToString("N1") + "," + (mc.rollRaw * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString();
+                        double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
+                        double setSteerAngle = (Int16)((data[4] << 8) + data[5]);
+                        byte pwm = data[9];
+
+                        //load the usb recv string with udp recd data for chart and gui info
+                        mc.serialRecvAutoSteerStr = (actualSteerAngle * 0.01).ToString("N2") + "," + (setSteerAngle * 0.01).ToString("N2")
+                               + "," + (mc.rollRaw * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString()
+                               + "," + (pwm).ToString();
                         break;
                     }
 
@@ -257,8 +261,6 @@ namespace AgOpenGPS
                     }
             }
         }
-
-
 
         #region Gesture
 
