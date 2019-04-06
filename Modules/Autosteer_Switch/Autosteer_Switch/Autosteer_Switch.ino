@@ -2,7 +2,7 @@
 //### Setup Zone ###########################################################################################
 //##########################################################################################################
   
-  #define Output_Driver 1       // 1 =  Steering Motor + Cytron MD30C Driver
+  #define Output_Driver 2       // 1 =  Steering Motor + Cytron MD30C Driver
                                 // 2 =  Steering Motor + IBT 2  Driver
                                 // 3 =  Steering Motor + JRK 2 Driver (see https://github.com/aortner/jrk)
 
@@ -10,9 +10,9 @@
                                //2 = ADS1115 Differential Mode - Connect Sensor GND to A1, Signal to A0
                                //3 = JRK 2 AD_Input (only for use with JRK 2 Motorcontroller)
   
-  #define SteerPosZero 512     //vary this to get near 0 degrees when wheels are straight forward    
+  #define SteerPosZero 512    //vary this to get near 0 degrees when wheels are straight forward    
                                //with Arduino ADC start with 512 (0-1024)
-                               //with ADS start with 13000  (possible Values are 0-26000 Counts) 
+                               //with ADS start with 6500  (possible Values are 0-13000 Counts)
                                //with JRK 2 use 2046
   
   #define Invert_WAS 0                 // set to 1 to Change Direction of Wheel Angle Sensor - to + 
@@ -64,7 +64,7 @@
 // PCB Basic Autosteer
   #define STEERSW_PIN 6  //PD6
   #define WORKSW_PIN  8  //PB0
-  #define IMP_PIN     7  //PD7
+  #define IMPSW_PIN     7  //PD7
   #define PWM1_PIN    3  //PD3  
   #define DIR_PIN     4  //PD4
   #define PWM2_PIN    9  //PB1
@@ -109,10 +109,11 @@
   byte Ethernet::buffer[200]; // udp send and receive buffer
 #endif
 
-
+#define SteerSensorCnt 10
 #if ADC_Mode==1 | ADC_Mode==2
   #include "Adafruit_ADS1015.h"
   Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
+  #define SteerSensorCnt 200
 #endif
 
 #if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
@@ -141,7 +142,7 @@
   #define Invert_WAS 1
 #endif
 
-#define EEP_Ident 0xEDFE
+#define EEP_Ident 0xEDFD
 
  //Variables   
   struct Storage {
@@ -152,7 +153,7 @@
     float steeringPositionZero = SteerPosZero;
     byte minPWMValue=10;
     int maxIntegralValue=20;//max PWM value for integral PID component
-    float steerSensorCounts=20;
+    float steerSensorCounts = SteerSensorCnt;
     byte oldsteerzero=0;  // stores old Steerzerovalue
 };  Storage steerSettings;
 
@@ -174,7 +175,7 @@ const float varProcess = 0.0001; //smaller is more filtering
 //Program flow
 bool isDataFound = false, isSettingFound = false, MMAinitialized = false;
 int header = 0, tempHeader = 0, temp, EEread = 0;
-byte relay = 0, uTurn = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
+byte relay = 0, uTurn = 0, workSwitch = 0, steerSwitch = 1, impSwitch = 0, switchByte = 0;
 float distanceFromLine = 0, corr = 0, speeed = 0;
 
 //steering variables
@@ -203,32 +204,37 @@ void setup()
   pinMode(DIR_PIN, OUTPUT);            // direction pin of PWM Board
   pinMode(PWM1_PIN, OUTPUT);           // PWM pin
   pinMode(LED_PIN, OUTPUT);            // Autosteer LED indicates AS on
-  #if defined (PWM2_PIN) 
+  
+  #ifdef IMPSW_PIN
+      pinMode(IMPSW_PIN, INPUT_PULLUP); //third Switch
+  #endif
+  
+  #ifdef PWM2_PIN
     pinMode(PWM2_PIN, OUTPUT); //second PWM Pin
   #endif
   
-  #if defined (RELAY1_PIN)
+  #ifdef RELAY1_PIN
     pinMode(RELAY1_PIN, OUTPUT); //configure RELAY1 for output
   #endif
-  #if defined (RELAY2_PIN)
+  #ifdef RELAY2_PIN
     pinMode(RELAY2_PIN, OUTPUT); //configure RELAY2 for output
   #endif
-  #if defined (RELAY3_PIN)
+  #ifdef RELAY3_PIN
     pinMode(RELAY3_PIN, OUTPUT); //configure RELAY3 for output
   #endif
-  #if defined (RELAY4_PIN)
+  #ifdef RELAY4_PIN
     pinMode(RELAY4_PIN, OUTPUT); //configure RELAY4 for output
   #endif
-  #if defined (RELAY5_PIN)
+  #ifdef RELAY5_PIN
     pinMode(RELAY5_PIN, OUTPUT); //configure RELAY5 for output
   #endif
-  #if defined (RELAY6_PIN)
+  #ifdef RELAY6_PIN
     pinMode(RELAY6_PIN, OUTPUT); //configure RELAY6 for output
   #endif
-  #if defined (RELAY7_PIN)
+  #ifdef RELAY7_PIN
     pinMode(RELAY7_PIN, OUTPUT); //configure RELAY7 for output
   #endif
-  #if defined (RELAY8_PIN)
+  #ifdef RELAY8_PIN
     pinMode(RELAY8_PIN, OUTPUT); //configure RELAY8 for output
   #endif
   
@@ -289,7 +295,7 @@ void setup()
   ether.udpServerListenOnPort(&udpSteerRecv, 8888);
 #endif
 
-EEPROM.get(0, EEread);              // read identifier
+EEPROM.get(0, EEread);               // read identifier
  if (EEread != EEP_Ident){           // check on first start and write EEPROM
     EEPROM.put(0, EEP_Ident);
     EEPROM.put(2, SteerPosZero);
@@ -367,12 +373,13 @@ if (currentTime - lastTime >= LOOP_TIME)
     Zp = Xp;
     XeRoll = G * (rollK - Zp) + Xp;
 
+  #ifdef IMPSW_PIN
+    impSwitch = digitalRead(IMPSW_PIN);  // read imp switch
+  #endif 
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     if (useSteerSwitch) steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch 
     else steerSwitch = 0; //permanetely On
-    switchByte = 0;
-    switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
-    switchByte = workSwitch | switchByte;
+    switchByte = workSwitch | steerSwitch << 1 | impSwitch << 2;
 
 #if Relay_Type==0
     SetRelays();       //turn on off section relays
@@ -395,9 +402,11 @@ if (currentTime - lastTime >= LOOP_TIME)
     steeringPosition += ads.readADC_Differential_0_1();   delay(2);    //Connect Sensor GND to A1
     steeringPosition += ads.readADC_Differential_0_1();   delay(2);    //Connect Sensor Signal to A0
     steeringPosition += ads.readADC_Differential_0_1();
-    steeringPosition = steeringPosition >> 2; //divide by 4
+    steeringPosition = steeringPosition >> 3;    //divide by 8
 #endif 
     
+    //Serial.print("CountsPerDegree= ");Serial.print(steerSettings.steerSensorCounts); 
+    //Serial.print("  Raw AD-Value:"); Serial.println(steeringPosition);  // helps calibrating zero
     steeringPosition = ( steeringPosition -steerSettings.steeringPositionZero);   //center the steering position sensor
 
 #if Output_Driver == 3 // 3 =  Steering Motor + JRK 2 Driver
@@ -405,7 +414,7 @@ if (currentTime - lastTime >= LOOP_TIME)
     steeringPosition = ( steeringPosition -steerZero);   //center the steering position sensor
 #endif      
     
-    //convert position to steer angle. 6 counts per degree of steer pot position in my case
+    //convert position to steer angle. 
     //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
     // remove or add the minus for steerSensorCounts to do that.
 #if Invert_WAS
