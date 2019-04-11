@@ -109,11 +109,13 @@
   byte Ethernet::buffer[200]; // udp send and receive buffer
 #endif
 
-#define SteerSensorCnt 10
+
 #if ADC_Mode==1 | ADC_Mode==2
   #include "Adafruit_ADS1015.h"
   Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
   #define SteerSensorCnt 200
+#else
+  #define SteerSensorCnt 10
 #endif
 
 #if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
