@@ -60,7 +60,7 @@
   //#define RELAY7_PIN 12  //PB4  serial Mode only
   //#define RELAY8_PIN 13  //PB5  serial Mode only
 
-#else (PinMapping == 1)
+#else //(PinMapping == 1)
 // PCB Basic Autosteer
   #define STEERSW_PIN 6  //PD6
   #define WORKSW_PIN  8  //PB0
