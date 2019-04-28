@@ -45,7 +45,7 @@
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
 
-// Pin Configuaration
+// Pin Configuration
 #if (PinMapping == 0 )  // Default Mapping
   #define encAPin     2   //PD2 int0  Steering Wheel Encoder - turns Autosteer off
   #define STEERSW_PIN 3   //PD3 button toggles Autosteer Mode (momentary switch)
@@ -208,6 +208,7 @@
 void setup()
 { 
   //keep pulled high and drag low to activate, noise free safe    
+  pinMode(encAPin, INPUT_PULLUP);
   pinMode(WORKSW_PIN, INPUT_PULLUP);   //
   pinMode(STEERSW_PIN, INPUT_PULLUP);  // 
 
