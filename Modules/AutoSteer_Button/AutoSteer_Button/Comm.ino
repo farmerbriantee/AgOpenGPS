@@ -64,7 +64,7 @@ void receiveSerial(){
     
 
     //auto Steer is off if 32020,Speed is too slow, Wheelencoder above Max
-        if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | pulseCount >= pulseCountMax )
+        if (distanceFromLine == 32020 || speeed < minspeed || speeed > maxspeed || pulseCount >= pulseCountMax )
       {      
         steerEnable = false;
         digitalWrite(LED_PIN, 0);       //turn LED off
@@ -166,7 +166,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       steerAngleSetPoint *= 0.01;  
 
      //auto Steer is off if 32020,Speed is too slow, Wheelencoder above Max
-    if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | pulseCount >= pulseCountMax )
+    if (distanceFromLine == 32020 || speeed < minspeed || speeed > maxspeed || pulseCount >= pulseCountMax )
     {
       steerEnable = false;
       digitalWrite(LED_PIN, 0);       //turn LED off
