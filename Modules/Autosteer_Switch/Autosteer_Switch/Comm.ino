@@ -58,7 +58,7 @@ void receiveSerial(){
     steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes
 
     //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
-    if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | steerSwitch == 1)
+    if (distanceFromLine == 32020 || speeed < minspeed || speeed > maxspeed || steerSwitch == 1)
       {
        watchdogTimer = 12; //turn off steering motor
        digitalWrite(LED_PIN, 0); //turn LED off
@@ -153,7 +153,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       steerAngleSetPoint = ((float)(data[6] << 8 | data[7])); //high low bytes 
       steerAngleSetPoint *= 0.01;  
 
-      if (distanceFromLine == 32020 | speeed < minspeed | speeed > maxspeed | steerSwitch == 1)
+      if (distanceFromLine == 32020 || speeed < minspeed || speeed > maxspeed || steerSwitch == 1)
       {
         watchdogTimer = 12;//turn off steering motor
         digitalWrite(LED_PIN, 0); //turn LED off
