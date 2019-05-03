@@ -23,6 +23,9 @@
   #define Inclinometer_Installed 0      // set to 1 if DOGS2 Inclinometer is installed
                                         // set to 2 if MMA8452 is installed (Address 0x1C) (SA0=LOW)
                                         // set to 3 if MMA8452 is installed (Address 0x1D) (SA0=HIGH, Sparkfun)
+  
+  #define InvertRoll 0                  // Roll to the right must be positive
+                                        // Set to 1 if roll to right shows negative
 
   #define SWEncoder  0          // Steering Wheel ENCODER Installed
   #define pulseCountMax 3       // Switch off Autosteer after X Pulses from Steering wheel encoder  
@@ -45,7 +48,7 @@
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
 
-// Pin Configuration
+// Pin Configuaration
 #if (PinMapping == 0 )  // Default Mapping
   #define encAPin     2   //PD2 int0  Steering Wheel Encoder - turns Autosteer off
   #define STEERSW_PIN 3   //PD3 button toggles Autosteer Mode (momentary switch)
@@ -84,7 +87,7 @@
   //#define RELAY4_PIN A1  //PC1
 #endif
   
-  #define EEP_Ident 0xEDFA 
+  #define EEP_Ident 0xEDEA 
 
   #include <Wire.h>       
   #include <EEPROM.h>
@@ -287,7 +290,7 @@ void setup()
 
   //PWM rate settings Adjust to desired PWM Rate
   //TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 divisor to     8 for PWM frequency of  3921.16 Hz
-  TCCR1B = TCCR1B & B11111000 | B00000011;    // set timer 1 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
+  TCCR1B = TCCR1B && B11111000 | B00000011;    // set timer 1 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
 
 #if (EtherNet)
   if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
@@ -320,7 +323,7 @@ void setup()
   interrupts();                      // Enable interrupts
  
 EEPROM.get(0, EEread);              // read identifier
- if (EEread != EEP_Ident){           // check on first start and write EEPROM
+ if (EEread != (int)EEP_Ident){           // check on first start and write EEPROM
     EEPROM.put(0, EEP_Ident);
     EEPROM.put(2, SteerPosZero);
     EEPROM.put(8, steerSettings);   
@@ -349,7 +352,6 @@ void loop()
   */
 
   currentTime = millis();
-  unsigned int time = currentTime;
 
   if (currentTime - lastTime >= LOOP_TIME)
   {
@@ -386,7 +388,11 @@ void loop()
     rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees)
   }
 #endif
- 
+
+ //if not positive when rolling to the right
+ #if InvertRoll ==1
+   rollK *= -1.0;
+ #endif
     //Kalman filter
     Pc = P + varProcess;
     G = Pc / (Pc + varRoll);
