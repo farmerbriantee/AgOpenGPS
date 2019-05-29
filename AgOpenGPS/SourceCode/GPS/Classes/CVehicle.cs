@@ -278,13 +278,39 @@ namespace AgOpenGPS
             //GL.Vertex3(1.8, 0, 0);
             GL.End();
 
-            GL.LineWidth(2);
-            GL.Color3(0.9, 0.8, 0.7);
+
+            ////draw the vehicle Body
+            GL.Color3(0.9, 0.90, 0.0);
+            GL.Begin(PrimitiveType.TriangleFan);
+
+            GL.Vertex3(0, antennaPivot, -0.2);
+            GL.Vertex3(1.2, -0, 0.0);
+            GL.Color3(0.0, 0.90, 0.92);
+            GL.Vertex3(0, wheelbase, 0.0);
+            GL.Color3(0.920, 0.0, 0.9);
+            GL.Vertex3(-1.2, -0, 0.0);
+
+            GL.Vertex3(1.2, -0, 0.0);
+            GL.End();
+
+            GL.LineWidth(3);
+            GL.Color3(0.0, 0.0, 0.0);
             GL.Begin(PrimitiveType.LineLoop);
             {
                 GL.Vertex3(-1.2, 0, 0);
                 GL.Vertex3(1.2, 0, 0);
                 GL.Vertex3(0, wheelbase, 0);
+            }
+            GL.End();
+            GL.LineWidth(2);
+
+            //Svenn Arrow
+            GL.Color3(0.9, 0.95, 0.10);
+            GL.Begin(PrimitiveType.LineStrip);
+            {
+                GL.Vertex3(0.8,  wheelbase + 7, 0.0);
+                GL.Vertex3(0, wheelbase + 11, 0.0);
+                GL.Vertex3(-0.8, wheelbase + 7, 0.0);
             }
             GL.End();
 

@@ -77,6 +77,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Application\RepeatButtonControl.dll</HintPath>
     </Reference>
+    <Reference Include="RubberBandControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\RubberBandControl.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -128,11 +132,19 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Classes\CSelf.cs" />
+    <Compile Include="Classes\CVRate.cs" />
     <Compile Include="Forms\FormNtrip.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormNtrip.Designer.cs">
       <DependentUpon>FormNtrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSelf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSelf.designer.cs">
+      <DependentUpon>FormSelf.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSim.cs">
       <SubType>Form</SubType>
@@ -286,6 +298,12 @@
     <Compile Include="Forms\Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormVRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVRate.Designer.cs">
+      <DependentUpon>FormVRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="gStr.de.Designer.cs">
       <DependentUpon>gStr.de.resx</DependentUpon>
@@ -383,6 +401,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSelf.resx">
+      <DependentUpon>FormSelf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSim.resx">
       <DependentUpon>FormSim.cs</DependentUpon>
@@ -626,6 +647,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVRate.resx">
+      <DependentUpon>FormVRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -225,14 +225,21 @@ namespace AgOpenGPS
 
         public void DrawArr()
         {
-            GL.PointSize(1.0f);
+            GL.PointSize(2.0f);
             GL.Begin(PrimitiveType.Points);
-            GL.Color3(0.95f, 0.7520f, 0.7530f);
             int ptCount = mazeRowYDim * mazeColXDim;
             for (int h = 0; h < ptCount; h++)
             {
                 if (mazeArr[h] == 1)
                 {
+                    GL.Color3(0.0095f, 0.007520f, 0.97530f);
+                    int Y = h / mazeColXDim; //Y
+                    int X = h - (h / mazeColXDim * mazeColXDim); //X
+                    GL.Vertex3((X * mazeScale) + (int)mf.minFieldX, (Y * mazeScale) + (int)mf.minFieldY, 0);
+                }
+                else
+                {
+                    GL.Color3(0.95f, 0.7520f, 0.07530f);
                     int Y = h / mazeColXDim; //Y
                     int X = h - (h / mazeColXDim * mazeColXDim); //X
                     GL.Vertex3((X * mazeScale) + (int)mf.minFieldX, (Y * mazeScale) + (int)mf.minFieldY, 0);

@@ -176,6 +176,9 @@ namespace AgOpenGPS
                         double setSteerAngle = (Int16)((data[4] << 8) + data[5]);
                         byte pwm = data[9];
 
+                        actualSteerAngleDisp = actualSteerAngle;
+
+
                         //load the usb recv string with udp recd data for chart and gui info
                         mc.serialRecvAutoSteerStr = (actualSteerAngle * 0.01).ToString("N2") + "," + (setSteerAngle * 0.01).ToString("N2")
                                + "," + (mc.rollRaw * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString()

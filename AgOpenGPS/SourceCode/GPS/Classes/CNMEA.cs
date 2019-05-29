@@ -193,9 +193,19 @@ Field	Meaning
             fix.easting = xy[0] - utmEast + fixOffset.easting;
             fix.northing = xy[1] - utmNorth + fixOffset.northing;
 
+            double east = fix.easting;
+            double nort = fix.northing;
+
             //compensate for the fact the zones lines are a grid and the world is round
-            fix.easting = (Math.Cos(-convergenceAngle) * fix.easting) - (Math.Sin(-convergenceAngle) * fix.northing);
-            fix.northing = (Math.Sin(-convergenceAngle) * fix.easting) + (Math.Cos(-convergenceAngle) * fix.northing);
+            fix.easting = (Math.Cos(-convergenceAngle) * east) - (Math.Sin(-convergenceAngle) * nort);
+            fix.northing = (Math.Sin(-convergenceAngle) * east) + (Math.Cos(-convergenceAngle) * nort);
+
+            //east = fix.easting;
+            //nort = fix.northing;
+
+            //fix.easting = (Math.Cos(convergenceAngle) * east) - (Math.Sin(convergenceAngle) * nort);
+            //fix.northing = (Math.Sin(convergenceAngle) * east) + (Math.Cos(convergenceAngle) * nort);
+
         }
 
         public void ParseNMEA()
@@ -301,8 +311,12 @@ Field	Meaning
             //if sentence has valid checksum, its all good
             while (!ValidateChecksum(sentence));
 
+            //do we want to log? Grab before pieces are missing
+            if (mf.isLogNMEA) logNMEASentence.Append(sentence);
+
             // Remove trailing checksum and \r\n and return
             sentence = sentence.Substring(0, sentence.IndexOf("*", StringComparison.Ordinal));
+
             return sentence;
         }
 

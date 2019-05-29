@@ -71,6 +71,8 @@ namespace AgOpenGPS
             mf.mc.relayRateData[mf.mc.rdRateSetPointRightHi] = 0;
             mf.mc.relayRateData[mf.mc.rdRateSetPointRightLo] = 0;
             mf.mc.relayRateData[mf.mc.rdSpeedXFour] = 0;
+            mf.mc.relayRateData[mf.mc.rdTramLine] = 0;
+
             mf.RateRelayOutToPort(mf.mc.relayRateData, CModuleComm.numRelayRateDataItems);
         }
 

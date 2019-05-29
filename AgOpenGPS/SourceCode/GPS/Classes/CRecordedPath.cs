@@ -184,10 +184,6 @@ namespace AgOpenGPS
                 pathCount = cnt - B;
                 if (pathCount < 3)
                 {
-                    //check if close to home position
-                    //    double distSqr = glm.DistanceSquared(pivotAxlePosRP.easting, pivotAxlePosRP.northing, homePos.easting, homePos.northing);
-                    //if (distSqr < 3)
-                    //{
                     StopDrivingRecordedPath();
                     return;
                 }
@@ -219,7 +215,7 @@ namespace AgOpenGPS
 
         private void GetDubinsPath(vec3 goal)
         {
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 2.0;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.0;
             CDubins dubPath = new CDubins();
 
             // current psition
@@ -252,11 +248,6 @@ namespace AgOpenGPS
                 }
                 return;
             }
-            //else
-            //{
-            //    shuttleDubinsList?.Clear();
-            //    return;
-            //}
 
             //find a path from start to goal - diagnostic, but also used later
             mazeList = mf.mazeGrid.SearchForPath(pt2, goal);

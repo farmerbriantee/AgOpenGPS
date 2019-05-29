@@ -52,7 +52,7 @@ namespace AgOpenGPS
         public bool isSavingFile = false, isLogNMEA = false;
 
         //texture holders
-        public uint[] texture = new uint[4];
+        public uint[] texture = new uint[5];
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
@@ -213,6 +213,16 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
+        /// <summary>
+        /// Self Driving class
+        /// </summary>
+        public CSelf self;
+
+        /// <summary>
+        /// Rate MApping
+        /// </summary>
+        public CVRate rateMap;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -295,6 +305,11 @@ namespace AgOpenGPS
 
             //The grid for obstacle avoidance
             mazeGrid = new CMazeGrid(this);
+
+            rateMap = new CVRate(this);
+
+            //A generated Path
+            self = new CSelf(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -640,6 +655,30 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File Compass.PNG is Missing", ex2.Message);
             }
+
+            try
+            {
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Output.png");
+                if (File.Exists(text2))
+                {
+                    using (Bitmap bitmap2 = new Bitmap(text2))
+                    {
+                        GL.GenTextures(1, out texture[4]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[4]);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+                        bitmap2.UnlockBits(bitmapData2);
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                //WriteErrorLog("Loading Floor Texture" + ex2);
+                MessageBox.Show("Texture File OUPUT.PNG is Missing", ex2.Message);
+            }
+
             return texture[0];
         }// Load Bitmaps And Convert To Textures
 
@@ -791,7 +830,6 @@ namespace AgOpenGPS
             section[11].positionLeft = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
         }
-
 
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
         {
@@ -1060,6 +1098,9 @@ namespace AgOpenGPS
             //reset headland
             //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
 
+            //reset the rate map
+            rateMap.mapList?.Clear();
+
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;
 
@@ -1077,7 +1118,7 @@ namespace AgOpenGPS
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
 
             ////turn off path record
-            recPath.recList.Clear();
+            recPath.recList?.Clear();
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;

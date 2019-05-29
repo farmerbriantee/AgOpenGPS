@@ -363,5 +363,39 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public void DoManualEntrySequence()
+        {
+            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            {
+                //have we gone past the distance and still haven't done it
+                if (!mf.seq.seqEnter[i].isTrig)
+                {
+                    //it shall only run once
+                    mf.seq.seqEnter[i].isTrig = true;
+
+                    //send the function and action to perform
+                    mf.DoYouTurnSequenceEvent(mf.seq.seqEnter[i].function, mf.seq.seqEnter[i].action);
+                }
+            }
+            mf.seq.ResetSequenceEventTriggers();
+        }
+
+        public void DoManualExitSequence()
+        {
+            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            {
+                //have we gone past the distance and still haven't done it
+                if (!mf.seq.seqExit[i].isTrig)
+                {
+                    //it shall only run once
+                    mf.seq.seqExit[i].isTrig = true;
+
+                    //send the function and action to perform
+                    mf.DoYouTurnSequenceEvent(mf.seq.seqExit[i].function, mf.seq.seqExit[i].action);
+                }
+            }
+            mf.seq.ResetSequenceEventTriggers();
+        }
     }
 }

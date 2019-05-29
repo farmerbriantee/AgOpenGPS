@@ -79,7 +79,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
             this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +90,7 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
@@ -110,10 +111,9 @@
             this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripVR = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblNorthing = new System.Windows.Forms.Label();
             this.lblEasting = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
@@ -150,7 +150,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
             this.lblFlowRateLeft = new System.Windows.Forms.Label();
             this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -164,7 +163,10 @@
             this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
             this.btnDualRate = new System.Windows.Forms.Button();
             this.configPage1 = new System.Windows.Forms.TabPage();
+            this.lblVRBlu = new System.Windows.Forms.Label();
             this.btnFixOffset = new System.Windows.Forms.Button();
+            this.lblVRGrn = new System.Windows.Forms.Label();
+            this.lblVRRed = new System.Windows.Forms.Label();
             this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
             this.btnWebCam = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
@@ -172,6 +174,11 @@
             this.btnGPSData = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblActualSteerAngle2 = new System.Windows.Forms.Label();
+            this.lblSetpointSteerAngle2 = new System.Windows.Forms.Label();
             this.btnSmallRight2 = new System.Windows.Forms.Button();
             this.btnSmallLeft2 = new System.Windows.Forms.Button();
             this.btnBigRight2 = new System.Windows.Forms.Button();
@@ -666,9 +673,9 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripBatman,
-            this.lblAreaRate,
             this.toolStripBtnCamera,
             this.toolStripDropDownButton1,
+            this.lblAreaRate,
             this.stripEqWidth,
             this.stripDistance,
             this.toolStripBtnDropDownSpecialFunctions,
@@ -678,11 +685,14 @@
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
-            // lblAreaRate
+            // toolStripBatman
             // 
-            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
-            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.lblAreaRate.Name = "lblAreaRate";
+            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
+            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
+            this.toolStripBatman.Name = "toolStripBatman";
+            this.toolStripBatman.ShowDropDownArrow = false;
+            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
             // 
             // toolStripBtnCamera
             // 
@@ -764,6 +774,12 @@
             resources.ApplyResources(this.deletePathMenu, "deletePathMenu");
             this.deletePathMenu.Name = "deletePathMenu";
             this.deletePathMenu.Click += new System.EventHandler(this.deletePathMenu_Click);
+            // 
+            // lblAreaRate
+            // 
+            resources.ApplyResources(this.lblAreaRate, "lblAreaRate");
+            this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.lblAreaRate.Name = "lblAreaRate";
             // 
             // stripEqWidth
             // 
@@ -902,7 +918,7 @@
             this.toolStripDropDownBtnFuncs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolstripField,
             this.toolstripBoundary,
-            this.toolstripHeadland,
+            this.toolstripVR,
             this.toolstripResetTrip});
             this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.Start48;
             this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
@@ -923,12 +939,12 @@
             this.toolstripBoundary.Name = "toolstripBoundary";
             this.toolstripBoundary.Click += new System.EventHandler(this.toolstripBoundary_Click);
             // 
-            // toolstripHeadland
+            // toolstripVR
             // 
-            this.toolstripHeadland.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripHeadland, "toolstripHeadland");
-            this.toolstripHeadland.Name = "toolstripHeadland";
-            this.toolstripHeadland.Click += new System.EventHandler(this.toolstripHeadland_Click);
+            this.toolstripVR.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripVR, "toolstripVR");
+            this.toolstripVR.Name = "toolstripVR";
+            this.toolstripVR.Click += new System.EventHandler(this.toolstripVR_Click);
             // 
             // toolstripResetTrip
             // 
@@ -943,15 +959,6 @@
             this.stripOnlineGPS.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.stripOnlineGPS.Name = "stripOnlineGPS";
             this.stripOnlineGPS.Value = 1;
-            // 
-            // toolStripBatman
-            // 
-            resources.ApplyResources(this.toolStripBatman, "toolStripBatman");
-            this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBatman.Image = global::AgOpenGPS.Properties.Resources.Batman48;
-            this.toolStripBatman.Name = "toolStripBatman";
-            this.toolStripBatman.ShowDropDownArrow = false;
-            this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
             // 
             // lblNorthing
             // 
@@ -1211,7 +1218,6 @@
             this.rate2Page5.Controls.Add(this.label21);
             this.rate2Page5.Controls.Add(this.txtBoxSendArduino);
             this.rate2Page5.Controls.Add(this.txtBoxRecvArduino);
-            this.rate2Page5.Controls.Add(this.label23);
             this.rate2Page5.Controls.Add(this.lblFlowRateLeft);
             this.rate2Page5.Controls.Add(this.lblRateAppliedActualLeft);
             this.rate2Page5.Controls.Add(this.label28);
@@ -1245,11 +1251,6 @@
             resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
             // 
             // lblFlowRateLeft
             // 
@@ -1343,7 +1344,10 @@
             // configPage1
             // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.configPage1.Controls.Add(this.lblVRBlu);
             this.configPage1.Controls.Add(this.btnFixOffset);
+            this.configPage1.Controls.Add(this.lblVRGrn);
+            this.configPage1.Controls.Add(this.lblVRRed);
             this.configPage1.Controls.Add(this.btnFlagsGoogleEarth);
             this.configPage1.Controls.Add(this.btnWebCam);
             this.configPage1.Controls.Add(this.btnHelp);
@@ -1353,6 +1357,13 @@
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
             // 
+            // lblVRBlu
+            // 
+            resources.ApplyResources(this.lblVRBlu, "lblVRBlu");
+            this.lblVRBlu.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblVRBlu.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblVRBlu.Name = "lblVRBlu";
+            // 
             // btnFixOffset
             // 
             this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
@@ -1361,6 +1372,20 @@
             this.btnFixOffset.Name = "btnFixOffset";
             this.btnFixOffset.UseVisualStyleBackColor = false;
             this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
+            // 
+            // lblVRGrn
+            // 
+            resources.ApplyResources(this.lblVRGrn, "lblVRGrn");
+            this.lblVRGrn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblVRGrn.ForeColor = System.Drawing.Color.OliveDrab;
+            this.lblVRGrn.Name = "lblVRGrn";
+            // 
+            // lblVRRed
+            // 
+            resources.ApplyResources(this.lblVRRed, "lblVRRed");
+            this.lblVRRed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblVRRed.ForeColor = System.Drawing.Color.Crimson;
+            this.lblVRRed.Name = "lblVRRed";
             // 
             // btnFlagsGoogleEarth
             // 
@@ -1419,6 +1444,11 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.label23);
+            this.DataPage.Controls.Add(this.label29);
+            this.DataPage.Controls.Add(this.label3);
+            this.DataPage.Controls.Add(this.lblActualSteerAngle2);
+            this.DataPage.Controls.Add(this.lblSetpointSteerAngle2);
             this.DataPage.Controls.Add(this.btnSmallRight2);
             this.DataPage.Controls.Add(this.btnSmallLeft2);
             this.DataPage.Controls.Add(this.btnBigRight2);
@@ -1462,6 +1492,31 @@
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
+            // 
+            // label23
+            // 
+            resources.ApplyResources(this.label23, "label23");
+            this.label23.Name = "label23";
+            // 
+            // label29
+            // 
+            resources.ApplyResources(this.label29, "label29");
+            this.label29.Name = "label29";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // lblActualSteerAngle2
+            // 
+            resources.ApplyResources(this.lblActualSteerAngle2, "lblActualSteerAngle2");
+            this.lblActualSteerAngle2.Name = "lblActualSteerAngle2";
+            // 
+            // lblSetpointSteerAngle2
+            // 
+            resources.ApplyResources(this.lblSetpointSteerAngle2, "lblSetpointSteerAngle2");
+            this.lblSetpointSteerAngle2.Name = "lblSetpointSteerAngle2";
             // 
             // btnSmallRight2
             // 
@@ -2461,6 +2516,7 @@
             this.rate2Page5.ResumeLayout(false);
             this.rate2Page5.PerformLayout();
             this.configPage1.ResumeLayout(false);
+            this.configPage1.PerformLayout();
             this.DataPage.ResumeLayout(false);
             this.DataPage.PerformLayout();
             this.panelBatman.ResumeLayout(false);
@@ -2568,7 +2624,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolstripResetTrip;
         private System.Windows.Forms.ToolStripMenuItem toolstripField;
         private System.Windows.Forms.ToolStripMenuItem toolstripBoundary;
-        private System.Windows.Forms.ToolStripMenuItem toolstripHeadland;
+        private System.Windows.Forms.ToolStripMenuItem toolstripVR;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblBoundaryDistanceAway;
@@ -2631,7 +2687,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBoxSendArduino;
         private System.Windows.Forms.TextBox txtBoxRecvArduino;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button btnSelectRate2;
         private System.Windows.Forms.Button btnSelectRate1;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
@@ -2693,7 +2748,6 @@
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btnFlagsGoogleEarth;
-        private System.Windows.Forms.Button btnContour;
         private System.Windows.Forms.Panel panelSimControls;
         private System.Windows.Forms.Button btnZoomExtents;
         private System.Windows.Forms.Label lblHz;
@@ -2738,6 +2792,15 @@
         private System.Windows.Forms.ToolStripMenuItem deletePathMenu;
         private System.Windows.Forms.ToolStripMenuItem pausePathMenu;
         public System.Windows.Forms.ToolStripMenuItem goPathMenu;
+        private System.Windows.Forms.Label lblVRRed;
+        private System.Windows.Forms.Label lblVRBlu;
+        private System.Windows.Forms.Label lblVRGrn;
+        private System.Windows.Forms.Label lblActualSteerAngle2;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label lblSetpointSteerAngle2;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Button btnContour;
     }
 }
 

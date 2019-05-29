@@ -497,11 +497,6 @@
             0,
             0,
             0});
-            this.nudTurnOffDelay.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
             this.nudTurnOffDelay.Name = "nudTurnOffDelay";
             this.nudTurnOffDelay.Value = new decimal(new int[] {
             10,

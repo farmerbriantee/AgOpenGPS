@@ -163,9 +163,12 @@ namespace AgOpenGPS
 
                 //calculate how far the antenna moves based on sidehill roll
                 double roll = Math.Sin(glm.toRadians((mc.rollRaw - ahrs.rollZero) * 0.0625));
-                rollCorrectionDistance = roll * vehicle.antennaHeight;
+
+                //change for roll to the right is positive times -1
+                rollCorrectionDistance = roll * vehicle.antennaHeight * -1.0;
 
                 // roll to left is positive  **** important!!
+                // not any more - April 30, 2019 - roll to right is positive
                 pn.fix.easting = (Math.Cos(-fixHeading) * rollCorrectionDistance) + pn.fix.easting;
                 pn.fix.northing = (Math.Sin(-fixHeading) * rollCorrectionDistance) + pn.fix.northing;
 
@@ -179,7 +182,7 @@ namespace AgOpenGPS
             }
 
             //pitchDistance = (pitch * vehicle.antennaHeight);
-            ////pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            //pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
             //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
 
             #endregion Roll
@@ -323,6 +326,9 @@ namespace AgOpenGPS
 
             //if the whole path driving driving process is green
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
+
+            //if self driving, do the update
+            if (self.isSelfDriving) self.UpdatePosition();
 
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)

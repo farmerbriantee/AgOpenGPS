@@ -254,10 +254,11 @@ namespace AgOpenGPS
             ////draw the perimeter line so far
             int ptCount = bndLine.Count;
             if (ptCount < 1) return;
+            GL.PointSize(2);
             GL.LineWidth(1);
             if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
-            else GL.Color3(0.25f, 0.2f, 0.90f);
-            GL.Begin(PrimitiveType.LineStrip);
+            else GL.Color3(0.825f, 0.42f, 0.90f);
+            GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
             GL.Color3(0.95f, 0.972f, 0.90f);
             GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
