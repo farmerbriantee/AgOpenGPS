@@ -183,6 +183,7 @@ namespace AgOpenGPS
             mf.AB0.heading = glm.toDegrees(mf.ABLine.abHeading);
             mf.AB0.X = mf.ABLine.refPoint1.easting;
             mf.AB0.Y = mf.ABLine.refPoint1.northing;
+            if (mf.ABLine.tramPassEvery == 0) mf.mc.relayRateData[mf.mc.rdTramLine] = 0;
 
             DialogResult = DialogResult.OK;
             Close();

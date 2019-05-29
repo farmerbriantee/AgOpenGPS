@@ -8,18 +8,6 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        private double newLat, newLon;
-
-        //private void nudLatitude_ValueChanged(object sender, EventArgs e)
-        //{
-        //    newLat = (double)nudLatitude.Value;
-        //}
-
-        //private void nudLongitude_ValueChanged(object sender, EventArgs e)
-        //{
-        //    newLon = (double)nudLongitude.Value;
-        //}
-
         private void FormSimCoords_Load(object sender, EventArgs e)
         {
             nudLatitude.Value = (decimal)Properties.Settings.Default.setGPS_Latitude;

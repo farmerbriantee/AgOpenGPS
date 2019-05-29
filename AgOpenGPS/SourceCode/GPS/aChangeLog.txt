@@ -1,4 +1,11 @@
-﻿v3.0 March 2019
+﻿v3.0 May 1 2019
+* Roll changed pos to the right
+* Fixed boundary lookahead turning on
+* Added Arrows for steering, numerical steering, roll view
+* Self Driving and VR hidden for now.
+* Lots of little fixes of the GUI
+
+v3.0 March 2019
 * Fixed path from generating if at any portion it runs out of bounds.
 * Shortened maze path by 2x turn radius, prevents crazy loops at startfinish
 * Sim coords set now has field and gps coords + manual. Forces exit.

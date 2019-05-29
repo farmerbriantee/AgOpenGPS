@@ -42,21 +42,26 @@ namespace AgOpenGPS
         #region AutoSteerPort //--------------------------------------------------------------------
 
         public void AutoSteerDataOutToPort()
-        {            
+        {
+            //send autosteer since it never is logic controlled
+            SendUDPMessage(mc.autoSteerData);
+
+            //default to a stop initially
+            mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+
             if (isInAutoDrive) //Is in Auto Drive Mode enabled
             {
                 if (!ast.isInFreeDriveMode)
                 {
                     //make it go - or with 1
-                    //if (genPath.isBtnDriveGenPathOn| recPath.isDrivingRecordedPath)
                     if (recPath.isDrivingRecordedPath)
                     {
                         mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
                     }
-                    //make it not go - and with zero
-                    else
+
+                    if (self.isSelfDriving)
                     {
-                        mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
                     }
                 }
                 else //in AutoDrive and FreeDrive
@@ -70,7 +75,7 @@ namespace AgOpenGPS
                     mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
                 }
             }
-            else // Auto/Manual is in Manual so release the clutch
+            else // Auto/Manual is in Manual so release the clutch only
             {
                 //release the clutch for manual driving
                 mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
@@ -93,8 +98,7 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setUDP_isOn)
             {
                 SendUDPMessage(mc.machineControlData);
-                SendUDPMessage(mc.autoSteerData);
-                SendUDPMessage(mc.relayRateData);
+                if (rcd.isRateControlOn) SendUDPMessage(mc.relayRateData);
             }
 
             //Tell Arduino the steering parameter values
@@ -127,6 +131,9 @@ namespace AgOpenGPS
         }
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
+
+        private double actualSteerAngleDisp = 0;
+
         private void SerialLineReceivedAutoSteer(string sentence)
         {
             //spit it out no matter what it says
@@ -137,6 +144,9 @@ namespace AgOpenGPS
             string[] words = mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length == 5)
             {
+                double.TryParse(words[0], out actualSteerAngleDisp);
+               
+
                 //first 2 used for display mainly in autosteer window chart as strings
                 //parse the values
                 if (ahrs.isHeadingBNO)

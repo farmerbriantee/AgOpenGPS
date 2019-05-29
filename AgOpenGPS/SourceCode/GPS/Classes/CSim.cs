@@ -71,7 +71,7 @@ namespace AgOpenGPS
             //BuildOGI();
             BuildGGA();
             BuildVTG();
-            BuildHDT();
+            //BuildHDT();
 
             //send garbage for testing
             //sbSendText.Append("$\r\n,4,4,,,,,,*\\\\\\\\\\\\\\\\\\");
@@ -81,7 +81,7 @@ namespace AgOpenGPS
 
             sbSendText.Append(sbGGA.ToString());
             sbSendText.Append(sbVTG.ToString());
-            sbSendText.Append(sbHDT.ToString());
+            //sbSendText.Append(sbHDT.ToString());
 
             //sbSendText.Append(sbOGI.ToString());
             mf.pn.rawBuffer += sbSendText.ToString();

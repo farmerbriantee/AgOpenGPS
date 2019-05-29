@@ -92,11 +92,8 @@ namespace AgOpenGPS
             currentABLineP2 = new vec2(0.0, 1.0);
 
             abHeading = 0.0;
-
             passNumber = 0.0;
-
             howManyPathsAway = 0.0;
-
             isABLineSet = false;
         }
 
@@ -395,6 +392,9 @@ namespace AgOpenGPS
                         GL.Color3(0, 0.9, 0);
                         isOnTramLine = true;
                     }
+
+                    if (isOnTramLine) mf.mc.relayRateData[mf.mc.rdTramLine] = 1;
+                    else mf.mc.relayRateData[mf.mc.rdTramLine] = 0;
                 }
 
                 //based on line pass, make ref purple

@@ -1226,8 +1226,8 @@ namespace AgOpenGPS
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
 
-            //Task.Run(() =>  mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
+            //mf.rateMap.BuildRateMap();
 
             mf.yt.ResetCreatedYouTurn();
         }

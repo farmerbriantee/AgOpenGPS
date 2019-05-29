@@ -68,8 +68,10 @@ namespace AgOpenGPS
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
-                GL.Disable(EnableCap.Texture2D);
                 GL.Enable(EnableCap.Blend);
+
+                rateMap.DrawArr();
+                //GL.Disable(EnableCap.Texture2D);
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -173,7 +175,8 @@ namespace AgOpenGPS
                 turn.DrawClosestPoint();
 
                 //if (bnd.bndArr[0].isSet) mazeGrid.DrawArr();
-
+                //if (bnd.bndArr[0].isSet) rateMap.DrawArr();
+                //if (bnd.bndArr[0].isSet) rateMap.DrawBob();
 
                 //GL.PointSize(4.0f);
                 //GL.Begin(PrimitiveType.Points);
@@ -192,7 +195,7 @@ namespace AgOpenGPS
 
                 //draw generated path
                 //genPath.DrawGeneratedPath();
-                //self.DrawDubins();
+                self.DrawDubins();
 
 
                 //draw the flags if there are some
@@ -302,6 +305,100 @@ namespace AgOpenGPS
                     }
                 }
 
+
+
+                if (guidanceLineDistanceOff == 32020 || guidanceLineDistanceOff == 32000 || !isLightbarOn)
+                { }
+                else
+                {
+                    double set = guidanceLineSteerAngle * 0.01 * (100/vehicle.maxSteerAngle);
+                    double actual = actualSteerAngleDisp * 0.01 * (100 / vehicle.maxSteerAngle);
+                    double hiit = 0;
+
+                    GL.PushMatrix();
+                    GL.Translate(0, 120, 0);
+
+                    //If roll is used rotate graphic based on roll angle
+                    if ((ahrs.isRollBrick | ahrs.isRollDogs | ahrs.isRollPAOGI) && mc.rollRaw != 9999)
+                        GL.Rotate(((mc.rollRaw - ahrs.rollZero) * 0.0625f), 0.0f, 0.0f, 1.0f);
+
+                    GL.LineWidth(2);
+                    GL.Color3(0.54f, 0.54f, 0.54f);
+                    double wiid = 100;
+
+                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Vertex2(-wiid, 25);
+                    GL.Vertex2(-wiid, 0);
+                    GL.Vertex2(wiid, 0);
+                    GL.Vertex2(wiid, 25);
+                    GL.End();
+
+                    GL.Translate(0, 10, 0);
+
+                    if (!simulatorOnToolStripMenuItem.Checked)
+                    {
+                        if (actualSteerAngleDisp > 0)
+                        {
+                            GL.LineWidth(3);
+                            GL.Begin(PrimitiveType.LineStrip);
+
+                            GL.Color3(0.75930f, 0.75930f, 0.0f);
+                            GL.Vertex2(0, hiit);
+                            GL.Vertex2(actual, hiit + 15);
+                            GL.Vertex2(0, hiit + 30);
+                            GL.Vertex2(0, hiit);
+
+                            GL.End();
+                        }
+                        else
+                        {
+                            //actual
+                            GL.LineWidth(3);
+                            GL.Begin(PrimitiveType.LineStrip);
+
+                            GL.Color3(0.75930f, 0.75930f, 0.0f);
+                            GL.Vertex2(-0, hiit);
+                            GL.Vertex2(actual, hiit + 15);
+                            GL.Vertex2(-0, hiit + 30);
+                            GL.Vertex2(-0, hiit);
+
+                            GL.End();
+                        }
+                    }
+
+                    if (guidanceLineSteerAngle > 0)
+                    {
+                        GL.LineWidth(3);
+                        GL.Begin(PrimitiveType.LineStrip);
+
+                        GL.Color3(0.0f, 0.930f, 0.0f);
+                        GL.Vertex2(0, hiit);
+                        GL.Vertex2(set, hiit + 15);
+                        GL.Vertex2(0, hiit + 30);
+                        GL.Vertex2(0, hiit);
+
+                        GL.End();
+                    }
+                    else
+                    {
+                        GL.LineWidth(3);
+                        GL.Begin(PrimitiveType.LineStrip);
+
+                        GL.Color3(0.930f, 0.50f, 0.930f);
+                        GL.Vertex2(-0, hiit);
+                        GL.Vertex2(set, hiit + 15);
+                        GL.Vertex2(-0, hiit + 30);
+                        GL.Vertex2(-0, hiit);
+
+                        GL.End();
+                    }
+
+                    //return back
+                    GL.PopMatrix();
+                }
+
+
+
                 //LightBar if AB Line is set and turned on or contour
                 if (isLightbarOn)
                 {
@@ -328,8 +425,6 @@ namespace AgOpenGPS
                             else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
                             txtDistanceOffABLine.Text = dist;
                         }
-                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
@@ -354,8 +449,6 @@ namespace AgOpenGPS
                             else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
                             txtDistanceOffABLine.Text = dist;
                         }
-                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else if (curve.isCurveBtnOn)
@@ -380,20 +473,16 @@ namespace AgOpenGPS
                             else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
                             txtDistanceOffABLine.Text = dist;
                         }
-                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = PureSteerAngle;
                     }
 
                     else
                     {
                         txtDistanceOffABLine.Visible = false;
-                        btnAutoSteer.Text = "-";
                     }
                 }
                 else
                 {
                     txtDistanceOffABLine.Visible = false;
-                    btnAutoSteer.Text = "-";
                 }
 
                 GL.Flush();//finish openGL commands
@@ -531,6 +620,21 @@ namespace AgOpenGPS
                             GL.End();
                         }
                     }
+                }
+            }
+
+            //draw bright green on back buffer
+            if (bnd.bndArr[0].isSet)
+            {
+                ////draw the perimeter line so far
+                int ptCount = bnd.bndArr[0].bndLine.Count;
+                if (ptCount > 1)
+                {
+                    GL.LineWidth(2);                
+                    GL.Color3(0.0f, 0.99f, 0.0f);
+                    GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
+                    GL.End();
                 }
             }
 
@@ -808,7 +912,7 @@ namespace AgOpenGPS
             BuildRelayByte();
 
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 240)       //2 counts per second X 60 seconds = 120 counts per minute.
+            if (saveCounter > 120)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
@@ -1215,10 +1319,10 @@ namespace AgOpenGPS
                 fieldCenterY = (maxFieldY + minFieldY) / 2.0;
             }
 
-            minFieldX -= 8;
-            minFieldY -= 8;
-            maxFieldX += 8;
-            maxFieldY += 8;
+            //minFieldX -= 8;
+            //minFieldY -= 8;
+            //maxFieldX += 8;
+            //maxFieldY += 8;
 
             if (isMetric)
             {

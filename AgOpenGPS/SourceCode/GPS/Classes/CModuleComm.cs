@@ -21,7 +21,7 @@
 
         public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, rdSpeedXFour = 4,
                     rdRateSetPointLeftHi = 5, rdRateSetPointLeftLo = 6,
-                    rdRateSetPointRightHi = 7, rdRateSetPointRightLo = 8;
+                    rdRateSetPointRightHi = 7, rdRateSetPointRightLo = 8, rdTramLine=9;
 
         // PGN - 32760 - 127.248 0x7FF9
         public static int numRelayRateSettingsItems = 10;
@@ -99,6 +99,8 @@
             relayRateData[rdRateSetPointRightHi] = 0;
             relayRateData[rdRateSetPointRightLo] = 0;
             relayRateData[rdSpeedXFour] = 0;
+            relayRateData[rdTramLine] = 0;
+
             mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
