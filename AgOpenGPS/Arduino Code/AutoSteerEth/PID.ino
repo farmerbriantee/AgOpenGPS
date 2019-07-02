@@ -10,8 +10,8 @@ void calcSteeringPID(void)
     if (pwmDrive < 0 ) pwmDrive -= minPWMValue;
     else if (pwmDrive > 0 ) pwmDrive += minPWMValue;
     
-    if (pwmDrive > 230) pwmDrive = 230;
-    if (pwmDrive < -230) pwmDrive = -230;
+    if (pwmDrive > 210) pwmDrive = 210;
+    if (pwmDrive < -210) pwmDrive = -210;
   }
 
  void motorDrive(void) 

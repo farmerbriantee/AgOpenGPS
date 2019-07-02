@@ -43,8 +43,8 @@ namespace AgOpenGPS
 
         public void AutoSteerDataOutToPort()
         {
-            //send autosteer since it never is logic controlled
-            SendUDPMessage(mc.autoSteerData);
+            //load the uturn byte with the accumulated spacing
+            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeSpacingCounter;
 
             //default to a stop initially
             mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
@@ -97,7 +97,13 @@ namespace AgOpenGPS
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
+                //machine control
                 SendUDPMessage(mc.machineControlData);
+
+                //send autosteer since it never is logic controlled
+                SendUDPMessage(mc.autoSteerData);
+
+                //rate control
                 if (rcd.isRateControlOn) SendUDPMessage(mc.relayRateData);
             }
 
@@ -116,7 +122,11 @@ namespace AgOpenGPS
         public void AutoSteerSettingsOutToPort()
         {
             //send out the settings
-            SendUDPMessage(mc.autoSteerSettings);
+            //send out to network
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.autoSteerSettings);
+            }
 
             //Tell Arduino autoSteer settings
             if (spAutoSteer.IsOpen)

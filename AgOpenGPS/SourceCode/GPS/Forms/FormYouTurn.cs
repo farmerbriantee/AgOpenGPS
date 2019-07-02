@@ -109,85 +109,6 @@ namespace AgOpenGPS
                 btnYouTurnWideReturn.Enabled = false;
                 btnYouTurnSemiCircle.Enabled = false;
             }
-
-            if (mf.yt.isDew2Set)
-            {
-                btnDewLoop2.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                btnDewLoop2.BackColor = Color.Salmon;
-            }
-
-            if (mf.yt.isDew4Set)
-            {
-                btnDewLoop4.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                btnDewLoop4.BackColor = Color.Salmon;
-            }
-            if (mf.yt.isDew2Right)
-            {
-                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
-            }
-            else
-            {
-                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnLeft;
-            }
-        }
-
-        private void btnDewLoop2_Click(object sender, EventArgs e)
-        {
-            mf.yt.isDew2Set = !mf.yt.isDew2Set;
-            if (mf.yt.isDew2Set)
-            {
-                btnDewLoop2.BackColor = Color.LightGreen;
-                btnDewLoop4.BackColor = Color.Salmon;
-                mf.yt.dew4Index = 0;
-                mf.yt.dew2Index = 0;
-                mf.yt.isDew4Set = false;
-            }
-            else
-            {
-                btnDewLoop2.BackColor = Color.Salmon;
-                btnDewLoop4.BackColor = Color.Salmon;
-                mf.yt.dew4Index = 0;
-                mf.yt.dew2Index = 0;
-            }
-        }
-
-        private void btnDewLoop4_Click(object sender, EventArgs e)
-        {
-            mf.yt.isDew4Set = !mf.yt.isDew4Set;
-            if (mf.yt.isDew4Set)
-            {
-                btnDewLoop4.BackColor = Color.LightGreen;
-                btnDewLoop2.BackColor = Color.Salmon;
-                mf.yt.dew4Index = 0;
-                mf.yt.dew2Index = 0;
-                mf.yt.isDew2Set = false;
-            }
-            else
-            {
-                btnDewLoop2.BackColor = Color.Salmon;
-                btnDewLoop4.BackColor = Color.Salmon;
-                mf.yt.dew4Index = 0;
-                mf.yt.dew2Index = 0;
-            }
-        }
-
-        private void btnDewLoop2RightOrLeft_Click(object sender, EventArgs e)
-        {
-            mf.yt.isDew2Right = !mf.yt.isDew2Right;
-            if (mf.yt.isDew2Right)
-            {
-                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
-            }
-            else
-            {
-                btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnLeft;
-            }
         }
 
         #region Procedures
@@ -811,15 +732,6 @@ namespace AgOpenGPS
                 btnYouTurnRecord.Enabled = true;
                 btnYouTurnWideReturn.Enabled = true;
                 btnYouTurnSemiCircle.Enabled = true;
-
-                btnDewLoop2.Enabled = false;
-                btnDewLoop2RightOrLeft.Enabled = false;
-                btnDewLoop4.Enabled = false;
-
-                mf.yt.dew2Index = 0;
-                mf.yt.isDew2Set = false;
-                mf.yt.isDew4Set = false;
-                mf.yt.dew4Index = 0;
             }
             else
             {
@@ -831,15 +743,6 @@ namespace AgOpenGPS
                 btnYouTurnRecord.Enabled = false;
                 btnYouTurnWideReturn.Enabled = false;
                 btnYouTurnSemiCircle.Enabled = false;
-
-                btnDewLoop2.Enabled = true;
-                btnDewLoop2RightOrLeft.Enabled = true;
-                btnDewLoop4.Enabled = true;
-
-                mf.yt.dew2Index = 0;
-                mf.yt.isDew2Set = false;
-                mf.yt.isDew4Set = false;
-                mf.yt.dew4Index = 0;
             }
         }
 

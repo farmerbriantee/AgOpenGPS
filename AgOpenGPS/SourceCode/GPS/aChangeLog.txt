@@ -1,4 +1,7 @@
-﻿v3.0 May 1 2019
+﻿v3.0 June 2019
+* Added tree planting
+
+v3.0 May 1 2019
 * Roll changed pos to the right
 * Fixed boundary lookahead turning on
 * Added Arrows for steering, numerical steering, roll view

@@ -24,6 +24,7 @@ namespace AgOpenGPS
         public string headingFromSource;
 
         public vec3 pivotAxlePos = new vec3(0, 0, 0);
+        public vec3 steerAxlePos = new vec3(0, 0, 0);
         public vec3 toolPos = new vec3(0, 0, 0);
         public vec3 tankPos = new vec3(0, 0, 0);
         public vec2 hitchPos = new vec2(0, 0);
@@ -39,6 +40,7 @@ namespace AgOpenGPS
 
         //a distance between previous and current fix
         private double distance = 0.0;
+        public double treeSpacingCounter = 0.0;
   
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
@@ -81,45 +83,57 @@ namespace AgOpenGPS
         public vec3[] stepFixPts = new vec3[60];
         public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
         bool isFixHolding = false, isFixHoldLoaded = false;
-        
-        //called by watchdog timer every 50 ms
-        private void ScanForNMEA()
+
+        //called by watchdog timer every 10 ms
+        private bool ScanForNMEA()
         {
+            //if saving a file ignore any movement
+            if (isSavingFile) return false;
+
             //parse any data from pn.rawBuffer
             pn.ParseNMEA();
 
             //time for a frame update with new valid nmea data
             if (pn.updatedGGA | pn.updatedOGI | pn.updatedRMC)
             {
-                //if saving a file ignore any movement
-                if (isSavingFile) return;
 
                 //start the watch and time till it gets back here
+                swFrame.Reset();
                 swFrame.Start();
 
-                //reset both flags
+                //reset  flags
                 pn.updatedGGA = false;
                 pn.updatedOGI = false;
                 pn.updatedRMC = false;
 
                 //update all data for new frame
                 UpdateFixPosition();
-            }
 
-            //must make sure arduinos are kept off if initializing
+                //Update the port connection counter - is reset every time new sentence is valid and ready
+                recvCounter++;
+
+                //new position updated
+                return true;
+            }
             else
             {
-                if (!isGPSPositionInitialized)  mc.ResetAllModuleCommValues();
+                if (isGPSPositionInitialized)
+                {
+                    return false;
+                }
+                else
+                {
+                    mc.ResetAllModuleCommValues();
+                    recvCounter++;
+                    return false;
+                }
             }
-
-            //Update the port connection counter - is reset every time new sentence is valid and ready
-            recvCounter++;
         }
 
         public double eastingBeforeRoll;
         public double eastingAfterRoll;
         public double rollUsed;
-        double offset = 0;
+        private double offset = 0;
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
         private void UpdateFixPosition()
@@ -193,6 +207,11 @@ namespace AgOpenGPS
 
             //grab the most current fix and save the distance from the last fix
             distanceCurrentStepFix = glm.Distance(pn.fix, stepFixPts[0]);
+            if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix*100);
+            
+            //keep the distance below spacing
+            while (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0) treeSpacingCounter -= vehicle.treeSpacing;            
+
             fixStepDist = distanceCurrentStepFix;
 
             //if  min distance isn't exceeded, keep adding old fixes till it does
@@ -287,31 +306,31 @@ namespace AgOpenGPS
 
             if (ct.isContourBtnOn)
             {
-                ct.DistanceFromContourLine(pivotAxlePos);
+                ct.DistanceFromContourLine(pivotAxlePos, steerAxlePos);
             }
             else
             {
                 if (curve.isCurveSet)
                 {
                     //do the calcs for AB Curve
-                    curve.GetCurrentCurveLine(pivotAxlePos);
+                    curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                 }
 
                 if (ABLine.isABLineSet)
                 {
-                    ABLine.GetCurrentABLine(pivotAxlePos);
+                    ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
                     if (yt.isRecordingCustomYouTurn)
                     {
                         //save reference of first point
                         if (yt.youFileList.Count == 0)
                         {
-                            vec2 start = new vec2(pivotAxlePos.easting, pivotAxlePos.northing);
+                            vec2 start = new vec2(steerAxlePos.easting, steerAxlePos.northing);
                             yt.youFileList.Add(start);
                         }
                         else
                         {
                             //keep adding points
-                            vec2 point = new vec2(pivotAxlePos.easting - yt.youFileList[0].easting, pivotAxlePos.northing - yt.youFileList[0].northing);
+                            vec2 point = new vec2(steerAxlePos.easting - yt.youFileList[0].easting, steerAxlePos.northing - yt.youFileList[0].northing);
                             yt.youFileList.Add(point);
                         }
                     }
@@ -370,18 +389,18 @@ namespace AgOpenGPS
             if (guidanceLineDistanceOff < 29000)
             {
                 avgXTE[avgXTECntr] = Math.Abs(guidanceLineDistanceOff);
-                if (avgXTECntr++ > 18) avgXTECntr = 0;
+                if (avgXTECntr++ > 10) avgXTECntr = 0;
                 crossTrackError = 0;
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 11; i++)
                 {
                      crossTrackError += (int)avgXTE[i];
                 }
-                crossTrackError /= 20;
+                crossTrackError /= 10;
             }
             else
             {
                 avgXTE[avgXTECntr] = 0;
-                if (avgXTECntr++ > 18) avgXTECntr = 0;
+                if (avgXTECntr++ > 10) avgXTECntr = 0;
                 crossTrackError = 0;
             }
 
@@ -418,6 +437,13 @@ namespace AgOpenGPS
                     //relay byte is built in SerialComm function BuildRelayByte()
                     //youturn control byte is built in SerialComm BuildYouTurnByte()
                 }
+
+                //send out the port
+                RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
+
+                //if the relay rate port is open, check switches
+                //if (spRelay.IsOpen) DoRemoteSectionSwitch();
+                if ((spRelay.IsOpen) | (isUDPSendConnected)) DoRemoteSectionSwitch();
             }
             else
             {
@@ -429,13 +455,6 @@ namespace AgOpenGPS
                 //relay byte is built in SerialComm.cs - function BuildRelayByte()
                 //youturn control byte is built in SerialComm BuildYouTurnByte()
             }
-
-            //send out the port
-            RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
-
-            //if the relay rate port is open, check switches
-            //if (spRelay.IsOpen) DoRemoteSectionSwitch();
-            if ((spRelay.IsOpen) | (isUDPSendConnected)) DoRemoteSectionSwitch();
 
             #endregion
 
@@ -493,7 +512,7 @@ namespace AgOpenGPS
                             else //wait to trigger the actual turn since its made and waiting
                             {
                                 //distance from current pivot to first point of youturn pattern
-                                distancePivotToTurnLine = glm.Distance(yt.ytList[0], pivotAxlePos);
+                                distancePivotToTurnLine = glm.Distance(yt.ytList[0], steerAxlePos);
 
                                 //if we are close enough to pattern, trigger.
                                 if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
@@ -630,6 +649,11 @@ namespace AgOpenGPS
             pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
             pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
             pivotAxlePos.heading = fixHeading;
+
+            //translate from pivot position to steer axle position
+            steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
+            steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
+            steerAxlePos.heading = fixHeading;
 
             //determine where the rigid vehicle hitch ends
             hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
@@ -798,7 +822,7 @@ namespace AgOpenGPS
                 if (pn.speed < 1.0) speed = 1.0;
                 bool autoBtn = (autoBtnState == btnStates.Auto);
 
-                CRecPathPt pt = new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, pn.speed, autoBtn);
+                CRecPathPt pt = new CRecPathPt(steerAxlePos.easting, steerAxlePos.northing, steerAxlePos.heading, pn.speed, autoBtn);
                 recPath.recList.Add(pt);
             }
             
@@ -824,24 +848,58 @@ namespace AgOpenGPS
                     sectionCounter++;
                 }
             }
-
-            //Contour Base Track.... At least One section on, turn on if not
-            if (sectionCounter != 0)
+            if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) || 
+                        (!ct.isContourBtnOn && curve.isCurveBtnOn && curve.isCurveSet && isAutoSteerBtnOn))
             {
-                //keep the line going, everything is on for recording path
-                if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
-                else
+                //no contour recorded
+                if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); }
+            }
+            else
+            {
+                //if (ABLine.isABLineSet && isAutoSteerBtnOn)
+                //if (isStanleyUsed)
+                //{
+                //    //Contour Base Track.... At least One section on, turn on if not
+                //    if (sectionCounter != 0)
+                //    {
+                //        //keep the line going, everything is on for recording path
+                //        if (ct.isContourOn) ct.AddPoint(steerAxlePos);
+                //        else
+                //        {
+                //            ct.StartContourLine(steerAxlePos);
+                //            ct.AddPoint(steerAxlePos);
+                //        }
+                //    }
+
+                //    //All sections OFF so if on, turn off
+                //    else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
+
+                //    //Build contour line if close enough to a patch
+                //    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(steerAxlePos);
+
+                //}
+
+                //else
                 {
-                    ct.StartContourLine(pivotAxlePos);
-                    ct.AddPoint(pivotAxlePos);
+                    //Contour Base Track.... At least One section on, turn on if not
+                    if (sectionCounter != 0)
+                    {
+                        //keep the line going, everything is on for recording path
+                        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
+                        else
+                        {
+                            ct.StartContourLine(pivotAxlePos);
+                            ct.AddPoint(pivotAxlePos);
+                        }
+                    }
+
+                    //All sections OFF so if on, turn off
+                    else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
+
+                    //Build contour line if close enough to a patch
+                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
                 }
             }
-
-            //All sections OFF so if on, turn off
-            else { if (ct.isContourOn ) { ct.StopContourLine(pivotAxlePos); } }
-
-            //Build contour line if close enough to a patch
-            if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
 
         }
        

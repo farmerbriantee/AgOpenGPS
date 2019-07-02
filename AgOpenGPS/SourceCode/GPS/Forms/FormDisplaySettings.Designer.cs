@@ -74,6 +74,11 @@
             this.nudSnapDistanceSmall = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
+            this.tabTree = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.nudTreeSpacing = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabDisplay.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -94,6 +99,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
+            this.tabTree.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTreeSpacing)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -130,8 +138,9 @@
             this.tabControl1.Controls.Add(this.tabDisplay);
             this.tabControl1.Controls.Add(this.tabIMU);
             this.tabControl1.Controls.Add(this.tabGuidance);
+            this.tabControl1.Controls.Add(this.tabTree);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(260, 50);
+            this.tabControl1.ItemSize = new System.Drawing.Size(230, 50);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -357,7 +366,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            4,
+            6,
             0,
             0,
             65536});
@@ -740,6 +749,75 @@
             0});
             this.nudSnapDistance.ValueChanged += new System.EventHandler(this.nudSnapDistance_ValueChanged);
             // 
+            // tabTree
+            // 
+            this.tabTree.Controls.Add(this.label8);
+            this.tabTree.Controls.Add(this.label5);
+            this.tabTree.Controls.Add(this.groupBox9);
+            this.tabTree.Location = new System.Drawing.Point(4, 54);
+            this.tabTree.Name = "tabTree";
+            this.tabTree.Size = new System.Drawing.Size(948, 470);
+            this.tabTree.TabIndex = 14;
+            this.tabTree.Text = "Tree Plant";
+            this.tabTree.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(617, 273);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(228, 25);
+            this.label8.TabIndex = 81;
+            this.label8.Text = "Range: 10 to 250 cm";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(617, 227);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(206, 25);
+            this.label5.TabIndex = 80;
+            this.label5.Text = "Set to 0 to turn off";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.nudTreeSpacing);
+            this.groupBox9.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.groupBox9.Location = new System.Drawing.Point(591, 81);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(274, 142);
+            this.groupBox9.TabIndex = 69;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Spacing Distance (cm)";
+            // 
+            // nudTreeSpacing
+            // 
+            this.nudTreeSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudTreeSpacing.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudTreeSpacing.Location = new System.Drawing.Point(23, 40);
+            this.nudTreeSpacing.Maximum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            this.nudTreeSpacing.Name = "nudTreeSpacing";
+            this.nudTreeSpacing.Size = new System.Drawing.Size(184, 85);
+            this.nudTreeSpacing.TabIndex = 66;
+            this.nudTreeSpacing.Value = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.nudTreeSpacing.ValueChanged += new System.EventHandler(this.nudTreeSpacing_ValueChanged);
+            // 
             // FormDisplaySettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -779,6 +857,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
+            this.tabTree.ResumeLayout(false);
+            this.tabTree.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudTreeSpacing)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -831,5 +913,10 @@
         private System.Windows.Forms.NumericUpDown nudSnapDistance;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.NumericUpDown nudSnapDistanceSmall;
+        private System.Windows.Forms.TabPage tabTree;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.NumericUpDown nudTreeSpacing;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
     }
 }

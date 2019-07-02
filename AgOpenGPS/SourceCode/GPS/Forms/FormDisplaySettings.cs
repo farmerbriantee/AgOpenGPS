@@ -8,7 +8,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private decimal triResolution, minFixStepDistance, boundaryDistance;
+        private decimal triResolution, minFixStepDistance, boundaryDistance, treeSpacing;
         private int lightbarCmPerPixie, snapDistance, snapDistanceSmall;
         private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
         private string headingFromWhichSource;
@@ -34,6 +34,9 @@ namespace AgOpenGPS
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
+
+            treeSpacing = (decimal)Properties.Settings.Default.setDistance_TreeSpacing;
+            nudTreeSpacing.Value = treeSpacing;
 
             nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
             nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
@@ -78,6 +81,9 @@ namespace AgOpenGPS
 
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
+
+            mf.vehicle.treeSpacing = (double)treeSpacing;
+            Properties.Settings.Default.setDistance_TreeSpacing = mf.vehicle.treeSpacing;
 
             Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
 
@@ -150,6 +156,15 @@ namespace AgOpenGPS
         }
 
         #endregion DisplayCalcs
+
+        #region Tree
+
+        private void nudTreeSpacing_ValueChanged(object sender, EventArgs e)
+        {
+            treeSpacing = nudTreeSpacing.Value;
+        }
+
+        #endregion Tree
 
         private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
         {

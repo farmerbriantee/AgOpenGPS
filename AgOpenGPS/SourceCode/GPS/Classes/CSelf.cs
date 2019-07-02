@@ -55,6 +55,24 @@ namespace AgOpenGPS
         }
     }
 
+    public class CSelfPathPt
+    {
+        public double easting { get; set; }
+        public double northing { get; set; }
+        public double heading { get; set; }
+        public double speed { get; set; }
+
+        //constructor
+        public CSelfPathPt(double _easting, double _northing, double _heading, double _speed)
+        {
+            easting = _easting;
+            northing = _northing;
+            heading = _heading;
+            speed = _speed;
+        }
+    }
+
+
     public class CSelf
     {
         private readonly FormGPS mf;
@@ -77,7 +95,7 @@ namespace AgOpenGPS
         public double steerAngleSD, rEastSD, rNorthSD, ppRadiusSD;
 
         //the dubins path for intertransport
-        public List<CRecPathPt> dubList = new List<CRecPathPt>();
+        public List<CSelfPathPt> dubList = new List<CSelfPathPt>();
 
         public int dubListCount;
 
@@ -440,36 +458,6 @@ namespace AgOpenGPS
 
         private void GetDubinsPath(vec3 goal)
         {
-            //CDubins dubPath = new CDubins();
-
-            ////
-            //pivotPos = mf.pivotAxlePos;
-
-            ////bump it forward
-            //vec3 pt2 = new vec3
-            //{
-            //    easting = pivotPos.easting + (Math.Sin(pivotPos.heading) * 4),
-            //    northing = pivotPos.northing + (Math.Cos(pivotPos.heading) * 4),
-            //    heading = pivotPos.heading
-            //};
-
-            ////get the dubins path vec3 point coordinates of turn
-            //dubinsList.Clear();
-            //dubinsList = dubPath.GenerateDubins(pt2, goal);
-
-            //dubinsList.Insert(0, mf.pivotAxlePos);
-
-            ////transfer point list to recPath class point style
-            //dubList.Clear();
-            //for (int i = 0; i < dubinsList.Count; i++)
-            //{
-            //    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 5.0, false);
-            //    dubList.Add(pt);
-            //}
-
-            ////no longer needed
-            //dubinsList?.Clear();
-
             CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.0;
             CDubins dubPath = new CDubins();
 
@@ -498,7 +486,7 @@ namespace AgOpenGPS
                 //transfer point list to recPath class point style
                 for (int i = 0; i < dubinsList.Count; i++)
                 {
-                    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 9.0, false);
+                    CSelfPathPt pt = new CSelfPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 9.0);
                     dubList.Add(pt);
                 }
                 return;
@@ -530,7 +518,7 @@ namespace AgOpenGPS
                 {
                     for (int i = 0; i < dubinsList.Count; i++)
                     {
-                        CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 10.0, false);
+                        CSelfPathPt pt = new CSelfPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 10.0);
                         dubList.Add(pt);
                     }
                 }
@@ -541,7 +529,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < mazeList.Count; i++)
                 {
-                    CRecPathPt pt = new CRecPathPt(mazeList[i].easting, mazeList[i].northing, mazeList[i].heading, 15.0, false);
+                    CSelfPathPt pt = new CSelfPathPt(mazeList[i].easting, mazeList[i].northing, mazeList[i].heading, 15.0);
                     dubList.Add(pt);
                 }
 
@@ -549,7 +537,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < dubinsList.Count; i++)
                 {
-                    CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 11.0, false);
+                    CSelfPathPt pt = new CSelfPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 11.0);
                     dubList.Add(pt);
                 }
                 return;

@@ -1,13 +1,11 @@
-//The 3.3V version
+//The 3.3v version
 #include "MMA8452Q.h"
 
 //It says 1015 but is used for both the ADS1015 and the ADS1115
 #include "ADS1015.h"
 
+//For I2C communication
 #include <Wire.h>
-
-#include <EtherCard.h>
-#include <IPAddress.h> 
 
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
@@ -29,18 +27,18 @@
                                         // Set to 1 to use Y axis of MMA
 
                                         // When tractor rolls to the right, it should show positive angle
-  #define IsRollToRightNotPositive 0    // Set to 0 if angle is positive to the right
+  #define IsRollToRightNotPositive 0    // Set to 0 if angle is positive
                                         // Set to 1 if roll to right shows negative
-
+  
                                         //using the dogs or not
-  #define IsUsingDogs2 0                //set to 0 if using MMA
+  #define IsUsingDogs2 1                //set to 0 if using MMA
                                         //set to 1 if using DOGS2
-                                    
+                                  
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
   //##########################################################################################################
 
- //instance of inclinometer 0x2A
+  //instance of inclinometer 0x2A
   MMA8452Q MMA;
 
   //instance of A/D convertor 0x48
@@ -54,7 +52,7 @@
   #define REMOTE_PIN 8  //PB0
   
   //ethercard 10,11,12,13   
-   
+  
   //loop time variables in microseconds
   const unsigned int LOOP_TIME = 100; //10hz
   unsigned int lastTime = LOOP_TIME;
@@ -70,7 +68,8 @@
   const float varRoll = 0.5; // variance,
   const float varProcess = 0.001; //smaller is more filtering
 
-  //program flow
+   //program flow
+  float rollDogs = 0;
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
@@ -101,65 +100,24 @@
   float   maxIntErr = 200; //anti windup max
   float maxIntegralValue = 20; //max PWM value for integral PID component
 
-  //Array to send data back to AgOpenGPS
-  byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
-  
-  // ethernet interface ip address
-  static byte myip[] = { 192,168,1,77 };
-  // gateway ip address
-  static byte gwip[] = { 192,168,1,1 };
-  //DNS- you just need one anyway
-  static byte myDNS[] = { 8,8,8,8 };
-  //mask
-  static byte mask[] = { 255,255,255,0 };
-  //this is port of this module
-  unsigned int portMy = 5577; 
-  
-  //sending back to where and which port
-  static byte ipDestination[] = {192, 168, 1, 255};
-  unsigned int portDestination = 9999; 
-  
-  // ethernet mac address - must be unique on your network
-  static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
-  
-  // udp send and receive buffer
-  byte Ethernet::buffer[200]; 
-  
 void setup()
 {
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP); 
   pinMode(STEERSW_PIN, INPUT_PULLUP); 
-  pinMode(REMOTE_PIN, INPUT_PULLUP); 
-  pinMode(DIR_PIN, OUTPUT); //D4 PD4
+	pinMode(REMOTE_PIN, INPUT_PULLUP); 
+	pinMode(DIR_PIN, OUTPUT); //D4 PD4
 
-  //set up communication
-  Wire.begin();
-  Serial.begin(38400);
+	//set up communication
+	Wire.begin();
+	Serial.begin(38400);
 
   // MMA8452 Inclinometer      
   if (!MMA.init()) 
     Serial.println("MMA init fails!!");
     
   //ads.setGain(GAIN_ONE);
- 
-  //Ethernet setup
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
-    Serial.println(F("Failed to access Ethernet controller"));
-
-  //set up connection
-  ether.staticSetup(myip, gwip, myDNS, mask); 
-  ether.printIp("IP:  ", ether.myip);
-  ether.printIp("GW:  ", ether.gwip);
-  ether.printIp("DNS: ", ether.dnsip);
-
-  //set up the pgn for returning data
-  toSend[0] = 0x7F;
-  toSend[1] = 0xFD;
-  
-  //register udpSerialPrint() to port 8888
-  ether.udpServerListenOnPort(&udpSteerRecv, 8888);
-  }
+}
 
 void loop()
 {
@@ -183,7 +141,6 @@ void loop()
 			serialResetTimer = 0;
 		}
 
-    //inclinometer
 
     if (IsUsingDogs2)
     {
@@ -193,11 +150,12 @@ void loop()
     }
     else
     {
+  		//inclinometer
       if (MMA.available()) //is there data available
       {      
         MMA.read(); // Reads only "x and y" accel
-      }   
-       
+      }    
+      
       //if is set to 1 //get the roll from MMA - value from 0 to 1
       if (UseMMA_Y_Axis) rollK = MMA.cy * 90 * 16; //UseMMa_Y_Axis is set to 1
       else rollK = MMA.cx * 90 * 16; 
@@ -226,9 +184,10 @@ void loop()
     steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Differential Mode 
     steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     
-    steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * 0.01 * Kd) );   //read the steering position sensor
+    steeringPosition = (steeringPosition - steeringPositionZero - (XeRoll * Kd/10 ) );   //read the steering position sensor
     if (SteeringRightIsNotPositive) steeringPosition *= -1.0;
-    
+
+    /*
     //close enough to center, remove any integral correction
     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
     else
@@ -249,9 +208,10 @@ void loop()
         steerAngleSetPoint += corr;
       }
     }
+    */
     
 		//convert position to steer angle.
-    steerAngleActual = (steeringPosition) / steerSensorCounts;
+		steerAngleActual = (steeringPosition) / steerSensorCounts;
 
     //normal autosteer all ready to go
 		if (watchdogTimer < 10)
@@ -267,103 +227,85 @@ void loop()
 			motorDrive(); //out to motors the pwm value
 		}
 
-    int temp;
-    
-    //actual steer angle
-    temp = (100 * steerAngleActual);
-    toSend[2] = (byte)(temp >> 8);
-    toSend[3] = (byte)(temp);
-      
-    //setpoint steer angle  --- * 100 in degrees
-    temp = (100 * steerAngleSetPoint);
-    toSend[4] = (byte)(temp >> 8);
-    toSend[5] = (byte)(temp);
-    
-    //Vehicle roll --- * 16 in degrees
-    temp = (int)XeRoll;
-    toSend[6] = (byte)(temp >> 8);
-    toSend[7] = (byte)(temp);
-        
-    //switch byte
-    toSend[8] = switchByte;
+		//Send to agopenGPS **** you must send 5 numbers ****
+		Serial.print(steerAngleActual * 100); //The actual steering angle in degrees times 100
+		Serial.print(",");
 
-    //pwm value
-    toSend[9] = pwmDisplay;
+		// *******  steer angle setpoint
+    Serial.print(steerAngleSetPoint * 100); //setpoint in degrees * 100
+		Serial.print(",");
 
-    //off to AOG
-    ether.sendUdp(toSend, sizeof(toSend), portMy, ipDestination, portDestination);
+    //heading 
+    Serial.print(rollDogs);
+    Serial.print(",");
 
-      Serial.println(rollK);
-       
+		//*******  if no roll is installed, send 9999
+		//Serial.print(9999);
+		Serial.print((int)XeRoll); //roll in degrees * 16
+		Serial.print(",");
+
+    Serial.println(switchByte); //steering switch status
     
+		Serial.flush();   // flush out buffer
 	} //end of timed loop
 
-  delay(10);
-  //this must be called for ethercard functions to work.
-  ether.packetLoop(ether.packetReceive());  
-  
-}  //****************************************************************************************  
+  //****************************************************************************************
+  //This runs continuously, outside of the timed loop, keeps checking UART for new data
+  // header high/low, relay byte, speed byte, high distance, low distance, Steer high, steer low
+	if (Serial.available() > 0 && !isDataFound && !isSettingFound) //find the header, 127H + 254L = 32766
+	{
+		int temp = Serial.read();
+		header = tempHeader << 8 | temp;                //high,low bytes to make int
+		tempHeader = temp;                              //save for next time
+		if (header == 32766) isDataFound = true;        //Do we have a match?
+		if (header == 32764) isSettingFound = true;     //Do we have a match?
+	}
 
-//callback when received packets
-void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port, byte *data, uint16_t len)
-{
-  /* IPAddress src(src_ip[0],src_ip[1],src_ip[2],src_ip[3]); 
-  Serial.print("dPort:");  Serial.print(dest_port);
-  Serial.print("  sPort: ");  Serial.print(src_port); 
-  Serial.print("  sIP: ");  ether.printIp(src_ip);  Serial.println("  end");*/
+	//Data Header has been found, so the next 6 bytes are the data
+	if (Serial.available() > 7 && isDataFound)
+	{
+		isDataFound = false;
+		relay = Serial.read();          // read relay control from AgOpenGPS
+		gpsSpeed = Serial.read() >> 2;  //actual speed times 4, single byte
 
-  //for (int i = 0; i < len; i++) {
-    //Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println(len);
+		//distance from the guidance line in mm
+		distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
 
-    if (data[0] == 0x7F && data[1] == 0xFE) //Data
-    {
-      relay = data[2];   // read relay control from AgOpenGPS     
-      gpsSpeed = data[3] >> 2;  //actual speed times 4, single byte
-  
-      //distance from the guidance line in mm
-      distanceFromLine = (float)(data[4] << 8 | data[5]);   //high,low bytes     
-  
-      //set point steer angle * 10 is sent
-      steerAngleSetPoint = ((float)(data[6] << 8 | data[7])); //high low bytes 
-      steerAngleSetPoint *= 0.01;  
+		//set point steer angle * 10 is sent
+		steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes
 
-      if (distanceFromLine == 32020 | gpsSpeed < 1 | steerSwitch == 1)
-      {
-        watchdogTimer = 12;//turn off steering motor
-      }
-      else          //valid conditions to turn on autosteer
-      {
-        //bitSet(PINB, 5);   //turn LED on
-        watchdogTimer = 0;  //reset watchdog
-      }
-      /*    
-      Serial.print(IMU.euler.head);
-      Serial.print(",");    
-      Serial.print(steerAngleActual);   //the pwm value to solenoids or motor
-      Serial.print(",");
-      Serial.println(XeRoll);
-       */
-       return;
-    }
+		//auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
+		if (distanceFromLine == 32020 | gpsSpeed < 1 | steerSwitch == 1)
+		{
+			watchdogTimer = 12;//turn off steering motor
+		}
+		else          //valid conditions to turn on autosteer
+		{
+			watchdogTimer = 0;  //reset watchdog
+			serialResetTimer = 0; //if serial buffer is getting full, empty it
+		}
 
-    //autosteer settings
-    if (data[0] == 0x7F && data[1] == 0xFC)
-    {
-      Kp = (float)data[2] * 1.0;      // read Kp from AgOpenGPS
-      Ki = (float)data[3] * 0.001;    // read Ki from AgOpenGPS
-      Kd = (float)data[4] * 1.0;      // read Kd from AgOpenGPS
-      Ko = (float)data[5] * 0.1;      // read Ko from AgOpenGPS
-      
-      steeringPositionZero = 1530 + data[6];  //read steering zero offset
-      
-      minPWMValue = data[7];          //read the minimum amount of PWM for instant on
-      maxIntegralValue = data[8]*0.1; //
-      
-      steerSensorCounts = data[9];    //divisor for counts to degrees
+    //uturn byte read in
+    uTurn = Serial.read();
+	}
 
-      //diagnostics
-      for (int i = 0; i < len; i++) {
-        Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println("<--");
-    }
+	//Settings Header has been found, 8 bytes are the settings
+	if (Serial.available() > 7 && isSettingFound)
+	{
+		isSettingFound = false;  //reset the flag
+
+		//change the factors as required for your own PID values
+	  Kp = (float)Serial.read() * 1.0;      // read Kp from AgOpenGPS
+		Ki = (float)Serial.read() * 1.0;    // read Ki from AgOpenGPS
+		Kd = (float)Serial.read() * 1.0;      // read Kd from AgOpenGPS
+		Ko = (float)Serial.read() * 0.1;      // read Ko from AgOpenGPS
+   
+		steeringPositionZero =  1530 + Serial.read();  //read steering zero offset
+    
+    minPWMValue = Serial.read();                 //read the minimum amount of PWM for instant on
+    
+		maxIntegralValue = Serial.read()*0.1;   //
+		steerSensorCounts = Serial.read();      //
+	}
 }
 

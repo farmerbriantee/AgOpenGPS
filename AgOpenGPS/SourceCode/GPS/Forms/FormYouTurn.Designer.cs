@@ -155,11 +155,6 @@
             this.btnYouTurnSemiCircle = new System.Windows.Forms.Button();
             this.btnYouTurnRecord = new System.Windows.Forms.Button();
             this.btnYouTurnCustom = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnDewLoop4 = new System.Windows.Forms.Button();
-            this.btnDewLoop2RightOrLeft = new System.Windows.Forms.Button();
-            this.btnDewLoop2 = new System.Windows.Forms.Button();
-            this.label45 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabEdit.SuspendLayout();
             this.tabExit.SuspendLayout();
@@ -192,7 +187,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(774, 371);
+            this.btnCancel.Location = new System.Drawing.Point(755, 361);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 111);
@@ -206,7 +201,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOK.Location = new System.Drawing.Point(774, 546);
+            this.btnOK.Location = new System.Drawing.Point(755, 536);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(69, 109);
@@ -482,6 +477,7 @@
             // 
             // tabExit
             // 
+            this.tabExit.BackColor = System.Drawing.Color.LavenderBlush;
             this.tabExit.Controls.Add(this.nudExit7);
             this.tabExit.Controls.Add(this.cboxExitAction7);
             this.tabExit.Controls.Add(this.cboxExitFunc7);
@@ -524,7 +520,6 @@
             this.tabExit.Size = new System.Drawing.Size(744, 594);
             this.tabExit.TabIndex = 2;
             this.tabExit.Text = "Exit";
-            this.tabExit.UseVisualStyleBackColor = true;
             // 
             // nudExit7
             // 
@@ -985,6 +980,7 @@
             // 
             // tabEnter
             // 
+            this.tabEnter.BackColor = System.Drawing.Color.Honeydew;
             this.tabEnter.Controls.Add(this.label20);
             this.tabEnter.Controls.Add(this.nudEnter7);
             this.tabEnter.Controls.Add(this.cboxEnterAction7);
@@ -1028,7 +1024,6 @@
             this.tabEnter.Size = new System.Drawing.Size(744, 594);
             this.tabEnter.TabIndex = 1;
             this.tabEnter.Text = "Entry";
-            this.tabEnter.UseVisualStyleBackColor = true;
             // 
             // label20
             // 
@@ -1494,10 +1489,10 @@
             this.btnTurnAllOff.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTurnAllOff.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTurnAllOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTurnAllOff.Location = new System.Drawing.Point(663, 37);
+            this.btnTurnAllOff.Location = new System.Drawing.Point(663, 24);
             this.btnTurnAllOff.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTurnAllOff.Name = "btnTurnAllOff";
-            this.btnTurnAllOff.Size = new System.Drawing.Size(61, 120);
+            this.btnTurnAllOff.Size = new System.Drawing.Size(61, 95);
             this.btnTurnAllOff.TabIndex = 132;
             this.btnTurnAllOff.Text = "Turn All Off";
             this.btnTurnAllOff.Click += new System.EventHandler(this.btnTurnAllOff_Click);
@@ -1509,10 +1504,10 @@
             this.btnToggle6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle6.Location = new System.Drawing.Point(29, 110);
+            this.btnToggle6.Location = new System.Drawing.Point(29, 80);
             this.btnToggle6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle6.Name = "btnToggle6";
-            this.btnToggle6.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle6.Size = new System.Drawing.Size(180, 39);
             this.btnToggle6.TabIndex = 137;
             this.btnToggle6.Text = "Toggle 6";
             this.btnToggle6.UseVisualStyleBackColor = false;
@@ -1525,10 +1520,10 @@
             this.btnToggle3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle3.Location = new System.Drawing.Point(29, 37);
+            this.btnToggle3.Location = new System.Drawing.Point(29, 24);
             this.btnToggle3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle3.Name = "btnToggle3";
-            this.btnToggle3.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle3.Size = new System.Drawing.Size(180, 39);
             this.btnToggle3.TabIndex = 134;
             this.btnToggle3.Text = "Toggle 3";
             this.btnToggle3.UseVisualStyleBackColor = false;
@@ -1541,10 +1536,10 @@
             this.btnToggle7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle7.Location = new System.Drawing.Point(234, 110);
+            this.btnToggle7.Location = new System.Drawing.Point(234, 80);
             this.btnToggle7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle7.Name = "btnToggle7";
-            this.btnToggle7.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle7.Size = new System.Drawing.Size(180, 39);
             this.btnToggle7.TabIndex = 138;
             this.btnToggle7.Text = "Toggle 7";
             this.btnToggle7.UseVisualStyleBackColor = false;
@@ -1557,10 +1552,10 @@
             this.btnToggle8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle8.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle8.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle8.Location = new System.Drawing.Point(446, 110);
+            this.btnToggle8.Location = new System.Drawing.Point(446, 80);
             this.btnToggle8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle8.Name = "btnToggle8";
-            this.btnToggle8.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle8.Size = new System.Drawing.Size(180, 39);
             this.btnToggle8.TabIndex = 139;
             this.btnToggle8.Text = "Toggle 8";
             this.btnToggle8.UseVisualStyleBackColor = false;
@@ -1573,10 +1568,10 @@
             this.btnToggle5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle5.Location = new System.Drawing.Point(446, 37);
+            this.btnToggle5.Location = new System.Drawing.Point(446, 24);
             this.btnToggle5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle5.Name = "btnToggle5";
-            this.btnToggle5.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle5.Size = new System.Drawing.Size(180, 39);
             this.btnToggle5.TabIndex = 136;
             this.btnToggle5.Text = "Toggle 5";
             this.btnToggle5.UseVisualStyleBackColor = false;
@@ -1587,7 +1582,7 @@
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceDn.Image")));
-            this.btnDistanceDn.Location = new System.Drawing.Point(660, 480);
+            this.btnDistanceDn.Location = new System.Drawing.Point(655, 447);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
             this.btnDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1602,10 +1597,10 @@
             this.btnToggle4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle4.Location = new System.Drawing.Point(234, 37);
+            this.btnToggle4.Location = new System.Drawing.Point(234, 24);
             this.btnToggle4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle4.Name = "btnToggle4";
-            this.btnToggle4.Size = new System.Drawing.Size(180, 47);
+            this.btnToggle4.Size = new System.Drawing.Size(180, 39);
             this.btnToggle4.TabIndex = 135;
             this.btnToggle4.Text = "Toggle 4";
             this.btnToggle4.UseVisualStyleBackColor = false;
@@ -1616,7 +1611,7 @@
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceUp.Image")));
-            this.btnDistanceUp.Location = new System.Drawing.Point(564, 480);
+            this.btnDistanceUp.Location = new System.Drawing.Point(559, 447);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
             this.btnDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1629,7 +1624,7 @@
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistance.Location = new System.Drawing.Point(595, 424);
+            this.lblDistance.Location = new System.Drawing.Point(590, 391);
             this.lblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(95, 45);
@@ -1640,7 +1635,7 @@
             // 
             this.lblWhenTrig.AutoSize = true;
             this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhenTrig.Location = new System.Drawing.Point(559, 365);
+            this.lblWhenTrig.Location = new System.Drawing.Point(554, 332);
             this.lblWhenTrig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWhenTrig.Name = "lblWhenTrig";
             this.lblWhenTrig.Size = new System.Drawing.Size(154, 25);
@@ -1651,7 +1646,7 @@
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(344, 365);
+            this.label48.Location = new System.Drawing.Point(301, 332);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(173, 50);
@@ -1663,7 +1658,7 @@
             this.btnTriggerDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceDn.Image")));
-            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(445, 480);
+            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(402, 447);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
             this.btnTriggerDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1676,7 +1671,7 @@
             this.btnTriggerDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceUp.Image")));
-            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(349, 480);
+            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(306, 447);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
             this.btnTriggerDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1689,7 +1684,7 @@
             this.lblTriggerDistance.AutoSize = true;
             this.lblTriggerDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblTriggerDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTriggerDistance.Location = new System.Drawing.Point(380, 424);
+            this.lblTriggerDistance.Location = new System.Drawing.Point(337, 391);
             this.lblTriggerDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTriggerDistance.Name = "lblTriggerDistance";
             this.lblTriggerDistance.Size = new System.Drawing.Size(95, 45);
@@ -1698,6 +1693,7 @@
             // 
             // tabYouTurn
             // 
+            this.tabYouTurn.BackColor = System.Drawing.Color.AliceBlue;
             this.tabYouTurn.Controls.Add(this.btnGeoFenceDistanceDn);
             this.tabYouTurn.Controls.Add(this.btnGeoFenceDistanceUp);
             this.tabYouTurn.Controls.Add(this.label49);
@@ -1729,14 +1725,13 @@
             this.tabYouTurn.Size = new System.Drawing.Size(744, 594);
             this.tabYouTurn.TabIndex = 0;
             this.tabYouTurn.Text = "U Turn";
-            this.tabYouTurn.UseVisualStyleBackColor = true;
             // 
             // btnGeoFenceDistanceDn
             // 
             this.btnGeoFenceDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnGeoFenceDistanceDn.Image")));
-            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(228, 480);
+            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(141, 447);
             this.btnGeoFenceDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceDn.Name = "btnGeoFenceDistanceDn";
             this.btnGeoFenceDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1749,7 +1744,7 @@
             this.btnGeoFenceDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnGeoFenceDistanceUp.Image")));
-            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(132, 480);
+            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(45, 447);
             this.btnGeoFenceDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceUp.Name = "btnGeoFenceDistanceUp";
             this.btnGeoFenceDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1761,7 +1756,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(127, 365);
+            this.label49.Location = new System.Drawing.Point(40, 332);
             this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(161, 50);
@@ -1773,7 +1768,7 @@
             this.lblGeoFenceDistance.AutoSize = true;
             this.lblGeoFenceDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblGeoFenceDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeoFenceDistance.Location = new System.Drawing.Point(165, 424);
+            this.lblGeoFenceDistance.Location = new System.Drawing.Point(78, 391);
             this.lblGeoFenceDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeoFenceDistance.Name = "lblGeoFenceDistance";
             this.lblGeoFenceDistance.Size = new System.Drawing.Size(95, 45);
@@ -1784,7 +1779,7 @@
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(27, 169);
+            this.label46.Location = new System.Drawing.Point(27, 145);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(96, 50);
@@ -1804,7 +1799,7 @@
             "4",
             "5",
             "6"});
-            this.cboxRowWidth.Location = new System.Drawing.Point(32, 406);
+            this.cboxRowWidth.Location = new System.Drawing.Point(148, 198);
             this.cboxRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxRowWidth.Name = "cboxRowWidth";
             this.cboxRowWidth.Size = new System.Drawing.Size(52, 47);
@@ -1815,7 +1810,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 368);
+            this.label1.Location = new System.Drawing.Point(143, 160);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 25);
@@ -1827,7 +1822,7 @@
             this.btnIsUsingDubins.BackColor = System.Drawing.Color.PaleGreen;
             this.btnIsUsingDubins.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIsUsingDubins.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 222);
+            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 198);
             this.btnIsUsingDubins.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnIsUsingDubins.Name = "btnIsUsingDubins";
             this.btnIsUsingDubins.Size = new System.Drawing.Size(91, 84);
@@ -1844,11 +1839,11 @@
             this.groupBox1.Controls.Add(this.btnYouTurnRecord);
             this.groupBox1.Controls.Add(this.btnYouTurnCustom);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(151, 182);
+            this.groupBox1.Location = new System.Drawing.Point(228, 153);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.groupBox1.Size = new System.Drawing.Size(573, 140);
+            this.groupBox1.Size = new System.Drawing.Size(507, 140);
             this.groupBox1.TabIndex = 133;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turn Patterns";
@@ -1858,7 +1853,7 @@
             this.btnYouTurnWideReturn.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnWideReturn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnWideReturn.Image = global::AgOpenGPS.Properties.Resources.WideReturn;
-            this.btnYouTurnWideReturn.Location = new System.Drawing.Point(264, 39);
+            this.btnYouTurnWideReturn.Location = new System.Drawing.Point(205, 39);
             this.btnYouTurnWideReturn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnWideReturn.Name = "btnYouTurnWideReturn";
             this.btnYouTurnWideReturn.Size = new System.Drawing.Size(83, 84);
@@ -1872,7 +1867,7 @@
             this.btnYouTurnKeyHole.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnKeyHole.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnKeyHole.Image = global::AgOpenGPS.Properties.Resources.KeyHole;
-            this.btnYouTurnKeyHole.Location = new System.Drawing.Point(12, 40);
+            this.btnYouTurnKeyHole.Location = new System.Drawing.Point(10, 40);
             this.btnYouTurnKeyHole.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnKeyHole.Name = "btnYouTurnKeyHole";
             this.btnYouTurnKeyHole.Size = new System.Drawing.Size(83, 84);
@@ -1886,7 +1881,7 @@
             this.btnYouTurnSemiCircle.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnSemiCircle.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnSemiCircle.Image = global::AgOpenGPS.Properties.Resources.SemiCircle;
-            this.btnYouTurnSemiCircle.Location = new System.Drawing.Point(134, 39);
+            this.btnYouTurnSemiCircle.Location = new System.Drawing.Point(107, 39);
             this.btnYouTurnSemiCircle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnSemiCircle.Name = "btnYouTurnSemiCircle";
             this.btnYouTurnSemiCircle.Size = new System.Drawing.Size(83, 84);
@@ -1901,7 +1896,7 @@
             this.btnYouTurnRecord.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnYouTurnRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnYouTurnRecord.Location = new System.Drawing.Point(478, 39);
+            this.btnYouTurnRecord.Location = new System.Drawing.Point(405, 39);
             this.btnYouTurnRecord.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnRecord.Name = "btnYouTurnRecord";
             this.btnYouTurnRecord.Size = new System.Drawing.Size(83, 84);
@@ -1916,7 +1911,7 @@
             this.btnYouTurnCustom.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnCustom.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnCustom.Image = global::AgOpenGPS.Properties.Resources.Custom;
-            this.btnYouTurnCustom.Location = new System.Drawing.Point(377, 39);
+            this.btnYouTurnCustom.Location = new System.Drawing.Point(318, 39);
             this.btnYouTurnCustom.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnCustom.Name = "btnYouTurnCustom";
             this.btnYouTurnCustom.Size = new System.Drawing.Size(83, 84);
@@ -1926,89 +1921,16 @@
             this.btnYouTurnCustom.UseVisualStyleBackColor = false;
             this.btnYouTurnCustom.Click += new System.EventHandler(this.btnYouTurnCustom_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Enabled = false;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(368, 90);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 25);
-            this.label2.TabIndex = 156;
-            this.label2.Text = "Direction";
-            this.label2.Visible = false;
-            // 
-            // btnDewLoop4
-            // 
-            this.btnDewLoop4.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnDewLoop4.Enabled = false;
-            this.btnDewLoop4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDewLoop4.Location = new System.Drawing.Point(482, 188);
-            this.btnDewLoop4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop4.Name = "btnDewLoop4";
-            this.btnDewLoop4.Size = new System.Drawing.Size(246, 39);
-            this.btnDewLoop4.TabIndex = 155;
-            this.btnDewLoop4.Text = "3R,4L,3L,3R,4R,3R,4R,2L ";
-            this.btnDewLoop4.UseVisualStyleBackColor = false;
-            this.btnDewLoop4.Visible = false;
-            this.btnDewLoop4.Click += new System.EventHandler(this.btnDewLoop4_Click);
-            // 
-            // btnDewLoop2RightOrLeft
-            // 
-            this.btnDewLoop2RightOrLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnDewLoop2RightOrLeft.Enabled = false;
-            this.btnDewLoop2RightOrLeft.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop2RightOrLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowTurnRight;
-            this.btnDewLoop2RightOrLeft.Location = new System.Drawing.Point(373, 129);
-            this.btnDewLoop2RightOrLeft.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop2RightOrLeft.Name = "btnDewLoop2RightOrLeft";
-            this.btnDewLoop2RightOrLeft.Size = new System.Drawing.Size(83, 84);
-            this.btnDewLoop2RightOrLeft.TabIndex = 154;
-            this.btnDewLoop2RightOrLeft.UseVisualStyleBackColor = false;
-            this.btnDewLoop2RightOrLeft.Visible = false;
-            this.btnDewLoop2RightOrLeft.Click += new System.EventHandler(this.btnDewLoop2RightOrLeft_Click);
-            // 
-            // btnDewLoop2
-            // 
-            this.btnDewLoop2.BackColor = System.Drawing.Color.PaleGreen;
-            this.btnDewLoop2.Enabled = false;
-            this.btnDewLoop2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDewLoop2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDewLoop2.Location = new System.Drawing.Point(482, 129);
-            this.btnDewLoop2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.btnDewLoop2.Name = "btnDewLoop2";
-            this.btnDewLoop2.Size = new System.Drawing.Size(246, 39);
-            this.btnDewLoop2.TabIndex = 153;
-            this.btnDewLoop2.Text = "2R,3L,2L,2R,3R,2L";
-            this.btnDewLoop2.UseVisualStyleBackColor = false;
-            this.btnDewLoop2.Visible = false;
-            this.btnDewLoop2.Click += new System.EventHandler(this.btnDewLoop2_Click);
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Enabled = false;
-            this.label45.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(554, 90);
-            this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(116, 25);
-            this.label45.TabIndex = 152;
-            this.label45.Text = "Dew Loop";
-            this.label45.Visible = false;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabYouTurn);
             this.tabControl1.Controls.Add(this.tabEnter);
             this.tabControl1.Controls.Add(this.tabExit);
-            this.tabControl1.Controls.Add(this.tabEdit);
             this.tabControl1.Controls.Add(this.tabHelp);
+            this.tabControl1.Controls.Add(this.tabEdit);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(148, 50);
-            this.tabControl1.Location = new System.Drawing.Point(10, 12);
+            this.tabControl1.Location = new System.Drawing.Point(2, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -2020,16 +1942,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 667);
+            this.ClientSize = new System.Drawing.Size(835, 657);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnDewLoop4);
-            this.Controls.Add(this.label45);
-            this.Controls.Add(this.btnDewLoop2);
-            this.Controls.Add(this.btnDewLoop2RightOrLeft);
             this.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -2064,7 +1981,6 @@
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -2175,13 +2091,8 @@
         private System.Windows.Forms.Label lblWhenTrig;
         private System.Windows.Forms.TabPage tabYouTurn;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnDewLoop4;
         private System.Windows.Forms.ComboBox cboxRowWidth;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnDewLoop2RightOrLeft;
-        private System.Windows.Forms.Button btnDewLoop2;
-        private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Button btnIsUsingDubins;
         private System.Windows.Forms.Button btnTurnAllOff;
         private System.Windows.Forms.Button btnToggle8;
