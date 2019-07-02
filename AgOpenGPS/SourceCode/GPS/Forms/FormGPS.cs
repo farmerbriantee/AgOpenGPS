@@ -66,12 +66,17 @@ namespace AgOpenGPS
         //for the NTRIP CLient counting
         private int ntripCounter = 10;
 
+        //whether or not to use Stanley control
+        public bool isStanleyUsed = true;
+
         //used to update the screen status bar etc
-        private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateThreeSecondCounter = 0;
+        private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateOneFifthCounter = 0, displayUpdateThreeSecondCounter = 0;
 
         private int threeSecondCounter = 0, threeSeconds = 0;
         private int oneSecondCounter = 0, oneSecond = 0;
         private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
+        private int oneFifthSecondCounter = 0, oneFifthSecond = 0;
+
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto
@@ -493,6 +498,11 @@ namespace AgOpenGPS
 
             // load all the gui elements in gui.designer.cs
             LoadGUI();
+
+            //Stanley guidance
+            isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            if (isStanleyUsed) btnStanley.Text = "StanLee";
+            else btnStanley.Text = "Pure P";
         }
 
         //form is closing so tidy up and save settings
@@ -831,31 +841,6 @@ namespace AgOpenGPS
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
         }
 
-        private void btnStartStopNtrip_Click(object sender, EventArgs e)
-        {
-            if (Properties.Settings.Default.setNTRIP_isOn)
-            {
-                if (isNTRIP_RequiredOn)
-                {
-                    ShutDownNTRIP();
-                    btnStartStopNtrip.Text = "Start";
-                    lblWatch.Text = "Stopped";
-                    lblNTRIPSeconds.Text = "Offline ";
-                    isNTRIP_RequiredOn = false;
-                }
-                else
-                {
-                    isNTRIP_RequiredOn = true;
-                    btnStartStopNtrip.Text = "Stop";
-                    lblWatch.Text = "Waiting";
-                }
-            }
-            else
-            {
-                TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
-            }
-        }
-
         //function to calculate the width of each section and update
         public void SectionCalcWidths()
         {
@@ -1064,6 +1049,7 @@ namespace AgOpenGPS
 
             //change images to reflect on off
             btnABLine.Image = Properties.Resources.ABLineOff;
+            ABLine.isBtnABLineOn = false;
 
             DisableYouTurnButtons();
 
@@ -1128,11 +1114,6 @@ namespace AgOpenGPS
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
 
-            //reset all Dew loop stuff
-            yt.dew2Index = 0;
-            yt.isDew2Set = false;
-            yt.isDew4Set = false;
-            yt.dew4Index = 0;
             yt.ResetYouTurn();
         }
 

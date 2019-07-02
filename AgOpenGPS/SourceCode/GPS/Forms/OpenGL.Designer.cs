@@ -174,29 +174,9 @@ namespace AgOpenGPS
                 gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
 
-                //if (bnd.bndArr[0].isSet) mazeGrid.DrawArr();
-                //if (bnd.bndArr[0].isSet) rateMap.DrawArr();
-                //if (bnd.bndArr[0].isSet) rateMap.DrawBob();
-
-                //GL.PointSize(4.0f);
-                //GL.Begin(PrimitiveType.Points);
-                //GL.Color3(0.915f, 0.920f, 0.150f);
-                //if (recPath.mazeList != null)
-                //{
-                //    int ptCount = recPath.mazeList.Count;
-                //    for (int h = 0; h < ptCount; h++)
-                //    {
-                //        GL.Vertex3(recPath.mazeList[h].easting, recPath.mazeList[h].northing, 0);
-
-                //    }
-                //    GL.End();
-                //}
-
-
                 //draw generated path
                 //genPath.DrawGeneratedPath();
                 self.DrawDubins();
-
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
@@ -395,6 +375,8 @@ namespace AgOpenGPS
 
                     //return back
                     GL.PopMatrix();
+                    GL.LineWidth(1);
+
                 }
 
 
@@ -528,12 +510,6 @@ namespace AgOpenGPS
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
                 }
-
-                //stop the timer and calc how long it took to do calcs and draw
-                frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
-
-                //reset the timer         
-                swFrame.Reset();
             }
         }
 
@@ -912,14 +888,13 @@ namespace AgOpenGPS
             BuildRelayByte();
 
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 120)       //2 counts per second X 60 seconds = 120 counts per minute.
+            if (saveCounter > 59)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
                     FileSaveContour();
-                    //FileSaveRecPath();
 
                     //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();

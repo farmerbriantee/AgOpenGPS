@@ -46,6 +46,7 @@ namespace AgOpenGPS
         public void DrawWorldGrid(double _gridZoom)
         {
             GL.Color3(0, 0, 0);
+            //GL.LineWidth(1);
             GL.Begin(PrimitiveType.Lines);
             for (double num = eastingMin; num < eastingMax; num += _gridZoom)
             {

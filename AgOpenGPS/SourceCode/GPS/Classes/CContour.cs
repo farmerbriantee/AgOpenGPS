@@ -41,7 +41,7 @@ namespace AgOpenGPS
         private int A, B, C;
         public double abFixHeadingDelta, abHeading;
 
-        public bool isABSameAsFixHeading = true;
+        public bool isABSameAsVehicleHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
         //pure pursuit values
@@ -535,7 +535,7 @@ namespace AgOpenGPS
             }
 
             //if no boundaries, just return.
-            if (!mf.bnd.bndArr[0].isSet) return;
+            //if (!mf.bnd.bndArr[0].isSet) return;
 
             int ctCount = ctList.Count;
             if (ctCount < 6) return;
@@ -616,14 +616,14 @@ namespace AgOpenGPS
             for (int i = 1; i < cnt; i++)
             {
                 vec3 pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i-1].easting, arr[i + 1].northing - arr[i-1].northing);
                 if (pt3.heading < 0) pt3.heading += glm.twoPI;
                 ctList.Add(pt3);
             }
         }
 
         //determine distance from contour guidance line
-        public void DistanceFromContourLine(vec3 pivot)
+        public void DistanceFromContourLine(vec3 pivot, vec3 steer)
         {
             isValid = false;
             double minDistA = 1000000, minDistB = 1000000;
@@ -631,219 +631,340 @@ namespace AgOpenGPS
             //distanceFromCurrentLine = 9999;
             if (ptCount > 8)
             {
-                //find the closest 2 points to current fix
-                for (int t = 0; t < ptCount; t++)
+                if (mf.isStanleyUsed)
                 {
-                    double dist = ((pivot.easting - ctList[t].easting) * (pivot.easting - ctList[t].easting))
-                                    + ((pivot.northing - ctList[t].northing) * (pivot.northing - ctList[t].northing));
-                    if (dist < minDistA)
+                    //find the closest 2 points to current fix
+                    for (int t = 0; t < ptCount; t++)
                     {
-                        minDistB = minDistA;
-                        B = A;
-                        minDistA = dist;
-                        A = t;
-                    }
-                    else if (dist < minDistB)
-                    {
-                        minDistB = dist;
-                        B = t;
-                    }
-                }
-
-                //just need to make sure the points continue ascending in list order or heading switches all over the place
-                if (A > B) { C = A; A = B; B = C; }
-
-                //get the distance from currently active AB line
-                //x2-x1
-                double dx = ctList[B].easting - ctList[A].easting;
-                //z2-z1
-                double dy = ctList[B].northing - ctList[A].northing;
-
-                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
-
-                //abHeading = Math.Atan2(dz, dx);
-                abHeading = ctList[A].heading;
-
-                //how far from current AB Line is fix
-                distanceFromCurrentLine = ((dy * pivot.easting) - (dx * pivot.northing) + (ctList[B].easting
-                            * ctList[A].northing) - (ctList[B].northing * ctList[A].easting))
-                                / Math.Sqrt((dy * dy) + (dx * dx));
-
-                //are we on the right side or not
-                isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
-
-                //absolute the distance
-                distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
-
-                // ** Pure pursuit ** - calc point on ABLine closest to current position
-                double U = (((pivot.easting - ctList[A].easting) * dx) + ((pivot.northing - ctList[A].northing) * dy))
-                            / ((dx * dx) + (dy * dy));
-
-                rEastCT = ctList[A].easting + (U * dx);
-                rNorthCT = ctList[A].northing + (U * dy);
-
-                ////determine if the point is between 2 points initially determined
-                //double minx, maxx, miny, maxy;
-
-                //minx = Math.Min(ctList[A].northing, ctList[B].northing);
-                //maxx = Math.Max(ctList[A].northing, ctList[B].northing);
-
-                //miny = Math.Min(ctList[A].easting, ctList[B].easting);
-                //maxy = Math.Max(ctList[A].easting, ctList[B].easting);
-
-                //isValid = (rNorthCT >= minx && rNorthCT <= maxx) && (rEastCT >= miny && rEastCT <= maxy);
-                //if (!isValid)
-                //{
-                //    //invalid distance so tell AS module
-                //    distanceFromCurrentLine = 32000;
-                //    mf.guidanceLineDistanceOff = 32000;
-                //    return;
-                //}
-
-                //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
-                abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
-                if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
-
-                //used for accumulating distance to find goal point
-                double distSoFar;
-
-                //update base on autosteer settings and distance from line
-                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
-                mf.lookaheadActual = goalPointDistance;
-
-                // used for calculating the length squared of next segment.
-                double tempDist = 0.0;
-
-                if (abFixHeadingDelta >= glm.PIBy2)
-                {
-                    //counting down
-                    isABSameAsFixHeading = false;
-                    distSoFar = glm.Distance(ctList[A], rEastCT, rNorthCT);
-                    //Is this segment long enough to contain the full lookahead distance?
-                    if (distSoFar > goalPointDistance)
-                    {
-                        //treat current segment like an AB Line
-                        goalPointCT.easting = rEastCT - (Math.Sin(ctList[A].heading) * goalPointDistance);
-                        goalPointCT.northing = rNorthCT - (Math.Cos(ctList[A].heading) * goalPointDistance);
+                        double dist = ((steer.easting - ctList[t].easting) * (steer.easting - ctList[t].easting))
+                                        + ((steer.northing - ctList[t].northing) * (steer.northing - ctList[t].northing));
+                        if (dist < minDistA)
+                        {
+                            minDistB = minDistA;
+                            B = A;
+                            minDistA = dist;
+                            A = t;
+                        }
+                        else if (dist < minDistB)
+                        {
+                            minDistB = dist;
+                            B = t;
+                        }
                     }
 
-                    //multiple segments required
+                    //just need to make sure the points continue ascending in list order or heading switches all over the place
+                    if (A > B) { C = A; A = B; B = C; }
+
+                    //get the distance from currently active AB line
+                    //x2-x1
+                    double dx = ctList[B].easting - ctList[A].easting;
+                    //z2-z1
+                    double dy = ctList[B].northing - ctList[A].northing;
+
+                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
+
+                    abHeading = Math.Atan2(dx, dy);
+                    //abHeading = ctList[A].heading;
+
+                    //how far from current AB Line is fix
+                    distanceFromCurrentLine = ((dy * steer.easting) - (dx * steer.northing) + (ctList[B].easting
+                                * ctList[A].northing) - (ctList[B].northing * ctList[A].easting))
+                                    / Math.Sqrt((dy * dy) + (dx * dx));
+
+                    //are we on the right side or not
+                    isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
+
+                    //absolute the distance
+                    distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
+
+                    //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
+                    abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
+                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
+
+                    isABSameAsVehicleHeading = abFixHeadingDelta < glm.PIBy2;
+
+
+                    // calc point on ABLine closest to current position
+                    double U = (((steer.easting - ctList[A].easting) * dx) + ((steer.northing - ctList[A].northing) * dy))
+                                / ((dx * dx) + (dy * dy));
+
+                    rEastCT = ctList[A].easting + (U * dx);
+                    rNorthCT = ctList[A].northing + (U * dy);
+
+                    ////find closest point to goal to get heading. 
+                    //minDistA = 99999;
+                    //for (int t = 0; t < ptCount; t++)
+                    //{
+                    //    double dist = ((rEastCT - ctList[t].easting) * (rEastCT - ctList[t].easting))
+                    //                    + ((rNorthCT - ctList[t].northing) * (rNorthCT - ctList[t].northing));
+                    //    if (dist < minDistA)
+                    //    {
+                    //        A = t;
+                    //    }
+                    //}
+
+                    //abHeading = ctList[A].heading;
+
+                    //distance is negative if on left, positive if on right
+                    if (isABSameAsVehicleHeading)
+                    {
+                        if (!isOnRightSideCurrentLine)
+                        {
+                            distanceFromCurrentLine *= -1.0;
+                        }
+                        abFixHeadingDelta = (steer.heading - abHeading);
+                    }
+
+                    //opposite way so right is left
                     else
                     {
-                        //cycle thru segments and keep adding lengths. check if start and break if so.
-                        while (A > 0)
+                        if (isOnRightSideCurrentLine)
                         {
-                            B--; A--;
-                            tempDist = glm.Distance(ctList[B], ctList[A]);
-
-                            //will we go too far?
-                            if ((tempDist + distSoFar) > goalPointDistance)
-                            {
-                                //A++; B++;
-                                break; //tempDist contains the full length of next segment
-                            }
-                            else
-                            {
-                                distSoFar += tempDist;
-                            }
+                            distanceFromCurrentLine *= -1.0;
                         }
-
-                        double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                        t /= tempDist;
-
-                        goalPointCT.easting = (((1 - t) * ctList[B].easting) + (t * ctList[A].easting));
-                        goalPointCT.northing = (((1 - t) * ctList[B].northing) + (t * ctList[A].northing));
+                        abFixHeadingDelta = (steer.heading - abHeading + Math.PI);
                     }
+
+                    //Fix the circular error
+                    if (abFixHeadingDelta > Math.PI) abFixHeadingDelta -= Math.PI;
+                    else if (abFixHeadingDelta < Math.PI) abFixHeadingDelta += Math.PI;
+
+                    if (abFixHeadingDelta > glm.PIBy2) abFixHeadingDelta -= Math.PI;
+                    else if (abFixHeadingDelta < -glm.PIBy2) abFixHeadingDelta += Math.PI;
+
+                    abFixHeadingDelta *= mf.vehicle.stanleyHeadingErrorGain;
+                    if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
+                    if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
+
+                    steerAngleCT = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyGain) / ((mf.pn.speed * 0.277777) + 1));
+
+                    if (steerAngleCT > 0.74) steerAngleCT = 0.74;
+                    if (steerAngleCT < -0.74) steerAngleCT = -0.74;
+
+                    steerAngleCT = glm.toDegrees((steerAngleCT + abFixHeadingDelta) * -1.0);
+
+                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
+                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
+
+                    //Convert to millimeters
+                    distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
                 }
                 else
                 {
-                    //counting up
-                    isABSameAsFixHeading = true;
-                    distSoFar = glm.Distance(ctList[B], rEastCT, rNorthCT);
-
-                    //Is this segment long enough to contain the full lookahead distance?
-                    if (distSoFar > goalPointDistance)
+                    //find the closest 2 points to current fix
+                    for (int t = 0; t < ptCount; t++)
                     {
-                        //treat current segment like an AB Line
-                        goalPointCT.easting = rEastCT + (Math.Sin(ctList[A].heading) * goalPointDistance);
-                        goalPointCT.northing = rNorthCT + (Math.Cos(ctList[A].heading) * goalPointDistance);
+                        double dist = ((pivot.easting - ctList[t].easting) * (pivot.easting - ctList[t].easting))
+                                        + ((pivot.northing - ctList[t].northing) * (pivot.northing - ctList[t].northing));
+                        if (dist < minDistA)
+                        {
+                            minDistB = minDistA;
+                            B = A;
+                            minDistA = dist;
+                            A = t;
+                        }
+                        else if (dist < minDistB)
+                        {
+                            minDistB = dist;
+                            B = t;
+                        }
                     }
 
-                    //multiple segments required
-                    else
+                    //just need to make sure the points continue ascending in list order or heading switches all over the place
+                    if (A > B) { C = A; A = B; B = C; }
+
+                    //get the distance from currently active AB line
+                    //x2-x1
+                    double dx = ctList[B].easting - ctList[A].easting;
+                    //z2-z1
+                    double dy = ctList[B].northing - ctList[A].northing;
+
+                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
+
+                    //abHeading = Math.Atan2(dz, dx);
+                    abHeading = ctList[A].heading;
+
+                    //how far from current AB Line is fix
+                    distanceFromCurrentLine = ((dy * mf.pn.fix.easting) - (dx * mf.pn.fix.northing) + (ctList[B].easting
+                                * ctList[A].northing) - (ctList[B].northing * ctList[A].easting))
+                                    / Math.Sqrt((dy * dy) + (dx * dx));
+
+                    //are we on the right side or not
+                    isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
+
+                    //absolute the distance
+                    distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
+
+                    // ** Pure pursuit ** - calc point on ABLine closest to current position
+                    double U = (((pivot.easting - ctList[A].easting) * dx) + ((pivot.northing - ctList[A].northing) * dy))
+                                / ((dx * dx) + (dy * dy));
+
+                    rEastCT = ctList[A].easting + (U * dx);
+                    rNorthCT = ctList[A].northing + (U * dy);
+
+                    ////determine if the point is between 2 points initially determined
+                    //double minx, maxx, miny, maxy;
+
+                    //minx = Math.Min(ctList[A].northing, ctList[B].northing);
+                    //maxx = Math.Max(ctList[A].northing, ctList[B].northing);
+
+                    //miny = Math.Min(ctList[A].easting, ctList[B].easting);
+                    //maxy = Math.Max(ctList[A].easting, ctList[B].easting);
+
+                    //isValid = (rNorthCT >= minx && rNorthCT <= maxx) && (rEastCT >= miny && rEastCT <= maxy);
+                    //if (!isValid)
+                    //{
+                    //    //invalid distance so tell AS module
+                    //    distanceFromCurrentLine = 32000;
+                    //    mf.guidanceLineDistanceOff = 32000;
+                    //    return;
+                    //}
+
+                    //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
+                    abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
+                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
+
+                    //used for accumulating distance to find goal point
+                    double distSoFar;
+
+                    //update base on autosteer settings and distance from line
+                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
+                    mf.lookaheadActual = goalPointDistance;
+
+                    // used for calculating the length squared of next segment.
+                    double tempDist = 0.0;
+
+                    if (abFixHeadingDelta >= glm.PIBy2)
                     {
-                        //cycle thru segments and keep adding lengths. check if end and break if so.
-                        // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-                        while (B < ptCount - 1)
+                        //counting down
+                        isABSameAsVehicleHeading = false;
+                        distSoFar = glm.Distance(ctList[A], rEastCT, rNorthCT);
+                        //Is this segment long enough to contain the full lookahead distance?
+                        if (distSoFar > goalPointDistance)
                         {
-                            B++; A++;
-                            tempDist = glm.Distance(ctList[B], ctList[A]);
-
-                            //will we go too far?
-                            if ((tempDist + distSoFar) > goalPointDistance)
-                            {
-                                //A--; B--;
-                                break; //tempDist contains the full length of next segment
-                            }
-
-                            distSoFar += tempDist;
+                            //treat current segment like an AB Line
+                            goalPointCT.easting = rEastCT - (Math.Sin(ctList[A].heading) * goalPointDistance);
+                            goalPointCT.northing = rNorthCT - (Math.Cos(ctList[A].heading) * goalPointDistance);
                         }
 
-                        //xt = (((1 - t) * x0 + t * x1)
-                        //yt = ((1 - t) * y0 + t * y1))
+                        //multiple segments required
+                        else
+                        {
+                            //cycle thru segments and keep adding lengths. check if start and break if so.
+                            while (A > 0)
+                            {
+                                B--; A--;
+                                tempDist = glm.Distance(ctList[B], ctList[A]);
 
-                        double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                        t /= tempDist;
+                                //will we go too far?
+                                if ((tempDist + distSoFar) > goalPointDistance)
+                                {
+                                    //A++; B++;
+                                    break; //tempDist contains the full length of next segment
+                                }
+                                else
+                                {
+                                    distSoFar += tempDist;
+                                }
+                            }
 
-                        goalPointCT.easting = (((1 - t) * ctList[A].easting) + (t * ctList[B].easting));
-                        goalPointCT.northing = (((1 - t) * ctList[A].northing) + (t * ctList[B].northing));
+                            double t = (goalPointDistance - distSoFar); // the remainder to yet travel
+                            t /= tempDist;
+
+                            goalPointCT.easting = (((1 - t) * ctList[B].easting) + (t * ctList[A].easting));
+                            goalPointCT.northing = (((1 - t) * ctList[B].northing) + (t * ctList[A].northing));
+                        }
                     }
-                }
+                    else
+                    {
+                        //counting up
+                        isABSameAsVehicleHeading = true;
+                        distSoFar = glm.Distance(ctList[B], rEastCT, rNorthCT);
 
-                //calc "D" the distance from pivot axle to lookahead point
-                double goalPointDistanceSquared = glm.DistanceSquared(goalPointCT.northing, goalPointCT.easting, pivot.northing, pivot.easting);
+                        //Is this segment long enough to contain the full lookahead distance?
+                        if (distSoFar > goalPointDistance)
+                        {
+                            //treat current segment like an AB Line
+                            goalPointCT.easting = rEastCT + (Math.Sin(ctList[A].heading) * goalPointDistance);
+                            goalPointCT.northing = rNorthCT + (Math.Cos(ctList[A].heading) * goalPointDistance);
+                        }
 
-                //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
-                double localHeading = glm.twoPI - mf.fixHeading;
-                ppRadiusCT = goalPointDistanceSquared / (2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading)) + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))));
+                        //multiple segments required
+                        else
+                        {
+                            //cycle thru segments and keep adding lengths. check if end and break if so.
+                            // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
+                            while (B < ptCount - 1)
+                            {
+                                B++; A++;
+                                tempDist = glm.Distance(ctList[B], ctList[A]);
 
-                steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading))
-                    + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+                                //will we go too far?
+                                if ((tempDist + distSoFar) > goalPointDistance)
+                                {
+                                    //A--; B--;
+                                    break; //tempDist contains the full length of next segment
+                                }
 
-                if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
-                if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
+                                distSoFar += tempDist;
+                            }
 
-                if (ppRadiusCT < -500) ppRadiusCT = -500;
-                if (ppRadiusCT > 500) ppRadiusCT = 500;
+                            //xt = (((1 - t) * x0 + t * x1)
+                            //yt = ((1 - t) * y0 + t * y1))
 
-                radiusPointCT.easting = pivot.easting + (ppRadiusCT * Math.Cos(localHeading));
-                radiusPointCT.northing = pivot.northing + (ppRadiusCT * Math.Sin(localHeading));
+                            double t = (goalPointDistance - distSoFar); // the remainder to yet travel
+                            t /= tempDist;
 
-                //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
+                            goalPointCT.easting = (((1 - t) * ctList[A].easting) + (t * ctList[B].easting));
+                            goalPointCT.northing = (((1 - t) * ctList[A].northing) + (t * ctList[B].northing));
+                        }
+                    }
 
-                //clamp the steering angle to not exceed safe angular velocity
-                if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-                {
-                    steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
-                            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777)))
-                        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
-                }
-                //Convert to centimeters
-                distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
+                    //calc "D" the distance from pivot axle to lookahead point
+                    double goalPointDistanceSquared = glm.DistanceSquared(goalPointCT.northing, goalPointCT.easting, pivot.northing, pivot.easting);
 
-                //distance is negative if on left, positive if on right
-                //if you're going the opposite direction left is right and right is left
-                //double temp;
-                if (isABSameAsFixHeading)
-                {
-                    if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
-                }
+                    //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
+                    double localHeading = glm.twoPI - mf.fixHeading;
+                    ppRadiusCT = goalPointDistanceSquared / (2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading)) + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))));
 
-                //opposite way so right is left
-                else if (isOnRightSideCurrentLine)
-                {
-                    distanceFromCurrentLine *= -1.0;
+                    steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading))
+                        + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
+
+                    if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
+                    if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
+
+                    if (ppRadiusCT < -500) ppRadiusCT = -500;
+                    if (ppRadiusCT > 500) ppRadiusCT = 500;
+
+                    radiusPointCT.easting = pivot.easting + (ppRadiusCT * Math.Cos(localHeading));
+                    radiusPointCT.northing = pivot.northing + (ppRadiusCT * Math.Sin(localHeading));
+
+                    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
+                    double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
+
+                    //clamp the steering angle to not exceed safe angular velocity
+                    if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                    {
+                        steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
+                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777)))
+                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
+                    }
+                    //Convert to centimeters
+                    distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
+
+                    //distance is negative if on left, positive if on right
+                    //if you're going the opposite direction left is right and right is left
+                    //double temp;
+                    if (isABSameAsVehicleHeading)
+                    {
+                        if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
+                    }
+
+                    //opposite way so right is left
+                    else if (isOnRightSideCurrentLine)
+                    {
+                        distanceFromCurrentLine *= -1.0;
+                    }
                 }
 
                 //fill in the autosteer variables
@@ -931,7 +1052,7 @@ namespace AgOpenGPS
             //    GL.End();
             //}
 
-            if (mf.isPureDisplayOn)
+            if (mf.isPureDisplayOn && distanceFromCurrentLine != 32000 && !mf.isStanleyUsed)
             {
                 if (ppRadiusCT < 50 && ppRadiusCT > -50)
                 {
@@ -961,9 +1082,6 @@ namespace AgOpenGPS
                 //Draw lookahead Point
                 GL.PointSize(6.0f);
                 GL.Begin(PrimitiveType.Points);
-
-                //GL.Color(1.0f, 1.0f, 0.25f);
-                //GL.Vertex(rEast, rNorth, 0.0);
 
                 GL.Color3(1.0f, 0.95f, 0.095f);
                 GL.Vertex3(goalPointCT.easting, goalPointCT.northing, 0.0);

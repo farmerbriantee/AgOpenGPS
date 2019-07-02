@@ -682,5 +682,41 @@ namespace AgOpenGPS.Properties {
                 this["set_geoFenceDistance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setVehicle_stanleyGain {
+            get {
+                return ((double)(this["setVehicle_stanleyGain"]));
+            }
+            set {
+                this["setVehicle_stanleyGain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setVehicle_stanleyHeadingErrorGain {
+            get {
+                return ((double)(this["setVehicle_stanleyHeadingErrorGain"]));
+            }
+            set {
+                this["setVehicle_stanleyHeadingErrorGain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setVehicle_isStanleyUsed {
+            get {
+                return ((bool)(this["setVehicle_isStanleyUsed"]));
+            }
+            set {
+                this["setVehicle_isStanleyUsed"] = value;
+            }
+        }
     }
 }

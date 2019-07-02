@@ -1078,5 +1078,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isLargePanel"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setDistance_TreeSpacing {
+            get {
+                return ((double)(this["setDistance_TreeSpacing"]));
+            }
+            set {
+                this["setDistance_TreeSpacing"] = value;
+            }
+        }
     }
 }

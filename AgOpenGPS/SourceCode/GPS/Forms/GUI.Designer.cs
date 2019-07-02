@@ -808,6 +808,40 @@ namespace AgOpenGPS
             ct.BuildBoundaryContours();
         }
 
+        private void btnStanley_Click(object sender, EventArgs e)
+        {
+            isStanleyUsed = !isStanleyUsed;
+            if (isStanleyUsed) btnStanley.Text = "StanLee";
+            else btnStanley.Text = "Pure P";
+            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void btnStartStopNtrip_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.setNTRIP_isOn)
+            {
+                if (isNTRIP_RequiredOn)
+                {
+                    ShutDownNTRIP();
+                    btnStartStopNtrip.Text = "Start";
+                    lblWatch.Text = "Stopped";
+                    lblNTRIPSeconds.Text = "Offline ";
+                    isNTRIP_RequiredOn = false;
+                }
+                else
+                {
+                    isNTRIP_RequiredOn = true;
+                    btnStartStopNtrip.Text = "Stop";
+                    lblWatch.Text = "Waiting";
+                }
+            }
+            else
+            {
+                TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
+            }
+        }
+
         //rate control
         private void btnDualRate_Click(object sender, EventArgs e)
         {
@@ -1147,6 +1181,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
                     DisableYouTurnButtons();
                     if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -1283,6 +1319,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
                     DisableYouTurnButtons();
                     if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -1390,6 +1428,8 @@ namespace AgOpenGPS
 
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOff;
+                    ABLine.isBtnABLineOn = false;
+
                     ABLine.isABLineBeingSet = false;
 
                     DisableYouTurnButtons();
@@ -1404,6 +1444,8 @@ namespace AgOpenGPS
                 {
                     //change image to reflect on off
                     btnABLine.Image = Properties.Resources.ABLineOn;
+                    ABLine.isBtnABLineOn = true;
+
                     ABLine.isABLineBeingSet = false;
                     EnableYouTurnButtons();
                     btnCurve.Enabled = false;
@@ -1455,6 +1497,8 @@ namespace AgOpenGPS
 
                 //change image to reflect on off
                 btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+
                 ABLine.isABLineBeingSet = false;
                 //btnContour.Enabled = false;
                 btnABLine.Enabled = false;
@@ -2225,10 +2269,6 @@ namespace AgOpenGPS
                 yt.isYouTurnBtnOn = true;
                 yt.isTurnCreationTooClose = false;
                 yt.isTurnCreationNotCrossingError = false;
-                yt.dew2Index = 0;
-                //yt.isDew2Set = false;
-                //yt.isDew4Set = false;
-                yt.dew4Index = 0;
                 yt.ResetYouTurn();
                 //mc.autoSteerData[mc.sdX] = 0;
                 mc.machineControlData[mc.cnYouTurn] = 0;
@@ -2240,10 +2280,6 @@ namespace AgOpenGPS
                 yt.isYouTurnBtnOn = false;
                 yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-                yt.dew2Index = 0;
-                //yt.isDew2Set = false;
-                //yt.isDew4Set = false;
-                yt.dew4Index = 0;
                 yt.ResetYouTurn();
 
                 //new direction so reset where to put turn diagnostic
@@ -3033,6 +3069,24 @@ namespace AgOpenGPS
             form.ShowDialog();
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
         }
+        private void treePlanterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormTreePlant"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            //
+            Form form = new FormTreePlant(this);
+            form.Show();
+
+        }
+
+
         private void toolstripAutoSteerConfig_Click(object sender, EventArgs e)
         {
             //check if window already exists
@@ -3238,7 +3292,9 @@ namespace AgOpenGPS
         {
             get
             {
-                if (pn.fixQuality == 0) return "Invalid";
+                if (timerSim.Enabled)
+                    return "Simulator";
+                else if (pn.fixQuality == 0) return "Invalid";
                 else if (pn.fixQuality == 1) return "GPS fix";
                 else if (pn.fixQuality == 2) return "DGPS fix";
                 else if (pn.fixQuality == 3) return "PPS fix";
@@ -3246,7 +3302,7 @@ namespace AgOpenGPS
                 else if (pn.fixQuality == 5) return "Flt RTK";
                 else if (pn.fixQuality == 6) return "Estimate";
                 else if (pn.fixQuality == 7) return "Man IP";
-                else if (pn.fixQuality == 8) return "Sim";
+                else if (pn.fixQuality == 8) return "Simulator";
                 else return "Unknown";
             }
         }
@@ -3269,7 +3325,7 @@ namespace AgOpenGPS
                 else return "-";
             }
         }
-        public string PureSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01).ToString("N1") + "\u00B0"; } }
+        public string SetSteerAngle { get { return ((double)(guidanceLineSteerAngle) * 0.01).ToString("N1") + "\u00B0"; } }
         public string ActualSteerAngle { get { return ((double)(actualSteerAngleDisp) * 0.01).ToString("N1") + "\u00B0"; } }
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
@@ -3396,408 +3452,443 @@ namespace AgOpenGPS
 
         #endregion properties 
 
-        //Timer triggers at 50 msec, 20 hz, and is THE clock of the whole program//
+        //Timer triggers at 10 msec, and is THE clock of the whole program
+        //Timer stopped while parsing nmea
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
-            ScanForNMEA();
+            tmrWatchdog.Enabled = false;
 
-            if (threeSecondCounter++ > 50)
+            //did we get a new fix position?
+            if (ScanForNMEA())
             {
-                threeSecondCounter = 0;
-                threeSeconds++;
-            }
-            if (oneSecondCounter++ > 20)
-            {
-                oneSecondCounter = 0;
-                oneSecond++;
-            }
 
-            if (oneHalfSecondCounter++ > 10)
-            {
-                oneHalfSecondCounter = 0;
-                oneHalfSecond++;
-            }
-
-            //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
-            if (displayUpdateOneSecondCounter != oneSecond)
-            {
-                //reset the counter
-                displayUpdateOneSecondCounter = oneSecond;
-
-                //counter used for saving field in background
-                saveCounter++;
-
-                //count up the ntrip clock only if everything is alive
-                if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
+                if (threeSecondCounter++ >= fixUpdateHz * 3)
                 {
-                    IncrementNTRIPWatchDog();
+                    threeSecondCounter = 0;
+                    threeSeconds++;
+                }
+                if (oneSecondCounter++ >= fixUpdateHz)
+                {
+                    oneSecondCounter = 0;
+                    oneSecond++;
+                }
+                if (oneHalfSecondCounter++ >= fixUpdateHz / 2)
+                {
+                    oneHalfSecondCounter = 0;
+                    oneHalfSecond++;
+                }
+                if (oneFifthSecondCounter++ >= 0)
+                {
+                    oneFifthSecondCounter = 0;
+                    oneFifthSecond++;
                 }
 
-                //double vr = 0;
-                int cnt = rateMap.mapList.Count;
-                if (cnt > 5)
+                //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
+                if (displayUpdateOneFifthCounter != oneFifthSecond)
                 {
-                    for (int i = 0; i < cnt; i++)
+                    //reset the counter
+                    displayUpdateOneFifthCounter = oneFifthSecond;
+
+                    lblHeading.Text = Heading;
+
+                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
                     {
-                        if (Math.Abs(rateMap.mapList[i].easting - pn.fix.easting) < 9)
+
+                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
                         {
-                            if (Math.Abs(rateMap.mapList[i].northing - pn.fix.northing) < 9)
+                            lblSetpointSteerAngle2.Text = "Off  ";
+                            //lblDiffSteerAngle2.Text = "Off";
+                        }
+                        else
+                        {
+                            lblSetpointSteerAngle2.Text = SetSteerAngle;
+                            //lblDiffSteerAngle2.Text = DiffSteerAngle;
+                        }
+
+                        lblActualSteerAngle2.Text = ActualSteerAngle;
+                        {
+
+                            lblRoll.Text = RollInDegrees;
+                            lblYawHeading.Text = GyroInDegrees;
+                            lblGPSHeading.Text = GPSHeading;
+                            lblHeading2.Text = lblHeading.Text;
+                        }
+                    }
+
+                    if (panelBatman.Visible)
+                    {
+                        lblpRoll.Text = RollInDegrees;
+                        lblpYawHeading.Text = GyroInDegrees;
+                        lblpGPSHeading.Text = GPSHeading;
+                    }
+                }
+
+                //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
+                if (displayUpdateOneSecondCounter != oneSecond)
+                {
+                    //reset the counter
+                    displayUpdateOneSecondCounter = oneSecond;
+
+                    //counter used for saving field in background
+                    saveCounter++;
+
+                    //count up the ntrip clock only if everything is alive
+                    if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
+                    {
+                        IncrementNTRIPWatchDog();
+                    }
+
+                    //double vr = 0;
+                    int cnt = rateMap.mapList.Count;
+                    if (cnt > 5)
+                    {
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            if (Math.Abs(rateMap.mapList[i].easting - pn.fix.easting) < 9)
                             {
-                                lblVRRed.Text = rateMap.mapList[i].red.ToString();
-                                lblVRGrn.Text = rateMap.mapList[i].grn.ToString();
-                                lblVRBlu.Text = rateMap.mapList[i].blu.ToString();
-                                //vr = rateMap.mapList[i].heading;
-                                break;
+                                if (Math.Abs(rateMap.mapList[i].northing - pn.fix.northing) < 9)
+                                {
+                                    lblVRRed.Text = rateMap.mapList[i].red.ToString();
+                                    lblVRGrn.Text = rateMap.mapList[i].grn.ToString();
+                                    lblVRBlu.Text = rateMap.mapList[i].blu.ToString();
+                                    //vr = rateMap.mapList[i].heading;
+                                    break;
+                                }
+                            }
+                        }
+
+                        //rcd.rateLeft = vr / 3;
+                        //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
+                    }
+
+                    //Have we connection
+                    if (isNTRIP_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+                    {
+                        if (!isNTRIP_Starting && ntripCounter > 20)
+                        {
+                            StartNTRIP();
+                        }
+                    }
+
+                    if (isNTRIP_Connecting)
+                    {
+                        if (ntripCounter > 28)
+                        {
+                            TimedMessageBox(2000, " Socket Connection Problem ", " Not Connecting to Caster ");
+                            ReconnectRequest();
+                        }
+                        if (clientSocket != null && clientSocket.Connected)
+                        {
+                            //TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
+                            //ReconnectRequest();
+                            //return;
+                            SendAuthorization();
+                        }
+
+                    }
+
+                    //display items
+                    lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(6, '0');
+
+                    if (isNTRIP_RequiredOn)
+                    {
+                        //update byte counter and up counter
+                        if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
+                        else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
+                        else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 22);
+
+                        pbarNtrip.Value = (byte)(tripBytes * 0.02);
+                        lblNtripBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " Kb";
+
+                        //watchdog for Ntrip
+                        if (isNTRIP_Connecting) lblWatch.Text = "Authorizing";
+                        else
+                        {
+                            if (NTRIP_Watchdog > 10) lblWatch.Text = "Waiting";
+                            else lblWatch.Text = "Listening";
+                        }
+
+                        if (sendGGAInterval > 0 && isNTRIP_Sending)
+                        {
+                            lblWatch.Text = "Sending GGA";
+                            isNTRIP_Sending = false;
+                        }
+                    }
+
+                    //the main formgps window
+                    if (isMetric)  //metric or imperial
+                    {
+                        //Hectares on the master section soft control and sections
+                        btnSectionOffAutoOn.Text = fd.WorkedHectares;
+                        lblSpeed.Text = SpeedKPH;
+
+                        //status strip values
+                        stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
+
+                        //rate
+                        if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
+                        {
+                            lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeLiters;
+                            //lblRateAppliedActualRight.Text = RateAppliedActualRightLPerHA;
+                            lblRateAppliedActualLeft.Text = RateAppliedActualLeftLPerHA;
+
+                            lblFlowRateLeft.Text = rcd.rateSetPointLeft.ToString("N1");
+                            //lblFlowRateRight.Text = rcd.rateSetPointRight.ToString("N1");
+                        }
+
+                        //from rateRelay
+                        txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
+                        txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
+                            + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
+                        + "," + mc.relayRateData[9];
+
+                        btnContour.Text = XTE; //cross track error
+
+                    }
+                    else  //Imperial Measurements
+                    {
+                        //acres on the master section soft control and sections
+                        btnSectionOffAutoOn.Text = fd.WorkedAcres;
+                        lblSpeed.Text = SpeedMPH;
+
+                        //status strip values
+                        stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
+                        btnContour.Text = InchXTE; //cross track error
+
+                        //rate
+                        if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
+                        {
+                            lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeGallons;
+                            //lblRateAppliedActualRight.Text = RateAppliedActualRightGPA;
+                            lblRateAppliedActualLeft.Text = RateAppliedActualLeftGPA;
+                            lblFlowRateLeft.Text = (rcd.rateSetPointLeft * 0.264172875).ToString("N1");
+                            //lblFlowRateRight.Text = (rcd.rateSetPointRight * 0.264172875).ToString("N1");
+                        }
+
+                        //from rateRelay
+                        txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
+                        txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
+                            + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
+                        + "," + mc.relayRateData[9];
+                    }
+
+                    //statusbar flash red undefined headland
+                    if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight
+                        || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
+                    {
+                        if (!mc.isOutOfBounds)
+                        {
+                            statusStrip1.BackColor = SystemColors.ControlLight;
+                            menuStrip1.BackColor = SystemColors.ControlLight;
+                            lblSpeed.BackColor = SystemColors.ControlLight;
+                            lblHeading.BackColor = SystemColors.ControlLight;
+                            lblSpeedUnits.BackColor = SystemColors.ControlLight;
+                            txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
+                            lblHz.BackColor = SystemColors.ControlLight;
+                            lblFixQuality.BackColor = SystemColors.ControlLight;
+                        }
+                        else
+                        {
+                            statusStrip1.BackColor = Color.Tomato;
+                            menuStrip1.BackColor = Color.Tomato;
+                            lblSpeed.BackColor = Color.Tomato;
+                            lblHeading.BackColor = Color.Tomato;
+                            lblSpeedUnits.BackColor = Color.Tomato;
+                            txtDistanceOffABLine.BackColor = Color.Tomato;
+                            lblHz.BackColor = Color.Tomato;
+                            lblFixQuality.BackColor = Color.Tomato;
+                        }
+                    }
+
+                    //not Metric/Standard units sensitive
+                    lblFixQuality.Text = FixQuality;
+                    lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
+                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
+
+
+                }
+
+                //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
+                if (displayUpdateHalfSecondCounter != oneHalfSecond)
+                {
+                    //reset the counter
+                    displayUpdateHalfSecondCounter = oneHalfSecond;
+
+                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    {
+                        //both
+                        lblLatitude.Text = Latitude;
+                        lblLongitude.Text = Longitude;
+
+                        lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
+                        lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
+
+                        txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
+                        txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
+                                                + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
+
+
+                        //up in the menu a few pieces of info
+                        if (isJobStarted)
+                        {
+                            lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
+                            lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
+                        }
+                        else
+                        {
+                            lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
+                            lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
+                        }
+
+                        tboxSentence.Text = recvSentenceSettings;
+
+                    }
+
+                    if (isMetric)
+                    {
+                        if (bnd.bndArr[0].isSet)
+                        {
+                            if (yt.isYouTurnRight)
+                            {
+                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
+                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            }
+                            else
+                            {
+                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
+                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        if (bnd.bndArr[0].isSet)
+                        {
+                            if (yt.isYouTurnRight)
+                            {
+                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
+                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            }
+                            else
+                            {
+                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
+                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
                             }
                         }
                     }
 
-                    //rcd.rateLeft = vr / 3;
-                    //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-                }
+                } //end every 1/2 second
+                  /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
 
-                //Have we connection
-                if (isNTRIP_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+                //every 3 second update status
+                if (displayUpdateThreeSecondCounter != threeSeconds)
                 {
-                    if (!isNTRIP_Starting && ntripCounter > 20)
+                    //reset the counter
+                    displayUpdateThreeSecondCounter = threeSeconds;
+
+                    if (panelBatman.Visible)
                     {
-                        StartNTRIP();
-                    }
-                }
-
-                if (isNTRIP_Connecting)
-                {
-                    if (ntripCounter > 28)
-                    {
-                        TimedMessageBox(2000, " Socket Connection Problem ", " Not Connecting to Caster ");
-                        ReconnectRequest();
-                    }
-                    if (clientSocket != null && clientSocket.Connected)
-                    {
-                        //TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
-                        //ReconnectRequest();
-                        //return;
-                        SendAuthorization();
-                    }
-
-                }
-
-                //display items
-                lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(6, '0');
-
-                if (isNTRIP_RequiredOn)
-                {
-                    //update byte counter and up counter
-                    if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
-                    else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
-                    else lblNTRIPSeconds.Text = "Connecting in " + (ntripCounter - 22);
-
-                    pbarNtrip.Value = (byte)(tripBytes * 0.02);
-                    lblNtripBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " Kb";
-
-                    //watchdog for Ntrip
-                    if (isNTRIP_Connecting) lblWatch.Text = "Authorizing";
-                    else
-                    {
-                        if (NTRIP_Watchdog > 10) lblWatch.Text = "Waiting";
-                        else lblWatch.Text = "Listening";
-                    }
-
-                    if (sendGGAInterval > 0 && isNTRIP_Sending)
-                    {
-                        lblWatch.Text = "Sending GGA";
-                        isNTRIP_Sending = false;
-                    }
-                }
-
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
-                    //Hectares on the master section soft control and sections
-                    btnSectionOffAutoOn.Text = fd.WorkedHectares;
-                    lblSpeed.Text = SpeedKPH;
-
-                    //status strip values
-                    stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
-
-                    //rate
-                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
-                    {
-                        lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeLiters;
-                        //lblRateAppliedActualRight.Text = RateAppliedActualRightLPerHA;
-                        lblRateAppliedActualLeft.Text = RateAppliedActualLeftLPerHA;
-
-                        lblFlowRateLeft.Text = rcd.rateSetPointLeft.ToString("N1");
-                        //lblFlowRateRight.Text = rcd.rateSetPointRight.ToString("N1");
-                    }
-
-                    //from rateRelay
-                    txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
-                    txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
-                        + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
-                    + "," + mc.relayRateData[9];
-
-                    btnContour.Text = XTE; //cross track error
-
-                }
-                else  //Imperial Measurements
-                {
-                    //acres on the master section soft control and sections
-                    btnSectionOffAutoOn.Text = fd.WorkedAcres;
-                    lblSpeed.Text = SpeedMPH;
-
-                    //status strip values
-                    stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
-                    btnContour.Text = InchXTE; //cross track error
-
-                    //rate
-                    if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
-                    {
-                        lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeGallons;
-                        //lblRateAppliedActualRight.Text = RateAppliedActualRightGPA;
-                        lblRateAppliedActualLeft.Text = RateAppliedActualLeftGPA;
-                        lblFlowRateLeft.Text = (rcd.rateSetPointLeft * 0.264172875).ToString("N1");
-                        //lblFlowRateRight.Text = (rcd.rateSetPointRight * 0.264172875).ToString("N1");
-                    }
-
-                    //from rateRelay
-                    txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
-                    txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
-                        + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
-                    + "," + mc.relayRateData[9];
-                }
-
-                //statusbar flash red undefined headland
-                if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight
-                    || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
-                {
-                    if (!mc.isOutOfBounds)
-                    {
-                        statusStrip1.BackColor = SystemColors.ControlLight;
-                        menuStrip1.BackColor = SystemColors.ControlLight;
-                        lblSpeed.BackColor = SystemColors.ControlLight;
-                        lblHeading.BackColor = SystemColors.ControlLight;
-                        lblSpeedUnits.BackColor = SystemColors.ControlLight;
-                        txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
-                        lblHz.BackColor = SystemColors.ControlLight;
-                        lblFixQuality.BackColor = SystemColors.ControlLight;
-                    }
-                    else
-                    {
-                        statusStrip1.BackColor = Color.Tomato;
-                        menuStrip1.BackColor = Color.Tomato;
-                        lblSpeed.BackColor = Color.Tomato;
-                        lblHeading.BackColor = Color.Tomato;
-                        lblSpeedUnits.BackColor = Color.Tomato;
-                        txtDistanceOffABLine.BackColor = Color.Tomato;
-                        lblHz.BackColor = Color.Tomato;
-                        lblFixQuality.BackColor = Color.Tomato;
-                    }
-                }
-
-                //not Metric/Standard units sensitive
-                lblFixQuality.Text = FixQuality;
-                lblHeading.Text = Heading;
-                lblHeading2.Text = lblHeading.Text;
-                lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
-                lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
-
-
-            }
-
-            //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
-            if (displayUpdateHalfSecondCounter != oneHalfSecond)
-            {
-                //reset the counter
-                displayUpdateHalfSecondCounter = oneHalfSecond;
-
-
-                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
-                {
-                    //both
-                    lblLatitude.Text = Latitude;
-                    lblLongitude.Text = Longitude;
-
-                    lblRoll.Text = RollInDegrees;
-                    lblYawHeading.Text = GyroInDegrees;
-                    lblGPSHeading.Text = GPSHeading;
-                    lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
-                    lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
-
-                    txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
-                    txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
-                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
-
-                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                    {
-                        lblSetpointSteerAngle2.Text = "Off  ";
-                        //lblDiffSteerAngle2.Text = "Off";
-                    }
-                    else
-                    {
-                        lblSetpointSteerAngle2.Text = PureSteerAngle;
-                        //lblDiffSteerAngle2.Text = DiffSteerAngle;
-                    }
-
-                    lblActualSteerAngle2.Text = ActualSteerAngle;
-
-                    //up in the menu a few pieces of info
-                    if (isJobStarted)
-                    {
-                        lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
-                        lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
-                    }
-                    else
-                    {
-                        lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
-                        lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
-                    }
-
-                    tboxSentence.Text = recvSentenceSettings;
-
-                }
-
-                if (panelBatman.Visible)
-                {
-                    lblpRoll.Text = RollInDegrees;
-                    lblpYawHeading.Text = GyroInDegrees;
-                    lblpGPSHeading.Text = GPSHeading;
-                }
-
-                if (isMetric)
-                {
-                    if (bnd.bndArr[0].isSet)
-                    {
-                        if (yt.isYouTurnRight)
+                        if (isMetric)
                         {
-                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
-                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            lblpAltitude.Text = Altitude;
+                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                            lblpAreaWorked.Text = fd.WorkedHectares;
+                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
                         }
-                        else
+                        else //imperial
                         {
-                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
-                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            lblpAltitude.Text = AltitudeFeet;
+                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                            lblpAreaWorked.Text = fd.WorkedAcres;
+                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
                         }
-                    }
-                }
-                else
-                {
 
-                    if (bnd.bndArr[0].isSet)
+                        //both
+                        lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
+                        lblpTimeToFinish.Text = fd.TimeTillFinished;
+                    }
+
+                    //The tabbed is selected and the info tab
+                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
                     {
-                        if (yt.isYouTurnRight)
+                        if (isMetric)
                         {
-                            if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
-                            else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            lblAltitude.Text = Altitude;
+                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                            lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
+                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
+                            //else lblBoundaryDistanceAway.Text = "***";
+                            //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
+                            //else lblHeadlandDistanceFromTool.Text = " * ";
                         }
-                        else
+                        else //imperial
                         {
-                            if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
-                            else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = "Cancel" + "\r\n" + yt.onA; }
+                            lblAltitude.Text = AltitudeFeet;
+                            ////Boundary
+                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                            lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
+                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
+                            //else lblBoundaryDistanceAway.Text = "***";
+                            //lblHeadlandDistanceFromTool.Text = DistPivotFt;
                         }
+
+                        //both
+                        lblSats.Text = SatsTracked;
+                        lblZone.Text = pn.zone.ToString();
+                        tboxSentence.Text = recvSentenceSettings;
                     }
-                }
 
-            } //end every 1/2 second
-            /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
-
-            //every 3 second update status
-            if (displayUpdateThreeSecondCounter != threeSeconds)
-            {
-                //reset the counter
-                displayUpdateThreeSecondCounter = threeSeconds;
-
-                if (panelBatman.Visible)
-                {
-                    if (isMetric)
+                    //the main formgps window
+                    if (isMetric)  //metric or imperial
                     {
-                        lblpAltitude.Text = Altitude;
-                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                        lblpAreaWorked.Text = fd.WorkedHectares;
-                        lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
+                        //Hectares on the master section soft control and sections
+                        btnPerimeter.Text = PeriAreaHectares;    //area button
+
+                        //status strip values
+                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+
+                        //Hectares per hour
+                        lblAreaRate.Text = fd.WorkRateHectares;
                     }
-                    else //imperial
+                    else  //Imperial Measurements
                     {
-                        lblpAltitude.Text = AltitudeFeet;
-                        lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                        lblpAreaWorked.Text = fd.WorkedAcres;
-                        lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
+                        btnPerimeter.Text = PeriAreaAcres;
+
+                        //status strip values
+                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+
+                        //Acres per hour
+                        lblAreaRate.Text = fd.WorkRateAcres;
                     }
 
-                    //both
-                    lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
-                    lblpTimeToFinish.Text = fd.TimeTillFinished;
-                }
+                    //not Metric/Standard units sensitive
+                    btnABLine.Text = PassNumber;
 
-                //The tabbed is selected and the info tab
-                if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
-                {
-                    if (isMetric)
+                    //update the online indicator
+                    if (recvCounter > 50)
                     {
-                        lblAltitude.Text = Altitude;
-                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                        lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
-                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
-                        //else lblBoundaryDistanceAway.Text = "***";
-                        //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
-                        //else lblHeadlandDistanceFromTool.Text = " * ";
+                        stripOnlineGPS.Value = 1;
+                        lblEasting.Text = "-";
+                        lblNorthing.Text = gStr.gsNoGPS;
+                        lblZone.Text = "-";
+                        tboxSentence.Text = gStr.gsNoSentenceData;
                     }
-                    else //imperial
-                    {
-                        lblAltitude.Text = AltitudeFeet;
-                        ////Boundary
-                        lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                        lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
-                        //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
-                        //else lblBoundaryDistanceAway.Text = "***";
-                        //lblHeadlandDistanceFromTool.Text = DistPivotFt;
-                    }
+                    else stripOnlineGPS.Value = 100;
 
-                    //both
-                    lblSats.Text = SatsTracked;
-                    lblZone.Text = pn.zone.ToString();
-                    tboxSentence.Text = recvSentenceSettings;
-                }
+                }//end every 3 seconds
 
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
-                    //Hectares on the master section soft control and sections
-                    btnPerimeter.Text = PeriAreaHectares;    //area button
+                swFrame.Stop();
 
-                    //status strip values
-                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+                //stop the timer and calc how long it took to do calcs and draw
+                frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
 
-                    //Hectares per hour
-                    lblAreaRate.Text = fd.WorkRateHectares;
-                }
-                else  //Imperial Measurements
-                {
-                    btnPerimeter.Text = PeriAreaAcres;
+            } //there was a new GPS update
 
-                    //status strip values
-                    stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+            //start timer again and wait for new fix
+            tmrWatchdog.Enabled = true;
 
-                    //Acres per hour
-                    lblAreaRate.Text = fd.WorkRateAcres;
-                }
-
-                //not Metric/Standard units sensitive
-                btnABLine.Text = PassNumber;
-
-                //update the online indicator
-                if (recvCounter > 50)
-                {
-                    stripOnlineGPS.Value = 1;
-                    lblEasting.Text = "-";
-                    lblNorthing.Text = gStr.gsNoGPS;
-                    lblZone.Text = "-";
-                    tboxSentence.Text = gStr.gsNoSentenceData;
-                }
-                else stripOnlineGPS.Value = 100;
-
-            }//end every 3 seconds
         }//wait till timer fires again.  
     }//end class
 }//end namespace

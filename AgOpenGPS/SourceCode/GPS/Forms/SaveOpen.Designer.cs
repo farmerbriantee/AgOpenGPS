@@ -908,6 +908,7 @@ namespace AgOpenGPS
                         {
                             //set gui image button on
                             btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
+                            ABLine.isBtnABLineOn = true;
                             btnRightYouTurn.Visible = true;
                             btnLeftYouTurn.Visible = true;
 
@@ -954,6 +955,8 @@ namespace AgOpenGPS
                         //if ABLine isn't set, turn off the YouTurn
                         else
                         {
+                            ABLine.isBtnABLineOn = false;
+
                             DisableYouTurnButtons();
                         }
                     }
