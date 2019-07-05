@@ -502,105 +502,105 @@ namespace AgOpenGPS
             start = pt - 35; if (start < 0) start = 0;
             stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
 
-            double distSq = widthMinusOverlap * widthMinusOverlap * 0.875;
-            bool fail = false;
+            //double distSq = widthMinusOverlap * widthMinusOverlap * 0.875;
+            //bool fail = false;
 
             for (int i = start; i < stop; i++)
             {
-                //var point = new vec3(
-                //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                //    stripList[strip][i].heading);
-                //ctList.Add(point);
-
                 var point = new vec3(
                     stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].heading);
-                //ctList.Add(point);
+                ctList.Add(point);
 
-                //make sure its not closer then 1 eq width
-                for (int j = start; j < stop; j++)
-                {
-                    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
-                    if (check < distSq)
-                    {
-                        fail = true;
-                        break;
-                    }
-                }
+                //var point = new vec3(
+                //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].heading);
+                ////ctList.Add(point);
 
-                if (!fail) ctList.Add(point);
-                fail = false;
+                ////make sure its not closer then 1 eq width
+                //for (int j = start; j < stop; j++)
+                //{
+                //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                //    if (check < distSq)
+                //    {
+                //        fail = true;
+                //        break;
+                //    }
+                //}
+
+                //if (!fail) ctList.Add(point);
+                //fail = false;
             }
 
             //if no boundaries, just return.
             //if (!mf.bnd.bndArr[0].isSet) return;
 
-            int ctCount = ctList.Count;
-            if (ctCount < 6) return;
+            //int ctCount = ctList.Count;
+            //if (ctCount < 6) return;
 
-            const double spacing = 0.8;
-            double distance;
-            for (int i = 0; i < ctCount - 1; i++)
-            {
-                distance = glm.Distance(ctList[i], ctList[i + 1]);
-                if (distance < spacing)
-                {
-                    ctList.RemoveAt(i + 1);
-                    ctCount = ctList.Count;
-                    i--;
-                }
-            }
+            //const double spacing = 0.8;
+            //double distance;
+            //for (int i = 0; i < ctCount - 1; i++)
+            //{
+            //    distance = glm.Distance(ctList[i], ctList[i + 1]);
+            //    if (distance < spacing)
+            //    {
+            //        ctList.RemoveAt(i + 1);
+            //        ctCount = ctList.Count;
+            //        i--;
+            //    }
+            //}
 
-            {
-                //count the reference list of original curve
-                int cnt = ctList.Count;
+            //{
+            //    //count the reference list of original curve
+            //    int cnt = ctList.Count;
 
-                //just go back if not very long
-                if (cnt < 10) return;
+            //    //just go back if not very long
+            //    if (cnt < 10) return;
 
-                //the temp array
-                vec3[] arr = new vec3[cnt];
+            //    //the temp array
+            //    vec3[] arr = new vec3[cnt];
 
-                //how many samples
-                const int smPts = 2;
+            //    //how many samples
+            //    const int smPts = 2;
 
-                //read the points before and after the setpoint
-                for (int s = 0; s < smPts; s++)
-                {
-                    arr[s].easting = ctList[s].easting;
-                    arr[s].northing = ctList[s].northing;
-                    arr[s].heading = ctList[s].heading;
-                }
+            //    //read the points before and after the setpoint
+            //    for (int s = 0; s < smPts; s++)
+            //    {
+            //        arr[s].easting = ctList[s].easting;
+            //        arr[s].northing = ctList[s].northing;
+            //        arr[s].heading = ctList[s].heading;
+            //    }
 
-                for (int s = cnt - smPts; s < cnt; s++)
-                {
-                    arr[s].easting = ctList[s].easting;
-                    arr[s].northing = ctList[s].northing;
-                    arr[s].heading = ctList[s].heading;
-                }
+            //    for (int s = cnt - smPts; s < cnt; s++)
+            //    {
+            //        arr[s].easting = ctList[s].easting;
+            //        arr[s].northing = ctList[s].northing;
+            //        arr[s].heading = ctList[s].heading;
+            //    }
 
-                //average them - center weighted average
-                for (int i = smPts; i < cnt - smPts; i++)
-                {
-                    for (int j = -smPts; j < smPts; j++)
-                    {
-                        arr[i].easting += ctList[j + i].easting;
-                        arr[i].northing += ctList[j + i].northing;
-                    }
-                    arr[i].easting /= (smPts * 2);
-                    arr[i].northing /= (smPts * 2);
-                    arr[i].heading = ctList[i].heading;
-                }
+            //    //average them - center weighted average
+            //    for (int i = smPts; i < cnt - smPts; i++)
+            //    {
+            //        for (int j = -smPts; j < smPts; j++)
+            //        {
+            //            arr[i].easting += ctList[j + i].easting;
+            //            arr[i].northing += ctList[j + i].northing;
+            //        }
+            //        arr[i].easting /= (smPts * 2);
+            //        arr[i].northing /= (smPts * 2);
+            //        arr[i].heading = ctList[i].heading;
+            //    }
 
-                //make a list to draw
-                ctList?.Clear();
-                for (int i = 0; i < cnt; i++)
-                {
-                    ctList.Add(arr[i]);
-                }
-            }
+            //    //make a list to draw
+            //    ctList?.Clear();
+            //    for (int i = 0; i < cnt; i++)
+            //    {
+            //        ctList.Add(arr[i]);
+            //    }
+            //}
         }
 
         public void CalculateContourHeadings()
@@ -989,6 +989,15 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
+
+            GL.PointSize(6.0f);
+            GL.Begin(PrimitiveType.Points);
+
+            GL.Color3(1.0f, 0.95f, 0.095f);
+            GL.Vertex3(rEastCT, rNorthCT, 0.0);
+            GL.End();
+            GL.PointSize(1.0f);
+
 
             //GL.PointSize(2.0f);
             //GL.Begin(PrimitiveType.Points);
