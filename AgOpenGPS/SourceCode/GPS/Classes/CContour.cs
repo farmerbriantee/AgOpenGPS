@@ -499,59 +499,59 @@ namespace AgOpenGPS
             ptCount = stripList[strip].Count - 1;
             int start, stop;
 
-            start = pt - 35; if (start < 0) start = 0;
-            stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
+            start = pt - 135; if (start < 0) start = 0;
+            stop = pt + 135; if (stop > ptCount) stop = ptCount + 1;
 
-            //double distSq = widthMinusOverlap * widthMinusOverlap * 0.875;
-            //bool fail = false;
+            double distSq = widthMinusOverlap * widthMinusOverlap * 0.95;
+            bool fail = false;
 
             for (int i = start; i < stop; i++)
             {
-                var point = new vec3(
-                    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    stripList[strip][i].heading);
-                ctList.Add(point);
-
                 //var point = new vec3(
                 //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                 //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                 //    stripList[strip][i].heading);
-                ////ctList.Add(point);
+                //ctList.Add(point);
 
-                ////make sure its not closer then 1 eq width
-                //for (int j = start; j < stop; j++)
-                //{
-                //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
-                //    if (check < distSq)
-                //    {
-                //        fail = true;
-                //        break;
-                //    }
-                //}
+                var point = new vec3(
+                    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].heading);
+                //ctList.Add(point);
 
-                //if (!fail) ctList.Add(point);
-                //fail = false;
+                //make sure its not closer then 1 eq width
+                for (int j = start; j < stop; j++)
+                {
+                    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                    if (check < distSq)
+                    {
+                        fail = true;
+                        break;
+                    }
+                }
+
+                if (!fail) ctList.Add(point);
+                fail = false;
             }
 
             //if no boundaries, just return.
             //if (!mf.bnd.bndArr[0].isSet) return;
 
-            //int ctCount = ctList.Count;
-            //if (ctCount < 6) return;
+            int ctCount = ctList.Count;
+            if (ctCount < 6) return;
 
-            //const double spacing = 0.8;
-            //double distance;
-            //for (int i = 0; i < ctCount - 1; i++)
-            //{
-            //    distance = glm.Distance(ctList[i], ctList[i + 1]);
-            //    if (distance < spacing)
-            //    {
-            //        ctList.RemoveAt(i + 1);
-            //        ctCount = ctList.Count;
-            //        i--;
-            //    }
-            //}
+            const double spacing = 1.0;
+            double distance;
+            for (int i = 0; i < ctCount - 1; i++)
+            {
+                distance = glm.Distance(ctList[i], ctList[i + 1]);
+                if (distance < spacing)
+                {
+                    ctList.RemoveAt(i + 1);
+                    ctCount = ctList.Count;
+                    i--;
+                }
+            }
 
             //{
             //    //count the reference list of original curve
@@ -990,76 +990,76 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
-            GL.PointSize(6.0f);
-            GL.Begin(PrimitiveType.Points);
-
-            GL.Color3(1.0f, 0.95f, 0.095f);
-            GL.Vertex3(rEastCT, rNorthCT, 0.0);
-            GL.End();
-            GL.PointSize(1.0f);
-
-
-            //GL.PointSize(2.0f);
+            //GL.PointSize(6.0f);
             //GL.Begin(PrimitiveType.Points);
 
-            //GL.Color3(0.7f, 0.7f, 0.25f);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
-
+            //GL.Color3(1.0f, 0.95f, 0.095f);
+            //GL.Vertex3(rEastCT, rNorthCT, 0.0);
             //GL.End();
             //GL.PointSize(1.0f);
 
-            //GL.Color3(0.98f, 0.98f, 0.50f);
-            //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            //GL.Vertex3(boxE.easting, boxE.northing, 0);
-            //GL.Vertex3(boxA.easting, boxA.northing, 0);
-            //GL.Vertex3(boxD.easting, boxD.northing, 0);
-            //GL.Vertex3(boxG.easting, boxG.northing, 0);
-            //GL.Vertex3(boxE.easting, boxE.northing, 0);
-            //GL.End();
 
-            //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            //GL.Vertex3(boxF.easting, boxF.northing, 0);
-            //GL.Vertex3(boxH.easting, boxH.northing, 0);
-            //GL.Vertex3(boxC.easting, boxC.northing, 0);
-            //GL.Vertex3(boxB.easting, boxB.northing, 0);
-            //GL.Vertex3(boxF.easting, boxF.northing, 0);
-            //GL.End();
+            GL.PointSize(4.0f);
+            GL.Begin(PrimitiveType.Points);
+
+            GL.Color3(0.7f, 0.7f, 0.25f);
+            for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
+
+            GL.End();
+            //GL.PointSize(1.0f);
+
+            GL.Color3(0.98f, 0.98f, 0.50f);
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
+            GL.Vertex3(boxA.easting, boxA.northing, 0);
+            GL.Vertex3(boxD.easting, boxD.northing, 0);
+            GL.Vertex3(boxG.easting, boxG.northing, 0);
+            GL.Vertex3(boxE.easting, boxE.northing, 0);
+            GL.End();
+
+            GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.Vertex3(boxH.easting, boxH.northing, 0);
+            GL.Vertex3(boxC.easting, boxC.northing, 0);
+            GL.Vertex3(boxB.easting, boxB.northing, 0);
+            GL.Vertex3(boxF.easting, boxF.northing, 0);
+            GL.End();
 
             //draw the reference line
-            //GL.PointSize(3.0f);
-            ////if (isContourBtnOn)
-            //{
-            //    ptCount = stripList.Count;
-            //    if (ptCount > 0)
-            //    {
-            //        ptCount = stripList[closestRefPatch].Count;
-            //        GL.Begin(PrimitiveType.Points);
-            //        for (int i = 0; i < ptCount; i++)
-            //        {
-            //            GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
-            //        }
-            //        GL.End();
-            //    }
-            //}
+            GL.PointSize(3.0f);
+            //if (isContourBtnOn)
+            {
+                ptCount = stripList.Count;
+                if (ptCount > 0)
+                {
+                    ptCount = stripList[closestRefPatch].Count;
+                    GL.Begin(PrimitiveType.Points);
+                    for (int i = 0; i < ptCount; i++)
+                    {
+                        GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
+                    }
+                    GL.End();
+                }
+            }
 
-            //ptCount = conList.Count;
-            //if (ptCount > 0)
-            //{
-            //    //draw closest point and side of line points
-            //    GL.Color3(0.5f, 0.900f, 0.90f);
-            //    GL.PointSize(4.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
-            //    GL.End();
+            ptCount = conList.Count;
+            if (ptCount > 0)
+            {
+                //draw closest point and side of line points
+                GL.Color3(0.5f, 0.900f, 0.90f);
+                GL.PointSize(4.0f);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
+                GL.End();
 
-            //    GL.Color3(0.35f, 0.30f, 0.90f);
-            //    GL.PointSize(6.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-            //    GL.End();
-            //}
+                GL.Color3(0.35f, 0.30f, 0.90f);
+                GL.PointSize(6.0f);
+                GL.Begin(PrimitiveType.Points);
+                GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
+                GL.End();
+            }
 
             if (mf.isPureDisplayOn && distanceFromCurrentLine != 32000 && !mf.isStanleyUsed)
             {
