@@ -1,5 +1,8 @@
-﻿v3.0 June 2019
+﻿v3.0 June/July 2019
 * Added tree planting
+* Add Stanley control method
+* Fix contour, was too much averaging and never worked very well. 
+* Add PP back to uturn
 
 v3.0 May 1 2019
 * Roll changed pos to the right
