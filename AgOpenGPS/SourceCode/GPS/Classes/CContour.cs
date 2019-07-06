@@ -1008,58 +1008,58 @@ namespace AgOpenGPS
             GL.End();
             //GL.PointSize(1.0f);
 
-            GL.Color3(0.98f, 0.98f, 0.50f);
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.Vertex3(boxA.easting, boxA.northing, 0);
-            GL.Vertex3(boxD.easting, boxD.northing, 0);
-            GL.Vertex3(boxG.easting, boxG.northing, 0);
-            GL.Vertex3(boxE.easting, boxE.northing, 0);
-            GL.End();
+            //GL.Color3(0.98f, 0.98f, 0.50f);
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.Vertex3(boxA.easting, boxA.northing, 0);
+            //GL.Vertex3(boxD.easting, boxD.northing, 0);
+            //GL.Vertex3(boxG.easting, boxG.northing, 0);
+            //GL.Vertex3(boxE.easting, boxE.northing, 0);
+            //GL.End();
 
-            GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.Vertex3(boxH.easting, boxH.northing, 0);
-            GL.Vertex3(boxC.easting, boxC.northing, 0);
-            GL.Vertex3(boxB.easting, boxB.northing, 0);
-            GL.Vertex3(boxF.easting, boxF.northing, 0);
-            GL.End();
+            //GL.Begin(PrimitiveType.LineStrip);
+            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.Vertex3(boxH.easting, boxH.northing, 0);
+            //GL.Vertex3(boxC.easting, boxC.northing, 0);
+            //GL.Vertex3(boxB.easting, boxB.northing, 0);
+            //GL.Vertex3(boxF.easting, boxF.northing, 0);
+            //GL.End();
 
-            //draw the reference line
-            GL.PointSize(3.0f);
-            //if (isContourBtnOn)
-            {
-                ptCount = stripList.Count;
-                if (ptCount > 0)
-                {
-                    ptCount = stripList[closestRefPatch].Count;
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < ptCount; i++)
-                    {
-                        GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
-                    }
-                    GL.End();
-                }
-            }
+            ////draw the reference line
+            //GL.PointSize(3.0f);
+            ////if (isContourBtnOn)
+            //{
+            //    ptCount = stripList.Count;
+            //    if (ptCount > 0)
+            //    {
+            //        ptCount = stripList[closestRefPatch].Count;
+            //        GL.Begin(PrimitiveType.Points);
+            //        for (int i = 0; i < ptCount; i++)
+            //        {
+            //            GL.Vertex2(stripList[closestRefPatch][i].easting, stripList[closestRefPatch][i].northing);
+            //        }
+            //        GL.End();
+            //    }
+            //}
 
-            ptCount = conList.Count;
-            if (ptCount > 0)
-            {
-                //draw closest point and side of line points
-                GL.Color3(0.5f, 0.900f, 0.90f);
-                GL.PointSize(4.0f);
-                GL.Begin(PrimitiveType.Points);
-                for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
-                GL.End();
+            //ptCount = conList.Count;
+            //if (ptCount > 0)
+            //{
+            //    //draw closest point and side of line points
+            //    GL.Color3(0.5f, 0.900f, 0.90f);
+            //    GL.PointSize(4.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
+            //    GL.End();
 
-                GL.Color3(0.35f, 0.30f, 0.90f);
-                GL.PointSize(6.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-                GL.End();
-            }
+            //    GL.Color3(0.35f, 0.30f, 0.90f);
+            //    GL.PointSize(6.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
+            //    GL.End();
+            //}
 
             if (mf.isPureDisplayOn && distanceFromCurrentLine != 32000 && !mf.isStanleyUsed)
             {
