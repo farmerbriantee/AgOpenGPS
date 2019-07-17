@@ -17,20 +17,24 @@
   //Only change from 0 if the response is incorrect. Start with all four set to 0.
 
                                             //Steering to the right should be a positive angle
-  #define SteeringRightIsNotPositive 1      // Set to 0 if it steers the right way    
+  #define SteeringRightIsPositive 0         // Set to 0 if it steers the right way    
                                             // Set to 1 if steer to right shows negative
 
                                             // Does the motor spin the right way?
-  #define SteerMotorDirectionBackwards 1    // Set to 0 if is correct direction
-                                            // Set to 1 if it turns the wrong way
+  #define SteerMotorDirectionCorrect 0             // Set to 0 if is wrong direction
+                                            // Set to 1 if it turns the correct way
                                     
                                         // Depending on board orientation, choose the right Axis
   #define UseMMA_Y_Axis 1               // Set to 0 to use X axis of MMA
                                         // Set to 1 to use Y axis of MMA
 
                                         // When tractor rolls to the right, it should show positive angle
-  #define IsRollToRightNotPositive 0    // Set to 0 if angle is positive to the right
-                                        // Set to 1 if roll to right shows negative
+  #define IsRollToRightPositive 0       // Set to 0 if angle is neagative to the right
+                                        // Set to 1 if roll to right shows positive
+
+                                        // Single or differential WAS input
+  #define IsDifferentialADSInput 0      // set to 0 for single input, Signal to A0, Gnd to power ground (important)
+                                        // set to 1 for differential, Signal to A0, Gnd to A1
 
                                         //using the dogs or not
   #define IsUsingDogs2 1                //set to 0 if using MMA
@@ -189,7 +193,7 @@ void loop()
     {
       rollK = ((ads.readADC_SingleEnded(2))); // 24,000 to 2700
       rollK = (rollK - 13300)/28;
-      if (IsRollToRightNotPositive) rollK *= -1.0;
+      if (!IsRollToRightPositive) rollK *= -1.0;
     }
     else
     {
@@ -203,7 +207,7 @@ void loop()
       if (UseMMA_Y_Axis) rollK = MMA.cy * 90 * 16; //UseMMa_Y_Axis is set to 1
       else rollK = MMA.cx * 90 * 16; 
       //if not positive when rolling to the right
-      if (IsRollToRightNotPositive) rollK *= -1.0;
+      if (!IsRollToRightPositive) rollK *= -1.0;
     }
     
 		//Kalman filter
@@ -223,12 +227,17 @@ void loop()
     switchByte |= (steerSwitch << 1);   //put steerswitch status in bit 1 position
     switchByte |= workSwitch;
 
-    //steering position and steer angle   
-    steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Differential Mode 
+    //steering position and steer angle  
+    if (IsDifferentialADSInput) 
+      steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Single Mode 
+    else
+      steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
+
+    
     steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     
-    steeringPosition = (steeringPosition - steeringPositionZero - (XeRoll * Kd/10 ) );   //read the steering position sensor
-    if (SteeringRightIsNotPositive) steeringPosition *= -1.0;
+    steeringPosition = (steeringPosition - steeringPositionZero);   //read the steering position sensor
+    if (!SteeringRightIsPositive) steeringPosition *= -1.0;
 
     /*
     //close enough to center, remove any integral correction

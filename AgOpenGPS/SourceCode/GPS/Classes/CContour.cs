@@ -499,8 +499,8 @@ namespace AgOpenGPS
             ptCount = stripList[strip].Count - 1;
             int start, stop;
 
-            start = pt - 135; if (start < 0) start = 0;
-            stop = pt + 135; if (stop > ptCount) stop = ptCount + 1;
+            start = pt - 35; if (start < 0) start = 0;
+            stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
 
             double distSq = widthMinusOverlap * widthMinusOverlap * 0.95;
             bool fail = false;
@@ -664,6 +664,9 @@ namespace AgOpenGPS
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dy) < Double.Epsilon) return;
 
                     abHeading = Math.Atan2(dx, dy);
+                    if (abHeading < 0) abHeading += glm.twoPI;
+                    //if (abHeading > Math.PI) abHeading -= glm.twoPI;
+
                     //abHeading = ctList[A].heading;
 
                     //how far from current AB Line is fix
@@ -990,15 +993,6 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
-            //GL.PointSize(6.0f);
-            //GL.Begin(PrimitiveType.Points);
-
-            //GL.Color3(1.0f, 0.95f, 0.095f);
-            //GL.Vertex3(rEastCT, rNorthCT, 0.0);
-            //GL.End();
-            //GL.PointSize(1.0f);
-
-
             GL.PointSize(4.0f);
             GL.Begin(PrimitiveType.Points);
 
@@ -1006,11 +1000,16 @@ namespace AgOpenGPS
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
             GL.End();
-            //GL.PointSize(1.0f);
+
+            GL.PointSize(6.0f);
+            GL.Begin(PrimitiveType.Points);
+            GL.Color3(1.0f, 0.95f, 0.095f);
+            GL.Vertex3(rEastCT, rNorthCT, 0.0);
+            GL.End();
+            GL.PointSize(1.0f);
 
             //GL.Color3(0.98f, 0.98f, 0.50f);
             //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
             //GL.Vertex3(boxE.easting, boxE.northing, 0);
             //GL.Vertex3(boxA.easting, boxA.northing, 0);
             //GL.Vertex3(boxD.easting, boxD.northing, 0);
@@ -1019,7 +1018,6 @@ namespace AgOpenGPS
             //GL.End();
 
             //GL.Begin(PrimitiveType.LineStrip);
-            ////for (int h = 0; h < ptCount; h++) GL.Vertex3(guideList[h].x, 0, guideList[h].z);
             //GL.Vertex3(boxF.easting, boxF.northing, 0);
             //GL.Vertex3(boxH.easting, boxH.northing, 0);
             //GL.Vertex3(boxC.easting, boxC.northing, 0);

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AgOpenGPS</RootNamespace>
     <AssemblyName>AgOpenGPS</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -39,6 +39,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -53,6 +54,7 @@
     <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
     <NoWarn>
     </NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
@@ -130,6 +132,12 @@
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CSelf.cs" />
     <Compile Include="Classes\CVRate.cs" />
+    <Compile Include="FormElev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormElev.Designer.cs">
+      <DependentUpon>FormElev.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormNtrip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +409,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormElev.resx">
+      <DependentUpon>FormElev.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
     </EmbeddedResource>

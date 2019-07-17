@@ -18,22 +18,22 @@ void calcSteeringPID(void)
   {
     pwmDisplay = pwmDrive;
 
-    if (SteerMotorDirectionBackwards)
+    if (SteerMotorDirectionCorrect)
     {
-      if (pwmDrive >= 0) bitClear(PORTD, 4);  //set the correct direction
+      if (pwmDrive >= 0) bitSet(PORTD, 4);  //set the correct direction
       else   
       {
-        bitSet(PORTD, 4); 
+        bitClear(PORTD, 4); 
         pwmDrive = -1 * pwmDrive;  
       }
     }
     
     else
     {
-      if (pwmDrive >= 0) bitSet(PORTD, 4);  //set the correct direction
+      if (pwmDrive >= 0) bitClear(PORTD, 4);  //set the correct direction
       else   
       {
-        bitClear(PORTD, 4); 
+        bitSet(PORTD, 4); 
         pwmDrive = -1 * pwmDrive;  
       }
     }

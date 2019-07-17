@@ -139,9 +139,12 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.autoPage4 = new System.Windows.Forms.TabPage();
+            this.nudElevation = new System.Windows.Forms.NumericUpDown();
+            this.btnRecordElevation = new System.Windows.Forms.Button();
             this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.btnGenerateSelf = new System.Windows.Forms.Button();
+            this.btnElevationMap = new System.Windows.Forms.Button();
             this.btnGoSelf = new System.Windows.Forms.Button();
             this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnDeleteRecPath = new System.Windows.Forms.Button();
@@ -309,6 +312,7 @@
             this.contextMenuArea.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.autoPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudElevation)).BeginInit();
             this.rate2Page5.SuspendLayout();
             this.configPage1.SuspendLayout();
             this.DataPage.SuspendLayout();
@@ -1143,9 +1147,12 @@
             // autoPage4
             // 
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.autoPage4.Controls.Add(this.nudElevation);
+            this.autoPage4.Controls.Add(this.btnRecordElevation);
             this.autoPage4.Controls.Add(this.btnLidarOnOff);
             this.autoPage4.Controls.Add(this.btnPauseDrivingPath);
             this.autoPage4.Controls.Add(this.btnGenerateSelf);
+            this.autoPage4.Controls.Add(this.btnElevationMap);
             this.autoPage4.Controls.Add(this.btnGoSelf);
             this.autoPage4.Controls.Add(this.btnManualAutoDrive);
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
@@ -1153,6 +1160,37 @@
             this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
+            // 
+            // nudElevation
+            // 
+            this.nudElevation.DecimalPlaces = 1;
+            resources.ApplyResources(this.nudElevation, "nudElevation");
+            this.nudElevation.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudElevation.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudElevation.Name = "nudElevation";
+            this.nudElevation.Value = new decimal(new int[] {
+            88888,
+            0,
+            0,
+            65536});
+            this.nudElevation.ValueChanged += new System.EventHandler(this.NudElevation_ValueChanged);
+            // 
+            // btnRecordElevation
+            // 
+            resources.ApplyResources(this.btnRecordElevation, "btnRecordElevation");
+            this.btnRecordElevation.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnRecordElevation.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.btnRecordElevation.Name = "btnRecordElevation";
+            this.btnRecordElevation.UseVisualStyleBackColor = false;
+            this.btnRecordElevation.Click += new System.EventHandler(this.BtnRecordElevation_Click);
             // 
             // btnLidarOnOff
             // 
@@ -1178,6 +1216,14 @@
             this.btnGenerateSelf.Name = "btnGenerateSelf";
             this.btnGenerateSelf.UseVisualStyleBackColor = false;
             this.btnGenerateSelf.Click += new System.EventHandler(this.btnGenerateSelf_Click);
+            // 
+            // btnElevationMap
+            // 
+            resources.ApplyResources(this.btnElevationMap, "btnElevationMap");
+            this.btnElevationMap.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnElevationMap.Name = "btnElevationMap";
+            this.btnElevationMap.UseVisualStyleBackColor = false;
+            this.btnElevationMap.Click += new System.EventHandler(this.BtnElevationMap_Click);
             // 
             // btnGoSelf
             // 
@@ -2466,8 +2512,8 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.btnZoomExtents);
             this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnZoomOut);
@@ -2524,6 +2570,7 @@
             this.contextMenuArea.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.autoPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudElevation)).EndInit();
             this.rate2Page5.ResumeLayout(false);
             this.rate2Page5.PerformLayout();
             this.configPage1.ResumeLayout(false);
@@ -2813,6 +2860,9 @@
         public System.Windows.Forms.Timer timerSim;
         private System.Windows.Forms.ToolStripMenuItem treePlanterToolStripMenuItem;
         public System.Windows.Forms.Button btnManualOffOn;
+        private System.Windows.Forms.Button btnRecordElevation;
+        private System.Windows.Forms.Button btnElevationMap;
+        private System.Windows.Forms.NumericUpDown nudElevation;
     }
 }
 

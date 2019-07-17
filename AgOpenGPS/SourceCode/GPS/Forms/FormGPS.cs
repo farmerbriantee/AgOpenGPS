@@ -49,7 +49,7 @@ namespace AgOpenGPS
         public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn, isLidarBtnOn = true;
 
         //if we are saving a file
-        public bool isSavingFile = false, isLogNMEA = false;
+        public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
 
         //texture holders
         public uint[] texture = new uint[5];
@@ -748,6 +748,48 @@ namespace AgOpenGPS
                 if (result == DialogResult.Cancel) return 2;
                 return 3;
             }
+        }
+
+        private void BtnRecordElevation_Click(object sender, EventArgs e)
+        {
+            if (isLogElevation)
+            {
+                isLogElevation = false;
+                btnRecordElevation.Image = Properties.Resources.BoundaryRecord;
+                btnRecordElevation.Text = "Record Elevation";
+            }
+            else
+            {
+                isLogElevation = true;
+                btnRecordElevation.Image = Properties.Resources.boundaryStop;
+                btnRecordElevation.Text = "Stop Record";
+            }
+
+        }
+
+        private void BtnElevationMap_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            {
+                //field too small or moving
+                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                //if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+
+                using (var form = new FormElev(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+
+        }
+
+        private void NudElevation_ValueChanged(object sender, EventArgs e)
+        {
+            sim.altitude = (double)nudElevation.Value;
         }
 
         //show the communications window

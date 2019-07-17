@@ -3471,7 +3471,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAARgBIAEYASABQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAWABIAFgASABQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -3827,6 +3827,72 @@
   <data name="tabControl1.Appearance" type="System.Windows.Forms.TabAppearance, System.Windows.Forms">
     <value>Buttons</value>
   </data>
+  <data name="nudElevation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 21.75pt</value>
+  </data>
+  <data name="nudElevation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>211, 41</value>
+  </data>
+  <data name="nudElevation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 43</value>
+  </data>
+  <data name="nudElevation.TabIndex" type="System.Int32, mscorlib">
+    <value>302</value>
+  </data>
+  <data name="nudElevation.UpDownAlign" type="System.Windows.Forms.LeftRightAlignment, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="&gt;&gt;nudElevation.Name" xml:space="preserve">
+    <value>nudElevation</value>
+  </data>
+  <data name="&gt;&gt;nudElevation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nudElevation.Parent" xml:space="preserve">
+    <value>autoPage4</value>
+  </data>
+  <data name="&gt;&gt;nudElevation.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnRecordElevation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnRecordElevation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 10pt, style=Bold</value>
+  </data>
+  <data name="btnRecordElevation.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnRecordElevation.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnRecordElevation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 98</value>
+  </data>
+  <data name="btnRecordElevation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 96</value>
+  </data>
+  <data name="btnRecordElevation.TabIndex" type="System.Int32, mscorlib">
+    <value>226</value>
+  </data>
+  <data name="btnRecordElevation.Text" xml:space="preserve">
+    <value>Record Elevation</value>
+  </data>
+  <data name="btnRecordElevation.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnRecordElevation.Name" xml:space="preserve">
+    <value>btnRecordElevation</value>
+  </data>
+  <data name="&gt;&gt;btnRecordElevation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnRecordElevation.Parent" xml:space="preserve">
+    <value>autoPage4</value>
+  </data>
+  <data name="&gt;&gt;btnRecordElevation.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="btnLidarOnOff.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
   </data>
@@ -3905,7 +3971,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnLidarOnOff.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnPauseDrivingPath.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt, style=Bold</value>
@@ -3932,7 +3998,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnPauseDrivingPath.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="btnGenerateSelf.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -4102,7 +4168,46 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnGenerateSelf.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
+  </data>
+  <data name="btnElevationMap.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="btnElevationMap.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 10pt, style=Bold</value>
+  </data>
+  <data name="btnElevationMap.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnElevationMap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnElevationMap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 214</value>
+  </data>
+  <data name="btnElevationMap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 79</value>
+  </data>
+  <data name="btnElevationMap.TabIndex" type="System.Int32, mscorlib">
+    <value>227</value>
+  </data>
+  <data name="btnElevationMap.Text" xml:space="preserve">
+    <value>Show Elevation Map</value>
+  </data>
+  <data name="btnElevationMap.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnElevationMap.Name" xml:space="preserve">
+    <value>btnElevationMap</value>
+  </data>
+  <data name="&gt;&gt;btnElevationMap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnElevationMap.Parent" xml:space="preserve">
+    <value>autoPage4</value>
+  </data>
+  <data name="&gt;&gt;btnElevationMap.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="btnGoSelf.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -4141,7 +4246,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnGoSelf.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="btnManualAutoDrive.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -4304,7 +4409,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnManualAutoDrive.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="btnDeleteRecPath.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
@@ -4443,7 +4548,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnDeleteRecPath.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="btnDrivePath.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt, style=Bold</value>
@@ -4470,7 +4575,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnDrivePath.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="btnRecPathPauseRecord.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
@@ -4563,7 +4668,7 @@
     <value>autoPage4</value>
   </data>
   <data name="&gt;&gt;btnRecPathPauseRecord.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>10</value>
   </data>
   <data name="autoPage4.ImageIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -8323,7 +8428,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="cboxpRowWidth.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>System</value>
@@ -9385,7 +9490,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelBatman.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="btnResetSim.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9.75pt</value>
@@ -10119,6 +10224,9 @@
   <data name="&gt;&gt;oglMain.ZOrder" xml:space="preserve">
     <value>46</value>
   </data>
+  <metadata name="oglBack.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="oglBack.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -10912,7 +11020,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnEnableAutoYouTurn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1069, 363</value>
+    <value>1069, 351</value>
   </data>
   <data name="btnEnableAutoYouTurn.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 100</value>
@@ -11038,7 +11146,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1069, 475</value>
+    <value>1069, 463</value>
   </data>
   <data name="btnAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>

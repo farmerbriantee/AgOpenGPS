@@ -171,6 +171,7 @@ Field	Meaning
 
         public StringBuilder logNMEASentence = new StringBuilder();
         private readonly FormGPS mf;
+        private int nmeaCntr = 0;
 
         public CNMEA(FormGPS f)
         {
@@ -312,7 +313,11 @@ Field	Meaning
             while (!ValidateChecksum(sentence));
 
             //do we want to log? Grab before pieces are missing
-            if (mf.isLogNMEA) logNMEASentence.Append(sentence);
+            if (mf.isLogNMEA && nmeaCntr++ > 3)
+            {
+                logNMEASentence.Append(sentence);
+                nmeaCntr = 0;
+            }
 
             // Remove trailing checksum and \r\n and return
             sentence = sentence.Substring(0, sentence.IndexOf("*", StringComparison.Ordinal));

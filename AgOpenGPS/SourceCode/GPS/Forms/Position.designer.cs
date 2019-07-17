@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -9,6 +10,9 @@ namespace AgOpenGPS
     {
         //very first fix to setup grid etc
         public bool isFirstFixPositionSet = false, isGPSPositionInitialized = false;
+
+        //string to record fixes for elevation maps
+        public StringBuilder sbFix = new StringBuilder();
 
         // autosteer variables for sending serial
         public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle;
@@ -173,13 +177,10 @@ namespace AgOpenGPS
             {
                 //for charting in GPS Data window
                 eastingBeforeRoll = pn.fix.easting;
-                rollUsed = (double)mc.rollRaw/16;
-
-                //calculate how far the antenna moves based on sidehill roll
-                double roll = Math.Sin(glm.toRadians((mc.rollRaw - ahrs.rollZero) * 0.0625));
+                rollUsed = ((double)mc.rollRaw * 0.0625) - ahrs.rollZero;
 
                 //change for roll to the right is positive times -1
-                rollCorrectionDistance = roll * vehicle.antennaHeight * -1.0;
+                rollCorrectionDistance = Math.Sin(glm.toRadians((rollUsed))) * -vehicle.antennaHeight;
 
                 // roll to left is positive  **** important!!
                 // not any more - April 30, 2019 - roll to right is positive
@@ -269,7 +270,7 @@ namespace AgOpenGPS
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
-                if (isLogNMEA)  { if (ct.isContourOn)  { pn.logNMEASentence.Append(recvSentenceSettings); } }
+                if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings); 
 
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
                 sectionTriggerDistance = glm.Distance(pn.fix, prevSectionPos);
@@ -278,6 +279,11 @@ namespace AgOpenGPS
                 if (sectionTriggerDistance > sectionTriggerStepDistance && isJobStarted)
                 {
                     AddSectionContourPathPoints();
+
+                    //grab fix and elevation
+                    if (isLogElevation) sbFix.Append(pn.fix.easting.ToString("N2") + "," + pn.fix.northing.ToString("N2") + "," 
+                                                        + pn.altitude.ToString("N2") + "," 
+                                                        + pn.latitude + "," + pn.longitude + "\r\n");
                 }
 
                 //test if travelled far enough for new boundary point
@@ -352,9 +358,10 @@ namespace AgOpenGPS
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {
-                if (ahrs.isHeadingPAOGI)
+                if (rollUsed != 0)
                 {
-                    guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + (pn.nRoll * ((double)mc.autoSteerSettings[mc.ssKd]) * 4.166666));
+                    guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + 
+                        ((rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50.0)) );
                 }
 
                 //fill up0 the appropriate arrays with new values
