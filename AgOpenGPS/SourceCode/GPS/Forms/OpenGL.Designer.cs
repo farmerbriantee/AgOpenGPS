@@ -44,7 +44,7 @@ namespace AgOpenGPS
             GL.LoadIdentity();
             GL.Viewport(0, 0, oglMain.Width, oglMain.Height);
             Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView((float)fovy, (float)oglMain.Width / (float)oglMain.Height, 
-                1f, (float)(camDistanceFactor * camera.camSetDistance));
+                10.0f, (float)(camDistanceFactor * camera.camSetDistance));
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
@@ -528,7 +528,7 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             //gls.Perspective(6.0f, 1, 1, 6000);
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.104719758f, 1f, 1f, 6000f);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.104719758f, 1f, 50.0f, 600f);
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
@@ -898,6 +898,7 @@ namespace AgOpenGPS
 
                     //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();
+                    if (isLogElevation) FileSaveElevation();
                 }
                 saveCounter = 0;
             }
@@ -919,7 +920,7 @@ namespace AgOpenGPS
             GL.LoadIdentity();
 
             //58 degrees view
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 100.0f, 5000.0f);
             GL.LoadMatrix(ref mat);
 
             GL.MatrixMode(MatrixMode.Modelview);

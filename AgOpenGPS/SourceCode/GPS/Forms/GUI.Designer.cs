@@ -2403,6 +2403,7 @@ namespace AgOpenGPS
                 {
                     FileCreateContour();
                     FileCreateSections();
+                    FileCreateElevation();
 
                     if (rcd.isRateControlOn)
                         btnDualRate.PerformClick();
@@ -3002,6 +3003,7 @@ namespace AgOpenGPS
                 {
                     FileCreateContour();
                     FileCreateSections();
+                    FileCreateElevation();
 
                     if (rcd.isRateControlOn)
                         btnDualRate.PerformClick();

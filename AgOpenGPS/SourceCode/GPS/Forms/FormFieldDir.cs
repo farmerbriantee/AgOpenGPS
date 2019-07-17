@@ -166,6 +166,7 @@ namespace AgOpenGPS
                         mf.FileCreateSections();
                         mf.FileCreateRecPath();
                         mf.FileCreateContour();
+                        mf.FileCreateElevation();
                         mf.FileSaveFlags();
                         mf.FileSaveABLine();
                         mf.FileSaveCurveLine();
@@ -240,6 +241,7 @@ namespace AgOpenGPS
                     //create blank Contour and Section files
                     mf.FileCreateSections();
                     mf.FileCreateContour();
+                    mf.FileCreateElevation();
 
                     //copy over the files from template
                     string templateDirectoryName = Path.GetDirectoryName(templateFileAndDirectory);

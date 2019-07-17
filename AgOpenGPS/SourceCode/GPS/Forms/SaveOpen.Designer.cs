@@ -1298,8 +1298,8 @@ namespace AgOpenGPS
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," + 
-                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + 
+                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
+                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," +
                     pn.zone.ToString(CultureInfo.InvariantCulture));
 
                 writer.WriteLine("Convergence");
@@ -1308,6 +1308,53 @@ namespace AgOpenGPS
                 writer.WriteLine("StartFix");
                 writer.WriteLine(pn.latitude.ToString(CultureInfo.InvariantCulture) + "," + pn.longitude.ToString(CultureInfo.InvariantCulture));
 
+            }
+        }
+
+        public void FileCreateElevation()
+        {
+            //Saturday, February 11, 2017  -->  7:26:52 AM
+            //$FieldDir
+            //Bob_Feb11
+            //$Offsets
+            //533172,5927719,12 - offset easting, northing, zone
+
+            if (!isJobStarted)
+            {
+                using (var form = new FormTimedMessage(3000, "Ooops, Job Not Started", "Start a Job First"))
+                { form.Show(); }
+                return;
+            }
+            string myFileName, dirField;
+
+            //get the directory and make sure it exists, create if not
+            dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            myFileName = "Elevation.txt";
+
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //Write out the date
+                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
+
+                writer.WriteLine("$FieldDir");
+                writer.WriteLine(currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+
+                //write out the easting and northing Offsets
+                writer.WriteLine("$Offsets");
+                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
+                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," +
+                    pn.zone.ToString(CultureInfo.InvariantCulture));
+
+                writer.WriteLine("Convergence");
+                writer.WriteLine(pn.convergenceAngle.ToString(CultureInfo.InvariantCulture));
+
+                writer.WriteLine("StartFix");
+                writer.WriteLine(pn.latitude.ToString(CultureInfo.InvariantCulture) + "," + pn.longitude.ToString(CultureInfo.InvariantCulture));
             }
         }
 
@@ -1676,11 +1723,21 @@ namespace AgOpenGPS
         //save nmea sentences
         public void FileSaveNMEA()
         {
-            using (StreamWriter writer =  new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\NMEA_log.txt"), true))
+            using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\NMEA_log.txt"), true))
             {
                 writer.Write(pn.logNMEASentence.ToString());
             }
             pn.logNMEASentence.Clear();
+        }
+
+        //save nmea sentences
+        public void FileSaveElevation()
+        {
+            using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Elevation.txt"), true))
+            {
+                writer.Write(sbFix.ToString());
+            }
+            sbFix.Clear();
         }
 
         //generate KML file from flags

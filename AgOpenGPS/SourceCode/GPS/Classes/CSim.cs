@@ -25,7 +25,7 @@ namespace AgOpenGPS
         private readonly int fixQuality = 5, sats = 12;
 
         private readonly double HDOP = 0.9;
-        private readonly double altitude = 319.1;
+        public double altitude = 300;
         private char EW = 'W';
         private char NS = 'N';
 
