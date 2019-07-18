@@ -233,12 +233,6 @@ namespace AgOpenGPS
         // Constructor, Initializes a new instance of the "FormGPS" class.
         public FormGPS()
         {
-            //winform initialization
-            InitializeComponent();
-
-            //build the gesture structures
-            SetupStructSizes();
-
             //create the world grid
             worldGrid = new CWorldGrid(this);
 
@@ -327,6 +321,12 @@ namespace AgOpenGPS
 
             // Access to workswitch functionality
             workSwitch = new CWorkSwitch(this);
+
+            //winform initialization
+            InitializeComponent();
+
+            //build the gesture structures
+            SetupStructSizes();
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
