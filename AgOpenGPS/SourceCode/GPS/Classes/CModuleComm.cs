@@ -70,8 +70,13 @@
 
         public int workSwitchValue;
 
+        // Ray Bear
+        // for the SteerSwitch
+        public bool isSteerSwitchActiveLow, isSteerSwitchEnabled;
+
+        public int steerSwitchValue;
         //imu and roll inclinometer
-        public int steerSwitchValue, gyroHeading = 9999, prevGyroHeading = 9999, rollRaw = 9999; //inclinometer ?
+        public int arduinoSwitchValue, gyroHeading = 9999, prevGyroHeading = 9999, rollRaw = 9999; //inclinometer ?
 
         //constructor
         public CModuleComm(FormGPS _f)
@@ -85,6 +90,11 @@
 
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
+
+            // Ray Bear
+            // Steerswitch logic
+            isSteerSwitchEnabled = true;
+            isSteerSwitchActiveLow = true;  // does a low, grounded out, mean on
         }
 
         //Reset all the byte arrays from modules
