@@ -106,6 +106,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
             this.tabWorkSwitch = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ChkSteerSwitchActiveLow = new System.Windows.Forms.CheckBox();
+            this.ChkEnableSteerSwitch = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
@@ -150,6 +153,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -984,9 +988,32 @@
             // 
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
             resources.ApplyResources(this.tabWorkSwitch, "tabWorkSwitch");
+            this.tabWorkSwitch.Controls.Add(this.groupBox1);
             this.tabWorkSwitch.Controls.Add(this.groupBox3);
             this.tabWorkSwitch.Name = "tabWorkSwitch";
             this.tabWorkSwitch.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.ChkSteerSwitchActiveLow);
+            this.groupBox1.Controls.Add(this.ChkEnableSteerSwitch);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // ChkSteerSwitchActiveLow
+            // 
+            resources.ApplyResources(this.ChkSteerSwitchActiveLow, "ChkSteerSwitchActiveLow");
+            this.ChkSteerSwitchActiveLow.Name = "ChkSteerSwitchActiveLow";
+            this.ChkSteerSwitchActiveLow.UseVisualStyleBackColor = true;
+            this.ChkSteerSwitchActiveLow.CheckedChanged += new System.EventHandler(this.ChkSteerSwitchActiveLow_CheckedChanged);
+            // 
+            // ChkEnableSteerSwitch
+            // 
+            resources.ApplyResources(this.ChkEnableSteerSwitch, "ChkEnableSteerSwitch");
+            this.ChkEnableSteerSwitch.Name = "ChkEnableSteerSwitch";
+            this.ChkEnableSteerSwitch.UseVisualStyleBackColor = true;
+            this.ChkEnableSteerSwitch.CheckedChanged += new System.EventHandler(this.ChkEnableSteerSwitch_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -1118,6 +1145,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             this.tabWorkSwitch.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();								   					   
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -1216,5 +1245,8 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nudMinApplied;
         private System.Windows.Forms.Label lblVehicleToolWidth;
+		private System.Windows.Forms.GroupBox groupBox1;					
+        private System.Windows.Forms.CheckBox ChkSteerSwitchActiveLow;
+        private System.Windows.Forms.CheckBox ChkEnableSteerSwitch;
     }
 }

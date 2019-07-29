@@ -35,6 +35,10 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
 
+        // Ray Bear
+        public enum btnSteerStates { Off, On }
+        public btnSteerStates btnAutoSteerState = btnSteerStates.Off;
+
         //section button states
         public enum manBtn { Off, Auto, On }
 

@@ -25,6 +25,9 @@ namespace AgOpenGPS
 
         private bool isWorkSwEn, isWorkSwActiveLow;
 
+        // Ray Bear
+        private bool isSteerSwitchEn, isSteerSwitchActiveLow;
+
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
@@ -273,9 +276,33 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
+            isSteerSwitchActiveLow = Properties.Settings.Default.setF_IsSteerSwitchActiveLow;
+
+            ChkSteerSwitchActiveLow.CheckedChanged -= ChkSteerSwitchActiveLow_CheckedChanged;
+            ChkSteerSwitchActiveLow.Checked = isSteerSwitchActiveLow;
+            ChkSteerSwitchActiveLow.CheckedChanged += ChkSteerSwitchActiveLow_CheckedChanged;
+
+            isSteerSwitchEn = Properties.Settings.Default.setF_IsSteerSwitchEnabled;
+
+            ChkEnableSteerSwitch.CheckedChanged -= ChkEnableSteerSwitch_CheckedChanged;
+            ChkEnableSteerSwitch.Checked = isSteerSwitchEn;
+            ChkEnableSteerSwitch.CheckedChanged += ChkEnableSteerSwitch_CheckedChanged;
+
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
+        }
+
+        private void ChkEnableSteerSwitch_CheckedChanged(object sender, EventArgs e)
+        {
+            isSteerSwitchEn = !isSteerSwitchEn;
+            ChkEnableSteerSwitch.Checked = isSteerSwitchEn;
+        }
+
+        private void ChkSteerSwitchActiveLow_CheckedChanged(object sender, EventArgs e)
+        {
+            isSteerSwitchActiveLow = !isSteerSwitchActiveLow;
+            ChkSteerSwitchActiveLow.Checked = isSteerSwitchActiveLow;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -382,6 +409,14 @@ namespace AgOpenGPS
 
             mf.mc.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setF_IsWorkSwitchEnabled = isWorkSwEn;
+
+            //Ray Bear
+            mf.mc.isSteerSwitchActiveLow = isSteerSwitchActiveLow;
+            Properties.Settings.Default.setF_IsSteerSwitchActiveLow = isSteerSwitchActiveLow;
+
+            //Ray Bear
+            mf.mc.isSteerSwitchEnabled = isSteerSwitchEn;
+            Properties.Settings.Default.setF_IsSteerSwitchEnabled = isSteerSwitchEn;
 
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;

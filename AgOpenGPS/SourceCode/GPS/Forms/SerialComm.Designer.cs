@@ -167,9 +167,10 @@ namespace AgOpenGPS
 
                 if (ahrs.isRollDogs) int.TryParse(words[3], out mc.rollRaw);
 
-                int.TryParse(words[4], out mc.steerSwitchValue);
-                mc.workSwitchValue = mc.steerSwitchValue & 1;
-                mc.steerSwitchValue = mc.steerSwitchValue & 2;
+                int.TryParse(words[4], out mc.arduinoSwitchValue);
+                mc.workSwitchValue = mc.arduinoSwitchValue & 1;
+                mc.steerSwitchValue = mc.arduinoSwitchValue & 2;
+                
             }
         }
 
