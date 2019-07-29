@@ -1090,5 +1090,29 @@ namespace AgOpenGPS.Properties {
                 this["setDistance_TreeSpacing"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setF_IsSteerSwitchEnabled {
+            get {
+                return ((bool)(this["setF_IsSteerSwitchEnabled"]));
+            }
+            set {
+                this["setF_IsSteerSwitchEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setF_IsSteerSwitchActiveLow {
+            get {
+                return ((bool)(this["setF_IsSteerSwitchActiveLow"]));
+            }
+            set {
+                this["setF_IsSteerSwitchActiveLow"] = value;
+            }
+        }
     }
 }
