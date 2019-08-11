@@ -995,6 +995,20 @@ namespace AgOpenGPS
                         isLeftIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].leftPoint);
                         isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
 
+                        if (vehicle.isDiskSpreader)
+                        {
+                            if (isLeftIn)
+                            {
+                                vec2 point = new vec2((cosSectionHeading * section[j].positionLeft) + (sinSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.easting, (sinSectionHeading * section[j].positionLeft) - (cosSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.northing);
+                                isLeftIn = bnd.bndArr[0].IsPointInsideBoundary(point);
+                            }
+                            if (isRightIn)
+                            {
+                                vec2 point = new vec2((cosSectionHeading * section[j].positionRight) + (sinSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.easting, (sinSectionHeading * section[j].positionRight) - (cosSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.northing);
+                                isRightIn = bnd.bndArr[0].IsPointInsideBoundary(point);
+                            }
+                        }
+
                         for (int i = 1; i < MAXBOUNDARIES; i++)
                         {
                             //inner boundaries should normally NOT have point inside
@@ -1015,6 +1029,15 @@ namespace AgOpenGPS
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
                         isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
+
+                        if (vehicle.isDiskSpreader)
+                        {
+                            if (isRightIn)
+                            {
+                                vec2 point = new vec2((cosSectionHeading * section[j].positionRight) + (sinSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.easting, (sinSectionHeading * section[j].positionRight) - (cosSectionHeading * vehicle.diskSpreaderBackDistance) + toolPos.northing);
+                                isRightIn = bnd.bndArr[0].IsPointInsideBoundary(point);
+                            }
+                        }
                         for (int i = 1; i < MAXBOUNDARIES; i++)
                         {
                             //inner boundaries should normally NOT have point inside
