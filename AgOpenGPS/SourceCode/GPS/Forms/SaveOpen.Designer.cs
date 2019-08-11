@@ -163,6 +163,10 @@ namespace AgOpenGPS
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("IsDiskSpreader," + 
+                        Properties.Vehicle.Default.setVehicle_isDiskSpreader.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("DiskSpreaderBackDistance," +
+                        Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance.ToString(CultureInfo.InvariantCulture));
                 }
 
                 //little show to say saved and where
@@ -423,8 +427,14 @@ namespace AgOpenGPS
                         else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_isDiskSpreader = false;
+                        else Properties.Vehicle.Default.setVehicle_isDiskSpreader = bool.Parse(words[1]);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance = 20.0;
+                        else Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance = double.Parse(words[1], CultureInfo.InvariantCulture);
 
                         //fill in the current variables with restored data
                         vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";

@@ -1,0 +1,6 @@
+Open VehicleSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at AgOpenGPS.FormGPS.FileOpenVehicle() in A:\Bastlerei\Landwirtschaft\AgOpenGPS\AgOpenGPS_6.8.2019\AgOpenGPS\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 433 - 8/9/2019 12:54:58 PM
+
+Open VehicleSystem.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at AgOpenGPS.FormGPS.FileOpenVehicle() in A:\Bastlerei\Landwirtschaft\AgOpenGPS\AgOpenGPS_6.8.2019\AgOpenGPS\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 434 - 8/9/2019 12:55:28 PM
+

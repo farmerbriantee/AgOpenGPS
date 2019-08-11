@@ -28,6 +28,9 @@ namespace AgOpenGPS
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
+        private bool isDiskSpreader;
+        private double diskSpreaderBackDistance;
+
         //constructor
         public FormSettings(Form callingForm, int page)
         {
@@ -128,6 +131,14 @@ namespace AgOpenGPS
             isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+
+            isDiskSpreader = Properties.Vehicle.Default.setVehicle_isDiskSpreader;
+
+            diskSpreaderBackDistance = Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance;
+            temp = (decimal)diskSpreaderBackDistance;
+            if (nudDiskSpreaderBackDistance.CheckValue(ref temp)) nudDiskSpreaderBackDistance.BackColor = System.Drawing.Color.OrangeRed;
+            diskSpreaderBackDistance = (double)temp;
+
 
             //fix the min max based on inches - they are 2.54 times smaller then cm
             if (!mf.isMetric)
@@ -233,6 +244,23 @@ namespace AgOpenGPS
             nudLookAhead.ValueChanged -= nudLookAhead_ValueChanged;
             nudLookAhead.Value = (decimal)(toolLookAhead);
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
+
+            chkIsDiskSpreader.CheckedChanged -= chkIsDiskSpreader_CheckedChanged;
+            chkIsDiskSpreader.Checked = isDiskSpreader;
+            chkIsDiskSpreader.CheckedChanged += chkIsDiskSpreader_CheckedChanged;
+
+            nudDiskSpreaderBackDistance.ValueChanged -= nudDiskSpreaderBackDistance_ValueChanged;
+            nudDiskSpreaderBackDistance.Value = (decimal)(diskSpreaderBackDistance * m2MetImp);
+            nudDiskSpreaderBackDistance.ValueChanged += nudDiskSpreaderBackDistance_ValueChanged;
+
+            if (isDiskSpreader)
+            {
+                nudDiskSpreaderBackDistance.Enabled = true; nudDiskSpreaderBackDistance.Visible = true;
+            }
+            else
+            {
+                nudDiskSpreaderBackDistance.Enabled = false; nudDiskSpreaderBackDistance.Visible = false;
+            }
 
             //grab number of sections
             nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
@@ -386,12 +414,42 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
 
+            mf.vehicle.isDiskSpreader = isDiskSpreader;
+            Properties.Vehicle.Default.setVehicle_isDiskSpreader = mf.vehicle.isDiskSpreader;
+
+            mf.vehicle.diskSpreaderBackDistance = diskSpreaderBackDistance;
+            Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance = mf.vehicle.diskSpreaderBackDistance;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void chkIsDiskSpreader_CheckedChanged(object sender, EventArgs e)
+        {
+            isDiskSpreader = !isDiskSpreader;
+            chkIsDiskSpreader.Checked = isDiskSpreader;
+            if (isDiskSpreader)
+            {
+                nudDiskSpreaderBackDistance.Enabled = true; nudDiskSpreaderBackDistance.Visible = true;
+            }
+            else
+            {
+                nudDiskSpreaderBackDistance.Enabled = false; nudDiskSpreaderBackDistance.Visible = false;
+            }
+        }
+
+        private void label42_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void nudDiskSpreaderBackDistance_ValueChanged(object sender, EventArgs e)
+        {
+            diskSpreaderBackDistance = (double)nudDiskSpreaderBackDistance.Value;
         }
 
         //don't save anything, leave the settings as before

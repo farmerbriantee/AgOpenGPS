@@ -92,17 +92,33 @@ namespace AgOpenGPS
                 triangleList = new List<vec2>();
                 patchList.Add(triangleList);
 
-                //left side of triangle
+                if (!mf.vehicle.isDiskSpreader) //orginal part
+                {   //left side of triangle
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
-                        (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
-                triangleList.Add(point);
+                    vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
+                            (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
+                    triangleList.Add(point);
+
+                    //Right side of triangle
+                    point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
+                        (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    triangleList.Add(point);
+                }
+                else // isDisksreader -> first points are far more back
+                {   //left side of triangle
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + (mf.sinSectionHeading * mf.vehicle.diskSpreaderBackDistance) + mf.toolPos.easting,
+                            (mf.sinSectionHeading * positionLeft) - (mf.cosSectionHeading * mf.vehicle.diskSpreaderBackDistance) + mf.toolPos.northing);
+                    triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
-                    (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
+                point = new vec2((mf.cosSectionHeading * positionRight) + (mf.sinSectionHeading * mf.vehicle.diskSpreaderBackDistance) + mf.toolPos.easting,
+                        (mf.sinSectionHeading * positionRight) - (mf.cosSectionHeading * mf.vehicle.diskSpreaderBackDistance) + mf.toolPos.northing);
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                triangleList.Add(point);
+                    triangleList.Add(point);
+                }
+
             }
         }
 

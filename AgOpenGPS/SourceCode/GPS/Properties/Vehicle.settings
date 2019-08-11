@@ -176,5 +176,11 @@
     <Setting Name="setVehicle_isStanleyUsed" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="setVehicle_isDiskSpreader" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setVehicle_diskSpreaderBackDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

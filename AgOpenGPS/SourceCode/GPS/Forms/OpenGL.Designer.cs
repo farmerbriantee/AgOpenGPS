@@ -623,7 +623,14 @@ namespace AgOpenGPS
             double rpHeight = 0;
 
             //assume all sections are on and super can be on, if not set false to turn off.
-            vehicle.isSuperSectionAllowedOn = true;
+            if (!vehicle.isDiskSpreader)
+            {
+                vehicle.isSuperSectionAllowedOn = true;
+            }
+            else
+            {
+                vehicle.isSuperSectionAllowedOn = false; //disturbing display of distance back for spreader
+            }
 
             //find any off buttons, any outside of boundary, going backwards, and the farthest lookahead
             for (int j = 0; j < vehicle.numOfSections; j++)

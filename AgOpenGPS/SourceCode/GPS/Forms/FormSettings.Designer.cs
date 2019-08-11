@@ -56,6 +56,10 @@
             this.nudWheelbase = new System.Windows.Forms.NumericUpDown();
             this.nudAntennaHeight = new System.Windows.Forms.NumericUpDown();
             this.tabTool = new System.Windows.Forms.TabPage();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nudDiskSpreaderBackDistance = new System.Windows.Forms.NumericUpDown();
+            this.chkIsDiskSpreader = new System.Windows.Forms.CheckBox();
             this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -127,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelbase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).BeginInit();
             this.tabTool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDiskSpreaderBackDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
@@ -403,6 +408,10 @@
             // 
             this.tabTool.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
             resources.ApplyResources(this.tabTool, "tabTool");
+            this.tabTool.Controls.Add(this.label42);
+            this.tabTool.Controls.Add(this.label4);
+            this.tabTool.Controls.Add(this.nudDiskSpreaderBackDistance);
+            this.tabTool.Controls.Add(this.chkIsDiskSpreader);
             this.tabTool.Controls.Add(this.nudOffset);
             this.tabTool.Controls.Add(this.label22);
             this.tabTool.Controls.Add(this.label8);
@@ -420,6 +429,36 @@
             this.tabTool.Controls.Add(this.label5);
             this.tabTool.Name = "tabTool";
             this.tabTool.UseVisualStyleBackColor = true;
+            // 
+            // label42
+            // 
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.Name = "label42";
+            this.label42.Click += new System.EventHandler(this.label42_Click);
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // nudDiskSpreaderBackDistance
+            // 
+            resources.ApplyResources(this.nudDiskSpreaderBackDistance, "nudDiskSpreaderBackDistance");
+            this.nudDiskSpreaderBackDistance.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nudDiskSpreaderBackDistance.Name = "nudDiskSpreaderBackDistance";
+            this.nudDiskSpreaderBackDistance.ValueChanged += new System.EventHandler(this.nudDiskSpreaderBackDistance_ValueChanged);
+            // 
+            // chkIsDiskSpreader
+            // 
+            resources.ApplyResources(this.chkIsDiskSpreader, "chkIsDiskSpreader");
+            this.chkIsDiskSpreader.Image = global::AgOpenGPS.Properties.Resources.DiskSpreader2;
+            this.chkIsDiskSpreader.Name = "chkIsDiskSpreader";
+            this.chkIsDiskSpreader.UseVisualStyleBackColor = true;
+            this.chkIsDiskSpreader.CheckedChanged += new System.EventHandler(this.chkIsDiskSpreader_CheckedChanged);
             // 
             // nudOffset
             // 
@@ -1094,6 +1133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaHeight)).EndInit();
             this.tabTool.ResumeLayout(false);
             this.tabTool.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDiskSpreaderBackDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
@@ -1216,5 +1256,9 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nudMinApplied;
         private System.Windows.Forms.Label lblVehicleToolWidth;
+        private System.Windows.Forms.CheckBox chkIsDiskSpreader;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown nudDiskSpreaderBackDistance;
     }
 }

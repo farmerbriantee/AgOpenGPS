@@ -9,6 +9,10 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
+        //type of vehicle
+        public bool isDiskSpreader; //To check kind of equipment
+        public double diskSpreaderBackDistance; //m
+
         public double toolWidth;
         public double toolFarLeftPosition = 0;
         public double toolFarLeftSpeed = 0;
@@ -110,6 +114,9 @@ namespace AgOpenGPS
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
 
             treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+
+            isDiskSpreader = Properties.Vehicle.Default.setVehicle_isDiskSpreader;
+            diskSpreaderBackDistance = Properties.Vehicle.Default.setVehicle_diskSpreaderBackDistance;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)

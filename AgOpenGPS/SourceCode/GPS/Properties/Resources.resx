@@ -517,4 +517,10 @@
   <data name="tree" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\tree.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="String" xml:space="preserve">
+    <value>display</value>
+  </data>
+  <data name="DiskSpreader2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\DiskSpreader2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
