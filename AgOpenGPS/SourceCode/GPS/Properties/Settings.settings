@@ -71,16 +71,22 @@
     <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setF_IsSteerSwitchActiveLow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_IsSteerSwitchEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="setPort_portNameAutoSteer" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM AS</Value>
     </Setting>
     <Setting Name="setPort_wasAutoSteerConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_pitchZero" Type="System.Int32" Scope="User">
+    <Setting Name="setIMU_pitchZeroX16" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setIMU_rollZero" Type="System.Int32" Scope="User">
+    <Setting Name="setIMU_rollZeroX16" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setMenu_isLogNMEA" Type="System.Boolean" Scope="User">
@@ -161,19 +167,16 @@
     <Setting Name="setIMU_UID" Type="System.String" Scope="User">
       <Value Profile="(Default)">68wESU</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromDogs" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isHeadingFromBrick" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isHeadingFromBNO" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isHeadingFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromBrick" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
@@ -182,7 +185,7 @@
     <Setting Name="setIMU_isHeadingFromPAOGI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromPAOGI" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
@@ -268,6 +271,12 @@
     </Setting>
     <Setting Name="setDistance_TreeSpacing" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingFromExtUDP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromExtUDP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

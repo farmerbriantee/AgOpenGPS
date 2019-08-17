@@ -35,6 +35,10 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
 
+        // Ray Bear
+        public enum btnSteerStates { Off, On }
+        public btnSteerStates btnAutoSteerState = btnSteerStates.Off;
+        
         //section button states
         public enum manBtn { Off, Auto, On }
 
@@ -1371,6 +1375,8 @@ namespace AgOpenGPS
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             System.Media.SystemSounds.Question.Play();
+
+            //btnEnableAutoYouTurn.Draggable(false);
 
             //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
@@ -3003,7 +3009,7 @@ namespace AgOpenGPS
                 {
                     FileCreateContour();
                     FileCreateSections();
-                    FileCreateElevation();
+                    //FileCreateElevation();
 
                     if (rcd.isRateControlOn)
                         btnDualRate.PerformClick();
@@ -3313,8 +3319,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mc.gyroHeading != 9999)
-                    return Math.Round(mc.gyroHeading * 0.0625, 1) + "\u00B0";
+                if (ahrs.correctionHeadingX16 != 9999)
+                    return Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1) + "\u00B0";
                 else return "-";
             }
         }
@@ -3322,8 +3328,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mc.rollRaw != 9999)
-                    return Math.Round((mc.rollRaw - ahrs.rollZero) * 0.0625, 1) + "\u00B0";
+                if (ahrs.rollX16 != 9999)
+                    return Math.Round((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625, 1) + "\u00B0";
                 else return "-";
             }
         }

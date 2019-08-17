@@ -1177,7 +1177,7 @@
             0});
             this.nudElevation.Name = "nudElevation";
             this.nudElevation.Value = new decimal(new int[] {
-            88888,
+            3000,
             0,
             0,
             65536});

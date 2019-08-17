@@ -39,66 +39,66 @@ namespace AgOpenGPS
         //serial port AutoSteer is connected to
         public SerialPort spAutoSteer = new SerialPort(portNameAutoSteer, baudRateAutoSteer, Parity.None, 8, StopBits.One);
 
-        #region AutoSteerPort //--------------------------------------------------------------------
+        #region AutoSteerPort // --------------------------------------------------------------------
 
         public void AutoSteerDataOutToPort()
         {
             //load the uturn byte with the accumulated spacing
-            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeSpacingCounter;
+            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeTrigger;
 
             //default to a stop initially
             mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
 
-            if (isInAutoDrive) //Is in Auto Drive Mode enabled
-            {
-                if (!ast.isInFreeDriveMode)
-                {
-                    //make it go - or with 1
-                    if (recPath.isDrivingRecordedPath)
-                    {
-                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                    }
+            //if (isInAutoDrive) //Is in Auto Drive Mode enabled
+            //{
+            //    if (!ast.isInFreeDriveMode)
+            //    {
+            //        //make it go - or with 1
+            //        if (recPath.isDrivingRecordedPath)
+            //        {
+            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //        }
 
-                    if (self.isSelfDriving)
-                    {
-                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                    }
-                }
-                else //in AutoDrive and FreeDrive
-                {
-                    mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                }
+            //        if (self.isSelfDriving)
+            //        {
+            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //        }
+            //    }
+            //    else //in AutoDrive and FreeDrive
+            //    {
+            //        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //    }
 
-                //Is there something in the way?
-                if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
-                {
-                    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-                }
-            }
-            else // Auto/Manual is in Manual so release the clutch only
-            {
-                //release the clutch for manual driving
-                mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
-                mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
-            }
+            //    ////Is there something in the way?
+            //    //if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
+            //    //{
+            //    //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //    //}
+            //}
+            //else // Auto/Manual is in Manual so release the clutch only
+            //{
+            //    //release the clutch for manual driving
+            //    mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
+            //}
 
-            //pause the thing if paused. Duh.
-            if (recPath.isPausedDrivingRecordedPath)
-            {
-                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            }
+            ////pause the thing if paused. Duh.
+            //if (recPath.isPausedDrivingRecordedPath)
+            //{
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //}
 
-            //gone out of bounds so full stop.
-            if (mc.isOutOfBounds)
-            {
-                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            }
+            ////gone out of bounds so full stop.
+            //if (mc.isOutOfBounds)
+            //{
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //}
 
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
                 //machine control
-                SendUDPMessage(mc.machineControlData);
+                //SendUDPMessage(mc.machineControlData);
 
                 //send autosteer since it never is logic controlled
                 SendUDPMessage(mc.autoSteerData);
@@ -154,18 +154,17 @@ namespace AgOpenGPS
             string[] words = mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length == 5)
             {
-                double.TryParse(words[0], out actualSteerAngleDisp);
+                double.TryParse(words[0], NumberStyles.Float, CultureInfo.InvariantCulture, out actualSteerAngleDisp);
                
 
                 //first 2 used for display mainly in autosteer window chart as strings
                 //parse the values
-                if (ahrs.isHeadingBNO)
+                if (ahrs.isHeadingFromAutoSteer)
                 {
-                    mc.prevGyroHeading = mc.gyroHeading;
-                    int.TryParse(words[2], out mc.gyroHeading);
+                    int.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.correctionHeadingX16);
                 }
 
-                if (ahrs.isRollDogs) int.TryParse(words[3], out mc.rollRaw);
+                if (ahrs.isRollFromAutoSteer) int.TryParse(words[3], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.rollX16);
 
                 int.TryParse(words[4], out mc.steerSwitchValue);
                 mc.workSwitchValue = mc.steerSwitchValue & 1;

@@ -15,15 +15,21 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance, gain = 1;
+        private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance, zoomGain = 1;
         private double minElevation, maxElevation;
-        private double peakElevation, baseElevation, waterLevel;
+        private double deltaElevation, baseElevation, waterLevel;
+
         private int fieldWidth, fieldHeight;
 
         private bool isLoaded;
 
         //list of recorded elevation points
         private List<vec3> elevRecPts = new List<vec3>();
+
+        private void NudZoomGain_ValueChanged(object sender, EventArgs e)
+        {
+            zoomGain = (double)nudZoomGain.Value;
+        }
 
         //list of strip data individual points
         private vec3 [,] elevGrid;
@@ -80,9 +86,9 @@ namespace AgOpenGPS
 
                 double minDistance;
                 int closestPt = 0;
-                for (int j = 0; j < fieldWidth; j++)
+                for (int j = 0; j < fieldWidth; j+=8)
                 {
-                    for (int k = 0; k < fieldHeight; k++)
+                    for (int k = 0; k < fieldHeight; k+=8)
                     {
                         minDistance = 99999;
                         for (int i = 0; i < ptCount; i++)
@@ -125,10 +131,10 @@ namespace AgOpenGPS
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();                  // Reset The View
 
-                CalculateMinMax();
+                //CalculateMinMax();
 
                 //back the camera up
-                GL.Translate(0, 0, -maxFieldDistance * gain);
+                GL.Translate(0, 0, -maxFieldDistance * zoomGain);
 
                 //GL.Rotate(-170, 1.0, 0.0, 0.0);
 
@@ -152,9 +158,8 @@ namespace AgOpenGPS
                 GL.End();
                 //GL.Disable(EnableCap.Texture2D);
 
-                double elevColor, bas;
                 //draw points
-                //raw current AB Line
+                double elevColor, bas;
                 GL.PointSize(8.0f);
                 GL.Begin(PrimitiveType.Points);
 
@@ -171,7 +176,8 @@ namespace AgOpenGPS
                     for (int k = 0; k < fieldHeight; k++)
                     {
                         elevColor = bas = elevGrid[j, k].heading - baseElevation;
-                        elevColor /= peakElevation;
+                        elevColor /= (deltaElevation * 2);
+                        elevColor += 0.5;
                         GL.Color3(elevColor, 0.0, 0.0);
                         GL.Vertex3(elevGrid[j, k].easting, elevGrid[j, k].northing, bas);
 
@@ -253,7 +259,7 @@ namespace AgOpenGPS
 
             GL.Viewport(0, 0, oglElev.Width, oglElev.Height);
             Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, (float)oglElev.Width / (float)oglElev.Height,
-                100.0f, 500.0f);
+                100.0f, 1000.0f);
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
 
@@ -284,7 +290,7 @@ namespace AgOpenGPS
             }
 
             baseElevation = minElevation;
-            peakElevation = maxElevation - minElevation;
+            deltaElevation = maxElevation - minElevation;
 
             //min max of the boundary
             if (mf.bnd.bndArr[0].isSet)
@@ -322,6 +328,10 @@ namespace AgOpenGPS
 
                 fieldCenterX = (maxFieldX + minFieldX) / 2.0;
                 fieldCenterY = (maxFieldY + minFieldY) / 2.0;
+
+                lblMinElev.Text = minElevation.ToString("N2");
+                lblMaxElev.Text = maxElevation.ToString("N2");
+                lblDeltaElev.Text = (deltaElevation).ToString("N2");
             }
         }
 
@@ -378,5 +388,129 @@ namespace AgOpenGPS
                 return false;
             }
         }
+
+
+
+        /// <summary>
+        /// Convert HSV to RGB
+        /// h is from 0-360
+        /// s,v values are 0-1
+        /// r,g,b values are 0-255
+        /// Based upon http://ilab.usc.edu/wiki/index.php/HSV_And_H2SV_Color_Space#HSV_Transformation_C_.2F_C.2B.2B_Code_2
+        /// </summary>
+        void HsvToRgb(double h, double S, double V, out int r, out int g, out int b)
+        {
+            // ######################################################################
+            // T. Nathan Mundhenk
+            // mundhenk@usc.edu
+            // C/C++ Macro HSV to RGB
+
+            double H = h;
+            while (H < 0) { H += 360; };
+            while (H >= 360) { H -= 360; };
+            double R, G, B;
+            if (V <= 0)
+            { R = G = B = 0; }
+            else if (S <= 0)
+            {
+                R = G = B = V;
+            }
+            else
+            {
+                double hf = H / 60.0;
+                int i = (int)Math.Floor(hf);
+                double f = hf - i;
+                double pv = V * (1 - S);
+                double qv = V * (1 - S * f);
+                double tv = V * (1 - S * (1 - f));
+                switch (i)
+                {
+
+                    // Red is the dominant color
+
+                    case 0:
+                        R = V;
+                        G = tv;
+                        B = pv;
+                        break;
+
+                    // Green is the dominant color
+
+                    case 1:
+                        R = qv;
+                        G = V;
+                        B = pv;
+                        break;
+                    case 2:
+                        R = pv;
+                        G = V;
+                        B = tv;
+                        break;
+
+                    // Blue is the dominant color
+
+                    case 3:
+                        R = pv;
+                        G = qv;
+                        B = V;
+                        break;
+                    case 4:
+                        R = tv;
+                        G = pv;
+                        B = V;
+                        break;
+
+                    // Red is the dominant color
+
+                    case 5:
+                        R = V;
+                        G = pv;
+                        B = qv;
+                        break;
+
+                    // Just in case we overshoot on our math by a little, we put these here. Since its a switch it won't slow us down at all to put these here.
+
+                    case 6:
+                        R = V;
+                        G = tv;
+                        B = pv;
+                        break;
+                    case -1:
+                        R = V;
+                        G = pv;
+                        B = qv;
+                        break;
+
+                    // The color is not defined, we should throw an error.
+
+                    default:
+                        //LFATAL("i Value error in Pixel conversion, Value is %d", i);
+                        R = G = B = V; // Just pretend its black/white
+                        break;
+                }
+            }
+            r = Clamp((int)(R * 255.0));
+            g = Clamp((int)(G * 255.0));
+            b = Clamp((int)(B * 255.0));
+        }
+
+        /// <summary>
+        /// Clamp a value to 0-255
+        /// </summary>
+        int Clamp(int i)
+        {
+            if (i < 0) return 0;
+            if (i > 255) return 255;
+            return i;
+        }
+
+//        And here's how you'd use it:
+
+//int r, g, b;
+//        HsvToRgb(110, 1, 1, out r, out g, out b);
+
+
+
+
     }
 }

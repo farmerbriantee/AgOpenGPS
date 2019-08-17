@@ -21,15 +21,14 @@ namespace AgOpenGPS
         public static readonly string UID = Properties.Settings.Default.setIMU_UID; // "68wESU"; // Change XXYYZZ to the UID of your IMU Brick 2.0
 
         //flags for desired sources
-        public bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
+        public bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingFromPAOGI, isHeadingFromExtUDP;
+        public bool isRollFromAutoSteer, isRollFromBrick, isRollFromGPS, isRollFromExtUDP;
 
-        //by Matthias Hammer Jan 2019
-        public bool isBNOSeparate = false;
-
-        public bool isDogsSeparate = false;
+        //Roll and heading from the IMU
+        public int correctionHeadingX16 = 9999, prevCorrectionHeadingX16 = 9999, rollX16 = 9999;
 
         //actual value in degrees* 16 to modify the imu*16 values
-        public int rollZero, pitchZero;
+        public int rollZeroX16, pitchZeroX16;
 
         //constructor
         public CAHRS(FormGPS _f)
@@ -37,19 +36,21 @@ namespace AgOpenGPS
             mf = _f;
 
             //non GPS AHRS sensors
-            isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
-            isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-            isHeadingPAOGI = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
+            isHeadingFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingFromAutoSteer;
+            isHeadingFromBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
+            isHeadingFromPAOGI = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
+            isHeadingFromExtUDP = Properties.Settings.Default.setIMU_isHeadingFromExtUDP;
 
-            isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
-            isRollBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
-            isRollPAOGI = Properties.Settings.Default.setIMU_isRollFromPAOGI;
-
-            rollZero = Properties.Settings.Default.setIMU_rollZero;
-            pitchZero = Properties.Settings.Default.setIMU_pitchZero;
+            isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
+            isRollFromBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
+            isRollFromGPS = Properties.Settings.Default.setIMU_isRollFromGPS;
+            isRollFromExtUDP = Properties.Settings.Default.setIMU_isRollFromExtUDP;
+            
+            rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;
+            pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
 
             //usb IMU Tinker
-            if (isHeadingBrick || isRollBrick)
+            if (isHeadingFromBrick || isRollFromBrick)
             {
                 ipcon = new IPConnection(); // Create IP connection
                 imu = new BrickIMUV2(CAHRS.UID, ipcon); // Create device object
@@ -79,13 +80,12 @@ namespace AgOpenGPS
         //event for TinkerForge IMU
         public void OrientCB(BrickIMUV2 sender, short heading, short roll, short pitch)
         {
-            if (isHeadingBrick)
+            if (isHeadingFromBrick)
             {
-                mf.mc.prevGyroHeading = mf.mc.gyroHeading;
-                mf.mc.gyroHeading = heading;
+                mf.ahrs.correctionHeadingX16 = heading;
             }
 
-            if (isRollBrick) mf.mc.rollRaw = roll;
+            if (isRollFromBrick) mf.ahrs.rollX16 = roll;
         }
     }
 }

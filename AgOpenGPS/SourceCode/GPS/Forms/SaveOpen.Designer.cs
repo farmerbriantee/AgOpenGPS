@@ -83,6 +83,11 @@ namespace AgOpenGPS
                     writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setF_IsWorkSwitchEnabled.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ActiveLow," + Properties.Settings.Default.setF_IsWorkSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
 
+                    //Ray Bear
+                    //Steer Switch
+                    writer.WriteLine("SteerSwitch," + Properties.Settings.Default.setF_IsSteerSwitchEnabled.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SteerActiveLow," + Properties.Settings.Default.setF_IsSteerSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
+
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("HeadingFromSource," + Properties.Settings.Default.setGPS_headingFromWhichSource);
@@ -115,8 +120,8 @@ namespace AgOpenGPS
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
 
-                    writer.WriteLine("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZero.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("IMURollZero," + Properties.Settings.Default.setIMU_rollZero.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZeroX16.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IMURollZero," + Properties.Settings.Default.setIMU_rollZeroX16.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsLogNMEA," + Properties.Settings.Default.setMenu_isLogNMEA.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("MinFixStep," + Properties.Settings.Default.setF_minFixStep.ToString(CultureInfo.InvariantCulture));
 
@@ -148,8 +153,8 @@ namespace AgOpenGPS
 
                     writer.WriteLine("RollFromBrick," + Properties.Settings.Default.setIMU_isRollFromBrick);
                     writer.WriteLine("HeadingFromBrick," + Properties.Settings.Default.setIMU_isHeadingFromBrick);
-                    writer.WriteLine("RollFromDogs," + Properties.Settings.Default.setIMU_isRollFromDogs);
-                    writer.WriteLine("HeadingFromBNO," + Properties.Settings.Default.setIMU_isHeadingFromBNO);
+                    writer.WriteLine("RollFromDogs," + Properties.Settings.Default.setIMU_isRollFromAutoSteer);
+                    writer.WriteLine("HeadingFromBNO," + Properties.Settings.Default.setIMU_isHeadingFromAutoSteer);
 
                     writer.WriteLine("GoalPointLookAheadUTurnMult," +
                         Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult.ToString(CultureInfo.InvariantCulture));
@@ -295,6 +300,13 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
 
+                        //Ray Bear
+                        //Steer Switch
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsSteerSwitchEnabled = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsSteerSwitchActiveLow = bool.Parse(words[1]);
+
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -348,9 +360,9 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_pitchZero = int.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setIMU_pitchZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_rollZero = int.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setIMU_rollZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setMenu_isLogNMEA = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -406,9 +418,9 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_isHeadingFromBrick = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isRollFromDogs = bool.Parse(words[1]);
+                        Properties.Settings.Default.setIMU_isRollFromAutoSteer = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isHeadingFromBNO = bool.Parse(words[1]);
+                        Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = 0.7;
@@ -478,6 +490,11 @@ namespace AgOpenGPS
                         mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
                         mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
 
+                        //Ray Bear
+                        //Steer Switch
+                        mc.isSteerSwitchEnabled = Properties.Settings.Default.setF_IsSteerSwitchEnabled;
+                        mc.isSteerSwitchActiveLow = Properties.Settings.Default.setF_IsSteerSwitchActiveLow;
+
                         //Set width of section and positions for each section
                         SectionSetPosition();
 
@@ -528,8 +545,8 @@ namespace AgOpenGPS
 
                         vehicle.slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
 
-                        ahrs.pitchZero = Properties.Settings.Default.setIMU_pitchZero;
-                        ahrs.rollZero = Properties.Settings.Default.setIMU_rollZero;
+                        ahrs.pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
+                        ahrs.rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;
                         isLogNMEA = Properties.Settings.Default.setMenu_isLogNMEA;
                         minFixStepDist = Properties.Settings.Default.setF_minFixStep;
 
@@ -559,10 +576,10 @@ namespace AgOpenGPS
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
                             double.TryParse(words[i], NumberStyles.Float, CultureInfo.InvariantCulture, out seq.seqExit[i].distance);
 
-                        ahrs.isRollBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
-                        ahrs.isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-                        ahrs.isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
-                        ahrs.isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
+                        ahrs.isRollFromBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
+                        ahrs.isHeadingFromBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
+                        ahrs.isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
+                        ahrs.isHeadingFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingFromAutoSteer;
 
                         return true;
                         //Application.Exit();

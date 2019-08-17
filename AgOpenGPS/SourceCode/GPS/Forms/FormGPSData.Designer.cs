@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,15 +55,6 @@
             this.tboxSerialToRelay = new System.Windows.Forms.TextBox();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.tboxSerialToAutoSteer = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblRoll = new System.Windows.Forms.Label();
-            this.lblEast = new System.Windows.Forms.Label();
-            this.unoChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblAdjEast = new System.Windows.Forms.Label();
-            this.btnRoll = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.unoChart)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -362,185 +348,16 @@
             this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(224, 27);
             this.tboxSerialToAutoSteer.TabIndex = 117;
             // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label10.Location = new System.Drawing.Point(557, 138);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 19);
-            this.label10.TabIndex = 202;
-            this.label10.Text = "Roll";
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label12.Location = new System.Drawing.Point(65, 136);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 19);
-            this.label12.TabIndex = 201;
-            this.label12.Text = "Easting";
-            // 
-            // lblRoll
-            // 
-            this.lblRoll.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRoll.AutoSize = true;
-            this.lblRoll.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoll.ForeColor = System.Drawing.Color.LightCoral;
-            this.lblRoll.Location = new System.Drawing.Point(609, 137);
-            this.lblRoll.Name = "lblRoll";
-            this.lblRoll.Size = new System.Drawing.Size(52, 23);
-            this.lblRoll.TabIndex = 200;
-            this.lblRoll.Text = "12.8";
-            // 
-            // lblEast
-            // 
-            this.lblEast.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblEast.AutoSize = true;
-            this.lblEast.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblEast.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEast.ForeColor = System.Drawing.Color.Yellow;
-            this.lblEast.Location = new System.Drawing.Point(132, 135);
-            this.lblEast.Name = "lblEast";
-            this.lblEast.Size = new System.Drawing.Size(82, 23);
-            this.lblEast.TabIndex = 199;
-            this.lblEast.Text = "523456";
-            // 
-            // unoChart
-            // 
-            this.unoChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.unoChart.BackColor = System.Drawing.Color.DarkGray;
-            chartArea2.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea2.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.AxisY.LineWidth = 2;
-            chartArea2.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea2.BackColor = System.Drawing.Color.Black;
-            chartArea2.BorderWidth = 2;
-            chartArea2.Name = "ChartArea1";
-            chartArea2.Position.Auto = false;
-            chartArea2.Position.Height = 94F;
-            chartArea2.Position.Width = 97F;
-            chartArea2.Position.X = 3F;
-            chartArea2.Position.Y = 6F;
-            this.unoChart.ChartAreas.Add(chartArea2);
-            legend2.Alignment = System.Drawing.StringAlignment.Far;
-            legend2.BackColor = System.Drawing.Color.DimGray;
-            legend2.DockedToChartArea = "ChartArea1";
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Left;
-            legend2.Enabled = false;
-            legend2.ForeColor = System.Drawing.Color.White;
-            legend2.Name = "Legend1";
-            this.unoChart.Legends.Add(legend2);
-            this.unoChart.Location = new System.Drawing.Point(2, 135);
-            this.unoChart.Name = "unoChart";
-            this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series4.BackSecondaryColor = System.Drawing.Color.White;
-            series4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series4.Color = System.Drawing.Color.Yellow;
-            series4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series4.IsVisibleInLegend = false;
-            series4.Legend = "Legend1";
-            series4.Name = "East";
-            series4.YValuesPerPoint = 6;
-            series5.BorderWidth = 2;
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series5.Color = System.Drawing.Color.Lime;
-            series5.IsVisibleInLegend = false;
-            series5.Legend = "Legend1";
-            series5.Name = "AdjEast";
-            series6.BorderWidth = 2;
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series6.Color = System.Drawing.Color.Red;
-            series6.LabelBorderWidth = 2;
-            series6.Legend = "Legend1";
-            series6.Name = "Roll";
-            this.unoChart.Series.Add(series4);
-            this.unoChart.Series.Add(series5);
-            this.unoChart.Series.Add(series6);
-            this.unoChart.Size = new System.Drawing.Size(875, 308);
-            this.unoChart.TabIndex = 198;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label13.Location = new System.Drawing.Point(283, 137);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(90, 19);
-            this.label13.TabIndex = 204;
-            this.label13.Text = "Adj Easting";
-            // 
-            // lblAdjEast
-            // 
-            this.lblAdjEast.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAdjEast.AutoSize = true;
-            this.lblAdjEast.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblAdjEast.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdjEast.ForeColor = System.Drawing.Color.Lime;
-            this.lblAdjEast.Location = new System.Drawing.Point(379, 137);
-            this.lblAdjEast.Name = "lblAdjEast";
-            this.lblAdjEast.Size = new System.Drawing.Size(106, 23);
-            this.lblAdjEast.TabIndex = 203;
-            this.lblAdjEast.Text = "99887766";
-            // 
-            // btnRoll
-            // 
-            this.btnRoll.Location = new System.Drawing.Point(9, 198);
-            this.btnRoll.Name = "btnRoll";
-            this.btnRoll.Size = new System.Drawing.Size(29, 152);
-            this.btnRoll.TabIndex = 205;
-            this.btnRoll.Text = "S\r\nT\r\nO\r\nP\r\n";
-            this.btnRoll.UseVisualStyleBackColor = true;
-            this.btnRoll.Click += new System.EventHandler(this.btnRoll_Click);
-            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(878, 440);
+            this.ClientSize = new System.Drawing.Size(878, 142);
             this.Controls.Add(this.lblZone);
             this.Controls.Add(this.lblLongitude);
             this.Controls.Add(this.lblLatitude);
             this.Controls.Add(this.lblEasting);
             this.Controls.Add(this.lblNorthing);
-            this.Controls.Add(this.btnRoll);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.lblAdjEast);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.lblRoll);
-            this.Controls.Add(this.lblEast);
-            this.Controls.Add(this.unoChart);
             this.Controls.Add(this.tboxSerialFromAutoSteer);
             this.Controls.Add(this.tboxSerialToAutoSteer);
             this.Controls.Add(this.tboxSerialToRelay);
@@ -569,7 +386,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GPS Data";
             this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.unoChart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,13 +419,5 @@
         private System.Windows.Forms.TextBox tboxSerialToRelay;
         private System.Windows.Forms.TextBox tboxSerialFromAutoSteer;
         private System.Windows.Forms.TextBox tboxSerialToAutoSteer;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblRoll;
-        private System.Windows.Forms.Label lblEast;
-        private System.Windows.Forms.DataVisualization.Charting.Chart unoChart;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label lblAdjEast;
-        private System.Windows.Forms.Button btnRoll;
     }
 }

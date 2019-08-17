@@ -152,19 +152,14 @@ namespace AgOpenGPS
                 //autosteer
                 case 5577:
                     {
-                        //if (ahrs.isHeadingBNO)
-                        //by Matthias Hammer Jan 2019
-                        if ((ahrs.isHeadingBNO) & (!ahrs.isBNOSeparate))
+                        if (ahrs.isHeadingFromAutoSteer)
                         {
-                            mc.prevGyroHeading = mc.gyroHeading;
-                            mc.gyroHeading = (Int16)((data[4] << 8) + data[5]);
+                            ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                         }
 
-                        //if (ahrs.isRollDogs)
-                        //by Matthias Hammer Jan 2019
-                        if ((ahrs.isRollDogs) & (!ahrs.isDogsSeparate))
+                        if (ahrs.isRollFromAutoSteer)
                         {
-                            mc.rollRaw = (Int16)((data[6] << 8) + data[7]);
+                            ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
                         }
 
                         mc.steerSwitchValue = data[8];
@@ -181,7 +176,7 @@ namespace AgOpenGPS
 
                         //load the usb recv string with udp recd data for chart and gui info
                         mc.serialRecvAutoSteerStr = (actualSteerAngle * 0.01).ToString("N2") + "," + (setSteerAngle * 0.01).ToString("N2")
-                               + "," + (mc.rollRaw * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString()
+                               + "," + (ahrs.rollX16 * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString()
                                + "," + (pwm).ToString();
                         break;
                     }
@@ -201,40 +196,26 @@ namespace AgOpenGPS
                         break;
                     }
 
-                //IMU
+                //Ext UDP IMU
                 case 5544:
                     {
                         //by Matthias Hammer Jan 2019
                         if ((data[0] == 127) & (data[1] == 238))
                         {
-                            if (ahrs.isBNOSeparate)
+                            if (ahrs.isHeadingFromExtUDP)
                             {
-                                if (ahrs.isHeadingBNO)
-                                {
-                                    mc.prevGyroHeading = mc.gyroHeading;
-                                    mc.gyroHeading = (Int16)((data[4] << 8) + data[5]);
-                                }
-                            }
-                            else
-                            {
-                                if ((data[4] != 0) | (data[5] != 0)) { ahrs.isBNOSeparate = true; }
+                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                             }
 
-                            if (ahrs.isDogsSeparate)
+                            if (ahrs.isRollFromExtUDP)
                             {
-                                if (ahrs.isRollDogs)
-                                {
-                                    mc.rollRaw = (Int16)((data[6] << 8) + data[7]);
-                                }
-                            }
-                            else
-                            {
-                                if ((data[6] != 0) | (data[7] != 0)) { ahrs.isDogsSeparate = true; }
+                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
                             }
                         }
                         break;
                     }
-                //Sections
+
+                //Rate
                 case 5555:
                     {
                         //check header

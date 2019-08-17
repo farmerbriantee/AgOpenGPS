@@ -45,6 +45,7 @@ namespace AgOpenGPS
         //a distance between previous and current fix
         private double distance = 0.0;
         public double treeSpacingCounter = 0.0;
+        public int treeTrigger = 0;
   
         //how far travelled since last section was added, section points
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
@@ -79,7 +80,7 @@ namespace AgOpenGPS
 
         //IMU 
         double rollCorrectionDistance = 0;
-        double gyroDelta, gyroCorrection, gyroRaw, gyroCorrected;
+        double gyroCorrection, gyroCorrected;
 
         //step position - slow speed spinner killer
         private int totalFixSteps = 10, currentStepFix = 0;
@@ -134,8 +135,6 @@ namespace AgOpenGPS
             }
         }
 
-        public double eastingBeforeRoll;
-        public double eastingAfterRoll;
         public double rollUsed;
         private double offset = 0;
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
@@ -173,27 +172,17 @@ namespace AgOpenGPS
 
             rollUsed = 0;
 
-            if ((ahrs.isRollBrick | ahrs.isRollDogs | ahrs.isRollPAOGI) && mc.rollRaw != 9999)
+            if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP) && ahrs.rollX16 != 9999)
             {
-                //for charting in GPS Data window
-                eastingBeforeRoll = pn.fix.easting;
-                rollUsed = ((double)mc.rollRaw * 0.0625) - ahrs.rollZero;
+                rollUsed = ((double)(ahrs.rollX16 - ahrs.rollZeroX16)) * 0.0625;
 
                 //change for roll to the right is positive times -1
                 rollCorrectionDistance = Math.Sin(glm.toRadians((rollUsed))) * -vehicle.antennaHeight;
 
                 // roll to left is positive  **** important!!
-                // not any more - April 30, 2019 - roll to right is positive
+                // not any more - April 30, 2019 - roll to right is positive Now! Still Important
                 pn.fix.easting = (Math.Cos(-fixHeading) * rollCorrectionDistance) + pn.fix.easting;
                 pn.fix.northing = (Math.Sin(-fixHeading) * rollCorrectionDistance) + pn.fix.northing;
-
-                //for charting the position after roll adjustment
-                eastingAfterRoll = pn.fix.easting;
-            }
-            else
-            {
-                eastingAfterRoll = pn.fix.easting;
-                eastingBeforeRoll = pn.fix.easting;
             }
 
             //pitchDistance = (pitch * vehicle.antennaHeight);
@@ -208,10 +197,17 @@ namespace AgOpenGPS
 
             //grab the most current fix and save the distance from the last fix
             distanceCurrentStepFix = glm.Distance(pn.fix, stepFixPts[0]);
+
+            //tree spacing
             if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix*100);
-            
+
             //keep the distance below spacing
-            while (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0) treeSpacingCounter -= vehicle.treeSpacing;            
+            if (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0)
+            {
+                if (treeTrigger == 0) treeTrigger = 1;
+                else treeTrigger = 0;
+                while (treeSpacingCounter > vehicle.treeSpacing) treeSpacingCounter -= vehicle.treeSpacing;
+            }
 
             fixStepDist = distanceCurrentStepFix;
 
@@ -361,7 +357,7 @@ namespace AgOpenGPS
                 if (rollUsed != 0)
                 {
                     guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + 
-                        ((rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50.0)) );
+                        ((-rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50.0)) * 500 );
                 }
 
                 //fill up0 the appropriate arrays with new values
@@ -606,14 +602,14 @@ namespace AgOpenGPS
                     break;
             }
 
-            //make sure there is a gyro otherwise 9999 are sent from autosteer
-            if ((ahrs.isHeadingBrick | ahrs.isHeadingBNO | ahrs.isHeadingPAOGI) && mc.gyroHeading != 9999)
+            //make sure there is an IMU with heading correction.
+            if ((ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)  && ahrs.correctionHeadingX16 != 9999)
             {
                 //current gyro angle in radians
-                gyroRaw = (glm.toRadians((double)mc.prevGyroHeading * 0.0625));
+                double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));
 
                 //Difference between the IMU heading and the GPS heading
-                gyroDelta = (gyroRaw + gyroCorrection) - gpsHeading;
+                double gyroDelta = (correctionHeading + gyroCorrection) - gpsHeading;
                 if (gyroDelta < 0) gyroDelta += glm.twoPI;
 
                 //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
@@ -643,7 +639,7 @@ namespace AgOpenGPS
                 }
 
                 //determine the Corrected heading based on gyro and GPS
-                gyroCorrected = gyroRaw + gyroCorrection;
+                gyroCorrected = correctionHeading + gyroCorrection;
                 if (gyroCorrected > glm.twoPI) gyroCorrected -= glm.twoPI;
                 if (gyroCorrected < 0) gyroCorrected += glm.twoPI;
 
