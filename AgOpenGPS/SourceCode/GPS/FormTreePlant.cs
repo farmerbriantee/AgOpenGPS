@@ -29,7 +29,9 @@ namespace AgOpenGPS
             {
                 mf.btnManualOffOn.PerformClick();
             }
-
+            Properties.Settings.Default.setDistance_TreeSpacing = mf.vehicle.treeSpacing;
+            Properties.Settings.Default.Save();
+            mf.vehicle.treeSpacing = 0;
             Close();
         }
 
@@ -38,7 +40,6 @@ namespace AgOpenGPS
             if (isRunning)
             {
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
-                lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 if (lastDist > mf.treeSpacingCounter)
                 {
                     //lblSpacing.Text = mf.vehicle.treeSpacing.ToString();
@@ -54,6 +55,7 @@ namespace AgOpenGPS
                 btnZeroDistance.Text = "Start";
             }
 
+            lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
             lblSpeed.Text = mf.pn.speed.ToString("N1");
             lblTrees.Text = trees.ToString();
             lastDist = mf.treeSpacingCounter;
@@ -74,6 +76,8 @@ namespace AgOpenGPS
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.OrangeRed;
+                //mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+
             }
             else
             {
@@ -89,9 +93,15 @@ namespace AgOpenGPS
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.LightGreen;
+                mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
             }
 
             isRunning = !isRunning;
+        }
+
+        private void NudTreeSpacing_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.treeSpacing = (double)nudTreeSpacing.Value;
         }
 
         private void FormTreePlant_Load(object sender, EventArgs e)
@@ -101,7 +111,9 @@ namespace AgOpenGPS
                 mf.btnManualOffOn.PerformClick();
             }
 
-            lblSpacing.Text = mf.vehicle.treeSpacing.ToString();
+            mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+
+            nudTreeSpacing.Value = (decimal)mf.vehicle.treeSpacing;
             lastDist = 0;
             mf.treeSpacingCounter = 0;
             trees = 0;

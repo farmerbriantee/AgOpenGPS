@@ -299,8 +299,8 @@ namespace AgOpenGPS
                     GL.Translate(0, 120, 0);
 
                     //If roll is used rotate graphic based on roll angle
-                    if ((ahrs.isRollBrick | ahrs.isRollDogs | ahrs.isRollPAOGI) && mc.rollRaw != 9999)
-                        GL.Rotate(((mc.rollRaw - ahrs.rollZero) * 0.0625f), 0.0f, 0.0f, 1.0f);
+                    if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS) && ahrs.rollX16 != 9999)
+                        GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
 
                     GL.LineWidth(2);
                     GL.Color3(0.54f, 0.54f, 0.54f);
@@ -878,8 +878,12 @@ namespace AgOpenGPS
                 }
             }
 
-        //Checks the workswitch if required
-	    if (isJobStarted && mc.isWorkSwitchEnabled) { workSwitch.CheckWorkSwitch(); }
+            // Ray Bear
+            //Checks the steer switch
+            if (isJobStarted && mc.isSteerSwitchEnabled) { steerSwitch.CheckSteerSwitch(); }
+            
+            //Checks the workswitch if required
+            if (isJobStarted && mc.isWorkSwitchEnabled) { workSwitch.CheckWorkSwitch(); }
 
             //Determine if sections want to be on or off
             ProcessSectionOnOffRequests();

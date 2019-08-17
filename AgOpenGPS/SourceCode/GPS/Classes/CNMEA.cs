@@ -250,7 +250,7 @@ Field	Meaning
                 if (words[0] == "$GPGGA" || words[0] == "$GNGGA") ParseGGA();
                 if (words[0] == "$GPVTG" || words[0] == "$GNVTG") ParseVTG();
                 if (words[0] == "$GPRMC" || words[0] == "$GNRMC") ParseRMC();
-                if (words[0] == "$GNHDT" || words[0] == "$GPHDT") ParseHDT();
+                if (words[0] == "$GPHDT" || words[0] == "$GNHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
             }// while still data
@@ -267,7 +267,8 @@ Field	Meaning
             {
                 //True heading
                 double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                if (mf.ahrs.isRollPAOGI)
+                if (mf.ahrs.isRollFromGPS)
+
                 //input to the kalman filter
                 {
                     //added by Andreas Ortner
@@ -281,7 +282,7 @@ Field	Meaning
                     Zp = Xp;
                     XeRoll = (G * (rollK - Zp)) + Xp;
 
-                    mf.mc.rollRaw = (int)(XeRoll * 16);
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
                 }
             }
         }
@@ -441,17 +442,16 @@ Field	Meaning
 
                 //roll
                 double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                if (mf.ahrs.isRollPAOGI) mf.mc.rollRaw = (int)(nRoll * 16);
+                if (mf.ahrs.isRollFromGPS) mf.ahrs.rollX16 = (int)(nRoll * 16);
 
                 //pitch
                 double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
 
                 //yaw
                 double.TryParse(words[16], NumberStyles.Float, CultureInfo.InvariantCulture, out nYaw);
-                if (mf.ahrs.isHeadingPAOGI)
+                if (mf.ahrs.isHeadingFromPAOGI)
                 {
-                    mf.mc.prevGyroHeading = mf.mc.gyroHeading;
-                    mf.mc.gyroHeading = (int)(nYaw * 16);
+                    mf.ahrs.correctionHeadingX16 = (int)(nYaw * 16);
                 }
 
                 //Angular velocity
