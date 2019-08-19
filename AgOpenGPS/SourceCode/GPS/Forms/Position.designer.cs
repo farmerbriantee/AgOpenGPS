@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
             rollUsed = 0;
 
-            if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP) && ahrs.rollX16 != 9999)
+            if (ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP)
             {
                 rollUsed = ((double)(ahrs.rollX16 - ahrs.rollZeroX16)) * 0.0625;
 
@@ -357,7 +357,7 @@ namespace AgOpenGPS
                 if (rollUsed != 0)
                 {
                     guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + 
-                        ((-rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50.0)) * 500 );
+                        ((-rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50)) * 500 );
                 }
 
                 //fill up0 the appropriate arrays with new values
@@ -377,12 +377,18 @@ namespace AgOpenGPS
             else
             {
                 //fill up the auto steer array with free drive values
-                mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0 + 8);
+                //fill up the auto steer array with free drive values
+                mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0 + 16);
                 mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 //make steer module think everything is normal
+                guidanceLineDistanceOff = 0;
                 mc.autoSteerData[mc.sdDistanceHi] = (byte)(0);
                 mc.autoSteerData[mc.sdDistanceLo] = (byte)0;
+
+                guidanceLineSteerAngle = (Int16)(ast.driveFreeSteerAngle * 100);
+                mc.autoSteerData[mc.sdSteerAngleHi] = (byte)(guidanceLineSteerAngle >> 8);
+                mc.autoSteerData[mc.sdSteerAngleLo] = (byte)guidanceLineSteerAngle;
 
                 //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                 AutoSteerDataOutToPort();
@@ -602,8 +608,8 @@ namespace AgOpenGPS
                     break;
             }
 
-            //make sure there is an IMU with heading correction.
-            if ((ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)  && ahrs.correctionHeadingX16 != 9999)
+            //an IMU with heading correction, add the correction
+            if (ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)
             {
                 //current gyro angle in radians
                 double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));

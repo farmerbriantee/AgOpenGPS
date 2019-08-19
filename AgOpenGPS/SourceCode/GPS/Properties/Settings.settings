@@ -71,12 +71,6 @@
     <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setF_IsSteerSwitchActiveLow" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="setF_IsSteerSwitchEnabled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="setPort_portNameAutoSteer" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM AS</Value>
     </Setting>

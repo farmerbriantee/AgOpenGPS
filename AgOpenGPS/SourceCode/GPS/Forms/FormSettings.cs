@@ -25,10 +25,6 @@ namespace AgOpenGPS
 
         private bool isWorkSwEn, isWorkSwActiveLow;
 
-        // Ray Bear
-        // Steer Switch
-        private bool isSteerSwEn, isSteerSwActiveLow;
-
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
@@ -277,18 +273,6 @@ namespace AgOpenGPS
             chkEnableWorkSwitch.Checked = isWorkSwEn;
             chkEnableWorkSwitch.CheckedChanged += chkEnableWorkSwitch_CheckedChanged;
 
-            isSteerSwActiveLow = Properties.Settings.Default.setF_IsSteerSwitchActiveLow;
-
-            ChkSteerSwitchActiveLow.CheckedChanged -= ChkSteerSwitchActiveLow_CheckedChanged;
-            ChkSteerSwitchActiveLow.Checked = isSteerSwActiveLow;
-            ChkSteerSwitchActiveLow.CheckedChanged += ChkSteerSwitchActiveLow_CheckedChanged;
-
-            isSteerSwEn = Properties.Settings.Default.setF_IsSteerSwitchEnabled;
-
-            ChkEnableSteerSwitch.CheckedChanged -= ChkEnableSteerSwitch_CheckedChanged;
-            ChkEnableSteerSwitch.Checked = isSteerSwEn;
-            ChkEnableSteerSwitch.CheckedChanged += ChkEnableSteerSwitch_CheckedChanged;
-
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
@@ -398,14 +382,6 @@ namespace AgOpenGPS
 
             mf.mc.isWorkSwitchEnabled = isWorkSwEn;
             Properties.Settings.Default.setF_IsWorkSwitchEnabled = isWorkSwEn;
-
-            // Ray Bear
-            // Steer Switch
-            mf.mc.isSteerSwitchActiveLow = isSteerSwActiveLow;
-            Properties.Settings.Default.setF_IsSteerSwitchActiveLow = isSteerSwActiveLow;
-
-            mf.mc.isSteerSwitchEnabled = isSteerSwEn;
-            Properties.Settings.Default.setF_IsSteerSwitchEnabled = isSteerSwEn;
 
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
@@ -1192,18 +1168,6 @@ namespace AgOpenGPS
         {
             isWorkSwEn = !isWorkSwEn;
             chkEnableWorkSwitch.Checked = isWorkSwEn;
-        }
-
-        private void ChkSteerSwitchActiveLow_CheckedChanged(object sender, EventArgs e)
-        {
-            isSteerSwActiveLow = !isSteerSwActiveLow;
-            ChkSteerSwitchActiveLow.Checked = isSteerSwActiveLow;
-        }
-
-        private void ChkEnableSteerSwitch_CheckedChanged(object sender, EventArgs e)
-        {
-            isSteerSwEn = !isSteerSwEn;
-            ChkEnableSteerSwitch.Checked = isSteerSwEn;
         }
 
         #endregion WorkSwitch //---------------------------------------------------------

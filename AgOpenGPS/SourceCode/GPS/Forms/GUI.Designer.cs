@@ -35,10 +35,6 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
 
-        // Ray Bear
-        public enum btnSteerStates { Off, On }
-        public btnSteerStates btnAutoSteerState = btnSteerStates.Off;
-        
         //section button states
         public enum manBtn { Off, Auto, On }
 
@@ -1375,8 +1371,6 @@ namespace AgOpenGPS
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             System.Media.SystemSounds.Question.Play();
-
-            //btnEnableAutoYouTurn.Draggable(false);
 
             //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
