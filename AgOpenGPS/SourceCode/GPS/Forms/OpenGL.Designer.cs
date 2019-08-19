@@ -878,12 +878,8 @@ namespace AgOpenGPS
                 }
             }
 
-            // Ray Bear
-            //Checks the steer switch
-            if (isJobStarted && mc.isSteerSwitchEnabled) { steerSwitch.CheckSteerSwitch(); }
-            
-            //Checks the workswitch if required
-            if (isJobStarted && mc.isWorkSwitchEnabled) { workSwitch.CheckWorkSwitch(); }
+        //Checks the workswitch if required
+	    if (isJobStarted && mc.isWorkSwitchEnabled) { workSwitch.CheckWorkSwitch(); }
 
             //Determine if sections want to be on or off
             ProcessSectionOnOffRequests();

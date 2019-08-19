@@ -49,56 +49,56 @@ namespace AgOpenGPS
             //default to a stop initially
             mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
 
-            //if (isInAutoDrive) //Is in Auto Drive Mode enabled
-            //{
-            //    if (!ast.isInFreeDriveMode)
-            //    {
-            //        //make it go - or with 1
-            //        if (recPath.isDrivingRecordedPath)
-            //        {
-            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-            //        }
+            if (isInAutoDrive) //Is in Auto Drive Mode enabled
+            {
+                if (!ast.isInFreeDriveMode)
+                {
+                    //make it go - or with 1
+                    if (recPath.isDrivingRecordedPath)
+                    {
+                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+                    }
 
-            //        if (self.isSelfDriving)
-            //        {
-            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-            //        }
-            //    }
-            //    else //in AutoDrive and FreeDrive
-            //    {
-            //        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-            //    }
+                    if (self.isSelfDriving)
+                    {
+                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+                    }
+                }
+                else //in AutoDrive and FreeDrive
+                {
+                    mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+                }
 
-            //    ////Is there something in the way?
-            //    //if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
-            //    //{
-            //    //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            //    //}
-            //}
-            //else // Auto/Manual is in Manual so release the clutch only
-            //{
-            //    //release the clutch for manual driving
-            //    mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
-            //    mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
-            //}
+                ////Is there something in the way?
+                //if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
+                //{
+                //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+                //}
+            }
+            else // Auto/Manual is in Manual so release the clutch only
+            {
+                //release the clutch for manual driving
+                mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
+                mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
+            }
 
-            ////pause the thing if paused. Duh.
-            //if (recPath.isPausedDrivingRecordedPath)
-            //{
-            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            //}
+            //pause the thing if paused. Duh.
+            if (recPath.isPausedDrivingRecordedPath)
+            {
+                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            }
 
-            ////gone out of bounds so full stop.
-            //if (mc.isOutOfBounds)
-            //{
-            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            //}
+            //gone out of bounds so full stop.
+            if (mc.isOutOfBounds)
+            {
+                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            }
 
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
                 //machine control
-                //SendUDPMessage(mc.machineControlData);
+                SendUDPMessage(mc.machineControlData);
 
                 //send autosteer since it never is logic controlled
                 SendUDPMessage(mc.autoSteerData);

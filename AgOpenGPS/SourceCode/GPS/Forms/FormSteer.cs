@@ -8,9 +8,6 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        //the trackbar angle for free drive
-        private Int16 driveFreeSteerAngle = 0;
-
         //Form stuff
         public FormSteer(Form callingForm)
         {
@@ -77,7 +74,7 @@ namespace AgOpenGPS
             btnFreeDriveZero.Enabled = false;
             hSBarFreeDrive.Enabled = false;
             hSBarFreeDrive.Value = 0;
-            driveFreeSteerAngle = 0;
+            mf.ast.driveFreeSteerAngle = 0;
             lblFreeDriveAngle.Text = "0";
         }
 
@@ -220,44 +217,12 @@ namespace AgOpenGPS
         }
 
         //FREE DRIVE SECTION
-        private void btnSteerWizard_Click(object sender, EventArgs e)
-        {
-            if (mf.isJobStarted)
-            {
-                var form = new FormTimedMessage(3000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
 
-            WindowState = FormWindowState.Minimized;
-            Hide();
-
-            using (var form = new FormWizardSteer(mf))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    //lblCountsPerDegree.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    //btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    //mf.AutoSteerSettingsOutToPort();
-                }
-                else
-                {
-                    //btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    //btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    //mf.AutoSteerSettingsOutToPort();
-                }
-            }
-
-            //restore the autosteer window
-            Show();
-            WindowState = FormWindowState.Normal;
-        }
 
         private void hSBarFreeDrive_ValueChanged(object sender, EventArgs e)
         {
-            driveFreeSteerAngle = (Int16)hSBarFreeDrive.Value;
-            lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
+            mf.ast.driveFreeSteerAngle = (Int16)hSBarFreeDrive.Value;
+            lblFreeDriveAngle.Text = Convert.ToString(mf.ast.driveFreeSteerAngle);
         }
 
         private void btnFreeDrive_Click(object sender, EventArgs e)
@@ -270,7 +235,7 @@ namespace AgOpenGPS
                 btnFreeDriveZero.Enabled = false;
                 hSBarFreeDrive.Enabled = false;
                 hSBarFreeDrive.Value = 0;
-                driveFreeSteerAngle = 0;
+                mf.ast.driveFreeSteerAngle = 0;
                 lblFreeDriveAngle.Text = "0";
             }
             else
@@ -281,16 +246,16 @@ namespace AgOpenGPS
                 btnFreeDriveZero.Enabled = true;
                 hSBarFreeDrive.Enabled = true;
                 hSBarFreeDrive.Value = 0;
-                driveFreeSteerAngle = 0;
+                mf.ast.driveFreeSteerAngle = 0;
                 lblFreeDriveAngle.Text = "0";
             }
         }
 
         private void btnFreeDriveZero_Click(object sender, EventArgs e)
         {
-            driveFreeSteerAngle = 0;
-            hSBarFreeDrive.Value = driveFreeSteerAngle;
-            lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
+            mf.ast.driveFreeSteerAngle = 0;
+            hSBarFreeDrive.Value = mf.ast.driveFreeSteerAngle;
+            lblFreeDriveAngle.Text = Convert.ToString(mf.ast.driveFreeSteerAngle);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

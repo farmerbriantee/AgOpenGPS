@@ -106,9 +106,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
             this.tabWorkSwitch = new System.Windows.Forms.TabPage();
-            this.steerSwitchBox = new System.Windows.Forms.GroupBox();
-            this.ChkSteerSwitchActiveLow = new System.Windows.Forms.CheckBox();
-            this.ChkEnableSteerSwitch = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
@@ -153,7 +150,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabWorkSwitch.SuspendLayout();
-            this.steerSwitchBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -213,13 +209,8 @@
             // nudAntennaOffset
             // 
             resources.ApplyResources(this.nudAntennaOffset, "nudAntennaOffset");
-            this.nudAntennaOffset.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
             this.nudAntennaOffset.Minimum = new decimal(new int[] {
-            200,
+            100,
             0,
             0,
             -2147483648});
@@ -993,30 +984,9 @@
             // 
             this.tabWorkSwitch.BackgroundImage = global::AgOpenGPS.Properties.Resources.WorkSwitch;
             resources.ApplyResources(this.tabWorkSwitch, "tabWorkSwitch");
-            this.tabWorkSwitch.Controls.Add(this.steerSwitchBox);
             this.tabWorkSwitch.Controls.Add(this.groupBox3);
             this.tabWorkSwitch.Name = "tabWorkSwitch";
             this.tabWorkSwitch.UseVisualStyleBackColor = true;
-            // 
-            // steerSwitchBox
-            // 
-            this.steerSwitchBox.Controls.Add(this.ChkSteerSwitchActiveLow);
-            this.steerSwitchBox.Controls.Add(this.ChkEnableSteerSwitch);
-            resources.ApplyResources(this.steerSwitchBox, "steerSwitchBox");
-            this.steerSwitchBox.Name = "steerSwitchBox";
-            this.steerSwitchBox.TabStop = false;
-            // 
-            // ChkSteerSwitchActiveLow
-            // 
-            resources.ApplyResources(this.ChkSteerSwitchActiveLow, "ChkSteerSwitchActiveLow");
-            this.ChkSteerSwitchActiveLow.Name = "ChkSteerSwitchActiveLow";
-            this.ChkSteerSwitchActiveLow.UseVisualStyleBackColor = true;
-            // 
-            // ChkEnableSteerSwitch
-            // 
-            resources.ApplyResources(this.ChkEnableSteerSwitch, "ChkEnableSteerSwitch");
-            this.ChkEnableSteerSwitch.Name = "ChkEnableSteerSwitch";
-            this.ChkEnableSteerSwitch.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -1148,8 +1118,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             this.tabWorkSwitch.ResumeLayout(false);
-            this.steerSwitchBox.ResumeLayout(false);
-            this.steerSwitchBox.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -1248,8 +1216,5 @@
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown nudMinApplied;
         private System.Windows.Forms.Label lblVehicleToolWidth;
-        private System.Windows.Forms.GroupBox steerSwitchBox;
-        private System.Windows.Forms.CheckBox ChkEnableSteerSwitch;
-        private System.Windows.Forms.CheckBox ChkSteerSwitchActiveLow;
     }
 }

@@ -7969,7 +7969,7 @@
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 429</value>
+    <value>6, 479</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 13</value>
@@ -8002,7 +8002,7 @@
     <value>NoControl</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 477</value>
+    <value>11, 435</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 13</value>
@@ -8029,7 +8029,7 @@
     <value>Tahoma, 12pt</value>
   </data>
   <data name="txtBoxSendAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 493</value>
+    <value>5, 451</value>
   </data>
   <data name="txtBoxSendAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -8056,7 +8056,7 @@
     <value>Tahoma, 12pt</value>
   </data>
   <data name="txtBoxRecvAutoSteer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 445</value>
+    <value>5, 495</value>
   </data>
   <data name="txtBoxRecvAutoSteer.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>

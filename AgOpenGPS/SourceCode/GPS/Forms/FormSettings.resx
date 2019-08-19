@@ -2406,90 +2406,6 @@ or Overlap</value>
   <data name="tabWorkSwitch.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="ChkSteerSwitchActiveLow.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 103</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 29</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="ChkSteerSwitchActiveLow.Text" xml:space="preserve">
-    <value>Active Low</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Name" xml:space="preserve">
-    <value>ChkSteerSwitchActiveLow</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.Parent" xml:space="preserve">
-    <value>steerSwitchBox</value>
-  </data>
-  <data name="&gt;&gt;ChkSteerSwitchActiveLow.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 15.75pt</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 49</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 29</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="ChkEnableSteerSwitch.Text" xml:space="preserve">
-    <value>Enable Steer Switch</value>
-  </data>
-  <data name="&gt;&gt;ChkEnableSteerSwitch.Name" xml:space="preserve">
-    <value>ChkEnableSteerSwitch</value>
-  </data>
-  <data name="&gt;&gt;ChkEnableSteerSwitch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ChkEnableSteerSwitch.Parent" xml:space="preserve">
-    <value>steerSwitchBox</value>
-  </data>
-  <data name="&gt;&gt;ChkEnableSteerSwitch.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="steerSwitchBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 27</value>
-  </data>
-  <data name="steerSwitchBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>406, 158</value>
-  </data>
-  <data name="steerSwitchBox.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
-  </data>
-  <data name="steerSwitchBox.Text" xml:space="preserve">
-    <value>Steer Switch</value>
-  </data>
-  <data name="&gt;&gt;steerSwitchBox.Name" xml:space="preserve">
-    <value>steerSwitchBox</value>
-  </data>
-  <data name="&gt;&gt;steerSwitchBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;steerSwitchBox.Parent" xml:space="preserve">
-    <value>tabWorkSwitch</value>
-  </data>
-  <data name="&gt;&gt;steerSwitchBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="chkWorkSwActiveLow.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2581,7 +2497,7 @@ or Overlap</value>
     <value>tabWorkSwitch</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="tabWorkSwitch.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 44</value>
