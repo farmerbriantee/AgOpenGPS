@@ -1,10 +1,15 @@
+// Special thanks to Weder for setting up the original setup version
+// Special Thanks to Andreas Ortner for the tireless troubleshooting, fixes, and code suggestions
+
+// 19 August 2019 - For v2 of PCB Github AgOpenGPS
+
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
 //##########################################################################################################
 
-  #define GPS_Refresh 10                 // Enter the Hz refresh rate, example 5 or 10 or 8 with ublox
+  #define GPS_Refresh 10                 // Enter the Hz refresh rate, example 5 or 10 or 8 with ublox - best at 10 overall
                                         
-  #define Motor_Valve_Driver_Board 1    // 1 =  Steering Motor/valves + Cytron MD30C Driver
+  #define Motor_Valve_Driver_Board 1    // 1 =  Steering Motor/valves + Cytron MD30C or MD13A motor Driver
                                         // 2 =  Steering Motor/valves + IBT 2  Driver
                                 
   #define ADS1115_Mode 1                // 1 = ADS1115 Single Input Mode - Connect Signal to A0
@@ -12,17 +17,22 @@
                                         // 2 = ADS1115 Differential Mode - Connect Sensor GND to A1, Signal to A0
                                             // These sensors are factory installed and powered by tractor oem wiring
   
-  #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead                                       
+  #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead - 
+                                            //best not to change this unless you know exactly why!                                      
                                
   #define Motor_Direction_Invert 1      // 1 = reverse output direction (Valve & Motor)
 
   #define WAS_Invert 0                  // set to 1 to Change Direction of Wheel Angle Sensor, must be positive turning right 
   
-  #define BNO_Installed 0               // set to 1 to enable BNO055 IMU
+  #define BNO_Installed 0               // set to 1 to enable BNO055 IMU for heading from autosteer board source
   
   #define Inclinometer_Installed 1      // set to 0 for none
                                         // set to 1 if DOGS2 Inclinometer is installed
                                         // set to 2 if MMA8452 installed
+
+                                        // 2 different kinds of MMA with 2 possible addresses or hardwired to one
+  #define MMA_Address 0                 // Set to 0 for (1C) MMA8452Q Sparkfun
+                                        // Set to 1 for (1D) MMA8452 GY-45 style                     
                                                                            
                                         // Depending on board orientation, choose the right Axis for MMA
   #define UseMMA_Y_Axis 1               // Set to 0 to use X axis of MMA
@@ -36,9 +46,9 @@
                           // set to 2 for uTurn Relays
   
   #define EtherNet 0      // 0 = Serial/USB communcation with AOG
-                          // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
+                          // 1 = Ethernet comunication with AOG (using an ENC28J60 chip)
                           
-  #define CS_Pin 10       // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
+  #define CS_Pin 10       // Arduino Nano = 10 but depending how CS of Ethernet Controller ENC28J60 is Connected
 
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
@@ -94,14 +104,20 @@
   #endif
   
   
-  //#if ADS1115_Mode==1 | ADS1115_Mode == 2
+  #if ADS1115_Mode==1 | ADS1115_Mode == 2
     #include "ADS1015.h"
     Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
-  //#endif
+  #endif
   
   #if Inclinometer_Installed == 2
       #include "MMA8452Q.h"  // MMA8452 (1) Inclinometer
-      MMA8452Q MMA;
+      
+      #if MMA_Address == 0
+        MMA8452Q MMA(0x1C);
+      #else
+        MMA8452Q MMA(0x1D);
+      #endif
+      
   #endif
   
   #if BNO_Installed
