@@ -18,9 +18,9 @@
                                             // These sensors are factory installed and powered by tractor oem wiring
   
   #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead - 
-                                            //best not to change this unless you know exactly why!                                      
+                                        //best not to change this unless you know exactly why!                                      
                                
-  #define Motor_Direction_Invert 1      // 1 = reverse output direction (Valve & Motor)
+  #define Motor_Direction_Invert 0      // 1 = reverse output direction (Valve & Motor)
 
   #define WAS_Invert 0                  // set to 1 to Change Direction of Wheel Angle Sensor, must be positive turning right 
   
@@ -31,11 +31,11 @@
                                         // set to 2 if MMA8452 installed
 
                                         // 2 different kinds of MMA with 2 possible addresses or hardwired to one
-  #define MMA_Address 0                 // Set to 0 for (1C) MMA8452Q Sparkfun
-                                        // Set to 1 for (1D) MMA8452 GY-45 style                     
+  #define MMA_Address 0                 // Set to 0 for (1D) MMA8452Q Sparkfun
+                                        // Set to 1 for (1C) MMA8452 GY-45 style (Doesn't fit PCB tho)                     
                                                                            
                                         // Depending on board orientation, choose the right Axis for MMA
-  #define UseMMA_Y_Axis 1               // Set to 0 to use X axis of MMA
+  #define UseMMA_Y_Axis 0               // Set to 0 to use X axis of MMA
                                         // Set to 1 to use Y axis of MMA
 
   #define Roll_Invert 0                 // Roll to the right must be positive
@@ -113,11 +113,10 @@
       #include "MMA8452Q.h"  // MMA8452 (1) Inclinometer
       
       #if MMA_Address == 0
-        MMA8452Q MMA(0x1C);
+        MMA8452Q MMA(0x1D); //the sparkfun
       #else
-        MMA8452Q MMA(0x1D);
-      #endif
-      
+        MMA8452Q MMA(0x1C); //the GY-45
+      #endif      
   #endif
   
   #if BNO_Installed

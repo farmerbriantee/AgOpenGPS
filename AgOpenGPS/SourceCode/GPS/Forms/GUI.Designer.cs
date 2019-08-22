@@ -3535,12 +3535,6 @@ namespace AgOpenGPS
                     //counter used for saving field in background
                     saveCounter++;
 
-                    //count up the ntrip clock only if everything is alive
-                    if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
-                    {
-                        IncrementNTRIPWatchDog();
-                    }
-
                     //double vr = 0;
                     int cnt = rateMap.mapList.Count;
                     if (cnt > 5)
@@ -3562,6 +3556,12 @@ namespace AgOpenGPS
 
                         //rcd.rateLeft = vr / 3;
                         //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
+                    }
+
+                    //count up the ntrip clock only if everything is alive
+                    if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
+                    {
+                        IncrementNTRIPWatchDog();
                     }
 
                     //Have we connection
