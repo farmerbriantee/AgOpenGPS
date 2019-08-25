@@ -196,22 +196,29 @@ namespace AgOpenGPS
 
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
-            mf.SerialPortOpenGPS();
-            if (mf.sp.IsOpen)
+            if (Properties.Settings.Default.setMenu_isSimulatorOn)
             {
-                cboxBaud.Enabled = false;
-                cboxPort.Enabled = false;
-                btnCloseSerial.Enabled = true;
-                btnOpenSerial.Enabled = false;
-                lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
-                lblCurrentPort.Text = mf.sp.PortName;
+                MessageBox.Show("Go to Top Menu > Display > Touch -Simulator- \n\r Application Will Restart", "Simulator On, Must be OFF !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                cboxBaud.Enabled = true;
-                cboxPort.Enabled = true;
-                btnCloseSerial.Enabled = false;
-                btnOpenSerial.Enabled = true;
+                mf.SerialPortOpenGPS();
+                if (mf.sp.IsOpen)
+                {
+                    cboxBaud.Enabled = false;
+                    cboxPort.Enabled = false;
+                    btnCloseSerial.Enabled = true;
+                    btnOpenSerial.Enabled = false;
+                    lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
+                    lblCurrentPort.Text = mf.sp.PortName;
+                }
+                else
+                {
+                    cboxBaud.Enabled = true;
+                    cboxPort.Enabled = true;
+                    btnCloseSerial.Enabled = false;
+                    btnOpenSerial.Enabled = true;
+                }
             }
         }
 
@@ -252,7 +259,7 @@ namespace AgOpenGPS
         {
             //GPS phrase
             textBoxRcv.Text = mf.recvSentenceSettings;
-            mf.recvSentenceSettings = "";
+            //mf.recvSentenceSettings = "";
 
             //RateRelay phrases
             txtBoxRecvArduino.Text = mf.mc.serialRecvRelayRateStr;

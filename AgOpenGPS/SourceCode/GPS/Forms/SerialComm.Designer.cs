@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Globalization;
+using AgOpenGPS.Properties;
 
 namespace AgOpenGPS
 {
@@ -182,7 +183,7 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(25);
+                    //System.Threading.Thread.Sleep(25);
                     string sentence = spAutoSteer.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
                 }
@@ -367,7 +368,7 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    System.Threading.Thread.Sleep(25);
+                    //System.Threading.Thread.Sleep(25);
                     string sentence = spRelay.ReadLine();
                     this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRateRelay), sentence);                    
                     if (spRelay.BytesToRead > 32) spRelay.DiscardInBuffer();
@@ -441,8 +442,8 @@ namespace AgOpenGPS
         private void SerialLineReceived(string sentence)
         {
             //spit it out no matter what it says
-            pn.rawBuffer += sentence;
-            recvSentenceSettings = pn.rawBuffer;
+            sbNMEAFromGPS.Append(sentence);
+            //recvSentenceSettings = sbNMEAFromGPS.ToString();
         }
 
         private delegate void LineReceivedEventHandler(string sentence);
@@ -455,7 +456,7 @@ namespace AgOpenGPS
                 try
                 {
                     //give it a sec to spit it out
-                    System.Threading.Thread.Sleep(50);
+                    //System.Threading.Thread.Sleep(2000);
 
                     //read whatever is in port
                     string sentence = sp.ReadExisting();
@@ -476,6 +477,17 @@ namespace AgOpenGPS
         {
             //close it first
             SerialPortCloseGPS();
+
+            if (sp.IsOpen)
+            {
+                simulatorOnToolStripMenuItem.Checked = false;
+                panelSimControls.Visible = false;
+                timerSim.Enabled = false;
+
+                Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
+                Settings.Default.Save();
+            }
+
 
             if (!sp.IsOpen)
             {
