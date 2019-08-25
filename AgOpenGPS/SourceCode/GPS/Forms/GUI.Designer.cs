@@ -2823,11 +2823,6 @@ namespace AgOpenGPS
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                TimedMessageBox(2000, "Field is Open", "Close Field First");
-                return;
-            }
 
             if (sp.IsOpen)
             {
@@ -2835,10 +2830,15 @@ namespace AgOpenGPS
                 panelSimControls.Visible = false;
                 timerSim.Enabled = false;
 
-                TimedMessageBox(2000, "GPS Is Connected", "Simulator Forced Off");
+                TimedMessageBox(2000, "GPS Connected", "Simulator Forced Off");
             }
             else
             {
+                if (isJobStarted)
+                {
+                    TimedMessageBox(2000, "Field Open", "Close Field First");
+                    return;
+                }
                 if (simulatorOnToolStripMenuItem.Checked)
                 {
                     panelSimControls.Visible = true;
@@ -3481,6 +3481,10 @@ namespace AgOpenGPS
         //Timer stopped while parsing nmea
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
+            //Check for a newline char, if none then just return
+            int cr = pn.rawBuffer.IndexOf("\n", StringComparison.Ordinal);
+            if (cr == -1) return; // No end found, wait for more data
+
             //go see if data ready for draw and position updates
             tmrWatchdog.Enabled = false;
 

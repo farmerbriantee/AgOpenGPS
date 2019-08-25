@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
 
-        public StringBuilder sbNMEAFromGPS = new StringBuilder();
+        //public StringBuilder sbNMEAFromGPS = new StringBuilder();
 
         //for heading or Atan2 as camera
         public string headingFromSource;
@@ -94,14 +94,8 @@ namespace AgOpenGPS
         //called by watchdog timer every 10 ms, returns true if new valid fix
         private bool ScanForNMEA()
         {
-            if (sbNMEAFromGPS.Length == 0) return false;
-            //if saving a file ignore any movement
-            if (isSavingFile) return false;
-
             //Add the current nmea data to the buffer to be parsed
-            pn.rawBuffer += sbNMEAFromGPS.ToString();
             recvSentenceSettings = pn.rawBuffer;
-            sbNMEAFromGPS.Clear();
 
             //parse any data from pn.rawBuffer
             pn.ParseNMEA();
@@ -590,7 +584,6 @@ namespace AgOpenGPS
 
             //stop the timer and calc how long it took to do calcs and draw
             frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
-
         }
 
 

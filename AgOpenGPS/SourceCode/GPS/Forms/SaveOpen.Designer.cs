@@ -1462,9 +1462,6 @@ namespace AgOpenGPS
                 contourSaveList.Clear();
 
             }
-
-            //set saving flag off
-            isSavingFile = false;
         }
 
         //save the boundary

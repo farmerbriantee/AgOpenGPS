@@ -890,6 +890,12 @@ namespace AgOpenGPS
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
             if (saveCounter > 59)       //2 counts per second X 60 seconds = 120 counts per minute.
             {
+                //set saving flag off
+                //isSavingFile = true;
+
+                //go see if data ready for draw and position updates
+                tmrWatchdog.Enabled = false;
+
                 if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
                     //auto save the field patches, contours accumulated so far
@@ -901,6 +907,14 @@ namespace AgOpenGPS
                     if (isLogElevation) FileSaveElevation();
                 }
                 saveCounter = 0;
+
+                //set saving flag off
+                isSavingFile = false;
+
+                //go see if data ready for draw and position updates
+                tmrWatchdog.Enabled = true;
+
+
             }
             //this is the end of the "frame". Now we wait for next NMEA sentence. 
         }
