@@ -24,6 +24,8 @@ namespace AgOpenGPS
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
 
+        public StringBuilder sbNMEAFromGPS = new StringBuilder();
+
         //for heading or Atan2 as camera
         public string headingFromSource;
 
@@ -89,11 +91,17 @@ namespace AgOpenGPS
         public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
         bool isFixHolding = false, isFixHoldLoaded = false;
 
-        //called by watchdog timer every 10 ms
+        //called by watchdog timer every 10 ms, returns true if new valid fix
         private bool ScanForNMEA()
         {
+            if (sbNMEAFromGPS.Length == 0) return false;
             //if saving a file ignore any movement
             if (isSavingFile) return false;
+
+            //Add the current nmea data to the buffer to be parsed
+            pn.rawBuffer += sbNMEAFromGPS.ToString();
+            recvSentenceSettings = pn.rawBuffer;
+            sbNMEAFromGPS.Clear();
 
             //parse any data from pn.rawBuffer
             pn.ParseNMEA();
@@ -101,10 +109,11 @@ namespace AgOpenGPS
             //time for a frame update with new valid nmea data
             if (pn.updatedGGA | pn.updatedOGI | pn.updatedRMC)
             {
-
-                //start the watch and time till it gets back here
-                swFrame.Reset();
-                swFrame.Start();
+                //Measure the frequency of the GPS updates
+                swHz.Stop();
+                HzTime = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
+                swHz.Reset();
+                swHz.Start();
 
                 //reset  flags
                 pn.updatedGGA = false;
@@ -141,6 +150,10 @@ namespace AgOpenGPS
 
         private void UpdateFixPosition()
         {
+            //start the watch and time till it gets back here
+            swFrame.Reset();
+            swFrame.Start();
+
             startCounter++;
             totalFixSteps = fixUpdateHz * 6;
             if (!isGPSPositionInitialized) { InitializeFirstFewGPSPositions(); return; }
@@ -572,6 +585,12 @@ namespace AgOpenGPS
             oglMain.Refresh();
 
             //end of UppdateFixPosition
+
+            swFrame.Stop();
+
+            //stop the timer and calc how long it took to do calcs and draw
+            frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+
         }
 
 

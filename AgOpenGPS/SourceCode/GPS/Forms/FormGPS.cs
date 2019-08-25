@@ -60,6 +60,12 @@ namespace AgOpenGPS
         //Time to do fix position update and draw routine
         private double frameTime = 0;
 
+        //create instance of a stopwatch for timing of frames and NMEA hz determination
+        private readonly Stopwatch swHz = new Stopwatch();
+
+        //Time to do fix position update and draw routine
+        private double HzTime = 0;
+
         //For field saving in background
         private int saveCounter = 1;
 
@@ -406,6 +412,16 @@ namespace AgOpenGPS
 
             //try and open
             SerialPortOpenGPS();
+
+            if (sp.IsOpen)
+            {
+                simulatorOnToolStripMenuItem.Checked = false;
+                panelSimControls.Visible = false;
+                timerSim.Enabled = false;
+
+                Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
+                Settings.Default.Save();
+            }
 
             //same for SectionRelay port
             portNameRelaySection = Settings.Default.setPort_portNameRateRelay;

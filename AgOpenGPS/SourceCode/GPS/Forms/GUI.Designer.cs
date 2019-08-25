@@ -2823,15 +2823,38 @@ namespace AgOpenGPS
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (simulatorOnToolStripMenuItem.Checked)
+            if (isJobStarted)
             {
-                panelSimControls.Visible = true;
-                timerSim.Enabled = true;
+                TimedMessageBox(2000, "Field is Open", "Close Field First");
+                return;
+            }
+
+            if (sp.IsOpen)
+            {
+                simulatorOnToolStripMenuItem.Checked = false;
+                panelSimControls.Visible = false;
+                timerSim.Enabled = false;
+
+                TimedMessageBox(2000, "GPS Is Connected", "Simulator Forced Off");
             }
             else
             {
-                panelSimControls.Visible = false;
-                timerSim.Enabled = false;
+                if (simulatorOnToolStripMenuItem.Checked)
+                {
+                    panelSimControls.Visible = true;
+                    timerSim.Enabled = true;
+                    DialogResult result3 = MessageBox.Show("Application Will Exit, Plz Restart ", "Turning On Simulator ",MessageBoxButtons.OK);
+                    Application.Exit();
+
+                }
+                else
+                {
+                    panelSimControls.Visible = false;
+                    timerSim.Enabled = false;
+                    //TimedMessageBox(3000, "Simulator Turning Off", "Application will Exit");
+                    DialogResult result3 = MessageBox.Show("Application Will Exit, Plz Restart ", "Turning Off Simulator", MessageBoxButtons.OK);
+                    Application.Exit();
+                }
             }
 
             Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
@@ -3246,7 +3269,7 @@ namespace AgOpenGPS
         private void timerSim_Tick(object sender, EventArgs e)
         {
             //if a GPS is connected disable sim
-            //if (!sp.IsOpen)
+            if (!sp.IsOpen)
             {
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
@@ -3295,17 +3318,17 @@ namespace AgOpenGPS
             get
             {
                 if (timerSim.Enabled)
-                    return "Simulator";
-                else if (pn.fixQuality == 0) return "Invalid";
-                else if (pn.fixQuality == 1) return "GPS fix";
-                else if (pn.fixQuality == 2) return "DGPS fix";
-                else if (pn.fixQuality == 3) return "PPS fix";
-                else if (pn.fixQuality == 4) return "RTK fix";
-                else if (pn.fixQuality == 5) return "Flt RTK";
-                else if (pn.fixQuality == 6) return "Estimate";
-                else if (pn.fixQuality == 7) return "Man IP";
-                else if (pn.fixQuality == 8) return "Simulator";
-                else return "Unknown";
+                    return "Simulator: ";
+                else if (pn.fixQuality == 0) return "Invalid: ";
+                else if (pn.fixQuality == 1) return "GPS fix: ";
+                else if (pn.fixQuality == 2) return "DGPS fix: ";
+                else if (pn.fixQuality == 3) return "PPS fix: ";
+                else if (pn.fixQuality == 4) return "RTK fix: ";
+                else if (pn.fixQuality == 5) return "Flt RTK: ";
+                else if (pn.fixQuality == 6) return "Estimate: ";
+                else if (pn.fixQuality == 7) return "Man IP: ";
+                else if (pn.fixQuality == 8) return "Simulator: ";
+                else return "Unknown: ";
             }
         }
 
@@ -3464,7 +3487,6 @@ namespace AgOpenGPS
             //did we get a new fix position?
             if (ScanForNMEA())
             {
-
                 if (threeSecondCounter++ >= fixUpdateHz * 3)
                 {
                     threeSecondCounter = 0;
@@ -3486,45 +3508,103 @@ namespace AgOpenGPS
                     oneFifthSecond++;
                 }
 
-                //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
-                if (displayUpdateOneFifthCounter != oneFifthSecond)
+                  /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
+                //every 3 second update status
+                if (displayUpdateThreeSecondCounter != threeSeconds)
                 {
                     //reset the counter
-                    displayUpdateOneFifthCounter = oneFifthSecond;
-
-                    lblHeading.Text = Heading;
-
-                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
-                    {
-
-                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                        {
-                            lblSetpointSteerAngle2.Text = "Off  ";
-                            //lblDiffSteerAngle2.Text = "Off";
-                        }
-                        else
-                        {
-                            lblSetpointSteerAngle2.Text = SetSteerAngle;
-                            //lblDiffSteerAngle2.Text = DiffSteerAngle;
-                        }
-
-                        lblActualSteerAngle2.Text = ActualSteerAngle;
-                        {
-
-                            lblRoll.Text = RollInDegrees;
-                            lblYawHeading.Text = GyroInDegrees;
-                            lblGPSHeading.Text = GPSHeading;
-                            lblHeading2.Text = lblHeading.Text;
-                        }
-                    }
+                    displayUpdateThreeSecondCounter = threeSeconds;
 
                     if (panelBatman.Visible)
                     {
-                        lblpRoll.Text = RollInDegrees;
-                        lblpYawHeading.Text = GyroInDegrees;
-                        lblpGPSHeading.Text = GPSHeading;
+                        if (isMetric)
+                        {
+                            lblpAltitude.Text = Altitude;
+                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                            lblpAreaWorked.Text = fd.WorkedHectares;
+                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
+                        }
+                        else //imperial
+                        {
+                            lblpAltitude.Text = AltitudeFeet;
+                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                            lblpAreaWorked.Text = fd.WorkedAcres;
+                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
+                        }
+
+                        //both
+                        lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
+                        lblpTimeToFinish.Text = fd.TimeTillFinished;
                     }
-                }
+
+                    //The tabbed is selected and the info tab
+                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    {
+                        if (isMetric)
+                        {
+                            lblAltitude.Text = Altitude;
+                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
+                            lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
+                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
+                            //else lblBoundaryDistanceAway.Text = "***";
+                            //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
+                            //else lblHeadlandDistanceFromTool.Text = " * ";
+                        }
+                        else //imperial
+                        {
+                            lblAltitude.Text = AltitudeFeet;
+                            ////Boundary
+                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
+                            lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
+                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
+                            //else lblBoundaryDistanceAway.Text = "***";
+                            //lblHeadlandDistanceFromTool.Text = DistPivotFt;
+                        }
+
+                        //both
+                        lblSats.Text = SatsTracked;
+                        lblZone.Text = pn.zone.ToString();
+                        //tboxSentence.Text = recvSentenceSettings;
+                    }
+
+                    //the main formgps window
+                    if (isMetric)  //metric or imperial
+                    {
+                        //Hectares on the master section soft control and sections
+                        btnPerimeter.Text = PeriAreaHectares;    //area button
+
+                        //status strip values
+                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+
+                        //Hectares per hour
+                        lblAreaRate.Text = fd.WorkRateHectares;
+                    }
+                    else  //Imperial Measurements
+                    {
+                        btnPerimeter.Text = PeriAreaAcres;
+
+                        //status strip values
+                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+
+                        //Acres per hour
+                        lblAreaRate.Text = fd.WorkRateAcres;
+                    }
+
+                    //not Metric/Standard units sensitive
+                    btnABLine.Text = PassNumber;
+
+                    //update the online indicator
+                    if (recvCounter > 50)
+                    {
+                        stripOnlineGPS.Value = 1;
+                        lblEasting.Text = "-";
+                        lblNorthing.Text = gStr.gsNoGPS;
+                        lblZone.Text = "-";
+                        tboxSentence.Text = gStr.gsNoSentenceData;
+                    }
+                    else stripOnlineGPS.Value = 100;
+
+                }//end every 3 seconds
 
                 //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
                 if (displayUpdateOneSecondCounter != oneSecond)
@@ -3534,6 +3614,12 @@ namespace AgOpenGPS
 
                     //counter used for saving field in background
                     saveCounter++;
+
+                    //count up the ntrip clock only if everything is alive
+                    if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
+                    {
+                        IncrementNTRIPWatchDog();
+                    }
 
                     //double vr = 0;
                     int cnt = rateMap.mapList.Count;
@@ -3556,12 +3642,6 @@ namespace AgOpenGPS
 
                         //rcd.rateLeft = vr / 3;
                         //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-                    }
-
-                    //count up the ntrip clock only if everything is alive
-                    if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
-                    {
-                        IncrementNTRIPWatchDog();
                     }
 
                     //Have we connection
@@ -3689,6 +3769,7 @@ namespace AgOpenGPS
                             txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
                             lblHz.BackColor = SystemColors.ControlLight;
                             lblFixQuality.BackColor = SystemColors.ControlLight;
+                            //lblTest.BackColor = SystemColors.ControlLight;
                         }
                         else
                         {
@@ -3700,11 +3781,12 @@ namespace AgOpenGPS
                             txtDistanceOffABLine.BackColor = Color.Tomato;
                             lblHz.BackColor = Color.Tomato;
                             lblFixQuality.BackColor = Color.Tomato;
+                            //lblTest.BackColor = Color.Tomato;
                         }
                     }
 
                     //not Metric/Standard units sensitive
-                    lblFixQuality.Text = FixQuality;
+                    lblFixQuality.Text = FixQuality + HzTime.ToString("N1") + " Hz";
                     lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
                     lblHz.Text = NMEAHz + "Hz " + (int)(frameTime);
 
@@ -3782,109 +3864,46 @@ namespace AgOpenGPS
                     }
 
                 } //end every 1/2 second
-                  /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
 
-                //every 3 second update status
-                if (displayUpdateThreeSecondCounter != threeSeconds)
+                //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
+                if (displayUpdateOneFifthCounter != oneFifthSecond)
                 {
                     //reset the counter
-                    displayUpdateThreeSecondCounter = threeSeconds;
+                    displayUpdateOneFifthCounter = oneFifthSecond;
+
+                    lblHeading.Text = Heading;
+
+                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    {
+
+                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+                        {
+                            lblSetpointSteerAngle2.Text = "Off  ";
+                            //lblDiffSteerAngle2.Text = "Off";
+                        }
+                        else
+                        {
+                            lblSetpointSteerAngle2.Text = SetSteerAngle;
+                            //lblDiffSteerAngle2.Text = DiffSteerAngle;
+                        }
+
+                        lblActualSteerAngle2.Text = ActualSteerAngle;
+                        {
+
+                            lblRoll.Text = RollInDegrees;
+                            lblYawHeading.Text = GyroInDegrees;
+                            lblGPSHeading.Text = GPSHeading;
+                            lblHeading2.Text = lblHeading.Text;
+                        }
+                    }
 
                     if (panelBatman.Visible)
                     {
-                        if (isMetric)
-                        {
-                            lblpAltitude.Text = Altitude;
-                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                            lblpAreaWorked.Text = fd.WorkedHectares;
-                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainHectares;
-                        }
-                        else //imperial
-                        {
-                            lblpAltitude.Text = AltitudeFeet;
-                            lblpBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                            lblpAreaWorked.Text = fd.WorkedAcres;
-                            lblpFieldAreaRemain.Text = fd.WorkedAreaRemainAcres;
-                        }
-
-                        //both
-                        lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
-                        lblpTimeToFinish.Text = fd.TimeTillFinished;
+                        lblpRoll.Text = RollInDegrees;
+                        lblpYawHeading.Text = GyroInDegrees;
+                        lblpGPSHeading.Text = GPSHeading;
                     }
-
-                    //The tabbed is selected and the info tab
-                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
-                    {
-                        if (isMetric)
-                        {
-                            lblAltitude.Text = Altitude;
-                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersHectares;
-                            lblBoundaryDistanceAway.Text = ((int)(distancePivotToTurnLine)) + " m";
-                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(distPivot)) + " m";
-                            //else lblBoundaryDistanceAway.Text = "***";
-                            //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
-                            //else lblHeadlandDistanceFromTool.Text = " * ";
-                        }
-                        else //imperial
-                        {
-                            lblAltitude.Text = AltitudeFeet;
-                            ////Boundary
-                            lblBoundaryArea.Text = fd.AreaBoundaryLessInnersAcres;
-                            lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distancePivotToTurnLine)) + " ft";
-                            //if (distPivot > 0) lblBoundaryDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
-                            //else lblBoundaryDistanceAway.Text = "***";
-                            //lblHeadlandDistanceFromTool.Text = DistPivotFt;
-                        }
-
-                        //both
-                        lblSats.Text = SatsTracked;
-                        lblZone.Text = pn.zone.ToString();
-                        tboxSentence.Text = recvSentenceSettings;
-                    }
-
-                    //the main formgps window
-                    if (isMetric)  //metric or imperial
-                    {
-                        //Hectares on the master section soft control and sections
-                        btnPerimeter.Text = PeriAreaHectares;    //area button
-
-                        //status strip values
-                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
-
-                        //Hectares per hour
-                        lblAreaRate.Text = fd.WorkRateHectares;
-                    }
-                    else  //Imperial Measurements
-                    {
-                        btnPerimeter.Text = PeriAreaAcres;
-
-                        //status strip values
-                        stripEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
-
-                        //Acres per hour
-                        lblAreaRate.Text = fd.WorkRateAcres;
-                    }
-
-                    //not Metric/Standard units sensitive
-                    btnABLine.Text = PassNumber;
-
-                    //update the online indicator
-                    if (recvCounter > 50)
-                    {
-                        stripOnlineGPS.Value = 1;
-                        lblEasting.Text = "-";
-                        lblNorthing.Text = gStr.gsNoGPS;
-                        lblZone.Text = "-";
-                        tboxSentence.Text = gStr.gsNoSentenceData;
-                    }
-                    else stripOnlineGPS.Value = 100;
-
-                }//end every 3 seconds
-
-                swFrame.Stop();
-
-                //stop the timer and calc how long it took to do calcs and draw
-                frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+                }
 
             } //there was a new GPS update
 

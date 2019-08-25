@@ -1,54 +1,52 @@
-// Special thanks to Weder for setting up the original setup version
-// Special Thanks to Andreas Ortner for the tireless troubleshooting, fixes, and code suggestions
-
-// 19 August 2019 - For v2 of PCB Github AgOpenGPS
-
 //##########################################################################################################
 //### Setup Zone ###########################################################################################
 //##########################################################################################################
 
-  #define GPS_Refresh 10                 // Enter the Hz refresh rate, example 5 or 10 or 8 with ublox - best at 10 overall
+  #define GPS_Refresh 10                 // Enter the Hz refresh rate, example 5 or 10 or 8 with ublox
+                                         // Best is leave it at 10
                                         
-  #define Motor_Valve_Driver_Board 1    // 1 =  Steering Motor/valves + Cytron MD30C or MD13A motor Driver
+  #define Motor_Valve_Driver_Board 1    // 1 =  Steering Motor/valves + Cytron MD30C, MD13A Driver
                                         // 2 =  Steering Motor/valves + IBT 2  Driver
                                 
-  #define ADS1115_Mode 1                // 1 = ADS1115 Single Input Mode - Connect Signal to A0
-                                            // These sensors are DIY installed ones
+  #define A2D_Convertor_Mode 1          // 0 = No ADS, connect Wheel Angle Sensor (WAS) to Arduino A0
+                                            // Really try to use the ADS, it is much much better.
+                                        // 1 = ADS1115 Single Input Mode - Connect Signal to A0
+                                            // These sensors are DIY installed ones.
                                         // 2 = ADS1115 Differential Mode - Connect Sensor GND to A1, Signal to A0
-                                            // These sensors are factory installed and powered by tractor oem wiring
+                                            // These sensors are factory installed and powered by tractor oem wiring.
   
-  #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead - 
-                                        //best not to change this unless you know exactly why!                                      
+  #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead 
+                                        // Set to 1660 if using the ADS
+                                        // Set to 512 if using the Arduino A0                                      
                                
-  #define Motor_Direction_Invert 0      // 1 = reverse output direction (Valve & Motor)
-
   #define WAS_Invert 0                  // set to 1 to Change Direction of Wheel Angle Sensor, must be positive turning right 
   
-  #define BNO_Installed 0               // set to 1 to enable BNO055 IMU for heading from autosteer board source
+  #define Motor_Direction_Invert 1      // 1 = reverse output direction (Valve & Motor) 0 = Normal
+ 
+  #define BNO_Installed 0               // set to 1 to enable BNO055 IMU, otherwise set to 0 for none
   
-  #define Inclinometer_Installed 1      // set to 0 for none
-                                        // set to 1 if DOGS2 Inclinometer is installed
-                                        // set to 2 if MMA8452 installed
-
-                                        // 2 different kinds of MMA with 2 possible addresses or hardwired to one
-  #define MMA_Address 0                 // Set to 0 for (1D) MMA8452Q Sparkfun
-                                        // Set to 1 for (1C) MMA8452 GY-45 style (Doesn't fit PCB tho)                     
+  #define Inclinometer_Installed 3      // set to 0 for none
+                                        // set to 1 if DOGS2 Inclinometer is installed and connected to ADS pin A2
+                                        // set to 2 if MMA8452 installed GY-45 (1C)
+                                        // set to 3 if MMA8452 installed Sparkfun (1D)
+                                        // set to 4 if DOGS2 installed and connected to Arduino pin A1
                                                                            
-                                        // Depending on board orientation, choose the right Axis for MMA
-  #define UseMMA_Y_Axis 0               // Set to 0 to use X axis of MMA
+                                        // Depending on board orientation, choose the right Axis for MMA, 
+                                        // arrow shaft on MMA points in same direction as axle
+  #define UseMMA_X_Axis 1               // Set to 0 to use X axis of MMA
                                         // Set to 1 to use Y axis of MMA
 
-  #define Roll_Invert 0                 // Roll to the right must be positive
-                                        // Set to 1 if roll to right shows negative
+  #define Roll_Invert 1                 // Roll to the right must be positive
+                                        // Set to 1 if roll to right shows negative, otherwise set to 0
 
   #define Relay_Type 0    // set to 0 for No Relays
                           // set to 1 for Section Relays
                           // set to 2 for uTurn Relays
   
-  #define EtherNet 0      // 0 = Serial/USB communcation with AOG
-                          // 1 = Ethernet comunication with AOG (using an ENC28J60 chip)
+  #define EtherNet 1      // 0 = Serial/USB communcation with AOG
+                          // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
                           
-  #define CS_Pin 10       // Arduino Nano = 10 but depending how CS of Ethernet Controller ENC28J60 is Connected
+  #define CS_Pin 10       // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
 
   //##########################################################################################################
   //### End of Setup Zone ####################################################################################
@@ -65,10 +63,15 @@
 
   //Not Connected for Cytron, Right PWM for IBT2
   #define PWM2_RPWM  9 //D9
-  
+
+  //--------------------------- Switch Input Pins ------------------------
   #define STEERSW_PIN 6 //PD6
   #define WORKSW_PIN 7  //PD7
   #define REMOTE_PIN 8  //PB0
+
+  // -------------------------- Arduino A/D Input Pins ------------------
+  #define WAS_Ard_A0 A0  //PC0 Wheel Angle Sensor
+  #define Dogs2_Roll A1  //PC1 DOGS2 Inclinometer
   
   //ethercard 10,11,12,13     
 
@@ -101,22 +104,21 @@
     static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
     
     byte Ethernet::buffer[200]; // udp send and receive buffer
-  #endif
+  #endif  
   
-  
-  #if ADS1115_Mode==1 | ADS1115_Mode == 2
+  #if A2D_Convertor_Mode==1 | A2D_Convertor_Mode == 2
     #include "ADS1015.h"
     Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
   #endif
   
-  #if Inclinometer_Installed == 2
-      #include "MMA8452Q.h"  // MMA8452 (1) Inclinometer
-      
-      #if MMA_Address == 0
-        MMA8452Q MMA(0x1D); //the sparkfun
-      #else
-        MMA8452Q MMA(0x1C); //the GY-45
-      #endif      
+ #if Inclinometer_Installed == 2 | Inclinometer_Installed == 3
+    #include "MMA8452_AOG.h"  // MMA8452 (1) Inclinometer
+    #if Inclinometer_Installed == 3
+      MMA8452 MMA(0x1D);
+    #else
+      MMA8452 MMA(0x1C);
+    #endif
+    uint16_t x_ , y_ , z_;      
   #endif
   
   #if BNO_Installed
@@ -133,13 +135,18 @@
    struct Storage {
       float Ko = 0.0f;  //overall gain
       float Kp = 0.0f;  //proportional gain
-      float Ki = 0.0f;//integral gain
+      float Ki = 0.0f;  //integral gain
       float Kd = 0.0f;  //derivative gain 
       float steeringPositionZero = (float)SteerPosZero;
       byte minPWMValue=10;
       int maxIntegralValue=20;//max PWM value for integral PID component
-      float steerSensorCounts=20;
-      byte oldsteerzero=0;  // stores old Steerzerovalue
+
+      // Set the intial steer sensor counts
+      #if A2D_Convertor_Mode==1 | A2D_Convertor_Mode == 2
+        float steerSensorCounts=30;      
+      #else
+        float steerSensorCounts=9;
+      #endif      
   };  Storage steerSettings;
   
   //loop time variables in microseconds
@@ -150,14 +157,17 @@
   unsigned int currentTime = LOOP_TIME;
   unsigned int dT = 50000;
   byte count = 0;
-  byte watchdogTimer = 0;
-  byte serialResetTimer = 0; //if serial buffer is getting full, empty it
+  byte watchdogTimer = 20;
+  byte serialResetTimer = 100; //if serial buffer is getting full, empty it
   
   //Kalman variables
   float rollK = 0, Pc = 0.0, G = 0.0, P = 1.0, Xp = 0.0, Zp = 0.0;
   float XeRoll = 0;
   const float varRoll = 0.1; // variance,
   const float varProcess = 0.0001; //smaller is more filtering
+
+  //inclinometer variables
+  int roll = 0;
   
   //Program flow
   bool isDataFound = false, isSettingFound = false, MMAinitialized = false;
@@ -175,11 +185,7 @@
   float steeringPositionZero = 1660;
   float steerSensorCounts = 23;
 
-  
-  //inclinometer variables
-  int roll = 0;
-  
-  //pwm variables
+    //pwm variables
   int pwmDrive = 0, drive = 0, pwmDisplay = 0;
   float pValue = 0;
 
@@ -202,10 +208,15 @@ void setup()
     IMU.setExtCrystalUse(true);
   #endif  
   	
-  #if (Inclinometer_Installed == 2)
-        // MMA8452 (1) Inclinometer
-        MMAinitialized = MMA.init();
-        if (!MMAinitialized) Serial.println("MMA init fails!!");
+ #if Inclinometer_Installed ==2 | Inclinometer_Installed ==3
+      // MMA8452 (1) Inclinometer
+      MMAinitialized = MMA.init();
+      if (MMAinitialized){
+        MMA.setDataRate(MMA_800hz);
+        MMA.setRange(MMA_RANGE_8G);
+        MMA.setHighPassFilter(false); 
+      }
+      else Serial.println("MMA init fails!!");
   #endif
 
 	//PWM rate settings Adjust to desired PWM Rate
@@ -247,11 +258,8 @@ void setup()
       steerSettings.steeringPositionZero = (SteerPosZero);  //use new steering zero offset now
       EEPROM.put(8, steerSettings);   
     }    
-  }
-  
-  
+  } 
 }// End of Setup
-
 
 void loop()
 {
@@ -292,19 +300,30 @@ void loop()
           rollK = (rollK - 13300)/28;
     #endif
     
-    #if Inclinometer_Installed ==2
-       // MMA8452 Inclinometer
+    #if (Inclinometer_Installed == 2 | Inclinometer_Installed == 3)
+       // MMA8452 Inclinometer          
+        if (MMAinitialized){
+          MMA.getRawData(&x_, &y_, &z_);
+
+          #if UseMMA_X_Axis == 0 
+              roll= x_; //Conversion uint to int
+          #else 
+              roll = y_;
+          #endif
           
-          if (MMA.available()) //is there data available
-          {      
-            MMA.read(); // Reads only "x and y" accel
-          }    
-          
-          //if is set to 1 //get the roll from MMA - value from 0 to 1
-          if (UseMMA_Y_Axis) rollK = MMA.cy * 90 * 16; //UseMMa_Y_Axis is set to 1
-          else rollK = MMA.cx * 90 * 16; 
-          
+          if (roll > 4200)  roll =  4200;
+          if (roll < -4200) roll = -4200;
+          rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees) 
+        }
     #endif
+
+    #if (Inclinometer_Installed == 4) //DOGS2 inclinometer at A1 Arduino     
+     analogRead(Dogs2_Roll); //discard
+     delay(1);
+     roll = analogRead(Dogs2_Roll);   delay(1);
+     //inclinometer goes from -25 to 25 from 0.5 volts to 4.5 volts
+     rollK = map(roll, 102, 921, -400, 400); //16 counts per degree
+#endif
     
     //if not positive when rolling to the right
     #if Roll_Invert ==1
@@ -334,18 +353,26 @@ void loop()
         SetuTurnRelays();  //turn on off uTurn relays
     #endif
   
-     //get steering position 
-    #if ADS1115_Mode==1   //Single Input ADS
+    //get steering position 
+    #if A2D_Convertor_Mode==0   //WAS at arduino
+        analogRead(WAS_Ard_A0); //discard initial reading // Arduino ADC     
+        steeringPosition = analogRead(WAS_Ard_A0);    delay(1);
+        steeringPosition += analogRead(WAS_Ard_A0);    delay(1);
+        steeringPosition += analogRead(WAS_Ard_A0);    delay(1);
+        steeringPosition += analogRead(WAS_Ard_A0);
+        steeringPosition = steeringPosition >> 2; //divide by 4
+    #endif 
+      
+    #if A2D_Convertor_Mode==1   //Single Input ADS
       steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Single Mode 
+      steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     #endif 
     
-    #if ADS1115_Mode==2    //ADS1115 Differential Mode
+    #if A2D_Convertor_Mode==2    //ADS1115 Differential Mode
       steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
+      steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
     #endif 
-  
-    //scale down and divide
-    steeringPosition = (steeringPosition >> 3); //bit shift by 3  0 to 3320 is 0 to 5v
-  
+   
     //DETERMINE ACTUAL STEERING POSITION
     steeringPosition = (steeringPosition - steerSettings.steeringPositionZero);   //read the steering position sensor
           
@@ -414,9 +441,10 @@ void loop()
       
       Serial.print(steeringPosition); //The actual steering angle in degrees
       Serial.print(",");
-
-      Serial.println(steerAngleActual);
+      
+      Serial.println(steerSettings.steerSensorCounts);
       */
+      
   
     #else
 
@@ -572,11 +600,11 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     steerSettings.Ki = (float)data[3] * 0.001;     // read Ki from AgOpenGPS
     steerSettings.Kd = (float)data[4] * 1.0;       // read Kd from AgOpenGPS
     steerSettings.Ko = (float)data[5] * 0.1;       // read Ko from AgOpenGPS
-    steeringPositionZero = (1660-127) + data[6];//read steering zero offset  
+    steerSettings.steeringPositionZero = (1660-127) + data[6];//read steering zero offset  
     
     steerSettings.minPWMValue = data[7]; //read the minimum amount of PWM for instant on
     steerSettings.maxIntegralValue = data[8]*0.1; //
-    steerSensorCounts = data[9]; 
+    steerSettings.steerSensorCounts = data[9]; 
     
     EEPROM.put(8, steerSettings);
     

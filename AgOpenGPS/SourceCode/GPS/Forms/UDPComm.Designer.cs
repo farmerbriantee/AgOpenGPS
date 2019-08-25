@@ -139,8 +139,8 @@ namespace AgOpenGPS
             //if it starts with a $, its an nmea sentence
             if (data[0] == 36)
             {
-                pn.rawBuffer += Encoding.ASCII.GetString(data);
-                recvSentenceSettings = pn.rawBuffer;
+                sbNMEAFromGPS.Append(Encoding.ASCII.GetString(data));
+                //recvSentenceSettings = sbNMEAFromGPS.ToString();
                 return;
             }
 

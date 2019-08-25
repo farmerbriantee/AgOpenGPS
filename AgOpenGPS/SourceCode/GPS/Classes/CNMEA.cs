@@ -236,6 +236,8 @@ Field	Meaning
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (cr == -1 || dollar == -1) return;
 
+            //mf.recvSentenceSettings = rawBuffer;
+
             //now we have a complete sentence or more somewhere in the portData
             while (true)
             {
