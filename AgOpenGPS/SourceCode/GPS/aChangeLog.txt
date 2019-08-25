@@ -2,6 +2,7 @@
 * sbNMEA used to capture GPS Data rather then rawbuffer which could be
 	changed by SerialData Delegate. 
 * Sim and GPS Port made much more difficult to change To Sim. 
+* newline check before parse. Prevents parse of guaranteed no sentence
 
 v3.0 June/July 2019
 * Added tree planting

@@ -442,7 +442,7 @@ namespace AgOpenGPS
         private void SerialLineReceived(string sentence)
         {
             //spit it out no matter what it says
-            sbNMEAFromGPS.Append(sentence);
+            pn.rawBuffer += sentence;
             //recvSentenceSettings = sbNMEAFromGPS.ToString();
         }
 
