@@ -811,7 +811,7 @@ namespace AgOpenGPS
         private void btnStanley_Click(object sender, EventArgs e)
         {
             isStanleyUsed = !isStanleyUsed;
-            if (isStanleyUsed) btnStanley.Text = "StanLee";
+            if (isStanleyUsed) btnStanley.Text = "Stanley";
             else btnStanley.Text = "Pure P";
             Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
             Properties.Vehicle.Default.Save();

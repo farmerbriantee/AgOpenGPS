@@ -204,9 +204,9 @@ Field	Meaning
             //east = fix.easting;
             //nort = fix.northing;
 
+            //go back again - programming reference
             //fix.easting = (Math.Cos(convergenceAngle) * east) - (Math.Sin(convergenceAngle) * nort);
             //fix.northing = (Math.Sin(convergenceAngle) * east) + (Math.Cos(convergenceAngle) * nort);
-
         }
 
         public void ParseNMEA()
@@ -268,7 +268,35 @@ Field	Meaning
             if (!String.IsNullOrEmpty(words[1]))
             {
                 //True heading
-                double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                // 0 1 2 3 4 5 6 7 8 9
+                // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
+                //Field
+                // Meaning
+                //0 Message ID $PTNL,AVR
+                //1 UTC of vector fix
+                //2 Yaw angle, in degrees
+                //3 Yaw
+                //4 Tilt angle, in degrees
+                //5 Tilt
+                //6 Roll angle, in degrees
+                //7 Roll
+                //8 Range, in meters
+                //9 GPS quality indicator:
+                // 0: Fix not available or invalid
+                // 1: Autonomous GPS fix
+                // 2: Differential carrier phase solution RTK(Float)
+                // 3: Differential carrier phase solution RTK(Fix)
+                // 4: Differential code-based solution, DGPS
+                //10 PDOP
+                //11 Number of satellites used in solution
+                //12 The checksum data, always begins with *
+
+
+                if (words[8] == "Roll")
+                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                else
+                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+
                 if (mf.ahrs.isRollFromGPS)
 
                 //input to the kalman filter
