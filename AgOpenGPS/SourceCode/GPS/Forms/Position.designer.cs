@@ -91,10 +91,12 @@ namespace AgOpenGPS
         public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
         bool isFixHolding = false, isFixHoldLoaded = false;
 
+        private double nowHz = 0;
+
         //called by watchdog timer every 10 ms, returns true if new valid fix
         private bool ScanForNMEA()
         {
-            //Add the current nmea data to the buffer to be parsed
+            //update the recv string so it can display at least something
             recvSentenceSettings = pn.rawBuffer;
 
             //parse any data from pn.rawBuffer
@@ -105,7 +107,12 @@ namespace AgOpenGPS
             {
                 //Measure the frequency of the GPS updates
                 swHz.Stop();
-                HzTime = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
+                nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
+
+                //simple comp filter
+                if (nowHz < 20) HzTime = 0.8 * HzTime + 0.2 * nowHz;
+                //HzTime = Math.Round(HzTime, 0);
+
                 swHz.Reset();
                 swHz.Start();
 

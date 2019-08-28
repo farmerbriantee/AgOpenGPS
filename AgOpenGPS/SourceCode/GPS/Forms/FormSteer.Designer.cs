@@ -659,7 +659,7 @@
             this.tabStan.Name = "tabStan";
             this.tabStan.Size = new System.Drawing.Size(483, 371);
             this.tabStan.TabIndex = 15;
-            this.tabStan.Text = "StanLee";
+            this.tabStan.Text = "Stanley";
             // 
             // hsbarHeadingErrorGain
             // 
@@ -715,9 +715,9 @@
             this.label3.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(30, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 23);
+            this.label3.Size = new System.Drawing.Size(125, 23);
             this.label3.TabIndex = 298;
-            this.label3.Text = "Overall Gain";
+            this.label3.Text = "Agressiveness";
             // 
             // label5
             // 
@@ -725,9 +725,9 @@
             this.label5.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(30, 98);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(172, 23);
+            this.label5.Size = new System.Drawing.Size(184, 23);
             this.label5.TabIndex = 296;
-            this.label5.Text = "Heading Error Gain";
+            this.label5.Text = "Overshoot Reduction";
             // 
             // lblHeadingErrorGain
             // 

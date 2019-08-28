@@ -64,7 +64,7 @@ namespace AgOpenGPS
         private readonly Stopwatch swHz = new Stopwatch();
 
         //Time to do fix position update and draw routine
-        private double HzTime = 0;
+        private double HzTime = 5;
 
         //For field saving in background
         private int saveCounter = 1;
