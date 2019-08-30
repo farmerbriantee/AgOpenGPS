@@ -161,8 +161,6 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
-                    writer.WriteLine("Empty," + "10");
                     writer.WriteLine("IsDiskSpreader," + 
                         Properties.Vehicle.Default.setVehicle_isDiskSpreader.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("DiskSpreaderBackDistance," +

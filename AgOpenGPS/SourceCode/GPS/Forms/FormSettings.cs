@@ -250,7 +250,7 @@ namespace AgOpenGPS
             chkIsDiskSpreader.CheckedChanged += chkIsDiskSpreader_CheckedChanged;
 
             nudDiskSpreaderBackDistance.ValueChanged -= nudDiskSpreaderBackDistance_ValueChanged;
-            nudDiskSpreaderBackDistance.Value = (decimal)(diskSpreaderBackDistance * m2MetImp);
+            nudDiskSpreaderBackDistance.Value = (decimal)(diskSpreaderBackDistance);
             nudDiskSpreaderBackDistance.ValueChanged += nudDiskSpreaderBackDistance_ValueChanged;
 
             if (isDiskSpreader)
