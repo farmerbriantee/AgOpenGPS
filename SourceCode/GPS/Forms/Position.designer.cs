@@ -1093,6 +1093,8 @@ namespace AgOpenGPS
                 //set up the modules
                 mc.ResetAllModuleCommValues();
 
+                AutoSteerSettingsOutToPort();
+
                 return;
             }
 
@@ -1126,10 +1128,10 @@ namespace AgOpenGPS
                 //send out initial zero settings
                 if (isGPSPositionInitialized)
                 {
-                    AutoSteerSettingsOutToPort();
-
                     //set up the modules
                     mc.ResetAllModuleCommValues();
+
+                    AutoSteerSettingsOutToPort();
                 }
                 return;
             }
