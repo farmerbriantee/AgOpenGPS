@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCommSet));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnRescan = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
@@ -84,18 +83,29 @@
             // btnRescan
             // 
             this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnRescan, "btnRescan");
+            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRescan.Location = new System.Drawing.Point(25, 541);
             this.btnRescan.Name = "btnRescan";
+            this.btnRescan.Size = new System.Drawing.Size(117, 72);
+            this.btnRescan.TabIndex = 58;
+            this.btnRescan.Text = "Rescan Ports";
             this.btnRescan.UseVisualStyleBackColor = false;
             this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
             // 
             // btnSerialOK
             // 
-            resources.ApplyResources(this.btnSerialOK, "btnSerialOK");
+            this.btnSerialOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerialOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnSerialOK.Location = new System.Drawing.Point(555, 532);
             this.btnSerialOK.Name = "btnSerialOK";
+            this.btnSerialOK.Size = new System.Drawing.Size(156, 72);
+            this.btnSerialOK.TabIndex = 59;
+            this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
@@ -111,126 +121,199 @@
             this.groupBox1.Controls.Add(this.textBoxRcv);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.btnOpenSerial);
-            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(12, 8);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(576, 178);
+            this.groupBox1.TabIndex = 64;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "GPS Port";
             // 
             // cboxPort
             // 
             this.cboxPort.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cboxPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxPort, "cboxPort");
+            this.cboxPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
             this.cboxPort.Items.AddRange(new object[] {
-            resources.GetString("cboxPort.Items"),
-            resources.GetString("cboxPort.Items1"),
-            resources.GetString("cboxPort.Items2"),
-            resources.GetString("cboxPort.Items3"),
-            resources.GetString("cboxPort.Items4"),
-            resources.GetString("cboxPort.Items5")});
+            "4800",
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.cboxPort.Location = new System.Drawing.Point(25, 39);
             this.cboxPort.Name = "cboxPort";
+            this.cboxPort.Size = new System.Drawing.Size(96, 37);
+            this.cboxPort.TabIndex = 50;
             this.cboxPort.SelectedIndexChanged += new System.EventHandler(this.cboxPort_SelectedIndexChanged_1);
             // 
             // cboxBaud
             // 
             this.cboxBaud.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.cboxBaud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxBaud, "cboxBaud");
+            this.cboxBaud.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxBaud.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxBaud.FormattingEnabled = true;
             this.cboxBaud.Items.AddRange(new object[] {
-            resources.GetString("cboxBaud.Items"),
-            resources.GetString("cboxBaud.Items1"),
-            resources.GetString("cboxBaud.Items2"),
-            resources.GetString("cboxBaud.Items3"),
-            resources.GetString("cboxBaud.Items4"),
-            resources.GetString("cboxBaud.Items5")});
+            "4800",
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200"});
+            this.cboxBaud.Location = new System.Drawing.Point(140, 39);
             this.cboxBaud.Name = "cboxBaud";
+            this.cboxBaud.Size = new System.Drawing.Size(96, 37);
+            this.cboxBaud.TabIndex = 49;
             this.cboxBaud.SelectedIndexChanged += new System.EventHandler(this.cboxBaud_SelectedIndexChanged_1);
             // 
             // label16
             // 
-            resources.ApplyResources(this.label16, "label16");
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label16.Location = new System.Drawing.Point(19, 84);
             this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(65, 16);
+            this.label16.TabIndex = 48;
+            this.label16.Text = "Currently:";
             // 
             // lblCurrentPort
             // 
-            resources.ApplyResources(this.lblCurrentPort, "lblCurrentPort");
+            this.lblCurrentPort.AutoSize = true;
+            this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentPort.Location = new System.Drawing.Point(89, 84);
             this.lblCurrentPort.Name = "lblCurrentPort";
+            this.lblCurrentPort.Size = new System.Drawing.Size(36, 16);
+            this.lblCurrentPort.TabIndex = 47;
+            this.lblCurrentPort.Text = "Port";
             // 
             // lblCurrentBaud
             // 
-            resources.ApplyResources(this.lblCurrentBaud, "lblCurrentBaud");
+            this.lblCurrentBaud.AutoSize = true;
+            this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentBaud.Location = new System.Drawing.Point(137, 84);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
+            this.lblCurrentBaud.Size = new System.Drawing.Size(40, 16);
+            this.lblCurrentBaud.TabIndex = 46;
+            this.lblCurrentBaud.Text = "Baud";
             // 
             // btnCloseSerial
             // 
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnCloseSerial, "btnCloseSerial");
+            this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCloseSerial.Location = new System.Drawing.Point(437, 39);
             this.btnCloseSerial.Name = "btnCloseSerial";
+            this.btnCloseSerial.Size = new System.Drawing.Size(117, 36);
+            this.btnCloseSerial.TabIndex = 44;
+            this.btnCloseSerial.Text = "Disconnect";
             this.btnCloseSerial.UseVisualStyleBackColor = false;
             this.btnCloseSerial.Click += new System.EventHandler(this.btnCloseSerial_Click);
             // 
             // textBoxRcv
             // 
-            resources.ApplyResources(this.textBoxRcv, "textBoxRcv");
+            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRcv.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxRcv.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.textBoxRcv.Location = new System.Drawing.Point(7, 110);
+            this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxRcv.Multiline = true;
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
+            this.textBoxRcv.Size = new System.Drawing.Size(559, 60);
+            this.textBoxRcv.TabIndex = 40;
             // 
             // label1
             // 
-            resources.ApplyResources(this.label1, "label1");
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label1.Location = new System.Drawing.Point(225, 89);
             this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 16);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "NMEA string from GPS Port:";
             // 
             // btnOpenSerial
             // 
             this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnOpenSerial, "btnOpenSerial");
+            this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnOpenSerial.Location = new System.Drawing.Point(298, 39);
             this.btnOpenSerial.Name = "btnOpenSerial";
+            this.btnOpenSerial.Size = new System.Drawing.Size(117, 36);
+            this.btnOpenSerial.TabIndex = 45;
+            this.btnOpenSerial.Text = "Connect";
             this.btnOpenSerial.UseVisualStyleBackColor = false;
             this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
             // 
             // btnCloseSerialArduino
             // 
             this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnCloseSerialArduino, "btnCloseSerialArduino");
+            this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCloseSerialArduino.Location = new System.Drawing.Point(437, 28);
             this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
+            this.btnCloseSerialArduino.Size = new System.Drawing.Size(117, 36);
+            this.btnCloseSerialArduino.TabIndex = 52;
+            this.btnCloseSerialArduino.Text = "Disconnect";
             this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
             this.btnCloseSerialArduino.Click += new System.EventHandler(this.btnCloseSerialArduino_Click);
             // 
             // btnOpenSerialArduino
             // 
             this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnOpenSerialArduino, "btnOpenSerialArduino");
+            this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnOpenSerialArduino.Location = new System.Drawing.Point(298, 28);
             this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
+            this.btnOpenSerialArduino.Size = new System.Drawing.Size(117, 36);
+            this.btnOpenSerialArduino.TabIndex = 53;
+            this.btnOpenSerialArduino.Text = "Connect";
             this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
             this.btnOpenSerialArduino.Click += new System.EventHandler(this.btnOpenSerialArduino_Click);
             // 
             // label15
             // 
-            resources.ApplyResources(this.label15, "label15");
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label15.Location = new System.Drawing.Point(303, 77);
             this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 16);
+            this.label15.TabIndex = 58;
+            this.label15.Text = "From Section Port:";
             // 
             // lblCurrentArduinoPort
             // 
-            resources.ApplyResources(this.lblCurrentArduinoPort, "lblCurrentArduinoPort");
+            this.lblCurrentArduinoPort.AutoSize = true;
+            this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 48);
             this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
+            this.lblCurrentArduinoPort.Size = new System.Drawing.Size(36, 16);
+            this.lblCurrentArduinoPort.TabIndex = 59;
+            this.lblCurrentArduinoPort.Text = "Port";
             // 
             // txtBoxRecvArduino
             // 
             this.txtBoxRecvArduino.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtBoxRecvArduino, "txtBoxRecvArduino");
+            this.txtBoxRecvArduino.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtBoxRecvArduino.Location = new System.Drawing.Point(298, 98);
+            this.txtBoxRecvArduino.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxRecvArduino.Name = "txtBoxRecvArduino";
             this.txtBoxRecvArduino.ReadOnly = true;
+            this.txtBoxRecvArduino.Size = new System.Drawing.Size(256, 27);
+            this.txtBoxRecvArduino.TabIndex = 63;
             // 
             // cboxArdPort
             // 
             this.cboxArdPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxArdPort, "cboxArdPort");
+            this.cboxArdPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxArdPort.FormattingEnabled = true;
+            this.cboxArdPort.Location = new System.Drawing.Point(25, 31);
             this.cboxArdPort.Name = "cboxArdPort";
+            this.cboxArdPort.Size = new System.Drawing.Size(121, 37);
+            this.cboxArdPort.TabIndex = 64;
             this.cboxArdPort.SelectedIndexChanged += new System.EventHandler(this.cboxArdPort_SelectedIndexChanged);
             // 
             // groupBox2
@@ -245,26 +328,44 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
             this.groupBox2.Controls.Add(this.btnCloseSerialArduino);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox2.Location = new System.Drawing.Point(12, 201);
             this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(576, 134);
+            this.groupBox2.TabIndex = 65;
             this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Section Port";
             // 
             // label2
             // 
-            resources.ApplyResources(this.label2, "label2");
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label2.Location = new System.Drawing.Point(29, 77);
             this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 16);
+            this.label2.TabIndex = 66;
+            this.label2.Text = "To Section Port:";
             // 
             // txtBoxSendArduino
             // 
             this.txtBoxSendArduino.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtBoxSendArduino, "txtBoxSendArduino");
+            this.txtBoxSendArduino.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtBoxSendArduino.Location = new System.Drawing.Point(25, 98);
+            this.txtBoxSendArduino.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxSendArduino.Name = "txtBoxSendArduino";
             this.txtBoxSendArduino.ReadOnly = true;
+            this.txtBoxSendArduino.Size = new System.Drawing.Size(244, 27);
+            this.txtBoxSendArduino.TabIndex = 65;
             // 
             // label17
             // 
-            resources.ApplyResources(this.label17, "label17");
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label17.Location = new System.Drawing.Point(162, 28);
             this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 16);
+            this.label17.TabIndex = 60;
+            this.label17.Text = "Currently:";
             // 
             // groupBox3
             // 
@@ -278,99 +379,162 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.btnOpenSerialAutoSteer);
             this.groupBox3.Controls.Add(this.btnCloseSerialAutoSteer);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox3.Location = new System.Drawing.Point(12, 363);
             this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(576, 132);
+            this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "AutoSteer Port";
             // 
             // label3
             // 
-            resources.ApplyResources(this.label3, "label3");
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label3.Location = new System.Drawing.Point(29, 77);
             this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(93, 16);
+            this.label3.TabIndex = 66;
+            this.label3.Text = "To Auto Steer:";
             // 
             // txtBoxSendAutoSteer
             // 
             this.txtBoxSendAutoSteer.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtBoxSendAutoSteer, "txtBoxSendAutoSteer");
+            this.txtBoxSendAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtBoxSendAutoSteer.Location = new System.Drawing.Point(25, 98);
+            this.txtBoxSendAutoSteer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxSendAutoSteer.Name = "txtBoxSendAutoSteer";
             this.txtBoxSendAutoSteer.ReadOnly = true;
+            this.txtBoxSendAutoSteer.Size = new System.Drawing.Size(244, 27);
+            this.txtBoxSendAutoSteer.TabIndex = 65;
             // 
             // cboxASPort
             // 
             this.cboxASPort.Cursor = System.Windows.Forms.Cursors.Default;
             this.cboxASPort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxASPort, "cboxASPort");
+            this.cboxASPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxASPort.FormattingEnabled = true;
+            this.cboxASPort.Location = new System.Drawing.Point(25, 31);
             this.cboxASPort.Name = "cboxASPort";
+            this.cboxASPort.Size = new System.Drawing.Size(121, 37);
+            this.cboxASPort.TabIndex = 64;
             this.cboxASPort.SelectedIndexChanged += new System.EventHandler(this.cboxASPort_SelectedIndexChanged);
             // 
             // txtBoxRecvAutoSteer
             // 
             this.txtBoxRecvAutoSteer.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.txtBoxRecvAutoSteer, "txtBoxRecvAutoSteer");
+            this.txtBoxRecvAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtBoxRecvAutoSteer.Location = new System.Drawing.Point(298, 98);
+            this.txtBoxRecvAutoSteer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBoxRecvAutoSteer.Name = "txtBoxRecvAutoSteer";
             this.txtBoxRecvAutoSteer.ReadOnly = true;
+            this.txtBoxRecvAutoSteer.Size = new System.Drawing.Size(256, 27);
+            this.txtBoxRecvAutoSteer.TabIndex = 63;
             // 
             // label4
             // 
-            resources.ApplyResources(this.label4, "label4");
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label4.Location = new System.Drawing.Point(162, 28);
             this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 16);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Currently:";
             // 
             // lblCurrentAutoSteerPort
             // 
-            resources.ApplyResources(this.lblCurrentAutoSteerPort, "lblCurrentAutoSteerPort");
+            this.lblCurrentAutoSteerPort.AutoSize = true;
+            this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(162, 48);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
+            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(36, 16);
+            this.lblCurrentAutoSteerPort.TabIndex = 59;
+            this.lblCurrentAutoSteerPort.Text = "Port";
             // 
             // label6
             // 
-            resources.ApplyResources(this.label6, "label6");
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label6.Location = new System.Drawing.Point(303, 77);
             this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 16);
+            this.label6.TabIndex = 58;
+            this.label6.Text = "From Auto Steer:";
             // 
             // btnOpenSerialAutoSteer
             // 
             this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnOpenSerialAutoSteer, "btnOpenSerialAutoSteer");
+            this.btnOpenSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnOpenSerialAutoSteer.Location = new System.Drawing.Point(298, 28);
             this.btnOpenSerialAutoSteer.Name = "btnOpenSerialAutoSteer";
+            this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(117, 36);
+            this.btnOpenSerialAutoSteer.TabIndex = 53;
+            this.btnOpenSerialAutoSteer.Text = "Connect";
             this.btnOpenSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnOpenSerialAutoSteer.Click += new System.EventHandler(this.btnOpenSerialAutoSteer_Click);
             // 
             // btnCloseSerialAutoSteer
             // 
             this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.btnCloseSerialAutoSteer, "btnCloseSerialAutoSteer");
+            this.btnCloseSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(437, 28);
             this.btnCloseSerialAutoSteer.Name = "btnCloseSerialAutoSteer";
+            this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(117, 36);
+            this.btnCloseSerialAutoSteer.TabIndex = 52;
+            this.btnCloseSerialAutoSteer.Text = "Disconnect";
             this.btnCloseSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnCloseSerialAutoSteer.Click += new System.EventHandler(this.btnCloseSerialAutoSteer_Click);
             // 
             // label5
             // 
-            resources.ApplyResources(this.label5, "label5");
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.label5.Location = new System.Drawing.Point(17, 513);
             this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(186, 16);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "To Refresh Available USB Ports";
             // 
             // cboxNMEAHz
             // 
             this.cboxNMEAHz.Cursor = System.Windows.Forms.Cursors.Default;
             this.cboxNMEAHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            resources.ApplyResources(this.cboxNMEAHz, "cboxNMEAHz");
+            this.cboxNMEAHz.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxNMEAHz.FormattingEnabled = true;
             this.cboxNMEAHz.Items.AddRange(new object[] {
-            resources.GetString("cboxNMEAHz.Items"),
-            resources.GetString("cboxNMEAHz.Items1"),
-            resources.GetString("cboxNMEAHz.Items2"),
-            resources.GetString("cboxNMEAHz.Items3"),
-            resources.GetString("cboxNMEAHz.Items4")});
+            "1",
+            "2",
+            "5",
+            "8",
+            "10"});
+            this.cboxNMEAHz.Location = new System.Drawing.Point(618, 312);
             this.cboxNMEAHz.Name = "cboxNMEAHz";
+            this.cboxNMEAHz.Size = new System.Drawing.Size(86, 37);
+            this.cboxNMEAHz.TabIndex = 67;
             this.cboxNMEAHz.SelectedIndexChanged += new System.EventHandler(this.cboxNMEAHz_SelectedIndexChanged);
             // 
             // label7
             // 
-            resources.ApplyResources(this.label7, "label7");
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label7.Location = new System.Drawing.Point(620, 288);
             this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 19);
+            this.label7.TabIndex = 68;
+            this.label7.Text = "NMEA Hz";
             // 
             // rbtnGGA
             // 
-            resources.ApplyResources(this.rbtnGGA, "rbtnGGA");
+            this.rbtnGGA.AutoSize = true;
+            this.rbtnGGA.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.rbtnGGA.Location = new System.Drawing.Point(21, 51);
             this.rbtnGGA.Name = "rbtnGGA";
+            this.rbtnGGA.Size = new System.Drawing.Size(65, 27);
+            this.rbtnGGA.TabIndex = 69;
             this.rbtnGGA.TabStop = true;
+            this.rbtnGGA.Text = "GGA";
             this.rbtnGGA.UseVisualStyleBackColor = true;
             this.rbtnGGA.CheckedChanged += new System.EventHandler(this.rbtnGGA_CheckedChanged);
             // 
@@ -379,28 +543,45 @@
             this.groupBox4.Controls.Add(this.rbtnOGI);
             this.groupBox4.Controls.Add(this.rbtnRMC);
             this.groupBox4.Controls.Add(this.rbtnGGA);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.groupBox4.Location = new System.Drawing.Point(597, 22);
             this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(114, 223);
+            this.groupBox4.TabIndex = 70;
             this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Fix From";
             // 
             // rbtnOGI
             // 
-            resources.ApplyResources(this.rbtnOGI, "rbtnOGI");
+            this.rbtnOGI.AutoSize = true;
+            this.rbtnOGI.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.rbtnOGI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rbtnOGI.Location = new System.Drawing.Point(21, 169);
             this.rbtnOGI.Name = "rbtnOGI";
+            this.rbtnOGI.Size = new System.Drawing.Size(61, 27);
+            this.rbtnOGI.TabIndex = 71;
             this.rbtnOGI.TabStop = true;
+            this.rbtnOGI.Text = "OGI";
             this.rbtnOGI.UseVisualStyleBackColor = true;
             // 
             // rbtnRMC
             // 
-            resources.ApplyResources(this.rbtnRMC, "rbtnRMC");
+            this.rbtnRMC.AutoSize = true;
+            this.rbtnRMC.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.rbtnRMC.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.rbtnRMC.Location = new System.Drawing.Point(21, 110);
             this.rbtnRMC.Name = "rbtnRMC";
+            this.rbtnRMC.Size = new System.Drawing.Size(66, 27);
+            this.rbtnRMC.TabIndex = 70;
             this.rbtnRMC.TabStop = true;
+            this.rbtnRMC.Text = "RMC";
             this.rbtnRMC.UseVisualStyleBackColor = true;
             // 
             // FormCommSet
             // 
-            resources.ApplyResources(this, "$this");
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(723, 616);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label7);
@@ -413,6 +594,8 @@
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormCommSet";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Communication Settings";
             this.Load += new System.EventHandler(this.FormCommSet_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

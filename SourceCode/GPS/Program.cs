@@ -18,30 +18,34 @@ namespace AgOpenGPS
         {
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
-                //opening the subkey
-                RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
+                Settings.Default.set_culture = "en";
+                Settings.Default.setF_workingDirectory = "Default";
+                Settings.Default.Save();
 
-                //create default keys if not existing
-                if (regKey == null)
-                {
-                    RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+                ////opening the subkey
+                //RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
-                    //storing the values
-                    Key.SetValue("Language", "en");
-                    Key.SetValue("Directory", "Default");
-                    Key.Close();
+                ////create default keys if not existing
+                //if (regKey == null)
+                //{
+                //    RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
 
-                    Settings.Default.set_culture = "en";
-                    Settings.Default.setF_workingDirectory = "Default";
-                    Settings.Default.Save();
-                }
-                else
-                {
-                    Settings.Default.set_culture = regKey.GetValue("Language").ToString();
-                    Settings.Default.setF_workingDirectory = regKey.GetValue("Directory").ToString();
-                    Settings.Default.Save();
-                    regKey.Close();
-                }
+                //    //storing the values
+                //    Key.SetValue("Language", "en");
+                //    Key.SetValue("Directory", "Default");
+                //    Key.Close();
+
+                //    Settings.Default.set_culture = "en";
+                //    Settings.Default.setF_workingDirectory = "Default";
+                //    Settings.Default.Save();
+                //}
+                //else
+                //{
+                //    Settings.Default.set_culture = regKey.GetValue("Language").ToString();
+                //    Settings.Default.setF_workingDirectory = regKey.GetValue("Directory").ToString();
+                //    Settings.Default.Save();
+                //    regKey.Close();
+                //}
 
                 //if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
                 Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Properties.Settings.Default.set_culture);

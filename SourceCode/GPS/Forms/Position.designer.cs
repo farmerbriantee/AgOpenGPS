@@ -132,16 +132,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (isGPSPositionInitialized)
-                {
-                    return false;
-                }
-                else
-                {
-                    mc.ResetAllModuleCommValues();
-                    recvCounter++;
-                    return false;
-                }
+                return false;
             }
         }
 
@@ -1098,6 +1089,10 @@ namespace AgOpenGPS
 
                 //run once and return
                 isFirstFixPositionSet = true;
+
+                //set up the modules
+                mc.ResetAllModuleCommValues();
+
                 return;
             }
 
@@ -1119,7 +1114,9 @@ namespace AgOpenGPS
                 stepFixPts[0].northing = pn.fix.northing;
 
                 //keep here till valid data
-                if (startCounter > (totalFixSteps/2)) isGPSPositionInitialized = true;
+                if (startCounter > (totalFixSteps)) isGPSPositionInitialized = true;
+
+                
 
                 //in radians
                 fixHeading = Math.Atan2(pn.fix.easting - stepFixPts[totalFixSteps - 1].easting, pn.fix.northing - stepFixPts[totalFixSteps - 1].northing);
@@ -1127,7 +1124,13 @@ namespace AgOpenGPS
                 toolPos.heading = fixHeading;
 
                 //send out initial zero settings
-                if (isGPSPositionInitialized) AutoSteerSettingsOutToPort();
+                if (isGPSPositionInitialized)
+                {
+                    AutoSteerSettingsOutToPort();
+
+                    //set up the modules
+                    mc.ResetAllModuleCommValues();
+                }
                 return;
             }
         }
