@@ -117,30 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="richTextBox1.Text" xml:space="preserve">
-    <value>The difference between the steering angle requested by AgOpenGPS minus the actual steer angle of the vehicle is the "Error". This error is used to determine how much and how quickly the steer motor or valve should be controlled.
-
-The error times the different gains set will generate a number from 0 to 255 and be converted to a variable pulse width signal to control the steering. 0 is off and 255 is fully on. Minimum PWM value is used to apply a minimum amount of power to overcome friction of the valve/motor so if a steering adjustment is required, it will occur immediately.
-
-The proportional gain and output gain are multiplied by the error then added to the minimum PWM value to generate the final output value. The higher this value the faster the motor will correct the steering. However if it is too high, the steering will overshoot the line and then oversteer the other way again. Too low of a value and it will either take too long or never get to the guidance line.
-
-PID is Proportional, Integral Derivative type control. P is the error that is right now, I is the error that was, and D is the error of the future. The Integral is an accumulation of the error over time. When it gets big enough a correction will try to eliminate it. The Derivative is the rate of change of the error. A high derivative value suggests we are really zooming towards the line. All we are using is the proportional value since pure pursuit solves many of the oversteer issues of a traditional pid loop control system.
-
-The integral values are for experimental nudging to improve accuracy when close to the line. Normally set to minimum for now. Use it with caution! 
-
-Draft compensation uses the roll of the vehicle to help turn up hills. As you drive on a steeper and steeper sidehill, it takes more steering angle to hold the line. Turning forced higher then the line helps to remove some of the sideways draft of a piece of equipment. 
-
-Look Ahead is the value that sets the response of how quickly and sharply the vehicle will steer back towards the line. The faster you go the farther out the look ahead point will be. A very small (1 second) look ahead will make the steering turn very quickyl Like too high of a proportional gain, a very short look ahead value will make the vehicle turn abruptly to the line and may overshoot it and oscillate a few times across the line. A very high value will make very small steering adjustments and take a long time to get back to the guidance line. The correct value is of course somehwere in between.
-
-The steer angle sensor zero is used to make sure the steering value when driving straight forward shows a steering angle of zero. This is very important to be correct. You can watch the heading slowly change  to determine if you are slowly turning one way or the other. You can also use "Drive" set to zero and then adjust the steering zero until the heading remains constant.
-
-Counts per degree takes the raw value of the Arduino measuring the steer angle sensor and turns that number into degrees. Example, if the wheels are at 10 degrees and the raw value is 90, then the counts per degree is 9. See the steer wizard for more help. You must manually put in the values the wizard calculates - or you can calculate manually. Its not a critical number as you may need to increase or decrease if the vehicle turns too sharp / not sharp enough in real life.
-
-The chart at the bottom shows the actual (the value of the steer sensor of the vehicle) is in Red and the desired generated steer angle (the setpoint by AOG) is green. It is quite helpful, if the steering should wildly go back and forth across the setpoint - gain is too high, or if it should take forever to get to the line - gains are set too low. It really demonstrates what is going on since constantly changing numbers are impossible to show anything useful.
-
-</value>
-  </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.TrayHeight" type="System.Int32, mscorlib">
     <value>25</value>
-  </metadata>
+  </data>
 </root>

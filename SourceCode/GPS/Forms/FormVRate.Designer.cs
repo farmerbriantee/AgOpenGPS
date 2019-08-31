@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVRate));
             this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnOpenGoogleEarth = new System.Windows.Forms.Button();
             this.btnLoadKML = new System.Windows.Forms.Button();
@@ -55,7 +54,7 @@
             // 
             this.btnOpenGoogleEarth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenGoogleEarth.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenGoogleEarth.Image")));
+            this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
             this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnOpenGoogleEarth.Location = new System.Drawing.Point(749, 458);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
@@ -69,7 +68,7 @@
             // 
             this.btnLoadKML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLoadKML.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadKML.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadKML.Image")));
+            this.btnLoadKML.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadKML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadKML.Location = new System.Drawing.Point(749, 274);
             this.btnLoadKML.Name = "btnLoadKML";
@@ -85,7 +84,7 @@
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSave.Location = new System.Drawing.Point(749, 550);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUDP));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tboxHostName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,10 +48,9 @@
             this.nudAutoSteerPort = new System.Windows.Forms.NumericUpDown();
             this.tboxAutoSteerIP = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).BeginInit();
@@ -77,6 +76,16 @@
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "AgOpenGPS Server";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(14, 204);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(219, 23);
+            this.label11.TabIndex = 95;
+            this.label11.Text = "All modules send to 9999";
             // 
             // tboxHostName
             // 
@@ -200,7 +209,7 @@
             this.btnSerialOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSerialOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialOK.Image")));
+            this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSerialOK.Location = new System.Drawing.Point(422, 340);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(156, 76);
@@ -300,6 +309,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Module Adress and Ports";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(30, 203);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(192, 23);
+            this.label8.TabIndex = 94;
+            this.label8.Text = "All modules use 8888.";
+            // 
             // cboxIsUDPOn
             // 
             this.cboxIsUDPOn.AutoSize = true;
@@ -324,26 +343,6 @@
             this.groupBox2.TabIndex = 93;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Networking";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(30, 203);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(192, 23);
-            this.label8.TabIndex = 94;
-            this.label8.Text = "All modules use 8888.";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(14, 204);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(219, 23);
-            this.label11.TabIndex = 95;
-            this.label11.Text = "All modules send to 9999";
             // 
             // FormUDP
             // 

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormYouTurn));
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.tabHelp = new System.Windows.Forms.TabPage();
@@ -186,7 +185,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.Location = new System.Drawing.Point(755, 361);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
@@ -199,7 +198,7 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
+            this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnOK.Location = new System.Drawing.Point(755, 536);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -451,7 +450,7 @@
             this.btnEditCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEditCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditCancel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEditCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnEditCancel.Image")));
+            this.btnEditCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnEditCancel.Location = new System.Drawing.Point(409, 261);
             this.btnEditCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnEditCancel.Name = "btnEditCancel";
@@ -465,7 +464,7 @@
             this.btnSaveNames.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveNames.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSaveNames.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveNames.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNames.Image")));
+            this.btnSaveNames.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSaveNames.Location = new System.Drawing.Point(409, 456);
             this.btnSaveNames.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSaveNames.Name = "btnSaveNames";
@@ -1581,7 +1580,7 @@
             // 
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceDn.Image")));
+            this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnDistanceDn.Location = new System.Drawing.Point(655, 447);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
@@ -1610,7 +1609,7 @@
             // 
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceUp.Image")));
+            this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnDistanceUp.Location = new System.Drawing.Point(559, 447);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
@@ -1657,7 +1656,7 @@
             // 
             this.btnTriggerDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTriggerDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceDn.Image")));
+            this.btnTriggerDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnTriggerDistanceDn.Location = new System.Drawing.Point(402, 447);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
@@ -1670,7 +1669,7 @@
             // 
             this.btnTriggerDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTriggerDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnTriggerDistanceUp.Image")));
+            this.btnTriggerDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnTriggerDistanceUp.Location = new System.Drawing.Point(306, 447);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
@@ -1730,7 +1729,7 @@
             // 
             this.btnGeoFenceDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGeoFenceDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnGeoFenceDistanceDn.Image")));
+            this.btnGeoFenceDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(141, 447);
             this.btnGeoFenceDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceDn.Name = "btnGeoFenceDistanceDn";
@@ -1743,7 +1742,7 @@
             // 
             this.btnGeoFenceDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGeoFenceDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnGeoFenceDistanceUp.Image")));
+            this.btnGeoFenceDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(45, 447);
             this.btnGeoFenceDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceUp.Name = "btnGeoFenceDistanceUp";

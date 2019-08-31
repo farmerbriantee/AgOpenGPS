@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBoundary));
             this.btnLeftRight = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOuter = new System.Windows.Forms.Button();
@@ -60,7 +59,7 @@
             // btnLeftRight
             // 
             this.btnLeftRight.Enabled = false;
-            this.btnLeftRight.Image = ((System.Drawing.Image)(resources.GetObject("btnLeftRight.Image")));
+            this.btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
             this.btnLeftRight.Location = new System.Drawing.Point(713, 14);
             this.btnLeftRight.Name = "btnLeftRight";
             this.btnLeftRight.Size = new System.Drawing.Size(121, 109);
@@ -71,7 +70,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
             this.btnDelete.Location = new System.Drawing.Point(712, 333);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 109);
@@ -84,7 +83,7 @@
             // btnOuter
             // 
             this.btnOuter.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOuter.Image = ((System.Drawing.Image)(resources.GetObject("btnOuter.Image")));
+            this.btnOuter.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
             this.btnOuter.Location = new System.Drawing.Point(554, 14);
             this.btnOuter.Name = "btnOuter";
             this.btnOuter.Size = new System.Drawing.Size(121, 109);
@@ -99,7 +98,7 @@
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
+            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSerialCancel.Location = new System.Drawing.Point(860, 333);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
@@ -118,7 +117,7 @@
             this.btnGo.Enabled = false;
             this.btnGo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
+            this.btnGo.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnGo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGo.Location = new System.Drawing.Point(861, 14);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
@@ -132,7 +131,7 @@
             // btnLoadBoundaryFromGE
             // 
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBoundaryFromGE.Image")));
+            this.btnLoadBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(713, 193);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
@@ -146,7 +145,7 @@
             // btnOpenGoogleEarth
             // 
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenGoogleEarth.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenGoogleEarth.Image")));
+            this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
             this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnOpenGoogleEarth.Location = new System.Drawing.Point(554, 192);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
@@ -252,6 +251,7 @@
             this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvLines.GridLines = true;
             this.lvLines.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvLines.HideSelection = false;
             this.lvLines.LabelWrap = false;
             this.lvLines.Location = new System.Drawing.Point(17, 146);
             this.lvLines.MultiSelect = false;
@@ -342,7 +342,7 @@
             // btnLoadMultiBoundaryFromGE
             // 
             this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadMultiBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadMultiBoundaryFromGE.Image")));
+            this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(860, 194);
             this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";

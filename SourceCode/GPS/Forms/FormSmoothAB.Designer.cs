@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSmoothAB));
             this.btnSouth = new ProXoft.WinForms.RepeatButton();
             this.btnNorth = new ProXoft.WinForms.RepeatButton();
             this.bntOK = new System.Windows.Forms.Button();
@@ -41,7 +40,7 @@
             // 
             this.btnSouth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSouth.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.btnSouth.Image = ((System.Drawing.Image)(resources.GetObject("btnSouth.Image")));
+            this.btnSouth.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnSouth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSouth.Location = new System.Drawing.Point(33, 12);
             this.btnSouth.Name = "btnSouth";
@@ -54,7 +53,7 @@
             // 
             this.btnNorth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNorth.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.btnNorth.Image = ((System.Drawing.Image)(resources.GetObject("btnNorth.Image")));
+            this.btnNorth.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
             this.btnNorth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnNorth.Location = new System.Drawing.Point(130, 12);
             this.btnNorth.Name = "btnNorth";

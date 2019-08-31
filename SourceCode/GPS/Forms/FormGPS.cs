@@ -808,6 +808,11 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
+        private void ToolStripDropDownButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //show the communications window
         private void SettingsCommunications()
         {

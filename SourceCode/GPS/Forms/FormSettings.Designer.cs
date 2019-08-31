@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -1422,7 +1421,7 @@
             // 
             // tabExamples
             // 
-            this.tabExamples.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabExamples.BackgroundImage")));
+            this.tabExamples.BackgroundImage = global::AgOpenGPS.Properties.Resources.Examples;
             this.tabExamples.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.tabExamples.Location = new System.Drawing.Point(4, 44);
             this.tabExamples.Name = "tabExamples";

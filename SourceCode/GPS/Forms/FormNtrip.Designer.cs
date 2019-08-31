@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNtrip));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
             this.tboxCasterIP = new System.Windows.Forms.TextBox();
@@ -248,7 +247,7 @@
             this.btnSerialOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSerialOK.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialOK.Image")));
+            this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSerialOK.Location = new System.Drawing.Point(640, 397);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(138, 76);

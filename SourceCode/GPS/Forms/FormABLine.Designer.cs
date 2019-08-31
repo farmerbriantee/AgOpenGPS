@@ -137,7 +137,7 @@
             // 
             this.btnDnABHeadingBy1.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnDnABHeadingBy1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnDnABHeadingBy1.Image = ((System.Drawing.Image)(resources.GetObject("btnDnABHeadingBy1.Image")));
+            this.btnDnABHeadingBy1.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnDnABHeadingBy1.Location = new System.Drawing.Point(3, 251);
             this.btnDnABHeadingBy1.Name = "btnDnABHeadingBy1";
             this.btnDnABHeadingBy1.Size = new System.Drawing.Size(76, 69);
@@ -393,7 +393,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(775, 476);
+            this.ClientSize = new System.Drawing.Size(775, 486);
             this.ControlBox = false;
             this.Controls.Add(this.lblFixHeading);
             this.Controls.Add(this.label4);

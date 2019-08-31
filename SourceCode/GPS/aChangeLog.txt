@@ -4,6 +4,7 @@
 * Sim and GPS Port made much more difficult to change To Sim. 
 * Check for newline before parsing an obvious no sentence anyway
 * fix module initialization, missed from gps initialize
+* Remove Languages and change all resources to Resource.resx
 
 v3.0 June/July 2019
 * Added tree planting
