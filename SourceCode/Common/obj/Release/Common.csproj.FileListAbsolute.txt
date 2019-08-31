@@ -1,6 +1,0 @@
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\bin\Release\Common.dll
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\bin\Release\Common.pdb
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\obj\Release\Common.csprojAssemblyReference.cache
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\obj\Release\Common.csproj.CoreCompileInputs.cache
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\obj\Release\Common.dll
-C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\Common\obj\Release\Common.pdb
