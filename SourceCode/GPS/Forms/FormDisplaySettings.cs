@@ -13,6 +13,7 @@ namespace AgOpenGPS
         private bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingPAOGI, isHeadingFromExtUDP;
         private bool isRollFromAutoSteer, isRollFromBrick, isRollFromExtUDP, isRollFromGPS;
         private string headingFromWhichSource;
+        private bool isAutoSteerAuto;
 
         public FormDisplaySettings(Form callingForm)
         {
@@ -64,6 +65,20 @@ namespace AgOpenGPS
             isRollFromExtUDP = Properties.Settings.Default.setIMU_isRollFromExtUDP;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
+
+            cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = "Auto";
+            }
+            else
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = "Manual";
+            }
+
 
             headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
@@ -122,6 +137,9 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
             Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
+
+            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
+            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -208,6 +226,22 @@ namespace AgOpenGPS
                 cboxRollExtUDP.Checked = false;
                 isRollFromExtUDP = false;
             }
+        }
+
+        private void CboxAutoSteerAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            isAutoSteerAuto = cboxAutoSteerAuto.Checked;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = "Auto";
+            }
+            else
+            {
+            cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = "Manual";
+            }
+
         }
 
         private void CboxRollBrick_CheckedChanged(object sender, EventArgs e)

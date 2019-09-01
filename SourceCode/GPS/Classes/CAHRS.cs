@@ -30,6 +30,9 @@ namespace AgOpenGPS
         //actual value in degrees* 16 to modify the imu*16 values
         public int rollZeroX16, pitchZeroX16;
 
+        //is the auto steer in auto turn on mode or not
+        public bool isAutoSteerAuto;
+
         //constructor
         public CAHRS(FormGPS _f)
         {
@@ -48,6 +51,8 @@ namespace AgOpenGPS
             
             rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;
             pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
+
+            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
 
             //usb IMU Tinker
             if (isHeadingFromBrick || isRollFromBrick)

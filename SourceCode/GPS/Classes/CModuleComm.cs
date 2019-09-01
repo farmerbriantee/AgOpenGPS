@@ -68,7 +68,7 @@
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled;
 
-        public int workSwitchValue, steerSwitchValue;
+        public int workSwitchValue, steerSwitchValue = 1;
 
         //constructor
         public CModuleComm(FormGPS _f)

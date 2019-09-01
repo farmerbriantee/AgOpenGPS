@@ -148,6 +148,9 @@ namespace AgOpenGPS
             SwapBatmanPanels();
             SwapBatmanPanels();
 
+            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+            else btnAutoSteer.Text = "M";
+
         }
 
         //force all the buttons same according to two main buttons
@@ -1228,7 +1231,8 @@ namespace AgOpenGPS
             recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
         }
 
-        private void recordPathMenu_Click(object sender, EventArgs e)
+
+        private void RecordPathMenu_Click(object sender, EventArgs e)
         {
             if (recPath.isRecordOn)
             {
@@ -1246,13 +1250,13 @@ namespace AgOpenGPS
             }
         }
 
-        private void deletePathMenu_Click(object sender, EventArgs e)
+        private void DeletePathMenu_Click(object sender, EventArgs e)
         {
             recPath.recList.Clear();
             recPath.StopDrivingRecordedPath();
             FileSaveRecPath();
-        }
 
+        }
 
         //record playback buttons
         private void btnStopDrivingPath_Click(object sender, EventArgs e)
@@ -1272,14 +1276,14 @@ namespace AgOpenGPS
                 FileSaveRecPath();
                 recPath.isRecordOn = false;
                 btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
+                deletePathMenu.Image = Properties.Resources.BoundaryRecord;
             }
             else if (isJobStarted)
             {
                 recPath.recList.Clear();
                 recPath.isRecordOn = true;
                 btnRecPathPauseRecord.Image = Properties.Resources.boundaryStop;
-                recordPathMenu.Image = Properties.Resources.boundaryStop;
+                deletePathMenu.Image = Properties.Resources.boundaryStop;
             }
         }
         private void btnPauseDrivingPath_Click(object sender, EventArgs e)
@@ -3172,6 +3176,10 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
+
+            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+            else btnAutoSteer.Text = "M";
+
         }
         private void toolstripUSBPortsConfig_Click(object sender, EventArgs e)
         {
@@ -3618,6 +3626,23 @@ namespace AgOpenGPS
 
                     //counter used for saving field in background
                     saveCounter++;
+
+                    //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
+                    if (isJobStarted && ahrs.isAutoSteerAuto && !recPath.isDrivingRecordedPath && 
+                        (ABLine.isABLineSet || ct.isContourBtnOn || curve.isCurveSet))
+                    {
+                        if (mc.steerSwitchValue == 0)
+                        {
+                            if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                        }
+                        else
+                        {
+                            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                        }
+                    }
+
+                    //Make sure it is off when it should
+                    if ((!ABLine.isABLineSet && !ct.isContourBtnOn && !curve.isCurveSet && isAutoSteerBtnOn) || (recPath.isDrivingRecordedPath && isAutoSteerBtnOn)) btnAutoSteer.PerformClick();
 
                     //count up the ntrip clock only if everything is alive
                     if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)

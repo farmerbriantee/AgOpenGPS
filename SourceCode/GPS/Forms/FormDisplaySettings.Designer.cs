@@ -49,16 +49,16 @@
             this.lblRollZeroOffset = new System.Windows.Forms.Label();
             this.btnZeroRoll = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.cboxHeadingExtUDP = new System.Windows.Forms.CheckBox();
-            this.cboxHeadingPAOGI = new System.Windows.Forms.CheckBox();
-            this.cboxHeadingAutoSteer = new System.Windows.Forms.CheckBox();
-            this.cboxHeadingBrick = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cboxRollExtUDP = new System.Windows.Forms.CheckBox();
             this.cboxRollFromBrick = new System.Windows.Forms.CheckBox();
             this.cboxRollFromGPS = new System.Windows.Forms.CheckBox();
             this.cboxRollAutoSteer = new System.Windows.Forms.CheckBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.cboxHeadingExtUDP = new System.Windows.Forms.CheckBox();
+            this.cboxHeadingPAOGI = new System.Windows.Forms.CheckBox();
+            this.cboxHeadingAutoSteer = new System.Windows.Forms.CheckBox();
+            this.cboxHeadingBrick = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tboxTinkerUID = new System.Windows.Forms.TextBox();
             this.tabDisplay = new System.Windows.Forms.TabPage();
@@ -76,6 +76,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.cboxAutoSteerAuto = new System.Windows.Forms.CheckBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.nudSnapDistanceSmall = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -84,8 +86,8 @@
             this.tabIMU.SuspendLayout();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.tabDisplay.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).BeginInit();
@@ -96,6 +98,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.tabGuidance.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -371,84 +374,6 @@
             this.label10.TabIndex = 82;
             this.label10.Text = "*Most Settings Require Restart";
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.cboxHeadingExtUDP);
-            this.groupBox7.Controls.Add(this.cboxHeadingPAOGI);
-            this.groupBox7.Controls.Add(this.cboxHeadingAutoSteer);
-            this.groupBox7.Controls.Add(this.cboxHeadingBrick);
-            this.groupBox7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(385, 22);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(314, 246);
-            this.groupBox7.TabIndex = 81;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Heading Correction Source";
-            // 
-            // cboxHeadingExtUDP
-            // 
-            this.cboxHeadingExtUDP.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxHeadingExtUDP.AutoSize = true;
-            this.cboxHeadingExtUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxHeadingExtUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxHeadingExtUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxHeadingExtUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingExtUDP.Location = new System.Drawing.Point(16, 147);
-            this.cboxHeadingExtUDP.Name = "cboxHeadingExtUDP";
-            this.cboxHeadingExtUDP.Size = new System.Drawing.Size(186, 35);
-            this.cboxHeadingExtUDP.TabIndex = 72;
-            this.cboxHeadingExtUDP.Text = "Ext UDP Source";
-            this.cboxHeadingExtUDP.UseVisualStyleBackColor = true;
-            this.cboxHeadingExtUDP.CheckedChanged += new System.EventHandler(this.CboxHeadingExtUDP_CheckedChanged);
-            // 
-            // cboxHeadingPAOGI
-            // 
-            this.cboxHeadingPAOGI.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxHeadingPAOGI.AutoSize = true;
-            this.cboxHeadingPAOGI.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxHeadingPAOGI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxHeadingPAOGI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxHeadingPAOGI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingPAOGI.Location = new System.Drawing.Point(16, 201);
-            this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
-            this.cboxHeadingPAOGI.Size = new System.Drawing.Size(233, 35);
-            this.cboxHeadingPAOGI.TabIndex = 71;
-            this.cboxHeadingPAOGI.Text = "PAOGI (Reach IMU)";
-            this.cboxHeadingPAOGI.UseVisualStyleBackColor = true;
-            this.cboxHeadingPAOGI.CheckedChanged += new System.EventHandler(this.cboxHeadingPAOGI_CheckedChanged);
-            // 
-            // cboxHeadingAutoSteer
-            // 
-            this.cboxHeadingAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxHeadingAutoSteer.AutoSize = true;
-            this.cboxHeadingAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxHeadingAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxHeadingAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxHeadingAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingAutoSteer.Location = new System.Drawing.Point(16, 39);
-            this.cboxHeadingAutoSteer.Name = "cboxHeadingAutoSteer";
-            this.cboxHeadingAutoSteer.Size = new System.Drawing.Size(254, 35);
-            this.cboxHeadingAutoSteer.TabIndex = 69;
-            this.cboxHeadingAutoSteer.Text = "From AutoSteer Board";
-            this.cboxHeadingAutoSteer.UseVisualStyleBackColor = true;
-            this.cboxHeadingAutoSteer.CheckedChanged += new System.EventHandler(this.cboxHeadingAutosteer_CheckedChanged);
-            // 
-            // cboxHeadingBrick
-            // 
-            this.cboxHeadingBrick.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxHeadingBrick.AutoSize = true;
-            this.cboxHeadingBrick.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxHeadingBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxHeadingBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxHeadingBrick.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingBrick.Location = new System.Drawing.Point(16, 93);
-            this.cboxHeadingBrick.Name = "cboxHeadingBrick";
-            this.cboxHeadingBrick.Size = new System.Drawing.Size(106, 35);
-            this.cboxHeadingBrick.TabIndex = 70;
-            this.cboxHeadingBrick.Text = "Brick v2";
-            this.cboxHeadingBrick.UseVisualStyleBackColor = true;
-            this.cboxHeadingBrick.CheckedChanged += new System.EventHandler(this.cboxHeadingBrick_CheckedChanged);
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cboxRollExtUDP);
@@ -526,6 +451,84 @@
             this.cboxRollAutoSteer.Text = "From AutoSteer Board";
             this.cboxRollAutoSteer.UseVisualStyleBackColor = true;
             this.cboxRollAutoSteer.CheckedChanged += new System.EventHandler(this.cboxRollAutoSteer_CheckedChanged);
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.cboxHeadingExtUDP);
+            this.groupBox7.Controls.Add(this.cboxHeadingPAOGI);
+            this.groupBox7.Controls.Add(this.cboxHeadingAutoSteer);
+            this.groupBox7.Controls.Add(this.cboxHeadingBrick);
+            this.groupBox7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(385, 22);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(314, 246);
+            this.groupBox7.TabIndex = 81;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Heading Correction Source";
+            // 
+            // cboxHeadingExtUDP
+            // 
+            this.cboxHeadingExtUDP.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxHeadingExtUDP.AutoSize = true;
+            this.cboxHeadingExtUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxHeadingExtUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxHeadingExtUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHeadingExtUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxHeadingExtUDP.Location = new System.Drawing.Point(16, 147);
+            this.cboxHeadingExtUDP.Name = "cboxHeadingExtUDP";
+            this.cboxHeadingExtUDP.Size = new System.Drawing.Size(186, 35);
+            this.cboxHeadingExtUDP.TabIndex = 72;
+            this.cboxHeadingExtUDP.Text = "Ext UDP Source";
+            this.cboxHeadingExtUDP.UseVisualStyleBackColor = true;
+            this.cboxHeadingExtUDP.CheckedChanged += new System.EventHandler(this.CboxHeadingExtUDP_CheckedChanged);
+            // 
+            // cboxHeadingPAOGI
+            // 
+            this.cboxHeadingPAOGI.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxHeadingPAOGI.AutoSize = true;
+            this.cboxHeadingPAOGI.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxHeadingPAOGI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxHeadingPAOGI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHeadingPAOGI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxHeadingPAOGI.Location = new System.Drawing.Point(16, 201);
+            this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
+            this.cboxHeadingPAOGI.Size = new System.Drawing.Size(233, 35);
+            this.cboxHeadingPAOGI.TabIndex = 71;
+            this.cboxHeadingPAOGI.Text = "PAOGI (Reach IMU)";
+            this.cboxHeadingPAOGI.UseVisualStyleBackColor = true;
+            this.cboxHeadingPAOGI.CheckedChanged += new System.EventHandler(this.cboxHeadingPAOGI_CheckedChanged);
+            // 
+            // cboxHeadingAutoSteer
+            // 
+            this.cboxHeadingAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxHeadingAutoSteer.AutoSize = true;
+            this.cboxHeadingAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxHeadingAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxHeadingAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHeadingAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxHeadingAutoSteer.Location = new System.Drawing.Point(16, 39);
+            this.cboxHeadingAutoSteer.Name = "cboxHeadingAutoSteer";
+            this.cboxHeadingAutoSteer.Size = new System.Drawing.Size(254, 35);
+            this.cboxHeadingAutoSteer.TabIndex = 69;
+            this.cboxHeadingAutoSteer.Text = "From AutoSteer Board";
+            this.cboxHeadingAutoSteer.UseVisualStyleBackColor = true;
+            this.cboxHeadingAutoSteer.CheckedChanged += new System.EventHandler(this.cboxHeadingAutosteer_CheckedChanged);
+            // 
+            // cboxHeadingBrick
+            // 
+            this.cboxHeadingBrick.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxHeadingBrick.AutoSize = true;
+            this.cboxHeadingBrick.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxHeadingBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxHeadingBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHeadingBrick.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cboxHeadingBrick.Location = new System.Drawing.Point(16, 93);
+            this.cboxHeadingBrick.Name = "cboxHeadingBrick";
+            this.cboxHeadingBrick.Size = new System.Drawing.Size(106, 35);
+            this.cboxHeadingBrick.TabIndex = 70;
+            this.cboxHeadingBrick.Text = "Brick v2";
+            this.cboxHeadingBrick.UseVisualStyleBackColor = true;
+            this.cboxHeadingBrick.CheckedChanged += new System.EventHandler(this.cboxHeadingBrick_CheckedChanged);
             // 
             // label9
             // 
@@ -779,6 +782,7 @@
             // 
             // tabGuidance
             // 
+            this.tabGuidance.Controls.Add(this.groupBox9);
             this.tabGuidance.Controls.Add(this.groupBox8);
             this.tabGuidance.Controls.Add(this.groupBox1);
             this.tabGuidance.Location = new System.Drawing.Point(4, 54);
@@ -787,6 +791,34 @@
             this.tabGuidance.TabIndex = 11;
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.cboxAutoSteerAuto);
+            this.groupBox9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox9.Location = new System.Drawing.Point(512, 207);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(264, 203);
+            this.groupBox9.TabIndex = 89;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Auto AutoSteer Button";
+            // 
+            // cboxAutoSteerAuto
+            // 
+            this.cboxAutoSteerAuto.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAutoSteerAuto.AutoSize = true;
+            this.cboxAutoSteerAuto.FlatAppearance.BorderSize = 3;
+            this.cboxAutoSteerAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAutoSteerAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
+            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(76, 61);
+            this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
+            this.cboxAutoSteerAuto.Size = new System.Drawing.Size(86, 96);
+            this.cboxAutoSteerAuto.TabIndex = 0;
+            this.cboxAutoSteerAuto.Text = "Manual";
+            this.cboxAutoSteerAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.cboxAutoSteerAuto.UseVisualStyleBackColor = true;
+            this.cboxAutoSteerAuto.CheckedChanged += new System.EventHandler(this.CboxAutoSteerAuto_CheckedChanged);
             // 
             // groupBox8
             // 
@@ -866,10 +898,10 @@
             this.headingGroupBox.PerformLayout();
             this.btnRollZero.ResumeLayout(false);
             this.btnRollZero.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.tabDisplay.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).EndInit();
@@ -883,6 +915,8 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabGuidance.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -945,5 +979,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.CheckBox cboxAutoSteerAuto;
     }
 }

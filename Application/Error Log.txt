@@ -605,3 +605,13 @@ Object name: 'FormGPS'.
    at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
    at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:51:39 PM
 
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s, IFormatProvider provider)
+   at AgOpenGPS.FormABCurve.FormABCurve_Load(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 255 - 9/1/2019 12:08:11 AM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s, IFormatProvider provider)
+   at AgOpenGPS.FormABCurve.FormABCurve_Load(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 255 - 9/1/2019 12:16:25 AM
+

@@ -85,11 +85,11 @@
             this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.lblAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
@@ -812,9 +812,11 @@
             this.toolStripDropDownButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deletePathMenu,
+            this.recordPathMenu,
+            this.toolStripMenuItem3,
             this.goPathMenu,
-            this.pausePathMenu,
-            this.toolStripMenuItem7});
+            this.pausePathMenu});
             this.toolStripDropDownButton1.Font = new System.Drawing.Font("Tahoma", 18F);
             this.toolStripDropDownButton1.Image = global::AgOpenGPS.Properties.Resources.RecPath;
             this.toolStripDropDownButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -822,6 +824,31 @@
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.ShowDropDownArrow = false;
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(100, 54);
+            // 
+            // deletePathMenu
+            // 
+            this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.deletePathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.deletePathMenu.Name = "deletePathMenu";
+            this.deletePathMenu.Size = new System.Drawing.Size(307, 70);
+            this.deletePathMenu.Text = "Delete Path";
+            this.deletePathMenu.Click += new System.EventHandler(this.DeletePathMenu_Click);
+            // 
+            // recordPathMenu
+            // 
+            this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.recordPathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.recordPathMenu.Name = "recordPathMenu";
+            this.recordPathMenu.Size = new System.Drawing.Size(307, 70);
+            this.recordPathMenu.Text = "Record / Stop";
+            this.recordPathMenu.Click += new System.EventHandler(this.RecordPathMenu_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Enabled = false;
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(307, 70);
+            this.toolStripMenuItem3.Text = "---------------";
             // 
             // goPathMenu
             // 
@@ -841,33 +868,6 @@
             this.pausePathMenu.Text = "Pause / Resume";
             this.pausePathMenu.Click += new System.EventHandler(this.pausePathMenu_Click);
             // 
-            // toolStripMenuItem7
-            // 
-            this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.recordPathMenu,
-            this.deletePathMenu});
-            this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(307, 70);
-            this.toolStripMenuItem7.Text = "Path Tools ->";
-            // 
-            // recordPathMenu
-            // 
-            this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
-            this.recordPathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.recordPathMenu.Name = "recordPathMenu";
-            this.recordPathMenu.Size = new System.Drawing.Size(200, 62);
-            this.recordPathMenu.Text = "Record";
-            this.recordPathMenu.Click += new System.EventHandler(this.recordPathMenu_Click);
-            // 
-            // deletePathMenu
-            // 
-            this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.deletePathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.deletePathMenu.Name = "deletePathMenu";
-            this.deletePathMenu.Size = new System.Drawing.Size(200, 62);
-            this.deletePathMenu.Text = "Delete";
-            this.deletePathMenu.Click += new System.EventHandler(this.deletePathMenu_Click);
-            // 
             // lblAreaRate
             // 
             this.lblAreaRate.AutoSize = false;
@@ -885,7 +885,7 @@
             this.stripEqWidth.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(418, 56);
+            this.stripEqWidth.Size = new System.Drawing.Size(387, 56);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             // 
@@ -1513,13 +1513,14 @@
             this.btnLidarOnOff.Image = global::AgOpenGPS.Properties.Resources.boundaryPlay;
             this.btnLidarOnOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLidarOnOff.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLidarOnOff.Location = new System.Drawing.Point(11, 387);
+            this.btnLidarOnOff.Location = new System.Drawing.Point(11, 442);
             this.btnLidarOnOff.Name = "btnLidarOnOff";
             this.btnLidarOnOff.Size = new System.Drawing.Size(82, 75);
             this.btnLidarOnOff.TabIndex = 225;
             this.btnLidarOnOff.Text = "Lidar On";
             this.btnLidarOnOff.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
+            this.btnLidarOnOff.Visible = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
             // 
             // btnPauseDrivingPath
@@ -1543,13 +1544,14 @@
             this.btnGenerateSelf.Image = global::AgOpenGPS.Properties.Resources.Batman48;
             this.btnGenerateSelf.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGenerateSelf.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGenerateSelf.Location = new System.Drawing.Point(121, 387);
+            this.btnGenerateSelf.Location = new System.Drawing.Point(121, 442);
             this.btnGenerateSelf.Name = "btnGenerateSelf";
             this.btnGenerateSelf.Size = new System.Drawing.Size(80, 80);
             this.btnGenerateSelf.TabIndex = 175;
             this.btnGenerateSelf.Text = "Generate";
             this.btnGenerateSelf.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGenerateSelf.UseVisualStyleBackColor = false;
+            this.btnGenerateSelf.Visible = false;
             this.btnGenerateSelf.Click += new System.EventHandler(this.btnGenerateSelf_Click);
             // 
             // btnElevationMap
@@ -1576,13 +1578,14 @@
             this.btnGoSelf.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnGoSelf.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGoSelf.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGoSelf.Location = new System.Drawing.Point(233, 387);
+            this.btnGoSelf.Location = new System.Drawing.Point(233, 442);
             this.btnGoSelf.Name = "btnGoSelf";
             this.btnGoSelf.Size = new System.Drawing.Size(80, 80);
             this.btnGoSelf.TabIndex = 176;
             this.btnGoSelf.Text = "Self";
             this.btnGoSelf.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGoSelf.UseVisualStyleBackColor = false;
+            this.btnGoSelf.Visible = false;
             this.btnGoSelf.Click += new System.EventHandler(this.btnGoSelf_Click);
             // 
             // btnManualAutoDrive
@@ -4105,9 +4108,6 @@
         private System.Windows.Forms.Button btnBigRight2;
         private System.Windows.Forms.Button btnBigLeft2;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
-        private System.Windows.Forms.ToolStripMenuItem recordPathMenu;
-        private System.Windows.Forms.ToolStripMenuItem deletePathMenu;
         private System.Windows.Forms.ToolStripMenuItem pausePathMenu;
         public System.Windows.Forms.ToolStripMenuItem goPathMenu;
         private System.Windows.Forms.Label lblVRRed;
@@ -4125,6 +4125,9 @@
         private System.Windows.Forms.Button btnRecordElevation;
         private System.Windows.Forms.Button btnElevationMap;
         private System.Windows.Forms.NumericUpDown nudElevation;
+        private System.Windows.Forms.ToolStripMenuItem deletePathMenu;
+        private System.Windows.Forms.ToolStripMenuItem recordPathMenu;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }
 
