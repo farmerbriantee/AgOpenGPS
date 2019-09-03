@@ -79,28 +79,6 @@ namespace AgOpenGPS
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
 
-            //rate control button
-            btnDualRate.Text = gStr.gsOff;
-            if (isMetric)
-            {
-                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString();
-                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString();
-            }
-            else
-            {
-                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-            }
-
-            if (rcd.isSingleFlowMeter)
-            {
-                //btnSelectSingleDualMeter.Image = Resources.FlowMeterSingle;
-            }
-            else
-            {
-               // btnSelectSingleDualMeter.Image = Resources.FlowMeterDual;
-            }
-
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
             toolStripMenuAreaSide.Checked = isAreaOnRight;
@@ -844,259 +822,6 @@ namespace AgOpenGPS
                 TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
             }
         }
-
-        //rate control
-        private void btnDualRate_Click(object sender, EventArgs e)
-        {
-            if (!rcd.isSingleFlowMeter && vehicle.numOfSections % 2 != 0 && !rcd.isRateControlOn)
-            {
-                TimedMessageBox(3500, "Even # of Sections Only", "You Must Have an Even Number of Sections");
-                return;
-            }
-
-            if (isJobStarted)
-            {
-                rcd.isRateControlOn = !rcd.isRateControlOn;
-
-                if (rcd.isRateControlOn)
-                {
-                    mc.relayRateSettings[mc.rsFlowCalFactorLeftHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft >> 8);
-                    mc.relayRateSettings[mc.rsFlowCalFactorLeftLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft);
-                    mc.relayRateSettings[mc.rsFlowCalFactorRightHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight >> 8);
-                    mc.relayRateSettings[mc.rsFlowCalFactorRightLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight);
-                    RateRelayOutToPort(mc.relayRateSettings, CModuleComm.numRelayRateSettingsItems);
-
-                    //get the last saved rates from setting file - always stored in L/Ha
-                    rcd.rateLeft = Properties.Settings.Default.setRate_rateLeft;
-                    rcd.rateRight = Properties.Settings.Default.setRate_rateRight;
-                    //btnSelectSingleDualMeter.Enabled = false;
-
-                    if (rcd.isSingleFlowMeter)
-                    {
-                        //btnRateRightDn.Visible = false;
-                        //btnRateRightUp.Visible = false;
-                        btnRateLeftDn.Visible = true;
-                        btnRateLeftUp.Visible = true;
-                        btnSelectRate1.Visible = true;
-                        btnSelectRate2.Visible = true;
-
-                        //lblFlowRateRight.Visible = false;
-                        //lblRateAppliedActualRight.Visible = false;
-                        //lblRateSetpointRight.Visible = false;
-                        //lblFlowRight.Visible = false;
-
-                        lblFlowRateLeft.Visible = true;
-                        lblRateAppliedActualLeft.Visible = true;
-                        lblRateSetpointLeft.Visible = true;
-                        lblFlowLeft.Visible = true;
-                    }
-                    else
-                    {
-                        //btnRateRightDn.Visible = true;
-                        //btnRateRightUp.Visible = true;
-                        btnRateLeftDn.Visible = true;
-                        btnRateLeftUp.Visible = true;
-
-                        btnSelectRate1.Visible = false;
-                        btnSelectRate2.Visible = false;
-
-                        //lblFlowRateRight.Visible = true;
-                        //lblRateAppliedActualRight.Visible = true;
-                        //lblRateSetpointRight.Visible = true;
-                        //lblFlowRight.Visible = true;
-
-                        lblFlowRateLeft.Visible = true;
-                        lblRateAppliedActualLeft.Visible = true;
-                        lblRateSetpointLeft.Visible = true;
-                        lblFlowLeft.Visible = true;
-                    }
-
-                    btnDualRate.Image = Properties.Resources.RateControlOn;
-                    btnDualRate.Text = "On";
-
-                    if (isMetric)
-                    {
-                        lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
-                        //lblRateSetpointRight.Text = (rcd.rateRight).ToString("N1");
-                    }
-                    else
-                    {
-                        lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                        //lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-                    }
-                }
-                else
-                {
-                    //btnRateRightDn.Visible = false;
-                    //btnRateRightUp.Visible = false;
-                    btnRateLeftDn.Visible = false;
-                    btnRateLeftUp.Visible = false;
-                    btnSelectRate1.Visible = false;
-                    btnSelectRate2.Visible = false;
-
-                    //lblFlowRateRight.Visible = false;
-                    //lblRateAppliedActualRight.Visible = false;
-                    //lblRateSetpointRight.Visible = false;
-                    //lblFlowRight.Visible = false;
-
-                    lblFlowRateLeft.Visible = false;
-                    lblRateAppliedActualLeft.Visible = false;
-                    lblRateSetpointLeft.Visible = false;
-                    lblFlowLeft.Visible = false;
-
-                    //btnSelectSingleDualMeter.Enabled = true;
-
-                    btnDualRate.Image = Properties.Resources.RateControlOff;
-                    btnDualRate.Text = "Off";
-                    //lblRateAppliedActualRight.Text = "-";
-                    lblRateAppliedActualLeft.Text = "-";
-                    lblFlowRateLeft.Text = "-";
-                    //lblFlowRateRight.Text = "-";
-
-                    rcd.rateSetPointLeft = 0.0;
-                    rcd.rateSetPointRight = 0.0;
-
-                    mc.relayRateData[mc.rdRateSetPointLeftLo] = 0;
-                    mc.relayRateData[mc.rdRateSetPointLeftHi] = 0;
-                    mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
-                    mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
-                    mc.relayRateData[mc.rdTramLine] = 0;
-
-                    RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
-                }
-            }
-            else { TimedMessageBox(1500, "Field not Open", "Start a Field First"); }
-        }
-        private void btnRateLeftUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (isMetric)
-            {
-                rcd.rateLeft++;
-                lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-            }
-            else
-            {
-                rcd.rateLeft++;
-                lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnRateLeftDn_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (isMetric)
-            {
-                rcd.rateLeft--;
-                if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-            }
-            else
-            {
-                rcd.rateLeft--;
-                if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnRateRightUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (isMetric)
-            {
-                rcd.rateRight++;
-                //lblRateSetpointRight.Text = rcd.rateRight.ToString("N1");
-            }
-            else
-            {
-                rcd.rateRight++;
-                //lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnRateRightDn_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (isMetric)
-            {
-                rcd.rateRight--;
-                if (rcd.rateRight < 2.0) rcd.rateRight = 2.0;
-                //lblRateSetpointRight.Text = rcd.rateRight.ToString("N1");
-            }
-            else
-            {
-                rcd.rateRight--;
-                if (rcd.rateRight < 2.0) rcd.rateRight = 2.0;
-                //lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnDualRateConfig_Click(object sender, EventArgs e)
-        {
-            var form = new FormDualRate(this);
-            form.ShowDialog();
-            btnSelectRate1.BackColor = Color.LightSkyBlue;
-            btnSelectRate2.BackColor = Color.LightGray;
-            if (isMetric)
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
-                //lblRateSetpointRight.Text = (rcd.rateRight).ToString("N1");
-                btnSelectRate1.Text = Math.Round(rcd.rateLeft, 1).ToString();
-                btnSelectRate2.Text = Math.Round(rcd.rateRight, 1).ToString();
-            }
-            else
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                //lblRateSetpointRight.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnSelectRate1_Click(object sender, EventArgs e)
-        {
-            rcd.rateLeft = Settings.Default.setRate_rateLeft;
-            rcd.isRate1Selected = true;
-            btnSelectRate1.BackColor = Color.LightSkyBlue;
-            btnSelectRate2.BackColor = Color.LightGray;
-            if (isMetric)
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
-            }
-            else
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnSelectRate2_Click(object sender, EventArgs e)
-        {
-            rcd.rateLeft = Settings.Default.setRate_rateRight;
-            rcd.isRate1Selected = false;
-            btnSelectRate2.BackColor = Color.LightSkyBlue;
-            btnSelectRate1.BackColor = Color.LightGray;
-
-            if (isMetric)
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft).ToString("N1");
-            }
-            else
-            {
-                lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-            }
-        }
-        private void btnSelectSingleDualMeter_Click(object sender, EventArgs e)
-        {
-            if (rcd.isSingleFlowMeter && vehicle.numOfSections % 2 != 0)
-            {
-                TimedMessageBox(3000, "Dual Flow Meters Needs Even # Sections", "Go to Vehicle Config and Select Even # of Sections");
-                return;
-            }
-
-            rcd.isSingleFlowMeter = !rcd.isSingleFlowMeter;
-            if (rcd.isSingleFlowMeter)
-            {
-                //btnSelectSingleDualMeter.Image = Resources.FlowMeterSingle;
-            }
-            else
-            {
-                //btnSelectSingleDualMeter.Image = Resources.FlowMeterDual;
-            }
-
-            Settings.Default.setRate_isSingleFlowMeter = rcd.isSingleFlowMeter;
-            Settings.Default.Save();
-        }
-
 
         private void btnGenerateSelf_Click(object sender, EventArgs e)
         {
@@ -2409,11 +2134,6 @@ namespace AgOpenGPS
                     FileCreateSections();
                     FileCreateElevation();
 
-                    if (rcd.isRateControlOn)
-                        btnDualRate.PerformClick();
-
-                    rcd.ShutdownRateControl();  //double dam sure its off
-
                     //turn auto button off
                     autoBtnState = btnStates.Off;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
@@ -2780,21 +2500,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
             lblSpeedUnits.Text = "kmh";
-            if (isMetric)
-            {
-                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString("N1");
-                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString("N1");
-                lblFlowLeft.Text = "LPM"; //lblFlowRight.Text = "LPM";
-
-            }
-            else
-            {
-                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-                lblFlowLeft.Text = "GPM"; //lblFlowRight.Text = "GPM";
-
-            }
-
         }
         private void skyToolStripMenu_Click(object sender, EventArgs e)
         {
@@ -2811,19 +2516,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
             lblSpeedUnits.Text = "mph";
-
-            if (isMetric)
-            {
-                btnSelectRate1.Text = Math.Round(rcd.rateLeft,1).ToString("N1");
-                btnSelectRate2.Text = Math.Round(rcd.rateRight,1).ToString("N1");
-                lblFlowLeft.Text = "LPM"; //lblFlowRight.Text = "LPM";
-            }
-            else
-            {
-                btnSelectRate1.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                btnSelectRate2.Text = (rcd.rateRight * glm.LHa2galAc).ToString("N1");
-                lblFlowLeft.Text = "GPM"; //lblFlowRight.Text = "GPM";
-            }
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -3031,11 +2723,6 @@ namespace AgOpenGPS
                     FileCreateContour();
                     FileCreateSections();
                     //FileCreateElevation();
-
-                    if (rcd.isRateControlOn)
-                        btnDualRate.PerformClick();
-
-                    rcd.ShutdownRateControl();  //double dam sure its off
 
                     //turn auto button off
                     autoBtnState = btnStates.Off;
@@ -3424,47 +3111,6 @@ namespace AgOpenGPS
 
         public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString(); } }
         public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 2).ToString(); } }
-
-        //rate control DUAL
-        public string RateDualAccumulatedVolumeLiters { get { return rcd.dualVolumeActual.ToString("N0") + " L"; } }
-        public string RateDualAccumulatedVolumeGallons { get { return ((double)rcd.dualVolumeActual * 0.264172875).ToString("N0") + " Gal"; } }
-        public string RateAppliedActualRightLPerHA
-        {
-            get
-            {
-                if (rcd.rateSetPointRight != 0)
-                    return (rcd.rateActualRight / (rcd.currentWidthRight * pn.speed * .0016666666666 + 0.0001)).ToString("N1");
-                else return "0";
-            }
-        }
-        public string RateAppliedActualRightGPA
-        {
-            get
-            {
-                if (rcd.rateSetPointRight != 0)
-                    return ((rcd.rateActualRight / (rcd.currentWidthRight * pn.speed * .0016666666666 + 0.0001)) * glm.LHa2galAc).ToString("N1");
-                else return "0";
-            }
-        }
-        public string RateAppliedActualLeftLPerHA
-        {
-            get
-            {
-                if (rcd.rateSetPointLeft != 0)
-                    return (rcd.rateActualLeft / (rcd.currentWidthLeft * pn.speed * .0016666666666 + 0.0001)).ToString("N1");
-                else return "0";
-            }
-        }
-        public string RateAppliedActualLeftGPA
-        {
-            get
-            {
-                if (rcd.rateSetPointLeft != 0)
-                    return ((rcd.rateActualLeft / (rcd.currentWidthLeft * pn.speed * .0016666666666 + 0.0001)) * glm.LHa2galAc).ToString("N1");
-                else return "0";
-            }
-        }
-
         public string DistPivotM
         {
             get
@@ -3737,23 +3383,6 @@ namespace AgOpenGPS
                         //status strip values
                         stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
-                        //rate
-                        if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
-                        {
-                            lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeLiters;
-                            //lblRateAppliedActualRight.Text = RateAppliedActualRightLPerHA;
-                            lblRateAppliedActualLeft.Text = RateAppliedActualLeftLPerHA;
-
-                            lblFlowRateLeft.Text = rcd.rateSetPointLeft.ToString("N1");
-                            //lblFlowRateRight.Text = rcd.rateSetPointRight.ToString("N1");
-                        }
-
-                        //from rateRelay
-                        txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
-                        txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
-                            + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
-                        + "," + mc.relayRateData[9];
-
                         btnContour.Text = XTE; //cross track error
 
                     }
@@ -3766,22 +3395,6 @@ namespace AgOpenGPS
                         //status strip values
                         stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
                         btnContour.Text = InchXTE; //cross track error
-
-                        //rate
-                        if (rcd.isRateControlOn && tabControl1.SelectedIndex == 1)
-                        {
-                            lblDualAccumulatedVolume.Text = RateDualAccumulatedVolumeGallons;
-                            //lblRateAppliedActualRight.Text = RateAppliedActualRightGPA;
-                            lblRateAppliedActualLeft.Text = RateAppliedActualLeftGPA;
-                            lblFlowRateLeft.Text = (rcd.rateSetPointLeft * 0.264172875).ToString("N1");
-                            //lblFlowRateRight.Text = (rcd.rateSetPointRight * 0.264172875).ToString("N1");
-                        }
-
-                        //from rateRelay
-                        txtBoxRecvArduino.Text = mc.serialRecvRelayRateStr;
-                        txtBoxSendArduino.Text = mc.relayRateData[2] + "," + mc.relayRateData[3] + "," + mc.relayRateData[4] //relay and speed x 4
-                            + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
-                        + "," + mc.relayRateData[9];
                     }
 
                     //statusbar flash red undefined headland

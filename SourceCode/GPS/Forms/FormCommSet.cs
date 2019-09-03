@@ -134,7 +134,7 @@ namespace AgOpenGPS
         // Arduino
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRateRelayOpen();
+            mf.SerialPortRelayOpen();
             if (mf.spRelay.IsOpen)
             {
                 cboxArdPort.Enabled = false;
@@ -152,7 +152,7 @@ namespace AgOpenGPS
 
         private void btnCloseSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRateRelayClose();
+            mf.SerialPortRelayClose();
             if (mf.spRelay.IsOpen)
             {
                 cboxArdPort.Enabled = false;
@@ -262,10 +262,10 @@ namespace AgOpenGPS
             //mf.recvSentenceSettings = "";
 
             //RateRelay phrases
-            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayRateStr;
+            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayStr;
             txtBoxSendArduino.Text = "32762, "
-                 + mf.mc.relayRateData[2] + "," + mf.mc.relayRateData[3] + "," + mf.mc.relayRateData[4]//relay hi lo and speed x 4
-                 + "," + mf.mc.relayRateData[5] + "," + mf.mc.relayRateData[6] + "," + mf.mc.relayRateData[7]; //setpoint hi lo
+                 + mf.mc.relayData[2] + "," + mf.mc.relayData[3] + "," + mf.mc.relayData[4]//relay hi lo and speed x 4
+                 + "," + mf.mc.relayData[5] + "," + mf.mc.relayData[6] + "," + mf.mc.relayData[7]; //setpoint hi lo
             //autoSteer phrases
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]

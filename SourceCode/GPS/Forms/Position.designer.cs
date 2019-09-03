@@ -48,11 +48,11 @@ namespace AgOpenGPS
         private double distance = 0.0;
         public double treeSpacingCounter = 0.0;
         public int treeTrigger = 0;
-  
+
         //how far travelled since last section was added, section points
-        double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0; 
+        double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;
         public vec2 prevSectionPos = new vec2(0, 0);
-        
+
         //step distances and positions for boundary, 4 meters before next point
         public double boundaryTriggerDistance = 4.0;
         public vec2 prevBoundaryPos = new vec2(0, 0);
@@ -76,7 +76,7 @@ namespace AgOpenGPS
         //youturn
         public double distancePivotToTurnLine = -2222;
         public double distanceToolToTurnLine = -2222;
-        
+
         //the value to fill in you turn progress bar
         public int youTurnProgressBar = 0;
 
@@ -88,7 +88,7 @@ namespace AgOpenGPS
         private int totalFixSteps = 10, currentStepFix = 0;
         private vec3 vHold;
         public vec3[] stepFixPts = new vec3[60];
-        public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;        
+        public double distanceCurrentStepFix = 0, fixStepDist, minFixStepDist = 0;
         bool isFixHolding = false, isFixHoldLoaded = false;
 
         private double nowHz = 0;
@@ -204,7 +204,7 @@ namespace AgOpenGPS
             distanceCurrentStepFix = glm.Distance(pn.fix, stepFixPts[0]);
 
             //tree spacing
-            if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix*100);
+            if (vehicle.treeSpacing != 0 && section[0].isSectionOn) treeSpacingCounter += (distanceCurrentStepFix * 100);
 
             //keep the distance below spacing
             if (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0)
@@ -271,7 +271,7 @@ namespace AgOpenGPS
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
-                if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings); 
+                if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings);
 
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
                 sectionTriggerDistance = glm.Distance(pn.fix, prevSectionPos);
@@ -282,8 +282,8 @@ namespace AgOpenGPS
                     AddSectionContourPathPoints();
 
                     //grab fix and elevation
-                    if (isLogElevation) sbFix.Append(pn.fix.easting.ToString("N2") + "," + pn.fix.northing.ToString("N2") + "," 
-                                                        + pn.altitude.ToString("N2") + "," 
+                    if (isLogElevation) sbFix.Append(pn.fix.easting.ToString("N2") + "," + pn.fix.northing.ToString("N2") + ","
+                                                        + pn.altitude.ToString("N2") + ","
                                                         + pn.latitude + "," + pn.longitude + "\r\n");
                 }
 
@@ -309,7 +309,7 @@ namespace AgOpenGPS
             #region AutoSteer
 
             //preset the values
-            guidanceLineDistanceOff = 32000;    
+            guidanceLineDistanceOff = 32000;
 
             if (ct.isContourBtnOn)
             {
@@ -341,7 +341,7 @@ namespace AgOpenGPS
                             yt.youFileList.Add(point);
                         }
                     }
-                }                
+                }
             }
 
             // autosteer at full speed of updates
@@ -361,8 +361,8 @@ namespace AgOpenGPS
             {
                 if (rollUsed != 0)
                 {
-                    guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + 
-                        ((-rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd]/50)) * 500 );
+                    guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle +
+                        ((-rollUsed) * ((double)mc.autoSteerSettings[mc.ssKd] / 50)) * 500);
                 }
 
                 //fill up0 the appropriate arrays with new values
@@ -407,7 +407,7 @@ namespace AgOpenGPS
                 crossTrackError = 0;
                 for (int i = 0; i < 11; i++)
                 {
-                     crossTrackError += (int)avgXTE[i];
+                    crossTrackError += (int)avgXTE[i];
                 }
                 crossTrackError /= 10;
             }
@@ -416,58 +416,6 @@ namespace AgOpenGPS
                 avgXTE[avgXTECntr] = 0;
                 if (avgXTECntr++ > 10) avgXTECntr = 0;
                 crossTrackError = 0;
-            }
-
-            #endregion
-
-            #region DualRatecontrol
-            //do the relayRateControl
-            if (rcd.isRateControlOn)
-            {
-                if (rcd.isSingleFlowMeter)
-                {
-                    rcd.CalculateRateLitersPerMinuteSingle();
-                    mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)((Int16)(rcd.rateSetPointLeft * 100.0) >> 8);
-                    mc.relayRateData[mc.rdRateSetPointLeftLo] = (byte)(rcd.rateSetPointLeft * 100.0);
-
-                    mc.relayRateData[mc.rdRateSetPointRightHi] = 0;
-                    mc.relayRateData[mc.rdRateSetPointRightLo] = 0;
-
-                    mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                    //relay byte is built in SerialComm function BuildRelayByte()
-                    //youturn control byte is built in SerialComm BuildYouTurnByte()
-
-                }
-                else
-                {
-                    rcd.CalculateRateLitersPerMinuteDual();
-                    mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)((Int16)(rcd.rateSetPointLeft * 100.0) >> 8);
-                    mc.relayRateData[mc.rdRateSetPointLeftLo] = (byte)(rcd.rateSetPointLeft * 100.0);
-
-                    mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)((Int16)(rcd.rateSetPointRight * 100.0) >> 8);
-                    mc.relayRateData[mc.rdRateSetPointRightLo] = (byte)(rcd.rateSetPointRight * 100.0);
-
-                    mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                    //relay byte is built in SerialComm function BuildRelayByte()
-                    //youturn control byte is built in SerialComm BuildYouTurnByte()
-                }
-
-                //send out the port
-                RateRelayOutToPort(mc.relayRateData, CModuleComm.numRelayRateDataItems);
-
-                //if the relay rate port is open, check switches
-                //if (spRelay.IsOpen) DoRemoteSectionSwitch();
-                if ((spRelay.IsOpen) | (isUDPSendConnected)) DoRemoteSectionSwitch();
-            }
-            else
-            {
-                mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)0;
-                mc.relayRateData[mc.rdRateSetPointLeftHi] = (byte)0;
-                mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)0;
-                mc.relayRateData[mc.rdRateSetPointRightHi] = (byte)0;
-                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                //relay byte is built in SerialComm.cs - function BuildRelayByte()
-                //youturn control byte is built in SerialComm BuildYouTurnByte()
             }
 
             #endregion
@@ -596,7 +544,7 @@ namespace AgOpenGPS
                     fixHeading = gpsHeading;
 
                     //determine fix positions and heading in degrees for glRotate opengl methods.
-                    int camStep = currentStepFix*4;
+                    int camStep = currentStepFix * 4;
                     if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
                     camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
                     if (camHeading < 0) camHeading += glm.twoPI;
@@ -783,9 +731,9 @@ namespace AgOpenGPS
             prevBoundaryPos.northing = pn.fix.northing;
 
             //build the boundary line
-            
-                bool isInner = false;
-                for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bnd.bndArr[i].isOkToAddPoints;
+
+            bool isInner = false;
+            for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bnd.bndArr[i].isOkToAddPoints;
 
             if (isInner)
             {
@@ -806,7 +754,7 @@ namespace AgOpenGPS
                     bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
                 }
             }
-            
+
 
             //build the polygon to calculate area
             if (periArea.isBtnPerimeterOn)
@@ -819,7 +767,7 @@ namespace AgOpenGPS
                     periArea.periPtList.Add(point);
                 }
 
-                    //draw on left side
+                //draw on left side
                 else
                 {
                     //Right side
@@ -844,7 +792,7 @@ namespace AgOpenGPS
                 CRecPathPt pt = new CRecPathPt(steerAxlePos.easting, steerAxlePos.northing, steerAxlePos.heading, pn.speed, autoBtn);
                 recPath.recList.Add(pt);
             }
-            
+
             if (curve.isOkToAddPoints)
             {
                 vec3 pt = new vec3(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading);
@@ -867,7 +815,7 @@ namespace AgOpenGPS
                     sectionCounter++;
                 }
             }
-            if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) || 
+            if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
                         (!ct.isContourBtnOn && curve.isCurveBtnOn && curve.isCurveSet && isAutoSteerBtnOn))
             {
                 //no contour recorded
@@ -921,10 +869,10 @@ namespace AgOpenGPS
             }
 
         }
-       
+
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards
         public void CalculateSectionLookAhead(double northing, double easting, double cosHeading, double sinHeading)
-        {            
+        {
             //calculate left side of section 1
             vec2 left = new vec2(0, 0);
             vec2 right = left;
@@ -940,10 +888,10 @@ namespace AgOpenGPS
                                        sinHeading * (section[j].positionLeft) + northing);
 
                     left = section[j].leftPoint - section[j].lastLeftPoint;
-                    
+
                     //save a copy for next time
                     section[j].lastLeftPoint = section[j].leftPoint;
-                    
+
                     //get the speed for left side only once
                     leftSpeed = left.GetLength() / fixUpdateTime * 10;
                     leftLook = leftSpeed * vehicle.toolLookAhead;
@@ -954,7 +902,7 @@ namespace AgOpenGPS
                 else
                 {
                     //right point from last section becomes this left one
-                    section[j].leftPoint = section[j-1].rightPoint;
+                    section[j].leftPoint = section[j - 1].rightPoint;
                     left = section[j].leftPoint - section[j].lastLeftPoint;
 
                     //save a copy for next time
@@ -983,7 +931,7 @@ namespace AgOpenGPS
                 if (Math.PI - Math.Abs(Math.Abs(head - toolPos.heading) - Math.PI) > glm.PIBy2) rightLook *= -1;
 
                 //choose fastest speed
-                if (leftLook > rightLook)  section[j].sectionLookAhead = leftLook;
+                if (leftLook > rightLook) section[j].sectionLookAhead = leftLook;
                 else section[j].sectionLookAhead = rightLook;
 
                 if (section[j].sectionLookAhead > 190) section[j].sectionLookAhead = 190;
@@ -1054,7 +1002,7 @@ namespace AgOpenGPS
 
             //save left side, 0 if going backwards, in meters/sec convert back from pixels/m
             if (section[0].sectionLookAhead > 0) vehicle.toolFarLeftSpeed = vehicle.toolFarLeftSpeed * 0.05;
-            else vehicle.toolFarLeftSpeed = 0;                
+            else vehicle.toolFarLeftSpeed = 0;
         }
 
         //the start of first few frames to initialize entire program
@@ -1099,7 +1047,7 @@ namespace AgOpenGPS
             }
 
             else
-            { 
+            {
                 //most recent fixes
                 prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
 
@@ -1118,7 +1066,7 @@ namespace AgOpenGPS
                 //keep here till valid data
                 if (startCounter > (totalFixSteps)) isGPSPositionInitialized = true;
 
-                
+
 
                 //in radians
                 fixHeading = Math.Atan2(pn.fix.easting - stepFixPts[totalFixSteps - 1].easting, pn.fix.northing - stepFixPts[totalFixSteps - 1].northing);
@@ -1161,395 +1109,7 @@ namespace AgOpenGPS
             }
             //we are safely inside outer, outside inner boundaries
             return true;
-        }
-
-        //Matthias's Switch routine
-        //MTZ8302 April 2018
-        private void DoRemoteSectionSwitch()
-        {
-            //Byte RateNumClicks = 0;
-            float RateCalcFactor = 1.10F;
-
-            //MainSW or RateSW was used
-            if (rcd.SectMainSWFromArduino != rcd.SectMainSWFromArduinoOld)
-            {    //Rate SW                
-                 //witch Rate left/right? left = 0
-                if ((rcd.SectMainSWFromArduino & 16) == 16) { rcd.RateStepsLeft = false; } else { rcd.RateStepsLeft = true; }
-                //Rate direction 1 = up
-                if ((rcd.SectMainSWFromArduino & 32) == 32) { rcd.RateUp = true; } else { rcd.RateUp = false; }
-
-                //Rate SW Bit[2+3] = 3 steps
-                rcd.RateStepsFromArudino = 0;
-                if ((rcd.SectMainSWFromArduino & 4) == 4) { rcd.RateStepsFromArudino = 1; }
-                if ((rcd.SectMainSWFromArduino & 8) == 8) { rcd.RateStepsFromArudino = rcd.RateStepsFromArudino + 2; }
-                if ((rcd.RateStepsFromArudino > rcd.RateStepsFromArduinoOld) && ((rcd.RateStepsLeft != rcd.RateStepsLeftOld) | (rcd.RateUp != rcd.RateUpOld)))
-                {   //same side/direction then reduce by last value to prevent to much effect
-                    int Val = 0;
-                    Val = rcd.RateStepsFromArudino; // Bak Value
-                    rcd.RateStepsFromArudino = rcd.RateStepsFromArudino - rcd.RateStepsFromArduinoOld;
-                    rcd.RateStepsFromArduinoOld = Val;
-                }
-                else rcd.RateStepsFromArduinoOld = rcd.RateStepsFromArudino;
-
-                rcd.RateStepsLeftOld = rcd.RateStepsLeft;
-                rcd.RateUpOld = rcd.RateUp;
-
-                //change Rate
-                if (rcd.isRateControlOn && (rcd.RateStepsFromArudino > 0))
-                {
-                    float RateChangeFaktor = 1f;
-                    double rateOld = 0f;
-                    for (byte a = 1; a <= rcd.RateStepsFromArudino; a++)
-                    {
-                        RateChangeFaktor = RateChangeFaktor * RateCalcFactor;
-                    }
-
-                    //witch rate to change
-                    if (rcd.RateUp && rcd.RateStepsLeft)
-                    {
-                        rateOld = rcd.rateLeft;
-                        rcd.rateLeft = Math.Round((rcd.rateLeft * RateChangeFaktor), 0);
-                    }
-                    if (!rcd.RateUp && rcd.RateStepsLeft)
-                    {
-                        rateOld = rcd.rateLeft;
-                        rcd.rateLeft = Math.Round((rcd.rateLeft / RateChangeFaktor), 0);
-                    }
-                    if (rcd.RateUp && !rcd.RateStepsLeft)
-                    {
-                        rateOld = rcd.rateRight;
-                        rcd.rateRight = Math.Round((rcd.rateRight * RateChangeFaktor), 0);
-                    }
-                    if (!rcd.RateUp && !rcd.RateStepsLeft)
-                    {
-                        rateOld = rcd.rateRight;
-                        rcd.rateRight = Math.Round((rcd.rateRight / RateChangeFaktor), 0);
-                    }
-
-                    //display new value 
-                    if (rcd.RateStepsLeft)
-                    {  //left
-                        if (isMetric)
-                        {
-                            if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                            lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-                            string str1 = (rcd.rateLeft).ToString("N1") + " new Rate left";
-                            string str2 = "before: " + (rateOld).ToString("N1");
-                            TimedMessageBox(1500, str1, str2);
-                        }
-                        else
-                        {
-                            if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                            lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                            string str1 = (rcd.rateLeft * glm.LHa2galAc).ToString("N1") + " new Rate left";
-                            string str2 = "before: " + (rateOld * glm.LHa2galAc).ToString("N1");
-                            TimedMessageBox(1500, str1, str2);
-                        }
-                    }
-                    else //right
-                    {
-                        if (isMetric)
-                        {
-                            if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                            lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
-                            string str1 = (rcd.rateLeft).ToString("N1") + " new Rate left";
-                            string str2 = "before: " + (rateOld).ToString("N1");
-                            TimedMessageBox(1500, str1, str2);
-                        }
-                        else
-                        {
-                            if (rcd.rateLeft < 2.0) rcd.rateLeft = 2.0;
-                            lblRateSetpointLeft.Text = (rcd.rateLeft * glm.LHa2galAc).ToString("N1");
-                            string str1 = (rcd.rateLeft * glm.LHa2galAc).ToString("N1") + " new Rate left";
-                            string str2 = "before: " + (rateOld * glm.LHa2galAc).ToString("N1");
-                            TimedMessageBox(1500, str1, str2);
-                        }
-                    }
-                }
-
-                //Main SW pressed
-                if ((rcd.SectMainSWFromArduino & 1) == 1)
-                {
-                    //set butto off and then press it = ON
-                    autoBtnState = btnStates.Off;
-                    btnSectionOffAutoOn.PerformClick();
-                } // if Main SW ON
-
-                //if Main SW in Arduino is pressed OFF
-                if ((rcd.SectMainSWFromArduino & 2) == 2)
-                {
-                    //set button on and then press it = OFF
-                    autoBtnState = btnStates.Auto;
-                    btnSectionOffAutoOn.PerformClick();
-                } // if Main SW OFF
-
-                rcd.SectMainSWFromArduinoOld = rcd.SectMainSWFromArduino;
-            }  //Main or Rate SW
-
-
-            if (rcd.RelayFromArduinoLo != 0)
-            {
-                // ON Signal from Arduino 
-                if ((rcd.RelayFromArduinoLo & 128) == 128 & vehicle.numOfSections > 7)
-                {
-                    if (section[7].manBtnState != manBtn.Auto) section[7].manBtnState = manBtn.Auto;
-                    btnSection8Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 64) == 64 & vehicle.numOfSections > 6)
-                {
-                    if (section[6].manBtnState != manBtn.Auto) section[6].manBtnState = manBtn.Auto;
-                    btnSection7Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 32) == 32 & vehicle.numOfSections > 5)
-                {
-                    if (section[5].manBtnState != manBtn.Auto) section[5].manBtnState = manBtn.Auto;
-                    btnSection6Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 16) == 16 & vehicle.numOfSections > 4)
-                {
-                    if (section[4].manBtnState != manBtn.Auto) section[4].manBtnState = manBtn.Auto;
-                    btnSection5Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 8) == 8 & vehicle.numOfSections > 3)
-                {
-                    if (section[3].manBtnState != manBtn.Auto) section[3].manBtnState = manBtn.Auto;
-                    btnSection4Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 4) == 4 & vehicle.numOfSections > 2)
-                {
-                    if (section[2].manBtnState != manBtn.Auto) section[2].manBtnState = manBtn.Auto;
-                    btnSection3Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 2) == 2 & vehicle.numOfSections > 1)
-                {
-                    if (section[1].manBtnState != manBtn.Auto) section[1].manBtnState = manBtn.Auto;
-                    btnSection2Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoLo & 1) == 1)
-                {
-                    if (section[0].manBtnState != manBtn.Auto) section[0].manBtnState = manBtn.Auto;
-                    btnSection1Man.PerformClick();
-                }
-                rcd.RelayFromArduinoOldLo = rcd.RelayFromArduinoLo;
-            } //if RelayFromArduinoLo != 0 
-
-            if (rcd.RelayFromArduinoHi != 0)
-            {
-                // sections ON signal from Arduino  
-                /* 16sections
-                                   if ((rcd.RelayFromArduinoHi & 128) == 128 & vehicle.numOfSections > 15)
-                                    {
-                                        if (section[15].manBtnState != manBtn.Auto) section[15].manBtnState = manBtn.Auto;
-                                        btnSection16Man.PerformClick();
-                                    }
-                                    if ((rcd.RelayFromArduinoHi & 64) == 64 & vehicle.numOfSections > 14)
-                                    {
-                                        if (section[14].manBtnState != manBtn.Auto) section[14].manBtnState = manBtn.Auto;
-                                        btnSection15Man.PerformClick();
-                                    }
-                                    if ((rcd.RelayFromArduinoHi & 32) == 32 & vehicle.numOfSections > 13)
-                                    {
-                                        if (section[13].manBtnState != manBtn.Auto) section[13].manBtnState = manBtn.Auto;
-                                        btnSection14Man.PerformClick();
-                                    }
-                                    if ((rcd.RelayFromArduinoHi & 16) == 16 & vehicle.numOfSections > 12)
-                                    {
-                                        if (section[12].manBtnState != manBtn.Auto) section[12].manBtnState = manBtn.Auto;
-                                        btnSection13Man.PerformClick();
-                                    }
-                */
-                if ((rcd.RelayFromArduinoHi & 8) == 8 & vehicle.numOfSections > 11)
-                {
-                    if (section[11].manBtnState != manBtn.Auto) section[11].manBtnState = manBtn.Auto;
-                    btnSection12Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoHi & 4) == 4 & vehicle.numOfSections > 10)
-                {
-                    if (section[10].manBtnState != manBtn.Auto) section[10].manBtnState = manBtn.Auto;
-                    btnSection11Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoHi & 2) == 2 & vehicle.numOfSections > 9)
-                {
-                    if (section[9].manBtnState != manBtn.Auto) section[9].manBtnState = manBtn.Auto;
-                    btnSection10Man.PerformClick();
-                }
-                if ((rcd.RelayFromArduinoHi & 1) == 1 & vehicle.numOfSections > 8)
-                {
-                    if (section[8].manBtnState != manBtn.Auto) section[8].manBtnState = manBtn.Auto;
-                    btnSection9Man.PerformClick();
-                }
-                rcd.RelayFromArduinoOldHi = rcd.RelayFromArduinoHi;
-            } //if RelayFromArduinoHi != 0                 
-
-
-            // Switches have changed
-            if (rcd.SectSWOffFromArduinoLo != rcd.SectSWOffFromArduinoOldLo)
-            {
-                //if Main = Auto then change section to Auto if Off signal from Arduino stopped
-                if (autoBtnState == btnStates.Auto)
-                {
-                    if (((rcd.SectSWOffFromArduinoOldLo & 128) == 128) & ((rcd.SectSWOffFromArduinoLo & 128) != 128) & (section[7].manBtnState == manBtn.Off))
-                    {
-                        btnSection8Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 64) == 64) & ((rcd.SectSWOffFromArduinoLo & 64) != 64) & (section[6].manBtnState == manBtn.Off))
-                    {
-                        btnSection7Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 32) == 32) & ((rcd.SectSWOffFromArduinoLo & 32) != 32) & (section[5].manBtnState == manBtn.Off))
-                    {
-                        btnSection6Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 16) == 16) & ((rcd.SectSWOffFromArduinoLo & 16) != 16) & (section[4].manBtnState == manBtn.Off))
-                    {
-                        btnSection5Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 8) == 8) & ((rcd.SectSWOffFromArduinoLo & 8) != 8) & (section[3].manBtnState == manBtn.Off))
-                    {
-                        btnSection4Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 4) == 4) & ((rcd.SectSWOffFromArduinoLo & 4) != 4) & (section[2].manBtnState == manBtn.Off))
-                    {
-                        btnSection3Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 2) == 2) & ((rcd.SectSWOffFromArduinoLo & 2) != 2) & (section[1].manBtnState == manBtn.Off))
-                    {
-                        btnSection2Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldLo & 1) == 1) & ((rcd.SectSWOffFromArduinoLo & 1) != 1) & (section[0].manBtnState == manBtn.Off))
-                    {
-                        btnSection1Man.PerformClick();
-                    }
-                }
-                rcd.SectSWOffFromArduinoOldLo = rcd.SectSWOffFromArduinoLo;
-            }
-            if (rcd.SectSWOffFromArduinoHi != rcd.SectSWOffFromArduinoOldHi)
-            {
-                //if Main = Auto then change section to Auto if Off signal from Arduino stopped
-                if (autoBtnState == btnStates.Auto)
-                {
-                    /* 16 sections                   if (((rcd.SectSWOffFromArduinoOldHi & 128) == 128) & ((rcd.SectSWOffFromArduinoHi & 128) != 128) & (section[15].manBtnState == manBtn.Off))
-                                       { btnSection16Man.PerformClick(); }
-                                       if (((rcd.SectSWOffFromArduinoOldHi & 64) == 64) & ((rcd.SectSWOffFromArduinoHi & 64) != 64) & (section[14].manBtnState == manBtn.Off))
-                                       { btnSection15Man.PerformClick(); }
-                                       if (((rcd.SectSWOffFromArduinoOldHi & 32) == 32) & ((rcd.SectSWOffFromArduinoHi & 32) != 32) & (section[13].manBtnState == manBtn.Off))
-                                       { btnSection14Man.PerformClick(); }
-                                       if (((rcd.SectSWOffFromArduinoOldHi & 16) == 16) & ((rcd.SectSWOffFromArduinoHi & 16) != 16) & (section[12].manBtnState == manBtn.Off))
-                                       { btnSection13Man.PerformClick(); }
-                                */
-
-                    if (((rcd.SectSWOffFromArduinoOldHi & 8) == 8) & ((rcd.SectSWOffFromArduinoHi & 8) != 8) & (section[11].manBtnState == manBtn.Off))
-                    {
-                        btnSection12Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldHi & 4) == 4) & ((rcd.SectSWOffFromArduinoHi & 4) != 4) & (section[10].manBtnState == manBtn.Off))
-                    {
-                        btnSection11Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldHi & 2) == 2) & ((rcd.SectSWOffFromArduinoHi & 2) != 2) & (section[9].manBtnState == manBtn.Off))
-                    {
-                        btnSection10Man.PerformClick();
-                    }
-                    if (((rcd.SectSWOffFromArduinoOldHi & 1) == 1) & ((rcd.SectSWOffFromArduinoHi & 1) != 1) & (section[8].manBtnState == manBtn.Off))
-                    {
-                        btnSection9Man.PerformClick();
-                    }
-                }
-                rcd.SectSWOffFromArduinoOldHi = rcd.SectSWOffFromArduinoHi;
-            }
-
-            // OFF Signal from Arduino
-            if (rcd.SectSWOffFromArduinoLo != 0)
-            {
-                //if section SW in Arduino is switched to OFF; check always, if switch is locked to off GUI should not change
-                if ((rcd.SectSWOffFromArduinoLo & 128) == 128 & section[7].manBtnState != manBtn.Off)
-                {
-                    section[7].manBtnState = manBtn.On;
-                    btnSection8Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 64) == 64 & section[6].manBtnState != manBtn.Off)
-                {
-                    section[6].manBtnState = manBtn.On;
-                    btnSection7Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 32) == 32 & section[5].manBtnState != manBtn.Off)
-                {
-                    section[5].manBtnState = manBtn.On;
-                    btnSection6Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 16) == 16 & section[4].manBtnState != manBtn.Off)
-                {
-                    section[4].manBtnState = manBtn.On;
-                    btnSection5Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 8) == 8 & section[3].manBtnState != manBtn.Off)
-                {
-                    section[3].manBtnState = manBtn.On;
-                    btnSection4Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 4) == 4 & section[2].manBtnState != manBtn.Off)
-                {
-                    section[2].manBtnState = manBtn.On;
-                    btnSection3Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 2) == 2 & section[1].manBtnState != manBtn.Off)
-                {
-                    section[1].manBtnState = manBtn.On;
-                    btnSection2Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoLo & 1) == 1 & section[0].manBtnState != manBtn.Off)
-                {
-                    section[0].manBtnState = manBtn.On;
-                    btnSection1Man.PerformClick();
-                }
-            } // if SectsSWOffFromArduinoLo !=0
-            if (rcd.SectSWOffFromArduinoHi != 0)
-            {
-                //if section SW in Arduino is switched to OFF; check always, if switch is locked to off GUI should not change
-                /* 16 sections                   if ((rcd.SectSWOffFromArduinoHi & 128) == 128 & section[15].manBtnState != manBtn.Off)
-                                   {
-                                       section[15].manBtnState = manBtn.On;
-                                       btnSection16Man.PerformClick();
-                                   }
-                                   if ((rcd.SectSWOffFromArduinoHi & 64) == 64 & section[14].manBtnState != manBtn.Off)
-                                   {
-                                       section[14].manBtnState = manBtn.On;
-                                       btnSection15Man.PerformClick();
-                                   }
-                                   if ((rcd.SectSWOffFromArduinoHi & 32) == 32 & section[13].manBtnState != manBtn.Off)
-                                   {
-                                       section[13].manBtnState = manBtn.On;
-                                       btnSection14Man.PerformClick();
-                                   }
-                                   if ((rcd.SectSWOffFromArduinoHi & 16) == 16 & section[12].manBtnState != manBtn.Off)
-                                   {
-                                       section[12].manBtnState = manBtn.On;
-                                       btnSection13Man.PerformClick();
-                                   }
-               */
-                if ((rcd.SectSWOffFromArduinoHi & 8) == 8 & section[11].manBtnState != manBtn.Off)
-                {
-                    section[11].manBtnState = manBtn.On;
-                    btnSection12Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoHi & 4) == 4 & section[10].manBtnState != manBtn.Off)
-                {
-                    section[10].manBtnState = manBtn.On;
-                    btnSection11Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoHi & 2) == 2 & section[9].manBtnState != manBtn.Off)
-                {
-                    section[9].manBtnState = manBtn.On;
-                    btnSection10Man.PerformClick();
-                }
-                if ((rcd.SectSWOffFromArduinoHi & 1) == 1 & section[8].manBtnState != manBtn.Off)
-                {
-                    section[8].manBtnState = manBtn.On;
-                    btnSection9Man.PerformClick();
-                }
-            } // if SectsSWOffFromArduinoLo !=0
-              // end adds by MTZ8302------------------------------------------------------------------------------------
-        }
+        }       
 
         // intense math section....   the lat long converted to utm   *********************************************************
             #region utm Calculations

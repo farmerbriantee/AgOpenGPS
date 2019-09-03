@@ -140,11 +140,6 @@ namespace AgOpenGPS
         public CYouTurn yt;
 
         /// <summary>
-        /// Rate control Object
-        /// </summary>
-        public CDualRate rcd;
-
-        /// <summary>
         /// Our vehicle including the tool
         /// </summary>
         public CVehicle vehicle;
@@ -293,9 +288,6 @@ namespace AgOpenGPS
             //hlArr = new CHeadlandLines[MAXHEADS];
             //for (int j = 0; j < MAXHEADS; j++) hlArr[j] = new CHeadlandLines(gl, this);
 
-            //rate object for dual flowmeters
-            rcd = new CDualRate(this);
-
             //headland entry/exit sequences
             seq = new CSequence(this);
 
@@ -424,9 +416,9 @@ namespace AgOpenGPS
             }
 
             //same for SectionRelay port
-            portNameRelaySection = Settings.Default.setPort_portNameRateRelay;
-            wasRateRelayConnectedLastRun = Settings.Default.setPort_wasRateRelayConnected;
-            if (wasRateRelayConnectedLastRun) SerialPortRateRelayOpen();
+            portNameRelaySection = Settings.Default.setPort_portNameRelay;
+            wasRateRelayConnectedLastRun = Settings.Default.setPort_wasRelayConnected;
+            if (wasRateRelayConnectedLastRun) SerialPortRelayOpen();
 
             //same for AutoSteer port
             portNameAutoSteer = Settings.Default.setPort_portNameAutoSteer;
@@ -991,39 +983,9 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
-            //rate control buttons
-            if (rcd.isRateControlOn)
-                btnDualRate.PerformClick();
-
-            rcd.ShutdownRateControl();  //double dam sure its off
-
             //reset the lat lon start pos
             pn.latStart = 0;
             pn.lonStart = 0;
-
-            //btnRateRightDn.Visible = false;
-            //btnRateRightUp.Visible = false;
-            btnRateLeftDn.Visible = false;
-            btnRateLeftUp.Visible = false;
-            btnSelectRate1.Visible = false;
-            btnSelectRate2.Visible = false;
-
-            //lblFlowRateRight.Visible = false;
-            //lblRateAppliedActualRight.Visible = false;
-            //lblRateSetpointRight.Visible = false;
-            //lblFlowRight.Visible = false;
-
-            lblFlowRateLeft.Visible = false;
-            lblRateAppliedActualLeft.Visible = false;
-            lblRateSetpointLeft.Visible = false;
-            lblFlowLeft.Visible = false;
-
-            btnDualRate.Image = Properties.Resources.RateControlOff;
-            btnDualRate.Text = "Off";
-            //lblRateAppliedActualRight.Text = "-";
-            lblRateAppliedActualLeft.Text = "-";
-            lblFlowRateLeft.Text = "-";
-            //lblFlowRateRight.Text = "-";
 
             //turn auto button off
             autoBtnState = btnStates.Off;

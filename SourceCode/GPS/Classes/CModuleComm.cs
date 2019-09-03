@@ -9,29 +9,28 @@
         public bool isOutOfBounds = true;
 
         //RateRelay ---------------------------------------------------------------------------------------------
-        public string serialRecvRelayRateStr;
+        public string serialRecvRelayStr;
 
         //For parsing incoming int on serial port
         public int incomingInt;
 
         // PGN - 32762 - 127.250 0x7FFA
-        public static int numRelayRateDataItems = 10;
+        public static int numRelayDataItems = 10;
 
-        public byte[] relayRateData = new byte[numRelayRateDataItems];
+        public byte[] relayData = new byte[numRelayDataItems];
 
-        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, rdSpeedXFour = 4,
-                    rdRateSetPointLeftHi = 5, rdRateSetPointLeftLo = 6,
-                    rdRateSetPointRightHi = 7, rdRateSetPointRightLo = 8, rdTramLine=9;
+        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, 
+            rdSpeedXFour = 4, rdTramLine=5, rdTree = 6, rd7, rd8, rd9;
 
         // PGN - 32760 - 127.248 0x7FF9
-        public static int numRelayRateSettingsItems = 10;
+        //public static int numRelayRateSettingsItems = 10;
 
-        public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
+        //public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
 
-        public int rsHeaderHi, rsHeaderLo = 1,
-            rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
-            rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5,
-            rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
+        //public int rsHeaderHi, rsHeaderLo = 1,
+        //    rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
+        //    rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5,
+        //    rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
 
         //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
@@ -75,7 +74,7 @@
         {
             mf = _f;
             serialRecvAutoSteerStr = "Oops NC";
-            serialRecvRelayRateStr = "Oops NC";
+            serialRecvRelayStr = "Oops NC";
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
@@ -87,18 +86,18 @@
         //Reset all the byte arrays from modules
         public void ResetAllModuleCommValues()
         {
-            relayRateData[rdHeaderHi] = 127; // PGN - 32762
-            relayRateData[rdHeaderLo] = 250;
-            relayRateData[rdSectionControlByteHi] = 0;
-            relayRateData[rdSectionControlByteLo] = 0;
-            relayRateData[rdRateSetPointLeftHi] = 0;
-            relayRateData[rdRateSetPointLeftLo] = 0;
-            relayRateData[rdRateSetPointRightHi] = 0;
-            relayRateData[rdRateSetPointRightLo] = 0;
-            relayRateData[rdSpeedXFour] = 0;
-            relayRateData[rdTramLine] = 0;
+            relayData[rdHeaderHi] = 127; // PGN - 32762
+            relayData[rdHeaderLo] = 250;
+            relayData[rdSectionControlByteHi] = 0;
+            relayData[rdSectionControlByteLo] = 0;
+            relayData[rdSpeedXFour] = 0;
+            relayData[rdTramLine] = 0;
+            relayData[rdTree] = 0;
+            relayData[rd7] = 0;
+            relayData[rd8] = 0;
+            relayData[rd9] = 0;
 
-            mf.RateRelayOutToPort(relayRateData, numRelayRateDataItems);
+            mf.RelayOutToPort(relayData, numRelayDataItems);
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = 254;
@@ -110,16 +109,6 @@
             autoSteerData[sdSteerAngleLo] = 20;
             autoSteerData[sdYouTurnByte] = 0;
             mf.AutoSteerDataOutToPort();
-
-            relayRateSettings[rsHeaderHi] = 127; // PGN - 32760
-            relayRateSettings[rsHeaderLo] = 248;
-            relayRateSettings[rsDualAccumulatedVolumeHi] = (byte)(Properties.Settings.Default.setRate_DualAccumulatedVolume >> 8);
-            relayRateSettings[rsDualAccumulatedVolumeLo] = (byte)(Properties.Settings.Default.setRate_DualAccumulatedVolume);
-            relayRateSettings[rsFlowCalFactorLeftHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft >> 8);
-            relayRateSettings[rsFlowCalFactorLeftLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberLeft);
-            relayRateSettings[rsFlowCalFactorRightHi] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight >> 8);
-            relayRateSettings[rsFlowCalFactorRightLo] = (byte)(Properties.Settings.Default.setRate_FlowmeterCalNumberRight);
-            mf.RateRelayOutToPort(relayRateSettings, numRelayRateSettingsItems);
 
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
             autoSteerSettings[ssHeaderLo] = 252;

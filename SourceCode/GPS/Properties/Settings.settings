@@ -23,10 +23,10 @@
     <Setting Name="setWindow_Minimized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setPort_portNameRateRelay" Type="System.String" Scope="User">
+    <Setting Name="setPort_portNameRelay" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM Section...</Value>
     </Setting>
-    <Setting Name="setPort_wasRateRelayConnected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasRelayConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
@@ -194,24 +194,6 @@
     <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
       <Value Profile="(Default)">Fix</Value>
     </Setting>
-    <Setting Name="setRate_FlowmeterCalNumberLeft" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">1500</Value>
-    </Setting>
-    <Setting Name="setRate_FlowmeterCalNumberRight" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">1600</Value>
-    </Setting>
-    <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
-    </Setting>
-    <Setting Name="setRate_rateRight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">80</Value>
-    </Setting>
-    <Setting Name="setRate_DualAccumulatedVolume" Type="System.UInt32" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="setRate_isSingleFlowMeter" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="setGPS_Latitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">53.4360564</Value>
     </Setting>
@@ -274,6 +256,12 @@
     </Setting>
     <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setRate_rateRight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">80</Value>
+    </Setting>
+    <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
     </Setting>
   </Settings>
 </SettingsFile>

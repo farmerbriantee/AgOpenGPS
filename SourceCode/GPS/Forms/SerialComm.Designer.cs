@@ -44,68 +44,65 @@ namespace AgOpenGPS
 
         public void AutoSteerDataOutToPort()
         {
-            //load the uturn byte with the accumulated spacing
-            if (vehicle.treeSpacing != 0) mc.autoSteerData[mc.sdYouTurnByte] = (byte)treeTrigger;
-
             //default to a stop initially
-            mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
 
-            if (isInAutoDrive) //Is in Auto Drive Mode enabled
-            {
-                if (!ast.isInFreeDriveMode)
-                {
-                    //make it go - or with 1
-                    if (recPath.isDrivingRecordedPath)
-                    {
-                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                    }
+            //if (isInAutoDrive) //Is in Auto Drive Mode enabled
+            //{
+            //    if (!ast.isInFreeDriveMode)
+            //    {
+            //        //make it go - or with 1
+            //        if (recPath.isDrivingRecordedPath)
+            //        {
+            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //        }
 
-                    if (self.isSelfDriving)
-                    {
-                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                    }
-                }
-                else //in AutoDrive and FreeDrive
-                {
-                    mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
-                }
+            //        if (self.isSelfDriving)
+            //        {
+            //            mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //        }
+            //    }
+            //    else //in AutoDrive and FreeDrive
+            //    {
+            //        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
+            //    }
 
-                ////Is there something in the way?
-                //if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
-                //{
-                //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-                //}
-            }
-            else // Auto/Manual is in Manual so release the clutch only
-            {
-                //release the clutch for manual driving
-                mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
-                mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
-            }
+            //    ////Is there something in the way?
+            //    //if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
+            //    //{
+            //    //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //    //}
+            //}
+            //else // Auto/Manual is in Manual so release the clutch only
+            //{
+            //    //release the clutch for manual driving
+            //    mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
+            //}
 
-            //pause the thing if paused. Duh.
-            if (recPath.isPausedDrivingRecordedPath)
-            {
-                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            }
+            ////pause the thing if paused. Duh.
+            //if (recPath.isPausedDrivingRecordedPath)
+            //{
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //}
 
-            //gone out of bounds so full stop.
-            if (mc.isOutOfBounds)
-            {
-                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
-            }
+            ////gone out of bounds so full stop.
+            //if (mc.isOutOfBounds)
+            //{
+            //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            //}
 
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
                 //machine control
-                SendUDPMessage(mc.machineControlData);
+                //SendUDPMessage(mc.machineControlData);
 
                 //send autosteer since it never is logic controlled
                 SendUDPMessage(mc.autoSteerData);
 
                 //rate control
-                if (rcd.isRateControlOn) SendUDPMessage(mc.relayRateData);
+                //SendUDPMessage(mc.relayData);
             }
 
             //Tell Arduino the steering parameter values
@@ -259,8 +256,8 @@ namespace AgOpenGPS
         {
             int set = 1;
             int reset = 2046;
-            mc.relayRateData[mc.rdSectionControlByteHi] = (byte)0;
-            mc.relayRateData[mc.rdSectionControlByteLo] = (byte)0;
+            mc.relayData[mc.rdSectionControlByteHi] = (byte)0;
+            mc.relayData[mc.rdSectionControlByteLo] = (byte)0;
 
             int relay = 0;
 
@@ -291,31 +288,43 @@ namespace AgOpenGPS
             }
 
             //rate port gets high and low byte
-            mc.relayRateData[mc.rdSectionControlByteHi] = (byte)(relay >> 8);
-            mc.relayRateData[mc.rdSectionControlByteLo] = (byte)relay;
+            mc.relayData[mc.rdSectionControlByteHi] = (byte)(relay >> 8);
+            mc.relayData[mc.rdSectionControlByteLo] = (byte)relay;
+
 
             //autosteer gets only the first 8 sections
-            mc.autoSteerData[mc.sdRelayLo] = (byte)(mc.relayRateData[mc.rdSectionControlByteLo]);
+            mc.autoSteerData[mc.sdRelayLo] = (byte)(mc.relayData[mc.rdSectionControlByteLo]);
         }
 
         //Send relay info out to relay board
-        public void RateRelayOutToPort(byte[] items, int numItems)
+        public void RelayOutToPort(byte[] items, int numItems)
         {
-            //Tell Arduino to turn section on or off accordingly
-            if (spRelay.IsOpen)
+            //load the uturn byte with the accumulated spacing
+            if (vehicle.treeSpacing != 0) mc.relayData[mc.rdTree] = (byte)treeTrigger;
+
+            mc.relayData[mc.rdSpeedXFour] = (byte)(pn.speed * 4);
+
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.relayData);
+            }
+
+
+                //Tell Arduino to turn section on or off accordingly
+                if (spRelay.IsOpen)
             {
                 try { spRelay.Write(items, 0, numItems ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out to Section relays" + e.ToString());
-                    SerialPortRateRelayClose();
+                    SerialPortRelayClose();
                 }
             }
         }
 
-        private void SerialLineReceivedRateRelay(string sentence)
+        private void SerialLineReceivedRelay(string sentence)
         {
-            mc.serialRecvRelayRateStr = sentence;
+            mc.serialRecvRelayStr = sentence;
             int end;
 
             // Find end of sentence, if not a CR, return
@@ -325,44 +334,13 @@ namespace AgOpenGPS
             //the ArdRelay sentence to be parsed
             sentence = sentence.Substring(0, end);
             string[] words = sentence.Split(',');
-
-            //changed by MTZ8302
-            if (words.Length != 8) return;
-
-            //left or single actual rate
-            int.TryParse(words[0], out mc.incomingInt);
-            rcd.rateActualLeft = (double)mc.incomingInt * 0.01;
-
-            //right actual rate
-            int.TryParse(words[1], out mc.incomingInt);
-            rcd.rateActualRight = (double)mc.incomingInt * 0.01;
-
-            //Volume for dual and single
-            int.TryParse(words[2], out mc.incomingInt);
-            rcd.dualVolumeActual = mc.incomingInt;
-
-            //added by MTZ8302 - Matthias Hammer Marbach a.N. Germany ---------------------------------------------------------
-            //MTZ8302 April 2018
-            //read RelayToAOG from Arduino
-            int.TryParse(words[3], out mc.incomingInt);
-            rcd.RelayFromArduinoHi = (byte)mc.incomingInt;
-            int.TryParse(words[4], out mc.incomingInt);
-            rcd.RelayFromArduinoLo = (byte)mc.incomingInt;
-            //read SectSWOffToAOG from Arduino
-            int.TryParse(words[5], out mc.incomingInt);
-            rcd.SectSWOffFromArduinoHi = (byte)mc.incomingInt;
-            int.TryParse(words[6], out mc.incomingInt);
-            rcd.SectSWOffFromArduinoLo = (byte)mc.incomingInt;
-            //read MainSW+RateSW
-            int.TryParse(words[7], out mc.incomingInt);
-            rcd.SectMainSWFromArduino = (byte)mc.incomingInt;
         }
 
         //the delegate for thread
         private delegate void LineReceivedEventHandlerRelay(string sentence);
 
         //Arduino serial port receive in its own thread
-        private void sp_DataReceivedRateRelay(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void sp_DataReceivedRelay(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             if (spRelay.IsOpen)
             {
@@ -370,7 +348,7 @@ namespace AgOpenGPS
                 {
                     //System.Threading.Thread.Sleep(25);
                     string sentence = spRelay.ReadLine();
-                    this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRateRelay), sentence);                    
+                    this.BeginInvoke(new LineReceivedEventHandlerRelay(SerialLineReceivedRelay), sentence);                    
                     if (spRelay.BytesToRead > 32) spRelay.DiscardInBuffer();
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
@@ -383,13 +361,13 @@ namespace AgOpenGPS
         }
 
         //open the Arduino serial port
-        public void SerialPortRateRelayOpen()
+        public void SerialPortRelayOpen()
         {
             if (!spRelay.IsOpen)
             {
                 spRelay.PortName = portNameRelaySection;
                 spRelay.BaudRate = baudRateRelaySection;
-                spRelay.DataReceived += sp_DataReceivedRateRelay;
+                spRelay.DataReceived += sp_DataReceivedRelay;
             }
 
             try { spRelay.Open(); }
@@ -400,7 +378,7 @@ namespace AgOpenGPS
                 MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
 
 
-                Properties.Settings.Default.setPort_wasRateRelayConnected = false;
+                Properties.Settings.Default.setPort_wasRelayConnected = false;
                 Properties.Settings.Default.Save();
             }
 
@@ -409,18 +387,18 @@ namespace AgOpenGPS
                 spRelay.DiscardOutBuffer();
                 spRelay.DiscardInBuffer();
 
-                Properties.Settings.Default.setPort_portNameRateRelay = portNameRelaySection;
-                Properties.Settings.Default.setPort_wasRateRelayConnected = true;
+                Properties.Settings.Default.setPort_portNameRelay = portNameRelaySection;
+                Properties.Settings.Default.setPort_wasRelayConnected = true;
                 Properties.Settings.Default.Save();
             }
         }
 
         //close the relay port
-        public void SerialPortRateRelayClose()
+        public void SerialPortRelayClose()
         {
             if (spRelay.IsOpen)
             {
-                spRelay.DataReceived -= sp_DataReceivedRateRelay;
+                spRelay.DataReceived -= sp_DataReceivedRelay;
                 try { spRelay.Close(); }
                 catch (Exception e)
                 {
@@ -428,7 +406,7 @@ namespace AgOpenGPS
                     MessageBox.Show(e.Message, "Connection already terminated??");
                 }
 
-                Properties.Settings.Default.setPort_wasRateRelayConnected = false;
+                Properties.Settings.Default.setPort_wasRelayConnected = false;
                 Properties.Settings.Default.Save();
 
                 spRelay.Dispose();

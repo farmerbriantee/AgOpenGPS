@@ -171,11 +171,6 @@
             0,
             0,
             0});
-            this.nudTreeSpacing.Minimum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.nudTreeSpacing.Name = "nudTreeSpacing";
             this.nudTreeSpacing.Size = new System.Drawing.Size(122, 52);
             this.nudTreeSpacing.TabIndex = 314;

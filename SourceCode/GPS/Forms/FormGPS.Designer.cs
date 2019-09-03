@@ -154,18 +154,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
             this.txtBoxRecvArduino = new System.Windows.Forms.TextBox();
-            this.lblFlowRateLeft = new System.Windows.Forms.Label();
-            this.lblRateAppliedActualLeft = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.lblFlowLeft = new System.Windows.Forms.Label();
-            this.lblDualAccumulatedVolume = new System.Windows.Forms.Label();
-            this.lblRateSetpointLeft = new System.Windows.Forms.Label();
-            this.btnSelectRate2 = new System.Windows.Forms.Button();
-            this.btnSelectRate1 = new System.Windows.Forms.Button();
-            this.btnDualRateConfig = new System.Windows.Forms.Button();
-            this.btnRateLeftDn = new ProXoft.WinForms.RepeatButton();
-            this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
-            this.btnDualRate = new System.Windows.Forms.Button();
             this.configPage1 = new System.Windows.Forms.TabPage();
             this.lblVRBlu = new System.Windows.Forms.Label();
             this.lblVRGrn = new System.Windows.Forms.Label();
@@ -885,7 +873,7 @@
             this.stripEqWidth.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(387, 56);
+            this.stripEqWidth.Size = new System.Drawing.Size(418, 56);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             // 
@@ -1656,18 +1644,6 @@
             this.rate2Page5.Controls.Add(this.label21);
             this.rate2Page5.Controls.Add(this.txtBoxSendArduino);
             this.rate2Page5.Controls.Add(this.txtBoxRecvArduino);
-            this.rate2Page5.Controls.Add(this.lblFlowRateLeft);
-            this.rate2Page5.Controls.Add(this.lblRateAppliedActualLeft);
-            this.rate2Page5.Controls.Add(this.label28);
-            this.rate2Page5.Controls.Add(this.lblFlowLeft);
-            this.rate2Page5.Controls.Add(this.lblDualAccumulatedVolume);
-            this.rate2Page5.Controls.Add(this.lblRateSetpointLeft);
-            this.rate2Page5.Controls.Add(this.btnSelectRate2);
-            this.rate2Page5.Controls.Add(this.btnSelectRate1);
-            this.rate2Page5.Controls.Add(this.btnDualRateConfig);
-            this.rate2Page5.Controls.Add(this.btnRateLeftDn);
-            this.rate2Page5.Controls.Add(this.btnRateLeftUp);
-            this.rate2Page5.Controls.Add(this.btnDualRate);
             this.rate2Page5.ImageIndex = 2;
             this.rate2Page5.Location = new System.Drawing.Point(4, 72);
             this.rate2Page5.Name = "rate2Page5";
@@ -1706,181 +1682,6 @@
             this.txtBoxRecvArduino.ReadOnly = true;
             this.txtBoxRecvArduino.Size = new System.Drawing.Size(324, 27);
             this.txtBoxRecvArduino.TabIndex = 217;
-            // 
-            // lblFlowRateLeft
-            // 
-            this.lblFlowRateLeft.AutoSize = true;
-            this.lblFlowRateLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblFlowRateLeft.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblFlowRateLeft.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblFlowRateLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFlowRateLeft.Location = new System.Drawing.Point(226, 349);
-            this.lblFlowRateLeft.Name = "lblFlowRateLeft";
-            this.lblFlowRateLeft.Size = new System.Drawing.Size(27, 33);
-            this.lblFlowRateLeft.TabIndex = 199;
-            this.lblFlowRateLeft.Text = "-";
-            this.lblFlowRateLeft.Visible = false;
-            // 
-            // lblRateAppliedActualLeft
-            // 
-            this.lblRateAppliedActualLeft.AutoSize = true;
-            this.lblRateAppliedActualLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblRateAppliedActualLeft.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold);
-            this.lblRateAppliedActualLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblRateAppliedActualLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRateAppliedActualLeft.Location = new System.Drawing.Point(11, 126);
-            this.lblRateAppliedActualLeft.Name = "lblRateAppliedActualLeft";
-            this.lblRateAppliedActualLeft.Size = new System.Drawing.Size(61, 77);
-            this.lblRateAppliedActualLeft.TabIndex = 193;
-            this.lblRateAppliedActualLeft.Text = "-";
-            this.lblRateAppliedActualLeft.Visible = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.label28.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.label28.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label28.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label28.Location = new System.Drawing.Point(9, 45);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(198, 29);
-            this.label28.TabIndex = 189;
-            this.label28.Text = "Volume Delivered";
-            // 
-            // lblFlowLeft
-            // 
-            this.lblFlowLeft.AutoSize = true;
-            this.lblFlowLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblFlowLeft.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblFlowLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblFlowLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFlowLeft.Location = new System.Drawing.Point(223, 324);
-            this.lblFlowLeft.Name = "lblFlowLeft";
-            this.lblFlowLeft.Size = new System.Drawing.Size(80, 19);
-            this.lblFlowLeft.TabIndex = 188;
-            this.lblFlowLeft.Text = "Left LPM";
-            this.lblFlowLeft.Visible = false;
-            // 
-            // lblDualAccumulatedVolume
-            // 
-            this.lblDualAccumulatedVolume.AutoSize = true;
-            this.lblDualAccumulatedVolume.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblDualAccumulatedVolume.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold);
-            this.lblDualAccumulatedVolume.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblDualAccumulatedVolume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDualAccumulatedVolume.Location = new System.Drawing.Point(8, 74);
-            this.lblDualAccumulatedVolume.Name = "lblDualAccumulatedVolume";
-            this.lblDualAccumulatedVolume.Size = new System.Drawing.Size(36, 45);
-            this.lblDualAccumulatedVolume.TabIndex = 186;
-            this.lblDualAccumulatedVolume.Text = "-";
-            // 
-            // lblRateSetpointLeft
-            // 
-            this.lblRateSetpointLeft.AutoSize = true;
-            this.lblRateSetpointLeft.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.lblRateSetpointLeft.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold);
-            this.lblRateSetpointLeft.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.lblRateSetpointLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRateSetpointLeft.Location = new System.Drawing.Point(222, 253);
-            this.lblRateSetpointLeft.Name = "lblRateSetpointLeft";
-            this.lblRateSetpointLeft.Size = new System.Drawing.Size(36, 45);
-            this.lblRateSetpointLeft.TabIndex = 195;
-            this.lblRateSetpointLeft.Text = "-";
-            this.lblRateSetpointLeft.Visible = false;
-            // 
-            // btnSelectRate2
-            // 
-            this.btnSelectRate2.BackColor = System.Drawing.Color.LightGray;
-            this.btnSelectRate2.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
-            this.btnSelectRate2.Image = global::AgOpenGPS.Properties.Resources.RateSelect2;
-            this.btnSelectRate2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSelectRate2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectRate2.Location = new System.Drawing.Point(24, 317);
-            this.btnSelectRate2.Name = "btnSelectRate2";
-            this.btnSelectRate2.Size = new System.Drawing.Size(84, 72);
-            this.btnSelectRate2.TabIndex = 221;
-            this.btnSelectRate2.Text = "R2";
-            this.btnSelectRate2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSelectRate2.UseVisualStyleBackColor = false;
-            this.btnSelectRate2.Visible = false;
-            this.btnSelectRate2.Click += new System.EventHandler(this.btnSelectRate2_Click);
-            // 
-            // btnSelectRate1
-            // 
-            this.btnSelectRate1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.btnSelectRate1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
-            this.btnSelectRate1.Image = global::AgOpenGPS.Properties.Resources.Rate1Select;
-            this.btnSelectRate1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSelectRate1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectRate1.Location = new System.Drawing.Point(24, 226);
-            this.btnSelectRate1.Name = "btnSelectRate1";
-            this.btnSelectRate1.Size = new System.Drawing.Size(84, 72);
-            this.btnSelectRate1.TabIndex = 220;
-            this.btnSelectRate1.Text = "R1";
-            this.btnSelectRate1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSelectRate1.UseVisualStyleBackColor = false;
-            this.btnSelectRate1.Visible = false;
-            this.btnSelectRate1.Click += new System.EventHandler(this.btnSelectRate1_Click);
-            // 
-            // btnDualRateConfig
-            // 
-            this.btnDualRateConfig.BackColor = System.Drawing.Color.Transparent;
-            this.btnDualRateConfig.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDualRateConfig.Image = global::AgOpenGPS.Properties.Resources.SettingsGear64;
-            this.btnDualRateConfig.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDualRateConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDualRateConfig.Location = new System.Drawing.Point(232, 130);
-            this.btnDualRateConfig.Name = "btnDualRateConfig";
-            this.btnDualRateConfig.Size = new System.Drawing.Size(84, 84);
-            this.btnDualRateConfig.TabIndex = 192;
-            this.btnDualRateConfig.Text = "Config";
-            this.btnDualRateConfig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDualRateConfig.UseVisualStyleBackColor = false;
-            this.btnDualRateConfig.Click += new System.EventHandler(this.btnDualRateConfig_Click);
-            // 
-            // btnRateLeftDn
-            // 
-            this.btnRateLeftDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRateLeftDn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.btnRateLeftDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnRateLeftDn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRateLeftDn.Location = new System.Drawing.Point(154, 317);
-            this.btnRateLeftDn.Name = "btnRateLeftDn";
-            this.btnRateLeftDn.Size = new System.Drawing.Size(68, 72);
-            this.btnRateLeftDn.TabIndex = 190;
-            this.btnRateLeftDn.UseVisualStyleBackColor = true;
-            this.btnRateLeftDn.Visible = false;
-            this.btnRateLeftDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateLeftDn_MouseDown);
-            // 
-            // btnRateLeftUp
-            // 
-            this.btnRateLeftUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRateLeftUp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.btnRateLeftUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnRateLeftUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRateLeftUp.Location = new System.Drawing.Point(154, 227);
-            this.btnRateLeftUp.Name = "btnRateLeftUp";
-            this.btnRateLeftUp.Size = new System.Drawing.Size(68, 72);
-            this.btnRateLeftUp.TabIndex = 191;
-            this.btnRateLeftUp.UseVisualStyleBackColor = true;
-            this.btnRateLeftUp.Visible = false;
-            this.btnRateLeftUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnRateLeftUp_MouseDown);
-            // 
-            // btnDualRate
-            // 
-            this.btnDualRate.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnDualRate.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnDualRate.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.btnDualRate.Image = global::AgOpenGPS.Properties.Resources.RateControlOff;
-            this.btnDualRate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDualRate.Location = new System.Drawing.Point(229, 10);
-            this.btnDualRate.Name = "btnDualRate";
-            this.btnDualRate.Size = new System.Drawing.Size(87, 102);
-            this.btnDualRate.TabIndex = 185;
-            this.btnDualRate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDualRate.UseVisualStyleBackColor = false;
-            this.btnDualRate.Click += new System.EventHandler(this.btnDualRate_Click);
             // 
             // configPage1
             // 
@@ -4000,21 +3801,9 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TabPage rate2Page5;
-        private System.Windows.Forms.Label lblFlowRateLeft;
-        private System.Windows.Forms.Label lblRateAppliedActualLeft;
-        private System.Windows.Forms.Button btnDualRateConfig;
-        private ProXoft.WinForms.RepeatButton btnRateLeftDn;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label lblFlowLeft;
-        private System.Windows.Forms.Label lblDualAccumulatedVolume;
-        private ProXoft.WinForms.RepeatButton btnRateLeftUp;
-        private System.Windows.Forms.Button btnDualRate;
-        private System.Windows.Forms.Label lblRateSetpointLeft;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox txtBoxSendArduino;
         private System.Windows.Forms.TextBox txtBoxRecvArduino;
-        private System.Windows.Forms.Button btnSelectRate2;
-        private System.Windows.Forms.Button btnSelectRate1;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private System.Windows.Forms.Button btnFixOffset;

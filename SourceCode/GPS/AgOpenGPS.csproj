@@ -101,7 +101,6 @@
   <ItemGroup>
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryLines.cs" />
-    <Compile Include="Classes\CDualRate.cs" />
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
@@ -179,12 +178,6 @@
     </Compile>
     <Compile Include="Forms\FormSmoothAB.Designer.cs">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormDualRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormDualRate.Designer.cs">
-      <DependentUpon>FormDualRate.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormDisplaySettings.cs">
       <SubType>Form</SubType>
@@ -384,9 +377,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShiftPos.resx">
       <DependentUpon>FormShiftPos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormDualRate.resx">
-      <DependentUpon>FormDualRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDisplaySettings.resx">
       <DependentUpon>FormDisplaySettings.cs</DependentUpon>
