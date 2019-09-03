@@ -15,7 +15,7 @@
         public static int numRelayDataItems = 10;
         public byte[] relayData = new byte[numRelayDataItems];
         public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, 
-            rdSpeedXFour = 4, rdTramLine=5, rdTree = 6, rd7 = 7, rd8 =8, rd9 = 9;
+            rdSpeedXFour = 4, rdTramLine=5, rdTree = 6, rdUTurn = 7, rd8 =8, rd9 = 9;
 
         // PGN - 32760 - 127.248 0x7FF9
         //public static int numRelayRateSettingsItems = 10;
@@ -76,7 +76,7 @@
             relayData[rdSpeedXFour] = 0;
             relayData[rdTramLine] = 0;
             relayData[rdTree] = 0;
-            relayData[rd7] = 0;
+            relayData[rdUTurn] = 0;
             relayData[rd8] = 0;
             relayData[rd9] = 0;
 

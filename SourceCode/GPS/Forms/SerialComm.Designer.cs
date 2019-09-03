@@ -302,6 +302,10 @@ namespace AgOpenGPS
             //load the uturn byte with the accumulated spacing
             if (vehicle.treeSpacing != 0) mc.relayData[mc.rdTree] = (byte)treeTrigger;
 
+            //grab the youturn byte
+            mc.relayData[mc.rdUTurn] = mc.machineControlData[mc.cnYouTurn];
+
+            //speed
             mc.relayData[mc.rdSpeedXFour] = (byte)(pn.speed * 4);
 
             if (Properties.Settings.Default.setUDP_isOn)

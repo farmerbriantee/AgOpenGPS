@@ -19,7 +19,7 @@
   bool isDataFound = false, isSettingFound = false;
   int header = 0, tempHeader = 0, temp;
 
-  byte relayLo = 0, relayHi=0, gpsSpeed = 0, tramline = 0, tree = 0; 
+  byte relayLo = 0, relayHi=0, gpsSpeed = 0, tramline = 0, tree = 0, uTurn = 0; 
  
 void setup()
 {
@@ -75,7 +75,10 @@ void loop()
    Serial.print(tramline); //steering switch status
     Serial.print(",");
     
-   Serial.println(tree); //steering switch status    
+   Serial.print(tree); //steering switch status
+    Serial.print(",");
+    
+   Serial.println(uTurn); //steering switch status    
 		Serial.flush();   // flush out buffer
 	} //end of timed loop
 
@@ -101,10 +104,9 @@ void loop()
 		gpsSpeed = Serial.read() >> 2;  //actual speed times 4, single byte
     tramline = Serial.read();
     tree = Serial.read();
-
+    uTurn = Serial.read();  
     //just get the rest of bytes
-		Serial.read() << 8 | Serial.read();   //high,low bytes		
-		Serial.read();  
+		Serial.read() << 8 | Serial.read();   //high,low bytes			
 
     watchdogTimer = 0;  //reset watchdog
     serialResetTimer = 0; //if serial buffer is getting full, empty it

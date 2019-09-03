@@ -37,3 +37,4 @@ C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.C
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.CopyComplete
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
+C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojAssemblyReference.cache
