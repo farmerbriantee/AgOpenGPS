@@ -70,9 +70,6 @@ namespace AgOpenGPS
                 //GL.Disable(EnableCap.DepthTest);
                 GL.Enable(EnableCap.Blend);
 
-                rateMap.DrawArr();
-                //GL.Disable(EnableCap.Texture2D);
-
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
 
@@ -173,10 +170,6 @@ namespace AgOpenGPS
                 turn.DrawTurnLines();
                 gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
-
-                //draw generated path
-                //genPath.DrawGeneratedPath();
-                self.DrawDubins();
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;

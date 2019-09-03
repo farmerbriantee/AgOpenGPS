@@ -109,7 +109,8 @@ namespace AgOpenGPS
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
 
-            treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+            //treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+            treeSpacing = 0;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)

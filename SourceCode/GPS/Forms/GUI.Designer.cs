@@ -116,7 +116,7 @@ namespace AgOpenGPS
             }
 
             LineUpManualBtns();
-            tabControl1.SelectedIndex = 3;
+            tabControl1.SelectedIndex = 2;
 
             yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
@@ -184,7 +184,7 @@ namespace AgOpenGPS
                 cboxpRowWidth.Left = 345;
                 txtDistanceOffABLine.Left = (Width - 345 - 100)/2 + 287;
                 txtDistanceOffABLine.Top = -1;
-                tabControl1.SelectedIndex = 3;
+                tabControl1.SelectedIndex = 2;
                 panelBatman.Visible = false;
                 tabControl1.Visible = true;
                 Properties.Settings.Default.setDisplay_isLargePanel = true;
@@ -820,54 +820,6 @@ namespace AgOpenGPS
             else
             {
                 TimedMessageBox(2000, "Turn ON Ntrip Client", " NTRIP Client Not Set Up");
-            }
-        }
-
-        private void btnGenerateSelf_Click(object sender, EventArgs e)
-        {
-            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            {
-                //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-                if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
-
-                using (var form = new FormSelf(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                    }
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
-        }
-
-        private void btnGoSelf_Click(object sender, EventArgs e)
-        {
-            if (!self.isPausedSelfDriving)
-            {
-                //already running?
-                if (self.isSelfDriving)
-                {
-                    self.StopSelfDriving();
-                    return;
-                }
-
-                if (!self.StartSelfDriving())
-                {
-                    //Cancel the self - something went seriously wrong
-                    TimedMessageBox(1500, "Unable to create path", "Is Start too close to boundary?");
-                    self.StopSelfDriving();
-                }
-                else
-                {
-                    btnGoSelf.Image = Properties.Resources.AutoStop;
-                }
-            }
-            else
-            {
-                self.isPausedSelfDriving = false;
-                btnPauseDrivingPath.BackColor = Color.Lime;
             }
         }
 
@@ -2889,16 +2841,6 @@ namespace AgOpenGPS
                 return;
             }
 
-            using (var form = new FormVRate(this))
-            {
-                var result = form.ShowDialog();
-                //if (result == DialogResult.OK)
-                //{
-                //    Form form2 = new FormBoundaryPlayer(this);
-                //    form2.Show();
-                //}
-            }
-
             //if (bnd.bndArr[0].isSet && (ABLine.isABLineSet | curve.isCurveSet))
             //{
             //    //field too small
@@ -2968,7 +2910,7 @@ namespace AgOpenGPS
             {
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                //else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
@@ -3196,7 +3138,7 @@ namespace AgOpenGPS
                     }
 
                     //The tabbed is selected and the info tab
-                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
                     {
                         if (isMetric)
                         {
@@ -3294,29 +3236,6 @@ namespace AgOpenGPS
                     if (startCounter > 50 && recvCounter < 20 && isNTRIP_RequiredOn)
                     {
                         IncrementNTRIPWatchDog();
-                    }
-
-                    //double vr = 0;
-                    int cnt = rateMap.mapList.Count;
-                    if (cnt > 5)
-                    {
-                        for (int i = 0; i < cnt; i++)
-                        {
-                            if (Math.Abs(rateMap.mapList[i].easting - pn.fix.easting) < 9)
-                            {
-                                if (Math.Abs(rateMap.mapList[i].northing - pn.fix.northing) < 9)
-                                {
-                                    lblVRRed.Text = rateMap.mapList[i].red.ToString();
-                                    lblVRGrn.Text = rateMap.mapList[i].grn.ToString();
-                                    lblVRBlu.Text = rateMap.mapList[i].blu.ToString();
-                                    //vr = rateMap.mapList[i].heading;
-                                    break;
-                                }
-                            }
-                        }
-
-                        //rcd.rateLeft = vr / 3;
-                        //lblRateSetpointLeft.Text = rcd.rateLeft.ToString("N1");
                     }
 
                     //Have we connection
@@ -3441,7 +3360,7 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
 
-                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
                     {
                         //both
                         lblLatitude.Text = Latitude;
@@ -3515,7 +3434,7 @@ namespace AgOpenGPS
 
                     lblHeading.Text = Heading;
 
-                    if (tabControl1.SelectedIndex == 3 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
                     {
 
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)

@@ -111,7 +111,7 @@ namespace AgOpenGPS
                 mf.btnManualOffOn.PerformClick();
             }
 
-            mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
+            //mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
 
             nudTreeSpacing.Value = (decimal)mf.vehicle.treeSpacing;
             lastDist = 0;

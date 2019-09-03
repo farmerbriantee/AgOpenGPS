@@ -353,9 +353,6 @@ namespace AgOpenGPS
             //if the whole path driving driving process is green
             if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
 
-            //if self driving, do the update
-            if (self.isSelfDriving) self.UpdatePosition();
-
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {

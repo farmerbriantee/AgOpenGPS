@@ -4,7 +4,6 @@ C:\Users\Grizs\Desktop\AgOpenGPS\Application\AgOpenGPS.exe
 C:\Users\Grizs\Desktop\AgOpenGPS\Application\AgOpenGPS.pdb
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormElev.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormNtrip.resources
-C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSelf.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormSwapAB.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormShortcutKeys.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormShiftPos.resources
@@ -30,7 +29,6 @@ C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormYouT
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormYouTurn.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormUDP.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Form_About.resources
-C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormVRate.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.FormTreePlant.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.gStr.resources
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.Properties.Resources.resources
@@ -39,4 +37,3 @@ C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.C
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csproj.CopyComplete
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.exe
 C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.pdb
-C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\obj\x86\Debug\AgOpenGPS.csprojAssemblyReference.cache

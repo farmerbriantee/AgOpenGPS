@@ -219,16 +219,6 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
-        /// <summary>
-        /// Self Driving class
-        /// </summary>
-        public CSelf self;
-
-        /// <summary>
-        /// Rate MApping
-        /// </summary>
-        public CVRate rateMap;
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -308,11 +298,6 @@ namespace AgOpenGPS
 
             //The grid for obstacle avoidance
             mazeGrid = new CMazeGrid(this);
-
-            rateMap = new CVRate(this);
-
-            //A generated Path
-            self = new CSelf(this);
 
             //start the stopwatch
             swFrame.Start();
@@ -1108,9 +1093,6 @@ namespace AgOpenGPS
 
             //reset headland
             //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
-
-            //reset the rate map
-            rateMap.mapList?.Clear();
 
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;

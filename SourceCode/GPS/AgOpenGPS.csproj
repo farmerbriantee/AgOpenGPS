@@ -129,8 +129,6 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
-    <Compile Include="Classes\CSelf.cs" />
-    <Compile Include="Classes\CVRate.cs" />
     <Compile Include="Forms\FormElev.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,12 +140,6 @@
     </Compile>
     <Compile Include="Forms\FormNtrip.Designer.cs">
       <DependentUpon>FormNtrip.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormSelf.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSelf.designer.cs">
-      <DependentUpon>FormSelf.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSwapAB.cs">
       <SubType>Form</SubType>
@@ -283,12 +275,6 @@
     <Compile Include="Forms\Form_About.Designer.cs">
       <DependentUpon>Form_About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormVRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormVRate.Designer.cs">
-      <DependentUpon>FormVRate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormTreePlant.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,9 +351,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSelf.resx">
-      <DependentUpon>FormSelf.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSwapAB.resx">
       <DependentUpon>FormSwapAB.cs</DependentUpon>
@@ -449,9 +432,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_About.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormVRate.resx">
-      <DependentUpon>FormVRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
