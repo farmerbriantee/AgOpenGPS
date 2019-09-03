@@ -615,3 +615,14 @@ Load Curve LineSystem.FormatException: Input string was not in a correct format.
    at System.Double.Parse(String s, IFormatProvider provider)
    at AgOpenGPS.FormABCurve.FormABCurve_Load(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 255 - 9/1/2019 12:16:25 AM
 
+Relay Data Recvd System.IO.IOException: The I/O operation has been aborted because of either a thread exit or an application request.
+
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   at System.IO.Ports.SerialPort.ReadTo(String value)
+   at System.IO.Ports.SerialPort.ReadLine()
+   at AgOpenGPS.FormGPS.sp_DataReceivedRelay(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 349 - 2019-09-03 12:10:27 PM
+

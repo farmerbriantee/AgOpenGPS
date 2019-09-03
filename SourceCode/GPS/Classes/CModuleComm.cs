@@ -11,62 +11,45 @@
         //RateRelay ---------------------------------------------------------------------------------------------
         public string serialRecvRelayStr;
 
-        //For parsing incoming int on serial port
-        public int incomingInt;
-
         // PGN - 32762 - 127.250 0x7FFA
         public static int numRelayDataItems = 10;
-
         public byte[] relayData = new byte[numRelayDataItems];
-
         public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3, 
-            rdSpeedXFour = 4, rdTramLine=5, rdTree = 6, rd7, rd8, rd9;
+            rdSpeedXFour = 4, rdTramLine=5, rdTree = 6, rd7 = 7, rd8 =8, rd9 = 9;
 
         // PGN - 32760 - 127.248 0x7FF9
         //public static int numRelayRateSettingsItems = 10;
-
         //public byte[] relayRateSettings = new byte[numRelayRateSettingsItems];
-
-        //public int rsHeaderHi, rsHeaderLo = 1,
-        //    rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
-        //    rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5,
-        //    rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
+        //public int rsHeaderHi, rsHeaderLo = 1, rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
+        //    rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5, rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
 
         //AutoSteer ------------------------------------------------------------------------------------------------
         public string serialRecvAutoSteerStr;
 
         // PGN - 32766 - 127.254 0x7FFD
         public static int numSteerDataItems = 10;
-
         public byte[] autoSteerData = new byte[numSteerDataItems];
-
         public int sdHeaderHi, sdHeaderLo = 1, sdRelayLo = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
                     sdSteerAngleHi = 6, sdSteerAngleLo = 7, sdYouTurnByte = 8;
 
         // PGN - 32764 - 127.252 0x7FFC
         public static int numSteerSettingItems = 10;
-
         public byte[] autoSteerSettings = new byte[numSteerSettingItems];
-
         public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5,
                     ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
         //PGN 32758 - 127.246 0x7FF6
         public static int numMachineControlItems = 10;
-
         public byte[] machineControlData = new byte[numMachineControlItems];
-
         public int cnHeaderHi, cnHeaderLo = 1, cnPedalControl = 2, cnSpeed = 3, cnRelayLo = 4, cnYouTurn = 5;
 
         //LIDAR
         //UDP sentence just rec'd
         public string recvUDPSentence = "Inital UDP";
-
         public int lidarDistance;
 
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled;
-
         public int workSwitchValue, steerSwitchValue = 1;
 
         //constructor
