@@ -308,12 +308,11 @@ namespace AgOpenGPS
             {
                 SendUDPMessage(mc.relayData);
             }
-
-
-                //Tell Arduino to turn section on or off accordingly
-                if (spRelay.IsOpen)
+            
+            //Tell Arduino to turn section on or off accordingly
+            if (spRelay.IsOpen)
             {
-                try { spRelay.Write(items, 0, numItems ); }
+                try { spRelay.Write(items, 0, numItems); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out to Section relays" + e.ToString());
