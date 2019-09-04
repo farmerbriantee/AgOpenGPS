@@ -4,8 +4,8 @@ ehthumbs.db
 
 # Folder config file
 Desktop.ini
-C:\Users\Grizs\Documents\GitHub\AgOpenGPS\SourceCode\.vs
-C:\Users\Grizs\Documents\GitHub\AgOpenGPS\SourceCode\GPS\obj
+.vs/
+obj/
 
 
 
