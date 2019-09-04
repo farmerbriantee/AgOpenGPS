@@ -82,6 +82,7 @@ namespace AgOpenGPS
 
                     writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setF_IsWorkSwitchEnabled.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ActiveLow," + Properties.Settings.Default.setF_IsWorkSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
@@ -294,6 +295,8 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -477,6 +480,7 @@ namespace AgOpenGPS
 
                         mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
                         mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+                        mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
 
                         //Set width of section and positions for each section
                         SectionSetPosition();

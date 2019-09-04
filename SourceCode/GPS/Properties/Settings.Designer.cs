@@ -992,6 +992,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_isLargePanel"] = value;
+	    }
+	}
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setF_IsWorkSwitchManual {
+            get {
+                return ((bool)(this["setF_IsWorkSwitchManual"]));
+            }
+            set {
+                this["setF_IsWorkSwitchManual"] = value;
             }
         }
         
