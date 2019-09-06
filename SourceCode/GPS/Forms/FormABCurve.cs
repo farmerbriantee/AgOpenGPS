@@ -194,7 +194,8 @@ namespace AgOpenGPS
                 lblCurveExists.Text = "Curve Not Set";
                 btnABLineOk.Enabled = false;
             }
-            curveArrs?.Clear();
+            lvLines.Clear();
+            curveArrs.Clear();
             FormABCurve_LoadCurves();
         }
         
