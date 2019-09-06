@@ -1,4 +1,4 @@
-﻿namespace AgOpenGPS
+namespace AgOpenGPS
 {
     partial class FormTimedMessage
     {
@@ -36,13 +36,16 @@
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
+            this.lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMessage.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.lblMessage.Location = new System.Drawing.Point(12, 20);
+            this.lblMessage.Location = new System.Drawing.Point(0, 0);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(115, 29);
+            this.lblMessage.Size = new System.Drawing.Size(146, 50);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Message";
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -52,23 +55,27 @@
             // 
             // lblMessage2
             // 
-            this.lblMessage2.AutoSize = true;
-            this.lblMessage2.Font = new System.Drawing.Font("Tahoma", 18F);
-            this.lblMessage2.Location = new System.Drawing.Point(75, 71);
+            this.lblMessage2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMessage.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.lblMessage2.Location = new System.Drawing.Point(0, 50);
             this.lblMessage2.Name = "lblMessage2";
-            this.lblMessage2.Size = new System.Drawing.Size(127, 29);
+            this.lblMessage2.Size = new System.Drawing.Size(146, 50);
             this.lblMessage2.TabIndex = 1;
             this.lblMessage2.Text = "Message 2";
+            this.lblMessage2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormTimedMessage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(272, 133);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(146, 102);
             this.ControlBox = false;
             this.Controls.Add(this.lblMessage2);
             this.Controls.Add(this.lblMessage);
-            this.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormTimedMessage";
