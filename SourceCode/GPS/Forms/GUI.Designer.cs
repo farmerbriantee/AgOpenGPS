@@ -1150,7 +1150,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            curve.isCurveBtnOn = !curve.isCurveBtnOn;
+            curve.isCurveBtnOn = true;
             btnCurve.Image = curve.isCurveBtnOn ? Properties.Resources.CurveOn : Properties.Resources.CurveOff;
 
             if (curve.isCurveBtnOn)
@@ -1190,16 +1190,16 @@ namespace AgOpenGPS
                 Form form = new FormABCurve(this);
                 form.Show();
             }
-            else
-            {
-                btnContour.Enabled = true;
-                btnABLine.Enabled = true;
-                curve.isOkToAddPoints = false;
-                curve.isCurveSet = false;
-                DisableYouTurnButtons();
-                btnContourPriority.Enabled = false;
+            //else
+            //{
+            //    btnContour.Enabled = true;
+            //    btnABLine.Enabled = true;
+            //    curve.isOkToAddPoints = false;
+            //    curve.isCurveSet = false;
+            //    DisableYouTurnButtons();
+            //    btnContourPriority.Enabled = false;
                 //curve.ResetCurveLine();
-            }
+            //}
         }
         private void btnContour_Click(object sender, EventArgs e)
         {
