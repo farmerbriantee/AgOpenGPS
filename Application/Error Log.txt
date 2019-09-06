@@ -1,0 +1,634 @@
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 11:08:21 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 11:08:21 AM
+
+GPS Data RecvSystem.InvalidOperationException: Invoke or BeginInvoke cannot be called on a control until the window handle has been created.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.BeginInvoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 8/24/2019 11:08:21 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 11:25:25 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 11:27:21 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 11:27:21 AM
+
+GPS Data RecvSystem.InvalidOperationException: Invoke or BeginInvoke cannot be called on a control until the window handle has been created.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.BeginInvoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 8/24/2019 11:27:21 AM
+
+GPS Data RecvSystem.InvalidOperationException: Invoke or BeginInvoke cannot be called on a control until the window handle has been created.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.BeginInvoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 8/24/2019 11:27:21 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 11:33:20 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 12:56:34 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:11:39 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:11:39 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:36:08 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:36:08 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:38:54 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 1:40:39 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 1:52:50 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 1:52:50 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:03:40 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:03:40 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:09:19 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:09:19 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:10:20 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:10:20 PM
+
+UDP Recv data System.InvalidOperationException: Invoke or BeginInvoke cannot be called on a control until the window handle has been created.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 2:10:20 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:13:31 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:13:31 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:18:24 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 2:18:24 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) - 8/24/2019 2:27:49 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:15:11 PM
+
+GPS Data RecvSystem.InvalidOperationException: Invoke or BeginInvoke cannot be called on a control until the window handle has been created.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.BeginInvoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 8/24/2019 5:15:11 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:24:49 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:24:49 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:26:51 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:26:51 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:29:06 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:29:06 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:35:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:35:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:36:05 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:38:03 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:38:03 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:38:54 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:44:15 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:44:15 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:45:44 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:45:44 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:49:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:49:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:53:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:53:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:59:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 5:59:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:00:24 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:11:26 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:11:26 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:13:53 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:14:28 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:14:28 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:15:49 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:15:49 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:17:26 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:18:23 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:18:23 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:18:23 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:19:18 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:19:18 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:25:47 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:25:47 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:37:03 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:38:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:39:59 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:43:21 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:49:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:49:00 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:58:25 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 6:58:25 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:28:10 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:36:35 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:37:42 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:37:42 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:40:31 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/24/2019 8:44:29 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:36:37 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:38:54 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:38:54 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:39:32 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:40:05 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:40:05 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 128 - 8/25/2019 12:51:39 PM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s, IFormatProvider provider)
+   at AgOpenGPS.FormABCurve.FormABCurve_Load(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 255 - 9/1/2019 12:08:11 AM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Double.Parse(String s, IFormatProvider provider)
+   at AgOpenGPS.FormABCurve.FormABCurve_Load(Object sender, EventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 255 - 9/1/2019 12:16:25 AM
+
+Relay Data Recvd System.IO.IOException: The I/O operation has been aborted because of either a thread exit or an application request.
+
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   at System.IO.Ports.SerialPort.ReadTo(String value)
+   at System.IO.Ports.SerialPort.ReadLine()
+   at AgOpenGPS.FormGPS.sp_DataReceivedRelay(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 349 - 2019-09-03 12:10:27 PM
+
+Opening Relay PortSystem.IO.IOException: The port 'COM3' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 372 - 9/3/2019 3:24:28 PM
+

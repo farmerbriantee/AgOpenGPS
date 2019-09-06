@@ -21,14 +21,18 @@
                                
   #define WAS_Invert 0                  // set to 1 to Change Direction of Wheel Angle Sensor, must be positive turning right 
   
-  #define Motor_Direction_Invert 1      // 1 = reverse output direction (Valve & Motor) 0 = Normal
+  #define Motor_Direction_Invert 0      // 1 = reverse output direction (Valve & Motor) 0 = Normal
+
+  #define SwitchOrButton 0              // set to 0 to use steer switch as switch
+                                        // set to 1 to use steer switch as button
+                                        // Button/switch pulls pin low to activate
  
   #define BNO_Installed 0               // set to 1 to enable BNO055 IMU, otherwise set to 0 for none
   
-  #define Inclinometer_Installed 3      // set to 0 for none
+  #define Inclinometer_Installed 0      // set to 0 for none
                                         // set to 1 if DOGS2 Inclinometer is installed and connected to ADS pin A2
                                         // set to 2 if MMA8452 installed GY-45 (1C)
-                                        // set to 3 if MMA8452 installed Sparkfun (1D)
+                                        // set to 3 if MMA8452 installed Sparkfun, Adafruit MMA8451 (1D)
                                         // set to 4 if DOGS2 installed and connected to Arduino pin A1
                                                                            
                                         // Depending on board orientation, choose the right Axis for MMA, 
@@ -36,14 +40,14 @@
   #define UseMMA_X_Axis 1               // Set to 0 to use X axis of MMA
                                         // Set to 1 to use Y axis of MMA
 
-  #define Roll_Invert 1                 // Roll to the right must be positive
+  #define Roll_Invert 0                 // Roll to the right must be positive
                                         // Set to 1 if roll to right shows negative, otherwise set to 0
 
   #define Relay_Type 0    // set to 0 for No Relays
                           // set to 1 for Section Relays
                           // set to 2 for uTurn Relays
   
-  #define EtherNet 1      // 0 = Serial/USB communcation with AOG
+  #define EtherNet 0      // 0 = Serial/USB communcation with AOG
                           // 1 = Ethernet comunication with AOG (using a ENC28J60 chip)
                           
   #define CS_Pin 10       // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
@@ -192,6 +196,12 @@
     //pwm variables
   int pwmDrive = 0, drive = 0, pwmDisplay = 0;
   float pValue = 0;
+
+  //Steer switch button  ***********************************************************************************************************
+  byte currentState = 1;
+  byte reading;
+  byte previous = 0;
+  byte test = 0;
 
 void setup()
 {    
@@ -344,7 +354,29 @@ void loop()
 
     //read all the switches
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
-    steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+
+    #if (SwitchOrButton == 0)
+      steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+      
+    #else
+      reading = digitalRead(STEERSW_PIN);      
+      if (reading == LOW && previous == HIGH) 
+      {
+        test++;
+        if (currentState == 1)
+        {
+          currentState = 0;
+          steerSwitch = 0;
+        }
+        else
+        {
+          currentState = 1;
+          steerSwitch = 1;
+        }
+      }      
+      previous = reading;
+     #endif
+    
     remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
     switchByte = 0;
     switchByte |= (remoteSwitch << 2); //put remote in bit 2
@@ -445,10 +477,9 @@ void loop()
       
       Serial.print(steeringPosition); //The actual steering angle in degrees
       Serial.print(",");
-      
-      Serial.println(steerSettings.steerSensorCounts);
-      */
-      
+        
+      Serial.println(currentState);   
+      */   
   
     #else
 
