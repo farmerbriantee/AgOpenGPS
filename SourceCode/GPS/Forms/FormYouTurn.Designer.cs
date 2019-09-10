@@ -1950,6 +1950,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "FormYouTurn";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "U Turn";
             this.Load += new System.EventHandler(this.FormYouTurn_Load);

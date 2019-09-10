@@ -383,6 +383,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormGPSData";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GPS Data";
             this.TopMost = true;

@@ -151,6 +151,12 @@
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pbarUDPComm = new System.Windows.Forms.ProgressBar();
+            this.pbarAutoSteerComm = new System.Windows.Forms.ProgressBar();
+            this.pbarRelayComm = new System.Windows.Forms.ProgressBar();
             this.label3 = new System.Windows.Forms.Label();
             this.pboxSteerSwitch = new System.Windows.Forms.PictureBox();
             this.lblActualSteerAngle2 = new System.Windows.Forms.Label();
@@ -847,7 +853,7 @@
             this.stripEqWidth.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(367, 56);
+            this.stripEqWidth.Size = new System.Drawing.Size(398, 56);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Width";
             // 
@@ -1122,7 +1128,7 @@
             this.lblNorthing.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblNorthing.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblNorthing.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblNorthing.Location = new System.Drawing.Point(125, 129);
+            this.lblNorthing.Location = new System.Drawing.Point(146, 129);
             this.lblNorthing.Name = "lblNorthing";
             this.lblNorthing.Size = new System.Drawing.Size(92, 19);
             this.lblNorthing.TabIndex = 110;
@@ -1135,7 +1141,7 @@
             this.lblEasting.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblEasting.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblEasting.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblEasting.Location = new System.Drawing.Point(18, 129);
+            this.lblEasting.Location = new System.Drawing.Point(39, 129);
             this.lblEasting.Name = "lblEasting";
             this.lblEasting.Size = new System.Drawing.Size(90, 19);
             this.lblEasting.TabIndex = 111;
@@ -1620,6 +1626,12 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.label13);
+            this.DataPage.Controls.Add(this.label12);
+            this.DataPage.Controls.Add(this.label7);
+            this.DataPage.Controls.Add(this.pbarUDPComm);
+            this.DataPage.Controls.Add(this.pbarAutoSteerComm);
+            this.DataPage.Controls.Add(this.pbarRelayComm);
             this.DataPage.Controls.Add(this.label3);
             this.DataPage.Controls.Add(this.pboxSteerSwitch);
             this.DataPage.Controls.Add(this.lblActualSteerAngle2);
@@ -1662,6 +1674,69 @@
             this.DataPage.Size = new System.Drawing.Size(332, 525);
             this.DataPage.TabIndex = 3;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(130, 483);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.TabIndex = 309;
+            this.label13.Text = "Relay";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label12.Location = new System.Drawing.Point(137, 505);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 13);
+            this.label12.TabIndex = 308;
+            this.label12.Text = "UDP";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label7.Location = new System.Drawing.Point(131, 460);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 13);
+            this.label7.TabIndex = 307;
+            this.label7.Text = "Steer";
+            // 
+            // pbarUDPComm
+            // 
+            this.pbarUDPComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarUDPComm.BackColor = System.Drawing.Color.Maroon;
+            this.pbarUDPComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarUDPComm.Location = new System.Drawing.Point(167, 506);
+            this.pbarUDPComm.Name = "pbarUDPComm";
+            this.pbarUDPComm.Size = new System.Drawing.Size(54, 10);
+            this.pbarUDPComm.TabIndex = 306;
+            // 
+            // pbarAutoSteerComm
+            // 
+            this.pbarAutoSteerComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarAutoSteerComm.BackColor = System.Drawing.Color.Maroon;
+            this.pbarAutoSteerComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarAutoSteerComm.Location = new System.Drawing.Point(167, 462);
+            this.pbarAutoSteerComm.Name = "pbarAutoSteerComm";
+            this.pbarAutoSteerComm.Size = new System.Drawing.Size(54, 10);
+            this.pbarAutoSteerComm.TabIndex = 305;
+            // 
+            // pbarRelayComm
+            // 
+            this.pbarRelayComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarRelayComm.BackColor = System.Drawing.Color.Maroon;
+            this.pbarRelayComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarRelayComm.Location = new System.Drawing.Point(167, 484);
+            this.pbarRelayComm.Name = "pbarRelayComm";
+            this.pbarRelayComm.Size = new System.Drawing.Size(54, 10);
+            this.pbarRelayComm.TabIndex = 304;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1676,7 +1751,7 @@
             // 
             this.pboxSteerSwitch.BackColor = System.Drawing.Color.Transparent;
             this.pboxSteerSwitch.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.pboxSteerSwitch.Location = new System.Drawing.Point(207, 460);
+            this.pboxSteerSwitch.Location = new System.Drawing.Point(4, 469);
             this.pboxSteerSwitch.Name = "pboxSteerSwitch";
             this.pboxSteerSwitch.Size = new System.Drawing.Size(42, 45);
             this.pboxSteerSwitch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -1687,25 +1762,25 @@
             // 
             this.lblActualSteerAngle2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblActualSteerAngle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblActualSteerAngle2.Location = new System.Drawing.Point(252, 485);
+            this.lblActualSteerAngle2.Location = new System.Drawing.Point(49, 494);
             this.lblActualSteerAngle2.Margin = new System.Windows.Forms.Padding(0);
             this.lblActualSteerAngle2.Name = "lblActualSteerAngle2";
             this.lblActualSteerAngle2.Size = new System.Drawing.Size(69, 23);
             this.lblActualSteerAngle2.TabIndex = 286;
             this.lblActualSteerAngle2.Text = "-23.9";
-            this.lblActualSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblActualSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblSetpointSteerAngle2
             // 
             this.lblSetpointSteerAngle2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblSetpointSteerAngle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSetpointSteerAngle2.Location = new System.Drawing.Point(252, 452);
+            this.lblSetpointSteerAngle2.Location = new System.Drawing.Point(49, 463);
             this.lblSetpointSteerAngle2.Margin = new System.Windows.Forms.Padding(0);
             this.lblSetpointSteerAngle2.Name = "lblSetpointSteerAngle2";
             this.lblSetpointSteerAngle2.Size = new System.Drawing.Size(69, 23);
             this.lblSetpointSteerAngle2.TabIndex = 284;
             this.lblSetpointSteerAngle2.Text = "-30.8";
-            this.lblSetpointSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSetpointSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnSmallRight2
             // 
@@ -1734,7 +1809,7 @@
             this.btnGPSData.Image = global::AgOpenGPS.Properties.Resources.radar_icon;
             this.btnGPSData.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGPSData.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGPSData.Location = new System.Drawing.Point(21, 444);
+            this.btnGPSData.Location = new System.Drawing.Point(232, 458);
             this.btnGPSData.Name = "btnGPSData";
             this.btnGPSData.Size = new System.Drawing.Size(94, 64);
             this.btnGPSData.TabIndex = 138;
@@ -3513,6 +3588,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.PictureBox pboxSteerSwitch;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ProgressBar pbarRelayComm;
+        private System.Windows.Forms.ProgressBar pbarAutoSteerComm;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ProgressBar pbarUDPComm;
     }
 }
 
