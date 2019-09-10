@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSteer));
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
             this.btnFreeDrive = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -88,6 +87,8 @@
             this.tabDrive = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnStanley = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -165,7 +166,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(491, 423);
+            this.tabControl1.Size = new System.Drawing.Size(497, 423);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -648,6 +649,8 @@
             // tabStan
             // 
             this.tabStan.BackColor = System.Drawing.Color.PowderBlue;
+            this.tabStan.Controls.Add(this.btnStanley);
+            this.tabStan.Controls.Add(this.label1);
             this.tabStan.Controls.Add(this.hsbarHeadingErrorGain);
             this.tabStan.Controls.Add(this.btnChart);
             this.tabStan.Controls.Add(this.lblStanleyGain);
@@ -657,7 +660,7 @@
             this.tabStan.Controls.Add(this.lblHeadingErrorGain);
             this.tabStan.Location = new System.Drawing.Point(4, 48);
             this.tabStan.Name = "tabStan";
-            this.tabStan.Size = new System.Drawing.Size(483, 371);
+            this.tabStan.Size = new System.Drawing.Size(489, 371);
             this.tabStan.TabIndex = 15;
             this.tabStan.Text = "Stanley";
             // 
@@ -751,7 +754,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 48);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(483, 371);
+            this.tabDrive.Size = new System.Drawing.Size(526, 371);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
@@ -763,9 +766,9 @@
             this.richTextBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(3, 205);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(472, 189);
+            this.richTextBox1.Size = new System.Drawing.Size(515, 189);
             this.richTextBox1.TabIndex = 234;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            this.richTextBox1.Text = "";
             // 
             // hSBarFreeDrive
             // 
@@ -778,12 +781,38 @@
             this.hSBarFreeDrive.TabIndex = 233;
             this.hSBarFreeDrive.ValueChanged += new System.EventHandler(this.hSBarFreeDrive_ValueChanged);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(237, 266);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 23);
+            this.label1.TabIndex = 300;
+            this.label1.Text = "Stanley or Pure Pursuit";
+            // 
+            // btnStanley
+            // 
+            this.btnStanley.BackColor = System.Drawing.Color.Lavender;
+            this.btnStanley.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStanley.FlatAppearance.BorderSize = 2;
+            this.btnStanley.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStanley.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStanley.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStanley.Location = new System.Drawing.Point(270, 304);
+            this.btnStanley.Name = "btnStanley";
+            this.btnStanley.Size = new System.Drawing.Size(120, 51);
+            this.btnStanley.TabIndex = 302;
+            this.btnStanley.Text = "Stanley";
+            this.btnStanley.UseVisualStyleBackColor = false;
+            this.btnStanley.Click += new System.EventHandler(this.BtnStanley_Click);
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(501, 431);
+            this.ClientSize = new System.Drawing.Size(502, 431);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -869,5 +898,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblHeadingErrorGain;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnStanley;
     }
 }

@@ -892,7 +892,7 @@ namespace AgOpenGPS
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(4000, "Missing ABLine File", "But Field is Loaded");
+                var form = new FormTimedMessage(2000, "Missing ABLine File", "But Field is Loaded");
                 form.Show();
             }
 
@@ -902,6 +902,8 @@ namespace AgOpenGPS
                 {
                     try
                     {
+                        ABLine.isABLineLoaded = false;
+
                         //read header
                         line = reader.ReadLine();
 
@@ -910,12 +912,6 @@ namespace AgOpenGPS
 
                         if (isAB)
                         {
-                            //set gui image button on
-                            btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
-                            ABLine.isBtnABLineOn = true;
-                            btnRightYouTurn.Visible = true;
-                            btnLeftYouTurn.Visible = true;
-
                             //Heading  , ,refPoint2x,z                    
                             line = reader.ReadLine();
                             ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
@@ -944,25 +940,22 @@ namespace AgOpenGPS
                             ABLine.tramPassEvery = int.Parse(words[0]);
                             ABLine.passBasedOn = int.Parse(words[1]);
 
-                            ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 4000.0;
+                            ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 4000.0;
 
-                            ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 10000.0;
+                            ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 4000.0;
+                            ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 4000.0;
 
-                            ABLine.isABLineSet = true;
-                            EnableYouTurnButtons();
-                            btnCurve.Enabled = false;
-                            btnContourPriority.Enabled = true;
+                            ABLine.isABLineLoaded = true;
+
                         }
 
-                        //if ABLine isn't set, turn off the YouTurn
-                        else
-                        {
-                            ABLine.isBtnABLineOn = false;
-
-                            DisableYouTurnButtons();
-                        }
+                        //clean up from last field maybe
+                        ABLine.isABLineSet = false;
+                        ABLine.isBtnABLineOn = false;
+                        DisableYouTurnButtons();
+                        btnContourPriority.Enabled = true;
+                        btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
                     }
 
                     catch (Exception e)
@@ -1323,12 +1316,13 @@ namespace AgOpenGPS
             //$Offsets
             //533172,5927719,12 - offset easting, northing, zone
 
-            if (!isJobStarted)
-            {
-                using (var form = new FormTimedMessage(3000, "Ooops, Job Not Started", "Start a Job First"))
-                { form.Show(); }
-                return;
-            }
+            //if (!isJobStarted)
+            //{
+            //    using (var form = new FormTimedMessage(3000, "Ooops, Job Not Started", "Start a Job First"))
+            //    { form.Show(); }
+            //    return;
+            //}
+
             string myFileName, dirField;
 
             //get the directory and make sure it exists, create if not
@@ -1674,6 +1668,12 @@ namespace AgOpenGPS
                 }
 
             }
+
+            AB0.fieldName = currentFieldDirectory;
+            AB0.heading = glm.toDegrees(ABLine.abHeading);
+            AB0.X = ABLine.refPoint1.easting;
+            AB0.Y = ABLine.refPoint1.northing;
+
         }
 
         //save all the flag markers

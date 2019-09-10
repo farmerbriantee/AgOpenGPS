@@ -199,7 +199,7 @@ namespace AgOpenGPS
                 }
 
                 string line;
-                string offsets;
+                string offsets, convergence, startFix;
 
                 using (StreamReader reader = new StreamReader(templateFileAndDirectory))
                 {
@@ -212,6 +212,14 @@ namespace AgOpenGPS
 
                         //read the Offsets  - all we really need from template field file
                         offsets = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        convergence = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        startFix = reader.ReadLine();
+
+
                     }
                     catch (Exception ex)
                     {
@@ -236,12 +244,18 @@ namespace AgOpenGPS
                         //write out the easting and northing Offsets
                         writer.WriteLine("$Offsets");
                         writer.WriteLine(offsets);
+
+                        writer.WriteLine("$Convergence");
+                        writer.WriteLine(convergence);
+
+                        writer.WriteLine("StartFix");
+                        writer.WriteLine(startFix);
                     }
 
                     //create blank Contour and Section files
                     mf.FileCreateSections();
                     mf.FileCreateContour();
-                    mf.FileCreateElevation();
+                    //mf.FileCreateElevation();
 
                     //copy over the files from template
                     string templateDirectoryName = Path.GetDirectoryName(templateFileAndDirectory);
@@ -251,8 +265,8 @@ namespace AgOpenGPS
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                    fileToCopy = templateDirectoryName + "\\Headland.txt";
-                    destinationDirectory = directoryName + "\\Headland.txt";
+                    fileToCopy = templateDirectoryName + "\\Elevation.txt";
+                    destinationDirectory = directoryName + "\\Elevation.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
@@ -273,6 +287,11 @@ namespace AgOpenGPS
 
                     fileToCopy = templateDirectoryName + "\\CurveLine.txt";
                     destinationDirectory = directoryName + "\\CurveLine.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\CurveLines.txt";
+                    destinationDirectory = directoryName + "\\CurveLines.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 

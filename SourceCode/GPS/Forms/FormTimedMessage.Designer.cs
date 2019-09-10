@@ -62,14 +62,14 @@
             // 
             // FormTimedMessage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(272, 133);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(272, 151);
             this.ControlBox = false;
             this.Controls.Add(this.lblMessage2);
             this.Controls.Add(this.lblMessage);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormTimedMessage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
