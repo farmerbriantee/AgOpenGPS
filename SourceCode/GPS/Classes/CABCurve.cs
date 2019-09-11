@@ -161,8 +161,6 @@ namespace AgOpenGPS
             int ptCnt = ptCount - 1;
             if (ptCount < 5) return;
 
-            closestRefIndex = -1;
-            
             boxA.easting = pivot.easting - (Math.Sin(aveLineHeading + glm.PIBy2) * 2000);
             boxA.northing = pivot.northing - (Math.Cos(aveLineHeading + glm.PIBy2) * 2000);
 
@@ -194,8 +192,6 @@ namespace AgOpenGPS
                 break;
             }
 
-            if (closestRefIndex == -1) return;
-            
             double dist = ((pivot.easting - refList[closestRefIndex].easting) * (pivot.easting - refList[closestRefIndex].easting))
                             + ((pivot.northing - refList[closestRefIndex].northing) * (pivot.northing - refList[closestRefIndex].northing));
 
