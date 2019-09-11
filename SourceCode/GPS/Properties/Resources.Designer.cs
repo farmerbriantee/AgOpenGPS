@@ -493,6 +493,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FileDelete {
+            get {
+                object obj = ResourceManager.GetObject("FileDelete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap FileDontSave {
             get {
                 object obj = ResourceManager.GetObject("FileDontSave", resourceCulture);
@@ -546,6 +556,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap FileSave {
             get {
                 object obj = ResourceManager.GetObject("FileSave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FileUse {
+            get {
+                object obj = ResourceManager.GetObject("FileUse", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -896,6 +916,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap PointStart {
             get {
                 object obj = ResourceManager.GetObject("PointStart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap radar_icon {
+            get {
+                object obj = ResourceManager.GetObject("radar-icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

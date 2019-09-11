@@ -34,7 +34,7 @@ namespace AgOpenGPS
         public double distanceFromCurrentLine;
         public double snapDistance;
 
-        public bool isABLineSet;
+        public bool isABLineSet, isABLineLoaded;
         public bool isABLineBeingSet;
         public bool isBtnABLineOn;
         public double passNumber;
@@ -96,6 +96,7 @@ namespace AgOpenGPS
             passNumber = 0.0;
             howManyPathsAway = 0.0;
             isABLineSet = false;
+            isABLineLoaded = false;
         }
 
         public void SetABLineByBPoint()
@@ -115,6 +116,7 @@ namespace AgOpenGPS
             refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 4000.0);
 
             isABLineSet = true;
+            isABLineLoaded = true;
         }
 
         public void SetABLineByHeading()
@@ -130,6 +132,7 @@ namespace AgOpenGPS
             refPoint2.northing = refABLineP2.northing;
 
             isABLineSet = true;
+            isABLineLoaded = true;
         }
 
         public void SnapABLine()
@@ -676,24 +679,6 @@ namespace AgOpenGPS
                 GL.PointSize(1.0f);
                 GL.LineWidth(1);
             }
-        }
-
-        public void ResetABLine()
-        {
-            refPoint1 = new vec2(0.2, 0.2);
-            refPoint2 = new vec2(0.3, 0.3);
-
-            refABLineP1 = new vec2(0.0, 0.0);
-            refABLineP2 = new vec2(0.0, 1.0);
-
-            currentABLineP1 = new vec2(0.0, 0.0);
-            currentABLineP2 = new vec2(0.0, 0.2);
-
-            abHeading = 0.0;
-            isABLineSet = false;
-            isABLineBeingSet = false;
-            howManyPathsAway = 0.0;
-            passNumber = 0;
         }
     }
 }

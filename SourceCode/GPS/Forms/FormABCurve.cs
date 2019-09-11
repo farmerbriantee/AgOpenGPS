@@ -22,26 +22,18 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            mf.btnCurve.PerformClick();
-            mf.curve.ResetCurveLine();
-            mf.FileSaveCurveLine();
-            //mf.DisableYouTurnButtons();
-
-            lblCurveExists.Text = "Curve Not Set";
+            //mf.curve.ResetCurveLine();
+            //mf.FileSaveCurveLine();
+            //lblCurveExists.Text = " > Off <";
 
 
-            mf.btnContour.Enabled = true;
-            mf.btnABLine.Enabled = true;
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
             mf.btnContourPriority.Enabled = false;
-            //curve.ResetCurveLine();
+            //mf.curve.ResetCurveLine();
             mf.curve.isCurveBtnOn = false;
-
-            mf.btnCurve.Image = mf.curve.isCurveBtnOn ? Properties.Resources.CurveOn : Properties.Resources.CurveOff;
-
-
+            mf.btnCurve.Image = Properties.Resources.CurveOff;
             Close();
         }
 
@@ -49,15 +41,19 @@ namespace AgOpenGPS
         {
             if (mf.curve.refList.Count < 3)
             {
-                Close();
-                mf.btnCurve.PerformClick();
+                mf.curve.isCurveBtnOn = false;
+                mf.btnCurve.Image = Properties.Resources.CurveOff;
+
                 mf.curve.ResetCurveLine();
                 mf.DisableYouTurnButtons();
+                mf.FileSaveCurveLine();
+                Close();
             }
             else
             {
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
+                mf.FileSaveCurveLine();
                 Close();
             }
         }
@@ -65,8 +61,9 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
             //clear out the reference list
-            lblCurveExists.Text = "Curve Being Set";
-            mf.curve.refList?.Clear();
+            lblCurveExists.Text = "Driving";
+            mf.curve.ResetCurveLine();
+
             mf.curve.isOkToAddPoints = true;
             btnBPoint.Enabled = true;
             btnAPoint.Enabled = false;
@@ -120,14 +117,19 @@ namespace AgOpenGPS
                 mf.curve.AddFirstLastPoints();
                 SmoothAB(4);
                 mf.curve.CalculateTurnHeadings();
+
+                mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
+                mf.FileSaveCurveLine();
+                lblCurveExists.Text = "Curve Set";
             }
             else
             {
                 mf.curve.isCurveSet = false;
                 mf.curve.refList?.Clear();
+                lblCurveExists.Text = " > Off <";
+
             }
-            mf.FileSaveCurveLine();
             //Close();
         }
 
@@ -191,20 +193,23 @@ namespace AgOpenGPS
             else
             {
                 mf.curve.ResetCurveLine();
-                lblCurveExists.Text = "Curve Not Set";
+                lblCurveExists.Text = " > Off <";
                 btnABLineOk.Enabled = false;
             }
             lvLines.Clear();
             curveArrs.Clear();
             FormABCurve_LoadCurves();
+
+            this.Size = new System.Drawing.Size(280, 440);
+            btnMulti.Image = Properties.Resources.ArrowLeft;
+
         }
-        
+
         private void FormABCurve_LoadCurves()
         {
 
-            string dirField = mf.ablinesDirectory;
-
-            //string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            //get the directory and make sure it exists, create if not
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -240,7 +245,6 @@ namespace AgOpenGPS
 
                         //read header $CurveLine
                         line = reader.ReadLine();
-
 
                         while (!reader.EndOfStream)
                         {
@@ -337,14 +341,21 @@ namespace AgOpenGPS
                     mf.curve.refList.Add(curveArrs[aa].curveArr[i]);
 
                 }
-                if (mf.curve.refList.Count > 2)
+                if (mf.curve.refList.Count < 3)
                 {
-                    lblCurveExists.Text = "Curve Set";
-                    btnABLineOk.Enabled = true;
+                    mf.btnCurve.PerformClick();
+                    mf.curve.ResetCurveLine();
+                    mf.DisableYouTurnButtons();
+                }
+                else
+                {
+                    mf.curve.isCurveSet = true;
+                    mf.EnableYouTurnButtons();
+                    mf.FileSaveCurveLine();
                 }
                 //can go back to Mainform without seeing ABLine form.
                 //DialogResult = DialogResult.Yes;
-                //Close();
+                Close();
             }
 
             //no item selected
@@ -358,15 +369,15 @@ namespace AgOpenGPS
         {
 
 
-            string dirField = mf.ablinesDirectory;
-
-            //string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            //get the directory and make sure it exists, create if not
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
 
             filename = directoryName + "\\CurveLines.txt";
+
 
 
             //use Streamwriter to create and overwrite existing curveLines file
@@ -431,9 +442,8 @@ namespace AgOpenGPS
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            string dirField = mf.ablinesDirectory;
-
-            //string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            //get the directory and make sure it exists, create if not
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -483,6 +493,49 @@ namespace AgOpenGPS
 
                     return;
                 }
+            }
+        }
+
+        private void BtnMulti_Click(object sender, EventArgs e)
+        {
+            if (this.Size.Width < 640)
+            {
+                this.Size = new System.Drawing.Size(650, 440);
+                btnAddToFile.Visible = true;
+                btnListDelete.Visible = true;
+                btnListUse.Visible = true;
+                label1.Visible = true;
+                textBox1.Visible = true;
+                lvLines.Visible = true;
+                btnMulti.Text = "Hide";
+                btnMulti.Image = Properties.Resources.ArrowRight;
+            }
+            else
+            {
+                this.Size = new System.Drawing.Size(280, 440);
+                btnAddToFile.Visible = false;
+                btnListDelete.Visible = false;
+                btnListUse.Visible = false;
+                label1.Visible = false;
+                textBox1.Visible = false;
+                lvLines.Visible = false;
+                btnMulti.Text = "Show";
+                btnMulti.Image = Properties.Resources.ArrowLeft;
+            }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                btnListDelete.Enabled = true;
+                btnListUse.Enabled = true;
+            }
+            else
+            {
+                btnListDelete.Enabled = false;
+                btnListUse.Enabled = false;
             }
         }
     }

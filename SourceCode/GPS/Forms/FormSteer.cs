@@ -273,5 +273,20 @@ namespace AgOpenGPS
         {
             mf.toolStripAutoSteerChart.PerformClick();
         }
+
+        private void BtnStanleyPP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnStanley_Click(object sender, EventArgs e)
+        {
+            mf.isStanleyUsed = !mf.isStanleyUsed;
+            if (mf.isStanleyUsed) btnStanley.Text = "Stanley";
+            else btnStanley.Text = "Pure P";
+            Properties.Vehicle.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
+            Properties.Vehicle.Default.Save();
+
+        }
     }
 }

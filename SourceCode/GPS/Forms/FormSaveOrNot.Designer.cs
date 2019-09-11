@@ -83,20 +83,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(60, 23);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(53, 23);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 23);
+            this.label7.Size = new System.Drawing.Size(83, 25);
             this.label7.TabIndex = 256;
             this.label7.Text = "Return";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(231, 23);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(224, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 23);
+            this.label1.Size = new System.Drawing.Size(154, 25);
             this.label1.TabIndex = 257;
             this.label1.Text = "Save and Exit";
             // 

@@ -21,19 +21,8 @@ namespace AgOpenGPS
 
             timer1.Interval = timeInMsec;
 
-            int messWidth = str.Length;
-            int mess = str2.Length;
-            if (messWidth > mess)
-            {
-                Size size = TextRenderer.MeasureText(str, lblMessage.Font);
-                Width = size.Width + 75;
-            }
-            else
-            {
-                Size size = TextRenderer.MeasureText(str2, lblMessage2.Font);
-                Width = size.Width + 75;
-                //Width = mess * 15 + 75;
-            }
+            int messWidth = str2.Length;
+            Width = messWidth * 15 + 120;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
