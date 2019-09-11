@@ -207,6 +207,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormFieldDir";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create New Field ";
             this.Load += new System.EventHandler(this.FormFieldDir_Load);

@@ -245,6 +245,7 @@
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormElev";
+            this.ShowInTaskbar = false;
             this.Text = "FormElev";
             this.Load += new System.EventHandler(this.FormElev_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudWaterLevel)).EndInit();

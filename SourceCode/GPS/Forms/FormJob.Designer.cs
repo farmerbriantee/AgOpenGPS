@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormJob));
             this.btnJobOpen = new System.Windows.Forms.Button();
             this.btnJobNew = new System.Windows.Forms.Button();
             this.btnDeleteAB = new System.Windows.Forms.Button();
@@ -130,11 +129,11 @@
             this.Controls.Add(this.btnJobOpen);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormJob";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Start a field";
             this.Load += new System.EventHandler(this.FormJob_Load);

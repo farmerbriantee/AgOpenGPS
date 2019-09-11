@@ -77,6 +77,8 @@
             this.lblDistanceFromLine = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabStan = new System.Windows.Forms.TabPage();
+            this.btnStanley = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.hsbarHeadingErrorGain = new System.Windows.Forms.HScrollBar();
             this.btnChart = new System.Windows.Forms.Button();
             this.lblStanleyGain = new System.Windows.Forms.Label();
@@ -87,8 +89,6 @@
             this.tabDrive = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnStanley = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -188,7 +188,7 @@
             this.tabGain.Controls.Add(this.label7);
             this.tabGain.Location = new System.Drawing.Point(4, 48);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(483, 371);
+            this.tabGain.Size = new System.Drawing.Size(489, 371);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "Gain";
             // 
@@ -337,7 +337,7 @@
             this.tabSteer.Controls.Add(this.hsbarSteerAngleSensorZero);
             this.tabSteer.Location = new System.Drawing.Point(4, 48);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(483, 371);
+            this.tabSteer.Size = new System.Drawing.Size(489, 371);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Steer";
             // 
@@ -515,7 +515,7 @@
             this.tabLook.Controls.Add(this.label6);
             this.tabLook.Location = new System.Drawing.Point(4, 48);
             this.tabLook.Name = "tabLook";
-            this.tabLook.Size = new System.Drawing.Size(483, 371);
+            this.tabLook.Size = new System.Drawing.Size(489, 371);
             this.tabLook.TabIndex = 14;
             this.tabLook.Text = "Pure P";
             // 
@@ -664,6 +664,32 @@
             this.tabStan.TabIndex = 15;
             this.tabStan.Text = "Stanley";
             // 
+            // btnStanley
+            // 
+            this.btnStanley.BackColor = System.Drawing.Color.Lavender;
+            this.btnStanley.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStanley.FlatAppearance.BorderSize = 2;
+            this.btnStanley.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStanley.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStanley.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStanley.Location = new System.Drawing.Point(270, 304);
+            this.btnStanley.Name = "btnStanley";
+            this.btnStanley.Size = new System.Drawing.Size(120, 51);
+            this.btnStanley.TabIndex = 302;
+            this.btnStanley.Text = "Stanley";
+            this.btnStanley.UseVisualStyleBackColor = false;
+            this.btnStanley.Click += new System.EventHandler(this.BtnStanley_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(237, 266);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(201, 23);
+            this.label1.TabIndex = 300;
+            this.label1.Text = "Stanley or Pure Pursuit";
+            // 
             // hsbarHeadingErrorGain
             // 
             this.hsbarHeadingErrorGain.LargeChange = 1;
@@ -754,7 +780,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 48);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(526, 371);
+            this.tabDrive.Size = new System.Drawing.Size(489, 371);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
@@ -781,32 +807,6 @@
             this.hSBarFreeDrive.TabIndex = 233;
             this.hSBarFreeDrive.ValueChanged += new System.EventHandler(this.hSBarFreeDrive_ValueChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(237, 266);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 23);
-            this.label1.TabIndex = 300;
-            this.label1.Text = "Stanley or Pure Pursuit";
-            // 
-            // btnStanley
-            // 
-            this.btnStanley.BackColor = System.Drawing.Color.Lavender;
-            this.btnStanley.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnStanley.FlatAppearance.BorderSize = 2;
-            this.btnStanley.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStanley.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStanley.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStanley.Location = new System.Drawing.Point(270, 304);
-            this.btnStanley.Name = "btnStanley";
-            this.btnStanley.Size = new System.Drawing.Size(120, 51);
-            this.btnStanley.TabIndex = 302;
-            this.btnStanley.Text = "Stanley";
-            this.btnStanley.UseVisualStyleBackColor = false;
-            this.btnStanley.Click += new System.EventHandler(this.BtnStanley_Click);
-            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -819,6 +819,7 @@
             this.MinimizeBox = false;
             this.Name = "FormSteer";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Auto Steer Configuration";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSteer_FormClosing);

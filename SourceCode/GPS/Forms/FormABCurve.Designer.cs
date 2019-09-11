@@ -306,6 +306,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormABCurve";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AB Curve";
             this.TopMost = true;

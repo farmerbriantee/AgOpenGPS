@@ -630,6 +630,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormNtrip";
+            this.ShowInTaskbar = false;
             this.Text = "NTRIP Client Settings";
             this.Load += new System.EventHandler(this.FormNtrip_Load);
             this.groupBox2.ResumeLayout(false);

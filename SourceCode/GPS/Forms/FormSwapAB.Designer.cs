@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 491);
+            this.ClientSize = new System.Drawing.Size(899, 538);
             this.ControlBox = false;
             this.Controls.Add(this.lblField1);
             this.Controls.Add(this.lblField2);
@@ -206,6 +206,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimumSize = new System.Drawing.Size(901, 540);
             this.Name = "FormSwapAB";
+            this.ShowInTaskbar = false;
             this.Text = "Setup Quick AB Lines";
             this.Load += new System.EventHandler(this.FormSwapAB_Load);
             this.ResumeLayout(false);
