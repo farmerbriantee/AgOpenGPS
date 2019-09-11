@@ -495,6 +495,8 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            if (isStanleyUsed) btnStanley.Text = "StanLee";
+            else btnStanley.Text = "Pure P";
         }
 
         //form is closing so tidy up and save settings
@@ -942,10 +944,9 @@ namespace AgOpenGPS
 
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
-            btnCurve.Enabled = true;
-
-            ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
+            btnCurve.Enabled = true;
+            ABLine.abHeading = 0.00;
 
             btnRightYouTurn.Enabled = false;
             btnLeftYouTurn.Enabled = false;
@@ -956,6 +957,7 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
             }
 
             LineUpManualBtns();
@@ -967,29 +969,24 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
-            //job is closed
-            isJobStarted = false;
-
             //reset the lat lon start pos
             pn.latStart = 0;
             pn.lonStart = 0;
 
-            //turn section buttons all OFF
+            //turn auto button off
+            autoBtnState = btnStates.Off;
+            btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+
+            //turn section buttons all OFF and zero square meters
             for (int j = 0; j < MAXSECTIONS; j++)
             {
                 section[j].isAllowedOn = false;
                 section[j].manBtnState = manBtn.On;
             }
 
-            //fix ManualOffOnAuto buttons
-            btnManualOffOn.Enabled = false;
+            //turn manual button off
             manualBtnState = btnStates.Off;
             btnManualOffOn.Image = Properties.Resources.ManualOff;
-
-            //fix auto button
-            btnSectionOffAutoOn.Enabled = false;
-            autoBtnState = btnStates.Off;
-            btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
             //Update the button colors and text
             ManualAllBtnsUpdate();
@@ -1023,6 +1020,8 @@ namespace AgOpenGPS
             btnSection11Man.BackColor = Color.Silver;
             btnSection12Man.BackColor = Color.Silver;
 
+            //job is closed
+            isJobStarted = false;
 
             //clear the section lists
             for (int j = 0; j < MAXSECTIONS; j++)
@@ -1032,43 +1031,54 @@ namespace AgOpenGPS
                 section[j].triangleList?.Clear();
             }
 
+            //clear out the contour Lists
+            ct.ResetContour();
+
             //clear the flags
             flagPts.Clear();
             btnFlag.Enabled = false;
 
-            //ABLine
+            //reset the buttons
             btnABLine.Enabled = false;
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            ABLine.isBtnABLineOn = false;
-            ABLine.DeleteAB();
-
-            //curve line
-            btnCurve.Enabled = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
-            curve.isCurveBtnOn = false;
-            curve.isCurveSet = false;
-            curve.ResetCurveLine();
-            
-            //clear out contour and Lists
             btnContour.Enabled = false;
             btnContourPriority.Enabled = false;
             btnContourPriority.Image = Properties.Resources.Snap2;
-            ct.ResetContour();
-            ct.isContourBtnOn = false;
-            btnContour.Image = Properties.Resources.ContourOff;
-            ct.isContourOn = false;
-
-            //AutoSteer
             btnAutoSteer.Enabled = false;
             isAutoSteerBtnOn = false;
+
+            btnCurve.Enabled = false;
+            curve.isCurveSet = false;
+
+            ct.isContourBtnOn = false;
+            ct.isContourOn = false;
+
+            //curve line
+            btnCurve.Image = Properties.Resources.CurveOff;
+            curve.ResetCurveLine();
+            curve.isCurveBtnOn = false;
+            btnCurve.Enabled = false;
+
+            //change images to reflect on off
+            btnABLine.Image = Properties.Resources.ABLineOff;
+            ABLine.isBtnABLineOn = false;
+
+            DisableYouTurnButtons();
+
+            btnContour.Image = Properties.Resources.ContourOff;
             btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
 
-            //auto YouTurn shutdown
-            yt.isYouTurnBtnOn = false;
-            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            btnEnableAutoYouTurn.Enabled = false;
-            yt.ResetYouTurn();
-            DisableYouTurnButtons();
+            //fix ManualOffOnAuto buttons
+            btnManualOffOn.Enabled = false;
+            manualBtnState = btnStates.Off;
+            btnManualOffOn.Image = Properties.Resources.ManualOff;
+
+            //fix auto button
+            btnSectionOffAutoOn.Enabled = false;
+            autoBtnState = btnStates.Off;
+            btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+
+            //reset all the ABLine stuff
+            ABLine.ResetABLine();
 
             //reset acre and distance counters
             fd.workedAreaTotal = 0;
@@ -1088,16 +1098,31 @@ namespace AgOpenGPS
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;
 
+            //turn off top level buttons
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
+
+            //auto YouTurn shutdown
+            yt.isYouTurnBtnOn = false;
+            yt.ResetYouTurn();
+
+            //turn off youturn...
+            btnEnableAutoYouTurn.Enabled = false;
+            yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+
             ////turn off path record
             recPath.recList?.Clear();
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
             }
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
+
+            yt.ResetYouTurn();
         }
 
         //bring up field dialog for new/open/resume

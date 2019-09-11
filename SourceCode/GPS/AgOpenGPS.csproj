@@ -547,6 +547,7 @@
     <None Include="btnImages\ResetTrip.png" />
     <None Include="btnImages\ComPorts.png" />
     <None Include="btnImages\HideShowMenu.png" />
+    <None Include="btnImages\AutoSteerConfig.png" />
     <None Include="btnImages\TripOdometer.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
@@ -625,9 +626,6 @@
     <None Include="btnImages\RecPath.png" />
     <None Include="btnImages\LonLat.gif" />
     <None Include="btnImages\tree.png" />
-    <None Include="btnImages\FileDelete.png" />
-    <None Include="btnImages\FileUse.png" />
-    <None Include="btnImages\radar-icon.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

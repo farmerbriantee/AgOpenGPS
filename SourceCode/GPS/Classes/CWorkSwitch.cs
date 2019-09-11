@@ -68,19 +68,7 @@ namespace AgOpenGPS
         }
 
         //Predefined functions, chosen based on workswitch settings
-        private void CheckAutoButtonAndClickOn()
-        {
-            if (autoButtonState != requiredButtonState)
-            {
-                mf.btnSectionOffAutoOn.PerformClick();
-            }
-        }
-
-        private void CheckManualButtonAndClickOn()
-        { if (manualButtonState != requiredButtonState)
-            {
-                mf.btnManualOffOn.PerformClick();
-            }
-        }
+        private void CheckAutoButtonAndClickOn() { if (autoButtonState != requiredButtonState) { mf.btnSectionOffAutoOn.PerformClick(); } }
+        private void CheckManualButtonAndClickOn() { if (manualButtonState != requiredButtonState) { mf.btnManualOffOn.PerformClick(); } }
     }
 }

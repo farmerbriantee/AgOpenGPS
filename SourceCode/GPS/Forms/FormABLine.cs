@@ -28,22 +28,6 @@ namespace AgOpenGPS
 
         private void FormABLine_Load(object sender, EventArgs e)
         {
-            lvLines.Visible = false;
-            label2.Visible = false;
-            label3.Visible = false;
-            nudBasedOnPass.Visible = false;
-            nudTramRepeats.Visible = false;
-            btnListDelete.Visible = false;
-            btnListUse.Visible = false;
-            btnAddToFile.Visible = false;
-            btnShow.Text = "Show";
-            btnShow.Image = Properties.Resources.ArrowLeft;
-
-
-            //small window
-            this.Size = new System.Drawing.Size(304, 510);
-
-
             //different start based on AB line already set or not
             if (mf.ABLine.isABLineSet)
             {
@@ -60,7 +44,7 @@ namespace AgOpenGPS
                 //no AB line
                 btnAPoint.Enabled = true;
                 btnBPoint.Enabled = false;
-                btnABLineOk.Enabled = false;
+                //btnABLineOk.Enabled = false;
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 6);
                 nudTramRepeats.Value = 0;
                 nudBasedOnPass.Value = 0;
@@ -129,47 +113,64 @@ namespace AgOpenGPS
             }
         }
 
-        private void BtnNewABLine_Click(object sender, EventArgs e)
-        {
-            this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
-            tboxHeading.Text = "";
-            this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
-
-            mf.ABLine.DeleteAB();
-            btnAPoint.Enabled = true;
-            btnBPoint.Enabled = false;
-            btnABLineOk.Enabled = true;
-            nudTramRepeats.Value = 0;
-            nudBasedOnPass.Value = 0;
-            mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.passBasedOn = 0;
-
-            //save the no ABLine;
-            mf.FileSaveABLine();
-        }
-
         private void btnAPoint_Click(object sender, EventArgs e)
         {
-            #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            mf.ABLine.refPoint1.easting = mf.pivotAxlePos.easting;
-            mf.ABLine.refPoint1.northing = mf.pivotAxlePos.northing;
-            #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            mf.ABLine.refPoint1.easting = mf.pn.fix.easting;
+            mf.ABLine.refPoint1.northing = mf.pn.fix.northing;
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
+            btnUpABHeading.Enabled = true;
+            btnDnABHeading.Enabled = true;
+            btnUpABHeadingBy1.Enabled = true;
+            btnDnABHeadingBy1.Enabled = true;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
-            tboxHeading.Text = upDnHeading.ToString();
+            //tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
         }
 
         private void btnBPoint_Click(object sender, EventArgs e)
         {
             mf.ABLine.SetABLineByBPoint();
             btnABLineOk.Enabled = true;
-            btnTurnOffAB.Enabled = true;
-            upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 3);
+            btnDeleteAB.Enabled = true;
+            upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
+        }
 
-            this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
-                tboxHeading.Text = glm.toDegrees(mf.ABLine.abHeading).ToString("N4");
-            this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
+        private void btnUpABHeading_Click(object sender, EventArgs e)
+        {
+            if ((upDnHeading += 10) > 359.999999) upDnHeading = 0;
+            upDnHeading = (int)upDnHeading;
+            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
+            btnABLineOk.Enabled = true;
+        }
 
+        private void btnDownABHeading_Click(object sender, EventArgs e)
+        {
+            if ((upDnHeading -= 10) < 0) upDnHeading = 350;
+            upDnHeading = (int)upDnHeading;
+            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
+            btnABLineOk.Enabled = true;
+        }
+
+        private void btnUpABHeadingBy1_Click(object sender, EventArgs e)
+        {
+            if ((upDnHeading++) > 358) upDnHeading = 0;
+            upDnHeading = (int)upDnHeading;
+            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
+            btnABLineOk.Enabled = true;
+        }
+
+        private void btnDnABHeadingBy1_Click(object sender, EventArgs e)
+        {
+            upDnHeading--;
+            if (upDnHeading < 0) upDnHeading = 359;
+            upDnHeading = (int)upDnHeading;
+            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
+            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
+            btnABLineOk.Enabled = true;
         }
 
         private void btnABLineOk_Click(object sender, EventArgs e)
@@ -188,10 +189,30 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void btnDeleteAB_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.DeleteAB();
+            btnAPoint.Enabled = true;
+            btnBPoint.Enabled = false;
+            //btnDeleteAB.Enabled = false;
+            //btnABLineOk.Enabled = false;
+            nudTramRepeats.Value = 0;
+            nudBasedOnPass.Value = 0;
+            mf.ABLine.tramPassEvery = 0;
+            mf.ABLine.passBasedOn = 0;
+
+            //save the no ABLine;
+            mf.FileSaveABLine();
+
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblFixHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
             lblKeepGoing.Text = "";
+            lblABHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3));
 
             //make sure we go at least 3 or so meters before allowing B reference point
             if (!btnAPoint.Enabled && !btnBPoint.Enabled)
@@ -262,6 +283,7 @@ namespace AgOpenGPS
             upDnHeading = double.Parse(line, CultureInfo.InvariantCulture);
             mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading, 6));
             mf.ABLine.SetABLineByHeading();
+            btnABLineOk.Enabled = true;
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
@@ -312,7 +334,8 @@ namespace AgOpenGPS
                 mf.AB0.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
                 mf.AB0.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
 
-                //Go back with Line enabled
+                //can go back to Mainform without seeing ABLine form.
+                DialogResult = DialogResult.Yes;
                 Close();
             }
 
@@ -331,75 +354,6 @@ namespace AgOpenGPS
             mf.ABLine.SetABLineByHeading();
             tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
-        }
-
-        private void BtnUpABHeadingBy1_Click(object sender, EventArgs e)
-        {
-            upDnHeading--;
-            if (upDnHeading < 0) upDnHeading = 359;
-            upDnHeading = (int)upDnHeading;
-            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
-            btnABLineOk.Enabled = true;
-        }
-
-        private void BtnDnABHeadingBy1_Click(object sender, EventArgs e)
-        {
-            if ((upDnHeading++) > 358) upDnHeading = 0;
-            upDnHeading = (int)upDnHeading;
-            mf.ABLine.abHeading = glm.toRadians(upDnHeading);
-            tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
-            btnABLineOk.Enabled = true;
-        } 
-
-        private void TboxHeading_Enter(object sender, EventArgs e)
-        {
-            tboxHeading.Text = "";
-        }
-
-        private void BtnShow_Click(object sender, EventArgs e)
-        {
-            if (this.Size.Width < 790)
-            {
-                this.Size = new System.Drawing.Size(800, 510);
-
-                lvLines.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                nudBasedOnPass.Visible = true;
-                nudTramRepeats.Visible = true;
-                btnListDelete.Visible = true;
-                btnListUse.Visible = true;
-                btnAddToFile.Visible = true;
-                btnShow.Text = "Hide";
-                btnShow.Image = Properties.Resources.ArrowRight;
-            }
-            else
-            {
-                this.Size = new System.Drawing.Size(304, 510);
-
-                lvLines.Visible = false;
-                label2.Visible = false;
-                label3.Visible = false;
-                nudBasedOnPass.Visible = false;
-                nudTramRepeats.Visible = false;
-                btnListDelete.Visible = false;
-                btnListUse.Visible = false;
-                btnAddToFile.Visible = false;
-                btnShow.Text = "Show";
-                btnShow.Image = Properties.Resources.ArrowLeft;
-            }
-        }
-
-        private void btnTurnOffAB_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.isABLineSet = false;
-            mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.passBasedOn = 0;
-            mf.btnABLine.Image = Properties.Resources.ABLineOff;
-            mf.ABLine.isBtnABLineOn = false;
-            Close();
-
         }
     }
 }

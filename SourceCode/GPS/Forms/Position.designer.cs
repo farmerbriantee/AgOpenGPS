@@ -1061,7 +1061,7 @@ namespace AgOpenGPS
                 stepFixPts[0].northing = pn.fix.northing;
 
                 //keep here till valid data
-                if (startCounter > (totalFixSteps/2.0)) isGPSPositionInitialized = true;
+                if (startCounter > (totalFixSteps)) isGPSPositionInitialized = true;
 
 
 

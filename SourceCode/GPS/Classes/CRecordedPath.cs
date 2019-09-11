@@ -98,6 +98,7 @@ namespace AgOpenGPS
             currentPositonIndex = 0;
             isDrivingRecordedPath = true;
 
+            mf.btnDrivePath.Image = Properties.Resources.AutoGo;
             isPausedDrivingRecordedPath = false;
             return true;
         }
@@ -203,6 +204,7 @@ namespace AgOpenGPS
             shortestDubinsList.Clear();
             mf.sim.stepDistance = 0;
             isDrivingRecordedPath = false;
+            mf.btnDrivePath.Image = Properties.Resources.AutoGo;
             mf.goPathMenu.Image = Properties.Resources.AutoGo;
             isPausedDrivingRecordedPath = false;
         }
