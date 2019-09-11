@@ -1039,8 +1039,17 @@ namespace AgOpenGPS
             ABLine.isBtnABLineOn = true;
             btnABLine.Image = Properties.Resources.ABLineOn;
 
+            //if (curve.isCurveBtnOn)
+            //{
             //turn off youturn...
-            DisableYouTurnButtons();
+            btnRightYouTurn.Enabled = false;
+            btnLeftYouTurn.Enabled = false;
+            btnRightYouTurn.Visible = false;
+            btnLeftYouTurn.Visible = false;
+
+            btnEnableAutoYouTurn.Enabled = false;
+            yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurn();
 
             var form = new FormABLine(this);
@@ -2096,7 +2105,7 @@ namespace AgOpenGPS
                     if (result == DialogResult.OK) { }
                 }
 
-                TimedMessageBox(3000, "Did you make changes to the vehicle?", "Be sure to save vehicle if you did.");
+                TimedMessageBox(4000, "Did you make changes to the vehicle?", "Be sure to save vehicle if you did.");
             }
 
         }
@@ -3018,7 +3027,6 @@ namespace AgOpenGPS
         //Timer stopped while parsing nmea
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
-
             //Check for a newline char, if none then just return
             int cr = pn.rawBuffer.IndexOf("\n", StringComparison.Ordinal);
             if (cr == -1) return; // No end found, wait for more data
@@ -3157,48 +3165,7 @@ namespace AgOpenGPS
                     //counter used for saving field in background
                     saveCounter++;
 
-                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
-                    {
-                        //both
-                        lblLatitude.Text = Latitude;
-                        lblLongitude.Text = Longitude;
-
-                        pbarAutoSteerComm.Value = pbarSteer;
-                        pbarRelayComm.Value = pbarRelay;
-                        pbarUDPComm.Value = pbarUDP;
-
-                        //lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
-                        //lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
-
-                        //txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
-                        //txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
-                        // + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
-
-                        //Low means steer switch on
-                        if (mc.steerSwitchValue == 0)
-                        {
-                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.LightBlue;
-                        }
-                        else
-                        {
-                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.Transparent;
-                        }
-
-                        //up in the menu a few pieces of info
-                        if (isJobStarted)
-                        {
-                            lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
-                            lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
-                        }
-                        else
-                        {
-                            lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
-                            lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
-                        }
-
-                        tboxSentence.Text = recvSentenceSettings;
-
-                    }                        //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
+                    //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                     if (isJobStarted && ahrs.isAutoSteerAuto && !recPath.isDrivingRecordedPath && 
                         (ABLine.isABLineSet || ct.isContourBtnOn || curve.isCurveSet))
                     {
@@ -3208,7 +3175,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if ( isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                         }
                     }
 
@@ -3342,6 +3309,45 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
+
+                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
+                    {
+                        //both
+                        lblLatitude.Text = Latitude;
+                        lblLongitude.Text = Longitude;
+
+                        //lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
+                        //lblLookAhead.Text = lookaheadActual.ToString("N1") + " m";
+
+                        //txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
+                        //txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
+                        // + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
+
+                        //Low means steer switch on
+                        if (mc.steerSwitchValue == 0)
+                        {
+                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.LightBlue;
+                        }
+                        else
+                        {
+                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.Transparent;
+                        }
+
+                        //up in the menu a few pieces of info
+                        if (isJobStarted)
+                        {
+                            lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
+                            lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
+                        }
+                        else
+                        {
+                            lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
+                            lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
+                        }
+
+                        tboxSentence.Text = recvSentenceSettings;
+
+                    }
 
                     if (isMetric)
                     {

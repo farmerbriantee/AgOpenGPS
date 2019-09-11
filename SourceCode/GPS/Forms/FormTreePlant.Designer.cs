@@ -214,7 +214,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormTreePlant";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tree Plant Control";
             this.TopMost = true;

@@ -225,7 +225,7 @@ namespace AgOpenGPS
                     {
                         mf.WriteErrorLog("While Opening Field" + ex);
 
-                        var form = new FormTimedMessage(2000, "Field File is Corrupt", "Choose a different field");
+                        var form = new FormTimedMessage(4000, "Field File is Corrupt", "Choose a different field");
                         form.Show();
                         mf.JobClose();
                         return;
@@ -277,11 +277,6 @@ namespace AgOpenGPS
 
                     fileToCopy = templateDirectoryName + "\\ABLine.txt";
                     destinationDirectory = directoryName + "\\ABLine.txt";
-                    if (File.Exists(fileToCopy))
-                        File.Copy(fileToCopy, destinationDirectory);
-
-                    fileToCopy = templateDirectoryName + "\\ABLines.txt";
-                    destinationDirectory = directoryName + "\\ABLines.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 

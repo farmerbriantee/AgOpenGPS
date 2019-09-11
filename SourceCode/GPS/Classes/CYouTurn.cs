@@ -1355,7 +1355,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                var form = new FormTimedMessage(2000, "Missing Youturn File", "Fix the thing!");
+                var form = new FormTimedMessage(4000, "Missing Youturn File", "Fix the thing!");
                 form.Show();
             }
             else
@@ -1383,7 +1383,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "YouTurn File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "YouTurn File is Corrupt", "But Field is Loaded");
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading Flags, Corrupt Flag File" + e);
                     }

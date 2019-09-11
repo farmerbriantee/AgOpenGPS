@@ -146,16 +146,11 @@ namespace AgOpenGPS
             //quick check
             if (data.Length != 10) return;
 
-            if (pbarUDP++ > 99) pbarUDP = 0;
-
             switch (port)
             {
                 //autosteer
                 case 5577:
                     {
-                        //update progress bar for autosteer
-                        if (pbarSteer++ > 99) pbarSteer = 0;
-
                         if (ahrs.isHeadingFromAutoSteer)
                         {
                             ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);

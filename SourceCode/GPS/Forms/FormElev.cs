@@ -364,7 +364,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "Elevation File is Corrupt", "This is bad");
+                        var form = new FormTimedMessage(4000, "Elevation File is Corrupt", "This is bad");
                         form.Show();
                         mf.WriteErrorLog("Load Elevation Points" + e.ToString());
                     }
@@ -373,7 +373,7 @@ namespace AgOpenGPS
                 }
                 if (elevRecPts.Count < 10)
                 {
-                    var form2 = new FormTimedMessage(2000, "Elevation File is Empty", "Nothing to Generate Terrain From");
+                    var form2 = new FormTimedMessage(4000, "Elevation File is Empty", "Nothing to Generate Terrain From");
                     form2.Show();
                     Close();
                     return false;
@@ -382,7 +382,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form = new FormTimedMessage(2000, "Elevation File is Missing", "Going to exit back");
+                var form = new FormTimedMessage(4000, "Elevation File is Missing", "Going to exit back");
                 form.Show();
                 Close();
                 return false;

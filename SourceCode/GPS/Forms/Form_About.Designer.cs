@@ -243,7 +243,6 @@
             this.Controls.Add(this.linkLabelCombineForum);
             this.Controls.Add(this.button1);
             this.Name = "Form_About";
-            this.ShowInTaskbar = false;
             this.Text = "About AgOpenGPS";
             this.Load += new System.EventHandler(this.Form_About_Load);
             this.ResumeLayout(false);

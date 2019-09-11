@@ -889,7 +889,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
             this.Name = "FormDisplaySettings";
-            this.ShowInTaskbar = false;
             this.Text = "FormDisplaySettings";
             this.Load += new System.EventHandler(this.FormDisplaySettings_Load);
             this.tabControl1.ResumeLayout(false);

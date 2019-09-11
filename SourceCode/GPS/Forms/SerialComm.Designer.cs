@@ -152,9 +152,6 @@ namespace AgOpenGPS
             string[] words = mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length == 5)
             {
-                //update the progress bar for autosteer.
-                if (pbarSteer++ > 99) pbarSteer=0;
-
                 double.TryParse(words[0], NumberStyles.Float, CultureInfo.InvariantCulture, out actualSteerAngleDisp);
                
 
@@ -336,8 +333,6 @@ namespace AgOpenGPS
             // Find end of sentence, if not a CR, return
             end = sentence.IndexOf("\r");
             if (end == -1) return;
-
-            if (pbarRelay++ > 99) pbarRelay = 0;
 
             //the ArdRelay sentence to be parsed
             sentence = sentence.Substring(0, end);

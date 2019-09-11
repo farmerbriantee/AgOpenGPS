@@ -31,8 +31,6 @@ namespace AgOpenGPS
             lvLines.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
-            label4.Visible = false;
-            tboxABLineName.Visible = false;
             nudBasedOnPass.Visible = false;
             nudTramRepeats.Visible = false;
             btnListDelete.Visible = false;
@@ -55,9 +53,7 @@ namespace AgOpenGPS
                 upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 6);
                 nudTramRepeats.Value = mf.ABLine.tramPassEvery;
                 nudBasedOnPass.Value = mf.ABLine.passBasedOn;
-                this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
                 tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
-                this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
             }
             else
             {
@@ -72,16 +68,12 @@ namespace AgOpenGPS
                 mf.ABLine.passBasedOn = 0;
             }
 
-            //make sure at least a global blank AB Line file exists
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
-
+            //make sure at least a blank AB Line file exists
+            string dirABLines = mf.ablinesDirectory;
+            string directoryName = Path.GetDirectoryName(dirABLines).ToString(CultureInfo.InvariantCulture);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
-
             filename = directoryName + "\\ABLines.txt";
-
-
             if (!File.Exists(filename))
             {
                 using (StreamWriter writer = new StreamWriter(filename))
@@ -99,7 +91,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing AB Lines File, Critical Error");
+                mf.TimedMessageBox(2000, "File Error", "Missing AB Line File, Critical Error");
             }
             else
             {
@@ -126,7 +118,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "ABLine File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(4000, "ABLine File is Corrupt", "Please delete it!!!");
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }
@@ -146,7 +138,7 @@ namespace AgOpenGPS
             mf.ABLine.DeleteAB();
             btnAPoint.Enabled = true;
             btnBPoint.Enabled = false;
-            btnABLineOk.Enabled = false;
+            btnABLineOk.Enabled = true;
             nudTramRepeats.Value = 0;
             nudBasedOnPass.Value = 0;
             mf.ABLine.tramPassEvery = 0;
@@ -158,34 +150,24 @@ namespace AgOpenGPS
 
         private void btnAPoint_Click(object sender, EventArgs e)
         {
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             mf.ABLine.refPoint1.easting = mf.pivotAxlePos.easting;
             mf.ABLine.refPoint1.northing = mf.pivotAxlePos.northing;
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+            #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
-            this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
             tboxHeading.Text = upDnHeading.ToString();
-            this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
-            btnABLineOk.Enabled = false;
-            btnShow.Enabled = false;
-
-            ShowSavedPanel(false);
         }
 
         private void btnBPoint_Click(object sender, EventArgs e)
         {
             mf.ABLine.SetABLineByBPoint();
             btnABLineOk.Enabled = true;
-            btnShow.Enabled = true;
             btnTurnOffAB.Enabled = true;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 3);
 
-            //update the default
-            if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
-
             this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
-            tboxHeading.Text = glm.toDegrees(mf.ABLine.abHeading).ToString("N4");
+                tboxHeading.Text = glm.toDegrees(mf.ABLine.abHeading).ToString("N4");
             this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
 
         }
@@ -195,22 +177,14 @@ namespace AgOpenGPS
             //save the ABLine
             mf.FileSaveABLine();
 
-            if (mf.ABLine.isABLineLoaded)
-            {
-                //save the ABLine
-                mf.EnableYouTurnButtons();
-            }
-            else
-            {
-                mf.DisableYouTurnButtons();
-            }
-
             //update the default
             mf.AB0.fieldName = mf.currentFieldDirectory;
             mf.AB0.heading = glm.toDegrees(mf.ABLine.abHeading);
             mf.AB0.X = mf.ABLine.refPoint1.easting;
             mf.AB0.Y = mf.ABLine.refPoint1.northing;
             if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
+
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -257,43 +231,22 @@ namespace AgOpenGPS
         {
             using (StreamWriter writer = new StreamWriter(filename, true))
             {
-                if (mf.ABLine.isABLineSet)
-                {
-                    if (tboxABLineName.Text.Length > 0)
-                    {
-                        //make it culture invariant
-                        string line = tboxABLineName.Text.Trim()
-                            + ',' + (Math.Round(glm.toDegrees(mf.ABLine.abHeading), 8)).ToString(CultureInfo.InvariantCulture)
-                            + ',' + (Math.Round(mf.ABLine.refPoint1.easting, 3)).ToString(CultureInfo.InvariantCulture)
-                            + ',' + (Math.Round(mf.ABLine.refPoint1.northing, 3)).ToString(CultureInfo.InvariantCulture);
+                //make it culture invariant
+                string line = mf.currentFieldDirectory + ',' + (Math.Round(glm.toDegrees(mf.ABLine.abHeading), 8)).ToString(CultureInfo.InvariantCulture)
+                + ',' + (Math.Round(mf.ABLine.refPoint1.easting, 3)).ToString(CultureInfo.InvariantCulture)
+                + ',' + (Math.Round(mf.ABLine.refPoint1.northing, 3)).ToString(CultureInfo.InvariantCulture);
 
-                        //write out to file
-                        writer.WriteLine(line);
+                //write out to file
+                writer.WriteLine(line);
 
-                        //update the list box
-                        ListViewItem itm;
-                        string[] words = line.Split(',');
-                        itm = new ListViewItem(words);
-                        lvLines.Items.Add(itm);
+                //update the list box
+                ListViewItem itm;
+                string[] words = line.Split(',');
+                itm = new ListViewItem(words);
+                lvLines.Items.Add(itm);
 
-                        // go to bottom of list - if there is a bottom
-                        if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-                    }
-                    else
-                    {
-                        //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                        var form2 = new FormTimedMessage(2000, "No Name Entered", "Please Enter ABLine name");
-                        form2.Show();
-                    }
-                }
-                else
-                {
-                    //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                    var form2 = new FormTimedMessage(2000, "No ABLine Active", "Please Complete an ABLine First");
-                    form2.Show();
-                }
-                tboxABLineName.Clear();
-
+                // go to bottom of list - if there is a bottom
+                if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
             }
         }
 
@@ -359,7 +312,6 @@ namespace AgOpenGPS
                 mf.AB0.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
                 mf.AB0.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
 
-                mf.EnableYouTurnButtons();
                 //Go back with Line enabled
                 Close();
             }
@@ -409,11 +361,33 @@ namespace AgOpenGPS
         {
             if (this.Size.Width < 790)
             {
-                ShowSavedPanel(true);
+                this.Size = new System.Drawing.Size(800, 510);
+
+                lvLines.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                nudBasedOnPass.Visible = true;
+                nudTramRepeats.Visible = true;
+                btnListDelete.Visible = true;
+                btnListUse.Visible = true;
+                btnAddToFile.Visible = true;
+                btnShow.Text = "Hide";
+                btnShow.Image = Properties.Resources.ArrowRight;
             }
             else
             {
-                ShowSavedPanel(false);
+                this.Size = new System.Drawing.Size(304, 510);
+
+                lvLines.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                nudBasedOnPass.Visible = false;
+                nudTramRepeats.Visible = false;
+                btnListDelete.Visible = false;
+                btnListUse.Visible = false;
+                btnAddToFile.Visible = false;
+                btnShow.Text = "Show";
+                btnShow.Image = Properties.Resources.ArrowLeft;
             }
         }
 
@@ -427,45 +401,5 @@ namespace AgOpenGPS
             Close();
 
         }
-
-    private void ShowSavedPanel(bool showPanel)
-        {
-            if (showPanel)
-            {
-                this.Size = new System.Drawing.Size(800, 510);
-                lvLines.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                tboxABLineName.Visible = true;
-                nudBasedOnPass.Visible = true;
-                nudTramRepeats.Visible = true;
-                btnListDelete.Visible = true;
-                btnListUse.Visible = true;
-                btnAddToFile.Visible = true;
-                btnShow.Text = "Hide";
-                btnShow.Image = Properties.Resources.ArrowRight;
-
-            }
-            else   //hide the panel
-            {
-                this.Size = new System.Drawing.Size(304, 510);
-                lvLines.Visible = false;
-                label2.Visible = false;
-                label3.Visible = false;
-                label4.Visible = false;
-                tboxABLineName.Visible = false;
-                nudBasedOnPass.Visible = false;
-                nudTramRepeats.Visible = false;
-                btnListDelete.Visible = false;
-                btnListUse.Visible = false;
-                btnAddToFile.Visible = false;
-                btnShow.Text = "Show";
-                btnShow.Image = Properties.Resources.ArrowLeft;
-
-            }
-        }
-
     }
-
 }

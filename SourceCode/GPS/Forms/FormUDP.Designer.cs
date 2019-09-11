@@ -362,7 +362,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormUDP";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ethernet Configuration";
             this.Load += new System.EventHandler(this.FormUDp_Load);

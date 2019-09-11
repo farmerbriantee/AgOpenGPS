@@ -67,13 +67,8 @@ namespace AgOpenGPS
             mf.curve.isOkToAddPoints = true;
             btnBPoint.Enabled = true;
             btnAPoint.Enabled = false;
-            btnMulti.Enabled = false;
             btnABLineOk.Enabled = false;
-            btnCancel.Enabled = false;
             btnPausePlay.Enabled = true;
-
-            ShowSavedPanel(false);
-
         }
 
         private void btnBPoint_Click(object sender, System.EventArgs e)
@@ -84,10 +79,6 @@ namespace AgOpenGPS
             btnAPoint.Enabled = true;
             btnABLineOk.Enabled = true;
             btnPausePlay.Enabled = false;
-            btnMulti.Enabled = true;
-            btnABLineOk.Enabled = true;
-            btnCancel.Enabled = true;
-
 
             int cnt = mf.curve.refList.Count;
             if (cnt > 3)
@@ -299,7 +290,7 @@ namespace AgOpenGPS
 
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "Curve Line File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Curve Line File is Corrupt", "But Field is Loaded");
                         form.Show();
                         mf.WriteErrorLog("Load Curve Line" + er.ToString());
 
@@ -425,14 +416,14 @@ namespace AgOpenGPS
                         else
                         {
                             //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                            var form2 = new FormTimedMessage(2000, "No Name Entered", "Enter Unique ABCurve Name");
+                            var form2 = new FormTimedMessage(4000, "Currently no ABCurve name", "create ABCurve name");
                             form2.Show();
                         }
                         textBox1.Clear();
                     }
                     else
                     {
-                        var form2 = new FormTimedMessage(2000, "No ABCurve Created", "Complete an ABCurve Line First");
+                        var form2 = new FormTimedMessage(4000, "Currently no ABCurve line", "Start a ABCurve line First");
                         form2.Show();
                     }
                 }
@@ -509,18 +500,6 @@ namespace AgOpenGPS
         {
             if (this.Size.Width < 640)
             {
-                ShowSavedPanel(true);
-            }
-            else
-            {
-                ShowSavedPanel(false);
-            }
-        }
-
-        private void ShowSavedPanel(bool showPanel)
-        {
-            if (showPanel)
-            {
                 this.Size = new System.Drawing.Size(650, 440);
                 btnAddToFile.Visible = true;
                 btnListDelete.Visible = true;
@@ -544,7 +523,6 @@ namespace AgOpenGPS
                 btnMulti.Image = Properties.Resources.ArrowLeft;
             }
         }
-
 
         private void Timer1_Tick(object sender, EventArgs e)
         {

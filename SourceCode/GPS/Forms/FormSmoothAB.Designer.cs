@@ -139,7 +139,6 @@
             this.Controls.Add(this.btnSouth);
             this.Controls.Add(this.btnNorth);
             this.Name = "FormSmoothAB";
-            this.ShowInTaskbar = false;
             this.Text = "Smooth AB Curve";
             this.Load += new System.EventHandler(this.FormSmoothAB_Load);
             this.ResumeLayout(false);

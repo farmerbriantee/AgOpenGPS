@@ -702,7 +702,7 @@ namespace AgOpenGPS
                 {
                     WriteErrorLog("While Opening Field" + e.ToString());
 
-                    var form = new FormTimedMessage(2000, "Field File is Corrupt", "Choose a different field");
+                    var form = new FormTimedMessage(4000, "Field File is Corrupt", "Choose a different field");
                     form.Show();
                     JobClose();
                     return;
@@ -713,7 +713,7 @@ namespace AgOpenGPS
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(2000, "Missing Section File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Section File", "But Field is Loaded");
                 form.Show();
                 //return;
             }
@@ -767,7 +767,7 @@ namespace AgOpenGPS
                     {
                         WriteErrorLog("Loading Contour file" + e.ToString());
 
-                        var form = new FormTimedMessage(2000, "Contour File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
                         form.Show();
                     }
                 }
@@ -778,7 +778,7 @@ namespace AgOpenGPS
                     fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(2000, "Missing Contour File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
                 form.Show();
                 //return;
             }
@@ -819,7 +819,7 @@ namespace AgOpenGPS
                     {
                         WriteErrorLog("Loading Contour file" + e.ToString());
 
-                        var form = new FormTimedMessage(2000, "Contour File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
                         form.Show();
                     }
                 }
@@ -832,7 +832,7 @@ namespace AgOpenGPS
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Flags.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(2000, "Missing Flags File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Flags File", "But Field is Loaded");
                 form.Show();
             }
 
@@ -878,7 +878,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "Flag File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Flag File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("FieldOpen, Loading Flags, Corrupt Flag File" + e.ToString());
                     }
@@ -960,7 +960,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "AB Line File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "AB Line File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("Load AB Line" + e.ToString());
 
@@ -973,7 +973,7 @@ namespace AgOpenGPS
                 fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(2000, "Missing Boundary File", "But Field is Loaded without Boundary");
+                var form = new FormTimedMessage(4000, "Missing Boundary File", "But Field is Loaded without Boundary");
                 form.Show();
             }
             else
@@ -1041,7 +1041,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, " Boundary Line Files are Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, " Boundary Line Files are Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
                     }
@@ -1054,7 +1054,7 @@ namespace AgOpenGPS
             //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
             //if (!File.Exists(fileAndDirectory))
             //{
-            //    var form = new FormTimedMessage(2000, "Missing Headland File", "But Field is Loaded");
+            //    var form = new FormTimedMessage(4000, "Missing Headland File", "But Field is Loaded");
             //    form.Show();
             //}
 
@@ -1104,7 +1104,7 @@ namespace AgOpenGPS
 
             //        catch (Exception e)
             //        {
-            //            var form = new FormTimedMessage(2000, "Headland File is Corrupt", "But Field is Loaded");
+            //            var form = new FormTimedMessage(4000, "Headland File is Corrupt", "But Field is Loaded");
             //            form.Show();
             //            WriteErrorLog("Load Headland Loop" + e.ToString());
             //        }
@@ -1147,7 +1147,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "Recorded Path File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("Load Recorded Path" + e.ToString());
                     }
@@ -1160,7 +1160,7 @@ namespace AgOpenGPS
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\CurveLine.txt";
             if (!File.Exists(fileAndDirectory))
             {
-                var form = new FormTimedMessage(2000, "Missing Curve File", "But Field is Loaded");
+                var form = new FormTimedMessage(4000, "Missing Curve File", "But Field is Loaded");
                 form.Show();
             }
 
@@ -1202,7 +1202,7 @@ namespace AgOpenGPS
 
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "Curve Line File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(4000, "Curve Line File is Corrupt", "But Field is Loaded");
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
 
@@ -1251,7 +1251,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "QuickAB File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(4000, "QuickAB File is Corrupt", "Please delete it!!!");
                         form.Show();
                         WriteErrorLog("FieldOpen, Loading QuickAB, Corrupt QuickAB File" + er);
                     }

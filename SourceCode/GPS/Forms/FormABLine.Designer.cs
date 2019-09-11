@@ -55,8 +55,6 @@
             this.btnUpABHeadingBy1 = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnNewABLine = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tboxABLineName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudBasedOnPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).BeginInit();
             this.SuspendLayout();
@@ -202,7 +200,7 @@
             this.btnAddToFile.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddToFile.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnAddToFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddToFile.Location = new System.Drawing.Point(12, 17);
+            this.btnAddToFile.Location = new System.Drawing.Point(12, 136);
             this.btnAddToFile.Name = "btnAddToFile";
             this.btnAddToFile.Size = new System.Drawing.Size(95, 88);
             this.btnAddToFile.TabIndex = 82;
@@ -239,10 +237,10 @@
             this.lvLines.GridLines = true;
             this.lvLines.HideSelection = false;
             this.lvLines.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.lvLines.Location = new System.Drawing.Point(113, 122);
+            this.lvLines.Location = new System.Drawing.Point(115, 12);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(373, 264);
+            this.lvLines.Size = new System.Drawing.Size(373, 374);
             this.lvLines.TabIndex = 84;
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Details;
@@ -274,7 +272,7 @@
             this.btnListDelete.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
             this.btnListDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnListDelete.Location = new System.Drawing.Point(12, 156);
+            this.btnListDelete.Location = new System.Drawing.Point(12, 12);
             this.btnListDelete.Name = "btnListDelete";
             this.btnListDelete.Size = new System.Drawing.Size(95, 93);
             this.btnListDelete.TabIndex = 85;
@@ -383,26 +381,6 @@
             this.btnNewABLine.UseVisualStyleBackColor = false;
             this.btnNewABLine.Click += new System.EventHandler(this.BtnNewABLine_Click);
             // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(193, 24);
-            this.label4.Margin = new System.Windows.Forms.Padding(0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(246, 39);
-            this.label4.TabIndex = 151;
-            this.label4.Text = "Enter Name";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label4.Visible = false;
-            // 
-            // tboxABLineName
-            // 
-            this.tboxABLineName.Location = new System.Drawing.Point(198, 66);
-            this.tboxABLineName.Name = "tboxABLineName";
-            this.tboxABLineName.Size = new System.Drawing.Size(228, 30);
-            this.tboxABLineName.TabIndex = 152;
-            this.tboxABLineName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // FormABLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -410,8 +388,6 @@
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ClientSize = new System.Drawing.Size(784, 471);
             this.ControlBox = false;
-            this.Controls.Add(this.tboxABLineName);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnNewABLine);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.lblFixHeading);
@@ -441,7 +417,6 @@
             this.MinimizeBox = false;
             this.Name = "FormABLine";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AB Line";
             this.TopMost = true;
@@ -481,7 +456,5 @@
         private System.Windows.Forms.Button btnUpABHeadingBy1;
         private System.Windows.Forms.Button btnShow;
         private System.Windows.Forms.Button btnNewABLine;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tboxABLineName;
     }
 }

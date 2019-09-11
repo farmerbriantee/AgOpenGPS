@@ -91,7 +91,6 @@
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "FormShortcutKeys";
-            this.ShowInTaskbar = false;
             this.Text = "Shortcut Keys";
             this.Load += new System.EventHandler(this.FormShortcutKeys_Load);
             this.ResumeLayout(false);

@@ -83,8 +83,6 @@ namespace AgOpenGPS
         private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
         private int oneFifthSecondCounter = 0, oneFifthSecond = 0;
 
-        public int pbarSteer, pbarRelay, pbarUDP;
-
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto

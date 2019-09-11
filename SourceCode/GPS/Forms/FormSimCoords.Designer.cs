@@ -333,7 +333,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
             this.Name = "FormSimCoords";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enter Coordinates For Simulator";
             this.TopMost = true;

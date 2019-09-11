@@ -34,13 +34,10 @@ namespace AgOpenGPS
             }
 
             //make sure at least a blank AB Line file exists
-            //make sure at least a global blank AB Line file exists
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
-
+            string dirABLines = mf.ablinesDirectory;
+            string directoryName = Path.GetDirectoryName(dirABLines).ToString(CultureInfo.InvariantCulture);
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
             { Directory.CreateDirectory(directoryName); }
-
             filename = directoryName + "\\ABLines.txt";
             if (!File.Exists(filename))
             {
@@ -82,7 +79,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "ABLine File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(4000, "ABLine File is Corrupt", "Please delete it!!!");
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }
@@ -150,7 +147,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "QuickAB File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(4000, "QuickAB File is Corrupt", "Please delete it!!!");
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading QuickAB, Corrupt QuickAB File" + er);
                     }
