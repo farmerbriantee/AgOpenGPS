@@ -474,26 +474,9 @@ namespace AgOpenGPS
                                 distancePivotToTurnLine = glm.Distance(yt.ytList[0], steerAxlePos);
 
                                 //if we are close enough to pattern, trigger.
-                                if ((distancePivotToTurnLine <= 2.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                                if ((distancePivotToTurnLine <= 1.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
                                     yt.YouTurnTrigger();
                             }
-
-                            ////Turn is triggered - this is not run if shape is drawn
-                            //if (yt.isYouTurnTriggered && yt.isYouTurnBtnOn)
-                            //{
-                            //    //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
-                            //    //if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
-                            //    //{
-                            //    //    yt.ResetYouTurn();
-                            //    //}
-                            //    //else
-                            //    //{
-                            //    //    //keep from running this again since youturn is plotted now
-                            //    //    yt.isYouTurnTriggerPointSet = false;
-                            //    //    yt.isLastYouTurnRight = yt.isYouTurnRight;
-                            //    //    yt.isYouTurnInProgress = true;
-                            //    //}
-                            //}
                         }
                     } // end of isInWorkingArea
                 }

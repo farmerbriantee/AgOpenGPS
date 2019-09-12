@@ -347,7 +347,7 @@ namespace AgOpenGPS
                             //fix the points if there are gaps bigger then
                             mf.bnd.bndArr[i].CalculateBoundaryHeadings();
                             mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                            mf.bnd.bndArr[i].FixBoundaryLine(i);
+                            mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
 
                             //boundary area, pre calcs etc
                             mf.bnd.bndArr[i].CalculateBoundaryArea();
@@ -455,7 +455,7 @@ namespace AgOpenGPS
                                 //fix the points if there are gaps bigger then
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryHeadings();
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
+                                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.vehicle.toolWidth);
 
                                 //boundary area, pre calcs etc
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();

@@ -295,7 +295,7 @@ namespace AgOpenGPS
                     turnArr[0].turnLine.Add(tPnt);
                 }
             }
-            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth * 0.4);
+            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth * 0.25);
             turnArr[0].PreCalcTurnLines();
 
             //inside boundaries

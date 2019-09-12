@@ -85,17 +85,22 @@ namespace AgOpenGPS
             isDriveThru = false;
         }
 
-        public void FixBoundaryLine(int bndNum)
+        public void FixBoundaryLine(int bndNum, double spacing)
         {
             //count the points from the boundary
             int ptCount = bndLine.Count;
+
+            //boundary point spacing based on eq width
+            spacing *= 0.25;
+
+            if (spacing < 1) spacing = 1;
+            if (spacing > 3) spacing = 3;
 
             //first find out which side is inside the boundary
             double oneSide = glm.PIBy2;
             vec3 point = new vec3(bndLine[3].easting - (Math.Sin(oneSide + bndLine[3].heading) * 2.0),
             bndLine[3].northing - (Math.Cos(oneSide + bndLine[3].heading) * 2.0), 0.0);
 
-            double spacing = 4;
             //make sure boundaries are wound correctly
             if (bndNum == 0)
             {
@@ -106,7 +111,7 @@ namespace AgOpenGPS
             {
                 //inside an inner boundary means its wound clockwise
                 if (IsPointInsideBoundary(point)) ReverseWinding();
-                spacing = 3;
+                spacing *= 0.66;
             }
 
             //make sure distance isn't too small between points on headland
