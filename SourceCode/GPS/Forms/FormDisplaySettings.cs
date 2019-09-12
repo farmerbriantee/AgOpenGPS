@@ -8,13 +8,12 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private decimal triResolution, minFixStepDistance, boundaryDistance;
-        private int lightbarCmPerPixie, snapDistance, snapDistanceSmall;
-        private bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingPAOGI, isHeadingFromExtUDP;
-        private bool isRollFromAutoSteer, isRollFromBrick, isRollFromExtUDP, isRollFromGPS;
         private string headingFromWhichSource;
         private bool isAutoSteerAuto;
-
+        private bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingPAOGI, isHeadingFromExtUDP;
+        private bool isRollFromAutoSteer, isRollFromBrick, isRollFromExtUDP, isRollFromGPS;
+        private int lightbarCmPerPixie, snapDistance, snapDistanceSmall;
+        private decimal triResolution, minFixStepDistance, boundaryDistance;
         public FormDisplaySettings(Form callingForm)
         {
             mf = callingForm as FormGPS;
@@ -22,6 +21,71 @@ namespace AgOpenGPS
         }
 
         #region EntryExit
+
+        private void bntOK_Click(object sender, EventArgs e)
+        {
+            ////Display ---load the delay slides --------------------------------------------------------------------
+            if (headingFromWhichSource == "Fix") Properties.Settings.Default.setGPS_headingFromWhichSource = "Fix";
+            else if (headingFromWhichSource == "GPS") Properties.Settings.Default.setGPS_headingFromWhichSource = "GPS";
+            else if (headingFromWhichSource == "HDT") Properties.Settings.Default.setGPS_headingFromWhichSource = "HDT";
+            mf.headingFromSource = headingFromWhichSource;
+
+            mf.boundaryTriggerDistance = (double)boundaryDistance;
+            Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
+
+            mf.triangleResolution = (double)triResolution;
+            Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
+
+            mf.minFixStepDist = (double)minFixStepDistance;
+            Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
+
+            Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
+
+            Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = isHeadingFromAutoSteer;
+            mf.ahrs.isHeadingFromAutoSteer = isHeadingFromAutoSteer;
+
+            Properties.Settings.Default.setIMU_isHeadingFromBrick = isHeadingFromBrick;
+            mf.ahrs.isHeadingFromBrick = isHeadingFromBrick;
+
+            Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
+            mf.ahrs.isHeadingFromPAOGI = isHeadingPAOGI;
+
+            Properties.Settings.Default.setIMU_isHeadingFromExtUDP = isHeadingFromExtUDP;
+            mf.ahrs.isHeadingFromExtUDP = isHeadingFromExtUDP;
+
+            Properties.Settings.Default.setIMU_isRollFromAutoSteer = isRollFromAutoSteer;
+            mf.ahrs.isRollFromAutoSteer = isRollFromAutoSteer;
+
+            Properties.Settings.Default.setIMU_isRollFromBrick = isRollFromBrick;
+            mf.ahrs.isRollFromBrick = isRollFromBrick;
+
+            Properties.Settings.Default.setIMU_isRollFromGPS = isRollFromGPS;
+            mf.ahrs.isRollFromGPS = isRollFromGPS;
+
+            Properties.Settings.Default.setIMU_isRollFromExtUDP = isRollFromExtUDP;
+            mf.ahrs.isRollFromExtUDP = isRollFromExtUDP;
+
+            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
+            mf.lightbarCmPerPixel = lightbarCmPerPixie;
+
+            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
+            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
+
+            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
+            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
+
+            Properties.Settings.Default.Save();
+            Properties.Vehicle.Default.Save();
+
+            //back to FormGPS
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            { DialogResult = DialogResult.Cancel; Close(); }
+        }
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
@@ -36,7 +100,6 @@ namespace AgOpenGPS
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
-
 
             nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
             nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
@@ -79,93 +142,18 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = "Manual";
             }
 
-
             headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
         }
-
-        private void bntOK_Click(object sender, EventArgs e)
-        {
-            ////Display ---load the delay slides --------------------------------------------------------------------
-            if (headingFromWhichSource == "Fix") Properties.Settings.Default.setGPS_headingFromWhichSource = "Fix";
-            else if (headingFromWhichSource == "GPS") Properties.Settings.Default.setGPS_headingFromWhichSource = "GPS";
-            else if (headingFromWhichSource == "HDT") Properties.Settings.Default.setGPS_headingFromWhichSource = "HDT";
-            mf.headingFromSource = headingFromWhichSource;
-
-            mf.boundaryTriggerDistance = (double)boundaryDistance;
-            Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
-
-            mf.triangleResolution = (double)triResolution;
-            Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
-
-            mf.minFixStepDist = (double)minFixStepDistance;
-            Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
-
-            Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
-            
-
-            Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = isHeadingFromAutoSteer;
-            mf.ahrs.isHeadingFromAutoSteer = isHeadingFromAutoSteer;
-
-            Properties.Settings.Default.setIMU_isHeadingFromBrick = isHeadingFromBrick;
-            mf.ahrs.isHeadingFromBrick = isHeadingFromBrick;
-
-            Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
-            mf.ahrs.isHeadingFromPAOGI = isHeadingPAOGI;
-
-            Properties.Settings.Default.setIMU_isHeadingFromExtUDP = isHeadingFromExtUDP;
-            mf.ahrs.isHeadingFromExtUDP = isHeadingFromExtUDP;
-
-
-            Properties.Settings.Default.setIMU_isRollFromAutoSteer = isRollFromAutoSteer;
-            mf.ahrs.isRollFromAutoSteer = isRollFromAutoSteer;
-
-            Properties.Settings.Default.setIMU_isRollFromBrick = isRollFromBrick;
-            mf.ahrs.isRollFromBrick = isRollFromBrick;
-
-            Properties.Settings.Default.setIMU_isRollFromGPS = isRollFromGPS;
-            mf.ahrs.isRollFromGPS = isRollFromGPS;
-
-            Properties.Settings.Default.setIMU_isRollFromExtUDP = isRollFromExtUDP;
-            mf.ahrs.isRollFromExtUDP = isRollFromExtUDP;
-
-
-            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
-            mf.lightbarCmPerPixel = lightbarCmPerPixie;
-
-            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
-            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
-
-            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
-            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
-
-            Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
-
-            //back to FormGPS
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            { DialogResult = DialogResult.Cancel; Close(); }
-        }
-
         #endregion EntryExit
 
         #region DisplayCalcs
 
-        private void nudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
+        private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
         {
-            minFixStepDistance = nudMinFixStepDistance.Value;
-        }
-
-        private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
-        {
-            triResolution = nudTriangleResolution.Value;
+            boundaryDistance = nudBoundaryDistance.Value;
         }
 
         private void nudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
@@ -173,7 +161,12 @@ namespace AgOpenGPS
             lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
         }
 
-         private void nudSnapDistance_ValueChanged(object sender, EventArgs e)
+        private void nudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
+        {
+            minFixStepDistance = nudMinFixStepDistance.Value;
+        }
+
+        private void nudSnapDistance_ValueChanged(object sender, EventArgs e)
         {
             if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
 
@@ -186,45 +179,40 @@ namespace AgOpenGPS
             snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
         }
 
-        private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
+        private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
         {
-            boundaryDistance = nudBoundaryDistance.Value;
+            triResolution = nudTriangleResolution.Value;
         }
-
         #endregion DisplayCalcs
 
-        private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
+        private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
         {
-            var checkedButton = headingGroupBox.Controls.OfType<RadioButton>()
-                          .FirstOrDefault(r => r.Checked);
-            headingFromWhichSource = checkedButton.Text;
+            mf.ahrs.rollZeroX16 = 0;
+            lblRollZeroOffset.Text = "0.00";
+            Properties.Settings.Default.setIMU_rollZeroX16 = 0;
+            Properties.Settings.Default.Save();
         }
 
-        private void CboxRollExtUDP_CheckedChanged(object sender, EventArgs e)
+        private void btnRemoveZeroOffsetPitch_Click(object sender, EventArgs e)
         {
-            isRollFromExtUDP = cboxRollExtUDP.Checked;
-            if (isRollFromExtUDP)
+        }
+
+        private void btnZeroPitch_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnZeroRoll_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.rollX16 == 9999)
             {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
+                lblRollZeroOffset.Text = "***";
             }
-        }
-
-        private void cboxRollAutoSteer_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromAutoSteer = cboxRollAutoSteer.Checked;
-            if (isRollFromAutoSteer)
+            else
             {
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
+                mf.ahrs.rollZeroX16 = mf.ahrs.rollX16;
+                lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");
+                Properties.Settings.Default.setIMU_rollZeroX16 = mf.ahrs.rollX16;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -238,38 +226,8 @@ namespace AgOpenGPS
             }
             else
             {
-            cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
                 cboxAutoSteerAuto.Text = "Manual";
-            }
-
-        }
-
-        private void CboxRollBrick_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromBrick = cboxRollFromBrick.Checked;
-            if (isRollFromBrick)
-            {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
-            }
-        }
-
-
-        private void cboxRollFromGPS_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromGPS = cboxRollFromGPS.Checked;
-            if (isRollFromGPS)
-            {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
             }
         }
 
@@ -300,6 +258,7 @@ namespace AgOpenGPS
                 isHeadingFromExtUDP = false;
             }
         }
+
         private void CboxHeadingExtUDP_CheckedChanged(object sender, EventArgs e)
         {
             isHeadingFromExtUDP = cboxHeadingExtUDP.Checked;
@@ -311,7 +270,6 @@ namespace AgOpenGPS
                 isHeadingPAOGI = false;
                 cboxHeadingBrick.Checked = false;
                 isHeadingFromBrick = false;
-
             }
         }
 
@@ -329,35 +287,67 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
+        private void cboxRollAutoSteer_CheckedChanged(object sender, EventArgs e)
         {
-            mf.ahrs.rollZeroX16 = 0;
-            lblRollZeroOffset.Text = "0.00";
-            Properties.Settings.Default.setIMU_rollZeroX16 = 0;
-            Properties.Settings.Default.Save();
-        }
-
-        private void btnZeroRoll_Click(object sender, EventArgs e)
-        {
-            if (mf.ahrs.rollX16 == 9999)
+            isRollFromAutoSteer = cboxRollAutoSteer.Checked;
+            if (isRollFromAutoSteer)
             {
-                lblRollZeroOffset.Text = "***";
-            }
-            else
-            {
-                mf.ahrs.rollZeroX16 = mf.ahrs.rollX16;
-                lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");
-                Properties.Settings.Default.setIMU_rollZeroX16 = mf.ahrs.rollX16;
-                Properties.Settings.Default.Save();
+                cboxRollFromBrick.Checked = false;
+                isRollFromBrick = false;
+                cboxRollFromGPS.Checked = false;
+                isRollFromGPS = false;
+                cboxRollExtUDP.Checked = false;
+                isRollFromExtUDP = false;
             }
         }
 
-        private void btnRemoveZeroOffsetPitch_Click(object sender, EventArgs e)
+        private void CboxRollBrick_CheckedChanged(object sender, EventArgs e)
         {
+            isRollFromBrick = cboxRollFromBrick.Checked;
+            if (isRollFromBrick)
+            {
+                cboxRollAutoSteer.Checked = false;
+                isRollFromAutoSteer = false;
+                cboxRollFromGPS.Checked = false;
+                isRollFromGPS = false;
+                cboxRollExtUDP.Checked = false;
+                isRollFromExtUDP = false;
+            }
         }
 
-        private void btnZeroPitch_Click(object sender, EventArgs e)
+        private void CboxRollExtUDP_CheckedChanged(object sender, EventArgs e)
         {
+            isRollFromExtUDP = cboxRollExtUDP.Checked;
+            if (isRollFromExtUDP)
+            {
+                cboxRollAutoSteer.Checked = false;
+                isRollFromAutoSteer = false;
+                cboxRollFromBrick.Checked = false;
+                isRollFromBrick = false;
+                cboxRollFromGPS.Checked = false;
+                isRollFromGPS = false;
+            }
+        }
+
+        private void cboxRollFromGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            isRollFromGPS = cboxRollFromGPS.Checked;
+            if (isRollFromGPS)
+            {
+                cboxRollAutoSteer.Checked = false;
+                isRollFromAutoSteer = false;
+                cboxRollFromBrick.Checked = false;
+                isRollFromBrick = false;
+                cboxRollExtUDP.Checked = false;
+                isRollFromExtUDP = false;
+            }
+        }
+
+        private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkedButton = headingGroupBox.Controls.OfType<RadioButton>()
+                          .FirstOrDefault(r => r.Checked);
+            headingFromWhichSource = checkedButton.Text;
         }
     }
 }

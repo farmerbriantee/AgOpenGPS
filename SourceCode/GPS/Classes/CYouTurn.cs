@@ -141,8 +141,8 @@ namespace AgOpenGPS
                     }
                 }
 
-                //escape for multiple for's
-                CrossingFound:;
+            //escape for multiple for's
+            CrossingFound:;
             }
             else //counting down, going opposite way mf.curve was created.
             {
@@ -178,8 +178,8 @@ namespace AgOpenGPS
                     }
                 }
 
-                //escape for multiple for's, point and turnLine index are found
-                CrossingFound:;
+            //escape for multiple for's, point and turnLine index are found
+            CrossingFound:;
             }
 
             int turnNum = crossingTurnLinePoint.index;
@@ -1793,8 +1793,6 @@ namespace AgOpenGPS
 
                     mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
                     mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
-
-
                 }
             }
             else

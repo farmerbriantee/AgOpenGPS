@@ -3,8 +3,16 @@
 	changed by SerialData Delegate. 
 * Sim and GPS Port made much more difficult to change To Sim. 
 * Check for newline before parsing an obvious no sentence anyway
-* fix module initialization, missed from gps initialize
+* Fix module initialization, missed from gps initialize
 * Remove Languages and change all resources to Resource.resx
+* Multi Curve added - Code by Daniel P. 
+* Multi AB Line now is per field.
+* Guidance methods easily jumped between. Collapsible save forms/set forms.
+* Rate, Switching, VR etc all removed. 
+* Add direct field load with listview
+* Add steer angle graphic to steer settings
+* Generate AB from A point and current heading
+* UDP sends relay pgn.
 
 v3.0 June/July 2019
 * Added tree planting

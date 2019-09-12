@@ -70,7 +70,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label4.Location = new System.Drawing.Point(14, 153);
+            this.label4.Location = new System.Drawing.Point(14, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(203, 18);
             this.label4.TabIndex = 18;
@@ -80,7 +80,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label3.Location = new System.Drawing.Point(12, 297);
+            this.label3.Location = new System.Drawing.Point(12, 357);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 18);
             this.label3.TabIndex = 15;
@@ -110,7 +110,7 @@
             // linkLabelCombineForum
             // 
             this.linkLabelCombineForum.AutoSize = true;
-            this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 319);
+            this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 379);
             this.linkLabelCombineForum.Name = "linkLabelCombineForum";
             this.linkLabelCombineForum.Size = new System.Drawing.Size(404, 13);
             this.linkLabelCombineForum.TabIndex = 12;
@@ -162,9 +162,10 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(12, 117);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(316, 39);
+            this.label12.Size = new System.Drawing.Size(378, 39);
             this.label12.TabIndex = 29;
             this.label12.Text = "Any use of AgOpenGPS on real physical equipment is not allowed\r\nand is not recomm" +
     "ended in any way, neither off road or on road. \r\n\r\n";
@@ -198,7 +199,8 @@
             this.label11.Size = new System.Drawing.Size(207, 126);
             this.label11.TabIndex = 32;
             this.label11.Text = "Andreas Ortner, Austria\r\nWilhelm Eder, Germany\r\nMTZ8302, Germany\r\nKevin Bouwman, " +
-    "USA\r\nPetar Starcev Serbia, Novi Sad\r\nRay Bear - AutoAuto\r\n\r\n";
+    "USA\r\nPetar Starcev Serbia, Novi Sad\r\nRay Bear - AutoAuto\r\nDaniel P - Multi Curve" +
+    "";
             // 
             // label14
             // 
@@ -224,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 351);
+            this.ClientSize = new System.Drawing.Size(748, 403);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);

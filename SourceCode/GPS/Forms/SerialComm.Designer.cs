@@ -102,7 +102,7 @@ namespace AgOpenGPS
                 SendUDPMessage(mc.autoSteerData);
 
                 //rate control
-                //SendUDPMessage(mc.relayData);
+                SendUDPMessage(mc.relayData);
             }
 
             //Tell Arduino the steering parameter values
@@ -140,7 +140,7 @@ namespace AgOpenGPS
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
 
-        private double actualSteerAngleDisp = 0;
+        public double actualSteerAngleDisp = 0;
 
         private void SerialLineReceivedAutoSteer(string sentence)
         {

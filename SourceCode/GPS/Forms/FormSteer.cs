@@ -218,7 +218,6 @@ namespace AgOpenGPS
 
         //FREE DRIVE SECTION
 
-
         private void hSBarFreeDrive_ValueChanged(object sender, EventArgs e)
         {
             mf.ast.driveFreeSteerAngle = (Int16)hSBarFreeDrive.Value;
@@ -274,11 +273,6 @@ namespace AgOpenGPS
             mf.toolStripAutoSteerChart.PerformClick();
         }
 
-        private void BtnStanleyPP_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnStanley_Click(object sender, EventArgs e)
         {
             mf.isStanleyUsed = !mf.isStanleyUsed;
@@ -286,7 +280,27 @@ namespace AgOpenGPS
             else btnStanley.Text = "Pure P";
             Properties.Vehicle.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
             Properties.Vehicle.Default.Save();
+        }
 
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            lblSteerAngle.Text = (mf.actualSteerAngleDisp*0.01).ToString("N2");
+
+            if (Math.Abs(mf.actualSteerAngleDisp) > 4600) mf.actualSteerAngleDisp = 0;
+            double angleSteer = mf.actualSteerAngleDisp * 0.01;
+
+
+
+            if (mf.actualSteerAngleDisp < 0)
+            {
+                pbarSteerLeft.Value = (int)(-angleSteer*2);
+                pbarSteerRight.Value = 0;
+            }
+            else
+            {
+                pbarSteerRight.Value = (int)angleSteer*2;
+                pbarSteerLeft.Value = 0;
+            }
         }
     }
 }

@@ -250,7 +250,7 @@
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
             this.btnListDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListDelete.Location = new System.Drawing.Point(9, 137);
+            this.btnListDelete.Location = new System.Drawing.Point(9, 144);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
             this.btnListDelete.Size = new System.Drawing.Size(90, 90);
@@ -307,7 +307,7 @@
             this.MinimizeBox = false;
             this.Name = "FormABCurve";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AB Curve";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormABCurve_Load);

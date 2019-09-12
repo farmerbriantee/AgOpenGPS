@@ -43,12 +43,12 @@ namespace AgOpenGPS
         private void btnGetFieldFix_Click(object sender, EventArgs e)
         {
             nudLatitude.Value = (decimal)mf.pn.latStart;
-            nudLongitude.Value =(decimal)mf.pn.lonStart;
+            nudLongitude.Value = (decimal)mf.pn.lonStart;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            nudLatitude.Value =  (decimal)mf.pn.latitude;
+            nudLatitude.Value = (decimal)mf.pn.latitude;
             nudLongitude.Value = (decimal)mf.pn.longitude;
         }
 

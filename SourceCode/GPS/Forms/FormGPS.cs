@@ -758,7 +758,6 @@ namespace AgOpenGPS
                 btnRecordElevation.Image = Properties.Resources.boundaryStop;
                 btnRecordElevation.Text = "Stop Record";
             }
-
         }
 
         private void BtnElevationMap_Click(object sender, EventArgs e)
@@ -778,7 +777,6 @@ namespace AgOpenGPS
                 }
             }
             else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
-
         }
 
         private void NudElevation_ValueChanged(object sender, EventArgs e)
@@ -786,10 +784,6 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
-        private void ToolStripDropDownButton2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //show the communications window
         private void SettingsCommunications()
@@ -1025,7 +1019,6 @@ namespace AgOpenGPS
             btnSection11Man.BackColor = Color.Silver;
             btnSection12Man.BackColor = Color.Silver;
 
-
             //clear the section lists
             for (int j = 0; j < MAXSECTIONS; j++)
             {
@@ -1050,7 +1043,7 @@ namespace AgOpenGPS
             curve.isCurveBtnOn = false;
             curve.isCurveSet = false;
             curve.ResetCurveLine();
-            
+
             //clear out contour and Lists
             btnContour.Enabled = false;
             btnContourPriority.Enabled = false;

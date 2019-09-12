@@ -5,10 +5,15 @@ namespace AgOpenGPS
     public class CWorkSwitch
     {
         private readonly FormGPS mf;
-        public CWorkSwitch(FormGPS _f) { mf = _f; }
+
+        public CWorkSwitch(FormGPS _f)
+        {
+            mf = _f;
+        }
 
         //Stored copies of workswitch variables, used for comparisons
         private bool workSwitchActiveLow;
+
         private bool workSwitchManual;
         private int workSwitchValue;
 
@@ -17,6 +22,7 @@ namespace AgOpenGPS
 
         //Stored copies of on-screen button states (and the state required by the workswitch), used for comparisons
         private FormGPS.btnStates autoButtonState, manualButtonState, requiredButtonState;
+
         private readonly FormGPS.btnStates offButtonState = FormGPS.btnStates.Off;
 
         //Defined in "Configure" based on the variables of the workswitch
@@ -77,7 +83,8 @@ namespace AgOpenGPS
         }
 
         private void CheckManualButtonAndClickOn()
-        { if (manualButtonState != requiredButtonState)
+        {
+            if (manualButtonState != requiredButtonState)
             {
                 mf.btnManualOffOn.PerformClick();
             }

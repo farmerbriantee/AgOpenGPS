@@ -280,9 +280,9 @@ namespace AgOpenGPS
 
 
 
-                if (guidanceLineDistanceOff == 32020 || guidanceLineDistanceOff == 32000 || !isLightbarOn)
-                { }
-                else
+                if (isLightbarOn)
+                //{ }
+                //else
                 {
                     double set = guidanceLineSteerAngle * 0.01 * (100/vehicle.maxSteerAngle);
                     double actual = actualSteerAngleDisp * 0.01 * (100 / vehicle.maxSteerAngle);
@@ -308,14 +308,14 @@ namespace AgOpenGPS
 
                     GL.Translate(0, 10, 0);
 
-                    if (!simulatorOnToolStripMenuItem.Checked)
+                    //if (!simulatorOnToolStripMenuItem.Checked)
                     {
                         if (actualSteerAngleDisp > 0)
                         {
                             GL.LineWidth(3);
                             GL.Begin(PrimitiveType.LineStrip);
 
-                            GL.Color3(0.75930f, 0.75930f, 0.0f);
+                            GL.Color3(0.0f, 0.75930f, 0.0f);
                             GL.Vertex2(0, hiit);
                             GL.Vertex2(actual, hiit + 15);
                             GL.Vertex2(0, hiit + 30);
@@ -329,7 +329,7 @@ namespace AgOpenGPS
                             GL.LineWidth(3);
                             GL.Begin(PrimitiveType.LineStrip);
 
-                            GL.Color3(0.75930f, 0.75930f, 0.0f);
+                            GL.Color3(0.75930f, 0.0f, 0.0f);
                             GL.Vertex2(-0, hiit);
                             GL.Vertex2(actual, hiit + 15);
                             GL.Vertex2(-0, hiit + 30);
@@ -344,7 +344,7 @@ namespace AgOpenGPS
                         GL.LineWidth(3);
                         GL.Begin(PrimitiveType.LineStrip);
 
-                        GL.Color3(0.0f, 0.930f, 0.0f);
+                        GL.Color3(0.75930f, 0.75930f, 0.0f);
                         GL.Vertex2(0, hiit);
                         GL.Vertex2(set, hiit + 15);
                         GL.Vertex2(0, hiit + 30);
@@ -357,7 +357,7 @@ namespace AgOpenGPS
                         GL.LineWidth(3);
                         GL.Begin(PrimitiveType.LineStrip);
 
-                        GL.Color3(0.930f, 0.50f, 0.930f);
+                        GL.Color3(0.75930f, 0.75930f, 0.0f);
                         GL.Vertex2(-0, hiit);
                         GL.Vertex2(set, hiit + 15);
                         GL.Vertex2(-0, hiit + 30);

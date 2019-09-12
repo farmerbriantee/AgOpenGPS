@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -19,21 +20,35 @@ namespace AgOpenGPS
 
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
-            mf.FileOpenField("Open");
 
-            //determine if field was actually opened
-            if (mf.isJobStarted)
+            timer1.Enabled = true;
+
+            string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
+
+            ListViewItem itm;
+
+            foreach (string dir in dirs)
             {
-                //back to FormGPS
-                DialogResult = DialogResult.OK;
-                Close();
+                // fieldName = Path.GetDirectoryName(dir).ToString(CultureInfo.InvariantCulture);
+                string fieldName = Path.GetFileName(dir);
+                itm = new ListViewItem(fieldName);
+                lvLines.Items.Add(itm);
+            }
+
+            if (lvLines.Items.Count > 0)
+            {
+                //ImageList imgList = new ImageList();
+                //imgList.ImageSize = new System.Drawing.Size(1, 60);
+                //lvLines.SmallImageList = imgList;
+
+                ShowSavedPanel(true);
+                lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
             }
             else
             {
-                //back to FormGPS
-                DialogResult = DialogResult.Cancel;
-                mf.JobClose();
-                Close();
+                var form2 = new FormTimedMessage(2000, "No Fields Created", "Create a New Field First");
+                form2.Show();
+                ShowSavedPanel(false);
             }
         }
 
@@ -64,7 +79,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(fileAndDirectory))
             {
-                lblResumeDirectory.Text = "";
+                textBox1.Text = "";
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
                 Properties.Settings.Default.setF_CurrentDir = "";
@@ -72,8 +87,63 @@ namespace AgOpenGPS
             }
             else
             {
-                lblResumeDirectory.Text = mf.currentFieldDirectory;
+                textBox1.Text = mf.currentFieldDirectory;
             }
+
+            ShowSavedPanel(false);
+
+        }
+
+        private void ShowSavedPanel(bool showPanel)
+        {
+            if (showPanel)
+            {
+                this.Size = new System.Drawing.Size(915, 640);
+                lvLines.Visible = true;
+                lblChoose.Visible = true;
+
+                btnJobNew.Visible = false;
+                btnJobOpen.Visible = false;
+                btnJobResume.Visible = false;
+                label1.Visible = false;
+                textBox1.Visible = false;
+            }
+            else
+            {
+                this.Size = new System.Drawing.Size(420, 640);
+                lvLines.Visible = false;
+                lblChoose.Visible = false;
+
+                btnJobNew.Visible = true;
+                btnJobOpen.Visible = true;
+                btnJobResume.Visible = true;
+                label1.Visible = true;
+                textBox1.Visible = true;
+            }
+        }
+
+        private void BtnOpenExistingLv_Click(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                mf.FileOpenField(mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text+"\\Field.txt");
+                Close();
+            }
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                btnOpenExistingLv.Enabled = true;
+            }
+            else
+            {
+                btnOpenExistingLv.Enabled = false;
+            }
+
         }
     }
 }

@@ -632,3 +632,15 @@ Opening Relay PortSystem.IO.IOException: The port 'COM3' does not exist.
    at System.IO.Ports.SerialPort.Open()
    at AgOpenGPS.FormGPS.SerialPortRelayOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 372 - 9/3/2019 3:24:28 PM
 
+Opening Steer PortSystem.IO.IOException: The port 'COM3' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 209 - 9/10/2019 11:34:47 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM3' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 209 - 9/11/2019 9:03:40 PM
+

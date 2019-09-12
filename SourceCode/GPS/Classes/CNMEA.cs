@@ -131,6 +131,7 @@ Field	Meaning
     {
         //WGS84 Lat Long
         public double latitude, longitude;
+
         public double latStart, lonStart;
 
         public double actualEasting, actualNorthing;
@@ -290,7 +291,6 @@ Field	Meaning
                 //10 PDOP
                 //11 Number of satellites used in solution
                 //12 The checksum data, always begins with *
-
 
                 if (words[8] == "Roll")
                     double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);

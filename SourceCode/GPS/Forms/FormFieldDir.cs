@@ -218,8 +218,6 @@ namespace AgOpenGPS
 
                         line = reader.ReadLine();
                         startFix = reader.ReadLine();
-
-
                     }
                     catch (Exception ex)
                     {

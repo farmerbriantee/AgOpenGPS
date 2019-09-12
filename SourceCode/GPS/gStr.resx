@@ -143,9 +143,11 @@
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
     <value>ABCurve Not Enabled</value>
+    <comment>x</comment>
   </data>
   <data name="gsCurveTurnOn" xml:space="preserve">
     <value>Turn ABCurve On</value>
+    <comment>x</comment>
   </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Drawing Has Begun</value>

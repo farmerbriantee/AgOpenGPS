@@ -3,7 +3,6 @@
 
 using System;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgOpenGPS
 {
@@ -52,7 +51,6 @@ namespace AgOpenGPS
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
-
         }
     }
 }

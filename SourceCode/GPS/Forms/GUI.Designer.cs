@@ -163,7 +163,8 @@ namespace AgOpenGPS
                 btnZoomOut.Left = 245;
                 btnZoomExtents.Left = 245;
                 cboxpRowWidth.Left = 245;
-                txtDistanceOffABLine.Left = (Width - 245-100)/2 + 185;
+                txtDistanceOffABLine.Left = (Width - 245 - 100) / 2 + 185;
+                btnSwapDirection.Left = (Width - 245 - 100) / 2 + 190;
                 panelBatman.Visible = true;
                 tabControl1.Visible = false;
                 Properties.Settings.Default.setDisplay_isLargePanel = false;
@@ -183,6 +184,7 @@ namespace AgOpenGPS
                 btnZoomExtents.Left = 345;
                 cboxpRowWidth.Left = 345;
                 txtDistanceOffABLine.Left = (Width - 345 - 100)/2 + 287;
+                btnSwapDirection.Left = (Width - 345 - 100) / 2 + 292;
                 txtDistanceOffABLine.Top = -1;
                 tabControl1.SelectedIndex = 2;
                 panelBatman.Visible = false;
@@ -201,11 +203,13 @@ namespace AgOpenGPS
             {
                 btnRightYouTurn.Left = (Width - 440) / 2 + 475;
                 btnLeftYouTurn.Left = (Width - 440) / 2 + 115;
+                btnSwapDirection.Left = (Width - 440) / 2 + 292;
             }
             else
             {
                 btnRightYouTurn.Left = (Width-340) / 2 + 362;
                 btnLeftYouTurn.Left = (Width-340) / 2 + 10;
+                btnSwapDirection.Left = (Width - 340) / 2 + 190;
             }
 
             int top = 0;
@@ -783,15 +787,6 @@ namespace AgOpenGPS
         }
 
         // Buttons //-----------------------------------------------------------------------
-        private void btnMakeContourFromBoundary_Click(object sender, EventArgs e)
-        {
-            //build all the contour guidance lines from boundaries, all of them. 
-            ct.BuildBoundaryContours();
-        }
-
-        private void btnStanley_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
         {
@@ -1228,6 +1223,22 @@ namespace AgOpenGPS
                     form.Show();
                 }
             }
+        }
+
+        private void BtnTinyAutoSteerConfig_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteer"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            //
+            Form form = new FormSteer(this);
+            form.Show();
         }
 
         //Snaps
@@ -1964,6 +1975,7 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = true;
             btnRightYouTurn.Visible = true;
             btnLeftYouTurn.Visible = true;
+            btnSwapDirection.Visible = true;
 
             //auto YouTurn disabled
             yt.isYouTurnBtnOn = false;
@@ -1979,6 +1991,7 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
+            btnSwapDirection.Visible = false;
 
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
@@ -2659,7 +2672,11 @@ namespace AgOpenGPS
         private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
         {
             //build all the contour guidance lines from boundaries, all of them. 
-            ct.BuildBoundaryContours();
+            using (var form = new FormMakeBndCon(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
         }
         private void toolStripBtnSnap_Click(object sender, EventArgs e)
         {
@@ -3177,11 +3194,11 @@ namespace AgOpenGPS
                         //Low means steer switch on
                         if (mc.steerSwitchValue == 0)
                         {
-                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.LightBlue;
+                            this.btnTinyAutoSteerConfig.BackColor = System.Drawing.Color.LightBlue;
                         }
                         else
                         {
-                            this.pboxSteerSwitch.BackColor = System.Drawing.Color.Transparent;
+                            this.btnTinyAutoSteerConfig.BackColor = System.Drawing.Color.Transparent;
                         }
 
                         //up in the menu a few pieces of info

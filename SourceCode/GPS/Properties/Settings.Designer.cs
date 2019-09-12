@@ -986,18 +986,6 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setDisplay_isLargePanel {
-            get {
-                return ((bool)(this["setDisplay_isLargePanel"]));
-            }
-            set {
-                this["setDisplay_isLargePanel"] = value;
-	    }
-	}
-
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setF_IsWorkSwitchManual {
             get {
                 return ((bool)(this["setF_IsWorkSwitchManual"]));
@@ -1076,6 +1064,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setRate_rateLeft"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDisplay_isLargePanel {
+            get {
+                return ((bool)(this["setDisplay_isLargePanel"]));
+            }
+            set {
+                this["setDisplay_isLargePanel"] = value;
             }
         }
     }

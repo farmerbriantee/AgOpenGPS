@@ -130,17 +130,37 @@ namespace AgOpenGPS
         }
 
         //build contours for boundaries
-        public void BuildBoundaryContours()
+        public void BuildBoundaryContours(int pass, int spacingInt)
         {
+
             if (!mf.bnd.bndArr[0].isSet)
             {
                 mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
                 return;
             }
 
+            //convert to meters
+            double spacing = spacingInt;
+            spacing *= 0.01;
+
             vec3 point = new vec3();
-            //determine how wide a headland space
-            double totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5) - 0.2;
+            double totalHeadWidth = 0;
+            int signPass = -1;
+
+            if (pass == 1)
+            {
+                signPass = -1;
+                //determine how wide a headland space
+                totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5) - spacing;
+            }
+
+            else
+            {
+                signPass = 1;
+                totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * pass) + spacing +
+                    ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5);
+            }
+
 
             //outside boundary
 
@@ -153,8 +173,8 @@ namespace AgOpenGPS
             for (int i = ptCount - 1; i >= 0; i--)
             {
                 //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
                 point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
                 if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
                 ptList.Add(point);
@@ -175,8 +195,8 @@ namespace AgOpenGPS
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point inside the boundary
-                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
                     point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
@@ -616,7 +636,7 @@ namespace AgOpenGPS
             for (int i = 1; i < cnt; i++)
             {
                 vec3 pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i-1].easting, arr[i + 1].northing - arr[i-1].northing);
+                pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                 if (pt3.heading < 0) pt3.heading += glm.twoPI;
                 ctList.Add(pt3);
             }
@@ -686,7 +706,6 @@ namespace AgOpenGPS
 
                     isABSameAsVehicleHeading = abFixHeadingDelta < glm.PIBy2;
 
-
                     // calc point on ABLine closest to current position
                     double U = (((steer.easting - ctList[A].easting) * dx) + ((steer.northing - ctList[A].northing) * dy))
                                 / ((dx * dx) + (dy * dy));
@@ -694,7 +713,7 @@ namespace AgOpenGPS
                     rEastCT = ctList[A].easting + (U * dx);
                     rNorthCT = ctList[A].northing + (U * dy);
 
-                    ////find closest point to goal to get heading. 
+                    ////find closest point to goal to get heading.
                     //minDistA = 99999;
                     //for (int t = 0; t < ptCount; t++)
                     //{

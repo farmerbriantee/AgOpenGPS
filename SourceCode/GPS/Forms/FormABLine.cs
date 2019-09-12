@@ -38,7 +38,7 @@ namespace AgOpenGPS
             btnListDelete.Visible = false;
             btnListUse.Visible = false;
             btnAddToFile.Visible = false;
-            btnShow.Text = "Show";
+            btnShow.Text = "Save";
             btnShow.Image = Properties.Resources.ArrowLeft;
 
 
@@ -161,6 +161,7 @@ namespace AgOpenGPS
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             mf.ABLine.refPoint1.easting = mf.pivotAxlePos.easting;
             mf.ABLine.refPoint1.northing = mf.pivotAxlePos.northing;
+            mf.ABLine.abHeading = mf.pivotAxlePos.heading;
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
             btnAPoint.Enabled = false;
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 1);
@@ -169,6 +170,7 @@ namespace AgOpenGPS
             this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
             btnABLineOk.Enabled = false;
             btnShow.Enabled = false;
+            mf.ABLine.SetABLineByHeading();
 
             ShowSavedPanel(false);
         }
@@ -460,7 +462,7 @@ namespace AgOpenGPS
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
                 btnAddToFile.Visible = false;
-                btnShow.Text = "Show";
+                btnShow.Text = "Save";
                 btnShow.Image = Properties.Resources.ArrowLeft;
 
             }

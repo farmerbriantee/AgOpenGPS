@@ -21,6 +21,71 @@ namespace AgOpenGPS
             InitializeComponent();
         }
 
+        private void btnAB1_Click(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                mf.AB1.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
+                mf.AB1.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
+                mf.AB1.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
+                mf.AB1.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
+
+                btnAB1.Enabled = false;
+                btnAB2.Enabled = false;
+
+                lblField1.Text = mf.AB1.fieldName;
+                lblHeading1.Text = mf.AB1.heading.ToString("N5");
+
+                lvLines.SelectedItems.Clear();
+            }
+        }
+
+        private void btnAB2_Click(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                mf.AB2.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
+                mf.AB2.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
+                mf.AB2.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
+                mf.AB2.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
+
+                btnAB1.Enabled = false;
+                btnAB2.Enabled = false;
+
+                lblField2.Text = mf.AB2.fieldName;
+                lblHeading2.Text = mf.AB2.heading.ToString("N5");
+
+                lvLines.SelectedItems.Clear();
+            }
+        }
+
+        private void btnListUse_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter writer = new StreamWriter(filename))
+            {
+                string words = mf.AB1.fieldName + "," +
+                        mf.AB1.heading.ToString() + "," +
+                        mf.AB1.X.ToString() + "," +
+                        mf.AB1.Y.ToString();
+
+                //out to file
+                writer.WriteLine(words);
+
+                words = mf.AB2.fieldName + "," +
+                        mf.AB2.heading.ToString() + "," +
+                        mf.AB2.X.ToString() + "," +
+                        mf.AB2.Y.ToString();
+
+                //out to file
+                writer.WriteLine(words);
+            }
+
+            //close the window
+            Close();
+        }
+
         private void FormSwapAB_Load(object sender, EventArgs e)
         {
             //different start based on AB line already set or not
@@ -171,71 +236,6 @@ namespace AgOpenGPS
                 btnAB1.Enabled = false;
                 btnAB2.Enabled = false;
             }
-        }
-
-        private void btnAB1_Click(object sender, EventArgs e)
-        {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
-            {
-                mf.AB1.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
-                mf.AB1.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
-                mf.AB1.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
-                mf.AB1.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
-
-                btnAB1.Enabled = false;
-                btnAB2.Enabled = false;
-
-                lblField1.Text = mf.AB1.fieldName;
-                lblHeading1.Text = mf.AB1.heading.ToString("N5");
-
-                lvLines.SelectedItems.Clear();
-            }
-        }
-
-        private void btnAB2_Click(object sender, EventArgs e)
-        {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
-            {
-                mf.AB2.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
-                mf.AB2.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
-                mf.AB2.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
-                mf.AB2.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
-
-                btnAB1.Enabled = false;
-                btnAB2.Enabled = false;
-
-                lblField2.Text = mf.AB2.fieldName;
-                lblHeading2.Text = mf.AB2.heading.ToString("N5");
-
-                lvLines.SelectedItems.Clear();
-            }
-        }
-
-        private void btnListUse_Click(object sender, EventArgs e)
-        {
-            using (StreamWriter writer = new StreamWriter(filename))
-            {
-                string words = mf.AB1.fieldName + "," +
-                        mf.AB1.heading.ToString() + "," +
-                        mf.AB1.X.ToString() + "," +
-                        mf.AB1.Y.ToString();
-
-                //out to file
-                writer.WriteLine(words);
-
-                words = mf.AB2.fieldName + "," +
-                        mf.AB2.heading.ToString() + "," +
-                        mf.AB2.X.ToString() + "," +
-                        mf.AB2.Y.ToString();
-
-                //out to file
-                writer.WriteLine(words);
-            }
-
-            //close the window
-            Close();
         }
     }
 }

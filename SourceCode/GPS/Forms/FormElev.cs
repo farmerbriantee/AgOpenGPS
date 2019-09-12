@@ -2,7 +2,6 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
@@ -32,18 +31,18 @@ namespace AgOpenGPS
         }
 
         //list of strip data individual points
-        private vec3 [,] elevGrid;
+        private vec3[,] elevGrid;
 
         public FormElev(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
 
-            elevGrid = new vec3[0,0];
+            elevGrid = new vec3[0, 0];
 
             InitializeComponent();
         }
-          
+
         private void NudWaterLevel_ValueChanged(object sender, EventArgs e)
         {
             waterLevel = (double)nudWaterLevel.Value;
@@ -57,12 +56,10 @@ namespace AgOpenGPS
                 progressBar1.Visible = false;
                 lblBuildMap.Visible = false;
             }
-
         }
 
         private void FormElev_Load(object sender, EventArgs e)
         {
-
             if (LoadElevationPoints())
             {
                 CalculateMinMax();
@@ -71,7 +68,6 @@ namespace AgOpenGPS
                 Task.Run(() => MakeElevationGrid(progress));
             }
         }
-
 
         private void MakeElevationGrid(IProgress<int> progress)
         {
@@ -86,14 +82,14 @@ namespace AgOpenGPS
 
                 double minDistance;
                 int closestPt = 0;
-                for (int j = 0; j < fieldWidth; j+=8)
+                for (int j = 0; j < fieldWidth; j += 8)
                 {
-                    for (int k = 0; k < fieldHeight; k+=8)
+                    for (int k = 0; k < fieldHeight; k += 8)
                     {
                         minDistance = 99999;
                         for (int i = 0; i < ptCount; i++)
                         {
-                            double dist = ((elevRecPts[i].easting - (j+minFieldX)) * (elevRecPts[i].easting - (j + minFieldX)))
+                            double dist = ((elevRecPts[i].easting - (j + minFieldX)) * (elevRecPts[i].easting - (j + minFieldX)))
                                             + ((elevRecPts[i].northing - (k + minFieldY)) * (elevRecPts[i].northing - (k + minFieldY)));
                             if (minDistance >= dist)
                             {
@@ -106,7 +102,7 @@ namespace AgOpenGPS
                         elevGrid[j, k].easting = j + minFieldX;
                         elevGrid[j, k].northing = k + minFieldY;
                     }
-                    progress?.Report(((j*100)/fieldWidth));
+                    progress?.Report(((j * 100) / fieldWidth));
                 }
                 isLoaded = true;
             }
@@ -180,14 +176,10 @@ namespace AgOpenGPS
                         elevColor += 0.5;
                         GL.Color3(elevColor, 0.0, 0.0);
                         GL.Vertex3(elevGrid[j, k].easting, elevGrid[j, k].northing, bas);
-
                     }
                 }
 
-
                 GL.End();
-
-
 
                 ////draw the ABLine
                 //if (mf.ABLine.isABLineSet || mf.ABLine.isABLineBeingSet)
@@ -262,8 +254,6 @@ namespace AgOpenGPS
                 100.0f, 1000.0f);
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
-
-
         }
 
         private void CalculateMinMax()
@@ -361,15 +351,12 @@ namespace AgOpenGPS
                             elevRecPts.Add(point);
                         }
                     }
-
                     catch (Exception e)
                     {
                         var form = new FormTimedMessage(2000, "Elevation File is Corrupt", "This is bad");
                         form.Show();
                         mf.WriteErrorLog("Load Elevation Points" + e.ToString());
                     }
-
-
                 }
                 if (elevRecPts.Count < 10)
                 {
@@ -389,8 +376,6 @@ namespace AgOpenGPS
             }
         }
 
-
-
         /// <summary>
         /// Convert HSV to RGB
         /// h is from 0-360
@@ -398,7 +383,7 @@ namespace AgOpenGPS
         /// r,g,b values are 0-255
         /// Based upon http://ilab.usc.edu/wiki/index.php/HSV_And_H2SV_Color_Space#HSV_Transformation_C_.2F_C.2B.2B_Code_2
         /// </summary>
-        void HsvToRgb(double h, double S, double V, out int r, out int g, out int b)
+        private void HsvToRgb(double h, double S, double V, out int r, out int g, out int b)
         {
             // ######################################################################
             // T. Nathan Mundhenk
@@ -425,7 +410,6 @@ namespace AgOpenGPS
                 double tv = V * (1 - S * (1 - f));
                 switch (i)
                 {
-
                     // Red is the dominant color
 
                     case 0:
@@ -441,6 +425,7 @@ namespace AgOpenGPS
                         G = V;
                         B = pv;
                         break;
+
                     case 2:
                         R = pv;
                         G = V;
@@ -454,6 +439,7 @@ namespace AgOpenGPS
                         G = qv;
                         B = V;
                         break;
+
                     case 4:
                         R = tv;
                         G = pv;
@@ -475,6 +461,7 @@ namespace AgOpenGPS
                         G = tv;
                         B = pv;
                         break;
+
                     case -1:
                         R = V;
                         G = pv;
@@ -497,20 +484,16 @@ namespace AgOpenGPS
         /// <summary>
         /// Clamp a value to 0-255
         /// </summary>
-        int Clamp(int i)
+        private int Clamp(int i)
         {
             if (i < 0) return 0;
             if (i > 255) return 255;
             return i;
         }
 
-//        And here's how you'd use it:
+        //        And here's how you'd use it:
 
-//int r, g, b;
-//        HsvToRgb(110, 1, 1, out r, out g, out b);
-
-
-
-
+        //int r, g, b;
+        //        HsvToRgb(110, 1, 1, out r, out g, out b);
     }
 }

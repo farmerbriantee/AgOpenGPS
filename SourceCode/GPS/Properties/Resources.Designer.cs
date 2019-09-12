@@ -783,6 +783,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MakeBoundaryContour {
+            get {
+                object obj = ResourceManager.GetObject("MakeBoundaryContour", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ManualOff {
             get {
                 object obj = ResourceManager.GetObject("ManualOff", resourceCulture);

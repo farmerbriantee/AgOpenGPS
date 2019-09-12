@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -77,7 +72,6 @@ namespace AgOpenGPS
                 lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
                 btnZeroDistance.BackColor = Color.OrangeRed;
                 //mf.vehicle.treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
-
             }
             else
             {

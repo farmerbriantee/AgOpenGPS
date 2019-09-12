@@ -56,7 +56,7 @@ namespace AgOpenGPS
         public double distanceFromRefLine, distanceFromCurrentLine, refLineSide = 1.0;
         private int A, B, C;
         public double abFixHeadingDelta, abHeading;
-        public bool isABSameAsVehicleHeading = true, isOnRightSideCurrentLine = true; 
+        public bool isABSameAsVehicleHeading = true, isOnRightSideCurrentLine = true;
 
         public int lastPointFound = -1, currentPositonIndex;
 
@@ -342,7 +342,7 @@ namespace AgOpenGPS
             //abHeading = recList[A].heading;
 
             //how far from current AB Line is fix
-            distanceFromCurrentLine = 
+            distanceFromCurrentLine =
                 ((dz * steerAxlePosRP.easting) - (dx * steerAxlePosRP.northing) + (recList[B].easting
                         * recList[A].northing) - (recList[B].northing * recList[A].easting))
                             / Math.Sqrt((dz * dz) + (dx * dx));
@@ -390,7 +390,6 @@ namespace AgOpenGPS
             //every guidance method dumps into these that are used and sent everywhere, last one wins
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
-            
         }
 
         private void StanleyDubinsPath(int ptCount)

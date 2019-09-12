@@ -242,8 +242,6 @@
     <Setting Name="setDisplay_snapDistanceSmall" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="setDisplay_isLargePanel" Type="System.Boolean" Scope="User">
-    </Setting>
     <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -264,6 +262,9 @@
     </Setting>
     <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="setDisplay_isLargePanel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

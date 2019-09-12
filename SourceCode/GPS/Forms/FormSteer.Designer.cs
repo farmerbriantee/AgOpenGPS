@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
             this.btnFreeDrive = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
@@ -89,6 +90,10 @@
             this.tabDrive = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
+            this.pbarSteerLeft = new System.Windows.Forms.ProgressBar();
+            this.pbarSteerRight = new System.Windows.Forms.ProgressBar();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblSteerAngle = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -166,7 +171,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(497, 423);
+            this.tabControl1.Size = new System.Drawing.Size(497, 418);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -188,7 +193,7 @@
             this.tabGain.Controls.Add(this.label7);
             this.tabGain.Location = new System.Drawing.Point(4, 48);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(489, 371);
+            this.tabGain.Size = new System.Drawing.Size(489, 366);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "Gain";
             // 
@@ -337,7 +342,7 @@
             this.tabSteer.Controls.Add(this.hsbarSteerAngleSensorZero);
             this.tabSteer.Location = new System.Drawing.Point(4, 48);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(489, 371);
+            this.tabSteer.Size = new System.Drawing.Size(489, 366);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Steer";
             // 
@@ -807,12 +812,50 @@
             this.hSBarFreeDrive.TabIndex = 233;
             this.hSBarFreeDrive.ValueChanged += new System.EventHandler(this.hSBarFreeDrive_ValueChanged);
             // 
+            // pbarSteerLeft
+            // 
+            this.pbarSteerLeft.ForeColor = System.Drawing.Color.Red;
+            this.pbarSteerLeft.Location = new System.Drawing.Point(62, 448);
+            this.pbarSteerLeft.Name = "pbarSteerLeft";
+            this.pbarSteerLeft.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pbarSteerLeft.RightToLeftLayout = true;
+            this.pbarSteerLeft.Size = new System.Drawing.Size(192, 16);
+            this.pbarSteerLeft.Step = 1;
+            this.pbarSteerLeft.TabIndex = 233;
+            // 
+            // pbarSteerRight
+            // 
+            this.pbarSteerRight.Location = new System.Drawing.Point(254, 448);
+            this.pbarSteerRight.Name = "pbarSteerRight";
+            this.pbarSteerRight.Size = new System.Drawing.Size(192, 16);
+            this.pbarSteerRight.Step = 1;
+            this.pbarSteerRight.TabIndex = 234;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 333;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // lblSteerAngle
+            // 
+            this.lblSteerAngle.AutoSize = true;
+            this.lblSteerAngle.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSteerAngle.Location = new System.Drawing.Point(226, 424);
+            this.lblSteerAngle.Name = "lblSteerAngle";
+            this.lblSteerAngle.Size = new System.Drawing.Size(53, 23);
+            this.lblSteerAngle.TabIndex = 306;
+            this.lblSteerAngle.Text = "-55.5";
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(502, 431);
+            this.ClientSize = new System.Drawing.Size(502, 469);
+            this.Controls.Add(this.lblSteerAngle);
+            this.Controls.Add(this.pbarSteerRight);
+            this.Controls.Add(this.pbarSteerLeft);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -836,6 +879,7 @@
             this.tabDrive.ResumeLayout(false);
             this.tabDrive.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -901,5 +945,9 @@
         private System.Windows.Forms.Label lblHeadingErrorGain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStanley;
+        private System.Windows.Forms.ProgressBar pbarSteerLeft;
+        private System.Windows.Forms.ProgressBar pbarSteerRight;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblSteerAngle;
     }
 }
