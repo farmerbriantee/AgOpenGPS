@@ -784,7 +784,32 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
+        public void GetAB()
+        {
+            curve.isOkToAddPoints = false;
+            curve.isCurveSet = false;
+            DisableYouTurnButtons();
+            btnContourPriority.Enabled = false;
+            curve.isCurveBtnOn = false;
+            btnCurve.Image = Properties.Resources.CurveOff;
 
+            ABLine.isABLineSet = false;
+            ABLine.tramPassEvery = 0;
+            ABLine.passBasedOn = 0;
+            btnABLine.Image = Properties.Resources.ABLineOff;
+            ABLine.isBtnABLineOn = false;
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+
+            using (var form = new FormABDraw(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
         //show the communications window
         private void SettingsCommunications()
         {
@@ -939,6 +964,8 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
+            btnMakeLinesFromBoundary.Enabled = true;
+
 
             ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
@@ -1052,6 +1079,8 @@ namespace AgOpenGPS
             ct.isContourBtnOn = false;
             btnContour.Image = Properties.Resources.ContourOff;
             ct.isContourOn = false;
+
+            btnMakeLinesFromBoundary.Enabled = false;
 
             //AutoSteer
             btnAutoSteer.Enabled = false;

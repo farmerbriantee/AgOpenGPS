@@ -650,3 +650,40 @@ Opening Steer PortSystem.IO.IOException: The port 'COM3' does not exist.
    at System.IO.Ports.SerialPort.Open()
    at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 209 - 9/11/2019 11:21:55 PM
 
+Opening Steer PortSystem.IO.IOException: The port 'COM3' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 209 - 9/13/2019 8:28:41 AM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormABCurve.FormABCurve_LoadCurves() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 455 - 2019-09-13 8:53:44 PM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormABCurve.FormABCurve_LoadCurves() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 455 - 2019-09-13 8:54:13 PM
+
+Load Curve LineSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormABCurve.FormABCurve_LoadCurves() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\FormABCurve.cs:line 455 - 2019-09-13 8:54:21 PM
+
+Out Data to Steering Port System.UnauthorizedAccessException: Access to the port 'COM3' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndWrite(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Write(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialPort.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at AgOpenGPS.FormGPS.AutoSteerDataOutToPort() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 111 - 2019-09-13 10:38:02 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM3' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 209 - 2019-09-13 10:56:05 PM
+

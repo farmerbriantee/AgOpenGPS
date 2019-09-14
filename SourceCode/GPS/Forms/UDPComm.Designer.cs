@@ -623,6 +623,7 @@ namespace AgOpenGPS
             {
                 sim.steerAngle++;
                 if (sim.steerAngle > 30) sim.steerAngle = 30;
+                if (sim.steerAngle < -30) sim.steerAngle = -30;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 btnResetSteerAngle.Text = sim.steerAngle.ToString();
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
@@ -633,6 +634,7 @@ namespace AgOpenGPS
             if (keyData == Keys.Left)
             {
                 sim.steerAngle--;
+                if (sim.steerAngle > 30) sim.steerAngle = 30;
                 if (sim.steerAngle < -30) sim.steerAngle = -30;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 btnResetSteerAngle.Text = sim.steerAngle.ToString();

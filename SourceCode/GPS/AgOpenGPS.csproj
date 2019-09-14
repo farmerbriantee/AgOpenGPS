@@ -150,6 +150,12 @@
     <Compile Include="Forms\FormNtrip.Designer.cs">
       <DependentUpon>FormNtrip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormABDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABDraw.Designer.cs">
+      <DependentUpon>FormABDraw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSwapAB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABDraw.resx">
+      <DependentUpon>FormABDraw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSwapAB.resx">
       <DependentUpon>FormSwapAB.cs</DependentUpon>

@@ -984,6 +984,18 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        private void BtnMakeLinesFromBoundary_Click(object sender, EventArgs e)
+        {
+            if (!bnd.bndArr[0].isSet)
+            {
+                TimedMessageBox(2000, "No Boundary", "Create a Boundary First");
+                return;
+            }
+
+            GetAB();
+        }
+
         private void btnABLine_Click(object sender, EventArgs e)
         {
             //check if window already exists
@@ -3094,6 +3106,9 @@ namespace AgOpenGPS
                         //both
                         lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
                         lblpTimeToFinish.Text = fd.TimeTillFinished;
+                        pbarSteerSmall.Value = pbarSteer;
+                        pbarUDPSmall.Value = pbarUDP;
+
                     }
 
                     //The tabbed is selected and the info tab

@@ -339,10 +339,11 @@ namespace AgOpenGPS
                 if (!mf.bnd.bndArr[i].isSet && mf.bnd.bndArr[i].isDriveAround) continue;
                 //turnArr[i].DrawTurnLine();
                 {
-                    GL.Begin(PrimitiveType.LineStrip);
                     ////draw the turn line oject
                     int ptCount = mf.turn.turnArr[i].turnLine.Count;
                     if (ptCount < 1) continue;
+
+                    GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.turn.turnArr[i].turnLine[h].easting, mf.turn.turnArr[i].turnLine[h].northing, 0);
                     GL.Vertex3(mf.turn.turnArr[i].turnLine[0].easting, mf.turn.turnArr[i].turnLine[0].northing, 0);
                     GL.End();

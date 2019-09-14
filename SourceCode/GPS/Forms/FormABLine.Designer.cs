@@ -57,6 +57,7 @@
             this.btnNewABLine = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tboxABLineName = new System.Windows.Forms.TextBox();
+            this.btnGetABForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudBasedOnPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTramRepeats)).BeginInit();
             this.SuspendLayout();
@@ -72,7 +73,7 @@
             this.lblFixHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFixHeading.AutoSize = true;
             this.lblFixHeading.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblFixHeading.Location = new System.Drawing.Point(574, 4);
+            this.lblFixHeading.Location = new System.Drawing.Point(572, 4);
             this.lblFixHeading.Name = "lblFixHeading";
             this.lblFixHeading.Size = new System.Drawing.Size(32, 33);
             this.lblFixHeading.TabIndex = 64;
@@ -83,7 +84,7 @@
             this.lblKeepGoing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblKeepGoing.AutoSize = true;
             this.lblKeepGoing.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.lblKeepGoing.Location = new System.Drawing.Point(713, 6);
+            this.lblKeepGoing.Location = new System.Drawing.Point(711, 6);
             this.lblKeepGoing.Name = "lblKeepGoing";
             this.lblKeepGoing.Size = new System.Drawing.Size(22, 25);
             this.lblKeepGoing.TabIndex = 74;
@@ -94,7 +95,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label2.Location = new System.Drawing.Point(272, 400);
+            this.label2.Location = new System.Drawing.Point(162, 406);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 19);
             this.label2.TabIndex = 76;
@@ -105,7 +106,7 @@
             this.nudBasedOnPass.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.nudBasedOnPass.BackColor = System.Drawing.Color.MediumOrchid;
             this.nudBasedOnPass.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBasedOnPass.Location = new System.Drawing.Point(179, 404);
+            this.nudBasedOnPass.Location = new System.Drawing.Point(69, 410);
             this.nudBasedOnPass.Minimum = new decimal(new int[] {
             100,
             0,
@@ -121,7 +122,7 @@
             this.nudTramRepeats.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.nudTramRepeats.BackColor = System.Drawing.Color.Lime;
             this.nudTramRepeats.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTramRepeats.Location = new System.Drawing.Point(342, 404);
+            this.nudTramRepeats.Location = new System.Drawing.Point(232, 410);
             this.nudTramRepeats.Name = "nudTramRepeats";
             this.nudTramRepeats.Size = new System.Drawing.Size(67, 52);
             this.nudTramRepeats.TabIndex = 75;
@@ -132,7 +133,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label3.Location = new System.Drawing.Point(131, 400);
+            this.label3.Location = new System.Drawing.Point(21, 406);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 19);
             this.label3.TabIndex = 78;
@@ -146,7 +147,7 @@
             this.btnTurnOffAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTurnOffAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnTurnOffAB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTurnOffAB.Location = new System.Drawing.Point(508, 383);
+            this.btnTurnOffAB.Location = new System.Drawing.Point(506, 383);
             this.btnTurnOffAB.Name = "btnTurnOffAB";
             this.btnTurnOffAB.Size = new System.Drawing.Size(100, 80);
             this.btnTurnOffAB.TabIndex = 0;
@@ -160,7 +161,7 @@
             this.btnBPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
-            this.btnBPoint.Location = new System.Drawing.Point(666, 38);
+            this.btnBPoint.Location = new System.Drawing.Point(664, 38);
             this.btnBPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBPoint.Name = "btnBPoint";
             this.btnBPoint.Size = new System.Drawing.Size(100, 80);
@@ -173,7 +174,7 @@
             this.btnAPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPoint.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnAPoint.Location = new System.Drawing.Point(508, 38);
+            this.btnAPoint.Location = new System.Drawing.Point(506, 38);
             this.btnAPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnAPoint.Name = "btnAPoint";
             this.btnAPoint.Size = new System.Drawing.Size(100, 80);
@@ -186,7 +187,7 @@
             this.btnABLineOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnABLineOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnABLineOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnABLineOk.Location = new System.Drawing.Point(666, 382);
+            this.btnABLineOk.Location = new System.Drawing.Point(664, 382);
             this.btnABLineOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABLineOk.Name = "btnABLineOk";
             this.btnABLineOk.Size = new System.Drawing.Size(100, 80);
@@ -215,7 +216,7 @@
             // 
             this.tboxHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxHeading.Font = new System.Drawing.Font("Tahoma", 21.75F);
-            this.tboxHeading.Location = new System.Drawing.Point(549, 140);
+            this.tboxHeading.Location = new System.Drawing.Point(547, 140);
             this.tboxHeading.MaxLength = 10;
             this.tboxHeading.Name = "tboxHeading";
             this.tboxHeading.Size = new System.Drawing.Size(176, 43);
@@ -242,7 +243,7 @@
             this.lvLines.Location = new System.Drawing.Point(113, 122);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(368, 264);
+            this.lvLines.Size = new System.Drawing.Size(359, 264);
             this.lvLines.TabIndex = 84;
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Details;
@@ -303,7 +304,7 @@
             this.btnPlus90.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPlus90.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlus90.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPlus90.Location = new System.Drawing.Point(696, 189);
+            this.btnPlus90.Location = new System.Drawing.Point(694, 189);
             this.btnPlus90.Name = "btnPlus90";
             this.btnPlus90.Size = new System.Drawing.Size(70, 60);
             this.btnPlus90.TabIndex = 87;
@@ -317,7 +318,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(513, 11);
+            this.label1.Location = new System.Drawing.Point(511, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 19);
             this.label1.TabIndex = 89;
@@ -328,7 +329,7 @@
             this.btnDnABHeadingBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDnABHeadingBy1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDnABHeadingBy1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(601, 189);
+            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(599, 189);
             this.btnDnABHeadingBy1.Name = "btnDnABHeadingBy1";
             this.btnDnABHeadingBy1.Size = new System.Drawing.Size(70, 60);
             this.btnDnABHeadingBy1.TabIndex = 73;
@@ -341,7 +342,7 @@
             this.btnUpABHeadingBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpABHeadingBy1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpABHeadingBy1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnUpABHeadingBy1.Location = new System.Drawing.Point(508, 189);
+            this.btnUpABHeadingBy1.Location = new System.Drawing.Point(506, 189);
             this.btnUpABHeadingBy1.Name = "btnUpABHeadingBy1";
             this.btnUpABHeadingBy1.Size = new System.Drawing.Size(70, 60);
             this.btnUpABHeadingBy1.TabIndex = 72;
@@ -357,7 +358,7 @@
             this.btnShow.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnShow.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnShow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnShow.Location = new System.Drawing.Point(508, 276);
+            this.btnShow.Location = new System.Drawing.Point(506, 276);
             this.btnShow.Name = "btnShow";
             this.btnShow.Size = new System.Drawing.Size(100, 80);
             this.btnShow.TabIndex = 148;
@@ -374,7 +375,7 @@
             this.btnNewABLine.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnNewABLine.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNewABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewABLine.Location = new System.Drawing.Point(666, 276);
+            this.btnNewABLine.Location = new System.Drawing.Point(664, 276);
             this.btnNewABLine.Name = "btnNewABLine";
             this.btnNewABLine.Size = new System.Drawing.Size(100, 80);
             this.btnNewABLine.TabIndex = 149;
@@ -403,15 +404,33 @@
             this.tboxABLineName.TabIndex = 152;
             this.tboxABLineName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnGetABForm
+            // 
+            this.btnGetABForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGetABForm.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.btnGetABForm.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnGetABForm.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnGetABForm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGetABForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnGetABForm.Location = new System.Drawing.Point(372, 406);
+            this.btnGetABForm.Name = "btnGetABForm";
+            this.btnGetABForm.Size = new System.Drawing.Size(100, 53);
+            this.btnGetABForm.TabIndex = 149;
+            this.btnGetABForm.Text = "New";
+            this.btnGetABForm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnGetABForm.UseVisualStyleBackColor = false;
+            this.btnGetABForm.Click += new System.EventHandler(this.BtnGetABForm_Click);
+            // 
             // FormABLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(776, 463);
+            this.ClientSize = new System.Drawing.Size(784, 467);
             this.ControlBox = false;
             this.Controls.Add(this.tboxABLineName);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnGetABForm);
             this.Controls.Add(this.btnNewABLine);
             this.Controls.Add(this.btnShow);
             this.Controls.Add(this.lblFixHeading);
@@ -483,5 +502,6 @@
         private System.Windows.Forms.Button btnNewABLine;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tboxABLineName;
+        private System.Windows.Forms.Button btnGetABForm;
     }
 }

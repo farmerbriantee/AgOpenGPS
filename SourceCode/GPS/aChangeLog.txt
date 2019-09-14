@@ -13,6 +13,8 @@
 * Add steer angle graphic to steer settings
 * Generate AB from A point and current heading
 * UDP sends relay pgn.
+* Fixed Registry read of setting working directory
+* Implemented Touch lines. 
 
 v3.0 June/July 2019
 * Added tree planting

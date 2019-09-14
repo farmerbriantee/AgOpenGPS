@@ -10,7 +10,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
         private string[] words;
 
-        private bool mode = true;
         private double error, actual = 0;
 
         //chart data
@@ -39,11 +38,6 @@ namespace AgOpenGPS
                 dataPWM = "-2";
                 lblSteerAng.Text = "Actual";
                 lblPWM.Text = "Set";
-                if (!mode)
-                {
-                    error = 0;
-                    dataPWM = "0";
-                }
             }
             else
             {
@@ -52,16 +46,6 @@ namespace AgOpenGPS
                 dataPWM = words[1];
                 lblSteerAng.Text = words[0];
                 lblPWM.Text = words[1];
-
-                double.TryParse(words[0], NumberStyles.Float, CultureInfo.InvariantCulture, out actual);
-                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out error);
-                error -= actual;
-                lblError.Text = error.ToString();
-                if (!mode)
-                {
-                    dataPWM = "0";
-                    dataSteerAngle = error.ToString();
-                }
             }
 
             //chart data
@@ -98,13 +82,6 @@ namespace AgOpenGPS
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnMode_Click(object sender, EventArgs e)
-        {
-            mode = !mode;
-            if (mode) btnMode.Text = "A   S";
-            else btnMode.Text = "A - S";
         }
     }
 }

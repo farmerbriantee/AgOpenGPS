@@ -154,6 +154,7 @@ namespace AgOpenGPS
 
             //save the no ABLine;
             mf.FileSaveABLine();
+
         }
 
         private void btnAPoint_Click(object sender, EventArgs e)
@@ -434,7 +435,7 @@ namespace AgOpenGPS
         {
             if (showPanel)
             {
-                this.Size = new System.Drawing.Size(800, 510);
+                this.Size = new System.Drawing.Size(820, 510);
                 lvLines.Visible = true;
                 label2.Visible = true;
                 label3.Visible = true;
@@ -468,6 +469,30 @@ namespace AgOpenGPS
             }
         }
 
+        private void BtnGetABForm_Click(object sender, EventArgs e)
+        {
+            Close();
+            mf.GetAB();
+            
+        }
+
+        //private void NudLow_ValueChanged(object sender, EventArgs e)
+        //{
+        //    {
+        //        mf.turn.high = (double)nudHigh.Value / 100;
+        //        mf.turn.low = (double)nudLow.Value / 100;
+        //    }
+
+        //}
+
+        //private void NudHigh_ValueChanged(object sender, EventArgs e)
+        //{
+        //    {
+        //        mf.turn.high = (double)nudHigh.Value / 100;
+        //        mf.turn.low = (double)nudLow.Value / 100;
+        //    }
+
+        //}
     }
 
 }

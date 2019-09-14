@@ -170,6 +170,7 @@ namespace AgOpenGPS
                 turn.DrawTurnLines();
                 gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
+                //turn.DrawTurnPointsLine();
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
@@ -289,13 +290,13 @@ namespace AgOpenGPS
                     double hiit = 0;
 
                     GL.PushMatrix();
-                    GL.Translate(0, 120, 0);
+                    GL.Translate(0, 160, 0);
 
                     //If roll is used rotate graphic based on roll angle
                     if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS) && ahrs.rollX16 != 9999)
                         GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
 
-                    GL.LineWidth(2);
+                    GL.LineWidth(1);
                     GL.Color3(0.54f, 0.54f, 0.54f);
                     double wiid = 100;
 
@@ -312,7 +313,7 @@ namespace AgOpenGPS
                     {
                         if (actualSteerAngleDisp > 0)
                         {
-                            GL.LineWidth(3);
+                            GL.LineWidth(1);
                             GL.Begin(PrimitiveType.LineStrip);
 
                             GL.Color3(0.0f, 0.75930f, 0.0f);
@@ -326,7 +327,7 @@ namespace AgOpenGPS
                         else
                         {
                             //actual
-                            GL.LineWidth(3);
+                            GL.LineWidth(1);
                             GL.Begin(PrimitiveType.LineStrip);
 
                             GL.Color3(0.75930f, 0.0f, 0.0f);
@@ -341,7 +342,7 @@ namespace AgOpenGPS
 
                     if (guidanceLineSteerAngle > 0)
                     {
-                        GL.LineWidth(3);
+                        GL.LineWidth(1);
                         GL.Begin(PrimitiveType.LineStrip);
 
                         GL.Color3(0.75930f, 0.75930f, 0.0f);
@@ -354,7 +355,7 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        GL.LineWidth(3);
+                        GL.LineWidth(1);
                         GL.Begin(PrimitiveType.LineStrip);
 
                         GL.Color3(0.75930f, 0.75930f, 0.0f);
