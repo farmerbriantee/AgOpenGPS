@@ -229,7 +229,7 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.oglSelf);
             this.Controls.Add(this.label4);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormABDraw";
@@ -238,6 +238,7 @@
             this.Load += new System.EventHandler(this.FormABDraw_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

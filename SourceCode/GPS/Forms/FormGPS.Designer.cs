@@ -191,6 +191,8 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.pbarUDPSmall = new System.Windows.Forms.ProgressBar();
+            this.pbarSteerSmall = new System.Windows.Forms.ProgressBar();
             this.btnSmallSnapRight = new System.Windows.Forms.Button();
             this.btnSmallSnapLeft = new System.Windows.Forms.Button();
             this.btnSnapRight = new System.Windows.Forms.Button();
@@ -218,6 +220,8 @@
             this.lblpAltitude = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
@@ -269,10 +273,6 @@
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnMakeLinesFromBoundary = new System.Windows.Forms.Button();
-            this.pbarUDPSmall = new System.Windows.Forms.ProgressBar();
-            this.pbarSteerSmall = new System.Windows.Forms.ProgressBar();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -2204,6 +2204,26 @@
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
             // 
+            // pbarUDPSmall
+            // 
+            this.pbarUDPSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarUDPSmall.BackColor = System.Drawing.Color.Maroon;
+            this.pbarUDPSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarUDPSmall.Location = new System.Drawing.Point(22, 527);
+            this.pbarUDPSmall.Name = "pbarUDPSmall";
+            this.pbarUDPSmall.Size = new System.Drawing.Size(60, 10);
+            this.pbarUDPSmall.TabIndex = 308;
+            // 
+            // pbarSteerSmall
+            // 
+            this.pbarSteerSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbarSteerSmall.BackColor = System.Drawing.Color.Maroon;
+            this.pbarSteerSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarSteerSmall.Location = new System.Drawing.Point(22, 515);
+            this.pbarSteerSmall.Name = "pbarSteerSmall";
+            this.pbarSteerSmall.Size = new System.Drawing.Size(60, 10);
+            this.pbarSteerSmall.TabIndex = 307;
+            // 
             // btnSmallSnapRight
             // 
             this.btnSmallSnapRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2538,6 +2558,30 @@
             this.label14.Size = new System.Drawing.Size(54, 19);
             this.label14.TabIndex = 262;
             this.label14.Text = "ToDo:";
+            // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label20.Location = new System.Drawing.Point(6, 525);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(15, 13);
+            this.label20.TabIndex = 310;
+            this.label20.Text = "U";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
+            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label15.Location = new System.Drawing.Point(6, 512);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(14, 13);
+            this.label15.TabIndex = 309;
+            this.label15.Text = "S";
             // 
             // btnResetSim
             // 
@@ -3306,56 +3350,13 @@
             this.btnMakeLinesFromBoundary.UseVisualStyleBackColor = false;
             this.btnMakeLinesFromBoundary.Click += new System.EventHandler(this.BtnMakeLinesFromBoundary_Click);
             // 
-            // pbarUDPSmall
-            // 
-            this.pbarUDPSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbarUDPSmall.BackColor = System.Drawing.Color.Maroon;
-            this.pbarUDPSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pbarUDPSmall.Location = new System.Drawing.Point(22, 527);
-            this.pbarUDPSmall.Name = "pbarUDPSmall";
-            this.pbarUDPSmall.Size = new System.Drawing.Size(60, 10);
-            this.pbarUDPSmall.TabIndex = 308;
-            // 
-            // pbarSteerSmall
-            // 
-            this.pbarSteerSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbarSteerSmall.BackColor = System.Drawing.Color.Maroon;
-            this.pbarSteerSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pbarSteerSmall.Location = new System.Drawing.Point(22, 515);
-            this.pbarSteerSmall.Name = "pbarSteerSmall";
-            this.pbarSteerSmall.Size = new System.Drawing.Size(60, 10);
-            this.pbarSteerSmall.TabIndex = 307;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(6, 512);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(14, 13);
-            this.label15.TabIndex = 309;
-            this.label15.Text = "S";
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label20.Location = new System.Drawing.Point(6, 525);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(15, 13);
-            this.label20.TabIndex = 310;
-            this.label20.Text = "U";
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(1192, 701);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnMakeLinesFromBoundary);
             this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.lblFixQuality);
@@ -3399,7 +3400,6 @@
             this.Controls.Add(this.btnSection9Man);
             this.Controls.Add(this.oglMain);
             this.Controls.Add(this.oglBack);
-            this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 12F);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

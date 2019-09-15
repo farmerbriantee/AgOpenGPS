@@ -1713,6 +1713,15 @@ namespace AgOpenGPS
         }
         private void btnGPSData_Click(object sender, EventArgs e)
         {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
             Form form = new FormGPSData(this);
             form.Show();
         }

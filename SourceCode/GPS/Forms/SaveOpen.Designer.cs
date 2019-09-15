@@ -82,7 +82,7 @@ namespace AgOpenGPS
 
                     writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setF_IsWorkSwitchEnabled.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ActiveLow," + Properties.Settings.Default.setF_IsWorkSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
+                   // writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
@@ -95,7 +95,7 @@ namespace AgOpenGPS
                     writer.WriteLine("IsPurePursuitLineOn," + Properties.Settings.Default.setMenu_isPureOn.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsGuideLinesOn," + Properties.Settings.Default.setMenu_isSideGuideLines.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("AntennaOffset," + Properties.Vehicle.Default.setVehicle_antennaOffset.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("Empty," + "10");
+                    //writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
 
@@ -295,8 +295,6 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -319,6 +317,8 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1]);
 
+                        //line = reader.ReadLine(); words = line.Split(',');
+                        //Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
