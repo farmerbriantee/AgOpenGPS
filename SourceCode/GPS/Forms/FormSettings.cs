@@ -28,6 +28,11 @@ namespace AgOpenGPS
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
+        private bool isAutoSteerAuto;
+        private int snapDistance, snapDistanceSmall;
+
+        private int lightbarCmPerPixie;
+
         //constructor
         public FormSettings(Form callingForm, int page)
         {
@@ -68,6 +73,9 @@ namespace AgOpenGPS
         //do any field initializing for form here
         private void FormSettings_Load(object sender, EventArgs e)
         {
+            nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
+            lightbarCmPerPixie = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+
             //Vehicle settings to what it is in the settings page------------------------------------------------
             antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
             if (nudAntennaHeight.CheckValueCm(ref antennaHeight)) nudAntennaHeight.BackColor = System.Drawing.Color.OrangeRed;
@@ -128,6 +136,24 @@ namespace AgOpenGPS
             isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+
+            nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
+            nudSnapDistanceSmall.Value = Properties.Settings.Default.setDisplay_snapDistanceSmall;
+
+
+            cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = "Auto";
+            }
+            else
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = "Manual";
+            }
+
 
             //fix the min max based on inches - they are 2.54 times smaller then cm
             if (!mf.isMetric)
@@ -286,6 +312,10 @@ namespace AgOpenGPS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+
+            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
+            mf.lightbarCmPerPixel = lightbarCmPerPixie;
+
             //Vehicle settings -------------------------------------------------------------------------------
 
             if (!isPivotBehindAntenna) antennaPivot *= -1;
@@ -344,6 +374,14 @@ namespace AgOpenGPS
             mf.vehicle.hitchLength = hitchLength;
             Properties.Vehicle.Default.setVehicle_hitchLength = mf.vehicle.hitchLength;
 
+            //Guidance
+
+            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
+            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
+
+            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
+            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
+
             //Sections ------------------------------------------------------------------------------------------
 
             mf.vehicle.numOfSections = numberOfSections;
@@ -383,6 +421,8 @@ namespace AgOpenGPS
             //update toolwidth in mainform
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
+
+            //WorkSwitch settings
             mf.mc.isWorkSwitchActiveLow = isWorkSwActiveLow;
             Properties.Settings.Default.setF_IsWorkSwitchActiveLow = isWorkSwActiveLow;
 
@@ -392,6 +432,7 @@ namespace AgOpenGPS
             mf.mc.isWorkSwitchManual = isWorkSwitchManual;
             Properties.Settings.Default.setF_IsWorkSwitchManual = isWorkSwitchManual;
 
+            //Slow speed cutoff
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
 
@@ -401,6 +442,42 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void NudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
+        {
+            lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
+        }
+
+        private void NudSnapDistanceSmall_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+            snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
+
+        }
+
+
+        private void NudSnapDistance_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+
+            snapDistance = (int)nudSnapDistance.Value;
+
+        }
+
+        private void CboxAutoSteerAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            isAutoSteerAuto = cboxAutoSteerAuto.Checked;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = "Auto";
+            }
+            else
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = "Manual";
+            }
         }
 
         //don't save anything, leave the settings as before

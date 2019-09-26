@@ -426,7 +426,7 @@ namespace AgOpenGPS
             headingFromSource = Settings.Default.setGPS_headingFromWhichSource;
 
             //triangle resolution is how far to next triangle point trigger distance
-            triangleResolution = Settings.Default.setDisplay_triangleResolution;
+            //triangleResolution = Settings.Default.setDisplay_triangleResolution;
 
             //start udp server if required
             if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
@@ -480,7 +480,7 @@ namespace AgOpenGPS
             fd.userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
 
             //space between points while recording a boundary
-            boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
+            //boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
 
             //load the last used auto turn shape
             string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;

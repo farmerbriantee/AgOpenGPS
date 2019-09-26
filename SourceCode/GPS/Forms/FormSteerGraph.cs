@@ -10,8 +10,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
         private string[] words;
 
-        private double error, actual = 0;
-
         //chart data
         private string dataSteerAngle = "0";
 

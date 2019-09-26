@@ -664,13 +664,13 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.S)) //open the steer chart
-            {
-                toolstripAutoSteerConfig.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
+            //if (keyData == (Keys.S)) //open the steer chart
+            //{
+            //    toolstripAutoSteerConfig.PerformClick();
+            //    return true;    // indicate that you handled this keystroke
+            //}
 
-            if (keyData == (Keys.P)) //open the steer chart
+            if (keyData == (Keys.S)) //open the steer chart
             {
                 btnContourPriority.PerformClick();
                 return true;    // indicate that you handled this keystroke

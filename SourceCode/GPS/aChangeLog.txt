@@ -15,6 +15,9 @@
 * UDP sends relay pgn.
 * Fixed Registry read of setting working directory
 * Implemented Touch lines. 
+* Buttons bring up and take down forms
+* Exit button on start menu
+* Settings arranged
 
 v3.0 June/July 2019
 * Added tree planting
