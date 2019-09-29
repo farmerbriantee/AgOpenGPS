@@ -711,3 +711,9 @@ Open VehicleSystem.FormatException: Input string was not in a correct format.
    at System.Int32.Parse(String s, IFormatProvider provider)
    at AgOpenGPS.FormGPS.FileOpenVehicle() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 341 - 2019-09-15 7:37:11 AM
 
+Opening Steer PortSystem.IO.IOException: Der Anschluss COM3 ist nicht vorhanden.
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   bei System.IO.Ports.SerialPort.Open()
+   bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 209. - 24.09.2019 19:21:53
+
