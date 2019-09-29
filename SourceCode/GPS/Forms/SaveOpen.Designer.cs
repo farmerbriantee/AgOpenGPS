@@ -316,7 +316,7 @@ namespace AgOpenGPS
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Settings.Default.setMenu_isSideGuideLines = bool.Parse(words[1]);
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1]);
+                            Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             line = reader.ReadLine();

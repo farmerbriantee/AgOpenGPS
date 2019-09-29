@@ -108,12 +108,42 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.numSteerDataItems); }
-                catch (Exception e)
+                if (Properties.Settings.Default.isJRK)
                 {
-                    WriteErrorLog("Out Data to Steering Port " + e.ToString());
-                    SerialPortAutoSteerClose();
+                    byte[] command = new byte[2];
+                    int target;
+                    target = guidanceLineSteerAngle * Properties.Settings.Default.setAS_countsPerDegree;
+                    target = target + Properties.Settings.Default.setAS_steerAngleOffset * 5 - 127; //steeroffstet
+                    target = target / 100;
+
+                    target += 2047; //steerangle center
+                    
+                    
+                    if (target > 4075) target = 4075;
+                    if (target < 0) target = 0;
+                    command[0] = (byte)(0xC0 + (target & 0x1F));
+                    command[1] = (byte)((target >> 5) & 0x7F);
+                    spAutoSteer.Write(command, 0, 2);
+
+                    ////send get scaledfeedback command
+                    byte[] command2 = new byte[1];
+                    command2[0] = 0xA7;
+
+                    spAutoSteer.Write(command2, 0, 1);
+
                 }
+                else
+                {
+                    try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.numSteerDataItems); }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Out Data to Steering Port " + e.ToString());
+                        SerialPortAutoSteerClose();
+                    }
+                }
+
+
+                
             } 
         }
 
@@ -181,17 +211,45 @@ namespace AgOpenGPS
         {
             if (spAutoSteer.IsOpen)
             {
-                try
+                
+
+
+                if (!Properties.Settings.Default.isJRK)
                 {
-                    //System.Threading.Thread.Sleep(25);
-                    string sentence = spAutoSteer.ReadLine();
-                    this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
+                    try
+                    {
+                        //System.Threading.Thread.Sleep(25);
+                        string sentence = spAutoSteer.ReadLine();
+                        this.BeginInvoke(new LineReceivedEventHandlerAutoSteer(SerialLineReceivedAutoSteer), sentence);
+                    }
+                    //this is bad programming, it just ignores errors until its hooked up again.
+                    catch (Exception ex)
+                    {
+                        WriteErrorLog("AutoSteer Recv" + ex.ToString());
+                    }
+
                 }
-                //this is bad programming, it just ignores errors until its hooked up again.
-                catch (Exception ex)
+                else   //get 2 byte feedback from pololu
+
                 {
-                    WriteErrorLog("AutoSteer Recv" + ex.ToString());
+
+
+                    byte[] buffer = new byte[2];
+                    spAutoSteer.Read(buffer, 0, 2);
+                    int feedback = buffer[0] + 256 * buffer[1];
+
+                    actualSteerAngleDisp = feedback - 2047;
+                    actualSteerAngleDisp += (Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5;
+                    actualSteerAngleDisp /= Properties.Settings.Default.setAS_countsPerDegree;
+                    actualSteerAngleDisp *= 100;
+                   // Console.WriteLine("Steer act : ");
+                   // Console.WriteLine(actualSteerAngleDisp / 100);
+                               
                 }
+
+
+
+
 
             }
         }
@@ -234,13 +292,19 @@ namespace AgOpenGPS
         {
             if (spAutoSteer.IsOpen)
             {
-                spAutoSteer.DataReceived -= sp_DataReceivedAutoSteer;
-                try { spAutoSteer.Close(); }
-                catch (Exception e)
-                {
-                    WriteErrorLog("Closing steer Port" + e.ToString());
-                    MessageBox.Show(e.Message, "Connection already terminated??");
-                }
+               
+                    spAutoSteer.DataReceived -= sp_DataReceivedAutoSteer;
+                    try { spAutoSteer.Close(); }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Closing steer Port" + e.ToString());
+                        MessageBox.Show(e.Message, "Connection already terminated??");
+                    }
+
+
+
+
+
 
                 Properties.Settings.Default.setPort_wasAutoSteerConnected = false;
                 Properties.Settings.Default.Save();
