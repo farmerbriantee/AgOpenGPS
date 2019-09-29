@@ -28,6 +28,7 @@ namespace AgOpenGPS
             btnSave.Enabled = false;
             lblTemplateChosen.Text = "None Selected";
             tboxVehicle.Text = mf.vehiclefileName;
+            lblFilename.Text = "";
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -47,6 +48,9 @@ namespace AgOpenGPS
                 btnTemplate.Enabled = true;
                 btnSave.Enabled = true;
             }
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim()
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void tboxTask_TextChanged(object sender, EventArgs e)
@@ -55,6 +59,9 @@ namespace AgOpenGPS
             var cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
             textboxSender.SelectionStart = cursorPosition;
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim() 
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void tboxVehicle_TextChanged(object sender, EventArgs e)
@@ -63,6 +70,9 @@ namespace AgOpenGPS
             var cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
             textboxSender.SelectionStart = cursorPosition;
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim()
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)

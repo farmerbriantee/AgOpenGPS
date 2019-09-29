@@ -49,7 +49,7 @@
             this.lblDistanceTree.AutoSize = true;
             this.lblDistanceTree.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistanceTree.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceTree.Location = new System.Drawing.Point(20, 87);
+            this.lblDistanceTree.Location = new System.Drawing.Point(20, 95);
             this.lblDistanceTree.Name = "lblDistanceTree";
             this.lblDistanceTree.Size = new System.Drawing.Size(33, 35);
             this.lblDistanceTree.TabIndex = 305;
@@ -101,7 +101,7 @@
             this.btnZeroDistance.Image = global::AgOpenGPS.Properties.Resources.Snap2;
             this.btnZeroDistance.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnZeroDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroDistance.Location = new System.Drawing.Point(16, 134);
+            this.btnZeroDistance.Location = new System.Drawing.Point(12, 150);
             this.btnZeroDistance.Name = "btnZeroDistance";
             this.btnZeroDistance.Size = new System.Drawing.Size(91, 96);
             this.btnZeroDistance.TabIndex = 142;
@@ -118,7 +118,7 @@
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStop.Location = new System.Drawing.Point(176, 132);
+            this.btnStop.Location = new System.Drawing.Point(182, 150);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(90, 96);
             this.btnStop.TabIndex = 141;
@@ -144,7 +144,7 @@
             this.lblTrees.AutoSize = true;
             this.lblTrees.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrees.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTrees.Location = new System.Drawing.Point(178, 87);
+            this.lblTrees.Location = new System.Drawing.Point(178, 95);
             this.lblTrees.Name = "lblTrees";
             this.lblTrees.Size = new System.Drawing.Size(51, 35);
             this.lblTrees.TabIndex = 312;
@@ -156,7 +156,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(126, 93);
+            this.label3.Location = new System.Drawing.Point(126, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 23);
             this.label3.TabIndex = 313;
@@ -164,6 +164,7 @@
             // 
             // nudTreeSpacing
             // 
+            this.nudTreeSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTreeSpacing.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTreeSpacing.Location = new System.Drawing.Point(145, 26);
             this.nudTreeSpacing.Maximum = new decimal(new int[] {
@@ -180,6 +181,7 @@
             0,
             0});
             this.nudTreeSpacing.ValueChanged += new System.EventHandler(this.NudTreeSpacing_ValueChanged);
+            this.nudTreeSpacing.Enter += new System.EventHandler(this.NudTreeSpacing_Enter);
             // 
             // label2
             // 
@@ -197,7 +199,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(276, 241);
+            this.ClientSize = new System.Drawing.Size(282, 259);
             this.ControlBox = false;
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.nudTreeSpacing);

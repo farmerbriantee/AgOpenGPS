@@ -40,6 +40,7 @@
             // 
             // nudPass
             // 
+            this.nudPass.BackColor = System.Drawing.Color.AliceBlue;
             this.nudPass.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPass.Location = new System.Drawing.Point(37, 69);
             this.nudPass.Maximum = new decimal(new int[] {
@@ -54,12 +55,13 @@
             0});
             this.nudPass.Name = "nudPass";
             this.nudPass.Size = new System.Drawing.Size(120, 85);
-            this.nudPass.TabIndex = 0;
+            this.nudPass.TabIndex = 5;
             this.nudPass.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.nudPass.Enter += new System.EventHandler(this.NudPass_Enter);
             // 
             // lblHz
             // 
@@ -82,13 +84,14 @@
             this.btnOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(129, 80);
-            this.btnOk.TabIndex = 251;
+            this.btnOk.TabIndex = 1;
             this.btnOk.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // nudSpacing
             // 
+            this.nudSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudSpacing.Location = new System.Drawing.Point(37, 246);
             this.nudSpacing.Minimum = new decimal(new int[] {
@@ -104,6 +107,7 @@
             0,
             0,
             0});
+            this.nudSpacing.Enter += new System.EventHandler(this.NudSpacing_Enter);
             // 
             // label1
             // 
@@ -128,7 +132,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 81);
-            this.btnCancel.TabIndex = 254;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -154,6 +158,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Make Boundary Contour";
+            this.Load += new System.EventHandler(this.FormMakeBndCon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpacing)).EndInit();
             this.ResumeLayout(false);

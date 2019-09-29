@@ -57,11 +57,11 @@
             this.cboxHeadingBrick = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tboxTinkerUID = new System.Windows.Forms.TextBox();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.bntOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label35 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.bntOK = new System.Windows.Forms.Button();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -454,6 +454,62 @@
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label35);
+            this.groupBox1.Controls.Add(this.nudMinFixStepDistance);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.groupBox1.Location = new System.Drawing.Point(753, 335);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(323, 142);
+            this.groupBox1.TabIndex = 121;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Distance for Fix Heading Calc";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label35.Location = new System.Drawing.Point(192, 93);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(94, 29);
+            this.label35.TabIndex = 67;
+            this.label35.Text = "Meters";
+            // 
+            // nudMinFixStepDistance
+            // 
+            this.nudMinFixStepDistance.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudMinFixStepDistance.DecimalPlaces = 1;
+            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.InterceptArrowKeys = false;
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(23, 40);
+            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
+            6,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
+            this.nudMinFixStepDistance.Size = new System.Drawing.Size(163, 85);
+            this.nudMinFixStepDistance.TabIndex = 66;
+            this.nudMinFixStepDistance.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.NudMinFixStepDistance_ValueChanged);
+            this.nudMinFixStepDistance.Enter += new System.EventHandler(this.NudMinFixStepDistance_Enter);
+            // 
             // btnCancel
             // 
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -483,65 +539,13 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.bntOK_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label35);
-            this.groupBox1.Controls.Add(this.nudMinFixStepDistance);
-            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(753, 335);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 142);
-            this.groupBox1.TabIndex = 121;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Distance for Fix Heading Calc";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label35.Location = new System.Drawing.Point(192, 93);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(94, 29);
-            this.label35.TabIndex = 67;
-            this.label35.Text = "Meters";
-            // 
-            // nudMinFixStepDistance
-            // 
-            this.nudMinFixStepDistance.DecimalPlaces = 1;
-            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(23, 40);
-            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
-            40,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            6,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
-            this.nudMinFixStepDistance.Size = new System.Drawing.Size(163, 85);
-            this.nudMinFixStepDistance.TabIndex = 66;
-            this.nudMinFixStepDistance.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.ValueChanged += new System.EventHandler(this.NudMinFixStepDistance_ValueChanged);
-            // 
             // FormIMU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1088, 648);
+            this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.headingGroupBox);
             this.Controls.Add(this.btnRollZero);
@@ -552,10 +556,13 @@
             this.Controls.Add(this.bntOK);
             this.Controls.Add(this.tboxTinkerUID);
             this.Controls.Add(this.label9);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormIMU";
             this.ShowInTaskbar = false;
             this.Text = "FormDisplaySettings";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormDisplaySettings_Load);
             this.headingGroupBox.ResumeLayout(false);
             this.headingGroupBox.PerformLayout();
