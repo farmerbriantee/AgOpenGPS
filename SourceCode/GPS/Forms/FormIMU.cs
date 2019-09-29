@@ -17,6 +17,7 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+            nudMinFixStepDistance.Controls[0].Enabled = false;
         }
 
         #region EntryExit
@@ -106,6 +107,7 @@ namespace AgOpenGPS
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
         }
+
         #endregion EntryExit
 
         private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
@@ -184,6 +186,12 @@ namespace AgOpenGPS
         private void NudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
         {
             minFixStepDistance = nudMinFixStepDistance.Value;
+        }
+
+        private void NudMinFixStepDistance_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
         }
 
         private void cboxHeadingPAOGI_CheckedChanged(object sender, EventArgs e)

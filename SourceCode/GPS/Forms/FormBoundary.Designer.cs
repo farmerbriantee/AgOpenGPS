@@ -402,6 +402,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Start or Delete A Boundary";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormBoundary_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

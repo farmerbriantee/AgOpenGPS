@@ -300,19 +300,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void tboxHeading_TextChanged(object sender, EventArgs e)
-        {
-            var textboxSender = (TextBox)sender;
-            var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9.]", "");
-            textboxSender.SelectionStart = cursorPosition;
-            string line = tboxHeading.Text.Trim();
-            if (line?.Length == 0) line = "0";
-            if (line == ".") line = "0";
-            upDnHeading = double.Parse(line, CultureInfo.InvariantCulture);
-            mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading, 6));
-            mf.ABLine.SetABLineByHeading();
-        }
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
@@ -406,6 +393,34 @@ namespace AgOpenGPS
         private void TboxHeading_Enter(object sender, EventArgs e)
         {
             tboxHeading.Text = "";
+
+            using (var form = new FormNumeric(0, 360, upDnHeading))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    upDnHeading = form.ReturnValue;
+                    tboxHeading.Text = upDnHeading.ToString();
+                    //mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading, 6));
+                    //mf.ABLine.SetABLineByHeading();
+                }
+            }
+
+            btnTurnOffAB.Focus();
+
+        }
+        private void tboxHeading_TextChanged(object sender, EventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = textboxSender.SelectionStart;
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9.]", "");
+            textboxSender.SelectionStart = cursorPosition;
+            string line = tboxHeading.Text.Trim();
+            if (line?.Length == 0) line = "0";
+            if (line == ".") line = "0";
+            upDnHeading = double.Parse(line, CultureInfo.InvariantCulture);
+            mf.ABLine.abHeading = glm.toRadians(Math.Round(upDnHeading, 6));
+            mf.ABLine.SetABLineByHeading();
         }
 
         private void BtnShow_Click(object sender, EventArgs e)

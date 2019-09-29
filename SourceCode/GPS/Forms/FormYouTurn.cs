@@ -101,7 +101,7 @@ namespace AgOpenGPS
             }
             else
             {
-                btnIsUsingDubins.Text = "Doobie";
+                btnIsUsingDubins.Text = "Dubins";
                 btnIsUsingDubins.BackColor = Color.LightGreen;
                 btnYouTurnCustom.Enabled = false;
                 btnYouTurnKeyHole.Enabled = false;
@@ -736,7 +736,7 @@ namespace AgOpenGPS
             else
             {
                 mf.yt.isUsingDubinsTurn = true;
-                btnIsUsingDubins.Text = "Doobie";
+                btnIsUsingDubins.Text = "Dubins";
                 btnIsUsingDubins.BackColor = Color.LightGreen;
                 btnYouTurnCustom.Enabled = false;
                 btnYouTurnKeyHole.Enabled = false;

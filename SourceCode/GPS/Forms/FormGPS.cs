@@ -85,6 +85,8 @@ namespace AgOpenGPS
 
         public int pbarSteer, pbarRelay, pbarUDP;
 
+        public double nudNumber = 0;
+
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto
@@ -723,13 +725,6 @@ namespace AgOpenGPS
             }
         }
 
-        //start the NTRIP Client
-        private void StartNTRIPClient()
-        {
-            //isNTRIP_Starting = true;
-            //StartNTRIP();
-        }
-
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -810,6 +805,22 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public void KeypadToNUD(NumericUpDown sender)
+        {
+            NumericUpDown nud = (NumericUpDown)sender;
+            nud.BackColor = System.Drawing.Color.Red;
+            using (var form = new FormNumeric((double)nud.Minimum, (double)nud.Maximum, (double)nud.Value))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    nud.Value = (decimal)form.ReturnValue;
+                }
+            }
+            nud.BackColor = System.Drawing.Color.AliceBlue;
+        }
+
         //show the communications window
         private void SettingsCommunications()
         {

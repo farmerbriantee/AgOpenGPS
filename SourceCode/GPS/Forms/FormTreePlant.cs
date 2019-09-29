@@ -16,6 +16,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+            nudTreeSpacing.Controls[0].Enabled = false;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -96,6 +97,12 @@ namespace AgOpenGPS
         private void NudTreeSpacing_ValueChanged(object sender, EventArgs e)
         {
             mf.vehicle.treeSpacing = (double)nudTreeSpacing.Value;
+        }
+
+        private void NudTreeSpacing_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnStop.Focus();
         }
 
         private void FormTreePlant_Load(object sender, EventArgs e)

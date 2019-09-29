@@ -10,12 +10,19 @@ namespace AgOpenGPS
     public partial class FormNtrip : Form
     {
         //class variables
-        private readonly FormGPS mf = null;
+        private readonly FormGPS mf;
 
         public FormNtrip(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            //turn off the little arrows
+            nudCasterPort.Controls[0].Enabled = false;
+            nudGGAInterval.Controls[0].Enabled = false;
+            nudLatitude.Controls[0].Enabled = false;
+            nudLongitude.Controls[0].Enabled = false;
+            nudSendToUDPPort.Controls[0].Enabled = false;
         }
 
         private void FormNtrip_Load(object sender, EventArgs e)
@@ -176,6 +183,36 @@ namespace AgOpenGPS
 
         private void nudSendToUDPPort_ValueChanged(object sender, EventArgs e)
         {
+        }
+
+        private void NudCasterPort_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSerialCancel.Focus();
+        }
+
+        private void NudGGAInterval_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSerialCancel.Focus();
+        }
+
+        private void NudLatitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSerialCancel.Focus();
+        }
+
+        private void NudLongitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSerialCancel.Focus();
+        }
+
+        private void NudSendToUDPPort_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSerialCancel.Focus();
         }
     }
 }
