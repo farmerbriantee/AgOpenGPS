@@ -14,3 +14,14 @@ Opening Steer PortSystem.IO.IOException: Der Anschluss COM5 ist nicht vorhanden.
    bei System.IO.Ports.SerialPort.Open()
    bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 267. - 29.09.2019 21:03:48
 
+AutoSteer RecvSystem.IO.IOException: Der E/A-Vorgang wurde wegen eines Threadendes oder einer Anwendungsanforderung abgebrochen.
+
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   bei System.IO.Ports.SerialPort.ReadTo(String value)
+   bei System.IO.Ports.SerialPort.ReadLine()
+   bei AgOpenGPS.FormGPS.sp_DataReceivedAutoSteer(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 187. - 30.09.2019 11:53:36
+

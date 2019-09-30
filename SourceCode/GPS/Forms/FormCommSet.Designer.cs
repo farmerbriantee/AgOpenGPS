@@ -69,6 +69,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnOGI = new System.Windows.Forms.RadioButton();
             this.rbtnRMC = new System.Windows.Forms.RadioButton();
+            this.usejrk = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -399,6 +400,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.usejrk);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.txtBoxSendAutoSteer);
             this.groupBox3.Controls.Add(this.cboxASPort);
@@ -415,6 +417,7 @@
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "AutoSteer Port";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // label3
             // 
@@ -578,6 +581,17 @@
             this.rbtnRMC.Text = "RMC";
             this.rbtnRMC.UseVisualStyleBackColor = true;
             // 
+            // usejrk
+            // 
+            this.usejrk.AutoSize = true;
+            this.usejrk.Location = new System.Drawing.Point(240, 29);
+            this.usejrk.Name = "usejrk";
+            this.usejrk.Size = new System.Drawing.Size(105, 27);
+            this.usejrk.TabIndex = 67;
+            this.usejrk.Text = "JRK use";
+            this.usejrk.UseVisualStyleBackColor = true;
+            this.usejrk.CheckedChanged += new System.EventHandler(this.usejrk_CheckedChanged);
+            // 
             // FormCommSet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -653,5 +667,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RadioButton rbtnOGI;
         private System.Windows.Forms.RadioButton rbtnRMC;
+        private System.Windows.Forms.CheckBox usejrk;
     }
 }
