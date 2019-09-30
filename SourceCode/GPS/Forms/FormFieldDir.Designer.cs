@@ -41,9 +41,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tboxVehicle = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label1.Location = new System.Drawing.Point(13, 23);
@@ -51,10 +51,10 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 25);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Enter Field Name";
-            // 
+            this.label1.Text = gStr.gsEnter_Field_Name;
+            //
             // tboxFieldName
-            // 
+            //
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.tboxFieldName.Location = new System.Drawing.Point(13, 56);
             this.tboxFieldName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -62,9 +62,9 @@
             this.tboxFieldName.Size = new System.Drawing.Size(538, 33);
             this.tboxFieldName.TabIndex = 0;
             this.tboxFieldName.TextChanged += new System.EventHandler(this.tboxFieldName_TextChanged);
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label2.Location = new System.Drawing.Point(290, 25);
@@ -72,10 +72,10 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(193, 23);
             this.label2.TabIndex = 6;
-            this.label2.Text = "** Date will be added";
-            // 
+            this.label2.Text = gStr.gsDate_will_be_added;
+            //
             // btnSerialCancel
-            // 
+            //
             this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -86,13 +86,13 @@
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 77);
             this.btnSerialCancel.TabIndex = 4;
-            this.btnSerialCancel.Text = "Cancel";
+            this.btnSerialCancel.Text = gStr.gsCancel;
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
-            // 
+            //
             // btnTemplate
-            // 
+            //
             this.btnTemplate.BackColor = System.Drawing.Color.AliceBlue;
             this.btnTemplate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnTemplate.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
@@ -102,13 +102,13 @@
             this.btnTemplate.Name = "btnTemplate";
             this.btnTemplate.Size = new System.Drawing.Size(130, 100);
             this.btnTemplate.TabIndex = 5;
-            this.btnTemplate.Text = "Clone From";
+            this.btnTemplate.Text = gStr.gsClone_From;
             this.btnTemplate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnTemplate.UseVisualStyleBackColor = false;
             this.btnTemplate.Click += new System.EventHandler(this.btnTemplate_Click);
-            // 
+            //
             // lblTemplateChosen
-            // 
+            //
             this.lblTemplateChosen.AutoSize = true;
             this.lblTemplateChosen.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblTemplateChosen.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -117,10 +117,10 @@
             this.lblTemplateChosen.Name = "lblTemplateChosen";
             this.lblTemplateChosen.Size = new System.Drawing.Size(124, 25);
             this.lblTemplateChosen.TabIndex = 140;
-            this.lblTemplateChosen.Text = "None Used";
-            // 
+            this.lblTemplateChosen.Text = gStr.gsNone_Used;
+            //
             // label3
-            // 
+            //
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -129,10 +129,10 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 23);
             this.label3.TabIndex = 141;
-            this.label3.Text = "Based on Field:";
-            // 
+            this.label3.Text = gStr.gsBased_on_Field;
+            //
             // btnSave
-            // 
+            //
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSave.Location = new System.Drawing.Point(543, 147);
             this.btnSave.Name = "btnSave";
@@ -141,9 +141,9 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
+            //
             // tboxTask
-            // 
+            //
             this.tboxTask.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.tboxTask.Location = new System.Drawing.Point(13, 138);
             this.tboxTask.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -151,9 +151,9 @@
             this.tboxTask.Size = new System.Drawing.Size(446, 33);
             this.tboxTask.TabIndex = 1;
             this.tboxTask.TextChanged += new System.EventHandler(this.tboxTask_TextChanged);
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -162,10 +162,10 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 25);
             this.label4.TabIndex = 144;
-            this.label4.Text = "Enter Task";
-            // 
+            this.label4.Text = gStr.gsEnter_Task;
+            //
             // label5
-            // 
+            //
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -174,10 +174,10 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(189, 25);
             this.label5.TabIndex = 146;
-            this.label5.Text = "Enter Vehicle Used";
-            // 
+            this.label5.Text = gStr.gsEnter_Vehicle_Used;
+            //
             // tboxVehicle
-            // 
+            //
             this.tboxVehicle.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.tboxVehicle.Location = new System.Drawing.Point(13, 220);
             this.tboxVehicle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -185,9 +185,9 @@
             this.tboxVehicle.Size = new System.Drawing.Size(446, 33);
             this.tboxVehicle.TabIndex = 2;
             this.tboxVehicle.TextChanged += new System.EventHandler(this.tboxVehicle_TextChanged);
-            // 
+            //
             // FormFieldDir
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(695, 398);
@@ -209,7 +209,7 @@
             this.Name = "FormFieldDir";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Create New Field ";
+            this.Text = gStr.gsCreate_New_Field;
             this.Load += new System.EventHandler(this.FormFieldDir_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

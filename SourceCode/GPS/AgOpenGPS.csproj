@@ -302,6 +302,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.fr1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.fr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -456,6 +461,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.fr1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
