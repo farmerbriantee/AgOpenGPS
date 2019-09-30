@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{73933709-370E-43B3-8563-CC0F48FF587B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AgOpenGPS</RootNamespace>
+    <AssemblyName>AgOpenGPS</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.1.1.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Application\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\Application\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>BriansRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <NoWarn>
+    </NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AppIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject>AgOpenGPS.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\RepeatButtonControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tinkerforge, Version=2.1.16.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\Tinkerforge.dll</HintPath>
+    </Reference>
+    <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Application\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\CFieldData.cs" />
+    <Compile Include="Classes\CBoundaryLines.cs" />
+    <Compile Include="Classes\CDubins.cs" />
+    <Compile Include="Classes\CAHRS.cs" />
+    <Compile Include="Classes\CAutoSteer.cs" />
+    <Compile Include="Classes\CABCurve.cs" />
+    <Compile Include="Classes\CGeoFence.cs" />
+    <Compile Include="Classes\CGeoFenceLines.cs" />
+    <Compile Include="Classes\CMazeGrid.cs" />
+    <Compile Include="Classes\CMazePath.cs" />
+    <Compile Include="Classes\CRecordedPath.cs" />
+    <Compile Include="Classes\CSim.cs" />
+    <Compile Include="Classes\CWorkSwitch.cs" />
+    <Compile Include="Classes\CYouTurn.cs" />
+    <Compile Include="Classes\CBoundary.cs" />
+    <Compile Include="Classes\CFlag.cs" />
+    <Compile Include="Classes\CABLine.cs" />
+    <Compile Include="Classes\CCamera.cs" />
+    <Compile Include="Classes\CContour.cs" />
+    <Compile Include="Classes\CModuleComm.cs" />
+    <Compile Include="Classes\CNMEA.cs" />
+    <Compile Include="Classes\CPerimeter.cs" />
+    <Compile Include="Classes\CSection.cs" />
+    <Compile Include="Classes\CPointData.cs" />
+    <Compile Include="Classes\CVehicle.cs" />
+    <Compile Include="Classes\CWaypoint.cs" />
+    <Compile Include="Classes\CWorldGrid.cs" />
+    <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Classes\CTurn.cs" />
+    <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Forms\FormNumeric.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNumeric.Designer.cs">
+      <DependentUpon>FormNumeric.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMakeBndCon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMakeBndCon.Designer.cs">
+      <DependentUpon>FormMakeBndCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormElev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormElev.Designer.cs">
+      <DependentUpon>FormElev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormNtrip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNtrip.Designer.cs">
+      <DependentUpon>FormNtrip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormABDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABDraw.Designer.cs">
+      <DependentUpon>FormABDraw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSwapAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSwapAB.Designer.cs">
+      <DependentUpon>FormSwapAB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormShortcutKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShortcutKeys.Designer.cs">
+      <DependentUpon>FormShortcutKeys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSteerGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSteerGraph.Designer.cs">
+      <DependentUpon>FormSteerGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormShiftPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShiftPos.Designer.cs">
+      <DependentUpon>FormShiftPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSmoothAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSmoothAB.Designer.cs">
+      <DependentUpon>FormSmoothAB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormIMU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormIMU.Designer.cs">
+      <DependentUpon>FormIMU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormABCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABCurve.Designer.cs">
+      <DependentUpon>FormABCurve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormBoundary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBoundary.Designer.cs">
+      <DependentUpon>FormBoundary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormBoundaryPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBoundaryPlayer.Designer.cs">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFieldDir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFieldDir.Designer.cs">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCommSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCommSet.Designer.cs">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormJob.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormJob.Designer.cs">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSaveOrNot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSaveOrNot.Designer.cs">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSimCoords.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSimCoords.Designer.cs">
+      <DependentUpon>FormSimCoords.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormSteer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSteer.Designer.cs">
+      <DependentUpon>FormSteer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTimedMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTimedMessage.Designer.cs">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWebCam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWebCam.Designer.cs">
+      <DependentUpon>FormWebCam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormYouTurnRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYouTurnRecord.Designer.cs">
+      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GUI.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Position.designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormYouTurn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYouTurn.Designer.cs">
+      <DependentUpon>FormYouTurn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormUDP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormUDP.Designer.cs">
+      <DependentUpon>FormUDP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Form_About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_About.Designer.cs">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTreePlant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTreePlant.Designer.cs">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="gStr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SaveOpen.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormABLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABLine.Designer.cs">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormGPSData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGPSData.Designer.cs">
+      <DependentUpon>FormGPSData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\CGLM.cs" />
+    <Compile Include="Forms\FormSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSettings.Designer.cs">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OpenGL.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SerialComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NTRIPComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormGPS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGPS.Designer.cs">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="Forms\UDPComm.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\vec3.cs" />
+    <Compile Include="Properties\Vehicle.Designer.cs">
+      <DependentUpon>Vehicle.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Forms\FormNumeric.resx">
+      <DependentUpon>FormNumeric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMakeBndCon.resx">
+      <DependentUpon>FormMakeBndCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormElev.resx">
+      <DependentUpon>FormElev.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNtrip.resx">
+      <DependentUpon>FormNtrip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABDraw.resx">
+      <DependentUpon>FormABDraw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSwapAB.resx">
+      <DependentUpon>FormSwapAB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
+      <DependentUpon>FormShortcutKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShiftPos.resx">
+      <DependentUpon>FormShiftPos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormIMU.resx">
+      <DependentUpon>FormIMU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABCurve.resx">
+      <DependentUpon>FormABCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundary.resx">
+      <DependentUpon>FormBoundary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormBoundaryPlayer.resx">
+      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldDir.resx">
+      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormABLine.resx">
+      <DependentUpon>FormABLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCommSet.resx">
+      <DependentUpon>FormCommSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPSData.resx">
+      <DependentUpon>FormGPSData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGPS.resx">
+      <DependentUpon>FormGPS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormJob.resx">
+      <DependentUpon>FormJob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
+      <DependentUpon>FormSaveOrNot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSettings.resx">
+      <DependentUpon>FormSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSimCoords.resx">
+      <DependentUpon>FormSimCoords.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSmoothAB.resx">
+      <DependentUpon>FormSmoothAB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSteer.resx">
+      <DependentUpon>FormSteer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSteerGraph.resx">
+      <DependentUpon>FormSteerGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWebCam.resx">
+      <DependentUpon>FormWebCam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYouTurnRecord.resx">
+      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYouTurn.resx">
+      <DependentUpon>FormYouTurn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormUDP.resx">
+      <DependentUpon>FormUDP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_About.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTreePlant.resx">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Properties\Vehicle.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AppIcon.ico" />
+    <Content Include="AppIcon64.ico" />
+    <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\VehicleSettings.jpg" />
+    <None Include="btnImages\ToolSettings.jpg" />
+    <None Include="btnImages\VehAft64.png" />
+    <None Include="btnImages\VehFore64.png" />
+    <None Include="btnImages\VehHitched64.png" />
+    <None Include="btnImages\VehRigid64.png" />
+    <None Include="btnImages\PivotAhead.png" />
+    <None Include="btnImages\PivotBehind.png" />
+    <None Include="btnImages\ImplementSettings.png" />
+    <None Include="btnImages\SteerAhead.png" />
+    <None Include="btnImages\SteerBehind.png" />
+    <None Include="btnImages\Examples.png" />
+    <None Include="btnImages\SectionAuto.png" />
+    <None Include="btnImages\SectionOff.png" />
+    <None Include="btnImages\SectionOn.png" />
+    <None Include="btnImages\ManualOff.png" />
+    <None Include="btnImages\ManualOn.png" />
+    <None Include="btnImages\JobActive.png" />
+    <None Include="btnImages\JobClosed.png" />
+    <None Include="btnImages\FileSave.png" />
+    <None Include="btnImages\Play.png" />
+    <None Include="btnImages\Stop.png" />
+    <None Include="btnImages\Oops.png" />
+    <None Include="btnImages\back-button.png" />
+    <None Include="btnImages\FileDontSave.png" />
+    <None Include="btnImages\FileNew.png" />
+    <None Include="btnImages\FileOpen.png" />
+    <None Include="btnImages\FilePrevious.png" />
+    <None Include="btnImages\ContourOff.png" />
+    <None Include="btnImages\ContourOn.png" />
+    <None Include="btnImages\PeriArea.png" />
+    <None Include="btnImages\PeriDone.png" />
+    <None Include="btnImages\PeriDraw.png" />
+    <None Include="btnImages\ZoomIn48.png" />
+    <None Include="btnImages\ZoomOut48.png" />
+    <None Include="btnImages\FlagRed.png" />
+    <None Include="btnImages\FlagGrn.png" />
+    <None Include="btnImages\FlagYel.png" />
+    <None Include="btnImages\FlagDelete.png" />
+    <None Include="btnImages\TiltDown.png" />
+    <None Include="btnImages\TiltUp.png" />
+    <None Include="btnImages\FlagDeleteAll.png" />
+    <None Include="btnImages\GoogleEarth.png" />
+    <None Include="btnImages\Satellite64.png" />
+    <None Include="btnImages\AreaSide.png" />
+    <None Include="btnImages\DnArrow64.png" />
+    <None Include="btnImages\Color.png" />
+    <None Include="btnImages\ColorField.png" />
+    <None Include="btnImages\WorkSwitch.png" />
+    <None Include="btnImages\WorkSwitch.jpg" />
+    <None Include="btnImages\AutoSteerOff.png" />
+    <None Include="btnImages\AutoSteerOn.png" />
+    <None Include="btnImages\ZeroPitchRoll.png" />
+    <None Include="btnImages\ResetTrip.png" />
+    <None Include="btnImages\ComPorts.png" />
+    <None Include="btnImages\HideShowMenu.png" />
+    <None Include="btnImages\TripOdometer.png" />
+    <None Include="btnImages\ArrowLeft.png" />
+    <None Include="btnImages\ArrowRight.png" />
+    <None Include="btnImages\OuterBoundary.png" />
+    <None Include="btnImages\BoundaryLeft.png" />
+    <None Include="btnImages\BoundaryRight.png" />
+    <None Include="btnImages\boundaryPause.png" />
+    <None Include="btnImages\boundaryPlay.png" />
+    <None Include="btnImages\boundaryStop.png" />
+    <None Include="btnImages\BoundaryDelete.png" />
+    <None Include="btnImages\BoundaryOuter.png" />
+    <None Include="btnImages\BoundaryRecord.png" />
+    <None Include="btnImages\BoundaryMenu.png" />
+    <None Include="btnImages\FileExplorerWindows.png" />
+    <None Include="btnImages\tire.jpg" />
+    <None Include="btnImages\gyro.png" />
+    <None Include="btnImages\KeyHole.png" />
+    <None Include="btnImages\SemiCircle.png" />
+    <None Include="btnImages\Rate1Select.png" />
+    <None Include="btnImages\RateControlOff.png" />
+    <None Include="btnImages\RateControlOn.png" />
+    <None Include="btnImages\RateSelect2.png" />
+    <None Include="btnImages\AutoLeft.png" />
+    <None Include="btnImages\AutoRight.png" />
+    <None Include="btnImages\SettingsGear64.png" />
+    <None Include="btnImages\RunMan64.png" />
+    <None Include="btnImages\Start64.png" />
+    <None Include="btnImages\Rate64.png" />
+    <None Include="btnImages\Settings64.png" />
+    <None Include="btnImages\Menu5.png" />
+    <None Include="btnImages\Custom.png" />
+    <None Include="btnImages\Headland.png" />
+    <None Include="btnImages\UDPConfig.png" />
+    <None Include="btnImages\Snap2.png" />
+    <None Include="btnImages\Youturn80.png" />
+    <None Include="btnImages\YouTurnNo.png" />
+    <None Include="btnImages\Youturn64.png" />
+    <None Include="btnImages\PointDelete.png" />
+    <None Include="btnImages\PointDone.png" />
+    <None Include="btnImages\PointStart.png" />
+    <None Include="btnImages\YouTurnReverse.png" />
+    <None Include="btnImages\YouTurnBackground.jpg" />
+    <None Include="btnImages\WideReturn.png" />
+    <None Include="btnImages\Settings48.png" />
+    <None Include="btnImages\Batman48.png" />
+    <None Include="btnImages\SettingsGear32.png" />
+    <None Include="btnImages\start.png" />
+    <None Include="btnImages\AutoSteerConf.png" />
+    <None Include="btnImages\SetupStatusStrip.png" />
+    <None Include="btnImages\Help.png" />
+    <None Include="btnImages\Webcam.png" />
+    <None Include="btnImages\skull.png" />
+    <None Include="btnImages\CurveOff.png" />
+    <None Include="btnImages\CurveOn.png" />
+    <None Include="btnImages\SectionSettingsBackground.png" />
+    <None Include="btnImages\ArrowTurnLeft.png" />
+    <None Include="btnImages\ArrowTurnRight.png" />
+    <None Include="btnImages\FlowMeterDual.png" />
+    <None Include="btnImages\FlowMeterSingle.png" />
+    <None Include="btnImages\AutoGo.png" />
+    <None Include="btnImages\AutoStop.png" />
+    <None Include="btnImages\Chart.png" />
+    <None Include="btnImages\MakeBoundary.png" />
+    <None Include="btnImages\ABSmooth.png" />
+    <None Include="btnImages\SpecialFunctions.png" />
+    <None Include="btnImages\ContourPriorityLeft.png" />
+    <None Include="btnImages\ContourPriorityRight.png" />
+    <None Include="btnImages\Camera54.png" />
+    <None Include="btnImages\Camera2D64.png" />
+    <None Include="btnImages\Camera3D64.png" />
+    <None Include="btnImages\CameraNorth64.png" />
+    <None Include="btnImages\Extents.png" />
+    <None Include="btnImages\Start48.png" />
+    <None Include="btnImages\NtripSettings.png" />
+    <None Include="btnImages\HideContour.png" />
+    <None Include="btnImages\RecPath.png" />
+    <None Include="btnImages\LonLat.gif" />
+    <None Include="btnImages\tree.png" />
+    <None Include="btnImages\FileDelete.png" />
+    <None Include="btnImages\FileUse.png" />
+    <None Include="btnImages\radar-icon.png" />
+    <None Include="btnImages\MakeBoundaryContour.jpg" />
+    <None Include="btnImages\VehicleSettingsAntenna.jpg" />
+    <Content Include="Dependencies\Floor.png" />
+    <Content Include="Dependencies\Landscape.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ALicense.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Keypad\Keypad.csproj">
+      <Project>{F1053BAC-22C7-4E6F-A3EA-CC1E1FBA9CB0}</Project>
+      <Name>Keypad</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
