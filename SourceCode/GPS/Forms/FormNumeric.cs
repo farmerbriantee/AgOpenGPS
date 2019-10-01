@@ -19,7 +19,7 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //fill in the display
-            //tboxNumber.Text = currentValue.ToString();
+            tboxNumber.Text = currentValue.ToString();
         }
 
         private void FormNumeric_Load(object sender, EventArgs e)
@@ -138,6 +138,30 @@ namespace AgOpenGPS
                     this.Close();
                 }
             }
+        }
+
+        private void BtnDistanceUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == "Error") tboxNumber.Text = "0";
+            double tryNumber = double.Parse(tboxNumber.Text, CultureInfo.InvariantCulture);
+
+
+            tryNumber++;
+
+            if (tryNumber > max) tryNumber = max;
+
+            tboxNumber.Text = tryNumber.ToString();
+        }
+
+        private void BtnDistanceDn_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == "Error") tboxNumber.Text = "0";
+            double tryNumber = double.Parse(tboxNumber.Text, CultureInfo.InvariantCulture);
+
+            tryNumber--;
+            if (tryNumber < min) tryNumber = min;
+
+            tboxNumber.Text = tryNumber.ToString();
         }
     }
 }

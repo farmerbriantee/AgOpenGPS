@@ -18,6 +18,9 @@
 * Buttons bring up and take down forms
 * Exit button on start menu
 * Settings arranged
+* Keypad added
+* JRK motor controller functionality
+
 
 v3.0 June/July 2019
 * Added tree planting

@@ -44,7 +44,7 @@
             this.nudPass.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPass.Location = new System.Drawing.Point(37, 69);
             this.nudPass.Maximum = new decimal(new int[] {
-            3,
+            9,
             0,
             0,
             0});

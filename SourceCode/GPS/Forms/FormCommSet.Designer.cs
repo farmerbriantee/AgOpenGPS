@@ -55,6 +55,7 @@
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.usejrk = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxSendAutoSteer = new System.Windows.Forms.TextBox();
             this.cboxASPort = new System.Windows.Forms.ComboBox();
@@ -399,6 +400,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.usejrk);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.txtBoxSendAutoSteer);
             this.groupBox3.Controls.Add(this.cboxASPort);
@@ -415,6 +417,19 @@
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "AutoSteer Port";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // usejrk
+            // 
+            this.usejrk.AutoSize = true;
+            this.usejrk.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usejrk.Location = new System.Drawing.Point(255, 27);
+            this.usejrk.Name = "usejrk";
+            this.usejrk.Size = new System.Drawing.Size(78, 33);
+            this.usejrk.TabIndex = 67;
+            this.usejrk.Text = "JRK";
+            this.usejrk.UseVisualStyleBackColor = true;
+            this.usejrk.CheckedChanged += new System.EventHandler(this.usejrk_CheckedChanged);
             // 
             // label3
             // 
@@ -653,5 +668,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.RadioButton rbtnOGI;
         private System.Windows.Forms.RadioButton rbtnRMC;
+        private System.Windows.Forms.CheckBox usejrk;
     }
 }
