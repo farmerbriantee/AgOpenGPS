@@ -85,6 +85,8 @@ namespace AgOpenGPS
 
         public int pbarSteer, pbarRelay, pbarUDP;
 
+        public double nudNumber = 0;
+
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto
@@ -426,7 +428,7 @@ namespace AgOpenGPS
             headingFromSource = Settings.Default.setGPS_headingFromWhichSource;
 
             //triangle resolution is how far to next triangle point trigger distance
-            triangleResolution = Settings.Default.setDisplay_triangleResolution;
+            //triangleResolution = Settings.Default.setDisplay_triangleResolution;
 
             //start udp server if required
             if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
@@ -480,7 +482,7 @@ namespace AgOpenGPS
             fd.userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
 
             //space between points while recording a boundary
-            boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
+            //boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
 
             //load the last used auto turn shape
             string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
@@ -723,13 +725,6 @@ namespace AgOpenGPS
             }
         }
 
-        //start the NTRIP Client
-        private void StartNTRIPClient()
-        {
-            //isNTRIP_Starting = true;
-            //StartNTRIP();
-        }
-
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -810,6 +805,22 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public void KeypadToNUD(NumericUpDown sender)
+        {
+            NumericUpDown nud = (NumericUpDown)sender;
+            nud.BackColor = System.Drawing.Color.Red;
+            using (var form = new FormNumeric((double)nud.Minimum, (double)nud.Maximum, (double)nud.Value))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    nud.Value = (decimal)form.ReturnValue;
+                }
+            }
+            nud.BackColor = System.Drawing.Color.AliceBlue;
+        }
+
         //show the communications window
         private void SettingsCommunications()
         {

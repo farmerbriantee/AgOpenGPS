@@ -4,20 +4,20 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormDisplaySettings : Form
+    public partial class FormIMU : Form
     {
         private readonly FormGPS mf = null;
 
         private string headingFromWhichSource;
-        private bool isAutoSteerAuto;
         private bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingPAOGI, isHeadingFromExtUDP;
         private bool isRollFromAutoSteer, isRollFromBrick, isRollFromExtUDP, isRollFromGPS;
-        private int lightbarCmPerPixie, snapDistance, snapDistanceSmall;
-        private decimal triResolution, minFixStepDistance, boundaryDistance;
-        public FormDisplaySettings(Form callingForm)
+        private decimal minFixStepDistance;
+
+        public FormIMU(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+            nudMinFixStepDistance.Controls[0].Enabled = false;
         }
 
         #region EntryExit
@@ -30,16 +30,10 @@ namespace AgOpenGPS
             else if (headingFromWhichSource == "HDT") Properties.Settings.Default.setGPS_headingFromWhichSource = "HDT";
             mf.headingFromSource = headingFromWhichSource;
 
-            mf.boundaryTriggerDistance = (double)boundaryDistance;
-            Properties.Settings.Default.setF_boundaryTriggerDistance = mf.boundaryTriggerDistance;
-
-            mf.triangleResolution = (double)triResolution;
-            Properties.Settings.Default.setDisplay_triangleResolution = mf.triangleResolution;
+            Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
 
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
-
-            Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
 
             Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = isHeadingFromAutoSteer;
             mf.ahrs.isHeadingFromAutoSteer = isHeadingFromAutoSteer;
@@ -65,15 +59,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_isRollFromExtUDP = isRollFromExtUDP;
             mf.ahrs.isRollFromExtUDP = isRollFromExtUDP;
 
-            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
-            mf.lightbarCmPerPixel = lightbarCmPerPixie;
-
-            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
-            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
-
-            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
-            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
-
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -89,21 +74,9 @@ namespace AgOpenGPS
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
-            triResolution = (decimal)Properties.Settings.Default.setDisplay_triangleResolution;
-            if (nudTriangleResolution.CheckValue(ref triResolution)) nudTriangleResolution.BackColor = System.Drawing.Color.OrangeRed;
-            nudTriangleResolution.Value = triResolution;
-
-            boundaryDistance = (decimal)Properties.Settings.Default.setF_boundaryTriggerDistance;
-            if (nudBoundaryDistance.CheckValue(ref boundaryDistance)) nudBoundaryDistance.BackColor = System.Drawing.Color.OrangeRed;
-            nudBoundaryDistance.Value = boundaryDistance;
-
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
-
-            nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
-            nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
-            nudSnapDistanceSmall.Value = Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
 
@@ -129,61 +102,13 @@ namespace AgOpenGPS
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
 
-            cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
-            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
-            if (isAutoSteerAuto)
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Auto";
-            }
-            else
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = "Manual";
-            }
-
             headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
         }
+
         #endregion EntryExit
-
-        #region DisplayCalcs
-
-        private void nudBoundaryDistance_ValueChanged(object sender, EventArgs e)
-        {
-            boundaryDistance = nudBoundaryDistance.Value;
-        }
-
-        private void nudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
-        {
-            lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
-        }
-
-        private void nudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
-        {
-            minFixStepDistance = nudMinFixStepDistance.Value;
-        }
-
-        private void nudSnapDistance_ValueChanged(object sender, EventArgs e)
-        {
-            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
-
-            snapDistance = (int)nudSnapDistance.Value;
-        }
-
-        private void nudSnapDistanceSmall_ValueChanged(object sender, EventArgs e)
-        {
-            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
-            snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
-        }
-
-        private void nudTriangleResolution_ValueChanged(object sender, EventArgs e)
-        {
-            triResolution = nudTriangleResolution.Value;
-        }
-        #endregion DisplayCalcs
 
         private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
         {
@@ -213,21 +138,6 @@ namespace AgOpenGPS
                 lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");
                 Properties.Settings.Default.setIMU_rollZeroX16 = mf.ahrs.rollX16;
                 Properties.Settings.Default.Save();
-            }
-        }
-
-        private void CboxAutoSteerAuto_CheckedChanged(object sender, EventArgs e)
-        {
-            isAutoSteerAuto = cboxAutoSteerAuto.Checked;
-            if (isAutoSteerAuto)
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Auto";
-            }
-            else
-            {
-                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = "Manual";
             }
         }
 
@@ -271,6 +181,17 @@ namespace AgOpenGPS
                 cboxHeadingBrick.Checked = false;
                 isHeadingFromBrick = false;
             }
+        }
+
+        private void NudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
+        {
+            minFixStepDistance = nudMinFixStepDistance.Value;
+        }
+
+        private void NudMinFixStepDistance_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
         }
 
         private void cboxHeadingPAOGI_CheckedChanged(object sender, EventArgs e)

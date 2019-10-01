@@ -61,7 +61,7 @@
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(671, 320);
+            this.btnCancel.Location = new System.Drawing.Point(671, 346);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(95, 80);
             this.btnCancel.TabIndex = 5;
@@ -79,7 +79,7 @@
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(783, 320);
+            this.bntOK.Location = new System.Drawing.Point(783, 346);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(136, 80);
             this.bntOK.TabIndex = 4;
@@ -90,9 +90,10 @@
             // 
             // nudLongitude
             // 
+            this.nudLongitude.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLongitude.DecimalPlaces = 7;
             this.nudLongitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLongitude.Location = new System.Drawing.Point(308, 341);
+            this.nudLongitude.Location = new System.Drawing.Point(308, 361);
             this.nudLongitude.Maximum = new decimal(new int[] {
             180,
             0,
@@ -111,12 +112,14 @@
             0,
             0,
             -2147024896});
+            this.nudLongitude.Enter += new System.EventHandler(this.NudLongitude_Enter);
             // 
             // nudLatitude
             // 
+            this.nudLatitude.BackColor = System.Drawing.Color.AliceBlue;
             this.nudLatitude.DecimalPlaces = 7;
             this.nudLatitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudLatitude.Location = new System.Drawing.Point(12, 341);
+            this.nudLatitude.Location = new System.Drawing.Point(12, 361);
             this.nudLatitude.Maximum = new decimal(new int[] {
             90,
             0,
@@ -135,13 +138,14 @@
             0,
             0,
             -2147024896});
+            this.nudLatitude.Enter += new System.EventHandler(this.NudLatitude_Enter);
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label18.Location = new System.Drawing.Point(28, 312);
+            this.label18.Location = new System.Drawing.Point(28, 330);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(216, 25);
             this.label18.TabIndex = 178;
@@ -152,7 +156,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(325, 313);
+            this.label1.Location = new System.Drawing.Point(325, 330);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(248, 25);
             this.label1.TabIndex = 179;
@@ -312,7 +316,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.LonLat;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(931, 412);
+            this.ClientSize = new System.Drawing.Size(931, 438);
             this.ControlBox = false;
             this.Controls.Add(this.lblGPSLon);
             this.Controls.Add(this.lblGPSLat);

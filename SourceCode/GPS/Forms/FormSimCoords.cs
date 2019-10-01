@@ -63,8 +63,20 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
-            //newLat = Lat;
-            //newLon = Longi;
+            nudLatitude.Controls[0].Enabled = false;
+            nudLongitude.Controls[0].Enabled = false;
+        }
+
+        private void NudLongitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudLatitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
         }
     }
 }

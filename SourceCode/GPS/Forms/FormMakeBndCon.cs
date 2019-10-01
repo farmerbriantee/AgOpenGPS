@@ -11,6 +11,8 @@ namespace AgOpenGPS
         {
             mf = _mf as FormGPS;
             InitializeComponent();
+            nudPass.Controls[0].Enabled = false;
+            nudSpacing.Controls[0].Enabled = false;
         }
 
         private void BtnOk_Click(object sender, System.EventArgs e)
@@ -22,6 +24,24 @@ namespace AgOpenGPS
         private void BtnCancel_Click(object sender, System.EventArgs e)
         {
             Close();
+        }
+
+        private void NudPass_Enter(object sender, System.EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+
+        }
+
+        private void NudSpacing_Enter(object sender, System.EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void FormMakeBndCon_Load(object sender, System.EventArgs e)
+        {
+            btnCancel.Focus();
         }
     }
 }

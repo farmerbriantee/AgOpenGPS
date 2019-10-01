@@ -24,6 +24,7 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
 
             cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
+          usejrk.Checked = Properties.Settings.Default.isJRK  ;
 
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)
@@ -286,6 +287,17 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_fixFromWhichSentence = checkedButton.Text;
             Properties.Settings.Default.Save();
             mf.pn.fixFrom = checkedButton.Text;
+        }
+
+        private void usejrk_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.isJRK = usejrk.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     } //class
 } //namespace

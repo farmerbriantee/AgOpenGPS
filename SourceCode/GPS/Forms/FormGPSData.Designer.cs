@@ -55,6 +55,8 @@
             this.tboxSerialToRelay = new System.Windows.Forms.TextBox();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.tboxSerialToAutoSteer = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -285,7 +287,7 @@
             // 
             this.tboxSerialFromRelay.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromRelay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromRelay.Location = new System.Drawing.Point(656, 67);
+            this.tboxSerialFromRelay.Location = new System.Drawing.Point(656, 88);
             this.tboxSerialFromRelay.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromRelay.Name = "tboxSerialFromRelay";
             this.tboxSerialFromRelay.ReadOnly = true;
@@ -319,7 +321,7 @@
             // 
             this.tboxSerialToRelay.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialToRelay.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToRelay.Location = new System.Drawing.Point(424, 67);
+            this.tboxSerialToRelay.Location = new System.Drawing.Point(424, 88);
             this.tboxSerialToRelay.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToRelay.Name = "tboxSerialToRelay";
             this.tboxSerialToRelay.ReadOnly = true;
@@ -330,7 +332,7 @@
             // 
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(656, 99);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(656, 140);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
@@ -341,18 +343,42 @@
             // 
             this.tboxSerialToAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(424, 100);
+            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(424, 141);
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
             this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(224, 27);
             this.tboxSerialToAutoSteer.TabIndex = 117;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.label20.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label20.Location = new System.Drawing.Point(426, 126);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(183, 13);
+            this.label20.TabIndex = 209;
+            this.label20.Text = "RelayLo, Spd, Dist, SteerAng, UTurn";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(660, 125);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(204, 13);
+            this.label13.TabIndex = 210;
+            this.label13.Text = "Steer Actual, SetPoint, Heading, Roll, Sw";
+            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(878, 142);
+            this.ClientSize = new System.Drawing.Size(878, 174);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.lblZone);
             this.Controls.Add(this.lblLongitude);
             this.Controls.Add(this.lblLatitude);
@@ -420,5 +446,7 @@
         private System.Windows.Forms.TextBox tboxSerialToRelay;
         private System.Windows.Forms.TextBox tboxSerialFromAutoSteer;
         private System.Windows.Forms.TextBox tboxSerialToAutoSteer;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label13;
     }
 }

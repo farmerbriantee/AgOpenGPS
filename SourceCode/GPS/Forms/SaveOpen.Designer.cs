@@ -82,7 +82,6 @@ namespace AgOpenGPS
 
                     writer.WriteLine("WorkSwitch," + Properties.Settings.Default.setF_IsWorkSwitchEnabled.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("ActiveLow," + Properties.Settings.Default.setF_IsWorkSwitchActiveLow.ToString(CultureInfo.InvariantCulture));
-                   // writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("CamPitch," + Properties.Settings.Default.setCam_pitch.ToString(CultureInfo.InvariantCulture));
 
@@ -95,7 +94,7 @@ namespace AgOpenGPS
                     writer.WriteLine("IsPurePursuitLineOn," + Properties.Settings.Default.setMenu_isPureOn.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsGuideLinesOn," + Properties.Settings.Default.setMenu_isSideGuideLines.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("AntennaOffset," + Properties.Vehicle.Default.setVehicle_antennaOffset.ToString(CultureInfo.InvariantCulture));
-                    //writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
 
@@ -161,7 +160,7 @@ namespace AgOpenGPS
                     writer.WriteLine("GoalPointLookAheadDistanceFromLine," +
                         Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine.ToString(CultureInfo.InvariantCulture));
 
-                    writer.WriteLine("Empty," + "10");
+                    writer.WriteLine("SwitchManual," + Properties.Settings.Default.setF_IsWorkSwitchManual.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                 }
@@ -218,269 +217,273 @@ namespace AgOpenGPS
                             return false;
                         }
 
-                        double test = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        double fileVersion = double.Parse(words[1], CultureInfo.InvariantCulture);
                         string vers = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                        double ver = double.Parse(vers, CultureInfo.InvariantCulture);
+                        double appVersion = double.Parse(vers, CultureInfo.InvariantCulture);
 
-                        if (test < ver)
+                        if (fileVersion < 3.0)
                         {
                             var form = new FormTimedMessage(5000, "Vehicle File is Wrong Version", "Must be Version "+ Application.ProductVersion.ToString(CultureInfo.InvariantCulture)+ " or higher");
                             form.Show();
                             return false;
                         }
-                         
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_toolOverlap = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_antennaHeight = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_lookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_antennaPivot = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_hitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_toolOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_turnOffDelay = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_wheelbase = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        if (fileVersion == 3.0)
+                        {
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_toolOverlap = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_antennaHeight = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_lookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_antennaPivot = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_isToolBehindPivot = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_isToolTrailing = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_hitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_toolOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_turnOffDelay = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_wheelbase = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position1 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position2 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position3 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position4 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position5 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position6 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position7 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position8 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position9 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position10 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position11 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position12 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setSection_position13 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_isToolBehindPivot = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_isToolTrailing = bool.Parse(words[1]);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_numSections = int.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_toolWidth = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position1 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position2 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position3 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position4 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position5 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position6 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position7 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position8 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position9 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position10 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position11 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position12 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setSection_position13 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setGPS_headingFromWhichSource = (words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setDisplay_triangleResolution = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isMetric = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isGridOn = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isLightbarOn = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isAreaRight = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isPureOn = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isSideGuideLines = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_numSections = int.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_toolWidth = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
 
-                        //line = reader.ReadLine(); words = line.Split(',');
-                        //Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setCam_pitch = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setGPS_headingFromWhichSource = (words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setDisplay_triangleResolution = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isMetric = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isGridOn = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isLightbarOn = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isAreaRight = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isPureOn = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isSideGuideLines = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_antennaOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_FieldColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_FieldColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_FieldColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_SectionColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_SectionColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_SectionColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_minApplied = int.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_minTurningRadius= double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.set_youUseDubins = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_FieldColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_FieldColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_FieldColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_SectionColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_SectionColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_SectionColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_minApplied = int.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_minTurningRadius = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.set_youUseDubins = bool.Parse(words[1]);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_pitchZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_rollZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setMenu_isLogNMEA = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setF_minFixStep = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_Kp = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_Ki = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_Kd = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_Ko = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_minSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine();words = line.Split(',');
-                        Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_pitchZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_rollZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setMenu_isLogNMEA = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setF_minFixStep = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_goalPointLookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_maxSteerAngle = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_maxAngularVelocity = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_Kp = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_Ki = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_Kd = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_Ko = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_steerAngleOffset = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_minSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_FunctionEnter = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_FunctionExit = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_ActionEnter = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_ActionExit = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_DistanceEnter = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_DistanceExit = words[1];
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
 
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_FunctionList = words[1];
-                        line = reader.ReadLine(); words = line.Split(';');
-                        Properties.Vehicle.Default.seq_ActionList = words[1];
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_maxSteerAngle = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_maxAngularVelocity = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isRollFromBrick = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isHeadingFromBrick = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isRollFromAutoSteer = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_FunctionEnter = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_FunctionExit = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_ActionEnter = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_ActionExit = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_DistanceEnter = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_DistanceExit = words[1];
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = 0.7;
-                        else Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_FunctionList = words[1];
+                            line = reader.ReadLine(); words = line.Split(';');
+                            Properties.Vehicle.Default.seq_ActionList = words[1];
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadMinimum = 3;
-                        else Properties.Vehicle.Default.setVehicle_lookAheadMinimum = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_isRollFromBrick = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_isHeadingFromBrick = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_isRollFromAutoSteer = bool.Parse(words[1]);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = bool.Parse(words[1]);
 
-                        line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
-                        else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = 0.7;
+                            else Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                            line = reader.ReadLine(); words = line.Split(',');
+                            if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadMinimum = 3;
+                            else Properties.Vehicle.Default.setVehicle_lookAheadMinimum = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        //fill in the current variables with restored data
-                        vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
-                        Properties.Vehicle.Default.setVehicle_Name = vehiclefileName;
+                            line = reader.ReadLine(); words = line.Split(',');
+                            if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
+                            else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        Properties.Settings.Default.Save();
-                        Properties.Vehicle.Default.Save();
+                            line = reader.ReadLine(); words = line.Split(',');
+                            if (words[0] == "Empty") Properties.Settings.Default.setF_IsWorkSwitchManual = false;
+                            else Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
 
-                        //get the number of sections from settings
-                        vehicle.numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
-                        vehicle.numSuperSection = vehicle.numOfSections + 1;
+                            line = reader.ReadLine();
+                            line = reader.ReadLine();
 
-                        //from settings grab the vehicle specifics
-                        vehicle.toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
-                        vehicle.toolTrailingHitchLength = Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength;
-                        vehicle.tankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
-                        vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
-                        vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+                            //fill in the current variables with restored data
+                            vehiclefileName = Path.GetFileNameWithoutExtension(ofd.FileName) + " - ";
+                            Properties.Vehicle.Default.setVehicle_Name = vehiclefileName;
 
-                        vehicle.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
-                        vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
-                        vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
-                        vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
+                            Properties.Settings.Default.Save();
+                            Properties.Vehicle.Default.Save();
 
-                        vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
-                        vehicle.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
-                        vehicle.toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
-                        vehicle.toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
-                        vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
-                        vehicle.minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
-                        yt.isUsingDubinsTurn = Properties.Vehicle.Default.set_youUseDubins;
+                            //get the number of sections from settings
+                            vehicle.numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
+                            vehicle.numSuperSection = vehicle.numOfSections + 1;
 
-                        vehicle.isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
-                        vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
-                        vehicle.isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
-                        vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
-                        vehicle.toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
+                            //from settings grab the vehicle specifics
+                            vehicle.toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+                            vehicle.toolTrailingHitchLength = Properties.Vehicle.Default.setVehicle_toolTrailingHitchLength;
+                            vehicle.tankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
+                            vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+                            vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
 
-                        vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
-                        vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+                            vehicle.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
+                            vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
+                            vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
+                            vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
 
-                        mc.autoSteerSettings[mc.ssKp] = Properties.Settings.Default.setAS_Kp;
-                        mc.autoSteerSettings[mc.ssKi] = Properties.Settings.Default.setAS_Ki;
-                        mc.autoSteerSettings[mc.ssKd] = Properties.Settings.Default.setAS_Kd;
-                        mc.autoSteerSettings[mc.ssKo] = Properties.Settings.Default.setAS_Ko;
-                        mc.autoSteerSettings[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
-                        mc.autoSteerSettings[mc.ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
-                        mc.autoSteerSettings[mc.ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
-                        mc.autoSteerSettings[mc.ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
+                            vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
+                            vehicle.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
+                            vehicle.toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
+                            vehicle.toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
+                            vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
+                            vehicle.minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
+                            yt.isUsingDubinsTurn = Properties.Vehicle.Default.set_youUseDubins;
 
-                        mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
-                        mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
-                        mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
+                            vehicle.isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
+                            vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
+                            vehicle.isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+                            vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isToolBehindPivot;
+                            vehicle.toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
+
+                            vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
+                            vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+
+                            mc.autoSteerSettings[mc.ssKp] = Properties.Settings.Default.setAS_Kp;
+                            mc.autoSteerSettings[mc.ssKi] = Properties.Settings.Default.setAS_Ki;
+                            mc.autoSteerSettings[mc.ssKd] = Properties.Settings.Default.setAS_Kd;
+                            mc.autoSteerSettings[mc.ssKo] = Properties.Settings.Default.setAS_Ko;
+                            mc.autoSteerSettings[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
+                            mc.autoSteerSettings[mc.ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
+                            mc.autoSteerSettings[mc.ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
+                            mc.autoSteerSettings[mc.ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
+
+                            mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
+                            mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+                            mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
+                        }
 
                         //Set width of section and positions for each section
                         SectionSetPosition();
@@ -503,7 +506,6 @@ namespace AgOpenGPS
                         camera.camPitch = Properties.Settings.Default.setCam_pitch;
 
                         headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
-                        triangleResolution = Properties.Settings.Default.setDisplay_triangleResolution;
 
                         isMetric = Properties.Settings.Default.setMenu_isMetric;
                         metricToolStrip.Checked = isMetric;

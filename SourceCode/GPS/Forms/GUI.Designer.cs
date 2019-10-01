@@ -1245,6 +1245,7 @@ namespace AgOpenGPS
             if (fc != null)
             {
                 fc.Focus();
+                fc.Close();
                 return;
             }
 
@@ -2124,7 +2125,7 @@ namespace AgOpenGPS
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK) { }
                 }
-                using (var form = new FormDisplaySettings(this))
+                using (var form = new FormIMU(this))
                 {
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK) { }
@@ -2619,6 +2620,12 @@ namespace AgOpenGPS
         }
 
         //taskbar buttons
+        private void ToolstripExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
         private void toolStripBtnSmoothABCurve_Click(object sender, EventArgs e)
         {
             if (isJobStarted && curve.isCurveBtnOn)
@@ -2784,12 +2791,16 @@ namespace AgOpenGPS
             using (var form = new FormSettings(this, 0))
             {
                 var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
             }
         }
         private void toolstripDisplayConfig_Click(object sender, EventArgs e)
         {
-            using (var form = new FormDisplaySettings(this))
+            using (var form = new FormIMU(this))
             {
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
