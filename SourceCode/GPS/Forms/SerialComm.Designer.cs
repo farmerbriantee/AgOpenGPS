@@ -113,11 +113,9 @@ namespace AgOpenGPS
                     byte[] command = new byte[2];
                     int target;
                     target = guidanceLineSteerAngle * Properties.Settings.Default.setAS_countsPerDegree;
-                    target = target + Properties.Settings.Default.setAS_steerAngleOffset * 5 - 127; //steeroffstet
-                    target = target / 100;
-
+                    target /= 100;
+                    target += ((Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5); //steeroffstet                   
                     target += 2047; //steerangle center
-                    
                     
                     if (target > 4075) target = 4075;
                     if (target < 0) target = 0;
