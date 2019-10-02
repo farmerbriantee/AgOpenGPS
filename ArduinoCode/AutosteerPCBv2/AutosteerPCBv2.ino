@@ -484,9 +484,9 @@ void loop()
     #else
 
       //Serial Send to agopenGPS **** you must send 5 numbers ****
-      Serial.print(steerAngleActual * 100); //The actual steering angle in degrees
+      Serial.print((int)(steerAngleActual * 100)); //The actual steering angle in degrees
       Serial.print(",");
-      Serial.print(steerAngleSetPoint * 100);   //the setpoint originally sent
+      Serial.print((int)(steerAngleSetPoint * 100));   //the setpoint originally sent
       Serial.print(",");
   
       // *******  if there is no gyro installed send 9999
