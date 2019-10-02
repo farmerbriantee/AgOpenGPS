@@ -17,6 +17,11 @@ namespace AgOpenGPS
 
         private void FormShiftPos_Load(object sender, EventArgs e)
         {
+            label27.Text = gStr.gsNorth;
+            label2.Text = gStr.gsWest;
+            label3.Text = gStr.gsEast;
+            label4.Text = gStr.gsSouth;
+            this.Text = gStr.gsShift_GPS_Position;
             nudEast.Value = (decimal)mf.pn.fixOffset.easting * 100;
             nudNorth.Value = (decimal)mf.pn.fixOffset.northing * 100;
         }

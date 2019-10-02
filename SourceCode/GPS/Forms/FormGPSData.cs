@@ -52,5 +52,31 @@ namespace AgOpenGPS
             tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                     + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
         }
+
+        private void FormGPSData_Load(object sender, EventArgs e)
+        {
+            //Set Language
+            label4.Text = "Northing";
+            lblNorthing.Text = "Northing";
+            label5.Text = "Easting";
+            lblEasting.Text = "Easting";
+            label6.Text = "Latitude";
+            lblLatitude.Text = "Latitude";
+            lblLongitude.Text = "Longitude";
+            label7.Text = "Longitiude";
+            lblAltitude.Text = "Altitude";
+            label8.Text = "Altitude";
+            label1.Text = "Status";
+            label2.Text = "Fix Quality";
+            label3.Text = "# Satellites";
+            lblStatus.Text = "Status";
+            lblFixQuality.Text = "FixQual";
+            lblSatsTracked.Text = "Sats";
+            label11.Text = "Zone";
+            lblZone.Text = "Zone";
+            label13.Text = "Steer Actual, SetPoint, Heading, Roll, Sw";
+            Text = "GPS Data";
+
+        }
     }
 }

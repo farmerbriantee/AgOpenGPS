@@ -85,6 +85,8 @@ namespace AgOpenGPS
 
         public int pbarSteer, pbarRelay, pbarUDP;
 
+        public double nudNumber = 0;
+
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto
@@ -338,6 +340,7 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
+            Set_Language ();
             //tooltips of controls
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
@@ -426,7 +429,7 @@ namespace AgOpenGPS
             headingFromSource = Settings.Default.setGPS_headingFromWhichSource;
 
             //triangle resolution is how far to next triangle point trigger distance
-            triangleResolution = Settings.Default.setDisplay_triangleResolution;
+            //triangleResolution = Settings.Default.setDisplay_triangleResolution;
 
             //start udp server if required
             if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
@@ -435,12 +438,12 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setNTRIP_isOn)
             {
                 isNTRIP_RequiredOn = true;
-                btnStartStopNtrip.Text = "Stop";
+                btnStartStopNtrip.Text = gStr.gsStop;
             }
             else
             {
                 isNTRIP_RequiredOn = false;
-                btnStartStopNtrip.Text = "Start";
+                btnStartStopNtrip.Text = gStr.gsStart;
             }
 
             //remembered window position
@@ -480,7 +483,7 @@ namespace AgOpenGPS
             fd.userSquareMetersAlarm = Settings.Default.setF_UserTripAlarm;
 
             //space between points while recording a boundary
-            boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
+            //boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
 
             //load the last used auto turn shape
             string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
@@ -498,7 +501,85 @@ namespace AgOpenGPS
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
         }
+        //Set language 
+        private void Set_Language()
+        {
+            
 
+            fileToolStripMenuItem.Text = gStr.gsFile;
+            menustripLanguage.Text = gStr.gsLanguage;
+            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnter_Sim_Coords;
+            loadVehicleToolStripMenuItem.Text = gStr.gsLoad_Vehicle;
+            saveVehicleToolStripMenuItem.Text = gStr.gsSave_Vehicle;
+            fieldToolStripMenuItem.Text = gStr.gsStart_Field;
+            aboutToolStripMenuItem.Text = gStr.gsAbout;
+            shortcutKeysToolStripMenuItem.Text = gStr.gsShortcut_Keys;
+            settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            resetALLToolStripMenuItem.Text = gStr.gsReset_ALL;
+            colorsToolStripMenuItem.Text = gStr.gsColors;
+            sectionToolStripMenuItem.Text = gStr.gsSection;
+            fieldToolStripMenuItem1.Text = gStr.gsField;
+            toolStripUnitsMenu.Text = gStr.gsUnits;
+            metricToolStrip.Text = gStr.gsMetric;
+            toolstripVehicleConfig.Text = gStr.gsVehicle;
+            imperialToolStrip.Text = gStr.gsImperial;
+            sideGuideLines.Text = gStr.gsExtra_Guides;
+            gridToolStripMenuItem.Text = gStr.gsGrid_On;
+            lightbarToolStripMenuItem.Text = gStr.gsLightbar_On;
+            logNMEAMenuItem.Text = gStr.gsLog_NMEA;
+            polygonsToolStripMenuItem.Text = gStr.gsPolygons_On;
+            pursuitLineToolStripMenuItem.Text = gStr.gsPursuit_Line;
+            skyToolStripMenu.Text = gStr.gsSky_On;
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulator_On;
+            deletePathMenu.Text = gStr.gsDelete_Path;
+            recordPathMenu.Text = gStr.gsRecord_Stop;
+            goPathMenu.Text = gStr.gsGo_Stop;
+            pausePathMenu.Text = gStr.gsPause_Resume;
+            stripEqWidth.Text = gStr.gsWidth;
+            toolStripDeleteApplied.Text = gStr.gsDelete_Applied_Area;
+            toolStripAreYouSure.Text = gStr.gsAre_You_sure;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsHide_Contour_Paths;
+            toolStripBtnMakeBndContour.Text = gStr.gsMake_Boundary_Contours;
+            toolStripBtnSmoothABCurve.Text = gStr.gsSmooth_AB_Curve;
+            treePlanterToolStripMenuItem.Text = gStr.gsTree_Planter;
+            toolstripUSBPortsConfig.Text = gStr.gsPorts;
+            toolstripDisplayConfig.Text = gStr.gsHeading_Roll;
+            toolStripAutoSteerChart.Text = gStr.gsSteer_Chart;
+            toolstripAutoSteerConfig.Text = gStr.gsAuto_Steer;
+            toolstripYouTurnConfig.Text = gStr.gsU_Turn;
+            toolstripField.Text = gStr.gsField;
+            toolstripBoundary.Text = gStr.gsBoundary;
+            toolstripResetTrip.Text = gStr.gs0_Trip;
+            toolstripExit.Text = AgOpenGPS.gStr.gsExit;
+            btnLidarOnOff.Text = gStr.gsLidar_On;
+            btnElevationMap.Text = gStr.gsShow_Elevation_Map;
+            btnManualAutoDrive.Text = gStr.gsAuto;
+            btnFixOffset.Text = gStr.gsOffset_Fix;
+            btnFlagsGoogleEarth.Text = gStr.gsFlags_GE;
+            btnWebCam.Text = gStr.gsWebCam;
+            btnHelp.Text = gStr.gsHelp;
+            btnFileExplorer.Text = gStr.gsFiles;
+            label25.Text = gStr.gsZone_;
+            label1.Text = gStr.gsLIDAR_;
+            label24.Text = gStr.gsSats_;
+            label22.Text = gStr.gsFused_;
+            label16.Text = gStr.gsElev_;
+            label19.Text = gStr.gsLat_;
+            label18.Text = gStr.gsLon_;
+            label10.Text = gStr.gsRoll_;
+            lblNTRIPSeconds.Text = gStr.gsNTRIP_Off;
+            label17.Text = gStr.gsTime_Left_;
+            label26.Text = gStr.gsDone_;
+            label35.Text = gStr.gsYaw_;
+            label33.Text = gStr.gsRoll_;
+            label11.Text = gStr.gsField_;
+            label14.Text = gStr.gsToDo_;
+            btnResetSim.Text = gStr.gsRst;
+            toolStripMenuOriginal.Text = gStr.gsOriginal;
+            toolStripMenuChoose.Text = gStr.gsChoose;
+            this.Text = gStr.gsAgOpenGPS_name;
+        }
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -723,13 +804,6 @@ namespace AgOpenGPS
             }
         }
 
-        //start the NTRIP Client
-        private void StartNTRIPClient()
-        {
-            //isNTRIP_Starting = true;
-            //StartNTRIP();
-        }
-
         //dialog for requesting user to save or cancel
         public int SaveOrNot()
         {
@@ -750,13 +824,13 @@ namespace AgOpenGPS
             {
                 isLogElevation = false;
                 btnRecordElevation.Image = Properties.Resources.BoundaryRecord;
-                btnRecordElevation.Text = "Record Elevation";
+                btnRecordElevation.Text = gStr.gsRecord_Elevation;
             }
             else
             {
                 isLogElevation = true;
                 btnRecordElevation.Image = Properties.Resources.boundaryStop;
-                btnRecordElevation.Text = "Stop Record";
+                btnRecordElevation.Text = gStr.gsStop_Record;
             }
         }
 
@@ -782,6 +856,11 @@ namespace AgOpenGPS
         private void NudElevation_ValueChanged(object sender, EventArgs e)
         {
             sim.altitude = (double)nudElevation.Value;
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
         public void GetAB()
@@ -810,6 +889,22 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public void KeypadToNUD(NumericUpDown sender)
+        {
+            NumericUpDown nud = (NumericUpDown)sender;
+            nud.BackColor = System.Drawing.Color.Red;
+            using (var form = new FormNumeric((double)nud.Minimum, (double)nud.Maximum, (double)nud.Value))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    nud.Value = (decimal)form.ReturnValue;
+                }
+            }
+            nud.BackColor = System.Drawing.Color.AliceBlue;
+        }
+
         //show the communications window
         private void SettingsCommunications()
         {
@@ -1266,12 +1361,12 @@ namespace AgOpenGPS
                 case 3: //Relay 1
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos3, "Turn Off");
+                        TimedMessageBox(1000, seq.pos3, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos3, "Turn On");
+                        TimedMessageBox(1000, seq.pos3, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
                     }
                     break;
@@ -1279,12 +1374,12 @@ namespace AgOpenGPS
                 case 4: //Relay 2
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos4, "Turn Off");
+                        TimedMessageBox(1000, seq.pos4, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos4, "Turn On");
+                        TimedMessageBox(1000, seq.pos4, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
                     }
                     break;
@@ -1292,12 +1387,12 @@ namespace AgOpenGPS
                 case 5: //Relay 3
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos5, "Turn Off");
+                        TimedMessageBox(1000, seq.pos5, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos5, "Turn On");
+                        TimedMessageBox(1000, seq.pos5, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
                     }
                     break;
@@ -1305,12 +1400,12 @@ namespace AgOpenGPS
                 case 6: //Relay 4
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos6, "Turn Off");
+                        TimedMessageBox(1000, seq.pos6, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos6, "Turn On");
+                        TimedMessageBox(1000, seq.pos6, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
                     }
                     break;
@@ -1318,12 +1413,12 @@ namespace AgOpenGPS
                 case 7: //Relay 5
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos7, "Turn Off");
+                        TimedMessageBox(1000, seq.pos7, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos7, "Turn On");
+                        TimedMessageBox(1000, seq.pos7, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
                     }
                     break;
@@ -1331,12 +1426,12 @@ namespace AgOpenGPS
                 case 8: //Relay 6
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos8, "Turn Off");
+                        TimedMessageBox(1000, seq.pos8, gStr.gsTurn_Off);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos8, "Turn On");
+                        TimedMessageBox(1000, seq.pos8, gStr.gsTurn_On);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
                     }
                     break;

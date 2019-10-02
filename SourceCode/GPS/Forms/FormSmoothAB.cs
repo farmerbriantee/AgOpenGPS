@@ -27,6 +27,10 @@ namespace AgOpenGPS
 
         private void FormSmoothAB_Load(object sender, EventArgs e)
         {
+            bntOK.Text = gStr.gsFor_Now;
+            btnCancel.Text = gStr.gsCancel;
+            btnSave.Text = gStr.gsTo_File;
+            this.Text = gStr.gsSmooth_AB_Curve;
             mf.curve.isSmoothWindowOpen = true;
             smoothCount = 20;
             lblSmooth.Text = "**";

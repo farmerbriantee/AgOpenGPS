@@ -41,9 +41,10 @@
             this.lblQuestion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblQuestion.AutoSize = true;
             this.lblQuestion.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.lblQuestion.Location = new System.Drawing.Point(59, 21);
+            this.lblQuestion.Location = new System.Drawing.Point(74, 26);
+            this.lblQuestion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(0, 25);
+            this.lblQuestion.Size = new System.Drawing.Size(0, 33);
             this.lblQuestion.TabIndex = 3;
             // 
             // btnReturn
@@ -51,9 +52,10 @@
             this.btnReturn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReturn.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnReturn.Image = global::AgOpenGPS.Properties.Resources.back_button;
-            this.btnReturn.Location = new System.Drawing.Point(32, 64);
+            this.btnReturn.Location = new System.Drawing.Point(40, 80);
+            this.btnReturn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(127, 85);
+            this.btnReturn.Size = new System.Drawing.Size(159, 106);
             this.btnReturn.TabIndex = 5;
             this.btnReturn.UseVisualStyleBackColor = true;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
@@ -63,9 +65,10 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.FileSave;
-            this.btnOk.Location = new System.Drawing.Point(234, 64);
+            this.btnOk.Location = new System.Drawing.Point(292, 80);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(127, 85);
+            this.btnOk.Size = new System.Drawing.Size(159, 106);
             this.btnOk.TabIndex = 0;
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -75,18 +78,20 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label2.Location = new System.Drawing.Point(220, 21);
+            this.label2.Location = new System.Drawing.Point(275, 26);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 25);
+            this.label2.Size = new System.Drawing.Size(0, 33);
             this.label2.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(53, 23);
+            this.label7.Location = new System.Drawing.Point(66, 29);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 25);
+            this.label7.Size = new System.Drawing.Size(108, 33);
             this.label7.TabIndex = 256;
             this.label7.Text = "Return";
             // 
@@ -94,17 +99,18 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(224, 23);
+            this.label1.Location = new System.Drawing.Point(280, 29);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 25);
+            this.label1.Size = new System.Drawing.Size(198, 33);
             this.label1.TabIndex = 257;
             this.label1.Text = "Save and Exit";
             // 
             // FormSaveOrNot
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(403, 170);
+            this.ClientSize = new System.Drawing.Size(504, 212);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
@@ -113,9 +119,11 @@
             this.Controls.Add(this.lblQuestion);
             this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormSaveOrNot";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Load += new System.EventHandler(this.FormSaveOrNot_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

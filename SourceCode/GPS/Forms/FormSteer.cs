@@ -17,6 +17,9 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
+            //Set language 
+            Set_Language();
+
             hsbarSteerAngleSensorZero.Value = Properties.Settings.Default.setAS_steerAngleOffset - 127;
             lblSteerAngleSensorZero.Text = hsbarSteerAngleSensorZero.Value.ToString();
 
@@ -77,8 +80,36 @@ namespace AgOpenGPS
             mf.ast.driveFreeSteerAngle = 0;
             lblFreeDriveAngle.Text = "0";
         }
-
-        private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
+        //Set language 
+        private void Set_Language()
+        {
+            btnFreeDrive.Text =gStr.gsDrive;
+            tabGain.Text = gStr.gsGain;
+            label29.Text = gStr.gsSidehill_Draft_Gain;
+            label22.Text = gStr.gsOutput_Gain;
+            label41.Text = gStr.gsMinimum_PWM_Drive;
+            label7.Text = gStr.gsProportional_Gain;
+            tabSteer.Text = gStr.gsSteer;
+            label25.Text = gStr.gsCounts_per_Degree;
+            label45.Text = gStr.gsMax_Integral_Value;
+            label19.Text = gStr.gsMax_SteerAngle_Degrees;
+            label33.Text = gStr.gsIntegral_Gain;
+            label10.Text = gStr.gsSteer_Angle_Sensor_Zero;
+            tabLook.Text = gStr.gsPure_P;
+            label2.Text = gStr.gsUTurn_Look_Ahead;
+            label37.Text = gStr.gsLook_Ahead;
+            label4.Text = gStr.gsLook_Ahead_Offline_Multiplier;
+            label6.Text = gStr.gsMin_Look_Ahead;
+            tabStan.Text = gStr.gsStanley;
+            btnStanley.Text = gStr.gsStanley;
+            label1.Text = gStr.gsStanley_Pure_Pursuit;
+            btnChart.Text = gStr.gsChart;
+            label3.Text = gStr.gsAgressiveness;
+            label5.Text = gStr.gsOvershoot_Reduction;
+            tabDrive.Text = gStr.gsDrive;
+            this.Text = gStr.gsAuto_Steer_Configuration;
+        }
+            private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
         {
             mf.ast.isInFreeDriveMode = false;
         }
@@ -276,8 +307,8 @@ namespace AgOpenGPS
         private void BtnStanley_Click(object sender, EventArgs e)
         {
             mf.isStanleyUsed = !mf.isStanleyUsed;
-            if (mf.isStanleyUsed) btnStanley.Text = "Stanley";
-            else btnStanley.Text = "Pure P";
+            if (mf.isStanleyUsed) btnStanley.Text = gStr.gsStanley;
+            else btnStanley.Text = gStr.gsPure_P;
             Properties.Vehicle.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
             Properties.Vehicle.Default.Save();
         }

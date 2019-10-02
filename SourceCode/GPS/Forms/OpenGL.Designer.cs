@@ -225,7 +225,7 @@ namespace AgOpenGPS
 
                 //Back to normal
                 GL.Color3(0.498f, 0.498f, 0.698f);
-                GL.Enable(EnableCap.Blend);
+                //GL.Enable(EnableCap.Blend);
                 //GL.Enable(EnableCap.DepthTest);
 
                 // 2D Ortho --------------------------

@@ -235,6 +235,7 @@
             this.Name = "FormABDraw";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Click 2 points on the Boundary to Begin";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormABDraw_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

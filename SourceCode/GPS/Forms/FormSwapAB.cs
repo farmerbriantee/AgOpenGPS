@@ -88,6 +88,8 @@ namespace AgOpenGPS
 
         private void FormSwapAB_Load(object sender, EventArgs e)
         {
+            chField.Text = gStr.gsField;
+            chAngle.Text = gStr.gsAngle;
             //different start based on AB line already set or not
             if (!mf.ABLine.isABLineSet)
             {
@@ -124,7 +126,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing AB Line File, Critical Error");
+                mf.TimedMessageBox(2000, gStr.gsFile_Error_mess, gStr.gsMissing_ABLines_file_mess);
             }
             else
             {
@@ -147,7 +149,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "ABLine File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(2000, gStr.gsABLineFile_Corrupt_mess, gStr.gsPlease_delete_mess);
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }
@@ -180,7 +182,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing QuickAB File, Critical Error");
+                mf.TimedMessageBox(2000, gStr.gsFile_Error_mess, gStr.gsMissing_QuickAB_File);
             }
             else
             {
@@ -215,7 +217,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "QuickAB File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(2000, gStr.gsQuickAB_File_Corrupt, gStr.gsPlease_delete_mess);
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading QuickAB, Corrupt QuickAB File" + er);
                     }

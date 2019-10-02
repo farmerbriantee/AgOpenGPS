@@ -228,18 +228,27 @@ namespace AgOpenGPS
             //sign of distance determines which side of line we are on
             if (distanceFromRefLine > 0) piSide = glm.PIBy2;
             else piSide = -glm.PIBy2;
-
+            double widthMinusOverlap;
             //move the ABLine over based on the overlap amount set in vehicle
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+            if (mf.vehicle.toolOffset != 0) {
+                widthMinusOverlap = mf.vehicle.toolWidth / 2 - mf.vehicle.toolOverlap;
+            } 
+            else
+            {
+                 widthMinusOverlap = mf.vehicle.toolWidth  - mf.vehicle.toolOverlap;
+            }
+            
+
             howManyPathsAway = Math.Round(minDistance / widthMinusOverlap, 0, MidpointRounding.AwayFromZero);
+            double toolOffset = mf.vehicle.toolOffset;
 
             //build the current line
             curList?.Clear();
             for (int i = 0; i < ptCount; i++)
             {
                 var point = new vec3(
-                    refList[i].easting + (Math.Sin(piSide + aveLineHeading) * widthMinusOverlap * howManyPathsAway),
-                    refList[i].northing + (Math.Cos(piSide + aveLineHeading) * widthMinusOverlap * howManyPathsAway),
+                    refList[i].easting + (Math.Sin(piSide + aveLineHeading) * ((widthMinusOverlap * howManyPathsAway))),
+                    refList[i].northing + (Math.Cos(piSide + aveLineHeading) * ((widthMinusOverlap * howManyPathsAway))),
                     refList[i].heading);
                 curList.Add(point);
             }

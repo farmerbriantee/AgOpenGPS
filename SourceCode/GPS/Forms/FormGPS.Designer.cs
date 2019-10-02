@@ -105,14 +105,15 @@
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripDisplayConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAutoSteerChart = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripExit = new System.Windows.Forms.ToolStripMenuItem();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
             this.lblNorthing = new System.Windows.Forms.Label();
             this.lblEasting = new System.Windows.Forms.Label();
@@ -162,7 +163,6 @@
             this.lblActualSteerAngle2 = new System.Windows.Forms.Label();
             this.lblSetpointSteerAngle2 = new System.Windows.Forms.Label();
             this.btnSmallRight2 = new System.Windows.Forms.Button();
-            this.btnGPSData = new System.Windows.Forms.Button();
             this.btnSmallLeft2 = new System.Windows.Forms.Button();
             this.btnBigRight2 = new System.Windows.Forms.Button();
             this.btnBigLeft2 = new System.Windows.Forms.Button();
@@ -187,6 +187,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnGPSData = new System.Windows.Forms.Button();
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
@@ -255,6 +256,7 @@
             this.oglMain = new OpenTK.GLControl();
             this.oglBack = new OpenTK.GLControl();
             this.lblHz = new System.Windows.Forms.Label();
+            this.btnMakeLinesFromBoundary = new System.Windows.Forms.Button();
             this.btnZoomExtents = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
@@ -272,7 +274,6 @@
             this.btnContour = new System.Windows.Forms.Button();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
-            this.btnMakeLinesFromBoundary = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -287,9 +288,9 @@
             this.panelSimControls.SuspendLayout();
             this.contextMenuStripAB.SuspendLayout();
             this.SuspendLayout();
-            //
+            // 
             // contextMenuStripOpenGL
-            //
+            // 
             this.contextMenuStripOpenGL.AutoSize = false;
             this.contextMenuStripOpenGL.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteFlagToolOpenGLContextMenu,
@@ -299,9 +300,9 @@
             this.contextMenuStripOpenGL.Name = "contextMenuStripOpenGL";
             this.contextMenuStripOpenGL.Size = new System.Drawing.Size(72, 160);
             this.contextMenuStripOpenGL.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripOpenGL_Opening);
-            //
+            // 
             // deleteFlagToolOpenGLContextMenu
-            //
+            // 
             this.deleteFlagToolOpenGLContextMenu.AutoSize = false;
             this.deleteFlagToolOpenGLContextMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.deleteFlagToolOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
@@ -310,14 +311,14 @@
             this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
             this.deleteFlagToolOpenGLContextMenu.Text = ".";
             this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
-            //
+            // 
             // toolStripSeparator5
-            //
+            // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(68, 6);
-            //
+            // 
             // googleEarthOpenGLContextMenu
-            //
+            // 
             this.googleEarthOpenGLContextMenu.AutoSize = false;
             this.googleEarthOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
             this.googleEarthOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -325,9 +326,9 @@
             this.googleEarthOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
             this.googleEarthOpenGLContextMenu.Text = ".";
             this.googleEarthOpenGLContextMenu.Click += new System.EventHandler(this.googleEarthOpenGLContextMenu_Click);
-            //
+            // 
             // txtDistanceOffABLine
-            //
+            // 
             this.txtDistanceOffABLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDistanceOffABLine.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.txtDistanceOffABLine.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -341,9 +342,9 @@
             this.txtDistanceOffABLine.TabIndex = 7;
             this.txtDistanceOffABLine.Text = "00000";
             this.txtDistanceOffABLine.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            //
+            // 
             // fileToolStripMenuItem
-            //
+            // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator9,
             this.menustripLanguage,
@@ -361,15 +362,15 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(69, 38);
-            this.fileToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsFile;
-            //
+            this.fileToolStripMenuItem.Text = "File";
+            // 
             // toolStripSeparator9
-            //
+            // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(316, 6);
-            //
+            // 
             // menustripLanguage
-            //
+            // 
             this.menustripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLanguageEnglish,
             this.menuLanguageDeutsch,
@@ -380,135 +381,135 @@
             this.menuLanguageItalian});
             this.menustripLanguage.Enabled = true;
             this.menustripLanguage.Name = "menustripLanguage";
-            this.menustripLanguage.Size = new System.Drawing.Size(388, 50);
-            this.menustripLanguage.Text = global::AgOpenGPS.gStr.gsLanguage;
-            //
+            this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
+            this.menustripLanguage.Text = "Language";
+            // 
             // menuLanguageEnglish
-            //
+            // 
             this.menuLanguageEnglish.CheckOnClick = true;
             this.menuLanguageEnglish.Name = "menuLanguageEnglish";
             this.menuLanguageEnglish.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageEnglish.Text = "English";
             this.menuLanguageEnglish.Click += new System.EventHandler(this.menuLanguageEnglish_Click);
-            //
+            // 
             // menuLanguageDeutsch
-            //
+            // 
             this.menuLanguageDeutsch.CheckOnClick = true;
             this.menuLanguageDeutsch.Name = "menuLanguageDeutsch";
             this.menuLanguageDeutsch.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageDeutsch.Text = "Deutsch";
             this.menuLanguageDeutsch.Click += new System.EventHandler(this.menuLanguageDeutsch_Click);
-            //
+            // 
             // menuLanguageRussian
-            //
+            // 
             this.menuLanguageRussian.CheckOnClick = true;
             this.menuLanguageRussian.Name = "menuLanguageRussian";
             this.menuLanguageRussian.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageRussian.Text = "русский";
             this.menuLanguageRussian.Click += new System.EventHandler(this.menuLanguageRussian_Click);
-            //
+            // 
             // menuLanguageDutch
-            //
+            // 
             this.menuLanguageDutch.CheckOnClick = true;
             this.menuLanguageDutch.Name = "menuLanguageDutch";
             this.menuLanguageDutch.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageDutch.Text = "Nederlands";
             this.menuLanguageDutch.Click += new System.EventHandler(this.menuLanguageDutch_Click);
-            //
+            // 
             // menuLanguageSpanish
-            //
+            // 
             this.menuLanguageSpanish.CheckOnClick = true;
             this.menuLanguageSpanish.Name = "menuLanguageSpanish";
             this.menuLanguageSpanish.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageSpanish.Text = "Español";
             this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
-            //
+            // 
             // menuLanguageFrench
-            //
+            // 
             this.menuLanguageFrench.CheckOnClick = true;
             this.menuLanguageFrench.Name = "menuLanguageFrench";
             this.menuLanguageFrench.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageFrench.Text = "Français";
             this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
-            //
+            // 
             // menuLanguageItalian
-            //
+            // 
             this.menuLanguageItalian.Name = "menuLanguageItalian";
             this.menuLanguageItalian.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageItalian.Text = "Italiano";
             this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
-            //
+            // 
             // toolStripSeparator11
-            //
+            // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             this.toolStripSeparator11.Size = new System.Drawing.Size(316, 6);
-            //
+            // 
             // setWorkingDirectoryToolStripMenuItem
-            //
+            // 
             this.setWorkingDirectoryToolStripMenuItem.Name = "setWorkingDirectoryToolStripMenuItem";
             this.setWorkingDirectoryToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.setWorkingDirectoryToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsDirectories;
+            this.setWorkingDirectoryToolStripMenuItem.Text = "Directories";
             this.setWorkingDirectoryToolStripMenuItem.Click += new System.EventHandler(this.setWorkingDirectoryToolStripMenuItem_Click);
-            //
+            // 
             // toolStripSeparator10
-            //
+            // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(316, 6);
-            //
+            // 
             // enterSimCoordsToolStripMenuItem
-            //
+            // 
             this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
             this.enterSimCoordsToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.enterSimCoordsToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsEnter_Sim_Coords;
+            this.enterSimCoordsToolStripMenuItem.Text = "Enter Sim Coords";
             this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
-            //
+            // 
             // toolStripSeparator12
-            //
+            // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             this.toolStripSeparator12.Size = new System.Drawing.Size(316, 6);
-            //
+            // 
             // loadVehicleToolStripMenuItem
-            //
+            // 
             this.loadVehicleToolStripMenuItem.Name = "loadVehicleToolStripMenuItem";
             this.loadVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.loadVehicleToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsLoad_Vehicle;
+            this.loadVehicleToolStripMenuItem.Text = "Load Vehicle";
             this.loadVehicleToolStripMenuItem.Click += new System.EventHandler(this.loadVehicleToolStripMenuItem_Click);
-            //
+            // 
             // saveVehicleToolStripMenuItem
-            //
+            // 
             this.saveVehicleToolStripMenuItem.Name = "saveVehicleToolStripMenuItem";
             this.saveVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.saveVehicleToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsSave_Vehicle;
+            this.saveVehicleToolStripMenuItem.Text = "Save Vehicle";
             this.saveVehicleToolStripMenuItem.Click += new System.EventHandler(this.saveVehicleToolStripMenuItem_Click);
-            //
+            // 
             // toolStripSeparator8
-            //
+            // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             this.toolStripSeparator8.Size = new System.Drawing.Size(316, 6);
-            //
+            // 
             // fieldToolStripMenuItem
-            //
+            // 
             this.fieldToolStripMenuItem.Name = "fieldToolStripMenuItem";
             this.fieldToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.fieldToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsStart_Field;
+            this.fieldToolStripMenuItem.Text = "Start Field";
             this.fieldToolStripMenuItem.Click += new System.EventHandler(this.fieldToolStripMenuItem_Click);
-            //
+            // 
             // aboutToolStripMenuItem
-            //
+            // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.aboutToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsAbout;
+            this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            //
+            // 
             // shortcutKeysToolStripMenuItem
-            //
+            // 
             this.shortcutKeysToolStripMenuItem.Name = "shortcutKeysToolStripMenuItem";
             this.shortcutKeysToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.shortcutKeysToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsShortcut_Keys;
+            this.shortcutKeysToolStripMenuItem.Text = "Shortcut Keys";
             this.shortcutKeysToolStripMenuItem.Click += new System.EventHandler(this.shortcutKeysToolStripMenuItem_Click);
-            //
+            // 
             // settingsToolStripMenuItem
-            //
+            // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.resetALLToolStripMenuItem,
@@ -528,153 +529,153 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(118, 38);
-            this.settingsToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsDisplay;
-            //
+            this.settingsToolStripMenuItem.Text = "Display";
+            // 
             // toolStripSeparator1
-            //
+            // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(260, 6);
-            //
+            // 
             // resetALLToolStripMenuItem
-            //
+            // 
             this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
             this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.resetALLToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsReset_ALL;
+            this.resetALLToolStripMenuItem.Text = "Reset ALL";
             this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
-            //
+            // 
             // toolStripSeparator2
-            //
+            // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(260, 6);
-            //
+            // 
             // colorsToolStripMenuItem
-            //
+            // 
             this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sectionToolStripMenuItem,
             this.fieldToolStripMenuItem1});
             this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
             this.colorsToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.colorsToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsColors;
-            //
+            this.colorsToolStripMenuItem.Text = "Colors";
+            // 
             // sectionToolStripMenuItem
-            //
+            // 
             this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
             this.sectionToolStripMenuItem.Size = new System.Drawing.Size(187, 40);
-            this.sectionToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsSection;
+            this.sectionToolStripMenuItem.Text = "Section";
             this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
-            //
+            // 
             // fieldToolStripMenuItem1
-            //
+            // 
             this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
             this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(187, 40);
-            this.fieldToolStripMenuItem1.Text = global::AgOpenGPS.gStr.gsField;
+            this.fieldToolStripMenuItem1.Text = "Field";
             this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
-            //
+            // 
             // toolStripUnitsMenu
-            //
+            // 
             this.toolStripUnitsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.metricToolStrip,
             this.imperialToolStrip});
             this.toolStripUnitsMenu.Name = "toolStripUnitsMenu";
             this.toolStripUnitsMenu.Size = new System.Drawing.Size(263, 40);
-            this.toolStripUnitsMenu.Text = global::AgOpenGPS.gStr.gsUnits;
-            //
+            this.toolStripUnitsMenu.Text = "Units";
+            // 
             // metricToolStrip
-            //
+            // 
             this.metricToolStrip.CheckOnClick = true;
             this.metricToolStrip.Name = "metricToolStrip";
             this.metricToolStrip.Size = new System.Drawing.Size(200, 40);
-            this.metricToolStrip.Text = global::AgOpenGPS.gStr.gsMetric;
+            this.metricToolStrip.Text = "Metric";
             this.metricToolStrip.Click += new System.EventHandler(this.metricToolStrip_Click);
-            //
+            // 
             // imperialToolStrip
-            //
+            // 
             this.imperialToolStrip.CheckOnClick = true;
             this.imperialToolStrip.Name = "imperialToolStrip";
             this.imperialToolStrip.Size = new System.Drawing.Size(200, 40);
-            this.imperialToolStrip.Text = global::AgOpenGPS.gStr.gsImperial;
+            this.imperialToolStrip.Text = "Imperial";
             this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
-            //
+            // 
             // sideGuideLines
-            //
+            // 
             this.sideGuideLines.Checked = true;
             this.sideGuideLines.CheckOnClick = true;
             this.sideGuideLines.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sideGuideLines.Name = "sideGuideLines";
             this.sideGuideLines.Size = new System.Drawing.Size(263, 40);
-            this.sideGuideLines.Text = global::AgOpenGPS.gStr.gsExtra_Guides;
+            this.sideGuideLines.Text = "Extra Guides";
             this.sideGuideLines.Click += new System.EventHandler(this.sideGuideLines_Click);
-            //
+            // 
             // gridToolStripMenuItem
-            //
+            // 
             this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
             this.gridToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.gridToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsGrid_On;
+            this.gridToolStripMenuItem.Text = "Grid On";
             this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            //
+            // 
             // lightbarToolStripMenuItem
-            //
+            // 
             this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
             this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.lightbarToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsLightbar_On;
+            this.lightbarToolStripMenuItem.Text = "Lightbar On";
             this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
-            //
+            // 
             // logNMEAMenuItem
-            //
+            // 
             this.logNMEAMenuItem.Name = "logNMEAMenuItem";
             this.logNMEAMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.logNMEAMenuItem.Text = global::AgOpenGPS.gStr.gsLog_NMEA;
+            this.logNMEAMenuItem.Text = "Log NMEA";
             this.logNMEAMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
-            //
+            // 
             // polygonsToolStripMenuItem
-            //
+            // 
             this.polygonsToolStripMenuItem.Checked = true;
             this.polygonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.polygonsToolStripMenuItem.Name = "polygonsToolStripMenuItem";
             this.polygonsToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.polygonsToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsPolygons_On;
+            this.polygonsToolStripMenuItem.Text = "Polygons On";
             this.polygonsToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
-            //
+            // 
             // pursuitLineToolStripMenuItem
-            //
+            // 
             this.pursuitLineToolStripMenuItem.Checked = true;
             this.pursuitLineToolStripMenuItem.CheckOnClick = true;
             this.pursuitLineToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pursuitLineToolStripMenuItem.Name = "pursuitLineToolStripMenuItem";
             this.pursuitLineToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.pursuitLineToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsPursuit_Line;
+            this.pursuitLineToolStripMenuItem.Text = "Pursuit Line";
             this.pursuitLineToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
-            //
+            // 
             // skyToolStripMenu
-            //
+            // 
             this.skyToolStripMenu.Checked = true;
             this.skyToolStripMenu.CheckOnClick = true;
             this.skyToolStripMenu.CheckState = System.Windows.Forms.CheckState.Checked;
             this.skyToolStripMenu.Name = "skyToolStripMenu";
             this.skyToolStripMenu.Size = new System.Drawing.Size(263, 40);
-            this.skyToolStripMenu.Text = global::AgOpenGPS.gStr.gsSky_On;
+            this.skyToolStripMenu.Text = "Sky On";
             this.skyToolStripMenu.Click += new System.EventHandler(this.skyToolStripMenu_Click);
-            //
+            // 
             // toolStripSeparator6
-            //
+            // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(260, 6);
-            //
+            // 
             // simulatorOnToolStripMenuItem
-            //
+            // 
             this.simulatorOnToolStripMenuItem.CheckOnClick = true;
             this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
             this.simulatorOnToolStripMenuItem.Size = new System.Drawing.Size(263, 40);
-            this.simulatorOnToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsSimulator_On;
+            this.simulatorOnToolStripMenuItem.Text = "Simulator On";
             this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
-            //
+            // 
             // toolStripSeparator7
-            //
+            // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(260, 6);
-            //
+            // 
             // menuStrip1
-            //
+            // 
             this.menuStrip1.AutoSize = false;
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.menuStrip1.Font = new System.Drawing.Font("Tahoma", 22F);
@@ -687,14 +688,14 @@
             this.menuStrip1.Size = new System.Drawing.Size(1192, 38);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
-            //
+            // 
             // tmrWatchdog
-            //
+            // 
             this.tmrWatchdog.Interval = 15;
             this.tmrWatchdog.Tick += new System.EventHandler(this.tmrWatchdog_tick);
-            //
+            // 
             // statusStrip1
-            //
+            // 
             this.statusStrip1.AutoSize = false;
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -715,9 +716,9 @@
             this.statusStrip1.Size = new System.Drawing.Size(1192, 56);
             this.statusStrip1.TabIndex = 95;
             this.statusStrip1.Text = "statusStrip1";
-            //
+            // 
             // toolStripBatman
-            //
+            // 
             this.toolStripBatman.AutoSize = false;
             this.toolStripBatman.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripBatman.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -729,9 +730,9 @@
             this.toolStripBatman.ShowDropDownArrow = false;
             this.toolStripBatman.Size = new System.Drawing.Size(84, 54);
             this.toolStripBatman.Click += new System.EventHandler(this.toolStripBatman_Click);
-            //
+            // 
             // toolStripBtnCamera
-            //
+            // 
             this.toolStripBtnCamera.AutoSize = false;
             this.toolStripBtnCamera.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripBtnCamera.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -746,9 +747,9 @@
             this.toolStripBtnCamera.Name = "toolStripBtnCamera";
             this.toolStripBtnCamera.ShowDropDownArrow = false;
             this.toolStripBtnCamera.Size = new System.Drawing.Size(92, 54);
-            //
+            // 
             // CameraNorthToolStripMenuItem
-            //
+            // 
             this.CameraNorthToolStripMenuItem.AutoSize = false;
             this.CameraNorthToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 36F);
             this.CameraNorthToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
@@ -757,9 +758,9 @@
             this.CameraNorthToolStripMenuItem.Size = new System.Drawing.Size(259, 80);
             this.CameraNorthToolStripMenuItem.Text = "N";
             this.CameraNorthToolStripMenuItem.Click += new System.EventHandler(this.CameraNorthToolStripMenuItem_Click);
-            //
+            // 
             // CameraFollowingToolStripMenuItem
-            //
+            // 
             this.CameraFollowingToolStripMenuItem.AutoSize = false;
             this.CameraFollowingToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
             this.CameraFollowingToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -767,9 +768,9 @@
             this.CameraFollowingToolStripMenuItem.Size = new System.Drawing.Size(259, 80);
             this.CameraFollowingToolStripMenuItem.Text = "3D";
             this.CameraFollowingToolStripMenuItem.Click += new System.EventHandler(this.CameraFollowingToolStripMenuItem_Click);
-            //
+            // 
             // CameraTopToolStripMenuItem
-            //
+            // 
             this.CameraTopToolStripMenuItem.AutoSize = false;
             this.CameraTopToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
             this.CameraTopToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -777,9 +778,9 @@
             this.CameraTopToolStripMenuItem.Size = new System.Drawing.Size(259, 80);
             this.CameraTopToolStripMenuItem.Text = "2D";
             this.CameraTopToolStripMenuItem.Click += new System.EventHandler(this.CameraTopToolStripMenuItem_Click);
-            //
+            // 
             // toolStripDropDownButton1
-            //
+            // 
             this.toolStripDropDownButton1.AutoSize = false;
             this.toolStripDropDownButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -796,61 +797,61 @@
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.ShowDropDownArrow = false;
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(100, 54);
-            //
+            // 
             // deletePathMenu
-            //
+            // 
             this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.deletePathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deletePathMenu.Name = "deletePathMenu";
             this.deletePathMenu.Size = new System.Drawing.Size(307, 70);
-            this.deletePathMenu.Text = global::AgOpenGPS.gStr.gsDelete_Path;
+            this.deletePathMenu.Text = "Delete Path";
             this.deletePathMenu.Click += new System.EventHandler(this.DeletePathMenu_Click);
-            //
+            // 
             // recordPathMenu
-            //
+            // 
             this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.recordPathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.recordPathMenu.Name = "recordPathMenu";
             this.recordPathMenu.Size = new System.Drawing.Size(307, 70);
-            this.recordPathMenu.Text = global::AgOpenGPS.gStr.gsRecord_Stop;
+            this.recordPathMenu.Text = "Record / Stop";
             this.recordPathMenu.Click += new System.EventHandler(this.RecordPathMenu_Click);
-            //
+            // 
             // toolStripMenuItem3
-            //
+            // 
             this.toolStripMenuItem3.Enabled = false;
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(307, 70);
             this.toolStripMenuItem3.Text = "---------------";
-            //
+            // 
             // goPathMenu
-            //
+            // 
             this.goPathMenu.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.goPathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.goPathMenu.Name = "goPathMenu";
             this.goPathMenu.Size = new System.Drawing.Size(307, 70);
-            this.goPathMenu.Text = global::AgOpenGPS.gStr.gsGo_Stop;
+            this.goPathMenu.Text = "Go / Stop";
             this.goPathMenu.Click += new System.EventHandler(this.goPathMenu_Click);
-            //
+            // 
             // pausePathMenu
-            //
+            // 
             this.pausePathMenu.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.pausePathMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.pausePathMenu.Name = "pausePathMenu";
             this.pausePathMenu.Size = new System.Drawing.Size(307, 70);
-            this.pausePathMenu.Text = global::AgOpenGPS.gStr.gsPause_Resume;
+            this.pausePathMenu.Text = "Pause / Resume";
             this.pausePathMenu.Click += new System.EventHandler(this.pausePathMenu_Click);
-            //
+            // 
             // lblAreaRate
-            //
+            // 
             this.lblAreaRate.AutoSize = false;
             this.lblAreaRate.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.lblAreaRate.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
             this.lblAreaRate.Name = "lblAreaRate";
             this.lblAreaRate.Size = new System.Drawing.Size(80, 56);
             this.lblAreaRate.Text = "88 Ac/Hr";
-            //
+            // 
             // stripEqWidth
-            //
+            // 
             this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.stripEqWidth.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.stripEqWidth.Font = new System.Drawing.Font("Tahoma", 18F);
@@ -859,19 +860,19 @@
             this.stripEqWidth.Name = "stripEqWidth";
             this.stripEqWidth.Size = new System.Drawing.Size(371, 56);
             this.stripEqWidth.Spring = true;
-            this.stripEqWidth.Text = global::AgOpenGPS.gStr.gsWidth;
-            //
+            this.stripEqWidth.Text = "Width";
+            // 
             // stripDistance
-            //
+            // 
             this.stripDistance.AutoSize = false;
             this.stripDistance.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
             this.stripDistance.Name = "stripDistance";
             this.stripDistance.Size = new System.Drawing.Size(80, 56);
             this.stripDistance.Text = "8888 ft";
-            //
+            // 
             // toolStripBtnDropDownSpecialFunctions
-            //
+            // 
             this.toolStripBtnDropDownSpecialFunctions.AutoSize = false;
             this.toolStripBtnDropDownSpecialFunctions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripBtnDropDownSpecialFunctions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -888,9 +889,9 @@
             this.toolStripBtnDropDownSpecialFunctions.Name = "toolStripBtnDropDownSpecialFunctions";
             this.toolStripBtnDropDownSpecialFunctions.ShowDropDownArrow = false;
             this.toolStripBtnDropDownSpecialFunctions.Size = new System.Drawing.Size(120, 54);
-            //
+            // 
             // toolStripDeleteApplied
-            //
+            // 
             this.toolStripDeleteApplied.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripAreYouSure});
             this.toolStripDeleteApplied.Font = new System.Drawing.Font("Tahoma", 20.25F);
@@ -898,56 +899,56 @@
             this.toolStripDeleteApplied.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripDeleteApplied.Name = "toolStripDeleteApplied";
             this.toolStripDeleteApplied.Size = new System.Drawing.Size(434, 70);
-            this.toolStripDeleteApplied.Text = global::AgOpenGPS.gStr.gsDelete_Applied_Area;
-            //
+            this.toolStripDeleteApplied.Text = "Delete Applied Area";
+            // 
             // toolStripAreYouSure
-            //
+            // 
             this.toolStripAreYouSure.Name = "toolStripAreYouSure";
             this.toolStripAreYouSure.Size = new System.Drawing.Size(256, 38);
-            this.toolStripAreYouSure.Text = global::AgOpenGPS.gStr.gsAre_You_sure;
+            this.toolStripAreYouSure.Text = "Are You sure?";
             this.toolStripAreYouSure.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
-            //
+            // 
             // deleteContourPathsToolStripMenuItem
-            //
+            // 
             this.deleteContourPathsToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.deleteContourPathsToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.HideContour;
             this.deleteContourPathsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.deleteContourPathsToolStripMenuItem.Name = "deleteContourPathsToolStripMenuItem";
             this.deleteContourPathsToolStripMenuItem.Size = new System.Drawing.Size(434, 70);
-            this.deleteContourPathsToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsHide_Contour_Paths;
+            this.deleteContourPathsToolStripMenuItem.Text = "Hide Contour Paths";
             this.deleteContourPathsToolStripMenuItem.Click += new System.EventHandler(this.deleteContourPathsToolStripMenuItem_Click);
-            //
+            // 
             // toolStripBtnMakeBndContour
-            //
+            // 
             this.toolStripBtnMakeBndContour.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.toolStripBtnMakeBndContour.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.toolStripBtnMakeBndContour.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripBtnMakeBndContour.Name = "toolStripBtnMakeBndContour";
             this.toolStripBtnMakeBndContour.Size = new System.Drawing.Size(434, 70);
-              this.toolStripBtnMakeBndContour.Text = global::AgOpenGPS.gStr.gsMake_Boundary_Contours;
+            this.toolStripBtnMakeBndContour.Text = "Make Boundary Contours";
             this.toolStripBtnMakeBndContour.Click += new System.EventHandler(this.toolStripBtnMakeBndContour_Click);
-            //
+            // 
             // toolStripBtnSmoothABCurve
-            //
+            // 
             this.toolStripBtnSmoothABCurve.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.toolStripBtnSmoothABCurve.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
             this.toolStripBtnSmoothABCurve.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripBtnSmoothABCurve.Name = "toolStripBtnSmoothABCurve";
             this.toolStripBtnSmoothABCurve.Size = new System.Drawing.Size(434, 70);
-            this.toolStripBtnSmoothABCurve.Text = global::AgOpenGPS.gStr.gsSmooth_AB_Curve;
+            this.toolStripBtnSmoothABCurve.Text = "Smooth AB Curve";
             this.toolStripBtnSmoothABCurve.Click += new System.EventHandler(this.toolStripBtnSmoothABCurve_Click);
-            //
+            // 
             // treePlanterToolStripMenuItem
-            //
+            // 
             this.treePlanterToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.tree;
             this.treePlanterToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.treePlanterToolStripMenuItem.Name = "treePlanterToolStripMenuItem";
             this.treePlanterToolStripMenuItem.Size = new System.Drawing.Size(434, 70);
-            this.treePlanterToolStripMenuItem.Text = global::AgOpenGPS.gStr.gsTree_Planter;
+            this.treePlanterToolStripMenuItem.Text = "Tree Planter";
             this.treePlanterToolStripMenuItem.Click += new System.EventHandler(this.treePlanterToolStripMenuItem_Click);
-            //
+            // 
             // toolStripDropDownButton2
-            //
+            // 
             this.toolStripDropDownButton2.AutoSize = false;
             this.toolStripDropDownButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -955,9 +956,9 @@
             this.toolstripUDPConfig,
             this.toolstripUSBPortsConfig,
             this.toolstripDisplayConfig,
+            this.toolstripVehicleConfig,
             this.toolStripAutoSteerChart,
             this.toolstripAutoSteerConfig,
-            this.toolstripVehicleConfig,
             this.toolstripYouTurnConfig});
             this.toolStripDropDownButton2.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.toolStripDropDownButton2.Image = global::AgOpenGPS.Properties.Resources.Settings48;
@@ -968,9 +969,9 @@
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
             this.toolStripDropDownButton2.Size = new System.Drawing.Size(120, 55);
             this.toolStripDropDownButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            //
+            // 
             // toolStripNTRIPConfig
-            //
+            // 
             this.toolStripNTRIPConfig.AutoSize = false;
             this.toolStripNTRIPConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
             this.toolStripNTRIPConfig.Image = global::AgOpenGPS.Properties.Resources.NtripSettings;
@@ -980,9 +981,9 @@
             this.toolStripNTRIPConfig.Size = new System.Drawing.Size(339, 70);
             this.toolStripNTRIPConfig.Text = "NTRIP";
             this.toolStripNTRIPConfig.Click += new System.EventHandler(this.toolStripNTRIPConfig_Click);
-            //
+            // 
             // toolstripUDPConfig
-            //
+            // 
             this.toolstripUDPConfig.AutoSize = false;
             this.toolstripUDPConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripUDPConfig.Font = new System.Drawing.Font("Tahoma", 26.25F);
@@ -992,9 +993,9 @@
             this.toolstripUDPConfig.Size = new System.Drawing.Size(339, 70);
             this.toolstripUDPConfig.Text = "UDP";
             this.toolstripUDPConfig.Click += new System.EventHandler(this.toolstripUDPConfig_Click);
-            //
+            // 
             // toolstripUSBPortsConfig
-            //
+            // 
             this.toolstripUSBPortsConfig.AutoSize = false;
             this.toolstripUSBPortsConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripUSBPortsConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
@@ -1002,11 +1003,11 @@
             this.toolstripUSBPortsConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripUSBPortsConfig.Name = "toolstripUSBPortsConfig";
             this.toolstripUSBPortsConfig.Size = new System.Drawing.Size(339, 70);
-            this.toolstripUSBPortsConfig.Text = global::AgOpenGPS.gStr.gsPorts;
+            this.toolstripUSBPortsConfig.Text = "Serial Ports";
             this.toolstripUSBPortsConfig.Click += new System.EventHandler(this.toolstripUSBPortsConfig_Click);
-            //
+            // 
             // toolstripDisplayConfig
-            //
+            // 
             this.toolstripDisplayConfig.AutoSize = false;
             this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripDisplayConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
@@ -1014,22 +1015,34 @@
             this.toolstripDisplayConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripDisplayConfig.Name = "toolstripDisplayConfig";
             this.toolstripDisplayConfig.Size = new System.Drawing.Size(339, 70);
-            this.toolstripDisplayConfig.Text = global::AgOpenGPS.gStr.gsGPS_IMU;
+            this.toolstripDisplayConfig.Text = "Heading/Roll";
             this.toolstripDisplayConfig.Click += new System.EventHandler(this.toolstripDisplayConfig_Click);
-            //
+            // 
+            // toolstripVehicleConfig
+            // 
+            this.toolstripVehicleConfig.AutoSize = false;
+            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.toolstripVehicleConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
+            this.toolstripVehicleConfig.Image = global::AgOpenGPS.Properties.Resources.Settings64;
+            this.toolstripVehicleConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
+            this.toolstripVehicleConfig.Size = new System.Drawing.Size(339, 70);
+            this.toolstripVehicleConfig.Text = "Vehicle";
+            this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
+            // 
             // toolStripAutoSteerChart
-            //
+            // 
             this.toolStripAutoSteerChart.AutoSize = false;
             this.toolStripAutoSteerChart.Font = new System.Drawing.Font("Tahoma", 27.75F);
             this.toolStripAutoSteerChart.Image = global::AgOpenGPS.Properties.Resources.Chart;
             this.toolStripAutoSteerChart.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripAutoSteerChart.Name = "toolStripAutoSteerChart";
             this.toolStripAutoSteerChart.Size = new System.Drawing.Size(339, 70);
-            this.toolStripAutoSteerChart.Text = global::AgOpenGPS.gStr.gsSteer_Chart;
+            this.toolStripAutoSteerChart.Text = "Steer Chart";
             this.toolStripAutoSteerChart.Click += new System.EventHandler(this.toolStripAutoSteerChart_Click);
-            //
+            // 
             // toolstripAutoSteerConfig
-            //
+            // 
             this.toolstripAutoSteerConfig.AutoSize = false;
             this.toolstripAutoSteerConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripAutoSteerConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
@@ -1038,23 +1051,11 @@
             this.toolstripAutoSteerConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripAutoSteerConfig.Name = "toolstripAutoSteerConfig";
             this.toolstripAutoSteerConfig.Size = new System.Drawing.Size(339, 70);
-            this.toolstripAutoSteerConfig.Text = global::AgOpenGPS.gStr.gsAuto_Steer;
+            this.toolstripAutoSteerConfig.Text = "Auto Steer";
             this.toolstripAutoSteerConfig.Click += new System.EventHandler(this.toolstripAutoSteerConfig_Click);
-            //
-            // toolstripVehicleConfig
-            //
-            this.toolstripVehicleConfig.AutoSize = false;
-            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.toolstripVehicleConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
-            this.toolstripVehicleConfig.Image = global::AgOpenGPS.Properties.Resources.Settings64;
-            this.toolstripVehicleConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
-            this.toolstripVehicleConfig.Size = new System.Drawing.Size(339, 70);
-            this.toolstripVehicleConfig.Text = global::AgOpenGPS.gStr.gsVehicle;
-            this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
-            //
+            // 
             // toolstripYouTurnConfig
-            //
+            // 
             this.toolstripYouTurnConfig.AutoSize = false;
             this.toolstripYouTurnConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripYouTurnConfig.Font = new System.Drawing.Font("Tahoma", 27.75F);
@@ -1062,17 +1063,18 @@
             this.toolstripYouTurnConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripYouTurnConfig.Name = "toolstripYouTurnConfig";
             this.toolstripYouTurnConfig.Size = new System.Drawing.Size(339, 70);
-            this.toolstripYouTurnConfig.Text = global::AgOpenGPS.gStr.gsU_Turn;
+            this.toolstripYouTurnConfig.Text = "U Turn";
             this.toolstripYouTurnConfig.Click += new System.EventHandler(this.toolstripYouTurnConfig_Click);
-            //
+            // 
             // toolStripDropDownBtnFuncs
-            //
+            // 
             this.toolStripDropDownBtnFuncs.AutoSize = false;
             this.toolStripDropDownBtnFuncs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.toolStripDropDownBtnFuncs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolstripField,
             this.toolstripBoundary,
-            this.toolstripResetTrip});
+            this.toolstripResetTrip,
+            this.toolstripExit});
             this.toolStripDropDownBtnFuncs.Font = new System.Drawing.Font("Tahoma", 18F);
             this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.Start48;
             this.toolStripDropDownBtnFuncs.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1083,50 +1085,60 @@
             this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
             this.toolStripDropDownBtnFuncs.Size = new System.Drawing.Size(120, 55);
             this.toolStripDropDownBtnFuncs.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            //
+            // 
             // toolstripField
-            //
+            // 
             this.toolstripField.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripField.Font = new System.Drawing.Font("Tahoma", 28F);
             this.toolstripField.Image = global::AgOpenGPS.Properties.Resources.JobActive;
             this.toolstripField.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripField.Name = "toolstripField";
             this.toolstripField.Size = new System.Drawing.Size(300, 70);
-            this.toolstripField.Text = global::AgOpenGPS.gStr.gsField;
+            this.toolstripField.Text = "Field";
             this.toolstripField.Click += new System.EventHandler(this.toolstripField_Click);
-            //
+            // 
             // toolstripBoundary
-            //
+            // 
             this.toolstripBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripBoundary.Font = new System.Drawing.Font("Tahoma", 28F);
             this.toolstripBoundary.Image = global::AgOpenGPS.Properties.Resources.BoundaryMenu;
             this.toolstripBoundary.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripBoundary.Name = "toolstripBoundary";
             this.toolstripBoundary.Size = new System.Drawing.Size(300, 70);
-            this.toolstripBoundary.Text = global::AgOpenGPS.gStr.gsBoundary;
+            this.toolstripBoundary.Text = "Boundary";
             this.toolstripBoundary.Click += new System.EventHandler(this.toolstripBoundary_Click);
-            //
+            // 
             // toolstripResetTrip
-            //
+            // 
             this.toolstripResetTrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripResetTrip.Font = new System.Drawing.Font("Tahoma", 28F);
             this.toolstripResetTrip.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.toolstripResetTrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripResetTrip.Name = "toolstripResetTrip";
             this.toolstripResetTrip.Size = new System.Drawing.Size(300, 70);
-            this.toolstripResetTrip.Text = global::AgOpenGPS.gStr.gs0_Trip;
+            this.toolstripResetTrip.Text = ">0< Trip";
             this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
-            //
+            // 
+            // toolstripExit
+            // 
+            this.toolstripExit.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolstripExit.Image = global::AgOpenGPS.Properties.Resources.Start64;
+            this.toolstripExit.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolstripExit.Name = "toolstripExit";
+            this.toolstripExit.Size = new System.Drawing.Size(300, 70);
+            this.toolstripExit.Text = "Exit";
+            this.toolstripExit.Click += new System.EventHandler(this.ToolstripExit_Click);
+            // 
             // stripOnlineGPS
-            //
+            // 
             this.stripOnlineGPS.AutoSize = false;
             this.stripOnlineGPS.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.stripOnlineGPS.Name = "stripOnlineGPS";
             this.stripOnlineGPS.Size = new System.Drawing.Size(16, 50);
             this.stripOnlineGPS.Value = 1;
-            //
+            // 
             // lblNorthing
-            //
+            // 
             this.lblNorthing.AutoSize = true;
             this.lblNorthing.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblNorthing.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -1137,9 +1149,9 @@
             this.lblNorthing.TabIndex = 110;
             this.lblNorthing.Text = "N: 590888";
             this.lblNorthing.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // lblEasting
-            //
+            // 
             this.lblEasting.AutoSize = true;
             this.lblEasting.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblEasting.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -1150,9 +1162,9 @@
             this.lblEasting.TabIndex = 111;
             this.lblEasting.Text = "E: 440888";
             this.lblEasting.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // lblSpeed
-            //
+            // 
             this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
@@ -1163,9 +1175,9 @@
             this.lblSpeed.TabIndex = 116;
             this.lblSpeed.Text = "88.8";
             this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            //
+            // 
             // contextMenuStripFlag
-            //
+            // 
             this.contextMenuStripFlag.AutoSize = false;
             this.contextMenuStripFlag.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.contextMenuStripFlag.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1180,9 +1192,9 @@
             this.contextMenuStripFlag.Name = "contextMenuStripFlag";
             this.contextMenuStripFlag.Size = new System.Drawing.Size(72, 400);
             this.contextMenuStripFlag.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripFlag_Opening);
-            //
+            // 
             // toolStripMenuItemFlagRed
-            //
+            // 
             this.toolStripMenuItemFlagRed.AutoSize = false;
             this.toolStripMenuItemFlagRed.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripMenuItemFlagRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1192,9 +1204,9 @@
             this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuItemFlagRed.Text = ".";
             this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
-            //
+            // 
             // toolStripMenuFlagGrn
-            //
+            // 
             this.toolStripMenuFlagGrn.AutoSize = false;
             this.toolStripMenuFlagGrn.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripMenuFlagGrn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1204,9 +1216,9 @@
             this.toolStripMenuFlagGrn.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuFlagGrn.Text = ".";
             this.toolStripMenuFlagGrn.Click += new System.EventHandler(this.toolStripMenuGrn_Click);
-            //
+            // 
             // toolStripMenuFlagYel
-            //
+            // 
             this.toolStripMenuFlagYel.AutoSize = false;
             this.toolStripMenuFlagYel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripMenuFlagYel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1216,16 +1228,16 @@
             this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuFlagYel.Text = ".";
             this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
-            //
+            // 
             // toolStripSeparator3
-            //
+            // 
             this.toolStripSeparator3.AutoSize = false;
             this.toolStripSeparator3.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(68, 20);
-            //
+            // 
             // toolStripMenuFlagDelete
-            //
+            // 
             this.toolStripMenuFlagDelete.AutoSize = false;
             this.toolStripMenuFlagDelete.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStripMenuFlagDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1235,15 +1247,15 @@
             this.toolStripMenuFlagDelete.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuFlagDelete.Text = ".";
             this.toolStripMenuFlagDelete.Click += new System.EventHandler(this.toolStripMenuFlagDelete_Click);
-            //
+            // 
             // toolStripSeparator4
-            //
+            // 
             this.toolStripSeparator4.AutoSize = false;
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(68, 20);
-            //
+            // 
             // toolStripMenuFlagDeleteAll
-            //
+            // 
             this.toolStripMenuFlagDeleteAll.AutoSize = false;
             this.toolStripMenuFlagDeleteAll.Image = global::AgOpenGPS.Properties.Resources.FlagDeleteAll;
             this.toolStripMenuFlagDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
@@ -1251,17 +1263,17 @@
             this.toolStripMenuFlagDeleteAll.Size = new System.Drawing.Size(70, 70);
             this.toolStripMenuFlagDeleteAll.Text = "toolStripMenuFlagDeleteAll";
             this.toolStripMenuFlagDeleteAll.Click += new System.EventHandler(this.toolStripMenuFlagDeleteAll_Click);
-            //
+            // 
             // contextMenuArea
-            //
+            // 
             this.contextMenuArea.AutoSize = false;
             this.contextMenuArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuAreaSide});
             this.contextMenuArea.Name = "contextMenuArea";
             this.contextMenuArea.Size = new System.Drawing.Size(70, 80);
-            //
+            // 
             // toolStripMenuAreaSide
-            //
+            // 
             this.toolStripMenuAreaSide.AutoSize = false;
             this.toolStripMenuAreaSide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripMenuAreaSide.Image = global::AgOpenGPS.Properties.Resources.AreaSide;
@@ -1271,9 +1283,9 @@
             this.toolStripMenuAreaSide.Text = ".";
             this.toolStripMenuAreaSide.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripMenuAreaSide.Click += new System.EventHandler(this.toolStripMenuAreaSide_Click);
-            //
+            // 
             // tboxSentence
-            //
+            // 
             this.tboxSentence.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxSentence.BackColor = System.Drawing.SystemColors.ControlLight;
             this.tboxSentence.Font = new System.Drawing.Font("Tahoma", 8.25F);
@@ -1283,9 +1295,9 @@
             this.tboxSentence.ReadOnly = true;
             this.tboxSentence.Size = new System.Drawing.Size(323, 53);
             this.tboxSentence.TabIndex = 134;
-            //
+            // 
             // lblZone
-            //
+            // 
             this.lblZone.AutoSize = true;
             this.lblZone.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblZone.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -1296,9 +1308,9 @@
             this.lblZone.TabIndex = 135;
             this.lblZone.Text = "Zn";
             this.lblZone.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // lblSpeedUnits
-            //
+            // 
             this.lblSpeedUnits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSpeedUnits.AutoSize = true;
             this.lblSpeedUnits.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -1310,9 +1322,9 @@
             this.lblSpeedUnits.TabIndex = 139;
             this.lblSpeedUnits.Text = "kmh";
             this.lblSpeedUnits.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // lblHeading
-            //
+            // 
             this.lblHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHeading.BackColor = System.Drawing.Color.Transparent;
             this.lblHeading.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
@@ -1323,18 +1335,18 @@
             this.lblHeading.TabIndex = 117;
             this.lblHeading.Text = "359.8.";
             this.lblHeading.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // imageList1
-            //
+            // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "SettingsGear64.png");
             this.imageList1.Images.SetKeyName(1, "Satellite64.png");
             this.imageList1.Images.SetKeyName(2, "Rate64.png");
             this.imageList1.Images.SetKeyName(3, "FieldView.png");
-            //
+            // 
             // label5
-            //
+            // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -1345,9 +1357,9 @@
             this.label5.Size = new System.Drawing.Size(32, 19);
             this.label5.TabIndex = 153;
             this.label5.Text = "EW";
-            //
+            // 
             // label4
-            //
+            // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -1358,9 +1370,9 @@
             this.label4.Size = new System.Drawing.Size(29, 19);
             this.label4.TabIndex = 152;
             this.label4.Text = "NS";
-            //
+            // 
             // lblFieldWidthNorthSouth
-            //
+            // 
             this.lblFieldWidthNorthSouth.AutoSize = true;
             this.lblFieldWidthNorthSouth.BackColor = System.Drawing.Color.Transparent;
             this.lblFieldWidthNorthSouth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -1371,9 +1383,9 @@
             this.lblFieldWidthNorthSouth.Size = new System.Drawing.Size(44, 19);
             this.lblFieldWidthNorthSouth.TabIndex = 151;
             this.lblFieldWidthNorthSouth.Text = "0.00";
-            //
+            // 
             // lblFieldWidthEastWest
-            //
+            // 
             this.lblFieldWidthEastWest.AutoSize = true;
             this.lblFieldWidthEastWest.BackColor = System.Drawing.Color.Transparent;
             this.lblFieldWidthEastWest.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -1384,9 +1396,9 @@
             this.lblFieldWidthEastWest.Size = new System.Drawing.Size(44, 19);
             this.lblFieldWidthEastWest.TabIndex = 150;
             this.lblFieldWidthEastWest.Text = "0.00";
-            //
+            // 
             // tabControl1
-            //
+            // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.autoPage4);
             this.tabControl1.Controls.Add(this.configPage1);
@@ -1400,9 +1412,9 @@
             this.tabControl1.Size = new System.Drawing.Size(340, 601);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 150;
-            //
+            // 
             // autoPage4
-            //
+            // 
             this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.autoPage4.Controls.Add(this.nudElevation);
             this.autoPage4.Controls.Add(this.btnRecordElevation);
@@ -1414,9 +1426,9 @@
             this.autoPage4.Name = "autoPage4";
             this.autoPage4.Size = new System.Drawing.Size(332, 525);
             this.autoPage4.TabIndex = 4;
-            //
+            // 
             // nudElevation
-            //
+            // 
             this.nudElevation.DecimalPlaces = 1;
             this.nudElevation.Font = new System.Drawing.Font("Tahoma", 21.75F);
             this.nudElevation.Increment = new decimal(new int[] {
@@ -1440,9 +1452,9 @@
             0,
             65536});
             this.nudElevation.ValueChanged += new System.EventHandler(this.NudElevation_ValueChanged);
-            //
+            // 
             // btnRecordElevation
-            //
+            // 
             this.btnRecordElevation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRecordElevation.BackColor = System.Drawing.Color.AliceBlue;
             this.btnRecordElevation.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
@@ -1453,13 +1465,13 @@
             this.btnRecordElevation.Name = "btnRecordElevation";
             this.btnRecordElevation.Size = new System.Drawing.Size(82, 90);
             this.btnRecordElevation.TabIndex = 226;
-            this.btnRecordElevation.Text = global::AgOpenGPS.gStr.gsRecord_Elevation;
+            this.btnRecordElevation.Text = "Record Elevation";
             this.btnRecordElevation.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRecordElevation.UseVisualStyleBackColor = false;
             this.btnRecordElevation.Click += new System.EventHandler(this.BtnRecordElevation_Click);
-            //
+            // 
             // btnLidarOnOff
-            //
+            // 
             this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
             this.btnLidarOnOff.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.btnLidarOnOff.Image = global::AgOpenGPS.Properties.Resources.boundaryPlay;
@@ -1469,14 +1481,14 @@
             this.btnLidarOnOff.Name = "btnLidarOnOff";
             this.btnLidarOnOff.Size = new System.Drawing.Size(82, 90);
             this.btnLidarOnOff.TabIndex = 225;
-            this.btnLidarOnOff.Text = global::AgOpenGPS.gStr.gsLidar_On;
+            this.btnLidarOnOff.Text = "Lidar On";
             this.btnLidarOnOff.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
             this.btnLidarOnOff.Visible = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
-            //
+            // 
             // btnElevationMap
-            //
+            // 
             this.btnElevationMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnElevationMap.BackColor = System.Drawing.Color.AliceBlue;
             this.btnElevationMap.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
@@ -1486,13 +1498,13 @@
             this.btnElevationMap.Name = "btnElevationMap";
             this.btnElevationMap.Size = new System.Drawing.Size(82, 90);
             this.btnElevationMap.TabIndex = 227;
-            this.btnElevationMap.Text = global::AgOpenGPS.gStr.gsShow_Elevation_Map;
+            this.btnElevationMap.Text = "Show Elevation Map";
             this.btnElevationMap.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnElevationMap.UseVisualStyleBackColor = false;
             this.btnElevationMap.Click += new System.EventHandler(this.BtnElevationMap_Click);
-            //
+            // 
             // btnManualAutoDrive
-            //
+            // 
             this.btnManualAutoDrive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
             this.btnManualAutoDrive.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
@@ -1503,13 +1515,13 @@
             this.btnManualAutoDrive.Name = "btnManualAutoDrive";
             this.btnManualAutoDrive.Size = new System.Drawing.Size(82, 90);
             this.btnManualAutoDrive.TabIndex = 152;
-            this.btnManualAutoDrive.Text = global::AgOpenGPS.gStr.gsAuto;
+            this.btnManualAutoDrive.Text = "Auto";
             this.btnManualAutoDrive.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnManualAutoDrive.UseVisualStyleBackColor = false;
             this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
-            //
+            // 
             // configPage1
-            //
+            // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.configPage1.Controls.Add(this.btnFixOffset);
             this.configPage1.Controls.Add(this.btnFlagsGoogleEarth);
@@ -1523,9 +1535,9 @@
             this.configPage1.Padding = new System.Windows.Forms.Padding(3);
             this.configPage1.Size = new System.Drawing.Size(332, 525);
             this.configPage1.TabIndex = 0;
-            //
+            // 
             // btnFixOffset
-            //
+            // 
             this.btnFixOffset.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFixOffset.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnFixOffset.Font = new System.Drawing.Font("Tahoma", 14.25F);
@@ -1536,13 +1548,13 @@
             this.btnFixOffset.Name = "btnFixOffset";
             this.btnFixOffset.Size = new System.Drawing.Size(104, 95);
             this.btnFixOffset.TabIndex = 221;
-            this.btnFixOffset.Text = global::AgOpenGPS.gStr.gsOffset_Fix;
+            this.btnFixOffset.Text = "Offset Fix";
             this.btnFixOffset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnFixOffset.UseVisualStyleBackColor = false;
             this.btnFixOffset.Click += new System.EventHandler(this.btnFixOffset_Click);
-            //
+            // 
             // btnFlagsGoogleEarth
-            //
+            // 
             this.btnFlagsGoogleEarth.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFlagsGoogleEarth.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnFlagsGoogleEarth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
@@ -1553,13 +1565,13 @@
             this.btnFlagsGoogleEarth.Name = "btnFlagsGoogleEarth";
             this.btnFlagsGoogleEarth.Size = new System.Drawing.Size(104, 95);
             this.btnFlagsGoogleEarth.TabIndex = 177;
-            this.btnFlagsGoogleEarth.Text = global::AgOpenGPS.gStr.gsFlags_GE;
+            this.btnFlagsGoogleEarth.Text = "Flags GE";
             this.btnFlagsGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnFlagsGoogleEarth.UseVisualStyleBackColor = false;
             this.btnFlagsGoogleEarth.Click += new System.EventHandler(this.btnFlagsGoogleEarth_Click);
-            //
+            // 
             // btnWebCam
-            //
+            // 
             this.btnWebCam.BackColor = System.Drawing.Color.AliceBlue;
             this.btnWebCam.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnWebCam.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
@@ -1570,13 +1582,13 @@
             this.btnWebCam.Name = "btnWebCam";
             this.btnWebCam.Size = new System.Drawing.Size(104, 95);
             this.btnWebCam.TabIndex = 176;
-            this.btnWebCam.Text = global::AgOpenGPS.gStr.gsWebCam;
+            this.btnWebCam.Text = "WebCam";
             this.btnWebCam.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnWebCam.UseVisualStyleBackColor = false;
             this.btnWebCam.Click += new System.EventHandler(this.btnWebCam_Click);
-            //
+            // 
             // btnHelp
-            //
+            // 
             this.btnHelp.BackColor = System.Drawing.Color.AliceBlue;
             this.btnHelp.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnHelp.Enabled = false;
@@ -1588,13 +1600,13 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(104, 95);
             this.btnHelp.TabIndex = 174;
-            this.btnHelp.Text = global::AgOpenGPS.gStr.gsHelp;
+            this.btnHelp.Text = "Help";
             this.btnHelp.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            //
+            // 
             // btnFileExplorer
-            //
+            // 
             this.btnFileExplorer.BackColor = System.Drawing.Color.AliceBlue;
             this.btnFileExplorer.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnFileExplorer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
@@ -1605,13 +1617,13 @@
             this.btnFileExplorer.Name = "btnFileExplorer";
             this.btnFileExplorer.Size = new System.Drawing.Size(104, 95);
             this.btnFileExplorer.TabIndex = 141;
-            this.btnFileExplorer.Text = global::AgOpenGPS.gStr.gsFiles;
+            this.btnFileExplorer.Text = "Files";
             this.btnFileExplorer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnFileExplorer.UseVisualStyleBackColor = false;
             this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
-            //
+            // 
             // btnPerimeter
-            //
+            // 
             this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
             this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
             this.btnPerimeter.Font = new System.Drawing.Font("Verdana", 18F, System.Drawing.FontStyle.Bold);
@@ -1625,9 +1637,9 @@
             this.btnPerimeter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPerimeter.UseVisualStyleBackColor = false;
             this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
-            //
+            // 
             // DataPage
-            //
+            // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
             this.DataPage.Controls.Add(this.btnTinyAutoSteerConfig);
             this.DataPage.Controls.Add(this.label13);
@@ -1640,7 +1652,6 @@
             this.DataPage.Controls.Add(this.lblActualSteerAngle2);
             this.DataPage.Controls.Add(this.lblSetpointSteerAngle2);
             this.DataPage.Controls.Add(this.btnSmallRight2);
-            this.DataPage.Controls.Add(this.btnGPSData);
             this.DataPage.Controls.Add(this.btnSmallLeft2);
             this.DataPage.Controls.Add(this.btnBigRight2);
             this.DataPage.Controls.Add(this.btnBigLeft2);
@@ -1669,6 +1680,7 @@
             this.DataPage.Controls.Add(this.label8);
             this.DataPage.Controls.Add(this.lblEasting);
             this.DataPage.Controls.Add(this.lblNorthing);
+            this.DataPage.Controls.Add(this.btnGPSData);
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.DataPage.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataPage.ImageIndex = 1;
@@ -1676,9 +1688,9 @@
             this.DataPage.Name = "DataPage";
             this.DataPage.Size = new System.Drawing.Size(332, 525);
             this.DataPage.TabIndex = 3;
-            //
+            // 
             // btnTinyAutoSteerConfig
-            //
+            // 
             this.btnTinyAutoSteerConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTinyAutoSteerConfig.BackColor = System.Drawing.Color.Lavender;
             this.btnTinyAutoSteerConfig.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
@@ -1693,9 +1705,9 @@
             this.btnTinyAutoSteerConfig.TabIndex = 310;
             this.btnTinyAutoSteerConfig.UseVisualStyleBackColor = false;
             this.btnTinyAutoSteerConfig.Click += new System.EventHandler(this.BtnTinyAutoSteerConfig_Click);
-            //
+            // 
             // label13
-            //
+            // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1704,9 +1716,9 @@
             this.label13.Size = new System.Drawing.Size(34, 13);
             this.label13.TabIndex = 309;
             this.label13.Text = "Relay";
-            //
+            // 
             // label12
-            //
+            // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1715,9 +1727,9 @@
             this.label12.Size = new System.Drawing.Size(27, 13);
             this.label12.TabIndex = 308;
             this.label12.Text = "UDP";
-            //
+            // 
             // label7
-            //
+            // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1726,9 +1738,9 @@
             this.label7.Size = new System.Drawing.Size(33, 13);
             this.label7.TabIndex = 307;
             this.label7.Text = "Steer";
-            //
+            // 
             // pbarUDPComm
-            //
+            // 
             this.pbarUDPComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarUDPComm.BackColor = System.Drawing.Color.Maroon;
             this.pbarUDPComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1736,9 +1748,9 @@
             this.pbarUDPComm.Name = "pbarUDPComm";
             this.pbarUDPComm.Size = new System.Drawing.Size(60, 10);
             this.pbarUDPComm.TabIndex = 306;
-            //
+            // 
             // pbarAutoSteerComm
-            //
+            // 
             this.pbarAutoSteerComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarAutoSteerComm.BackColor = System.Drawing.Color.Maroon;
             this.pbarAutoSteerComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1746,9 +1758,9 @@
             this.pbarAutoSteerComm.Name = "pbarAutoSteerComm";
             this.pbarAutoSteerComm.Size = new System.Drawing.Size(60, 10);
             this.pbarAutoSteerComm.TabIndex = 305;
-            //
+            // 
             // pbarRelayComm
-            //
+            // 
             this.pbarRelayComm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarRelayComm.BackColor = System.Drawing.Color.Maroon;
             this.pbarRelayComm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1756,9 +1768,9 @@
             this.pbarRelayComm.Name = "pbarRelayComm";
             this.pbarRelayComm.Size = new System.Drawing.Size(60, 10);
             this.pbarRelayComm.TabIndex = 304;
-            //
+            // 
             // label3
-            //
+            // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -1766,9 +1778,9 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(0, 19);
             this.label3.TabIndex = 303;
-            //
+            // 
             // lblActualSteerAngle2
-            //
+            // 
             this.lblActualSteerAngle2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblActualSteerAngle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblActualSteerAngle2.Location = new System.Drawing.Point(76, 494);
@@ -1778,9 +1790,9 @@
             this.lblActualSteerAngle2.TabIndex = 286;
             this.lblActualSteerAngle2.Text = "-23.9";
             this.lblActualSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            //
+            // 
             // lblSetpointSteerAngle2
-            //
+            // 
             this.lblSetpointSteerAngle2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblSetpointSteerAngle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSetpointSteerAngle2.Location = new System.Drawing.Point(76, 463);
@@ -1790,9 +1802,9 @@
             this.lblSetpointSteerAngle2.TabIndex = 284;
             this.lblSetpointSteerAngle2.Text = "-30.8";
             this.lblSetpointSteerAngle2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            //
+            // 
             // btnSmallRight2
-            //
+            // 
             this.btnSmallRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSmallRight2.BackColor = System.Drawing.Color.Lavender;
             this.btnSmallRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -1807,9 +1819,293 @@
             this.btnSmallRight2.Text = ">";
             this.btnSmallRight2.UseVisualStyleBackColor = false;
             this.btnSmallRight2.Click += new System.EventHandler(this.btnSmallRight2_Click);
-            //
+            // 
+            // btnSmallLeft2
+            // 
+            this.btnSmallLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSmallLeft2.BackColor = System.Drawing.Color.Lavender;
+            this.btnSmallLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSmallLeft2.FlatAppearance.BorderSize = 2;
+            this.btnSmallLeft2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSmallLeft2.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnSmallLeft2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSmallLeft2.Location = new System.Drawing.Point(92, 267);
+            this.btnSmallLeft2.Name = "btnSmallLeft2";
+            this.btnSmallLeft2.Size = new System.Drawing.Size(65, 44);
+            this.btnSmallLeft2.TabIndex = 281;
+            this.btnSmallLeft2.Text = "<";
+            this.btnSmallLeft2.UseVisualStyleBackColor = false;
+            this.btnSmallLeft2.Click += new System.EventHandler(this.btnSmallLeft2_Click);
+            // 
+            // btnBigRight2
+            // 
+            this.btnBigRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBigRight2.BackColor = System.Drawing.Color.Lavender;
+            this.btnBigRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigRight2.FlatAppearance.BorderSize = 2;
+            this.btnBigRight2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBigRight2.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBigRight2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBigRight2.Location = new System.Drawing.Point(255, 267);
+            this.btnBigRight2.Name = "btnBigRight2";
+            this.btnBigRight2.Size = new System.Drawing.Size(65, 44);
+            this.btnBigRight2.TabIndex = 280;
+            this.btnBigRight2.Text = ">>";
+            this.btnBigRight2.UseVisualStyleBackColor = false;
+            this.btnBigRight2.Click += new System.EventHandler(this.btnBigRight2_Click);
+            // 
+            // btnBigLeft2
+            // 
+            this.btnBigLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBigLeft2.BackColor = System.Drawing.Color.Lavender;
+            this.btnBigLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigLeft2.FlatAppearance.BorderSize = 2;
+            this.btnBigLeft2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBigLeft2.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBigLeft2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBigLeft2.Location = new System.Drawing.Point(10, 267);
+            this.btnBigLeft2.Name = "btnBigLeft2";
+            this.btnBigLeft2.Size = new System.Drawing.Size(65, 44);
+            this.btnBigLeft2.TabIndex = 279;
+            this.btnBigLeft2.Text = "<<";
+            this.btnBigLeft2.UseVisualStyleBackColor = false;
+            this.btnBigLeft2.Click += new System.EventHandler(this.btnBigLeft2_Click);
+            // 
+            // lblLongitude
+            // 
+            this.lblLongitude.AutoSize = true;
+            this.lblLongitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblLongitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblLongitude.Location = new System.Drawing.Point(51, 80);
+            this.lblLongitude.Name = "lblLongitude";
+            this.lblLongitude.Size = new System.Drawing.Size(121, 19);
+            this.lblLongitude.TabIndex = 176;
+            this.lblLongitude.Text = "-111.2534749";
+            // 
+            // lblLatitude
+            // 
+            this.lblLatitude.AutoSize = true;
+            this.lblLatitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblLatitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblLatitude.Location = new System.Drawing.Point(50, 59);
+            this.lblLatitude.Name = "lblLatitude";
+            this.lblLatitude.Size = new System.Drawing.Size(104, 19);
+            this.lblLatitude.TabIndex = 175;
+            this.lblLatitude.Text = "53.2344549";
+            // 
+            // lblAltitude
+            // 
+            this.lblAltitude.AutoSize = true;
+            this.lblAltitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblAltitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblAltitude.Location = new System.Drawing.Point(242, 59);
+            this.lblAltitude.Name = "lblAltitude";
+            this.lblAltitude.Size = new System.Drawing.Size(54, 19);
+            this.lblAltitude.TabIndex = 179;
+            this.lblAltitude.Text = "356m";
+            // 
+            // lblConvergenceAngle
+            // 
+            this.lblConvergenceAngle.AutoSize = true;
+            this.lblConvergenceAngle.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.lblConvergenceAngle.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblConvergenceAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblConvergenceAngle.Location = new System.Drawing.Point(125, 102);
+            this.lblConvergenceAngle.Name = "lblConvergenceAngle";
+            this.lblConvergenceAngle.Size = new System.Drawing.Size(32, 19);
+            this.lblConvergenceAngle.TabIndex = 229;
+            this.lblConvergenceAngle.Text = "CA";
+            this.lblConvergenceAngle.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(93, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 19);
+            this.label2.TabIndex = 230;
+            this.label2.Text = "CA:";
+            // 
+            // lblLidarDistance
+            // 
+            this.lblLidarDistance.AutoSize = true;
+            this.lblLidarDistance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblLidarDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblLidarDistance.Location = new System.Drawing.Point(251, 102);
+            this.lblLidarDistance.Name = "lblLidarDistance";
+            this.lblLidarDistance.Size = new System.Drawing.Size(39, 19);
+            this.lblLidarDistance.TabIndex = 223;
+            this.lblLidarDistance.Text = "123";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label1.Location = new System.Drawing.Point(194, 102);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 19);
+            this.label1.TabIndex = 224;
+            this.label1.Text = "LIDAR:";
+            // 
+            // lblHeading2
+            // 
+            this.lblHeading2.AutoSize = true;
+            this.lblHeading2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHeading2.Location = new System.Drawing.Point(194, 186);
+            this.lblHeading2.Name = "lblHeading2";
+            this.lblHeading2.Size = new System.Drawing.Size(52, 23);
+            this.lblHeading2.TabIndex = 211;
+            this.lblHeading2.Text = "22.6";
+            // 
+            // lblRoll
+            // 
+            this.lblRoll.AutoSize = true;
+            this.lblRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRoll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblRoll.Location = new System.Drawing.Point(63, 159);
+            this.lblRoll.Name = "lblRoll";
+            this.lblRoll.Size = new System.Drawing.Size(40, 23);
+            this.lblRoll.TabIndex = 138;
+            this.lblRoll.Text = "1.2";
+            // 
+            // lblGPSHeading
+            // 
+            this.lblGPSHeading.AutoSize = true;
+            this.lblGPSHeading.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGPSHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblGPSHeading.Location = new System.Drawing.Point(194, 160);
+            this.lblGPSHeading.Name = "lblGPSHeading";
+            this.lblGPSHeading.Size = new System.Drawing.Size(52, 23);
+            this.lblGPSHeading.TabIndex = 136;
+            this.lblGPSHeading.Text = "99.3";
+            // 
+            // lblYawHeading
+            // 
+            this.lblYawHeading.AutoSize = true;
+            this.lblYawHeading.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblYawHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblYawHeading.Location = new System.Drawing.Point(63, 186);
+            this.lblYawHeading.Name = "lblYawHeading";
+            this.lblYawHeading.Size = new System.Drawing.Size(52, 23);
+            this.lblYawHeading.TabIndex = 135;
+            this.lblYawHeading.Text = "22.6";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label25.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label25.Location = new System.Drawing.Point(7, 102);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(50, 19);
+            this.label25.TabIndex = 217;
+            this.label25.Text = "Zone:";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label24.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label24.Location = new System.Drawing.Point(202, 80);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(44, 19);
+            this.label24.TabIndex = 216;
+            this.label24.Text = "Sats:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label22.Location = new System.Drawing.Point(140, 188);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(56, 19);
+            this.label22.TabIndex = 210;
+            this.label22.Text = "Fused:";
+            // 
+            // lblSats
+            // 
+            this.lblSats.AutoSize = true;
+            this.lblSats.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblSats.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSats.Location = new System.Drawing.Point(242, 80);
+            this.lblSats.Name = "lblSats";
+            this.lblSats.Size = new System.Drawing.Size(19, 19);
+            this.lblSats.TabIndex = 183;
+            this.lblSats.Text = "S";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label16.Location = new System.Drawing.Point(202, 59);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(44, 19);
+            this.label16.TabIndex = 180;
+            this.label16.Text = "Elev:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label19.Location = new System.Drawing.Point(20, 59);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(36, 19);
+            this.label19.TabIndex = 178;
+            this.label19.Text = "Lat:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label18.Location = new System.Drawing.Point(15, 80);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(41, 19);
+            this.label18.TabIndex = 177;
+            this.label18.Text = "Lon:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label10.Location = new System.Drawing.Point(23, 161);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 19);
+            this.label10.TabIndex = 4;
+            this.label10.Text = "Roll:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label9.Location = new System.Drawing.Point(20, 188);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(44, 19);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "IMU:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(152, 162);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 19);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "GPS:";
+            // 
             // btnGPSData
-            //
+            // 
             this.btnGPSData.BackColor = System.Drawing.Color.Lavender;
             this.btnGPSData.BackgroundImage = global::AgOpenGPS.Properties.Resources.Satellite64;
             this.btnGPSData.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -1825,293 +2121,9 @@
             this.btnGPSData.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
-            //
-            // btnSmallLeft2
-            //
-            this.btnSmallLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSmallLeft2.BackColor = System.Drawing.Color.Lavender;
-            this.btnSmallLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSmallLeft2.FlatAppearance.BorderSize = 2;
-            this.btnSmallLeft2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSmallLeft2.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSmallLeft2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSmallLeft2.Location = new System.Drawing.Point(92, 267);
-            this.btnSmallLeft2.Name = "btnSmallLeft2";
-            this.btnSmallLeft2.Size = new System.Drawing.Size(65, 44);
-            this.btnSmallLeft2.TabIndex = 281;
-            this.btnSmallLeft2.Text = "<";
-            this.btnSmallLeft2.UseVisualStyleBackColor = false;
-            this.btnSmallLeft2.Click += new System.EventHandler(this.btnSmallLeft2_Click);
-            //
-            // btnBigRight2
-            //
-            this.btnBigRight2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBigRight2.BackColor = System.Drawing.Color.Lavender;
-            this.btnBigRight2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBigRight2.FlatAppearance.BorderSize = 2;
-            this.btnBigRight2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBigRight2.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBigRight2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBigRight2.Location = new System.Drawing.Point(255, 267);
-            this.btnBigRight2.Name = "btnBigRight2";
-            this.btnBigRight2.Size = new System.Drawing.Size(65, 44);
-            this.btnBigRight2.TabIndex = 280;
-            this.btnBigRight2.Text = ">>";
-            this.btnBigRight2.UseVisualStyleBackColor = false;
-            this.btnBigRight2.Click += new System.EventHandler(this.btnBigRight2_Click);
-            //
-            // btnBigLeft2
-            //
-            this.btnBigLeft2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBigLeft2.BackColor = System.Drawing.Color.Lavender;
-            this.btnBigLeft2.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBigLeft2.FlatAppearance.BorderSize = 2;
-            this.btnBigLeft2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBigLeft2.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBigLeft2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBigLeft2.Location = new System.Drawing.Point(10, 267);
-            this.btnBigLeft2.Name = "btnBigLeft2";
-            this.btnBigLeft2.Size = new System.Drawing.Size(65, 44);
-            this.btnBigLeft2.TabIndex = 279;
-            this.btnBigLeft2.Text = "<<";
-            this.btnBigLeft2.UseVisualStyleBackColor = false;
-            this.btnBigLeft2.Click += new System.EventHandler(this.btnBigLeft2_Click);
-            //
-            // lblLongitude
-            //
-            this.lblLongitude.AutoSize = true;
-            this.lblLongitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblLongitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLongitude.Location = new System.Drawing.Point(51, 80);
-            this.lblLongitude.Name = "lblLongitude";
-            this.lblLongitude.Size = new System.Drawing.Size(121, 19);
-            this.lblLongitude.TabIndex = 176;
-            this.lblLongitude.Text = "-111.2534749";
-            //
-            // lblLatitude
-            //
-            this.lblLatitude.AutoSize = true;
-            this.lblLatitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblLatitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLatitude.Location = new System.Drawing.Point(50, 59);
-            this.lblLatitude.Name = "lblLatitude";
-            this.lblLatitude.Size = new System.Drawing.Size(104, 19);
-            this.lblLatitude.TabIndex = 175;
-            this.lblLatitude.Text = "53.2344549";
-            //
-            // lblAltitude
-            //
-            this.lblAltitude.AutoSize = true;
-            this.lblAltitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAltitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblAltitude.Location = new System.Drawing.Point(242, 59);
-            this.lblAltitude.Name = "lblAltitude";
-            this.lblAltitude.Size = new System.Drawing.Size(54, 19);
-            this.lblAltitude.TabIndex = 179;
-            this.lblAltitude.Text = "356m";
-            //
-            // lblConvergenceAngle
-            //
-            this.lblConvergenceAngle.AutoSize = true;
-            this.lblConvergenceAngle.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.lblConvergenceAngle.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblConvergenceAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblConvergenceAngle.Location = new System.Drawing.Point(125, 102);
-            this.lblConvergenceAngle.Name = "lblConvergenceAngle";
-            this.lblConvergenceAngle.Size = new System.Drawing.Size(32, 19);
-            this.lblConvergenceAngle.TabIndex = 229;
-            this.lblConvergenceAngle.Text = "CA";
-            this.lblConvergenceAngle.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
-            // label2
-            //
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(93, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 19);
-            this.label2.TabIndex = 230;
-            this.label2.Text = "CA:";
-            //
-            // lblLidarDistance
-            //
-            this.lblLidarDistance.AutoSize = true;
-            this.lblLidarDistance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblLidarDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLidarDistance.Location = new System.Drawing.Point(251, 102);
-            this.lblLidarDistance.Name = "lblLidarDistance";
-            this.lblLidarDistance.Size = new System.Drawing.Size(39, 19);
-            this.lblLidarDistance.TabIndex = 223;
-            this.lblLidarDistance.Text = "123";
-            //
-            // label1
-            //
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(194, 102);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 19);
-            this.label1.TabIndex = 224;
-            this.label1.Text = gStr.gsLIDAR_;
-            //
-            // lblHeading2
-            //
-            this.lblHeading2.AutoSize = true;
-            this.lblHeading2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHeading2.Location = new System.Drawing.Point(194, 186);
-            this.lblHeading2.Name = "lblHeading2";
-            this.lblHeading2.Size = new System.Drawing.Size(52, 23);
-            this.lblHeading2.TabIndex = 211;
-            this.lblHeading2.Text = "22.6";
-            //
-            // lblRoll
-            //
-            this.lblRoll.AutoSize = true;
-            this.lblRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRoll.Location = new System.Drawing.Point(63, 159);
-            this.lblRoll.Name = "lblRoll";
-            this.lblRoll.Size = new System.Drawing.Size(40, 23);
-            this.lblRoll.TabIndex = 138;
-            this.lblRoll.Text = "1.2";
-            //
-            // lblGPSHeading
-            //
-            this.lblGPSHeading.AutoSize = true;
-            this.lblGPSHeading.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGPSHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGPSHeading.Location = new System.Drawing.Point(194, 160);
-            this.lblGPSHeading.Name = "lblGPSHeading";
-            this.lblGPSHeading.Size = new System.Drawing.Size(52, 23);
-            this.lblGPSHeading.TabIndex = 136;
-            this.lblGPSHeading.Text = "99.3";
-            //
-            // lblYawHeading
-            //
-            this.lblYawHeading.AutoSize = true;
-            this.lblYawHeading.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblYawHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblYawHeading.Location = new System.Drawing.Point(63, 186);
-            this.lblYawHeading.Name = "lblYawHeading";
-            this.lblYawHeading.Size = new System.Drawing.Size(52, 23);
-            this.lblYawHeading.TabIndex = 135;
-            this.lblYawHeading.Text = "22.6";
-            //
-            // label25
-            //
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label25.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label25.Location = new System.Drawing.Point(7, 102);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(50, 19);
-            this.label25.TabIndex = 217;
-            this.label25.Text = gStr.gsZone_;
-            //
-            // label24
-            //
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label24.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label24.Location = new System.Drawing.Point(202, 80);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(44, 19);
-            this.label24.TabIndex = 216;
-            this.label24.Text = gStr.gsSats_;
-            //
-            // label22
-            //
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label22.Location = new System.Drawing.Point(140, 188);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(56, 19);
-            this.label22.TabIndex = 210;
-            this.label22.Text = gStr.gsFused_;
-            //
-            // lblSats
-            //
-            this.lblSats.AutoSize = true;
-            this.lblSats.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblSats.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSats.Location = new System.Drawing.Point(242, 80);
-            this.lblSats.Name = "lblSats";
-            this.lblSats.Size = new System.Drawing.Size(19, 19);
-            this.lblSats.TabIndex = 183;
-            this.lblSats.Text = "S";
-            //
-            // label16
-            //
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label16.Location = new System.Drawing.Point(202, 59);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(44, 19);
-            this.label16.TabIndex = 180;
-            this.label16.Text = gStr.gsElev_;
-            //
-            // label19
-            //
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label19.Location = new System.Drawing.Point(20, 59);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(36, 19);
-            this.label19.TabIndex = 178;
-            this.label19.Text = gStr.gsLat_;
-            //
-            // label18
-            //
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label18.Location = new System.Drawing.Point(15, 80);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(41, 19);
-            this.label18.TabIndex = 177;
-            this.label18.Text = gStr.gsLon_;
-            //
-            // label10
-            //
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(23, 161);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 19);
-            this.label10.TabIndex = 4;
-            this.label10.Text = gStr.gsRoll_;
-            //
-            // label9
-            //
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(20, 188);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(44, 19);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "IMU:";
-            //
-            // label8
-            //
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(152, 162);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 19);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "GPS:";
-            //
+            // 
             // cboxpRowWidth
-            //
+            // 
             this.cboxpRowWidth.BackColor = System.Drawing.Color.Lavender;
             this.cboxpRowWidth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxpRowWidth.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -2131,9 +2143,9 @@
             this.cboxpRowWidth.Size = new System.Drawing.Size(64, 53);
             this.cboxpRowWidth.TabIndex = 247;
             this.cboxpRowWidth.SelectedIndexChanged += new System.EventHandler(this.cboxpRowWidth_SelectedIndexChanged);
-            //
+            // 
             // oglZoom
-            //
+            // 
             this.oglZoom.BackColor = System.Drawing.Color.Black;
             this.oglZoom.Location = new System.Drawing.Point(0, 2);
             this.oglZoom.Margin = new System.Windows.Forms.Padding(0);
@@ -2144,9 +2156,9 @@
             this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
             this.oglZoom.Paint += new System.Windows.Forms.PaintEventHandler(this.oglZoom_Paint);
             this.oglZoom.Resize += new System.EventHandler(this.oglZoom_Resize);
-            //
+            // 
             // lblFixQuality
-            //
+            // 
             this.lblFixQuality.AutoSize = true;
             this.lblFixQuality.BackColor = System.Drawing.Color.Transparent;
             this.lblFixQuality.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
@@ -2156,10 +2168,10 @@
             this.lblFixQuality.Size = new System.Drawing.Size(53, 25);
             this.lblFixQuality.TabIndex = 181;
             this.lblFixQuality.Text = "PPS";
-            //
+            // 
             // panelBatman
-            //
-            this.panelBatman.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            // 
+            this.panelBatman.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panelBatman.Controls.Add(this.pbarUDPSmall);
@@ -2203,9 +2215,9 @@
             this.panelBatman.Size = new System.Drawing.Size(241, 604);
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
-            //
+            // 
             // pbarUDPSmall
-            //
+            // 
             this.pbarUDPSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarUDPSmall.BackColor = System.Drawing.Color.Maroon;
             this.pbarUDPSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2213,9 +2225,9 @@
             this.pbarUDPSmall.Name = "pbarUDPSmall";
             this.pbarUDPSmall.Size = new System.Drawing.Size(60, 10);
             this.pbarUDPSmall.TabIndex = 308;
-            //
+            // 
             // pbarSteerSmall
-            //
+            // 
             this.pbarSteerSmall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarSteerSmall.BackColor = System.Drawing.Color.Maroon;
             this.pbarSteerSmall.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2223,9 +2235,9 @@
             this.pbarSteerSmall.Name = "pbarSteerSmall";
             this.pbarSteerSmall.Size = new System.Drawing.Size(60, 10);
             this.pbarSteerSmall.TabIndex = 307;
-            //
+            // 
             // btnSmallSnapRight
-            //
+            // 
             this.btnSmallSnapRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSmallSnapRight.BackColor = System.Drawing.Color.Lavender;
             this.btnSmallSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
@@ -2242,9 +2254,9 @@
             this.btnSmallSnapRight.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSmallSnapRight.UseVisualStyleBackColor = false;
             this.btnSmallSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
-            //
+            // 
             // btnSmallSnapLeft
-            //
+            // 
             this.btnSmallSnapLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSmallSnapLeft.BackColor = System.Drawing.Color.Lavender;
             this.btnSmallSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
@@ -2261,9 +2273,9 @@
             this.btnSmallSnapLeft.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSmallSnapLeft.UseVisualStyleBackColor = false;
             this.btnSmallSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
-            //
+            // 
             // btnSnapRight
-            //
+            // 
             this.btnSnapRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSnapRight.BackColor = System.Drawing.Color.Lavender;
             this.btnSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
@@ -2280,9 +2292,9 @@
             this.btnSnapRight.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSnapRight.UseVisualStyleBackColor = false;
             this.btnSnapRight.Click += new System.EventHandler(this.btnSnapRight_Click);
-            //
+            // 
             // lblUturnByte
-            //
+            // 
             this.lblUturnByte.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblUturnByte.AutoSize = true;
             this.lblUturnByte.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
@@ -2292,9 +2304,9 @@
             this.lblUturnByte.Size = new System.Drawing.Size(69, 19);
             this.lblUturnByte.TabIndex = 272;
             this.lblUturnByte.Text = "101010";
-            //
+            // 
             // label6
-            //
+            // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F);
@@ -2304,9 +2316,9 @@
             this.label6.Size = new System.Drawing.Size(60, 19);
             this.label6.TabIndex = 275;
             this.label6.Text = "UTurn:";
-            //
+            // 
             // lblWatch
-            //
+            // 
             this.lblWatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblWatch.AutoSize = true;
             this.lblWatch.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2315,22 +2327,22 @@
             this.lblWatch.Name = "lblWatch";
             this.lblWatch.Size = new System.Drawing.Size(94, 13);
             this.lblWatch.TabIndex = 274;
-            this.lblWatch.Text = gStr.gsWaiting_for_GPS;
-            //
+            this.lblWatch.Text = "Waiting for GPS";
+            // 
             // btnStartStopNtrip
-            //
+            // 
             this.btnStartStopNtrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnStartStopNtrip.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnStartStopNtrip.Location = new System.Drawing.Point(10, 541);
             this.btnStartStopNtrip.Name = "btnStartStopNtrip";
             this.btnStartStopNtrip.Size = new System.Drawing.Size(75, 33);
             this.btnStartStopNtrip.TabIndex = 250;
-            this.btnStartStopNtrip.Text = global::AgOpenGPS.gStr.gsStop;
+            this.btnStartStopNtrip.Text = "Stop";
             this.btnStartStopNtrip.UseVisualStyleBackColor = true;
             this.btnStartStopNtrip.Click += new System.EventHandler(this.btnStartStopNtrip_Click);
-            //
+            // 
             // lblNTRIPSeconds
-            //
+            // 
             this.lblNTRIPSeconds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNTRIPSeconds.AutoSize = true;
             this.lblNTRIPSeconds.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2339,10 +2351,10 @@
             this.lblNTRIPSeconds.Name = "lblNTRIPSeconds";
             this.lblNTRIPSeconds.Size = new System.Drawing.Size(60, 13);
             this.lblNTRIPSeconds.TabIndex = 273;
-            this.lblNTRIPSeconds.Text = gStr.gsNTRIP_Off;
-            //
+            this.lblNTRIPSeconds.Text = "NTRIP Off";
+            // 
             // btnSnapLeft
-            //
+            // 
             this.btnSnapLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSnapLeft.BackColor = System.Drawing.Color.Lavender;
             this.btnSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
@@ -2359,9 +2371,9 @@
             this.btnSnapLeft.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSnapLeft.UseVisualStyleBackColor = false;
             this.btnSnapLeft.Click += new System.EventHandler(this.btnSnapLeft_Click);
-            //
+            // 
             // lblNtripBytes
-            //
+            // 
             this.lblNtripBytes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNtripBytes.AutoSize = true;
             this.lblNtripBytes.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2371,9 +2383,9 @@
             this.lblNtripBytes.Size = new System.Drawing.Size(31, 13);
             this.lblNtripBytes.TabIndex = 271;
             this.lblNtripBytes.Text = "0 kb";
-            //
+            // 
             // pbarNtrip
-            //
+            // 
             this.pbarNtrip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pbarNtrip.BackColor = System.Drawing.Color.Maroon;
             this.pbarNtrip.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2382,9 +2394,9 @@
             this.pbarNtrip.Name = "pbarNtrip";
             this.pbarNtrip.Size = new System.Drawing.Size(202, 8);
             this.pbarNtrip.TabIndex = 270;
-            //
+            // 
             // lblpTimeToFinish
-            //
+            // 
             this.lblpTimeToFinish.AutoSize = true;
             this.lblpTimeToFinish.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpTimeToFinish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2393,9 +2405,9 @@
             this.lblpTimeToFinish.Size = new System.Drawing.Size(106, 19);
             this.lblpTimeToFinish.TabIndex = 267;
             this.lblpTimeToFinish.Text = "13.56 Hours";
-            //
+            // 
             // label17
-            //
+            // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label17.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2403,10 +2415,10 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(82, 19);
             this.label17.TabIndex = 268;
-            this.label17.Text = gStr.gsTime_Left_;
-            //
+            this.label17.Text = "Time Left:";
+            // 
             // lblpAreaWorked
-            //
+            // 
             this.lblpAreaWorked.AutoSize = true;
             this.lblpAreaWorked.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpAreaWorked.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2415,9 +2427,9 @@
             this.lblpAreaWorked.Size = new System.Drawing.Size(81, 19);
             this.lblpAreaWorked.TabIndex = 264;
             this.lblpAreaWorked.Text = "267.5 Ha";
-            //
+            // 
             // label26
-            //
+            // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2425,10 +2437,10 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(52, 19);
             this.label26.TabIndex = 266;
-            this.label26.Text = gStr.gsDone_;
-            //
+            this.label26.Text = "Done:";
+            // 
             // lblpFieldAreaRemain
-            //
+            // 
             this.lblpFieldAreaRemain.AutoSize = true;
             this.lblpFieldAreaRemain.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpFieldAreaRemain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2437,9 +2449,9 @@
             this.lblpFieldAreaRemain.Size = new System.Drawing.Size(81, 19);
             this.lblpFieldAreaRemain.TabIndex = 261;
             this.lblpFieldAreaRemain.Text = "287.5 Ha";
-            //
+            // 
             // lblpBoundaryArea
-            //
+            // 
             this.lblpBoundaryArea.AutoSize = true;
             this.lblpBoundaryArea.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpBoundaryArea.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2448,9 +2460,9 @@
             this.lblpBoundaryArea.Size = new System.Drawing.Size(81, 19);
             this.lblpBoundaryArea.TabIndex = 259;
             this.lblpBoundaryArea.Text = "288.8 Ha";
-            //
+            // 
             // lblpFieldAreaRemainPercent
-            //
+            // 
             this.lblpFieldAreaRemainPercent.AutoSize = true;
             this.lblpFieldAreaRemainPercent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpFieldAreaRemainPercent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2459,9 +2471,9 @@
             this.lblpFieldAreaRemainPercent.Size = new System.Drawing.Size(48, 19);
             this.lblpFieldAreaRemainPercent.TabIndex = 262;
             this.lblpFieldAreaRemainPercent.Text = "45%";
-            //
+            // 
             // lblpGPSHeading
-            //
+            // 
             this.lblpGPSHeading.AutoSize = true;
             this.lblpGPSHeading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpGPSHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2470,9 +2482,9 @@
             this.lblpGPSHeading.Size = new System.Drawing.Size(54, 19);
             this.lblpGPSHeading.TabIndex = 256;
             this.lblpGPSHeading.Text = "388.8";
-            //
+            // 
             // lblpYawHeading
-            //
+            // 
             this.lblpYawHeading.AutoSize = true;
             this.lblpYawHeading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpYawHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2481,9 +2493,9 @@
             this.lblpYawHeading.Size = new System.Drawing.Size(54, 19);
             this.lblpYawHeading.TabIndex = 255;
             this.lblpYawHeading.Text = "388.8";
-            //
+            // 
             // label35
-            //
+            // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2491,10 +2503,10 @@
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(45, 19);
             this.label35.TabIndex = 254;
-            this.label35.Text = gStr.gsYaw_;
-            //
+            this.label35.Text = "Yaw:";
+            // 
             // label39
-            //
+            // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label39.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2503,9 +2515,9 @@
             this.label39.Size = new System.Drawing.Size(44, 19);
             this.label39.TabIndex = 253;
             this.label39.Text = "GPS:";
-            //
+            // 
             // lblpRoll
-            //
+            // 
             this.lblpRoll.AutoSize = true;
             this.lblpRoll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpRoll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2514,9 +2526,9 @@
             this.lblpRoll.Size = new System.Drawing.Size(34, 19);
             this.lblpRoll.TabIndex = 252;
             this.lblpRoll.Text = "1.2";
-            //
+            // 
             // label33
-            //
+            // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label33.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2524,10 +2536,10 @@
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(42, 19);
             this.label33.TabIndex = 251;
-            this.label33.Text = gStr.gsRoll_;
-            //
+            this.label33.Text = "Roll:";
+            // 
             // lblpAltitude
-            //
+            // 
             this.lblpAltitude.AutoSize = true;
             this.lblpAltitude.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpAltitude.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2536,9 +2548,9 @@
             this.lblpAltitude.Size = new System.Drawing.Size(54, 19);
             this.lblpAltitude.TabIndex = 232;
             this.lblpAltitude.Text = "356m";
-            //
+            // 
             // label11
-            //
+            // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2546,10 +2558,10 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 19);
             this.label11.TabIndex = 263;
-            this.label11.Text = gStr.gsField_;
-            //
+            this.label11.Text = "Field:";
+            // 
             // label14
-            //
+            // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -2557,10 +2569,10 @@
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(54, 19);
             this.label14.TabIndex = 262;
-            this.label14.Text = gStr.gsToDo_;
-            //
+            this.label14.Text = "ToDo:";
+            // 
             // label20
-            //
+            // 
             this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2570,9 +2582,9 @@
             this.label20.Size = new System.Drawing.Size(15, 13);
             this.label20.TabIndex = 310;
             this.label20.Text = "U";
-            //
+            // 
             // label15
-            //
+            // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
@@ -2582,85 +2594,85 @@
             this.label15.Size = new System.Drawing.Size(14, 13);
             this.label15.TabIndex = 309;
             this.label15.Text = "S";
-            //
+            // 
             // btnResetSim
-            //
+            // 
             this.btnResetSim.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.btnResetSim.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetSim.Location = new System.Drawing.Point(108, 2);
             this.btnResetSim.Name = "btnResetSim";
-            this.btnResetSim.Size = new System.Drawing.Size(40, 24);
+            this.btnResetSim.Size = new System.Drawing.Size(40, 38);
             this.btnResetSim.TabIndex = 164;
-            this.btnResetSim.Text = global::AgOpenGPS.gStr.gsRst;
+            this.btnResetSim.Text = "Rst";
             this.btnResetSim.UseVisualStyleBackColor = false;
             this.btnResetSim.Click += new System.EventHandler(this.btnResetSim_Click);
-            //
+            // 
             // btnResetSteerAngle
-            //
+            // 
             this.btnResetSteerAngle.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnResetSteerAngle.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnResetSteerAngle.Location = new System.Drawing.Point(264, 2);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
-            this.btnResetSteerAngle.Size = new System.Drawing.Size(50, 24);
+            this.btnResetSteerAngle.Size = new System.Drawing.Size(50, 38);
             this.btnResetSteerAngle.TabIndex = 162;
             this.btnResetSteerAngle.Text = "0";
             this.btnResetSteerAngle.UseVisualStyleBackColor = false;
             this.btnResetSteerAngle.Click += new System.EventHandler(this.btnResetSteerAngle_Click);
-            //
+            // 
             // timerSim
-            //
+            // 
             this.timerSim.Enabled = true;
             this.timerSim.Interval = 200;
             this.timerSim.Tick += new System.EventHandler(this.timerSim_Tick);
-            //
+            // 
             // toolStripMenuItem2
-            //
+            // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(334, 62);
             this.toolStripMenuItem2.Text = "toolStripMenuItem2";
-            //
+            // 
             // panelSimControls
-            //
+            // 
             this.panelSimControls.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panelSimControls.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panelSimControls.Controls.Add(this.hsbarSteerAngle);
             this.panelSimControls.Controls.Add(this.btnResetSim);
             this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
             this.panelSimControls.Controls.Add(this.hsbarStepDistance);
-            this.panelSimControls.Location = new System.Drawing.Point(339, 611);
+            this.panelSimControls.Location = new System.Drawing.Point(339, 602);
             this.panelSimControls.Name = "panelSimControls";
-            this.panelSimControls.Size = new System.Drawing.Size(318, 28);
+            this.panelSimControls.Size = new System.Drawing.Size(318, 40);
             this.panelSimControls.TabIndex = 224;
-            //
+            // 
             // hsbarSteerAngle
-            //
+            // 
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
             this.hsbarSteerAngle.Location = new System.Drawing.Point(158, 2);
             this.hsbarSteerAngle.Maximum = 600;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(100, 24);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(100, 38);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 300;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
-            //
+            // 
             // hsbarStepDistance
-            //
+            // 
             this.hsbarStepDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarStepDistance.LargeChange = 5;
             this.hsbarStepDistance.Location = new System.Drawing.Point(5, 2);
             this.hsbarStepDistance.Maximum = 300;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(93, 24);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(93, 38);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
-            //
+            // 
             // btnSection8Man
-            //
+            // 
             this.btnSection8Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection8Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection8Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2677,9 +2689,9 @@
             this.btnSection8Man.Text = "8";
             this.btnSection8Man.UseVisualStyleBackColor = false;
             this.btnSection8Man.Click += new System.EventHandler(this.btnSection8Man_Click);
-            //
+            // 
             // btnSection7Man
-            //
+            // 
             this.btnSection7Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection7Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection7Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2696,9 +2708,9 @@
             this.btnSection7Man.Text = "7";
             this.btnSection7Man.UseVisualStyleBackColor = false;
             this.btnSection7Man.Click += new System.EventHandler(this.btnSection7Man_Click);
-            //
+            // 
             // btnSection6Man
-            //
+            // 
             this.btnSection6Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection6Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection6Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2715,9 +2727,9 @@
             this.btnSection6Man.Text = "6";
             this.btnSection6Man.UseVisualStyleBackColor = false;
             this.btnSection6Man.Click += new System.EventHandler(this.btnSection6Man_Click);
-            //
+            // 
             // btnSection5Man
-            //
+            // 
             this.btnSection5Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection5Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection5Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2734,9 +2746,9 @@
             this.btnSection5Man.Text = "5";
             this.btnSection5Man.UseVisualStyleBackColor = false;
             this.btnSection5Man.Click += new System.EventHandler(this.btnSection5Man_Click);
-            //
+            // 
             // btnSection4Man
-            //
+            // 
             this.btnSection4Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection4Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection4Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2753,9 +2765,9 @@
             this.btnSection4Man.Text = "4";
             this.btnSection4Man.UseVisualStyleBackColor = false;
             this.btnSection4Man.Click += new System.EventHandler(this.btnSection4Man_Click);
-            //
+            // 
             // btnSection3Man
-            //
+            // 
             this.btnSection3Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection3Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection3Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2772,9 +2784,9 @@
             this.btnSection3Man.Text = "3";
             this.btnSection3Man.UseVisualStyleBackColor = false;
             this.btnSection3Man.Click += new System.EventHandler(this.btnSection3Man_Click);
-            //
+            // 
             // btnSection2Man
-            //
+            // 
             this.btnSection2Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection2Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection2Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2791,9 +2803,9 @@
             this.btnSection2Man.Text = "2";
             this.btnSection2Man.UseVisualStyleBackColor = false;
             this.btnSection2Man.Click += new System.EventHandler(this.btnSection2Man_Click);
-            //
+            // 
             // btnSection1Man
-            //
+            // 
             this.btnSection1Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection1Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection1Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2810,9 +2822,9 @@
             this.btnSection1Man.Text = "1";
             this.btnSection1Man.UseVisualStyleBackColor = false;
             this.btnSection1Man.Click += new System.EventHandler(this.btnSection1Man_Click);
-            //
+            // 
             // btnSection9Man
-            //
+            // 
             this.btnSection9Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection9Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection9Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2829,9 +2841,9 @@
             this.btnSection9Man.Text = "9";
             this.btnSection9Man.UseVisualStyleBackColor = false;
             this.btnSection9Man.Click += new System.EventHandler(this.btnSection9Man_Click);
-            //
+            // 
             // btnSection10Man
-            //
+            // 
             this.btnSection10Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection10Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection10Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2848,9 +2860,9 @@
             this.btnSection10Man.Text = "10";
             this.btnSection10Man.UseVisualStyleBackColor = false;
             this.btnSection10Man.Click += new System.EventHandler(this.btnSection10Man_Click);
-            //
+            // 
             // btnSection11Man
-            //
+            // 
             this.btnSection11Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection11Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection11Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2867,9 +2879,9 @@
             this.btnSection11Man.Text = "11";
             this.btnSection11Man.UseVisualStyleBackColor = false;
             this.btnSection11Man.Click += new System.EventHandler(this.btnSection11Man_Click);
-            //
+            // 
             // btnSection12Man
-            //
+            // 
             this.btnSection12Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSection12Man.BackColor = System.Drawing.Color.Silver;
             this.btnSection12Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -2886,9 +2898,9 @@
             this.btnSection12Man.Text = "12";
             this.btnSection12Man.UseVisualStyleBackColor = false;
             this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
-            //
+            // 
             // contextMenuStripAB
-            //
+            // 
             this.contextMenuStripAB.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold);
             this.contextMenuStripAB.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator15,
@@ -2904,71 +2916,71 @@
             this.contextMenuStripAB.Name = "contextMenuStripAB";
             this.contextMenuStripAB.Size = new System.Drawing.Size(333, 344);
             this.contextMenuStripAB.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripAB_Opening);
-            //
+            // 
             // toolStripSeparator15
-            //
+            // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             this.toolStripSeparator15.Size = new System.Drawing.Size(329, 6);
-            //
+            // 
             // toolStripMenuOriginal
-            //
+            // 
             this.toolStripMenuOriginal.Name = "toolStripMenuOriginal";
             this.toolStripMenuOriginal.Size = new System.Drawing.Size(332, 62);
-            this.toolStripMenuOriginal.Text = gStr.gsOriginal;
+            this.toolStripMenuOriginal.Text = "Original";
             this.toolStripMenuOriginal.Click += new System.EventHandler(this.toolStripMenuOriginal_Click);
-            //
+            // 
             // toolStripSeparator13
-            //
+            // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             this.toolStripSeparator13.Size = new System.Drawing.Size(329, 6);
-            //
+            // 
             // toolStripMenuAB1
-            //
+            // 
             this.toolStripMenuAB1.Name = "toolStripMenuAB1";
             this.toolStripMenuAB1.Size = new System.Drawing.Size(332, 62);
             this.toolStripMenuAB1.Text = "90.1";
             this.toolStripMenuAB1.Click += new System.EventHandler(this.toolStripMenuAB1_Click);
-            //
+            // 
             // toolStripSeparator14
-            //
+            // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             this.toolStripSeparator14.Size = new System.Drawing.Size(329, 6);
-            //
+            // 
             // toolStripMenuAB2
-            //
+            // 
             this.toolStripMenuAB2.Name = "toolStripMenuAB2";
             this.toolStripMenuAB2.Size = new System.Drawing.Size(332, 62);
             this.toolStripMenuAB2.Text = "90.2";
             this.toolStripMenuAB2.Click += new System.EventHandler(this.toolStripMenuAB2_Click);
-            //
+            // 
             // toolStripSeparator16
-            //
+            // 
             this.toolStripSeparator16.Name = "toolStripSeparator16";
             this.toolStripSeparator16.Size = new System.Drawing.Size(329, 6);
-            //
+            // 
             // toolStripMenuPlus90
-            //
+            // 
             this.toolStripMenuPlus90.Name = "toolStripMenuPlus90";
             this.toolStripMenuPlus90.Size = new System.Drawing.Size(332, 62);
             this.toolStripMenuPlus90.Text = "+ 90";
             this.toolStripMenuPlus90.Click += new System.EventHandler(this.toolStripMenuPlus90_Click);
-            //
+            // 
             // toolStripSeparator17
-            //
+            // 
             this.toolStripSeparator17.Name = "toolStripSeparator17";
             this.toolStripSeparator17.Size = new System.Drawing.Size(329, 6);
-            //
+            // 
             // toolStripMenuChoose
-            //
+            // 
             this.toolStripMenuChoose.Name = "toolStripMenuChoose";
             this.toolStripMenuChoose.Size = new System.Drawing.Size(332, 62);
-            this.toolStripMenuChoose.Text = global::AgOpenGPS.gStr.gsChoose;
+            this.toolStripMenuChoose.Text = "Choose...";
             this.toolStripMenuChoose.Click += new System.EventHandler(this.toolStripMenuChoose_Click);
-            //
+            // 
             // oglMain
-            //
-            this.oglMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.oglMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
@@ -2982,9 +2994,9 @@
             this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
             this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
             this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
-            //
+            // 
             // oglBack
-            //
+            // 
             this.oglBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.oglBack.BackColor = System.Drawing.Color.Black;
             this.oglBack.Location = new System.Drawing.Point(466, 111);
@@ -2996,21 +3008,41 @@
             this.oglBack.Load += new System.EventHandler(this.oglBack_Load);
             this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
             this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
-            //
+            // 
             // lblHz
-            //
+            // 
             this.lblHz.AutoSize = true;
             this.lblHz.BackColor = System.Drawing.Color.Transparent;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(280, 9);
+            this.lblHz.Location = new System.Drawing.Point(250, 9);
             this.lblHz.Name = "lblHz";
             this.lblHz.Size = new System.Drawing.Size(90, 25);
             this.lblHz.TabIndex = 249;
             this.lblHz.Text = "5 Hz 32";
-            //
+            // 
+            // btnMakeLinesFromBoundary
+            // 
+            this.btnMakeLinesFromBoundary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMakeLinesFromBoundary.BackColor = System.Drawing.Color.Lavender;
+            this.btnMakeLinesFromBoundary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMakeLinesFromBoundary.Enabled = false;
+            this.btnMakeLinesFromBoundary.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMakeLinesFromBoundary.FlatAppearance.BorderSize = 3;
+            this.btnMakeLinesFromBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMakeLinesFromBoundary.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.btnMakeLinesFromBoundary.Image = global::AgOpenGPS.Properties.Resources.PointStart;
+            this.btnMakeLinesFromBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnMakeLinesFromBoundary.Location = new System.Drawing.Point(1022, 186);
+            this.btnMakeLinesFromBoundary.Name = "btnMakeLinesFromBoundary";
+            this.btnMakeLinesFromBoundary.Size = new System.Drawing.Size(80, 80);
+            this.btnMakeLinesFromBoundary.TabIndex = 250;
+            this.btnMakeLinesFromBoundary.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMakeLinesFromBoundary.UseVisualStyleBackColor = false;
+            this.btnMakeLinesFromBoundary.Click += new System.EventHandler(this.BtnMakeLinesFromBoundary_Click);
+            // 
             // btnZoomExtents
-            //
+            // 
             this.btnZoomExtents.BackColor = System.Drawing.Color.Lavender;
             this.btnZoomExtents.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnZoomExtents.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -3026,9 +3058,9 @@
             this.btnZoomExtents.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnZoomExtents.UseVisualStyleBackColor = false;
             this.btnZoomExtents.Click += new System.EventHandler(this.btnZoomExtents_Click);
-            //
+            // 
             // btnZoomIn
-            //
+            // 
             this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
             this.btnZoomIn.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomOut48;
             this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -3043,9 +3075,9 @@
             this.btnZoomIn.TabIndex = 120;
             this.btnZoomIn.UseVisualStyleBackColor = false;
             this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            //
+            // 
             // btnZoomOut
-            //
+            // 
             this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
             this.btnZoomOut.BackgroundImage = global::AgOpenGPS.Properties.Resources.ZoomIn48;
             this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -3060,9 +3092,9 @@
             this.btnZoomOut.TabIndex = 119;
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            //
+            // 
             // btnSwapDirection
-            //
+            // 
             this.btnSwapDirection.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -3080,9 +3112,9 @@
             this.btnSwapDirection.UseVisualStyleBackColor = false;
             this.btnSwapDirection.Visible = false;
             this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
-            //
+            // 
             // btnContourPriority
-            //
+            // 
             this.btnContourPriority.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnContourPriority.BackColor = System.Drawing.Color.Lavender;
             this.btnContourPriority.Enabled = false;
@@ -3099,9 +3131,9 @@
             this.btnContourPriority.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnContourPriority.UseVisualStyleBackColor = false;
             this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
-            //
+            // 
             // btnCurve
-            //
+            // 
             this.btnCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCurve.BackColor = System.Drawing.Color.Lavender;
             this.btnCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -3119,9 +3151,9 @@
             this.btnCurve.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCurve.UseVisualStyleBackColor = false;
             this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
-            //
+            // 
             // btnLeftYouTurn
-            //
+            // 
             this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnLeftYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
             this.btnLeftYouTurn.Enabled = false;
@@ -3137,9 +3169,9 @@
             this.btnLeftYouTurn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLeftYouTurn.UseVisualStyleBackColor = false;
             this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
-            //
+            // 
             // btnEnableAutoYouTurn
-            //
+            // 
             this.btnEnableAutoYouTurn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEnableAutoYouTurn.BackColor = System.Drawing.Color.Lavender;
             this.btnEnableAutoYouTurn.Enabled = false;
@@ -3156,9 +3188,9 @@
             this.btnEnableAutoYouTurn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEnableAutoYouTurn.UseVisualStyleBackColor = false;
             this.btnEnableAutoYouTurn.Click += new System.EventHandler(this.btnEnableAutoYouTurn_Click);
-            //
+            // 
             // btnSectionOffAutoOn
-            //
+            // 
             this.btnSectionOffAutoOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Lavender;
             this.btnSectionOffAutoOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -3178,9 +3210,9 @@
             this.btnSectionOffAutoOn.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
             this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
-            //
+            // 
             // btnpTiltDown
-            //
+            // 
             this.btnpTiltDown.BackColor = System.Drawing.Color.Lavender;
             this.btnpTiltDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnpTiltDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -3194,9 +3226,9 @@
             this.btnpTiltDown.TabIndex = 245;
             this.btnpTiltDown.UseVisualStyleBackColor = false;
             this.btnpTiltDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltDown_MouseDown);
-            //
+            // 
             // btnpTiltUp
-            //
+            // 
             this.btnpTiltUp.BackColor = System.Drawing.Color.Lavender;
             this.btnpTiltUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnpTiltUp.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -3210,9 +3242,9 @@
             this.btnpTiltUp.TabIndex = 246;
             this.btnpTiltUp.UseVisualStyleBackColor = false;
             this.btnpTiltUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnpTiltUp_MouseDown);
-            //
+            // 
             // btnFlag
-            //
+            // 
             this.btnFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFlag.BackColor = System.Drawing.Color.Lavender;
             this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
@@ -3229,9 +3261,9 @@
             this.btnFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnFlag.UseVisualStyleBackColor = false;
             this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
-            //
+            // 
             // btnAutoSteer
-            //
+            // 
             this.btnAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAutoSteer.BackColor = System.Drawing.Color.Lavender;
             this.btnAutoSteer.Enabled = false;
@@ -3250,9 +3282,9 @@
             this.btnAutoSteer.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             this.btnAutoSteer.UseVisualStyleBackColor = false;
             this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
-            //
+            // 
             // btnRightYouTurn
-            //
+            // 
             this.btnRightYouTurn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRightYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btnRightYouTurn.ContextMenuStrip = this.contextMenuStripFlag;
@@ -3269,9 +3301,9 @@
             this.btnRightYouTurn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRightYouTurn.UseVisualStyleBackColor = false;
             this.btnRightYouTurn.Click += new System.EventHandler(this.btnRightYouTurn_Click);
-            //
+            // 
             // btnContour
-            //
+            // 
             this.btnContour.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnContour.BackColor = System.Drawing.Color.Lavender;
             this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -3289,9 +3321,9 @@
             this.btnContour.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            //
+            // 
             // btnManualOffOn
-            //
+            // 
             this.btnManualOffOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnManualOffOn.BackColor = System.Drawing.Color.Lavender;
             this.btnManualOffOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -3308,9 +3340,9 @@
             this.btnManualOffOn.TabIndex = 98;
             this.btnManualOffOn.UseVisualStyleBackColor = false;
             this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
-            //
+            // 
             // btnABLine
-            //
+            // 
             this.btnABLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnABLine.BackColor = System.Drawing.Color.Lavender;
             this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -3329,29 +3361,9 @@
             this.btnABLine.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnABLine.UseVisualStyleBackColor = false;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
-            //
-            // btnMakeLinesFromBoundary
-            //
-            this.btnMakeLinesFromBoundary.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMakeLinesFromBoundary.BackColor = System.Drawing.Color.Lavender;
-            this.btnMakeLinesFromBoundary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMakeLinesFromBoundary.Enabled = false;
-            this.btnMakeLinesFromBoundary.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnMakeLinesFromBoundary.FlatAppearance.BorderSize = 3;
-            this.btnMakeLinesFromBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMakeLinesFromBoundary.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.btnMakeLinesFromBoundary.Image = global::AgOpenGPS.Properties.Resources.PointStart;
-            this.btnMakeLinesFromBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeLinesFromBoundary.Location = new System.Drawing.Point(1022, 186);
-            this.btnMakeLinesFromBoundary.Name = "btnMakeLinesFromBoundary";
-            this.btnMakeLinesFromBoundary.Size = new System.Drawing.Size(80, 80);
-            this.btnMakeLinesFromBoundary.TabIndex = 250;
-            this.btnMakeLinesFromBoundary.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMakeLinesFromBoundary.UseVisualStyleBackColor = false;
-            this.btnMakeLinesFromBoundary.Click += new System.EventHandler(this.BtnMakeLinesFromBoundary_Click);
-            //
+            // 
             // FormGPS
-            //
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -3406,7 +3418,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(800, 740);
             this.Name = "FormGPS";
-            this.Text = gStr.gsAgOpenGPS_name;
+            this.Text = "AgOpenGPS - Be So Good They Can\'t Ignore You";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGPS_FormClosing);
             this.Load += new System.EventHandler(this.FormGPS_Load);
             this.Resize += new System.EventHandler(this.FormGPS_Resize);
@@ -3676,5 +3688,7 @@
         private System.Windows.Forms.ProgressBar pbarSteerSmall;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ToolStripMenuItem toolstripExit;
     }
 }
+

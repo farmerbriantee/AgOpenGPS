@@ -1163,6 +1163,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Start64 {
+            get {
+                object obj = ResourceManager.GetObject("Start64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SteerAhead {
             get {
                 object obj = ResourceManager.GetObject("SteerAhead", resourceCulture);
@@ -1306,6 +1316,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap VehicleSettings {
             get {
                 object obj = ResourceManager.GetObject("VehicleSettings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VehicleSettingsAntenna {
+            get {
+                object obj = ResourceManager.GetObject("VehicleSettingsAntenna", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

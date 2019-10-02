@@ -28,22 +28,58 @@ namespace AgOpenGPS
         private readonly double metImp2m, m2MetImp, cutoffMetricImperial, maxWidth;
         private double cutoffSpeed;
 
+        private bool isAutoSteerAuto;
+        private int snapDistance, snapDistanceSmall;
+
+        private int lightbarCmPerPixie;
+
         //constructor
         public FormSettings(Form callingForm, int page)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+            nudMinTurnRadius.Controls[0].Enabled = false;
+            nudAntennaHeight.Controls[0].Enabled = false;
+            nudAntennaOffset.Controls[0].Enabled = false;
+            nudAntennaPivot.Controls[0].Enabled = false;
+            nudCutoffSpeed.Controls[0].Enabled = false;
+            nudForeAft.Controls[0].Enabled = false;
+            nudHitchLength.Controls[0].Enabled = false;
+            nudLightbarCmPerPixel.Controls[0].Enabled = false;
+            nudLookAhead.Controls[0].Enabled = false;
+            nudMinApplied.Controls[0].Enabled = false;
+            nudMinTurnRadius.Controls[0].Enabled = false;
+            //nudNumberOfSections.Controls[0].Enabled = false;
+            nudOffset.Controls[0].Enabled = false;
+            nudOverlap.Controls[0].Enabled = false;
+            nudSection1.Controls[0].Enabled = false;
+            nudSection2.Controls[0].Enabled = false;
+            nudSection3.Controls[0].Enabled = false;
+            nudSection4.Controls[0].Enabled = false;
+            nudSection5.Controls[0].Enabled = false;
+            nudSection6.Controls[0].Enabled = false;
+            nudSection7.Controls[0].Enabled = false;
+            nudSection8.Controls[0].Enabled = false;
+            nudSection9.Controls[0].Enabled = false;
+            nudSection10.Controls[0].Enabled = false;
+            nudSection11.Controls[0].Enabled = false;
+            nudSection12.Controls[0].Enabled = false;
+            nudSnapDistance.Controls[0].Enabled = false;
+            nudSnapDistanceSmall.Controls[0].Enabled = false;
+            nudTankHitch.Controls[0].Enabled = false;
+            nudTurnOffDelay.Controls[0].Enabled = false;
+            nudWheelbase.Controls[0].Enabled = false;
 
             if (mf.isMetric)
             {
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
-                lblInchesCm.Text = "Centimeters";
+                lblInchesCm.Text = gStr.gsCentimeters;
                 lblSecTotalWidthFeet.Visible = false;
                 lblSecTotalWidthInches.Visible = false;
                 lblSecTotalWidthMeters.Visible = true;
-                lblDoNotExceed.Text = "* Do not exceed 5000 cm*";
+                lblDoNotExceed.Text = gStr.gsDo_not_exceed_5000_cm;
                 lblTurnOffBelowUnits.Text = "Km/h";
                 cutoffMetricImperial = 1;
                 maxWidth = 5000;
@@ -52,11 +88,11 @@ namespace AgOpenGPS
             {
                 metImp2m = glm.in2m;
                 m2MetImp = glm.m2in;
-                lblInchesCm.Text = "Inches";
+                lblInchesCm.Text = gStr.gsInches;
                 lblSecTotalWidthFeet.Visible = true;
                 lblSecTotalWidthInches.Visible = true;
                 lblSecTotalWidthMeters.Visible = false;
-                lblDoNotExceed.Text = "* Do not exceed 1968 inches *";
+                lblDoNotExceed.Text = gStr.gsDo_not_exceed_1968_inches;
                 lblTurnOffBelowUnits.Text = "MPH";
                 cutoffMetricImperial = 1.60934;
                 maxWidth = 1968;
@@ -68,6 +104,11 @@ namespace AgOpenGPS
         //do any field initializing for form here
         private void FormSettings_Load(object sender, EventArgs e)
         {
+            //Set language 
+            Set_Language();
+            nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
+            lightbarCmPerPixie = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+
             //Vehicle settings to what it is in the settings page------------------------------------------------
             antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
             if (nudAntennaHeight.CheckValueCm(ref antennaHeight)) nudAntennaHeight.BackColor = System.Drawing.Color.OrangeRed;
@@ -116,8 +157,8 @@ namespace AgOpenGPS
 
             numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
             temp = numberOfSections;
-            if (nudNumberOfSections.CheckValue(ref temp)) nudNumberOfSections.BackColor = System.Drawing.Color.OrangeRed;
-            numberOfSections = (int)temp;
+            //if (nudNumberOfSections.CheckValue(ref temp)) nudNumberOfSections.BackColor = System.Drawing.Color.OrangeRed;
+            //numberOfSections = (int)temp;
 
             cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
             temp = (decimal)cutoffSpeed;
@@ -128,6 +169,22 @@ namespace AgOpenGPS
             isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+
+            nudSnapDistance.Value = Properties.Settings.Default.setDisplay_snapDistance;
+            nudSnapDistanceSmall.Value = Properties.Settings.Default.setDisplay_snapDistanceSmall;
+
+            cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = gStr.gsAuto;
+            }
+            else
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = gStr.gsManual;
+            }
 
             //fix the min max based on inches - they are 2.54 times smaller then cm
             if (!mf.isMetric)
@@ -235,9 +292,11 @@ namespace AgOpenGPS
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
 
             //grab number of sections
-            nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
-            nudNumberOfSections.Value = numberOfSections;
-            nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
+            //nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
+            //nudNumberOfSections.Value = numberOfSections;
+            //nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
+
+            cboxNumSections.Text = numberOfSections.ToString();
 
             //calc the 8 section widths based on settings.settings also meters to inches
             nudSection1.Value = Math.Abs((Properties.Vehicle.Default.setSection_position2 - Properties.Vehicle.Default.setSection_position1) * (decimal)m2MetImp);
@@ -283,9 +342,60 @@ namespace AgOpenGPS
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
         }
-
+        //Set language 
+        private void Set_Language()
+        {
+            tabVehicle.Text = gStr.gsVehicle;
+            label6.Text = gStr.gsMinimum_r_n_Radius;
+            label36.Text = gStr.gsTool_Attached;
+            label27.Text = gStr.gsTool_is;
+            label24.Text = gStr.gsHitchLength;
+            label26.Text = gStr.gsWheelbase;
+            tabAntenna.Text = gStr.gsAntenna;
+            label9.Text = gStr.gsLeft_is_negative;
+            label12.Text = gStr.gsAntenna_Location;
+            label15.Text = gStr.gsAntenna_Height;
+            label7.Text = gStr.gsAntenna_Offset;
+            label4.Text = gStr.gsSteering_Front_Back;
+            label18.Text = gStr.gsAntenna_Distance;
+            tabTool.Text = gStr.gsTool;
+            label25.Text = gStr.gsLeft_less;
+            label13.Text = gStr.gsRight_plus;
+            label22.Text = gStr.gsTow_Between_Disabled_When;
+            label8.Text = gStr.gsTow_Between_Length;
+            label23.Text = gStr.gsTurn_Off_Delay;
+            label3.Text = gStr.gsTurn_On_Ahead;
+            label19.Text = gStr.gsTrailing_Hitch_Length;
+            label1.Text = gStr.gsSkip_Overlap;
+            label5.Text = gStr.gsTool_Offset;
+            tabSections.Text = gStr.gsSections;
+            label41.Text = gStr.gsMin_UnApplied;
+            label30.Text = gStr.gsSections_Turn_Off_below;
+            label2.Text = gStr.gsSections;
+            tabGuidance.Text = gStr.gsGuidance;
+            groupBox2.Text = gStr.gscm_per_Lightbar_Pixel;
+            groupBox9.Text = gStr.gsAuto_manual_button;
+            cboxAutoSteerAuto.Text = gStr.gsManual;
+            groupBox8.Text = gStr.gsSnap_Distance_cm;
+            groupBox1.Text = gStr.gsSnap_Distance;
+            tabWorkSwitch.Text = gStr.gsSwitches ;
+            this.groupBox3.Text = gStr.gsWork_Switch;
+            checkWorkSwitchManual.Text = gStr.gsWork_Switch_Controls_Manual;
+            chkWorkSwActiveLow.Text = gStr.gsActive_Low;
+            chkEnableWorkSwitch.Text = gStr.gsEnable_Work_witch;
+            tabExamples.Text = gStr.gsExamples;
+            lblDoNotExceed.Text = gStr.gsDo_not_exceed_1570;
+            label17.Text = gStr.gsMeasurements_in;
+            label16.Text = gStr.gsTool_Width;
+            lblInchesCm.Text = gStr.gsInches;
+            bntOK.Text = gStr.gsSave;
+            this.Text = gStr.gsSettings;
+        }
         private void btnOK_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
+            mf.lightbarCmPerPixel = lightbarCmPerPixie;
+
             //Vehicle settings -------------------------------------------------------------------------------
 
             if (!isPivotBehindAntenna) antennaPivot *= -1;
@@ -344,6 +454,14 @@ namespace AgOpenGPS
             mf.vehicle.hitchLength = hitchLength;
             Properties.Vehicle.Default.setVehicle_hitchLength = mf.vehicle.hitchLength;
 
+            //Guidance
+
+            Properties.Settings.Default.setDisplay_snapDistance = snapDistance;
+            Properties.Settings.Default.setDisplay_snapDistanceSmall = snapDistanceSmall;
+
+            mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
+            Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
+
             //Sections ------------------------------------------------------------------------------------------
 
             mf.vehicle.numOfSections = numberOfSections;
@@ -383,6 +501,7 @@ namespace AgOpenGPS
             //update toolwidth in mainform
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.vehicle.toolWidth;
 
+            //WorkSwitch settings
             mf.mc.isWorkSwitchActiveLow = isWorkSwActiveLow;
             Properties.Settings.Default.setF_IsWorkSwitchActiveLow = isWorkSwActiveLow;
 
@@ -392,6 +511,7 @@ namespace AgOpenGPS
             mf.mc.isWorkSwitchManual = isWorkSwitchManual;
             Properties.Settings.Default.setF_IsWorkSwitchManual = isWorkSwitchManual;
 
+            //Slow speed cutoff
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
 
@@ -401,6 +521,277 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void NudLightbarCmPerPixel_ValueChanged(object sender, EventArgs e)
+        {
+            lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
+        }
+
+        private void NudSnapDistanceSmall_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+            snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
+        }
+
+        private void NudSnapDistance_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
+
+            snapDistance = (int)nudSnapDistance.Value;
+        }
+
+        private void NudMinTurnRadius_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudHitchLength_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudWheelbase_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudAntennaPivot_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudAntennaHeight_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudAntennaOffset_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudTankHitch_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudForeAft_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudOffset_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudOverlap_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudTurnOffDelay_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudLookAhead_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection1_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection2_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection3_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection4_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection5_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection6_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection7_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection8_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection9_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection10_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection11_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSection12_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudNumberOfSections_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudMinApplied_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudCutoffSpeed_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSnapDistanceSmall_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudSnapDistance_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudLightbarCmPerPixel_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void CboxNumSections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numberOfSections = cboxNumSections.SelectedIndex + 1;
+             
+            decimal wide = 300;
+            if (!mf.isMetric) wide = 100;
+
+            nudSection1.ValueChanged -= nudSection1_ValueChanged;
+            nudSection1.Value = wide;
+            nudSection1.ValueChanged += nudSection1_ValueChanged;
+
+            nudSection2.ValueChanged -= nudSection2_ValueChanged;
+            nudSection2.Value = wide;
+            nudSection2.ValueChanged += nudSection2_ValueChanged;
+
+            nudSection3.ValueChanged -= nudSection3_ValueChanged;
+            nudSection3.Value = wide;
+            nudSection3.ValueChanged += nudSection3_ValueChanged;
+
+            nudSection4.ValueChanged -= nudSection4_ValueChanged;
+            nudSection4.Value = wide;
+            nudSection4.ValueChanged += nudSection4_ValueChanged;
+
+            nudSection5.ValueChanged -= nudSection5_ValueChanged;
+            nudSection5.Value = wide;
+            nudSection5.ValueChanged += nudSection5_ValueChanged;
+
+            nudSection6.ValueChanged -= nudSection6_ValueChanged;
+            nudSection6.Value = wide;
+            nudSection6.ValueChanged += nudSection6_ValueChanged;
+
+            nudSection7.ValueChanged -= nudSection7_ValueChanged;
+            nudSection7.Value = wide;
+            nudSection7.ValueChanged += nudSection7_ValueChanged;
+
+            nudSection8.ValueChanged -= nudSection8_ValueChanged;
+            nudSection8.Value = wide;
+            nudSection8.ValueChanged += nudSection8_ValueChanged;
+
+            nudSection9.ValueChanged -= nudSection8_ValueChanged;
+            nudSection9.Value = wide;
+            nudSection9.ValueChanged += nudSection8_ValueChanged;
+
+            nudSection10.ValueChanged -= nudSection8_ValueChanged;
+            nudSection10.Value = wide;
+            nudSection10.ValueChanged += nudSection8_ValueChanged;
+
+            nudSection11.ValueChanged -= nudSection8_ValueChanged;
+            nudSection11.Value = wide;
+            nudSection11.ValueChanged += nudSection8_ValueChanged;
+
+            nudSection12.ValueChanged -= nudSection8_ValueChanged;
+            nudSection12.Value = wide;
+            nudSection12.ValueChanged += nudSection8_ValueChanged;
+
+            UpdateSpinners();
+        }
+
+        private void CboxAutoSteerAuto_CheckedChanged(object sender, EventArgs e)
+        {
+            isAutoSteerAuto = cboxAutoSteerAuto.Checked;
+            if (isAutoSteerAuto)
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
+                cboxAutoSteerAuto.Text = gStr.gsAuto;
+            }
+            else
+            {
+                cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
+                cboxAutoSteerAuto.Text = gStr.gsManual;
+            }
         }
 
         //don't save anything, leave the settings as before
@@ -538,7 +929,7 @@ namespace AgOpenGPS
         //enable or disable section width spinners based on number sections selected
         public void UpdateSpinners()
         {
-            int i = (int)nudNumberOfSections.Value;
+            int i = (int)numberOfSections;
             switch (i)
             {
                 case 1:
@@ -807,7 +1198,7 @@ namespace AgOpenGPS
         //Convert section width to positions along toolbar
         private void CalculateSectionPositions()
         {
-            int i = (int)nudNumberOfSections.Value;
+            int i = (int)numberOfSections;
 
             //convert to meters spinner value
             sectionWidth1 = nudSection1.Value * (decimal)metImp2m;
@@ -1030,64 +1421,6 @@ namespace AgOpenGPS
                         break;
                     }
             }
-        }
-
-        //Every time the # of Sections is spun
-        private void nudNumberOfSections_ValueChanged(object sender, EventArgs e)
-        {
-            numberOfSections = (int)nudNumberOfSections.Value;
-            decimal wide = 300;
-            if (!mf.isMetric) wide = 100;
-
-            nudSection1.ValueChanged -= nudSection1_ValueChanged;
-            nudSection1.Value = wide;
-            nudSection1.ValueChanged += nudSection1_ValueChanged;
-
-            nudSection2.ValueChanged -= nudSection2_ValueChanged;
-            nudSection2.Value = wide;
-            nudSection2.ValueChanged += nudSection2_ValueChanged;
-
-            nudSection3.ValueChanged -= nudSection3_ValueChanged;
-            nudSection3.Value = wide;
-            nudSection3.ValueChanged += nudSection3_ValueChanged;
-
-            nudSection4.ValueChanged -= nudSection4_ValueChanged;
-            nudSection4.Value = wide;
-            nudSection4.ValueChanged += nudSection4_ValueChanged;
-
-            nudSection5.ValueChanged -= nudSection5_ValueChanged;
-            nudSection5.Value = wide;
-            nudSection5.ValueChanged += nudSection5_ValueChanged;
-
-            nudSection6.ValueChanged -= nudSection6_ValueChanged;
-            nudSection6.Value = wide;
-            nudSection6.ValueChanged += nudSection6_ValueChanged;
-
-            nudSection7.ValueChanged -= nudSection7_ValueChanged;
-            nudSection7.Value = wide;
-            nudSection7.ValueChanged += nudSection7_ValueChanged;
-
-            nudSection8.ValueChanged -= nudSection8_ValueChanged;
-            nudSection8.Value = wide;
-            nudSection8.ValueChanged += nudSection8_ValueChanged;
-
-            nudSection9.ValueChanged -= nudSection8_ValueChanged;
-            nudSection9.Value = wide;
-            nudSection9.ValueChanged += nudSection8_ValueChanged;
-
-            nudSection10.ValueChanged -= nudSection8_ValueChanged;
-            nudSection10.Value = wide;
-            nudSection10.ValueChanged += nudSection8_ValueChanged;
-
-            nudSection11.ValueChanged -= nudSection8_ValueChanged;
-            nudSection11.Value = wide;
-            nudSection11.ValueChanged += nudSection8_ValueChanged;
-
-            nudSection12.ValueChanged -= nudSection8_ValueChanged;
-            nudSection12.Value = wide;
-            nudSection12.ValueChanged += nudSection8_ValueChanged;
-
-            UpdateSpinners();
         }
 
         //Did user spin a section distance spinner?

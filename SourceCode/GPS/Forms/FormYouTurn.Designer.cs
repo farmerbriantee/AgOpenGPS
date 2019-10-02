@@ -186,10 +186,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.Location = new System.Drawing.Point(755, 361);
+            this.btnCancel.Location = new System.Drawing.Point(968, 402);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(69, 111);
+            this.btnCancel.Size = new System.Drawing.Size(79, 111);
             this.btnCancel.TabIndex = 130;
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -200,10 +200,10 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOK.Location = new System.Drawing.Point(755, 536);
+            this.btnOK.Location = new System.Drawing.Point(968, 577);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(69, 109);
+            this.btnOK.Size = new System.Drawing.Size(79, 109);
             this.btnOK.TabIndex = 129;
             this.btnOK.Text = "Save";
             this.btnOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -213,10 +213,10 @@
             // tabHelp
             // 
             this.tabHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tabHelp.Location = new System.Drawing.Point(4, 54);
+            this.tabHelp.Location = new System.Drawing.Point(4, 64);
             this.tabHelp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabHelp.Name = "tabHelp";
-            this.tabHelp.Size = new System.Drawing.Size(744, 594);
+            this.tabHelp.Size = new System.Drawing.Size(935, 615);
             this.tabHelp.TabIndex = 3;
             this.tabHelp.Text = "Help";
             this.tabHelp.UseVisualStyleBackColor = true;
@@ -243,10 +243,10 @@
             this.tabEdit.Controls.Add(this.tboxPos1);
             this.tabEdit.Controls.Add(this.btnEditCancel);
             this.tabEdit.Controls.Add(this.btnSaveNames);
-            this.tabEdit.Location = new System.Drawing.Point(4, 54);
+            this.tabEdit.Location = new System.Drawing.Point(4, 64);
             this.tabEdit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabEdit.Name = "tabEdit";
-            this.tabEdit.Size = new System.Drawing.Size(744, 594);
+            this.tabEdit.Size = new System.Drawing.Size(935, 615);
             this.tabEdit.TabIndex = 4;
             this.tabEdit.Text = "Edit";
             this.tabEdit.UseVisualStyleBackColor = true;
@@ -257,7 +257,7 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(422, 342);
+            this.label44.Location = new System.Drawing.Point(464, 342);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(73, 23);
@@ -268,7 +268,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(405, 541);
+            this.label43.Location = new System.Drawing.Point(444, 546);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(126, 23);
@@ -451,7 +451,7 @@
             this.btnEditCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnEditCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnEditCancel.Location = new System.Drawing.Point(409, 261);
+            this.btnEditCancel.Location = new System.Drawing.Point(452, 251);
             this.btnEditCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnEditCancel.Name = "btnEditCancel";
             this.btnEditCancel.Size = new System.Drawing.Size(105, 78);
@@ -465,7 +465,7 @@
             this.btnSaveNames.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSaveNames.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveNames.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSaveNames.Location = new System.Drawing.Point(409, 456);
+            this.btnSaveNames.Location = new System.Drawing.Point(452, 455);
             this.btnSaveNames.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnSaveNames.Name = "btnSaveNames";
             this.btnSaveNames.Size = new System.Drawing.Size(105, 78);
@@ -513,17 +513,18 @@
             this.tabExit.Controls.Add(this.cboxExitAction0);
             this.tabExit.Controls.Add(this.nudExit0);
             this.tabExit.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabExit.Location = new System.Drawing.Point(4, 54);
+            this.tabExit.Location = new System.Drawing.Point(4, 64);
             this.tabExit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabExit.Name = "tabExit";
-            this.tabExit.Size = new System.Drawing.Size(744, 594);
+            this.tabExit.Size = new System.Drawing.Size(935, 615);
             this.tabExit.TabIndex = 2;
             this.tabExit.Text = "Exit";
             // 
             // nudExit7
             // 
-            this.nudExit7.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit7.Location = new System.Drawing.Point(547, 546);
+            this.nudExit7.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit7.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit7.Location = new System.Drawing.Point(663, 545);
             this.nudExit7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit7.Maximum = new decimal(new int[] {
             25,
@@ -531,7 +532,7 @@
             0,
             0});
             this.nudExit7.Name = "nudExit7";
-            this.nudExit7.Size = new System.Drawing.Size(78, 43);
+            this.nudExit7.Size = new System.Drawing.Size(90, 50);
             this.nudExit7.TabIndex = 86;
             // 
             // cboxExitAction7
@@ -542,7 +543,7 @@
             this.cboxExitAction7.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction7.Location = new System.Drawing.Point(347, 546);
+            this.cboxExitAction7.Location = new System.Drawing.Point(414, 546);
             this.cboxExitAction7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction7.Name = "cboxExitAction7";
             this.cboxExitAction7.Size = new System.Drawing.Size(162, 41);
@@ -575,8 +576,9 @@
             // 
             // nudExit5
             // 
-            this.nudExit5.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit5.Location = new System.Drawing.Point(547, 402);
+            this.nudExit5.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit5.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit5.Location = new System.Drawing.Point(663, 401);
             this.nudExit5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit5.Maximum = new decimal(new int[] {
             25,
@@ -584,13 +586,14 @@
             0,
             0});
             this.nudExit5.Name = "nudExit5";
-            this.nudExit5.Size = new System.Drawing.Size(78, 43);
+            this.nudExit5.Size = new System.Drawing.Size(90, 50);
             this.nudExit5.TabIndex = 82;
             // 
             // nudExit6
             // 
-            this.nudExit6.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit6.Location = new System.Drawing.Point(579, 472);
+            this.nudExit6.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit6.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit6.Location = new System.Drawing.Point(695, 471);
             this.nudExit6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit6.Maximum = new decimal(new int[] {
             25,
@@ -598,7 +601,7 @@
             0,
             0});
             this.nudExit6.Name = "nudExit6";
-            this.nudExit6.Size = new System.Drawing.Size(78, 43);
+            this.nudExit6.Size = new System.Drawing.Size(90, 50);
             this.nudExit6.TabIndex = 81;
             // 
             // cboxExitAction5
@@ -609,7 +612,7 @@
             this.cboxExitAction5.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction5.Location = new System.Drawing.Point(348, 402);
+            this.cboxExitAction5.Location = new System.Drawing.Point(415, 402);
             this.cboxExitAction5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction5.Name = "cboxExitAction5";
             this.cboxExitAction5.Size = new System.Drawing.Size(162, 41);
@@ -623,7 +626,7 @@
             this.cboxExitAction6.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction6.Location = new System.Drawing.Point(348, 472);
+            this.cboxExitAction6.Location = new System.Drawing.Point(415, 472);
             this.cboxExitAction6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction6.Name = "cboxExitAction6";
             this.cboxExitAction6.Size = new System.Drawing.Size(162, 41);
@@ -738,7 +741,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(363, 19);
+            this.label16.Location = new System.Drawing.Point(430, 19);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(71, 23);
@@ -749,7 +752,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(567, 19);
+            this.label17.Location = new System.Drawing.Point(683, 18);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(92, 23);
@@ -789,7 +792,7 @@
             this.cboxExitAction4.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction4.Location = new System.Drawing.Point(347, 332);
+            this.cboxExitAction4.Location = new System.Drawing.Point(414, 332);
             this.cboxExitAction4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction4.Name = "cboxExitAction4";
             this.cboxExitAction4.Size = new System.Drawing.Size(162, 41);
@@ -797,8 +800,9 @@
             // 
             // nudExit4
             // 
-            this.nudExit4.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit4.Location = new System.Drawing.Point(579, 332);
+            this.nudExit4.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit4.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit4.Location = new System.Drawing.Point(695, 331);
             this.nudExit4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit4.Maximum = new decimal(new int[] {
             25,
@@ -806,7 +810,7 @@
             0,
             0});
             this.nudExit4.Name = "nudExit4";
-            this.nudExit4.Size = new System.Drawing.Size(78, 43);
+            this.nudExit4.Size = new System.Drawing.Size(90, 50);
             this.nudExit4.TabIndex = 46;
             // 
             // cboxExitFunc3
@@ -831,7 +835,7 @@
             this.cboxExitAction3.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction3.Location = new System.Drawing.Point(347, 262);
+            this.cboxExitAction3.Location = new System.Drawing.Point(414, 262);
             this.cboxExitAction3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction3.Name = "cboxExitAction3";
             this.cboxExitAction3.Size = new System.Drawing.Size(162, 41);
@@ -839,8 +843,9 @@
             // 
             // nudExit3
             // 
-            this.nudExit3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit3.Location = new System.Drawing.Point(547, 262);
+            this.nudExit3.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit3.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit3.Location = new System.Drawing.Point(663, 261);
             this.nudExit3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit3.Maximum = new decimal(new int[] {
             25,
@@ -848,7 +853,7 @@
             0,
             0});
             this.nudExit3.Name = "nudExit3";
-            this.nudExit3.Size = new System.Drawing.Size(78, 43);
+            this.nudExit3.Size = new System.Drawing.Size(90, 50);
             this.nudExit3.TabIndex = 43;
             // 
             // cboxExitFunc2
@@ -873,7 +878,7 @@
             this.cboxExitAction2.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction2.Location = new System.Drawing.Point(347, 192);
+            this.cboxExitAction2.Location = new System.Drawing.Point(414, 192);
             this.cboxExitAction2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction2.Name = "cboxExitAction2";
             this.cboxExitAction2.Size = new System.Drawing.Size(162, 41);
@@ -881,8 +886,9 @@
             // 
             // nudExit2
             // 
-            this.nudExit2.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit2.Location = new System.Drawing.Point(579, 192);
+            this.nudExit2.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit2.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit2.Location = new System.Drawing.Point(695, 191);
             this.nudExit2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit2.Maximum = new decimal(new int[] {
             25,
@@ -890,7 +896,7 @@
             0,
             0});
             this.nudExit2.Name = "nudExit2";
-            this.nudExit2.Size = new System.Drawing.Size(78, 43);
+            this.nudExit2.Size = new System.Drawing.Size(90, 50);
             this.nudExit2.TabIndex = 40;
             // 
             // cboxExitFunc1
@@ -915,7 +921,7 @@
             this.cboxExitAction1.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction1.Location = new System.Drawing.Point(347, 122);
+            this.cboxExitAction1.Location = new System.Drawing.Point(414, 122);
             this.cboxExitAction1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction1.Name = "cboxExitAction1";
             this.cboxExitAction1.Size = new System.Drawing.Size(162, 41);
@@ -923,8 +929,9 @@
             // 
             // nudExit1
             // 
-            this.nudExit1.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit1.Location = new System.Drawing.Point(547, 122);
+            this.nudExit1.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit1.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit1.Location = new System.Drawing.Point(663, 121);
             this.nudExit1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit1.Maximum = new decimal(new int[] {
             25,
@@ -932,7 +939,7 @@
             0,
             0});
             this.nudExit1.Name = "nudExit1";
-            this.nudExit1.Size = new System.Drawing.Size(78, 43);
+            this.nudExit1.Size = new System.Drawing.Size(90, 50);
             this.nudExit1.TabIndex = 37;
             // 
             // cboxExitFunc0
@@ -957,7 +964,7 @@
             this.cboxExitAction0.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxExitAction0.Location = new System.Drawing.Point(347, 52);
+            this.cboxExitAction0.Location = new System.Drawing.Point(414, 52);
             this.cboxExitAction0.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxExitAction0.Name = "cboxExitAction0";
             this.cboxExitAction0.Size = new System.Drawing.Size(162, 41);
@@ -965,8 +972,9 @@
             // 
             // nudExit0
             // 
-            this.nudExit0.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudExit0.Location = new System.Drawing.Point(579, 52);
+            this.nudExit0.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudExit0.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudExit0.Location = new System.Drawing.Point(695, 51);
             this.nudExit0.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudExit0.Maximum = new decimal(new int[] {
             25,
@@ -974,7 +982,7 @@
             0,
             0});
             this.nudExit0.Name = "nudExit0";
-            this.nudExit0.Size = new System.Drawing.Size(78, 43);
+            this.nudExit0.Size = new System.Drawing.Size(90, 50);
             this.nudExit0.TabIndex = 34;
             // 
             // tabEnter
@@ -1016,11 +1024,11 @@
             this.tabEnter.Controls.Add(this.cboxEnterAction0);
             this.tabEnter.Controls.Add(this.nudEnter0);
             this.tabEnter.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabEnter.Location = new System.Drawing.Point(4, 54);
+            this.tabEnter.Location = new System.Drawing.Point(4, 64);
             this.tabEnter.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabEnter.Name = "tabEnter";
             this.tabEnter.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabEnter.Size = new System.Drawing.Size(744, 594);
+            this.tabEnter.Size = new System.Drawing.Size(935, 615);
             this.tabEnter.TabIndex = 1;
             this.tabEnter.Text = "Entry";
             // 
@@ -1037,8 +1045,9 @@
             // 
             // nudEnter7
             // 
-            this.nudEnter7.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter7.Location = new System.Drawing.Point(590, 545);
+            this.nudEnter7.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter7.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter7.Location = new System.Drawing.Point(732, 545);
             this.nudEnter7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter7.Maximum = new decimal(new int[] {
             25,
@@ -1046,7 +1055,7 @@
             0,
             0});
             this.nudEnter7.Name = "nudEnter7";
-            this.nudEnter7.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter7.Size = new System.Drawing.Size(90, 50);
             this.nudEnter7.TabIndex = 72;
             // 
             // cboxEnterAction7
@@ -1057,7 +1066,7 @@
             this.cboxEnterAction7.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction7.Location = new System.Drawing.Point(348, 545);
+            this.cboxEnterAction7.Location = new System.Drawing.Point(415, 545);
             this.cboxEnterAction7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction7.Name = "cboxEnterAction7";
             this.cboxEnterAction7.Size = new System.Drawing.Size(162, 41);
@@ -1101,8 +1110,9 @@
             // 
             // nudEnter5
             // 
-            this.nudEnter5.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter5.Location = new System.Drawing.Point(590, 402);
+            this.nudEnter5.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter5.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter5.Location = new System.Drawing.Point(732, 402);
             this.nudEnter5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter5.Maximum = new decimal(new int[] {
             25,
@@ -1110,13 +1120,14 @@
             0,
             0});
             this.nudEnter5.Name = "nudEnter5";
-            this.nudEnter5.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter5.Size = new System.Drawing.Size(90, 50);
             this.nudEnter5.TabIndex = 67;
             // 
             // nudEnter6
             // 
-            this.nudEnter6.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter6.Location = new System.Drawing.Point(544, 470);
+            this.nudEnter6.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter6.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter6.Location = new System.Drawing.Point(686, 470);
             this.nudEnter6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter6.Maximum = new decimal(new int[] {
             25,
@@ -1124,7 +1135,7 @@
             0,
             0});
             this.nudEnter6.Name = "nudEnter6";
-            this.nudEnter6.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter6.Size = new System.Drawing.Size(90, 50);
             this.nudEnter6.TabIndex = 66;
             // 
             // cboxEnterAction5
@@ -1135,7 +1146,7 @@
             this.cboxEnterAction5.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction5.Location = new System.Drawing.Point(348, 402);
+            this.cboxEnterAction5.Location = new System.Drawing.Point(415, 402);
             this.cboxEnterAction5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction5.Name = "cboxEnterAction5";
             this.cboxEnterAction5.Size = new System.Drawing.Size(162, 41);
@@ -1149,7 +1160,7 @@
             this.cboxEnterAction6.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction6.Location = new System.Drawing.Point(348, 472);
+            this.cboxEnterAction6.Location = new System.Drawing.Point(415, 472);
             this.cboxEnterAction6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction6.Name = "cboxEnterAction6";
             this.cboxEnterAction6.Size = new System.Drawing.Size(162, 41);
@@ -1242,7 +1253,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(364, 18);
+            this.label15.Location = new System.Drawing.Point(431, 18);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(71, 23);
@@ -1253,7 +1264,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(568, 18);
+            this.label14.Location = new System.Drawing.Point(689, 18);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(92, 23);
@@ -1293,7 +1304,7 @@
             this.cboxEnterAction4.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction4.Location = new System.Drawing.Point(348, 332);
+            this.cboxEnterAction4.Location = new System.Drawing.Point(415, 332);
             this.cboxEnterAction4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction4.Name = "cboxEnterAction4";
             this.cboxEnterAction4.Size = new System.Drawing.Size(162, 41);
@@ -1301,8 +1312,9 @@
             // 
             // nudEnter4
             // 
-            this.nudEnter4.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter4.Location = new System.Drawing.Point(544, 332);
+            this.nudEnter4.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter4.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter4.Location = new System.Drawing.Point(686, 332);
             this.nudEnter4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter4.Maximum = new decimal(new int[] {
             25,
@@ -1310,7 +1322,7 @@
             0,
             0});
             this.nudEnter4.Name = "nudEnter4";
-            this.nudEnter4.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter4.Size = new System.Drawing.Size(90, 50);
             this.nudEnter4.TabIndex = 31;
             // 
             // cboxEnterFunc3
@@ -1335,7 +1347,7 @@
             this.cboxEnterAction3.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction3.Location = new System.Drawing.Point(348, 262);
+            this.cboxEnterAction3.Location = new System.Drawing.Point(415, 262);
             this.cboxEnterAction3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction3.Name = "cboxEnterAction3";
             this.cboxEnterAction3.Size = new System.Drawing.Size(162, 41);
@@ -1343,8 +1355,9 @@
             // 
             // nudEnter3
             // 
-            this.nudEnter3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter3.Location = new System.Drawing.Point(590, 262);
+            this.nudEnter3.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter3.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter3.Location = new System.Drawing.Point(732, 262);
             this.nudEnter3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter3.Maximum = new decimal(new int[] {
             25,
@@ -1352,7 +1365,7 @@
             0,
             0});
             this.nudEnter3.Name = "nudEnter3";
-            this.nudEnter3.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter3.Size = new System.Drawing.Size(90, 50);
             this.nudEnter3.TabIndex = 28;
             // 
             // cboxEnterFunc2
@@ -1377,7 +1390,7 @@
             this.cboxEnterAction2.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction2.Location = new System.Drawing.Point(348, 192);
+            this.cboxEnterAction2.Location = new System.Drawing.Point(415, 192);
             this.cboxEnterAction2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction2.Name = "cboxEnterAction2";
             this.cboxEnterAction2.Size = new System.Drawing.Size(162, 41);
@@ -1385,8 +1398,9 @@
             // 
             // nudEnter2
             // 
-            this.nudEnter2.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter2.Location = new System.Drawing.Point(544, 192);
+            this.nudEnter2.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter2.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter2.Location = new System.Drawing.Point(686, 192);
             this.nudEnter2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter2.Maximum = new decimal(new int[] {
             25,
@@ -1394,7 +1408,7 @@
             0,
             0});
             this.nudEnter2.Name = "nudEnter2";
-            this.nudEnter2.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter2.Size = new System.Drawing.Size(90, 50);
             this.nudEnter2.TabIndex = 25;
             // 
             // cboxEnterFunc1
@@ -1419,7 +1433,7 @@
             this.cboxEnterAction1.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction1.Location = new System.Drawing.Point(348, 122);
+            this.cboxEnterAction1.Location = new System.Drawing.Point(415, 122);
             this.cboxEnterAction1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction1.Name = "cboxEnterAction1";
             this.cboxEnterAction1.Size = new System.Drawing.Size(162, 41);
@@ -1427,8 +1441,9 @@
             // 
             // nudEnter1
             // 
-            this.nudEnter1.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter1.Location = new System.Drawing.Point(590, 119);
+            this.nudEnter1.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter1.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter1.Location = new System.Drawing.Point(732, 119);
             this.nudEnter1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter1.Maximum = new decimal(new int[] {
             25,
@@ -1436,7 +1451,7 @@
             0,
             0});
             this.nudEnter1.Name = "nudEnter1";
-            this.nudEnter1.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter1.Size = new System.Drawing.Size(90, 50);
             this.nudEnter1.TabIndex = 22;
             // 
             // cboxEnterFunc0
@@ -1462,7 +1477,7 @@
             this.cboxEnterAction0.Items.AddRange(new object[] {
             "Turn Off",
             "Turn On"});
-            this.cboxEnterAction0.Location = new System.Drawing.Point(348, 52);
+            this.cboxEnterAction0.Location = new System.Drawing.Point(415, 52);
             this.cboxEnterAction0.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxEnterAction0.Name = "cboxEnterAction0";
             this.cboxEnterAction0.Size = new System.Drawing.Size(162, 41);
@@ -1470,8 +1485,9 @@
             // 
             // nudEnter0
             // 
-            this.nudEnter0.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudEnter0.Location = new System.Drawing.Point(544, 50);
+            this.nudEnter0.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudEnter0.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudEnter0.Location = new System.Drawing.Point(686, 50);
             this.nudEnter0.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.nudEnter0.Maximum = new decimal(new int[] {
             25,
@@ -1479,7 +1495,7 @@
             0,
             0});
             this.nudEnter0.Name = "nudEnter0";
-            this.nudEnter0.Size = new System.Drawing.Size(78, 43);
+            this.nudEnter0.Size = new System.Drawing.Size(90, 50);
             this.nudEnter0.TabIndex = 19;
             // 
             // btnTurnAllOff
@@ -1488,7 +1504,7 @@
             this.btnTurnAllOff.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTurnAllOff.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTurnAllOff.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTurnAllOff.Location = new System.Drawing.Point(663, 24);
+            this.btnTurnAllOff.Location = new System.Drawing.Point(803, 45);
             this.btnTurnAllOff.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTurnAllOff.Name = "btnTurnAllOff";
             this.btnTurnAllOff.Size = new System.Drawing.Size(61, 95);
@@ -1503,7 +1519,7 @@
             this.btnToggle6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle6.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle6.Location = new System.Drawing.Point(29, 80);
+            this.btnToggle6.Location = new System.Drawing.Point(106, 101);
             this.btnToggle6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle6.Name = "btnToggle6";
             this.btnToggle6.Size = new System.Drawing.Size(180, 39);
@@ -1519,7 +1535,7 @@
             this.btnToggle3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle3.Location = new System.Drawing.Point(29, 24);
+            this.btnToggle3.Location = new System.Drawing.Point(106, 45);
             this.btnToggle3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle3.Name = "btnToggle3";
             this.btnToggle3.Size = new System.Drawing.Size(180, 39);
@@ -1535,7 +1551,7 @@
             this.btnToggle7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle7.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle7.Location = new System.Drawing.Point(234, 80);
+            this.btnToggle7.Location = new System.Drawing.Point(335, 101);
             this.btnToggle7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle7.Name = "btnToggle7";
             this.btnToggle7.Size = new System.Drawing.Size(180, 39);
@@ -1551,7 +1567,7 @@
             this.btnToggle8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle8.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle8.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle8.Location = new System.Drawing.Point(446, 80);
+            this.btnToggle8.Location = new System.Drawing.Point(565, 101);
             this.btnToggle8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle8.Name = "btnToggle8";
             this.btnToggle8.Size = new System.Drawing.Size(180, 39);
@@ -1567,7 +1583,7 @@
             this.btnToggle5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle5.Location = new System.Drawing.Point(446, 24);
+            this.btnToggle5.Location = new System.Drawing.Point(564, 45);
             this.btnToggle5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle5.Name = "btnToggle5";
             this.btnToggle5.Size = new System.Drawing.Size(180, 39);
@@ -1581,7 +1597,7 @@
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDistanceDn.Location = new System.Drawing.Point(655, 447);
+            this.btnDistanceDn.Location = new System.Drawing.Point(806, 512);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
             this.btnDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1596,7 +1612,7 @@
             this.btnToggle4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggle4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnToggle4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnToggle4.Location = new System.Drawing.Point(234, 24);
+            this.btnToggle4.Location = new System.Drawing.Point(335, 45);
             this.btnToggle4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnToggle4.Name = "btnToggle4";
             this.btnToggle4.Size = new System.Drawing.Size(180, 39);
@@ -1610,7 +1626,7 @@
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnDistanceUp.Location = new System.Drawing.Point(559, 447);
+            this.btnDistanceUp.Location = new System.Drawing.Point(710, 512);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
             this.btnDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1623,7 +1639,7 @@
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistance.Location = new System.Drawing.Point(590, 391);
+            this.lblDistance.Location = new System.Drawing.Point(740, 456);
             this.lblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDistance.Name = "lblDistance";
             this.lblDistance.Size = new System.Drawing.Size(95, 45);
@@ -1634,7 +1650,7 @@
             // 
             this.lblWhenTrig.AutoSize = true;
             this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhenTrig.Location = new System.Drawing.Point(554, 332);
+            this.lblWhenTrig.Location = new System.Drawing.Point(705, 397);
             this.lblWhenTrig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWhenTrig.Name = "lblWhenTrig";
             this.lblWhenTrig.Size = new System.Drawing.Size(154, 25);
@@ -1645,7 +1661,7 @@
             // 
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(301, 332);
+            this.label48.Location = new System.Drawing.Point(376, 397);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(173, 50);
@@ -1657,7 +1673,7 @@
             this.btnTriggerDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(402, 447);
+            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(472, 512);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
             this.btnTriggerDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1670,7 +1686,7 @@
             this.btnTriggerDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(306, 447);
+            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(376, 512);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
             this.btnTriggerDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1683,7 +1699,7 @@
             this.lblTriggerDistance.AutoSize = true;
             this.lblTriggerDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblTriggerDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTriggerDistance.Location = new System.Drawing.Point(337, 391);
+            this.lblTriggerDistance.Location = new System.Drawing.Point(409, 456);
             this.lblTriggerDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTriggerDistance.Name = "lblTriggerDistance";
             this.lblTriggerDistance.Size = new System.Drawing.Size(95, 45);
@@ -1717,11 +1733,11 @@
             this.tabYouTurn.Controls.Add(this.btnIsUsingDubins);
             this.tabYouTurn.Controls.Add(this.btnDistanceDn);
             this.tabYouTurn.Controls.Add(this.groupBox1);
-            this.tabYouTurn.Location = new System.Drawing.Point(4, 54);
+            this.tabYouTurn.Location = new System.Drawing.Point(4, 64);
             this.tabYouTurn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabYouTurn.Name = "tabYouTurn";
             this.tabYouTurn.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.tabYouTurn.Size = new System.Drawing.Size(744, 594);
+            this.tabYouTurn.Size = new System.Drawing.Size(935, 615);
             this.tabYouTurn.TabIndex = 0;
             this.tabYouTurn.Text = "U Turn";
             // 
@@ -1730,7 +1746,7 @@
             this.btnGeoFenceDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(141, 447);
+            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(141, 512);
             this.btnGeoFenceDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceDn.Name = "btnGeoFenceDistanceDn";
             this.btnGeoFenceDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1743,7 +1759,7 @@
             this.btnGeoFenceDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(45, 447);
+            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(45, 512);
             this.btnGeoFenceDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceUp.Name = "btnGeoFenceDistanceUp";
             this.btnGeoFenceDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1755,7 +1771,7 @@
             // 
             this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(40, 332);
+            this.label49.Location = new System.Drawing.Point(40, 397);
             this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(161, 50);
@@ -1767,7 +1783,7 @@
             this.lblGeoFenceDistance.AutoSize = true;
             this.lblGeoFenceDistance.BackColor = System.Drawing.SystemColors.Control;
             this.lblGeoFenceDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeoFenceDistance.Location = new System.Drawing.Point(78, 391);
+            this.lblGeoFenceDistance.Location = new System.Drawing.Point(78, 456);
             this.lblGeoFenceDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGeoFenceDistance.Name = "lblGeoFenceDistance";
             this.lblGeoFenceDistance.Size = new System.Drawing.Size(95, 45);
@@ -1778,7 +1794,7 @@
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(27, 145);
+            this.label46.Location = new System.Drawing.Point(27, 198);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(96, 50);
@@ -1798,7 +1814,7 @@
             "4",
             "5",
             "6"});
-            this.cboxRowWidth.Location = new System.Drawing.Point(148, 198);
+            this.cboxRowWidth.Location = new System.Drawing.Point(173, 251);
             this.cboxRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxRowWidth.Name = "cboxRowWidth";
             this.cboxRowWidth.Size = new System.Drawing.Size(52, 47);
@@ -1809,7 +1825,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(143, 160);
+            this.label1.Location = new System.Drawing.Point(168, 213);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 25);
@@ -1821,12 +1837,12 @@
             this.btnIsUsingDubins.BackColor = System.Drawing.Color.PaleGreen;
             this.btnIsUsingDubins.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIsUsingDubins.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 198);
+            this.btnIsUsingDubins.Location = new System.Drawing.Point(29, 251);
             this.btnIsUsingDubins.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnIsUsingDubins.Name = "btnIsUsingDubins";
             this.btnIsUsingDubins.Size = new System.Drawing.Size(91, 84);
             this.btnIsUsingDubins.TabIndex = 131;
-            this.btnIsUsingDubins.Text = "Doobie";
+            this.btnIsUsingDubins.Text = "Dubins";
             this.btnIsUsingDubins.UseVisualStyleBackColor = false;
             this.btnIsUsingDubins.Click += new System.EventHandler(this.btnIsUsingDubins_Click);
             // 
@@ -1838,11 +1854,11 @@
             this.groupBox1.Controls.Add(this.btnYouTurnRecord);
             this.groupBox1.Controls.Add(this.btnYouTurnCustom);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(228, 153);
+            this.groupBox1.Location = new System.Drawing.Point(320, 198);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.groupBox1.Size = new System.Drawing.Size(507, 140);
+            this.groupBox1.Size = new System.Drawing.Size(576, 140);
             this.groupBox1.TabIndex = 133;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turn Patterns";
@@ -1852,7 +1868,7 @@
             this.btnYouTurnWideReturn.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnWideReturn.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnWideReturn.Image = global::AgOpenGPS.Properties.Resources.WideReturn;
-            this.btnYouTurnWideReturn.Location = new System.Drawing.Point(205, 39);
+            this.btnYouTurnWideReturn.Location = new System.Drawing.Point(246, 39);
             this.btnYouTurnWideReturn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnWideReturn.Name = "btnYouTurnWideReturn";
             this.btnYouTurnWideReturn.Size = new System.Drawing.Size(83, 84);
@@ -1880,7 +1896,7 @@
             this.btnYouTurnSemiCircle.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnSemiCircle.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnSemiCircle.Image = global::AgOpenGPS.Properties.Resources.SemiCircle;
-            this.btnYouTurnSemiCircle.Location = new System.Drawing.Point(107, 39);
+            this.btnYouTurnSemiCircle.Location = new System.Drawing.Point(128, 39);
             this.btnYouTurnSemiCircle.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnSemiCircle.Name = "btnYouTurnSemiCircle";
             this.btnYouTurnSemiCircle.Size = new System.Drawing.Size(83, 84);
@@ -1895,7 +1911,7 @@
             this.btnYouTurnRecord.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnYouTurnRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnYouTurnRecord.Location = new System.Drawing.Point(405, 39);
+            this.btnYouTurnRecord.Location = new System.Drawing.Point(481, 39);
             this.btnYouTurnRecord.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnRecord.Name = "btnYouTurnRecord";
             this.btnYouTurnRecord.Size = new System.Drawing.Size(83, 84);
@@ -1910,7 +1926,7 @@
             this.btnYouTurnCustom.BackColor = System.Drawing.Color.Silver;
             this.btnYouTurnCustom.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnCustom.Image = global::AgOpenGPS.Properties.Resources.Custom;
-            this.btnYouTurnCustom.Location = new System.Drawing.Point(318, 39);
+            this.btnYouTurnCustom.Location = new System.Drawing.Point(381, 39);
             this.btnYouTurnCustom.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnYouTurnCustom.Name = "btnYouTurnCustom";
             this.btnYouTurnCustom.Size = new System.Drawing.Size(83, 84);
@@ -1925,15 +1941,15 @@
             this.tabControl1.Controls.Add(this.tabYouTurn);
             this.tabControl1.Controls.Add(this.tabEnter);
             this.tabControl1.Controls.Add(this.tabExit);
-            this.tabControl1.Controls.Add(this.tabHelp);
             this.tabControl1.Controls.Add(this.tabEdit);
+            this.tabControl1.Controls.Add(this.tabHelp);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(148, 50);
+            this.tabControl1.ItemSize = new System.Drawing.Size(165, 60);
             this.tabControl1.Location = new System.Drawing.Point(2, 3);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(752, 652);
+            this.tabControl1.Size = new System.Drawing.Size(943, 683);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 1;
             // 
@@ -1941,7 +1957,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 657);
+            this.ClientSize = new System.Drawing.Size(1058, 698);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tabControl1);
@@ -1953,6 +1969,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "U Turn";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormYouTurn_Load);
             this.tabEdit.ResumeLayout(false);
             this.tabEdit.PerformLayout();

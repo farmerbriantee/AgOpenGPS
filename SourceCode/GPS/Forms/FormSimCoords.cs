@@ -10,6 +10,19 @@ namespace AgOpenGPS
 
         private void FormSimCoords_Load(object sender, EventArgs e)
         {
+            btnCancel.Text = gStr.gsCancel;
+            bntOK.Text = gStr.gsSave;
+            label18.Text = gStr.gsLatitude + "( +90 to -90)";
+            label1.Text = gStr.gsLongitude + "(+180 to -180)";
+            btnGetFieldFix.Text = gStr.gsUse_Field_Coords;
+            label3.Text = gStr.gsLat_;
+            label4.Text = gStr.gsLon_;
+            label7.Text = gStr.gsField_GPS_Origin;
+            label5.Text = gStr.gsGPS_Current_Fix;
+            btnLoadGPSFix.Text = gStr.gsUse_GPS_Coords;
+            label2.Text = gStr.gsLon_;
+            label6.Text = gStr.gsLat_;
+            this.Text = gStr.gsEnter_Coordinates_For_Simulator;
             nudLatitude.Value = (decimal)Properties.Settings.Default.setGPS_Latitude;
             nudLongitude.Value = (decimal)Properties.Settings.Default.setGPS_Longitude;
 
@@ -63,8 +76,20 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
-            //newLat = Lat;
-            //newLon = Longi;
+            nudLatitude.Controls[0].Enabled = false;
+            nudLongitude.Controls[0].Enabled = false;
+        }
+
+        private void NudLongitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void NudLatitude_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
         }
     }
 }

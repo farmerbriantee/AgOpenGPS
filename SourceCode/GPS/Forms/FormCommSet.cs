@@ -24,6 +24,7 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
 
             cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
+          usejrk.Checked = Properties.Settings.Default.isJRK  ;
 
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)
@@ -85,7 +86,33 @@ namespace AgOpenGPS
             lblCurrentArduinoPort.Text = mf.spRelay.PortName;
             lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
         }
+            //Set language 
+            private void Set_Language()
+            {
+            btnRescan.Text = gStr.gsRescan_Ports;
+            groupBox1.Text = gStr.gsGPS_Port;
+            label16.Text = gStr.gsCurrently_;
+            label17.Text = gStr.gsCurrently_;
+            label4.Text = gStr.gsCurrently_;
+            lblCurrentPort.Text = gStr.gsPort;
+            lblCurrentArduinoPort.Text = gStr.gsPort;
+            label1.Text = gStr.gsNMEA_string_from_GPS_Port;
+            btnOpenSerial.Text = gStr.gsConnect;
+            btnOpenSerialAutoSteer.Text = gStr.gsConnect;
+            btnOpenSerialArduino.Text = gStr.gsConnect;
+            btnCloseSerialArduino.Text = gStr.gsDisconnect;
+            btnCloseSerial.Text = gStr.gsDisconnect;
+            label15.Text = gStr.gsFrom_Section_Port;
+            groupBox2.Text = gStr.gsSection_Port;
+            label2.Text = gStr.gsTo_Section_Port_;
+            groupBox3.Text = gStr.gsAutoSteer_Port;
+            label3.Text = gStr.gsTo_Auto_Steer_;
+            label6.Text = gStr.gsFrom_Auto_Steer_;
+            label5.Text = gStr.gsRefresh_USB_Ports;
+            groupBox4.Text = gStr.gsFix_From;
+            this.Text = gStr.gsCommunication_Settings;
 
+        }
         #region PortSettings //----------------------------------------------------------------
 
         //AutoSteer
@@ -254,8 +281,8 @@ namespace AgOpenGPS
         }
 
         #endregion PortSettings //----------------------------------------------------------------
-
-        private void timer1_Tick(object sender, EventArgs e)
+        
+            private void timer1_Tick(object sender, EventArgs e)
         {
             //GPS phrase
             textBoxRcv.Text = mf.recvSentenceSettings;
@@ -286,6 +313,17 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_fixFromWhichSentence = checkedButton.Text;
             Properties.Settings.Default.Save();
             mf.pn.fixFrom = checkedButton.Text;
+        }
+
+        private void usejrk_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.isJRK = usejrk.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     } //class
 } //namespace

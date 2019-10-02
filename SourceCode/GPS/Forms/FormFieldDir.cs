@@ -8,6 +8,7 @@ namespace AgOpenGPS
 {
     public partial class FormFieldDir : Form
     {
+        
         //class variables
         private readonly FormGPS mf = null;
 
@@ -24,13 +25,30 @@ namespace AgOpenGPS
 
         private void FormFieldDir_Load(object sender, EventArgs e)
         {
+            //Set language 
+            Set_Language();
+
             btnTemplate.Enabled = false;
             btnSave.Enabled = false;
-            lblTemplateChosen.Text = "None Selected";
+            lblTemplateChosen.Text = gStr.gsNone_Selected;
             tboxVehicle.Text = mf.vehiclefileName;
+            lblFilename.Text = "";
+        }
+        //Set language 
+        private void Set_Language()
+        {
+            label1.Text = gStr.gsEnter_Field_Name;
+            label2.Text = gStr.gsDate_will_be_added;
+            btnSerialCancel.Text = gStr.gsCancel;
+            btnTemplate.Text = gStr.gsClone_From;
+            lblTemplateChosen.Text = gStr.gsNone_Used;
+            label3.Text = gStr.gsBased_on_Field;
+            label4.Text = gStr.gsEnter_Task;
+            label5.Text = gStr.gsEnter_Vehicle_Used;
+            this.Text = gStr.gsCreate_New_Field;
         }
 
-        private void tboxFieldName_TextChanged(object sender, EventArgs e)
+            private void tboxFieldName_TextChanged(object sender, EventArgs e)
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
@@ -47,6 +65,9 @@ namespace AgOpenGPS
                 btnTemplate.Enabled = true;
                 btnSave.Enabled = true;
             }
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim()
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void tboxTask_TextChanged(object sender, EventArgs e)
@@ -55,6 +76,9 @@ namespace AgOpenGPS
             var cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
             textboxSender.SelectionStart = cursorPosition;
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim() 
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void tboxVehicle_TextChanged(object sender, EventArgs e)
@@ -63,6 +87,9 @@ namespace AgOpenGPS
             var cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
             textboxSender.SelectionStart = cursorPosition;
+
+            lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim()
+                + "_" + tboxVehicle.Text.Trim() + "_" + DateTime.Now.ToString("yyyy.MMM.dd HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -89,7 +116,7 @@ namespace AgOpenGPS
             if (ofd.ShowDialog() == DialogResult.Cancel)
             {
                 isTemplateSet = false;
-                mf.TimedMessageBox(1500, "Template Cancelled", "You can still start a new field");
+                mf.TimedMessageBox(1500, gStr.gsTemplate_Cancelled_mess, gStr.gsYou_can_still_start_new_field_mess);
                 return;
             }
             else
@@ -138,7 +165,7 @@ namespace AgOpenGPS
 
                     if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                     {
-                        MessageBox.Show("Choose a different name", "Directory Exists", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show(gStr.gsChoose_different_name_mess, gStr.gsDirectory_Exists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     else
@@ -188,7 +215,7 @@ namespace AgOpenGPS
 
                 if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                 {
-                    MessageBox.Show("Choose a different name", "Directory Exists", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(gStr.gsChoose_different_name_mess, gStr.gsDirectory_Exists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
                 else
@@ -223,7 +250,7 @@ namespace AgOpenGPS
                     {
                         mf.WriteErrorLog("While Opening Field" + ex);
 
-                        var form = new FormTimedMessage(2000, "Field File is Corrupt", "Choose a different field");
+                        var form = new FormTimedMessage(2000, gStr.gsField_File_Corrupt_mess, gStr.gsChoose_different_field);
                         form.Show();
                         mf.JobClose();
                         return;

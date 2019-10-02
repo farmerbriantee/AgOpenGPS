@@ -10,8 +10,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
         private string[] words;
 
-        private double error, actual = 0;
-
         //chart data
         private string dataSteerAngle = "0";
 
@@ -36,8 +34,8 @@ namespace AgOpenGPS
             {
                 dataSteerAngle = "0";
                 dataPWM = "-2";
-                lblSteerAng.Text = "Actual";
-                lblPWM.Text = "Set";
+                lblSteerAng.Text = gStr.gsActual;
+                lblPWM.Text = gStr.gsSet;
             }
             else
             {
@@ -76,6 +74,10 @@ namespace AgOpenGPS
 
         private void FormSteerGraph_Load(object sender, EventArgs e)
         {
+            this.label5.Text = gStr.gsSetPoint;
+            this.label1.Text = gStr.gsActual;
+            button1.Text = gStr.gsExit;
+            this.Text = gStr.gsAutoSteer_Graph;
             timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
         }
 

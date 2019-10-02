@@ -187,10 +187,10 @@
             this.btnABLineOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnABLineOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnABLineOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnABLineOk.Location = new System.Drawing.Point(664, 382);
+            this.btnABLineOk.Location = new System.Drawing.Point(639, 382);
             this.btnABLineOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABLineOk.Name = "btnABLineOk";
-            this.btnABLineOk.Size = new System.Drawing.Size(100, 80);
+            this.btnABLineOk.Size = new System.Drawing.Size(125, 80);
             this.btnABLineOk.TabIndex = 62;
             this.btnABLineOk.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnABLineOk.UseVisualStyleBackColor = true;
@@ -215,8 +215,9 @@
             // tboxHeading
             // 
             this.tboxHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxHeading.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxHeading.Font = new System.Drawing.Font("Tahoma", 21.75F);
-            this.tboxHeading.Location = new System.Drawing.Point(547, 140);
+            this.tboxHeading.Location = new System.Drawing.Point(547, 135);
             this.tboxHeading.MaxLength = 10;
             this.tboxHeading.Name = "tboxHeading";
             this.tboxHeading.Size = new System.Drawing.Size(176, 43);
@@ -426,7 +427,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(784, 467);
+            this.ClientSize = new System.Drawing.Size(780, 463);
             this.ControlBox = false;
             this.Controls.Add(this.tboxABLineName);
             this.Controls.Add(this.label4);

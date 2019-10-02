@@ -16,6 +16,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+            nudTreeSpacing.Controls[0].Enabled = false;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -43,11 +44,11 @@ namespace AgOpenGPS
                     if (wasRed) btnZeroDistance.BackColor = Color.DarkSeaGreen;
                     else btnZeroDistance.BackColor = Color.LightGreen;
                 }
-                btnZeroDistance.Text = "Stop";
+                btnZeroDistance.Text = gStr.gsStop;
             }
             else
             {
-                btnZeroDistance.Text = "Start";
+                btnZeroDistance.Text = gStr.gsStart;
             }
 
             lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
@@ -98,8 +99,22 @@ namespace AgOpenGPS
             mf.vehicle.treeSpacing = (double)nudTreeSpacing.Value;
         }
 
+        private void NudTreeSpacing_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnStop.Focus();
+        }
+
         private void FormTreePlant_Load(object sender, EventArgs e)
         {
+            //Set Language
+            label12.Text = gStr.gsSpacing;
+            label1.Text = gStr.gsStep;
+            btnZeroDistance.Text = gStr.gsBegin;
+            btnStop.Text = gStr.gsDone;
+            label3.Text = gStr.gsTrees;
+            this.Text = gStr.gsTree_Plant_Control;
+
             if (mf.manualBtnState != AgOpenGPS.FormGPS.btnStates.Off)
             {
                 mf.btnManualOffOn.PerformClick();
@@ -112,7 +127,7 @@ namespace AgOpenGPS
             mf.treeSpacingCounter = 0;
             trees = 0;
             isRunning = false;
-            btnZeroDistance.Text = "Start";
+            btnZeroDistance.Text = gStr.gsStart;
             btnZeroDistance.BackColor = Color.OrangeRed;
         }
     }

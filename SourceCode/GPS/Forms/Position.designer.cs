@@ -17,9 +17,6 @@ namespace AgOpenGPS
         // autosteer variables for sending serial
         public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle;
 
-        //how far between new section triangle trigger
-        public double triangleResolution = 1.0;
-
         //how many fix updates per sec
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
@@ -53,8 +50,6 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;
         public vec2 prevSectionPos = new vec2(0, 0);
 
-        //step distances and positions for boundary, 4 meters before next point
-        public double boundaryTriggerDistance = 4.0;
         public vec2 prevBoundaryPos = new vec2(0, 0);
 
         //are we still getting valid data from GPS, resets to 0 in NMEA OGI block, watchdog 
@@ -289,7 +284,7 @@ namespace AgOpenGPS
 
                 //test if travelled far enough for new boundary point
                 double boundaryDistance = glm.Distance(pn.fix, prevBoundaryPos);
-                if (boundaryDistance > boundaryTriggerDistance) AddBoundaryAndPerimiterPoint();
+                if (boundaryDistance > 1) AddBoundaryAndPerimiterPoint();
 
                 //calc distance travelled since last GPS fix
                 distance = glm.Distance(pn.fix, prevFix);
@@ -692,7 +687,7 @@ namespace AgOpenGPS
 
             //finally determine distance
             if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance *
-                metersPerSec * triangleResolution * 2.0 + 1.0;
+                metersPerSec * 2.0 + 1.0;
             else sectionTriggerStepDistance = 1.0;
 
             //check to make sure the grid is big enough

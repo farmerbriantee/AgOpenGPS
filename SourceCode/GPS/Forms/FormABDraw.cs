@@ -28,9 +28,7 @@ namespace AgOpenGPS
 
         private void BtnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
-                            "Enter a name and Click Save if Required.\r\n" +
-                            " Click new points make more lines");
+            MessageBox.Show(gStr.gsMessage_ABDraw);
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -148,7 +146,7 @@ namespace AgOpenGPS
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + "\n Cannot write to file.");
+                    Console.WriteLine(er.Message + "\n " + gStr.gsCannot_write_file_mess);
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -369,7 +367,12 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
+            //Set language
+            btnExit.Text = gStr.gsExit;
+            label4.Text = gStr.gsEnter_Line_Name;
+            label1.Text = gStr.gsEnter_Curve_Name;
 
+            this.Text = gStr.gsClick_2_points_Boundary;
             int cnt = mf.bnd.bndArr[0].bndLine.Count;
             arr = new vec3[cnt*2];
 
