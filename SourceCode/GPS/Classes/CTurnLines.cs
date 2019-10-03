@@ -122,7 +122,10 @@ namespace AgOpenGPS
             }
 
             //make sure headings are correct for calculated points
-            CalculateTurnHeadings();
+            if(turnLine.Count > 0)
+            {
+                CalculateTurnHeadings();
+            }
         }
 
         public void PreCalcTurnLines()
