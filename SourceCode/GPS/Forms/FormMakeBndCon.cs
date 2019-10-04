@@ -11,6 +11,12 @@ namespace AgOpenGPS
         {
             mf = _mf as FormGPS;
             InitializeComponent();
+
+            lblHz.Text = gStr.gsPass;
+            label1.Text = gStr.gsSpacing;
+
+            this.Text = gStr.gsMakeBoundaryContours;
+
             nudPass.Controls[0].Enabled = false;
             nudSpacing.Controls[0].Enabled = false;
         }

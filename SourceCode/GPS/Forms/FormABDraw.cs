@@ -26,6 +26,18 @@ namespace AgOpenGPS
 
         public vec2 lastABLineP2 = new vec2(0.0, 1.0);
 
+        public FormABDraw(Form callingForm)
+        {
+            //get copy of the calling main form
+            mf = callingForm as FormGPS;
+
+            InitializeComponent();
+
+            lblCurveName.Text = gStr.gsEnterCurveName;
+            lblLineName.Text = gStr.gsEnterLineName;
+        }
+
+
         private void BtnHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
@@ -526,14 +538,6 @@ namespace AgOpenGPS
             else btnSaveABLine.Enabled = true;
             if (String.IsNullOrEmpty(tboxCurveSaveName.Text)) btnSaveABCurve.Enabled = false;
             else btnSaveABCurve.Enabled = true;
-        }
-
-        public FormABDraw(Form callingForm)
-        {
-            //get copy of the calling main form
-            mf = callingForm as FormGPS;
-
-            InitializeComponent();
         }
 
         //determine mins maxs of patches and whole field.

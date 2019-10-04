@@ -20,6 +20,18 @@ namespace AgOpenGPS
             mf = _callingForm as FormGPS;
 
             InitializeComponent();
+
+            label1.Text = gStr.gsEnterFieldName;
+            label2.Text = gStr.gsDateWillBeAdded;
+            label3.Text = gStr.gsBasedOnField;
+            label4.Text = gStr.gsEnterTask;
+            label5.Text = gStr.gsEnterVehicleUsed;
+
+            btnTemplate.Text = gStr.gsCloneFrom;
+
+            this.Text = gStr.gsCreateNewField;
+            lblTemplateChosen.Text = gStr.gsNoneUsed;
+
         }
 
         private void FormFieldDir_Load(object sender, EventArgs e)

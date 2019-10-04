@@ -22,7 +22,7 @@ namespace AgOpenGPS {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class gStr {
+    public class gStr {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace AgOpenGPS {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AgOpenGPS.gStr", typeof(gStr).Assembly);
@@ -51,7 +51,7 @@ namespace AgOpenGPS {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,36 +61,333 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;&lt; &gt;&gt; Snap Distance.
+        /// </summary>
+        public static string gs____SnapDistance {
+            get {
+                return ResourceManager.GetString("gs<<>>SnapDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt; &gt; Snap Distance.
+        /// </summary>
+        public static string gs__SnapDistance {
+            get {
+                return ResourceManager.GetString("gs<>SnapDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to # Of Sections.
+        /// </summary>
+        public static string gs_OfSections {
+            get {
+                return ResourceManager.GetString("gs#OfSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABLine file is Corrupt.
+        /// </summary>
+        public static string gsABLineFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsABLineFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        public static string gsAbout {
+            get {
+                return ResourceManager.GetString("gsAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Action Has Been Cancelled.
+        /// </summary>
+        public static string gsActionHasBeenCancelled {
+            get {
+                return ResourceManager.GetString("gsActionHasBeenCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active Low.
+        /// </summary>
+        public static string gsActiveLow {
+            get {
+                return ResourceManager.GetString("gsActiveLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AgOpenGPS - Be So Good They Can\&apos;t Ignore You.
+        /// </summary>
+        public static string gsAgOpenGPSBeSoGoodThey {
+            get {
+                return ResourceManager.GetString("gsAgOpenGPSBeSoGoodThey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Antenna.
+        /// </summary>
+        public static string gsAntenna {
+            get {
+                return ResourceManager.GetString("gsAntenna", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Will Exit, Plz Restart.
+        /// </summary>
+        public static string gsApplicationWillExitPlzRestart {
+            get {
+                return ResourceManager.GetString("gsApplicationWillExitPlzRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        public static string gsArea {
+            get {
+                return ResourceManager.GetString("gsArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure ?.
+        /// </summary>
+        public static string gsAreYouSure {
+            get {
+                return ResourceManager.GetString("gsAreYouSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Around.
+        /// </summary>
+        public static string gsAround {
+            get {
+                return ResourceManager.GetString("gsAround", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At Socket Connect.
+        /// </summary>
+        public static string gsAtSocketConnect {
+            get {
+                return ResourceManager.GetString("gsAtSocketConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authourizing.
+        /// </summary>
+        public static string gsAuthourizing {
+            get {
+                return ResourceManager.GetString("gsAuthourizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        public static string gsAuto {
+            get {
+                return ResourceManager.GetString("gsAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto / Manual Autosteer Btn.
+        /// </summary>
+        public static string gsAutoManualAutosteerBtn {
+            get {
+                return ResourceManager.GetString("gsAutoManualAutosteerBtn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Steer.
+        /// </summary>
+        public static string gsAutoSteer {
+            get {
+                return ResourceManager.GetString("gsAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Steer Port.
+        /// </summary>
+        public static string gsAutoSteerPort {
+            get {
+                return ResourceManager.GetString("gsAutoSteerPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Based on Field:.
+        /// </summary>
+        public static string gsBasedOnField {
+            get {
+                return ResourceManager.GetString("gsBasedOnField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baud.
+        /// </summary>
+        public static string gsBaud {
+            get {
+                return ResourceManager.GetString("gsBaud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Be sure to save vehicle if you did.
+        /// </summary>
+        public static string gsBesuretosavevehicleifyoudid {
+            get {
+                return ResourceManager.GetString("gsBesuretosavevehicleifyoudid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boundary.
+        /// </summary>
+        public static string gsBoundary {
+            get {
+                return ResourceManager.GetString("gsBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boundary Line Files are Corrupt.
+        /// </summary>
+        public static string gsBoundaryLineFilesAreCorrupt {
+            get {
+                return ResourceManager.GetString("gsBoundaryLineFilesAreCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Boundary Not Set or No Guidance line set.
         /// </summary>
-        internal static string gsBoundaryNotSet {
+        public static string gsBoundaryNotSetOrNoGuidanceLineSet {
             get {
-                return ResourceManager.GetString("gsBoundaryNotSet", resourceCulture);
+                return ResourceManager.GetString("gsBoundaryNotSetOrNoGuidanceLineSet", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Boundary Too Small To Create a Headland.
         /// </summary>
-        internal static string gsBoundaryTooSmall {
+        public static string gsBoundaryTooSmallToCreateAHeadland {
             get {
-                return ResourceManager.GetString("gsBoundaryTooSmall", resourceCulture);
+                return ResourceManager.GetString("gsBoundaryTooSmallToCreateAHeadland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to But Field is Loaded.
+        /// </summary>
+        public static string gsButFieldIsLoaded {
+            get {
+                return ResourceManager.GetString("gsButFieldIsLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string gsCancel {
+            get {
+                return ResourceManager.GetString("gsCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot Find: .
+        /// </summary>
+        public static string gsCannotFind {
+            get {
+                return ResourceManager.GetString("gsCannotFind", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Centimeters.
+        /// </summary>
+        public static string gsCentimeters {
+            get {
+                return ResourceManager.GetString("gsCentimeters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose....
+        /// </summary>
+        public static string gsChoose {
+            get {
+                return ResourceManager.GetString("gsChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a different field.
+        /// </summary>
+        public static string gsChooseADifferentField {
+            get {
+                return ResourceManager.GetString("gsChooseADifferentField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a different name.
+        /// </summary>
+        public static string gsChooseADifferentName {
+            get {
+                return ResourceManager.GetString("gsChooseADifferentName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Click Button Again to Stop.
         /// </summary>
-        internal static string gsClickButtonAgainToStop {
+        public static string gsClickButtonAgainToStop {
             get {
                 return ResourceManager.GetString("gsClickButtonAgainToStop", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click Start to Resume.
+        /// </summary>
+        public static string gsClickStartToResume {
+            get {
+                return ResourceManager.GetString("gsClickStartToResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clone From.
+        /// </summary>
+        public static string gsCloneFrom {
+            get {
+                return ResourceManager.GetString("gsCloneFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Close Field.
         /// </summary>
-        internal static string gsCloseField {
+        public static string gsCloseField {
             get {
                 return ResourceManager.GetString("gsCloseField", resourceCulture);
             }
@@ -99,61 +396,430 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Close Field First.
         /// </summary>
-        internal static string gsCloseFieldFirst {
+        public static string gsCloseFieldFirst {
             get {
                 return ResourceManager.GetString("gsCloseFieldFirst", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to cm.
+        /// </summary>
+        public static string gsCM {
+            get {
+                return ResourceManager.GetString("gsCM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cm Per Lightbar Pixel.
+        /// </summary>
+        public static string gsCmPerLightbarPixel {
+            get {
+                return ResourceManager.GetString("gsCmPerLightbarPixel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Colors.
+        /// </summary>
+        public static string gsColors {
+            get {
+                return ResourceManager.GetString("gsColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete An AB Curve Line First.
+        /// </summary>
+        public static string gsCompleteAnABCurveLineFirst {
+            get {
+                return ResourceManager.GetString("gsCompleteAnABCurveLineFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect.
+        /// </summary>
+        public static string gsConnect {
+            get {
+                return ResourceManager.GetString("gsConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connecting In.
+        /// </summary>
+        public static string gsConnectingIn {
+            get {
+                return ResourceManager.GetString("gsConnectingIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contour File is Corrupt.
+        /// </summary>
+        public static string gsContourFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsContourFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t Generate Valid Path.
+        /// </summary>
+        public static string gsCouldntGenerateValidPath {
+            get {
+                return ResourceManager.GetString("gsCouldntGenerateValidPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string gsCreate {
+            get {
+                return ResourceManager.GetString("gsCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create a Boundary First.
+        /// </summary>
+        public static string gsCreateABoundaryFirst {
+            get {
+                return ResourceManager.GetString("gsCreateABoundaryFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create a Boundary and an ABLine or Curve First.
         /// </summary>
-        internal static string gsCreateBoundaryFirst {
+        public static string gsCreateBoundaryAndAnABLineFirst {
             get {
-                return ResourceManager.GetString("gsCreateBoundaryFirst", resourceCulture);
+                return ResourceManager.GetString("gsCreateBoundaryAndAnABLineFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create New Field.
+        /// </summary>
+        public static string gsCreateNewField {
+            get {
+                return ResourceManager.GetString("gsCreateNewField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve Line File is Corrupt.
+        /// </summary>
+        public static string gsCurveLineFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsCurveLineFileIsCorrupt", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ABCurve Not Enabled.
         /// </summary>
-        internal static string gsCurveNotOn {
+        public static string gsCurveNotOn {
             get {
                 return ResourceManager.GetString("gsCurveNotOn", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn ABCurve On.
+        ///   Looks up a localized string similar to ** Date will be added.
         /// </summary>
-        internal static string gsCurveTurnOn {
+        public static string gsDateWillBeAdded {
             get {
-                return ResourceManager.GetString("gsCurveTurnOn", resourceCulture);
+                return ResourceManager.GetString("gsDateWillBeAdded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string gsDelete {
+            get {
+                return ResourceManager.GetString("gsDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All.
+        /// </summary>
+        public static string gsDeleteAll {
+            get {
+                return ResourceManager.GetString("gsDeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete All Contours and Sections?.
+        /// </summary>
+        public static string gsDeleteAllContoursAndSections {
+            get {
+                return ResourceManager.GetString("gsDeleteAllContoursAndSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Applied Area.
+        /// </summary>
+        public static string gsDeleteAppliedArea {
+            get {
+                return ResourceManager.GetString("gsDeleteAppliedArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Contour Paths.
+        /// </summary>
+        public static string gsDeleteContourPaths {
+            get {
+                return ResourceManager.GetString("gsDeleteContourPaths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete For Sure?.
+        /// </summary>
+        public static string gsDeleteForSure {
+            get {
+                return ResourceManager.GetString("gsDeleteForSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Path.
+        /// </summary>
+        public static string gsDeletePath {
+            get {
+                return ResourceManager.GetString("gsDeletePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did you make changes to the vehicle?.
+        /// </summary>
+        public static string gsDidyoumakechangestothevehicle {
+            get {
+                return ResourceManager.GetString("gsDidyoumakechangestothevehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directories.
+        /// </summary>
+        public static string gsDirectories {
+            get {
+                return ResourceManager.GetString("gsDirectories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directory Exists.
+        /// </summary>
+        public static string gsDirectoryExists {
+            get {
+                return ResourceManager.GetString("gsDirectoryExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disconnect.
+        /// </summary>
+        public static string gsDisconnect {
+            get {
+                return ResourceManager.GetString("gsDisconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display.
+        /// </summary>
+        public static string gsDisplay {
+            get {
+                return ResourceManager.GetString("gsDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string gsDistance {
+            get {
+                return ResourceManager.GetString("gsDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done:.
+        /// </summary>
+        public static string gsDone_ {
+            get {
+                return ResourceManager.GetString("gsDone_", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Drawing Has Begun.
         /// </summary>
-        internal static string gsDrawingHasBegun {
+        public static string gsDrawingHasBegun {
             get {
                 return ResourceManager.GetString("gsDrawingHasBegun", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ft.
+        ///   Looks up a localized string similar to Drive Thru.
         /// </summary>
-        internal static string gsFeet {
+        public static string gsDriveThru {
             get {
-                return ResourceManager.GetString("gsFeet", resourceCulture);
+                return ResourceManager.GetString("gsDriveThru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elev:.
+        /// </summary>
+        public static string gsElev_ {
+            get {
+                return ResourceManager.GetString("gsElev_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Work Switch.
+        /// </summary>
+        public static string gsEnableWorkSwitch {
+            get {
+                return ResourceManager.GetString("gsEnableWorkSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Curve Name.
+        /// </summary>
+        public static string gsEnterCurveName {
+            get {
+                return ResourceManager.GetString("gsEnterCurveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Field Name.
+        /// </summary>
+        public static string gsEnterFieldName {
+            get {
+                return ResourceManager.GetString("gsEnterFieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Line Name.
+        /// </summary>
+        public static string gsEnterLineName {
+            get {
+                return ResourceManager.GetString("gsEnterLineName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Sim Coords.
+        /// </summary>
+        public static string gsEnterSimCoords {
+            get {
+                return ResourceManager.GetString("gsEnterSimCoords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Task.
+        /// </summary>
+        public static string gsEnterTask {
+            get {
+                return ResourceManager.GetString("gsEnterTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Unique AB Curve Name.
+        /// </summary>
+        public static string gsEnterUniqueABCurveName {
+            get {
+                return ResourceManager.GetString("gsEnterUniqueABCurveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Vehicle Used.
+        /// </summary>
+        public static string gsEnterVehicleUsed {
+            get {
+                return ResourceManager.GetString("gsEnterVehicleUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Examples.
+        /// </summary>
+        public static string gsExamples {
+            get {
+                return ResourceManager.GetString("gsExamples", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string gsExit {
+            get {
+                return ResourceManager.GetString("gsExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra Guides.
+        /// </summary>
+        public static string gsExtraGuides {
+            get {
+                return ResourceManager.GetString("gsExtraGuides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field.
+        /// </summary>
+        public static string gsField {
+            get {
+                return ResourceManager.GetString("gsField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field:.
+        /// </summary>
+        public static string gsField_ {
+            get {
+                return ResourceManager.GetString("gsField_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field File is Corrupt.
+        /// </summary>
+        public static string gsFieldFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsFieldFileIsCorrupt", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Field Is Open.
         /// </summary>
-        internal static string gsFieldIsOpen {
+        public static string gsFieldIsOpen {
             get {
                 return ResourceManager.GetString("gsFieldIsOpen", resourceCulture);
             }
@@ -162,25 +828,538 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Field Not Open.
         /// </summary>
-        internal static string gsFieldNotOpen {
+        public static string gsFieldNotOpen {
             get {
                 return ResourceManager.GetString("gsFieldNotOpen", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is your GPS source off?.
+        ///   Looks up a localized string similar to File.
         /// </summary>
-        internal static string gsIsGPSOff {
+        public static string gsFile {
             get {
-                return ResourceManager.GetString("gsIsGPSOff", resourceCulture);
+                return ResourceManager.GetString("gsFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Error.
+        /// </summary>
+        public static string gsFileError {
+            get {
+                return ResourceManager.GetString("gsFileError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        public static string gsFiles {
+            get {
+                return ResourceManager.GetString("gsFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flag File is Corrupt.
+        /// </summary>
+        public static string gsFlagFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsFlagFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flags GE.
+        /// </summary>
+        public static string gsFlagsGE {
+            get {
+                return ResourceManager.GetString("gsFlagsGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Auto Steer:.
+        /// </summary>
+        public static string gsFromAutoSteer {
+            get {
+                return ResourceManager.GetString("gsFromAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Section Port:.
+        /// </summary>
+        public static string gsFromSectionPort {
+            get {
+                return ResourceManager.GetString("gsFromSectionPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ft.
+        /// </summary>
+        public static string gsFt {
+            get {
+                return ResourceManager.GetString("gsFt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fused:.
+        /// </summary>
+        public static string gsFused {
+            get {
+                return ResourceManager.GetString("gsFused", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go!.
+        /// </summary>
+        public static string gsGo {
+            get {
+                return ResourceManager.GetString("gsGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go Around.
+        /// </summary>
+        public static string gsGo_Around {
+            get {
+                return ResourceManager.GetString("gsGo_Around", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go / Stop.
+        /// </summary>
+        public static string gsGoStop {
+            get {
+                return ResourceManager.GetString("gsGoStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPS Connected.
+        /// </summary>
+        public static string gsGPSConnected {
+            get {
+                return ResourceManager.GetString("gsGPSConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPS IMU.
+        /// </summary>
+        public static string gsGPSIMU {
+            get {
+                return ResourceManager.GetString("gsGPSIMU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPS Port.
+        /// </summary>
+        public static string gsGPSPort {
+            get {
+                return ResourceManager.GetString("gsGPSPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GPS source off.
+        /// </summary>
+        public static string gsGPSSourceOff {
+            get {
+                return ResourceManager.GetString("gsGPSSourceOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grid On.
+        /// </summary>
+        public static string gsGridOn {
+            get {
+                return ResourceManager.GetString("gsGridOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading / Roll.
+        /// </summary>
+        public static string gsHeadingRoll {
+            get {
+                return ResourceManager.GetString("gsHeadingRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Height.
+        /// </summary>
+        public static string gsHeight {
+            get {
+                return ResourceManager.GetString("gsHeight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string gsHelp {
+            get {
+                return ResourceManager.GetString("gsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        public static string gsHide {
+            get {
+                return ResourceManager.GetString("gsHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hitch Length.
+        /// </summary>
+        public static string gsHitchLength {
+            get {
+                return ResourceManager.GetString("gsHitchLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imperial.
+        /// </summary>
+        public static string gsImperial {
+            get {
+                return ResourceManager.GetString("gsImperial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inches.
+        /// </summary>
+        public static string gsInches {
+            get {
+                return ResourceManager.GetString("gsInches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inner.
+        /// </summary>
+        public static string gsInner {
+            get {
+                return ResourceManager.GetString("gsInner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to kmh.
+        /// </summary>
+        public static string gsKMH {
+            get {
+                return ResourceManager.GetString("gsKMH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string gsLanguage {
+            get {
+                return ResourceManager.GetString("gsLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Field Used.
+        /// </summary>
+        public static string gsLastFieldUsed {
+            get {
+                return ResourceManager.GetString("gsLastFieldUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lat:.
+        /// </summary>
+        public static string gsLat_ {
+            get {
+                return ResourceManager.GetString("gsLat_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left Is -.
+        /// </summary>
+        public static string gsLeftIs_ {
+            get {
+                return ResourceManager.GetString("gsLeftIs-", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LIDAR:.
+        /// </summary>
+        public static string gsLIDAR_ {
+            get {
+                return ResourceManager.GetString("gsLIDAR_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lidar On.
+        /// </summary>
+        public static string gsLidarOn {
+            get {
+                return ResourceManager.GetString("gsLidarOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lightbar On.
+        /// </summary>
+        public static string gsLightbarOn {
+            get {
+                return ResourceManager.GetString("gsLightbarOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line.
+        /// </summary>
+        public static string gsLine {
+            get {
+                return ResourceManager.GetString("gsLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listening.
+        /// </summary>
+        public static string gsListening {
+            get {
+                return ResourceManager.GetString("gsListening", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load KML.
+        /// </summary>
+        public static string gsLoadKML {
+            get {
+                return ResourceManager.GetString("gsLoadKML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Multi.
+        /// </summary>
+        public static string gsLoadMulti {
+            get {
+                return ResourceManager.GetString("gsLoadMulti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Vehicle.
+        /// </summary>
+        public static string gsLoadVehicle {
+            get {
+                return ResourceManager.GetString("gsLoadVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string gsLocation {
+            get {
+                return ResourceManager.GetString("gsLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log NMEA.
+        /// </summary>
+        public static string gsLogNMEA {
+            get {
+                return ResourceManager.GetString("gsLogNMEA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lon:.
+        /// </summary>
+        public static string gsLon {
+            get {
+                return ResourceManager.GetString("gsLon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Boundary Contours.
+        /// </summary>
+        public static string gsMakeBoundaryContours {
+            get {
+                return ResourceManager.GetString("gsMakeBoundaryContours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual.
+        /// </summary>
+        public static string gsManual {
+            get {
+                return ResourceManager.GetString("gsManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Measurements In.
+        /// </summary>
+        public static string gsMeasurementsIn {
+            get {
+                return ResourceManager.GetString("gsMeasurementsIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Metric.
+        /// </summary>
+        public static string gsMetric {
+            get {
+                return ResourceManager.GetString("gsMetric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Unapplied.
+        /// </summary>
+        public static string gsMinUnapplied {
+            get {
+                return ResourceManager.GetString("gsMinUnapplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing AB Curve File.
+        /// </summary>
+        public static string gsMissingABCurveFile {
+            get {
+                return ResourceManager.GetString("gsMissingABCurveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing AB Lines File.
+        /// </summary>
+        public static string gsMissingABLinesFile {
+            get {
+                return ResourceManager.GetString("gsMissingABLinesFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Boundary File.
+        /// </summary>
+        public static string gsMissingBoundaryFile {
+            get {
+                return ResourceManager.GetString("gsMissingBoundaryFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Contour File.
+        /// </summary>
+        public static string gsMissingContourFile {
+            get {
+                return ResourceManager.GetString("gsMissingContourFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Flags File.
+        /// </summary>
+        public static string gsMissingFlagsFile {
+            get {
+                return ResourceManager.GetString("gsMissingFlagsFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing Section File.
+        /// </summary>
+        public static string gsMissingSectionFile {
+            get {
+                return ResourceManager.GetString("gsMissingSectionFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mph.
+        /// </summary>
+        public static string gsMPH {
+            get {
+                return ResourceManager.GetString("gsMPH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Must be Version .
+        /// </summary>
+        public static string gsMustBeVersion {
+            get {
+                return ResourceManager.GetString("gsMustBeVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string gsNew {
+            get {
+                return ResourceManager.GetString("gsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No AB Curve Created.
+        /// </summary>
+        public static string gsNoABCurveCreated {
+            get {
+                return ResourceManager.GetString("gsNoABCurveCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No AB Line Active.
+        /// </summary>
+        public static string gsNoABLineActive {
+            get {
+                return ResourceManager.GetString("gsNoABLineActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Boundary.
+        /// </summary>
+        public static string gsNoBoundary {
+            get {
+                return ResourceManager.GetString("gsNoBoundary", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to No GPS.
         /// </summary>
-        internal static string gsNoGPS {
+        public static string gsNoGPS {
             get {
                 return ResourceManager.GetString("gsNoGPS", resourceCulture);
             }
@@ -189,54 +1368,1091 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to No Guidance Lines.
         /// </summary>
-        internal static string gsNoGuidanceLines {
+        public static string gsNoGuidanceLines {
             get {
                 return ResourceManager.GetString("gsNoGuidanceLines", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No IP Located.
+        /// </summary>
+        public static string gsNoIPLocated {
+            get {
+                return ResourceManager.GetString("gsNoIPLocated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Name Entered.
+        /// </summary>
+        public static string gsNoNameEntered {
+            get {
+                return ResourceManager.GetString("gsNoNameEntered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Selected.
+        /// </summary>
+        public static string gsNoneSelected {
+            get {
+                return ResourceManager.GetString("gsNoneSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Used.
+        /// </summary>
+        public static string gsNoneUsed {
+            get {
+                return ResourceManager.GetString("gsNoneUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *** No Sentence Data ***.
         /// </summary>
-        internal static string gsNoSentenceData {
+        public static string gsNoSentenceData {
             get {
                 return ResourceManager.GetString("gsNoSentenceData", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not Connecting to Caster.
+        /// </summary>
+        public static string gsNotConnectingToCaster {
+            get {
+                return ResourceManager.GetString("gsNotConnectingToCaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NothingDeleted.
+        /// </summary>
+        public static string gsNothingDeleted {
+            get {
+                return ResourceManager.GetString("gsNothingDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP.
+        /// </summary>
+        public static string gsNTRIP {
+            get {
+                return ResourceManager.GetString("gsNTRIP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Client Not Set Up.
+        /// </summary>
+        public static string gsNTRIPClientNotSetUp {
+            get {
+                return ResourceManager.GetString("gsNTRIPClientNotSetUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Not Connected.
+        /// </summary>
+        public static string gsNTRIPNotConnected {
+            get {
+                return ResourceManager.GetString("gsNTRIPNotConnected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Not Connected, Retrying.
+        /// </summary>
+        public static string gsNTRIPNotConnectedRetrying {
+            get {
+                return ResourceManager.GetString("gsNTRIPNotConnectedRetrying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Not Connected to Send GGA.
+        /// </summary>
+        public static string gsNTRIPNotConnectedToSendGGA {
+            get {
+                return ResourceManager.GetString("gsNTRIPNotConnectedToSendGGA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Off.
+        /// </summary>
+        public static string gsNTRIPOff {
+            get {
+                return ResourceManager.GetString("gsNTRIPOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NTRIP Restarting.
+        /// </summary>
+        public static string gsNTRIPRestarting {
+            get {
+                return ResourceManager.GetString("gsNTRIPRestarting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Off.
         /// </summary>
-        internal static string gsOff {
+        public static string gsOff {
             get {
                 return ResourceManager.GetString("gsOff", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offline.
+        /// </summary>
+        public static string gsOffline {
+            get {
+                return ResourceManager.GetString("gsOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset.
+        /// </summary>
+        public static string gsOffset {
+            get {
+                return ResourceManager.GetString("gsOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset Fix.
+        /// </summary>
+        public static string gsOffsetFix {
+            get {
+                return ResourceManager.GetString("gsOffsetFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string gsOpen {
+            get {
+                return ResourceManager.GetString("gsOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Original.
+        /// </summary>
+        public static string gsOriginal {
+            get {
+                return ResourceManager.GetString("gsOriginal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Outer.
+        /// </summary>
+        public static string gsOuter {
+            get {
+                return ResourceManager.GetString("gsOuter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pass #.
+        /// </summary>
+        public static string gsPass {
+            get {
+                return ResourceManager.GetString("gsPass", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause.
+        /// </summary>
+        public static string gsPause {
+            get {
+                return ResourceManager.GetString("gsPause", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause / Resume.
+        /// </summary>
+        public static string gsPauseResume {
+            get {
+                return ResourceManager.GetString("gsPauseResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please complete ABLine.
+        /// </summary>
+        public static string gsPleaseCompleteABLine {
+            get {
+                return ResourceManager.GetString("gsPleaseCompleteABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please Enter ABLine.
+        /// </summary>
+        public static string gsPleaseEnterABLine {
+            get {
+                return ResourceManager.GetString("gsPleaseEnterABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Polygon On.
+        /// </summary>
+        public static string gsPolygonsOn {
+            get {
+                return ResourceManager.GetString("gsPolygonsOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Port.
+        /// </summary>
+        public static string gsPort {
+            get {
+                return ResourceManager.GetString("gsPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ports.
+        /// </summary>
+        public static string gsPorts {
+            get {
+                return ResourceManager.GetString("gsPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PPS.
+        /// </summary>
+        public static string gsPPS {
+            get {
+                return ResourceManager.GetString("gsPPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Problem Making Path.
+        /// </summary>
+        public static string gsProblemMakingPath {
+            get {
+                return ResourceManager.GetString("gsProblemMakingPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program will exit. Please Restart.
         /// </summary>
-        internal static string gsProgramExitAndRestart {
+        public static string gsProgramWillExitPleaseRestart {
             get {
-                return ResourceManager.GetString("gsProgramExitAndRestart", resourceCulture);
+                return ResourceManager.GetString("gsProgramWillExitPleaseRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Program will Reset to Recover. Please Restart.
+        /// </summary>
+        public static string gsProgramWillResetToRecoverPleaseRestart {
+            get {
+                return ResourceManager.GetString("gsProgramWillResetToRecoverPleaseRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pursuit Line.
+        /// </summary>
+        public static string gsPursuitLine {
+            get {
+                return ResourceManager.GetString("gsPursuitLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Really Reset Everything?.
+        /// </summary>
+        public static string gsReallyResetEverything {
+            get {
+                return ResourceManager.GetString("gsReallyResetEverything", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record.
+        /// </summary>
+        public static string gsRecord {
+            get {
+                return ResourceManager.GetString("gsRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recorded Path File is Corrupt.
+        /// </summary>
+        public static string gsRecordedPathFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsRecordedPathFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record Elevation.
+        /// </summary>
+        public static string gsRecordElevation {
+            get {
+                return ResourceManager.GetString("gsRecordElevation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record / Stop.
+        /// </summary>
+        public static string gsRecordStop {
+            get {
+                return ResourceManager.GetString("gsRecordStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Relay.
+        /// </summary>
+        public static string gsRelay {
+            get {
+                return ResourceManager.GetString("gsRelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rescan Ports.
+        /// </summary>
+        public static string gsRescanPorts {
+            get {
+                return ResourceManager.GetString("gsRescanPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset All.
+        /// </summary>
+        public static string gsResetAll {
+            get {
+                return ResourceManager.GetString("gsResetAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restarting and Reconnecting to Caster.
+        /// </summary>
+        public static string gsRestartingAndReconnectingToCaster {
+            get {
+                return ResourceManager.GetString("gsRestartingAndReconnectingToCaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resume.
+        /// </summary>
+        public static string gsResume {
+            get {
+                return ResourceManager.GetString("gsResume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Resuming With New Settings.
+        /// </summary>
+        public static string gsResumingWithNewSettings {
+            get {
+                return ResourceManager.GetString("gsResumingWithNewSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Right Is +.
+        /// </summary>
+        public static string gsRightIs_ {
+            get {
+                return ResourceManager.GetString("gsRightIs+", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roll:.
+        /// </summary>
+        public static string gsRoll_ {
+            get {
+                return ResourceManager.GetString("gsRoll_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sats:.
+        /// </summary>
+        public static string gsSats_ {
+            get {
+                return ResourceManager.GetString("gsSats_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string gsSave {
+            get {
+                return ResourceManager.GetString("gsSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Return.
+        /// </summary>
+        public static string gsSaveAndReturn {
+            get {
+                return ResourceManager.GetString("gsSaveAndReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved In Folder: .
+        /// </summary>
+        public static string gsSavedInFolder {
+            get {
+                return ResourceManager.GetString("gsSavedInFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save vehicle.
+        /// </summary>
+        public static string gsSaveVehicle {
+            get {
+                return ResourceManager.GetString("gsSaveVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section.
+        /// </summary>
+        public static string gsSection {
+            get {
+                return ResourceManager.GetString("gsSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section File Is Corrupt.
+        /// </summary>
+        public static string gsSectionFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsSectionFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Port.
+        /// </summary>
+        public static string gsSectionPort {
+            get {
+                return ResourceManager.GetString("gsSectionPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sections Turn Off Below.
+        /// </summary>
+        public static string gsSectionsTurnOffBelow {
+            get {
+                return ResourceManager.GetString("gsSectionsTurnOffBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select A Field.
+        /// </summary>
+        public static string gsSelectAField {
+            get {
+                return ResourceManager.GetString("gsSelectAField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Boundary.
+        /// </summary>
+        public static string gsSelectBoundary {
+            get {
+                return ResourceManager.GetString("gsSelectBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sending GGA.
+        /// </summary>
+        public static string gsSendingGGA {
+            get {
+                return ResourceManager.GetString("gsSendingGGA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serial Ports.
+        /// </summary>
+        public static string gsSerialPorts {
+            get {
+                return ResourceManager.GetString("gsSerialPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shortcut Keys.
+        /// </summary>
+        public static string gsShortcutKeys {
+            get {
+                return ResourceManager.GetString("gsShortcutKeys", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show.
+        /// </summary>
+        public static string gsShow {
+            get {
+                return ResourceManager.GetString("gsShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Elevation Map.
+        /// </summary>
+        public static string gsShowElevationMap {
+            get {
+                return ResourceManager.GetString("gsShowElevationMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simulator Forced Off.
+        /// </summary>
+        public static string gsSimulatorForcedOff {
+            get {
+                return ResourceManager.GetString("gsSimulatorForcedOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simulator On.
+        /// </summary>
+        public static string gsSimulatorOn {
+            get {
+                return ResourceManager.GetString("gsSimulatorOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip Is - \r\n Overlap is +.
+        /// </summary>
+        public static string gsSkip_Overlap_ {
+            get {
+                return ResourceManager.GetString("gsSkip-Overlap+", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sky On.
+        /// </summary>
+        public static string gsSkyOn {
+            get {
+                return ResourceManager.GetString("gsSkyOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Smooth AB Curve.
+        /// </summary>
+        public static string gsSmoothABCurve {
+            get {
+                return ResourceManager.GetString("gsSmoothABCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Socket Connection Problem.
+        /// </summary>
+        public static string gsSocketConnectionProblem {
+            get {
+                return ResourceManager.GetString("gsSocketConnectionProblem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spacing (cm).
+        /// </summary>
+        public static string gsSpacing {
+            get {
+                return ResourceManager.GetString("gsSpacing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start.
+        /// </summary>
+        public static string gsStart {
+            get {
+                return ResourceManager.GetString("gsStart", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Start New Field.
         /// </summary>
-        internal static string gsStartNewField {
+        public static string gsStartNewField {
             get {
                 return ResourceManager.GetString("gsStartNewField", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Turn on Contour or Make AB Line.
+        ///   Looks up a localized string similar to Start or Delete A Boundary.
         /// </summary>
-        internal static string gsTurnOnContourOrABLine {
+        public static string gsStartOrDeleteABoundary {
             get {
-                return ResourceManager.GetString("gsTurnOnContourOrABLine", resourceCulture);
+                return ResourceManager.GetString("gsStartOrDeleteABoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer.
+        /// </summary>
+        public static string gsSteer {
+            get {
+                return ResourceManager.GetString("gsSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer Chart.
+        /// </summary>
+        public static string gsSteerChart {
+            get {
+                return ResourceManager.GetString("gsSteerChart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steering Front Or Back.
+        /// </summary>
+        public static string gsSteeringFrontOrBack {
+            get {
+                return ResourceManager.GetString("gsSteeringFrontOrBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop.
+        /// </summary>
+        public static string gsStop {
+            get {
+                return ResourceManager.GetString("gsStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stopped.
+        /// </summary>
+        public static string gsStopped {
+            get {
+                return ResourceManager.GetString("gsStopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switches.
+        /// </summary>
+        public static string gsSwitches {
+            get {
+                return ResourceManager.GetString("gsSwitches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template Cancelled.
+        /// </summary>
+        public static string gsTemplateCancelled {
+            get {
+                return ResourceManager.GetString("gsTemplateCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thru.
+        /// </summary>
+        public static string gsThru {
+            get {
+                return ResourceManager.GetString("gsThru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Left:.
+        /// </summary>
+        public static string gsTimeLeft_ {
+            get {
+                return ResourceManager.GetString("gsTimeLeft_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Auto Steer:.
+        /// </summary>
+        public static string gsToAutoSteer {
+            get {
+                return ResourceManager.GetString("gsToAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ToDo:.
+        /// </summary>
+        public static string gsToDo_ {
+            get {
+                return ResourceManager.GetString("gsToDo_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Drive By.
+        /// </summary>
+        public static string gsToggleDriveBy {
+            get {
+                return ResourceManager.GetString("gsToggleDriveBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle Drive Thru.
+        /// </summary>
+        public static string gsToggleDriveThru {
+            get {
+                return ResourceManager.GetString("gsToggleDriveThru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool.
+        /// </summary>
+        public static string gsTool {
+            get {
+                return ResourceManager.GetString("gsTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool Offset L/R.
+        /// </summary>
+        public static string gsToolOffsetLR {
+            get {
+                return ResourceManager.GetString("gsToolOffsetLR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool Width.
+        /// </summary>
+        public static string gsToolWidth {
+            get {
+                return ResourceManager.GetString("gsToolWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Section Port:.
+        /// </summary>
+        public static string gsToSectionPort {
+            get {
+                return ResourceManager.GetString("gsToSectionPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tow Between Disabled When
+        ///&lt; 200 cm or
+        ///&lt; 78 inches.
+        /// </summary>
+        public static string gsTowBetweenDisabledWhen {
+            get {
+                return ResourceManager.GetString("gsTowBetweenDisabledWhen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tow Between Length.
+        /// </summary>
+        public static string gsTowBetweenLength {
+            get {
+                return ResourceManager.GetString("gsTowBetweenLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tailing Hitch Length.
+        /// </summary>
+        public static string gsTrailingHitchLength {
+            get {
+                return ResourceManager.GetString("gsTrailingHitchLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree Planter.
+        /// </summary>
+        public static string gsTreePlanter {
+            get {
+                return ResourceManager.GetString("gsTreePlanter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn ABCurve On.
+        /// </summary>
+        public static string gsTurnABCurveOn {
+            get {
+                return ResourceManager.GetString("gsTurnABCurveOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turning Off Simulator.
+        /// </summary>
+        public static string gsTurningOffSimulator {
+            get {
+                return ResourceManager.GetString("gsTurningOffSimulator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turning On Simulator.
+        /// </summary>
+        public static string gsTurningOnSimulator {
+            get {
+                return ResourceManager.GetString("gsTurningOnSimulator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn Off Delay (secs).
+        /// </summary>
+        public static string gsTurnOffDelaySecs {
+            get {
+                return ResourceManager.GetString("gsTurnOffDelaySecs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn On Ahead (secs).
+        /// </summary>
+        public static string gsTurnOnAheadSecs {
+            get {
+                return ResourceManager.GetString("gsTurnOnAheadSecs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn on Contour Or Make AB Line.
+        /// </summary>
+        public static string gsTurnOnContourOrMakeABLine {
+            get {
+                return ResourceManager.GetString("gsTurnOnContourOrMakeABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn ON Ntrip Client.
+        /// </summary>
+        public static string gsTurnONNtripClient {
+            get {
+                return ResourceManager.GetString("gsTurnONNtripClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn Radius.
+        /// </summary>
+        public static string gsTurnRadius {
+            get {
+                return ResourceManager.GetString("gsTurnRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UDP.
+        /// </summary>
+        public static string gsUDP {
+            get {
+                return ResourceManager.GetString("gsUDP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Units.
+        /// </summary>
+        public static string gsUnits {
+            get {
+                return ResourceManager.GetString("gsUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Selected.
+        /// </summary>
+        public static string gsUseSelected {
+            get {
+                return ResourceManager.GetString("gsUseSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn.
+        /// </summary>
+        public static string gsUTurn {
+            get {
+                return ResourceManager.GetString("gsUTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        public static string gsVehicle {
+            get {
+                return ResourceManager.GetString("gsVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle file Is Corrupt.
+        /// </summary>
+        public static string gsVehicleFileIsCorrupt {
+            get {
+                return ResourceManager.GetString("gsVehicleFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle File Is Wrong Version.
+        /// </summary>
+        public static string gsVehicleFileIsWrongVersion {
+            get {
+                return ResourceManager.GetString("gsVehicleFileIsWrongVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Settings.
+        /// </summary>
+        public static string gsVehicleSettings {
+            get {
+                return ResourceManager.GetString("gsVehicleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting.
+        /// </summary>
+        public static string gsWaiting {
+            get {
+                return ResourceManager.GetString("gsWaiting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Waiting for GPS.
+        /// </summary>
+        public static string gsWaitingForGPS {
+            get {
+                return ResourceManager.GetString("gsWaitingForGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WebCam.
+        /// </summary>
+        public static string gsWebCam {
+            get {
+                return ResourceManager.GetString("gsWebCam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheelbase.
+        /// </summary>
+        public static string gsWheelbase {
+            get {
+                return ResourceManager.GetString("gsWheelbase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Width.
+        /// </summary>
+        public static string gsWidth {
+            get {
+                return ResourceManager.GetString("gsWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Switch.
+        /// </summary>
+        public static string gsWorkSwitch {
+            get {
+                return ResourceManager.GetString("gsWorkSwitch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Switch Controls Manual.
+        /// </summary>
+        public static string gsWorkSwitchControlsManual {
+            get {
+                return ResourceManager.GetString("gsWorkSwitchControlsManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yaw:.
+        /// </summary>
+        public static string gsYaw_ {
+            get {
+                return ResourceManager.GetString("gsYaw_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &gt;0&lt; Trip.
+        /// </summary>
+        public static string gsZeroTrip {
+            get {
+                return ResourceManager.GetString("gsZeroTrip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zone:.
+        /// </summary>
+        public static string gsZone_ {
+            get {
+                return ResourceManager.GetString("gsZone_", resourceCulture);
             }
         }
     }

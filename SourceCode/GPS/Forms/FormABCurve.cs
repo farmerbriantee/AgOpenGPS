@@ -19,6 +19,36 @@ namespace AgOpenGPS
         {
             mf = _mf as FormGPS;
             InitializeComponent();
+
+            lblEnterCurveName.Text = gStr.gsEnterCurveName;
+            btnMulti.Text = gStr.gsShow;
+            btnPausePlay.Text = gStr.gsPause;
+        }
+
+        private void FormABCurve_Load(object sender, EventArgs e)
+        {
+            btnPausePlay.Enabled = false;
+            btnAPoint.Enabled = true;
+            btnBPoint.Enabled = false;
+            mf.curve.isOkToAddPoints = false;
+
+            if (mf.curve.refList.Count > 3)
+            {
+                lblCurveExists.Text = "Curve Set";
+                btnABLineOk.Enabled = true;
+            }
+            else
+            {
+                mf.curve.ResetCurveLine();
+                lblCurveExists.Text = " > Off <";
+                btnABLineOk.Enabled = false;
+            }
+            lvLines.Clear();
+            curveArrs.Clear();
+            FormABCurve_LoadCurves();
+
+            this.Size = new System.Drawing.Size(280, 440);
+            btnMulti.Image = Properties.Resources.ArrowLeft;
         }
 
         //for calculating for display the averaged new line
@@ -134,20 +164,19 @@ namespace AgOpenGPS
                         else
                         {
                             //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                            var form2 = new FormTimedMessage(2000, "No Name Entered", "Enter Unique ABCurve Name");
+                            var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterUniqueABCurveName);
                             form2.Show();
                         }
                         textBox1.Clear();
                     }
                     else
                     {
-                        var form2 = new FormTimedMessage(2000, "No ABCurve Created", "Complete an ABCurve Line First");
+                        var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
                         form2.Show();
                     }
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + "\n Cannot write to file.");
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -238,10 +267,6 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            //mf.curve.ResetCurveLine();
-            //mf.FileSaveCurveLine();
-            //lblCurveExists.Text = " > Off <";
-
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
@@ -298,7 +323,6 @@ namespace AgOpenGPS
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + "\n Cannot write to file.");
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -364,43 +388,18 @@ namespace AgOpenGPS
             {
                 mf.curve.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
-                btnPausePlay.Text = "Record";
+                btnPausePlay.Text = gStr.gsRecord;
                 btnBPoint.Enabled = false;
             }
             else
             {
                 mf.curve.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
-                btnPausePlay.Text = "Pause";
+                btnPausePlay.Text = gStr.gsPause;
                 btnBPoint.Enabled = true;
             }
         }
 
-        private void FormABCurve_Load(object sender, EventArgs e)
-        {
-            btnPausePlay.Enabled = false;
-            btnAPoint.Enabled = true;
-            btnBPoint.Enabled = false;
-            mf.curve.isOkToAddPoints = false;
-
-            if (mf.curve.refList.Count > 3)
-            {
-                lblCurveExists.Text = "Curve Set";
-                btnABLineOk.Enabled = true;
-            }
-            else
-            {
-                mf.curve.ResetCurveLine();
-                lblCurveExists.Text = " > Off <";
-                btnABLineOk.Enabled = false;
-            }
-            lvLines.Clear();
-            curveArrs.Clear();
-            FormABCurve_LoadCurves();
-
-            this.Size = new System.Drawing.Size(280, 440);
-            btnMulti.Image = Properties.Resources.ArrowLeft;
-        }
 
         private void FormABCurve_LoadCurves()
         {
@@ -426,7 +425,7 @@ namespace AgOpenGPS
             { Directory.CreateDirectory(directoryName); }
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing CurveLines File, Critical Error");
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
             }
             else
             {
@@ -483,7 +482,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "Curve Line File is Corrupt", "But Field is Loaded");
+                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
                         form.Show();
                         mf.WriteErrorLog("Load Curve Line" + er.ToString());
                     }
@@ -502,10 +501,10 @@ namespace AgOpenGPS
                 btnAddToFile.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
-                label1.Visible = true;
+                lblEnterCurveName.Visible = true;
                 textBox1.Visible = true;
                 lvLines.Visible = true;
-                btnMulti.Text = "Hide";
+                btnMulti.Text = gStr.gsHide;
                 btnMulti.Image = Properties.Resources.ArrowRight;
             }
             else
@@ -514,10 +513,10 @@ namespace AgOpenGPS
                 btnAddToFile.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
-                label1.Visible = false;
+                lblEnterCurveName.Visible = false;
                 textBox1.Visible = false;
                 lvLines.Visible = false;
-                btnMulti.Text = "Save";
+                btnMulti.Text = gStr.gsShow;
                 btnMulti.Image = Properties.Resources.ArrowLeft;
             }
         }

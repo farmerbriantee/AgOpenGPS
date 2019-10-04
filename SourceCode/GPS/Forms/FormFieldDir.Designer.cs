@@ -83,12 +83,10 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSerialCancel.Location = new System.Drawing.Point(395, 325);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 77);
             this.btnSerialCancel.TabIndex = 4;
-            this.btnSerialCancel.Text = "Cancel";
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
@@ -97,7 +95,7 @@
             // 
             this.btnTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTemplate.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnTemplate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
+            this.btnTemplate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTemplate.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnTemplate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTemplate.ImeMode = System.Windows.Forms.ImeMode.NoControl;

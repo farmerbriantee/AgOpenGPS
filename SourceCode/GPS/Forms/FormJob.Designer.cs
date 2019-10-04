@@ -52,7 +52,7 @@
             this.btnJobOpen.Name = "btnJobOpen";
             this.btnJobOpen.Size = new System.Drawing.Size(305, 99);
             this.btnJobOpen.TabIndex = 3;
-            this.btnJobOpen.Text = "Open Existing";
+            this.btnJobOpen.Text = "Open";
             this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobOpen.UseVisualStyleBackColor = true;
             this.btnJobOpen.Click += new System.EventHandler(this.btnJobOpen_Click);
@@ -67,7 +67,7 @@
             this.btnJobNew.Name = "btnJobNew";
             this.btnJobNew.Size = new System.Drawing.Size(305, 99);
             this.btnJobNew.TabIndex = 2;
-            this.btnJobNew.Text = "Create New";
+            this.btnJobNew.Text = "New";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobNew.UseVisualStyleBackColor = true;
             this.btnJobNew.Click += new System.EventHandler(this.btnJobNew_Click);
@@ -77,13 +77,11 @@
             this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.back_button;
-            this.btnDeleteAB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.Location = new System.Drawing.Point(95, 504);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(189, 85);
             this.btnDeleteAB.TabIndex = 4;
-            this.btnDeleteAB.Text = "Go Back";
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnJobResume
@@ -96,7 +94,7 @@
             this.btnJobResume.Name = "btnJobResume";
             this.btnJobResume.Size = new System.Drawing.Size(305, 99);
             this.btnJobResume.TabIndex = 1;
-            this.btnJobResume.Text = "Resume Last";
+            this.btnJobResume.Text = "Resume";
             this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnJobResume.UseVisualStyleBackColor = true;
             this.btnJobResume.Click += new System.EventHandler(this.btnJobResume_Click);
@@ -151,7 +149,7 @@
             // btnOpenExistingLv
             // 
             this.btnOpenExistingLv.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 20.25F);
+            this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenExistingLv.Location = new System.Drawing.Point(576, 504);

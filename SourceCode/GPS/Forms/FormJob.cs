@@ -16,6 +16,16 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+
+            btnOpenExistingLv.Text = gStr.gsUseSelected;
+            btnJobOpen.Text = gStr.gsOpen;
+            btnJobNew.Text = gStr.gsNew;
+            btnJobResume.Text = gStr.gsResume;
+
+            lblChoose.Text = gStr.gsSelectAField;
+            label1.Text = gStr.gsLastFieldUsed;
+
+            this.Text = gStr.gsStartNewField;
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)

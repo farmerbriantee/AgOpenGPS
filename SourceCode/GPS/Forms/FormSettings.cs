@@ -39,6 +39,56 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            //Language keys
+            tabAntenna.Text = gStr.gsAntenna;
+            tabVehicle.Text = gStr.gsVehicle;
+            tabSections.Text = gStr.gsSection;
+            tabTool.Text = gStr.gsTool;
+            tabWorkSwitch.Text = gStr.gsSwitches;
+            tabExamples.Text = gStr.gsExamples;
+
+            label6.Text = gStr.gsTurnRadius;
+            label24.Text = gStr.gsHitchLength;
+            label26.Text = gStr.gsHitchLength;
+            label9.Text = gStr.gsLeftIs_;
+            label12.Text = gStr.gsLocation;
+            label15.Text = gStr.gsHeight;
+            label7.Text = gStr.gsOffset;
+            label4.Text = gStr.gsSteeringFrontOrBack;
+            label18.Text = gStr.gsDistance;
+            label25.Text = gStr.gsLeftIs_;
+            label13.Text = gStr.gsRightIs_;
+            label8.Text = gStr.gsTowBetweenLength;
+            label22.Text = gStr.gsTowBetweenDisabledWhen;
+
+            label23.Text = gStr.gsTurnOffDelaySecs;
+            label3.Text = gStr.gsTurnOnAheadSecs;
+            label19.Text = gStr.gsTrailingHitchLength;
+            label1.Text = gStr.gsSkip_Overlap_;
+            label5.Text = gStr.gsToolOffsetLR;
+            label41.Text = gStr.gsMinUnapplied;
+            lblTurnOffBelowUnits.Text = gStr.gsKMH;
+            label30.Text = gStr.gsSectionsTurnOffBelow;
+            label2.Text = gStr.gs_OfSections;
+
+            groupBox2.Text = gStr.gsCmPerLightbarPixel;
+            groupBox9.Text = gStr.gsAutoManualAutosteerBtn;
+            cboxAutoSteerAuto.Text = gStr.gsManual;
+            groupBox8.Text = gStr.gs__SnapDistance;
+            groupBox1.Text = gStr.gs____SnapDistance;
+            groupBox3.Text = gStr.gsWorkSwitch;
+            checkWorkSwitchManual.Text = gStr.gsWorkSwitchControlsManual;
+            chkWorkSwActiveLow.Text = gStr.gsActiveLow;
+            chkEnableWorkSwitch.Text = gStr.gsEnableWorkSwitch;
+            label17.Text = gStr.gsMeasurementsIn;
+            label16.Text = gStr.gsToolWidth;
+
+            Text = gStr.gsVehicleSettings;
+
+
+
+
             nudMinTurnRadius.Controls[0].Enabled = false;
             nudAntennaHeight.Controls[0].Enabled = false;
             nudAntennaOffset.Controls[0].Enabled = false;
@@ -50,7 +100,6 @@ namespace AgOpenGPS
             nudLookAhead.Controls[0].Enabled = false;
             nudMinApplied.Controls[0].Enabled = false;
             nudMinTurnRadius.Controls[0].Enabled = false;
-            //nudNumberOfSections.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
             nudOverlap.Controls[0].Enabled = false;
             nudSection1.Controls[0].Enabled = false;
@@ -75,12 +124,12 @@ namespace AgOpenGPS
             {
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
-                lblInchesCm.Text = "Centimeters";
+                lblInchesCm.Text = gStr.gsCentimeters;
                 lblSecTotalWidthFeet.Visible = false;
                 lblSecTotalWidthInches.Visible = false;
                 lblSecTotalWidthMeters.Visible = true;
-                lblDoNotExceed.Text = "* Do not exceed 5000 cm*";
-                lblTurnOffBelowUnits.Text = "Km/h";
+                lblDoNotExceed.Text = "* < 5000 cm*";
+                lblTurnOffBelowUnits.Text = gStr.gsKMH;
                 cutoffMetricImperial = 1;
                 maxWidth = 5000;
             }
@@ -88,12 +137,12 @@ namespace AgOpenGPS
             {
                 metImp2m = glm.in2m;
                 m2MetImp = glm.m2in;
-                lblInchesCm.Text = "Inches";
+                lblInchesCm.Text = gStr.gsInches;
                 lblSecTotalWidthFeet.Visible = true;
                 lblSecTotalWidthInches.Visible = true;
                 lblSecTotalWidthMeters.Visible = false;
-                lblDoNotExceed.Text = "* Do not exceed 1968 inches *";
-                lblTurnOffBelowUnits.Text = "MPH";
+                lblDoNotExceed.Text = "* < 1968 inches *";
+                lblTurnOffBelowUnits.Text = gStr.gsMPH;
                 cutoffMetricImperial = 1.60934;
                 maxWidth = 1968;
             }
@@ -176,12 +225,12 @@ namespace AgOpenGPS
             if (isAutoSteerAuto)
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Auto";
+                cboxAutoSteerAuto.Text = gStr.gsAuto;
             }
             else
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = "Manual";
+                cboxAutoSteerAuto.Text = gStr.gsManual;
             }
 
             //fix the min max based on inches - they are 2.54 times smaller then cm
@@ -735,12 +784,12 @@ namespace AgOpenGPS
             if (isAutoSteerAuto)
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = "Auto";
+                cboxAutoSteerAuto.Text = gStr.gsAuto;
             }
             else
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOff;
-                cboxAutoSteerAuto.Text = "Manual";
+                cboxAutoSteerAuto.Text = gStr.gsManual;
             }
         }
 

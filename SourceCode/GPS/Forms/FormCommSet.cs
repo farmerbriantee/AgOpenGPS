@@ -15,6 +15,28 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+            btnOpenSerial.Text = gStr.gsConnect;
+            btnOpenSerialArduino.Text = gStr.gsConnect;
+            btnOpenSerialAutoSteer.Text = gStr.gsConnect;
+            btnCloseSerial.Text = gStr.gsDisconnect;
+            btnCloseSerialArduino.Text = gStr.gsDisconnect;
+            btnCloseSerialAutoSteer.Text = gStr.gsDisconnect;
+            btnRescan.Text = gStr.gsRescanPorts;
+
+            label3.Text = gStr.gsToAutoSteer;
+            label6.Text = gStr.gsFromAutoSteer;
+            label2.Text = gStr.gsToSectionPort;
+            label15.Text = gStr.gsFromSectionPort;
+
+            groupBox1.Text = gStr.gsGPSPort;
+            groupBox3.Text = gStr.gsAutoSteerPort;
+            groupBox2.Text = gStr.gsSectionPort;
+
+            lblCurrentArduinoPort.Text = gStr.gsPort;
+            lblCurrentPort.Text = gStr.gsPort;
+            lblCurrentAutoSteerPort.Text = gStr.gsPort;
+            lblCurrentBaud.Text = gStr.gsBaud;
+
         }
 
         private void FormCommSet_Load(object sender, EventArgs e)
@@ -24,7 +46,7 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
 
             cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
-          usejrk.Checked = Properties.Settings.Default.isJRK  ;
+            usejrk.Checked = Properties.Settings.Default.isJRK  ;
 
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)
@@ -293,11 +315,6 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.isJRK = usejrk.Checked;
             Properties.Settings.Default.Save();
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
-
         }
     } //class
 } //namespace

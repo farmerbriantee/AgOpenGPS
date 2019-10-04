@@ -231,6 +231,68 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
+            btnManualAutoDrive.Text = gStr.gsAbout;
+
+            //file menu
+            fileToolStripMenuItem.Text = gStr.gsFile;
+            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
+            loadVehicleToolStripMenuItem.Text = gStr.gsLoadVehicle;
+            saveVehicleToolStripMenuItem.Text = gStr.gsSaveVehicle;
+            fieldToolStripMenuItem.Text = gStr.gsField;
+            aboutToolStripMenuItem.Text = gStr.gsAbout;
+            shortcutKeysToolStripMenuItem.Text = gStr.gsShortcutKeys;
+            menustripLanguage.Text = gStr.gsLanguage;
+                
+            //Display Menu
+            settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+            colorsToolStripMenuItem.Text = gStr.gsColors;
+            toolStripUnitsMenu.Text = gStr.gsUnits;
+            sideGuideLines.Text = gStr.gsExtraGuides;
+            gridToolStripMenuItem.Text = gStr.gsGridOn;
+            lightbarToolStripMenuItem.Text = gStr.gsLightbarOn;
+            logNMEAMenuItem.Text = gStr.gsLogNMEA;
+            polygonsToolStripMenuItem.Text = gStr.gsPolygonsOn;
+            pursuitLineToolStripMenuItem.Text = gStr.gsPursuitLine;
+            skyToolStripMenu.Text = gStr.gsSkyOn;
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+            metricToolStrip.Text = gStr.gsMetric;
+            imperialToolStrip.Text = gStr.gsImperial;
+            sectionToolStripMenuItem.Text = gStr.gsSection;
+            fieldToolStripMenuItem.Text = gStr.gsField;
+
+            //Settings Menu
+            toolstripYouTurnConfig.Text = gStr.gsUTurn;
+            toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
+            toolStripAutoSteerChart.Text = gStr.gsSteerChart;
+            toolstripVehicleConfig.Text = gStr.gsVehicle;
+            toolstripDisplayConfig.Text = gStr.gsHeadingRoll;
+            toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
+            toolstripUDPConfig.Text = gStr.gsUDP;
+            toolStripNTRIPConfig.Text = gStr.gsNTRIP;
+
+            //Tools Menu
+            treePlanterToolStripMenuItem.Text = gStr.gsTreePlanter;
+            toolStripBtnSmoothABCurve.Text = gStr.gsSmoothABCurve;
+            toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
+            toolStripAreYouSure.Text = gStr.gsAreYouSure;
+
+            //Recorded Path
+            deletePathMenu.Text = gStr.gsDeletePath;
+            recordPathMenu.Text = gStr.gsRecordStop;
+            goPathMenu.Text = gStr.gsGoStop;
+            pausePathMenu.Text = gStr.gsPauseResume;
+
+            //Start Menu
+            toolstripField.Text = gStr.gsField;
+            toolstripExit.Text = gStr.gsExit;
+            toolstripBoundary.Text = gStr.gsBoundary;
+            toolstripResetTrip.Text = gStr.gsZeroTrip;
+
+
             //build the gesture structures
             SetupStructSizes();
 
@@ -437,12 +499,12 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setNTRIP_isOn)
             {
                 isNTRIP_RequiredOn = true;
-                btnStartStopNtrip.Text = "Stop";
+                btnStartStopNtrip.Text = gStr.gsStop;
             }
             else
             {
                 isNTRIP_RequiredOn = false;
-                btnStartStopNtrip.Text = "Start";
+                btnStartStopNtrip.Text = gStr.gsStart;
             }
 
             //remembered window position
@@ -760,7 +822,7 @@ namespace AgOpenGPS
             if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
             {
                 //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmallToCreateAHeadland); return; }
                 //if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
                 using (var form = new FormElev(this))
@@ -771,7 +833,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSetOrNoGuidanceLineSet, gStr.gsCreateBoundaryAndAnABLineFirst); }
         }
 
         private void NudElevation_ValueChanged(object sender, EventArgs e)
@@ -1144,7 +1206,7 @@ namespace AgOpenGPS
             {
                 if (stripOnlineGPS.Value == 1)
                 {
-                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsIsGPSOff);
+                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
                     form.Show();
                     return;
                 }
