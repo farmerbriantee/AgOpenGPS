@@ -1,6 +1,8 @@
 
 # AgOpenGPS  ****  Guidance software
 
+[![Build status](https://dev.azure.com/buttontate/AgOpenGPS/_apis/build/status/AgOpenGPS-CI)](https://dev.azure.com/buttontate/AgOpenGPS/_build/latest?definitionId=2)
+
 https://agopengps.jimdosite.com/
 
 Discussed in detail http://www.thecombineforum.com/forums/31-technology/278810-agopengps.html
