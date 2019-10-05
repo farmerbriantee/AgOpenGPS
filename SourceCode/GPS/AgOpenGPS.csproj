@@ -465,6 +465,7 @@
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.de.resx" />
     <EmbeddedResource Include="gStr.fr.resx" />
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

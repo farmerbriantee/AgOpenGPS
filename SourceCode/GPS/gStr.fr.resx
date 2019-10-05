@@ -120,19 +120,61 @@
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenne</value>
   </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Auto-guidage</value>
+  </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Frontière</value>
+    <value>Limite</value>
+  </data>
+  <data name="gsConnect" xml:space="preserve">
+    <value>Connexion</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
     <value>Répertoires</value>
   </data>
+  <data name="gsDisconnect" xml:space="preserve">
+    <value>Déconnecter</value>
+  </data>
   <data name="gsDisplay" xml:space="preserve">
     <value>Afficher</value>
+  </data>
+  <data name="gsExit" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Champ</value>
   </data>
   <data name="gsFile" xml:space="preserve">
     <value>Fichier</value>
   </data>
+  <data name="gsFromGPS" xml:space="preserve">
+    <value>De GPS</value>
+  </data>
+  <data name="gsHide" xml:space="preserve">
+    <value>Cacher</value>
+  </data>
+  <data name="gsListening" xml:space="preserve">
+    <value>Écoute</value>
+  </data>
+  <data name="gsLoadVehicle" xml:space="preserve">
+    <value>Charger le véhicule</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Nouveau</value>
+  </data>
+  <data name="gsSaveVehicle" xml:space="preserve">
+    <value>Enregistrer le véhicule</value>
+  </data>
+  <data name="gsShow" xml:space="preserve">
+    <value>Montrer</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
-    <value>Tourner le Rayon</value>
+    <value>Tourner le rayon</value>
+  </data>
+  <data name="gsVehicle" xml:space="preserve">
+    <value>Véhicule</value>
+  </data>
+  <data name="gsWheelbase" xml:space="preserve">
+    <value>Empattement</value>
   </data>
 </root>
