@@ -24,23 +24,25 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+
+            lblEnterName.Text = gStr.gsEnterLineName;
+            btnNewABLine.Text = gStr.gsNew;
+            btnShow.Text = gStr.gsShow;
         }
 
         private void FormABLine_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
             lvLines.Visible = false;
             label2.Visible = false;
             label3.Visible = false;
-            label4.Visible = false;
+            lblEnterName.Visible = false;
             tboxABLineName.Visible = false;
             nudBasedOnPass.Visible = false;
             nudTramRepeats.Visible = false;
             btnListDelete.Visible = false;
             btnListUse.Visible = false;
             btnAddToFile.Visible = false;
-            btnShow.Text = gStr.gsSave;
+            btnShow.Text = gStr.gsShow;
             btnShow.Image = Properties.Resources.ArrowLeft;
 
 
@@ -101,7 +103,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, gStr.gsFile_Error_mess, gStr.gsMissing_ABLines_file_mess);
+                mf.TimedMessageBox(2000, "File Error", "Missing AB Lines File, Critical Error");
             }
             else
             {
@@ -128,7 +130,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, gStr.gsABLineFile_Corrupt_mess,gStr.gsPlease_delete_mess);
+                        var form = new FormTimedMessage(2000, "ABLine File is Corrupt", "Please delete it!!!");
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }
@@ -138,27 +140,8 @@ namespace AgOpenGPS
                 if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
             }
         }
-        //Set language 
-        private void Set_Language()
-        {
-            label2.Text = gStr.gsRepeats;
-            label3.Text = gStr.gsStart;
-            btnTurnOffAB.Text = gStr.gsTurn_Off;
-            btnAddToFile.Text = gStr.gsAdd;
-            chName.Text = gStr.gsName;
-            chAngle.Text = gStr.gsAngle;
-            btnListDelete.Text = gStr.gsRemove;
-            btnListUse.Text = gStr.gsUse;
-            label1.Text = gStr.gsDriving_;
-            btnShow.Text = gStr.gsSave;
-            btnNewABLine.Text = gStr.gsNew;
-            label4.Text = gStr.gsEnter_Line_Name;
-            btnGetABForm.Text = gStr.gsNew;
-            this.Text = gStr.gsAB_Line;
 
-
-        }
-            private void BtnNewABLine_Click(object sender, EventArgs e)
+        private void BtnNewABLine_Click(object sender, EventArgs e)
         {
             this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
             tboxHeading.Text = "";
@@ -306,14 +289,14 @@ namespace AgOpenGPS
                     else
                     {
                         //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                        var form2 = new FormTimedMessage(2000, gStr.gsNo_Name_Entered_mess, gStr.gsPlease_Enter_ABLine_name_mess);
+                        var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterLineName);
                         form2.Show();
                     }
                 }
                 else
                 {
                     //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                    var form2 = new FormTimedMessage(2000, gStr.gsNo_ABLine_Active_mess, gStr.gsPlease_Complete_ABLine_First_mess);
+                    var form2 = new FormTimedMessage(2000, gStr.gsNoABLineActive, gStr.gsPleaseCompleteABLine);
                     form2.Show();
                 }
                 tboxABLineName.Clear();
@@ -394,9 +377,12 @@ namespace AgOpenGPS
 
         private void BtnUpABHeadingBy1_Click(object sender, EventArgs e)
         {
-            upDnHeading--;
-            if (upDnHeading < 0) upDnHeading = 359;
-            upDnHeading = (int)upDnHeading;
+            upDnHeading-=0.1;
+            upDnHeading = Math.Round(upDnHeading, 1);
+            if (upDnHeading < 0)
+            {
+                upDnHeading += 360;
+            }
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
@@ -404,8 +390,13 @@ namespace AgOpenGPS
 
         private void BtnDnABHeadingBy1_Click(object sender, EventArgs e)
         {
-            if ((upDnHeading++) > 358) upDnHeading = 0;
-            upDnHeading = (int)upDnHeading;
+            upDnHeading += 0.1;
+            upDnHeading = Math.Round(upDnHeading, 1);
+            if ((upDnHeading) > 359.9)
+            {
+                upDnHeading -= 360;
+            }
+            //upDnHeading = (int)upDnHeading;
             mf.ABLine.abHeading = glm.toRadians(upDnHeading);
             tboxHeading.Text = Convert.ToString(upDnHeading, CultureInfo.InvariantCulture);
             btnABLineOk.Enabled = true;
@@ -475,14 +466,14 @@ namespace AgOpenGPS
                 lvLines.Visible = true;
                 label2.Visible = true;
                 label3.Visible = true;
-                label4.Visible = true;
+                lblEnterName.Visible = true;
                 tboxABLineName.Visible = true;
                 nudBasedOnPass.Visible = true;
                 nudTramRepeats.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
                 btnAddToFile.Visible = true;
-                btnShow.Text = "Hide";
+                btnShow.Text = gStr.gsHide;
                 btnShow.Image = Properties.Resources.ArrowRight;
 
             }
@@ -492,16 +483,15 @@ namespace AgOpenGPS
                 lvLines.Visible = false;
                 label2.Visible = false;
                 label3.Visible = false;
-                label4.Visible = false;
+                lblEnterName.Visible = false;
                 tboxABLineName.Visible = false;
                 nudBasedOnPass.Visible = false;
                 nudTramRepeats.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
                 btnAddToFile.Visible = false;
-                btnShow.Text = "Save";
+                btnShow.Text = gStr.gsShow;
                 btnShow.Image = Properties.Resources.ArrowLeft;
-
             }
         }
 
@@ -511,24 +501,5 @@ namespace AgOpenGPS
             mf.GetAB();
             
         }
-
-        //private void NudLow_ValueChanged(object sender, EventArgs e)
-        //{
-        //    {
-        //        mf.turn.high = (double)nudHigh.Value / 100;
-        //        mf.turn.low = (double)nudLow.Value / 100;
-        //    }
-
-        //}
-
-        //private void NudHigh_ValueChanged(object sender, EventArgs e)
-        //{
-        //    {
-        //        mf.turn.high = (double)nudHigh.Value / 100;
-        //        mf.turn.low = (double)nudLow.Value / 100;
-        //    }
-
-        //}
     }
-
 }

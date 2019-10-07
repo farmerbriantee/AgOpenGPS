@@ -122,7 +122,12 @@ namespace AgOpenGPS
             }
 
             //make sure headings are correct for calculated points
-            CalculateTurnHeadings();
+
+            //Tate Button contributed this bug fix.
+            if (turnLine.Count > 0)
+            {
+                CalculateTurnHeadings();
+            }
         }
 
         public void PreCalcTurnLines()

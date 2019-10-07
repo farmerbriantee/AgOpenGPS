@@ -231,6 +231,68 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
+            btnManualAutoDrive.Text = gStr.gsAbout;
+
+            //file menu
+            fileToolStripMenuItem.Text = gStr.gsFile;
+            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
+            loadVehicleToolStripMenuItem.Text = gStr.gsLoadVehicle;
+            saveVehicleToolStripMenuItem.Text = gStr.gsSaveVehicle;
+            fieldToolStripMenuItem.Text = gStr.gsField;
+            aboutToolStripMenuItem.Text = gStr.gsAbout;
+            shortcutKeysToolStripMenuItem.Text = gStr.gsShortcutKeys;
+            menustripLanguage.Text = gStr.gsLanguage;
+                
+            //Display Menu
+            settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+            colorsToolStripMenuItem.Text = gStr.gsColors;
+            toolStripUnitsMenu.Text = gStr.gsUnits;
+            sideGuideLines.Text = gStr.gsExtraGuides;
+            gridToolStripMenuItem.Text = gStr.gsGridOn;
+            lightbarToolStripMenuItem.Text = gStr.gsLightbarOn;
+            logNMEAMenuItem.Text = gStr.gsLogNMEA;
+            polygonsToolStripMenuItem.Text = gStr.gsPolygonsOn;
+            pursuitLineToolStripMenuItem.Text = gStr.gsPursuitLine;
+            skyToolStripMenu.Text = gStr.gsSkyOn;
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+            metricToolStrip.Text = gStr.gsMetric;
+            imperialToolStrip.Text = gStr.gsImperial;
+            sectionToolStripMenuItem.Text = gStr.gsSection;
+            fieldToolStripMenuItem.Text = gStr.gsField;
+
+            //Settings Menu
+            toolstripYouTurnConfig.Text = gStr.gsUTurn;
+            toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
+            toolStripAutoSteerChart.Text = gStr.gsSteerChart;
+            toolstripVehicleConfig.Text = gStr.gsVehicle;
+            toolstripDisplayConfig.Text = gStr.gsHeadingRoll;
+            toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
+            toolstripUDPConfig.Text = gStr.gsUDP;
+            toolStripNTRIPConfig.Text = gStr.gsNTRIP;
+
+            //Tools Menu
+            treePlanterToolStripMenuItem.Text = gStr.gsTreePlanter;
+            toolStripBtnSmoothABCurve.Text = gStr.gsSmoothABCurve;
+            toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
+            toolStripAreYouSure.Text = gStr.gsAreYouSure;
+
+            //Recorded Path
+            deletePathMenu.Text = gStr.gsDeletePath;
+            recordPathMenu.Text = gStr.gsRecordStop;
+            goPathMenu.Text = gStr.gsGoStop;
+            pausePathMenu.Text = gStr.gsPauseResume;
+
+            //Start Menu
+            toolstripField.Text = gStr.gsField;
+            toolstripExit.Text = gStr.gsExit;
+            toolstripBoundary.Text = gStr.gsBoundary;
+            toolstripResetTrip.Text = gStr.gsZeroTrip;
+
+
             //build the gesture structures
             SetupStructSizes();
 
@@ -340,7 +402,6 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-            Set_Language ();
             //tooltips of controls
             ToolTip ToolTip1 = new ToolTip();
             ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
@@ -501,85 +562,7 @@ namespace AgOpenGPS
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
         }
-        //Set language 
-        private void Set_Language()
-        {
-            
 
-            fileToolStripMenuItem.Text = gStr.gsFile;
-            menustripLanguage.Text = gStr.gsLanguage;
-            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
-            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnter_Sim_Coords;
-            loadVehicleToolStripMenuItem.Text = gStr.gsLoad_Vehicle;
-            saveVehicleToolStripMenuItem.Text = gStr.gsSave_Vehicle;
-            fieldToolStripMenuItem.Text = gStr.gsStart_Field;
-            aboutToolStripMenuItem.Text = gStr.gsAbout;
-            shortcutKeysToolStripMenuItem.Text = gStr.gsShortcut_Keys;
-            settingsToolStripMenuItem.Text = gStr.gsDisplay;
-            resetALLToolStripMenuItem.Text = gStr.gsReset_ALL;
-            colorsToolStripMenuItem.Text = gStr.gsColors;
-            sectionToolStripMenuItem.Text = gStr.gsSection;
-            fieldToolStripMenuItem1.Text = gStr.gsField;
-            toolStripUnitsMenu.Text = gStr.gsUnits;
-            metricToolStrip.Text = gStr.gsMetric;
-            toolstripVehicleConfig.Text = gStr.gsVehicle;
-            imperialToolStrip.Text = gStr.gsImperial;
-            sideGuideLines.Text = gStr.gsExtra_Guides;
-            gridToolStripMenuItem.Text = gStr.gsGrid_On;
-            lightbarToolStripMenuItem.Text = gStr.gsLightbar_On;
-            logNMEAMenuItem.Text = gStr.gsLog_NMEA;
-            polygonsToolStripMenuItem.Text = gStr.gsPolygons_On;
-            pursuitLineToolStripMenuItem.Text = gStr.gsPursuit_Line;
-            skyToolStripMenu.Text = gStr.gsSky_On;
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulator_On;
-            deletePathMenu.Text = gStr.gsDelete_Path;
-            recordPathMenu.Text = gStr.gsRecord_Stop;
-            goPathMenu.Text = gStr.gsGo_Stop;
-            pausePathMenu.Text = gStr.gsPause_Resume;
-            stripEqWidth.Text = gStr.gsWidth;
-            toolStripDeleteApplied.Text = gStr.gsDelete_Applied_Area;
-            toolStripAreYouSure.Text = gStr.gsAre_You_sure;
-            deleteContourPathsToolStripMenuItem.Text = gStr.gsHide_Contour_Paths;
-            toolStripBtnMakeBndContour.Text = gStr.gsMake_Boundary_Contours;
-            toolStripBtnSmoothABCurve.Text = gStr.gsSmooth_AB_Curve;
-            treePlanterToolStripMenuItem.Text = gStr.gsTree_Planter;
-            toolstripUSBPortsConfig.Text = gStr.gsPorts;
-            toolstripDisplayConfig.Text = gStr.gsHeading_Roll;
-            toolStripAutoSteerChart.Text = gStr.gsSteer_Chart;
-            toolstripAutoSteerConfig.Text = gStr.gsAuto_Steer;
-            toolstripYouTurnConfig.Text = gStr.gsU_Turn;
-            toolstripField.Text = gStr.gsField;
-            toolstripBoundary.Text = gStr.gsBoundary;
-            toolstripResetTrip.Text = gStr.gs0_Trip;
-            toolstripExit.Text = AgOpenGPS.gStr.gsExit;
-            btnLidarOnOff.Text = gStr.gsLidar_On;
-            btnElevationMap.Text = gStr.gsShow_Elevation_Map;
-            btnManualAutoDrive.Text = gStr.gsAuto;
-            btnFixOffset.Text = gStr.gsOffset_Fix;
-            btnFlagsGoogleEarth.Text = gStr.gsFlags_GE;
-            btnWebCam.Text = gStr.gsWebCam;
-            btnHelp.Text = gStr.gsHelp;
-            btnFileExplorer.Text = gStr.gsFiles;
-            label25.Text = gStr.gsZone_;
-            label1.Text = gStr.gsLIDAR_;
-            label24.Text = gStr.gsSats_;
-            label22.Text = gStr.gsFused_;
-            label16.Text = gStr.gsElev_;
-            label19.Text = gStr.gsLat_;
-            label18.Text = gStr.gsLon_;
-            label10.Text = gStr.gsRoll_;
-            lblNTRIPSeconds.Text = gStr.gsNTRIP_Off;
-            label17.Text = gStr.gsTime_Left_;
-            label26.Text = gStr.gsDone_;
-            label35.Text = gStr.gsYaw_;
-            label33.Text = gStr.gsRoll_;
-            label11.Text = gStr.gsField_;
-            label14.Text = gStr.gsToDo_;
-            btnResetSim.Text = gStr.gsRst;
-            toolStripMenuOriginal.Text = gStr.gsOriginal;
-            toolStripMenuChoose.Text = gStr.gsChoose;
-            this.Text = gStr.gsAgOpenGPS_name;
-        }
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -824,13 +807,13 @@ namespace AgOpenGPS
             {
                 isLogElevation = false;
                 btnRecordElevation.Image = Properties.Resources.BoundaryRecord;
-                btnRecordElevation.Text = gStr.gsRecord_Elevation;
+                btnRecordElevation.Text = "Record Elevation";
             }
             else
             {
                 isLogElevation = true;
                 btnRecordElevation.Image = Properties.Resources.boundaryStop;
-                btnRecordElevation.Text = gStr.gsStop_Record;
+                btnRecordElevation.Text = "Stop Record";
             }
         }
 
@@ -839,7 +822,7 @@ namespace AgOpenGPS
             if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
             {
                 //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmallToCreateAHeadland); return; }
                 //if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
                 using (var form = new FormElev(this))
@@ -850,17 +833,12 @@ namespace AgOpenGPS
                     }
                 }
             }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            else { TimedMessageBox(3000, gStr.gsBoundaryNotSetOrNoGuidanceLineSet, gStr.gsCreateBoundaryAndAnABLineFirst); }
         }
 
         private void NudElevation_ValueChanged(object sender, EventArgs e)
         {
             sim.altitude = (double)nudElevation.Value;
-        }
-
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         public void GetAB()
@@ -1228,7 +1206,7 @@ namespace AgOpenGPS
             {
                 if (stripOnlineGPS.Value == 1)
                 {
-                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsIsGPSOff);
+                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
                     form.Show();
                     return;
                 }
@@ -1361,12 +1339,12 @@ namespace AgOpenGPS
                 case 3: //Relay 1
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos3, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos3, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos3, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos3, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
                     }
                     break;
@@ -1374,12 +1352,12 @@ namespace AgOpenGPS
                 case 4: //Relay 2
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos4, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos4, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos4, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos4, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
                     }
                     break;
@@ -1387,12 +1365,12 @@ namespace AgOpenGPS
                 case 5: //Relay 3
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos5, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos5, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos5, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos5, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
                     }
                     break;
@@ -1400,12 +1378,12 @@ namespace AgOpenGPS
                 case 6: //Relay 4
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos6, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos6, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos6, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos6, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
                     }
                     break;
@@ -1413,12 +1391,12 @@ namespace AgOpenGPS
                 case 7: //Relay 5
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos7, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos7, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos7, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos7, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
                     }
                     break;
@@ -1426,12 +1404,12 @@ namespace AgOpenGPS
                 case 8: //Relay 6
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos8, gStr.gsTurn_Off);
+                        TimedMessageBox(1000, seq.pos8, "Turn Off");
                         mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos8, gStr.gsTurn_On);
+                        TimedMessageBox(1000, seq.pos8, "Turn On");
                         mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
                     }
                     break;

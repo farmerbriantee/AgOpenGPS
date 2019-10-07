@@ -37,9 +37,6 @@ namespace AgOpenGPS
 
         private void FormUDp_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
-
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
@@ -75,29 +72,8 @@ namespace AgOpenGPS
 
             return IP4Address;
         }
-        //Set language 
-        private void Set_Language()
-        {
-            groupBox4.Text = gStr.gsAgOpenGPS_Server;
-            label11.Text = gStr.gsAll_modules_send_to;
-            tboxHostName.Text = gStr.gsHostName;
-            label14.Text = gStr.gsHost;
-            label1.Text = gStr.gsThis_Computer;
-            label9.Text = gStr.gsPort;
-            label7.Text = gStr.gsYou_must_RESTART_AgOpenGPS + "\r\n";
-            btnSerialOK.Text = gStr.gsSave;
-            label4.Text = gStr.gsModule_Port;
-            label6.Text = gStr.gsPort;
-            groupBox1.Text = gStr.gsModule_Adress_and_Ports;
-            label8.Text = gStr.gsAll_modules_use;
-            cboxIsUDPOn.Text = gStr.gsUDP_On;
-            groupBox2.Text = gStr.gsNetworking;
-            this.Text = gStr.gsEthernet_Configuration;
 
-        }
-
-
-            public Boolean CheckIPValid(String strIP)
+        public Boolean CheckIPValid(String strIP)
         {
             //  Split string by ".", check that array length is 3
             string[] arrOctets = strIP.Split('.');
@@ -129,7 +105,7 @@ namespace AgOpenGPS
             {
                 tboxAutoSteerIP.Text = "127.0.0.1";
                 tboxAutoSteerIP.Focus();
-                mf.TimedMessageBox(2000, gStr.gsInvalid_IP_Address, gStr.gsSet_to_Default_Local);
+                mf.TimedMessageBox(2000, "Invalid IP Address", "Set to Default Local 127.0.0.1");
             }
         }
 

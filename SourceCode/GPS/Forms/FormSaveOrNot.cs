@@ -28,11 +28,5 @@ namespace AgOpenGPS
             DialogResult = DialogResult.Ignore;
             Close();
         }
-
-        private void FormSaveOrNot_Load(object sender, EventArgs e)
-        {
-            label1.Text = gStr.gsSave_and_Exit;
-            label7.Text = gStr.gsReturn;
-        }
     }
 }

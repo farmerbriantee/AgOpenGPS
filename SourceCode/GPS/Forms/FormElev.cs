@@ -110,15 +110,6 @@ namespace AgOpenGPS
 
         private void OglElev_Load(object sender, EventArgs e)
         {
-            //Set Language
-            label7.Text = gStr.gsWater_Level;
-            lblBuildMap.Text = gStr.gsBuilding_Map_Wait;
-            label1.Text = gStr.gsZoom;
-            label5.Text = gStr.gsMin_;
-            label6.Text = gStr.gsDelta_;
-            label8.Text = gStr.gsMax_;
-            this.Text = gStr.gsFormElev;
-
             oglElev.MakeCurrent();
             GL.Enable(EnableCap.DepthTest);
             GL.DepthFunc(DepthFunction.Less);
@@ -362,14 +353,14 @@ namespace AgOpenGPS
                     }
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, gStr.gsElevationFile_Corrupt_mess, gStr.gsThis_is_bad_mess);
+                        var form = new FormTimedMessage(2000, "Elevation File is Corrupt", "This is bad");
                         form.Show();
                         mf.WriteErrorLog("Load Elevation Points" + e.ToString());
                     }
                 }
                 if (elevRecPts.Count < 10)
                 {
-                    var form2 = new FormTimedMessage(2000, gStr.gsElevationFile_Empty_mess, gStr.gsNothing_to_Generate_Terrain_mess);
+                    var form2 = new FormTimedMessage(2000, "Elevation File is Empty", "Nothing to Generate Terrain From");
                     form2.Show();
                     Close();
                     return false;
@@ -378,7 +369,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form = new FormTimedMessage(2000, gStr.gsElevationFile_Missing_mess, gStr.gsGoing_exit_back_mess);
+                var form = new FormTimedMessage(2000, "Elevation File is Missing", "Going to exit back");
                 form.Show();
                 Close();
                 return false;

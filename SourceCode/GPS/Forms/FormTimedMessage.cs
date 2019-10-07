@@ -28,10 +28,5 @@ namespace AgOpenGPS
         {
             Close();
         }
-
-        private void FormTimedMessage_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

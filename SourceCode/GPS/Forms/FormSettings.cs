@@ -39,6 +39,56 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            //Language keys
+            tabAntenna.Text = gStr.gsAntenna;
+            tabVehicle.Text = gStr.gsVehicle;
+            tabSections.Text = gStr.gsSection;
+            tabTool.Text = gStr.gsTool;
+            tabWorkSwitch.Text = gStr.gsSwitches;
+            tabExamples.Text = gStr.gsExamples;
+
+            label6.Text = gStr.gsTurnRadius;
+            label24.Text = gStr.gsHitchLength;
+            label26.Text = gStr.gsWheelbase;
+            label9.Text = gStr.gsLeftIs_;
+            label12.Text = gStr.gsLocation;
+            label15.Text = gStr.gsHeight;
+            label7.Text = gStr.gsOffset;
+            label4.Text = gStr.gsSteeringFrontOrBack;
+            label18.Text = gStr.gsDistance;
+            label25.Text = gStr.gsLeftIs_;
+            label13.Text = gStr.gsRightIs_;
+            label8.Text = gStr.gsTowBetweenLength;
+            label22.Text = gStr.gsTowBetweenDisabledWhen;
+
+            label23.Text = gStr.gsTurnOffDelaySecs;
+            label3.Text = gStr.gsTurnOnAheadSecs;
+            label19.Text = gStr.gsTrailingHitchLength;
+            label1.Text = gStr.gsSkip_Overlap_;
+            label5.Text = gStr.gsToolOffsetLR;
+            label41.Text = gStr.gsMinUnapplied;
+            lblTurnOffBelowUnits.Text = gStr.gsKMH;
+            label30.Text = gStr.gsSectionsTurnOffBelow;
+            label2.Text = gStr.gs_OfSections;
+
+            groupBox2.Text = gStr.gsCmPerLightbarPixel;
+            groupBox9.Text = gStr.gsAutoManualAutosteerBtn;
+            cboxAutoSteerAuto.Text = gStr.gsManual;
+            groupBox8.Text = gStr.gs__SnapDistance;
+            groupBox1.Text = gStr.gs____SnapDistance;
+            groupBox3.Text = gStr.gsWorkSwitch;
+            checkWorkSwitchManual.Text = gStr.gsWorkSwitchControlsManual;
+            chkWorkSwActiveLow.Text = gStr.gsActiveLow;
+            chkEnableWorkSwitch.Text = gStr.gsEnableWorkSwitch;
+            label17.Text = gStr.gsMeasurementsIn;
+            label16.Text = gStr.gsToolWidth;
+
+            Text = gStr.gsVehicleSettings;
+
+
+
+
             nudMinTurnRadius.Controls[0].Enabled = false;
             nudAntennaHeight.Controls[0].Enabled = false;
             nudAntennaOffset.Controls[0].Enabled = false;
@@ -50,7 +100,6 @@ namespace AgOpenGPS
             nudLookAhead.Controls[0].Enabled = false;
             nudMinApplied.Controls[0].Enabled = false;
             nudMinTurnRadius.Controls[0].Enabled = false;
-            //nudNumberOfSections.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
             nudOverlap.Controls[0].Enabled = false;
             nudSection1.Controls[0].Enabled = false;
@@ -79,8 +128,8 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Visible = false;
                 lblSecTotalWidthInches.Visible = false;
                 lblSecTotalWidthMeters.Visible = true;
-                lblDoNotExceed.Text = gStr.gsDo_not_exceed_5000_cm;
-                lblTurnOffBelowUnits.Text = "Km/h";
+                lblDoNotExceed.Text = "* < 5000 cm*";
+                lblTurnOffBelowUnits.Text = gStr.gsKMH;
                 cutoffMetricImperial = 1;
                 maxWidth = 5000;
             }
@@ -92,8 +141,8 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Visible = true;
                 lblSecTotalWidthInches.Visible = true;
                 lblSecTotalWidthMeters.Visible = false;
-                lblDoNotExceed.Text = gStr.gsDo_not_exceed_1968_inches;
-                lblTurnOffBelowUnits.Text = "MPH";
+                lblDoNotExceed.Text = "* < 1968 inches *";
+                lblTurnOffBelowUnits.Text = gStr.gsMPH;
                 cutoffMetricImperial = 1.60934;
                 maxWidth = 1968;
             }
@@ -104,8 +153,6 @@ namespace AgOpenGPS
         //do any field initializing for form here
         private void FormSettings_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
             nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
             lightbarCmPerPixie = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
@@ -342,55 +389,7 @@ namespace AgOpenGPS
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
         }
-        //Set language 
-        private void Set_Language()
-        {
-            tabVehicle.Text = gStr.gsVehicle;
-            label6.Text = gStr.gsMinimum_r_n_Radius;
-            label36.Text = gStr.gsTool_Attached;
-            label27.Text = gStr.gsTool_is;
-            label24.Text = gStr.gsHitchLength;
-            label26.Text = gStr.gsWheelbase;
-            tabAntenna.Text = gStr.gsAntenna;
-            label9.Text = gStr.gsLeft_is_negative;
-            label12.Text = gStr.gsAntenna_Location;
-            label15.Text = gStr.gsAntenna_Height;
-            label7.Text = gStr.gsAntenna_Offset;
-            label4.Text = gStr.gsSteering_Front_Back;
-            label18.Text = gStr.gsAntenna_Distance;
-            tabTool.Text = gStr.gsTool;
-            label25.Text = gStr.gsLeft_less;
-            label13.Text = gStr.gsRight_plus;
-            label22.Text = gStr.gsTow_Between_Disabled_When;
-            label8.Text = gStr.gsTow_Between_Length;
-            label23.Text = gStr.gsTurn_Off_Delay;
-            label3.Text = gStr.gsTurn_On_Ahead;
-            label19.Text = gStr.gsTrailing_Hitch_Length;
-            label1.Text = gStr.gsSkip_Overlap;
-            label5.Text = gStr.gsTool_Offset;
-            tabSections.Text = gStr.gsSections;
-            label41.Text = gStr.gsMin_UnApplied;
-            label30.Text = gStr.gsSections_Turn_Off_below;
-            label2.Text = gStr.gsSections;
-            tabGuidance.Text = gStr.gsGuidance;
-            groupBox2.Text = gStr.gscm_per_Lightbar_Pixel;
-            groupBox9.Text = gStr.gsAuto_manual_button;
-            cboxAutoSteerAuto.Text = gStr.gsManual;
-            groupBox8.Text = gStr.gsSnap_Distance_cm;
-            groupBox1.Text = gStr.gsSnap_Distance;
-            tabWorkSwitch.Text = gStr.gsSwitches ;
-            this.groupBox3.Text = gStr.gsWork_Switch;
-            checkWorkSwitchManual.Text = gStr.gsWork_Switch_Controls_Manual;
-            chkWorkSwActiveLow.Text = gStr.gsActive_Low;
-            chkEnableWorkSwitch.Text = gStr.gsEnable_Work_witch;
-            tabExamples.Text = gStr.gsExamples;
-            lblDoNotExceed.Text = gStr.gsDo_not_exceed_1570;
-            label17.Text = gStr.gsMeasurements_in;
-            label16.Text = gStr.gsTool_Width;
-            lblInchesCm.Text = gStr.gsInches;
-            bntOK.Text = gStr.gsSave;
-            this.Text = gStr.gsSettings;
-        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;

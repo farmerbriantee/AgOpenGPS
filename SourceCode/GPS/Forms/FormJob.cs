@@ -16,6 +16,16 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+
+            btnOpenExistingLv.Text = gStr.gsUseSelected;
+            btnJobOpen.Text = gStr.gsOpen;
+            btnJobNew.Text = gStr.gsNew;
+            btnJobResume.Text = gStr.gsResume;
+
+            lblChoose.Text = gStr.gsSelectAField;
+            label1.Text = gStr.gsLastFieldUsed;
+
+            this.Text = gStr.gsStartNewField;
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)
@@ -46,7 +56,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form2 = new FormTimedMessage(2000, gStr.gsNo_Fields_Created_mess, gStr.gsCreate_New_Field_First);
+                var form2 = new FormTimedMessage(2000, "No Fields Created", "Create a New Field First");
                 form2.Show();
                 ShowSavedPanel(false);
             }
@@ -71,8 +81,6 @@ namespace AgOpenGPS
 
         private void FormJob_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
             //check if directory and file exists, maybe was deleted etc
             if (String.IsNullOrEmpty(mf.currentFieldDirectory)) btnJobResume.Enabled = false;
             string directoryName = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
@@ -95,20 +103,8 @@ namespace AgOpenGPS
             ShowSavedPanel(false);
 
         }
-        //Set language 
-        private void Set_Language()
-        {
-            btnJobOpen.Text = gStr.gsOpen_Existing;
-            btnJobNew.Text = gStr.gsCreate_New;
-            btnDeleteAB.Text = gStr.gsGo_Back;
-            btnJobResume.Text = gStr.gsResume_Last;
-            label1.Text = gStr.gsLast_Field_Used;
-            chName.Text = gStr.gsField_Name;
-            lblChoose.Text = gStr.gsSelect_Field;
-            btnOpenExistingLv.Text = gStr.gsUse_Selected;
-            Text = gStr.gsStart_Field;
-        }
-            private void ShowSavedPanel(bool showPanel)
+
+        private void ShowSavedPanel(bool showPanel)
         {
             if (showPanel)
             {

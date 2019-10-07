@@ -40,7 +40,7 @@
             this.lblMessage.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.lblMessage.Location = new System.Drawing.Point(12, 20);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(145, 36);
+            this.lblMessage.Size = new System.Drawing.Size(115, 29);
             this.lblMessage.TabIndex = 0;
             this.lblMessage.Text = "Message";
             // 
@@ -56,13 +56,13 @@
             this.lblMessage2.Font = new System.Drawing.Font("Tahoma", 18F);
             this.lblMessage2.Location = new System.Drawing.Point(75, 71);
             this.lblMessage2.Name = "lblMessage2";
-            this.lblMessage2.Size = new System.Drawing.Size(154, 36);
+            this.lblMessage2.Size = new System.Drawing.Size(127, 29);
             this.lblMessage2.TabIndex = 1;
             this.lblMessage2.Text = "Message 2";
             // 
             // FormTimedMessage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 151);
             this.ControlBox = false;
@@ -76,7 +76,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AgOpenGPS Message";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FormTimedMessage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

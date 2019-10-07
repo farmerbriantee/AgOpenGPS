@@ -11,6 +11,12 @@ namespace AgOpenGPS
         {
             mf = _mf as FormGPS;
             InitializeComponent();
+
+            lblHz.Text = gStr.gsPass;
+            label1.Text = gStr.gsSpacing;
+
+            this.Text = gStr.gsMakeBoundaryContours;
+
             nudPass.Controls[0].Enabled = false;
             nudSpacing.Controls[0].Enabled = false;
         }
@@ -41,9 +47,6 @@ namespace AgOpenGPS
 
         private void FormMakeBndCon_Load(object sender, System.EventArgs e)
         {
-            lblHz.Text = gStr.gsPass_;
-            label1.Text = gStr.gsSpacing;
-            this.Text = gStr.gsMake_Boundary_Contour;
             btnCancel.Focus();
         }
     }

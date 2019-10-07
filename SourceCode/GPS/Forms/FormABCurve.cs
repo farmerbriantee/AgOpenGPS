@@ -19,6 +19,36 @@ namespace AgOpenGPS
         {
             mf = _mf as FormGPS;
             InitializeComponent();
+
+            lblEnterCurveName.Text = gStr.gsEnterCurveName;
+            btnMulti.Text = gStr.gsShow;
+            btnPausePlay.Text = gStr.gsPause;
+        }
+
+        private void FormABCurve_Load(object sender, EventArgs e)
+        {
+            btnPausePlay.Enabled = false;
+            btnAPoint.Enabled = true;
+            btnBPoint.Enabled = false;
+            mf.curve.isOkToAddPoints = false;
+
+            if (mf.curve.refList.Count > 3)
+            {
+                lblCurveExists.Text = "Curve Set";
+                btnABLineOk.Enabled = true;
+            }
+            else
+            {
+                mf.curve.ResetCurveLine();
+                lblCurveExists.Text = " > Off <";
+                btnABLineOk.Enabled = false;
+            }
+            lvLines.Clear();
+            curveArrs.Clear();
+            FormABCurve_LoadCurves();
+
+            this.Size = new System.Drawing.Size(280, 440);
+            btnMulti.Image = Properties.Resources.ArrowLeft;
         }
 
         //for calculating for display the averaged new line
@@ -134,20 +164,19 @@ namespace AgOpenGPS
                         else
                         {
                             //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                            var form2 = new FormTimedMessage(2000, "No Name Entered", "Enter Unique ABCurve Name");
+                            var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterUniqueABCurveName);
                             form2.Show();
                         }
                         textBox1.Clear();
                     }
                     else
                     {
-                        var form2 = new FormTimedMessage(2000, "No ABCurve Created", "Complete an ABCurve Line First");
+                        var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
                         form2.Show();
                     }
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + gStr.gsCannot_write_file_mess);
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -158,7 +187,7 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
             //clear out the reference list
-            lblCurveExists.Text = gStr.gsDriving;
+            lblCurveExists.Text = "Driving";
             mf.curve.ResetCurveLine();
 
             mf.curve.isOkToAddPoints = true;
@@ -225,23 +254,19 @@ namespace AgOpenGPS
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
                 mf.FileSaveCurveLine();
-                lblCurveExists.Text = gStr.gsCurve_Set;
+                lblCurveExists.Text = "Curve Set";
             }
             else
             {
                 mf.curve.isCurveSet = false;
                 mf.curve.refList?.Clear();
-                lblCurveExists.Text = " > " + gStr.gsOff + " <";
+                lblCurveExists.Text = " > Off <";
             }
             //Close();
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            //mf.curve.ResetCurveLine();
-            //mf.FileSaveCurveLine();
-            //lblCurveExists.Text = " > Off <";
-
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
@@ -298,7 +323,6 @@ namespace AgOpenGPS
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + gStr.gsYou_can_still_start_new_field_mess);
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -376,50 +400,8 @@ namespace AgOpenGPS
             }
         }
 
-        private void FormABCurve_Load(object sender, EventArgs e)
-        {
-            //Set language 
-            Set_Language();
-            btnPausePlay.Enabled = false;
-            btnAPoint.Enabled = true;
-            btnBPoint.Enabled = false;
-            mf.curve.isOkToAddPoints = false;
 
-            if (mf.curve.refList.Count > 3)
-            {
-                lblCurveExists.Text = gStr.gsCurve_Set;
-                btnABLineOk.Enabled = true;
-            }
-            else
-            {
-                mf.curve.ResetCurveLine();
-                lblCurveExists.Text = " > " + gStr.gsOff + " <";
-                btnABLineOk.Enabled = false;
-            }
-            lvLines.Clear();
-            curveArrs.Clear();
-            FormABCurve_LoadCurves();
-
-            this.Size = new System.Drawing.Size(280, 440);
-            btnMulti.Image = Properties.Resources.ArrowLeft;
-        }
-        //Set language 
-        private void Set_Language()
-        {
-            lblCurveExists.Text = " > " + gStr.gsOff + " <";
-            chField.Text = gStr.gsCurveLines;
-            label1.Text = gStr.gsEnter_Name;
-            label2.Text = gStr.gsStatus_;
-            btnMulti.Text = gStr.gsShow;
-            btnPausePlay.Text = gStr.gsPause;
-            btnCancel.Text = gStr.gsTurn_Off;
-            btnListUse.Text = gStr.gsUse;
-            btnAddToFile.Text = gStr.gsAdd;
-            btnListDelete.Text = gStr.gsRemove;
-            Text = gStr.gsAB_Curve;
-
-        }
-            private void FormABCurve_LoadCurves()
+        private void FormABCurve_LoadCurves()
         {
             //get the directory and make sure it exists, create if not
             string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
@@ -443,7 +425,7 @@ namespace AgOpenGPS
             { Directory.CreateDirectory(directoryName); }
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, gStr.gsFile_Error_mess, gStr.gsMissing_CurveLines_File);
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
             }
             else
             {
@@ -500,7 +482,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, gStr.gsCurve_Line_File_Corrupt_mess, gStr.gsBut_Field_Loaded);
+                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
                         form.Show();
                         mf.WriteErrorLog("Load Curve Line" + er.ToString());
                     }
@@ -519,7 +501,7 @@ namespace AgOpenGPS
                 btnAddToFile.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
-                label1.Visible = true;
+                lblEnterCurveName.Visible = true;
                 textBox1.Visible = true;
                 lvLines.Visible = true;
                 btnMulti.Text = gStr.gsHide;
@@ -531,10 +513,10 @@ namespace AgOpenGPS
                 btnAddToFile.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
-                label1.Visible = false;
+                lblEnterCurveName.Visible = false;
                 textBox1.Visible = false;
                 lvLines.Visible = false;
-                btnMulti.Text = gStr.gsSave;
+                btnMulti.Text = gStr.gsShow;
                 btnMulti.Image = Properties.Resources.ArrowLeft;
             }
         }

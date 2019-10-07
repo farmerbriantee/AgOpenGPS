@@ -37,7 +37,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cboxBaud = new System.Windows.Forms.ComboBox();
             this.cboxNMEAHz = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.lblCurrentPort = new System.Windows.Forms.Label();
             this.lblCurrentBaud = new System.Windows.Forms.Label();
             this.btnCloseSerial = new System.Windows.Forms.Button();
@@ -53,19 +52,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBoxSendArduino = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.usejrk = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtBoxSendAutoSteer = new System.Windows.Forms.TextBox();
             this.cboxASPort = new System.Windows.Forms.ComboBox();
             this.txtBoxRecvAutoSteer = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnOpenSerialAutoSteer = new System.Windows.Forms.Button();
             this.btnCloseSerialAutoSteer = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.rbtnGGA = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.rbtnOGI = new System.Windows.Forms.RadioButton();
@@ -85,11 +81,11 @@
             // 
             this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(800, 322);
+            this.btnRescan.Location = new System.Drawing.Point(815, 265);
             this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(117, 72);
+            this.btnRescan.Size = new System.Drawing.Size(129, 72);
             this.btnRescan.TabIndex = 58;
             this.btnRescan.Text = "Rescan Ports";
             this.btnRescan.UseVisualStyleBackColor = false;
@@ -117,7 +113,6 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cboxBaud);
             this.groupBox1.Controls.Add(this.cboxNMEAHz);
-            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.lblCurrentPort);
             this.groupBox1.Controls.Add(this.lblCurrentBaud);
             this.groupBox1.Controls.Add(this.btnCloseSerial);
@@ -199,21 +194,11 @@
             this.cboxNMEAHz.TabIndex = 67;
             this.cboxNMEAHz.SelectedIndexChanged += new System.EventHandler(this.cboxNMEAHz_SelectedIndexChanged);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(19, 80);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(71, 18);
-            this.label16.TabIndex = 48;
-            this.label16.Text = "Currently:";
-            // 
             // lblCurrentPort
             // 
             this.lblCurrentPort.AutoSize = true;
             this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(89, 80);
+            this.lblCurrentPort.Location = new System.Drawing.Point(58, 80);
             this.lblCurrentPort.Name = "lblCurrentPort";
             this.lblCurrentPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentPort.TabIndex = 47;
@@ -233,10 +218,10 @@
             // 
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial.Location = new System.Drawing.Point(616, 35);
+            this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerial.Location = new System.Drawing.Point(608, 35);
             this.btnCloseSerial.Name = "btnCloseSerial";
-            this.btnCloseSerial.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerial.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerial.TabIndex = 44;
             this.btnCloseSerial.Text = "Disconnect";
             this.btnCloseSerial.UseVisualStyleBackColor = false;
@@ -259,20 +244,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(536, 109);
+            this.label1.Location = new System.Drawing.Point(643, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(210, 19);
+            this.label1.Size = new System.Drawing.Size(99, 19);
             this.label1.TabIndex = 41;
-            this.label1.Text = "NMEA string from GPS Port:";
+            this.label1.Text = "NMEA String";
             // 
             // btnOpenSerial
             // 
             this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial.Location = new System.Drawing.Point(459, 37);
+            this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerial.Location = new System.Drawing.Point(450, 35);
             this.btnOpenSerial.Name = "btnOpenSerial";
-            this.btnOpenSerial.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerial.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerial.TabIndex = 45;
             this.btnOpenSerial.Text = "Connect";
             this.btnOpenSerial.UseVisualStyleBackColor = false;
@@ -282,10 +267,10 @@
             // 
             this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerialArduino.Location = new System.Drawing.Point(568, 24);
             this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
-            this.btnCloseSerialArduino.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerialArduino.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerialArduino.TabIndex = 52;
             this.btnCloseSerialArduino.Text = "Disconnect";
             this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
@@ -295,10 +280,10 @@
             // 
             this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialArduino.Location = new System.Drawing.Point(372, 24);
             this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
-            this.btnOpenSerialArduino.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerialArduino.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerialArduino.TabIndex = 53;
             this.btnOpenSerialArduino.Text = "Connect";
             this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
@@ -318,7 +303,7 @@
             // 
             this.lblCurrentArduinoPort.AutoSize = true;
             this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 48);
+            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 40);
             this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
             this.lblCurrentArduinoPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentArduinoPort.TabIndex = 59;
@@ -353,7 +338,6 @@
             this.groupBox2.Controls.Add(this.txtBoxSendArduino);
             this.groupBox2.Controls.Add(this.cboxArdPort);
             this.groupBox2.Controls.Add(this.txtBoxRecvArduino);
-            this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.lblCurrentArduinoPort);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.btnOpenSerialArduino);
@@ -387,16 +371,6 @@
             this.txtBoxSendArduino.Size = new System.Drawing.Size(320, 27);
             this.txtBoxSendArduino.TabIndex = 65;
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(162, 28);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(71, 18);
-            this.label17.TabIndex = 60;
-            this.label17.Text = "Currently:";
-            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
@@ -405,7 +379,6 @@
             this.groupBox3.Controls.Add(this.txtBoxSendAutoSteer);
             this.groupBox3.Controls.Add(this.cboxASPort);
             this.groupBox3.Controls.Add(this.txtBoxRecvAutoSteer);
-            this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.lblCurrentAutoSteerPort);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.btnOpenSerialAutoSteer);
@@ -417,7 +390,6 @@
             this.groupBox3.TabIndex = 66;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "AutoSteer Port";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // usejrk
             // 
@@ -475,21 +447,11 @@
             this.txtBoxRecvAutoSteer.Size = new System.Drawing.Size(320, 27);
             this.txtBoxRecvAutoSteer.TabIndex = 63;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(162, 28);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 18);
-            this.label4.TabIndex = 60;
-            this.label4.Text = "Currently:";
-            // 
             // lblCurrentAutoSteerPort
             // 
             this.lblCurrentAutoSteerPort.AutoSize = true;
             this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(162, 48);
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(156, 42);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
             this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentAutoSteerPort.TabIndex = 59;
@@ -509,10 +471,10 @@
             // 
             this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialAutoSteer.Location = new System.Drawing.Point(372, 24);
             this.btnOpenSerialAutoSteer.Name = "btnOpenSerialAutoSteer";
-            this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerialAutoSteer.TabIndex = 53;
             this.btnOpenSerialAutoSteer.Text = "Connect";
             this.btnOpenSerialAutoSteer.UseVisualStyleBackColor = false;
@@ -522,24 +484,14 @@
             // 
             this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(568, 24);
+            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(560, 24);
             this.btnCloseSerialAutoSteer.Name = "btnCloseSerialAutoSteer";
-            this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerialAutoSteer.TabIndex = 52;
             this.btnCloseSerialAutoSteer.Text = "Disconnect";
             this.btnCloseSerialAutoSteer.UseVisualStyleBackColor = false;
             this.btnCloseSerialAutoSteer.Click += new System.EventHandler(this.btnCloseSerialAutoSteer_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(796, 298);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 19);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "Refresh USB Ports";
             // 
             // rbtnGGA
             // 
@@ -600,7 +552,6 @@
             this.ClientSize = new System.Drawing.Size(956, 614);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnRescan);
             this.Controls.Add(this.btnSerialOK);
@@ -622,7 +573,6 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -632,7 +582,6 @@
         private System.Windows.Forms.Button btnRescan;
         private System.Windows.Forms.Button btnSerialOK;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblCurrentPort;
         private System.Windows.Forms.Label lblCurrentBaud;
         private System.Windows.Forms.Button btnCloseSerial;
@@ -650,18 +599,15 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBoxSendArduino;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtBoxSendAutoSteer;
         private System.Windows.Forms.ComboBox cboxASPort;
         private System.Windows.Forms.TextBox txtBoxRecvAutoSteer;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblCurrentAutoSteerPort;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnOpenSerialAutoSteer;
         private System.Windows.Forms.Button btnCloseSerialAutoSteer;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cboxNMEAHz;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton rbtnGGA;

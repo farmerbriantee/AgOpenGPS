@@ -96,10 +96,6 @@ namespace AgOpenGPS
 
         private void FormYouTurnRecord_Load(object sender, EventArgs e)
         {
-            btnStop.Text = gStr.gsDone;
-            btnRecord.Text = gStr.gsRecord;
-            label1.Text = gStr.gsTurn_RIGHT_while_recording;
-            this.Text = gStr.gsYouTurn_Recorder;
             btnStop.Enabled = false;
         }
     }

@@ -302,36 +302,6 @@
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="gStr.it.Designer.cs">
-      <DependentUpon>gStr.it.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="gStr.es.Designer.cs">
-      <DependentUpon>gStr.es.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="gStr.nl.Designer.cs">
-      <DependentUpon>gStr.nl.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="gStr.ru.Designer.cs">
-      <DependentUpon>gStr.ru.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="gStr.de.Designer.cs">
-      <DependentUpon>gStr.de.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="gStr.fr.Designer.cs">
-      <DependentUpon>gStr.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="gStr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -495,38 +465,10 @@
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.it.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.es.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.es.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.nl.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.ru.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.de.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.fr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.de.resx" />
+    <EmbeddedResource Include="gStr.fr.resx" />
     <EmbeddedResource Include="gStr.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

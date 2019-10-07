@@ -36,7 +36,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {31C86FEF-A77A-49A7-9088-8E0D8AD2ACA5}
+		RESX_ConfirmAddLanguageFile = True
+		RESX_NeutralResourcesLanguage = en-US
+		RESX_SortFileContentOnSave = True
 		RESX_ShowErrorsInErrorList = False
+		SolutionGuid = {31C86FEF-A77A-49A7-9088-8E0D8AD2ACA5}
+		RESX_ResXSortingComparison = Ordinal
 	EndGlobalSection
 EndGlobal

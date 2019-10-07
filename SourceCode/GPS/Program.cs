@@ -18,10 +18,10 @@ namespace AgOpenGPS
         {
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
-                //opening the subkey
+                ////opening the subkey
                 RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
-                //create default keys if not existing
+                ////create default keys if not existing
                 if (regKey == null)
                 {
                     RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
@@ -54,6 +54,7 @@ namespace AgOpenGPS
             {
                 MessageBox.Show("AgOpenGPS is Already Running");
             }
+
         }
 
         //[System.Runtime.InteropServices.DllImport("user32.dll")]

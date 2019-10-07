@@ -69,9 +69,6 @@ namespace AgOpenGPS
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
-
             btnLeftRight.Image = Properties.Resources.BoundaryRight;
             btnLeftRight.Enabled = false;
             btnOuter.Enabled = false;
@@ -99,41 +96,8 @@ namespace AgOpenGPS
             //update the list view with real data
             UpdateChart();
         }
-        //Set language 
-        private void Set_Language()
-        {
-            btnDelete.Text = gStr.gsDelete;
-            btnOuter.Text = gStr.gsCreate;
-            btnSerialCancel.Text = gStr.gsSave_and_Return;
-            cboxSelectBoundary.Items.Clear();
-            cboxSelectBoundary.Items.AddRange(new object[] {
-            gStr.gsOuter,
-            gStr.gsInner + " 1",
-            gStr.gsInner + " 2",
-            gStr.gsInner + " 3",
-            gStr.gsInner + " 4",
-            gStr.gsInner + " 5"});
-            label1.Text = gStr.gsSelect_Boundary;
-            label1.Text = gStr.gsSelect_Boundary;
-            label2.Text = gStr.gsDrive_Thru;
-            label3.Text = gStr.gsArea;
-            label4.Text = gStr.gsThru;
-            label5.Text = gStr.gsBounds;
-            chField.Text = gStr.gsLine;
-            chAngle.Text = gStr.gsDrive_Thru;
-            chEasting.Text = gStr.gsArea;
-            btnToggleDriveThru.Text = gStr.gsToggle_Drive_Thru;
-            label6.Text = gStr.gsGo_Around;
-            btnToggleDriveAround.Text = gStr.gsToggle_Drive_By;
-            label7.Text = gStr.gsAround;
-            btnLoadMultiBoundaryFromGE.Text = gStr.gsLoad_Multi;
-            btnDeleteAll.Text = gStr.gsDelete_All;
-            this.Text = gStr.gsStart_Delete_A_Boundary;
-            btnGo.Text = gStr.gsGo;
-            btnLoadBoundaryFromGE.Text = gStr.gsLoad_KML;
-        }
 
-            private void cboxSelectBoundary_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboxSelectBoundary_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.bnd.boundarySelected = cboxSelectBoundary.SelectedIndex;
 
@@ -175,7 +139,7 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.TimedMessageBox(1000, gStr.gsNo_Outer_Boundary, gStr.gsCreate_Outer_Boundary_mess);
+                mf.TimedMessageBox(1000, "No Outer Boundary", "Create Outer Boundary First");
             }
 
             UpdateChart();
@@ -393,7 +357,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            mf.TimedMessageBox(2000, gStr.gsError_reading_KML_mess, gStr.gsChoose_Build_Different_one_mess);
+                            mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
                         }
                     }
 
@@ -504,7 +468,7 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                mf.TimedMessageBox(2000, gStr.gsError_reading_KML_mess, gStr.gsChoose_Build_Different_one_mess);
+                                mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
                             }
                         }
                     }

@@ -26,9 +26,23 @@ namespace AgOpenGPS
 
         public vec2 lastABLineP2 = new vec2(0.0, 1.0);
 
+        public FormABDraw(Form callingForm)
+        {
+            //get copy of the calling main form
+            mf = callingForm as FormGPS;
+
+            InitializeComponent();
+
+            lblCurveName.Text = gStr.gsEnterCurveName;
+            lblLineName.Text = gStr.gsEnterLineName;
+        }
+
+
         private void BtnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(gStr.gsMessage_ABDraw);
+            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
+                            "Enter a name and Click Save if Required.\r\n" +
+                            " Click new points make more lines");
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -146,7 +160,7 @@ namespace AgOpenGPS
                 }
                 catch (Exception er)
                 {
-                    Console.WriteLine(er.Message + "\n " + gStr.gsCannot_write_file_mess);
+                    Console.WriteLine(er.Message + "\n Cannot write to file.");
                     mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
                     return;
@@ -367,12 +381,7 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
-            //Set language
-            btnExit.Text = gStr.gsExit;
-            label4.Text = gStr.gsEnter_Line_Name;
-            label1.Text = gStr.gsEnter_Curve_Name;
 
-            this.Text = gStr.gsClick_2_points_Boundary;
             int cnt = mf.bnd.bndArr[0].bndLine.Count;
             arr = new vec3[cnt*2];
 
@@ -529,14 +538,6 @@ namespace AgOpenGPS
             else btnSaveABLine.Enabled = true;
             if (String.IsNullOrEmpty(tboxCurveSaveName.Text)) btnSaveABCurve.Enabled = false;
             else btnSaveABCurve.Enabled = true;
-        }
-
-        public FormABDraw(Form callingForm)
-        {
-            //get copy of the calling main form
-            mf = callingForm as FormGPS;
-
-            InitializeComponent();
         }
 
         //determine mins maxs of patches and whole field.

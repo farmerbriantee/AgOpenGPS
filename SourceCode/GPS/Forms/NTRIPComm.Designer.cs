@@ -92,7 +92,7 @@ namespace AgOpenGPS
             }
             catch (Exception)
             {
-                TimedMessageBox(2500, "No IP Located", "Can't Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
             }
                                           
             broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
@@ -139,7 +139,7 @@ namespace AgOpenGPS
             }
             catch (Exception)
             {
-                TimedMessageBox(1000, "NTRIP Not Connected, Retrying", " At Socket Connect ");
+                TimedMessageBox(1000, gStr.gsNTRIPNotConnectedRetrying, gStr.gsAtSocketConnect);
                 ReconnectRequest();
                 return;
             }
@@ -157,7 +157,7 @@ namespace AgOpenGPS
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
-                TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
+                TimedMessageBox(2000, gStr.gsNTRIPNotConnected, " At the StartNTRIP() ");
                 ReconnectRequest();
                 return;
             }
@@ -194,7 +194,7 @@ namespace AgOpenGPS
                 isNTRIP_Starting = false;
                 isNTRIP_Connecting = false;
 
-                btnStartStopNtrip.Text = "Stop";
+                btnStartStopNtrip.Text = gStr.gsStop;
 
             }
             catch (Exception)
@@ -251,7 +251,7 @@ namespace AgOpenGPS
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
-                TimedMessageBox(1000, "NTRIP Not Connected to Send GGA", " Restarting and Reconnecting to Caster");
+                TimedMessageBox(1000, gStr.gsNTRIPNotConnectedToSendGGA, gStr.gsRestartingAndReconnectingToCaster);
                 ReconnectRequest();
 
                 return;
@@ -360,7 +360,7 @@ namespace AgOpenGPS
                 clientSocket.Close();
                 System.Threading.Thread.Sleep(500);
 
-                TimedMessageBox(2000, "NTRIP ShutDown", " Click Start to Resume");
+                TimedMessageBox(2000, gStr.gsNTRIPOff, gStr.gsClickStartToResume);
                 ReconnectRequest();
 
                 //Also stop the requests now
@@ -377,7 +377,7 @@ namespace AgOpenGPS
                 clientSocket.Close();
                 System.Threading.Thread.Sleep(500);
 
-                TimedMessageBox(2000, "NTRIP Restarting", "Resuming With New Settings");
+                TimedMessageBox(2000, gStr.gsNTRIPRestarting, gStr.gsResumingWithNewSettings);
                 ReconnectRequest();
 
                 //Continue to restart
@@ -464,237 +464,3 @@ namespace AgOpenGPS
         }
     }
 }
-
-//public static void StartClient()
-//{
-//    // Connect to a remote device.  
-//    try
-//    {
-//        // Establish the remote endpoint for the socket.  
-//        // The name of the   
-//        // remote device is "host.contoso.com".  
-//        IPHostEntry ipHostInfo = Dns.GetHostEntry("RTK2Go.com");
-//        IPAddress ipAddress = ipHostInfo.AddressList[0];
-//        IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
-
-//        // Create a TCP/IP socket.  
-//        Socket client = new Socket(ipAddress.AddressFamily,
-//            SocketType.Stream, ProtocolType.Tcp);
-
-//        // Connect to the remote endpoint.  
-//        client.BeginConnect(remoteEP,
-//            new AsyncCallback(ConnectCallback), client);
-//        connectDone.WaitOne();
-
-//        //string msg = "GET /SRG HTTP/1.1\r\nUser-Agent: NTRIP LefebureNTRIPClient/20131124\r\nAccept: */*\r\nConnection: close\r\n"    
-//        string msg = "GET /" + stream + " HTTP/1.1\r\n";
-//        msg += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
-//        //msg += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
-//        //msg += "$GPGGA,141717.935,4827.720,N,01628.440,E,1,12,1.0,0.0,M,0.0,M,,*65" + "\r\n"; //this line can be removed if no position feedback is needed
-//        msg += "Accept: */*\r\nConnection: close\r\n";
-//        msg += "\r\n<EOF>";
-//    }
-
-
-
-//using System;
-//using System.Net;
-//using System.Net.Sockets;
-//using System.Text;
-//using System.Threading;
-
-//namespace AgOpenGPS
-//{
-//    /// <summary>
-//    /// This is a simple example of how to request a NTRIP RTCM stream using C# Compact Framework,
-//    /// and pass it to the GPS using iter.dk's PocketGpsLib (demo available from http://www.iter.dk)
-//    /// Visit http://igs.ifag.de/index_ntrip.htm for more info on NTRIP
-//    ///    
-//    /// Note:
-//    ///     This is not a complete application. Some additional
-//    ///     programming is needed to implement into an application.
-//    ///     Furthermore this doesn't work with all GPS receivers. Your GPS receiver
-//    ///     must support DGPS via RTCM and this feature should be active.
-//    ///     Garmin eTrex is one of the receivers that supports this feature.
-//    ///     The eTrex should be set to RTCM/NMEA in SETUP -> INTERFACE -> I/O FORMAT (or similar)
-//    ///     This _should_ work with RTK receivers as well, but it haven't been tested. Let me know if it does.
-//    ///        
-//    /// Best result:
-//    ///     1.7m horisontal error during a 3 hour test (95% percentile)
-//    ///     Using Garmin eTrex, GPRS connection (SonyEricsson T68i) and iPAQ h3870.
-//    ///     Let me know of your testresults: http://www.iter.dk/contact.aspx
-//    ///
-//    /// 
-//    /// 
-//    /// (c) Morten Nielsen, 2004
-//    /// http://www.iter.dk
-//    /// v1.0
-//    /// </summary>
-//    public class CNtrip  //: System.Windows.Forms.Form
-//    {
-
-//        public string togps;
-//        public Socket sckt;
-//        //public static GPSHandler GPS;
-//        private System.Windows.Forms.Timer tmr;
-//        int BroadCasterPort;
-//        string username;
-//        string password;
-//        string stream;
-//        IPAddress BroadCasterIP;
-//        private readonly FormGPS mf;
-
-//        /// <summary>
-//        /// Initialize
-//        /// </summary>
-//        public CNtrip(FormGPS f)
-
-//        {
-//            mf = f;
-//            BroadCasterIP = IPAddress.Parse("69.75.31.235"); //Select correct Address
-//            BroadCasterPort = 2101; //Select correct port (usually 80 or 2101)
-//            stream = "SRG"; //Insert the correct stream
-//            username = "xxxxx"; //Insert your username!
-//            password = "xxxxx"; //Insert your password!
-
-//            // GPS = new GPSHandler(this); //Initialize GPS handler
-//            // GPS.NewGPSFix += new GPSHandler.NewGPSFixHandler(this.GPSEventHandler); //Hook up GPS data events to a handler
-//            this.tmr = new System.Windows.Forms.Timer();
-//            this.tmr.Interval = 300;
-//            this.tmr.Tick += new EventHandler(NTRIPtick);
-//        }
-
-//        /// <summary>
-//        /// Responds to sentence events from GPS receiver
-//        /// </summary>
-//        //  private void GPSEventHandler(object sender, GPSHandler.GPSEventArgs e)
-//        //  {
-//        //    if(e.TypeOfEvent==GPSEventType.GPGGA) //Global Positioning System Fix Data event
-//        //      if(GPS.GGA.FixQuality ==FixQualityEnum.DGPS) //We are running DGPS mode!
-//        //        {
-//        //             //The following info can be added to a status window
-//        //             //Seconds since last DGPS update: GPS.GGA.DGPSUpdate + " sec";
-//        //             //DGPS Station ID: GPS.GGA.DGPSStationID;
-//        //        }
-//        //}
-
-//        /// <summary>
-//        /// Fires when NTRIP start button is clicked
-//        /// </summary>
-//        public void btnNTRIP_Click()// (object sender, System.EventArgs e)
-//        {
-//            if (!tmr.Enabled)
-//            {
-//                StartNTRIP();
-//                tmr.Enabled = true;
-//            }
-//            else
-//            {
-//                tmr.Enabled = false;
-//                StopNTRIP();
-//            }
-//        }
-
-//        /// <summary>
-//        /// Opens the connection to the NTRIP server and starts receiving
-//        /// </summary>
-//        public void StartNTRIP()
-//        {
-//            //Connect to server
-//            sckt = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-//            sckt.Blocking = true;
-//            sckt.Connect(new IPEndPoint(BroadCasterIP, BroadCasterPort));
-//            Thread.Sleep(500);
-
-//            //Build request message
-//            string auth = ToBase64(username + ":" + password);
-//            string msg = "GET /" + stream + " HTTP/1.1\r\n";
-//            msg += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
-//            //msg += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
-//            //msg += "$GPGGA,141717.935,4827.720,N,01628.440,E,1,12,1.0,0.0,M,0.0,M,,*65" + "\r\n"; //this line can be removed if no position feedback is needed
-//            msg += "Accept: */*\r\nConnection: close\r\n";
-//            msg += "\r\n";
-
-//            //Send request
-//            byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
-//            sckt.Send(data);
-//            Console.WriteLine(msg);
-//            byte[] returndata = new byte[256];
-
-//            Thread.Sleep(100); //Wait for response
-//            sckt.Receive(returndata); //Get response
-//            string responseData = System.Text.Encoding.ASCII.GetString(returndata, 0, returndata.Length);
-//            ShowResponse(responseData);
-//            Console.WriteLine(responseData);
-//            //sckt.Blocking = false;
-//        }
-
-//        /// <summary>
-//        /// Stops receiving data from the NTRIP server
-//        /// </summary>
-//        private void StopNTRIP()
-//        {
-//            sckt.Shutdown(SocketShutdown.Both);
-//            sckt.Close();
-//        }
-
-//        /// <summary>
-//        /// Fired when timer ticks.
-//        /// Reads data from the NTRIP server and parses it to the GPS device.
-//        /// </summary>
-//        public void NTRIPtick(object o, EventArgs e)
-//        {
-//            byte[] returndata = new byte[256]; //clear buffer
-//            sckt.Receive(returndata);
-//            try
-//            {
-
-//                if (mf.sp.IsOpen)
-//                {
-//                    //    GPS.WriteToGPS(returndata); //Send RTCM data to GPS
-//                    // string togps = System.Text.Encoding.UTF8.GetString(returndata);
-//                    //mf.sp.WriteLine(togps);
-//                    mf.sp.Write(returndata, 0, returndata.Length);
-//                }
-
-
-//            }
-//            catch (System.Exception ex)
-//            {
-
-//                tmr.Enabled = false;
-//                // GPS.Stop();
-//                sckt.Shutdown(SocketShutdown.Both);
-//                sckt.Close();
-//                throw (new System.Exception(("Error sending to GPS:" + ex.Message)));
-//            }
-//            string responseData = System.Text.Encoding.ASCII.GetString(returndata, 0, returndata.Length);
-//            ShowResponse(responseData);
-//        }
-
-//        /// <summary>
-//        /// Display responsedata for debugging use
-//        /// If the request is invalid (ie. invalid stream) a list of
-//        /// available streams will be returned instead.
-//        /// You should add code that handles any non-RTCM response. Refer to the NTRIP specification.
-//        /// </summary>
-//        /// <param name="strData"></param>
-//        private void ShowResponse(string strData)
-//        {
-//            Console.WriteLine(strData);
-//        }
-
-//        /// <summary>
-//        /// Apply AsciiEncoding to user name and password to obtain it as an array of bytes
-//        /// </summary>
-//        /// <param name="str">username:password</param>
-//        /// <returns>Base64 encoded username/password</returns>
-//        private string ToBase64(string str)
-//        {
-//            Encoding asciiEncoding = Encoding.ASCII;
-//            byte[] byteArray = new byte[asciiEncoding.GetByteCount(str)];
-//            byteArray = asciiEncoding.GetBytes(str);
-//            return Convert.ToBase64String(byteArray, 0, byteArray.Length);
-//        }
-//    }
-//}

@@ -39,7 +39,7 @@
             // tboxNumber
             // 
             this.tboxNumber.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNumber.Location = new System.Drawing.Point(141, 5);
+            this.tboxNumber.Location = new System.Drawing.Point(140, 5);
             this.tboxNumber.Name = "tboxNumber";
             this.tboxNumber.ReadOnly = true;
             this.tboxNumber.Size = new System.Drawing.Size(233, 46);

@@ -37,7 +37,6 @@
             this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
             this.btnRollZero = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnRemoveZeroOffsetPitch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnZeroPitch = new System.Windows.Forms.Button();
@@ -79,43 +78,40 @@
             this.headingGroupBox.Controls.Add(this.rbtnHeadingGPS);
             this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headingGroupBox.Location = new System.Drawing.Point(752, 36);
+            this.headingGroupBox.Location = new System.Drawing.Point(706, 36);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(314, 263);
+            this.headingGroupBox.Size = new System.Drawing.Size(262, 293);
             this.headingGroupBox.TabIndex = 84;
             this.headingGroupBox.TabStop = false;
-            this.headingGroupBox.Text = "GPS True Heading From";
+            this.headingGroupBox.Text = "GPS Heading From";
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label13.Location = new System.Drawing.Point(115, 179);
+            this.label13.Location = new System.Drawing.Point(115, 196);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(95, 18);
+            this.label13.Size = new System.Drawing.Size(134, 45);
             this.label13.TabIndex = 88;
             this.label13.Text = "Dual Antenna";
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(115, 121);
+            this.label12.Location = new System.Drawing.Point(115, 129);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(134, 18);
+            this.label12.Size = new System.Drawing.Size(134, 45);
             this.label12.TabIndex = 87;
             this.label12.Text = "From VTG or RMC ";
             // 
             // label11
             // 
-            this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label11.Location = new System.Drawing.Point(115, 63);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(98, 18);
+            this.label11.Size = new System.Drawing.Size(134, 45);
             this.label11.TabIndex = 86;
             this.label11.Text = "Fix to Fix Calc";
             // 
@@ -123,7 +119,7 @@
             // 
             this.rbtnHeadingHDT.AutoSize = true;
             this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingHDT.Location = new System.Drawing.Point(22, 171);
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(22, 189);
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
             this.rbtnHeadingHDT.Size = new System.Drawing.Size(75, 29);
             this.rbtnHeadingHDT.TabIndex = 2;
@@ -135,7 +131,7 @@
             // 
             this.rbtnHeadingGPS.AutoSize = true;
             this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingGPS.Location = new System.Drawing.Point(22, 113);
+            this.rbtnHeadingGPS.Location = new System.Drawing.Point(22, 122);
             this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
             this.rbtnHeadingGPS.Size = new System.Drawing.Size(73, 29);
             this.rbtnHeadingGPS.TabIndex = 1;
@@ -159,7 +155,6 @@
             // btnRollZero
             // 
             this.btnRollZero.Controls.Add(this.label2);
-            this.btnRollZero.Controls.Add(this.label3);
             this.btnRollZero.Controls.Add(this.btnRemoveZeroOffsetPitch);
             this.btnRollZero.Controls.Add(this.label1);
             this.btnRollZero.Controls.Add(this.btnZeroPitch);
@@ -167,9 +162,9 @@
             this.btnRollZero.Controls.Add(this.lblRollZeroOffset);
             this.btnRollZero.Controls.Add(this.btnZeroRoll);
             this.btnRollZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRollZero.Location = new System.Drawing.Point(38, 364);
+            this.btnRollZero.Location = new System.Drawing.Point(18, 360);
             this.btnRollZero.Name = "btnRollZero";
-            this.btnRollZero.Size = new System.Drawing.Size(314, 142);
+            this.btnRollZero.Size = new System.Drawing.Size(242, 179);
             this.btnRollZero.TabIndex = 83;
             this.btnRollZero.TabStop = false;
             this.btnRollZero.Text = "Roll Zero";
@@ -179,29 +174,18 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(204, 204);
+            this.label2.Location = new System.Drawing.Point(204, 293);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 16);
             this.label2.TabIndex = 84;
             this.label2.Text = "Pitch";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(204, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 16);
-            this.label3.TabIndex = 85;
-            this.label3.Text = "Roll";
             // 
             // btnRemoveZeroOffsetPitch
             // 
             this.btnRemoveZeroOffsetPitch.Enabled = false;
             this.btnRemoveZeroOffsetPitch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveZeroOffsetPitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRemoveZeroOffsetPitch.Location = new System.Drawing.Point(12, 153);
+            this.btnRemoveZeroOffsetPitch.Location = new System.Drawing.Point(12, 242);
             this.btnRemoveZeroOffsetPitch.Name = "btnRemoveZeroOffsetPitch";
             this.btnRemoveZeroOffsetPitch.Size = new System.Drawing.Size(79, 48);
             this.btnRemoveZeroOffsetPitch.TabIndex = 79;
@@ -214,7 +198,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(99, 162);
+            this.label1.Location = new System.Drawing.Point(99, 251);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 33);
             this.label1.TabIndex = 78;
@@ -225,7 +209,7 @@
             this.btnZeroPitch.Enabled = false;
             this.btnZeroPitch.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroPitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroPitch.Location = new System.Drawing.Point(207, 153);
+            this.btnZeroPitch.Location = new System.Drawing.Point(207, 242);
             this.btnZeroPitch.Name = "btnZeroPitch";
             this.btnZeroPitch.Size = new System.Drawing.Size(103, 48);
             this.btnZeroPitch.TabIndex = 77;
@@ -237,9 +221,9 @@
             // 
             this.btnRemoveZeroOffset.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveZeroOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRemoveZeroOffset.Location = new System.Drawing.Point(12, 46);
+            this.btnRemoveZeroOffset.Location = new System.Drawing.Point(12, 41);
             this.btnRemoveZeroOffset.Name = "btnRemoveZeroOffset";
-            this.btnRemoveZeroOffset.Size = new System.Drawing.Size(79, 48);
+            this.btnRemoveZeroOffset.Size = new System.Drawing.Size(79, 49);
             this.btnRemoveZeroOffset.TabIndex = 76;
             this.btnRemoveZeroOffset.Text = "Remove Offset";
             this.btnRemoveZeroOffset.UseVisualStyleBackColor = true;
@@ -250,7 +234,7 @@
             this.lblRollZeroOffset.AutoSize = true;
             this.lblRollZeroOffset.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.lblRollZeroOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRollZeroOffset.Location = new System.Drawing.Point(99, 55);
+            this.lblRollZeroOffset.Location = new System.Drawing.Point(127, 120);
             this.lblRollZeroOffset.Name = "lblRollZeroOffset";
             this.lblRollZeroOffset.Size = new System.Drawing.Size(100, 33);
             this.lblRollZeroOffset.TabIndex = 75;
@@ -260,7 +244,7 @@
             // 
             this.btnZeroRoll.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroRoll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroRoll.Location = new System.Drawing.Point(207, 46);
+            this.btnZeroRoll.Location = new System.Drawing.Point(6, 111);
             this.btnZeroRoll.Name = "btnZeroRoll";
             this.btnZeroRoll.Size = new System.Drawing.Size(103, 48);
             this.btnZeroRoll.TabIndex = 73;
@@ -270,14 +254,14 @@
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(135, 557);
+            this.label10.Location = new System.Drawing.Point(81, 567);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(370, 29);
+            this.label10.Size = new System.Drawing.Size(461, 69);
             this.label10.TabIndex = 82;
             this.label10.Text = "*ALL Settings Require Restart";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // groupBox6
             // 
@@ -286,9 +270,9 @@
             this.groupBox6.Controls.Add(this.cboxRollFromGPS);
             this.groupBox6.Controls.Add(this.cboxRollAutoSteer);
             this.groupBox6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(38, 36);
+            this.groupBox6.Location = new System.Drawing.Point(18, 36);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(314, 263);
+            this.groupBox6.Size = new System.Drawing.Size(288, 293);
             this.groupBox6.TabIndex = 80;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Roll Source";
@@ -301,7 +285,7 @@
             this.cboxRollExtUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxRollExtUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRollExtUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxRollExtUDP.Location = new System.Drawing.Point(18, 150);
+            this.cboxRollExtUDP.Location = new System.Drawing.Point(12, 170);
             this.cboxRollExtUDP.Name = "cboxRollExtUDP";
             this.cboxRollExtUDP.Size = new System.Drawing.Size(186, 35);
             this.cboxRollExtUDP.TabIndex = 75;
@@ -317,7 +301,7 @@
             this.cboxRollFromBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxRollFromBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRollFromBrick.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxRollFromBrick.Location = new System.Drawing.Point(18, 96);
+            this.cboxRollFromBrick.Location = new System.Drawing.Point(12, 116);
             this.cboxRollFromBrick.Name = "cboxRollFromBrick";
             this.cboxRollFromBrick.Size = new System.Drawing.Size(106, 35);
             this.cboxRollFromBrick.TabIndex = 74;
@@ -333,7 +317,7 @@
             this.cboxRollFromGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxRollFromGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRollFromGPS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxRollFromGPS.Location = new System.Drawing.Point(18, 204);
+            this.cboxRollFromGPS.Location = new System.Drawing.Point(12, 224);
             this.cboxRollFromGPS.Name = "cboxRollFromGPS";
             this.cboxRollFromGPS.Size = new System.Drawing.Size(125, 35);
             this.cboxRollFromGPS.TabIndex = 73;
@@ -349,11 +333,11 @@
             this.cboxRollAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxRollAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRollAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxRollAutoSteer.Location = new System.Drawing.Point(18, 42);
+            this.cboxRollAutoSteer.Location = new System.Drawing.Point(12, 62);
             this.cboxRollAutoSteer.Name = "cboxRollAutoSteer";
-            this.cboxRollAutoSteer.Size = new System.Drawing.Size(254, 35);
+            this.cboxRollAutoSteer.Size = new System.Drawing.Size(186, 35);
             this.cboxRollAutoSteer.TabIndex = 72;
-            this.cboxRollAutoSteer.Text = "From AutoSteer Board";
+            this.cboxRollAutoSteer.Text = "From AutoSteer";
             this.cboxRollAutoSteer.UseVisualStyleBackColor = true;
             this.cboxRollAutoSteer.CheckedChanged += new System.EventHandler(this.cboxRollAutoSteer_CheckedChanged);
             // 
@@ -364,9 +348,9 @@
             this.groupBox7.Controls.Add(this.cboxHeadingAutoSteer);
             this.groupBox7.Controls.Add(this.cboxHeadingBrick);
             this.groupBox7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox7.Location = new System.Drawing.Point(395, 36);
+            this.groupBox7.Location = new System.Drawing.Point(362, 36);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(314, 263);
+            this.groupBox7.Size = new System.Drawing.Size(288, 293);
             this.groupBox7.TabIndex = 81;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Heading Correction Source";
@@ -379,7 +363,7 @@
             this.cboxHeadingExtUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxHeadingExtUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxHeadingExtUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingExtUDP.Location = new System.Drawing.Point(16, 147);
+            this.cboxHeadingExtUDP.Location = new System.Drawing.Point(16, 170);
             this.cboxHeadingExtUDP.Name = "cboxHeadingExtUDP";
             this.cboxHeadingExtUDP.Size = new System.Drawing.Size(186, 35);
             this.cboxHeadingExtUDP.TabIndex = 72;
@@ -395,7 +379,7 @@
             this.cboxHeadingPAOGI.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxHeadingPAOGI.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxHeadingPAOGI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingPAOGI.Location = new System.Drawing.Point(16, 201);
+            this.cboxHeadingPAOGI.Location = new System.Drawing.Point(16, 224);
             this.cboxHeadingPAOGI.Name = "cboxHeadingPAOGI";
             this.cboxHeadingPAOGI.Size = new System.Drawing.Size(233, 35);
             this.cboxHeadingPAOGI.TabIndex = 71;
@@ -411,11 +395,11 @@
             this.cboxHeadingAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxHeadingAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxHeadingAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingAutoSteer.Location = new System.Drawing.Point(16, 39);
+            this.cboxHeadingAutoSteer.Location = new System.Drawing.Point(16, 62);
             this.cboxHeadingAutoSteer.Name = "cboxHeadingAutoSteer";
-            this.cboxHeadingAutoSteer.Size = new System.Drawing.Size(254, 35);
+            this.cboxHeadingAutoSteer.Size = new System.Drawing.Size(186, 35);
             this.cboxHeadingAutoSteer.TabIndex = 69;
-            this.cboxHeadingAutoSteer.Text = "From AutoSteer Board";
+            this.cboxHeadingAutoSteer.Text = "From AutoSteer";
             this.cboxHeadingAutoSteer.UseVisualStyleBackColor = true;
             this.cboxHeadingAutoSteer.CheckedChanged += new System.EventHandler(this.cboxHeadingAutosteer_CheckedChanged);
             // 
@@ -427,7 +411,7 @@
             this.cboxHeadingBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxHeadingBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxHeadingBrick.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cboxHeadingBrick.Location = new System.Drawing.Point(16, 93);
+            this.cboxHeadingBrick.Location = new System.Drawing.Point(16, 116);
             this.cboxHeadingBrick.Name = "cboxHeadingBrick";
             this.cboxHeadingBrick.Size = new System.Drawing.Size(106, 35);
             this.cboxHeadingBrick.TabIndex = 70;
@@ -440,7 +424,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(463, 348);
+            this.label9.Location = new System.Drawing.Point(370, 348);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -449,7 +433,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(466, 375);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(373, 375);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
@@ -459,19 +443,19 @@
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.nudMinFixStepDistance);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(753, 335);
+            this.groupBox1.Location = new System.Drawing.Point(642, 355);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(323, 142);
+            this.groupBox1.Size = new System.Drawing.Size(323, 178);
             this.groupBox1.TabIndex = 121;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Distance for Fix Heading Calc";
+            this.groupBox1.Text = "Fix To Fix Distance";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.label35.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label35.Location = new System.Drawing.Point(192, 93);
+            this.label35.Location = new System.Drawing.Point(192, 115);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(94, 29);
             this.label35.TabIndex = 67;
@@ -488,7 +472,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(23, 40);
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(23, 62);
             this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
             40,
             0,
@@ -517,7 +501,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(784, 564);
+            this.btnCancel.Location = new System.Drawing.Point(673, 564);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 72);
             this.btnCancel.TabIndex = 5;
@@ -530,11 +514,10 @@
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(920, 564);
+            this.bntOK.Location = new System.Drawing.Point(809, 564);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(156, 72);
             this.bntOK.TabIndex = 4;
-            this.bntOK.Text = "Save";
             this.bntOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.bntOK_Click);
@@ -544,7 +527,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1088, 648);
+            this.ClientSize = new System.Drawing.Size(984, 648);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.headingGroupBox);
@@ -587,7 +570,6 @@
         private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.GroupBox btnRollZero;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnRemoveZeroOffsetPitch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnZeroPitch;

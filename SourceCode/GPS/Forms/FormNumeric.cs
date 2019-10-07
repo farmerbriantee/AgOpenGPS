@@ -24,7 +24,6 @@ namespace AgOpenGPS
 
         private void FormNumeric_Load(object sender, EventArgs e)
         {
-            this.Text = gStr.gsEnter_Value;
             lblMax.Text = max.ToString();
             lblMin.Text = min.ToString();
             tboxNumber.SelectionStart = tboxNumber.Text.Length;
@@ -35,7 +34,7 @@ namespace AgOpenGPS
         private void RegisterKeypad1_ButtonPressed(object sender, KeyPressEventArgs e)
         {
             //clear the error as user entered new values
-            if (tboxNumber.Text == gStr.gsError)
+            if (tboxNumber.Text == "Error")
             {
                 tboxNumber.Text = "";
                 lblMin.ForeColor = SystemColors.ControlText;
@@ -123,12 +122,12 @@ namespace AgOpenGPS
                 //test if above or below min/max
                 if (tryNumber < min)
                 {
-                    tboxNumber.Text = gStr.gsError;
+                    tboxNumber.Text = "Error";
                     lblMin.ForeColor = System.Drawing.Color.Red;
                 }
                 else if (tryNumber > max)
                 {
-                    tboxNumber.Text = gStr.gsError;
+                    tboxNumber.Text = "Error";
                     lblMax.ForeColor = System.Drawing.Color.Red;
                 }
                 else

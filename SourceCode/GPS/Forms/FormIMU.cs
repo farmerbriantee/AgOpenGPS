@@ -17,6 +17,33 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            //Languages
+            this.headingGroupBox.Text = gStr.gsGPSHeadingFrom;
+            this.label13.Text = gStr.gsDualAntenna;
+            this.label12.Text = gStr.gsFromVTGorRMC;
+            this.label11.Text = gStr.gsFixToFixCalc;
+            this.btnRollZero.Text = gStr.gsRollZero;
+            this.btnRemoveZeroOffset.Text = gStr.gsRemoveOffset;
+            this.label10.Text = gStr.gsALLSettingsRequireRestart;
+
+            this.groupBox6.Text = gStr.gsRollSource;
+            this.cboxRollExtUDP.Text = gStr.gsExtUDPSource;
+            this.cboxRollFromBrick.Text = gStr.gsBrickv2;
+            this.cboxRollFromGPS.Text = gStr.gsFromGPS;
+            this.cboxRollAutoSteer.Text = gStr.gsFromAutoSteer;
+
+            this.groupBox7.Text = gStr.gsHeadingCorrectionSource;
+            this.cboxHeadingExtUDP.Text = gStr.gsExtUDPSource;
+            this.cboxHeadingPAOGI.Text = gStr.gsPAOGIReachIMU;
+            this.cboxHeadingAutoSteer.Text = gStr.gsFromAutoSteer;
+            this.cboxHeadingBrick.Text = gStr.gsBrickv2;
+
+            this.groupBox1.Text = gStr.gsFixToFixDistance;
+            this.label35.Text = gStr.gsMeters;
+
+            this.Text = gStr.gsIMUSettings;
+
             nudMinFixStepDistance.Controls[0].Enabled = false;
         }
 
@@ -74,9 +101,6 @@ namespace AgOpenGPS
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
-            //Set language 
-            Set_Language();
-
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
@@ -112,34 +136,8 @@ namespace AgOpenGPS
         }
 
         #endregion EntryExit
-        //Set language 
-        private void Set_Language()
-        {
-            headingGroupBox.Text = gStr.gsGPS_True_Heading_From;
-            label13.Text = gStr.gsDual_Antenna;
-            label12.Text = gStr.gsFrom_VTG_RMC;
-            label11.Text = gStr.gsFix_to_Fix_Calc;
-            rbtnHeadingFix.Text = gStr.gsFix;
-            btnRollZero.Text = gStr.gsRoll_Zero;
-            label2.Text = gStr.gsPitch;
-            label3.Text = gStr.gsRoll;
-            btnRemoveZeroOffsetPitch.Text = gStr.gsRemove_Offset;
-            btnRemoveZeroOffset.Text = gStr.gsRemove_Offset;
-            label10.Text = gStr.gsALL_Settings_Require_Restart;
-            groupBox6.Text = gStr.gsRoll_Source;
-            cboxRollExtUDP.Text = gStr.gsExt_UDP_Source;
-            cboxRollFromGPS.Text = gStr.gsFromGPS;
-            cboxRollAutoSteer.Text = gStr.gsFrom_AutoSteer_Board;
-            groupBox7.Text = gStr.gsHeading_Correction_Source;
-            cboxHeadingExtUDP.Text = gStr.gsExt_UDP_Source;
-            cboxHeadingAutoSteer.Text = gStr.gsFrom_AutoSteer_Board;
-            groupBox1.Text = gStr.gsDistance_Fix_Heading_Calc;
-            label35.Text = gStr.gsMeters;
-            bntOK.Text = gStr.gsSave;
-            this.Text = gStr.gsFormDisplaySettings;
 
-        }
-            private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
+        private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
         {
             mf.ahrs.rollZeroX16 = 0;
             lblRollZeroOffset.Text = "0.00";

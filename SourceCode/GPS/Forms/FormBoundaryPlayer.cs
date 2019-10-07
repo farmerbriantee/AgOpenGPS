@@ -54,24 +54,18 @@ namespace AgOpenGPS
             {
                 for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
-                btnPausePlay.Text = gStr.gsRecord;
+                btnPausePlay.Text = "Record";
             }
             else
             {
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
-                btnPausePlay.Text = gStr.gsPause;
+                btnPausePlay.Text = "Pause";
             }
         }
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            //Set Language
-            btnStop.Text = gStr.gsDone;
-            btnPausePlay.Text = gStr.gsRecord;
-            label1.Text = gStr.gsArea + ":";
-            this.Text = gStr.gsStop_Record_Pause_Boundary;
-
             for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }

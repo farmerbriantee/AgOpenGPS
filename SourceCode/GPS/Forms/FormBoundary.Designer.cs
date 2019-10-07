@@ -371,7 +371,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 449);
+            this.ClientSize = new System.Drawing.Size(990, 449);
             this.ControlBox = false;
             this.Controls.Add(this.btnDeleteAll);
             this.Controls.Add(this.btnLoadMultiBoundaryFromGE);
