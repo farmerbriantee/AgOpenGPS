@@ -69,17 +69,17 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="OpenTK, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\OpenTK.dll</HintPath>
+    <Reference Include="Common">
+      <HintPath>Dependencies\Common.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK.GLControl, Version=1.2.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\OpenTK.GLControl.dll</HintPath>
+    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\RepeatButtonControl.dll</HintPath>
+    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.1.1.2349.61993\lib\NET40\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="RepeatButtonControl">
+      <HintPath>Dependencies\RepeatButtonControl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -91,13 +91,11 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tinkerforge, Version=2.1.16.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\Tinkerforge.dll</HintPath>
+    <Reference Include="Tinkerforge, Version=2.1.24.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tinkerforge.2.1.24\lib\net40\Tinkerforge.dll</HintPath>
     </Reference>
     <Reference Include="WebEye.Controls.WinForms.WebCameraControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Application\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
+      <HintPath>..\packages\WebEye.Controls.WinForms.WebCameraControl.1.0.2\lib\net20\WebEye.Controls.WinForms.WebCameraControl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -479,6 +477,8 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -521,6 +521,24 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
+    <Content Include="Dependencies\Compass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dependencies\Vehicle.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YouTurnShapes\Custom.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YouTurnShapes\Keyhole.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YouTurnShapes\SemiCircle.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="YouTurnShapes\WideReturn.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="btnImages\VehicleSettings.jpg" />
     <None Include="btnImages\ToolSettings.jpg" />
     <None Include="btnImages\VehAft64.png" />
@@ -660,9 +678,11 @@
     <None Include="btnImages\radar-icon.png" />
     <None Include="btnImages\MakeBoundaryContour.jpg" />
     <None Include="btnImages\VehicleSettingsAntenna.jpg" />
-    <Content Include="Dependencies\Floor.png" />
+    <Content Include="Dependencies\Floor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dependencies\Landscape.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="ALicense.txt" />
   </ItemGroup>
