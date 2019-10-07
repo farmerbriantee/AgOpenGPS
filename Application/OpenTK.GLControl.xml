@@ -71,11 +71,6 @@
             </summary>
             <param name="e">A System.EventArgs that contains the event data.</param>
         </member>
-        <member name="M:OpenTK.GLControl.PerformContextUpdate">
-            <summary>
-            Execute the delayed context update
-            </summary>
-        </member>
         <member name="M:OpenTK.GLControl.OnParentChanged(System.EventArgs)">
             <summary>
             Raises the ParentChanged event.
@@ -85,42 +80,12 @@
         <member name="M:OpenTK.GLControl.SwapBuffers">
             <summary>
             Swaps the front and back buffers, presenting the rendered scene to the screen.
-            This method will have no effect on a single-buffered <c>GraphicsMode</c>.
             </summary>
         </member>
         <member name="M:OpenTK.GLControl.MakeCurrent">
             <summary>
-            <para>
-            Makes <see cref="P:OpenTK.GLControl.Context"/> current in the calling thread.
-            All OpenGL commands issued are hereafter interpreted by this context.
-            </para>
-            <para>
-            When using multiple <c>GLControl</c>s, calling <c>MakeCurrent</c> on
-            one control will make all other controls non-current in the calling thread.
-            </para>
-            <seealso cref="P:OpenTK.GLControl.Context"/>
-            <para>
-            A <c>GLControl</c> can only be current in one thread at a time.
-            To make a control non-current, call <c>GLControl.Context.MakeCurrent(null)</c>.
-            </para>
-            </summary>
-        </member>
-        <member name="M:OpenTK.GLControl.GrabScreenshot">
-            <summary>
-            Grabs a screenshot of the frontbuffer contents.
-            When using multiple <c>GLControl</c>s, ensure that  <see cref="P:OpenTK.GLControl.Context"/>
-            is current before accessing this property.
-            <seealso cref="P:OpenTK.GLControl.Context"/>
-            <seealso cref="M:OpenTK.GLControl.MakeCurrent"/>
-            </summary>
-            <returns>A System.Drawing.Bitmap, containing the contents of the frontbuffer.</returns>
-            <exception cref="T:OpenTK.Graphics.GraphicsContextException">
-            Occurs when no OpenTK.Graphics.GraphicsContext is current in the calling thread.
-            </exception>
-        </member>
-        <member name="P:OpenTK.GLControl.CreateParams">
-            <summary>
-            Gets the <c>CreateParams</c> instance for this <c>GLControl</c>
+            Makes the underlying this GLControl current in the calling thread.
+            All OpenGL commands issued are hereafter interpreted by this GLControl.
             </summary>
         </member>
         <member name="P:OpenTK.GLControl.IsIdle">
@@ -130,12 +95,7 @@
         </member>
         <member name="P:OpenTK.GLControl.Context">
             <summary>
-            Gets the <c>IGraphicsContext</c> instance that is associated with the <c>GLControl</c>.
-            The associated <c>IGraphicsContext</c> is updated whenever the <c>GLControl</c>
-            handle is created or recreated.
-            When using multiple <c>GLControl</c>s, ensure that <c>Context</c>
-            is current before performing any OpenGL operations.
-            <seealso cref="M:OpenTK.GLControl.MakeCurrent"/>
+            Gets an interface to the underlying GraphicsContext used by this GLControl.
             </summary>
         </member>
         <member name="P:OpenTK.GLControl.AspectRatio">
@@ -145,47 +105,28 @@
         </member>
         <member name="P:OpenTK.GLControl.VSync">
             <summary>
-            Gets or sets a value indicating whether vsync is active for this <c>GLControl</c>.
-            When using multiple <c>GLControl</c>s, ensure that <see cref="P:OpenTK.GLControl.Context"/>
-            is current before accessing this property.
-            <seealso cref="P:OpenTK.GLControl.Context"/>
-            <seealso cref="M:OpenTK.GLControl.MakeCurrent"/>
+            Gets or sets a value indicating whether vsync is active for this GLControl.
             </summary>
         </member>
         <member name="P:OpenTK.GLControl.GraphicsMode">
             <summary>
-            Gets the <c>GraphicsMode</c> of the <c>IGraphicsContext</c> associated with
-            this <c>GLControl</c>. If you wish to change <c>GraphicsMode</c>, you must
-            destroy and recreate the <c>GLControl</c>.
+            Gets the GraphicsMode of the GraphicsContext attached to this GLControl.
             </summary>
+            <remarks>
+            To change the GraphicsMode, you must destroy and recreate the GLControl.
+            </remarks>
         </member>
         <member name="P:OpenTK.GLControl.WindowInfo">
             <summary>
             Gets the <see cref="T:OpenTK.Platform.IWindowInfo"/> for this instance.
             </summary>
         </member>
-        <member name="T:OpenTK.GLControl.DelayUpdate">
-            <summary>
-            Needed to delay the invoke on OS X. Also needed because OpenTK is .NET 2, otherwise I'd use an inline Action.
-            </summary>
-        </member>
-        <member name="M:OpenTK.Platform.MacOS.Agl.aglChoosePixelFormat(System.IntPtr,System.Int32,System.Int32[])">
-            <summary>
-            Use this overload only with IntPtr.Zero for the first argument.
-            </summary>
-            <param name="gdevs">
-            </param>
-            <param name="ndev">
-            </param>
-            <param name="attribs">
-            </param>
-            <returns>
-            </returns>
-        </member>
-        <member name="T:OpenTK.Platform.MacOS.AglContext">
-            <summary>
-            AGL context implementation for WinForms compatibility.
-            </summary>
+        <member name="M:OpenTK.GLControl.GrabScreenshot">
+            <summary>Grabs a screenshot of the frontbuffer contents.</summary>
+            <returns>A System.Drawing.Bitmap, containing the contents of the frontbuffer.</returns>
+            <exception cref="T:OpenTK.Graphics.GraphicsContextException">
+            Occurs when no OpenTK.Graphics.GraphicsContext is current in the calling thread.
+            </exception>
         </member>
     </members>
 </doc>

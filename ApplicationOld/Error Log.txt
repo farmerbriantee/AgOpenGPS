@@ -1,0 +1,33 @@
+Creating new field System.UnauthorizedAccessException: Der Zugriff auf den Pfad "C:\Users\aortner\Documents\AgOpenGPS\Fields\sdfg_Default_2019.Sep.29 20_45\Field.txt" wurde verweigert.
+   bei System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   bei System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   bei System.IO.StreamWriter.CreateFile(String path, Boolean append, Boolean checkHost)
+   bei System.IO.StreamWriter..ctor(String path, Boolean append, Encoding encoding, Int32 bufferSize, Boolean checkHost)
+   bei System.IO.StreamWriter..ctor(String path)
+   bei AgOpenGPS.FormGPS.FileCreateField() in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\SaveOpen.Designer.cs:Zeile 1290.
+   bei AgOpenGPS.FormFieldDir.btnSave_Click(Object sender, EventArgs e) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\FormFieldDir.cs:Zeile 175. - 29.09.2019 20:45:37
+
+Opening Steer PortSystem.IO.IOException: Der Anschluss COM5 ist nicht vorhanden.
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   bei System.IO.Ports.SerialPort.Open()
+   bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 267. - 29.09.2019 21:03:48
+
+AutoSteer RecvSystem.IO.IOException: Der E/A-Vorgang wurde wegen eines Threadendes oder einer Anwendungsanforderung abgebrochen.
+
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   bei System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   bei System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   bei System.IO.Ports.SerialPort.ReadTo(String value)
+   bei System.IO.Ports.SerialPort.ReadLine()
+   bei AgOpenGPS.FormGPS.sp_DataReceivedAutoSteer(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 187. - 30.09.2019 11:53:36
+
+Opening Steer PortSystem.IO.IOException: Der Anschluss COM3 ist nicht vorhanden.
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   bei System.IO.Ports.SerialPort.Open()
+   bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 209. - 24.09.2019 19:21:53
+
