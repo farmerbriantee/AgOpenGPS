@@ -315,8 +315,6 @@ namespace AgOpenGPS
             tableLayoutPanel1.RowStyles.Clear();
             
             UpdateChart();
-            cboxSelectBoundary.SelectedIndex = 0;
-            cboxSelectBoundary.Enabled = true;
             
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
             btnLeftRight.Enabled = false;
