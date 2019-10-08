@@ -167,7 +167,7 @@ namespace AgOpenGPS
 
             //totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5 + 0.2 + (mf.vehicle.toolWidth - mf.vehicle.toolOverlap);
 
-            for (int j = 0; j < bndArr.Count; j++)
+            for (int j = 0; j < mf.bnd.bndArr.Count; j++)
             {
                 if (!mf.bnd.bndArr[j].isSet) continue;
 
