@@ -9,6 +9,11 @@ namespace AgOpenGPS
         //pointers to mainform controls
         private readonly FormGPS mf;
 
+        public bool spiralmode = false;
+        public bool circlemode = false;
+
+        public double oldhowManyPathsAway = -1;
+        
         //flag for starting stop adding points
         public bool isCurveBtnOn, isOkToAddPoints, isCurveSet;
 
@@ -154,12 +159,139 @@ namespace AgOpenGPS
         }
 
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
-        {
-            //determine closest point
-            double minDistance = 9999999;
-            int ptCount = refList.Count;
-            int ptCnt = ptCount - 1;
-            if (ptCount < 5) return;
+        {            double minDistance;
+
+            double boundaryTriggerDistance = 1;
+
+            //move the ABLine over based on the overlap amount set in vehicle
+            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+
+
+
+            if (spiralmode == true)
+            {
+                deltaOfRefAndAveHeadings = 1;
+
+                if (oldhowManyPathsAway != 1)
+                {
+                    oldhowManyPathsAway = 1;
+
+                    double s = widthMinusOverlap / 2;
+
+                    curList?.Clear();
+                    double circumference = (glm.twoPI * s) / (boundaryTriggerDistance * 0.1);
+
+                    for (double round = 0; round <= (glm.twoPI * 10 + 0.00001); round += (glm.twoPI / circumference))
+                    {
+                        double x = s * (Math.Cos(round) + (round / Math.PI) * Math.Sin(round));
+                        double y = s * (Math.Sin(round) - (round / Math.PI) * Math.Cos(round));
+
+                        vec3 pt = new vec3(refList[0].easting + x, refList[0].northing + y, 0);
+                        curList.Add(pt);
+
+                        double radius = Math.Sqrt(x * x + y * y);
+                        circumference = (glm.twoPI * radius) / (boundaryTriggerDistance);
+
+                    }
+
+                    int cnt = curList.Count;
+
+                    if (cnt > 1)
+                    {
+                        vec3[] arr = new vec3[cnt];
+
+                        curList.CopyTo(arr);
+                        curList.Clear();
+
+                        //first point needs last, first, second points
+                        vec3 pt3 = arr[0];
+                        pt3 = arr[0];
+                        pt3.heading = Math.Atan2(arr[1].easting - arr[cnt - 1].easting, arr[1].northing - arr[cnt - 1].northing);
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        curList.Add(pt3);
+                        //middle points
+                        for (int i = 1; i < (cnt - 1); i++)
+                        {
+                            pt3 = arr[i];
+                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                            curList.Add(pt3);
+                        }
+
+                        pt3 = arr[cnt - 1];
+                        pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 2].easting, arr[0].northing - arr[cnt - 2].northing);
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        curList.Add(pt3);
+                    }
+                }
+                //refList = curList;
+            }
+            else if (circlemode == true)
+            {
+                deltaOfRefAndAveHeadings = 1;
+                double dist = ((pivot.easting - refList[0].easting) * (pivot.easting - refList[0].easting)) + ((pivot.northing - refList[0].northing) * (pivot.northing - refList[0].northing));
+
+                minDistance = Math.Sqrt(dist);
+
+                howManyPathsAway = Math.Round(minDistance / widthMinusOverlap, 0, MidpointRounding.AwayFromZero);
+                if (oldhowManyPathsAway != howManyPathsAway && howManyPathsAway == 0)
+                {
+                    oldhowManyPathsAway = howManyPathsAway;
+                    curList?.Clear();
+                }
+                else if (oldhowManyPathsAway != howManyPathsAway)
+                {
+                    if (howManyPathsAway > 100) return;
+                    oldhowManyPathsAway = howManyPathsAway;
+
+                    curList?.Clear();
+
+                    int aa = (int)((glm.twoPI * widthMinusOverlap * howManyPathsAway) / (boundaryTriggerDistance));
+
+                    for (double round = 0; round <= glm.twoPI + 0.00001; round += (glm.twoPI) / aa)
+                    {
+                        vec3 pt = new vec3(refList[0].easting + (Math.Sin(round) * widthMinusOverlap * howManyPathsAway), refList[0].northing + (Math.Cos(round) * widthMinusOverlap * howManyPathsAway), 0);
+                        curList.Add(pt);
+                    }
+
+                    int cnt = curList.Count;
+
+                    if (cnt > 1)
+                    {
+                        vec3[] arr = new vec3[cnt];
+
+                        curList.CopyTo(arr);
+                        curList.Clear();
+
+                        //first point needs last, first, second points
+                        vec3 pt3 = arr[0];
+                        pt3 = arr[0];
+                        pt3.heading = Math.Atan2(arr[1].easting - arr[cnt - 1].easting, arr[1].northing - arr[cnt - 1].northing);
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        curList.Add(pt3);
+                        //middle points
+                        for (int i = 1; i < (cnt - 1); i++)
+                        {
+                            pt3 = arr[i];
+                            pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                            curList.Add(pt3);
+                        }
+
+                        pt3 = arr[cnt - 1];
+                        pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 2].easting, arr[0].northing - arr[cnt - 2].northing);
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        curList.Add(pt3);
+                    }
+                }
+
+
+            }
+            else
+            {
+            int ptCount2 = refList.Count;
+            int ptCnt = ptCount2 - 1;
+            if (ptCount2 < 5) return;
 
             boxA.easting = pivot.easting - (Math.Sin(aveLineHeading + glm.PIBy2) * 2000);
             boxA.northing = pivot.northing - (Math.Cos(aveLineHeading + glm.PIBy2) * 2000);
@@ -255,7 +387,7 @@ namespace AgOpenGPS
 
             double minDistA = 1000000, minDistB = 1000000;
 
-            ptCount = curList.Count;
+            int ptCount = curList.Count;
 
             if (ptCount > 0)
             {
@@ -264,7 +396,7 @@ namespace AgOpenGPS
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
                     {
-                        dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
+                        double dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
                                         + ((steer.northing - curList[t].northing) * (steer.northing - curList[t].northing));
                         if (dist < minDistA)
                         {
@@ -286,8 +418,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    dx = curList[B].easting - curList[A].easting;
-                    dz = curList[B].northing - curList[A].northing;
+                    double dx = curList[B].easting - curList[A].easting;
+                    double dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
@@ -389,8 +521,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    dx = curList[B].easting - curList[A].easting;
-                    dz = curList[B].northing - curList[A].northing;
+                    double dx = curList[B].easting - curList[A].easting;
+                    double dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
