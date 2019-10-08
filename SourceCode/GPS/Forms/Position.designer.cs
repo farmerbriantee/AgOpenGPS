@@ -707,26 +707,22 @@ namespace AgOpenGPS
 
             //build the boundary line
 
-            bool isInner = false;
-            for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bnd.bndArr[i].isOkToAddPoints;
-
-            if (isInner)
+            if (bnd.isOkToAddPoints)
             {
-                if (bnd.bndArr[bnd.boundarySelected].isDrawRightSide)
+                if (bnd.isDrawRightSide)
                 {
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
 
                 //draw on left side
                 else
                 {
-                    //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
             }
 
