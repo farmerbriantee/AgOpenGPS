@@ -105,7 +105,7 @@ namespace AgOpenGPS
             if (bndNum == 0)
             {
                 //outside an outer boundary means its wound clockwise
-                if (!IsPointInsideBoundary(point)) ReverseWinding();
+                if (IsPointInsideBoundary(point)) ReverseWinding();
             }
             else
             {
