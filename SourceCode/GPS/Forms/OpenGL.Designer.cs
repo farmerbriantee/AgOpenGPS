@@ -1346,6 +1346,7 @@ namespace AgOpenGPS
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 
+            }
         }
     }
 }
