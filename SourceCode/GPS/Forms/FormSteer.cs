@@ -13,6 +13,37 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            this.btnFreeDrive.Text = gStr.gsDrive;
+            this.tabGain.Text = gStr.gsGain;
+            this.label29.Text = gStr.gsSidehillDraftGain;
+            this.label22.Text = gStr.gsOutputGain;
+            this.label41.Text = gStr.gsMinimumPWMDrive;
+            this.label7.Text = gStr.gsProportionalGain;
+
+            this.tabSteer.Text = gStr.gsSteer;
+            this.label25.Text = gStr.gsCountsPerDegree;
+            this.label45.Text = gStr.gsMaxIntegralValue;
+            this.label19.Text = gStr.gsMaxSteerAngleInDegrees;
+            this.label33.Text = gStr.gsIntegralGain;
+            this.label10.Text = gStr.gsWheelAngleSensorZero;
+
+            this.tabLook.Text = "Pure P";
+            this.label2.Text = gStr.gsUTurnLookAheadMultiplier;
+            this.label37.Text = gStr.gsLookAheadInSeconds;
+            this.label4.Text = gStr.gsLookAheadOfflineMultiplier;
+            this.label6.Text = gStr.gsMinLookAheadInMeters;
+
+            this.tabStan.Text = "Stanley";
+            this.btnChart.Text = gStr.gsSteerChart;
+            this.label3.Text = gStr.gsAgressiveness;
+            this.label5.Text = gStr.gsOvershootReduction;
+
+            this.tabDrive.Text = gStr.gsDrive;
+
+            this.Text = gStr.gsAutoSteerConfiguration;
+
+
         }
 
         private void FormSteer_Load(object sender, EventArgs e)

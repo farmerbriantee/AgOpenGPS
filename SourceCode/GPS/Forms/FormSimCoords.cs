@@ -8,6 +8,26 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
+        public FormSimCoords(Form callingForm)
+        {
+            //get copy of the calling main form
+            mf = callingForm as FormGPS;
+            InitializeComponent();
+
+            this.label18.Text = gStr.gsLatitude;
+            this.label1.Text = gStr.gsLongitude;
+
+            this.btnGetFieldFix.Text = gStr.gsUseField;
+            this.label7.Text = gStr.gsFieldOrigin;
+            this.label5.Text = gStr.gsGPSCurrentFix;
+            this.btnLoadGPSFix.Text = gStr.gsUseGPS;
+
+            this.Text = gStr.gsEnterCoordinatesForSimulator;
+
+            nudLatitude.Controls[0].Enabled = false;
+            nudLongitude.Controls[0].Enabled = false;
+        }
+
         private void FormSimCoords_Load(object sender, EventArgs e)
         {
             nudLatitude.Value = (decimal)Properties.Settings.Default.setGPS_Latitude;
@@ -58,14 +78,6 @@ namespace AgOpenGPS
             lblGPSLon.Text = mf.pn.longitude.ToString("N6");
         }
 
-        public FormSimCoords(Form callingForm)
-        {
-            //get copy of the calling main form
-            mf = callingForm as FormGPS;
-            InitializeComponent();
-            nudLatitude.Controls[0].Enabled = false;
-            nudLongitude.Controls[0].Enabled = false;
-        }
 
         private void NudLongitude_Enter(object sender, EventArgs e)
         {

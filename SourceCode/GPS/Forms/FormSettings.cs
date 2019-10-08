@@ -50,7 +50,7 @@ namespace AgOpenGPS
 
             label6.Text = gStr.gsTurnRadius;
             label24.Text = gStr.gsHitchLength;
-            label26.Text = gStr.gsHitchLength;
+            label26.Text = gStr.gsWheelbase;
             label9.Text = gStr.gsLeftIs_;
             label12.Text = gStr.gsLocation;
             label15.Text = gStr.gsHeight;

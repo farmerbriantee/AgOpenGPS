@@ -81,11 +81,11 @@
             // 
             this.btnRescan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(804, 270);
+            this.btnRescan.Location = new System.Drawing.Point(815, 265);
             this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(117, 72);
+            this.btnRescan.Size = new System.Drawing.Size(129, 72);
             this.btnRescan.TabIndex = 58;
             this.btnRescan.Text = "Rescan Ports";
             this.btnRescan.UseVisualStyleBackColor = false;
@@ -218,10 +218,10 @@
             // 
             this.btnCloseSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial.Location = new System.Drawing.Point(616, 35);
+            this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerial.Location = new System.Drawing.Point(608, 35);
             this.btnCloseSerial.Name = "btnCloseSerial";
-            this.btnCloseSerial.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerial.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerial.TabIndex = 44;
             this.btnCloseSerial.Text = "Disconnect";
             this.btnCloseSerial.UseVisualStyleBackColor = false;
@@ -254,10 +254,10 @@
             // 
             this.btnOpenSerial.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial.Location = new System.Drawing.Point(459, 37);
+            this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerial.Location = new System.Drawing.Point(450, 35);
             this.btnOpenSerial.Name = "btnOpenSerial";
-            this.btnOpenSerial.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerial.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerial.TabIndex = 45;
             this.btnOpenSerial.Text = "Connect";
             this.btnOpenSerial.UseVisualStyleBackColor = false;
@@ -267,10 +267,10 @@
             // 
             this.btnCloseSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerialArduino.Location = new System.Drawing.Point(568, 24);
             this.btnCloseSerialArduino.Name = "btnCloseSerialArduino";
-            this.btnCloseSerialArduino.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerialArduino.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerialArduino.TabIndex = 52;
             this.btnCloseSerialArduino.Text = "Disconnect";
             this.btnCloseSerialArduino.UseVisualStyleBackColor = false;
@@ -280,10 +280,10 @@
             // 
             this.btnOpenSerialArduino.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialArduino.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialArduino.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialArduino.Location = new System.Drawing.Point(372, 24);
             this.btnOpenSerialArduino.Name = "btnOpenSerialArduino";
-            this.btnOpenSerialArduino.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerialArduino.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerialArduino.TabIndex = 53;
             this.btnOpenSerialArduino.Text = "Connect";
             this.btnOpenSerialArduino.UseVisualStyleBackColor = false;
@@ -303,7 +303,7 @@
             // 
             this.lblCurrentArduinoPort.AutoSize = true;
             this.lblCurrentArduinoPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 48);
+            this.lblCurrentArduinoPort.Location = new System.Drawing.Point(162, 40);
             this.lblCurrentArduinoPort.Name = "lblCurrentArduinoPort";
             this.lblCurrentArduinoPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentArduinoPort.TabIndex = 59;
@@ -471,10 +471,10 @@
             // 
             this.btnOpenSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnOpenSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerialAutoSteer.Location = new System.Drawing.Point(372, 24);
             this.btnOpenSerialAutoSteer.Name = "btnOpenSerialAutoSteer";
-            this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(130, 40);
+            this.btnOpenSerialAutoSteer.Size = new System.Drawing.Size(138, 40);
             this.btnOpenSerialAutoSteer.TabIndex = 53;
             this.btnOpenSerialAutoSteer.Text = "Connect";
             this.btnOpenSerialAutoSteer.UseVisualStyleBackColor = false;
@@ -484,10 +484,10 @@
             // 
             this.btnCloseSerialAutoSteer.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnCloseSerialAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(568, 24);
+            this.btnCloseSerialAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialAutoSteer.Location = new System.Drawing.Point(560, 24);
             this.btnCloseSerialAutoSteer.Name = "btnCloseSerialAutoSteer";
-            this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(130, 40);
+            this.btnCloseSerialAutoSteer.Size = new System.Drawing.Size(138, 40);
             this.btnCloseSerialAutoSteer.TabIndex = 52;
             this.btnCloseSerialAutoSteer.Text = "Disconnect";
             this.btnCloseSerialAutoSteer.UseVisualStyleBackColor = false;

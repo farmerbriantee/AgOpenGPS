@@ -376,7 +376,7 @@
             this.btnGetIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGetIP.Location = new System.Drawing.Point(95, 188);
             this.btnGetIP.Name = "btnGetIP";
-            this.btnGetIP.Size = new System.Drawing.Size(130, 40);
+            this.btnGetIP.Size = new System.Drawing.Size(157, 40);
             this.btnGetIP.TabIndex = 109;
             this.btnGetIP.Text = "Confirm IP";
             this.btnGetIP.UseVisualStyleBackColor = true;

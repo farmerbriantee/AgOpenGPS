@@ -17,6 +17,31 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            //Languages
+            this.headingGroupBox.Text = gStr.gsGPSHeadingFrom;
+            this.label13.Text = gStr.gsDualAntenna;
+            this.label12.Text = gStr.gsFromVTGorRMC;
+            this.label11.Text = gStr.gsFixToFixCalc;
+            this.btnRollZero.Text = gStr.gsRollZero;
+            this.btnRemoveZeroOffset.Text = gStr.gsRemoveOffset;
+            this.label10.Text = gStr.gsALLSettingsRequireRestart;
+
+            this.groupBox6.Text = gStr.gsRollSource;
+            this.cboxRollExtUDP.Text = gStr.gsExtUDPSource;
+            this.cboxRollFromGPS.Text = gStr.gsFromGPS;
+            this.cboxRollAutoSteer.Text = gStr.gsFromAutoSteer;
+
+            this.groupBox7.Text = gStr.gsHeadingCorrectionSource;
+            this.cboxHeadingExtUDP.Text = gStr.gsExtUDPSource;
+            this.cboxHeadingPAOGI.Text = gStr.gsPAOGIReachIMU;
+            this.cboxHeadingAutoSteer.Text = gStr.gsFromAutoSteer;
+
+            this.groupBox1.Text = gStr.gsFixToFixDistance;
+            this.label35.Text = gStr.gsMeters;
+
+            this.Text = gStr.gsIMUSettings;
+
             nudMinFixStepDistance.Controls[0].Enabled = false;
         }
 
@@ -65,6 +90,7 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
+            this.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

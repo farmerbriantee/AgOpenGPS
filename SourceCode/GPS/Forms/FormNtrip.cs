@@ -17,6 +17,29 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
+            this.groupBox2.Text = gStr.gsNetworking;
+            this.cboxIsNTRIPOn.Text = gStr.gsNTRIPOn;
+            this.label6.Text = gStr.gsPort;
+            this.label4.Text = gStr.gsEnterBroadcasterURLOrIP;
+            this.label7.Text = gStr.gsToUDPPort;
+
+            this.label3.Text = gStr.gsUsername;
+            this.label12.Text = gStr.gsPassword;
+            this.label13.Text = gStr.gsMount;
+            this.label15.Text = gStr.gsGGAIntervalSecs;
+            this.btnGetIP.Text = gStr.gsConfirmIP;
+
+            this.label9.Text = gStr.gsCurrentGPSFix;
+            this.label17.Text = gStr.gsSendToManualFix;
+            this.btnSetManualPosition.Text = gStr.gsSendToManualFix;
+            this.label18.Text = gStr.gsSetToZeroForSerial;
+            this.btnGetSourceTable.Text = gStr.gsGetSourceTable;
+
+            this.label1.Text = gStr.gsRestartRequired;
+            this.label19.Text = gStr.gsZeroEqualsOff;
+
+            this.Text = gStr.gsNTRIPClientSettings;
+
             //turn off the little arrows
             nudCasterPort.Controls[0].Enabled = false;
             nudGGAInterval.Controls[0].Enabled = false;
