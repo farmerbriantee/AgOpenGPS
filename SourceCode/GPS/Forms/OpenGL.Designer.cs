@@ -30,7 +30,7 @@ namespace AgOpenGPS
             oglMain.MakeCurrent();
             LoadGLTextures();
             GL.ClearColor(0.5122f, 0.58f, 0.75f, 1.0f);
-            GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+            GL.BlendFunc(BlendingFactor.SrcAlpha, BlendingFactor.OneMinusSrcAlpha);
             GL.CullFace(CullFaceMode.Back);
             SetZoom();
             tmrWatchdog.Enabled = true;

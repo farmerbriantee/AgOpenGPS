@@ -69,14 +69,11 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="Common">
-      <HintPath>Dependencies\Common.dll</HintPath>
+    <Reference Include="OpenTK, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.3.1.0\lib\net20\OpenTK.dll</HintPath>
     </Reference>
-    <Reference Include="OpenTK, Version=2.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenTK.2.0.0\lib\net20\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK.GLControl, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenTK.GLControl.1.1.2349.61993\lib\NET40\OpenTK.GLControl.dll</HintPath>
+    <Reference Include="OpenTK.GLControl, Version=3.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenTK.GLControl.3.1.0\lib\net20\OpenTK.GLControl.dll</HintPath>
     </Reference>
     <Reference Include="RepeatButtonControl">
       <HintPath>Dependencies\RepeatButtonControl.dll</HintPath>
@@ -561,7 +558,6 @@
     <None Include="btnImages\FileSave.png" />
     <None Include="btnImages\Play.png" />
     <None Include="btnImages\Stop.png" />
-    <None Include="btnImages\Oops.png" />
     <None Include="btnImages\back-button.png" />
     <None Include="btnImages\FileDontSave.png" />
     <None Include="btnImages\FileNew.png" />
@@ -594,11 +590,9 @@
     <None Include="btnImages\ZeroPitchRoll.png" />
     <None Include="btnImages\ResetTrip.png" />
     <None Include="btnImages\ComPorts.png" />
-    <None Include="btnImages\HideShowMenu.png" />
     <None Include="btnImages\TripOdometer.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
-    <None Include="btnImages\OuterBoundary.png" />
     <None Include="btnImages\BoundaryLeft.png" />
     <None Include="btnImages\BoundaryRight.png" />
     <None Include="btnImages\boundaryPause.png" />
