@@ -312,7 +312,7 @@ namespace AgOpenGPS
 
             for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
-                if (!mf.bnd.bndArr[i].isSet)
+                if (mf.bnd.bndArr[i].isSet)
                 //turnArr[i].DrawTurnLine();
                 {
                     if (!mf.bnd.bndArr[i].isOwnField && mf.bnd.bndArr[i].isDriveAround) continue;
