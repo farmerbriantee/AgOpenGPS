@@ -91,10 +91,10 @@ namespace AgOpenGPS
             //determine if point is inside bounding box
             bndClosestList.Clear();
             vec4 inBox;
-            for (int i = 0; i < FormGPS.MAXHEADS; i++)
+            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
                 //skip the drive thru
-                if (bndArr[i].isDriveThru) continue;
+                if (!mf.bnd.bndArr[i].isOwnField && mf.bnd.bndArr[i].isDriveThru) continue;
 
                 ptCount = bndArr[i].bndLine.Count;
                 for (int p = 0; p < ptCount; p++)
