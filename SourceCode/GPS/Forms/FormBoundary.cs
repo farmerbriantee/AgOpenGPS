@@ -442,7 +442,6 @@ namespace AgOpenGPS
                             mf.bnd.bndArr[i].CalculateBoundaryArea();
                             mf.bnd.bndArr[i].PreCalcBoundaryLines();
                             mf.bnd.bndArr[i].isSet = true;
-                            mf.bnd.bndArr[i].isDriveAround = true;
                         }
                         else
                         {
