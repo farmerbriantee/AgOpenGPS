@@ -103,12 +103,22 @@ namespace AgOpenGPS
 
         public void UpdateFieldBoundaryGUIAreas()
         {
-            areaOuterBoundary = mf.bnd.bndArr[0].area;
+            areaOuterBoundary = 0;
             areaBoundaryOuterLessInner = areaOuterBoundary;
-
-            for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
-                if (mf.bnd.bndArr[i].isSet) areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
+                if (mf.bnd.bndArr[i].isSet)
+                {
+                    if (mf.bnd.bndArr[i].isOwnField)
+                    {
+                        areaOuterBoundary += mf.bnd.bndArr[i].area;
+                        areaBoundaryOuterLessInner += mf.bnd.bndArr[i].area;
+                    }
+                    else
+                    {
+                        areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
+                    }
+                }
             }
         }
     }
