@@ -35,7 +35,7 @@ namespace AgOpenGPS
         // the list of possible bounds points
         public List<vec4> bndClosestList = new List<vec4>();
 
-        public int boundarySelected, closestBoundaryNum;
+        public int boundarySelected, CurrentBoundary, LastBoundary, closestBoundaryNum;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
