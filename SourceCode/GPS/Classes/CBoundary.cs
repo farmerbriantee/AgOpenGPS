@@ -25,6 +25,8 @@ namespace AgOpenGPS
             boundarySelected = 0;
             scanWidth = 1.0;
             boxLength = 2000;
+            CurrentBoundary = -1;
+            LastBoundary = 0;
             //boundaries array
             //bndArr = new CBoundaryLines[FormGPS.MAXBOUNDARIES];
             //for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines();
@@ -178,4 +180,5 @@ namespace AgOpenGPS
             GL.End();
         }
     }
+}
 }
