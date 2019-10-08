@@ -12,10 +12,12 @@ namespace AgOpenGPS
         /// <summary>
         /// array of boundaries
         /// </summary>
-        public CBoundaryLines[] bndArr;
+        //public CBoundaryLines[] bndArr;
+        public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
 
         private readonly double scanWidth, boxLength;
 
+        public bool isDrawRightSide = true, isOkToAddPoints = false;
         //constructor
         public CBoundary(FormGPS _f)
         {
@@ -24,8 +26,8 @@ namespace AgOpenGPS
             scanWidth = 1.0;
             boxLength = 2000;
             //boundaries array
-            bndArr = new CBoundaryLines[FormGPS.MAXBOUNDARIES];
-            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines();
+            //bndArr = new CBoundaryLines[FormGPS.MAXBOUNDARIES];
+            //for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines();
         }
 
         // the list of possible bounds points
@@ -145,7 +147,7 @@ namespace AgOpenGPS
         public void DrawBoundaryLines()
         {
             //draw the boundaries
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
                 bndArr[i].DrawBoundaryLine();
             }
@@ -153,7 +155,8 @@ namespace AgOpenGPS
 
         public void ResetBoundaries()
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) bndArr[i].ResetBoundary();
+            bndArr.Clear();
+            //for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) bndArr[i].ResetBoundary();
         }
 
         //draws the derived closest point
