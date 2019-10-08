@@ -261,7 +261,7 @@ namespace AgOpenGPS
             if (ptCount < 1) return;
             GL.PointSize(2);
             GL.LineWidth(1);
-            if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
+            if (!isOwnField && isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
             else GL.Color3(0.825f, 0.42f, 0.90f);
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
