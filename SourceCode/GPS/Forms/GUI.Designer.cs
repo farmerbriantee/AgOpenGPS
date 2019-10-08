@@ -3397,7 +3397,7 @@ namespace AgOpenGPS
 
                     if (isMetric)
                     {
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {
@@ -3414,7 +3414,7 @@ namespace AgOpenGPS
                     else
                     {
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {
