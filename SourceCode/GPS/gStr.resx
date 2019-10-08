@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="gsGGAIntervalSecs" xml:space="preserve">
-    <value>GGA Interval (secs)</value>
-  </data>
   <data name="gs#OfSections" xml:space="preserve">
     <value># Of Sections</value>
   </data>
@@ -144,6 +141,9 @@
   </data>
   <data name="gsActiveLow" xml:space="preserve">
     <value>Active Low</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Actual</value>
   </data>
   <data name="gsAgOpenGPS" xml:space="preserve">
     <value>AgOpenGPS</value>
@@ -481,6 +481,9 @@
   </data>
   <data name="gsFused" xml:space="preserve">
     <value>Fused:</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>GGA Interval (secs)</value>
   </data>
   <data name="gsGPSConnected" xml:space="preserve">
     <value>GPS Connected</value>
@@ -862,6 +865,9 @@
   <data name="gsResumingWithNewSettings" xml:space="preserve">
     <value>Resuming With New Settings</value>
   </data>
+  <data name="gsReturn" xml:space="preserve">
+    <value>Return</value>
+  </data>
   <data name="gsRightIs+" xml:space="preserve">
     <value>Right Is +</value>
   </data>
@@ -874,6 +880,9 @@
   <data name="gsSave" xml:space="preserve">
     <value>Save</value>
     <comment>a</comment>
+  </data>
+  <data name="gsSaveAndExit" xml:space="preserve">
+    <value>Save And Exit</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>Save and Return</value>
@@ -912,6 +921,9 @@
   </data>
   <data name="gsSerialPorts" xml:space="preserve">
     <value>Serial Ports</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>SetPoint</value>
   </data>
   <data name="gsSetToZeroForSerial" xml:space="preserve">
     <value>Set to 0 for Serial</value>

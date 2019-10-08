@@ -152,7 +152,9 @@
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnPerimeter = new System.Windows.Forms.Button();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.lblTimeRemaining = new System.Windows.Forms.Label();
             this.btnTinyAutoSteerConfig = new System.Windows.Forms.Button();
+            this.pbarFieldAreaRemainPercent = new System.Windows.Forms.ProgressBar();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -188,12 +190,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnGPSData = new System.Windows.Forms.Button();
+            this.lblPercentRemaining = new System.Windows.Forms.Label();
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
-            this.pbarFieldAreaRemainPercent = new System.Windows.Forms.ProgressBar();
             this.pbarUDPSmall = new System.Windows.Forms.ProgressBar();
             this.pbarSteerSmall = new System.Windows.Forms.ProgressBar();
             this.btnSmallSnapRight = new System.Windows.Forms.Button();
@@ -1638,7 +1640,9 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.lblTimeRemaining);
             this.DataPage.Controls.Add(this.btnTinyAutoSteerConfig);
+            this.DataPage.Controls.Add(this.pbarFieldAreaRemainPercent);
             this.DataPage.Controls.Add(this.label13);
             this.DataPage.Controls.Add(this.label12);
             this.DataPage.Controls.Add(this.label7);
@@ -1678,6 +1682,7 @@
             this.DataPage.Controls.Add(this.lblEasting);
             this.DataPage.Controls.Add(this.lblNorthing);
             this.DataPage.Controls.Add(this.btnGPSData);
+            this.DataPage.Controls.Add(this.lblPercentRemaining);
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.DataPage.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DataPage.ImageIndex = 1;
@@ -1685,6 +1690,17 @@
             this.DataPage.Name = "DataPage";
             this.DataPage.Size = new System.Drawing.Size(332, 525);
             this.DataPage.TabIndex = 3;
+            // 
+            // lblTimeRemaining
+            // 
+            this.lblTimeRemaining.AutoSize = true;
+            this.lblTimeRemaining.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTimeRemaining.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTimeRemaining.Location = new System.Drawing.Point(4, 426);
+            this.lblTimeRemaining.Name = "lblTimeRemaining";
+            this.lblTimeRemaining.Size = new System.Drawing.Size(106, 19);
+            this.lblTimeRemaining.TabIndex = 313;
+            this.lblTimeRemaining.Text = "13.56 Hours";
             // 
             // btnTinyAutoSteerConfig
             // 
@@ -1702,6 +1718,17 @@
             this.btnTinyAutoSteerConfig.TabIndex = 310;
             this.btnTinyAutoSteerConfig.UseVisualStyleBackColor = false;
             this.btnTinyAutoSteerConfig.Click += new System.EventHandler(this.BtnTinyAutoSteerConfig_Click);
+            // 
+            // pbarFieldAreaRemainPercent
+            // 
+            this.pbarFieldAreaRemainPercent.BackColor = System.Drawing.Color.Maroon;
+            this.pbarFieldAreaRemainPercent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pbarFieldAreaRemainPercent.Location = new System.Drawing.Point(6, 447);
+            this.pbarFieldAreaRemainPercent.Name = "pbarFieldAreaRemainPercent";
+            this.pbarFieldAreaRemainPercent.Size = new System.Drawing.Size(322, 5);
+            this.pbarFieldAreaRemainPercent.Step = 1;
+            this.pbarFieldAreaRemainPercent.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbarFieldAreaRemainPercent.TabIndex = 311;
             // 
             // label13
             // 
@@ -2119,6 +2146,17 @@
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
+            // lblPercentRemaining
+            // 
+            this.lblPercentRemaining.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblPercentRemaining.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblPercentRemaining.Location = new System.Drawing.Point(240, 426);
+            this.lblPercentRemaining.Name = "lblPercentRemaining";
+            this.lblPercentRemaining.Size = new System.Drawing.Size(83, 19);
+            this.lblPercentRemaining.TabIndex = 312;
+            this.lblPercentRemaining.Text = "55.6885";
+            this.lblPercentRemaining.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // cboxpRowWidth
             // 
             this.cboxpRowWidth.BackColor = System.Drawing.Color.Lavender;
@@ -2172,7 +2210,6 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.panelBatman.Controls.Add(this.label26);
-            this.panelBatman.Controls.Add(this.pbarFieldAreaRemainPercent);
             this.panelBatman.Controls.Add(this.pbarUDPSmall);
             this.panelBatman.Controls.Add(this.pbarSteerSmall);
             this.panelBatman.Controls.Add(this.btnSmallSnapRight);
@@ -2217,21 +2254,11 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label26.Location = new System.Drawing.Point(65, 342);
+            this.label26.Location = new System.Drawing.Point(71, 320);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(15, 19);
             this.label26.TabIndex = 266;
             this.label26.Text = "-";
-            // 
-            // pbarFieldAreaRemainPercent
-            // 
-            this.pbarFieldAreaRemainPercent.BackColor = System.Drawing.Color.Maroon;
-            this.pbarFieldAreaRemainPercent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pbarFieldAreaRemainPercent.Location = new System.Drawing.Point(10, 325);
-            this.pbarFieldAreaRemainPercent.Name = "pbarFieldAreaRemainPercent";
-            this.pbarFieldAreaRemainPercent.Size = new System.Drawing.Size(222, 9);
-            this.pbarFieldAreaRemainPercent.Step = 1;
-            this.pbarFieldAreaRemainPercent.TabIndex = 311;
             // 
             // pbarUDPSmall
             // 
@@ -2263,7 +2290,7 @@
             this.btnSmallSnapRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSmallSnapRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSmallSnapRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSmallSnapRight.Location = new System.Drawing.Point(128, 414);
+            this.btnSmallSnapRight.Location = new System.Drawing.Point(128, 404);
             this.btnSmallSnapRight.Name = "btnSmallSnapRight";
             this.btnSmallSnapRight.Size = new System.Drawing.Size(90, 35);
             this.btnSmallSnapRight.TabIndex = 278;
@@ -2282,7 +2309,7 @@
             this.btnSmallSnapLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSmallSnapLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSmallSnapLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSmallSnapLeft.Location = new System.Drawing.Point(15, 414);
+            this.btnSmallSnapLeft.Location = new System.Drawing.Point(15, 404);
             this.btnSmallSnapLeft.Name = "btnSmallSnapLeft";
             this.btnSmallSnapLeft.Size = new System.Drawing.Size(91, 35);
             this.btnSmallSnapLeft.TabIndex = 277;
@@ -2417,7 +2444,7 @@
             this.lblpTimeToFinish.AutoSize = true;
             this.lblpTimeToFinish.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpTimeToFinish.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblpTimeToFinish.Location = new System.Drawing.Point(26, 369);
+            this.lblpTimeToFinish.Location = new System.Drawing.Point(26, 344);
             this.lblpTimeToFinish.Name = "lblpTimeToFinish";
             this.lblpTimeToFinish.Size = new System.Drawing.Size(106, 19);
             this.lblpTimeToFinish.TabIndex = 267;
@@ -2427,7 +2454,7 @@
             // 
             this.lblpAreaWorked.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpAreaWorked.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblpAreaWorked.Location = new System.Drawing.Point(79, 342);
+            this.lblpAreaWorked.Location = new System.Drawing.Point(85, 320);
             this.lblpAreaWorked.Name = "lblpAreaWorked";
             this.lblpAreaWorked.Size = new System.Drawing.Size(54, 19);
             this.lblpAreaWorked.TabIndex = 264;
@@ -2438,7 +2465,7 @@
             // 
             this.lblpFieldAreaRemain.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpFieldAreaRemain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblpFieldAreaRemain.Location = new System.Drawing.Point(153, 342);
+            this.lblpFieldAreaRemain.Location = new System.Drawing.Point(159, 320);
             this.lblpFieldAreaRemain.Name = "lblpFieldAreaRemain";
             this.lblpFieldAreaRemain.Size = new System.Drawing.Size(54, 19);
             this.lblpFieldAreaRemain.TabIndex = 261;
@@ -2449,7 +2476,7 @@
             // 
             this.lblpBoundaryArea.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpBoundaryArea.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblpBoundaryArea.Location = new System.Drawing.Point(11, 342);
+            this.lblpBoundaryArea.Location = new System.Drawing.Point(17, 320);
             this.lblpBoundaryArea.Name = "lblpBoundaryArea";
             this.lblpBoundaryArea.Size = new System.Drawing.Size(54, 19);
             this.lblpBoundaryArea.TabIndex = 259;
@@ -2461,7 +2488,7 @@
             this.lblpFieldAreaRemainPercent.AutoSize = true;
             this.lblpFieldAreaRemainPercent.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblpFieldAreaRemainPercent.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblpFieldAreaRemainPercent.Location = new System.Drawing.Point(153, 369);
+            this.lblpFieldAreaRemainPercent.Location = new System.Drawing.Point(153, 344);
             this.lblpFieldAreaRemainPercent.Name = "lblpFieldAreaRemainPercent";
             this.lblpFieldAreaRemainPercent.Size = new System.Drawing.Size(48, 19);
             this.lblpFieldAreaRemainPercent.TabIndex = 262;
@@ -2549,7 +2576,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label14.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label14.Location = new System.Drawing.Point(135, 342);
+            this.label14.Location = new System.Drawing.Point(141, 320);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(21, 19);
             this.label14.TabIndex = 262;
@@ -3672,6 +3699,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ToolStripMenuItem toolstripExit;
         private System.Windows.Forms.ProgressBar pbarFieldAreaRemainPercent;
+        private System.Windows.Forms.Label lblPercentRemaining;
+        private System.Windows.Forms.Label lblTimeRemaining;
     }
 }
 

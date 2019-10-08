@@ -6,14 +6,13 @@ namespace AgOpenGPS
     public partial class FormSaveOrNot : Form
     {
         //class variables
-        //private readonly FormGPS mf = null;
 
         public FormSaveOrNot()
         {
-            //get copy of the calling main form
-            //mf = callingForm as FormGPS;
-
             InitializeComponent();
+
+            this.label7.Text = gStr.gsReturn;
+            this.label1.Text = gStr.gsSaveAndExit;
         }
 
         private void btnOk_Click(object sender, EventArgs e)

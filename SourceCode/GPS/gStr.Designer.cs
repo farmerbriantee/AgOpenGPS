@@ -124,6 +124,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual.
+        /// </summary>
+        public static string gsActual {
+            get {
+                return ResourceManager.GetString("gsActual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AgOpenGPS.
         /// </summary>
         public static string gsAgOpenGPS {
@@ -2140,6 +2149,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Return.
+        /// </summary>
+        public static string gsReturn {
+            get {
+                return ResourceManager.GetString("gsReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Right Is +.
         /// </summary>
         public static string gsRightIs_ {
@@ -2172,6 +2190,15 @@ namespace AgOpenGPS {
         public static string gsSave {
             get {
                 return ResourceManager.GetString("gsSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save And Exit.
+        /// </summary>
+        public static string gsSaveAndExit {
+            get {
+                return ResourceManager.GetString("gsSaveAndExit", resourceCulture);
             }
         }
         
@@ -2280,6 +2307,15 @@ namespace AgOpenGPS {
         public static string gsSerialPorts {
             get {
                 return ResourceManager.GetString("gsSerialPorts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SetPoint.
+        /// </summary>
+        public static string gsSetPoint {
+            get {
+                return ResourceManager.GetString("gsSetPoint", resourceCulture);
             }
         }
         

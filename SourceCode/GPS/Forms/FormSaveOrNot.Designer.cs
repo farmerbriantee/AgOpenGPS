@@ -63,7 +63,7 @@
             this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.FileSave;
-            this.btnOk.Location = new System.Drawing.Point(234, 64);
+            this.btnOk.Location = new System.Drawing.Point(261, 64);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(127, 85);
             this.btnOk.TabIndex = 0;
@@ -92,19 +92,19 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(224, 23);
+            this.label1.Location = new System.Drawing.Point(208, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(154, 25);
+            this.label1.Size = new System.Drawing.Size(233, 25);
             this.label1.TabIndex = 257;
             this.label1.Text = "Save and Exit";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormSaveOrNot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(403, 170);
+            this.ClientSize = new System.Drawing.Size(472, 170);
             this.ControlBox = false;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);

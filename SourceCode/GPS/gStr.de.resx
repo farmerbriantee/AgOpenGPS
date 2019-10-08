@@ -132,11 +132,14 @@
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
     <value>Aktion abgebrochen</value>
   </data>
-  <data name="gsAntenna" xml:space="preserve">
-    <value>Antenne</value>
+  <data name="gsActual" xml:space="preserve">
+    <value>Aktuell</value>
   </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS bitte neu starten</value>
+  </data>
+  <data name="gsAntenna" xml:space="preserve">
+    <value>Antenne</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Bist du Sicher?</value>
@@ -677,6 +680,9 @@
   </data>
   <data name="gsSerialPorts" xml:space="preserve">
     <value>Serielle Ports</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Sollwert</value>
   </data>
   <data name="gsShortcutKeys" xml:space="preserve">
     <value>Tastenkombinationen</value>
