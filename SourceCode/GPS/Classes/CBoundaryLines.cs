@@ -29,7 +29,7 @@ namespace AgOpenGPS
             isOkToAddPoints = false;
             isDriveAround = false;
             isDriveThru = false;
-            isDrawRightSide = true;
+            isOwnField = false;
         }
 
         //list of coordinates of boundary line
@@ -42,7 +42,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveAround, isDriveThru, isDrawRightSide;
+        public bool isOkToAddPoints, isSet, isOwnField, isDriveAround, isDriveThru, isDrawRightSide;
 
         public void CalculateBoundaryHeadings()
         {
