@@ -192,6 +192,7 @@
             this.oglZoom = new OpenTK.GLControl();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
             this.pbarFieldAreaRemainPercent = new System.Windows.Forms.ProgressBar();
             this.pbarUDPSmall = new System.Windows.Forms.ProgressBar();
             this.pbarSteerSmall = new System.Windows.Forms.ProgressBar();
@@ -208,7 +209,6 @@
             this.pbarNtrip = new System.Windows.Forms.ProgressBar();
             this.lblpTimeToFinish = new System.Windows.Forms.Label();
             this.lblpAreaWorked = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.lblpFieldAreaRemain = new System.Windows.Forms.Label();
             this.lblpBoundaryArea = new System.Windows.Forms.Label();
             this.lblpFieldAreaRemainPercent = new System.Windows.Forms.Label();
@@ -2160,7 +2160,7 @@
             this.lblFixQuality.BackColor = System.Drawing.Color.Transparent;
             this.lblFixQuality.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblFixQuality.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFixQuality.Location = new System.Drawing.Point(348, 9);
+            this.lblFixQuality.Location = new System.Drawing.Point(365, 9);
             this.lblFixQuality.Name = "lblFixQuality";
             this.lblFixQuality.Size = new System.Drawing.Size(53, 25);
             this.lblFixQuality.TabIndex = 181;
@@ -2212,6 +2212,17 @@
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
             // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.label26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label26.Location = new System.Drawing.Point(65, 342);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(15, 19);
+            this.label26.TabIndex = 266;
+            this.label26.Text = "-";
+            // 
             // pbarFieldAreaRemainPercent
             // 
             this.pbarFieldAreaRemainPercent.BackColor = System.Drawing.Color.Maroon;
@@ -2219,6 +2230,7 @@
             this.pbarFieldAreaRemainPercent.Location = new System.Drawing.Point(10, 325);
             this.pbarFieldAreaRemainPercent.Name = "pbarFieldAreaRemainPercent";
             this.pbarFieldAreaRemainPercent.Size = new System.Drawing.Size(222, 9);
+            this.pbarFieldAreaRemainPercent.Step = 1;
             this.pbarFieldAreaRemainPercent.TabIndex = 311;
             // 
             // pbarUDPSmall
@@ -2421,17 +2433,6 @@
             this.lblpAreaWorked.TabIndex = 264;
             this.lblpAreaWorked.Text = "000.0";
             this.lblpAreaWorked.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label26.Location = new System.Drawing.Point(65, 342);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(15, 19);
-            this.label26.TabIndex = 266;
-            this.label26.Text = "-";
             // 
             // lblpFieldAreaRemain
             // 
@@ -2998,7 +2999,7 @@
             this.lblHz.BackColor = System.Drawing.Color.Transparent;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(241, 9);
+            this.lblHz.Location = new System.Drawing.Point(273, 9);
             this.lblHz.Name = "lblHz";
             this.lblHz.Size = new System.Drawing.Size(90, 25);
             this.lblHz.TabIndex = 249;
