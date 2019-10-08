@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -110,29 +111,9 @@ namespace AgOpenGPS
                     if (mf.bnd.bndArr[i].isOwnField)
                     {
                         cc.Text = "true";
-                        if (mf.bnd.bndArr[i].name =="")
-                        {
-                            aa.Text = string.Format("field {0}", field);
-                            field += 1;
-                            aa.Font = backupfont;
-                        }
-                        else
-                        {
-                            aa.Text = mf.bnd.bndArr[i].name;
-                            Graphics graphics = aa.CreateGraphics();
-                            SizeF RealSize = graphics.MeasureString(aa.Text.Replace(" ", "_"), backupfont);
-
-                            float ScaleRatio = (float)(140 / RealSize.Width);
-                            float ScaleFontSize = backupfont.Size * ScaleRatio;
-                            if (ScaleRatio < 1)
-                            {
-                                aa.Font = new Font(backupfont.FontFamily, ScaleFontSize, FontStyle.Bold);
-                            }
-                            else
-                            {
-                                aa.Font = backupfont;
-                            }
-                        }
+                        aa.Text = string.Format("field {0}", field);
+                        field += 1;
+                        aa.Font = backupfont;
                         dd.Enabled = false;
                         ee.Enabled = false;
                     }
