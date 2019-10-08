@@ -828,9 +828,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
-                            if (!mf.bnd.bndArr[i].isSet) continue;
-                            if (mf.bnd.bndArr[i].isDriveThru) continue;
-                            if (mf.bnd.bndArr[i].isDriveAround) continue;
+                            if (!mf.bnd.bndArr[i].isSet || mf.bnd.bndArr[i].isOwnField || mf.bnd.bndArr[i].isDriveThru || mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -1006,9 +1004,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
-                            if (!mf.bnd.bndArr[i].isSet) continue;
-                            if (mf.bnd.bndArr[i].isDriveThru) continue;
-                            if (mf.bnd.bndArr[i].isDriveAround) continue;
+                            if (!mf.bnd.bndArr[i].isSet || mf.bnd.bndArr[i].isOwnField || mf.bnd.bndArr[i].isDriveThru || mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
@@ -1250,9 +1246,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
-                            if (!mf.bnd.bndArr[i].isSet) continue;
-                            if (mf.bnd.bndArr[i].isDriveThru) continue;
-                            if (mf.bnd.bndArr[i].isDriveAround) continue;
+                            if (!mf.bnd.bndArr[i].isSet || mf.bnd.bndArr[i].isOwnField || mf.bnd.bndArr[i].isDriveThru || mf.bnd.bndArr[i].isDriveAround) continue;
                             if (mf.turn.turnArr[i].IsPointInTurnWorkArea(ytList[j]))
                             {
                                 isOutOfBounds = true;
