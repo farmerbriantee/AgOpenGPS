@@ -272,8 +272,8 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndArr.Count; j++)
             {
                 turnArr[j].turnLine.Clear();
-                if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround) continue;
 
+                if (!mf.bnd.bndArr[j].isSet || (!mf.bnd.bndArr[j].isOwnField && (mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround))) continue;
                 int num = 1;
                 if (mf.bnd.bndArr[j].isOwnField)
                 {
