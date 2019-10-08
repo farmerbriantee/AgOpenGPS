@@ -120,7 +120,15 @@ namespace AgOpenGPS
 
         private void btnABLineOk_Click(object sender, System.EventArgs e)
         {
-            if (mf.curve.refList.Count < 3)
+            if ((mf.curve.spiralmode || mf.curve.circlemode) && (mf.curve.refList.Count == 1))
+            {
+                //mf.curve.oldhowManyPathsAway = -1;//reset
+                mf.curve.isCurveSet = true;
+                mf.EnableYouTurnButtons();
+                mf.FileSaveCurveLine();
+                Close();
+            }
+            else if (mf.curve.refList.Count < 3)
             {
                 mf.curve.isCurveBtnOn = false;
                 mf.btnCurve.Image = Properties.Resources.CurveOff;
@@ -240,7 +248,44 @@ namespace AgOpenGPS
             btnCancel.Enabled = true;
 
             int cnt = mf.curve.refList.Count;
-            if (cnt > 3)
+            if (mf.curve.spiralmode || mf.curve.circlemode)
+            {
+                if (mf.curve.refList.Count == 1)
+                {
+                }
+                else if (mf.curve.refList.Count > 1)
+                {
+                    double easting = 0;
+                    double northing = 0;
+
+                    if (mf.curve.refList.Count > 1)
+                    {
+                        for (int i = 0; i < (mf.curve.refList.Count); i++)
+                        {
+                            easting += mf.curve.refList[i].easting;
+                            northing += mf.curve.refList[i].northing;
+                        }
+                    }
+                    easting /= mf.curve.refList.Count;
+                    northing /= mf.curve.refList.Count;
+
+                    mf.curve.refList?.Clear();
+                    mf.curve.refList.Add(new vec3(easting, northing, 0));
+
+                }
+                else
+                {
+                    mf.curve.refList.Add(new vec3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0));
+                }
+
+
+                mf.curve.oldhowManyPathsAway = -1;//reset
+                mf.curve.isCurveSet = true;
+                mf.EnableYouTurnButtons();
+                mf.FileSaveCurveLine();
+                lblCurveExists.Text = "Curve Set";
+            }
+            else if (cnt > 3)
             {
                 //make sure distance isn't too big between points on Turn
                 for (int i = 0; i < cnt - 1; i++)
@@ -333,6 +378,8 @@ namespace AgOpenGPS
 
                         //write out the Name
                         writer.WriteLine(curveArrs[i].Name);
+                        writer.WriteLine(curveArrs[i].spiralmode.ToString(CultureInfo.InvariantCulture));
+                        writer.WriteLine(curveArrs[i].circlemode.ToString(CultureInfo.InvariantCulture));
 
                         //write out the aveheading
                         writer.WriteLine(curveArrs[i].Heading.ToString(CultureInfo.InvariantCulture));
@@ -370,7 +417,7 @@ namespace AgOpenGPS
                 
                 mf.curve.aveLineHeading = curveArrs[aa].Heading;
                 
-if (curveArrs[aa].spiralmode || curveArrs[aa].circlemode)
+                if (curveArrs[aa].spiralmode || curveArrs[aa].circlemode)
                 {
                     if (curveArrs[aa].spiralmode) comboBox1.Text = "Spiral Mode";
                     else comboBox1.Text = "Circle Mode";
