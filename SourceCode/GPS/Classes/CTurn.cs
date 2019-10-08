@@ -291,6 +291,7 @@ namespace AgOpenGPS
 
                     //only add if outside actual field boundary
                     //if (!mf.bnd.bndArr[j].IsPointInsideBoundary(point))
+                    if ((mf.bnd.bndArr[j].isOwnField && mf.bnd.bndArr[j].IsPointInsideBoundary(point)) || (!mf.bnd.bndArr[j].isOwnField && !mf.bnd.bndArr[j].IsPointInsideBoundary(point)))
                     {
                         CTurnPt tPnt = new CTurnPt(point.easting, point.northing, point.heading);
                         turnArr[j].turnLine.Add(tPnt);
