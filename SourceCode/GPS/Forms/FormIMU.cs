@@ -29,7 +29,6 @@ namespace AgOpenGPS
 
             this.groupBox6.Text = gStr.gsRollSource;
             this.cboxRollExtUDP.Text = gStr.gsExtUDPSource;
-            this.cboxRollFromBrick.Text = gStr.gsBrickv2;
             this.cboxRollFromGPS.Text = gStr.gsFromGPS;
             this.cboxRollAutoSteer.Text = gStr.gsFromAutoSteer;
 
@@ -37,7 +36,6 @@ namespace AgOpenGPS
             this.cboxHeadingExtUDP.Text = gStr.gsExtUDPSource;
             this.cboxHeadingPAOGI.Text = gStr.gsPAOGIReachIMU;
             this.cboxHeadingAutoSteer.Text = gStr.gsFromAutoSteer;
-            this.cboxHeadingBrick.Text = gStr.gsBrickv2;
 
             this.groupBox1.Text = gStr.gsFixToFixDistance;
             this.label35.Text = gStr.gsMeters;
@@ -92,6 +90,7 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.OK;
             Close();
+            this.Dispose();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

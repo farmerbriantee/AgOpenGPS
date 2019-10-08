@@ -2467,7 +2467,7 @@ namespace AgOpenGPS
                 {
                     panelSimControls.Visible = true;
                     timerSim.Enabled = true;
-                    DialogResult result3 = MessageBox.Show(gStr.gsApplicationWillExitPlzRestart, gStr.gsTurningOnSimulator ,MessageBoxButtons.OK);
+                    DialogResult result3 = MessageBox.Show(gStr.gsAgOpenGPSWillExitPlzRestart, gStr.gsTurningOnSimulator ,MessageBoxButtons.OK);
                     Application.Exit();
 
                 }
@@ -2476,7 +2476,7 @@ namespace AgOpenGPS
                     panelSimControls.Visible = false;
                     timerSim.Enabled = false;
                     //TimedMessageBox(3000, "Simulator Turning Off", "Application will Exit");
-                    DialogResult result3 = MessageBox.Show(gStr.gsApplicationWillExitPlzRestart, gStr.gsTurningOffSimulator, MessageBoxButtons.OK);
+                    DialogResult result3 = MessageBox.Show(gStr.gsAgOpenGPSWillExitPlzRestart, gStr.gsTurningOffSimulator, MessageBoxButtons.OK);
                     Application.Exit();
                 }
             }

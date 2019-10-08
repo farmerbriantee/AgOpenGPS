@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>GGA Interval (secs)</value>
+  </data>
   <data name="gs#OfSections" xml:space="preserve">
     <value># Of Sections</value>
   </data>
@@ -145,11 +148,14 @@
   <data name="gsAgOpenGPS" xml:space="preserve">
     <value>AgOpenGPS</value>
   </data>
+  <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
+    <value>AgOpenGPS Will Exit, Plz Restart</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agressiveness</value>
+  </data>
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenna</value>
-  </data>
-  <data name="gsApplicationWillExitPlzRestart" xml:space="preserve">
-    <value>Application Will Exit, Plz Restart</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Are you sure ?</value>
@@ -176,6 +182,9 @@
   </data>
   <data name="gsAutoSteer" xml:space="preserve">
     <value>Auto Steer</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Auto Steer Configuration</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
     <value>Auto Steer Port</value>
@@ -204,9 +213,6 @@
     <value>Boundary Too Small To Create a Headland</value>
     <comment>x</comment>
   </data>
-  <data name="gsBrickv2" xml:space="preserve">
-    <value>Brick v2</value>
-  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>But Field is Loaded</value>
   </data>
@@ -218,13 +224,10 @@
     <comment>b</comment>
   </data>
   <data name="gsCannotFind" xml:space="preserve">
-    <value>Cannot Find: </value>
+    <value>Cannot Find </value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimeters</value>
-  </data>
-  <data name="gsChoose" xml:space="preserve">
-    <value>Choose...</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choose a different field</value>
@@ -262,6 +265,9 @@
   <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
     <value>Complete An AB Curve Line First</value>
   </data>
+  <data name="gsConfirmIP" xml:space="preserve">
+    <value>Confirm IP</value>
+  </data>
   <data name="gsConnect" xml:space="preserve">
     <value>Connect</value>
   </data>
@@ -273,6 +279,9 @@
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
     <value>Couldn't Generate Valid Path</value>
+  </data>
+  <data name="gsCountsPerDegree" xml:space="preserve">
+    <value>Counts per Degree</value>
   </data>
   <data name="gsCreate" xml:space="preserve">
     <value>Create</value>
@@ -288,6 +297,9 @@
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Create New Field</value>
     <comment>b</comment>
+  </data>
+  <data name="gsCurrentGPSFix" xml:space="preserve">
+    <value>Current GPS Fix:</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Curve Line File is Corrupt</value>
@@ -342,12 +354,12 @@
   <data name="gsDistance" xml:space="preserve">
     <value>Distance</value>
   </data>
-  <data name="gsDone_" xml:space="preserve">
-    <value>Done:</value>
-  </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Drawing Has Begun</value>
     <comment>x</comment>
+  </data>
+  <data name="gsDrive" xml:space="preserve">
+    <value>Drive</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Drive Thru</value>
@@ -361,6 +373,12 @@
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Enable Work Switch</value>
+  </data>
+  <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
+    <value>Enter Broadcaster URL or IP</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Enter Coordinates For Simulator</value>
   </data>
   <data name="gsEnterCurveName" xml:space="preserve">
     <value>Enter Curve Name</value>
@@ -413,6 +431,9 @@
     <value>Field Not Open</value>
     <comment>x</comment>
   </data>
+  <data name="gsFieldOrigin" xml:space="preserve">
+    <value>Field Origin</value>
+  </data>
   <data name="gsField_" xml:space="preserve">
     <value>Field:</value>
   </data>
@@ -439,6 +460,9 @@
   <data name="gsFlagsGE" xml:space="preserve">
     <value>Flags GE</value>
   </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>For Now</value>
+  </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>From Auto Steer:</value>
   </data>
@@ -461,11 +485,11 @@
   <data name="gsGPSConnected" xml:space="preserve">
     <value>GPS Connected</value>
   </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>GPS Current Fix</value>
+  </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
     <value>GPS Heading From</value>
-  </data>
-  <data name="gsGPSIMU" xml:space="preserve">
-    <value>GPS IMU</value>
   </data>
   <data name="gsGPSPort" xml:space="preserve">
     <value>GPS Port</value>
@@ -473,6 +497,12 @@
   <data name="gsGPSSourceOff" xml:space="preserve">
     <value>GPS source off</value>
     <comment>x</comment>
+  </data>
+  <data name="gsGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="gsGetSourceTable" xml:space="preserve">
+    <value>Get Source Table</value>
   </data>
   <data name="gsGo" xml:space="preserve">
     <value>Go!</value>
@@ -520,6 +550,9 @@
     <value>Inner</value>
     <comment>b</comment>
   </data>
+  <data name="gsIntegralGain" xml:space="preserve">
+    <value>Integral Gain</value>
+  </data>
   <data name="gsKMH" xml:space="preserve">
     <value>kmh</value>
   </data>
@@ -532,8 +565,8 @@
   <data name="gsLastFieldUsed" xml:space="preserve">
     <value>Last Field Used</value>
   </data>
-  <data name="gsLat_" xml:space="preserve">
-    <value>Lat:</value>
+  <data name="gsLatitude" xml:space="preserve">
+    <value>Latitude</value>
   </data>
   <data name="gsLeftIs-" xml:space="preserve">
     <value>Left Is -</value>
@@ -568,8 +601,14 @@
   <data name="gsLogNMEA" xml:space="preserve">
     <value>Log NMEA</value>
   </data>
-  <data name="gsLon" xml:space="preserve">
-    <value>Lon:</value>
+  <data name="gsLongitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="gsLookAheadInSeconds" xml:space="preserve">
+    <value>Look Ahead In Seconds</value>
+  </data>
+  <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
+    <value>Look Ahead Offline Multiplier</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
     <value>mph</value>
@@ -580,6 +619,15 @@
   <data name="gsManual" xml:space="preserve">
     <value>Manual</value>
   </data>
+  <data name="gsManualFix" xml:space="preserve">
+    <value>Manual Fix:</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>Max Integral Value</value>
+  </data>
+  <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
+    <value>Max Steer Angle In Degrees</value>
+  </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
     <value>Measurements In</value>
   </data>
@@ -589,8 +637,14 @@
   <data name="gsMetric" xml:space="preserve">
     <value>Metric</value>
   </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>Min Look Ahead In Meters</value>
+  </data>
   <data name="gsMinUnapplied" xml:space="preserve">
     <value>Min Unapplied</value>
+  </data>
+  <data name="gsMinimumPWMDrive" xml:space="preserve">
+    <value>Minimum PWM Drive</value>
   </data>
   <data name="gsMissingABCurveFile" xml:space="preserve">
     <value>Missing AB Curve File</value>
@@ -611,6 +665,9 @@
   <data name="gsMissingSectionFile" xml:space="preserve">
     <value>Missing Section File</value>
   </data>
+  <data name="gsMount" xml:space="preserve">
+    <value>Mount</value>
+  </data>
   <data name="gsMustBeVersion" xml:space="preserve">
     <value>Must be Version </value>
   </data>
@@ -619,6 +676,9 @@
   </data>
   <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
     <value>NTRIP Client Not Set Up</value>
+  </data>
+  <data name="gsNTRIPClientSettings" xml:space="preserve">
+    <value>NTRIP Client Settings</value>
   </data>
   <data name="gsNTRIPNotConnected" xml:space="preserve">
     <value>NTRIP Not Connected</value>
@@ -632,8 +692,14 @@
   <data name="gsNTRIPOff" xml:space="preserve">
     <value>NTRIP Off</value>
   </data>
+  <data name="gsNTRIPOn" xml:space="preserve">
+    <value>NTRIP On</value>
+  </data>
   <data name="gsNTRIPRestarting" xml:space="preserve">
     <value>NTRIP Restarting</value>
+  </data>
+  <data name="gsNetworking" xml:space="preserve">
+    <value>Networking</value>
   </data>
   <data name="gsNew" xml:space="preserve">
     <value>New</value>
@@ -703,14 +769,20 @@
     <value>Outer</value>
     <comment>b</comment>
   </data>
+  <data name="gsOutputGain" xml:space="preserve">
+    <value>Output Gain</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Overshoot Reduction</value>
+  </data>
   <data name="gsPAOGIReachIMU" xml:space="preserve">
     <value>PAOGI (Reach IMU)</value>
   </data>
-  <data name="gsPPS" xml:space="preserve">
-    <value>PPS</value>
-  </data>
   <data name="gsPass" xml:space="preserve">
     <value>Pass #</value>
+  </data>
+  <data name="gsPassword" xml:space="preserve">
+    <value>Password</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
@@ -745,6 +817,9 @@
   <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
     <value>Program will Reset to Recover. Please Restart</value>
   </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>Proportional Gain</value>
+  </data>
   <data name="gsPursuitLine" xml:space="preserve">
     <value>Pursuit Line</value>
   </data>
@@ -775,6 +850,9 @@
   <data name="gsResetAll" xml:space="preserve">
     <value>Reset All</value>
   </data>
+  <data name="gsRestartRequired" xml:space="preserve">
+    <value>* Restart Required</value>
+  </data>
   <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
     <value>Restarting and Reconnecting to Caster</value>
   </data>
@@ -792,12 +870,6 @@
   </data>
   <data name="gsRollZero" xml:space="preserve">
     <value>Roll Zero</value>
-  </data>
-  <data name="gsRoll_" xml:space="preserve">
-    <value>Roll:</value>
-  </data>
-  <data name="gsSats_" xml:space="preserve">
-    <value>Sats:</value>
   </data>
   <data name="gsSave" xml:space="preserve">
     <value>Save</value>
@@ -832,11 +904,17 @@
     <value>Select Boundary</value>
     <comment>b</comment>
   </data>
+  <data name="gsSendToManualFix" xml:space="preserve">
+    <value>Send To Manual Fix</value>
+  </data>
   <data name="gsSendingGGA" xml:space="preserve">
     <value>Sending GGA</value>
   </data>
   <data name="gsSerialPorts" xml:space="preserve">
     <value>Serial Ports</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>Set to 0 for Serial</value>
   </data>
   <data name="gsShortcutKeys" xml:space="preserve">
     <value>Shortcut Keys</value>
@@ -846,6 +924,9 @@
   </data>
   <data name="gsShowElevationMap" xml:space="preserve">
     <value>Show Elevation Map</value>
+  </data>
+  <data name="gsSidehillDraftGain" xml:space="preserve">
+    <value>Sidehill Draft Gain</value>
   </data>
   <data name="gsSimulatorForcedOff" xml:space="preserve">
     <value>Simulator Forced Off</value>
@@ -906,17 +987,17 @@
     <value>Thru</value>
     <comment>b</comment>
   </data>
-  <data name="gsTimeLeft_" xml:space="preserve">
-    <value>Time Left:</value>
-  </data>
   <data name="gsToAutoSteer" xml:space="preserve">
     <value>To Auto Steer:</value>
   </data>
-  <data name="gsToDo_" xml:space="preserve">
-    <value>ToDo:</value>
+  <data name="gsToFile" xml:space="preserve">
+    <value>To File</value>
   </data>
   <data name="gsToSectionPort" xml:space="preserve">
     <value>To Section Port:</value>
+  </data>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>To UDP Port</value>
   </data>
   <data name="gsToggleDriveBy" xml:space="preserve">
     <value>Toggle Drive By</value>
@@ -981,11 +1062,23 @@
   <data name="gsUTurn" xml:space="preserve">
     <value>U Turn</value>
   </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>UTurn Look Ahead Multiplier</value>
+  </data>
   <data name="gsUnits" xml:space="preserve">
     <value>Units</value>
   </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>Use Field</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>Use GPS</value>
+  </data>
   <data name="gsUseSelected" xml:space="preserve">
     <value>Use Selected</value>
+  </data>
+  <data name="gsUsername" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="gsVehicle" xml:space="preserve">
     <value>Vehicle</value>
@@ -1008,6 +1101,9 @@
   <data name="gsWebCam" xml:space="preserve">
     <value>WebCam</value>
   </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>Wheel Angle Sensor Zero</value>
+  </data>
   <data name="gsWheelbase" xml:space="preserve">
     <value>Wheelbase</value>
   </data>
@@ -1022,6 +1118,9 @@
   </data>
   <data name="gsYaw_" xml:space="preserve">
     <value>Yaw:</value>
+  </data>
+  <data name="gsZeroEqualsOff" xml:space="preserve">
+    <value>0 = Off</value>
   </data>
   <data name="gsZeroTrip" xml:space="preserve">
     <value>&gt;0&lt; Trip</value>

@@ -165,7 +165,7 @@
             this.tabControl1.Controls.Add(this.tabLook);
             this.tabControl1.Controls.Add(this.tabStan);
             this.tabControl1.Controls.Add(this.tabDrive);
-            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(94, 44);
             this.tabControl1.Location = new System.Drawing.Point(3, 7);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -253,13 +253,13 @@
             // 
             // label29
             // 
-            this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(29, 266);
+            this.label29.Location = new System.Drawing.Point(19, 266);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(161, 23);
+            this.label29.Size = new System.Drawing.Size(348, 23);
             this.label29.TabIndex = 265;
             this.label29.Text = "Sidehill Draft Gain";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblOutputGain
             // 
@@ -283,23 +283,23 @@
             // 
             // label22
             // 
-            this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(29, 102);
+            this.label22.Location = new System.Drawing.Point(19, 102);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(112, 23);
+            this.label22.Size = new System.Drawing.Size(348, 23);
             this.label22.TabIndex = 260;
             this.label22.Text = "Output Gain";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label41
             // 
-            this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(29, 184);
+            this.label41.Location = new System.Drawing.Point(19, 184);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(184, 23);
+            this.label41.Size = new System.Drawing.Size(348, 23);
             this.label41.TabIndex = 285;
             this.label41.Text = "Minimum PWM Drive";
+            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblProportionalGain
             // 
@@ -313,13 +313,13 @@
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 19);
+            this.label7.Location = new System.Drawing.Point(16, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(154, 23);
+            this.label7.Size = new System.Drawing.Size(348, 23);
             this.label7.TabIndex = 255;
             this.label7.Text = "Proportional Gain";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabSteer
             // 
@@ -369,13 +369,13 @@
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(29, 86);
+            this.label25.Location = new System.Drawing.Point(16, 86);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(168, 23);
+            this.label25.Size = new System.Drawing.Size(350, 23);
             this.label25.TabIndex = 305;
             this.label25.Text = "Counts per Degree";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // hsbarCountsPerDegree
             // 
@@ -422,23 +422,23 @@
             // 
             // label45
             // 
-            this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(31, 308);
+            this.label45.Location = new System.Drawing.Point(18, 308);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(168, 23);
+            this.label45.Size = new System.Drawing.Size(350, 23);
             this.label45.TabIndex = 275;
             this.label45.Text = "Max Integral Value";
+            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
-            this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(29, 160);
+            this.label19.Location = new System.Drawing.Point(16, 160);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(243, 23);
+            this.label19.Size = new System.Drawing.Size(350, 23);
             this.label19.TabIndex = 300;
             this.label19.Text = "Max Steer Angle in Degrees";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // hsbarMaxSteerAngle
             // 
@@ -474,23 +474,23 @@
             // 
             // label33
             // 
-            this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(29, 234);
+            this.label33.Location = new System.Drawing.Point(16, 234);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(120, 23);
+            this.label33.Size = new System.Drawing.Size(350, 23);
             this.label33.TabIndex = 270;
             this.label33.Text = "Integral Gain";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(29, 12);
+            this.label10.Location = new System.Drawing.Point(16, 12);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(258, 23);
+            this.label10.Size = new System.Drawing.Size(350, 23);
             this.label10.TabIndex = 295;
-            this.label10.Text = "Steer Angle Sensor Zero >0<";
+            this.label10.Text = "Wheel Angle Sensor Zero";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // hsbarSteerAngleSensorZero
             // 
@@ -520,7 +520,7 @@
             this.tabLook.Controls.Add(this.label6);
             this.tabLook.Location = new System.Drawing.Point(4, 48);
             this.tabLook.Name = "tabLook";
-            this.tabLook.Size = new System.Drawing.Size(489, 371);
+            this.tabLook.Size = new System.Drawing.Size(489, 366);
             this.tabLook.TabIndex = 14;
             this.tabLook.Text = "Pure P";
             // 
@@ -548,13 +548,13 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 264);
+            this.label2.Location = new System.Drawing.Point(24, 264);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 23);
+            this.label2.Size = new System.Drawing.Size(337, 23);
             this.label2.TabIndex = 297;
             this.label2.Text = "UTurn Look Ahead (Multiplier)";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // hsbarLookAheadMin
             // 
@@ -603,13 +603,13 @@
             // 
             // label37
             // 
-            this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(30, 19);
+            this.label37.Location = new System.Drawing.Point(24, 19);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(197, 23);
+            this.label37.Size = new System.Drawing.Size(337, 23);
             this.label37.TabIndex = 290;
             this.label37.Text = "Look Ahead (Seconds)";
+            this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblLookAheadMinimum
             // 
@@ -623,13 +623,13 @@
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 98);
+            this.label4.Location = new System.Drawing.Point(24, 98);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(249, 23);
+            this.label4.Size = new System.Drawing.Size(337, 23);
             this.label4.TabIndex = 273;
             this.label4.Text = "Look Ahead Offline Multiplier";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblDistanceFromLine
             // 
@@ -643,13 +643,13 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(30, 182);
+            this.label6.Location = new System.Drawing.Point(24, 182);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(219, 23);
+            this.label6.Size = new System.Drawing.Size(337, 23);
             this.label6.TabIndex = 270;
             this.label6.Text = "Min Look Ahead (Meters)";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabStan
             // 
@@ -665,7 +665,7 @@
             this.tabStan.Controls.Add(this.lblHeadingErrorGain);
             this.tabStan.Location = new System.Drawing.Point(4, 48);
             this.tabStan.Name = "tabStan";
-            this.tabStan.Size = new System.Drawing.Size(489, 371);
+            this.tabStan.Size = new System.Drawing.Size(489, 366);
             this.tabStan.TabIndex = 15;
             this.tabStan.Text = "Stanley";
             // 
@@ -675,11 +675,11 @@
             this.btnStanley.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnStanley.FlatAppearance.BorderSize = 2;
             this.btnStanley.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStanley.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStanley.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStanley.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStanley.Location = new System.Drawing.Point(270, 304);
+            this.btnStanley.Location = new System.Drawing.Point(276, 286);
             this.btnStanley.Name = "btnStanley";
-            this.btnStanley.Size = new System.Drawing.Size(120, 51);
+            this.btnStanley.Size = new System.Drawing.Size(129, 69);
             this.btnStanley.TabIndex = 302;
             this.btnStanley.Text = "Stanley";
             this.btnStanley.UseVisualStyleBackColor = false;
@@ -689,7 +689,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(237, 266);
+            this.label1.Location = new System.Drawing.Point(238, 251);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(201, 23);
             this.label1.TabIndex = 300;
@@ -711,13 +711,13 @@
             // 
             this.btnChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnChart.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnChart.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChart.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChart.ForeColor = System.Drawing.Color.Black;
-            this.btnChart.Location = new System.Drawing.Point(17, 304);
+            this.btnChart.Location = new System.Drawing.Point(17, 286);
             this.btnChart.Name = "btnChart";
-            this.btnChart.Size = new System.Drawing.Size(108, 51);
+            this.btnChart.Size = new System.Drawing.Size(129, 69);
             this.btnChart.TabIndex = 234;
-            this.btnChart.Text = "Chart";
+            this.btnChart.Text = "Steer Chart";
             this.btnChart.UseVisualStyleBackColor = true;
             this.btnChart.Click += new System.EventHandler(this.btnChart_Click);
             // 
@@ -745,23 +745,23 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(30, 19);
+            this.label3.Location = new System.Drawing.Point(24, 19);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 23);
+            this.label3.Size = new System.Drawing.Size(334, 23);
             this.label3.TabIndex = 298;
             this.label3.Text = "Agressiveness";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(30, 98);
+            this.label5.Location = new System.Drawing.Point(24, 98);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(184, 23);
+            this.label5.Size = new System.Drawing.Size(334, 23);
             this.label5.TabIndex = 296;
             this.label5.Text = "Overshoot Reduction";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHeadingErrorGain
             // 
@@ -785,7 +785,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 48);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(489, 371);
+            this.tabDrive.Size = new System.Drawing.Size(489, 366);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
