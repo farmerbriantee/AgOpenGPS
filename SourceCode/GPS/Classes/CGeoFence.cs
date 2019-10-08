@@ -220,7 +220,7 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndArr.Count; j++)
             {
                 geoFenceArr[j].geoFenceLine.Clear();
-                if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru) continue;
+                if (!mf.bnd.bndArr[j].isSet || (!mf.bnd.bndArr[j].isOwnField && mf.bnd.bndArr[j].isDriveThru)) continue;
 
                 int num = 1;
                 if (mf.bnd.bndArr[j].isOwnField)
