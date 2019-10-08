@@ -312,17 +312,20 @@ namespace AgOpenGPS
 
             for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
-                if (!mf.bnd.bndArr[i].isSet && mf.bnd.bndArr[i].isDriveAround) continue;
+                if (!mf.bnd.bndArr[i].isSet)
                 //turnArr[i].DrawTurnLine();
                 {
-                    ////draw the turn line oject
-                    int ptCount = mf.turn.turnArr[i].turnLine.Count;
-                    if (ptCount < 1) continue;
+                    if (!mf.bnd.bndArr[i].isOwnField && mf.bnd.bndArr[i].isDriveAround) continue;
+                    {
+                        ////draw the turn line oject
+                        int ptCount = mf.turn.turnArr[i].turnLine.Count;
+                        if (ptCount < 1) continue;
 
-                    GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.turn.turnArr[i].turnLine[h].easting, mf.turn.turnArr[i].turnLine[h].northing, 0);
-                    GL.Vertex3(mf.turn.turnArr[i].turnLine[0].easting, mf.turn.turnArr[i].turnLine[0].northing, 0);
-                    GL.End();
+                        GL.Begin(PrimitiveType.LineStrip);
+                        for (int h = 0; h < ptCount; h++) GL.Vertex3(mf.turn.turnArr[i].turnLine[h].easting, mf.turn.turnArr[i].turnLine[h].northing, 0);
+                        GL.Vertex3(mf.turn.turnArr[i].turnLine[0].easting, mf.turn.turnArr[i].turnLine[0].northing, 0);
+                        GL.End();
+                    }
                 }
             }
         }
