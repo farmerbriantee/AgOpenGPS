@@ -262,6 +262,7 @@ namespace AgOpenGPS
                 mf.curve.refList?.Clear();
                 lblCurveExists.Text = " > Off <";
             }
+            mf.bnd.BoundCreate.Clear();
             //Close();
         }
 
