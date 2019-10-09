@@ -468,6 +468,9 @@
   <data name="gsInner" xml:space="preserve">
     <value>Innere</value>
   </data>
+  <data name="gsIntegralGain" xml:space="preserve">
+    <value>Integraler Gewinn</value>
+  </data>
   <data name="gsLanguage" xml:space="preserve">
     <value>Sprache</value>
   </data>
