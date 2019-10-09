@@ -108,6 +108,18 @@ namespace AgOpenGPS
 
                     Font backupfont = new Font(aa.Font.FontFamily, 18F, FontStyle.Bold);
 
+
+
+
+                    // LOCK MultipleField
+
+                    cc.Enabled = false;
+
+                    // LOCK MultipleField
+
+
+
+
                     if (mf.bnd.bndArr[i].isOwnField)
                     {
                         cc.Text = "true";
