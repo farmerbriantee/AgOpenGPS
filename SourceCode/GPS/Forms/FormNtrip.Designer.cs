@@ -280,6 +280,7 @@
             this.tboxUserName.Name = "tboxUserName";
             this.tboxUserName.Size = new System.Drawing.Size(274, 33);
             this.tboxUserName.TabIndex = 100;
+            this.tboxUserName.PasswordChar = '*'; 
             // 
             // tboxUserPassword
             // 
@@ -289,6 +290,7 @@
             this.tboxUserPassword.Name = "tboxUserPassword";
             this.tboxUserPassword.Size = new System.Drawing.Size(274, 33);
             this.tboxUserPassword.TabIndex = 101;
+            this.tboxUserPassword.PasswordChar = '*';
             // 
             // label3
             // 
