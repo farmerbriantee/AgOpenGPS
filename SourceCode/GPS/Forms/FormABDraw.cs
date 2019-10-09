@@ -50,6 +50,8 @@ namespace AgOpenGPS
 
         private void BtnMakeCurve_Click(object sender, EventArgs e)
         {
+            mf.curve.spiralmode = false;
+            mf.curve.circlemode = false;
             mf.curve.refList?.Clear();
 
             for (int i = start; i < end; i++)
@@ -144,6 +146,8 @@ namespace AgOpenGPS
                         //write out the ABLine
                         writer.WriteLine(tboxCurveSaveName.Text);
 
+                        writer.WriteLine(false.ToString(CultureInfo.InvariantCulture));
+                        writer.WriteLine(false.ToString(CultureInfo.InvariantCulture));
                         //write out the aveheading
                         writer.WriteLine(mf.curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
 
