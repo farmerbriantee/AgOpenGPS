@@ -732,6 +732,8 @@ namespace AgOpenGPS
                 mf.guidanceLineDistanceOff = 32000;
             }
         }
+         
+        }
 
         public void SnapABCurve()
         {
