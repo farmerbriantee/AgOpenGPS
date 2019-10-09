@@ -461,6 +461,14 @@ namespace AgOpenGPS
                 }
                 else
                 {
+                    mf.curve.aveLineHeading = curveArrs[aa].Heading;
+
+                    mf.curve.refList?.Clear();
+
+                    for (int i = 0; i < curveArrs[aa].curveArr.Count; i++)
+                    {
+                        mf.curve.refList.Add(curveArrs[aa].curveArr[i]);
+                    }
                     mf.curve.isCurveSet = true;
                     mf.EnableYouTurnButtons();
                     mf.FileSaveCurveLine();
