@@ -172,16 +172,27 @@ namespace AgOpenGPS
             {
                 deltaOfRefAndAveHeadings = 1;
 
-                if (oldhowManyPathsAway != 1)
+                double dist = ((pivot.easting - refList[0].easting) * (pivot.easting - refList[0].easting)) + ((pivot.northing - refList[0].northing) * (pivot.northing - refList[0].northing));
+
+                minDistance = Math.Sqrt(dist);
+
+                howManyPathsAway = Math.Round(minDistance / widthMinusOverlap, 0, MidpointRounding.AwayFromZero);
+                if (oldhowManyPathsAway != howManyPathsAway && howManyPathsAway == 0)
                 {
-                    oldhowManyPathsAway = 1;
+                    oldhowManyPathsAway = howManyPathsAway;
+                    curList?.Clear();
+                }
+                if (oldhowManyPathsAway != howManyPathsAway)
+                {
+                    oldhowManyPathsAway = howManyPathsAway;
+                    if (howManyPathsAway < 2) howManyPathsAway = 2;
 
                     double s = widthMinusOverlap / 2;
 
                     curList?.Clear();
                     double circumference = (glm.twoPI * s) / (boundaryTriggerDistance * 0.1);
 
-                    for (double round = 0; round <= (glm.twoPI * 10 + 0.00001); round += (glm.twoPI / circumference))
+                    for (double round = glm.twoPI * (howManyPathsAway - 2); round <= (glm.twoPI * (howManyPathsAway+2) + 0.00001); round += (glm.twoPI / circumference))
                     {
                         double x = s * (Math.Cos(round) + (round / Math.PI) * Math.Sin(round));
                         double y = s * (Math.Sin(round) - (round / Math.PI) * Math.Cos(round));
