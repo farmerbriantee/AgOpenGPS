@@ -382,6 +382,7 @@ namespace AgOpenGPS
         private void FormABDraw_Load(object sender, EventArgs e)
         {
 
+            if (mf.bnd.bndArr.Count < 1) return;
             int cnt = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine.Count;
             arr = new vec3[cnt*2];
 
