@@ -49,7 +49,7 @@ namespace AgOpenGPS
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);
 
-                if (mf.turn.turnArr[0].IsPointInTurnWorkArea(pt))
+                if (mf.turn.turnArr[mf.bnd.LastBoundary].IsPointInTurnWorkArea(pt))
                 {
                     for (int t = 0; t < mf.bnd.bndArr.Count; t++)
                     {
