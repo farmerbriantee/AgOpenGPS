@@ -594,7 +594,7 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 ////draw the perimeter line so far
                 int ptCount = bnd.bndArr[0].bndLine.Count;
@@ -709,7 +709,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -1234,28 +1234,47 @@ namespace AgOpenGPS
         //determine mins maxs of patches and whole field.
         public void CalculateMinMax()
         {
+        {
 
             minFieldX = 9999999; minFieldY = 9999999;
             maxFieldX = -9999999; maxFieldY = -9999999;
-
-
-            //min max of the boundary
-            //min max of the boundary
-            if (bnd.bndArr[0].isSet)
-            {
-                int bndCnt = bnd.bndArr[0].bndLine.Count;
-                for (int i = 0; i < bndCnt; i++)
-                {
-                    double x = bnd.bndArr[0].bndLine[i].easting;
-                    double y = bnd.bndArr[0].bndLine[i].northing;
-
-                    //also tally the max/min of field x and z
-                    if (minFieldX > x) minFieldX = x;
-                    if (maxFieldX < x) maxFieldX = x;
-                    if (minFieldY > y) minFieldY = y;
-                    if (maxFieldY < y) maxFieldY = y;
-                }
-
+	    if (bnd.bndArr.Count > 0)
+	    {
+		if (bnd.CurrentBoundary == -1)
+		{
+	             for (int i = 0; i < bnd.bndArr.Count; i++)
+		     {
+		         if (bnd.bndArr[i].isSet && bnd.bndArr[i].isOwnField)
+			 {
+			     int bndCnt = bnd.bndArr[i].bndLine.Count;
+			     for (int j = 0; j < bndCnt; j++)
+			     {
+				 double x = bnd.bndArr[i].bndLine[j].easting;
+				 double y = bnd.bndArr[i].bndLine[j].northing;
+			     
+                    		//also tally the max/min of field x and z
+                    		if (minFieldX > x) minFieldX = x;
+                    		if (maxFieldX < x) maxFieldX = x;
+                    		if (minFieldY > y) minFieldY = y;
+                    		if (maxFieldY < y) maxFieldY = y;
+			     }
+			 }
+		     }
+		}
+		else
+		{
+		    int bndCnt = bnd.bndArr[bnd.LastBoundary].bndLine.Count;
+	            for (int i = 0; i < bndCnt; i++)
+		    {
+			double x = bnd.bndArr[bnd.LastBoundary].bndLine[i].easting;
+			double y = bnd.bndArr[bnd.LastBoundary].bndLine[i].northing;
+                        //also tally the max/min of field x and z
+                    	if (minFieldX > x) minFieldX = x;
+                    	if (maxFieldX < x) maxFieldX = x;
+                    	if (minFieldY > y) minFieldY = y;
+                    	if (maxFieldY < y) maxFieldY = y;
+		    }
+		}    
             }
             else
             {
@@ -1327,6 +1346,7 @@ namespace AgOpenGPS
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 
+            }
         }
     }
 }

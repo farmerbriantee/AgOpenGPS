@@ -50,6 +50,8 @@ namespace AgOpenGPS
 
         private void BtnMakeCurve_Click(object sender, EventArgs e)
         {
+            mf.curve.spiralmode = false;
+            mf.curve.circlemode = false;
             mf.curve.refList?.Clear();
 
             for (int i = start; i < end; i++)
@@ -144,6 +146,8 @@ namespace AgOpenGPS
                         //write out the ABLine
                         writer.WriteLine(tboxCurveSaveName.Text);
 
+                        writer.WriteLine(false.ToString(CultureInfo.InvariantCulture));
+                        writer.WriteLine(false.ToString(CultureInfo.InvariantCulture));
                         //write out the aveheading
                         writer.WriteLine(mf.curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
 
@@ -391,21 +395,22 @@ namespace AgOpenGPS
         private void FormABDraw_Load(object sender, EventArgs e)
         {
 
-            int cnt = mf.bnd.bndArr[0].bndLine.Count;
+            if (mf.bnd.bndArr.Count < 1) return;
+            int cnt = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine.Count;
             arr = new vec3[cnt*2];
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i].northing;
+                arr[i].easting = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i].easting;
+                arr[i].northing = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i].northing;
+                arr[i].heading = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i].northing;
             }
 
             for (int i = cnt; i < cnt*2; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i-cnt].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i-cnt].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i-cnt].heading;
+                arr[i].easting = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i-cnt].easting;
+                arr[i].northing = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i-cnt].northing;
+                arr[i].heading = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i-cnt].heading;
             }
         }
 
@@ -582,13 +587,13 @@ namespace AgOpenGPS
                 }
 
                 //min max of the boundary
-                if (mf.bnd.bndArr[0].isSet)
+                if (mf.bnd.bndArr.Count > 0)
                 {
-                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
+                    int bndCnt = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine.Count;
                     for (int i = 0; i < bndCnt; i++)
                     {
-                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
-                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
+                        double x = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i].easting;
+                        double y = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine[i].northing;
 
                         //also tally the max/min of field x and z
                         if (minFieldX > x) minFieldX = x;

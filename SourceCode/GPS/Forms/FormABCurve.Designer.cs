@@ -45,6 +45,14 @@
             this.btnListDelete = new System.Windows.Forms.Button();
             this.btnABLineOk = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label5 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nudLatitude = new System.Windows.Forms.NumericUpDown();
+            this.nudLongitude = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLatitude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLongitude)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCurveExists
@@ -277,12 +285,114 @@
             this.timer1.Interval = 300;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(322, 454);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(248, 25);
+            this.label5.TabIndex = 189;
+            this.label5.Text = "Longitude (+180 to -180)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label18.Location = new System.Drawing.Point(25, 453);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(216, 25);
+            this.label18.TabIndex = 188;
+            this.label18.Text = "Latitude ( +90 to -90)";
+            // 
+            // nudLatitude
+            // 
+            this.nudLatitude.DecimalPlaces = 7;
+            this.nudLatitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLatitude.Location = new System.Drawing.Point(9, 482);
+            this.nudLatitude.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.nudLatitude.Minimum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            -2147483648});
+            this.nudLatitude.Name = "nudLatitude";
+            this.nudLatitude.Size = new System.Drawing.Size(274, 52);
+            this.nudLatitude.TabIndex = 187;
+            this.nudLatitude.Value = new decimal(new int[] {
+            534389172,
+            0,
+            0,
+            458752});
+            // 
+            // nudLongitude
+            // 
+            this.nudLongitude.DecimalPlaces = 7;
+            this.nudLongitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLongitude.Location = new System.Drawing.Point(305, 482);
+            this.nudLongitude.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nudLongitude.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nudLongitude.Name = "nudLongitude";
+            this.nudLongitude.Size = new System.Drawing.Size(298, 52);
+            this.nudLongitude.TabIndex = 186;
+            this.nudLongitude.Value = new decimal(new int[] {
+            1111596322,
+            0,
+            0,
+            -2147024896});
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(262, 404);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(318, 35);
+            this.button2.TabIndex = 185;
+            this.button2.Text = "Use Lat/Lon as centerPoint";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "AB Curve",
+            "Spiral Mode",
+            "Circle Mode"});
+            this.comboBox1.Location = new System.Drawing.Point(9, 404);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(232, 33);
+            this.comboBox1.TabIndex = 184;
+            this.comboBox1.Text = "AB Curve";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
+            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 400);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.nudLatitude);
+            this.Controls.Add(this.nudLongitude);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblCurveExists);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnMulti);
@@ -329,5 +439,11 @@
         private System.Windows.Forms.Button btnMulti;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown nudLatitude;
+        private System.Windows.Forms.NumericUpDown nudLongitude;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

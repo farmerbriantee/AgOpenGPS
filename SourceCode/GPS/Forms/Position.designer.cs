@@ -424,7 +424,7 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
                 if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
@@ -707,26 +707,22 @@ namespace AgOpenGPS
 
             //build the boundary line
 
-            bool isInner = false;
-            for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bnd.bndArr[i].isOkToAddPoints;
-
-            if (isInner)
+            if (bnd.isOkToAddPoints)
             {
-                if (bnd.bndArr[bnd.boundarySelected].isDrawRightSide)
+                if (bnd.isDrawRightSide)
                 {
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
 
                 //draw on left side
                 else
                 {
-                    //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
             }
 
@@ -922,15 +918,15 @@ namespace AgOpenGPS
             bool isLeftIn = true, isRightIn = true;
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
-                if (bnd.bndArr[0].isSet)
+                if (bnd.bndArr.Count > 0)
                 {
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
+                        isLeftIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].leftPoint);
+                        isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
 
-                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        for (int i = 0; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
                             if (bnd.bndArr[i].isSet)
@@ -949,8 +945,8 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
-                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
+                        for (int i = 0; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
                             if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
@@ -1062,28 +1058,61 @@ namespace AgOpenGPS
 
         public bool IsInWorkingArea()
         {
-            //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (gf.geoFenceArr[0].IsPointInGeoFenceArea(pivotAxlePos))
+            if (bnd.bndArr.Count > 0)
             {
-                for (int i = 1; i < MAXBOUNDARIES; i++)
+                if (bnd.bndArr[bnd.LastBoundary].isSet && gf.geoFenceArr[bnd.LastBoundary].IsPointInGeoFenceArea(pivotAxlePos))
                 {
-                    //make sure not inside a non drivethru boundary
-                    if (!bnd.bndArr[i].isSet) continue;
-                    if (bnd.bndArr[i].isDriveThru) continue;
-                    if (gf.geoFenceArr[i].IsPointInGeoFenceArea(pivotAxlePos))
+                    for (int j = 0; j < bnd.bndArr.Count; j++)
                     {
-                        distancePivotToTurnLine = -3333;
-                        return false;
+                        //make sure not inside a non drivethru boundary
+                        if (!bnd.bndArr[j].isSet || bnd.bndArr[j].isOwnField || bnd.bndArr[j].isDriveThru) continue;
+                        if (gf.geoFenceArr[j].IsPointInGeoFenceArea(pivotAxlePos))
+                        {
+                            bnd.CurrentBoundary = j;
+                            distancePivotToTurnLine = -3333;
+                            return false;
+                        }
+                    }
+                    bnd.CurrentBoundary = bnd.LastBoundary;
+                    return true;
+                }
+                else
+                {
+                    for (int i = 0; i < bnd.bndArr.Count; i++)
+                    {
+                        if (bnd.bndArr[i].isSet && bnd.bndArr[i].isOwnField)
+                        {
+                            if (gf.geoFenceArr[i].IsPointInGeoFenceArea(pivotAxlePos))
+                            {
+                                for (int j = 0; j < bnd.bndArr.Count; j++)
+                                {
+                                    //make sure not inside a non drivethru boundary
+                                    if (!bnd.bndArr[j].isSet || bnd.bndArr[j].isOwnField || bnd.bndArr[j].isDriveThru) continue;
+                                    if (gf.geoFenceArr[j].IsPointInGeoFenceArea(pivotAxlePos))
+                                    {
+                                        bnd.CurrentBoundary = j;
+                                        distancePivotToTurnLine = -3333;
+                                        return false;
+                                    }
+                                }
+                                bnd.LastBoundary = i;
+                                bnd.CurrentBoundary = i;
+                                return true;
+                            }
+                        }
                     }
                 }
+                distancePivotToTurnLine = -3333;
+                bnd.LastBoundary = 0;
+                bnd.CurrentBoundary = -1;
+                return false;
             }
             else
             {
-                distancePivotToTurnLine = -3333;
-                return false;
+                //MessageBox.Show("Is it possible to get here???");
+
+                return true;
             }
-            //we are safely inside outer, outside inner boundaries
-            return true;
         }       
 
         // intense math section....   the lat long converted to utm   *********************************************************
