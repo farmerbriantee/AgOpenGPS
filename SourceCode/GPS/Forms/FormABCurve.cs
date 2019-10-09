@@ -578,7 +578,7 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
-                            if (numPoints > 1)
+                            if (numPoints > 0)
                             {
                                 itm = new ListViewItem(curveArrs[num].Name);
                                 lvLines.Items.Add(itm);
