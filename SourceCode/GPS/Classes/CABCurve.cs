@@ -360,7 +360,6 @@ namespace AgOpenGPS
             //sign of distance determines which side of line we are on
             if (distanceFromRefLine > 0) piSide = glm.PIBy2;
             else piSide = -glm.PIBy2;
-            double widthMinusOverlap;
             //move the ABLine over based on the overlap amount set in vehicle
             if (mf.vehicle.toolOffset != 0) {
                 widthMinusOverlap = mf.vehicle.toolWidth / 2 - mf.vehicle.toolOverlap;
@@ -376,7 +375,7 @@ namespace AgOpenGPS
 
             //build the current line
             curList?.Clear();
-            for (int i = 0; i < ptCount; i++)
+            for (int i = 0; i < ptCount2; i++)
             {
                 var point = new vec3(
                     refList[i].easting + (Math.Sin(piSide + aveLineHeading) * ((widthMinusOverlap * howManyPathsAway))),
@@ -396,7 +395,7 @@ namespace AgOpenGPS
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
                     {
-                        double dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
+                        dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
                                         + ((steer.northing - curList[t].northing) * (steer.northing - curList[t].northing));
                         if (dist < minDistA)
                         {
@@ -418,8 +417,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    double dx = curList[B].easting - curList[A].easting;
-                    double dz = curList[B].northing - curList[A].northing;
+                    dx = curList[B].easting - curList[A].easting;
+                    dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
@@ -521,8 +520,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    double dx = curList[B].easting - curList[A].easting;
-                    double dz = curList[B].northing - curList[A].northing;
+                    dx = curList[B].easting - curList[A].easting;
+                    dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
