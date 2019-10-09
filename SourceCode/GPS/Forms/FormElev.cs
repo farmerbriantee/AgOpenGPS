@@ -283,7 +283,7 @@ namespace AgOpenGPS
             deltaElevation = maxElevation - minElevation;
 
             //min max of the boundary
-            if (mf.bnd.bndArr[0].isSet)
+            if (mf.bnd.bndArr.Count > 0)
             {
                 int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
                 for (int i = 0; i < bndCnt; i++)
