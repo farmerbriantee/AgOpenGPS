@@ -79,7 +79,7 @@ namespace AgOpenGPS
             calcList.Clear();
             bndLine.Clear();
             area = 0;
-            isSet = false
+            isSet = false;
             isDriveThru = false;
             isOwnField = false;
             isDriveAround = false;
