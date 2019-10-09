@@ -454,6 +454,9 @@ namespace AgOpenGPS
                             mf.bnd.bndArr[i].CalculateBoundaryArea();
                             mf.bnd.bndArr[i].PreCalcBoundaryLines();
                             mf.bnd.bndArr[i].isSet = true;
+                            
+                            if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
+                            else mf.bnd.bndArr[i].isOwnField = false;
                         }
                         else
                         {
@@ -571,6 +574,8 @@ namespace AgOpenGPS
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
+                                if (mf.bnd.boundarySelected == 0) mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = true;
+                                else mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = false;
 
                                 {
                                     mf.FileSaveBoundary();
