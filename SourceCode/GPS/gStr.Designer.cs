@@ -826,15 +826,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Elev:.
-        /// </summary>
-        public static string gsElev_ {
-            get {
-                return ResourceManager.GetString("gsElev_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enable Work Switch.
         /// </summary>
         public static string gsEnableWorkSwitch {
@@ -1434,15 +1425,6 @@ namespace AgOpenGPS {
         public static string gsLeftIs_ {
             get {
                 return ResourceManager.GetString("gsLeftIs-", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to LIDAR:.
-        /// </summary>
-        public static string gsLIDAR_ {
-            get {
-                return ResourceManager.GetString("gsLIDAR_", resourceCulture);
             }
         }
         
@@ -3159,15 +3141,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yaw:.
-        /// </summary>
-        public static string gsYaw_ {
-            get {
-                return ResourceManager.GetString("gsYaw_", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to 0 = Off.
         /// </summary>
         public static string gsZeroEqualsOff {
@@ -3182,15 +3155,6 @@ namespace AgOpenGPS {
         public static string gsZeroTrip {
             get {
                 return ResourceManager.GetString("gsZeroTrip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zone:.
-        /// </summary>
-        public static string gsZone_ {
-            get {
-                return ResourceManager.GetString("gsZone_", resourceCulture);
             }
         }
     }

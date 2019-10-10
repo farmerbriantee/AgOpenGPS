@@ -157,7 +157,7 @@
     <value>Fläche</value>
   </data>
   <data name="gsAround" xml:space="preserve">
-    <value> </value>
+    <value>Um</value>
   </data>
   <data name="gsAuthourizing" xml:space="preserve">
     <value>Anmelden</value>
@@ -185,6 +185,9 @@
   </data>
   <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
     <value>Schlag zu klein um Vorgewende zu erzeugen</value>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>Grenzen</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>aber Feld wurde geladen</value>
@@ -321,9 +324,6 @@
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Doppelantenne</value>
   </data>
-  <data name="gsElev_" xml:space="preserve">
-    <value>Höhe:</value>
-  </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Arbeitsschalter aktivieren</value>
   </data>
@@ -416,9 +416,6 @@
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Von VTG oder RMC</value>
-  </data>
-  <data name="gsFt" xml:space="preserve">
-    <value>Ft</value>
   </data>
   <data name="gsFused" xml:space="preserve">
     <value>Verschmolzen:</value>
@@ -650,9 +647,6 @@
   </data>
   <data name="gsPassword" xml:space="preserve">
     <value>Passwort</value>
-  </data>
-  <data name="gsPause" xml:space="preserve">
-    <value>Pause</value>
   </data>
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Fortsetzen</value>

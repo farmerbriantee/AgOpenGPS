@@ -174,9 +174,6 @@
   <data name="gsAuthourizing" xml:space="preserve">
     <value>Autorisation</value>
   </data>
-  <data name="gsAuto" xml:space="preserve">
-    <value>Auto</value>
-  </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
     <value>Bouton autoguidage Auto / Manuel</value>
   </data>
@@ -218,9 +215,6 @@
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Mais le champ est chargé</value>
-  </data>
-  <data name="gsCM" xml:space="preserve">
-    <value>cm</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
     <value>Annuler</value>
@@ -348,9 +342,6 @@
   <data name="gsDisplay" xml:space="preserve">
     <value>Affichage</value>
   </data>
-  <data name="gsDistance" xml:space="preserve">
-    <value>Distance</value>
-  </data>
   <data name="gsDone" xml:space="preserve">
     <value>Terminer</value>
   </data>
@@ -360,20 +351,11 @@
   <data name="gsDrive" xml:space="preserve">
     <value>Conduire</value>
   </data>
-  <data name="gsDriveThru" xml:space="preserve">
-    <value>Drive Thru</value>
-  </data>
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Double antennes</value>
   </data>
-  <data name="gsDubins" xml:space="preserve">
-    <value>Dubins</value>
-  </data>
   <data name="gsEdit" xml:space="preserve">
     <value>Modifier</value>
-  </data>
-  <data name="gsElev_" xml:space="preserve">
-    <value>Elèv:</value>
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Activer l'intérupteur de travail!</value>
@@ -480,14 +462,8 @@
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>De VTG ou RMC</value>
   </data>
-  <data name="gsFt" xml:space="preserve">
-    <value>Ft</value>
-  </data>
   <data name="gsFunction" xml:space="preserve">
     <value>Fonction</value>
-  </data>
-  <data name="gsFused" xml:space="preserve">
-    <value>Fused:</value>
   </data>
   <data name="gsGGAIntervalSecs" xml:space="preserve">
     <value>Intervalle GGA (secs)</value>
@@ -507,20 +483,8 @@
   <data name="gsGPSSourceOff" xml:space="preserve">
     <value>Source GPS éteinte</value>
   </data>
-  <data name="gsGain" xml:space="preserve">
-    <value>Gain</value>
-  </data>
-  <data name="gsGeoFenceDist" xml:space="preserve">
-    <value>GeoFence Distance</value>
-  </data>
   <data name="gsGetSourceTable" xml:space="preserve">
     <value>Obtenir la table source</value>
-  </data>
-  <data name="gsGo" xml:space="preserve">
-    <value>GO !</value>
-  </data>
-  <data name="gsGoStop" xml:space="preserve">
-    <value>Go / Stop</value>
   </data>
   <data name="gsGo_Around" xml:space="preserve">
     <value>Faire le tour</value>
@@ -561,26 +525,14 @@
   <data name="gsIntegralGain" xml:space="preserve">
     <value>Gain d'intégrale</value>
   </data>
-  <data name="gsKMH" xml:space="preserve">
-    <value>kmh</value>
-  </data>
-  <data name="gsLIDAR_" xml:space="preserve">
-    <value>LIDAR:</value>
-  </data>
   <data name="gsLanguage" xml:space="preserve">
     <value>Langue</value>
   </data>
   <data name="gsLastFieldUsed" xml:space="preserve">
     <value>Dernier champ utilisé</value>
   </data>
-  <data name="gsLatitude" xml:space="preserve">
-    <value>Latitude</value>
-  </data>
   <data name="gsLeftIs-" xml:space="preserve">
     <value>Gauche -</value>
-  </data>
-  <data name="gsLidarOn" xml:space="preserve">
-    <value>LIDAR</value>
   </data>
   <data name="gsLightbarOn" xml:space="preserve">
     <value>Barre lumineuse</value>
@@ -600,23 +552,11 @@
   <data name="gsLoadVehicle" xml:space="preserve">
     <value>Charger un véhicule</value>
   </data>
-  <data name="gsLocation" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="gsLogNMEA" xml:space="preserve">
-    <value>Log NMEA</value>
-  </data>
-  <data name="gsLongitude" xml:space="preserve">
-    <value>Longitude</value>
-  </data>
   <data name="gsLookAheadInSeconds" xml:space="preserve">
     <value>Anticipation (secondes)</value>
   </data>
   <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
     <value>Anticipation de sortie de ligne (multiplicateur)</value>
-  </data>
-  <data name="gsMPH" xml:space="preserve">
-    <value>mph</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Faire les Bordures de champ</value>
@@ -674,9 +614,6 @@
   </data>
   <data name="gsMustBeVersion" xml:space="preserve">
     <value>Doit être la version</value>
-  </data>
-  <data name="gsNTRIP" xml:space="preserve">
-    <value>NTRIP</value>
   </data>
   <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
     <value>Client NTRIP non configuré</value>
@@ -747,9 +684,6 @@
   <data name="gsNothingDeleted" xml:space="preserve">
     <value>Rien de supprimé</value>
   </data>
-  <data name="gsOff" xml:space="preserve">
-    <value>OFF</value>
-  </data>
   <data name="gsOffline" xml:space="preserve">
     <value>Hors ligne</value>
   </data>
@@ -786,9 +720,6 @@
   <data name="gsPattern" xml:space="preserve">
     <value>Patterne</value>
   </data>
-  <data name="gsPause" xml:space="preserve">
-    <value>Pause</value>
-  </data>
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Reprendre</value>
   </data>
@@ -800,12 +731,6 @@
   </data>
   <data name="gsPolygonsOn" xml:space="preserve">
     <value>Polygone</value>
-  </data>
-  <data name="gsPort" xml:space="preserve">
-    <value>Port</value>
-  </data>
-  <data name="gsPorts" xml:space="preserve">
-    <value>Ports</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
     <value>Un problème est survenu durant la création du chemin</value>
@@ -890,9 +815,6 @@
   </data>
   <data name="gsSavedInFolder" xml:space="preserve">
     <value>Enregistré dans le dossier :</value>
-  </data>
-  <data name="gsSection" xml:space="preserve">
-    <value>Section</value>
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Fichier Section corrompu</value>
@@ -996,9 +918,6 @@
   <data name="gsTemplateCancelled" xml:space="preserve">
     <value>Modèle annulé!</value>
   </data>
-  <data name="gsThru" xml:space="preserve">
-    <value>Thru</value>
-  </data>
   <data name="gsToAutoSteer" xml:space="preserve">
     <value>Au port d'autoguidage :</value>
   </data>
@@ -1077,14 +996,8 @@
   <data name="gsTurningOnSimulator" xml:space="preserve">
     <value>Activer Sim</value>
   </data>
-  <data name="gsUDP" xml:space="preserve">
-    <value>UDP</value>
-  </data>
   <data name="gsUTurn" xml:space="preserve">
     <value>Tournant</value>
-  </data>
-  <data name="gsUTurnDistance" xml:space="preserve">
-    <value>Distance</value>
   </data>
   <data name="gsUTurnLength" xml:space="preserve">
     <value>Longueur du tournant</value>
@@ -1146,13 +1059,7 @@
   <data name="gsYaw_" xml:space="preserve">
     <value>Yaw:</value>
   </data>
-  <data name="gsZeroEqualsOff" xml:space="preserve">
-    <value>0 = OFF</value>
-  </data>
   <data name="gsZeroTrip" xml:space="preserve">
     <value>Traçé &gt;0&lt;</value>
-  </data>
-  <data name="gsZone_" xml:space="preserve">
-    <value>Zone:</value>
   </data>
 </root>
