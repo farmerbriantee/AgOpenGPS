@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -135,6 +135,9 @@
   <data name="gsAbout" xml:space="preserve">
     <value>À propos de...</value>
   </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
     <value>L'action a été annulée</value>
   </data>
@@ -192,6 +195,9 @@
   <data name="gsBaud" xml:space="preserve">
     <value>Baud</value>
   </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>Début</value>
+  </data>
   <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
     <value>Assurez-vous d'enregistrer le véhicule si vous l'avez modifier</value>
   </data>
@@ -206,6 +212,9 @@
   </data>
   <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
     <value>Limite trop petite pour créer un cap!</value>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>Bordure</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Mais le champ est chargé</value>
@@ -227,6 +236,9 @@
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
     <value>Choisissez un autre nom.</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Choisissez ou créez  un autre</value>
   </data>
   <data name="gsClickButtonAgainToStop" xml:space="preserve">
     <value>Cliquez à nouveau sur le bouton pour arrêter!</value>
@@ -282,6 +294,9 @@
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Créer un nouveau champ</value>
   </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Créez d'abord la limite extérieure</value>
+  </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
     <value>Fixe GPS actuel:</value>
   </data>
@@ -290,6 +305,9 @@
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
     <value>Courbe AB non activé!</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Personnalisé</value>
   </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** La date sera ajoutée</value>
@@ -333,6 +351,9 @@
   <data name="gsDistance" xml:space="preserve">
     <value>Distance</value>
   </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Terminer</value>
+  </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Le dessin a commencé!</value>
   </data>
@@ -344,6 +365,12 @@
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Double antennes</value>
+  </data>
+  <data name="gsDubins" xml:space="preserve">
+    <value>Dubins</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Modifier</value>
   </data>
   <data name="gsElev_" xml:space="preserve">
     <value>Elèv:</value>
@@ -377,6 +404,12 @@
   </data>
   <data name="gsEnterVehicleUsed" xml:space="preserve">
     <value>Entrez le véhicule utilisé</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Entrée</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Erreur lors de la lecture du fichier KML</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
     <value>Exemples</value>
@@ -435,6 +468,9 @@
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>Du Port d'autoguidage</value>
   </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>Des bordures</value>
+  </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>du GPS</value>
   </data>
@@ -446,6 +482,9 @@
   </data>
   <data name="gsFt" xml:space="preserve">
     <value>Ft</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Fonction</value>
   </data>
   <data name="gsFused" xml:space="preserve">
     <value>Fused:</value>
@@ -470,6 +509,9 @@
   </data>
   <data name="gsGain" xml:space="preserve">
     <value>Gain</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>GeoFence Dist</value>
   </data>
   <data name="gsGetSourceTable" xml:space="preserve">
     <value>Obtenir la table source</value>
@@ -687,6 +729,9 @@
   <data name="gsNoNameEntered" xml:space="preserve">
     <value>Pas de nom de saisi</value>
   </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>Pas de Bordure extérieure</value>
+  </data>
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>* Pas de données *</value>
   </data>
@@ -737,6 +782,9 @@
   </data>
   <data name="gsPassword" xml:space="preserve">
     <value>Mots de passe</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Patterne</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
@@ -834,6 +882,9 @@
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>Sauver et retour</value>
   </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Enregistrer les noms</value>
+  </data>
   <data name="gsSaveVehicle" xml:space="preserve">
     <value>Sauver le Véhicule</value>
   </data>
@@ -894,6 +945,9 @@
   <data name="gsSkip-Overlap+" xml:space="preserve">
     <value>- écart +Chevauchement</value>
   </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Skip</value>
+  </data>
   <data name="gsSkyOn" xml:space="preserve">
     <value>Ciel</value>
   </data>
@@ -909,6 +963,9 @@
   <data name="gsStart" xml:space="preserve">
     <value>Debut</value>
   </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Démarrer ou supprimer une Bordure</value>
+  </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Commencer un Champ</value>
   </data>
@@ -923,6 +980,9 @@
   </data>
   <data name="gsSteeringFrontOrBack" xml:space="preserve">
     <value>Direction Avant ou Arrière</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>Pas</value>
   </data>
   <data name="gsStop" xml:space="preserve">
     <value>Fin</value>
@@ -951,6 +1011,9 @@
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Au port UDP</value>
   </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>Interrupteur</value>
+  </data>
   <data name="gsTool" xml:space="preserve">
     <value>Outil</value>
   </data>
@@ -972,14 +1035,26 @@
   <data name="gsTreePlanter" xml:space="preserve">
     <value>Plantation</value>
   </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Plantation</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Plants</value>
+  </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
     <value>Activer ABCurve</value>
   </data>
   <data name="gsTurnONNtripClient" xml:space="preserve">
     <value>Activer le Client ntrip</value>
   </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Désactiver</value>
+  </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
     <value>Désactiver le délai (sec)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Activer tout</value>
   </data>
   <data name="gsTurnOnAheadSecs" xml:space="preserve">
     <value>Allumez à l'avance (sec)</value>
@@ -987,8 +1062,14 @@
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
     <value>Activez Contour ou faire une ligne AB!</value>
   </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Modèle de tournant</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
     <value>Angle de Braquage</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Désactiver tout</value>
   </data>
   <data name="gsTurningOffSimulator" xml:space="preserve">
     <value>Désactiver Sim</value>
@@ -1001,6 +1082,12 @@
   </data>
   <data name="gsUTurn" xml:space="preserve">
     <value>Tournant</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>Longueur du tournant</value>
   </data>
   <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
     <value>Anticipation bout de champ</value>
