@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -18,8 +18,99 @@ namespace AgOpenGPS
         public FormYouTurn(Form callingForm)
         {
             mf = callingForm as FormGPS;
+
+            //winform initialization
             InitializeComponent();
-        }
+
+            
+            this.Text = gStr.gsUTurn;
+            btnOK.Text = gStr.gsSave;
+
+            // U Turn tab
+            tabYouTurn.Text = gStr.gsUTurn;
+            btnToggle4.Text = gStr.gsToggle + " 4";
+            btnToggle5.Text = gStr.gsToggle + "5";
+            btnToggle6.Text = gStr.gsToggle + "6";
+            btnToggle3.Text = gStr.gsToggle + "3";
+            btnToggle7.Text = gStr.gsToggle + "7";
+            btnToggle8.Text = gStr.gsToggle + "8";
+            btnYouTurnCustom.Text = gStr.gsCustom;
+            btnTurnAllOff.Text = gStr.gsTurnallOff;
+            label46.Text = gStr.gsDubins + "/\r\n" + gStr.gsPattern;
+            label1.Text = gStr.gsSkips;
+            btnIsUsingDubins.Text = gStr.gsDubins;
+            label48.Text = gStr.gsUTurnDistance + "\r\n" + gStr.gsFromBounds;
+            label49.Text = gStr.gsGeoFenceDist + "\r\n" + gStr.gsFromBounds + "\r\n";
+            groupBox1.Text = gStr.gsTurnPatterns;
+            lblWhenTrig.Text = gStr.gsUTurnLength;
+            btnYouTurnRecord.Text = gStr.gsRecord;
+
+            // Entry tab
+            tabEnter.Text = gStr.gsEntry;
+            label13.Text = gStr.gsFunction;
+            label15.Text = gStr.gsAction;
+            label14.Text = gStr.gsDistance;
+            this.cboxExitAction0.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction7.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction5.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction6.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction4.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction3.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction2.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction1.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxEnterAction0.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+
+            // Exit tab
+            tabExit.Text = gStr.gsExit;
+            label16.Text = gStr.gsAction;
+            label18.Text = gStr.gsFunction;
+            label17.Text = gStr.gsDistance;
+            this.cboxExitAction7.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction5.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction6.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction4.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction3.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction2.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+            this.cboxExitAction1.Items.AddRange(new object[] {
+            gStr.gsTurnOff,
+            gStr.gsTurnOn});
+
+            // Edit tab
+            tabEdit.Text = gStr.gsEdit;           
+            label44.Text = gStr.gsCancel;
+            label43.Text = gStr.gsSaveNames;
+       
+    }
 
         private void FormYouTurn_Load(object sender, EventArgs e)
         {
@@ -91,7 +182,7 @@ namespace AgOpenGPS
             //update dubins button
             if (!mf.yt.isUsingDubinsTurn)
             {
-                btnIsUsingDubins.Text = "Pattern";
+                btnIsUsingDubins.Text = gStr.gsPattern;
                 btnIsUsingDubins.BackColor = Color.Salmon;
                 btnYouTurnCustom.Enabled = true;
                 btnYouTurnKeyHole.Enabled = true;
@@ -101,7 +192,7 @@ namespace AgOpenGPS
             }
             else
             {
-                btnIsUsingDubins.Text = "Dubins";
+                btnIsUsingDubins.Text = gStr.gsDubins;
                 btnIsUsingDubins.BackColor = Color.LightGreen;
                 btnYouTurnCustom.Enabled = false;
                 btnYouTurnKeyHole.Enabled = false;
