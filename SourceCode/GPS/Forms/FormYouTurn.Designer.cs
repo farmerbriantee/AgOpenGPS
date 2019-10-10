@@ -198,13 +198,11 @@
             this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnOK.Location = new System.Drawing.Point(910, 577);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(79, 109);
             this.btnOK.TabIndex = 129;
-            this.btnOK.Text = "Save";
             this.btnOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -243,25 +241,25 @@
             // 
             // label44
             // 
-            this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(464, 342);
+            this.label44.Location = new System.Drawing.Point(351, 342);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(73, 23);
+            this.label44.Size = new System.Drawing.Size(235, 23);
             this.label44.TabIndex = 133;
             this.label44.Text = "Cancel";
+            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label43
             // 
-            this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(444, 546);
+            this.label43.Location = new System.Drawing.Point(347, 546);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(126, 23);
+            this.label43.Size = new System.Drawing.Size(239, 23);
             this.label43.TabIndex = 131;
             this.label43.Text = "Save Names";
+            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label21
             // 
@@ -727,36 +725,36 @@
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(430, 19);
+            this.label16.Location = new System.Drawing.Point(371, 19);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(71, 23);
+            this.label16.Size = new System.Drawing.Size(214, 23);
             this.label16.TabIndex = 51;
             this.label16.Text = "Action";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(683, 18);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(92, 23);
+            this.label17.Size = new System.Drawing.Size(176, 23);
             this.label17.TabIndex = 50;
             this.label17.Text = "Distance";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(63, 19);
+            this.label18.Location = new System.Drawing.Point(18, 19);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(93, 23);
+            this.label18.Size = new System.Drawing.Size(303, 23);
             this.label18.TabIndex = 49;
             this.label18.Text = "Function";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxExitFunc4
             // 
@@ -1239,36 +1237,36 @@
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(431, 18);
+            this.label15.Location = new System.Drawing.Point(404, 18);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 23);
+            this.label15.Size = new System.Drawing.Size(184, 23);
             this.label15.TabIndex = 36;
             this.label15.Text = "Action";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(689, 18);
+            this.label14.Location = new System.Drawing.Point(661, 18);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(92, 23);
+            this.label14.Size = new System.Drawing.Size(178, 23);
             this.label14.TabIndex = 35;
             this.label14.Text = "Distance";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(62, 20);
+            this.label13.Location = new System.Drawing.Point(35, 20);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(93, 23);
+            this.label13.Size = new System.Drawing.Size(277, 23);
             this.label13.TabIndex = 34;
             this.label13.Text = "Function";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxEnterFunc4
             // 
@@ -1495,7 +1493,7 @@
             this.btnTurnAllOff.Location = new System.Drawing.Point(762, 45);
             this.btnTurnAllOff.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTurnAllOff.Name = "btnTurnAllOff";
-            this.btnTurnAllOff.Size = new System.Drawing.Size(61, 95);
+            this.btnTurnAllOff.Size = new System.Drawing.Size(109, 95);
             this.btnTurnAllOff.TabIndex = 132;
             this.btnTurnAllOff.Text = "Turn All Off";
             this.btnTurnAllOff.Click += new System.EventHandler(this.btnTurnAllOff_Click);
@@ -1636,25 +1634,25 @@
             // 
             // lblWhenTrig
             // 
-            this.lblWhenTrig.AutoSize = true;
             this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWhenTrig.Location = new System.Drawing.Point(676, 415);
+            this.lblWhenTrig.Location = new System.Drawing.Point(642, 372);
             this.lblWhenTrig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWhenTrig.Name = "lblWhenTrig";
-            this.lblWhenTrig.Size = new System.Drawing.Size(154, 25);
+            this.lblWhenTrig.Size = new System.Drawing.Size(229, 68);
             this.lblWhenTrig.TabIndex = 147;
             this.lblWhenTrig.Text = "UTurn Length";
+            this.lblWhenTrig.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label48
             // 
-            this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(363, 415);
+            this.label48.Location = new System.Drawing.Point(326, 372);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(173, 25);
+            this.label48.Size = new System.Drawing.Size(229, 68);
             this.label48.TabIndex = 161;
             this.label48.Text = "UTurn Distance";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnTriggerDistanceDn
             // 
@@ -1757,14 +1755,14 @@
             // 
             // label49
             // 
-            this.label49.AutoSize = true;
             this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(40, 415);
+            this.label49.Location = new System.Drawing.Point(5, 372);
             this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(210, 25);
+            this.label49.Size = new System.Drawing.Size(240, 68);
             this.label49.TabIndex = 166;
-            this.label49.Text = "GeoFence Distance\r\n";
+            this.label49.Text = "GeoFence Distance";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblGeoFenceDistance
             // 
@@ -1780,14 +1778,14 @@
             // 
             // label46
             // 
-            this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(27, 198);
+            this.label46.Location = new System.Drawing.Point(5, 173);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(96, 50);
+            this.label46.Size = new System.Drawing.Size(132, 75);
             this.label46.TabIndex = 157;
             this.label46.Text = "Dubins/\r\nPattern";
+            this.label46.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxRowWidth
             // 
@@ -1802,7 +1800,7 @@
             "4",
             "5",
             "6"});
-            this.cboxRowWidth.Location = new System.Drawing.Point(173, 251);
+            this.cboxRowWidth.Location = new System.Drawing.Point(182, 251);
             this.cboxRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxRowWidth.Name = "cboxRowWidth";
             this.cboxRowWidth.Size = new System.Drawing.Size(52, 47);
@@ -1811,14 +1809,14 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(168, 213);
+            this.label1.Location = new System.Drawing.Point(159, 173);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.Size = new System.Drawing.Size(110, 65);
             this.label1.TabIndex = 11;
             this.label1.Text = "Skips";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnIsUsingDubins
             // 
@@ -1896,7 +1894,7 @@
             // btnYouTurnRecord
             // 
             this.btnYouTurnRecord.BackColor = System.Drawing.Color.Transparent;
-            this.btnYouTurnRecord.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYouTurnRecord.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnYouTurnRecord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnYouTurnRecord.Location = new System.Drawing.Point(481, 39);
@@ -1912,7 +1910,7 @@
             // btnYouTurnCustom
             // 
             this.btnYouTurnCustom.BackColor = System.Drawing.Color.Silver;
-            this.btnYouTurnCustom.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnYouTurnCustom.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnYouTurnCustom.Image = global::AgOpenGPS.Properties.Resources.Custom;
             this.btnYouTurnCustom.Location = new System.Drawing.Point(381, 39);
             this.btnYouTurnCustom.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);

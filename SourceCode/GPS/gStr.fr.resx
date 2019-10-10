@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -511,7 +511,7 @@
     <value>Gain</value>
   </data>
   <data name="gsGeoFenceDist" xml:space="preserve">
-    <value>GeoFence Dist</value>
+    <value>GeoFence Distance</value>
   </data>
   <data name="gsGetSourceTable" xml:space="preserve">
     <value>Obtenir la table source</value>
@@ -556,7 +556,7 @@
     <value>Pouces</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Interne</value>
+    <value>Inter</value>
   </data>
   <data name="gsIntegralGain" xml:space="preserve">
     <value>Gain d'intégrale</value>
@@ -766,7 +766,7 @@
     <value>Originale</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Exterieur</value>
+    <value>Exter</value>
   </data>
   <data name="gsOutputGain" xml:space="preserve">
     <value>Gain de sortie</value>
@@ -1150,7 +1150,7 @@
     <value>0 = OFF</value>
   </data>
   <data name="gsZeroTrip" xml:space="preserve">
-    <value>Erreur &gt;0&lt;</value>
+    <value>Traçé &gt;0&lt;</value>
   </data>
   <data name="gsZone_" xml:space="preserve">
     <value>Zone:</value>

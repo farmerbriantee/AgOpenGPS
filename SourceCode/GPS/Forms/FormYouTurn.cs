@@ -24,23 +24,16 @@ namespace AgOpenGPS
 
             
             this.Text = gStr.gsUTurn;
-            btnOK.Text = gStr.gsSave;
 
             // U Turn tab
             tabYouTurn.Text = gStr.gsUTurn;
-            btnToggle4.Text = gStr.gsToggle + " 4";
-            btnToggle5.Text = gStr.gsToggle + "5";
-            btnToggle6.Text = gStr.gsToggle + "6";
-            btnToggle3.Text = gStr.gsToggle + "3";
-            btnToggle7.Text = gStr.gsToggle + "7";
-            btnToggle8.Text = gStr.gsToggle + "8";
             btnYouTurnCustom.Text = gStr.gsCustom;
             btnTurnAllOff.Text = gStr.gsTurnallOff;
-            label46.Text = gStr.gsDubins + "/\r\n" + gStr.gsPattern;
+            label46.Text = gStr.gsDubins + " " + gStr.gsPattern;
             label1.Text = gStr.gsSkips;
             btnIsUsingDubins.Text = gStr.gsDubins;
-            label48.Text = gStr.gsUTurnDistance + "\r\n" + gStr.gsFromBounds;
-            label49.Text = gStr.gsGeoFenceDist + "\r\n" + gStr.gsFromBounds + "\r\n";
+            label48.Text = gStr.gsUTurnDistance + " " + gStr.gsFromBounds;
+            label49.Text = gStr.gsGeoFenceDist + " " + gStr.gsFromBounds;
             groupBox1.Text = gStr.gsTurnPatterns;
             lblWhenTrig.Text = gStr.gsUTurnLength;
             btnYouTurnRecord.Text = gStr.gsRecord;
