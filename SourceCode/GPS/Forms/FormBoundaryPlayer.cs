@@ -31,6 +31,11 @@ namespace AgOpenGPS
                 mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.vehicle.toolWidth);
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
+                
+                
+                mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
+                if (mf.bnd.boundarySelected == 0) mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = true;
+                else mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = false;
             }
 
             mf.bnd.isOkToAddPoints = false;
