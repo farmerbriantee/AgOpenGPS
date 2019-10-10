@@ -1,0 +1,86 @@
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:18:51
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:20:51
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:22:12
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:22:12
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:22:12
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:23:36
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:24:32
+
+UDP Recv data System.ObjectDisposedException: Auf das verworfene Objekt kann nicht zugegriffen werden.
+Objektname: "FormGPS".
+   bei System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128.
+   bei System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   bei AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\aortner\source\repos\AgOpenGPS\SourceCode\GPS\Forms\UDPComm.Designer.cs:Zeile 128. - 10.10.2019 16:24:32
+
