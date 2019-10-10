@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -136,6 +136,9 @@
   <data name="gsAbout" xml:space="preserve">
     <value>About...</value>
   </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
     <value>Action Has Been Cancelled</value>
   </data>
@@ -196,6 +199,9 @@
   <data name="gsBaud" xml:space="preserve">
     <value>Baud</value>
   </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>Begin</value>
+  </data>
   <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
     <value>Be sure to save vehicle if you did</value>
   </data>
@@ -212,6 +218,9 @@
   <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
     <value>Boundary Too Small To Create a Headland</value>
     <comment>x</comment>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>Bounds</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>But Field is Loaded</value>
@@ -236,6 +245,9 @@
   <data name="gsChooseADifferentName" xml:space="preserve">
     <value>Choose a different name</value>
     <comment>b</comment>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Choose or Build a Different one</value>
   </data>
   <data name="gsClickButtonAgainToStop" xml:space="preserve">
     <value>Click Button Again to Stop</value>
@@ -298,6 +310,9 @@
     <value>Create New Field</value>
     <comment>b</comment>
   </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Create Outer Boundary First</value>
+  </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
     <value>Current GPS Fix:</value>
   </data>
@@ -307,6 +322,9 @@
   <data name="gsCurveNotOn" xml:space="preserve">
     <value>ABCurve Not Enabled</value>
     <comment>x</comment>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Custom</value>
   </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** Date will be added</value>
@@ -354,6 +372,9 @@
   <data name="gsDistance" xml:space="preserve">
     <value>Distance</value>
   </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Done</value>
+  </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Drawing Has Begun</value>
     <comment>x</comment>
@@ -367,6 +388,12 @@
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Dual Antenna</value>
+  </data>
+  <data name="gsDubins" xml:space="preserve">
+    <value>Dubins</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="gsElev_" xml:space="preserve">
     <value>Elev:</value>
@@ -403,6 +430,12 @@
   <data name="gsEnterVehicleUsed" xml:space="preserve">
     <value>Enter Vehicle Used</value>
     <comment>b</comment>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Entry</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Error reading KML</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
     <value>Examples</value>
@@ -466,6 +499,9 @@
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>From Auto Steer:</value>
   </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>From Bounds</value>
+  </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>From GPS</value>
   </data>
@@ -478,6 +514,9 @@
   <data name="gsFt" xml:space="preserve">
     <value>Ft</value>
     <comment>x</comment>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Function</value>
   </data>
   <data name="gsFused" xml:space="preserve">
     <value>Fused:</value>
@@ -503,6 +542,9 @@
   </data>
   <data name="gsGain" xml:space="preserve">
     <value>Gain</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>GeoFence Dist</value>
   </data>
   <data name="gsGetSourceTable" xml:space="preserve">
     <value>Get Source Table</value>
@@ -731,6 +773,9 @@
     <value>No Name Entered</value>
     <comment>a</comment>
   </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>No Outer Boundary</value>
+  </data>
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>*** No Sentence Data ***</value>
     <comment>x</comment>
@@ -786,6 +831,9 @@
   </data>
   <data name="gsPassword" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Pattern</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
@@ -888,6 +936,9 @@
     <value>Save and Return</value>
     <comment>b</comment>
   </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Save Names</value>
+  </data>
   <data name="gsSaveVehicle" xml:space="preserve">
     <value>Save vehicle</value>
   </data>
@@ -949,6 +1000,9 @@
   <data name="gsSkip-Overlap+" xml:space="preserve">
     <value>Skip Is - \r\n Overlap is +</value>
   </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Skips</value>
+  </data>
   <data name="gsSkyOn" xml:space="preserve">
     <value>Sky On</value>
   </data>
@@ -964,6 +1018,9 @@
   <data name="gsStart" xml:space="preserve">
     <value>Start</value>
     <comment>b</comment>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Start or Delete A Boundary</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start New Field</value>
@@ -981,6 +1038,9 @@
   </data>
   <data name="gsSteeringFrontOrBack" xml:space="preserve">
     <value>Steering Front Or Back</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>Step</value>
   </data>
   <data name="gsStop" xml:space="preserve">
     <value>Stop</value>
@@ -1010,6 +1070,9 @@
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>To UDP Port</value>
+  </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>Toggle</value>
   </data>
   <data name="gsToggleDriveBy" xml:space="preserve">
     <value>Toggle Drive By</value>
@@ -1042,6 +1105,12 @@
   <data name="gsTreePlanter" xml:space="preserve">
     <value>Tree Planter</value>
   </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Tree Plant Control</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Trees</value>
+  </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
     <value>Turn ABCurve On</value>
     <comment>x</comment>
@@ -1049,8 +1118,14 @@
   <data name="gsTurnONNtripClient" xml:space="preserve">
     <value>Turn ON Ntrip Client</value>
   </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Turn Off</value>
+  </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
     <value>Turn Off Delay (secs)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Turn On</value>
   </data>
   <data name="gsTurnOnAheadSecs" xml:space="preserve">
     <value>Turn On Ahead (secs)</value>
@@ -1059,8 +1134,14 @@
     <value>Turn on Contour Or Make AB Line</value>
     <comment>x</comment>
   </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Turn Patterns</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
     <value>Turn Radius</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Turn All Off</value>
   </data>
   <data name="gsTurningOffSimulator" xml:space="preserve">
     <value>Turning Off Simulator</value>
@@ -1073,6 +1154,12 @@
   </data>
   <data name="gsUTurn" xml:space="preserve">
     <value>U Turn</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>UTurn Distance</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>UTurn Length</value>
   </data>
   <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
     <value>UTurn Look Ahead Multiplier</value>
