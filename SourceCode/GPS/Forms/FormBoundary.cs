@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -12,7 +12,49 @@ namespace AgOpenGPS
         public FormBoundary(Form callingForm)
         {
             mf = callingForm as FormGPS;
+
+            //winform initialization
             InitializeComponent();
+
+            this.Text = gStr.gsStartDeleteABoundary;
+
+            //cboxSelectBoundary
+            cboxSelectBoundary.Items.Clear();
+            cboxSelectBoundary.Items.AddRange(new object[] {
+            gStr.gsOuter,
+            gStr.gsInner + " 1",
+            gStr.gsInner + " 2",
+            gStr.gsInner + " 3",
+            gStr.gsInner + " 4",
+            gStr.gsInner + " 5"});
+
+            //Label
+            label1.Text = gStr.gsSelectBoundary;
+            label1.Text = gStr.gsSelectBoundary;
+            label2.Text = gStr.gsDriveThru;
+            label3.Text = gStr.gsArea;
+            label4.Text = gStr.gsThru;
+            label5.Text = gStr.gsBounds;
+            label6.Text = gStr.gsGo_Around;
+            label7.Text = gStr.gsAround;
+
+            //Column Header
+            chField.Text = gStr.gsLine;
+            chAngle.Text = gStr.gsDriveThru;
+            chEasting.Text = gStr.gsArea;
+
+            //Bouton
+            btnDelete.Text = gStr.gsDelete;
+            btnOuter.Text = gStr.gsCreate;
+            btnSerialCancel.Text = gStr.gsSaveAndReturn;
+            btnToggleDriveThru.Text = gStr.gsToggleDriveThru;         
+            btnToggleDriveAround.Text = gStr.gsToggleDriveBy;
+            btnLoadMultiBoundaryFromGE.Text = gStr.gsLoadMulti;
+            btnDeleteAll.Text = gStr.gsDeleteAll;
+            btnGo.Text = gStr.gsGo;
+            btnLoadBoundaryFromGE.Text = gStr.gsLoadKML;
+            
+
         }
 
         private void UpdateChart()
@@ -82,13 +124,13 @@ namespace AgOpenGPS
 
             //create a 6 row by 3 column ListView
             ListViewItem itm;
-            const string line = "Outer,False,False,0.0";
+            string line = gStr.gsOuter + ",False,False,0.0";
             string[] words = line.Split(',');
             itm = new ListViewItem(words);
             lvLines.Items.Add(itm);
             for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
             {
-                words[0] = "Inner " + i.ToString();
+                words[0] = gStr.gsInner + i.ToString();
                 itm = new ListViewItem(words);
                 lvLines.Items.Add(itm);
             }
@@ -139,7 +181,7 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.TimedMessageBox(1000, "No Outer Boundary", "Create Outer Boundary First");
+                mf.TimedMessageBox(1000, gStr.gsNoOuterBoundary, gStr.gsCreateOuterBoundary);
             }
 
             UpdateChart();
@@ -357,7 +399,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
+                            mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                         }
                     }
 
@@ -468,7 +510,7 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
+                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                             }
                         }
                     }
