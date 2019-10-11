@@ -394,6 +394,7 @@ namespace AgOpenGPS
                     refList[i].heading);
                 curList.Add(point);
             }
+            }
 
             double minDistA = 1000000, minDistB = 1000000;
 
@@ -406,7 +407,7 @@ namespace AgOpenGPS
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
                     {
-                        dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
+                        double dist = ((steer.easting - curList[t].easting) * (steer.easting - curList[t].easting))
                                         + ((steer.northing - curList[t].northing) * (steer.northing - curList[t].northing));
                         if (dist < minDistA)
                         {
@@ -428,8 +429,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    dx = curList[B].easting - curList[A].easting;
-                    dz = curList[B].northing - curList[A].northing;
+                    double dx = curList[B].easting - curList[A].easting;
+                    double dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
@@ -509,7 +510,7 @@ namespace AgOpenGPS
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
                     {
-                        dist = ((pivot.easting - curList[t].easting) * (pivot.easting - curList[t].easting))
+                        double dist = ((pivot.easting - curList[t].easting) * (pivot.easting - curList[t].easting))
                                         + ((pivot.northing - curList[t].northing) * (pivot.northing - curList[t].northing));
                         if (dist < minDistA)
                         {
@@ -531,8 +532,8 @@ namespace AgOpenGPS
                     currentLocationIndex = A;
 
                     //get the distance from currently active AB line
-                    dx = curList[B].easting - curList[A].easting;
-                    dz = curList[B].northing - curList[A].northing;
+                    double dx = curList[B].easting - curList[A].easting;
+                    double dz = curList[B].northing - curList[A].northing;
 
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
@@ -741,8 +742,6 @@ namespace AgOpenGPS
                 distanceFromCurrentLine = 32000;
                 mf.guidanceLineDistanceOff = 32000;
             }
-        }
-         
         }
 
         public void SnapABCurve()
