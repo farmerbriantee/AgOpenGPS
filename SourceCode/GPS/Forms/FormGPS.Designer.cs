@@ -2171,8 +2171,12 @@
             "3",
             "4",
             "5",
-            "6"});
-            this.cboxpRowWidth.Location = new System.Drawing.Point(339, 452);
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cboxpRowWidth.Location = new System.Drawing.Point(339, 105);
             this.cboxpRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxpRowWidth.Name = "cboxpRowWidth";
             this.cboxpRowWidth.Size = new System.Drawing.Size(64, 53);
@@ -3062,7 +3066,7 @@
             this.btnZoomExtents.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnZoomExtents.Image = global::AgOpenGPS.Properties.Resources.Extents;
             this.btnZoomExtents.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomExtents.Location = new System.Drawing.Point(339, 379);
+            this.btnZoomExtents.Location = new System.Drawing.Point(339, 466);
             this.btnZoomExtents.Name = "btnZoomExtents";
             this.btnZoomExtents.Size = new System.Drawing.Size(64, 64);
             this.btnZoomExtents.TabIndex = 248;
@@ -3080,7 +3084,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(339, 160);
+            this.btnZoomIn.Location = new System.Drawing.Point(339, 247);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(64, 64);
             this.btnZoomIn.TabIndex = 120;
@@ -3097,7 +3101,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(339, 87);
+            this.btnZoomOut.Location = new System.Drawing.Point(339, 174);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(64, 64);
             this.btnZoomOut.TabIndex = 119;
@@ -3231,7 +3235,7 @@
             this.btnpTiltDown.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltDown.Image = global::AgOpenGPS.Properties.Resources.TiltDown;
             this.btnpTiltDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltDown.Location = new System.Drawing.Point(339, 306);
+            this.btnpTiltDown.Location = new System.Drawing.Point(339, 393);
             this.btnpTiltDown.Name = "btnpTiltDown";
             this.btnpTiltDown.Size = new System.Drawing.Size(64, 64);
             this.btnpTiltDown.TabIndex = 245;
@@ -3247,7 +3251,7 @@
             this.btnpTiltUp.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltUp.Image = global::AgOpenGPS.Properties.Resources.TiltUp;
             this.btnpTiltUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltUp.Location = new System.Drawing.Point(339, 233);
+            this.btnpTiltUp.Location = new System.Drawing.Point(339, 320);
             this.btnpTiltUp.Name = "btnpTiltUp";
             this.btnpTiltUp.Size = new System.Drawing.Size(64, 64);
             this.btnpTiltUp.TabIndex = 246;
