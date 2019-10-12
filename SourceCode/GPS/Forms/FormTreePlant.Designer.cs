@@ -63,14 +63,14 @@
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 12F);
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(141, 4);
+            this.label12.Location = new System.Drawing.Point(139, 4);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(102, 19);
+            this.label12.Size = new System.Drawing.Size(183, 19);
             this.label12.TabIndex = 306;
             this.label12.Text = "Spacing (cm)";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // lblStepDistance
             // 
@@ -97,13 +97,13 @@
             // btnZeroDistance
             // 
             this.btnZeroDistance.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnZeroDistance.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZeroDistance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroDistance.Image = global::AgOpenGPS.Properties.Resources.Snap2;
             this.btnZeroDistance.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnZeroDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZeroDistance.Location = new System.Drawing.Point(12, 150);
+            this.btnZeroDistance.Location = new System.Drawing.Point(10, 178);
             this.btnZeroDistance.Name = "btnZeroDistance";
-            this.btnZeroDistance.Size = new System.Drawing.Size(91, 96);
+            this.btnZeroDistance.Size = new System.Drawing.Size(108, 96);
             this.btnZeroDistance.TabIndex = 142;
             this.btnZeroDistance.Text = "Begin";
             this.btnZeroDistance.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -116,13 +116,11 @@
             this.btnStop.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnStop.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnStop.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStop.Location = new System.Drawing.Point(182, 150);
+            this.btnStop.Location = new System.Drawing.Point(230, 178);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(90, 96);
             this.btnStop.TabIndex = 141;
-            this.btnStop.Text = "Done";
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
@@ -144,7 +142,7 @@
             this.lblTrees.AutoSize = true;
             this.lblTrees.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrees.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTrees.Location = new System.Drawing.Point(178, 95);
+            this.lblTrees.Location = new System.Drawing.Point(176, 126);
             this.lblTrees.Name = "lblTrees";
             this.lblTrees.Size = new System.Drawing.Size(51, 35);
             this.lblTrees.TabIndex = 312;
@@ -153,20 +151,20 @@
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(126, 101);
+            this.label3.Location = new System.Drawing.Point(135, 101);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 23);
+            this.label3.Size = new System.Drawing.Size(132, 23);
             this.label3.TabIndex = 313;
             this.label3.Text = "Trees";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // nudTreeSpacing
             // 
             this.nudTreeSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudTreeSpacing.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTreeSpacing.Location = new System.Drawing.Point(145, 26);
+            this.nudTreeSpacing.Location = new System.Drawing.Point(169, 26);
             this.nudTreeSpacing.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -199,7 +197,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Lavender;
-            this.ClientSize = new System.Drawing.Size(282, 259);
+            this.ClientSize = new System.Drawing.Size(332, 286);
             this.ControlBox = false;
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.nudTreeSpacing);

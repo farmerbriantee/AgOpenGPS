@@ -83,9 +83,9 @@
             this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Location = new System.Drawing.Point(815, 265);
+            this.btnRescan.Location = new System.Drawing.Point(802, 265);
             this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(129, 72);
+            this.btnRescan.Size = new System.Drawing.Size(142, 72);
             this.btnRescan.TabIndex = 58;
             this.btnRescan.Text = "Rescan Ports";
             this.btnRescan.UseVisualStyleBackColor = false;
@@ -141,9 +141,9 @@
             "38400",
             "57600",
             "115200"});
-            this.cboxPort.Location = new System.Drawing.Point(25, 35);
+            this.cboxPort.Location = new System.Drawing.Point(10, 35);
             this.cboxPort.Name = "cboxPort";
-            this.cboxPort.Size = new System.Drawing.Size(96, 37);
+            this.cboxPort.Size = new System.Drawing.Size(101, 37);
             this.cboxPort.TabIndex = 50;
             this.cboxPort.SelectedIndexChanged += new System.EventHandler(this.cboxPort_SelectedIndexChanged_1);
             // 
@@ -198,7 +198,7 @@
             // 
             this.lblCurrentPort.AutoSize = true;
             this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(58, 80);
+            this.lblCurrentPort.Location = new System.Drawing.Point(32, 80);
             this.lblCurrentPort.Name = "lblCurrentPort";
             this.lblCurrentPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentPort.TabIndex = 47;
@@ -208,7 +208,7 @@
             // 
             this.lblCurrentBaud.AutoSize = true;
             this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(156, 80);
+            this.lblCurrentBaud.Location = new System.Drawing.Point(164, 80);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
             this.lblCurrentBaud.Size = new System.Drawing.Size(45, 18);
             this.lblCurrentBaud.TabIndex = 46;
@@ -242,13 +242,13 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(643, 111);
+            this.label1.Location = new System.Drawing.Point(450, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 19);
+            this.label1.Size = new System.Drawing.Size(292, 19);
             this.label1.TabIndex = 41;
             this.label1.Text = "NMEA String";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnOpenSerial
             // 
@@ -394,10 +394,10 @@
             // usejrk
             // 
             this.usejrk.AutoSize = true;
-            this.usejrk.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usejrk.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usejrk.Location = new System.Drawing.Point(255, 27);
             this.usejrk.Name = "usejrk";
-            this.usejrk.Size = new System.Drawing.Size(78, 33);
+            this.usejrk.Size = new System.Drawing.Size(72, 29);
             this.usejrk.TabIndex = 67;
             this.usejrk.Text = "JRK";
             this.usejrk.UseVisualStyleBackColor = true;
@@ -497,7 +497,7 @@
             // 
             this.rbtnGGA.AutoSize = true;
             this.rbtnGGA.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.rbtnGGA.Location = new System.Drawing.Point(21, 37);
+            this.rbtnGGA.Location = new System.Drawing.Point(21, 62);
             this.rbtnGGA.Name = "rbtnGGA";
             this.rbtnGGA.Size = new System.Drawing.Size(65, 27);
             this.rbtnGGA.TabIndex = 69;
@@ -512,9 +512,9 @@
             this.groupBox4.Controls.Add(this.rbtnRMC);
             this.groupBox4.Controls.Add(this.rbtnGGA);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(815, 31);
+            this.groupBox4.Location = new System.Drawing.Point(802, 31);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(129, 184);
+            this.groupBox4.Size = new System.Drawing.Size(142, 195);
             this.groupBox4.TabIndex = 70;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Fix From";
@@ -524,7 +524,7 @@
             this.rbtnOGI.AutoSize = true;
             this.rbtnOGI.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.rbtnOGI.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtnOGI.Location = new System.Drawing.Point(21, 123);
+            this.rbtnOGI.Location = new System.Drawing.Point(21, 148);
             this.rbtnOGI.Name = "rbtnOGI";
             this.rbtnOGI.Size = new System.Drawing.Size(61, 27);
             this.rbtnOGI.TabIndex = 71;
@@ -537,7 +537,7 @@
             this.rbtnRMC.AutoSize = true;
             this.rbtnRMC.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.rbtnRMC.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.rbtnRMC.Location = new System.Drawing.Point(21, 80);
+            this.rbtnRMC.Location = new System.Drawing.Point(21, 105);
             this.rbtnRMC.Name = "rbtnRMC";
             this.rbtnRMC.Size = new System.Drawing.Size(66, 27);
             this.rbtnRMC.TabIndex = 70;

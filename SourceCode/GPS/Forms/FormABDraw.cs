@@ -186,6 +186,15 @@ namespace AgOpenGPS
                 mf.ABLine.refPoint2.northing - mf.ABLine.refPoint1.northing);
             if (mf.ABLine.abHeading < 0) mf.ABLine.abHeading += glm.twoPI;
 
+            double offset = 0.5 * mf.vehicle.toolWidth;
+
+            double headingCalc = mf.ABLine.abHeading + glm.PIBy2;
+            //else headingCalc = abHeading - glm.PIBy2;
+
+            //calculate the new points for the reference line and points
+            mf.ABLine.refPoint1.easting = (Math.Sin(headingCalc) * Math.Abs(offset)) + mf.ABLine.refPoint1.easting;
+            mf.ABLine.refPoint1.northing = (Math.Cos(headingCalc) * Math.Abs(offset)) + mf.ABLine.refPoint1.northing;
+
             //sin x cos z for endpoints, opposite for additional lines
             mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * 4000.0);
             mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * 4000.0);

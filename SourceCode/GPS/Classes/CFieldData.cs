@@ -15,6 +15,8 @@ namespace AgOpenGPS
         //accumulated user distance
         public double distanceUser;
 
+        public double barPercent = 0;
+
         //Outside area minus inner boundaries areas (m)
         public double areaBoundaryOuterLessInner;
 
@@ -68,13 +70,21 @@ namespace AgOpenGPS
 
         public string WorkedAreaRemainAcres { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2") + " Ac"; } }
 
+        
         public string WorkedAreaRemainPercentage
         {
             get
             {
                 if (areaBoundaryOuterLessInner > 10)
-                    return ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner).ToString("N2") + "%";
-                else return "0.00%";
+                {
+                    barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
+                    return barPercent.ToString("N2") + "%";
+                }
+                else
+                {
+                    barPercent = 0;
+                    return "0.00%";
+                }
             }
         }
 

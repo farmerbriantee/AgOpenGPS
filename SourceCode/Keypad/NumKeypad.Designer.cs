@@ -263,9 +263,10 @@
             this.btnDecimal.Name = "btnDecimal";
             this.btnDecimal.Size = new System.Drawing.Size(72, 72);
             this.btnDecimal.TabIndex = 11;
-            this.btnDecimal.Text = ".";
+            this.btnDecimal.Text = System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
             this.btnDecimal.UseVisualStyleBackColor = false;
             this.btnDecimal.Click += new System.EventHandler(this.BtnDecimal_Click);
+
             // 
             // btnOK
             // 

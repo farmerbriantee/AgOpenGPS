@@ -19,6 +19,13 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            this.label5.Text = gStr.gsSetPoint;
+            this.label1.Text = gStr.gsActual;
+
+            this.Text = gStr.gsSteerChart;
+
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)

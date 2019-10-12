@@ -1,4 +1,10 @@
-﻿v3.0 Aug/Sep 2019
+﻿v3.0 October
+
+* Languages added with single RESX file per culture
+* keypad added for nuds
+* AB Line moves when using draw based on eq width. 
+
+v3.0 Aug/Sep 2019
 * sbNMEA used to capture GPS Data rather then rawbuffer which could be
 	changed by SerialData Delegate. 
 * Sim and GPS Port made much more difficult to change To Sim. 

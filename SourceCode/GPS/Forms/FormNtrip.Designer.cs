@@ -85,7 +85,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(772, 244);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(198, 76);
+            this.groupBox2.Size = new System.Drawing.Size(218, 76);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Networking";
@@ -97,10 +97,10 @@
             this.cboxIsNTRIPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cboxIsNTRIPOn.Checked = true;
             this.cboxIsNTRIPOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxIsNTRIPOn.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(21, 23);
+            this.cboxIsNTRIPOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(13, 32);
             this.cboxIsNTRIPOn.Name = "cboxIsNTRIPOn";
-            this.cboxIsNTRIPOn.Size = new System.Drawing.Size(161, 39);
+            this.cboxIsNTRIPOn.Size = new System.Drawing.Size(124, 29);
             this.cboxIsNTRIPOn.TabIndex = 92;
             this.cboxIsNTRIPOn.Text = "NTRIP On";
             this.cboxIsNTRIPOn.UseVisualStyleBackColor = false;
@@ -164,13 +164,13 @@
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(33, 106);
+            this.label4.Location = new System.Drawing.Point(12, 77);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(277, 25);
+            this.label4.Size = new System.Drawing.Size(334, 56);
             this.label4.TabIndex = 83;
-            this.label4.Text = "Enter Broadcaster URL or IP";
+            this.label4.Text = "Enter Broadcaster URL or IP ";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tboxHostName
             // 
@@ -258,44 +258,45 @@
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(138, 76);
             this.btnSerialOK.TabIndex = 94;
-            this.btnSerialOK.Text = "Save";
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(810, 46);
+            this.label7.Location = new System.Drawing.Point(796, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 29);
+            this.label7.Size = new System.Drawing.Size(180, 66);
             this.label7.TabIndex = 99;
             this.label7.Text = "To UDP Port";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tboxUserName
             // 
             this.tboxUserName.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxUserName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxUserName.Location = new System.Drawing.Point(450, 40);
+            this.tboxUserName.Location = new System.Drawing.Point(450, 33);
             this.tboxUserName.Name = "tboxUserName";
             this.tboxUserName.Size = new System.Drawing.Size(274, 33);
             this.tboxUserName.TabIndex = 100;
+            this.tboxUserName.PasswordChar = '*'; 
             // 
             // tboxUserPassword
             // 
             this.tboxUserPassword.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxUserPassword.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxUserPassword.Location = new System.Drawing.Point(450, 111);
+            this.tboxUserPassword.Location = new System.Drawing.Point(450, 104);
             this.tboxUserPassword.Name = "tboxUserPassword";
             this.tboxUserPassword.Size = new System.Drawing.Size(274, 33);
             this.tboxUserPassword.TabIndex = 101;
+            this.tboxUserPassword.PasswordChar = '*';
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(454, 12);
+            this.label3.Location = new System.Drawing.Point(454, 5);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 25);
             this.label3.TabIndex = 102;
@@ -305,7 +306,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(454, 83);
+            this.label12.Location = new System.Drawing.Point(454, 76);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 25);
             this.label12.TabIndex = 103;
@@ -315,7 +316,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(31, 426);
+            this.label13.Location = new System.Drawing.Point(31, 415);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(70, 25);
             this.label13.TabIndex = 105;
@@ -325,9 +326,9 @@
             // 
             this.tboxMount.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxMount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxMount.Location = new System.Drawing.Point(30, 457);
+            this.tboxMount.Location = new System.Drawing.Point(17, 446);
             this.tboxMount.Name = "tboxMount";
-            this.tboxMount.Size = new System.Drawing.Size(272, 33);
+            this.tboxMount.Size = new System.Drawing.Size(341, 33);
             this.tboxMount.TabIndex = 104;
             // 
             // nudGGAInterval
@@ -353,21 +354,21 @@
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(33, 517);
+            this.label15.Location = new System.Drawing.Point(4, 492);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(194, 25);
+            this.label15.Size = new System.Drawing.Size(283, 50);
             this.label15.TabIndex = 107;
             this.label15.Text = "GGA Interval (secs)";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // tboxEnterURL
             // 
             this.tboxEnterURL.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxEnterURL.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxEnterURL.Location = new System.Drawing.Point(30, 133);
+            this.tboxEnterURL.Location = new System.Drawing.Point(17, 136);
             this.tboxEnterURL.Name = "tboxEnterURL";
-            this.tboxEnterURL.Size = new System.Drawing.Size(316, 33);
+            this.tboxEnterURL.Size = new System.Drawing.Size(341, 33);
             this.tboxEnterURL.TabIndex = 108;
             this.tboxEnterURL.Text = "RTK2Go.com";
             // 
@@ -386,7 +387,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(397, 216);
+            this.label2.Location = new System.Drawing.Point(397, 208);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 29);
             this.label2.TabIndex = 115;
@@ -396,7 +397,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(392, 301);
+            this.label8.Location = new System.Drawing.Point(392, 283);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 29);
             this.label8.TabIndex = 116;
@@ -412,7 +413,7 @@
             0,
             0,
             131072});
-            this.nudLatitude.Location = new System.Drawing.Point(450, 205);
+            this.nudLatitude.Location = new System.Drawing.Point(450, 197);
             this.nudLatitude.Maximum = new decimal(new int[] {
             90,
             0,
@@ -443,7 +444,7 @@
             0,
             0,
             131072});
-            this.nudLongitude.Location = new System.Drawing.Point(450, 290);
+            this.nudLongitude.Location = new System.Drawing.Point(450, 272);
             this.nudLongitude.Maximum = new decimal(new int[] {
             180,
             0,
@@ -470,7 +471,7 @@
             this.tboxCurrentLat.Location = new System.Drawing.Point(450, 465);
             this.tboxCurrentLat.Name = "tboxCurrentLat";
             this.tboxCurrentLat.ReadOnly = true;
-            this.tboxCurrentLat.Size = new System.Drawing.Size(192, 33);
+            this.tboxCurrentLat.Size = new System.Drawing.Size(224, 33);
             this.tboxCurrentLat.TabIndex = 119;
             this.tboxCurrentLat.Text = "53.2398652";
             // 
@@ -480,7 +481,7 @@
             this.tboxCurrentLon.Location = new System.Drawing.Point(449, 511);
             this.tboxCurrentLon.Name = "tboxCurrentLon";
             this.tboxCurrentLon.ReadOnly = true;
-            this.tboxCurrentLon.Size = new System.Drawing.Size(193, 33);
+            this.tboxCurrentLon.Size = new System.Drawing.Size(225, 33);
             this.tboxCurrentLon.TabIndex = 120;
             this.tboxCurrentLon.Text = "-111.1234567";
             // 
@@ -492,13 +493,13 @@
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(445, 433);
+            this.label9.Location = new System.Drawing.Point(406, 426);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(168, 25);
+            this.label9.Size = new System.Drawing.Size(319, 32);
             this.label9.TabIndex = 122;
             this.label9.Text = "Current GPS Fix:";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label11
             // 
@@ -522,30 +523,30 @@
             // 
             // label17
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(456, 170);
+            this.label17.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(419, 161);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(135, 29);
+            this.label17.Size = new System.Drawing.Size(320, 30);
             this.label17.TabIndex = 125;
             this.label17.Text = "Manual Fix:";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label18
             // 
-            this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(811, 138);
+            this.label18.Location = new System.Drawing.Point(786, 138);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(166, 23);
+            this.label18.Size = new System.Drawing.Size(191, 77);
             this.label18.TabIndex = 126;
             this.label18.Text = "*Set to 0 for Serial";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnGetSourceTable
             // 
             this.btnGetSourceTable.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetSourceTable.Location = new System.Drawing.Point(136, 412);
+            this.btnGetSourceTable.Location = new System.Drawing.Point(131, 394);
             this.btnGetSourceTable.Name = "btnGetSourceTable";
-            this.btnGetSourceTable.Size = new System.Drawing.Size(164, 30);
+            this.btnGetSourceTable.Size = new System.Drawing.Size(193, 37);
             this.btnGetSourceTable.TabIndex = 127;
             this.btnGetSourceTable.Text = "Get Source Table";
             this.btnGetSourceTable.UseVisualStyleBackColor = true;
@@ -556,7 +557,7 @@
             this.btnSetManualPosition.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetManualPosition.Location = new System.Drawing.Point(449, 560);
             this.btnSetManualPosition.Name = "btnSetManualPosition";
-            this.btnSetManualPosition.Size = new System.Drawing.Size(192, 37);
+            this.btnSetManualPosition.Size = new System.Drawing.Size(225, 37);
             this.btnSetManualPosition.TabIndex = 121;
             this.btnSetManualPosition.Text = "Send To Manual Fix";
             this.btnSetManualPosition.UseVisualStyleBackColor = true;
@@ -571,20 +572,20 @@
             this.cboxGGAManual.Items.AddRange(new object[] {
             "Use Manual Fix",
             "Use GPS Fix"});
-            this.cboxGGAManual.Location = new System.Drawing.Point(450, 370);
+            this.cboxGGAManual.Location = new System.Drawing.Point(450, 365);
             this.cboxGGAManual.Name = "cboxGGAManual";
             this.cboxGGAManual.Size = new System.Drawing.Size(192, 33);
             this.cboxGGAManual.TabIndex = 128;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(785, 324);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(746, 324);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 29);
+            this.label1.Size = new System.Drawing.Size(244, 89);
             this.label1.TabIndex = 129;
             this.label1.Text = "*Restart Required";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label19
             // 
@@ -635,7 +636,6 @@
             this.Controls.Add(this.tboxHostName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.tboxThisIP);
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.nudSendToUDPPort);
@@ -643,6 +643,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

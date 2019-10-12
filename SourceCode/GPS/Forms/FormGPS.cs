@@ -292,6 +292,10 @@ namespace AgOpenGPS
             toolstripBoundary.Text = gStr.gsBoundary;
             toolstripResetTrip.Text = gStr.gsZeroTrip;
 
+            //NTRIP
+            this.lblWatch.Text = gStr.gsWaitingForGPS;
+            this.lblNTRIPSeconds.Text = gStr.gsNTRIPOff;
+
 
             //build the gesture structures
             SetupStructSizes();

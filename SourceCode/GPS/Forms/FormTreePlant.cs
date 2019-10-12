@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -15,7 +15,20 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
 
+            //winform initialization
             InitializeComponent();
+
+            this.Text = gStr.gsTreePlantControl;
+
+            //Label
+            label12.Text = gStr.gsSpacing;
+            label1.Text = gStr.gsStep;
+            label3.Text = gStr.gsTrees;
+
+            //Button
+            btnZeroDistance.Text = gStr.gsBegin;
+            btnStop.Text = gStr.gsDone;
+
             nudTreeSpacing.Controls[0].Enabled = false;
         }
 

@@ -3125,6 +3125,7 @@ namespace AgOpenGPS
 
                         //both
                         lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
+
                         lblpTimeToFinish.Text = fd.TimeTillFinished;
                         pbarSteerSmall.Value = pbarSteer;
                         pbarUDPSmall.Value = pbarUDP;
@@ -3134,6 +3135,14 @@ namespace AgOpenGPS
                     //The tabbed is selected and the info tab
                     if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
                     {
+                        lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
+                        lblTimeRemaining.Text = fd.TimeTillFinished;
+
+                        if (fd.barPercent > 0.01 && fd.barPercent < 99.9)
+                            pbarFieldAreaRemainPercent.Value = (int)(100 - fd.barPercent);
+                        else pbarFieldAreaRemainPercent.Value = 0;
+
+
                         if (isMetric)
                         {
                             lblAltitude.Text = Altitude;

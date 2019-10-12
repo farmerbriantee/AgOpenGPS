@@ -69,7 +69,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
             this.btnDelete.Location = new System.Drawing.Point(712, 333);
             this.btnDelete.Name = "btnDelete";
@@ -82,7 +82,7 @@
             // 
             // btnOuter
             // 
-            this.btnOuter.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOuter.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOuter.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
             this.btnOuter.Location = new System.Drawing.Point(554, 14);
             this.btnOuter.Name = "btnOuter";
@@ -97,7 +97,7 @@
             // 
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSerialCancel.Location = new System.Drawing.Point(860, 333);
@@ -118,19 +118,17 @@
             this.btnGo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnGo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGo.Location = new System.Drawing.Point(861, 14);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(121, 109);
             this.btnGo.TabIndex = 63;
-            this.btnGo.Text = "Go!";
             this.btnGo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGo.UseVisualStyleBackColor = true;
             // 
             // btnLoadBoundaryFromGE
             // 
-            this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(713, 193);
@@ -159,7 +157,7 @@
             // cboxSelectBoundary
             // 
             this.cboxSelectBoundary.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxSelectBoundary.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxSelectBoundary.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSelectBoundary.FormattingEnabled = true;
             this.cboxSelectBoundary.Items.AddRange(new object[] {
             "Outer",
@@ -171,19 +169,19 @@
             this.cboxSelectBoundary.Location = new System.Drawing.Point(17, 43);
             this.cboxSelectBoundary.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSelectBoundary.Name = "cboxSelectBoundary";
-            this.cboxSelectBoundary.Size = new System.Drawing.Size(163, 43);
+            this.cboxSelectBoundary.Size = new System.Drawing.Size(158, 53);
             this.cboxSelectBoundary.TabIndex = 73;
             this.cboxSelectBoundary.SelectedIndexChanged += new System.EventHandler(this.cboxSelectBoundary_SelectedIndexChanged);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 15);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 25);
+            this.label1.Size = new System.Drawing.Size(199, 25);
             this.label1.TabIndex = 74;
             this.label1.Text = "Select Boundary";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxDriveThru
             // 
@@ -202,43 +200,43 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(234, 15);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(222, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 25);
+            this.label2.Size = new System.Drawing.Size(156, 25);
             this.label2.TabIndex = 76;
             this.label2.Text = "Drive Thru?";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(173, 118);
+            this.label3.Location = new System.Drawing.Point(167, 118);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 25);
+            this.label3.Size = new System.Drawing.Size(148, 25);
             this.label3.TabIndex = 90;
             this.label3.Text = "Area";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(317, 118);
+            this.label4.Location = new System.Drawing.Point(319, 118);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 25);
+            this.label4.Size = new System.Drawing.Size(92, 25);
             this.label4.TabIndex = 91;
             this.label4.Text = "Thru";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 118);
+            this.label5.Location = new System.Drawing.Point(22, 118);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 25);
+            this.label5.Size = new System.Drawing.Size(146, 25);
             this.label5.TabIndex = 92;
             this.label5.Text = "Bounds";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lvLines
             // 
@@ -248,7 +246,7 @@
             this.chAround,
             this.chEasting});
             this.lvLines.Enabled = false;
-            this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLines.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvLines.GridLines = true;
             this.lvLines.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvLines.HideSelection = false;
@@ -258,7 +256,7 @@
             this.lvLines.Name = "lvLines";
             this.lvLines.Scrollable = false;
             this.lvLines.ShowGroups = false;
-            this.lvLines.Size = new System.Drawing.Size(491, 255);
+            this.lvLines.Size = new System.Drawing.Size(511, 211);
             this.lvLines.TabIndex = 93;
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Details;
@@ -266,16 +264,17 @@
             // chField
             // 
             this.chField.Text = "Line";
-            this.chField.Width = 130;
+            this.chField.Width = 150;
             // 
             // chAngle
             // 
             this.chAngle.Text = "Drive Thru";
             this.chAngle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chAngle.Width = 150;
+            this.chAngle.Width = 145;
             // 
             // chAround
             // 
+            this.chAround.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chAround.Width = 100;
             // 
             // chEasting
@@ -286,6 +285,7 @@
             // 
             // btnToggleDriveThru
             // 
+            this.btnToggleDriveThru.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggleDriveThru.Location = new System.Drawing.Point(80, 407);
             this.btnToggleDriveThru.Name = "btnToggleDriveThru";
             this.btnToggleDriveThru.Size = new System.Drawing.Size(171, 35);
@@ -296,13 +296,13 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(397, 15);
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(388, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(122, 25);
+            this.label6.Size = new System.Drawing.Size(157, 25);
             this.label6.TabIndex = 96;
             this.label6.Text = "Go Around?";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxDriveAround
             // 
@@ -312,7 +312,7 @@
             this.cboxDriveAround.Items.AddRange(new object[] {
             "False",
             "True"});
-            this.cboxDriveAround.Location = new System.Drawing.Point(401, 43);
+            this.cboxDriveAround.Location = new System.Drawing.Point(411, 43);
             this.cboxDriveAround.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxDriveAround.Name = "cboxDriveAround";
             this.cboxDriveAround.Size = new System.Drawing.Size(107, 43);
@@ -321,6 +321,7 @@
             // 
             // btnToggleDriveAround
             // 
+            this.btnToggleDriveAround.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnToggleDriveAround.Location = new System.Drawing.Point(286, 407);
             this.btnToggleDriveAround.Name = "btnToggleDriveAround";
             this.btnToggleDriveAround.Size = new System.Drawing.Size(171, 35);
@@ -331,17 +332,17 @@
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(412, 118);
+            this.label7.Location = new System.Drawing.Point(416, 118);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 25);
+            this.label7.Size = new System.Drawing.Size(97, 25);
             this.label7.TabIndex = 98;
             this.label7.Text = "Around";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLoadMultiBoundaryFromGE
             // 
-            this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(860, 194);
@@ -355,7 +356,7 @@
             // 
             // btnDeleteAll
             // 
-            this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDeleteAll.Location = new System.Drawing.Point(553, 333);
@@ -405,7 +406,6 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormBoundary_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
