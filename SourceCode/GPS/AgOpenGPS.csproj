@@ -131,6 +131,12 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Forms\FormABPick.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormABPick.Designer.cs">
+      <DependentUpon>FormABPick.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -302,10 +308,20 @@
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="gStr.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.de.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.fr.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -366,6 +382,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormABPick.resx">
+      <DependentUpon>FormABPick.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>
@@ -465,8 +484,15 @@
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.de.resx" />
-    <EmbeddedResource Include="gStr.fr.resx" />
+    <EmbeddedResource Include="gStr.de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.it.resx" />
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>

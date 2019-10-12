@@ -3,6 +3,7 @@
 * Languages added with single RESX file per culture
 * keypad added for nuds
 * AB Line moves when using draw based on eq width. 
+* French, German, Italian Added. 
 
 v3.0 Aug/Sep 2019
 * sbNMEA used to capture GPS Data rather then rawbuffer which could be

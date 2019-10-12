@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_About));
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -80,7 +81,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label3.Location = new System.Drawing.Point(12, 357);
+            this.label3.Location = new System.Drawing.Point(56, 432);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 18);
             this.label3.TabIndex = 15;
@@ -110,19 +111,20 @@
             // linkLabelCombineForum
             // 
             this.linkLabelCombineForum.AutoSize = true;
-            this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 379);
+            this.linkLabelCombineForum.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabelCombineForum.Location = new System.Drawing.Point(56, 454);
             this.linkLabelCombineForum.Name = "linkLabelCombineForum";
-            this.linkLabelCombineForum.Size = new System.Drawing.Size(404, 13);
+            this.linkLabelCombineForum.Size = new System.Drawing.Size(258, 19);
             this.linkLabelCombineForum.TabIndex = 12;
             this.linkLabelCombineForum.TabStop = true;
-            this.linkLabelCombineForum.Text = "http://www.thecombineforum.com/forums/31-technology/278810-AgOpenGPS.html";
+            this.linkLabelCombineForum.Text = "https://agopengps.discourse.forum";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
             // 
             // button1
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(555, 266);
+            this.button1.Location = new System.Drawing.Point(619, 454);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -196,11 +198,9 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label11.Location = new System.Drawing.Point(125, 186);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(266, 144);
+            this.label11.Size = new System.Drawing.Size(268, 198);
             this.label11.TabIndex = 32;
-            this.label11.Text = "Andreas Ortner, Austria\r\nWilhelm Eder, Germany\r\nMTZ8302, Germany\r\nKevin Bouwman, " +
-    "USA\r\nPetar Starcev Serbia, Novi Sad\r\nRay Bear - AutoAuto\r\nDaniel P - Multi Curve" +
-    "\r\nMaxime Emprou - Languages and Code";
+            this.label11.Text = resources.GetString("label11.Text");
             // 
             // label14
             // 
@@ -226,7 +226,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 403);
+            this.ClientSize = new System.Drawing.Size(741, 541);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);

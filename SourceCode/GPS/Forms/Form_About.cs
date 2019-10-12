@@ -32,7 +32,7 @@ namespace AgOpenGPS
             // Add a link to the LinkLabel.
             LinkLabel.Link linkCf = new LinkLabel.Link
             {
-                LinkData = "http://www.thecombineforum.com/forums/31-technology/278810-AgOpenGPS.html"
+                LinkData = "https://agopengps.discourse.forum"
             };
             linkLabelCombineForum.Links.Add(linkCf);
         }

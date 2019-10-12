@@ -103,7 +103,7 @@ namespace AgOpenGPS
 
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing AB Lines File, Critical Error");
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABLinesFile);
             }
             else
             {

@@ -985,6 +985,20 @@ namespace AgOpenGPS
             }
         }
 
+        private void BtnPickLine_Click(object sender, EventArgs e)
+        {
+            if (!bnd.bndArr[0].isSet)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            PickAB();
+
+        }
+
+
+
         private void BtnMakeLinesFromBoundary_Click(object sender, EventArgs e)
         {
             if (!bnd.bndArr[0].isSet)
