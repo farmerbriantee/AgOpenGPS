@@ -41,10 +41,10 @@
             this.menuLanguageDeutsch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageEnglish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageFrench = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLanguageItalian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageRussian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageDutch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageSpanish = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLanguageItalian = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.setWorkingDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -275,6 +275,7 @@
             this.btnContour = new System.Windows.Forms.Button();
             this.btnManualOffOn = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
+            this.btnPickLine = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -376,10 +377,10 @@
             this.menuLanguageDeutsch,
             this.menuLanguageEnglish,
             this.menuLanguageFrench,
-            this.menuLanguageRussian,
+            this.menuLanguageItalian,
             this.menuLanguageDutch,
-            this.menuLanguageSpanish,
-            this.menuLanguageItalian});
+            this.menuLanguageRussian,
+            this.menuLanguageSpanish});
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
             this.menustripLanguage.Text = "Language";
@@ -408,6 +409,13 @@
             this.menuLanguageFrench.Text = "Français";
             this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
             // 
+            // menuLanguageItalian
+            // 
+            this.menuLanguageItalian.Name = "menuLanguageItalian";
+            this.menuLanguageItalian.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageItalian.Text = "Italiano";
+            this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
+            // 
             // menuLanguageRussian
             // 
             this.menuLanguageRussian.CheckOnClick = true;
@@ -420,7 +428,6 @@
             // menuLanguageDutch
             // 
             this.menuLanguageDutch.CheckOnClick = true;
-            this.menuLanguageDutch.Enabled = false;
             this.menuLanguageDutch.Name = "menuLanguageDutch";
             this.menuLanguageDutch.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageDutch.Text = "Nederlands";
@@ -434,14 +441,6 @@
             this.menuLanguageSpanish.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageSpanish.Text = "Español";
             this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
-            // 
-            // menuLanguageItalian
-            // 
-            this.menuLanguageItalian.Enabled = false;
-            this.menuLanguageItalian.Name = "menuLanguageItalian";
-            this.menuLanguageItalian.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageItalian.Text = "Italiano";
-            this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
             // 
             // toolStripSeparator11
             // 
@@ -2176,7 +2175,7 @@
             "8",
             "9",
             "10"});
-            this.cboxpRowWidth.Location = new System.Drawing.Point(339, 105);
+            this.cboxpRowWidth.Location = new System.Drawing.Point(339, 118);
             this.cboxpRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxpRowWidth.Name = "cboxpRowWidth";
             this.cboxpRowWidth.Size = new System.Drawing.Size(64, 53);
@@ -3066,7 +3065,7 @@
             this.btnZoomExtents.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnZoomExtents.Image = global::AgOpenGPS.Properties.Resources.Extents;
             this.btnZoomExtents.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomExtents.Location = new System.Drawing.Point(339, 466);
+            this.btnZoomExtents.Location = new System.Drawing.Point(339, 476);
             this.btnZoomExtents.Name = "btnZoomExtents";
             this.btnZoomExtents.Size = new System.Drawing.Size(64, 64);
             this.btnZoomExtents.TabIndex = 248;
@@ -3084,7 +3083,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(339, 247);
+            this.btnZoomIn.Location = new System.Drawing.Point(339, 257);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(64, 64);
             this.btnZoomIn.TabIndex = 120;
@@ -3101,7 +3100,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(339, 174);
+            this.btnZoomOut.Location = new System.Drawing.Point(339, 184);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(64, 64);
             this.btnZoomOut.TabIndex = 119;
@@ -3235,7 +3234,7 @@
             this.btnpTiltDown.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltDown.Image = global::AgOpenGPS.Properties.Resources.TiltDown;
             this.btnpTiltDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltDown.Location = new System.Drawing.Point(339, 393);
+            this.btnpTiltDown.Location = new System.Drawing.Point(339, 403);
             this.btnpTiltDown.Name = "btnpTiltDown";
             this.btnpTiltDown.Size = new System.Drawing.Size(64, 64);
             this.btnpTiltDown.TabIndex = 245;
@@ -3251,7 +3250,7 @@
             this.btnpTiltUp.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltUp.Image = global::AgOpenGPS.Properties.Resources.TiltUp;
             this.btnpTiltUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltUp.Location = new System.Drawing.Point(339, 320);
+            this.btnpTiltUp.Location = new System.Drawing.Point(339, 330);
             this.btnpTiltUp.Name = "btnpTiltUp";
             this.btnpTiltUp.Size = new System.Drawing.Size(64, 64);
             this.btnpTiltUp.TabIndex = 246;
@@ -3377,14 +3376,35 @@
             this.btnABLine.UseVisualStyleBackColor = false;
             this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
             // 
+            // btnPickLine
+            // 
+            this.btnPickLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPickLine.BackColor = System.Drawing.Color.Lavender;
+            this.btnPickLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPickLine.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPickLine.FlatAppearance.BorderSize = 3;
+            this.btnPickLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPickLine.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.btnPickLine.Image = global::AgOpenGPS.Properties.Resources.PointDone;
+            this.btnPickLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPickLine.Location = new System.Drawing.Point(1027, 628);
+            this.btnPickLine.Name = "btnPickLine";
+            this.btnPickLine.Size = new System.Drawing.Size(80, 80);
+            this.btnPickLine.TabIndex = 251;
+            this.btnPickLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPickLine.UseVisualStyleBackColor = false;
+            this.btnPickLine.Visible = false;
+            this.btnPickLine.Click += new System.EventHandler(this.BtnPickLine_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.ClientSize = new System.Drawing.Size(1109, 837);
-            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnPickLine);
+            this.Controls.Add(this.panelBatman);
             this.Controls.Add(this.btnMakeLinesFromBoundary);
             this.Controls.Add(this.lblFixQuality);
             this.Controls.Add(this.btnZoomExtents);
@@ -3705,6 +3725,7 @@
         private System.Windows.Forms.ProgressBar pbarFieldAreaRemainPercent;
         private System.Windows.Forms.Label lblPercentRemaining;
         private System.Windows.Forms.Label lblTimeRemaining;
+        public System.Windows.Forms.Button btnPickLine;
     }
 }
 

@@ -8,7 +8,7 @@ namespace AgOpenGPS
 {
     public partial class FormABCurve : Form
     {
-        public List<CurveLines> curveArrs = new List<CurveLines>();
+        public List<CurveLineSaved> curveArr = new List<CurveLineSaved>();
 
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
@@ -44,7 +44,7 @@ namespace AgOpenGPS
                 btnABLineOk.Enabled = false;
             }
             lvLines.Clear();
-            curveArrs.Clear();
+            curveArr.Clear();
             FormABCurve_LoadCurves();
 
             this.Size = new System.Drawing.Size(280, 440);
@@ -137,11 +137,11 @@ namespace AgOpenGPS
                     {
                         if (textBox1.Text.Length > 0)
                         {
-                            curveArrs.Add(new CurveLines());
-                            curveArrs[curveArrs.Count - 1].Name = textBox1.Text;
-                            curveArrs[curveArrs.Count - 1].Heading = mf.curve.aveLineHeading;
+                            curveArr.Add(new CurveLineSaved());
+                            curveArr[curveArr.Count - 1].Name = textBox1.Text;
+                            curveArr[curveArr.Count - 1].aveHeading = mf.curve.aveLineHeading;
 
-                            ListViewItem itm = new ListViewItem(curveArrs[curveArrs.Count - 1].Name);
+                            ListViewItem itm = new ListViewItem(curveArr[curveArr.Count - 1].Name);
                             lvLines.Items.Add(itm);
 
                             //write out the ABLine
@@ -155,7 +155,7 @@ namespace AgOpenGPS
 
                             for (int j = 0; j < mf.curve.refList.Count; j++)
                             {
-                                curveArrs[curveArrs.Count - 1].curveArr.Add(mf.curve.refList[j]);
+                                curveArr[curveArr.Count - 1].curvePts.Add(mf.curve.refList[j]);
                                 writer.WriteLine(Math.Round(mf.curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
                                                         Math.Round(mf.curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
                                                             Math.Round(mf.curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
@@ -292,7 +292,7 @@ namespace AgOpenGPS
             if (count > 0)
             {
                 int num = lvLines.SelectedIndices[0];
-                curveArrs.RemoveAt(num);
+                curveArr.RemoveAt(num);
                 lvLines.SelectedItems[0].Remove();
             }
             using (StreamWriter writer = new StreamWriter(filename, false))
@@ -300,24 +300,24 @@ namespace AgOpenGPS
                 try
                 {
                     writer.WriteLine("$CurveLines");
-                    for (int i = 0; i < curveArrs.Count; i++)
+                    for (int i = 0; i < curveArr.Count; i++)
                     {
                         //curveArrs[i].curveArr
 
                         //write out the Name
-                        writer.WriteLine(curveArrs[i].Name);
+                        writer.WriteLine(curveArr[i].Name);
 
                         //write out the aveheading
-                        writer.WriteLine(curveArrs[i].Heading.ToString(CultureInfo.InvariantCulture));
+                        writer.WriteLine(curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
 
                         //write out the points of ref line
-                        writer.WriteLine(curveArrs[i].curveArr.Count.ToString(CultureInfo.InvariantCulture));
-                        if (curveArrs[i].curveArr.Count > 0)
+                        writer.WriteLine(curveArr[i].curvePts.Count.ToString(CultureInfo.InvariantCulture));
+                        if (curveArr[i].curvePts.Count > 0)
                         {
-                            for (int j = 0; j < curveArrs[i].curveArr.Count; j++)
-                                writer.WriteLine(Math.Round(curveArrs[i].curveArr[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(curveArrs[i].curveArr[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                        Math.Round(curveArrs[i].curveArr[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+                            for (int j = 0; j < curveArr[i].curvePts.Count; j++)
+                                writer.WriteLine(Math.Round(curveArr[i].curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(curveArr[i].curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                        Math.Round(curveArr[i].curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
                         }
                     }
                 }
@@ -338,13 +338,13 @@ namespace AgOpenGPS
             {
                 int aa = lvLines.SelectedIndices[0];
 
-                mf.curve.aveLineHeading = curveArrs[aa].Heading;
+                mf.curve.aveLineHeading = curveArr[aa].aveHeading;
 
                 mf.curve.refList?.Clear();
 
-                for (int i = 0; i < curveArrs[aa].curveArr.Count; i++)
+                for (int i = 0; i < curveArr[aa].curvePts.Count; i++)
                 {
-                    mf.curve.refList.Add(curveArrs[aa].curveArr[i]);
+                    mf.curve.refList.Add(curveArr[aa].curvePts[i]);
                 }
                 if (mf.curve.refList.Count < 3)
                 {
@@ -442,23 +442,23 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curveArrs.Add(new CurveLines());
+                            curveArr.Add(new CurveLineSaved());
 
                             //read header $CurveLine
-                            curveArrs[num].Name = reader.ReadLine();
+                            curveArr[num].Name = reader.ReadLine();
                             // get the average heading
                             line = reader.ReadLine();
-                            curveArrs[num].Heading = double.Parse(line, CultureInfo.InvariantCulture);
+                            curveArr[num].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 1)
                             {
-                                itm = new ListViewItem(curveArrs[num].Name);
+                                itm = new ListViewItem(curveArr[num].Name);
                                 lvLines.Items.Add(itm);
 
-                                curveArrs[num].curveArr?.Clear();
+                                curveArr[num].curvePts?.Clear();
 
                                 for (int i = 0; i < numPoints; i++)
                                 {
@@ -467,15 +467,15 @@ namespace AgOpenGPS
                                     vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    curveArrs[num].curveArr.Add(vecPt);
+                                    curveArr[num].curvePts.Add(vecPt);
                                 }
                                 num++;
                             }
                             else
                             {
-                                if (curveArrs.Count > 0)
+                                if (curveArr.Count > 0)
                                 {
-                                    curveArrs.RemoveAt(num);
+                                    curveArr.RemoveAt(num);
                                 }
                             }
                         }
@@ -537,10 +537,10 @@ namespace AgOpenGPS
         }
     }
 
-    public class CurveLines
+    public class CurveLineSaved
     {
-        public List<vec3> curveArr = new List<vec3>();
-        public double Heading = 3;
+        public List<vec3> curvePts = new List<vec3>();
+        public double aveHeading = 3;
         public string Name = "aa";
     }
 }

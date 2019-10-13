@@ -845,6 +845,7 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
@@ -871,6 +872,34 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public void PickAB()
+        {
+            curve.isOkToAddPoints = false;
+            curve.isCurveSet = false;
+            DisableYouTurnButtons();
+            btnContourPriority.Enabled = false;
+            curve.isCurveBtnOn = false;
+            btnCurve.Image = Properties.Resources.CurveOff;
+
+            ABLine.isABLineSet = false;
+            ABLine.tramPassEvery = 0;
+            ABLine.passBasedOn = 0;
+            btnABLine.Image = Properties.Resources.ABLineOff;
+            ABLine.isBtnABLineOn = false;
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+
+            using (var form = new FormABPick(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
+
 
         public void KeypadToNUD(NumericUpDown sender)
         {
