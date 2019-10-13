@@ -493,6 +493,7 @@
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.it.resx" />
+    <EmbeddedResource Include="gStr.nl.resx" />
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>

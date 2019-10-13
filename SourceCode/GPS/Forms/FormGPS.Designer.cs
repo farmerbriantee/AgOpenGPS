@@ -378,8 +378,8 @@
             this.menuLanguageEnglish,
             this.menuLanguageFrench,
             this.menuLanguageItalian,
-            this.menuLanguageRussian,
             this.menuLanguageDutch,
+            this.menuLanguageRussian,
             this.menuLanguageSpanish});
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
@@ -428,7 +428,6 @@
             // menuLanguageDutch
             // 
             this.menuLanguageDutch.CheckOnClick = true;
-            this.menuLanguageDutch.Enabled = false;
             this.menuLanguageDutch.Name = "menuLanguageDutch";
             this.menuLanguageDutch.Size = new System.Drawing.Size(240, 40);
             this.menuLanguageDutch.Text = "Nederlands";
