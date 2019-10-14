@@ -41,6 +41,13 @@ namespace AgOpenGPS
             elevGrid = new vec3[0, 0];
 
             InitializeComponent();
+            label7.Text = gStr.gsWaterLevel;
+            lblBuildMap.Text = gStr.gsBuildingMapWait;
+            label1.Text = gStr.gsZoom;
+            label5.Text = gStr.gsMin_;
+            label6.Text = gStr.gsDelta_;
+            label8.Text = gStr.gsMax_;
+            this.Text = gStr.gsFormElev;
         }
 
         private void NudWaterLevel_ValueChanged(object sender, EventArgs e)
@@ -353,14 +360,14 @@ namespace AgOpenGPS
                     }
                     catch (Exception e)
                     {
-                        var form = new FormTimedMessage(2000, "Elevation File is Corrupt", "This is bad");
+                        var form = new FormTimedMessage(2000, gStr.gsElevationFileisCorrupt, gStr.gsThisisbad);
                         form.Show();
                         mf.WriteErrorLog("Load Elevation Points" + e.ToString());
                     }
                 }
                 if (elevRecPts.Count < 10)
                 {
-                    var form2 = new FormTimedMessage(2000, "Elevation File is Empty", "Nothing to Generate Terrain From");
+                    var form2 = new FormTimedMessage(2000, gStr.gsElevationFileEmpty, gStr.gsNothingtoGenerateTerrainFrom);
                     form2.Show();
                     Close();
                     return false;
@@ -369,7 +376,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form = new FormTimedMessage(2000, "Elevation File is Missing", "Going to exit back");
+                var form = new FormTimedMessage(2000, gStr.gsElevationFileMissing, gStr.gsGoingexitback);
                 form.Show();
                 Close();
                 return false;

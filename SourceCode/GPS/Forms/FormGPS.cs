@@ -811,13 +811,13 @@ namespace AgOpenGPS
             {
                 isLogElevation = false;
                 btnRecordElevation.Image = Properties.Resources.BoundaryRecord;
-                btnRecordElevation.Text = "Record Elevation";
+                btnRecordElevation.Text = gStr.gsRecordElevation;
             }
             else
             {
                 isLogElevation = true;
                 btnRecordElevation.Image = Properties.Resources.boundaryStop;
-                btnRecordElevation.Text = "Stop Record";
+                btnRecordElevation.Text = gStr.gsStopRecord;
             }
         }
 

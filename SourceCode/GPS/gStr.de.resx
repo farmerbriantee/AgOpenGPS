@@ -141,11 +141,20 @@
   <data name="gsActual" xml:space="preserve">
     <value>Aktuell</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS bitte neu starten</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
     <value>Aggressivität</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>All modules send to 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>All modules use 8888.</value>
   </data>
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenne</value>
@@ -188,6 +197,9 @@
   </data>
   <data name="gsBounds" xml:space="preserve">
     <value>Grenzen</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>Building Map, Please Wait</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>aber Feld wurde geladen</value>
@@ -294,6 +306,9 @@
   <data name="gsDeletePath" xml:space="preserve">
     <value>Pfad löschen</value>
   </data>
+  <data name="gsDelta_" xml:space="preserve">
+    <value>Delta:</value>
+  </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
     <value>Haben Sie Änderungen am Fahrzeug vorgenommen?</value>
   </data>
@@ -324,6 +339,9 @@
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Doppelantenne</value>
   </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>East</value>
+  </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Arbeitsschalter aktivieren</value>
   </data>
@@ -353,6 +371,9 @@
   </data>
   <data name="gsEnterVehicleUsed" xml:space="preserve">
     <value>Geben Sie das benutzte Fahrzeug ein</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>Ethernet Configuration</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
     <value>Beispiele</value>
@@ -405,6 +426,9 @@
   <data name="gsForNow" xml:space="preserve">
     <value>Für jetzt</value>
   </data>
+  <data name="gsFormElev" xml:space="preserve">
+    <value>FormElev</value>
+  </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>Von Lenkungsport:</value>
   </data>
@@ -452,6 +476,12 @@
   </data>
   <data name="gsHitchLength" xml:space="preserve">
     <value>Anhängelänge</value>
+  </data>
+  <data name="gsHost" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="gsHostName" xml:space="preserve">
+    <value>HostName</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>IMU-Einstellungen</value>
@@ -519,6 +549,9 @@
   <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
     <value>Maximaler Lenkwinkel in Grad</value>
   </data>
+  <data name="gsMax_" xml:space="preserve">
+    <value>Max:</value>
+  </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
     <value>Messungen in</value>
   </data>
@@ -527,6 +560,9 @@
   </data>
   <data name="gsMinUnapplied" xml:space="preserve">
     <value>Minimal bearbeitet</value>
+  </data>
+  <data name="gsMin_" xml:space="preserve">
+    <value>Min:</value>
   </data>
   <data name="gsMissingABCurveFile" xml:space="preserve">
     <value>Fehlende AB-Kurvendatei</value>
@@ -545,6 +581,12 @@
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
     <value>Fehlende Teilbreitendatei</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>Module Adress and Ports</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>Module Port</value>
   </data>
   <data name="gsMustBeVersion" xml:space="preserve">
     <value>Muss Version sein</value>
@@ -608,6 +650,9 @@
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
     <value>Keine verwendet</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>North</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
     <value>Keine Verbindung zum Caster</value>
@@ -768,6 +813,9 @@
   <data name="gsSetPoint" xml:space="preserve">
     <value>Sollwert</value>
   </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Shift GPS Position (cm)</value>
+  </data>
   <data name="gsShortcutKeys" xml:space="preserve">
     <value>Tastenkombinationen</value>
   </data>
@@ -798,6 +846,9 @@
   <data name="gsSocketConnectionProblem" xml:space="preserve">
     <value>Socket-Verbindungsproblem</value>
   </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>South</value>
+  </data>
   <data name="gsSpacing" xml:space="preserve">
     <value>Abstand (cm)</value>
   </data>
@@ -822,6 +873,9 @@
   <data name="gsStop" xml:space="preserve">
     <value>Halt</value>
   </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Stop Record Pause Boundary</value>
+  </data>
   <data name="gsStopped" xml:space="preserve">
     <value>Gestoppt</value>
   </data>
@@ -830,6 +884,9 @@
   </data>
   <data name="gsTemplateCancelled" xml:space="preserve">
     <value>Vorlage abgebrochen</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>This Computer</value>
   </data>
   <data name="gsThru" xml:space="preserve">
     <value>Durch</value>
@@ -876,6 +933,9 @@
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
     <value>Kontur einschalten oder AB-Linie erstellen</value>
   </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>Turn RIGHT while recording</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
     <value>Drehradius</value>
   </data>
@@ -909,6 +969,12 @@
   <data name="gsWaitingForGPS" xml:space="preserve">
     <value>Warten auf GPS</value>
   </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>Water Level</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>West</value>
+  </data>
   <data name="gsWheelbase" xml:space="preserve">
     <value>Radstand</value>
   </data>
@@ -920,5 +986,14 @@
   </data>
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
     <value>Arbeitsschalter Bedienung Manuell</value>
+  </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>YouTurn Recorder</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>** You must RESTART AgOpenGPS for any changes to take effect!</value>
+  </data>
+  <data name="gsZoom" xml:space="preserve">
+    <value>Zoom</value>
   </data>
 </root>

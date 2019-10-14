@@ -34,7 +34,7 @@ namespace AgOpenGPS
 
             if (mf.curve.refList.Count > 3)
             {
-                lblCurveExists.Text = "Curve Set";
+                lblCurveExists.Text = gStr.gsCurveSet;
                 btnABLineOk.Enabled = true;
             }
             else
@@ -187,7 +187,7 @@ namespace AgOpenGPS
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
             //clear out the reference list
-            lblCurveExists.Text = "Driving";
+            lblCurveExists.Text = gStr.gsDriving;
             mf.curve.ResetCurveLine();
 
             mf.curve.isOkToAddPoints = true;
@@ -254,7 +254,7 @@ namespace AgOpenGPS
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
                 mf.FileSaveCurveLine();
-                lblCurveExists.Text = "Curve Set";
+                lblCurveExists.Text = gStr.gsCurveSet;
             }
             else
             {

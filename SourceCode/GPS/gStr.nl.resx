@@ -147,11 +147,20 @@
   <data name="gsActual" xml:space="preserve">
     <value>Reëel</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS zal sluiten, herstart aub</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
     <value>Agressiviteit</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>All modules send to 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>All modules use 8888.</value>
   </data>
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenne</value>
@@ -203,6 +212,9 @@
   </data>
   <data name="gsBounds" xml:space="preserve">
     <value>Grenzen</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>Building Map, Please Wait</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Maar perceel is geladen</value>
@@ -315,6 +327,9 @@
   <data name="gsDeletePath" xml:space="preserve">
     <value>Verwijder pad</value>
   </data>
+  <data name="gsDelta_" xml:space="preserve">
+    <value>Delta:</value>
+  </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
     <value>Hebt u het voertuig gewijzigd?</value>
   </data>
@@ -347,6 +362,9 @@
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Dubbele antenne</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>East</value>
   </data>
   <data name="gsEdit" xml:space="preserve">
     <value>Aanpassen</value>
@@ -386,6 +404,9 @@
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Fout bij lezen KML</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>Ethernet Configuration</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
     <value>Voorbeelden</value>
@@ -440,6 +461,9 @@
   </data>
   <data name="gsForNow" xml:space="preserve">
     <value>Voorlopig</value>
+  </data>
+  <data name="gsFormElev" xml:space="preserve">
+    <value>FormElev</value>
   </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>Van autostuur:</value>
@@ -506,6 +530,12 @@
   </data>
   <data name="gsHitchLength" xml:space="preserve">
     <value>Hefinr. lengte</value>
+  </data>
+  <data name="gsHost" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="gsHostName" xml:space="preserve">
+    <value>HostName</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>IMU-instellingen</value>
@@ -588,6 +618,9 @@
   <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
     <value>Max. stuurhoek in graden</value>
   </data>
+  <data name="gsMax_" xml:space="preserve">
+    <value>Max:</value>
+  </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
     <value>Metingen in</value>
   </data>
@@ -602,6 +635,9 @@
   </data>
   <data name="gsMinUnapplied" xml:space="preserve">
     <value>Min. onbewerkt</value>
+  </data>
+  <data name="gsMin_" xml:space="preserve">
+    <value>Min:</value>
   </data>
   <data name="gsMinimumPWMDrive" xml:space="preserve">
     <value>Min. PWM-sterkte</value>
@@ -623,6 +659,12 @@
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
     <value>Ontbrekend sectie bestand</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>Module Adress and Ports</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>Module Port</value>
   </data>
   <data name="gsMustBeVersion" xml:space="preserve">
     <value>Moet versie zijn</value>
@@ -689,6 +731,9 @@
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
     <value>Geen gebruikt</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>North</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
     <value>Geen verbinding met caster</value>
@@ -855,6 +900,9 @@
   <data name="gsSetToZeroForSerial" xml:space="preserve">
     <value>Kies 0 voor serieel</value>
   </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Shift GPS Position (cm)</value>
+  </data>
   <data name="gsShortcutKeys" xml:space="preserve">
     <value>Sneltoetsen</value>
   </data>
@@ -888,6 +936,9 @@
   <data name="gsSocketConnectionProblem" xml:space="preserve">
     <value>Bus verbindingsprobleem</value>
   </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>South</value>
+  </data>
   <data name="gsSpacing" xml:space="preserve">
     <value>Afstand (cm)</value>
   </data>
@@ -912,6 +963,9 @@
   <data name="gsStep" xml:space="preserve">
     <value>Stap</value>
   </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Stop Record Pause Boundary</value>
+  </data>
   <data name="gsStopped" xml:space="preserve">
     <value>Gestopt</value>
   </data>
@@ -920,6 +974,9 @@
   </data>
   <data name="gsTemplateCancelled" xml:space="preserve">
     <value>Template geannuleerd</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>This Computer</value>
   </data>
   <data name="gsThru" xml:space="preserve">
     <value>Door</value>
@@ -996,6 +1053,9 @@
   <data name="gsTurnPatterns" xml:space="preserve">
     <value>Draaipatronen</value>
   </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>Turn RIGHT while recording</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
     <value>Draairadius</value>
   </data>
@@ -1053,8 +1113,14 @@
   <data name="gsWaitingForGPS" xml:space="preserve">
     <value>Wachtend op GPS</value>
   </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>Water Level</value>
+  </data>
   <data name="gsWebCam" xml:space="preserve">
     <value>Webcam</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>West</value>
   </data>
   <data name="gsWheelAngleSensorZero" xml:space="preserve">
     <value>Stuurhoeksensor nulpunt</value>
@@ -1071,7 +1137,16 @@
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
     <value>Werkschakelaar manueel</value>
   </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>YouTurn Recorder</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>** You must RESTART AgOpenGPS for any changes to take effect!</value>
+  </data>
   <data name="gsZeroEqualsOff" xml:space="preserve">
     <value>0 = uit</value>
+  </data>
+  <data name="gsZoom" xml:space="preserve">
+    <value>Zoom</value>
   </data>
 </root>

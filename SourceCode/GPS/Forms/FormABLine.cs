@@ -130,7 +130,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, "ABLine File is Corrupt", "Please delete it!!!");
+                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, gStr.gsPleasedeleteit);
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }

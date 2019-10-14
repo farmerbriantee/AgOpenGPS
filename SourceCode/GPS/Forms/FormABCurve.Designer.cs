@@ -52,9 +52,10 @@
             this.lblCurveExists.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblCurveExists.AutoSize = true;
             this.lblCurveExists.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurveExists.Location = new System.Drawing.Point(482, 14);
+            this.lblCurveExists.Location = new System.Drawing.Point(643, 17);
+            this.lblCurveExists.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurveExists.Name = "lblCurveExists";
-            this.lblCurveExists.Size = new System.Drawing.Size(98, 25);
+            this.lblCurveExists.Size = new System.Drawing.Size(128, 33);
             this.lblCurveExists.TabIndex = 87;
             this.lblCurveExists.Text = "> OFF <";
             this.lblCurveExists.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -71,11 +72,11 @@
             this.lvLines.HideSelection = false;
             this.lvLines.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.lvLines.LabelWrap = false;
-            this.lvLines.Location = new System.Drawing.Point(121, 121);
+            this.lvLines.Location = new System.Drawing.Point(161, 149);
             this.lvLines.Margin = new System.Windows.Forms.Padding(0);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(246, 258);
+            this.lvLines.Size = new System.Drawing.Size(327, 317);
             this.lvLines.TabIndex = 141;
             this.lvLines.TileSize = new System.Drawing.Size(240, 40);
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -94,11 +95,11 @@
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.CausesValidation = false;
             this.textBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(120, 54);
+            this.textBox1.Location = new System.Drawing.Point(160, 66);
             this.textBox1.Margin = new System.Windows.Forms.Padding(0);
             this.textBox1.MaxLength = 100;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 40);
+            this.textBox1.Size = new System.Drawing.Size(327, 48);
             this.textBox1.TabIndex = 145;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Visible = false;
@@ -108,10 +109,10 @@
             this.lblEnterCurveName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEnterCurveName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnterCurveName.Location = new System.Drawing.Point(120, 14);
+            this.lblEnterCurveName.Location = new System.Drawing.Point(133, 17);
             this.lblEnterCurveName.Margin = new System.Windows.Forms.Padding(0);
             this.lblEnterCurveName.Name = "lblEnterCurveName";
-            this.lblEnterCurveName.Size = new System.Drawing.Size(246, 39);
+            this.lblEnterCurveName.Size = new System.Drawing.Size(395, 48);
             this.lblEnterCurveName.TabIndex = 146;
             this.lblEnterCurveName.Text = "Enter Curve Name";
             this.lblEnterCurveName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -122,9 +123,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(399, 14);
+            this.label2.Location = new System.Drawing.Point(532, 17);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 25);
+            this.label2.Size = new System.Drawing.Size(119, 33);
             this.label2.TabIndex = 148;
             this.label2.Text = "Status: ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -137,9 +139,10 @@
             this.btnMulti.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnMulti.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnMulti.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMulti.Location = new System.Drawing.Point(397, 167);
+            this.btnMulti.Location = new System.Drawing.Point(529, 206);
+            this.btnMulti.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMulti.Name = "btnMulti";
-            this.btnMulti.Size = new System.Drawing.Size(90, 90);
+            this.btnMulti.Size = new System.Drawing.Size(120, 111);
             this.btnMulti.TabIndex = 147;
             this.btnMulti.Text = "Show";
             this.btnMulti.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -155,9 +158,10 @@
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.btnPausePlay.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPausePlay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPausePlay.Location = new System.Drawing.Point(536, 167);
+            this.btnPausePlay.Location = new System.Drawing.Point(715, 206);
+            this.btnPausePlay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPausePlay.Name = "btnPausePlay";
-            this.btnPausePlay.Size = new System.Drawing.Size(90, 90);
+            this.btnPausePlay.Size = new System.Drawing.Size(120, 111);
             this.btnPausePlay.TabIndex = 140;
             this.btnPausePlay.Text = "Pause";
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -171,9 +175,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(397, 288);
+            this.btnCancel.Location = new System.Drawing.Point(529, 354);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 90);
+            this.btnCancel.Size = new System.Drawing.Size(120, 111);
             this.btnCancel.TabIndex = 86;
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -186,9 +191,10 @@
             this.btnBPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
             this.btnBPoint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBPoint.Location = new System.Drawing.Point(536, 44);
+            this.btnBPoint.Location = new System.Drawing.Point(715, 54);
+            this.btnBPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBPoint.Name = "btnBPoint";
-            this.btnBPoint.Size = new System.Drawing.Size(90, 90);
+            this.btnBPoint.Size = new System.Drawing.Size(120, 111);
             this.btnBPoint.TabIndex = 64;
             this.btnBPoint.UseVisualStyleBackColor = true;
             this.btnBPoint.Click += new System.EventHandler(this.btnBPoint_Click);
@@ -199,9 +205,10 @@
             this.btnAPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAPoint.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
             this.btnAPoint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAPoint.Location = new System.Drawing.Point(397, 44);
+            this.btnAPoint.Location = new System.Drawing.Point(529, 54);
+            this.btnAPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAPoint.Name = "btnAPoint";
-            this.btnAPoint.Size = new System.Drawing.Size(90, 90);
+            this.btnAPoint.Size = new System.Drawing.Size(120, 111);
             this.btnAPoint.TabIndex = 63;
             this.btnAPoint.UseVisualStyleBackColor = true;
             this.btnAPoint.Click += new System.EventHandler(this.btnAPoint_Click);
@@ -212,10 +219,10 @@
             this.btnListUse.Image = global::AgOpenGPS.Properties.Resources.FileUse;
             this.btnListUse.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnListUse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListUse.Location = new System.Drawing.Point(9, 278);
+            this.btnListUse.Location = new System.Drawing.Point(12, 342);
             this.btnListUse.Margin = new System.Windows.Forms.Padding(0);
             this.btnListUse.Name = "btnListUse";
-            this.btnListUse.Size = new System.Drawing.Size(90, 90);
+            this.btnListUse.Size = new System.Drawing.Size(120, 111);
             this.btnListUse.TabIndex = 144;
             this.btnListUse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListUse.UseVisualStyleBackColor = true;
@@ -230,10 +237,10 @@
             this.btnAddToFile.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnAddToFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAddToFile.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAddToFile.Location = new System.Drawing.Point(10, 10);
+            this.btnAddToFile.Location = new System.Drawing.Point(13, 12);
             this.btnAddToFile.Margin = new System.Windows.Forms.Padding(0);
             this.btnAddToFile.Name = "btnAddToFile";
-            this.btnAddToFile.Size = new System.Drawing.Size(90, 90);
+            this.btnAddToFile.Size = new System.Drawing.Size(120, 111);
             this.btnAddToFile.TabIndex = 143;
             this.btnAddToFile.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddToFile.UseVisualStyleBackColor = false;
@@ -246,10 +253,10 @@
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
             this.btnListDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListDelete.Location = new System.Drawing.Point(9, 144);
+            this.btnListDelete.Location = new System.Drawing.Point(12, 177);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
-            this.btnListDelete.Size = new System.Drawing.Size(90, 90);
+            this.btnListDelete.Size = new System.Drawing.Size(120, 111);
             this.btnListDelete.TabIndex = 142;
             this.btnListDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListDelete.UseVisualStyleBackColor = true;
@@ -263,9 +270,10 @@
             this.btnABLineOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnABLineOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnABLineOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABLineOk.Location = new System.Drawing.Point(536, 288);
+            this.btnABLineOk.Location = new System.Drawing.Point(715, 354);
+            this.btnABLineOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnABLineOk.Name = "btnABLineOk";
-            this.btnABLineOk.Size = new System.Drawing.Size(90, 90);
+            this.btnABLineOk.Size = new System.Drawing.Size(120, 111);
             this.btnABLineOk.TabIndex = 65;
             this.btnABLineOk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnABLineOk.UseVisualStyleBackColor = true;
@@ -279,9 +287,9 @@
             // 
             // FormABCurve
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 400);
+            this.ClientSize = new System.Drawing.Size(849, 492);
             this.ControlBox = false;
             this.Controls.Add(this.lblCurveExists);
             this.Controls.Add(this.label2);
@@ -298,6 +306,7 @@
             this.Controls.Add(this.lvLines);
             this.Controls.Add(this.btnABLineOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormABCurve";

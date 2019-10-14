@@ -31,18 +31,20 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
 
+            //Initialize Component
             InitializeComponent();
 
-            lblCurveName.Text = gStr.gsEnterCurveName;
+            btnExit.Text = gStr.gsExit;
             lblLineName.Text = gStr.gsEnterLineName;
+            lblCurveName.Text = gStr.gsEnterCurveName;
         }
 
 
         private void BtnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
-                            "Enter a name and Click Save if Required.\r\n" +
-                            " Click new points make more lines");
+            MessageBox.Show(gStr.gsClick2Pointsontheboundary + "\r\n" +
+                            gStr.gsEnternameandClickSaveifRequired + "\r\n" +
+                            gStr.gsClicknewpointsmakemorelines);
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);

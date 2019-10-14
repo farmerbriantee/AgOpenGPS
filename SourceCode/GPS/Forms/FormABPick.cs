@@ -46,9 +46,9 @@ namespace AgOpenGPS
 
         private void BtnHelp_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
-                            "Enter a name and Click Save if Required.\r\n" +
-                            " Click new points make more lines");
+            MessageBox.Show(gStr.gsClick2Pointsontheboundary + "\r\n " +
+                            gStr.gsEnternameandClickSaveifRequired + "\r\n" +
+                            gStr.gsClicknewpointsmakemorelines);
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -141,7 +141,7 @@ namespace AgOpenGPS
                     }
                     catch (Exception er)
                     {
-                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, "Please delete it!!!");
+                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, gStr.gsPleasedeleteit);
                         form.Show();
                         mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
                     }

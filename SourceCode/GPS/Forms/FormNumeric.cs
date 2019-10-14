@@ -19,6 +19,7 @@ namespace AgOpenGPS
             max = _max;
             min = _min;
             InitializeComponent();
+            this.Text = gStr.gsEnteraValue;
 
             //fill in the display
             tboxNumber.Text = currentValue.ToString();
@@ -45,7 +46,7 @@ namespace AgOpenGPS
             }
 
             //clear the error as user entered new values
-            if (tboxNumber.Text == "Error")
+            if (tboxNumber.Text == gStr.gsError)
             {
                 tboxNumber.Text = "";
                 lblMin.ForeColor = SystemColors.ControlText;
@@ -133,12 +134,12 @@ namespace AgOpenGPS
                 //test if above or below min/max
                 if (tryNumber < min)
                 {
-                    tboxNumber.Text = "Error";
+                    tboxNumber.Text = gStr.gsError;
                     lblMin.ForeColor = System.Drawing.Color.Red;
                 }
                 else if (tryNumber > max)
                 {
-                    tboxNumber.Text = "Error";
+                    tboxNumber.Text = gStr.gsError;
                     lblMax.ForeColor = System.Drawing.Color.Red;
                 }
                 else
@@ -153,7 +154,7 @@ namespace AgOpenGPS
 
         private void BtnDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == "Error") tboxNumber.Text = "0";
+            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == gStr.gsError) tboxNumber.Text = "0";
             double tryNumber = double.Parse(tboxNumber.Text, CultureInfo.CurrentCulture);
 
 
@@ -168,7 +169,7 @@ namespace AgOpenGPS
 
         private void BtnDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
-            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == "Error") tboxNumber.Text = "0";
+            if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == gStr.gsError) tboxNumber.Text = "0";
             double tryNumber = double.Parse(tboxNumber.Text, CultureInfo.CurrentCulture);
 
             tryNumber--;

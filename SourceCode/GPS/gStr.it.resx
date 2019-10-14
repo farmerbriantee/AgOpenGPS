@@ -150,11 +150,20 @@
   <data name="gsAgOpenGPS" xml:space="preserve">
     <value>AgOpenGPS</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS si chiuderà, Si Prega di Riavviare</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
     <value>Aggressività</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>All modules send to 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>All modules use 8888.</value>
   </data>
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenna</value>
@@ -209,6 +218,9 @@
   </data>
   <data name="gsBounds" xml:space="preserve">
     <value>Confine</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>Building Map, Please Wait</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Ma il Campo è Stato Caricato</value>
@@ -324,6 +336,9 @@
   <data name="gsDeletePath" xml:space="preserve">
     <value>Cancellare Percorso</value>
   </data>
+  <data name="gsDelta_" xml:space="preserve">
+    <value>Delta:</value>
+  </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
     <value>Hai modificato le impostazioni del veicolo?</value>
   </data>
@@ -356,6 +371,9 @@
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
     <value>Doppia Antenna</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>East</value>
   </data>
   <data name="gsEdit" xml:space="preserve">
     <value>Modificare</value>
@@ -395,6 +413,9 @@
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Errroe Lettura File KML</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>Ethernet Configuration</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
     <value>Esempi</value>
@@ -449,6 +470,9 @@
   </data>
   <data name="gsForNow" xml:space="preserve">
     <value>Per Ora</value>
+  </data>
+  <data name="gsFormElev" xml:space="preserve">
+    <value>FormElev</value>
   </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
     <value>Dalla Porta Autoguida:</value>
@@ -515,6 +539,12 @@
   </data>
   <data name="gsHitchLength" xml:space="preserve">
     <value>Lunghezza Gancio</value>
+  </data>
+  <data name="gsHost" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="gsHostName" xml:space="preserve">
+    <value>HostName</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>Parametri IMU</value>
@@ -591,6 +621,9 @@
   <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
     <value>Angolo Sterzata Massimo</value>
   </data>
+  <data name="gsMax_" xml:space="preserve">
+    <value>Max:</value>
+  </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
     <value>Misure in</value>
   </data>
@@ -605,6 +638,9 @@
   </data>
   <data name="gsMinUnapplied" xml:space="preserve">
     <value>Min Non Applicato</value>
+  </data>
+  <data name="gsMin_" xml:space="preserve">
+    <value>Min:</value>
   </data>
   <data name="gsMinimumPWMDrive" xml:space="preserve">
     <value>Potenza Minima Motore</value>
@@ -626,6 +662,12 @@
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
     <value>File di Sezione Mancante</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>Module Adress and Ports</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>Module Port</value>
   </data>
   <data name="gsMount" xml:space="preserve">
     <value>Nome Stazione</value>
@@ -692,6 +734,9 @@
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
     <value>Nessuno Usato</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>North</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
     <value>Non Connesso Ad un Caster</value>
@@ -870,6 +915,9 @@
   <data name="gsSetToZeroForSerial" xml:space="preserve">
     <value>Selezionare 0 per Comunicazione Seriale</value>
   </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Shift GPS Position (cm)</value>
+  </data>
   <data name="gsShortcutKeys" xml:space="preserve">
     <value>Scorciatoie Tastiera</value>
   </data>
@@ -903,6 +951,9 @@
   <data name="gsSocketConnectionProblem" xml:space="preserve">
     <value>Problemi di Connessione al Socket</value>
   </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>South</value>
+  </data>
   <data name="gsSpacing" xml:space="preserve">
     <value>Spaziatura (cm)</value>
   </data>
@@ -933,6 +984,9 @@
   <data name="gsStop" xml:space="preserve">
     <value>Stop</value>
   </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Stop Record Pause Boundary</value>
+  </data>
   <data name="gsStopped" xml:space="preserve">
     <value>Fermato</value>
   </data>
@@ -941,6 +995,9 @@
   </data>
   <data name="gsTemplateCancelled" xml:space="preserve">
     <value>Modello Cancellato</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>This Computer</value>
   </data>
   <data name="gsThru" xml:space="preserve">
     <value>Attraverso</value>
@@ -1005,6 +1062,9 @@
   <data name="gsTurnPatterns" xml:space="preserve">
     <value>Attivare Modelli</value>
   </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>Turn RIGHT while recording</value>
+  </data>
   <data name="gsTurnRadius" xml:space="preserve">
     <value>Raggio di Sterzata</value>
   </data>
@@ -1059,6 +1119,12 @@
   <data name="gsWaitingForGPS" xml:space="preserve">
     <value>Attesa GPS</value>
   </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>Water Level</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>West</value>
+  </data>
   <data name="gsWheelAngleSensorZero" xml:space="preserve">
     <value>Zero del Sensore di Angolo di Sterzo</value>
   </data>
@@ -1077,7 +1143,16 @@
   <data name="gsYaw_" xml:space="preserve">
     <value>imbardata</value>
   </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>YouTurn Recorder</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>** You must RESTART AgOpenGPS for any changes to take effect!</value>
+  </data>
   <data name="gsZeroTrip" xml:space="preserve">
     <value>Traccia &gt;0&lt;</value>
+  </data>
+  <data name="gsZoom" xml:space="preserve">
+    <value>Zoom</value>
   </data>
 </root>

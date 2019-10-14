@@ -14,6 +14,11 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            btnStop.Text = gStr.gsDone;
+            btnRecord.Text = gStr.gsRecord;
+            label1.Text = gStr.gsTurnRIGHTwhilerecording;
+            this.Text = gStr.gsYouTurnRecorder;
         }
 
         private void btnRecord_Click(object sender, EventArgs e)

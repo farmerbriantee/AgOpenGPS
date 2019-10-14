@@ -56,7 +56,7 @@ namespace AgOpenGPS
             }
             else
             {
-                var form2 = new FormTimedMessage(2000, "No Fields Created", "Create a New Field First");
+                var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsCreated, gStr.gsCreateNewFieldFirst);
                 form2.Show();
                 ShowSavedPanel(false);
             }

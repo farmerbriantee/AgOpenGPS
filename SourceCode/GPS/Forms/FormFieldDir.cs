@@ -38,7 +38,7 @@ namespace AgOpenGPS
         {
             btnTemplate.Enabled = false;
             btnSave.Enabled = false;
-            lblTemplateChosen.Text = "None Selected";
+            lblTemplateChosen.Text = gStr.gsNoneSelected;
             tboxVehicle.Text = mf.vehiclefileName;
             lblFilename.Text = "";
         }
@@ -111,7 +111,7 @@ namespace AgOpenGPS
             if (ofd.ShowDialog() == DialogResult.Cancel)
             {
                 isTemplateSet = false;
-                mf.TimedMessageBox(1500, "Template Cancelled", "You can still start a new field");
+                mf.TimedMessageBox(1500, gStr.gsTemplateCancelled, gStr.gsYoucanstillstartnewfield);
                 return;
             }
             else
@@ -160,7 +160,7 @@ namespace AgOpenGPS
 
                     if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                     {
-                        MessageBox.Show("Choose a different name", "Directory Exists", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         return;
                     }
                     else
@@ -199,7 +199,7 @@ namespace AgOpenGPS
                 {
                     mf.WriteErrorLog("Creating new field " + ex);
 
-                    MessageBox.Show("Error", ex.ToString());
+                    MessageBox.Show(gStr.gsError, ex.ToString());
                     mf.currentFieldDirectory = "";
                 }
             }
@@ -210,7 +210,7 @@ namespace AgOpenGPS
 
                 if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                 {
-                    MessageBox.Show("Choose a different name", "Directory Exists", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     return;
                 }
                 else
@@ -245,7 +245,7 @@ namespace AgOpenGPS
                     {
                         mf.WriteErrorLog("While Opening Field" + ex);
 
-                        var form = new FormTimedMessage(2000, "Field File is Corrupt", "Choose a different field");
+                        var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         form.Show();
                         mf.JobClose();
                         return;
