@@ -786,6 +786,9 @@
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Resume</value>
   </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Pick 2 Points</value>
+  </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
     <value>Please complete ABLine</value>
   </data>
@@ -897,11 +900,20 @@
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Sections Turn Off Below</value>
   </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
   <data name="gsSelectAField" xml:space="preserve">
     <value>Select A Field</value>
   </data>
+  <data name="gsSelectALine" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="gsSelectBoundary" xml:space="preserve">
     <value>Select Boundary</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Select Curve Or Line</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Send To Manual Fix</value>
@@ -1034,11 +1046,11 @@
   <data name="gsTrailingHitchLength" xml:space="preserve">
     <value>Tailing Hitch Length</value>
   </data>
-  <data name="gsTreePlanter" xml:space="preserve">
-    <value>Tree Planter</value>
-  </data>
   <data name="gsTreePlantControl" xml:space="preserve">
     <value>Tree Plant Control</value>
+  </data>
+  <data name="gsTreePlanter" xml:space="preserve">
+    <value>Tree Planter</value>
   </data>
   <data name="gsTrees" xml:space="preserve">
     <value>Trees</value>
@@ -1078,6 +1090,9 @@
   </data>
   <data name="gsTurningOnSimulator" xml:space="preserve">
     <value>Turning On Simulator</value>
+  </data>
+  <data name="gsUDP" xml:space="preserve">
+    <value>UDP</value>
   </data>
   <data name="gsUTurn" xml:space="preserve">
     <value>U Turn</value>
@@ -1147,8 +1162,5 @@
   </data>
   <data name="gsZeroTrip" xml:space="preserve">
     <value>&gt;0&lt; Trip</value>
-  </data>
-  <data name="gsUDP" xml:space="preserve">
-    <value>UDP</value>
   </data>
 </root>

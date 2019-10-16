@@ -930,12 +930,6 @@ namespace AgOpenGPS
                             ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
                             ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                            //update the default
-                            AB0.fieldName = currentFieldDirectory;
-                            AB0.heading = glm.toDegrees(ABLine.abHeading);
-                            AB0.X = ABLine.refPoint1.easting;
-                            AB0.Y = ABLine.refPoint1.northing;
-
                             //Tramline
                             line = reader.ReadLine();
                             words = line.Split(',');
@@ -1208,54 +1202,6 @@ namespace AgOpenGPS
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
 
-                    }
-                }
-            }
-
-
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\QuickAB.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                using (StreamWriter writer = new StreamWriter(fileAndDirectory))
-                {
-                    writer.WriteLine("ABLine N S,0,0,0");
-                    writer.WriteLine("ABLine E W,90,0,0");
-                }
-            }
-
-            if (!File.Exists(fileAndDirectory))
-            {
-                TimedMessageBox(2000, "File Error", "Missing QuickAB File, Critical Error");
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {                        
-                        //read all the lines
-                        {
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            AB1.fieldName = words[0];
-                            AB1.heading = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            AB1.X = double.Parse(words[2], CultureInfo.InvariantCulture);
-                            AB1.Y = double.Parse(words[3], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            AB2.fieldName = words[0];
-                            AB2.heading = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            AB2.X = double.Parse(words[2], CultureInfo.InvariantCulture);
-                            AB2.Y = double.Parse(words[3], CultureInfo.InvariantCulture);
-                        }
-                    }
-                    catch (Exception er)
-                    {
-                        var form = new FormTimedMessage(2000, "QuickAB File is Corrupt", "Please delete it!!!");
-                        form.Show();
-                        WriteErrorLog("FieldOpen, Loading QuickAB, Corrupt QuickAB File" + er);
                     }
                 }
             }
@@ -1670,12 +1616,6 @@ namespace AgOpenGPS
                 }
 
             }
-
-            AB0.fieldName = currentFieldDirectory;
-            AB0.heading = glm.toDegrees(ABLine.abHeading);
-            AB0.X = ABLine.refPoint1.easting;
-            AB0.Y = ABLine.refPoint1.northing;
-
         }
 
         //save all the flag markers

@@ -167,12 +167,6 @@
     <Compile Include="Forms\FormABDraw.Designer.cs">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSwapAB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSwapAB.Designer.cs">
-      <DependentUpon>FormSwapAB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormShortcutKeys.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -323,6 +317,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.fr.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.it.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.it.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,9 +403,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSwapAB.resx">
-      <DependentUpon>FormSwapAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
       <DependentUpon>FormShortcutKeys.cs</DependentUpon>
@@ -492,8 +493,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.it.resx" />
-    <EmbeddedResource Include="gStr.nl.resx" />
+    <EmbeddedResource Include="gStr.it.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>

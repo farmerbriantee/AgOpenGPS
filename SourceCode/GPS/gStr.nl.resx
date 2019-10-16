@@ -723,6 +723,9 @@
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pauze / Hervat</value>
   </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Kies 2 punten</value>
+  </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
     <value>Gelieve AB-lijn af te werken</value>
   </data>
@@ -834,11 +837,17 @@
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Secties uitzetten onder</value>
   </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Kiezen</value>
+  </data>
   <data name="gsSelectAField" xml:space="preserve">
     <value>Kies een perceel</value>
   </data>
   <data name="gsSelectBoundary" xml:space="preserve">
     <value>Kies perceelgrens</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Selecteer Curve of lijn</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Zend naar manuele fix</value>

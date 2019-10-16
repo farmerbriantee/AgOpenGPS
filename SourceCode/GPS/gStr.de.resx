@@ -651,6 +651,9 @@
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Fortsetzen</value>
   </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Wähle 2 Punkte</value>
+  </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
     <value>Bitte  vervollständigen sie  ABLine</value>
   </data>
@@ -750,11 +753,17 @@
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Teilbreite unter ausschalten</value>
   </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Wählen</value>
+  </data>
   <data name="gsSelectAField" xml:space="preserve">
     <value>Wählen Sie ein Feld</value>
   </data>
   <data name="gsSelectBoundary" xml:space="preserve">
     <value>Wählen Sie Grenze</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Wählen Sie Kurve oder Linie</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Manuelle Adresse senden</value>

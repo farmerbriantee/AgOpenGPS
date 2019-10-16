@@ -29,7 +29,11 @@ namespace AgOpenGPS
         private int A, B, C, D, E, start=99999, end=99999;
         //list of coordinates of boundary line
         public List<vec3> turnLine = new List<vec3>();
+
         private vec3[] arr;
+
+        //the click point in ogl
+        public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         public vec2 lastABLineP2 = new vec2(0.0, 1.0);
 
@@ -42,16 +46,6 @@ namespace AgOpenGPS
 
             lblLineName.Text = gStr.gsEnterLineName;
         }
-
-
-        private void BtnHelp_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
-                            "Enter a name and Click Save if Required.\r\n" +
-                            " Click new points make more lines");
-        }
-
-        public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         private void FormABPick_Load(object sender, EventArgs e)
         {
@@ -77,167 +71,6 @@ namespace AgOpenGPS
             LoadCurves();
             LoadLines();
 
-        }
-
-        private void LoadLines()
-        {
-            //make sure at least a global blank AB Line file exists
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
-
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\ABLines.txt";
-
-
-            if (!File.Exists(filename))
-            {
-                using (StreamWriter writer = new StreamWriter(filename))
-                {
-                    writer.WriteLine("ABLine N S,0,0,0");
-                    writer.WriteLine("ABLine E W,90,0,0");
-                }
-            }
-
-            //get the file of previous AB Lines
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\ABLines.txt";
-
-            if (!File.Exists(filename))
-            {
-                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABLinesFile);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(filename))
-                {
-                    try
-                    {
-                        string line;
-
-                        //read all the lines
-                        for (int num = 0; !reader.EndOfStream; num++)
-                        {
-                            lineArr.Add(new ABLinePick());
-
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-
-                            lineArr[num].Name = words[0];
-
-                            lineArr[num].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));
-                            lineArr[num].origin.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
-                            lineArr[num].origin.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
-
-                            lineArr[num].ref1.easting = lineArr[num].origin.easting - (Math.Sin(lineArr[num].heading) * 2000.0);
-                            lineArr[num].ref1.northing = lineArr[num].origin.northing - (Math.Cos(lineArr[num].heading) * 2000.0);
-
-                            lineArr[num].ref2.easting = lineArr[num].origin.easting + (Math.Sin(lineArr[num].heading) * 2000.0);
-                            lineArr[num].ref2.northing = lineArr[num].origin.northing + (Math.Cos(lineArr[num].heading) * 2000.0);
-                        }
-                    }
-                    catch (Exception er)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, "Please delete it!!!");
-                        form.Show();
-                        mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
-                    }
-                }
-            }
-        }
-
-        private void LoadCurves()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField);
-
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\CurveLines.txt";
-
-            if (!File.Exists(filename))
-            {
-                using (StreamWriter writer = new StreamWriter(filename))
-                {
-                    writer.WriteLine("$CurveLines");
-                }
-            }
-
-            //get the file of previous AB Lines
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-            if (!File.Exists(filename))
-            {
-                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(filename))
-                {
-                    try
-                    {
-                        string line;
-                        int num = 0;
-                        Random rnd = new Random();
-
-                        //read header $CurveLine
-                        line = reader.ReadLine();
-
-                        while (!reader.EndOfStream)
-                        {
-                            curveArr.Add(new CurveLinePick());
-
-                            curveArr[num].red = (byte)(rnd.Next(200, 250));
-                            curveArr[num].grn = (byte)(rnd.Next(100, 250));
-                            curveArr[num].blu = (byte)(rnd.Next(50, 250));
-
-                            //read header $CurveLine
-                            curveArr[num].Name = reader.ReadLine();
-                            // get the average heading
-                            line = reader.ReadLine();
-                            curveArr[num].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            int numPoints = int.Parse(line);
-
-                            if (numPoints > 1)
-                            {
-                                curveArr[num].curvePts?.Clear();
-
-                                for (int i = 0; i < numPoints; i++)
-                                {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    curveArr[num].curvePts.Add(vecPt);
-                                }
-                                num++;
-                            }
-
-                            else
-                            {
-                                if (curveArr.Count > 0)
-                                {
-                                    curveArr.RemoveAt(num);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception er)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                        form.Show();
-                        mf.WriteErrorLog("Load Curve Line" + er.ToString());
-                    }
-                }
-            }
         }
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
@@ -358,11 +191,168 @@ namespace AgOpenGPS
             }
         }
 
+        private void BtnHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Click 2 Points on the boundary then Choose either AB Line or Curve \r\n " +
+                            "Enter a name and Click Save if Required.\r\n" +
+                            " Click new points make more lines");
+        }
+
+
+
+        private void LoadLines()
+        {
+            //make sure at least a global blank AB Line file exists
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            filename = directoryName + "\\ABLines.txt";
+
+
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                }
+            }
+
+            if (!File.Exists(filename))
+            {
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABLinesFile);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(filename))
+                {
+                    try
+                    {
+                        string line;
+
+                        //read all the lines
+                        for (int num = 0; !reader.EndOfStream; num++)
+                        {
+                            lineArr.Add(new ABLinePick());
+
+                            line = reader.ReadLine();
+                            string[] words = line.Split(',');
+
+                            lineArr[num].Name = words[0];
+
+                            lineArr[num].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));
+                            lineArr[num].origin.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
+                            lineArr[num].origin.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
+
+                            lineArr[num].ref1.easting = lineArr[num].origin.easting - (Math.Sin(lineArr[num].heading) * 2000.0);
+                            lineArr[num].ref1.northing = lineArr[num].origin.northing - (Math.Cos(lineArr[num].heading) * 2000.0);
+
+                            lineArr[num].ref2.easting = lineArr[num].origin.easting + (Math.Sin(lineArr[num].heading) * 2000.0);
+                            lineArr[num].ref2.northing = lineArr[num].origin.northing + (Math.Cos(lineArr[num].heading) * 2000.0);
+                        }
+                    }
+                    catch (Exception er)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, "Please delete it!!!");
+                        form.Show();
+                        mf.WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
+                    }
+                }
+            }
+        }
+
+        private void LoadCurves()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            filename = directoryName + "\\CurveLines.txt";
+
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                    writer.WriteLine("$CurveLines");
+                }
+            }
+
+            //get the file of previous AB Lines
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+            if (!File.Exists(filename))
+            {
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(filename))
+                {
+                    try
+                    {
+                        string line;
+                        int num = 0;
+                        Random rnd = new Random();
+
+                        //read header $CurveLine
+                        line = reader.ReadLine();
+
+                        while (!reader.EndOfStream)
+                        {
+                            curveArr.Add(new CurveLinePick());
+
+                            //read header $CurveLine
+                            curveArr[num].Name = reader.ReadLine();
+                            // get the average heading
+                            line = reader.ReadLine();
+                            curveArr[num].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            int numPoints = int.Parse(line);
+
+                            if (numPoints > 1)
+                            {
+                                curveArr[num].curvePts?.Clear();
+
+                                for (int i = 0; i < numPoints; i++)
+                                {
+                                    line = reader.ReadLine();
+                                    string[] words = line.Split(',');
+                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture),
+                                        double.Parse(words[2], CultureInfo.InvariantCulture));
+                                    curveArr[num].curvePts.Add(vecPt);
+                                }
+                                num++;
+                            }
+
+                            else
+                            {
+                                if (curveArr.Count > 0)
+                                {
+                                    curveArr.RemoveAt(num);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception er)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show();
+                        mf.WriteErrorLog("Load Curve Line" + er.ToString());
+                    }
+                }
+            }
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
         }
-
 
         private void oglSelf_Paint(object sender, PaintEventArgs e)
         {
@@ -447,7 +437,7 @@ namespace AgOpenGPS
                 {
 
                     GL.LineWidth(4);
-                    GL.Color3(curveArr[i].red, curveArr[i].grn, curveArr[i].blu);
+                    GL.Color3(0,1,0);
                     GL.Begin(PrimitiveType.LineStrip);
                         foreach (var item in curveArr[i].curvePts)
                         {
@@ -464,27 +454,6 @@ namespace AgOpenGPS
 
             GL.Flush();
             oglSelf.SwapBuffers();
-        }
-
-        private void oglSelf_Resize(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.MatrixMode(MatrixMode.Projection);
-            GL.LoadIdentity();
-
-            //58 degrees view
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
-            GL.LoadMatrix(ref mat);
-
-            GL.MatrixMode(MatrixMode.Modelview);
-        }
-
-        private void oglSelf_Load(object sender, EventArgs e)
-        {
-            oglSelf.MakeCurrent();
-            GL.Enable(EnableCap.CullFace);
-            GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
         }
 
 
@@ -549,6 +518,27 @@ namespace AgOpenGPS
             //else btnSaveABLine.Enabled = true;
             //if (String.IsNullOrEmpty(tboxCurveSaveName.Text)) btnSaveABCurve.Enabled = false;
             //else btnSaveABCurve.Enabled = true;
+        }
+
+        private void oglSelf_Resize(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.MatrixMode(MatrixMode.Projection);
+            GL.LoadIdentity();
+
+            //58 degrees view
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 1.0f, 20000);
+            GL.LoadMatrix(ref mat);
+
+            GL.MatrixMode(MatrixMode.Modelview);
+        }
+
+        private void oglSelf_Load(object sender, EventArgs e)
+        {
+            oglSelf.MakeCurrent();
+            GL.Enable(EnableCap.CullFace);
+            GL.CullFace(CullFaceMode.Back);
+            GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
         }
 
         //determine mins maxs of patches and whole field.
@@ -634,24 +624,4 @@ namespace AgOpenGPS
             }
         }
     }
-
-    public class CurveLinePick
-    {
-        public List<vec3> curvePts = new List<vec3>();
-        public double aveHeading = 3;
-        public string Name = "aa";
-        public byte red = 200;
-        public byte grn = 0;
-        public byte blu = 0;
-    }
-
-    public class ABLinePick
-    {
-        public vec2 ref1 = new vec2();
-        public vec2 ref2 = new vec2();
-        public vec2 origin = new vec2();
-        public double heading = 0;
-        public string Name = "aa";
-    }
-
 }

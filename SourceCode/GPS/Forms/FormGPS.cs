@@ -122,12 +122,6 @@ namespace AgOpenGPS
         /// </summary>
         public CMazeGrid mazeGrid;
 
-        // couple of quick AB's
-        public CQuicks AB0 = new CQuicks("Original", 2, 2, 2);
-
-        public CQuicks AB1 = new CQuicks("North South", 0, 0, 0);
-        public CQuicks AB2 = new CQuicks("East West", 90, 0, 0);
-
         /// <summary>
         /// Contour Mode Instance
         /// </summary>
@@ -872,34 +866,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
-        public void PickAB()
-        {
-            curve.isOkToAddPoints = false;
-            curve.isCurveSet = false;
-            DisableYouTurnButtons();
-            btnContourPriority.Enabled = false;
-            curve.isCurveBtnOn = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
-
-            ABLine.isABLineSet = false;
-            ABLine.tramPassEvery = 0;
-            ABLine.passBasedOn = 0;
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            ABLine.isBtnABLineOn = false;
-
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-
-
-            using (var form = new FormABPick(this))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
-            }
-        }
-
 
         public void KeypadToNUD(NumericUpDown sender)
         {
