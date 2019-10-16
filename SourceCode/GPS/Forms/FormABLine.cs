@@ -90,20 +90,12 @@ namespace AgOpenGPS
             {
                 using (StreamWriter writer = new StreamWriter(filename))
                 {
-                    writer.WriteLine("ABLine N S,0,0,0");
-                    writer.WriteLine("ABLine E W,90,0,0");
                 }
             }
 
-            //get the file of previous AB Lines
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\ABLines.txt";
-
             if (!File.Exists(filename))
             {
-                mf.TimedMessageBox(2000, "File Error", "Missing AB Lines File, Critical Error");
+                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABLinesFile);
             }
             else
             {
@@ -212,11 +204,6 @@ namespace AgOpenGPS
                 mf.DisableYouTurnButtons();
             }
 
-            //update the default
-            mf.AB0.fieldName = mf.currentFieldDirectory;
-            mf.AB0.heading = glm.toDegrees(mf.ABLine.abHeading);
-            mf.AB0.X = mf.ABLine.refPoint1.easting;
-            mf.AB0.Y = mf.ABLine.refPoint1.northing;
             if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
             Close();
         }
@@ -346,12 +333,6 @@ namespace AgOpenGPS
 
                 //save the ABLine
                 mf.FileSaveABLine();
-
-                //update the default
-                mf.AB0.fieldName = lvLines.SelectedItems[0].SubItems[0].Text;
-                mf.AB0.heading = double.Parse(lvLines.SelectedItems[0].SubItems[1].Text, CultureInfo.InvariantCulture);
-                mf.AB0.X = double.Parse(lvLines.SelectedItems[0].SubItems[2].Text, CultureInfo.InvariantCulture);
-                mf.AB0.Y = double.Parse(lvLines.SelectedItems[0].SubItems[3].Text, CultureInfo.InvariantCulture);
 
                 mf.EnableYouTurnButtons();
                 //Go back with Line enabled

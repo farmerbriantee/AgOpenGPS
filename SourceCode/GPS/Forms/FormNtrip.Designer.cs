@@ -278,9 +278,9 @@
             this.tboxUserName.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxUserName.Location = new System.Drawing.Point(450, 33);
             this.tboxUserName.Name = "tboxUserName";
+            this.tboxUserName.PasswordChar = '*';
             this.tboxUserName.Size = new System.Drawing.Size(274, 33);
             this.tboxUserName.TabIndex = 100;
-            this.tboxUserName.PasswordChar = '*'; 
             // 
             // tboxUserPassword
             // 
@@ -288,9 +288,9 @@
             this.tboxUserPassword.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxUserPassword.Location = new System.Drawing.Point(450, 104);
             this.tboxUserPassword.Name = "tboxUserPassword";
+            this.tboxUserPassword.PasswordChar = '*';
             this.tboxUserPassword.Size = new System.Drawing.Size(274, 33);
             this.tboxUserPassword.TabIndex = 101;
-            this.tboxUserPassword.PasswordChar = '*';
             // 
             // label3
             // 
@@ -316,7 +316,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(31, 415);
+            this.label13.Location = new System.Drawing.Point(31, 370);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(70, 25);
             this.label13.TabIndex = 105;
@@ -326,7 +326,7 @@
             // 
             this.tboxMount.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxMount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxMount.Location = new System.Drawing.Point(17, 446);
+            this.tboxMount.Location = new System.Drawing.Point(17, 401);
             this.tboxMount.Name = "tboxMount";
             this.tboxMount.Size = new System.Drawing.Size(341, 33);
             this.tboxMount.TabIndex = 104;
@@ -544,9 +544,9 @@
             // btnGetSourceTable
             // 
             this.btnGetSourceTable.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetSourceTable.Location = new System.Drawing.Point(131, 394);
+            this.btnGetSourceTable.Location = new System.Drawing.Point(17, 440);
             this.btnGetSourceTable.Name = "btnGetSourceTable";
-            this.btnGetSourceTable.Size = new System.Drawing.Size(193, 37);
+            this.btnGetSourceTable.Size = new System.Drawing.Size(235, 37);
             this.btnGetSourceTable.TabIndex = 127;
             this.btnGetSourceTable.Text = "Get Source Table";
             this.btnGetSourceTable.UseVisualStyleBackColor = true;

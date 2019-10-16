@@ -118,816 +118,975 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gs#OfSections" xml:space="preserve">
-    <value># Anzahl Teilbreiten</value>
+    <value>nr di Sezioni</value>
   </data>
   <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt;&lt;&gt;&gt;Spur verschieben</value>
+    <value>&lt;&lt; &gt;&gt; Sposta Traccia</value>
   </data>
   <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt;&gt; Spur verschieben</value>
+    <value>&lt; &gt; Sposta Traccia</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
-    <value>AB Line Datei falsch</value>
+    <value>Il file Linea AB è corrotto</value>
   </data>
   <data name="gsALLSettingsRequireRestart" xml:space="preserve">
-    <value>Alle Änderungen bedürfen einen Neustart</value>
+    <value>TUTTI i Parametri richiedono un riavvio</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Über…</value>
+    <value>A proposito di…</value>
+  </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Azione</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Aktion abgebrochen</value>
+    <value>L'Azione è Annullata</value>
+  </data>
+  <data name="gsActiveLow" xml:space="preserve">
+    <value>Attivo in Basso</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Aktuell</value>
+    <value>Attuale</value>
+  </data>
+  <data name="gsAgOpenGPS" xml:space="preserve">
+    <value>AgOpenGPS</value>
   </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
-    <value>AgOpenGPS bitte neu starten</value>
+    <value>AgOpenGPS si chiuderà, Si Prega di Riavviare</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Aggressivität</value>
+    <value>Aggressività</value>
   </data>
   <data name="gsAntenna" xml:space="preserve">
-    <value>Antenne</value>
+    <value>Antenna</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Bist du Sicher?</value>
+    <value>Ne sei sicuro?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Fläche</value>
+    <value>Area</value>
   </data>
   <data name="gsAround" xml:space="preserve">
-    <value>Um</value>
+    <value>Attorno</value>
+  </data>
+  <data name="gsAtSocketConnect" xml:space="preserve">
+    <value>Connessione al Socket</value>
   </data>
   <data name="gsAuthourizing" xml:space="preserve">
-    <value>Anmelden</value>
+    <value>Autorizzazione</value>
+  </data>
+  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
+    <value>Pulsante Autoguida Automatico/Manuale</value>
   </data>
   <data name="gsAutoSteer" xml:space="preserve">
-    <value>Autom. Lenken</value>
+    <value>Autoguida</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Lenkungseinstellungen</value>
+    <value>Configurazione Autoguida</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Lenkungsport</value>
+    <value>Porta Autoguida</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Basato Sul Campo:</value>
+  </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>Inizio</value>
   </data>
   <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
-    <value>Bitte Fahrzeug speichern</value>
+    <value>Assicurati di salvare il veicolo se lo modifichi</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Schlaggrenze</value>
+    <value>Confine</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>Schlaggrenze Datei ist fehlerhaft</value>
+    <value>Il file della Linea di Confine è Corrotto</value>
   </data>
   <data name="gsBoundaryNotSetOrNoGuidanceLineSet" xml:space="preserve">
-    <value>Keine Schlaggrenze oder Führungslinie erstelllt</value>
+    <value>Nessun confine o Linea guida Tracciato</value>
   </data>
   <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
-    <value>Schlag zu klein um Vorgewende zu erzeugen</value>
+    <value>Confine Troppo Piccolo per Creare la Testata</value>
   </data>
   <data name="gsBounds" xml:space="preserve">
-    <value>Grenzen</value>
+    <value>Confine</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    <value>aber Feld wurde geladen</value>
+    <value>Ma il Campo è Stato Caricato</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
-    <value>Abbruch</value>
+    <value>Annulla</value>
   </data>
   <data name="gsCannotFind" xml:space="preserve">
-    <value>Kann es nicht finden.</value>
+    <value>Non lo trovo</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Zentimeter</value>
+    <value>Centimetri</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Ein anderes Feld wählen</value>
+    <value>Scegli un campo diverso</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Einen anderen Namen wählen</value>
+    <value>Scegli un nome diverso</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Scegli o creane un altro</value>
   </data>
   <data name="gsClickButtonAgainToStop" xml:space="preserve">
-    <value>Nochmals Drücken um zu stoppen</value>
+    <value>Fare click nuovamente per interrompere</value>
   </data>
   <data name="gsClickStartToResume" xml:space="preserve">
-    <value>Zum Fortsetzen Start drücken</value>
+    <value>Premere start per riprendere</value>
   </data>
   <data name="gsCloneFrom" xml:space="preserve">
-    <value>Kopiere von</value>
+    <value>Copiare da</value>
   </data>
   <data name="gsCloseField" xml:space="preserve">
-    <value>Feld schließen</value>
+    <value>Chiudere campo</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Feld vorher schlie0en</value>
+    <value>Chiudere il campo prima!</value>
   </data>
   <data name="gsCmPerLightbarPixel" xml:space="preserve">
-    <value>cm pro Lichtbar </value>
+    <value>Cm/pixel barra luminosa</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Farben</value>
+    <value>Colori</value>
   </data>
   <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
-    <value>Ab Kurve vorher beenden</value>
+    <value>Completare una curva AB prima</value>
   </data>
   <data name="gsConfirmIP" xml:space="preserve">
-    <value>IP Abrufen</value>
+    <value>Confermare IP</value>
   </data>
   <data name="gsConnect" xml:space="preserve">
-    <value>Verbinden</value>
+    <value>Connettere</value>
   </data>
   <data name="gsConnectingIn" xml:space="preserve">
-    <value>Verbinden in</value>
+    <value>Connessione a</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>Konturdatei ist beschädigt</value>
+    <value>Il File del Contorno è Corrotto</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>Gültiger Pfad konnte nicht generiert werden</value>
+    <value>Impossibile generare un percorso valido</value>
   </data>
   <data name="gsCountsPerDegree" xml:space="preserve">
-    <value>Anzahl pro Grad</value>
+    <value>Conteggi per grado</value>
   </data>
   <data name="gsCreate" xml:space="preserve">
-    <value>Erstellen</value>
+    <value>Creare</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Erstellen Sie zuerst eine Grenze</value>
+    <value>Creare un Confine prima</value>
   </data>
   <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
-    <value>Erstellen Sie zuerst eine Grenze und an ABLine oder Kurve</value>
+    <value>Creare un Confine ed una Linea AB od una Curva</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Neues Feld erstellen</value>
+    <value>Creare un Nuovo Campo</value>
+  </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Creare Prima il Confine Esterno </value>
   </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
-    <value>Aktueller GPS Fix:</value>
+    <value>Fix GPS Attuale:</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>Kurvenliniendatei ist beschädigt</value>
+    <value>Il file della Linea Curva è Corrotto</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>ABCurve nicht aktiviert</value>
+    <value>Curva AB Non Attivata</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Personalizzazione</value>
   </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
-    <value>** Datum wird hinzugefügt</value>
+    <value>**Verrà Aggiunta La Data</value>
   </data>
   <data name="gsDelete" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Cancellare</value>
   </data>
   <data name="gsDeleteAll" xml:space="preserve">
-    <value>Alles löschen</value>
+    <value>Cancellare Tutto</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>Alle Konturen und Teilbreiten löschen?</value>
+    <value>Cancellare Tutti i Contorni e le Sezioni?</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Bearbeitete Fläche löschen</value>
+    <value>Cancellare l'Area Colorata</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Konturpfade löschen</value>
+    <value>Eliminare i Percorsi di contorno</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Wirklich löschen?</value>
+    <value>Sicuro di voler Cancellare?</value>
   </data>
   <data name="gsDeletePath" xml:space="preserve">
-    <value>Pfad löschen</value>
+    <value>Cancellare Percorso</value>
   </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
-    <value>Haben Sie Änderungen am Fahrzeug vorgenommen?</value>
+    <value>Hai modificato le impostazioni del veicolo?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Verzeichnisse</value>
+    <value>Cartelle</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Verzeichnis existiert</value>
+    <value>La Cartella Esiste</value>
   </data>
   <data name="gsDisconnect" xml:space="preserve">
-    <value>Trennen</value>
+    <value>Disconnettere</value>
   </data>
   <data name="gsDisplay" xml:space="preserve">
-    <value>Anzeige</value>
+    <value>Schermo</value>
   </data>
   <data name="gsDistance" xml:space="preserve">
-    <value>Entfernung</value>
+    <value>Distanza</value>
+  </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Fatto</value>
   </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
-    <value>Zeichnung hat begonnen</value>
+    <value>Il Disegno è Iniziato</value>
   </data>
   <data name="gsDrive" xml:space="preserve">
-    <value>Manuell</value>
+    <value>Guida</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Durchfahren</value>
+    <value>Percorribile</value>
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
-    <value>Doppelantenne</value>
+    <value>Doppia Antenna</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Modificare</value>
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
-    <value>Arbeitsschalter aktivieren</value>
+    <value>Attivare interruttore di Lavoro</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
-    <value>IP Adresse des Anbieters</value>
+    <value>Inserire URL o IP del Broadcaster</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Koordinaten für Simulator:</value>
+    <value>Inserire Coordinate per il Simulatore</value>
   </data>
   <data name="gsEnterCurveName" xml:space="preserve">
-    <value>Geben Sie den Kurvennamen ein</value>
+    <value>Inserire Nome Curva</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Geben Sie den Feldnamen ein</value>
+    <value>Inserire Nome Campo</value>
   </data>
   <data name="gsEnterLineName" xml:space="preserve">
-    <value>Geben Sie den Zeilennamen ein</value>
+    <value>Inserire Nome Linea</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Sim Koordinaten eingeben</value>
+    <value>Inserie Coord. Sim.</value>
   </data>
   <data name="gsEnterTask" xml:space="preserve">
-    <value>Job eingeben</value>
+    <value>Inserie Lavorazione</value>
   </data>
   <data name="gsEnterUniqueABCurveName" xml:space="preserve">
-    <value>Geben Sie den eindeutigen AB-Kurvennamen ein</value>
+    <value>Inserire Nome Curva AB </value>
   </data>
   <data name="gsEnterVehicleUsed" xml:space="preserve">
-    <value>Geben Sie das benutzte Fahrzeug ein</value>
+    <value>Inserie Veicolo in Uso</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Ingresso</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Errroe Lettura File KML</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
-    <value>Beispiele</value>
+    <value>Esempi</value>
   </data>
   <data name="gsExit" xml:space="preserve">
-    <value>Ende</value>
+    <value>Uscita</value>
   </data>
   <data name="gsExtUDPSource" xml:space="preserve">
-    <value>Ext UDP-Quelle</value>
+    <value>Fonte UDP Est.</value>
   </data>
   <data name="gsExtraGuides" xml:space="preserve">
-    <value>Zusätzliche Führungslinien</value>
+    <value>Ulteriori Linee Guida</value>
   </data>
   <data name="gsField" xml:space="preserve">
-    <value>Feld</value>
+    <value>Campo</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Die Felddatei ist beschädigt</value>
+    <value>Il File del Campo è Corrotto</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Feld ist offen</value>
+    <value>Il Campo è Aperto</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Feld nicht geöffnet</value>
+    <value>Il Campo non è Aperto</value>
   </data>
   <data name="gsFieldOrigin" xml:space="preserve">
-    <value>Feldherkunft</value>
+    <value>Campo di Origine</value>
   </data>
   <data name="gsField_" xml:space="preserve">
-    <value>Feld:</value>
+    <value>Campo:</value>
   </data>
   <data name="gsFile" xml:space="preserve">
-    <value>Datei</value>
+    <value>File</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Dateifehler</value>
+    <value>Errore nel File</value>
   </data>
   <data name="gsFiles" xml:space="preserve">
-    <value>Dateien</value>
+    <value>File</value>
+  </data>
+  <data name="gsFixToFixCalc" xml:space="preserve">
+    <value>Calcolata In Modo Fisso</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
-    <value>Fix To Fix Entfernung</value>
+    <value>Correggi Per Fissare Distanza</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>Die Flag-Datei ist beschädigt</value>
+    <value>Il File Segnaposto è Corrotto</value>
   </data>
   <data name="gsFlagsGE" xml:space="preserve">
-    <value>Fahnen GE</value>
+    <value>Seganposto GE</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>Für jetzt</value>
+    <value>Per Ora</value>
   </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
-    <value>Von Lenkungsport:</value>
+    <value>Dalla Porta Autoguida:</value>
+  </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>Dai Confini</value>
   </data>
   <data name="gsFromGPS" xml:space="preserve">
-    <value>Vom GPS</value>
+    <value>Dal GPS</value>
   </data>
   <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Vom Teilbreitenport:</value>
+    <value>Dalla Porta Sezioni:</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
-    <value>Von VTG oder RMC</value>
+    <value>Da VTG o RMC</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Funzione</value>
   </data>
   <data name="gsFused" xml:space="preserve">
-    <value>Verschmolzen:</value>
+    <value>Fuse:</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>Intervallo GGA (sec)</value>
   </data>
   <data name="gsGPSConnected" xml:space="preserve">
-    <value>GPS verbunden</value>
+    <value>GPS Connesso</value>
+  </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>Fix Attuale del GPS</value>
   </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
-    <value>GPS Richtung von</value>
+    <value>Direzione GPS</value>
+  </data>
+  <data name="gsGPSPort" xml:space="preserve">
+    <value>Porta GPS</value>
   </data>
   <data name="gsGPSSourceOff" xml:space="preserve">
-    <value>GPS-Quelle aus</value>
+    <value>Fonte GPS spenta</value>
+  </data>
+  <data name="gsGain" xml:space="preserve">
+    <value>Guadagno</value>
   </data>
   <data name="gsGo_Around" xml:space="preserve">
-    <value>Herumfahren</value>
+    <value>Fai Un Giro</value>
   </data>
   <data name="gsGridOn" xml:space="preserve">
-    <value>Raster ein</value>
+    <value>Reticolo Attivo</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
-    <value>Richtungskorrekturquelle</value>
+    <value>Fonte Correzioni Direzione</value>
   </data>
   <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Richtung /Neigung</value>
+    <value>Direzione/Rollio</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
-    <value>Höhe</value>
+    <value>Altezza</value>
   </data>
   <data name="gsHelp" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>Aiuto</value>
   </data>
   <data name="gsHide" xml:space="preserve">
-    <value>Verstecken</value>
+    <value>Nascondi</value>
   </data>
   <data name="gsHitchLength" xml:space="preserve">
-    <value>Anhängelänge</value>
+    <value>Lunghezza Gancio</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
-    <value>IMU-Einstellungen</value>
+    <value>Parametri IMU</value>
   </data>
   <data name="gsImperial" xml:space="preserve">
-    <value>Imperial</value>
+    <value>Imperiale</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Zoll</value>
+    <value>Pollici</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Innere</value>
+    <value>Interno</value>
   </data>
   <data name="gsIntegralGain" xml:space="preserve">
-    <value>Integraler Gewinn</value>
+    <value>Guadagno Integrale</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Lingua</value>
   </data>
   <data name="gsLastFieldUsed" xml:space="preserve">
-    <value>Zuletzt verwendetes Feld</value>
+    <value>Ultimo Campo Usato</value>
+  </data>
+  <data name="gsLatitude" xml:space="preserve">
+    <value>Latitudine</value>
   </data>
   <data name="gsLeftIs-" xml:space="preserve">
-    <value>Links ist -</value>
+    <value>Sinistra è -</value>
   </data>
   <data name="gsLidarOn" xml:space="preserve">
-    <value>Lidar Ein</value>
+    <value>Lidar Acceso</value>
   </data>
   <data name="gsLightbarOn" xml:space="preserve">
-    <value>Lichtbalken ein</value>
+    <value>Barra Luminosa Accesa</value>
   </data>
   <data name="gsLine" xml:space="preserve">
-    <value>Linie</value>
+    <value>Linea</value>
   </data>
   <data name="gsListening" xml:space="preserve">
-    <value>Empfangen</value>
+    <value>Ascolto</value>
   </data>
   <data name="gsLoadKML" xml:space="preserve">
-    <value>KML laden</value>
+    <value>Caricamento KML</value>
   </data>
   <data name="gsLoadMulti" xml:space="preserve">
-    <value>Multi laden</value>
+    <value>Caricamento Multiplo</value>
   </data>
   <data name="gsLoadVehicle" xml:space="preserve">
-    <value>Fahrzeug laden</value>
+    <value>Caricamento Veicolo</value>
   </data>
   <data name="gsLocation" xml:space="preserve">
-    <value>Lage</value>
+    <value>Posizione</value>
   </data>
-  <data name="gsLogNMEA" xml:space="preserve">
-    <value>NMEA protokollieren</value>
+  <data name="gsLongitude" xml:space="preserve">
+    <value>Longitudine</value>
   </data>
   <data name="gsLookAheadInSeconds" xml:space="preserve">
-    <value>Sekunden vorausschauen</value>
+    <value>Anticipazione (secondi)</value>
   </data>
   <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
-    <value>Vorausschauender Offline-Multiplikator</value>
+    <value>Moltiplicatore Predittivo Fuori-Linea</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Grenzkonturen erstellen</value>
+    <value>Creare Contorni del Confine</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>Manuell</value>
+    <value>Manuale</value>
+  </data>
+  <data name="gsManualFix" xml:space="preserve">
+    <value>Correzione Manuale:</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>Valore Intergale Massimo</value>
   </data>
   <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
-    <value>Maximaler Lenkwinkel in Grad</value>
+    <value>Angolo Sterzata Massimo</value>
   </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
-    <value>Messungen in</value>
+    <value>Misure in</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Metri</value>
   </data>
   <data name="gsMetric" xml:space="preserve">
-    <value>Metrisch</value>
+    <value>Metrico</value>
+  </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>Distanza Minima Anticipazione (metri)</value>
   </data>
   <data name="gsMinUnapplied" xml:space="preserve">
-    <value>Minimal bearbeitet</value>
+    <value>Min Non Applicato</value>
+  </data>
+  <data name="gsMinimumPWMDrive" xml:space="preserve">
+    <value>Potenza Minima Motore</value>
   </data>
   <data name="gsMissingABCurveFile" xml:space="preserve">
-    <value>Fehlende AB-Kurvendatei</value>
+    <value>File Curva AB Mancante</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>Fehlende AB-Linien-Datei</value>
+    <value>File Linea AB Mancante</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Fehlende Grenzdatei</value>
+    <value>File del Confine Mancante</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>Fehlende Konturdatei</value>
+    <value>File del Contorno Mancante</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>Fehlende Flags-Datei</value>
+    <value>File Segnaposto Mancante</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>Fehlende Teilbreitendatei</value>
+    <value>File di Sezione Mancante</value>
+  </data>
+  <data name="gsMount" xml:space="preserve">
+    <value>Nome Stazione</value>
   </data>
   <data name="gsMustBeVersion" xml:space="preserve">
-    <value>Muss Version sein</value>
+    <value>Deve Essere la Versione</value>
   </data>
   <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
-    <value>NTRIP-Client nicht eingerichtet</value>
+    <value>Client NTRIP Non Configurato</value>
   </data>
   <data name="gsNTRIPClientSettings" xml:space="preserve">
-    <value>Ntrip Einstellungen</value>
+    <value>Parametri Client NTRIP </value>
   </data>
   <data name="gsNTRIPNotConnected" xml:space="preserve">
-    <value>NTRIP nicht verbunden</value>
+    <value>NTRIP Non Connesso</value>
   </data>
   <data name="gsNTRIPNotConnectedRetrying" xml:space="preserve">
-    <value>NTRIP nicht verbunden, wird wiederholt</value>
+    <value>NTRIP Non Connesso, Riprovo</value>
   </data>
   <data name="gsNTRIPNotConnectedToSendGGA" xml:space="preserve">
-    <value>NTRIP nicht verbunden um GGA zu senden</value>
+    <value>NTRIP Non Connesso per Inviare GGA</value>
   </data>
   <data name="gsNTRIPOff" xml:space="preserve">
-    <value>NTRIP Aus</value>
+    <value>NTRIP Disattivato</value>
   </data>
   <data name="gsNTRIPOn" xml:space="preserve">
-    <value>Ntrip EIN</value>
+    <value>NTRIP Attivato</value>
   </data>
   <data name="gsNTRIPRestarting" xml:space="preserve">
-    <value>Neustart von NTRIP</value>
-  </data>
-  <data name="gsNetworking" xml:space="preserve">
-    <value>Netzwerk</value>
+    <value>Riavvio NTRIP</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Neu</value>
+    <value>Nuovo</value>
   </data>
   <data name="gsNoABCurveCreated" xml:space="preserve">
-    <value>Keine AB-Kurve erstellt</value>
+    <value>Nessuna Curva AB Creata</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>Keine AB-Linie aktiv</value>
+    <value>Nessuna Linea AB Attiva</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>Keine Grenze</value>
+    <value>Nessun Confine </value>
   </data>
   <data name="gsNoGPS" xml:space="preserve">
-    <value>Kein GPS</value>
+    <value>Nessun GPS</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Keine Führungslinien</value>
+    <value>Nessuna Linea Guida</value>
   </data>
   <data name="gsNoIPLocated" xml:space="preserve">
-    <value>Keine IP gefunden</value>
+    <value>Nessun IP Individuato</value>
   </data>
   <data name="gsNoNameEntered" xml:space="preserve">
-    <value>Kein Name eingegeben</value>
+    <value>Nessun Nome Inserito</value>
+  </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>Nessun Confine Esterno</value>
   </data>
   <data name="gsNoSentenceData" xml:space="preserve">
-    <value>*** Keine Daten ***</value>
+    <value>***Nessun Dato***</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
-    <value>Nichts ausgewählt</value>
+    <value>Nessuna Selezione</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Keine verwendet</value>
+    <value>Nessuno Usato</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
-    <value>Keine Verbindung zum Caster</value>
+    <value>Non Connesso Ad un Caster</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Nichts gelöscht</value>
+    <value>Nulla è Stato Cancellato</value>
   </data>
   <data name="gsOff" xml:space="preserve">
-    <value>Ausgewählte verwenden</value>
+    <value>Spento</value>
   </data>
   <data name="gsOffline" xml:space="preserve">
     <value>Offline</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offset</value>
+    <value>Spostamento</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>Offset Fix</value>
+    <value>Correzione Spostamento</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>Öffnen</value>
+    <value>Apri</value>
   </data>
   <data name="gsOriginal" xml:space="preserve">
-    <value>Original</value>
+    <value>Originale</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Äußere</value>
+    <value>Esterno</value>
+  </data>
+  <data name="gsOutputGain" xml:space="preserve">
+    <value>Guadagno In Uscita</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Überschwingungsreduzierung</value>
-  </data>
-  <data name="gsPAOGIReachIMU" xml:space="preserve">
-    <value>PAOGI (Reach IMU)</value>
+    <value>Riduzione Superamento Linea</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Durchgang #</value>
+    <value>Passaggio #</value>
   </data>
-  <data name="gsPassword" xml:space="preserve">
-    <value>Passwort</value>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Modello</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pausa</value>
   </data>
   <data name="gsPauseResume" xml:space="preserve">
-    <value>Pause / Fortsetzen</value>
+    <value>Pausa / Riprendi</value>
   </data>
   <data name="gsPick2Points" xml:space="preserve">
-    <value>Wähle 2 Punkte</value>
+    <value>Scegli 2 Punti</value>
   </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
-    <value>Bitte  vervollständigen sie  ABLine</value>
+    <value>Si Prega di Completare la Linea AB</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Bitte geben Sie ABLine ein</value>
+    <value>Si Prega di Inserire la Linea AB</value>
   </data>
   <data name="gsPolygonsOn" xml:space="preserve">
-    <value>Polygon ein</value>
+    <value>Poligoni Attivi</value>
+  </data>
+  <data name="gsPort" xml:space="preserve">
+    <value>Porta</value>
+  </data>
+  <data name="gsPorts" xml:space="preserve">
+    <value>Porte</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>Kann Pfad nicht erstellen</value>
+    <value>Problemi Durante Creazione Percorso</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Das Programm wird geschlossen. Bitte Neustarten</value>
+    <value>Il Programma si chiuderà. Si Prega di Riavviare</value>
   </data>
   <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
-    <value>Das Programm wird zur Wiederherstellung zurückgesetzt. Bitte neustarten</value>
+    <value>Il Programma si Resetterà. Si Prega di Riavviare</value>
+  </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>Guadagno Proporzionale</value>
   </data>
   <data name="gsPursuitLine" xml:space="preserve">
-    <value>Verfolgungslinie</value>
+    <value>Linea Da Seguire</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Alles wirklich zurücksetzen?</value>
+    <value>Vuoi Veramente Resettare Tutto?</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Aufzeichnung</value>
+    <value>Registrazione</value>
   </data>
   <data name="gsRecordElevation" xml:space="preserve">
-    <value>Höhe aufzeichen</value>
+    <value>Registra Altezza</value>
   </data>
   <data name="gsRecordStop" xml:space="preserve">
-    <value>Aufnehmen / Stoppen</value>
+    <value>Registra / Stop</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>Die Datei mit dem aufgezeichneten Pfad ist beschädigt</value>
+    <value>Il File Registrato è Corrotto</value>
   </data>
   <data name="gsRelay" xml:space="preserve">
-    <value>Relais</value>
+    <value>Relé</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
-    <value>Versatz entfernen</value>
+    <value>Rimozione Spostamento</value>
   </data>
   <data name="gsRescanPorts" xml:space="preserve">
-    <value>Ports erneut scannen</value>
+    <value>Scansiona Le Porte</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Alles zurücksetzen</value>
+    <value>Resettare Tutto</value>
   </data>
   <data name="gsRestartRequired" xml:space="preserve">
-    <value>* Neustart erforderlich!</value>
+    <value>* Riavvio Richiesto</value>
   </data>
   <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
-    <value>Neustart und Wiederverbindung mit Caster</value>
+    <value>Riavvio e Riconnessione al Caster</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Fortsetzen</value>
+    <value>Riprendere</value>
   </data>
   <data name="gsResumingWithNewSettings" xml:space="preserve">
-    <value>Mit neuen Einstellungen fortfahren</value>
+    <value>Riprendere Con Le Nuove Impostazioni</value>
   </data>
   <data name="gsReturn" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Indietro</value>
   </data>
   <data name="gsRightIs+" xml:space="preserve">
-    <value>Rechts ist +</value>
+    <value>Destra è +</value>
   </data>
   <data name="gsRollSource" xml:space="preserve">
-    <value>Neigung Quelle</value>
+    <value>Fonte Del Rollio</value>
   </data>
   <data name="gsRollZero" xml:space="preserve">
-    <value>Neigung Nullstellen</value>
+    <value>Rollio a Zero</value>
   </data>
   <data name="gsSave" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Salva</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
-    <value>Speichern und Schließen</value>
+    <value>Salva ed Esci</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Speichern und zurück</value>
+    <value>Salva e Indietro</value>
+  </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Salva i Nomi</value>
   </data>
   <data name="gsSaveVehicle" xml:space="preserve">
-    <value>Fahrzeug speichern</value>
+    <value>Salva il Veicolo</value>
   </data>
   <data name="gsSavedInFolder" xml:space="preserve">
-    <value>In Ordner gespeichert:</value>
+    <value>Salvato Nella Cartella:</value>
   </data>
   <data name="gsSection" xml:space="preserve">
-    <value>Teilbreite</value>
+    <value>Sezione</value>
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
-    <value>Teilbreitendatei ist beschädigt</value>
+    <value>Il File delle Sezioni è Corrotto</value>
   </data>
   <data name="gsSectionPort" xml:space="preserve">
-    <value>Teilbreite Port</value>
+    <value>Porta della Sezione</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
-    <value>Teilbreite unter ausschalten</value>
+    <value>Le Sezioni si Spengono Se Sotto</value>
   </data>
   <data name="gsSelect" xml:space="preserve">
-    <value>Wählen</value>
+    <value>Selezionare</value>
   </data>
   <data name="gsSelectAField" xml:space="preserve">
-    <value>Wählen Sie ein Feld</value>
+    <value>Selezionare Campo</value>
   </data>
   <data name="gsSelectBoundary" xml:space="preserve">
-    <value>Wählen Sie Grenze</value>
+    <value>Selezionare Confine</value>
   </data>
   <data name="gsSelectCurveOrLine" xml:space="preserve">
-    <value>Wählen Sie Kurve oder Linie</value>
+    <value>Seleziona curva o linea</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
-    <value>Manuelle Adresse senden</value>
+    <value>Inviare a Correzione Manuale</value>
   </data>
   <data name="gsSendingGGA" xml:space="preserve">
-    <value>Senden von GGA</value>
+    <value>Inviando GGA</value>
   </data>
   <data name="gsSerialPorts" xml:space="preserve">
-    <value>Serielle Ports</value>
+    <value>Porte Seriali</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Sollwert</value>
+    <value>Impostato</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>Selezionare 0 per Comunicazione Seriale</value>
   </data>
   <data name="gsShortcutKeys" xml:space="preserve">
-    <value>Tastenkombinationen</value>
+    <value>Scorciatoie Tastiera</value>
   </data>
   <data name="gsShow" xml:space="preserve">
-    <value>Zeigen</value>
+    <value>Mostare</value>
   </data>
   <data name="gsShowElevationMap" xml:space="preserve">
-    <value>Höhenkarte anzeigen</value>
+    <value>Mostrare Mappa Altezza</value>
   </data>
   <data name="gsSidehillDraftGain" xml:space="preserve">
-    <value>Hangkompensation</value>
+    <value>Guadagno Spinta Laterale</value>
   </data>
   <data name="gsSimulatorForcedOff" xml:space="preserve">
-    <value>Simulator ausgeschaltet</value>
+    <value>Il Simulatore Deve Essere Spento</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator Ein</value>
+    <value>Simulatore Attivo</value>
   </data>
   <data name="gsSkip-Overlap+" xml:space="preserve">
-    <value>Überlappung</value>
+    <value>Spazio è- Sovrapposizione+</value>
+  </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Salti</value>
   </data>
   <data name="gsSkyOn" xml:space="preserve">
-    <value>Himmel an</value>
+    <value>Cielo Attivo</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>AB-Kurve glätten</value>
+    <value>Smussare Curva AB</value>
   </data>
   <data name="gsSocketConnectionProblem" xml:space="preserve">
-    <value>Socket-Verbindungsproblem</value>
+    <value>Problemi di Connessione al Socket</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Abstand (cm)</value>
+    <value>Spaziatura (cm)</value>
   </data>
   <data name="gsStart" xml:space="preserve">
-    <value>Starten</value>
+    <value>Iniziare</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Iniziare o Cancellare un Confine</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Neues Feld starten</value>
+    <value>Iniziare un Nuovo Campo</value>
   </data>
   <data name="gsStartOrDeleteABoundary" xml:space="preserve">
-    <value>Starten oder Löschen einer Grenze</value>
+    <value>Iniziare o Cancellare un Confine</value>
   </data>
   <data name="gsSteer" xml:space="preserve">
-    <value>Lenken</value>
+    <value>Sterzo</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Lenkdiagramm</value>
+    <value>Grafico dello sterzo</value>
   </data>
   <data name="gsSteeringFrontOrBack" xml:space="preserve">
-    <value>Lenkung vorne oder hinten</value>
+    <value>Sterzo Anteriore o Posteriore</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>Passo</value>
   </data>
   <data name="gsStop" xml:space="preserve">
-    <value>Halt</value>
+    <value>Stop</value>
   </data>
   <data name="gsStopped" xml:space="preserve">
-    <value>Gestoppt</value>
+    <value>Fermato</value>
   </data>
   <data name="gsSwitches" xml:space="preserve">
-    <value>Schalter</value>
+    <value>Interruttori</value>
   </data>
   <data name="gsTemplateCancelled" xml:space="preserve">
-    <value>Vorlage abgebrochen</value>
+    <value>Modello Cancellato</value>
   </data>
   <data name="gsThru" xml:space="preserve">
-    <value>Durch</value>
+    <value>Attraverso</value>
   </data>
   <data name="gsToAutoSteer" xml:space="preserve">
-    <value>Zum Lenkungsport:</value>
+    <value>Alla Porta Autoguida</value>
   </data>
   <data name="gsToSectionPort" xml:space="preserve">
-    <value>Zum Teilbreite Port:</value>
+    <value>Alla Porta Sezioni</value>
   </data>
-  <data name="gsToggleDriveBy" xml:space="preserve">
-    <value>Umfahren umschalten</value>
-  </data>
-  <data name="gsToggleDriveThru" xml:space="preserve">
-    <value>Durchfahren umschalten</value>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>Alla Porta UDP</value>
   </data>
   <data name="gsTool" xml:space="preserve">
-    <value>Gerät</value>
+    <value>Attrezzo</value>
   </data>
   <data name="gsToolOffsetLR" xml:space="preserve">
-    <value>Gerät Versatz L / R</value>
+    <value>Spostamento  Attrezzo S/D</value>
   </data>
   <data name="gsToolWidth" xml:space="preserve">
-    <value>Gerätebreite</value>
+    <value>Larghezza Attrezzo</value>
+  </data>
+  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
+    <value>Traino Disabilitato Quando &lt;200cm</value>
+  </data>
+  <data name="gsTowBetweenLength" xml:space="preserve">
+    <value>Distanza Attrezzo</value>
   </data>
   <data name="gsTrailingHitchLength" xml:space="preserve">
-    <value>Anhängerkupplungslänge</value>
+    <value>Distanza Traino dall'Attrezzo</value>
+  </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Controllo Conta Alberi</value>
   </data>
   <data name="gsTreePlanter" xml:space="preserve">
-    <value>Baum Pflanzer</value>
+    <value>Conta Alberi</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Alberi</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>Schalten Sie ABCurve ein</value>
+    <value>Attivare Curva AB</value>
   </data>
   <data name="gsTurnONNtripClient" xml:space="preserve">
-    <value>Ntrip Client einschalten</value>
+    <value>Attivare Client NTRIP</value>
+  </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Disattivare</value>
   </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
-    <value>Ausschaltverzögerung (Sekunden)</value>
+    <value>Disattivare il Ritardo (sec)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Attivare</value>
   </data>
   <data name="gsTurnOnAheadSecs" xml:space="preserve">
-    <value>Vorrauseilen (Sek.)</value>
+    <value>Attivare Anticipo (sec)</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>Kontur einschalten oder AB-Linie erstellen</value>
+    <value>Attivare Confine o Creare Linea AB</value>
+  </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Attivare Modelli</value>
   </data>
   <data name="gsTurnRadius" xml:space="preserve">
-    <value>Drehradius</value>
+    <value>Raggio di Sterzata</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Disattivare Tutto</value>
   </data>
   <data name="gsTurningOffSimulator" xml:space="preserve">
-    <value>Simulator ausschalten</value>
+    <value>Disattivare Il Simulatore</value>
   </data>
   <data name="gsTurningOnSimulator" xml:space="preserve">
-    <value>Simulator einschalten</value>
+    <value>Attivare Il Simulatore</value>
+  </data>
+  <data name="gsUTurn" xml:space="preserve">
+    <value>Svolta Automatica</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>Distanza Svolta Auto</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>Lunghezza Svolta Auto</value>
+  </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>Moltiplicatore Predittivo Svolta Automatica</value>
   </data>
   <data name="gsUnits" xml:space="preserve">
-    <value>Einheiten</value>
+    <value>Unità</value>
+  </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>Utilizzare Campo</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>Utilizzare GPS</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Ausgewähltes verwenden</value>
+    <value>Utilizzare Selezionato</value>
   </data>
   <data name="gsVehicle" xml:space="preserve">
-    <value>Fahrzeug</value>
+    <value>Veicolo</value>
   </data>
   <data name="gsVehicleFileIsCorrupt" xml:space="preserve">
-    <value>Fahrzeugdatei ist beschädigt</value>
+    <value>Il File del Veicolo è Corrotto</value>
   </data>
   <data name="gsVehicleFileIsWrongVersion" xml:space="preserve">
-    <value>Fahrzeugdatei ist falsche Version</value>
+    <value>La Versione del File Veicolo è Sbagliata</value>
   </data>
   <data name="gsVehicleSettings" xml:space="preserve">
-    <value>Fahrzeugeinstellungen</value>
+    <value>Parametri Veicolo</value>
   </data>
   <data name="gsWaiting" xml:space="preserve">
-    <value>Warten</value>
+    <value>Attendere</value>
   </data>
   <data name="gsWaitingForGPS" xml:space="preserve">
-    <value>Warten auf GPS</value>
+    <value>Attesa GPS</value>
+  </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>Zero del Sensore di Angolo di Sterzo</value>
   </data>
   <data name="gsWheelbase" xml:space="preserve">
-    <value>Radstand</value>
+    <value>Distanza Interasse</value>
   </data>
   <data name="gsWidth" xml:space="preserve">
-    <value>Breite</value>
+    <value>Larghezza</value>
   </data>
   <data name="gsWorkSwitch" xml:space="preserve">
-    <value>Arbeitsschalter</value>
+    <value>Interruttore di Lavoro</value>
   </data>
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
-    <value>Arbeitsschalter Bedienung Manuell</value>
+    <value>Controllo Manunale Inerruttore Lavoro</value>
+  </data>
+  <data name="gsYaw_" xml:space="preserve">
+    <value>imbardata</value>
+  </data>
+  <data name="gsZeroTrip" xml:space="preserve">
+    <value>Traccia &gt;0&lt;</value>
   </data>
 </root>

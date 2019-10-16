@@ -2068,6 +2068,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pick 2 Points.
+        /// </summary>
+        public static string gsPick2Points {
+            get {
+                return ResourceManager.GetString("gsPick2Points", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please complete ABLine.
         /// </summary>
         public static string gsPleaseCompleteABLine {
@@ -2401,6 +2410,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string gsSelect {
+            get {
+                return ResourceManager.GetString("gsSelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select A Field.
         /// </summary>
         public static string gsSelectAField {
@@ -2410,11 +2428,29 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string gsSelectALine {
+            get {
+                return ResourceManager.GetString("gsSelectALine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Boundary.
         /// </summary>
         public static string gsSelectBoundary {
             get {
                 return ResourceManager.GetString("gsSelectBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Curve Or Line.
+        /// </summary>
+        public static string gsSelectCurveOrLine {
+            get {
+                return ResourceManager.GetString("gsSelectCurveOrLine", resourceCulture);
             }
         }
         

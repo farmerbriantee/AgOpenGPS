@@ -723,6 +723,9 @@
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Reprendre</value>
   </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Choisissez 2 Points</value>
+  </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
     <value>S';il vous plaît compléter  ligne AB avant</value>
   </data>
@@ -825,11 +828,17 @@
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Sections désactiver si inf. à</value>
   </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
   <data name="gsSelectAField" xml:space="preserve">
     <value>Sélectionner un champ</value>
   </data>
   <data name="gsSelectBoundary" xml:space="preserve">
     <value>Sélectionnez la Bordure</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Sélectionnez une courbe ou une ligne</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Envoyer au correctif manuel</value>
@@ -951,10 +960,10 @@
   <data name="gsTrailingHitchLength" xml:space="preserve">
     <value>Distance traînée sur l'outil</value>
   </data>
-  <data name="gsTreePlanter" xml:space="preserve">
+  <data name="gsTreePlantControl" xml:space="preserve">
     <value>Plantation</value>
   </data>
-  <data name="gsTreePlantControl" xml:space="preserve">
+  <data name="gsTreePlanter" xml:space="preserve">
     <value>Plantation</value>
   </data>
   <data name="gsTrees" xml:space="preserve">

@@ -27,6 +27,7 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             Close();
+            Dispose();
         }
     }
 }

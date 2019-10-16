@@ -1401,53 +1401,6 @@ namespace AgOpenGPS
             SnapRight();
         }
 
-        //AB Line context menu
-        private void contextMenuStripAB_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            if (!ABLine.isABLineSet || ct.isContourBtnOn)
-            {
-                e.Cancel = true;
-                return;
-            }
-            toolStripMenuAB1.Text = AB1.heading.ToString("N3");
-            toolStripMenuAB2.Text = AB2.heading.ToString("N3");
-        }
-        private void toolStripMenuOriginal_Click(object sender, EventArgs e)
-        {
-            ABLine.abHeading = glm.toRadians(AB0.heading);
-            ABLine.refPoint1.easting = AB0.X;
-            ABLine.refPoint1.northing = AB0.Y;
-            ABLine.SetABLineByHeading();
-        }
-        private void toolStripMenuAB1_Click(object sender, EventArgs e)
-        {
-            ABLine.abHeading = glm.toRadians(AB1.heading);
-            ABLine.refPoint1.easting = AB1.X;
-            ABLine.refPoint1.northing = AB1.Y;
-            ABLine.SetABLineByHeading();
-        }
-        private void toolStripMenuAB2_Click(object sender, EventArgs e)
-        {
-            ABLine.abHeading = glm.toRadians(AB2.heading);
-            ABLine.refPoint1.easting = AB2.X;
-            ABLine.refPoint1.northing = AB2.Y;
-            ABLine.SetABLineByHeading();
-        }
-        private void toolStripMenuPlus90_Click(object sender, EventArgs e)
-        {
-            ABLine.abHeading += glm.PIBy2;
-            ABLine.SetABLineByHeading();
-        }
-        private void toolStripMenuChoose_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormSwapAB(this))
-            {
-                var result = form.ShowDialog();
-            }
-            toolStripMenuAB1.Text = AB1.heading.ToString("N3");
-            toolStripMenuAB2.Text = AB2.heading.ToString("N3");
-        }
-
         //Section Manual and Auto
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
@@ -2937,6 +2890,7 @@ namespace AgOpenGPS
         public string HDOP { get { return Convert.ToString(pn.hdop); } }
         public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
+        public string CurveNumber { get { return Convert.ToString(curve.curveNumber); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
         public string GPSHeading { get { return (Math.Round(glm.toDegrees(gpsHeading), 1)) + "\u00B0"; } }
         public string Status { get { if (pn.status == "A") return "Active"; else return "Void"; } }
@@ -3194,7 +3148,11 @@ namespace AgOpenGPS
                     }
 
                     //not Metric/Standard units sensitive
-                    btnABLine.Text = PassNumber;
+                    if (ABLine.isBtnABLineOn) btnABLine.Text = PassNumber;
+                    else btnABLine.Text = "";
+
+                    if (curve.isCurveBtnOn) btnCurve.Text = CurveNumber;
+                    else btnCurve.Text = "";
 
                     //update the online indicator
                     if (recvCounter > 50)

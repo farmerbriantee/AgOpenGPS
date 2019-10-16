@@ -578,24 +578,22 @@
             // 
             // label25
             // 
-            this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label25.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label25.Location = new System.Drawing.Point(527, 484);
+            this.label25.Location = new System.Drawing.Point(466, 484);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(72, 23);
+            this.label25.Size = new System.Drawing.Size(131, 23);
             this.label25.TabIndex = 118;
             this.label25.Text = "Left is -";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label13.Location = new System.Drawing.Point(761, 484);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 23);
+            this.label13.Size = new System.Drawing.Size(151, 23);
             this.label13.TabIndex = 117;
             this.label13.Text = "Right is +";
             // 
@@ -1509,7 +1507,7 @@
             this.cboxAutoSteerAuto.AutoSize = true;
             this.cboxAutoSteerAuto.FlatAppearance.BorderSize = 3;
             this.cboxAutoSteerAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAutoSteerAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoSteerAuto.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.Location = new System.Drawing.Point(60, 65);
             this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
@@ -1668,9 +1666,9 @@
             // 
             this.lblDoNotExceed.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.lblDoNotExceed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDoNotExceed.Location = new System.Drawing.Point(254, 623);
+            this.lblDoNotExceed.Location = new System.Drawing.Point(252, 623);
             this.lblDoNotExceed.Name = "lblDoNotExceed";
-            this.lblDoNotExceed.Size = new System.Drawing.Size(346, 25);
+            this.lblDoNotExceed.Size = new System.Drawing.Size(391, 25);
             this.lblDoNotExceed.TabIndex = 24;
             this.lblDoNotExceed.Text = "* Do not exceed 1570 *";
             this.lblDoNotExceed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1680,7 +1678,7 @@
             this.lblSecTotalWidthInches.AutoSize = true;
             this.lblSecTotalWidthInches.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold);
             this.lblSecTotalWidthInches.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(494, 648);
+            this.lblSecTotalWidthInches.Location = new System.Drawing.Point(537, 648);
             this.lblSecTotalWidthInches.Name = "lblSecTotalWidthInches";
             this.lblSecTotalWidthInches.Size = new System.Drawing.Size(43, 35);
             this.lblSecTotalWidthInches.TabIndex = 25;
@@ -1691,7 +1689,7 @@
             this.lblSecTotalWidthFeet.AutoSize = true;
             this.lblSecTotalWidthFeet.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold);
             this.lblSecTotalWidthFeet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(413, 648);
+            this.lblSecTotalWidthFeet.Location = new System.Drawing.Point(456, 648);
             this.lblSecTotalWidthFeet.Name = "lblSecTotalWidthFeet";
             this.lblSecTotalWidthFeet.Size = new System.Drawing.Size(49, 35);
             this.lblSecTotalWidthFeet.TabIndex = 24;
@@ -1710,12 +1708,11 @@
             // 
             // label16
             // 
-            this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label16.Location = new System.Drawing.Point(289, 653);
+            this.label16.Location = new System.Drawing.Point(272, 653);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 25);
+            this.label16.Size = new System.Drawing.Size(180, 25);
             this.label16.TabIndex = 107;
             this.label16.Text = "Tool Width:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1725,7 +1722,7 @@
             this.lblSecTotalWidthMeters.AutoSize = true;
             this.lblSecTotalWidthMeters.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold);
             this.lblSecTotalWidthMeters.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(452, 648);
+            this.lblSecTotalWidthMeters.Location = new System.Drawing.Point(495, 648);
             this.lblSecTotalWidthMeters.Name = "lblSecTotalWidthMeters";
             this.lblSecTotalWidthMeters.Size = new System.Drawing.Size(43, 35);
             this.lblSecTotalWidthMeters.TabIndex = 108;
@@ -1813,7 +1810,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             this.tabTool.ResumeLayout(false);
-            this.tabTool.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();

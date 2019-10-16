@@ -118,816 +118,969 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gs#OfSections" xml:space="preserve">
-    <value># Anzahl Teilbreiten</value>
+    <value>Aantal secties</value>
   </data>
   <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt;&lt;&gt;&gt;Spur verschieben</value>
+    <value>&lt;&lt; &gt;&gt; springafstand</value>
   </data>
   <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt;&gt; Spur verschieben</value>
+    <value>&lt; &gt; springafstand</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
-    <value>AB Line Datei falsch</value>
+    <value>AB-lijn bestand is corrupt</value>
   </data>
   <data name="gsALLSettingsRequireRestart" xml:space="preserve">
-    <value>Alle Änderungen bedürfen einen Neustart</value>
+    <value>ALLE instellingen behoeven herstart</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Über…</value>
+    <value>Over...</value>
+  </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Actie</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Aktion abgebrochen</value>
+    <value>Actie geannuleerd</value>
+  </data>
+  <data name="gsActiveLow" xml:space="preserve">
+    <value>Actief laag</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Aktuell</value>
+    <value>Reëel</value>
   </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
-    <value>AgOpenGPS bitte neu starten</value>
+    <value>AgOpenGPS zal sluiten, herstart aub</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Aggressivität</value>
+    <value>Agressiviteit</value>
   </data>
   <data name="gsAntenna" xml:space="preserve">
     <value>Antenne</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Bist du Sicher?</value>
+    <value>Bent u zeker?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Fläche</value>
+    <value>Oppervlakte</value>
   </data>
   <data name="gsAround" xml:space="preserve">
-    <value>Um</value>
+    <value>Rond</value>
+  </data>
+  <data name="gsAtSocketConnect" xml:space="preserve">
+    <value>Verbinding met bus</value>
   </data>
   <data name="gsAuthourizing" xml:space="preserve">
-    <value>Anmelden</value>
+    <value>Autorisatie</value>
+  </data>
+  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
+    <value>Auto/handm. autostuur knop</value>
   </data>
   <data name="gsAutoSteer" xml:space="preserve">
-    <value>Autom. Lenken</value>
+    <value>Autostuur</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Lenkungseinstellungen</value>
+    <value>Autostuur configuratie</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Lenkungsport</value>
+    <value>Autostuur poort</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Gebaseerd op veld:</value>
   </data>
   <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
-    <value>Bitte Fahrzeug speichern</value>
+    <value>Sla dan zeker het voertuig op</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Schlaggrenze</value>
+    <value>Perceelgrens</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
-    <value>Schlaggrenze Datei ist fehlerhaft</value>
+    <value>Perceelgrens lijnbestanden zijn corrupt</value>
   </data>
   <data name="gsBoundaryNotSetOrNoGuidanceLineSet" xml:space="preserve">
-    <value>Keine Schlaggrenze oder Führungslinie erstelllt</value>
+    <value>Geen perceelgrens of stuurlijn ingesteld</value>
   </data>
   <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
-    <value>Schlag zu klein um Vorgewende zu erzeugen</value>
+    <value>Perceelgrens te klein voor kopakker</value>
   </data>
   <data name="gsBounds" xml:space="preserve">
     <value>Grenzen</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
-    <value>aber Feld wurde geladen</value>
+    <value>Maar perceel is geladen</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
-    <value>Abbruch</value>
+    <value>Annuleren</value>
   </data>
   <data name="gsCannotFind" xml:space="preserve">
-    <value>Kann es nicht finden.</value>
-  </data>
-  <data name="gsCentimeters" xml:space="preserve">
-    <value>Zentimeter</value>
+    <value>Onvindbaar</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Ein anderes Feld wählen</value>
+    <value>Kies een ander perceel</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Einen anderen Namen wählen</value>
+    <value>Kies een andere naam</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Kies of maak een ander</value>
   </data>
   <data name="gsClickButtonAgainToStop" xml:space="preserve">
-    <value>Nochmals Drücken um zu stoppen</value>
+    <value>Druk opnieuw om te stoppen</value>
   </data>
   <data name="gsClickStartToResume" xml:space="preserve">
-    <value>Zum Fortsetzen Start drücken</value>
+    <value>Druk Start om te hervatten</value>
   </data>
   <data name="gsCloneFrom" xml:space="preserve">
-    <value>Kopiere von</value>
+    <value>Kopieer van</value>
   </data>
   <data name="gsCloseField" xml:space="preserve">
-    <value>Feld schließen</value>
+    <value>Sluit perceel</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Feld vorher schlie0en</value>
+    <value>Sluit eerst perceel</value>
   </data>
   <data name="gsCmPerLightbarPixel" xml:space="preserve">
-    <value>cm pro Lichtbar </value>
+    <value>cm per pixel lichtbalk</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Farben</value>
+    <value>Kleuren</value>
   </data>
   <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
-    <value>Ab Kurve vorher beenden</value>
+    <value>Maak eerst een AB-curve lijn</value>
   </data>
   <data name="gsConfirmIP" xml:space="preserve">
-    <value>IP Abrufen</value>
+    <value>Bevestig IP</value>
   </data>
   <data name="gsConnect" xml:space="preserve">
-    <value>Verbinden</value>
+    <value>Verbind</value>
   </data>
   <data name="gsConnectingIn" xml:space="preserve">
-    <value>Verbinden in</value>
+    <value>Verbinden</value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
-    <value>Konturdatei ist beschädigt</value>
+    <value>Contourbestand is corrupt</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
-    <value>Gültiger Pfad konnte nicht generiert werden</value>
+    <value>Kon geen geldig pad maken</value>
   </data>
   <data name="gsCountsPerDegree" xml:space="preserve">
-    <value>Anzahl pro Grad</value>
+    <value>Aantal per graad</value>
   </data>
   <data name="gsCreate" xml:space="preserve">
-    <value>Erstellen</value>
+    <value>Maak</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Erstellen Sie zuerst eine Grenze</value>
+    <value>Maak eerst een perceelgrens</value>
   </data>
   <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
-    <value>Erstellen Sie zuerst eine Grenze und an ABLine oder Kurve</value>
+    <value>Maak eerst een perceelgrens en AB-lijn of curve</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Neues Feld erstellen</value>
+    <value>Maak nieuw perceel</value>
+  </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Maak eerst buitenste perceelgrens</value>
   </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
-    <value>Aktueller GPS Fix:</value>
+    <value>Huidige GPS-fix:</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
-    <value>Kurvenliniendatei ist beschädigt</value>
+    <value>Curvelijn bestand is corrupt</value>
   </data>
   <data name="gsCurveNotOn" xml:space="preserve">
-    <value>ABCurve nicht aktiviert</value>
+    <value>AB-curve niet actief</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Aangepast</value>
   </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
-    <value>** Datum wird hinzugefügt</value>
+    <value>** Datum wordt toegevoegd</value>
   </data>
   <data name="gsDelete" xml:space="preserve">
-    <value>Löschen</value>
+    <value>Verwijderen</value>
   </data>
   <data name="gsDeleteAll" xml:space="preserve">
-    <value>Alles löschen</value>
+    <value>Verwijder alles</value>
   </data>
   <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
-    <value>Alle Konturen und Teilbreiten löschen?</value>
+    <value>Alle contouren en secties verwijderen?</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Bearbeitete Fläche löschen</value>
+    <value>Verwijder bewerkte oppervlakte</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Konturpfade löschen</value>
+    <value>Verwijder contour-paden</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Wirklich löschen?</value>
+    <value>Zeker verwijderen?</value>
   </data>
   <data name="gsDeletePath" xml:space="preserve">
-    <value>Pfad löschen</value>
+    <value>Verwijder pad</value>
   </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
-    <value>Haben Sie Änderungen am Fahrzeug vorgenommen?</value>
+    <value>Hebt u het voertuig gewijzigd?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Verzeichnisse</value>
+    <value>Mappen</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Verzeichnis existiert</value>
+    <value>Map bestaat</value>
   </data>
   <data name="gsDisconnect" xml:space="preserve">
-    <value>Trennen</value>
+    <value>Loskoppelen</value>
   </data>
   <data name="gsDisplay" xml:space="preserve">
-    <value>Anzeige</value>
+    <value>Scherm</value>
   </data>
   <data name="gsDistance" xml:space="preserve">
-    <value>Entfernung</value>
+    <value>Afstand</value>
+  </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Klaar</value>
   </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
-    <value>Zeichnung hat begonnen</value>
+    <value>Tekening is begonnen</value>
   </data>
   <data name="gsDrive" xml:space="preserve">
-    <value>Manuell</value>
+    <value>Rijden</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Durchfahren</value>
+    <value>Doorrijden</value>
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
-    <value>Doppelantenne</value>
+    <value>Dubbele antenne</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Aanpassen</value>
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
-    <value>Arbeitsschalter aktivieren</value>
+    <value>Werkschakelaar activeren</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
-    <value>IP Adresse des Anbieters</value>
+    <value>Voer aanbieder-URL of IP in</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Koordinaten für Simulator:</value>
+    <value>Voer simulator-coördinaten in</value>
   </data>
   <data name="gsEnterCurveName" xml:space="preserve">
-    <value>Geben Sie den Kurvennamen ein</value>
+    <value>Voer curvenaam in</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Geben Sie den Feldnamen ein</value>
+    <value>Voer perceelnaam in</value>
   </data>
   <data name="gsEnterLineName" xml:space="preserve">
-    <value>Geben Sie den Zeilennamen ein</value>
+    <value>Voer lijnnaam in</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Sim Koordinaten eingeben</value>
+    <value>Voer sim-coörd. in</value>
   </data>
   <data name="gsEnterTask" xml:space="preserve">
-    <value>Job eingeben</value>
+    <value>Voer taak in</value>
   </data>
   <data name="gsEnterUniqueABCurveName" xml:space="preserve">
-    <value>Geben Sie den eindeutigen AB-Kurvennamen ein</value>
+    <value>Voer unieke AB-curve naam in</value>
   </data>
   <data name="gsEnterVehicleUsed" xml:space="preserve">
-    <value>Geben Sie das benutzte Fahrzeug ein</value>
+    <value>Voer gebruikte voertuig in</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Invoer</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Fout bij lezen KML</value>
   </data>
   <data name="gsExamples" xml:space="preserve">
-    <value>Beispiele</value>
+    <value>Voorbeelden</value>
   </data>
   <data name="gsExit" xml:space="preserve">
-    <value>Ende</value>
+    <value>Sluiten</value>
   </data>
   <data name="gsExtUDPSource" xml:space="preserve">
-    <value>Ext UDP-Quelle</value>
+    <value>Ext. UDP-bron</value>
   </data>
   <data name="gsExtraGuides" xml:space="preserve">
-    <value>Zusätzliche Führungslinien</value>
+    <value>Extra stuurlijnen</value>
   </data>
   <data name="gsField" xml:space="preserve">
-    <value>Feld</value>
+    <value>Perceel</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Die Felddatei ist beschädigt</value>
+    <value>Perceel bestand is corrupt</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Feld ist offen</value>
+    <value>Perceel is open</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Feld nicht geöffnet</value>
+    <value>Geen perceel open</value>
   </data>
   <data name="gsFieldOrigin" xml:space="preserve">
-    <value>Feldherkunft</value>
+    <value>Perceel oorsprong</value>
   </data>
   <data name="gsField_" xml:space="preserve">
-    <value>Feld:</value>
+    <value>Perceel:</value>
   </data>
   <data name="gsFile" xml:space="preserve">
-    <value>Datei</value>
+    <value>Bestand</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Dateifehler</value>
+    <value>Bestandfout</value>
   </data>
   <data name="gsFiles" xml:space="preserve">
-    <value>Dateien</value>
+    <value>Bestanden</value>
+  </data>
+  <data name="gsFixToFixCalc" xml:space="preserve">
+    <value>Fix naar fix berek.</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
-    <value>Fix To Fix Entfernung</value>
+    <value>Fix naar fix afstand</value>
   </data>
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
-    <value>Die Flag-Datei ist beschädigt</value>
+    <value>Vlag bestand is corrupt</value>
   </data>
   <data name="gsFlagsGE" xml:space="preserve">
-    <value>Fahnen GE</value>
+    <value>Vlaggen GE</value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>Für jetzt</value>
+    <value>Voorlopig</value>
   </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
-    <value>Von Lenkungsport:</value>
+    <value>Van autostuur:</value>
+  </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>Van grenzen</value>
   </data>
   <data name="gsFromGPS" xml:space="preserve">
-    <value>Vom GPS</value>
+    <value>Van GPS</value>
   </data>
   <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Vom Teilbreitenport:</value>
+    <value>Van sectiepoort:</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
-    <value>Von VTG oder RMC</value>
+    <value>Van VTG of RMC</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Functie</value>
   </data>
   <data name="gsFused" xml:space="preserve">
-    <value>Verschmolzen:</value>
+    <value>Fusie:</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>GGA-interval (sec)</value>
   </data>
   <data name="gsGPSConnected" xml:space="preserve">
-    <value>GPS verbunden</value>
+    <value>GPS geconnecteerd</value>
+  </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>GPS huidige fix</value>
   </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
-    <value>GPS Richtung von</value>
+    <value>GPS richting van</value>
+  </data>
+  <data name="gsGPSPort" xml:space="preserve">
+    <value>GPS poort</value>
   </data>
   <data name="gsGPSSourceOff" xml:space="preserve">
-    <value>GPS-Quelle aus</value>
+    <value>GPS bron uit</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>GeoFence afstand</value>
+  </data>
+  <data name="gsGetSourceTable" xml:space="preserve">
+    <value>Krijg brontabel</value>
   </data>
   <data name="gsGo_Around" xml:space="preserve">
-    <value>Herumfahren</value>
+    <value>Ga rond</value>
   </data>
   <data name="gsGridOn" xml:space="preserve">
-    <value>Raster ein</value>
+    <value>Raster aan</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
-    <value>Richtungskorrekturquelle</value>
+    <value>Richting correctiebron</value>
   </data>
   <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Richtung /Neigung</value>
+    <value>Richting / helling</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
-    <value>Höhe</value>
-  </data>
-  <data name="gsHelp" xml:space="preserve">
-    <value>Hilfe</value>
+    <value>Hoogte</value>
   </data>
   <data name="gsHide" xml:space="preserve">
-    <value>Verstecken</value>
+    <value>Verbergen</value>
   </data>
   <data name="gsHitchLength" xml:space="preserve">
-    <value>Anhängelänge</value>
+    <value>Hefinr. lengte</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
-    <value>IMU-Einstellungen</value>
+    <value>IMU-instellingen</value>
   </data>
   <data name="gsImperial" xml:space="preserve">
-    <value>Imperial</value>
+    <value>Imperiaal</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Zoll</value>
+    <value>inch</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Innere</value>
+    <value>Binnenste</value>
   </data>
   <data name="gsIntegralGain" xml:space="preserve">
-    <value>Integraler Gewinn</value>
+    <value>Integraal waarde</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>km/u</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Sprache</value>
+    <value>Taal</value>
   </data>
   <data name="gsLastFieldUsed" xml:space="preserve">
-    <value>Zuletzt verwendetes Feld</value>
+    <value>Laatst gebruikte veld</value>
+  </data>
+  <data name="gsLatitude" xml:space="preserve">
+    <value>Breedtegraad</value>
   </data>
   <data name="gsLeftIs-" xml:space="preserve">
-    <value>Links ist -</value>
+    <value>Links is -</value>
   </data>
   <data name="gsLidarOn" xml:space="preserve">
-    <value>Lidar Ein</value>
+    <value>Lidar aan</value>
   </data>
   <data name="gsLightbarOn" xml:space="preserve">
-    <value>Lichtbalken ein</value>
+    <value>Lichtbalk aan</value>
   </data>
   <data name="gsLine" xml:space="preserve">
-    <value>Linie</value>
+    <value>Lijn</value>
   </data>
   <data name="gsListening" xml:space="preserve">
-    <value>Empfangen</value>
+    <value>Luisteren</value>
   </data>
   <data name="gsLoadKML" xml:space="preserve">
-    <value>KML laden</value>
+    <value>Laad KML</value>
   </data>
   <data name="gsLoadMulti" xml:space="preserve">
-    <value>Multi laden</value>
+    <value>Laad multi</value>
   </data>
   <data name="gsLoadVehicle" xml:space="preserve">
-    <value>Fahrzeug laden</value>
+    <value>Laad voertuig</value>
   </data>
   <data name="gsLocation" xml:space="preserve">
-    <value>Lage</value>
+    <value>Locatie</value>
   </data>
-  <data name="gsLogNMEA" xml:space="preserve">
-    <value>NMEA protokollieren</value>
+  <data name="gsLongitude" xml:space="preserve">
+    <value>Lengtegraad</value>
   </data>
   <data name="gsLookAheadInSeconds" xml:space="preserve">
-    <value>Sekunden vorausschauen</value>
+    <value>Kijkpunt in sec</value>
   </data>
   <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
-    <value>Vorausschauender Offline-Multiplikator</value>
+    <value>Kijkpunt offline multiplicator</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mijl/u</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Grenzkonturen erstellen</value>
+    <value>Maak perceelgrens contours</value>
   </data>
   <data name="gsManual" xml:space="preserve">
-    <value>Manuell</value>
+    <value>Manueel</value>
+  </data>
+  <data name="gsManualFix" xml:space="preserve">
+    <value>Manuele fix:</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>Max. integraalwaarde</value>
   </data>
   <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
-    <value>Maximaler Lenkwinkel in Grad</value>
+    <value>Max. stuurhoek in graden</value>
   </data>
   <data name="gsMeasurementsIn" xml:space="preserve">
-    <value>Messungen in</value>
+    <value>Metingen in</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Meter</value>
   </data>
   <data name="gsMetric" xml:space="preserve">
     <value>Metrisch</value>
   </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>Min. kijkpunt in meter</value>
+  </data>
   <data name="gsMinUnapplied" xml:space="preserve">
-    <value>Minimal bearbeitet</value>
+    <value>Min. onbewerkt</value>
+  </data>
+  <data name="gsMinimumPWMDrive" xml:space="preserve">
+    <value>Min. PWM-sterkte</value>
   </data>
   <data name="gsMissingABCurveFile" xml:space="preserve">
-    <value>Fehlende AB-Kurvendatei</value>
+    <value>Ontbrekend AB-curve bestand</value>
   </data>
   <data name="gsMissingABLinesFile" xml:space="preserve">
-    <value>Fehlende AB-Linien-Datei</value>
+    <value>Ontbrekend AB-lijnen bestand</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Fehlende Grenzdatei</value>
+    <value>Ontbrekend perceelgrens bestand</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
-    <value>Fehlende Konturdatei</value>
+    <value>Ontbrekend contour bestand</value>
   </data>
   <data name="gsMissingFlagsFile" xml:space="preserve">
-    <value>Fehlende Flags-Datei</value>
+    <value>Ontbrekend vlaggen bestand</value>
   </data>
   <data name="gsMissingSectionFile" xml:space="preserve">
-    <value>Fehlende Teilbreitendatei</value>
+    <value>Ontbrekend sectie bestand</value>
   </data>
   <data name="gsMustBeVersion" xml:space="preserve">
-    <value>Muss Version sein</value>
+    <value>Moet versie zijn</value>
   </data>
   <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
-    <value>NTRIP-Client nicht eingerichtet</value>
+    <value>NTRIP-client niet ingesteld</value>
   </data>
   <data name="gsNTRIPClientSettings" xml:space="preserve">
-    <value>Ntrip Einstellungen</value>
+    <value>NTRIP-client instellingen</value>
   </data>
   <data name="gsNTRIPNotConnected" xml:space="preserve">
-    <value>NTRIP nicht verbunden</value>
+    <value>NTRIP niet verbonden</value>
   </data>
   <data name="gsNTRIPNotConnectedRetrying" xml:space="preserve">
-    <value>NTRIP nicht verbunden, wird wiederholt</value>
+    <value>NTRIP niet verbonden, nieuwe poging</value>
   </data>
   <data name="gsNTRIPNotConnectedToSendGGA" xml:space="preserve">
-    <value>NTRIP nicht verbunden um GGA zu senden</value>
+    <value>NTRIP niet verbonden om GGA te sturen</value>
   </data>
   <data name="gsNTRIPOff" xml:space="preserve">
-    <value>NTRIP Aus</value>
+    <value>NTRIP uit</value>
   </data>
   <data name="gsNTRIPOn" xml:space="preserve">
-    <value>Ntrip EIN</value>
+    <value>NTRIP aan</value>
   </data>
   <data name="gsNTRIPRestarting" xml:space="preserve">
-    <value>Neustart von NTRIP</value>
+    <value>NTRIP herstart</value>
   </data>
   <data name="gsNetworking" xml:space="preserve">
-    <value>Netzwerk</value>
+    <value>Netwerk</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Neu</value>
+    <value>Nieuw</value>
   </data>
   <data name="gsNoABCurveCreated" xml:space="preserve">
-    <value>Keine AB-Kurve erstellt</value>
+    <value>Geen AB-curve ingesteld</value>
   </data>
   <data name="gsNoABLineActive" xml:space="preserve">
-    <value>Keine AB-Linie aktiv</value>
+    <value>Geen AB-lijn actief</value>
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
-    <value>Keine Grenze</value>
+    <value>Geen perceelgrens</value>
   </data>
   <data name="gsNoGPS" xml:space="preserve">
-    <value>Kein GPS</value>
+    <value>Geen GPS</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
-    <value>Keine Führungslinien</value>
+    <value>Geen stuurlijnen</value>
   </data>
   <data name="gsNoIPLocated" xml:space="preserve">
-    <value>Keine IP gefunden</value>
+    <value>Geen IP gevonden</value>
   </data>
   <data name="gsNoNameEntered" xml:space="preserve">
-    <value>Kein Name eingegeben</value>
+    <value>Geen naam ingegeven</value>
+  </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>Geen buitenste perceelgrens</value>
   </data>
   <data name="gsNoSentenceData" xml:space="preserve">
-    <value>*** Keine Daten ***</value>
+    <value>*** Geen gegevens ***</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
-    <value>Nichts ausgewählt</value>
+    <value>Geen geselecteerd</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Keine verwendet</value>
+    <value>Geen gebruikt</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
-    <value>Keine Verbindung zum Caster</value>
+    <value>Geen verbinding met caster</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Nichts gelöscht</value>
+    <value>Niets verwijderd</value>
   </data>
   <data name="gsOff" xml:space="preserve">
-    <value>Ausgewählte verwenden</value>
-  </data>
-  <data name="gsOffline" xml:space="preserve">
-    <value>Offline</value>
-  </data>
-  <data name="gsOffset" xml:space="preserve">
-    <value>Offset</value>
-  </data>
-  <data name="gsOffsetFix" xml:space="preserve">
-    <value>Offset Fix</value>
-  </data>
-  <data name="gsOpen" xml:space="preserve">
-    <value>Öffnen</value>
+    <value>Uit</value>
   </data>
   <data name="gsOriginal" xml:space="preserve">
-    <value>Original</value>
+    <value>Origineel</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Äußere</value>
+    <value>Buitenste</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Überschwingungsreduzierung</value>
-  </data>
-  <data name="gsPAOGIReachIMU" xml:space="preserve">
-    <value>PAOGI (Reach IMU)</value>
+    <value>Voorbijschiet-reductie</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Durchgang #</value>
+    <value>Doorgang #</value>
   </data>
   <data name="gsPassword" xml:space="preserve">
-    <value>Passwort</value>
+    <value>Wachtwoord</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Patroon</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pauze</value>
   </data>
   <data name="gsPauseResume" xml:space="preserve">
-    <value>Pause / Fortsetzen</value>
+    <value>Pauze / Hervat</value>
   </data>
   <data name="gsPick2Points" xml:space="preserve">
-    <value>Wähle 2 Punkte</value>
+    <value>Kies 2 punten</value>
   </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
-    <value>Bitte  vervollständigen sie  ABLine</value>
+    <value>Gelieve AB-lijn af te werken</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Bitte geben Sie ABLine ein</value>
+    <value>Gelieve AB-lijn in te geven</value>
   </data>
   <data name="gsPolygonsOn" xml:space="preserve">
-    <value>Polygon ein</value>
+    <value>Polygoon aan</value>
+  </data>
+  <data name="gsPort" xml:space="preserve">
+    <value>Poort</value>
+  </data>
+  <data name="gsPorts" xml:space="preserve">
+    <value>Poorten</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
-    <value>Kann Pfad nicht erstellen</value>
+    <value>Kan pad niet maken</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Das Programm wird geschlossen. Bitte Neustarten</value>
+    <value>Programma zal sluiten. Herstarten aub</value>
   </data>
   <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
-    <value>Das Programm wird zur Wiederherstellung zurückgesetzt. Bitte neustarten</value>
+    <value>Programma zal resetten. Herstarten aub</value>
+  </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>Proportionele waarde</value>
   </data>
   <data name="gsPursuitLine" xml:space="preserve">
-    <value>Verfolgungslinie</value>
+    <value>Volglijn</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Alles wirklich zurücksetzen?</value>
+    <value>Zeker alles terugzetten?</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Aufzeichnung</value>
+    <value>Registreren</value>
   </data>
   <data name="gsRecordElevation" xml:space="preserve">
-    <value>Höhe aufzeichen</value>
+    <value>Registreer hoogte</value>
   </data>
   <data name="gsRecordStop" xml:space="preserve">
-    <value>Aufnehmen / Stoppen</value>
+    <value>Registreer / stop</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>Die Datei mit dem aufgezeichneten Pfad ist beschädigt</value>
+    <value>Geregistreerd pad bestand is corrupt</value>
   </data>
   <data name="gsRelay" xml:space="preserve">
     <value>Relais</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
-    <value>Versatz entfernen</value>
+    <value>Verwijder afwijking</value>
   </data>
   <data name="gsRescanPorts" xml:space="preserve">
-    <value>Ports erneut scannen</value>
+    <value>Herscan poorten</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Alles zurücksetzen</value>
+    <value>Zet alles terug</value>
   </data>
   <data name="gsRestartRequired" xml:space="preserve">
-    <value>* Neustart erforderlich!</value>
+    <value>* Herstart vereist</value>
   </data>
   <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
-    <value>Neustart und Wiederverbindung mit Caster</value>
+    <value>Herstart en opnieuw verbinding met caster</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Fortsetzen</value>
+    <value>Hervat</value>
   </data>
   <data name="gsResumingWithNewSettings" xml:space="preserve">
-    <value>Mit neuen Einstellungen fortfahren</value>
+    <value>Hervatten met nieuwe instellingen</value>
   </data>
   <data name="gsReturn" xml:space="preserve">
-    <value>Zurück</value>
+    <value>Terug</value>
   </data>
   <data name="gsRightIs+" xml:space="preserve">
-    <value>Rechts ist +</value>
+    <value>Rechts is +</value>
   </data>
   <data name="gsRollSource" xml:space="preserve">
-    <value>Neigung Quelle</value>
+    <value>Helling bron</value>
   </data>
   <data name="gsRollZero" xml:space="preserve">
-    <value>Neigung Nullstellen</value>
+    <value>Helling nulpunt</value>
   </data>
   <data name="gsSave" xml:space="preserve">
-    <value>Speichern</value>
+    <value>Opslaan</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
-    <value>Speichern und Schließen</value>
+    <value>Opslaan en sluiten</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Speichern und zurück</value>
+    <value>Opslaan en terug</value>
+  </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Namen opslaan</value>
   </data>
   <data name="gsSaveVehicle" xml:space="preserve">
-    <value>Fahrzeug speichern</value>
+    <value>Voertuig opslaan</value>
   </data>
   <data name="gsSavedInFolder" xml:space="preserve">
-    <value>In Ordner gespeichert:</value>
+    <value>Opgeslaan in map:</value>
   </data>
   <data name="gsSection" xml:space="preserve">
-    <value>Teilbreite</value>
+    <value>Sectie</value>
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
-    <value>Teilbreitendatei ist beschädigt</value>
+    <value>Sectie bestand is corrupt</value>
   </data>
   <data name="gsSectionPort" xml:space="preserve">
-    <value>Teilbreite Port</value>
+    <value>Sectiepoort</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
-    <value>Teilbreite unter ausschalten</value>
+    <value>Secties uitzetten onder</value>
   </data>
   <data name="gsSelect" xml:space="preserve">
-    <value>Wählen</value>
+    <value>Kiezen</value>
   </data>
   <data name="gsSelectAField" xml:space="preserve">
-    <value>Wählen Sie ein Feld</value>
+    <value>Kies een perceel</value>
   </data>
   <data name="gsSelectBoundary" xml:space="preserve">
-    <value>Wählen Sie Grenze</value>
+    <value>Kies perceelgrens</value>
   </data>
   <data name="gsSelectCurveOrLine" xml:space="preserve">
-    <value>Wählen Sie Kurve oder Linie</value>
+    <value>Selecteer Curve of lijn</value>
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
-    <value>Manuelle Adresse senden</value>
+    <value>Zend naar manuele fix</value>
   </data>
   <data name="gsSendingGGA" xml:space="preserve">
-    <value>Senden von GGA</value>
+    <value>Zenden van GGA</value>
   </data>
   <data name="gsSerialPorts" xml:space="preserve">
-    <value>Serielle Ports</value>
+    <value>Seriële poorten</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Sollwert</value>
+    <value>Richtwaarde</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>Kies 0 voor serieel</value>
   </data>
   <data name="gsShortcutKeys" xml:space="preserve">
-    <value>Tastenkombinationen</value>
+    <value>Sneltoetsen</value>
   </data>
   <data name="gsShow" xml:space="preserve">
-    <value>Zeigen</value>
+    <value>Tonen</value>
   </data>
   <data name="gsShowElevationMap" xml:space="preserve">
-    <value>Höhenkarte anzeigen</value>
+    <value>Toon hoogtekaart</value>
   </data>
   <data name="gsSidehillDraftGain" xml:space="preserve">
-    <value>Hangkompensation</value>
+    <value>Hellingscompensatie Gain</value>
   </data>
   <data name="gsSimulatorForcedOff" xml:space="preserve">
-    <value>Simulator ausgeschaltet</value>
+    <value>Simulator gedwongen uit</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator Ein</value>
+    <value>Simulator aan</value>
   </data>
   <data name="gsSkip-Overlap+" xml:space="preserve">
-    <value>Überlappung</value>
+    <value>Overlaten is - Overlap is +</value>
+  </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Oversprongen</value>
   </data>
   <data name="gsSkyOn" xml:space="preserve">
-    <value>Himmel an</value>
+    <value>Hemel aan</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>AB-Kurve glätten</value>
+    <value>AB-curve versoepelen</value>
   </data>
   <data name="gsSocketConnectionProblem" xml:space="preserve">
-    <value>Socket-Verbindungsproblem</value>
+    <value>Bus verbindingsprobleem</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Abstand (cm)</value>
+    <value>Afstand (cm)</value>
   </data>
-  <data name="gsStart" xml:space="preserve">
-    <value>Starten</value>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Start of verwijder perceelgrens</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Neues Feld starten</value>
+    <value>Start nieuw perceel</value>
   </data>
   <data name="gsStartOrDeleteABoundary" xml:space="preserve">
-    <value>Starten oder Löschen einer Grenze</value>
+    <value>Start of verwijder perceelgrens</value>
   </data>
   <data name="gsSteer" xml:space="preserve">
-    <value>Lenken</value>
+    <value>Stuur</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Lenkdiagramm</value>
+    <value>Stuur grafiek</value>
   </data>
   <data name="gsSteeringFrontOrBack" xml:space="preserve">
-    <value>Lenkung vorne oder hinten</value>
+    <value>Stuur voor of achter</value>
   </data>
-  <data name="gsStop" xml:space="preserve">
-    <value>Halt</value>
+  <data name="gsStep" xml:space="preserve">
+    <value>Stap</value>
   </data>
   <data name="gsStopped" xml:space="preserve">
-    <value>Gestoppt</value>
+    <value>Gestopt</value>
   </data>
   <data name="gsSwitches" xml:space="preserve">
-    <value>Schalter</value>
+    <value>Schakelaars</value>
   </data>
   <data name="gsTemplateCancelled" xml:space="preserve">
-    <value>Vorlage abgebrochen</value>
+    <value>Template geannuleerd</value>
   </data>
   <data name="gsThru" xml:space="preserve">
-    <value>Durch</value>
+    <value>Door</value>
   </data>
   <data name="gsToAutoSteer" xml:space="preserve">
-    <value>Zum Lenkungsport:</value>
+    <value>Naar autosteer:</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Naar bestand</value>
   </data>
   <data name="gsToSectionPort" xml:space="preserve">
-    <value>Zum Teilbreite Port:</value>
+    <value>Naar sectiepoort:</value>
+  </data>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>Naar UDP-poort:</value>
+  </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>Omschakelen</value>
   </data>
   <data name="gsToggleDriveBy" xml:space="preserve">
-    <value>Umfahren umschalten</value>
+    <value>Schakel langsrijden om</value>
   </data>
   <data name="gsToggleDriveThru" xml:space="preserve">
-    <value>Durchfahren umschalten</value>
+    <value>Schakel doorrijden om</value>
   </data>
   <data name="gsTool" xml:space="preserve">
-    <value>Gerät</value>
+    <value>Werktuig</value>
   </data>
   <data name="gsToolOffsetLR" xml:space="preserve">
-    <value>Gerät Versatz L / R</value>
+    <value>Werktuig afwijking L/R</value>
   </data>
   <data name="gsToolWidth" xml:space="preserve">
-    <value>Gerätebreite</value>
+    <value>Werktuigbreedte</value>
+  </data>
+  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
+    <value>Tussensleep uitgeschakeld als &lt;200 cm</value>
+  </data>
+  <data name="gsTowBetweenLength" xml:space="preserve">
+    <value>Tussensleep lengte</value>
   </data>
   <data name="gsTrailingHitchLength" xml:space="preserve">
-    <value>Anhängerkupplungslänge</value>
+    <value>Aanhangkoppeling lengte</value>
+  </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Boomplant controle</value>
   </data>
   <data name="gsTreePlanter" xml:space="preserve">
-    <value>Baum Pflanzer</value>
+    <value>Boomplanter</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Bomen</value>
   </data>
   <data name="gsTurnABCurveOn" xml:space="preserve">
-    <value>Schalten Sie ABCurve ein</value>
+    <value>AB-curve inschakelen</value>
   </data>
   <data name="gsTurnONNtripClient" xml:space="preserve">
-    <value>Ntrip Client einschalten</value>
+    <value>NTRIP-client inschakelen</value>
+  </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Uitschakelen</value>
   </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
-    <value>Ausschaltverzögerung (Sekunden)</value>
+    <value>Uitschakelen vertraging (sec)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Inschakelen</value>
   </data>
   <data name="gsTurnOnAheadSecs" xml:space="preserve">
-    <value>Vorrauseilen (Sek.)</value>
+    <value>Inschakelen kijkpunt (sec)</value>
   </data>
   <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
-    <value>Kontur einschalten oder AB-Linie erstellen</value>
+    <value>Schakel contour in of maak AB-lijn</value>
+  </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Draaipatronen</value>
   </data>
   <data name="gsTurnRadius" xml:space="preserve">
-    <value>Drehradius</value>
+    <value>Draairadius</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Alles uitschakelen</value>
   </data>
   <data name="gsTurningOffSimulator" xml:space="preserve">
-    <value>Simulator ausschalten</value>
+    <value>Simulator uitschakelen</value>
   </data>
   <data name="gsTurningOnSimulator" xml:space="preserve">
-    <value>Simulator einschalten</value>
+    <value>Simulator inschakelen</value>
+  </data>
+  <data name="gsUTurn" xml:space="preserve">
+    <value>U-bocht</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>U-bocht afstand</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>U-bocht lengte</value>
+  </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>U-bocht kijkpunt multiplicator</value>
   </data>
   <data name="gsUnits" xml:space="preserve">
-    <value>Einheiten</value>
+    <value>Eenheden</value>
+  </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>Gebruik perceel</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>Gebruik GPS</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Ausgewähltes verwenden</value>
+    <value>Gebruik geselecteerd</value>
+  </data>
+  <data name="gsUsername" xml:space="preserve">
+    <value>Gebruikersnaam</value>
   </data>
   <data name="gsVehicle" xml:space="preserve">
-    <value>Fahrzeug</value>
+    <value>Voertuig</value>
   </data>
   <data name="gsVehicleFileIsCorrupt" xml:space="preserve">
-    <value>Fahrzeugdatei ist beschädigt</value>
+    <value>Voertuig bestand is corrupt</value>
   </data>
   <data name="gsVehicleFileIsWrongVersion" xml:space="preserve">
-    <value>Fahrzeugdatei ist falsche Version</value>
+    <value>Voertuig bestand is foute versie</value>
   </data>
   <data name="gsVehicleSettings" xml:space="preserve">
-    <value>Fahrzeugeinstellungen</value>
+    <value>Voertuig instellingen</value>
   </data>
   <data name="gsWaiting" xml:space="preserve">
-    <value>Warten</value>
+    <value>Wachten</value>
   </data>
   <data name="gsWaitingForGPS" xml:space="preserve">
-    <value>Warten auf GPS</value>
+    <value>Wachtend op GPS</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>Webcam</value>
+  </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>Stuurhoeksensor nulpunt</value>
   </data>
   <data name="gsWheelbase" xml:space="preserve">
-    <value>Radstand</value>
+    <value>Wielbasis</value>
   </data>
   <data name="gsWidth" xml:space="preserve">
-    <value>Breite</value>
+    <value>Breedte</value>
   </data>
   <data name="gsWorkSwitch" xml:space="preserve">
-    <value>Arbeitsschalter</value>
+    <value>Werkschakelaar</value>
   </data>
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
-    <value>Arbeitsschalter Bedienung Manuell</value>
+    <value>Werkschakelaar manueel</value>
+  </data>
+  <data name="gsZeroEqualsOff" xml:space="preserve">
+    <value>0 = uit</value>
   </data>
 </root>

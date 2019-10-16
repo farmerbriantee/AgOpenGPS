@@ -3,6 +3,9 @@
 * Languages added with single RESX file per culture
 * keypad added for nuds
 * AB Line moves when using draw based on eq width. 
+* French, German, Italian Added. 
+* added paths away to curve button
+* Touch Lines added for fast line creation and selecting/deleting
 
 v3.0 Aug/Sep 2019
 * sbNMEA used to capture GPS Data rather then rawbuffer which could be

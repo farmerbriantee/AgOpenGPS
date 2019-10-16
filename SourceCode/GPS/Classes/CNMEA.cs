@@ -256,6 +256,8 @@ Field	Meaning
                 if (words[0] == "$GPHDT" || words[0] == "$GNHDT") ParseHDT();
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
+                if (words[0] == "$GNTRA") ParseTRA();
+
             }// while still data
         }
 
@@ -534,6 +536,42 @@ Field	Meaning
             {
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
+            }
+        }
+
+        private void ParseTRA()  //tra contains hdt and roll for the ub482 receiver
+        {
+            if (!String.IsNullOrEmpty(words[1]))
+            {
+
+                double.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
+                //  Console.WriteLine(headingHDT);
+                double.TryParse(words[3], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                // Console.WriteLine(nRoll);
+
+                int trasolution;
+
+                int.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out trasolution);
+                if (trasolution != 4) nRoll = 0;
+                // Console.WriteLine(trasolution);
+                if (mf.ahrs.isRollFromGPS)
+
+                //input to the kalman filter
+                {
+                    ////added by Andreas Ortner
+                    //rollK = nRoll;
+
+                    ////Kalman filter
+                    //Pc = P + varProcess;
+                    //G = Pc / (Pc + varRoll);
+                    //P = (1 - G) * Pc;
+                    //Xp = XeRoll;
+                    //Zp = Xp;
+                    //XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    //mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                    mf.ahrs.rollX16 = (int)(nRoll * 16);
+                }
             }
         }
 

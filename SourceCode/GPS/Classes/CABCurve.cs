@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public bool isABSameAsVehicleHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
-        public double howManyPathsAway;
+        public double howManyPathsAway, curveNumber;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public bool isSameWay;
@@ -240,6 +240,10 @@ namespace AgOpenGPS
             
 
             howManyPathsAway = Math.Round(minDistance / widthMinusOverlap, 0, MidpointRounding.AwayFromZero);
+
+            curveNumber = howManyPathsAway;
+            if (distanceFromRefLine < 0) curveNumber = -curveNumber;
+            
             double toolOffset = mf.vehicle.toolOffset;
 
             //build the current line

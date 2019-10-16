@@ -122,12 +122,6 @@ namespace AgOpenGPS
         /// </summary>
         public CMazeGrid mazeGrid;
 
-        // couple of quick AB's
-        public CQuicks AB0 = new CQuicks("Original", 2, 2, 2);
-
-        public CQuicks AB1 = new CQuicks("North South", 0, 0, 0);
-        public CQuicks AB2 = new CQuicks("East West", 90, 0, 0);
-
         /// <summary>
         /// Contour Mode Instance
         /// </summary>
@@ -844,6 +838,7 @@ namespace AgOpenGPS
         {
             sim.altitude = (double)nudElevation.Value;
         }
+
 
         public void GetAB()
         {
