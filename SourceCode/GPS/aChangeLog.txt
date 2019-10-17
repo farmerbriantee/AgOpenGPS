@@ -1,4 +1,9 @@
-﻿v3.0 October
+﻿v 3.0.0
+* Removed all executables from Source
+* Source contains all packages for release to be created
+* Ready to start intial releases.
+
+v3.0 October
 
 * Languages added with single RESX file per culture
 * keypad added for nuds

@@ -83,7 +83,7 @@ namespace AgOpenGPS
             //create the file.
             string dir = System.Reflection.Assembly.GetExecutingAssembly().Location;
             dir = System.IO.Path.GetDirectoryName(dir);
-            dir += @"\YouTurnShapes\Custom.txt";
+            dir += @"\Dependencies\YouTurnShapes\Custom.txt";
             using (StreamWriter writer = new StreamWriter(dir))
             {
                 writer.WriteLine(pt.Length);

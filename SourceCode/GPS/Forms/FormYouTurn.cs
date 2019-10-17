@@ -751,7 +751,7 @@ namespace AgOpenGPS
 
         private void btnYouTurnKeyHole_Click(object sender, EventArgs e)
         {
-            mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\KeyHole.txt");
+            mf.yt.LoadYouTurnShapeFromFile(@".\Dependencies/YouTurnShapes\KeyHole.txt");
             Properties.Settings.Default.setAS_youTurnShape = "KeyHole.txt";
             Properties.Settings.Default.Save();
             btnYouTurnKeyHole.BackColor = Color.LimeGreen;
@@ -762,7 +762,7 @@ namespace AgOpenGPS
 
         private void btnYouTurnSemiCircle_Click(object sender, EventArgs e)
         {
-            mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\SemiCircle.txt");
+            mf.yt.LoadYouTurnShapeFromFile(@".\Dependencies\YouTurnShapes\SemiCircle.txt");
             Properties.Settings.Default.setAS_youTurnShape = "SemiCircle.txt";
             Properties.Settings.Default.Save();
             btnYouTurnKeyHole.BackColor = Color.Silver;
@@ -773,7 +773,7 @@ namespace AgOpenGPS
 
         private void btnYouTurnWideReturn_Click(object sender, EventArgs e)
         {
-            mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\WideReturn.txt");
+            mf.yt.LoadYouTurnShapeFromFile(@".\Dependencies\YouTurnShapes\WideReturn.txt");
             Properties.Settings.Default.setAS_youTurnShape = "WideReturn.txt";
             Properties.Settings.Default.Save();
             btnYouTurnKeyHole.BackColor = Color.Silver;
@@ -784,7 +784,7 @@ namespace AgOpenGPS
 
         private void btnYouTurnCustom_Click(object sender, EventArgs e)
         {
-            mf.yt.LoadYouTurnShapeFromFile(@".\YouTurnShapes\Custom.txt");
+            mf.yt.LoadYouTurnShapeFromFile(@".\Dependencies\YouTurnShapes\Custom.txt");
             Properties.Settings.Default.setAS_youTurnShape = "Custom.txt";
             Properties.Settings.Default.Save();
             btnYouTurnKeyHole.BackColor = Color.Silver;

@@ -119,8 +119,8 @@ namespace AgOpenGPS
                     
                     if (target > 4075) target = 4075;
                     if (target < 0) target = 0;
-                    command[0] = (byte)(0xC0 + (target & 0x1F));
-                    command[1] = (byte)((target >> 5) & 0x7F);
+                    command[0] = unchecked((byte)(0xC0 + (target & 0x1F)));
+                    command[1] = unchecked((byte)((target >> 5) & 0x7F));
                     spAutoSteer.Write(command, 0, 2);
 
                     ////send get scaledfeedback command
@@ -338,25 +338,25 @@ namespace AgOpenGPS
             }
 
             //rate port gets high and low byte
-            mc.relayData[mc.rdSectionControlByteHi] = (byte)(relay >> 8);
-            mc.relayData[mc.rdSectionControlByteLo] = (byte)relay;
+            mc.relayData[mc.rdSectionControlByteHi] = unchecked((byte)(relay >> 8));
+            mc.relayData[mc.rdSectionControlByteLo] = unchecked((byte)relay);
 
 
             //autosteer gets only the first 8 sections
-            mc.autoSteerData[mc.sdRelayLo] = (byte)(mc.relayData[mc.rdSectionControlByteLo]);
+            mc.autoSteerData[mc.sdRelayLo] = unchecked((byte)(mc.relayData[mc.rdSectionControlByteLo]));
         }
 
         //Send relay info out to relay board
         public void RelayOutToPort(byte[] items, int numItems)
         {
             //load the uturn byte with the accumulated spacing
-            if (vehicle.treeSpacing != 0) mc.relayData[mc.rdTree] = (byte)treeTrigger;
+            if (vehicle.treeSpacing != 0) mc.relayData[mc.rdTree] = unchecked((byte)treeTrigger);
 
             //grab the youturn byte
             mc.relayData[mc.rdUTurn] = mc.machineControlData[mc.cnYouTurn];
 
             //speed
-            mc.relayData[mc.rdSpeedXFour] = (byte)(pn.speed * 4);
+            mc.relayData[mc.rdSpeedXFour] = unchecked((byte)(pn.speed * 4));
 
             if (Properties.Settings.Default.setUDP_isOn)
             {

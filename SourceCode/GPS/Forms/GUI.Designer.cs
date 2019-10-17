@@ -3276,7 +3276,7 @@ namespace AgOpenGPS
                         else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
                         else lblNTRIPSeconds.Text = gStr.gsConnectingIn + (ntripCounter - 22);
 
-                        pbarNtrip.Value = (byte)(tripBytes * 0.02);
+                        pbarNtrip.Value = unchecked((byte)(tripBytes * 0.02));
                         lblNtripBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " Kb";
 
                         //watchdog for Ntrip

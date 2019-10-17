@@ -545,7 +545,7 @@ namespace AgOpenGPS
             //boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
 
             //load the last used auto turn shape
-            string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
+            string fileAndDir = @".\Dependencies\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
             yt.LoadYouTurnShapeFromFile(fileAndDir);
 
             //sim.latitude = Settings.Default.setSim_lastLat;
@@ -635,7 +635,7 @@ namespace AgOpenGPS
             try
             {
                 string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-                string text = Path.Combine(directoryName, "Dependencies", "Landscape.png");
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Landscape.png");
                 if (File.Exists(text))
                 {
                     using (Bitmap bitmap = new Bitmap(text))
@@ -657,7 +657,7 @@ namespace AgOpenGPS
             }
             try
             {
-                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Floor.png");
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Images", "Floor.png");
                 if (File.Exists(text2))
                 {
                     using (Bitmap bitmap2 = new Bitmap(text2))
@@ -677,73 +677,73 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File FLOOR.PNG is Missing", ex2.Message);
             }
-            try
-            {
-                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Vehicle.png");
-                if (File.Exists(text2))
-                {
-                    using (Bitmap bitmap2 = new Bitmap(text2))
-                    {
-                        GL.GenTextures(1, out texture[2]);
-                        GL.BindTexture(TextureTarget.Texture2D, texture[2]);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
-                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-                        bitmap2.UnlockBits(bitmapData2);
-                    }
-                }
-            }
-            catch (Exception ex2)
-            {
-                //WriteErrorLog("Loading Floor Texture" + ex2);
-                MessageBox.Show("Texture File Vehicle.PNG is Missing", ex2.Message);
-            }
-            try
-            {
-                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Compass.png");
-                if (File.Exists(text2))
-                {
-                    using (Bitmap bitmap2 = new Bitmap(text2))
-                    {
-                        GL.GenTextures(1, out texture[3]);
-                        GL.BindTexture(TextureTarget.Texture2D, texture[3]);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
-                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-                        bitmap2.UnlockBits(bitmapData2);
-                    }
-                }
-            }
-            catch (Exception ex2)
-            {
-                //WriteErrorLog("Loading Floor Texture" + ex2);
-                MessageBox.Show("Texture File Compass.PNG is Missing", ex2.Message);
-            }
+            //try
+            //{
+            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Images", "Vehicle.png");
+            //    if (File.Exists(text2))
+            //    {
+            //        using (Bitmap bitmap2 = new Bitmap(text2))
+            //        {
+            //            GL.GenTextures(1, out texture[2]);
+            //            GL.BindTexture(TextureTarget.Texture2D, texture[2]);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
+            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+            //            bitmap2.UnlockBits(bitmapData2);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex2)
+            //{
+            //    //WriteErrorLog("Loading Floor Texture" + ex2);
+            //    MessageBox.Show("Texture File Vehicle.PNG is Missing", ex2.Message);
+            //}
+            //try
+            //{
+            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\images", "Compass.png");
+            //    if (File.Exists(text2))
+            //    {
+            //        using (Bitmap bitmap2 = new Bitmap(text2))
+            //        {
+            //            GL.GenTextures(1, out texture[3]);
+            //            GL.BindTexture(TextureTarget.Texture2D, texture[3]);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
+            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+            //            bitmap2.UnlockBits(bitmapData2);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex2)
+            //{
+            //    //WriteErrorLog("Loading Floor Texture" + ex2);
+            //    MessageBox.Show("Texture File Compass.PNG is Missing", ex2.Message);
+            //}
 
-            try
-            {
-                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Output.png");
-                if (File.Exists(text2))
-                {
-                    using (Bitmap bitmap2 = new Bitmap(text2))
-                    {
-                        GL.GenTextures(1, out texture[4]);
-                        GL.BindTexture(TextureTarget.Texture2D, texture[4]);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
-                        BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-                        bitmap2.UnlockBits(bitmapData2);
-                    }
-                }
-            }
-            catch (Exception ex2)
-            {
-                //WriteErrorLog("Loading Floor Texture" + ex2);
-                MessageBox.Show("Texture File OUPUT.PNG is Missing", ex2.Message);
-            }
+            //try
+            //{
+            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Output.png");
+            //    if (File.Exists(text2))
+            //    {
+            //        using (Bitmap bitmap2 = new Bitmap(text2))
+            //        {
+            //            GL.GenTextures(1, out texture[4]);
+            //            GL.BindTexture(TextureTarget.Texture2D, texture[4]);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
+            //            bitmap2.UnlockBits(bitmapData2);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex2)
+            //{
+            //    //WriteErrorLog("Loading Floor Texture" + ex2);
+            //    MessageBox.Show("Texture File OUPUT.PNG is Missing", ex2.Message);
+            //}
 
             return texture[0];
         }// Load Bitmaps And Convert To Textures
@@ -1057,11 +1057,13 @@ namespace AgOpenGPS
 
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsCloseField;
+            this.menustripLanguage.Enabled = false;
         }
 
         //close the current job
         public void JobClose()
         {
+            menustripLanguage.Enabled = true;
             //job is closed
             isJobStarted = false;
 
