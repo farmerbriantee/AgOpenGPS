@@ -256,7 +256,7 @@
             // 
             this.label10.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(81, 567);
+            this.label10.Location = new System.Drawing.Point(77, 567);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(461, 69);
             this.label10.TabIndex = 82;
