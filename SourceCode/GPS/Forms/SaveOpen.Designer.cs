@@ -1017,6 +1017,10 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].isOwnField = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
+                            else if (k == 0)
+                            {
+                                bnd.bndArr[k].isOwnField = true;
+                            }
 
                             int numPoints = int.Parse(line);
 
@@ -1047,6 +1051,7 @@ namespace AgOpenGPS
                                 bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
                                 turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
                                 gf.geoFenceArr.RemoveAt(bnd.bndArr.Count - 1);
+                                k = k - 1;
                             }
                             if (reader.EndOfStream) break;
                         }
