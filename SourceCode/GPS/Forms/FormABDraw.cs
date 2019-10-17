@@ -137,6 +137,13 @@ namespace AgOpenGPS
             btnCancelTouch.Enabled = false;
         }
 
+        private void nudDistance_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnSelectABLine.Focus();
+
+        }
+
         private void btnDeleteCurve_Click(object sender, EventArgs e)
         {
             if (curveArr.Count > 0 && numCurveSelected > 0)
@@ -258,6 +265,10 @@ namespace AgOpenGPS
             //lblPick.Text = gStr.gsSelectALine;
             label3.Text = gStr.gsCreate;
             label4.Text = gStr.gsSelect;
+            label5.Text = gStr.gsToolWidth;
+
+            nudDistance.Controls[0].Enabled = false;
+
         }
 
         private void FormABDraw_Load(object sender, EventArgs e)
@@ -283,6 +294,7 @@ namespace AgOpenGPS
             lineArr?.Clear();
             LoadCurves();
             LoadLines();
+            nudDistance.Value = (decimal)(mf.vehicle.toolWidth * 100);
         }
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
@@ -574,6 +586,8 @@ namespace AgOpenGPS
 
             mf.curve.refList?.Clear();
 
+            vec3 chk = new vec3(arr[start]);
+
             for (int i = start; i < end; i++)
             {
                 mf.curve.refList.Add(arr[i]);
@@ -620,6 +634,29 @@ namespace AgOpenGPS
                 mf.curve.CalculateTurnHeadings();
 
                 mf.curve.isCurveSet = true;
+
+                double offset = ((double)nudDistance.Value) / 200.0;
+
+                //calculate the heading 90 degrees to ref ABLine heading
+                double headingAt90 = glm.PIBy2 + mf.curve.aveLineHeading;
+
+                chk.easting = (Math.Sin(headingAt90) * Math.Abs(offset)) + chk.easting;
+                chk.northing = (Math.Cos(headingAt90) * Math.Abs(offset)) + chk.northing;
+
+                if (!mf.bnd.bndArr[0].IsPointInsideBoundary(chk)) headingAt90 *=-1;
+
+                cnt = mf.curve.refList.Count;
+                vec3[] arrMove = new vec3[cnt];
+                mf.curve.refList.CopyTo(arrMove);
+                mf.curve.refList.Clear();
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    arrMove[i].easting = (Math.Sin(headingAt90) * offset) + arrMove[i].easting;
+                    arrMove[i].northing = (Math.Cos(headingAt90) * offset) + arrMove[i].northing;
+                    mf.curve.refList.Add(arrMove[i]);
+                }
+
                 mf.FileSaveCurveLine();
 
                 btnMakeABLine.Enabled = false;
@@ -701,7 +738,7 @@ namespace AgOpenGPS
                 arr[C].northing - arr[A].northing);
             if (abHead < 0) abHead += glm.twoPI;
 
-            double offset = 0.5 * mf.vehicle.toolWidth;
+            double offset = ((double)nudDistance.Value) / 200.0;
 
             double headingCalc = abHead + glm.PIBy2;
 
