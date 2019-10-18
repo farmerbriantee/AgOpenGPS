@@ -1012,6 +1012,14 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].isDriveAround = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
+                            
+                            
+                            
+                            bool turnheading = false;
+                            
+                            
+                            
+                            
                             if (line == "True" || line == "False")
                             {
                                 bnd.bndArr[k].isOwnField = bool.Parse(line);
@@ -1019,6 +1027,7 @@ namespace AgOpenGPS
                             }
                             else if (k == 0)
                             {
+                                turnheading = true;
                                 bnd.bndArr[k].isOwnField = true;
                             }
 
@@ -1026,8 +1035,6 @@ namespace AgOpenGPS
 
                             if (numPoints > 0)
                             {
-                                //bnd.bndArr[k].bndLine.Clear();
-
                                 //load the line
                                 for (int i = 0; i < numPoints; i++)
                                 {
@@ -1038,6 +1045,10 @@ namespace AgOpenGPS
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
                                     double.Parse(words[2], CultureInfo.InvariantCulture));
 
+                                    if (turnheading)
+                                    {
+                                        vecPt.heading = vecPt.heading + Math.PI;
+                                    }
                                     bnd.bndArr[k].bndLine.Add(vecPt);
                                 }
 
