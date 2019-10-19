@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Media;
 using System.Text;
 using System.Windows.Forms;
 
@@ -193,6 +194,7 @@ namespace AgOpenGPS
                 btnYouTurnWideReturn.Enabled = false;
                 btnYouTurnSemiCircle.Enabled = false;
             }
+            InitializeHeadlandAlert();
         }
 
         #region Procedures
@@ -741,6 +743,34 @@ namespace AgOpenGPS
             tboxPos6.Text = mf.seq.pos6;
             tboxPos7.Text = mf.seq.pos7;
             tboxPos8.Text = mf.seq.pos8;
+        }
+        private void InitializeHeadlandAlert()
+        {
+            if (!mf.yt.isUsingHeadlandAlert)
+            {
+                mf.yt.isUsingHeadlandAlert = false;
+                btnIsUsingHeadlandAlert.BackColor = Color.Salmon;
+            }
+            else
+            {
+                mf.yt.isUsingHeadlandAlert = true;
+                btnIsUsingHeadlandAlert.BackColor = Color.PaleGreen;
+            }
+        }
+
+        private void SetHeadlandAlert()
+        {
+            if (mf.yt.isUsingHeadlandAlert)
+            {
+                mf.yt.isUsingHeadlandAlert = false;
+                btnIsUsingHeadlandAlert.BackColor = Color.Salmon;
+            }
+            else
+            {
+                mf.yt.isUsingHeadlandAlert = true;
+                btnIsUsingHeadlandAlert.BackColor = Color.PaleGreen;
+                SystemSounds.Asterisk.Play();
+            }
         }
 
         #endregion Procedures
@@ -1298,5 +1328,12 @@ namespace AgOpenGPS
             if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 5)) btnToggle8.BackColor = Color.LightGreen;
             else btnToggle8.BackColor = Color.LightSalmon;
         }
+
+        private void btnIsUsingHeadlandAlert_Click(object sender, EventArgs e)
+        {
+            SetHeadlandAlert();
+        }
+
+       
     }
 }

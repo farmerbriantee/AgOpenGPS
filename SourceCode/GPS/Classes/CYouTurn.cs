@@ -75,6 +75,9 @@ namespace AgOpenGPS
         public vec4 crossingCurvePoint = new vec4();
         public vec4 crossingTurnLinePoint = new vec4();
 
+        public bool isUsingHeadlandAlert = false;
+        public int headlandAlertDistance = 20;
+
         //constructor
         public CYouTurn(FormGPS _f)
         {
