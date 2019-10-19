@@ -156,6 +156,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabAlerts = new System.Windows.Forms.TabPage();
             this.btnIsUsingHeadlandAlert = new System.Windows.Forms.Button();
+            this.headlandAlertDistanceDn = new ProXoft.WinForms.RepeatButton();
+            this.headlandAlertDistanceUp = new ProXoft.WinForms.RepeatButton();
+            this.headlandAlertDistanceLabel = new System.Windows.Forms.Label();
+            this.lblHeadlandAlertDistance = new System.Windows.Forms.Label();
             this.tabEdit.SuspendLayout();
             this.tabExit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExit7)).BeginInit();
@@ -1944,6 +1948,10 @@
             // 
             // tabAlerts
             // 
+            this.tabAlerts.Controls.Add(this.headlandAlertDistanceDn);
+            this.tabAlerts.Controls.Add(this.headlandAlertDistanceUp);
+            this.tabAlerts.Controls.Add(this.headlandAlertDistanceLabel);
+            this.tabAlerts.Controls.Add(this.lblHeadlandAlertDistance);
             this.tabAlerts.Controls.Add(this.btnIsUsingHeadlandAlert);
             this.tabAlerts.Location = new System.Drawing.Point(4, 64);
             this.tabAlerts.Name = "tabAlerts";
@@ -1963,6 +1971,55 @@
             this.btnIsUsingHeadlandAlert.Text = "Headland Alert";
             this.btnIsUsingHeadlandAlert.UseVisualStyleBackColor = false;
             this.btnIsUsingHeadlandAlert.Click += new System.EventHandler(this.btnIsUsingHeadlandAlert_Click);
+            // 
+            // headlandAlertDistanceDn
+            // 
+            this.headlandAlertDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.headlandAlertDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headlandAlertDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            this.headlandAlertDistanceDn.Location = new System.Drawing.Point(349, 106);
+            this.headlandAlertDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.headlandAlertDistanceDn.Name = "headlandAlertDistanceDn";
+            this.headlandAlertDistanceDn.Size = new System.Drawing.Size(59, 69);
+            this.headlandAlertDistanceDn.TabIndex = 167;
+            this.headlandAlertDistanceDn.UseVisualStyleBackColor = true;
+            this.headlandAlertDistanceDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headlandAlertDistanceDn_MouseDown);
+            // 
+            // headlandAlertDistanceUp
+            // 
+            this.headlandAlertDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.headlandAlertDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headlandAlertDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.headlandAlertDistanceUp.Location = new System.Drawing.Point(253, 106);
+            this.headlandAlertDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.headlandAlertDistanceUp.Name = "headlandAlertDistanceUp";
+            this.headlandAlertDistanceUp.Size = new System.Drawing.Size(59, 69);
+            this.headlandAlertDistanceUp.TabIndex = 168;
+            this.headlandAlertDistanceUp.UseVisualStyleBackColor = true;
+            this.headlandAlertDistanceUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.headlandAlertDistanceUp_MouseDown);
+            // 
+            // headlandAlertDistanceLabel
+            // 
+            this.headlandAlertDistanceLabel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.headlandAlertDistanceLabel.Location = new System.Drawing.Point(228, 3);
+            this.headlandAlertDistanceLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.headlandAlertDistanceLabel.Name = "headlandAlertDistanceLabel";
+            this.headlandAlertDistanceLabel.Size = new System.Drawing.Size(240, 41);
+            this.headlandAlertDistanceLabel.TabIndex = 170;
+            this.headlandAlertDistanceLabel.Text = "Distance";
+            this.headlandAlertDistanceLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblHeadlandAlertDistance
+            // 
+            this.lblHeadlandAlertDistance.AutoSize = true;
+            this.lblHeadlandAlertDistance.BackColor = System.Drawing.SystemColors.Control;
+            this.lblHeadlandAlertDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeadlandAlertDistance.Location = new System.Drawing.Point(286, 50);
+            this.lblHeadlandAlertDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblHeadlandAlertDistance.Name = "lblHeadlandAlertDistance";
+            this.lblHeadlandAlertDistance.Size = new System.Drawing.Size(121, 57);
+            this.lblHeadlandAlertDistance.TabIndex = 169;
+            this.lblHeadlandAlertDistance.Text = "XXX";
             // 
             // FormYouTurn
             // 
@@ -2009,6 +2066,7 @@
             this.groupBox1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabAlerts.ResumeLayout(false);
+            this.tabAlerts.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2142,5 +2200,9 @@
         private System.Windows.Forms.Label lblGeoFenceDistance;
         private System.Windows.Forms.TabPage tabAlerts;
         private System.Windows.Forms.Button btnIsUsingHeadlandAlert;
+        private ProXoft.WinForms.RepeatButton headlandAlertDistanceDn;
+        private ProXoft.WinForms.RepeatButton headlandAlertDistanceUp;
+        private System.Windows.Forms.Label headlandAlertDistanceLabel;
+        private System.Windows.Forms.Label lblHeadlandAlertDistance;
     }
 }

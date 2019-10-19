@@ -756,6 +756,7 @@ namespace AgOpenGPS
                 mf.yt.isUsingHeadlandAlert = true;
                 btnIsUsingHeadlandAlert.BackColor = Color.PaleGreen;
             }
+            lblHeadlandAlertDistance.Text = $"{mf.yt.headlandAlertDistance.ToString()}";
         }
 
         private void SetHeadlandAlert()
@@ -1334,6 +1335,16 @@ namespace AgOpenGPS
             SetHeadlandAlert();
         }
 
-       
+        private void headlandAlertDistanceDn_MouseDown(object sender, MouseEventArgs e)
+        {
+            mf.yt.headlandAlertDistance += -1;
+            lblHeadlandAlertDistance.Text = $"{mf.yt.headlandAlertDistance.ToString()}";
+        }
+
+        private void headlandAlertDistanceUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            mf.yt.headlandAlertDistance ++;
+            lblHeadlandAlertDistance.Text =  $"{mf.yt.headlandAlertDistance.ToString()}";
+        }
     }
 }

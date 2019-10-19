@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using AgOpenGPS.Properties;
 using Microsoft.Win32;
 using System.Collections.Generic;
+using System.Media;
 
 namespace AgOpenGPS
 {
@@ -783,6 +784,25 @@ namespace AgOpenGPS
             if (flagCnt > 0)
             {
                 for (int i = 0; i < flagCnt; i++) flagPts[i].ID = i + 1;
+            }
+        }
+
+        //Sound Headland Alert
+        private void SoundHeadlandAlert()
+        {
+            double notificationDistance = isMetric ? yt.headlandAlertDistance : (yt.headlandAlertDistance * glm.m2ft);
+            double distanceToTurnLine = isMetric ? distancePivotToTurnLine : (distancePivotToTurnLine * glm.m2ft);
+            double distanceToAlert = isMetric ? 5 : 5 * glm.m2ft;
+            if (yt.isUsingHeadlandAlert)
+            {
+                
+                    if ((notificationDistance >= distanceToTurnLine)
+                           && distanceToTurnLine > 0
+                            && !yt.isYouTurnTriggered )
+                       
+                    {
+                        SystemSounds.Asterisk.Play();
+                    }
             }
         }
 
@@ -3361,7 +3381,7 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
-
+                    SoundHeadlandAlert();
                     if (isMetric)
                     {
                         if (bnd.bndArr[0].isSet)
@@ -3380,7 +3400,6 @@ namespace AgOpenGPS
                     }
                     else
                     {
-
                         if (bnd.bndArr[0].isSet)
                         {
                             if (yt.isYouTurnRight)
@@ -3444,5 +3463,7 @@ namespace AgOpenGPS
             tmrWatchdog.Enabled = true;
 
         }//wait till timer fires again.  
+
+       
     }//end class
 }//end namespace
