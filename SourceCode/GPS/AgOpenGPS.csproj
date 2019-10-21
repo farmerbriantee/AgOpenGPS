@@ -560,6 +560,15 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
+    <Content Include="Dependencies\Sounds\medium-beep.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dependencies\Sounds\short-beep.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dependencies\Sounds\two-short-beeps.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dependencies\YouTurnShapes\SemiCircle.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

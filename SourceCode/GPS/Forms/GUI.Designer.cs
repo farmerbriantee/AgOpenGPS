@@ -8,6 +8,8 @@ using AgOpenGPS.Properties;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Media;
+using System.IO;
+using System.Reflection;
 
 namespace AgOpenGPS
 {
@@ -790,19 +792,21 @@ namespace AgOpenGPS
         //Sound Headland Alert
         private void SoundHeadlandAlert()
         {
-            double notificationDistance = isMetric ? yt.headlandAlertDistance : (yt.headlandAlertDistance * glm.m2ft);
+            double notificationDistance = yt.headlandAlertDistance;
             double distanceToTurnLine = isMetric ? distancePivotToTurnLine : (distancePivotToTurnLine * glm.m2ft);
-            double distanceToAlert = isMetric ? 5 : 5 * glm.m2ft;
+            string soundPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Sounds", "two-short-beeps.wav");
+            var sound = new SoundPlayer(soundPath);
             if (yt.isUsingHeadlandAlert)
             {
-                
-                    if ((notificationDistance >= distanceToTurnLine)
-                           && distanceToTurnLine > 0
-                            && !yt.isYouTurnTriggered )
-                       
-                    {
-                        SystemSounds.Asterisk.Play();
-                    }
+
+                if ((notificationDistance >= distanceToTurnLine)
+                       && distanceToTurnLine > 0
+                        && !yt.isYouTurnTriggered)
+
+                {
+                    sound.Play();
+
+                }
             }
         }
 

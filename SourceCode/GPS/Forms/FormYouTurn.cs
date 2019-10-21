@@ -770,7 +770,6 @@ namespace AgOpenGPS
             {
                 mf.yt.isUsingHeadlandAlert = true;
                 btnIsUsingHeadlandAlert.BackColor = Color.PaleGreen;
-                SystemSounds.Asterisk.Play();
             }
         }
 
