@@ -19,6 +19,7 @@ namespace AgOpenGPS
 
             lblEnterCurveName.Text = gStr.gsEnterCurveName;
             btnPausePlay.Text = gStr.gsPause;
+            this.Text = gStr.gsABCurve;
         }
 
         private void FormABCurve_Load(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace AgOpenGPS
 
             if (mf.curve.refList.Count > 3)
             {
-                lblCurveExists.Text = "Curve Set";
+                lblCurveExists.Text = gStr.gsCurveSet; ;
             }
             else
             {
@@ -202,7 +203,7 @@ namespace AgOpenGPS
         {
             mf.curve.moveDistance = 0;
             //clear out the reference list
-            lblCurveExists.Text = "Driving";
+            lblCurveExists.Text = gStr.gsDriving;
             mf.curve.ResetCurveLine();
 
             btnAPoint.Enabled = false;
@@ -264,7 +265,7 @@ namespace AgOpenGPS
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
                 //mf.FileSaveCurveLine();
-                lblCurveExists.Text = "Curve Set";
+                lblCurveExists.Text = gStr.gsCurveSet;
 
                 ShowSavedPanel(true);
 
@@ -454,37 +455,37 @@ namespace AgOpenGPS
 
             if (heading > 337.5 || heading < 22.5)
             {
-                return " North ";
+                return gStr.gsNorth;
             }
             if (heading > 22.5 && heading < 67.5)
             {
-                return " N_East ";
+                return gStr.gsN_East;
             }
             if (heading > 67.5 && heading < 111.5)
             {
-                return " East ";
+                return gStr.gsEast;
             }
             if (heading > 111.5 && heading < 157.5)
             {
-                return " S_East ";
+                return gStr.gsS_East;
             }
             if (heading > 157.5 && heading < 202.5)
             {
-                return " South ";
+                return gStr.gsSouth;
             }
             if (heading > 202.5 && heading < 247.5)
             {
-                return " S_West ";
+                return gStr.gsS_West;
             }
             if (heading > 247.5 && heading < 292.5)
             {
-                return "West";
+                return gStr.gsWest;
             }
             if (heading > 292.5 && heading < 337.5)
             {
-                return " N_West ";
+                return gStr.gsN_West;
             }
-            return " Lost ";
+            return gStr.gsLost;
         }
         
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)

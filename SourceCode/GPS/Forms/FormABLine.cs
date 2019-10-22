@@ -23,7 +23,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
-
+            this.Text = gStr.gsABline;
             lblEnterName.Text = gStr.gsEnterLineName;
             //btnNewABLine.Text = gStr.gsNew;
         }
@@ -529,37 +529,37 @@ namespace AgOpenGPS
 
             if (heading > 337.5 || heading < 22.5)
             {
-                return " North ";
+                return gStr.gsNorth;
             }
             if (heading > 22.5 && heading < 67.5)
             {
-                return " N_East ";
+                return gStr.gsN_East;
             }
             if (heading > 67.5 && heading < 111.5)
             {
-                return " East ";
+                return gStr.gsEast;
             }
             if (heading > 111.5 && heading < 157.5)
             {
-                return " S_East ";
+                return gStr.gsS_East;
             }
             if (heading > 157.5 && heading < 202.5)
             {
-                return " South ";
+                return gStr.gsSouth;
             }
             if (heading > 202.5 && heading < 247.5)
             {
-                return " S_West ";
+                return gStr.gsS_West;
             }
             if (heading > 247.5 && heading < 292.5)
             {
-                return "West";
+                return gStr.gsWest;
             }
             if (heading > 292.5 && heading < 337.5)
             {
-                return " N_West ";
+                return gStr.gsN_West;
             }
-            return " Lost ";
+            return gStr.gsLost;
         }
 
         private void tboxABLineName_Enter(object sender, EventArgs e)

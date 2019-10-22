@@ -41,7 +41,7 @@ namespace AgOpenGPS
             {
                 dataSteerAngle = "0";
                 dataPWM = "-2";
-                lblSteerAng.Text = "Actual";
+                lblSteerAng.Text = gStr.gsActual;
                 lblPWM.Text = "Set";
             }
             else
