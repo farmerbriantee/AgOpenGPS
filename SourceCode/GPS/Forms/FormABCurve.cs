@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -8,12 +9,8 @@ namespace AgOpenGPS
 {
     public partial class FormABCurve : Form
     {
-        public List<CurveLineSaved> curveArr = new List<CurveLineSaved>();
-
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
-
-        private string filename = "";
 
         public FormABCurve(Form _mf)
         {
@@ -21,34 +18,45 @@ namespace AgOpenGPS
             InitializeComponent();
 
             lblEnterCurveName.Text = gStr.gsEnterCurveName;
-            btnMulti.Text = gStr.gsShow;
             btnPausePlay.Text = gStr.gsPause;
         }
 
         private void FormABCurve_Load(object sender, EventArgs e)
         {
             btnPausePlay.Enabled = false;
-            btnAPoint.Enabled = true;
+            btnAPoint.Enabled = false;
             btnBPoint.Enabled = false;
+            btnAddToFile.Enabled = false;
+            btnAddAndGo.Enabled = false;
+            textBox1.Enabled = false;
+
             mf.curve.isOkToAddPoints = false;
 
             if (mf.curve.refList.Count > 3)
             {
                 lblCurveExists.Text = "Curve Set";
-                btnABLineOk.Enabled = true;
             }
             else
             {
                 mf.curve.ResetCurveLine();
                 lblCurveExists.Text = " > Off <";
-                btnABLineOk.Enabled = false;
             }
-            lvLines.Clear();
-            curveArr.Clear();
-            FormABCurve_LoadCurves();
 
-            this.Size = new System.Drawing.Size(280, 440);
-            btnMulti.Image = Properties.Resources.ArrowLeft;
+            lvLines.Clear();
+            ListViewItem itm;
+
+            foreach (var item in mf.curve.curveArr)
+            {
+                itm = new ListViewItem(item.Name);
+                lvLines.Items.Add(itm);
+            }
+
+            // go to bottom of list - if there is a bottom
+            if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
+
+            ShowSavedPanel(true);
+            //this.Size = new System.Drawing.Size(280, 440);
+            //btnMulti.Image = Properties.Resources.ArrowLeft;
         }
 
         //for calculating for display the averaged new line
@@ -96,109 +104,112 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnABLineOk_Click(object sender, System.EventArgs e)
+        private void btnAddToFile_Click(object sender, EventArgs e)
         {
-            if (mf.curve.refList.Count < 3)
+            if (mf.curve.refList.Count > 0)
             {
-                mf.curve.isCurveBtnOn = false;
-                mf.btnCurve.Image = Properties.Resources.CurveOff;
+                if (textBox1.Text.Length > 0)
+                {
+                    mf.curve.curveArr.Add(new CCurveLines());
 
-                mf.curve.ResetCurveLine();
-                mf.DisableYouTurnButtons();
-                mf.FileSaveCurveLine();
-                Close();
+                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                    if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+                    //array number is 1 less since it starts at zero
+                    int cnt = mf.curve.curveArr.Count-1;
+
+                    mf.curve.curveArr[cnt].Name = textBox1.Text.Trim();
+                    mf.curve.curveArr[cnt].aveHeading = mf.curve.aveLineHeading;
+
+                    //write out the Curve Points
+                    foreach (var item in mf.curve.refList)
+                    {
+                        mf.curve.curveArr[cnt].curvePts.Add(item);
+                    }
+
+                    //update the listbox with new curve name
+                    ListViewItem itm = new ListViewItem(mf.curve.curveArr[cnt].Name);
+                    lvLines.Items.Add(itm);
+                    lvLines.Enabled = true;
+                    textBox1.BackColor = SystemColors.Window;
+                    textBox1.Text = "";
+                    textBox1.Enabled = false;
+                    btnAddAndGo.Enabled = false;
+                    btnAddToFile.Enabled = false;
+                    btnAPoint.Enabled = false;
+                    btnCancel.Enabled = true;
+                    btnNewCurve.Enabled = true;
+                    lvLines.SelectedItems.Clear();
+                    btnNewCurve.Enabled = true;
+
+                    mf.FileSaveCurveLines();
+                }
             }
             else
             {
-                mf.curve.isCurveSet = true;
-                mf.EnableYouTurnButtons();
-                mf.FileSaveCurveLine();
-                Close();
-            }
+                var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
+                form2.Show();
+                textBox1.BackColor = SystemColors.Window;
+            }            
         }
-
-        private void btnAddToFile_Click(object sender, EventArgs e)
+        private void btnAddAndGo_Click(object sender, EventArgs e)
         {
-            //get the directory and make sure it exists, create if not
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField);
-
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\CurveLines.txt";
-
-            //use Streamwriter to create and overwrite existing curveLines file
-            using (StreamWriter writer = new StreamWriter(filename, true))
+            if (mf.curve.refList.Count > 0)
             {
-                try
+                if (textBox1.Text.Length > 0)
                 {
-                    if (mf.curve.refList.Count > 0)
+                    mf.curve.curveArr.Add(new CCurveLines());
+
+                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                    mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+                    //array number is 1 less since it starts at zero
+                    int idx = mf.curve.curveArr.Count - 1;
+
+                    mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+
+                    //write out the Curve Points
+                    foreach (var item in mf.curve.refList)
                     {
-                        if (textBox1.Text.Length > 0)
-                        {
-                            curveArr.Add(new CurveLineSaved());
-                            curveArr[curveArr.Count - 1].Name = textBox1.Text;
-                            curveArr[curveArr.Count - 1].aveHeading = mf.curve.aveLineHeading;
-
-                            ListViewItem itm = new ListViewItem(curveArr[curveArr.Count - 1].Name);
-                            lvLines.Items.Add(itm);
-
-                            //write out the ABLine
-                            writer.WriteLine(textBox1.Text);
-
-                            //write out the aveheading
-                            writer.WriteLine(mf.curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
-
-                            //write out the points of ref line
-                            writer.WriteLine(mf.curve.refList.Count.ToString(CultureInfo.InvariantCulture));
-
-                            for (int j = 0; j < mf.curve.refList.Count; j++)
-                            {
-                                curveArr[curveArr.Count - 1].curvePts.Add(mf.curve.refList[j]);
-                                writer.WriteLine(Math.Round(mf.curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                        Math.Round(mf.curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                            Math.Round(mf.curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
-                            }
-                        }
-                        else
-                        {
-                            //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-                            var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterUniqueABCurveName);
-                            form2.Show();
-                        }
-                        textBox1.Clear();
+                        mf.curve.curveArr[idx].curvePts.Add(item);
                     }
-                    else
-                    {
-                        var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
-                        form2.Show();
-                    }
-                }
-                catch (Exception er)
-                {
-                    mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
-                    return;
+                    mf.curve.isCurveSet = true;
+
+                    mf.FileSaveCurveLines();
+
+                    Close();
                 }
             }
+            else
+            {
+                var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
+                form2.Show();
+                textBox1.BackColor = SystemColors.Window;
+            }
+
+        }
+        private void btnNewCurve_Click(object sender, EventArgs e)
+        {
+            ShowSavedPanel(false);
+            btnNewCurve.Enabled = false;
+            btnCancel.Enabled = false;
+            btnAPoint.Enabled = true;
         }
 
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
+            mf.curve.moveDistance = 0;
             //clear out the reference list
             lblCurveExists.Text = "Driving";
             mf.curve.ResetCurveLine();
 
-            mf.curve.isOkToAddPoints = true;
-            btnBPoint.Enabled = true;
             btnAPoint.Enabled = false;
-            btnMulti.Enabled = false;
-            btnABLineOk.Enabled = false;
-            btnCancel.Enabled = false;
+            mf.curve.isOkToAddPoints = true;
             btnPausePlay.Enabled = true;
-
-            ShowSavedPanel(false);
+            btnPausePlay.Visible = true;
+            btnBPoint.Enabled = true;
         }
 
         private void btnBPoint_Click(object sender, System.EventArgs e)
@@ -206,12 +217,10 @@ namespace AgOpenGPS
             mf.curve.aveLineHeading = 0;
             mf.curve.isOkToAddPoints = false;
             btnBPoint.Enabled = false;
-            btnAPoint.Enabled = true;
-            btnABLineOk.Enabled = true;
+            btnAPoint.Enabled = false;
             btnPausePlay.Enabled = false;
-            btnMulti.Enabled = true;
-            btnABLineOk.Enabled = true;
-            btnCancel.Enabled = true;
+            btnCancel.Enabled = false;
+            lvLines.Enabled = false;
 
             int cnt = mf.curve.refList.Count;
             if (cnt > 3)
@@ -245,6 +254,7 @@ namespace AgOpenGPS
                 x /= mf.curve.refList.Count;
                 y /= mf.curve.refList.Count;
                 mf.curve.aveLineHeading = Math.Atan2(y, x);
+                if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
 
                 //build the tail extensions
                 mf.curve.AddFirstLastPoints();
@@ -253,99 +263,102 @@ namespace AgOpenGPS
 
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
-                mf.FileSaveCurveLine();
+                //mf.FileSaveCurveLine();
                 lblCurveExists.Text = "Curve Set";
+
+                ShowSavedPanel(true);
+
+                btnAddAndGo.Enabled = true;
+                btnAddToFile.Enabled = true;
+                btnAPoint.Enabled = false;
+                btnBPoint.Enabled = false;
+                btnPausePlay.Enabled = false;
+
+                textBox1.BackColor = Color.LightGreen;
+                textBox1.Enabled = true;
+                textBox1.Text = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) 
+                    + "\u00B0" + FindDirection(mf.curve.aveLineHeading) 
+                    + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else
             {
                 mf.curve.isCurveSet = false;
                 mf.curve.refList?.Clear();
+
                 lblCurveExists.Text = " > Off <";
+                ShowSavedPanel(true);
+                btnNewCurve.Enabled = true;
+                btnCancel.Enabled = true;
+                lvLines.Enabled = true;
             }
-            //Close();
+
+            lvLines.SelectedItems.Clear();
+        }
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
         }
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
+            mf.curve.refList?.Clear();
+            mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
             mf.btnContourPriority.Enabled = false;
             //mf.curve.ResetCurveLine();
             mf.curve.isCurveBtnOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+
+            mf.curve.numCurveLineSelected = 0;
             Close();
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            //get the directory and make sure it exists, create if not
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField);
-
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\CurveLines.txt";
-
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
+            if (lvLines.SelectedItems.Count > 0)
             {
                 int num = lvLines.SelectedIndices[0];
-                curveArr.RemoveAt(num);
+                mf.curve.curveArr.RemoveAt(num);
                 lvLines.SelectedItems[0].Remove();
-            }
-            using (StreamWriter writer = new StreamWriter(filename, false))
-            {
-                try
+
+                //everything changed, so make sure its right
+                mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+                //if there are no saved oned, empty out current curve line and turn off
+                if (mf.curve.numCurveLines == 0)
                 {
-                    writer.WriteLine("$CurveLines");
-                    for (int i = 0; i < curveArr.Count; i++)
-                    {
-                        //curveArrs[i].curveArr
-
-                        //write out the Name
-                        writer.WriteLine(curveArr[i].Name);
-
-                        //write out the aveheading
-                        writer.WriteLine(curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
-
-                        //write out the points of ref line
-                        writer.WriteLine(curveArr[i].curvePts.Count.ToString(CultureInfo.InvariantCulture));
-                        if (curveArr[i].curvePts.Count > 0)
-                        {
-                            for (int j = 0; j < curveArr[i].curvePts.Count; j++)
-                                writer.WriteLine(Math.Round(curveArr[i].curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(curveArr[i].curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                        Math.Round(curveArr[i].curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
-                        }
-                    }
+                    mf.curve.ResetCurveLine();
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
                 }
-                catch (Exception er)
-                {
-                    mf.WriteErrorLog("Saving Curve Line" + er.ToString());
 
-                    return;
-                }
-            }
+                mf.FileSaveCurveLines();
+            }            
         }
 
         private void btnListUse_Click(object sender, EventArgs e)
         {
+            mf.curve.moveDistance = 0;
+
             int count = lvLines.SelectedItems.Count;
 
             if (count > 0)
             {
-                int aa = lvLines.SelectedIndices[0];
-
-                mf.curve.aveLineHeading = curveArr[aa].aveHeading;
+                int idx = lvLines.SelectedIndices[0];
+                mf.curve.numCurveLineSelected = idx + 1;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
 
                 mf.curve.refList?.Clear();
-
-                for (int i = 0; i < curveArr[aa].curvePts.Count; i++)
+                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                 {
-                    mf.curve.refList.Add(curveArr[aa].curvePts[i]);
+                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
                 }
+
                 if (mf.curve.refList.Count < 3)
                 {
                     mf.btnCurve.PerformClick();
@@ -355,11 +368,9 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveSet = true;
-                    mf.EnableYouTurnButtons();
-                    mf.FileSaveCurveLine();
+                    //mf.EnableYouTurnButtons();
                 }
-                //can go back to Mainform without seeing ABLine form.
-                //DialogResult = DialogResult.Yes;
+                //can go back to Mainform without seeing form.
                 Close();
             }
 
@@ -367,18 +378,6 @@ namespace AgOpenGPS
             else
             {
                 return;
-            }
-        }
-
-        private void BtnMulti_Click(object sender, EventArgs e)
-        {
-            if (this.Size.Width < 640)
-            {
-                ShowSavedPanel(true);
-            }
-            else
-            {
-                ShowSavedPanel(false);
             }
         }
 
@@ -400,124 +399,35 @@ namespace AgOpenGPS
             }
         }
 
-
-        private void FormABCurve_LoadCurves()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-            string directoryName = Path.GetDirectoryName(dirField);
-
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            filename = directoryName + "\\CurveLines.txt";
-
-            if (!File.Exists(filename))
-            {
-                using (StreamWriter writer = new StreamWriter(filename))
-                {
-                    writer.WriteLine("$CurveLines");
-                }
-            }
-
-            //get the file of previous AB Lines
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-            if (!File.Exists(filename))
-            {
-                mf.TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
-            }
-            else
-            {
-                using (StreamReader reader = new StreamReader(filename))
-                {
-                    try
-                    {
-                        ListViewItem itm;
-                        string line;
-                        int num = 0;
-
-                        //read header $CurveLine
-                        line = reader.ReadLine();
-
-                        while (!reader.EndOfStream)
-                        {
-                            curveArr.Add(new CurveLineSaved());
-
-                            //read header $CurveLine
-                            curveArr[num].Name = reader.ReadLine();
-                            // get the average heading
-                            line = reader.ReadLine();
-                            curveArr[num].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            int numPoints = int.Parse(line);
-
-                            if (numPoints > 1)
-                            {
-                                itm = new ListViewItem(curveArr[num].Name);
-                                lvLines.Items.Add(itm);
-
-                                curveArr[num].curvePts?.Clear();
-
-                                for (int i = 0; i < numPoints; i++)
-                                {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    curveArr[num].curvePts.Add(vecPt);
-                                }
-                                num++;
-                            }
-                            else
-                            {
-                                if (curveArr.Count > 0)
-                                {
-                                    curveArr.RemoveAt(num);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception er)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                        form.Show();
-                        mf.WriteErrorLog("Load Curve Line" + er.ToString());
-                    }
-                }
-
-                // go to bottom of list - if there is a bottom
-                if (lvLines.Items.Count > 0) lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-            }
-        }
-
         private void ShowSavedPanel(bool showPanel)
         {
             if (showPanel)
             {
-                this.Size = new System.Drawing.Size(650, 440);
+                this.Size = new System.Drawing.Size(597, 415);
                 btnAddToFile.Visible = true;
+                btnAddAndGo.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
                 lblEnterCurveName.Visible = true;
                 textBox1.Visible = true;
                 lvLines.Visible = true;
-                btnMulti.Text = gStr.gsHide;
-                btnMulti.Image = Properties.Resources.ArrowRight;
+                btnCancel.Visible = true;
+                btnNewCurve.Visible = true;
+                btnPausePlay.Visible = false;
             }
             else
             {
-                this.Size = new System.Drawing.Size(280, 440);
+                this.Size = new System.Drawing.Size(232, 350);
                 btnAddToFile.Visible = false;
+                btnAddAndGo.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
                 lblEnterCurveName.Visible = false;
                 textBox1.Visible = false;
                 lvLines.Visible = false;
-                btnMulti.Text = gStr.gsShow;
-                btnMulti.Image = Properties.Resources.ArrowLeft;
+                btnCancel.Visible = false;
+                btnNewCurve.Visible = false;
+                btnPausePlay.Visible = false;
             }
         }
 
@@ -535,12 +445,92 @@ namespace AgOpenGPS
                 btnListUse.Enabled = false;
             }
         }
-    }
 
-    public class CurveLineSaved
-    {
-        public List<vec3> curvePts = new List<vec3>();
-        public double aveHeading = 3;
-        public string Name = "aa";
+        private string FindDirection(double heading)
+        {
+            if (heading < 0) heading += glm.twoPI;
+
+            heading = glm.toDegrees(heading);
+
+            if (heading > 337.5 || heading < 22.5)
+            {
+                return " North ";
+            }
+            if (heading > 22.5 && heading < 67.5)
+            {
+                return " N_East ";
+            }
+            if (heading > 67.5 && heading < 111.5)
+            {
+                return " East ";
+            }
+            if (heading > 111.5 && heading < 157.5)
+            {
+                return " S_East ";
+            }
+            if (heading > 157.5 && heading < 202.5)
+            {
+                return " South ";
+            }
+            if (heading > 202.5 && heading < 247.5)
+            {
+                return " S_West ";
+            }
+            if (heading > 247.5 && heading < 292.5)
+            {
+                return "West";
+            }
+            if (heading > 292.5 && heading < 337.5)
+            {
+                return " N_West ";
+            }
+            return " Lost ";
+        }
+        
+        private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Width < 300) e.Cancel = true;
+        }
+
+        private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.curve.moveDistance = 0;
+
+            int count = lvLines.SelectedItems.Count;
+
+            if (count > 0)
+            {
+                int idx = lvLines.SelectedIndices[0];
+                mf.curve.numCurveLineSelected = idx + 1;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+
+                mf.curve.refList?.Clear();
+                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                }
+
+                if (mf.curve.refList.Count < 3)
+                {
+                    mf.btnCurve.PerformClick();
+                    mf.curve.ResetCurveLine();
+                    //mf.DisableYouTurnButtons();
+                }
+                else
+                {
+                    mf.curve.isCurveSet = true;
+                    //mf.EnableYouTurnButtons();
+                }
+                //can go back to Mainform without seeing form.
+            }
+
+            //no item selected
+            else
+            {
+                return;
+            }
+
+        }
+
     }
 }

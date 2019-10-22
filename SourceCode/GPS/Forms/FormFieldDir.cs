@@ -191,8 +191,8 @@ namespace AgOpenGPS
                         mf.FileCreateContour();
                         mf.FileCreateElevation();
                         mf.FileSaveFlags();
-                        mf.FileSaveABLine();
-                        mf.FileSaveCurveLine();
+                        //mf.FileSaveABLine();
+                        //mf.FileSaveCurveLine();
                         //mf.FileSaveHeadland();
                     }
                 }

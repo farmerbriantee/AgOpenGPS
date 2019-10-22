@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.2.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.3.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1069,13 +1069,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setDisplay_isLargePanel {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int setDisplay_panelStatus {
             get {
-                return ((bool)(this["setDisplay_isLargePanel"]));
+                return ((int)(this["setDisplay_panelStatus"]));
             }
             set {
-                this["setDisplay_isLargePanel"] = value;
+                this["setDisplay_panelStatus"] = value;
             }
         }
         
@@ -1088,6 +1088,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["isJRK"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int setDisplay_lineWidth {
+            get {
+                return ((int)(this["setDisplay_lineWidth"]));
+            }
+            set {
+                this["setDisplay_lineWidth"] = value;
             }
         }
     }

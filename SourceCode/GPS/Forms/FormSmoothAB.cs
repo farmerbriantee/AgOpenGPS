@@ -63,7 +63,7 @@ namespace AgOpenGPS
             mf.curve.isSmoothWindowOpen = false;
             mf.curve.SaveSmoothAsRefList();
             mf.curve.smooList?.Clear();
-            mf.FileSaveCurveLine();
+            //mf.FileSaveCurveLine();
             Close();
         }
     }

@@ -1006,13 +1006,14 @@ namespace AgOpenGPS
         {
             ////draw the guidance line
             int ptCount = ctList.Count;
-            GL.LineWidth(2);
+            if (ptCount < 2) return;
+            GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.98f, 0.2f, 0.0f);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
 
-            GL.PointSize(4.0f);
+            GL.PointSize(mf.ABLine.lineWidth);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0.7f, 0.7f, 0.25f);
@@ -1020,12 +1021,12 @@ namespace AgOpenGPS
 
             GL.End();
 
-            GL.PointSize(6.0f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Color3(1.0f, 0.95f, 0.095f);
-            GL.Vertex3(rEastCT, rNorthCT, 0.0);
-            GL.End();
-            GL.PointSize(1.0f);
+            //GL.PointSize(6.0f);
+            //GL.Begin(PrimitiveType.Points);
+            //GL.Color3(1.0f, 0.95f, 0.095f);
+            //GL.Vertex3(rEastCT, rNorthCT, 0.0);
+            //GL.End();
+            //GL.PointSize(1.0f);
 
             //GL.Color3(0.98f, 0.98f, 0.50f);
             //GL.Begin(PrimitiveType.LineStrip);
@@ -1080,30 +1081,30 @@ namespace AgOpenGPS
 
             if (mf.isPureDisplayOn && distanceFromCurrentLine != 32000 && !mf.isStanleyUsed)
             {
-                if (ppRadiusCT < 50 && ppRadiusCT > -50)
-                {
-                    const int numSegments = 100;
-                    double theta = glm.twoPI / numSegments;
-                    double c = Math.Cos(theta);//precalculate the sine and cosine
-                    double s = Math.Sin(theta);
-                    double x = ppRadiusCT;//we start at angle = 0
-                    double y = 0;
+                //if (ppRadiusCT < 50 && ppRadiusCT > -50)
+                //{
+                //    const int numSegments = 100;
+                //    double theta = glm.twoPI / numSegments;
+                //    double c = Math.Cos(theta);//precalculate the sine and cosine
+                //    double s = Math.Sin(theta);
+                //    double x = ppRadiusCT;//we start at angle = 0
+                //    double y = 0;
 
-                    GL.LineWidth(1);
-                    GL.Color3(0.795f, 0.230f, 0.7950f);
-                    GL.Begin(PrimitiveType.LineLoop);
-                    for (int ii = 0; ii < numSegments; ii++)
-                    {
-                        //glVertex2f(x + cx, y + cy);//output vertex
-                        GL.Vertex3(x + radiusPointCT.easting, y + radiusPointCT.northing, 0);//output vertex
+                //    GL.LineWidth(1);
+                //    GL.Color3(0.795f, 0.230f, 0.7950f);
+                //    GL.Begin(PrimitiveType.LineLoop);
+                //    for (int ii = 0; ii < numSegments; ii++)
+                //    {
+                //        //glVertex2f(x + cx, y + cy);//output vertex
+                //        GL.Vertex3(x + radiusPointCT.easting, y + radiusPointCT.northing, 0);//output vertex
 
-                        //apply the rotation matrix
-                        double t = x;
-                        x = (c * x) - (s * y);
-                        y = (s * t) + (c * y);
-                    }
-                    GL.End();
-                }
+                //        //apply the rotation matrix
+                //        double t = x;
+                //        x = (c * x) - (s * y);
+                //        y = (s * t) + (c * y);
+                //    }
+                //    GL.End();
+                //}
 
                 //Draw lookahead Point
                 GL.PointSize(6.0f);

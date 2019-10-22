@@ -263,11 +263,14 @@
     <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="setDisplay_isLargePanel" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="setDisplay_panelStatus" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="isJRK" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

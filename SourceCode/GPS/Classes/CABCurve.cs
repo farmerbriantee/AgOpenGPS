@@ -21,7 +21,7 @@ namespace AgOpenGPS
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public bool isSameWay;
-        public double refHeading;
+        public double refHeading, moveDistance;
         public double deltaOfRefAndAveHeadings;
 
         //generated box for finding closest point
@@ -50,6 +50,10 @@ namespace AgOpenGPS
 
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
+
+        public List<CCurveLines> curveArr = new List<CCurveLines>();
+        public int numCurveLines, numCurveLineSelected;
+
 
         public CABCurve(FormGPS _f)
         {
@@ -116,13 +120,10 @@ namespace AgOpenGPS
                 refList.CopyTo(arr);
                 refList.Clear();
 
-                //first point needs last, first, second points
-                vec3 pt3 = arr[0];
-
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    pt3 = arr[i];
+                    vec3 pt3 = arr[i];
                     pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
                     refList.Add(pt3);
@@ -155,8 +156,6 @@ namespace AgOpenGPS
 
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
         {
-            //determine closest point
-            double minDistance = 9999999;
             int ptCount = refList.Count;
             int ptCnt = ptCount - 1;
             if (ptCount < 5) return;
@@ -195,7 +194,8 @@ namespace AgOpenGPS
             double dist = ((pivot.easting - refList[closestRefIndex].easting) * (pivot.easting - refList[closestRefIndex].easting))
                             + ((pivot.northing - refList[closestRefIndex].northing) * (pivot.northing - refList[closestRefIndex].northing));
 
-            minDistance = Math.Sqrt(dist);
+            //determine closest point
+            double minDistance = Math.Sqrt(dist);
 
             //grab the heading at the closest point
             refHeading = refList[closestRefIndex].heading;
@@ -244,7 +244,7 @@ namespace AgOpenGPS
             curveNumber = howManyPathsAway;
             if (distanceFromRefLine < 0) curveNumber = -curveNumber;
             
-            double toolOffset = mf.vehicle.toolOffset;
+            //double toolOffset = mf.vehicle.toolOffset;
 
             //build the current line
             curList?.Clear();
@@ -399,7 +399,6 @@ namespace AgOpenGPS
                     if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
 
                     //abHeading = Math.Atan2(dz, dx);
-                    double abHeading = curList[A].heading;
 
                     //how far from current AB Line is fix
                     distanceFromCurrentLine = ((dz * pivot.easting) - (dx * pivot.northing) + (curList[B].easting
@@ -649,8 +648,6 @@ namespace AgOpenGPS
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
         {
-            bool isValid = false;
-
             var r = new vec2(0, 0);
             if (pt1.northing == pt2.northing && pt1.easting == pt2.easting) { pt1.northing -= 0.00001; }
 
@@ -670,8 +667,7 @@ namespace AgOpenGPS
 
             miny = Math.Min(pt1.easting, pt2.easting);
             maxy = Math.Max(pt1.easting, pt2.easting);
-
-            return isValid = r.northing >= minx && r.northing <= maxx && (r.easting >= miny && r.easting <= maxy);
+            return _ = r.northing >= minx && r.northing <= maxx && (r.easting >= miny && r.easting <= maxy);
         }
 
         //add extensons
@@ -712,7 +708,7 @@ namespace AgOpenGPS
             int ptCount = refList.Count;
             if (refList.Count == 0) return;
 
-            GL.LineWidth(2);
+            GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.30f, 0.692f, 0.60f);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
@@ -733,7 +729,7 @@ namespace AgOpenGPS
                 ptCount = smooList.Count;
                 if (smooList.Count == 0) return;
 
-                GL.LineWidth(2);
+                GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Color3(0.930f, 0.92f, 0.260f);
                 GL.Begin(PrimitiveType.Lines);
                 for (int h = 0; h < ptCount; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
@@ -797,7 +793,7 @@ namespace AgOpenGPS
                     if (mf.yt.isYouTurnTriggered)
                     {
                         GL.Color3(0.95f, 0.95f, 0.25f);
-                        GL.LineWidth(4);
+                        GL.LineWidth(mf.ABLine.lineWidth);
                         ptCount = mf.yt.ytList.Count;
                         if (ptCount > 0)
                         {
@@ -815,4 +811,12 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
         }
     }
+
+    public class CCurveLines
+    {
+        public List<vec3> curvePts = new List<vec3>();
+        public double aveHeading = 3;
+        public string Name = "aa";
+    }
+
 }

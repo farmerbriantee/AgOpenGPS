@@ -1330,6 +1330,7 @@ namespace AgOpenGPS
             mf.AutoYouTurnButtonsReset();
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
+            mf.isBoundAlarming = false;
         }
 
         //something went seriously wrong so reset everything
@@ -1341,6 +1342,7 @@ namespace AgOpenGPS
             mf.AutoYouTurnButtonsReset();
             ResetCreatedYouTurn();
             turnDistanceAdjuster = 0;
+            mf.isBoundAlarming = false;
 
             //reset sequence
             mf.seq.ResetSequenceEventTriggers();
@@ -1817,8 +1819,7 @@ namespace AgOpenGPS
 
                 int ptCount = ytList.Count;
                 if (ptCount < 3) return;
-                GL.LineWidth(4);
-                GL.PointSize(4);
+                GL.PointSize(mf.ABLine.lineWidth);
 
                 if (isYouTurnTriggered)
                 {

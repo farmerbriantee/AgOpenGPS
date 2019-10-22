@@ -11,11 +11,380 @@ namespace AgOpenGPS
     
     public partial class FormGPS
     {
+        //public void FileAppendCurveLine(string curveName)
+        //{
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //    string directoryName = Path.GetDirectoryName(dirField);
+
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
+
+        //    string filename = directoryName + "\\CurveLines.txt";
+
+        //    //use Streamwriter to create and append to existing curveLines file
+        //    using (StreamWriter writer = new StreamWriter(filename, true))
+        //    {
+        //        try
+        //        {
+        //            if (curve.refList.Count > 0)
+        //            {
+        //                if (curveName.Length > 0)
+        //                {
+        //                    curve.curveArr.Add(new CCurveLines());
+        //                    curve.curveArr[curve.curveArr.Count - 1].Name = curveName;
+        //                    curve.curveArr[curve.curveArr.Count - 1].aveHeading = curve.aveLineHeading;
+
+        //                    //write out the ABLine
+        //                    writer.WriteLine(curveName);
+
+        //                    //write out the aveheading
+        //                    writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
+
+        //                    //write out the points of ref line
+        //                    writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
+
+        //                    for (int j = 0; j < curve.refList.Count; j++)
+        //                    {
+        //                        curve.curveArr[curve.curveArr.Count - 1].curvePts.Add(curve.refList[j]);
+        //                        writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                                Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                                    Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
+        //                    var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterUniqueABCurveName);
+        //                    form2.Show();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
+        //                form2.Show();
+        //            }
+        //        }
+        //        catch (Exception er)
+        //        {
+        //            WriteErrorLog("Saving Curve Line" + er.ToString());
+
+        //            return;
+        //        }
+        //    }
+
+        //    if (curve.numCurveLines == 0) curve.numCurveLineSelected = 0;
+        //    if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
+
+        //}
+        //public void FileAppendABLine()
+        //{
+        //    //make sure at least a global blank AB Line file exists
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //    string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
+
+        //    string filename = directoryName + "\\ABLines.txt";
+
+        //    ABLine.numABLines = ABLine.lineArr.Count;
+
+        //    if (ABLine.numABLines > 0)
+        //    {
+        //        int idx = ABLine.numABLines - 1;
+
+        //        using (StreamWriter writer = new StreamWriter(filename, true))
+        //        {
+        //            try
+        //            {
+
+        //                //make it culture invariant
+        //                string line = ABLine.lineArr[idx].Name.Trim()
+        //                    + ',' + (Math.Round(glm.toDegrees(ABLine.lineArr[idx].heading), 8)).ToString(CultureInfo.InvariantCulture)
+        //                    + ',' + (Math.Round(ABLine.lineArr[idx].origin.easting, 3)).ToString(CultureInfo.InvariantCulture)
+        //                    + ',' + (Math.Round(ABLine.lineArr[idx].origin.northing, 3)).ToString(CultureInfo.InvariantCulture);
+
+        //                //write out to file
+        //                writer.WriteLine(line);
+        //            }
+        //            catch (Exception er)
+        //            {
+        //                Console.WriteLine(er.Message + "\n Cannot write to file.");
+        //                WriteErrorLog("Saving ABLines Draw append" + er.ToString());
+        //                return;
+        //            }
+        //        }
+        //    }
+
+        //    if (ABLine.numABLines == 0) ABLine.numABLines = 0;
+        //    if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = ABLine.numABLines;
+        //}
+
         //list of the list of patch data individual triangles for field sections
         public List<List<vec2>> patchSaveList = new List<List<vec2>>();
 
         //list of the list of patch data individual triangles for contour tracking
         public List<List<vec3>> contourSaveList = new List<List<vec3>>();
+
+        public void FileSaveCurveLines()
+        {
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\CurveLines.txt";
+
+            int cnt = curve.curveArr.Count;
+            curve.numCurveLines = cnt;
+
+            using (StreamWriter writer = new StreamWriter(filename, false))
+            {
+                try
+                {
+                    if (cnt > 0)
+                    {
+                        writer.WriteLine("$CurveLines");
+
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            //write out the Name
+                            writer.WriteLine(curve.curveArr[i].Name);
+
+                            //write out the aveheading
+                            writer.WriteLine(curve.curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
+
+                            //write out the points of ref line
+                            int cnt2 = curve.curveArr[i].curvePts.Count;
+
+                            writer.WriteLine(cnt2.ToString(CultureInfo.InvariantCulture));
+                            if (curve.curveArr[i].curvePts.Count > 0)
+                            {
+                                for (int j = 0; j < cnt2; j++)
+                                    writer.WriteLine(Math.Round(curve.curveArr[i].curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                        Math.Round(curve.curveArr[i].curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                            Math.Round(curve.curveArr[i].curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        writer.WriteLine("$CurveLines");
+                    }
+                }
+                catch (Exception er)
+                {
+                    WriteErrorLog("Saving Curve Line" + er.ToString());
+
+                    return;
+                }
+            }
+
+            if (curve.numCurveLines == 0) curve.numCurveLineSelected = 0;
+            if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
+
+        }
+
+        public void FileLoadCurveLines()
+        {
+            curve.curveArr?.Clear();
+            curve.numCurveLines = 0;
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\CurveLines.txt";
+
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                    writer.WriteLine("$CurveLines");
+                }
+            }
+
+            //get the file of previous AB Lines
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            if (!File.Exists(filename))
+            {
+                TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABCurveFile);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(filename))
+                {
+                    try
+                    {
+                        string line;
+
+                        //read header $CurveLine
+                        line = reader.ReadLine();
+
+                        while (!reader.EndOfStream)
+                        {
+                            curve.curveArr.Add(new CCurveLines());
+
+                            //read header $CurveLine
+                            curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
+                            // get the average heading
+                            line = reader.ReadLine();
+                            curve.curveArr[curve.numCurveLines].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            int numPoints = int.Parse(line);
+
+                            if (numPoints > 1)
+                            {
+                                curve.curveArr[curve.numCurveLines].curvePts?.Clear();
+
+                                for (int i = 0; i < numPoints; i++)
+                                {
+                                    line = reader.ReadLine();
+                                    string[] words = line.Split(',');
+                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture),
+                                        double.Parse(words[2], CultureInfo.InvariantCulture));
+                                    curve.curveArr[curve.numCurveLines].curvePts.Add(vecPt);
+                                }
+                                curve.numCurveLines++;
+                            }
+                            else
+                            {
+                                if (curve.curveArr.Count > 0)
+                                {
+                                    curve.curveArr.RemoveAt(curve.numCurveLines);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception er)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show();
+                        WriteErrorLog("Load Curve Line" + er.ToString());
+                    }
+                }
+            }
+
+            if (curve.numCurveLines == 0) curve.numCurveLineSelected = 0;
+            if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
+        }
+
+        public void FileSaveABLines()
+        {
+            //make sure at least a global blank AB Line file exists
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            //get the file of previous AB Lines
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\ABLines.txt";
+            int cnt = ABLine.lineArr.Count;
+
+            using (StreamWriter writer = new StreamWriter(filename, false))
+            {
+                if (cnt > 0)
+                {
+                    foreach (var item in ABLine.lineArr)
+                    {
+                        //make it culture invariant
+                        string line = item.Name
+                            + ',' + (Math.Round(glm.toDegrees(item.heading), 8)).ToString(CultureInfo.InvariantCulture)
+                            + ',' + (Math.Round(item.origin.easting, 3)).ToString(CultureInfo.InvariantCulture)
+                            + ',' + (Math.Round(item.origin.northing, 3)).ToString(CultureInfo.InvariantCulture);
+
+                        //write out to file
+                        writer.WriteLine(line);
+                    }
+                }
+            }
+
+            if (ABLine.numABLines == 0) ABLine.numABLineSelected = 0;
+            if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = ABLine.numABLines;
+        }
+
+        public void FileLoadABLines()
+        {
+            //make sure at least a global blank AB Line file exists
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\ABLines.txt";
+
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                }
+            }
+
+            if (!File.Exists(filename))
+            {
+                TimedMessageBox(2000, gStr.gsFileError, gStr.gsMissingABLinesFile);
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(filename))
+                {
+                    try
+                    {
+                        string line;
+                        ABLine.numABLines = 0;
+                        ABLine.numABLineSelected = 0;
+                        ABLine.lineArr?.Clear();
+
+                        //read all the lines
+                        for (int i = 0; !reader.EndOfStream; i++)
+                        {
+
+                            line = reader.ReadLine();
+                            string[] words = line.Split(',');
+
+                            if (words.Length != 4) break;
+
+                            ABLine.lineArr.Add(new CABLines());
+
+                            ABLine.lineArr[i].Name = words[0];
+
+
+                            ABLine.lineArr[i].heading = glm.toRadians(double.Parse(words[1], CultureInfo.InvariantCulture));
+                            ABLine.lineArr[i].origin.easting = double.Parse(words[2], CultureInfo.InvariantCulture);
+                            ABLine.lineArr[i].origin.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
+
+                            ABLine.lineArr[i].ref1.easting = ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * 2000.0);
+                            ABLine.lineArr[i].ref1.northing = ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 2000.0);
+
+                            ABLine.lineArr[i].ref2.easting = ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * 2000.0);
+                            ABLine.lineArr[i].ref2.northing = ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * 2000.0);
+                            ABLine.numABLines++;
+                        }
+                    }
+                    catch (Exception er)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, "Please delete it!!!");
+                        form.Show();
+                        WriteErrorLog("FieldOpen, Loading ABLine, Corrupt ABLine File" + er);
+                    }
+                }
+            }
+
+            if (ABLine.numABLines == 0) ABLine.numABLineSelected = 0;
+            if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = ABLine.numABLines;
+
+        }
 
         //function that save vehicle and section settings
         public void FileSaveVehicle()
@@ -705,11 +1074,182 @@ namespace AgOpenGPS
                     WriteErrorLog("While Opening Field" + e.ToString());
 
                     var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+
                     form.Show();
                     JobClose();
                     return;
                 }
             }
+
+            // ABLine -------------------------------------------------------------------------------------------------
+            FileLoadABLines();
+
+            if (ABLine.lineArr.Count > 0)
+            {
+                ABLine.numABLineSelected = 1;
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
+                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.SetABLineByHeading();
+                ABLine.isABLineSet = false;
+                ABLine.isABLineLoaded = true;
+            }
+            else
+            {
+                ABLine.isABLineSet = false;
+                ABLine.isABLineLoaded = false;
+            }
+
+
+            //CurveLines
+            FileLoadCurveLines();
+            if (curve.curveArr.Count > 0)
+            {
+                curve.numCurveLineSelected = 1;
+                int idx = curve.numCurveLineSelected - 1;
+                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+
+                curve.refList?.Clear();
+                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                }
+                curve.isCurveSet = true;
+            }
+            else
+            {
+                curve.isCurveSet = false;
+                curve.refList?.Clear();
+            }
+
+            ////Either exit or update running save
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
+            //if (!File.Exists(fileAndDirectory))
+            //{
+            //    var form = new FormTimedMessage(2000, gStr.gsMissingABLinesFile, gStr.gsButFieldIsLoaded);
+            //    form.Show();
+            //}
+
+            //else
+            //{
+            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
+            //    {
+            //        try
+            //        {
+            //            ABLine.isABLineLoaded = false;
+
+            //            //read header
+            //            line = reader.ReadLine();
+
+            //            line = reader.ReadLine();
+            //            bool isAB = bool.Parse(line);
+
+            //            if (isAB)
+            //            {
+            //                //Heading  , ,refPoint2x,z                    
+            //                line = reader.ReadLine();
+            //                ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+            //                //refPoint1x,z
+            //                line = reader.ReadLine();
+            //                string[] words = line.Split(',');
+            //                ABLine.refPoint1.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+            //                ABLine.refPoint1.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+            //                //refPoint2x,z
+            //                line = reader.ReadLine();
+            //                words = line.Split(',');
+            //                ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+            //                ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+            //                //Tramline
+            //                line = reader.ReadLine();
+            //                words = line.Split(',');
+            //                ABLine.tramPassEvery = int.Parse(words[0]);
+            //                ABLine.passBasedOn = int.Parse(words[1]);
+
+            //                ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 4000.0;
+            //                ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 4000.0;
+
+            //                ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 4000.0;
+            //                ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 4000.0;
+
+            //                ABLine.isABLineLoaded = true;
+
+            //            }
+
+            //            //clean up from last field maybe
+            //            ABLine.isABLineSet = false;
+            //            ABLine.isBtnABLineOn = false;
+            //            DisableYouTurnButtons();
+            //            btnContourPriority.Enabled = true;
+            //            btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
+            //        }
+
+            //        catch (Exception e)
+            //        {
+            //            var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+            //            form.Show();
+            //            WriteErrorLog("Load AB Line" + e.ToString());
+
+            //        }
+            //    }
+            //}
+            //// CurveLine  -------------------------------------------------------------------------------------------------
+
+            ////Either exit or update running save
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\CurveLine.txt";
+            //if (!File.Exists(fileAndDirectory))
+            //{
+            //    var form = new FormTimedMessage(2000, gStr.gsMissingABCurveFile, gStr.gsButFieldIsLoaded);
+            //    form.Show();
+            //}
+
+            //else
+            //{
+            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
+            //    {
+            //        try
+            //        {
+            //            //read header
+            //            line = reader.ReadLine();
+
+            //            // get the average heading
+            //            line = reader.ReadLine();
+            //            curve.aveLineHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+
+            //            line = reader.ReadLine();
+            //            int numPoints = int.Parse(line);
+
+            //            if (numPoints > 0)
+            //            {
+            //                curve.refList?.Clear();
+
+            //                //load the line
+            //                for (int i = 0; i < numPoints; i++)
+            //                {
+            //                    line = reader.ReadLine();
+            //                    string[] words = line.Split(',');
+            //                    vec3 vecPt = new vec3(
+            //                    double.Parse(words[0], CultureInfo.InvariantCulture),
+            //                    double.Parse(words[1], CultureInfo.InvariantCulture),
+            //                    double.Parse(words[2], CultureInfo.InvariantCulture));
+
+            //                    curve.refList.Add(vecPt);
+            //                }
+            //            }
+            //        }
+
+            //        catch (Exception e)
+            //        {
+            //            var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+            //            form.Show();
+            //            WriteErrorLog("Load Boundary Line" + e.ToString());
+
+            //        }
+            //    }
+            //}
 
             //section patches
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
@@ -887,82 +1427,6 @@ namespace AgOpenGPS
                 }
             }
 
-
-            // ABLine -------------------------------------------------------------------------------------------------
-
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(2000, gStr.gsMissingABLinesFile, gStr.gsButFieldIsLoaded);
-                form.Show();
-            }
-
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        ABLine.isABLineLoaded = false;
-
-                        //read header
-                        line = reader.ReadLine();
-
-                        line = reader.ReadLine();
-                        bool isAB = bool.Parse(line);
-
-                        if (isAB)
-                        {
-                            //Heading  , ,refPoint2x,z                    
-                            line = reader.ReadLine();
-                            ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-                            //refPoint1x,z
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            ABLine.refPoint1.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                            ABLine.refPoint1.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            //refPoint2x,z
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                            ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            //Tramline
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            ABLine.tramPassEvery = int.Parse(words[0]);
-                            ABLine.passBasedOn = int.Parse(words[1]);
-
-                            ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 4000.0;
-                            ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 4000.0;
-
-                            ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 4000.0;
-                            ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 4000.0;
-
-                            ABLine.isABLineLoaded = true;
-
-                        }
-
-                        //clean up from last field maybe
-                        ABLine.isABLineSet = false;
-                        ABLine.isBtnABLineOn = false;
-                        DisableYouTurnButtons();
-                        btnContourPriority.Enabled = true;
-                        btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                        form.Show();
-                        WriteErrorLog("Load AB Line" + e.ToString());
-
-                    }
-                }
-            }
 
             //Boundaries
             //Either exit or update running save
@@ -1150,61 +1614,7 @@ namespace AgOpenGPS
                 }
             }
 
-            // CurveLine  -------------------------------------------------------------------------------------------------
 
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\CurveLine.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(2000, gStr.gsMissingABCurveFile, gStr.gsButFieldIsLoaded);
-                form.Show();
-            }
-
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-
-                        // get the average heading
-                        line = reader.ReadLine();
-                        curve.aveLineHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-
-                        line = reader.ReadLine();
-                        int numPoints = int.Parse(line);
-
-                        if (numPoints > 0)
-                        {
-                            curve.refList?.Clear();
-
-                            //load the line
-                            for (int i = 0; i < numPoints; i++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                vec3 vecPt = new vec3(
-                                double.Parse(words[0], CultureInfo.InvariantCulture),
-                                double.Parse(words[1], CultureInfo.InvariantCulture),
-                                double.Parse(words[2], CultureInfo.InvariantCulture));
-
-                                curve.refList.Add(vecPt);
-                            }
-                        }
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                        form.Show();
-                        WriteErrorLog("Load Boundary Line" + e.ToString());
-
-                    }
-                }
-            }
         }//end of open file
 
         //creates the field file when starting new field
@@ -1578,89 +1988,89 @@ namespace AgOpenGPS
         }
 
         //save all the flag markers
-        public void FileSaveABLine()
-        {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
+        //public void FileSaveABLine()
+        //{
+        //    //Saturday, February 11, 2017  -->  7:26:52 AM
 
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-            //use Streamwriter to create and overwrite existing ABLine file
-            using (StreamWriter writer = new StreamWriter(dirField + "ABLine.txt"))
-            {
-                try
-                {
-                    //write out the ABLine
-                    writer.WriteLine("$ABLine");
+        //    //use Streamwriter to create and overwrite existing ABLine file
+        //    using (StreamWriter writer = new StreamWriter(dirField + "ABLine.txt"))
+        //    {
+        //        try
+        //        {
+        //            //write out the ABLine
+        //            writer.WriteLine("$ABLine");
 
-                    //true or false if ABLine is set
-                    if (ABLine.isABLineSet) writer.WriteLine(true);
-                    else writer.WriteLine(false);
+        //            //true or false if ABLine is set
+        //            if (ABLine.isABLineSet) writer.WriteLine(true);
+        //            else writer.WriteLine(false);
 
-                    writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
-                }
+        //            writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
+        //        }
 
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message + "\n Cannot write to file.");
-                    WriteErrorLog("Saving AB Line" + e.ToString());
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.Message + "\n Cannot write to file.");
+        //            WriteErrorLog("Saving AB Line" + e.ToString());
 
-                    return;
-                }
+        //            return;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         //save all the flag markers
-        public void FileSaveCurveLine()
-        {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
+        //public void FileSaveCurveLine()
+        //{
+        //    //Saturday, February 11, 2017  -->  7:26:52 AM
 
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-            //use Streamwriter to create and overwrite existing ABLine file
-            using (StreamWriter writer = new StreamWriter(dirField + "CurveLine.txt"))
-            {
-                try
-                {
-                    //write out the ABLine
-                    writer.WriteLine("$CurveLine");
+        //    //use Streamwriter to create and overwrite existing ABLine file
+        //    using (StreamWriter writer = new StreamWriter(dirField + "CurveLine.txt"))
+        //    {
+        //        try
+        //        {
+        //            //write out the ABLine
+        //            writer.WriteLine("$CurveLine");
 
-                    //write out the aveheading
-                    writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
+        //            //write out the aveheading
+        //            writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
 
-                    //write out the points of ref line
-                    writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
-                    if (curve.refList.Count > 0)
-                    {
-                        for (int j = 0; j < curve.refList.Count; j++)
-                            writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
-                    }
-                }
+        //            //write out the points of ref line
+        //            writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
+        //            if (curve.refList.Count > 0)
+        //            {
+        //                for (int j = 0; j < curve.refList.Count; j++)
+        //                    writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                        Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                            Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+        //            }
+        //        }
 
-                catch (Exception e)
-                {
-                    WriteErrorLog("Saving Curve Line" + e.ToString());
+        //        catch (Exception e)
+        //        {
+        //            WriteErrorLog("Saving Curve Line" + e.ToString());
 
-                    return;
-                }
+        //            return;
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         //save nmea sentences
         public void FileSaveNMEA()

@@ -4,10 +4,12 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Media;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
@@ -217,6 +219,12 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
+        /// <summary>
+        /// Sound for approaching boundary
+        /// </summary>
+        public SoundPlayer sndBoundaryAlarm;
+
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -228,7 +236,7 @@ namespace AgOpenGPS
             btnManualAutoDrive.Text = gStr.gsAbout;
 
             //file menu
-            fileToolStripMenuItem.Text = gStr.gsFile;
+            //fileToolStripMenuItem.Text = gStr.gsFile;
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             loadVehicleToolStripMenuItem.Text = gStr.gsLoadVehicle;
@@ -239,7 +247,7 @@ namespace AgOpenGPS
             menustripLanguage.Text = gStr.gsLanguage;
                 
             //Display Menu
-            settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            //settingsToolStripMenuItem.Text = gStr.gsDisplay;
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem.Text = gStr.gsColors;
             toolStripUnitsMenu.Text = gStr.gsUnits;
@@ -400,10 +408,6 @@ namespace AgOpenGPS
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-            //tooltips of controls
-            ToolTip ToolTip1 = new ToolTip();
-            ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
-
             this.MouseWheel += ZoomByMouseWheel;
 
             if (Settings.Default.setF_workingDirectory == "Default")
@@ -434,6 +438,17 @@ namespace AgOpenGPS
                     Settings.Default.setF_CurrentDir = "";
                     Settings.Default.Save();
                 }
+            }
+
+            string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            string wave = Path.Combine(directoryName, "Dependencies\\Audio", "Boundary.Wav");
+            if (File.Exists(wave))
+            {
+                 sndBoundaryAlarm = new SoundPlayer(wave);
+            }
+            else
+            {
+                 sndBoundaryAlarm = new SoundPlayer(Properties.Resources.Alarm10);
             }
 
             //grab the current vehicle filename - make sure it exists
@@ -631,6 +646,8 @@ namespace AgOpenGPS
         // Procedures and Functions ---------------------------------------
         public uint LoadGLTextures()
         {
+            //sndRedAlert.Play();
+
             GL.Enable(EnableCap.Texture2D);
             try
             {
@@ -839,21 +856,20 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
-
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
-            curve.isCurveSet = false;
-            DisableYouTurnButtons();
+            //curve.isCurveSet = false;
+            //DisableYouTurnButtons();
             btnContourPriority.Enabled = false;
-            curve.isCurveBtnOn = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
+            //curve.isCurveBtnOn = false;
+            //btnCurve.Image = Properties.Resources.CurveOff;
 
-            ABLine.isABLineSet = false;
+            //ABLine.isABLineSet = false;
             ABLine.tramPassEvery = 0;
             ABLine.passBasedOn = 0;
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            ABLine.isBtnABLineOn = false;
+            //btnABLine.Image = Properties.Resources.ABLineOff;
+            //ABLine.isBtnABLineOn = false;
 
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
@@ -864,7 +880,13 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK)
                 {
                 }
+                ABLine.moveDistance = 0;
+                curve.moveDistance = 0;
             }
+
+            if (curve.isCurveBtnOn) btnCycleLines.Text = "Cu-" + curve.numCurveLineSelected;
+            if (ABLine.isBtnABLineOn) btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
+
         }
 
         public void KeypadToNUD(NumericUpDown sender)
@@ -1037,6 +1059,7 @@ namespace AgOpenGPS
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
             btnMakeLinesFromBoundary.Enabled = true;
+            btnCycleLines.Enabled = true;
 
 
             ABLine.abHeading = 0.00;
@@ -1155,6 +1178,7 @@ namespace AgOpenGPS
             ct.isContourOn = false;
 
             btnMakeLinesFromBoundary.Enabled = false;
+            btnCycleLines.Enabled = false;
 
             //AutoSteer
             btnAutoSteer.Enabled = false;

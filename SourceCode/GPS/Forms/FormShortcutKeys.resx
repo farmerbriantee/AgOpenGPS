@@ -117,4 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Auto Section On/Off
+Manual On/Off
+
+Auto Steer On/Off
+Auto Steer Config
+Auto Steer Chart
+
+Field Open/Close
+Snap
+Flag Mark
+
+UTurn Settings
+Vehicle Settings
+Section Auto On/Off
+Manual On/Off
+
+Sim Controls:
+Speed Up
+Slow Down
+Turn Left
+Turn Right
+Stop
+Go Straight
+Reset Sim</value>
+  </data>
 </root>

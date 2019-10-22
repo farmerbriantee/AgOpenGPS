@@ -278,15 +278,13 @@ namespace AgOpenGPS
                         GL.Disable(EnableCap.Texture2D);
                     }
                 }
-
-
-
+                               
                 if (isLightbarOn)
                 //{ }
                 //else
                 {
-                    double set = guidanceLineSteerAngle * 0.01 * (100/vehicle.maxSteerAngle);
-                    double actual = actualSteerAngleDisp * 0.01 * (100 / vehicle.maxSteerAngle);
+                    double set = guidanceLineSteerAngle * 0.01 * (50/vehicle.maxSteerAngle);
+                    double actual = actualSteerAngleDisp * 0.01 * (50 / vehicle.maxSteerAngle);
                     double hiit = 0;
 
                     GL.PushMatrix();
@@ -298,7 +296,7 @@ namespace AgOpenGPS
 
                     GL.LineWidth(1);
                     GL.Color3(0.54f, 0.54f, 0.54f);
-                    double wiid = 100;
+                    double wiid = 50;
 
                     GL.Begin(PrimitiveType.LineStrip);
                     GL.Vertex2(-wiid, 25);
@@ -309,7 +307,6 @@ namespace AgOpenGPS
 
                     GL.Translate(0, 10, 0);
 
-                    //if (!simulatorOnToolStripMenuItem.Checked)
                     {
                         if (actualSteerAngleDisp > 0)
                         {
@@ -318,8 +315,8 @@ namespace AgOpenGPS
 
                             GL.Color3(0.0f, 0.75930f, 0.0f);
                             GL.Vertex2(0, hiit);
-                            GL.Vertex2(actual, hiit + 15);
-                            GL.Vertex2(0, hiit + 30);
+                            GL.Vertex2(actual, hiit + 8);
+                            GL.Vertex2(0, hiit + 16);
                             GL.Vertex2(0, hiit);
 
                             GL.End();
@@ -332,8 +329,8 @@ namespace AgOpenGPS
 
                             GL.Color3(0.75930f, 0.0f, 0.0f);
                             GL.Vertex2(-0, hiit);
-                            GL.Vertex2(actual, hiit + 15);
-                            GL.Vertex2(-0, hiit + 30);
+                            GL.Vertex2(actual, hiit + 8);
+                            GL.Vertex2(-0, hiit + 16);
                             GL.Vertex2(-0, hiit);
 
                             GL.End();
@@ -347,8 +344,8 @@ namespace AgOpenGPS
 
                         GL.Color3(0.75930f, 0.75930f, 0.0f);
                         GL.Vertex2(0, hiit);
-                        GL.Vertex2(set, hiit + 15);
-                        GL.Vertex2(0, hiit + 30);
+                        GL.Vertex2(set, hiit + 8);
+                        GL.Vertex2(0, hiit + 16);
                         GL.Vertex2(0, hiit);
 
                         GL.End();
@@ -360,8 +357,8 @@ namespace AgOpenGPS
 
                         GL.Color3(0.75930f, 0.75930f, 0.0f);
                         GL.Vertex2(-0, hiit);
-                        GL.Vertex2(set, hiit + 15);
-                        GL.Vertex2(-0, hiit + 30);
+                        GL.Vertex2(set, hiit + 8);
+                        GL.Vertex2(-0, hiit + 16);
                         GL.Vertex2(-0, hiit);
 
                         GL.End();
@@ -370,10 +367,7 @@ namespace AgOpenGPS
                     //return back
                     GL.PopMatrix();
                     GL.LineWidth(1);
-
                 }
-
-
 
                 //LightBar if AB Line is set and turned on or contour
                 if (isLightbarOn)
@@ -998,7 +992,7 @@ namespace AgOpenGPS
             } //end of section patches
 
             //draw the ABLine
-            if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+            if ((ABLine.isABLineSet | ABLine.isABLineBeingSet) && ABLine.isBtnABLineOn)
             {
                 //Draw reference AB line
                 GL.LineWidth(1);
@@ -1014,20 +1008,20 @@ namespace AgOpenGPS
 
                 //raw current AB Line
                 GL.Begin(PrimitiveType.Lines);
-                GL.Color3(0.9f, 0.0f, 0.0f);
+                GL.Color3(0.9f, 0.20f, 0.0f);
                 GL.Vertex3(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
                 GL.Vertex3(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
                 GL.End();
             }
 
             //draw curve if there is one
-            if (curve.isCurveSet)
+            if (curve.isCurveSet && curve.isCurveBtnOn)
             {
                 int ptC = curve.curList.Count;
                 if (ptC > 0)
                 {
                     GL.LineWidth(2);
-                    GL.Color3(0.95f, 0.2f, 0.0f);
+                    GL.Color3(0.25f, 0.92f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptC; h++) GL.Vertex3(curve.curList[h].easting, curve.curList[h].northing, 0);
                     GL.End();

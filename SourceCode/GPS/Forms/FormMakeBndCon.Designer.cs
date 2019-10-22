@@ -56,6 +56,7 @@
             this.nudPass.Name = "nudPass";
             this.nudPass.Size = new System.Drawing.Size(120, 85);
             this.nudPass.TabIndex = 5;
+            this.nudPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudPass.Value = new decimal(new int[] {
             1,
             0,
@@ -93,15 +94,21 @@
             // 
             this.nudSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSpacing.Location = new System.Drawing.Point(37, 246);
+            this.nudSpacing.Location = new System.Drawing.Point(30, 246);
+            this.nudSpacing.Maximum = new decimal(new int[] {
+            4000,
+            0,
+            0,
+            0});
             this.nudSpacing.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.nudSpacing.Name = "nudSpacing";
-            this.nudSpacing.Size = new System.Drawing.Size(120, 85);
+            this.nudSpacing.Size = new System.Drawing.Size(166, 85);
             this.nudSpacing.TabIndex = 252;
+            this.nudSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSpacing.Value = new decimal(new int[] {
             20,
             0,

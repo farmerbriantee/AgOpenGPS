@@ -134,12 +134,6 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
-    <Compile Include="Forms\FormABPick.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormABPick.Designer.cs">
-      <DependentUpon>FormABPick.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -389,9 +383,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Forms\FormABPick.resx">
-      <DependentUpon>FormABPick.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>
@@ -559,6 +550,19 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="Resources\Alarm10.wav" />
+    <None Include="btnImages\ABLineCycle.png" />
+    <None Include="btnImages\displayMenu.png" />
+    <None Include="btnImages\fileMenu.png" />
+    <None Include="btnImages\ABLineTurnOff.png" />
+    <None Include="btnImages\CurveTurnOff.png" />
+    <None Include="btnImages\SwitchOff.png" />
+    <None Include="btnImages\SwitchOn.png" />
+    <None Include="btnImages\AddNew.png" />
+    <None Include="btnImages\FileNewAndGo.png" />
+    <Content Include="Dependencies\Audio\Boundary.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dependencies\YouTurnShapes\SemiCircle.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -718,9 +722,7 @@
     </Content>
     <Content Include="ALicense.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -17,7 +18,11 @@ namespace AgOpenGPS
         //pure pursuit values
         public vec2 goalPointAB = new vec2(0, 0);
 
-        public double howManyPathsAway;
+        //List of all available ABLines
+        public List<CABLines> lineArr = new List<CABLines>();
+        public int numABLines, numABLineSelected;
+
+        public double howManyPathsAway, moveDistance;
         public bool isABLineBeingSet;
         public bool isABLineSet, isABLineLoaded;
         public bool isABSameAsVehicleHeading = true;
@@ -41,6 +46,7 @@ namespace AgOpenGPS
         public vec2 refPoint2 = new vec2(0.3, 0.3);
         public double snapDistance;
         public double steerAngleAB;
+        public float lineWidth;
 
         //tramlines
         //Color tramColor = Color.YellowGreen;
@@ -52,6 +58,7 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
             isOnTramLine = true;
+            lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
         }
 
         public void DeleteAB()
@@ -100,7 +107,7 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.LineStipple);
 
                 //draw current AB Line
-                GL.LineWidth(3);
+                GL.LineWidth(lineWidth);
                 GL.Begin(PrimitiveType.Lines);
                 GL.Color3(0.9f, 0.0f, 0.0f);
 
@@ -138,7 +145,7 @@ namespace AgOpenGPS
                     double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
                     GL.Color3(0.0f, 0.90f, 0.50f);
-                    GL.LineWidth(1);
+                    GL.LineWidth(1*Properties.Settings.Default.setDisplay_lineWidth/10);
                     GL.Begin(PrimitiveType.Lines);
 
                     //precalculate sin cos
@@ -210,32 +217,32 @@ namespace AgOpenGPS
                 if (mf.isPureDisplayOn && !mf.isStanleyUsed)
                 {
                     //draw the guidance circle
-                    const int numSegments = 100;
-                    {
-                        if (ppRadiusAB < 50 && ppRadiusAB > -50 && mf.isPureDisplayOn)
-                        {
-                            GL.Color3(0.95f, 0.30f, 0.950f);
-                            double theta = glm.twoPI / numSegments;
-                            double c = Math.Cos(theta);//precalculate the sine and cosine
-                            double s = Math.Sin(theta);
+                    //const int numSegments = 100;
+                    //{
+                    //    if (ppRadiusAB < 50 && ppRadiusAB > -50 && mf.isPureDisplayOn)
+                    //    {
+                    //        GL.Color3(0.95f, 0.30f, 0.950f);
+                    //        double theta = glm.twoPI / numSegments;
+                    //        double c = Math.Cos(theta);//precalculate the sine and cosine
+                    //        double s = Math.Sin(theta);
 
-                            double x = ppRadiusAB;//we start at angle = 0
-                            double y = 0;
-                            GL.LineWidth(1);
-                            GL.Begin(PrimitiveType.LineLoop);
-                            for (int ii = 0; ii < numSegments; ii++)
-                            {
-                                //output vertex
-                                GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
+                    //        double x = ppRadiusAB;//we start at angle = 0
+                    //        double y = 0;
+                    //        GL.LineWidth(1);
+                    //        GL.Begin(PrimitiveType.LineLoop);
+                    //        for (int ii = 0; ii < numSegments; ii++)
+                    //        {
+                    //            //output vertex
+                    //            GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
 
-                                //apply the rotation matrix
-                                double t = x;
-                                x = (c * x) - (s * y);
-                                y = (s * t) + (c * y);
-                            }
-                            GL.End();
-                        }
-                    }
+                    //            //apply the rotation matrix
+                    //            double t = x;
+                    //            x = (c * x) - (s * y);
+                    //            y = (s * t) + (c * y);
+                    //        }
+                    //        GL.End();
+                    //    }
+                    //}
 
                     //Draw lookahead Point
                     GL.PointSize(8.0f);
@@ -252,7 +259,7 @@ namespace AgOpenGPS
                 if (mf.yt.isRecordingCustomYouTurn)
                 {
                     GL.Color3(0.05f, 0.05f, 0.95f);
-                    GL.PointSize(4.0f);
+                    GL.PointSize(2.0f);
                     int ptCount = mf.yt.youFileList.Count;
                     if (ptCount > 1)
                     {
@@ -649,4 +656,14 @@ namespace AgOpenGPS
             refPoint2.northing = refABLineP2.northing;
         }
     }
+
+        public class CABLines
+    {
+        public vec2 ref1 = new vec2();
+        public vec2 ref2 = new vec2();
+        public vec2 origin = new vec2();
+        public double heading = 0;
+        public string Name = "aa";
+    }
+
 }

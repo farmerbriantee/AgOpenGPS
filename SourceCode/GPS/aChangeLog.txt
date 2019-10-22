@@ -3,6 +3,12 @@
 * Source contains all packages for release to be created
 * Ready to start intial releases.
 * Add tool width to Touch lines.
+* Single curves and AB Lines no longer saved in separate file
+* CurveLines and ABLines text files contain all lines and are all loaded into lists.
+* Added no panel option
+* Page thru all lines or curves depending on guidance mode
+* Made uturn controls much smaller. 
+* Added distance alarm at 20 meters before uturn.
 
 v3.0 October
 

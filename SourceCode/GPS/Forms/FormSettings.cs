@@ -119,6 +119,7 @@ namespace AgOpenGPS
             nudTankHitch.Controls[0].Enabled = false;
             nudTurnOffDelay.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
+            nudLineWidth.Controls[0].Enabled = false;
 
             if (mf.isMetric)
             {
@@ -204,8 +205,6 @@ namespace AgOpenGPS
 
             numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
             temp = numberOfSections;
-            //if (nudNumberOfSections.CheckValue(ref temp)) nudNumberOfSections.BackColor = System.Drawing.Color.OrangeRed;
-            //numberOfSections = (int)temp;
 
             cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
             temp = (decimal)cutoffSpeed;
@@ -338,11 +337,6 @@ namespace AgOpenGPS
             nudLookAhead.Value = (decimal)(toolLookAhead);
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
 
-            //grab number of sections
-            //nudNumberOfSections.ValueChanged -= nudNumberOfSections_ValueChanged;
-            //nudNumberOfSections.Value = numberOfSections;
-            //nudNumberOfSections.ValueChanged += nudNumberOfSections_ValueChanged;
-
             cboxNumSections.Text = numberOfSections.ToString();
 
             //calc the 8 section widths based on settings.settings also meters to inches
@@ -388,6 +382,8 @@ namespace AgOpenGPS
             nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
             nudCutoffSpeed.Value = (decimal)cutoffSpeed;
             nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
+
+            nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;                
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -513,6 +509,9 @@ namespace AgOpenGPS
             //Slow speed cutoff
             Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
             mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
+
+            Properties.Settings.Default.setDisplay_lineWidth = (int)(nudLineWidth.Value);
+            mf.ABLine.lineWidth = (float)(nudLineWidth.Value);
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -715,6 +714,12 @@ namespace AgOpenGPS
         }
 
         private void NudLightbarCmPerPixel_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void nudLineWidth_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();
