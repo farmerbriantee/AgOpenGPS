@@ -13,6 +13,12 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+
+            label27.Text = gStr.gsNorth;
+            label2.Text = gStr.gsWest;
+            label3.Text = gStr.gsEast;
+            label4.Text = gStr.gsSouth;
+            this.Text = gStr.gsShiftGPSPosition;
         }
 
         private void FormShiftPos_Load(object sender, EventArgs e)

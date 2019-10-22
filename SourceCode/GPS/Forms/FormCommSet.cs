@@ -221,7 +221,7 @@ namespace AgOpenGPS
         {
             if (Properties.Settings.Default.setMenu_isSimulatorOn)
             {
-                MessageBox.Show("Go to Top Menu > Display > Touch -Simulator- \n\r Application Will Restart", "Simulator On, Must be OFF !", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(gStr.gsGotoTopMenuDisplayTouchSimulator + "\n\r" + gStr.gsApplicationWillRestart, gStr.gsSimulatorOnMustbeOFF, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {

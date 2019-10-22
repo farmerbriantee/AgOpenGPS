@@ -16,6 +16,21 @@ namespace AgOpenGPS
             //get copy of the calling main form
             mf = callingForm as FormGPS;
             InitializeComponent();
+            groupBox4.Text = gStr.gsAgOpenGPSServer;
+            label11.Text = gStr.gsAllmodulessendto;
+            tboxHostName.Text = gStr.gsHostName;
+            label14.Text = gStr.gsHost;
+            label1.Text = gStr.gsThisComputer;
+            label9.Text = gStr.gsPort;
+            label7.Text = gStr.gsYoumustRESTARTAgOpenGPS + "\r\n";
+            btnSerialOK.Text = gStr.gsSave;
+            label4.Text = gStr.gsModulePort;
+            label6.Text = gStr.gsPort;
+            groupBox1.Text = gStr.gsModuleAdressandPorts;
+            label8.Text = gStr.gsAllmodulesuse;
+            cboxIsUDPOn.Text = gStr.gsUDPOn;
+            groupBox2.Text = gStr.gsNetworking;
+            this.Text = gStr.gsEthernetConfiguration;
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)

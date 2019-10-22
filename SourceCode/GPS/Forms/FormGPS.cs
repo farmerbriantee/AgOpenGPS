@@ -822,13 +822,13 @@ namespace AgOpenGPS
             {
                 isLogElevation = false;
                 btnRecordElevation.Image = Properties.Resources.BoundaryRecord;
-                btnRecordElevation.Text = "Record Elevation";
+                btnRecordElevation.Text = gStr.gsRecordElevation;
             }
             else
             {
                 isLogElevation = true;
                 btnRecordElevation.Image = Properties.Resources.boundaryStop;
-                btnRecordElevation.Text = "Stop Record";
+                btnRecordElevation.Text = gStr.gsStopRecord;
             }
         }
 
@@ -1364,12 +1364,12 @@ namespace AgOpenGPS
                 case 3: //Relay 1
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos3, "Turn Off");
+                        TimedMessageBox(1000, seq.pos3, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos3, "Turn On");
+                        TimedMessageBox(1000, seq.pos3, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
                     }
                     break;
@@ -1377,12 +1377,12 @@ namespace AgOpenGPS
                 case 4: //Relay 2
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos4, "Turn Off");
+                        TimedMessageBox(1000, seq.pos4, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos4, "Turn On");
+                        TimedMessageBox(1000, seq.pos4, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
                     }
                     break;
@@ -1390,12 +1390,12 @@ namespace AgOpenGPS
                 case 5: //Relay 3
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos5, "Turn Off");
+                        TimedMessageBox(1000, seq.pos5, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos5, "Turn On");
+                        TimedMessageBox(1000, seq.pos5, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
                     }
                     break;
@@ -1403,12 +1403,12 @@ namespace AgOpenGPS
                 case 6: //Relay 4
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos6, "Turn Off");
+                        TimedMessageBox(1000, seq.pos6, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos6, "Turn On");
+                        TimedMessageBox(1000, seq.pos6, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
                     }
                     break;
@@ -1416,12 +1416,12 @@ namespace AgOpenGPS
                 case 7: //Relay 5
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos7, "Turn Off");
+                        TimedMessageBox(1000, seq.pos7, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos7, "Turn On");
+                        TimedMessageBox(1000, seq.pos7, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
                     }
                     break;
@@ -1429,12 +1429,12 @@ namespace AgOpenGPS
                 case 8: //Relay 6
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, seq.pos8, "Turn Off");
+                        TimedMessageBox(1000, seq.pos8, gStr.gsTurnOff);
                         mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, seq.pos8, "Turn On");
+                        TimedMessageBox(1000, seq.pos8, gStr.gsTurnOn);
                         mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
                     }
                     break;
