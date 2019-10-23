@@ -98,7 +98,7 @@
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSerialCancel.Location = new System.Drawing.Point(860, 333);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);

@@ -24,8 +24,6 @@ namespace AgOpenGPS
 
             InitializeComponent();
             this.Text = gStr.gsABline;
-            lblEnterName.Text = gStr.gsEnterLineName;
-            //btnNewABLine.Text = gStr.gsNew;
         }
 
         private void FormABLine_Load(object sender, EventArgs e)
@@ -166,7 +164,7 @@ namespace AgOpenGPS
                 btnAddToFile.Focus();
                 tboxABLineName.Text = (Math.Round(glm.toDegrees(mf.ABLine.abHeading), 1)).ToString(CultureInfo.InvariantCulture) 
                     + "\u00B0" +
-                    FindDirection(mf.ABLine.abHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                    mf.FindDirection(mf.ABLine.abHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else // or used to initiate a new line
             {
@@ -298,7 +296,7 @@ namespace AgOpenGPS
 
                     mf.FileSaveABLines();
 
-                    tboxABLineName.BackColor = SystemColors.Window;
+                    tboxABLineName.BackColor = SystemColors.ControlLight;
                     tboxABLineName.Text = "";
 
                     btnAddToFile.Enabled = false;
@@ -451,42 +449,6 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void ShowFullPanel(bool showPanel)
-        {
-            if (showPanel)
-            {
-                isFullPanel = true;
-                this.Size = new System.Drawing.Size(588, 410);
-                lvLines.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                lblEnterName.Visible = true;
-                tboxABLineName.Visible = true;
-                nudBasedOnPass.Visible = true;
-                nudTramRepeats.Visible = true;
-                btnListDelete.Visible = true;
-                btnListUse.Visible = true;
-                btnAddToFile.Visible = true;
-                btnAddAndGo.Visible = true;
-
-            }
-            else   //hide the panel
-            {
-                isFullPanel = false;
-                this.Size = new System.Drawing.Size(218, 410);
-                lvLines.Visible = false;
-                label2.Visible = false;
-                label3.Visible = false;
-                lblEnterName.Visible = false;
-                tboxABLineName.Visible = false;
-                nudBasedOnPass.Visible = false;
-                nudTramRepeats.Visible = false;
-                btnListDelete.Visible = false;
-                btnListUse.Visible = false;
-                btnAddToFile.Visible = false;
-                btnAddAndGo.Visible = false;
-            }
-        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblFixHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
@@ -519,47 +481,6 @@ namespace AgOpenGPS
                     btnListUse.Enabled = false;
                 }
             }
-        }
-
-        private string FindDirection(double heading)
-        {
-            if (heading < 0) heading += glm.twoPI;
-
-            heading = glm.toDegrees(heading);
-
-            if (heading > 337.5 || heading < 22.5)
-            {
-                return gStr.gsNorth;
-            }
-            if (heading > 22.5 && heading < 67.5)
-            {
-                return gStr.gsN_East;
-            }
-            if (heading > 67.5 && heading < 111.5)
-            {
-                return gStr.gsEast;
-            }
-            if (heading > 111.5 && heading < 157.5)
-            {
-                return gStr.gsS_East;
-            }
-            if (heading > 157.5 && heading < 202.5)
-            {
-                return gStr.gsSouth;
-            }
-            if (heading > 202.5 && heading < 247.5)
-            {
-                return gStr.gsS_West;
-            }
-            if (heading > 247.5 && heading < 292.5)
-            {
-                return gStr.gsWest;
-            }
-            if (heading > 292.5 && heading < 337.5)
-            {
-                return gStr.gsN_West;
-            }
-            return gStr.gsLost;
         }
 
         private void tboxABLineName_Enter(object sender, EventArgs e)
@@ -596,6 +517,52 @@ namespace AgOpenGPS
 
             }
             //lvLines.SelectedItems.Clear();
+        }
+
+        private void ShowFullPanel(bool showPanel)
+        {
+            if (showPanel)
+            {
+                isFullPanel = true;
+                this.Size = new System.Drawing.Size(388, 411);
+                lvLines.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                tboxABLineName.Visible = true;
+                nudBasedOnPass.Visible = true;
+                nudTramRepeats.Visible = true;
+                btnListDelete.Visible = true;
+                btnListUse.Visible = true;
+                btnAddToFile.Visible = true;
+                btnAddAndGo.Visible = true;
+
+                btnAPoint.Visible = false ;
+                btnBPoint.Visible = false;
+                btnUpABHeadingBy1.Visible = false;
+                btnDnABHeadingBy1.Visible = false;
+                tboxHeading.Visible = false;
+            }
+            else   //hide the panel
+            {
+                isFullPanel = false;
+                this.Size = new System.Drawing.Size(245, 411);
+                lvLines.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                tboxABLineName.Visible = false;
+                nudBasedOnPass.Visible = false;
+                nudTramRepeats.Visible = false;
+                btnListDelete.Visible = false;
+                btnListUse.Visible = false;
+                btnAddToFile.Visible = false;
+                btnAddAndGo.Visible = false;
+
+                btnAPoint.Visible = true;
+                btnBPoint.Visible = true;
+                btnUpABHeadingBy1.Visible = true;
+                btnDnABHeadingBy1.Visible = true;
+                tboxHeading.Visible = true;
+            }
         }
 
     }

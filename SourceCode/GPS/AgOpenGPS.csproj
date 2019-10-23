@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Application\</OutputPath>
+    <OutputPath>..\..\AgOpenGPS\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,7 +45,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Application\</OutputPath>
+    <OutputPath>..\..\AgOpenGPS\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,7 +55,7 @@
     <NoWarn>
     </NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
-    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
@@ -324,11 +324,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.nl.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SaveOpen.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
@@ -372,6 +367,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Forms\UDPComm.Designer.cs">
       <SubType>Form</SubType>
@@ -554,12 +554,11 @@
     <None Include="btnImages\ABLineCycle.png" />
     <None Include="btnImages\displayMenu.png" />
     <None Include="btnImages\fileMenu.png" />
-    <None Include="btnImages\ABLineTurnOff.png" />
-    <None Include="btnImages\CurveTurnOff.png" />
     <None Include="btnImages\SwitchOff.png" />
     <None Include="btnImages\SwitchOn.png" />
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
+    <None Include="btnImages\OK64.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -591,7 +590,6 @@
     <None Include="btnImages\FileSave.png" />
     <None Include="btnImages\Play.png" />
     <None Include="btnImages\Stop.png" />
-    <None Include="btnImages\Oops.png" />
     <None Include="btnImages\back-button.png" />
     <None Include="btnImages\FileDontSave.png" />
     <None Include="btnImages\FileNew.png" />
@@ -617,18 +615,14 @@
     <None Include="btnImages\DnArrow64.png" />
     <None Include="btnImages\Color.png" />
     <None Include="btnImages\ColorField.png" />
-    <None Include="btnImages\WorkSwitch.png" />
     <None Include="btnImages\WorkSwitch.jpg" />
     <None Include="btnImages\AutoSteerOff.png" />
     <None Include="btnImages\AutoSteerOn.png" />
     <None Include="btnImages\ZeroPitchRoll.png" />
-    <None Include="btnImages\ResetTrip.png" />
     <None Include="btnImages\ComPorts.png" />
-    <None Include="btnImages\HideShowMenu.png" />
     <None Include="btnImages\TripOdometer.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
-    <None Include="btnImages\OuterBoundary.png" />
     <None Include="btnImages\BoundaryLeft.png" />
     <None Include="btnImages\BoundaryRight.png" />
     <None Include="btnImages\boundaryPause.png" />
@@ -643,18 +637,9 @@
     <None Include="btnImages\gyro.png" />
     <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
-    <None Include="btnImages\Rate1Select.png" />
-    <None Include="btnImages\RateControlOff.png" />
-    <None Include="btnImages\RateControlOn.png" />
-    <None Include="btnImages\RateSelect2.png" />
-    <None Include="btnImages\AutoLeft.png" />
-    <None Include="btnImages\AutoRight.png" />
     <None Include="btnImages\SettingsGear64.png" />
-    <None Include="btnImages\RunMan64.png" />
     <None Include="btnImages\Start64.png" />
-    <None Include="btnImages\Rate64.png" />
     <None Include="btnImages\Settings64.png" />
-    <None Include="btnImages\Menu5.png" />
     <None Include="btnImages\Custom.png" />
     <None Include="btnImages\Headland.png" />
     <None Include="btnImages\UDPConfig.png" />
@@ -666,24 +651,16 @@
     <None Include="btnImages\PointDone.png" />
     <None Include="btnImages\PointStart.png" />
     <None Include="btnImages\YouTurnReverse.png" />
-    <None Include="btnImages\YouTurnBackground.jpg" />
     <None Include="btnImages\WideReturn.png" />
     <None Include="btnImages\Settings48.png" />
     <None Include="btnImages\Batman48.png" />
     <None Include="btnImages\SettingsGear32.png" />
-    <None Include="btnImages\start.png" />
     <None Include="btnImages\AutoSteerConf.png" />
-    <None Include="btnImages\SetupStatusStrip.png" />
     <None Include="btnImages\Help.png" />
     <None Include="btnImages\Webcam.png" />
     <None Include="btnImages\skull.png" />
     <None Include="btnImages\CurveOff.png" />
     <None Include="btnImages\CurveOn.png" />
-    <None Include="btnImages\SectionSettingsBackground.png" />
-    <None Include="btnImages\ArrowTurnLeft.png" />
-    <None Include="btnImages\ArrowTurnRight.png" />
-    <None Include="btnImages\FlowMeterDual.png" />
-    <None Include="btnImages\FlowMeterSingle.png" />
     <None Include="btnImages\AutoGo.png" />
     <None Include="btnImages\AutoStop.png" />
     <None Include="btnImages\Chart.png" />

@@ -9,6 +9,8 @@
 * Page thru all lines or curves depending on guidance mode
 * Made uturn controls much smaller. 
 * Added distance alarm at 20 meters before uturn.
+* languages added for guidance line build
+* Outer tool lines added
 
 v3.0 October
 

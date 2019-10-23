@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormABDraw));
             this.oglSelf = new OpenTK.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnExit = new System.Windows.Forms.Button();
@@ -177,11 +176,11 @@
             this.btnDeleteCurve.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnDeleteCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDeleteCurve.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteCurve.Image")));
+            this.btnDeleteCurve.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
             this.btnDeleteCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteCurve.Location = new System.Drawing.Point(910, 325);
+            this.btnDeleteCurve.Location = new System.Drawing.Point(910, 319);
             this.btnDeleteCurve.Name = "btnDeleteCurve";
-            this.btnDeleteCurve.Size = new System.Drawing.Size(82, 72);
+            this.btnDeleteCurve.Size = new System.Drawing.Size(88, 78);
             this.btnDeleteCurve.TabIndex = 325;
             this.btnDeleteCurve.UseVisualStyleBackColor = false;
             this.btnDeleteCurve.Click += new System.EventHandler(this.btnDeleteCurve_Click);
@@ -194,11 +193,11 @@
             this.btnDeleteABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnDeleteABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDeleteABLine.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteABLine.Image")));
+            this.btnDeleteABLine.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
             this.btnDeleteABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteABLine.Location = new System.Drawing.Point(910, 504);
+            this.btnDeleteABLine.Location = new System.Drawing.Point(910, 498);
             this.btnDeleteABLine.Name = "btnDeleteABLine";
-            this.btnDeleteABLine.Size = new System.Drawing.Size(82, 72);
+            this.btnDeleteABLine.Size = new System.Drawing.Size(88, 78);
             this.btnDeleteABLine.TabIndex = 326;
             this.btnDeleteABLine.UseVisualStyleBackColor = false;
             this.btnDeleteABLine.Click += new System.EventHandler(this.btnDeleteABLine_Click);

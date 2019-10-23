@@ -17,7 +17,6 @@ namespace AgOpenGPS
             mf = _mf as FormGPS;
             InitializeComponent();
 
-            lblEnterCurveName.Text = gStr.gsEnterCurveName;
             btnPausePlay.Text = gStr.gsPause;
             this.Text = gStr.gsABCurve;
         }
@@ -132,7 +131,7 @@ namespace AgOpenGPS
                     ListViewItem itm = new ListViewItem(mf.curve.curveArr[cnt].Name);
                     lvLines.Items.Add(itm);
                     lvLines.Enabled = true;
-                    textBox1.BackColor = SystemColors.Window;
+                    textBox1.BackColor = SystemColors.ControlLight;
                     textBox1.Text = "";
                     textBox1.Enabled = false;
                     btnAddAndGo.Enabled = false;
@@ -278,7 +277,7 @@ namespace AgOpenGPS
                 textBox1.BackColor = Color.LightGreen;
                 textBox1.Enabled = true;
                 textBox1.Text = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) 
-                    + "\u00B0" + FindDirection(mf.curve.aveLineHeading) 
+                    + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) 
                     + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else
@@ -402,33 +401,46 @@ namespace AgOpenGPS
 
         private void ShowSavedPanel(bool showPanel)
         {
+            //show the list
             if (showPanel)
             {
-                this.Size = new System.Drawing.Size(597, 415);
+                this.Size = new System.Drawing.Size(377, 415);
                 btnAddToFile.Visible = true;
                 btnAddAndGo.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
-                lblEnterCurveName.Visible = true;
                 textBox1.Visible = true;
                 lvLines.Visible = true;
                 btnCancel.Visible = true;
                 btnNewCurve.Visible = true;
                 btnPausePlay.Visible = false;
+
+                btnAPoint.Visible = false;
+                btnBPoint.Visible = false;
+                btnPausePlay.Visible = false;
+                label2.Visible = false;
+                lblCurveExists.Visible = false;
+
             }
-            else
+            else //show the A B Pause
             {
-                this.Size = new System.Drawing.Size(232, 350);
+                this.Size = new System.Drawing.Size(239, 350);
                 btnAddToFile.Visible = false;
                 btnAddAndGo.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
-                lblEnterCurveName.Visible = false;
                 textBox1.Visible = false;
                 lvLines.Visible = false;
                 btnCancel.Visible = false;
                 btnNewCurve.Visible = false;
                 btnPausePlay.Visible = false;
+
+                btnAPoint.Visible = true;
+                btnBPoint.Visible = true;
+                btnPausePlay.Visible = true;
+                label2.Visible = true;
+                lblCurveExists.Visible = true;
+
             }
         }
 
@@ -445,47 +457,6 @@ namespace AgOpenGPS
                 btnListDelete.Enabled = false;
                 btnListUse.Enabled = false;
             }
-        }
-
-        private string FindDirection(double heading)
-        {
-            if (heading < 0) heading += glm.twoPI;
-
-            heading = glm.toDegrees(heading);
-
-            if (heading > 337.5 || heading < 22.5)
-            {
-                return gStr.gsNorth;
-            }
-            if (heading > 22.5 && heading < 67.5)
-            {
-                return gStr.gsN_East;
-            }
-            if (heading > 67.5 && heading < 111.5)
-            {
-                return gStr.gsEast;
-            }
-            if (heading > 111.5 && heading < 157.5)
-            {
-                return gStr.gsS_East;
-            }
-            if (heading > 157.5 && heading < 202.5)
-            {
-                return gStr.gsSouth;
-            }
-            if (heading > 202.5 && heading < 247.5)
-            {
-                return gStr.gsS_West;
-            }
-            if (heading > 247.5 && heading < 292.5)
-            {
-                return gStr.gsWest;
-            }
-            if (heading > 292.5 && heading < 337.5)
-            {
-                return gStr.gsN_West;
-            }
-            return gStr.gsLost;
         }
         
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)

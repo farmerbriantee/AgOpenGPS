@@ -46,47 +46,6 @@ namespace AgOpenGPS
             else lblABLineName.Text = "***";
         }
 
-        private string FindDirection(double heading)
-        {
-            if (heading < 0) heading += glm.twoPI;
-
-            heading = glm.toDegrees(heading);
-
-            if (heading > 337.5 || heading < 22.5)
-            {
-                return gStr.gsNorth;
-            }
-            if (heading > 22.5 && heading < 67.5)
-            {
-                return gStr.gsN_East;
-            }
-            if (heading > 67.5 && heading < 111.5)
-            {
-                return gStr.gsEast;
-            }
-            if (heading > 111.5 && heading < 157.5)
-            {
-                return gStr.gsS_East;
-            }
-            if (heading > 157.5 && heading < 202.5)
-            {
-                return gStr.gsSouth;
-            }
-            if (heading > 202.5 && heading < 247.5)
-            {
-                return gStr.gsS_West;
-            }
-            if (heading > 247.5 && heading < 292.5)
-            {
-                return gStr.gsWest;
-            }
-            if (heading > 292.5 && heading < 337.5)
-            {
-                return gStr.gsN_West;
-            }
-            return gStr.gsLost;
-        }
-
         private void btnSelectCurve_Click(object sender, EventArgs e)
         {
             if (mf.curve.numCurveLines > 0)
@@ -410,7 +369,7 @@ namespace AgOpenGPS
 
                 //create a name
                 mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                     + "\u00B0" + FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                     + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                 mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
 
@@ -477,7 +436,7 @@ namespace AgOpenGPS
 
             //create a name
             mf.ABLine.lineArr[idx].Name = (Math.Round(glm.toDegrees(mf.ABLine.lineArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                 + "\u00B0" + FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                 + "\u00B0" + mf.FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
             //clean up gui
             btnMakeABLine.Enabled = false;

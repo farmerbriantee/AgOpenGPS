@@ -148,6 +148,48 @@ namespace AgOpenGPS
             ManualBtnUpdate(11, btnSection12Man);
         }
 
+
+        public string FindDirection(double heading)
+        {
+            if (heading < 0) heading += glm.twoPI;
+
+            heading = glm.toDegrees(heading);
+
+            if (heading > 337.5 || heading < 22.5)
+            {
+                return (" " +  gStr.gsNorth + " ");
+            }
+            if (heading > 22.5 && heading < 67.5)
+            {
+                return (" " +  gStr.gsN_East + " ");
+            }
+            if (heading > 67.5 && heading < 111.5)
+            {
+                return (" " +  gStr.gsEast + " ");
+            }
+            if (heading > 111.5 && heading < 157.5)
+            {
+                return (" " +  gStr.gsS_East + " ");
+            }
+            if (heading > 157.5 && heading < 202.5)
+            {
+                return (" " +  gStr.gsSouth + " ");
+            }
+            if (heading > 202.5 && heading < 247.5)
+            {
+                return (" " +  gStr.gsS_West + " ");
+            }
+            if (heading > 247.5 && heading < 292.5)
+            {
+                return (" " +  gStr.gsWest + " ");
+            }
+            if (heading > 292.5 && heading < 337.5)
+            {
+                return (" " +  gStr.gsN_West + " ");
+            }
+            return (" " +  gStr.gsLost + " ");
+        }
+
         //hide the left panel
         public void SwapBatmanPanels()
         {                
