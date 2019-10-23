@@ -92,6 +92,12 @@ namespace AgOpenGPS
             //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
             //}
 
+            //add the out of bounds bit to uturn byte bit 7
+            if (mc.isOutOfBounds) 
+                mc.autoSteerData[mc.sdYouTurnByte] |= 0b10000000;            
+            else 
+                mc.autoSteerData[mc.sdYouTurnByte] &= 0b01111111;
+
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
