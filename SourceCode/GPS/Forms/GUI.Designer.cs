@@ -116,7 +116,7 @@ namespace AgOpenGPS
             }
 
             LineUpManualBtns();
-            tabControl1.SelectedIndex = 2;
+            tabControl1.SelectedIndex = 1;
 
             yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
@@ -249,7 +249,7 @@ namespace AgOpenGPS
                     txtDistanceOffABLine.Left = (Width - 345 - 100) / 2 + 287;
                     btnSwapDirection.Left = (Width - 345 - 100) / 2 + 292;
                     txtDistanceOffABLine.Top = -1;
-                    tabControl1.SelectedIndex = 2;
+                    tabControl1.SelectedIndex = 1;
                     panelBatman.Visible = false;
                     tabControl1.Visible = true;
                     LineUpManualBtns();
@@ -1061,6 +1061,7 @@ namespace AgOpenGPS
 
         private void BtnMakeLinesFromBoundary_Click(object sender, EventArgs e)
         {
+            if ((sender as Control).IsDragging()) return;
             if (ct.isContourBtnOn) return;
 
             if (!bnd.bndArr[0].isSet)
@@ -1073,6 +1074,7 @@ namespace AgOpenGPS
         }
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
+            if ((sender as Control).IsDragging()) return;
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
                 ABLine.numABLineSelected++;
@@ -3205,7 +3207,7 @@ namespace AgOpenGPS
                     }
 
                     //The tabbed is selected and the info tab
-                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 1 && tabControl1.Visible)
                     {
                         lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
                         lblTimeRemaining.Text = fd.TimeTillFinished;
@@ -3298,7 +3300,7 @@ namespace AgOpenGPS
                     //counter used for saving field in background
                     saveCounter++;
 
-                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 1 && tabControl1.Visible)
                     {
                         //both
                         lblLatitude.Text = Latitude;
@@ -3427,6 +3429,7 @@ namespace AgOpenGPS
                         stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
                         btnContour.Text = XTE; //cross track error
+                        label21.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
                     }
                     else  //Imperial Measurements
@@ -3528,7 +3531,7 @@ namespace AgOpenGPS
 
                     lblHeading.Text = Heading;
 
-                    if (tabControl1.SelectedIndex == 2 && tabControl1.Visible)
+                    if (tabControl1.SelectedIndex == 1 && tabControl1.Visible)
                     {
 
                         if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)

@@ -224,7 +224,6 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndBoundaryAlarm;
 
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -233,7 +232,10 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            btnManualAutoDrive.Text = gStr.gsAbout;
+            ControlExtension.Draggable(btnCycleLines, true);
+            ControlExtension.Draggable(btnMakeLinesFromBoundary, true);
+
+            //btnManualAutoDrive.Text = gStr.gsAbout;
 
             //file menu
             //fileToolStripMenuItem.Text = gStr.gsFile;
@@ -639,6 +641,28 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
+
+            if (this.Height <= 800)
+            {
+                //btnAutoSteer.Location = new Point(Width - 186, 440);
+                btnEnableAutoYouTurn.Location = new Point(Width - 186, 343);
+                return;
+            }
+
+            if (this.Height > 800 && this.Height <= 885)
+            {
+                //btnAutoSteer.Location = new Point(Width - 98, 587);
+                btnEnableAutoYouTurn.Location = new Point(Width - 186, 343);
+                return;
+            }
+
+            if (this.Height > 885)
+            {
+                //btnAutoSteer.Location = new Point(Width - 98, 587);
+                btnEnableAutoYouTurn.Location = new Point(Width - 98, 695);
+                return;
+            }
+
             //if (Width < 850 && tabControl1.Visible) HideTabControl();
             //if (Width > 1000 && !tabControl1.Visible) HideTabControl();
         }
@@ -854,6 +878,51 @@ namespace AgOpenGPS
         private void NudElevation_ValueChanged(object sender, EventArgs e)
         {
             sim.altitude = (double)nudElevation.Value;
+        }
+
+        private void toolStripBtnSnap_Click(object sender, EventArgs e)
+        {
+            if (ct.isContourBtnOn)
+            {
+
+                ct.isRightPriority = !ct.isRightPriority;
+
+                if (ct.isRightPriority)
+                {
+                    btnContourPriority.Image = Properties.Resources.ContourPriorityRight;
+                }
+                else
+                {
+                    btnContourPriority.Image = Properties.Resources.ContourPriorityLeft;
+                }
+            }
+            else
+            {
+                if (ABLine.isABLineSet)
+                {
+                    ABLine.SnapABLine();
+
+                    //DialogResult result3 = MessageBox.Show("Save AB Line Snap?",
+                    //                            "Save or Not",
+                    //                            MessageBoxButtons.YesNo,
+                    //                            MessageBoxIcon.Question,
+                    //                            MessageBoxDefaultButton.Button2);
+                    //if (result3 == DialogResult.Yes)
+                    {
+                        //FileSaveABLine();
+                    }
+                }
+                else if (curve.isCurveSet)
+                {
+                    curve.SnapABCurve();
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+                    form.Show();
+                }
+            }
+
         }
 
         public void GetAB()

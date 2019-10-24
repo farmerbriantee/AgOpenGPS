@@ -69,6 +69,9 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Control.Draggable">
+      <HintPath>References\Control.Draggable.dll</HintPath>
+    </Reference>
     <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\Keypad.dll</HintPath>
