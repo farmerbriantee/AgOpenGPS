@@ -138,9 +138,9 @@ namespace AgOpenGPS
                 GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
                 GL.End();
 
-                //get the tool offset and width
-                double toolOffset = mf.vehicle.toolOffset * 2;
-                double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    //get the tool offset and width
+                    double toolOffset = mf.vehicle.toolOffset * 2;
+                    double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
                 double cosHeading = Math.Cos(-abHeading);
                 double sinHeading = Math.Sin(-abHeading);
 
@@ -697,7 +697,7 @@ namespace AgOpenGPS
         }
     }
 
-        public class CABLines
+    public class CABLines
     {
         public vec2 ref1 = new vec2();
         public vec2 ref2 = new vec2();

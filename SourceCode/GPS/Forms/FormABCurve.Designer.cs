@@ -44,6 +44,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnAddAndGo = new System.Windows.Forms.Button();
             this.btnNewCurve = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.nudLatitude = new System.Windows.Forms.NumericUpDown();
+            this.nudLongitude = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLatitude)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLongitude)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCurveExists
@@ -79,7 +87,7 @@
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Tile;
             this.lvLines.Visible = false;
-            this.lvLines.SelectedIndexChanged += new System.EventHandler(this.lvLines_SelectedIndexChanged);
+            this.lvLines.SelectedIndexChanged += new System.EventHandler(this.LvLines_SelectedIndexChanged);
             // 
             // chField
             // 
@@ -99,7 +107,7 @@
             this.textBox1.TabIndex = 145;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Visible = false;
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
+            this.textBox1.Enter += new System.EventHandler(this.TextBox1_Enter);
             // 
             // label2
             // 
@@ -269,15 +277,123 @@
             this.btnNewCurve.TabIndex = 150;
             this.btnNewCurve.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNewCurve.UseVisualStyleBackColor = false;
-            this.btnNewCurve.Click += new System.EventHandler(this.btnNewCurve_Click);
+            this.btnNewCurve.Click += new System.EventHandler(this.BtnNewCurve_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(333, 405);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(248, 25);
+            this.label5.TabIndex = 195;
+            this.label5.Text = "Longitude (+180 to -180)";
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label18.Location = new System.Drawing.Point(348, 514);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(216, 25);
+            this.label18.TabIndex = 194;
+            this.label18.Text = "Latitude ( +90 to -90)";
+            // 
+            // nudLatitude
+            // 
+            this.nudLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudLatitude.DecimalPlaces = 7;
+            this.nudLatitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLatitude.Location = new System.Drawing.Point(338, 568);
+            this.nudLatitude.Maximum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            0});
+            this.nudLatitude.Minimum = new decimal(new int[] {
+            90,
+            0,
+            0,
+            -2147483648});
+            this.nudLatitude.Name = "nudLatitude";
+            this.nudLatitude.Size = new System.Drawing.Size(238, 52);
+            this.nudLatitude.TabIndex = 193;
+            this.nudLatitude.Value = new decimal(new int[] {
+            534389172,
+            0,
+            0,
+            458752});
+            // 
+            // nudLongitude
+            // 
+            this.nudLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nudLongitude.DecimalPlaces = 7;
+            this.nudLongitude.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLongitude.Location = new System.Drawing.Point(305, 442);
+            this.nudLongitude.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
+            this.nudLongitude.Minimum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            -2147483648});
+            this.nudLongitude.Name = "nudLongitude";
+            this.nudLongitude.Size = new System.Drawing.Size(276, 52);
+            this.nudLongitude.TabIndex = 192;
+            this.nudLongitude.Value = new decimal(new int[] {
+            1111596322,
+            0,
+            0,
+            -2147024896});
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(259, 356);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(322, 35);
+            this.button2.TabIndex = 191;
+            this.button2.Text = "Use Lat/Lon as centerPoint";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "AB Curve",
+            "Spiral Mode",
+            "Circle Mode"});
+            this.comboBox1.Location = new System.Drawing.Point(383, 306);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(193, 33);
+            this.comboBox1.TabIndex = 190;
+            this.comboBox1.Text = "AB Curve";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(593, 376);
+            this.ClientSize = new System.Drawing.Size(593, 642);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.nudLatitude);
+            this.Controls.Add(this.nudLongitude);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnNewCurve);
             this.Controls.Add(this.btnAddAndGo);
             this.Controls.Add(this.lblCurveExists);
@@ -301,6 +417,8 @@
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABCurve_FormClosing);
             this.Load += new System.EventHandler(this.FormABCurve_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.nudLatitude)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudLongitude)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,5 +441,11 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnAddAndGo;
         private System.Windows.Forms.Button btnNewCurve;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown nudLatitude;
+        private System.Windows.Forms.NumericUpDown nudLongitude;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

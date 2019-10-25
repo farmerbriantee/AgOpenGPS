@@ -39,7 +39,7 @@ namespace AgOpenGPS
             }
 
             //stop it all for adding
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
 
             //turn lines made from boundaries
             mf.CalculateMinMax();
@@ -56,15 +56,15 @@ namespace AgOpenGPS
         //actually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints)
+            if (mf.bnd.isOkToAddPoints)
             {
-                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+                mf.bnd.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = gStr.gsRecord;
             }
             else
             {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = true;
+                mf.bnd.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = gStr.gsPause;
             }
@@ -72,7 +72,7 @@ namespace AgOpenGPS
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }
 
