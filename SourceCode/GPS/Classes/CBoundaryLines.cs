@@ -41,7 +41,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isSet, isOwnField, isDriveAround, isDriveThru, isDrawRightSide;
+        public bool isSet, isOwnField, isDriveAround, isDriveThru;
 
         public void CalculateBoundaryHeadings()
         {

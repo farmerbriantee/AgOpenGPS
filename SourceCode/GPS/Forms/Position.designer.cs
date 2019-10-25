@@ -722,7 +722,7 @@ namespace AgOpenGPS
 
             if (bnd.isOkToAddPoints)
             {
-                if (bnd.bndArr[bnd.boundarySelected].isDrawRightSide)
+                if (bnd.isDrawRightSide)
                 {
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
