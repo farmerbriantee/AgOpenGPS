@@ -1054,7 +1054,7 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
-                        lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                        //lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
 
                     //start positions

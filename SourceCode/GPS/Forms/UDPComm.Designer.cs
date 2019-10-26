@@ -314,7 +314,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.S)) //open the steer chart
             {
-                btnContourPriority.PerformClick();
+                toolStripBtnSnap.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -368,7 +368,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.P)) // Snap/Prioritu click
             {
-                btnContourPriority.PerformClick();
+                toolStripBtnSnap.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

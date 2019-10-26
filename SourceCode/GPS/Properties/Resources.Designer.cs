@@ -672,6 +672,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GPSSignalGood {
+            get {
+                object obj = ResourceManager.GetObject("GPSSignalGood", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GPSSignalPoor {
+            get {
+                object obj = ResourceManager.GetObject("GPSSignalPoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap gyro {
             get {
                 object obj = ResourceManager.GetObject("gyro", resourceCulture);
@@ -1025,6 +1045,46 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap Snap2 {
             get {
                 object obj = ResourceManager.GetObject("Snap2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SnapLeft {
+            get {
+                object obj = ResourceManager.GetObject("SnapLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SnapLeftSmall {
+            get {
+                object obj = ResourceManager.GetObject("SnapLeftSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SnapRight {
+            get {
+                object obj = ResourceManager.GetObject("SnapRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SnapRightSmall {
+            get {
+                object obj = ResourceManager.GetObject("SnapRightSmall", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

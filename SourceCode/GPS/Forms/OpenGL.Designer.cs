@@ -493,7 +493,7 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && !tabControl1.Visible)
+                if (threeSeconds != zoomUpdateCounter && !panelZoom.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
@@ -890,7 +890,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && stripOnlineGPS.Value != 1)
+                if (isJobStarted && btnGPSData.BackgroundImage.Height == 38)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
@@ -1308,16 +1308,16 @@ namespace AgOpenGPS
             //maxFieldX += 8;
             //maxFieldY += 8;
 
-            if (isMetric)
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-            }
-            else
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-            }
+            //if (isMetric)
+            //{
+            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            //}
+            //else
+            //{
+            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            //}
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 

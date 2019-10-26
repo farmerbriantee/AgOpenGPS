@@ -1009,7 +1009,7 @@ namespace AgOpenGPS
 
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
-                lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                //lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;
@@ -1069,6 +1069,7 @@ namespace AgOpenGPS
 
                     AutoSteerSettingsOutToPort();
                 }
+
                 return;
             }
         }

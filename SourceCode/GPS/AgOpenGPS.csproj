@@ -562,6 +562,12 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
+    <None Include="btnImages\SnapLeft.png" />
+    <None Include="btnImages\SnapRight.png" />
+    <None Include="btnImages\GPSSignalGood.png" />
+    <None Include="btnImages\GPSSignalPoor.png" />
+    <None Include="btnImages\SnapLeftSmall.png" />
+    <None Include="btnImages\SnapRightSmall.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

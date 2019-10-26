@@ -545,7 +545,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * ";
                 //stripPortGPS.ForeColor = Color.Red;
-                stripOnlineGPS.Value = 1;
+                //stripOnlineGPS.Value = 1;
 
                 //SettingsPageOpen(0);
             }
@@ -583,8 +583,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 //stripPortGPS.ForeColor = Color.ForestGreen;
-                stripOnlineGPS.Value = 1;
-
+                //stripOnlineGPS.Value = 1;
                 sp.Dispose();
             }
 
