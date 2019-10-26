@@ -1257,6 +1257,14 @@ namespace AgOpenGPS
                             }
                         }
                     }
+                    double zoom = 500;
+                    if (minFieldX < pivotAxlePos.easting - zoom) minFieldX = pivotAxlePos.easting - zoom;
+                    if (maxFieldX > pivotAxlePos.easting + zoom) maxFieldX = pivotAxlePos.easting + zoom;
+                    if (minFieldY < pivotAxlePos.northing - zoom) minFieldY = pivotAxlePos.northing - zoom;
+                    if (maxFieldY > pivotAxlePos.northing + zoom) maxFieldY = pivotAxlePos.northing + zoom;
+
+
+
                 }
                 else
                 {

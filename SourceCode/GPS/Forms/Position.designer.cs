@@ -1070,7 +1070,7 @@ namespace AgOpenGPS
         {
             if (bnd.bndArr.Count > 0)
             {
-                if (bnd.bndArr[bnd.LastBoundary].isSet && gf.geoFenceArr[bnd.LastBoundary].IsPointInGeoFenceArea(pivotAxlePos))
+                if (bnd.LastBoundary < bnd.bndArr.Count && bnd.bndArr[bnd.LastBoundary].isSet && gf.geoFenceArr[bnd.LastBoundary].IsPointInGeoFenceArea(pivotAxlePos))
                 {
                     for (int j = 0; j < bnd.bndArr.Count; j++)
                     {
