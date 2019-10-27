@@ -26,6 +26,10 @@ namespace AgOpenGPS
             double mazeY = (mf.maxFieldY - mf.minFieldY);
             double mazeX = (mf.maxFieldX - mf.minFieldX);
 
+
+            if (mazeY < 0 || mazeX < 0) return;
+
+
             if (mazeY > mazeX) mazeScale = (int)(mazeY / 150);
             else mazeScale = (int)(mazeX / 150);
 
