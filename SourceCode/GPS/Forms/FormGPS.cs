@@ -995,11 +995,14 @@ namespace AgOpenGPS
 
         private void btnMakeBndContour_Click(object sender, EventArgs e)
         {
-            //build all the contour guidance lines from boundaries, all of them. 
-            using (var form = new FormMakeBndCon(this))
+            //build all the contour guidance lines from boundaries, all of them.
+            if (bnd.bndArr[0].isSet)
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                using (var form = new FormMakeBndCon(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
             }
         }
 
@@ -1111,8 +1114,46 @@ namespace AgOpenGPS
 
         private void btnCamera_Click(object sender, EventArgs e)
         {
+            secondRowCounter = 0;
             if (camera.camPitch < -1) camera.camPitch = 0;
             else camera.camPitch = -68;
+        }
+
+        private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
+        {
+            fd.distanceUser = 0;
+            fd.workedAreaTotalUser = 0;
+        }
+
+        private void toolStripBtnField_Click(object sender, EventArgs e)
+        {
+            JobNewOpenResume();
+
+        }
+
+        private void toolStripBtnYouTurn_Click(object sender, EventArgs e)
+        {
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+        }
+
+        private void toolStripButtonVehicleSettings_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
+            }
+        }
+
+        private void toolStripBtnSerialPorts_Click(object sender, EventArgs e)
+        {
+            SettingsCommunications();
         }
 
         public void GetAB()

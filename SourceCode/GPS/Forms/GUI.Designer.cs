@@ -123,7 +123,6 @@ namespace AgOpenGPS
             //default to come up in mini panel, exit remembers 
 
             SwapBatmanPanels();
-            SwapBatmanPanels();
 
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
             else btnAutoSteer.Text = "M";
@@ -191,95 +190,70 @@ namespace AgOpenGPS
 
         //hide the left panel
         public void SwapBatmanPanels()
-        {                
-            if (Properties.Settings.Default.setDisplay_panelStatus++ > 0) Properties.Settings.Default.setDisplay_panelStatus = 0;
-                Properties.Settings.Default.Save();
-
-            switch (Properties.Settings.Default.setDisplay_panelStatus)
+        {
+            //Properties.Settings.Default.Save();
+            if (Properties.Settings.Default.setDisplay_isBatmanOn)
             {
-                case 0:
-                    //no side panel
-                    panelSimControls.Left = 120;
-                    oglMain.Left = 70;
-                    oglMain.Width = Width - 170;
+                //Batman mini-panel shows
+                panelSimControls.Left = 300;
+                oglMain.Left = 282;
+                oglMain.Width = Width - 380;
 
-                    btnpTiltDown.Left = 8;
-                    btnpTiltUp.Left = 8;
-                    btnZoomIn.Left = 8;
-                    btnZoomOut.Left = 8;
-                    btnFlag.Left = 8;
-                    //cboxpRowWidth.Left = 8;
-                    btnCamera.Left = 8;
+                //Left side
+                btnpTiltDown.Left = 290;
+                btnpTiltUp.Left = 290;
+                btnZoomIn.Left = 290;
+                btnZoomOut.Left = 290;
+                btnFlag.Left = 290;
+                btnCamera.Left = 290;
 
-                    btnIMUConfig.Left = 85;
-                    btnYouTurn.Left = 85;
-                    btnVehicleSettings.Left = 85;
-                    btnSerialPorts.Left = 85;
+                //2nd row left side
+                btnIMUConfig.Left = 380;
+                btnYouTurn.Left = 380;
+                btnVehicleSettings.Left = 380;
+                btnSerialPorts.Left = 380;
+                btnFlagsGoogleEarth.Left = 380;
 
-
-                    panelZoom.Visible = false;
-                    panelNtrip.Visible = false;
-                    txtDistanceOffABLine.Left = (Width - 200) / 2;
-                    txtDistanceOffABLine.Top = -1;
-                    panelBatman.Visible = false;
-                    LineUpManualBtns();
-
-                    break;
-
-                case 1:
-                    //Batman mini-panel shows
-                    panelSimControls.Left = 300;
-                    oglMain.Left = 282;
-                    oglMain.Width = Width - 380;
-
-                    btnpTiltDown.Left = 290;
-                    btnpTiltUp.Left = 290;
-                    btnZoomIn.Left = 290;
-                    btnZoomOut.Left = 290;
-                    btnFlag.Left = 290;
-                    //cboxpRowWidth.Left = 290;
-                    btnCamera.Left = 290;
-
-                    btnIMUConfig.Left = 380;
-                    btnYouTurn.Left = 380;
-                    btnVehicleSettings.Left = 380;
-                    btnSerialPorts.Left = 380;
+                panelZoom.Visible = true;
+                panelNtrip.Visible = true;
 
 
-                    panelZoom.Visible = true;
-                    panelNtrip.Visible = true;
-
-
-                    txtDistanceOffABLine.Left = (Width - 245 - 100) / 2 + 185;
-                    btnSwapDirection.Left = (Width - 245 - 100) / 2 + 190;
-                    panelBatman.Visible = true;
-                    LineUpManualBtns();
-                    break;
-
-                //case 2:
-                //    //Big tab will be visible
-                //    panelSimControls.Left = 345;
-                //    oglMain.Left = 340;
-                //    oglMain.Width = Width - 340 - 102;
-                //    btnpTiltDown.Left = 345;
-                //    btnpTiltUp.Left = 345;
-                //    btnZoomIn.Left = 345;
-                //    btnZoomOut.Left = 345;
-                //    btnFlag.Left = 345;
-                //    cboxpRowWidth.Left = 345;
-                //    txtDistanceOffABLine.Left = (Width - 345 - 100) / 2 + 287;
-                //    btnSwapDirection.Left = (Width - 345 - 100) / 2 + 292;
-                //    txtDistanceOffABLine.Top = -1;
-                //    tabControl1.SelectedIndex = 1;
-                //    panelBatman.Visible = false;
-                //    tabControl1.Visible = true;
-                //    LineUpManualBtns();
-                //    break;
-
-
-                default:
-                    break;
+                txtDistanceOffABLine.Left = (Width - 245 - 100) / 2 + 185;
+                btnSwapDirection.Left = (Width - 245 - 100) / 2 + 190;
+                panelBatman.Visible = true;
+                LineUpManualBtns();
             }
+            else
+            {
+                //no side panel
+                panelSimControls.Left = 120;
+                oglMain.Left = 70;
+                oglMain.Width = Width - 170;
+
+                btnpTiltDown.Left = 8;
+                btnpTiltUp.Left = 8;
+                btnZoomIn.Left = 8;
+                btnZoomOut.Left = 8;
+                btnFlag.Left = 8;
+                btnCamera.Left = 8;
+
+                btnIMUConfig.Left = 85;
+                btnYouTurn.Left = 85;
+                btnVehicleSettings.Left = 85;
+                btnSerialPorts.Left = 85;
+                btnFlagsGoogleEarth.Left = 85;
+
+                panelZoom.Visible = false;
+                panelNtrip.Visible = false;
+                txtDistanceOffABLine.Left = (Width - 200) / 2;
+                txtDistanceOffABLine.Top = -1;
+                panelBatman.Visible = false;
+                LineUpManualBtns();
+
+
+            }
+
+
         }
 
         //line up section On Off Auto buttons based on how many there are
@@ -1096,6 +1070,7 @@ namespace AgOpenGPS
         }
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
+            secondRowCounter = 0;
             if ((sender as Control).IsDragging()) return;
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
@@ -1820,6 +1795,7 @@ namespace AgOpenGPS
         //The zoom tilt buttons
         private void btnZoomIn_MouseDown(object sender, MouseEventArgs e)
         {
+            secondRowCounter = 0;
             if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.1;
             else camera.zoomValue += camera.zoomValue * 0.05;
             if (camera.zoomValue > 220) camera.zoomValue = 220;
@@ -1828,6 +1804,7 @@ namespace AgOpenGPS
         }
         private void btnZoomOut_MouseDown(object sender, MouseEventArgs e)
         {
+            secondRowCounter = 0;
             if (camera.zoomValue <= 20)
             { if ((camera.zoomValue -= camera.zoomValue * 0.1) < 6.0) camera.zoomValue = 6.0; }
             else { if ((camera.zoomValue -= camera.zoomValue * 0.05) < 6.0) camera.zoomValue = 6.0; }
@@ -1836,11 +1813,13 @@ namespace AgOpenGPS
         }
         private void btnpTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
+            secondRowCounter = 0;
             camera.camPitch -= ((camera.camPitch * 0.02) - 1);
             if (camera.camPitch > 0) camera.camPitch = 0;
         }
         private void btnpTiltDown_MouseDown(object sender, MouseEventArgs e)
         {
+            secondRowCounter = 0;
             camera.camPitch += ((camera.camPitch * 0.02) - 1);
             if (camera.camPitch < -80) camera.camPitch = -80;
         }
@@ -2165,6 +2144,7 @@ namespace AgOpenGPS
         }
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
+            secondRowCounter = 0;
             yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
             yt.ResetCreatedYouTurn();
             Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
@@ -2914,24 +2894,10 @@ namespace AgOpenGPS
         }
         private void toolStripBatman_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
+            Properties.Settings.Default.Save();
             SwapBatmanPanels();
         }
-
-        //camera tool buttons
-        //private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    camera.camFollowing = true;
-        //    camera.camPitch = -70;
-        //}
-        //private void CameraNorthToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    camera.camFollowing = false;
-        //}
-        //private void CameraTopToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    camera.camFollowing = true;
-        //    camera.camPitch = 0;
-        //}
 
         //Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
@@ -3272,7 +3238,7 @@ namespace AgOpenGPS
                     if (isSecondRowVisible)
                     {
                         secondRowCounter++;
-                        if (secondRowCounter > 1)
+                        if (secondRowCounter > 2)
                         {
                             isSecondRowVisible = false;
                             if (timerSim.Enabled) panelSimControls.Visible = true;
@@ -3418,7 +3384,7 @@ namespace AgOpenGPS
                         lblSpeed.Text = SpeedKPH;
 
                         //status strip values
-                        stripDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
+                        toolStripDropDownButtonDistance.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
 
                         btnContour.Text = XTE; //cross track error
 
@@ -3430,7 +3396,7 @@ namespace AgOpenGPS
                         lblSpeed.Text = SpeedMPH;
 
                         //status strip values
-                        stripDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
+                        toolStripDropDownButtonDistance.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres2;
                         btnContour.Text = InchXTE; //cross track error
                     }
 

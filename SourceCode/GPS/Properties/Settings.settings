@@ -237,7 +237,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setDisplay_snapDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">40</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="setDisplay_snapDistanceSmall" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -271,6 +271,9 @@
     </Setting>
     <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setDisplay_isBatmanOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
