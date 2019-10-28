@@ -727,7 +727,7 @@ namespace AgOpenGPS
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
 
                 //draw on left side
@@ -736,7 +736,7 @@ namespace AgOpenGPS
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
             }
 
