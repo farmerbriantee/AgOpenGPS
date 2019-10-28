@@ -568,6 +568,7 @@
     <None Include="btnImages\GPSSignalPoor.png" />
     <None Include="btnImages\SnapLeftSmall.png" />
     <None Include="btnImages\SnapRightSmall.png" />
+    <None Include="btnImages\Config54.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

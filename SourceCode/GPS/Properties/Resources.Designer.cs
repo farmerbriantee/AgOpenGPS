@@ -342,6 +342,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Camera541 {
+            get {
+                object obj = ResourceManager.GetObject("Camera541", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CameraNorth64 {
             get {
                 object obj = ResourceManager.GetObject("CameraNorth64", resourceCulture);
@@ -395,6 +405,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ComPorts {
             get {
                 object obj = ResourceManager.GetObject("ComPorts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Config54 {
+            get {
+                object obj = ResourceManager.GetObject("Config54", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

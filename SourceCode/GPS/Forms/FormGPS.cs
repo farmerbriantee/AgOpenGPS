@@ -232,10 +232,8 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            ControlExtension.Draggable(btnCycleLines, true);
-            ControlExtension.Draggable(btnMakeLinesFromBoundary, true);
-
-            //btnManualAutoDrive.Text = gStr.gsAbout;
+            //ControlExtension.Draggable(btnCycleLines, true);
+            //ControlExtension.Draggable(btnMakeLinesFromBoundary, true);
 
             //file menu
             //fileToolStripMenuItem.Text = gStr.gsFile;
@@ -279,8 +277,8 @@ namespace AgOpenGPS
             //Tools Menu
             treePlanterToolStripMenuItem.Text = gStr.gsTreePlanter;
             toolStripBtnSmoothABCurve.Text = gStr.gsSmoothABCurve;
-            //toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
-            //deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
             toolStripAreYouSure.Text = gStr.gsAreYouSure;
             webCamToolStripItem.Text = gStr.gsWebCam;
@@ -944,8 +942,16 @@ namespace AgOpenGPS
             {
                 isSecondRowVisible = !isSecondRowVisible;
                 panelSimControls.Visible = false;
-                oglMain.Width -= 170;
-                oglMain.Left += 70;
+                if (panelBatman.Visible)
+                {
+                    oglMain.Width -= 300;
+                    oglMain.Left += 190;
+                }
+                else
+                {
+                    oglMain.Width -= 200;
+                    oglMain.Left += 90;
+                }
                 secondRowCounter = 0;
             }
         }
@@ -999,11 +1005,6 @@ namespace AgOpenGPS
 
         private void btnDeleteContours_Click(object sender, EventArgs e)
         {
-            //FileCreateContour();
-            ct.stripList?.Clear();
-            ct.ptList?.Clear();
-            ct.ctList?.Clear();
-            contourSaveList?.Clear();
         }
 
         private void toolStripBtnSmallRight_Click(object sender, EventArgs e)
@@ -1026,6 +1027,92 @@ namespace AgOpenGPS
         {
             if (!oglZoom.Visible)
                         oglZoom.Visible = true;
+        }
+
+        private void btnSerialPorts_Click(object sender, EventArgs e)
+        {
+            SettingsCommunications();
+        }
+
+        private void btnIMUConfig_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormIMU(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+
+            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+            else btnAutoSteer.Text = "M";
+        }
+
+        private void btnYouTurn_Click(object sender, EventArgs e)
+        {
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+        }
+
+        private void btnVehicleSettings_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
+            }
+
+        }
+
+        private void toolStripbtnAutoSteerConfig_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteer"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteer(this);
+            form.Show();
+        }
+
+        private void toolStripBtnGPSStength_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormGPSData(this);
+            form.Show();
+        }
+
+        private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
+        {
+            //build all the contour guidance lines from boundaries, all of them. 
+            using (var form = new FormMakeBndCon(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
+        private void btnCamera_Click(object sender, EventArgs e)
+        {
+            if (camera.camPitch < -1) camera.camPitch = 0;
+            else camera.camPitch = -68;
         }
 
         public void GetAB()
@@ -1404,7 +1491,7 @@ namespace AgOpenGPS
 
             if (!isJobStarted)
             {
-                if (btnGPSData.BackgroundImage.Height == 38)
+                if (toolStripBtnGPSStength.Image.Height == 38)
                 {
                     var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
                     form.Show();

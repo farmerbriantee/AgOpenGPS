@@ -81,7 +81,7 @@ namespace AgOpenGPS
 
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
-            toolStripMenuAreaSide.Checked = isAreaOnRight;
+            //toolStripMenuAreaSide.Checked = isAreaOnRight;
 
             //set up grid and lightbar
             isGridOn = Settings.Default.setMenu_isGridOn;
@@ -202,12 +202,21 @@ namespace AgOpenGPS
                     panelSimControls.Left = 120;
                     oglMain.Left = 70;
                     oglMain.Width = Width - 170;
+
                     btnpTiltDown.Left = 8;
                     btnpTiltUp.Left = 8;
                     btnZoomIn.Left = 8;
                     btnZoomOut.Left = 8;
                     btnFlag.Left = 8;
-                    cboxpRowWidth.Left = 8;
+                    //cboxpRowWidth.Left = 8;
+                    btnCamera.Left = 8;
+
+                    btnIMUConfig.Left = 85;
+                    btnYouTurn.Left = 85;
+                    btnVehicleSettings.Left = 85;
+                    btnSerialPorts.Left = 85;
+
+
                     panelZoom.Visible = false;
                     panelNtrip.Visible = false;
                     txtDistanceOffABLine.Left = (Width - 200) / 2;
@@ -219,7 +228,7 @@ namespace AgOpenGPS
 
                 case 1:
                     //Batman mini-panel shows
-                    panelSimControls.Left = 245;
+                    panelSimControls.Left = 300;
                     oglMain.Left = 282;
                     oglMain.Width = Width - 380;
 
@@ -228,7 +237,14 @@ namespace AgOpenGPS
                     btnZoomIn.Left = 290;
                     btnZoomOut.Left = 290;
                     btnFlag.Left = 290;
-                    cboxpRowWidth.Left = 290;
+                    //cboxpRowWidth.Left = 290;
+                    btnCamera.Left = 290;
+
+                    btnIMUConfig.Left = 380;
+                    btnYouTurn.Left = 380;
+                    btnVehicleSettings.Left = 380;
+                    btnSerialPorts.Left = 380;
+
 
                     panelZoom.Visible = true;
                     panelNtrip.Visible = true;
@@ -1052,7 +1068,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (ABLine.isABLineSet | ct.isContourBtnOn | curve.isCurveSet)
+                if (ABLine.isBtnABLineOn | ct.isContourBtnOn | curve.isCurveBtnOn)
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
@@ -1358,22 +1374,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void BtnTinyAutoSteerConfig_Click(object sender, EventArgs e)
-        {
-            //check if window already exists
-            Form fc = Application.OpenForms["FormSteer"];
-
-            if (fc != null)
-            {
-                fc.Focus();
-                fc.Close();
-                return;
-            }
-
-            //
-            Form form = new FormSteer(this);
-            form.Show();
-        }
 
         //Snaps
         private void SnapSmallLeft()
@@ -1799,20 +1799,6 @@ namespace AgOpenGPS
         //        form.Show();
         //    }
         //}
-        private void btnGPSData_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                return;
-            }
-
-            Form form = new FormGPSData(this);
-            form.Show();
-        }
         private void toolStripZoomOut_Click(object sender, EventArgs e)
         {
 
@@ -2775,9 +2761,6 @@ namespace AgOpenGPS
                 else TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
         }
-        private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
-        {
-        }
         private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
         {
             var form = new FormYouTurn(this);
@@ -2837,8 +2820,13 @@ namespace AgOpenGPS
         }
         private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //FileCreateContour();
+            ct.stripList?.Clear();
+            ct.ptList?.Clear();
+            ct.ctList?.Clear();
+            contourSaveList?.Clear();
         }
-        
+
         private void toolstripVehicleConfig_Click(object sender, EventArgs e)
         {
             using (var form = new FormSettings(this, 0))
@@ -2930,20 +2918,20 @@ namespace AgOpenGPS
         }
 
         //camera tool buttons
-        private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            camera.camFollowing = true;
-            camera.camPitch = -70;
-        }
-        private void CameraNorthToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            camera.camFollowing = false;
-        }
-        private void CameraTopToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            camera.camFollowing = true;
-            camera.camPitch = 0;
-        }
+        //private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    camera.camFollowing = true;
+        //    camera.camPitch = -70;
+        //}
+        //private void CameraNorthToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    camera.camFollowing = false;
+        //}
+        //private void CameraTopToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    camera.camFollowing = true;
+        //    camera.camPitch = 0;
+        //}
 
         //Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
@@ -3256,18 +3244,18 @@ namespace AgOpenGPS
 
                     //update the online indicator 37 green red 38
 
-                    if (recvCounter > 20 && btnGPSData.BackgroundImage.Height != 38)
+                    if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 38)
                     {
                         //stripOnlineGPS.Value = 1;
                         lblEasting.Text = "-";
                         lblNorthing.Text = gStr.gsNoGPS;
                         //lblZone.Text = "-";
-                        btnGPSData.BackgroundImage = Resources.GPSSignalPoor;
+                        toolStripBtnGPSStength.Image = Resources.GPSSignalPoor;
                     }
-                    else if (recvCounter < 20 && btnGPSData.BackgroundImage.Height != 37)
+                    else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 37)
                     {
                         //stripOnlineGPS.Value = 100;
-                        btnGPSData.BackgroundImage = Resources.GPSSignalGood;
+                        toolStripBtnGPSStength.Image = Resources.GPSSignalGood;
                     }
 
                 }//end every 3 seconds
@@ -3288,8 +3276,17 @@ namespace AgOpenGPS
                         {
                             isSecondRowVisible = false;
                             if (timerSim.Enabled) panelSimControls.Visible = true;
-                            oglMain.Width += 170;
-                            oglMain.Left -= 70;
+
+                            if (panelBatman.Visible)
+                            {
+                                oglMain.Width += 300;
+                                oglMain.Left -= 190;
+                            }
+                            else
+                            {
+                                oglMain.Width += 200;
+                                oglMain.Left -= 90;
+                            }
                         }
                     }
 
@@ -3528,32 +3525,29 @@ namespace AgOpenGPS
                     //if (tabControl1.SelectedIndex == 1 && tabControl1.Visible)
                     //{
 
-                    //    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                    //    {
-                    //        lblSetpointSteerAngle2.Text = "Off  ";
-                    //        //lblDiffSteerAngle2.Text = "Off";
-                    //    }
-                    //    else
-                    //    {
-                    //        lblSetpointSteerAngle2.Text = SetSteerAngle;
-                    //        //lblDiffSteerAngle2.Text = DiffSteerAngle;
-                    //    }
+                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+                    {
+                        toolStripbtnAutoSteerConfig.Text = "Off  \r\n" + ActualSteerAngle;
+                    }
+                    else
+                    {
+                        toolStripbtnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
+                    }
 
-                    //    lblActualSteerAngle2.Text = ActualSteerAngle;
                     //    {
 
-                    //        lblRoll.Text = RollInDegrees;
-                    //        lblYawHeading.Text = GyroInDegrees;
-                    //        lblGPSHeading.Text = GPSHeading;
-                    //        lblHeading2.Text = lblHeading.Text;
+                    lblRoll.Text = RollInDegrees;
+                    lblYawHeading.Text = GyroInDegrees;
+                    lblGPSHeading.Text = GPSHeading;
+                    lblHeading2.Text = lblHeading.Text;
                     //    }
                     //}
 
                     if (panelBatman.Visible)
                     {
-                        lblpRoll.Text = RollInDegrees;
-                        lblpYawHeading.Text = GyroInDegrees;
-                        lblpGPSHeading.Text = GPSHeading;
+                        lblRoll.Text = RollInDegrees;
+                        lblYawHeading.Text = GyroInDegrees;
+                        lblGPSHeading.Text = GPSHeading;
                     }
                 }
 

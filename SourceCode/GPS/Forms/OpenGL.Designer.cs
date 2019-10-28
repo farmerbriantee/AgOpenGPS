@@ -890,7 +890,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && btnGPSData.BackgroundImage.Height == 38)
+                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
