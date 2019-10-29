@@ -524,7 +524,7 @@ namespace AgOpenGPS
             if (showPanel)
             {
                 isFullPanel = true;
-                this.Size = new System.Drawing.Size(388, 411);
+                this.Size = new System.Drawing.Size(388, 475);
                 lvLines.Visible = true;
                 label2.Visible = true;
                 label3.Visible = true;
@@ -541,6 +541,7 @@ namespace AgOpenGPS
                 btnUpABHeadingBy1.Visible = false;
                 btnDnABHeadingBy1.Visible = false;
                 tboxHeading.Visible = false;
+                lblFixHeading.Visible = false;
             }
             else   //hide the panel
             {
@@ -556,14 +557,26 @@ namespace AgOpenGPS
                 btnListUse.Visible = false;
                 btnAddToFile.Visible = false;
                 btnAddAndGo.Visible = false;
+                nudTramRepeats.Visible = false;
+                nudBasedOnPass.Visible = false;
 
                 btnAPoint.Visible = true;
                 btnBPoint.Visible = true;
                 btnUpABHeadingBy1.Visible = true;
                 btnDnABHeadingBy1.Visible = true;
                 tboxHeading.Visible = true;
+                lblFixHeading.Visible = true;
             }
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
