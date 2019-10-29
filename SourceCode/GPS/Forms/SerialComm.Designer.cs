@@ -212,9 +212,6 @@ namespace AgOpenGPS
         {
             if (spAutoSteer.IsOpen)
             {
-                
-
-
                 if (!Properties.Settings.Default.isJRK)
                 {
                     try
@@ -228,13 +225,9 @@ namespace AgOpenGPS
                     {
                         WriteErrorLog("AutoSteer Recv" + ex.ToString());
                     }
-
                 }
                 else   //get 2 byte feedback from pololu
-
                 {
-
-
                     byte[] buffer = new byte[2];
                     spAutoSteer.Read(buffer, 0, 2);
                     int feedback = buffer[0] + 256 * buffer[1];

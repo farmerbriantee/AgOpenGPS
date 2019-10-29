@@ -218,7 +218,6 @@ namespace AgOpenGPS
                         }
                         break;
                     }
-
             }
         }
 

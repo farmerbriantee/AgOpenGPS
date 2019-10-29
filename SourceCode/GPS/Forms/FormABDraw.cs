@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -19,7 +18,7 @@ namespace AgOpenGPS
 
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
         public double low = 0, high = 1;
-        private int A, B, C, D, E, start = 99999, end = 99999;     
+        private int A, B, C, D, E, start = 99999, end = 99999;
 
         //list of coordinates of boundary line
         public List<vec3> turnLine = new List<vec3>();
@@ -92,7 +91,6 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnSelectABLine.Focus();
-
         }
 
         private void btnDeleteCurve_Click(object sender, EventArgs e)
@@ -101,7 +99,6 @@ namespace AgOpenGPS
             {
                 mf.curve.curveArr.RemoveAt(mf.curve.numCurveLineSelected - 1);
                 mf.curve.numCurveLines--;
-
             }
 
             if (mf.curve.numCurveLines > 0) mf.curve.numCurveLineSelected = 1;
@@ -429,9 +426,9 @@ namespace AgOpenGPS
             }
 
             //sin x cos z for endpoints, opposite for additional lines
-            mf.ABLine.lineArr[idx].ref1.easting =   mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+            mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
             mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
-            mf.ABLine.lineArr[idx].ref2.easting =  mf.ABLine.lineArr[idx].origin.easting +  (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+            mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
             mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
 
             //create a name
@@ -473,8 +470,8 @@ namespace AgOpenGPS
             if (start != 99999 || end != 99999) DrawABTouchLine();
 
             //draw the actual built lines
-            if (start == 99999 && end == 99999) 
-            {                
+            if (start == 99999 && end == 99999)
+            {
                 DrawBuiltLines();
             }
 
@@ -588,8 +585,8 @@ namespace AgOpenGPS
                 GL.LineWidth(4.0f);
                 GL.Color3(0.95, 0.0, 0.0);
                 GL.Begin(PrimitiveType.Lines);
-                    GL.Vertex3(arr[A].easting, arr[A].northing, 0);
-                    GL.Vertex3(arr[C].easting, arr[C].northing, 0);
+                GL.Vertex3(arr[A].easting, arr[A].northing, 0);
+                GL.Vertex3(arr[C].easting, arr[C].northing, 0);
                 GL.End();
             }
         }
@@ -601,7 +598,7 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (mf.ABLine.numABLineSelected > 0 )
+            if (mf.ABLine.numABLineSelected > 0)
             {
                 mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
                 mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
@@ -625,7 +622,6 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveABLines();
-
 
             //curve
             if (mf.curve.numCurveLineSelected > 0)
@@ -669,7 +665,7 @@ namespace AgOpenGPS
                     mf.btnCurve.Image = Properties.Resources.CurveOff;
                 }
             }
-            
+
             Close();
         }
 
@@ -700,80 +696,42 @@ namespace AgOpenGPS
             minFieldX = 9999999; minFieldY = 9999999;
             maxFieldX = -9999999; maxFieldY = -9999999;
 
-            //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            //min max of the boundary
+            if (mf.bnd.bndArr[0].isSet)
             {
-                //every time the section turns off and on is a new patch
-                int patchCount = mf.section[j].patchList.Count;
-
-                if (patchCount > 0)
+                int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
+                for (int i = 0; i < bndCnt; i++)
                 {
-                    //for every new chunk of patch
-                    foreach (var triList in mf.section[j].patchList)
-                    {
-                        int count2 = triList.Count;
-                        for (int i = 0; i < count2; i += 3)
-                        {
-                            double x = triList[i].easting;
-                            double y = triList[i].northing;
+                    double x = mf.bnd.bndArr[0].bndLine[i].easting;
+                    double y = mf.bnd.bndArr[0].bndLine[i].northing;
 
-                            //also tally the max/min of field x and z
-                            if (minFieldX > x) minFieldX = x;
-                            if (maxFieldX < x) maxFieldX = x;
-                            if (minFieldY > y) minFieldY = y;
-                            if (maxFieldY < y) maxFieldY = y;
-                        }
-                    }
+                    //also tally the max/min of field x and z
+                    if (minFieldX > x) minFieldX = x;
+                    if (maxFieldX < x) maxFieldX = x;
+                    if (minFieldY > y) minFieldY = y;
+                    if (maxFieldY < y) maxFieldY = y;
                 }
+            }
 
-                //min max of the boundary
-                if (mf.bnd.bndArr[0].isSet)
-                {
-                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
-                    for (int i = 0; i < bndCnt; i++)
-                    {
-                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
-                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
+            if (maxFieldX == -9999999 || minFieldX == 9999999 || maxFieldY == -9999999 || minFieldY == 9999999)
+            {
+                maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
+            }
+            else
+            {
+                //the largest distancew across field
+                double dist = Math.Abs(minFieldX - maxFieldX);
+                double dist2 = Math.Abs(minFieldY - maxFieldY);
 
-                        //also tally the max/min of field x and z
-                        if (minFieldX > x) minFieldX = x;
-                        if (maxFieldX < x) maxFieldX = x;
-                        if (minFieldY > y) minFieldY = y;
-                        if (maxFieldY < y) maxFieldY = y;
-                    }
-                }
+                if (dist > dist2) maxFieldDistance = dist;
+                else maxFieldDistance = dist2;
 
-                if (maxFieldX == -9999999 || minFieldX == 9999999 || maxFieldY == -9999999 || minFieldY == 9999999)
-                {
-                    maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
-                }
-                else
-                {
-                    //the largest distancew across field
-                    double dist = Math.Abs(minFieldX - maxFieldX);
-                    double dist2 = Math.Abs(minFieldY - maxFieldY);
+                if (maxFieldDistance < 100) maxFieldDistance = 100;
+                if (maxFieldDistance > 19900) maxFieldDistance = 19900;
+                //lblMax.Text = ((int)maxFieldDistance).ToString();
 
-                    if (dist > dist2) maxFieldDistance = dist;
-                    else maxFieldDistance = dist2;
-
-                    if (maxFieldDistance < 100) maxFieldDistance = 100;
-                    if (maxFieldDistance > 19900) maxFieldDistance = 19900;
-                    //lblMax.Text = ((int)maxFieldDistance).ToString();
-
-                    fieldCenterX = (maxFieldX + minFieldX) / 2.0;
-                    fieldCenterY = (maxFieldY + minFieldY) / 2.0;
-                }
-
-                //if (isMetric)
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-                //}
-                //else
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-                //}
+                fieldCenterX = (maxFieldX + minFieldX) / 2.0;
+                fieldCenterY = (maxFieldY + minFieldY) / 2.0;
             }
         }
     }

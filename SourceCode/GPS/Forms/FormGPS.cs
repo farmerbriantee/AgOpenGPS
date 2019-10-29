@@ -942,7 +942,7 @@ namespace AgOpenGPS
             {
                 isSecondRowVisible = !isSecondRowVisible;
                 panelSimControls.Visible = false;
-                if (panelBatman.Visible)
+                if (panelZoom.Visible)
                 {
                     oglMain.Width -= 300;
                     oglMain.Left += 190;
@@ -1125,12 +1125,6 @@ namespace AgOpenGPS
             fd.workedAreaTotalUser = 0;
         }
 
-        private void toolStripBtnField_Click(object sender, EventArgs e)
-        {
-            JobNewOpenResume();
-
-        }
-
         private void toolStripBtnYouTurn_Click(object sender, EventArgs e)
         {
             var form = new FormYouTurn(this);
@@ -1280,6 +1274,28 @@ namespace AgOpenGPS
                 isInAutoDrive = true;
                 AutoManualtoolStripSplitButton1.Image = Properties.Resources.AutoManualIsAuto;
             }
+        }
+
+        private void toolStripBtnBoundary_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                using (var form = new FormBoundary(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show();
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+        }
+
+        private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
+        {
+            Close();
         }
 
         public void GetAB()

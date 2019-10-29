@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
             rollUsed = 0;
 
-            if (ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP)
+            if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP) && ahrs.rollX16 != 9999)
             {
                 rollUsed = ((double)(ahrs.rollX16 - ahrs.rollZeroX16)) * 0.0625;
 
@@ -555,7 +555,7 @@ namespace AgOpenGPS
             }
 
             //an IMU with heading correction, add the correction
-            if (ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)
+            if ((ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP) && ahrs.correctionHeadingX16 != 9999)
             {
                 //current gyro angle in radians
                 double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));
@@ -1009,7 +1009,7 @@ namespace AgOpenGPS
 
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
-                //lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;

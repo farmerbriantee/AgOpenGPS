@@ -197,7 +197,7 @@ namespace AgOpenGPS
             }
 
             //draw the sections
-            GL.LineWidth(8);
+            GL.LineWidth(16);
             GL.Begin(PrimitiveType.Lines);
 
             //draw section line
@@ -220,7 +220,10 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        GL.Color3(0.97f, 0.2f, 0.2f);
+                        //orange for auto pushed but off
+                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto)
+                        GL.Color3(0.97f, 0.52f, 0.12f);
+                        else GL.Color3(0.97f, 0.12f, 0.12f);
                     }
 
                     //draw section line
@@ -232,11 +235,11 @@ namespace AgOpenGPS
             GL.End();
 
             //draw section markers if close enough
-            if (mf.camera.camSetDistance > -1500)
+            if (mf.camera.camSetDistance > -300)
             {
                 GL.Color3(0.0f, 0.0f, 0.0f);
                 //section markers
-                GL.PointSize(4.0f);
+                GL.PointSize(6.0f);
                 GL.Begin(PrimitiveType.Points);
                 for (int j = 0; j < mf.vehicle.numOfSections - 1; j++)
                     GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
@@ -290,7 +293,7 @@ namespace AgOpenGPS
             GL.Color3(0.9, 0.90, 0.0);
             GL.Begin(PrimitiveType.TriangleFan);
 
-            GL.Vertex3(0, antennaPivot, -0.2);
+            GL.Vertex3(0, antennaPivot, 0.2);
             GL.Vertex3(1.2, -0, 0.0);
             GL.Color3(0.0, 0.90, 0.92);
             GL.Vertex3(0, wheelbase, 0.0);

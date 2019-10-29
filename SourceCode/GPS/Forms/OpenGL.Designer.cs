@@ -493,9 +493,10 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && !panelZoom.Visible)
+                if (threeSeconds != zoomUpdateCounter )
                 {
                     zoomUpdateCounter = threeSeconds;
+                    if (panelZoom.Visible && oglZoom.Visible)
                     oglZoom.Refresh();
                 }
             }
@@ -1308,16 +1309,16 @@ namespace AgOpenGPS
             //maxFieldX += 8;
             //maxFieldY += 8;
 
-            //if (isMetric)
-            //{
-            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-            //}
-            //else
-            //{
-            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-            //}
+            if (isMetric)
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            }
+            else
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            }
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 
