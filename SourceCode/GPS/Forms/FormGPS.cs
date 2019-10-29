@@ -935,7 +935,7 @@ namespace AgOpenGPS
         }
 
         public bool isSecondRowVisible = false;
-        public int secondRowCounter = 0;
+        public int secondRowCounter = 8;
         private void oglMain_MouseUp(object sender, MouseEventArgs e)
         {
             if (!isSecondRowVisible)

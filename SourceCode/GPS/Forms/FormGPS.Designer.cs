@@ -2291,9 +2291,9 @@
             this.AutoManualtoolStripSplitButton1,
             this.toolStripBtnPower});
             this.statusStripLeft.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.statusStripLeft.Location = new System.Drawing.Point(284, 367);
+            this.statusStripLeft.Location = new System.Drawing.Point(284, 400);
             this.statusStripLeft.Name = "statusStripLeft";
-            this.statusStripLeft.Size = new System.Drawing.Size(63, 254);
+            this.statusStripLeft.Size = new System.Drawing.Size(63, 231);
             this.statusStripLeft.Stretch = false;
             this.statusStripLeft.TabIndex = 312;
             this.statusStripLeft.Text = "statusStrip2";
@@ -2753,7 +2753,7 @@
             this.btnFlagsGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
             this.btnFlagsGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnFlagsGoogleEarth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFlagsGoogleEarth.Location = new System.Drawing.Point(367, 47);
+            this.btnFlagsGoogleEarth.Location = new System.Drawing.Point(367, 66);
             this.btnFlagsGoogleEarth.Name = "btnFlagsGoogleEarth";
             this.btnFlagsGoogleEarth.Size = new System.Drawing.Size(72, 72);
             this.btnFlagsGoogleEarth.TabIndex = 177;
@@ -2771,7 +2771,7 @@
             this.btnVehicleSettings.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnVehicleSettings.Image = global::AgOpenGPS.Properties.Resources.Settings64;
             this.btnVehicleSettings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnVehicleSettings.Location = new System.Drawing.Point(367, 316);
+            this.btnVehicleSettings.Location = new System.Drawing.Point(367, 330);
             this.btnVehicleSettings.Name = "btnVehicleSettings";
             this.btnVehicleSettings.Size = new System.Drawing.Size(72, 72);
             this.btnVehicleSettings.TabIndex = 307;
@@ -2789,7 +2789,7 @@
             this.btnSerialPorts.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialPorts.Image = global::AgOpenGPS.Properties.Resources.ComPorts;
             this.btnSerialPorts.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSerialPorts.Location = new System.Drawing.Point(367, 400);
+            this.btnSerialPorts.Location = new System.Drawing.Point(367, 418);
             this.btnSerialPorts.Name = "btnSerialPorts";
             this.btnSerialPorts.Size = new System.Drawing.Size(72, 72);
             this.btnSerialPorts.TabIndex = 310;
@@ -2807,7 +2807,7 @@
             this.btnIMUConfig.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnIMUConfig.Image = global::AgOpenGPS.Properties.Resources.gyro;
             this.btnIMUConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnIMUConfig.Location = new System.Drawing.Point(367, 232);
+            this.btnIMUConfig.Location = new System.Drawing.Point(367, 242);
             this.btnIMUConfig.Name = "btnIMUConfig";
             this.btnIMUConfig.Size = new System.Drawing.Size(72, 72);
             this.btnIMUConfig.TabIndex = 309;
@@ -2825,7 +2825,7 @@
             this.btnYouTurn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnYouTurn.Image = global::AgOpenGPS.Properties.Resources.Youturn64;
             this.btnYouTurn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnYouTurn.Location = new System.Drawing.Point(367, 484);
+            this.btnYouTurn.Location = new System.Drawing.Point(367, 506);
             this.btnYouTurn.Name = "btnYouTurn";
             this.btnYouTurn.Size = new System.Drawing.Size(72, 72);
             this.btnYouTurn.TabIndex = 308;
@@ -2865,7 +2865,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(284, 113);
+            this.btnZoomIn.Location = new System.Drawing.Point(284, 146);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(56, 56);
             this.btnZoomIn.TabIndex = 120;
@@ -2882,7 +2882,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(284, 53);
+            this.btnZoomOut.Location = new System.Drawing.Point(284, 85);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(56, 56);
             this.btnZoomOut.TabIndex = 119;
@@ -2899,7 +2899,7 @@
             this.btnpTiltDown.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltDown.Image = global::AgOpenGPS.Properties.Resources.TiltDown;
             this.btnpTiltDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltDown.Location = new System.Drawing.Point(284, 233);
+            this.btnpTiltDown.Location = new System.Drawing.Point(284, 268);
             this.btnpTiltDown.Name = "btnpTiltDown";
             this.btnpTiltDown.Size = new System.Drawing.Size(56, 56);
             this.btnpTiltDown.TabIndex = 245;
@@ -2916,7 +2916,7 @@
             this.btnpTiltUp.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltUp.Image = global::AgOpenGPS.Properties.Resources.TiltUp;
             this.btnpTiltUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltUp.Location = new System.Drawing.Point(284, 173);
+            this.btnpTiltUp.Location = new System.Drawing.Point(284, 207);
             this.btnpTiltUp.Name = "btnpTiltUp";
             this.btnpTiltUp.Size = new System.Drawing.Size(56, 56);
             this.btnpTiltUp.TabIndex = 246;
@@ -2933,7 +2933,7 @@
             this.btnCamera.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCamera.Image = global::AgOpenGPS.Properties.Resources.Camera541;
             this.btnCamera.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCamera.Location = new System.Drawing.Point(284, 289);
+            this.btnCamera.Location = new System.Drawing.Point(284, 329);
             this.btnCamera.Name = "btnCamera";
             this.btnCamera.Size = new System.Drawing.Size(56, 70);
             this.btnCamera.TabIndex = 311;
@@ -2970,7 +2970,7 @@
             this.btnNTRIP.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnNTRIP.Image = global::AgOpenGPS.Properties.Resources.NtripSettings;
             this.btnNTRIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNTRIP.Location = new System.Drawing.Point(367, 143);
+            this.btnNTRIP.Location = new System.Drawing.Point(367, 154);
             this.btnNTRIP.Name = "btnNTRIP";
             this.btnNTRIP.Size = new System.Drawing.Size(72, 72);
             this.btnNTRIP.TabIndex = 319;

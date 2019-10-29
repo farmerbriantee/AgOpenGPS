@@ -209,12 +209,12 @@ namespace AgOpenGPS
                 btnCamera.Left = 8;
 
 
-                btnIMUConfig.Left = 100;
-                btnYouTurn.Left = 100;
-                btnVehicleSettings.Left = 100;
-                btnSerialPorts.Left = 100;
-                btnFlagsGoogleEarth.Left = 100;
-                btnNTRIP.Left = 100;
+                btnIMUConfig.Left = 90;
+                btnYouTurn.Left = 90;
+                btnVehicleSettings.Left = 90;
+                btnSerialPorts.Left = 90;
+                btnFlagsGoogleEarth.Left = 90;
+                btnNTRIP.Left = 90;
 
                 panelZoom.Visible = true;
                 statusStripLeft.Left = 8;
@@ -236,12 +236,12 @@ namespace AgOpenGPS
                 btnCamera.Left = 8;
 
 
-                btnIMUConfig.Left = 100;
-                btnYouTurn.Left = 100;
-                btnVehicleSettings.Left = 100;
-                btnSerialPorts.Left = 100;
-                btnFlagsGoogleEarth.Left = 100;
-                btnNTRIP.Left = 100;
+                btnIMUConfig.Left = 90;
+                btnYouTurn.Left = 90;
+                btnVehicleSettings.Left = 90;
+                btnSerialPorts.Left = 90;
+                btnFlagsGoogleEarth.Left = 90;
+                btnNTRIP.Left = 90;
 
                 panelZoom.Visible = false;
                 statusStripLeft.Left = 8;
@@ -2819,6 +2819,7 @@ namespace AgOpenGPS
         }
         private void toolStripBatman_Click(object sender, EventArgs e)
         {
+            if (secondRowCounter < 8) return;
             Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
             Properties.Settings.Default.Save();
             SwapBatmanPanels();
@@ -3159,9 +3160,10 @@ namespace AgOpenGPS
                     if (isSecondRowVisible)
                     {
                         secondRowCounter++;
-                        if (secondRowCounter > 2)
+                        if (secondRowCounter > 4)
                         {
                             isSecondRowVisible = false;
+                            secondRowCounter = 8;
                             if (timerSim.Enabled) panelSimControls.Visible = true;
 
                             if (Properties.Settings.Default.setDisplay_isBatmanOn)
