@@ -1315,6 +1315,12 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
         }
 
+        private void toolStripBtnField_Click(object sender, EventArgs e)
+        {
+            JobNewOpenResume();
+
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
