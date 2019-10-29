@@ -942,16 +942,19 @@ namespace AgOpenGPS
             {
                 isSecondRowVisible = !isSecondRowVisible;
                 panelSimControls.Visible = false;
-                if (panelZoom.Visible)
+
+                if (Properties.Settings.Default.setDisplay_isBatmanOn)
                 {
-                    oglMain.Width -= 300;
-                    oglMain.Left += 190;
+                    oglMain.Width -= 200;
+                    oglMain.Left += 0;
+                    panelZoom.Visible = false;
                 }
                 else
                 {
-                    oglMain.Width -= 200;
-                    oglMain.Left += 90;
+                    oglMain.Width -= 300;
+                    oglMain.Left += 100;
                 }
+
                 secondRowCounter = 0;
             }
         }
@@ -1296,6 +1299,20 @@ namespace AgOpenGPS
         private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ABLine.passBasedOn = cboxTramBasedOn.SelectedIndex;
+            Properties.Vehicle.Default.setTram_BasedOn = ABLine.passBasedOn;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex;
+            Properties.Vehicle.Default.setTram_Skips = ABLine.tramPassEvery;
+            Properties.Vehicle.Default.Save();
         }
 
         public void GetAB()

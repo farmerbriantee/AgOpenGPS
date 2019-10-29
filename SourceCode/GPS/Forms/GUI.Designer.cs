@@ -127,6 +127,10 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
             else btnAutoSteer.Text = "M";
 
+            cboxTramPassEvery.Text = Properties.Vehicle.Default.setTram_Skips.ToString();
+            ABLine.tramPassEvery = Properties.Vehicle.Default.setTram_Skips;
+            cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
+            ABLine.passBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
         }
 
         //force all the buttons same according to two main buttons
@@ -198,22 +202,21 @@ namespace AgOpenGPS
                 oglMain.Left = 282;
                 oglMain.Width = Width - 380;
 
-                //Left side
-                btnpTiltDown.Left = 290;
-                btnpTiltUp.Left = 290;
-                btnZoomIn.Left = 290;
-                btnZoomOut.Left = 290;
-                btnCamera.Left = 290;
+                btnpTiltDown.Left = 8;
+                btnpTiltUp.Left = 8;
+                btnZoomIn.Left = 8;
+                btnZoomOut.Left = 8;
+                btnCamera.Left = 8;
 
-                //2nd row left side
-                btnIMUConfig.Left = 380;
-                btnYouTurn.Left = 380;
-                btnVehicleSettings.Left = 380;
-                btnSerialPorts.Left = 380;
+
+                btnIMUConfig.Left = 100;
+                btnYouTurn.Left = 100;
+                btnVehicleSettings.Left = 100;
+                btnSerialPorts.Left = 100;
+                btnFlagsGoogleEarth.Left = 100;
 
                 panelZoom.Visible = true;
-                statusStripLeft.Left = 282;
-
+                statusStripLeft.Left = 8;
 
                 txtDistanceOffABLine.Left = (Width + 70) / 2;
                 LineUpManualBtns();
@@ -3159,15 +3162,17 @@ namespace AgOpenGPS
                             isSecondRowVisible = false;
                             if (timerSim.Enabled) panelSimControls.Visible = true;
 
-                            if (panelZoom.Visible)
+                            if (Properties.Settings.Default.setDisplay_isBatmanOn)
                             {
-                                oglMain.Width += 300;
-                                oglMain.Left -= 190;
+                                oglMain.Width += 200;
+                                oglMain.Left += 0;
+                                panelZoom.Visible = true;
                             }
                             else
                             {
-                                oglMain.Width += 200;
-                                oglMain.Left -= 90;
+                                oglMain.Width += 300;
+                                oglMain.Left -= 100;
+                                panelZoom.Visible = false;
                             }
                         }
                     }
