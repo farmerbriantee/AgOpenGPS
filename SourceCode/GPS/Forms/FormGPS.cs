@@ -926,12 +926,12 @@ namespace AgOpenGPS
 
         private void toolStripBtnRight_Click(object sender, EventArgs e)
         {
-            SnapRight();
+            SnapSmallRight();
         }
 
         private void toolStripBtnLeft_Click(object sender, EventArgs e)
         {
-            SnapLeft();
+            SnapSmallLeft();
         }
 
         public bool isSecondRowVisible = false;
@@ -1015,12 +1015,12 @@ namespace AgOpenGPS
 
         private void toolStripBtnSmallRight_Click(object sender, EventArgs e)
         {
-            SnapSmallRight();
+            SnapRight();
         }
 
         private void toolStripBtnSmallLeft_Click(object sender, EventArgs e)
         {
-            SnapSmallLeft();
+            SnapLeft();
         }
 
         private void oglZoom_MouseUp(object sender, MouseEventArgs e)
