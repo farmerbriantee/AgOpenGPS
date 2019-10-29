@@ -934,38 +934,47 @@ namespace AgOpenGPS
             {
                 if (bnd.bndArr.Count > 0)
                 {
-                    if (j == 0)
+                    if (bnd.LastBoundary < bnd.bndArr.Count)
                     {
-                        //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
 
-                        for (int i = 0; i < bnd.bndArr.Count; i++)
+                        if (j == 0)
                         {
+                            //only one first left point, the rest are all rights moved over to left
+                            isLeftIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].leftPoint);
+                            isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
+
+                            for (int i = 0; i < bnd.bndArr.Count; i++)
+                            {
                                 isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].leftPoint);
                                 isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                            }
+
+                            //merge the two sides into in or out
+                            if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
+                            else section[j].isInsideBoundary = false;
                         }
 
-                        //merge the two sides into in or out
-                        if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
-                        else section[j].isInsideBoundary = false;
-                    }
+                        else
+                        {
+                            //grab the right of previous section, its the left of this section
+                            isLeftIn = isRightIn;
+                            isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
+                            for (int i = 0; i < bnd.bndArr.Count; i++)
+                            {
+                                //inner boundaries should normally NOT have point inside
+                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                            }
 
+                            if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
+                            else section[j].isInsideBoundary = false;
+                        }
+                        section[vehicle.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
+                    }
                     else
                     {
-                        //grab the right of previous section, its the left of this section
-                        isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
-                        for (int i = 0; i < bnd.bndArr.Count; i++)
-                        {
-                            //inner boundaries should normally NOT have point inside
-                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
-                        }
-
-                        if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
-                        else section[j].isInsideBoundary = false;
+                        section[j].isInsideBoundary = false;
+                        section[vehicle.numOfSections].isInsideBoundary = false;
                     }
-                    section[vehicle.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
                 }
 
                 //no boundary created so always inside

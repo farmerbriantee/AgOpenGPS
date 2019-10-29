@@ -588,16 +588,16 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndArr.Count > 0 && bnd.LastBoundary < bnd.bndArr.Count)
             {
                 ////draw the perimeter line so far
-                int ptCount = bnd.bndArr[0].bndLine.Count;
+                int ptCount = bnd.bndArr[bnd.LastBoundary].bndLine.Count;
                 if (ptCount > 1)
                 {
                     GL.LineWidth(2);                
                     GL.Color3(0.0f, 0.99f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[bnd.LastBoundary].bndLine[h].easting, bnd.bndArr[bnd.LastBoundary].bndLine[h].northing, 0);
                     GL.End();
                 }
             }
@@ -1266,7 +1266,7 @@ namespace AgOpenGPS
 
 
                 }
-                else
+                else if (bnd.LastBoundary < bnd.bndArr.Count)
                 {
                     int bndCnt = bnd.bndArr[bnd.LastBoundary].bndLine.Count;
                     for (int i = 0; i < bndCnt; i++)

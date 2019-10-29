@@ -148,7 +148,7 @@ namespace AgOpenGPS
         public bool IsPointInsideGeoFences(vec3 pt)
         {
             //if inside outer boundary, then potentially add
-            if (geoFenceArr.Count > 0 && geoFenceArr[mf.bnd.LastBoundary].IsPointInGeoFenceArea(pt))
+            if (geoFenceArr.Count > 0 && mf.bnd.LastBoundary < mf.bnd.bndArr.Count && geoFenceArr[mf.bnd.LastBoundary].IsPointInGeoFenceArea(pt))
             {
                 for (int b = 0; b < mf.bnd.bndArr.Count; b++)
                 {
@@ -172,7 +172,7 @@ namespace AgOpenGPS
         public bool IsPointInsideGeoFences(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (geoFenceArr.Count > 0 && geoFenceArr[mf.bnd.LastBoundary].IsPointInGeoFenceArea(pt))
+            if (geoFenceArr.Count > 0 && mf.bnd.LastBoundary < mf.bnd.bndArr.Count && geoFenceArr[mf.bnd.LastBoundary].IsPointInGeoFenceArea(pt))
             {
                 for (int b = 0; b < mf.bnd.bndArr.Count; b++)
                 {

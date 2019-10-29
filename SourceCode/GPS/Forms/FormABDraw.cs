@@ -752,7 +752,7 @@ namespace AgOpenGPS
                 }
 
                 //min max of the boundary
-                if (mf.bnd.bndArr.Count > 0)
+                if (mf.bnd.bndArr.Count > 0 && mf.bnd.LastBoundary < mf.bnd.bndArr.Count)
                 {
                     int bndCnt = mf.bnd.bndArr[mf.bnd.LastBoundary].bndLine.Count;
                     for (int i = 0; i < bndCnt; i++)

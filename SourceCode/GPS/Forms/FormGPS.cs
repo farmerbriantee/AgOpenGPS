@@ -834,10 +834,10 @@ namespace AgOpenGPS
 
         private void BtnElevationMap_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr[0].isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            if (bnd.bndArr.Count > 0 && bnd.LastBoundary < bnd.bndArr.Count)// && (ABLine.isABLineSet | curve.isCurveSet))
             {
                 //field too small or moving
-                if (bnd.bndArr[0].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmallToCreateAHeadland); return; }
+                if (bnd.bndArr[bnd.LastBoundary].bndLine.Count < 200) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmallToCreateAHeadland); return; }
                 //if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
                 using (var form = new FormElev(this))
