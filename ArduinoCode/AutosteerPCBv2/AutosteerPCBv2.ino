@@ -471,7 +471,7 @@ void loop()
       #endif
           
       //Vehicle roll --- * 16 in degrees
-      temp = (int)XeRoll;
+
       toSend[6] = (byte)(temp >> 8);
       toSend[7] = (byte)(temp);
           
