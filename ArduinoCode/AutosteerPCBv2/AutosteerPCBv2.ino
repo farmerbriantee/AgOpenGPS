@@ -14,11 +14,7 @@
                                             // These sensors are DIY installed ones.
                                         // 2 = ADS1115 Differential Mode - Connect Sensor GND to A1, Signal to A0
                                             // These sensors are factory installed and powered by tractor oem wiring.
-  
-  #define SteerPosZero 1660             //adjust linkage as much as possible to read 0 degrees when wheels staight ahead 
-                                        // Set to 1660 if using the ADS
-                                        // Set to 512 if using the Arduino A0                                      
-                               
+                                 
   #define WAS_Invert 0                  // set to 1 to Change Direction of Wheel Angle Sensor, must be positive turning right 
   
   #define Motor_Direction_Invert 0      // 1 = reverse output direction (Valve & Motor) 0 = Normal
@@ -117,6 +113,9 @@
   #if A2D_Convertor_Mode==1 | A2D_Convertor_Mode == 2
     #include "ADS1015.h"
     Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
+      #define SteerPosZero 1660 
+  #else
+    #define SteerPosZero 512
   #endif
   
  #if Inclinometer_Installed == 2 | Inclinometer_Installed == 3
@@ -651,7 +650,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     steerSettings.Ki = (float)data[3] * 0.001;     // read Ki from AgOpenGPS
     steerSettings.Kd = (float)data[4] * 1.0;       // read Kd from AgOpenGPS
     steerSettings.Ko = (float)data[5] * 0.1;       // read Ko from AgOpenGPS
-    steerSettings.steeringPositionZero = (1660-127) + data[6];//read steering zero offset  
+    
+    steerSettings.steeringPositionZero = (SteerPosZero - 127) + data[6];//read steering zero offset  
     
     steerSettings.minPWMValue = data[7]; //read the minimum amount of PWM for instant on
     steerSettings.maxIntegralValue = data[8]*0.1; //
