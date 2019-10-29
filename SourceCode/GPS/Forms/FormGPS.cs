@@ -224,7 +224,6 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndBoundaryAlarm;
 
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -233,7 +232,8 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            btnManualAutoDrive.Text = gStr.gsAbout;
+            //ControlExtension.Draggable(btnCycleLines, true);
+            //ControlExtension.Draggable(btnMakeLinesFromBoundary, true);
 
             //file menu
             //fileToolStripMenuItem.Text = gStr.gsFile;
@@ -281,18 +281,19 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
             toolStripAreYouSure.Text = gStr.gsAreYouSure;
+            webCamToolStripItem.Text = gStr.gsWebCam;
 
             //Recorded Path
-            deletePathMenu.Text = gStr.gsDeletePath;
-            recordPathMenu.Text = gStr.gsRecordStop;
-            goPathMenu.Text = gStr.gsGoStop;
-            pausePathMenu.Text = gStr.gsPauseResume;
+            deletePathRecPathToolStripMenuItem.Text = gStr.gsDeletePath;
+            recordRecPathToolStripMenuItem.Text = gStr.gsRecordStop;
+            goStopRecPathToolStripMenuItem.Text = gStr.gsGoStop;
+            pauseResumeRecPathToolStripMenuItem.Text = gStr.gsPauseResume;
 
-            //Start Menu
-            toolstripField.Text = gStr.gsField;
-            toolstripExit.Text = gStr.gsExit;
-            toolstripBoundary.Text = gStr.gsBoundary;
-            toolstripResetTrip.Text = gStr.gsZeroTrip;
+            ////Start Menu
+            //toolstripField.Text = gStr.gsField;
+            //toolstripExit.Text = gStr.gsExit;
+            //toolstripBoundary.Text = gStr.gsBoundary;
+            //toolstripResetTrip.Text = gStr.gsZeroTrip;
 
             //NTRIP
             this.lblWatch.Text = gStr.gsWaitingForGPS;
@@ -639,6 +640,28 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
+
+            //if (this.Height <= 800)
+            //{
+            //    //btnAutoSteer.Location = new Point(Width - 186, 440);
+            //    btnEnableAutoYouTurn.Location = new Point(Width - 186, 343);
+            //    return;
+            //}
+
+            //if (this.Height > 800 && this.Height <= 885)
+            //{
+            //    //btnAutoSteer.Location = new Point(Width - 98, 587);
+            //    btnEnableAutoYouTurn.Location = new Point(Width - 186, 343);
+            //    return;
+            //}
+
+            //if (this.Height > 885)
+            //{
+            //    //btnAutoSteer.Location = new Point(Width - 98, 587);
+            //    btnEnableAutoYouTurn.Location = new Point(Width - 98, 695);
+            //    return;
+            //}
+
             //if (Width < 850 && tabControl1.Visible) HideTabControl();
             //if (Width > 1000 && !tabControl1.Visible) HideTabControl();
         }
@@ -856,12 +879,459 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
+        private void toolStripBtnSnap_Click(object sender, EventArgs e)
+        {
+            if (ct.isContourBtnOn)
+            {
+
+                ct.isRightPriority = !ct.isRightPriority;
+
+                if (ct.isRightPriority)
+                {
+                    toolStripBtnSnap.Image = Properties.Resources.ContourPriorityRight;
+                }
+                else
+                {
+                    toolStripBtnSnap.Image = Properties.Resources.ContourPriorityLeft;
+                }
+            }
+            else
+            {
+                if (ABLine.isABLineSet)
+                {
+                    ABLine.SnapABLine();
+
+                    //DialogResult result3 = MessageBox.Show("Save AB Line Snap?",
+                    //                            "Save or Not",
+                    //                            MessageBoxButtons.YesNo,
+                    //                            MessageBoxIcon.Question,
+                    //                            MessageBoxDefaultButton.Button2);
+                    //if (result3 == DialogResult.Yes)
+                    {
+                        //FileSaveABLine();
+                    }
+                }
+                else if (curve.isCurveSet)
+                {
+                    curve.SnapABCurve();
+                }
+                else
+                {
+                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
+                    form.Show();
+                }
+            }
+
+        }
+
+        private void toolStripBtnRight_Click(object sender, EventArgs e)
+        {
+            SnapRight();
+        }
+
+        private void toolStripBtnLeft_Click(object sender, EventArgs e)
+        {
+            SnapLeft();
+        }
+
+        public bool isSecondRowVisible = false;
+        public int secondRowCounter = 8;
+        private void oglMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!isSecondRowVisible)
+            {
+                isSecondRowVisible = !isSecondRowVisible;
+                panelSimControls.Visible = false;
+
+                if (Properties.Settings.Default.setDisplay_isBatmanOn)
+                {
+                    oglMain.Width -= 200;
+                    oglMain.Left += 0;
+                    panelZoom.Visible = false;
+                }
+                else
+                {
+                    oglMain.Width -= 300;
+                    oglMain.Left += 100;
+                }
+
+                secondRowCounter = 0;
+            }
+        }
+
+        private void btnField_Click(object sender, EventArgs e)
+        {
+            JobNewOpenResume();
+        }
+
+        private void btnBoundary_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                using (var form = new FormBoundary(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show();
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+        }
+
+        private void fileExplorerToolStripItem_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                FileSaveFlagsKML();
+            }
+            Process.Start(fieldsDirectory + currentFieldDirectory);
+        }
+
+        private void webCamToolStripItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormWebCam();
+            form.Show();
+        }
+
+        private void btnMakeBndContour_Click(object sender, EventArgs e)
+        {
+            //build all the contour guidance lines from boundaries, all of them.
+            if (bnd.bndArr[0].isSet)
+            {
+                using (var form = new FormMakeBndCon(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+            }
+        }
+
+        private void btnDeleteContours_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void toolStripBtnSmallRight_Click(object sender, EventArgs e)
+        {
+            SnapSmallRight();
+        }
+
+        private void toolStripBtnSmallLeft_Click(object sender, EventArgs e)
+        {
+            SnapSmallLeft();
+        }
+
+        private void oglZoom_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (oglZoom.Visible == true)
+                oglZoom.Visible = false;
+        }
+
+        private void panelZoom_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (!oglZoom.Visible)
+                        oglZoom.Visible = true;
+        }
+
+        private void btnSerialPorts_Click(object sender, EventArgs e)
+        {
+            SettingsCommunications();
+        }
+
+        private void btnIMUConfig_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormIMU(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+
+            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+            else btnAutoSteer.Text = "M";
+        }
+
+        private void btnYouTurn_Click(object sender, EventArgs e)
+        {
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+        }
+
+        private void btnVehicleSettings_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
+            }
+
+        }
+
+        private void toolStripbtnAutoSteerConfig_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteer"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteer(this);
+            form.Show();
+        }
+
+        private void toolStripBtnGPSStength_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormGPSData(this);
+            form.Show();
+        }
+
+        private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
+        {
+            //build all the contour guidance lines from boundaries, all of them. 
+            using (var form = new FormMakeBndCon(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
+        private void btnCamera_Click(object sender, EventArgs e)
+        {
+            secondRowCounter = 0;
+            if (camera.camPitch < -1) camera.camPitch = 0;
+            else camera.camPitch = -68;
+        }
+
+        private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
+        {
+            fd.distanceUser = 0;
+            fd.workedAreaTotalUser = 0;
+        }
+
+        private void toolStripBtnYouTurn_Click(object sender, EventArgs e)
+        {
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+        }
+
+        private void toolStripButtonVehicleSettings_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
+            }
+        }
+
+        private void toolStripBtnSerialPorts_Click(object sender, EventArgs e)
+        {
+            SettingsCommunications();
+        }
+
+        private void goStopRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!bnd.bndArr[0].isSet)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+            toolStripBtnSnap.Enabled = true;
+
+            if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            DisableYouTurnButtons();
+
+            //if ABLine isn't set, turn off the YouTurn
+            if (ABLine.isABLineSet)
+            {
+                //ABLine.DeleteAB();
+                ABLine.isABLineBeingSet = false;
+                ABLine.isABLineSet = false;
+                txtDistanceOffABLine.Visible = false;
+
+                //change image to reflect on off
+                btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+            }
+
+            if (curve.isCurveSet)
+            {
+
+                //make sure the other stuff is off
+                curve.isOkToAddPoints = false;
+                curve.isCurveSet = false;
+                toolStripBtnSnap.Enabled = false;
+                curve.isCurveBtnOn = false;
+                btnCurve.Image = Properties.Resources.CurveOff;
+            }
+
+            if (!recPath.isPausedDrivingRecordedPath)
+            {
+                //already running?
+                if (recPath.isDrivingRecordedPath)
+                {
+                    recPath.StopDrivingRecordedPath();
+                    return;
+                }
+
+                //start the recorded path driving process
+
+
+
+                if (!recPath.StartDrivingRecordedPath())
+                {
+                    //Cancel the recPath - something went seriously wrong
+                    recPath.StopDrivingRecordedPath();
+                    TimedMessageBox(1500, gStr.gsProblemMakingPath, gStr.gsCouldntGenerateValidPath);
+                }
+                else
+                {
+                    goStopRecPathToolStripMenuItem.Image = Properties.Resources.AutoStop;
+                }
+            }
+            else
+            {
+                recPath.isPausedDrivingRecordedPath = false;
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.Lime;
+            }
+
+        }
+
+        private void pauseResumeRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recPath.isPausedDrivingRecordedPath)
+            {
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.Lime;
+            }
+            else
+            {
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.OrangeRed;
+            }
+
+            recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
+        }
+
+        private void recordRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recPath.isRecordOn)
+            {
+                FileSaveRecPath();
+                recPath.isRecordOn = false;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.BoundaryRecord;
+            }
+            else if (isJobStarted)
+            {
+                recPath.recList.Clear();
+                recPath.isRecordOn = true;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.boundaryStop;
+            }
+
+        }
+
+        private void deletePathRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            recPath.recList.Clear();
+            recPath.StopDrivingRecordedPath();
+            FileSaveRecPath();
+
+        }
+
+        private void AutoManualtoolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            if (isInAutoDrive)
+            {
+                isInAutoDrive = false;
+                AutoManualtoolStripSplitButton1.Image = Properties.Resources.AutoManualIsManual;
+            }
+            else
+            {
+                isInAutoDrive = true;
+                AutoManualtoolStripSplitButton1.Image = Properties.Resources.AutoManualIsAuto;
+            }
+        }
+
+        private void toolStripBtnBoundary_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                using (var form = new FormBoundary(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show();
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+        }
+
+        private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ABLine.passBasedOn = cboxTramBasedOn.SelectedIndex;
+            Properties.Vehicle.Default.setTram_BasedOn = ABLine.passBasedOn;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex;
+            Properties.Vehicle.Default.setTram_Skips = ABLine.tramPassEvery;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void toolStripBtnField_Click(object sender, EventArgs e)
+        {
+            JobNewOpenResume();
+
+        }
+
+        private void btnNTRIP_Click(object sender, EventArgs e)
+        {
+            SettingsNTRIP();
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
             //curve.isCurveSet = false;
             //DisableYouTurnButtons();
-            btnContourPriority.Enabled = false;
+            toolStripBtnSnap.Enabled = false;
             //curve.isCurveBtnOn = false;
             //btnCurve.Image = Properties.Resources.CurveOff;
 
@@ -1035,6 +1505,7 @@ namespace AgOpenGPS
             startCounter = 0;
 
             btnManualOffOn.Enabled = true;
+            btnCycleLines.Enabled = true;
             manualBtnState = btnStates.Off;
             btnManualOffOn.Image = Properties.Resources.ManualOff;
 
@@ -1069,7 +1540,7 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnFlag.Enabled = true;
 
-            btnContourPriority.Image = Properties.Resources.Snap2;
+            toolStripBtnSnap.Image = Properties.Resources.Snap2;
 
             if (recPath.isRecordOn)
             {
@@ -1103,6 +1574,8 @@ namespace AgOpenGPS
 
             //fix ManualOffOnAuto buttons
             btnManualOffOn.Enabled = false;
+            btnCycleLines.Enabled = false;
+
             manualBtnState = btnStates.Off;
             btnManualOffOn.Image = Properties.Resources.ManualOff;
 
@@ -1170,8 +1643,8 @@ namespace AgOpenGPS
 
             //clear out contour and Lists
             btnContour.Enabled = false;
-            btnContourPriority.Enabled = false;
-            btnContourPriority.Image = Properties.Resources.Snap2;
+            toolStripBtnSnap.Enabled = false;
+            toolStripBtnSnap.Image = Properties.Resources.Snap2;
             ct.ResetContour();
             ct.isContourBtnOn = false;
             btnContour.Image = Properties.Resources.ContourOff;
@@ -1215,7 +1688,7 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.BoundaryRecord;
             }
 
             //reset all Port Module values
@@ -1229,7 +1702,7 @@ namespace AgOpenGPS
 
             if (!isJobStarted)
             {
-                if (stripOnlineGPS.Value == 1)
+                if (toolStripBtnGPSStength.Image.Height == 38)
                 {
                     var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
                     form.Show();

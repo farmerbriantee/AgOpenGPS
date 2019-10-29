@@ -172,11 +172,11 @@ namespace AgOpenGPS
 
                         //build string for display
                         double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
-                        double setSteerAngle = (Int16)((data[4] << 8) + data[5]);
+                        //double setSteerAngle = (Int16)((data[4] << 8) + data[5]);
+                        double setSteerAngle = guidanceLineSteerAngle;
                         byte pwm = data[9];
 
                         actualSteerAngleDisp = actualSteerAngle;
-
 
                         //load the usb recv string with udp recd data for chart and gui info
                         mc.serialRecvAutoSteerStr = (actualSteerAngle * 0.01).ToString("N2") + "," + (setSteerAngle * 0.01).ToString("N2")
@@ -218,7 +218,6 @@ namespace AgOpenGPS
                         }
                         break;
                     }
-
             }
         }
 
@@ -314,7 +313,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.S)) //open the steer chart
             {
-                btnContourPriority.PerformClick();
+                toolStripBtnSnap.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -368,7 +367,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.P)) // Snap/Prioritu click
             {
-                btnContourPriority.PerformClick();
+                toolStripBtnSnap.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

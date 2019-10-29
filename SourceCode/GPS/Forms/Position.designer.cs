@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
             rollUsed = 0;
 
-            if (ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP)
+            if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP) && ahrs.rollX16 != 9999)
             {
                 rollUsed = ((double)(ahrs.rollX16 - ahrs.rollZeroX16)) * 0.0625;
 
@@ -555,7 +555,7 @@ namespace AgOpenGPS
             }
 
             //an IMU with heading correction, add the correction
-            if (ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)
+            if ((ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP) && ahrs.correctionHeadingX16 != 9999)
             {
                 //current gyro angle in radians
                 double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));
@@ -1069,6 +1069,7 @@ namespace AgOpenGPS
 
                     AutoSteerSettingsOutToPort();
                 }
+
                 return;
             }
         }

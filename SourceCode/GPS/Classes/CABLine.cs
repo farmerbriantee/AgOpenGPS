@@ -215,7 +215,7 @@ namespace AgOpenGPS
                     GL.End();
                 }
 
-                if (mf.camera.gridZoom < 150)
+                if (mf.camera.gridZoom < 40)
                 {
 
                     toolWidth = (mf.vehicle.toolWidth) / 2;

@@ -961,7 +961,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public int setDisplay_snapDistance {
             get {
                 return ((int)(this["setDisplay_snapDistance"]));
@@ -1100,6 +1100,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_lineWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDisplay_isBatmanOn {
+            get {
+                return ((bool)(this["setDisplay_isBatmanOn"]));
+            }
+            set {
+                this["setDisplay_isBatmanOn"] = value;
             }
         }
     }

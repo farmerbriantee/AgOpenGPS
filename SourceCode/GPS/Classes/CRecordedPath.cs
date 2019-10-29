@@ -203,7 +203,7 @@ namespace AgOpenGPS
             shortestDubinsList.Clear();
             mf.sim.stepDistance = 0;
             isDrivingRecordedPath = false;
-            mf.goPathMenu.Image = Properties.Resources.AutoGo;
+            mf.goStopRecPathToolStripMenuItem.Image = Properties.Resources.AutoGo;
             isPausedDrivingRecordedPath = false;
         }
 
