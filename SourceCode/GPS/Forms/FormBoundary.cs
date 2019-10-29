@@ -9,6 +9,7 @@ namespace AgOpenGPS
     public partial class FormBoundary : Form
     {
         private bool Selectedreset = true;
+        private bool MultipleFieldLocked = true;
         private readonly FormGPS mf = null;
 
         public FormBoundary(Form callingForm)
@@ -25,6 +26,11 @@ namespace AgOpenGPS
             tableLayoutPanel1.HorizontalScroll.Maximum = 0;
             tableLayoutPanel1.AutoScroll = true;
 
+
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderColor = BackColor;
+            button1.FlatAppearance.MouseOverBackColor = BackColor;
+            button1.FlatAppearance.MouseDownBackColor = BackColor;
 
 
             for (int i = 0; i < mf.bnd.bndArr.Count + 1; i++)
@@ -112,9 +118,14 @@ namespace AgOpenGPS
 
 
                     // LOCK MultipleField
-
-                    cc.Enabled = false;
-
+                    if (MultipleFieldLocked)
+                    {
+                        cc.Enabled = false;
+                    }
+                    else
+                    {
+                        cc.Enabled = true;
+                    }
                     // LOCK MultipleField
 
 
@@ -346,6 +357,12 @@ namespace AgOpenGPS
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
             mf.mazeGrid.BuildMazeGridArray();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MultipleFieldLocked = !MultipleFieldLocked;
+            UpdateChart();
         }
 
         private void btnLoadMultiBoundaryFromGE_Click(object sender, EventArgs e)

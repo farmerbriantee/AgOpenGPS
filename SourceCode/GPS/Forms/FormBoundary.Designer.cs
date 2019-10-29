@@ -28,7 +28,6 @@
         /// </summary>
         public void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBoundary));
             this.btnLeftRight = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnOuter = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLeftRight
@@ -145,6 +145,34 @@
             this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
             this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
             // 
+            // btnLoadMultiBoundaryFromGE
+            // 
+            this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
+            this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(914, 195);
+            this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
+            this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(121, 84);
+            this.btnLoadMultiBoundaryFromGE.TabIndex = 99;
+            this.btnLoadMultiBoundaryFromGE.Text = "Load Multi";
+            this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLoadMultiBoundaryFromGE.UseVisualStyleBackColor = true;
+            this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadMultiBoundaryFromGE_Click);
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDeleteAll.Location = new System.Drawing.Point(607, 334);
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(121, 109);
+            this.btnDeleteAll.TabIndex = 100;
+            this.btnDeleteAll.Text = "Delete All";
+            this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDeleteAll.UseVisualStyleBackColor = true;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,34 +214,6 @@
             this.label5.Text = "Around";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnLoadMultiBoundaryFromGE
-            // 
-            this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
-            this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(914, 195);
-            this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
-            this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(121, 84);
-            this.btnLoadMultiBoundaryFromGE.TabIndex = 99;
-            this.btnLoadMultiBoundaryFromGE.Text = "Load Multi";
-            this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLoadMultiBoundaryFromGE.UseVisualStyleBackColor = true;
-            this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadMultiBoundaryFromGE_Click);
-            // 
-            // btnDeleteAll
-            // 
-            this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteAll.Location = new System.Drawing.Point(607, 334);
-            this.btnDeleteAll.Name = "btnDeleteAll";
-            this.btnDeleteAll.Size = new System.Drawing.Size(121, 109);
-            this.btnDeleteAll.TabIndex = 100;
-            this.btnDeleteAll.Text = "Delete All";
-            this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnDeleteAll.UseVisualStyleBackColor = true;
-            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -236,12 +236,22 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(552, 400);
             this.tableLayoutPanel1.TabIndex = 101;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(297, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 40);
+            this.button1.TabIndex = 102;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormBoundary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1052, 449);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnDeleteAll);
             this.Controls.Add(this.btnLoadMultiBoundaryFromGE);
@@ -283,5 +293,6 @@
         private System.Windows.Forms.Button btnLoadMultiBoundaryFromGE;
         private System.Windows.Forms.Button btnDeleteAll;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button button1;
     }
 }
