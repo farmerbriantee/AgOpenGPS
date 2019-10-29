@@ -463,7 +463,13 @@ void loop()
       //temp = (100 * steerAngleSetPoint);
       //toSend[4] = (byte)(temp >> 8);
       //toSend[5] = (byte)(temp);
-      
+
+      #if Inclinometer_Installed !=0
+        temp =(int)XeRoll;          //roll in degrees * 16
+      #else
+        temp =9999;                 //no Dogs installed
+      #endif
+          
       //Vehicle roll --- * 16 in degrees
       temp = (int)XeRoll;
       toSend[6] = (byte)(temp >> 8);
