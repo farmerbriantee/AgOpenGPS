@@ -214,6 +214,7 @@ namespace AgOpenGPS
                 btnVehicleSettings.Left = 100;
                 btnSerialPorts.Left = 100;
                 btnFlagsGoogleEarth.Left = 100;
+                btnNTRIP.Left = 100;
 
                 panelZoom.Visible = true;
                 statusStripLeft.Left = 8;
@@ -235,11 +236,12 @@ namespace AgOpenGPS
                 btnCamera.Left = 8;
 
 
-                btnIMUConfig.Left = 85;
-                btnYouTurn.Left = 85;
-                btnVehicleSettings.Left = 85;
-                btnSerialPorts.Left = 85;
-                btnFlagsGoogleEarth.Left = 85;
+                btnIMUConfig.Left = 100;
+                btnYouTurn.Left = 100;
+                btnVehicleSettings.Left = 100;
+                btnSerialPorts.Left = 100;
+                btnFlagsGoogleEarth.Left = 100;
+                btnNTRIP.Left = 100;
 
                 panelZoom.Visible = false;
                 statusStripLeft.Left = 8;

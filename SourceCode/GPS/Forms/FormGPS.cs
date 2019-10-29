@@ -1321,6 +1321,11 @@ namespace AgOpenGPS
 
         }
 
+        private void btnNTRIP_Click(object sender, EventArgs e)
+        {
+            SettingsNTRIP();
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
