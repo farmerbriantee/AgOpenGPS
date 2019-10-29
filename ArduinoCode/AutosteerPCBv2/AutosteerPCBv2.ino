@@ -448,11 +448,21 @@ void loop()
       temp = (100 * steerAngleActual);
       toSend[2] = (byte)(temp >> 8);
       toSend[3] = (byte)(temp);
-        
-      //setpoint steer angle  --- * 100 in degrees
-      temp = (100 * steerAngleSetPoint);
+
+         //heading  
+      #if BNO_Installed
+         temp = IMU.euler.head;       //heading in degrees * 16 from BNO
+      #else
+         temp = 9999;                 //No IMU installed
+      #endif
+      
       toSend[4] = (byte)(temp >> 8);
       toSend[5] = (byte)(temp);
+      
+      //setpoint steer angle  --- * 100 in degrees
+      //temp = (100 * steerAngleSetPoint);
+      //toSend[4] = (byte)(temp >> 8);
+      //toSend[5] = (byte)(temp);
       
       //Vehicle roll --- * 16 in degrees
       temp = (int)XeRoll;
