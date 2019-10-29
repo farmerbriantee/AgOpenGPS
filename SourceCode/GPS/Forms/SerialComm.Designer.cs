@@ -144,10 +144,7 @@ namespace AgOpenGPS
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
                         SerialPortAutoSteerClose();
                     }
-                }
-
-
-                
+                }                
             } 
         }
 

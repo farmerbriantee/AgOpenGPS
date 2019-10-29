@@ -569,6 +569,8 @@
     <None Include="btnImages\SnapLeftSmall.png" />
     <None Include="btnImages\SnapRightSmall.png" />
     <None Include="btnImages\Config54.png" />
+    <None Include="btnImages\AutoManualIsAuto.png" />
+    <None Include="btnImages\AutoManualIsManual.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

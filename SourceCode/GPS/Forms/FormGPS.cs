@@ -284,10 +284,10 @@ namespace AgOpenGPS
             webCamToolStripItem.Text = gStr.gsWebCam;
 
             //Recorded Path
-            deletePathMenu.Text = gStr.gsDeletePath;
-            recordPathMenu.Text = gStr.gsRecordStop;
-            goPathMenu.Text = gStr.gsGoStop;
-            pausePathMenu.Text = gStr.gsPauseResume;
+            deletePathRecPathToolStripMenuItem.Text = gStr.gsDeletePath;
+            recordRecPathToolStripMenuItem.Text = gStr.gsRecordStop;
+            goStopRecPathToolStripMenuItem.Text = gStr.gsGoStop;
+            pauseResumeRecPathToolStripMenuItem.Text = gStr.gsPauseResume;
 
             ////Start Menu
             //toolstripField.Text = gStr.gsField;
@@ -1156,6 +1156,132 @@ namespace AgOpenGPS
             SettingsCommunications();
         }
 
+        private void goStopRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!bnd.bndArr[0].isSet)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            //if contour is on, turn it off
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+            toolStripBtnSnap.Enabled = true;
+
+            if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            DisableYouTurnButtons();
+
+            //if ABLine isn't set, turn off the YouTurn
+            if (ABLine.isABLineSet)
+            {
+                //ABLine.DeleteAB();
+                ABLine.isABLineBeingSet = false;
+                ABLine.isABLineSet = false;
+                txtDistanceOffABLine.Visible = false;
+
+                //change image to reflect on off
+                btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+            }
+
+            if (curve.isCurveSet)
+            {
+
+                //make sure the other stuff is off
+                curve.isOkToAddPoints = false;
+                curve.isCurveSet = false;
+                toolStripBtnSnap.Enabled = false;
+                curve.isCurveBtnOn = false;
+                btnCurve.Image = Properties.Resources.CurveOff;
+            }
+
+            if (!recPath.isPausedDrivingRecordedPath)
+            {
+                //already running?
+                if (recPath.isDrivingRecordedPath)
+                {
+                    recPath.StopDrivingRecordedPath();
+                    return;
+                }
+
+                //start the recorded path driving process
+
+
+
+                if (!recPath.StartDrivingRecordedPath())
+                {
+                    //Cancel the recPath - something went seriously wrong
+                    recPath.StopDrivingRecordedPath();
+                    TimedMessageBox(1500, gStr.gsProblemMakingPath, gStr.gsCouldntGenerateValidPath);
+                }
+                else
+                {
+                    goStopRecPathToolStripMenuItem.Image = Properties.Resources.AutoStop;
+                }
+            }
+            else
+            {
+                recPath.isPausedDrivingRecordedPath = false;
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.Lime;
+            }
+
+        }
+
+        private void pauseResumeRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recPath.isPausedDrivingRecordedPath)
+            {
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.Lime;
+            }
+            else
+            {
+                pauseResumeRecPathToolStripMenuItem.BackColor = Color.OrangeRed;
+            }
+
+            recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
+        }
+
+        private void recordRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (recPath.isRecordOn)
+            {
+                FileSaveRecPath();
+                recPath.isRecordOn = false;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.BoundaryRecord;
+            }
+            else if (isJobStarted)
+            {
+                recPath.recList.Clear();
+                recPath.isRecordOn = true;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.boundaryStop;
+            }
+
+        }
+
+        private void deletePathRecPathToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            recPath.recList.Clear();
+            recPath.StopDrivingRecordedPath();
+            FileSaveRecPath();
+
+        }
+
+        private void AutoManualtoolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            if (isInAutoDrive)
+            {
+                isInAutoDrive = false;
+                AutoManualtoolStripSplitButton1.Image = Properties.Resources.AutoManualIsManual;
+            }
+            else
+            {
+                isInAutoDrive = true;
+                AutoManualtoolStripSplitButton1.Image = Properties.Resources.AutoManualIsAuto;
+            }
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
@@ -1518,7 +1644,7 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
+                recordRecPathToolStripMenuItem.Image = Properties.Resources.BoundaryRecord;
             }
 
             //reset all Port Module values

@@ -204,7 +204,6 @@ namespace AgOpenGPS
                 btnpTiltUp.Left = 290;
                 btnZoomIn.Left = 290;
                 btnZoomOut.Left = 290;
-                btnFlag.Left = 290;
                 btnCamera.Left = 290;
 
                 //2nd row left side
@@ -212,10 +211,10 @@ namespace AgOpenGPS
                 btnYouTurn.Left = 380;
                 btnVehicleSettings.Left = 380;
                 btnSerialPorts.Left = 380;
-                btnFlagsGoogleEarth.Left = 380;
 
                 panelZoom.Visible = true;
                 panelNtrip.Visible = true;
+                statusStripLeft.Left = 282;
 
 
                 txtDistanceOffABLine.Left = (Width - 245 - 100) / 2 + 185;
@@ -227,15 +226,16 @@ namespace AgOpenGPS
             {
                 //no side panel
                 panelSimControls.Left = 120;
-                oglMain.Left = 70;
+                oglMain.Left = 72;
                 oglMain.Width = Width - 170;
 
                 btnpTiltDown.Left = 8;
                 btnpTiltUp.Left = 8;
                 btnZoomIn.Left = 8;
                 btnZoomOut.Left = 8;
-                btnFlag.Left = 8;
                 btnCamera.Left = 8;
+
+                statusStripLeft.Left = 8;
 
                 btnIMUConfig.Left = 85;
                 btnYouTurn.Left = 85;
@@ -883,132 +883,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnManualAutoDrive_Click(object sender, EventArgs e)
-        {
-            if (isInAutoDrive)
-            {
-                isInAutoDrive = false;
-                btnManualAutoDrive.Image = Properties.Resources.Cancel64;
-                btnManualAutoDrive.Text = gStr.gsManual;
-            }
-            else
-            {
-                isInAutoDrive = true;
-                btnManualAutoDrive.Image = Properties.Resources.OK64;
-                btnManualAutoDrive.Text = gStr.gsAuto;
-            }
-        }
-
-        private void goPathMenu_Click(object sender, EventArgs e)
-        {
-            if (!bnd.bndArr[0].isSet)
-            {
-                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
-                return;
-            }
-
-            //if contour is on, turn it off
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-            toolStripBtnSnap.Enabled = true;
-
-            if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            DisableYouTurnButtons();
-
-            //if ABLine isn't set, turn off the YouTurn
-            if (ABLine.isABLineSet)
-            {
-                //ABLine.DeleteAB();
-                ABLine.isABLineBeingSet = false;
-                ABLine.isABLineSet = false;
-                txtDistanceOffABLine.Visible = false;
-
-                //change image to reflect on off
-                btnABLine.Image = Properties.Resources.ABLineOff;
-                ABLine.isBtnABLineOn = false;
-            }
-
-            if (curve.isCurveSet)
-            {
-
-                //make sure the other stuff is off
-                curve.isOkToAddPoints = false;
-                curve.isCurveSet = false;
-                toolStripBtnSnap.Enabled = false;
-                curve.isCurveBtnOn = false;
-                btnCurve.Image = Properties.Resources.CurveOff;
-            }
-
-            if (!recPath.isPausedDrivingRecordedPath)
-            {
-                //already running?
-                if (recPath.isDrivingRecordedPath)
-                {
-                    recPath.StopDrivingRecordedPath();
-                    return;
-                }
-
-                //start the recorded path driving process
-
-
-
-                if (!recPath.StartDrivingRecordedPath())
-                {
-                    //Cancel the recPath - something went seriously wrong
-                    recPath.StopDrivingRecordedPath();
-                    TimedMessageBox(1500, gStr.gsProblemMakingPath, gStr.gsCouldntGenerateValidPath);
-                }
-                else
-                {
-                    goPathMenu.Image = Properties.Resources.AutoStop;
-                }
-            }
-            else
-            {
-                recPath.isPausedDrivingRecordedPath = false;
-                pausePathMenu.BackColor = Color.Lime;
-            }
-        }
-
-        private void pausePathMenu_Click(object sender, EventArgs e)
-        {
-            if (recPath.isPausedDrivingRecordedPath)
-            {
-                pausePathMenu.BackColor = Color.Lime;
-            }
-            else
-            {
-                pausePathMenu.BackColor = Color.OrangeRed;
-            }
-
-            recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
-        }
-
-
-        private void RecordPathMenu_Click(object sender, EventArgs e)
-        {
-            if (recPath.isRecordOn)
-            {
-                FileSaveRecPath();
-                recPath.isRecordOn = false;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
-            }
-            else if (isJobStarted)
-            {
-                recPath.recList.Clear();
-                recPath.isRecordOn = true;
-                recordPathMenu.Image = Properties.Resources.boundaryStop;
-            }
-        }
-
-        private void DeletePathMenu_Click(object sender, EventArgs e)
-        {
-            recPath.recList.Clear();
-            recPath.StopDrivingRecordedPath();
-            FileSaveRecPath();
-
-        }
 
         //LIDAR control
         private void btnLidarOnOff_Click(object sender, EventArgs e)
@@ -3349,7 +3223,7 @@ namespace AgOpenGPS
                     }
 
                     //display items
-                    lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(6, '0');
+                    lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(8, '0');
 
                     if (isNTRIP_RequiredOn)
                     {
