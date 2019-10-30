@@ -939,14 +939,18 @@ namespace AgOpenGPS
 
                         if (j == 0)
                         {
+
                             //only one first left point, the rest are all rights moved over to left
                             isLeftIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].leftPoint);
                             isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
 
                             for (int i = 0; i < bnd.bndArr.Count; i++)
                             {
-                                isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].leftPoint);
-                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                                if (!(bnd.bndArr[i].isOwnField))
+                                {
+                                    isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].leftPoint);
+                                    isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                                }
                             }
 
                             //merge the two sides into in or out
@@ -961,8 +965,11 @@ namespace AgOpenGPS
                             isRightIn = bnd.bndArr[bnd.LastBoundary].IsPointInsideBoundary(section[j].rightPoint);
                             for (int i = 0; i < bnd.bndArr.Count; i++)
                             {
-                                //inner boundaries should normally NOT have point inside
-                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                                if (!(bnd.bndArr[i].isOwnField))
+                                {
+                                    //inner boundaries should normally NOT have point inside
+                                    isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                                }
                             }
 
                             if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
@@ -1128,8 +1135,6 @@ namespace AgOpenGPS
             }
             else
             {
-                //MessageBox.Show("Is it possible to get here???");
-
                 return true;
             }
         }       
