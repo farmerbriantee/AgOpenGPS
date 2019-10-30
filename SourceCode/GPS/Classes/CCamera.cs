@@ -22,6 +22,7 @@ namespace AgOpenGPS
         public double previousZoom = 25;
 
         public bool camFollowing;
+        public int camMode = 0;
 
         //private double camDelta = 0;
 

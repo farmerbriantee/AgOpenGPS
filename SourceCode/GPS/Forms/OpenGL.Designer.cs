@@ -493,9 +493,10 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && !tabControl1.Visible)
+                if (threeSeconds != zoomUpdateCounter )
                 {
                     zoomUpdateCounter = threeSeconds;
+                    if (panelZoom.Visible && oglZoom.Visible)
                     oglZoom.Refresh();
                 }
             }
@@ -890,7 +891,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && stripOnlineGPS.Value != 1)
+                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
