@@ -985,7 +985,7 @@ namespace AgOpenGPS
             if ((sender as Control).IsDragging()) return;
             if (ct.isContourBtnOn) return;
 
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1879,7 +1879,7 @@ namespace AgOpenGPS
 
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -3282,7 +3282,7 @@ namespace AgOpenGPS
                     //Distance on the buttons
                     if (isMetric)
                     {
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {
@@ -3299,7 +3299,7 @@ namespace AgOpenGPS
                     else
                     {
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {

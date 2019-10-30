@@ -727,7 +727,6 @@ namespace AgOpenGPS
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
-            mf.btnContourPriority.Enabled = false;
         }
 
         private void Button2_Click(object sender, EventArgs e)

@@ -999,7 +999,7 @@ namespace AgOpenGPS
         private void btnMakeBndContour_Click(object sender, EventArgs e)
         {
             //build all the contour guidance lines from boundaries, all of them.
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 using (var form = new FormMakeBndCon(this))
                 {
@@ -1155,7 +1155,7 @@ namespace AgOpenGPS
 
         private void goStopRecPathToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
