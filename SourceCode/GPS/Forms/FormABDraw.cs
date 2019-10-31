@@ -537,7 +537,7 @@ namespace AgOpenGPS
                 {
                     if (mf.curve.curveArr[i].circlemode || mf.curve.curveArr[i].spiralmode)
                     {
-                        System.Windows.Forms.MessageBox.Show("circle / spiral");
+                        //System.Windows.Forms.MessageBox.Show("circle / spiral");
                     }
                     GL.LineWidth(2);
                     GL.Color3(0.0f, 1.0f, 0.0f);
@@ -559,7 +559,7 @@ namespace AgOpenGPS
                 {
                     if (mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].circlemode || mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].spiralmode)
                     {
-                        System.Windows.Forms.MessageBox.Show("circle / spiral");
+                        //System.Windows.Forms.MessageBox.Show("circle / spiral");
                     }
                     GL.LineWidth(4);
                     GL.Color3(0.0f, 1.0f, 0.0f);
@@ -648,7 +648,7 @@ namespace AgOpenGPS
                 int idx = mf.curve.numCurveLineSelected - 1;
                 if (mf.curve.curveArr[idx].circlemode || mf.curve.curveArr[idx].spiralmode)
                 {
-                    System.Windows.Forms.MessageBox.Show("circle / spiral");
+                    //System.Windows.Forms.MessageBox.Show("circle / spiral");
                 }
 
 
