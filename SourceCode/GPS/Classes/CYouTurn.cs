@@ -985,7 +985,17 @@ namespace AgOpenGPS
             {
                 case 0: //find the crossing points
                     if (FindCurveTurnPoints()) youTurnPhase = 1;
-                    else mf.mc.isOutOfBounds = true;
+                    else
+                    {
+                        if (mf.curve.spiralmode == true || mf.curve.circlemode == true)
+                        {
+                            mf.mc.isOutOfBounds = false;
+                        }
+                        else
+                        {
+                            mf.mc.isOutOfBounds = true;
+                        }
+                    }
                     ytList?.Clear();
                     break;
 
@@ -1422,6 +1432,12 @@ namespace AgOpenGPS
                 rNorthYT = mf.curve.rNorthCu;
                 isABSameAsFixHeading = mf.curve.isSameWay;
                 head = mf.curve.refHeading;
+                if (mf.curve.spiralmode == true || mf.curve.circlemode == true)
+                {
+                    head = mf.curve.curList[mf.curve.currentLocationIndex].heading;//set to curent line heading ;)
+                    
+                    isABSameAsFixHeading = mf.curve.isABSameAsVehicleHeading;//not sure why :S
+                }
                 delta = mf.curve.deltaOfRefAndAveHeadings;
             }
 
