@@ -66,6 +66,7 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
                 camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
                 CalcFrustum();
+
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
                 GL.Enable(EnableCap.Blend);

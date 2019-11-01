@@ -1042,14 +1042,6 @@ namespace AgOpenGPS
 
         private void btnIMUConfig_Click(object sender, EventArgs e)
         {
-            using (var form = new FormIMU(this))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
-            }
-
-            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
-            else btnAutoSteer.Text = "M";
         }
 
         private void btnYouTurn_Click(object sender, EventArgs e)
@@ -1323,7 +1315,6 @@ namespace AgOpenGPS
 
         private void btnNTRIP_Click(object sender, EventArgs e)
         {
-            SettingsNTRIP();
         }
 
         public void GetAB()

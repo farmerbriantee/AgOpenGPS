@@ -209,12 +209,12 @@ namespace AgOpenGPS
                 btnCamera.Left = 8;
 
 
-                btnIMUConfig.Left = 90;
+                //btnIMUConfig.Left = 90;
                 btnYouTurn.Left = 90;
                 btnVehicleSettings.Left = 90;
                 btnSerialPorts.Left = 90;
                 btnFlagsGoogleEarth.Left = 90;
-                btnNTRIP.Left = 90;
+                //btnNTRIP.Left = 90;
 
                 panelZoom.Visible = true;
                 statusStripLeft.Left = 8;
@@ -236,12 +236,12 @@ namespace AgOpenGPS
                 btnCamera.Left = 8;
 
 
-                btnIMUConfig.Left = 90;
+                //btnIMUConfig.Left = 90;
                 btnYouTurn.Left = 90;
                 btnVehicleSettings.Left = 90;
                 btnSerialPorts.Left = 90;
                 btnFlagsGoogleEarth.Left = 90;
-                btnNTRIP.Left = 90;
+                //btnNTRIP.Left = 90;
 
                 panelZoom.Visible = false;
                 statusStripLeft.Left = 8;
@@ -3156,6 +3156,8 @@ namespace AgOpenGPS
 
                     //counter used for saving field in background
                     saveCounter++;
+
+                    //lblTest.Text = camera.camSetDistance.ToString();
 
                     if (isSecondRowVisible)
                     {
