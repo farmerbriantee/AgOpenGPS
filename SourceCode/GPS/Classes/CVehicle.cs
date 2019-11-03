@@ -333,14 +333,14 @@ namespace AgOpenGPS
 
             GL.LineWidth(1);
 
-           if (mf.camera.camSetDistance < -400)
+           if (mf.camera.camSetDistance < -1000)
             {
-                GL.Color4(0.9f, 0.9f, 0.9f, 0.15);
+                GL.Color4(0.5f, 0.5f, 0.9f, 0.35);
                 double theta = glm.twoPI / 20;
                 double c = Math.Cos(theta);//precalculate the sine and cosine
                 double s = Math.Sin(theta);
 
-                double x = mf.camera.camSetDistance * -.025;//we start at angle = 0
+                double x = mf.camera.camSetDistance * -.02;//we start at angle = 0
                 double y = 0;
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.TriangleFan);
@@ -357,7 +357,7 @@ namespace AgOpenGPS
                     // GL.Vertex3(x, y, 0.0);
                 }
                 GL.End();
-                GL.Color3(0.99f, 0.99f, 0.99f);
+                GL.Color3(0.5f, 0.9f, 0.2f);
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.LineLoop);
 

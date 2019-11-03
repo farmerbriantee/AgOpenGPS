@@ -654,20 +654,21 @@ namespace AgOpenGPS
             }
             if (panelSnap.Top < 1) panelSnap.Top = 1;
 
+            if (panelSnap.Top > Height - 170) panelSnap.Top = Height - 170;
+
             if (panelSim.Left + 443 > Width - 200)// || panelSim.Top + 50 > Height - 70))
             {
                 panelSim.Left = Width - 200 - 443;
             }
             if (panelSim.Top < 1) panelSim.Top = 1;
+            if (panelSim.Top > Height - 153) panelSim.Top = Height - 153;
 
             if (panelTram.Top < 1) panelTram.Top = 1;
             if (panelTram.Left + 182 > Width - 200)// || panelSim.Top + 50 > Height - 70))
             {
                 panelTram.Left = Width - 200 - 180;
             }
-
-
-
+                       
             //if (panelSnap.Top > Height - 130) panelSnap.Top = Height - 130;
         }
 
@@ -1288,12 +1289,42 @@ namespace AgOpenGPS
             SnapLeft();
         }
 
+        private void btnSaveAB_Click(object sender, EventArgs e)
+        {
+            if (ABLine.isBtnABLineOn)
+            {
+                
+
+                //index to last one. 
+                int idx = ABLine.numABLineSelected - 1;
+
+                if (idx >= 0)
+                {
+
+                    ABLine.lineArr[idx].heading = ABLine.abHeading;
+                    //calculate the new points for the reference line and points
+                    ABLine.lineArr[idx].origin.easting = ABLine.refPoint1.easting;
+                    ABLine.lineArr[idx].origin.northing = ABLine.refPoint1.northing;
+
+                    //sin x cos z for endpoints, opposite for additional lines
+                    ABLine.lineArr[idx].ref1.easting = ABLine.lineArr[idx].origin.easting - (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref1.northing = ABLine.lineArr[idx].origin.northing - (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref2.easting = ABLine.lineArr[idx].origin.easting + (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref2.northing = ABLine.lineArr[idx].origin.northing + (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
+                }
+
+                FileSaveABLines();
+
+
+            }
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
             //curve.isCurveSet = false;
             //DisableYouTurnButtons();
-            btnContourPriority.Enabled = false;
+            //btnContourPriority.Enabled = false;
             //curve.isCurveBtnOn = false;
             //btnCurve.Image = Properties.Resources.CurveOff;
 

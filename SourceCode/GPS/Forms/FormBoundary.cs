@@ -78,11 +78,6 @@ namespace AgOpenGPS
                     tableLayoutPanel1.Controls.Add(e, 4, i);
                 }
 
-
-
-
-
-
                 if (i < mf.bnd.bndArr.Count && mf.bnd.bndArr[i].isSet)
                 {
                     tableLayoutPanel1.SetColumnSpan(aa, 1);
@@ -114,9 +109,6 @@ namespace AgOpenGPS
 
                     Font backupfont = new Font(aa.Font.FontFamily, 18F, FontStyle.Bold);
 
-
-
-
                     // LOCK MultipleField
                     if (MultipleFieldLocked)
                     {
@@ -128,21 +120,28 @@ namespace AgOpenGPS
                     }
                     // LOCK MultipleField
 
-
-
+                    cc.Width = 100;
+                    dd.Width = 80;
+                    ee.Width = 80;
+                    bb.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+                    cc.Anchor = AnchorStyles.None;
+                    dd.Anchor = AnchorStyles.None;
+                    ee.Anchor = AnchorStyles.None;
 
                     if (mf.bnd.bndArr[i].isOwnField)
                     {
-                        cc.Text = "true";
-                        aa.Text = string.Format("field {0}", field);
+                        cc.Text = "Field";
+                        aa.Text = string.Format("Field {0}", field);
                         field += 1;
                         aa.Font = backupfont;
                         dd.Enabled = false;
                         ee.Enabled = false;
+                        mf.bnd.bndArr[i].isDriveThru = false;
+                        mf.bnd.bndArr[i].isDriveAround = false;
                     }
                     else
                     {
-                        cc.Text = "false";
+                        cc.Text = "Inner";
                         aa.Text = string.Format("Inner {0}", inner);
                         aa.Font = backupfont;
                         inner += 1;
@@ -159,8 +158,13 @@ namespace AgOpenGPS
                         bb.Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
                     }
 
-                    dd.Text = mf.bnd.bndArr[i].isDriveThru.ToString();
-                    ee.Text = mf.bnd.bndArr[i].isDriveAround.ToString();
+                    //dd.Text = mf.bnd.bndArr[i].isDriveThru.ToString();
+
+                    if (mf.bnd.bndArr[i].isDriveThru) dd.Text = "Yes";
+                    else dd.Text = "No";
+
+                    if (mf.bnd.bndArr[i].isDriveAround) ee.Text = "Yes";
+                    else ee.Text = "No";
 
                     if (Selectedreset == false && i == mf.bnd.boundarySelected)
                     {
@@ -176,7 +180,7 @@ namespace AgOpenGPS
                 else
                 {
                     tableLayoutPanel1.SetColumnSpan(aa, 2);
-                    aa.Text = string.Format("Create new Field", i + 1);
+                    aa.Text = string.Format("Create Boundary", i + 1);
 
                     Control cc = tableLayoutPanel1.GetControlFromPosition(2, i);
                     cc.Visible = false;
@@ -239,7 +243,7 @@ namespace AgOpenGPS
             if (b != null)
             {
                 mf.bnd.bndArr[Convert.ToInt32(b.Name)].isOwnField = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isOwnField;
-
+                MultipleFieldLocked = true;
                 UpdateChart();
             }
         }

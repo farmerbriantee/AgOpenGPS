@@ -269,7 +269,9 @@ namespace AgOpenGPS
             {
                 turnArr[j].turnLine.Clear();
 
-                if (!mf.bnd.bndArr[j].isSet || (!mf.bnd.bndArr[j].isOwnField && (mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround))) continue;
+                if (!mf.bnd.bndArr[j].isSet || 
+                    (!mf.bnd.bndArr[j].isOwnField && (mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround))) 
+                    continue;
 
                 int num = ((mf.bnd.bndArr[j].isOwnField == true) ? -1 : 1);
                 int ptCount = mf.bnd.bndArr[j].bndLine.Count;

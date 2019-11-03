@@ -134,9 +134,10 @@ namespace AgOpenGPS
 
             panelSnap.Location = Settings.Default.setDisplay_panelSnapLocation;
             panelSim.Location = Settings.Default.setDisplay_panelSimLocation;
-
             panelTram.Location = Settings.Default.setDisplay_panelTramLocation;
 
+            panelSnap.Visible = false;
+            panelTram.Visible = false;
         }
 
         //force all the buttons same according to two main buttons
@@ -3024,6 +3025,13 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateThreeSecondCounter = threeSeconds;
+
+                    if (ABLine.isBtnABLineOn || curve.isCurveBtnOn || ct.isContourBtnOn)
+                        panelSnap.Visible = true;
+                    else panelSnap.Visible = false;
+
+                    if (ABLine.isBtnABLineOn) panelTram.Visible = true;
+                    else panelTram.Visible = false;
 
                     if (panelZoom.Visible)
                     {

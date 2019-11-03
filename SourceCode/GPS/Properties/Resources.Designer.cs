@@ -702,6 +702,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GifBounds {
+            get {
+                object obj = ResourceManager.GetObject("GifBounds", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GifTractor {
+            get {
+                object obj = ResourceManager.GetObject("GifTractor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap GoogleEarth {
             get {
                 object obj = ResourceManager.GetObject("GoogleEarth", resourceCulture);
@@ -1265,6 +1285,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap UDPConfig {
             get {
                 object obj = ResourceManager.GetObject("UDPConfig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UnLock {
+            get {
+                object obj = ResourceManager.GetObject("UnLock", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
