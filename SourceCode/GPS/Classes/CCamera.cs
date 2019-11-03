@@ -60,21 +60,22 @@ namespace AgOpenGPS
             if (camFollowing)
             {
                 GL.Rotate(camYaw, 0.0, 0.0, 1.0);
+                GL.Translate(-camPosX, -camPosY, -camPosZ);
 
-                if (camPitch > -45)
-                {
-                    offset = (45.0 + camPitch) / 45.0;
+                //if (camPitch > -45)
+                //{
+                //    offset = (45.0 + camPitch) / 45.0;
 
-                    offset = (offset * offset * offset * offset * 0.015) + 0.02;
+                //    offset = (offset * offset * offset * offset * 0.015) + 0.02;
 
-                    GL.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                        -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
-                }
-                else
-                {
-                    GL.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                             -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
-                }
+                //    GL.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                //        -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                //}
+                //else
+                //{
+                //    GL.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                //             -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                //}
             }
             else
             {

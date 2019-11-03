@@ -390,7 +390,7 @@ namespace AgOpenGPS
             mf.curve.refList?.Clear();
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
-            mf.toolStripBtnSnap.Enabled = false;
+            mf.btnContourPriority.Enabled = false;
             //mf.curve.ResetCurveLine();
             mf.curve.isCurveBtnOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;

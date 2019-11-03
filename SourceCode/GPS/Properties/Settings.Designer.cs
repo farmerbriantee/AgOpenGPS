@@ -1114,5 +1114,41 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isBatmanOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 50")]
+        public global::System.Drawing.Point setDisplay_panelSnapLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelSnapLocation"]));
+            }
+            set {
+                this["setDisplay_panelSnapLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 100")]
+        public global::System.Drawing.Point setDisplay_panelSimLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelSimLocation"]));
+            }
+            set {
+                this["setDisplay_panelSimLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 150")]
+        public global::System.Drawing.Point setDisplay_panelTramLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelTramLocation"]));
+            }
+            set {
+                this["setDisplay_panelTramLocation"] = value;
+            }
+        }
     }
 }
