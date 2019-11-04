@@ -66,6 +66,7 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
                 camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
                 CalcFrustum();
+
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
                 GL.Enable(EnableCap.Blend);
@@ -496,7 +497,7 @@ namespace AgOpenGPS
                 if (threeSeconds != zoomUpdateCounter )
                 {
                     zoomUpdateCounter = threeSeconds;
-                    if (panelZoom.Visible && oglZoom.Visible)
+                    if (panelBatman.Visible && oglZoom.Visible)
                     oglZoom.Refresh();
                 }
             }
@@ -589,16 +590,16 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0 && bnd.LastBoundary < bnd.bndArr.Count)
             {
                 ////draw the perimeter line so far
-                int ptCount = bnd.bndArr[0].bndLine.Count;
+                int ptCount = bnd.bndArr[bnd.LastBoundary].bndLine.Count;
                 if (ptCount > 1)
                 {
                     GL.LineWidth(2);                
                     GL.Color3(0.0f, 0.99f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[bnd.LastBoundary].bndLine[h].easting, bnd.bndArr[bnd.LastBoundary].bndLine[h].northing, 0);
                     GL.End();
                 }
             }
@@ -704,7 +705,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -1236,21 +1237,51 @@ namespace AgOpenGPS
 
             //min max of the boundary
             //min max of the boundary
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
-                int bndCnt = bnd.bndArr[0].bndLine.Count;
-                for (int i = 0; i < bndCnt; i++)
+                if (bnd.CurrentBoundary == -1)
                 {
-                    double x = bnd.bndArr[0].bndLine[i].easting;
-                    double y = bnd.bndArr[0].bndLine[i].northing;
+                    for (int i = 0; i < bnd.bndArr.Count; i++)
+                    {
+                        if (bnd.bndArr[i].isSet && bnd.bndArr[i].isOwnField)
+                        {
+                            int bndCnt = bnd.bndArr[i].bndLine.Count;
+                            for (int j = 0; j < bndCnt; j++)
+                            {
+                                double x = bnd.bndArr[i].bndLine[j].easting;
+                                double y = bnd.bndArr[i].bndLine[j].northing;
 
-                    //also tally the max/min of field x and z
-                    if (minFieldX > x) minFieldX = x;
-                    if (maxFieldX < x) maxFieldX = x;
-                    if (minFieldY > y) minFieldY = y;
-                    if (maxFieldY < y) maxFieldY = y;
+                                //also tally the max/min of field x and z
+                                if (minFieldX > x) minFieldX = x;
+                                if (maxFieldX < x) maxFieldX = x;
+                                if (minFieldY > y) minFieldY = y;
+                                if (maxFieldY < y) maxFieldY = y;
+                            }
+                        }
+                    }
+                    double zoom = 500;
+                    if (minFieldX < pivotAxlePos.easting - zoom) minFieldX = pivotAxlePos.easting - zoom;
+                    if (maxFieldX > pivotAxlePos.easting + zoom) maxFieldX = pivotAxlePos.easting + zoom;
+                    if (minFieldY < pivotAxlePos.northing - zoom) minFieldY = pivotAxlePos.northing - zoom;
+                    if (maxFieldY > pivotAxlePos.northing + zoom) maxFieldY = pivotAxlePos.northing + zoom;
+
+
+
                 }
-
+                else if (bnd.LastBoundary < bnd.bndArr.Count)
+                {
+                    int bndCnt = bnd.bndArr[bnd.LastBoundary].bndLine.Count;
+                    for (int i = 0; i < bndCnt; i++)
+                    {
+                        double x = bnd.bndArr[bnd.LastBoundary].bndLine[i].easting;
+                        double y = bnd.bndArr[bnd.LastBoundary].bndLine[i].northing;
+                        //also tally the max/min of field x and z
+                        if (minFieldX > x) minFieldX = x;
+                        if (maxFieldX < x) maxFieldX = x;
+                        if (minFieldY > y) minFieldY = y;
+                        if (maxFieldY < y) maxFieldY = y;
+                    }
+                }
             }
             else
             {
@@ -1309,16 +1340,16 @@ namespace AgOpenGPS
             //maxFieldX += 8;
             //maxFieldY += 8;
 
-            if (isMetric)
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-            }
-            else
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-            }
+            //if (isMetric)
+            //{
+            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            //}
+            //else
+            //{
+            //    //lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+            //    //lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            //}
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 

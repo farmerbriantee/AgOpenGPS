@@ -26,10 +26,9 @@ namespace AgOpenGPS
         {
             area = 0;
             isSet = false;
-            isOkToAddPoints = false;
             isDriveAround = false;
             isDriveThru = false;
-            isDrawRightSide = true;
+            isOwnField = false;
         }
 
         //list of coordinates of boundary line
@@ -42,7 +41,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveAround, isDriveThru, isDrawRightSide;
+        public bool isSet, isOwnField, isDriveAround, isDriveThru;
 
         public void CalculateBoundaryHeadings()
         {
@@ -81,8 +80,9 @@ namespace AgOpenGPS
             bndLine.Clear();
             area = 0;
             isSet = false;
-            isOkToAddPoints = false;
             isDriveThru = false;
+            isOwnField = false;
+            isDriveAround = false;
         }
 
         public void FixBoundaryLine(int bndNum, double spacing)
@@ -105,7 +105,7 @@ namespace AgOpenGPS
             if (bndNum == 0)
             {
                 //outside an outer boundary means its wound clockwise
-                if (!IsPointInsideBoundary(point)) ReverseWinding();
+                if (IsPointInsideBoundary(point)) ReverseWinding();
             }
             else
             {
@@ -261,7 +261,7 @@ namespace AgOpenGPS
             if (ptCount < 1) return;
             GL.PointSize(2);
             GL.LineWidth(1);
-            if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
+            if (!isOwnField && isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
             else GL.Color3(0.825f, 0.42f, 0.90f);
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);

@@ -57,8 +57,8 @@ namespace AgOpenGPS
                 btnAPoint.Enabled = false;
                 btnBPoint.Enabled = false;
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 6);
-                mf.ABLine.tramPassEvery = 0;
-                mf.ABLine.passBasedOn = 0;
+                //mf.ABLine.tramPassEvery = 0;
+                //mf.ABLine.passBasedOn = 0;
             }
 
             lvLines.Clear();
@@ -179,8 +179,8 @@ namespace AgOpenGPS
                 btnNewABLine.Enabled = false;
                 btnTurnOffAB.Enabled = false;
 
-                mf.ABLine.tramPassEvery = 0;
-                mf.ABLine.passBasedOn = 0;
+                //mf.ABLine.tramPassEvery = 0;
+                //mf.ABLine.passBasedOn = 0;
                 mf.ABLine.isABLineSet = false;
                 mf.ABLine.isABLineLoaded = false;
 
@@ -430,8 +430,8 @@ namespace AgOpenGPS
 
         private void btnTurnOffAB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.passBasedOn = 0;
+            //mf.ABLine.tramPassEvery = 0;
+            //mf.ABLine.passBasedOn = 0;
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.ABLine.isABLineSet = false;

@@ -138,9 +138,9 @@ namespace AgOpenGPS
                 GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
                 GL.End();
 
-                //get the tool offset and width
-                double toolOffset = mf.vehicle.toolOffset * 2;
-                double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    //get the tool offset and width
+                    double toolOffset = mf.vehicle.toolOffset * 2;
+                    double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
                 double cosHeading = Math.Cos(-abHeading);
                 double sinHeading = Math.Sin(-abHeading);
 
@@ -215,43 +215,43 @@ namespace AgOpenGPS
                     GL.End();
                 }
 
-                if (mf.camera.gridZoom < 40)
-                {
+                //if (mf.camera.gridZoom < 40)
+                //{
 
-                    toolWidth = (mf.vehicle.toolWidth) / 2;
-                    toolOffset = mf.vehicle.toolOffset;
-                    GL.Color3(0.0f, 0.90f, 0.50f);
-                    GL.LineWidth(2);
-                    GL.Enable(EnableCap.LineStipple);
-                    GL.LineStipple(1, 0x0001);
+                //    toolWidth = (mf.vehicle.toolWidth) / 2;
+                //    toolOffset = mf.vehicle.toolOffset;
+                //    GL.Color3(0.0f, 0.90f, 0.50f);
+                //    GL.LineWidth(2);
+                //    GL.Enable(EnableCap.LineStipple);
+                //    GL.LineStipple(1, 0x0001);
 
-                    GL.Begin(PrimitiveType.Lines);
+                //    GL.Begin(PrimitiveType.Lines);
 
-                    if (!isABSameAsVehicleHeading)
-                    {
-                        GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting,
-                            (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                        GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting,
-                            (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-                        GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting,
-                            (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                        GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting,
-                            (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-                    }
-                    else
-                    {
-                        GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting,
-                            (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                        GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting,
-                            (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                        GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting,
-                            (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                        GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting,
-                            (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                    }
-                    GL.End();
-                    GL.Disable(EnableCap.LineStipple);
-                }
+                //    if (!isABSameAsVehicleHeading)
+                //    {
+                //        GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting,
+                //            (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
+                //        GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting,
+                //            (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
+                //        GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting,
+                //            (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
+                //        GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting,
+                //            (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
+                //    }
+                //    else
+                //    {
+                //        GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting,
+                //            (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
+                //        GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting,
+                //            (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
+                //        GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting,
+                //            (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
+                //        GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting,
+                //            (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
+                //    }
+                //    GL.End();
+                //    GL.Disable(EnableCap.LineStipple);
+                //}
 
 
                 if (mf.isPureDisplayOn && !mf.isStanleyUsed)
@@ -697,7 +697,7 @@ namespace AgOpenGPS
         }
     }
 
-        public class CABLines
+    public class CABLines
     {
         public vec2 ref1 = new vec2();
         public vec2 ref2 = new vec2();

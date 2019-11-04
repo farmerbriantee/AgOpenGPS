@@ -1,5 +1,6 @@
 using System;
 using System.Globalization;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,206 +8,210 @@ namespace AgOpenGPS
 {
     public partial class FormBoundary : Form
     {
+        private bool Selectedreset = true;
+        private bool MultipleFieldLocked = true;
         private readonly FormGPS mf = null;
 
         public FormBoundary(Form callingForm)
         {
             mf = callingForm as FormGPS;
-
-            //winform initialization
             InitializeComponent();
-
-            this.Text = gStr.gsStartDeleteABoundary;
-
-            //cboxSelectBoundary
-            cboxSelectBoundary.Items.Clear();
-            cboxSelectBoundary.Items.AddRange(new object[] {
-            gStr.gsOuter,
-            gStr.gsInner + " 1",
-            gStr.gsInner + " 2",
-            gStr.gsInner + " 3",
-            gStr.gsInner + " 4",
-            gStr.gsInner + " 5"});
-
-            //Label
-            label1.Text = gStr.gsSelectBoundary;
-            label1.Text = gStr.gsSelectBoundary;
-            label2.Text = gStr.gsDriveThru;
-            label3.Text = gStr.gsArea;
-            label4.Text = gStr.gsThru;
-            label5.Text = gStr.gsBounds;
-            label6.Text = gStr.gsGo_Around;
-            label7.Text = gStr.gsAround;
-
-            //Column Header
-            chField.Text = gStr.gsLine;
-            chAngle.Text = gStr.gsDriveThru;
-            chEasting.Text = gStr.gsArea;
-
-            //Bouton
-            btnDelete.Text = gStr.gsDelete;
-            btnOuter.Text = gStr.gsCreate;
-            btnSerialCancel.Text = gStr.gsSaveAndReturn;
-            btnToggleDriveThru.Text = gStr.gsToggleDriveThru;         
-            btnToggleDriveAround.Text = gStr.gsToggleDriveBy;
-            btnLoadMultiBoundaryFromGE.Text = gStr.gsLoadMulti;
-            btnDeleteAll.Text = gStr.gsDeleteAll;
-            btnGo.Text = gStr.gsGo;
-            btnLoadBoundaryFromGE.Text = gStr.gsLoadKML;
-            
-
         }
 
         private void UpdateChart()
         {
-            if (mf.isMetric)
-            {
-                //outer metric
-                lvLines.Items[0].SubItems[2].Text = "NA";
-                if (mf.bnd.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bnd.bndArr[0].area * 0.0001, 2) + " Ha";
-                else lvLines.Items[0].SubItems[1].Text = "*";
 
-                //inner metric
-                for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+            int field = 1;
+            int inner = 1;
+            tableLayoutPanel1.HorizontalScroll.Maximum = 0;
+            tableLayoutPanel1.AutoScroll = true;
+
+
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderColor = BackColor;
+            button1.FlatAppearance.MouseOverBackColor = BackColor;
+            button1.FlatAppearance.MouseDownBackColor = BackColor;
+
+
+            for (int i = 0; i < mf.bnd.bndArr.Count + 1; i++)
+            {
+                Control aa = tableLayoutPanel1.GetControlFromPosition(0, i);
+                if (aa == null)
                 {
-                    if (mf.bnd.bndArr[i].isSet)
+                    var a = new Button();
+                    a.Margin = new Padding(0);
+                    a.Size = new Size(280, 40);
+                    a.Name = string.Format("{0}", i);
+                    a.TextAlign = ContentAlignment.MiddleCenter;
+                    a.Click += b_Click;
+
+                    a.FlatStyle = FlatStyle.Flat;
+                    a.FlatAppearance.BorderColor = BackColor;
+                    a.FlatAppearance.MouseOverBackColor = BackColor;
+                    a.FlatAppearance.MouseDownBackColor = BackColor;
+
+                    aa = a;
+
+                    var c = new Button();
+                    c.Margin = new Padding(0);
+                    c.Size = new System.Drawing.Size(85, 40);
+                    c.Name = string.Format("{0}", i);
+                    a.TextAlign = ContentAlignment.MiddleCenter;
+                    c.Click += OwnField_Click;
+
+                    var d = new Button();
+                    d.Margin = new Padding(0);
+                    d.Size = new System.Drawing.Size(85, 40);
+                    d.Name = string.Format("{0}", i);
+                    a.TextAlign = ContentAlignment.MiddleCenter;
+                    d.Click += DriveThru_Click;
+
+                    var e = new Button();
+                    e.Margin = new Padding(0);
+                    e.Size = new System.Drawing.Size(85, 40);
+                    e.Name = string.Format("{0}", i);
+                    a.TextAlign = ContentAlignment.MiddleCenter;
+                    e.Click += DriveAround_Click;
+                    tableLayoutPanel1.Controls.Add(a, 0, i);
+                    tableLayoutPanel1.Controls.Add(c, 2, i);
+                    tableLayoutPanel1.Controls.Add(d, 3, i);
+                    tableLayoutPanel1.Controls.Add(e, 4, i);
+                }
+
+                if (i < mf.bnd.bndArr.Count && mf.bnd.bndArr[i].isSet)
+                {
+                    tableLayoutPanel1.SetColumnSpan(aa, 1);
+
+                    Control bb = tableLayoutPanel1.GetControlFromPosition(1, i);
+                    if (bb == null)
                     {
-                        lvLines.Items[i].SubItems[2].Text = mf.bnd.bndArr[i].isDriveThru.ToString();
-                        lvLines.Items[i].SubItems[3].Text = mf.bnd.bndArr[i].isDriveAround.ToString();
-                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2) + " Ha";
+                        var b = new Button();
+                        b.Margin = new Padding(0);
+                        b.Size = new System.Drawing.Size(150, 40);
+                        b.Name = string.Format("{0}", i);
+                        b.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                        b.Click += b_Click;
+                        b.FlatStyle = FlatStyle.Flat;
+                        b.FlatAppearance.BorderColor = BackColor;
+                        b.FlatAppearance.MouseOverBackColor = BackColor;
+                        b.FlatAppearance.MouseDownBackColor = BackColor;
+
+                        tableLayoutPanel1.Controls.Add(b, 1, i);
+                        bb = b;
+                    }
+                    Control cc = tableLayoutPanel1.GetControlFromPosition(2, i);
+                    cc.Visible = true;
+                    Control dd = tableLayoutPanel1.GetControlFromPosition(3, i);
+                    dd.Visible = true;
+                    Control ee = tableLayoutPanel1.GetControlFromPosition(4, i);
+                    ee.Visible = true;
+
+
+                    Font backupfont = new Font(aa.Font.FontFamily, 18F, FontStyle.Bold);
+
+                    // LOCK MultipleField
+                    if (MultipleFieldLocked)
+                    {
+                        cc.Enabled = false;
                     }
                     else
                     {
-                        lvLines.Items[i].SubItems[2].Text = "-";
-                        lvLines.Items[i].SubItems[3].Text = "-";
-                        lvLines.Items[i].SubItems[1].Text = "*";
+                        cc.Enabled = true;
+                    }
+                    // LOCK MultipleField
+
+                    cc.Width = 100;
+                    dd.Width = 80;
+                    ee.Width = 80;
+                    bb.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Bold);
+                    cc.Anchor = AnchorStyles.None;
+                    dd.Anchor = AnchorStyles.None;
+                    ee.Anchor = AnchorStyles.None;
+
+                    if (mf.bnd.bndArr[i].isOwnField)
+                    {
+                        cc.Text = "Field";
+                        aa.Text = string.Format("Field {0}", field);
+                        field += 1;
+                        aa.Font = backupfont;
+                        dd.Enabled = false;
+                        ee.Enabled = false;
+                        mf.bnd.bndArr[i].isDriveThru = false;
+                        mf.bnd.bndArr[i].isDriveAround = false;
+                    }
+                    else
+                    {
+                        cc.Text = "Inner";
+                        aa.Text = string.Format("Inner {0}", inner);
+                        aa.Font = backupfont;
+                        inner += 1;
+                        dd.Enabled = true;
+                        ee.Enabled = true;
+                    }
+
+                    if (mf.isMetric)
+                    {
+                        bb.Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2) + " Ha";
+                    }
+                    else
+                    {
+                        bb.Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
+                    }
+
+                    //dd.Text = mf.bnd.bndArr[i].isDriveThru.ToString();
+
+                    if (mf.bnd.bndArr[i].isDriveThru) dd.Text = "Yes";
+                    else dd.Text = "No";
+
+                    if (mf.bnd.bndArr[i].isDriveAround) ee.Text = "Yes";
+                    else ee.Text = "No";
+
+                    if (Selectedreset == false && i == mf.bnd.boundarySelected)
+                    {
+                        aa.ForeColor = Color.Red;
+                        bb.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        aa.ForeColor = default(Color);
+                        bb.ForeColor = default(Color);
                     }
                 }
-            }
-            else
-            {
-                //outer
-                lvLines.Items[0].SubItems[2].Text = "NA";
-                if (mf.bnd.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bnd.bndArr[0].area * 0.000247105, 2) + " Ac";
-                else lvLines.Items[0].SubItems[1].Text = "*";
-
-                //inner
-                for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                else
                 {
-                    if (mf.bnd.bndArr[i].isSet)
+                    tableLayoutPanel1.SetColumnSpan(aa, 2);
+                    aa.Text = string.Format("Create Boundary", i + 1);
+
+                    Control cc = tableLayoutPanel1.GetControlFromPosition(2, i);
+                    cc.Visible = false;
+                    Control dd = tableLayoutPanel1.GetControlFromPosition(3, i);
+                    dd.Visible = false;
+                    Control ee = tableLayoutPanel1.GetControlFromPosition(4, i);
+                    ee.Visible = false;
+
+                    if (Selectedreset == false && i == mf.bnd.boundarySelected)
                     {
-                        lvLines.Items[i].SubItems[2].Text = mf.bnd.bndArr[i].isDriveThru.ToString();
-                        lvLines.Items[i].SubItems[3].Text = mf.bnd.bndArr[i].isDriveAround.ToString();
-                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
+                        aa.ForeColor = Color.Red;
                     }
                     else
                     {
-                        lvLines.Items[i].SubItems[2].Text = "-";
-                        lvLines.Items[i].SubItems[3].Text = "-";
-                        lvLines.Items[i].SubItems[1].Text = "*";
+                        aa.ForeColor = default(Color);
                     }
+                    break;
                 }
             }
         }
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
-            btnLeftRight.Image = Properties.Resources.BoundaryRight;
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
             btnLeftRight.Enabled = false;
             btnOuter.Enabled = false;
             btnLoadBoundaryFromGE.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
-            cboxDriveThru.Visible = false;
-            label2.Visible = false;
-            cboxDriveAround.Visible = false;
-            label6.Visible = false;
-
-            //create a 6 row by 3 column ListView
-            ListViewItem itm;
-            string line = gStr.gsOuter + ",False,False,0.0";
-            string[] words = line.Split(',');
-            itm = new ListViewItem(words);
-            lvLines.Items.Add(itm);
-            for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
-            {
-                words[0] = gStr.gsInner + i.ToString();
-                itm = new ListViewItem(words);
-                lvLines.Items.Add(itm);
-            }
 
             //update the list view with real data
-            UpdateChart();
-        }
-
-        private void cboxSelectBoundary_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.bnd.boundarySelected = cboxSelectBoundary.SelectedIndex;
-
-            if (mf.bnd.boundarySelected == 0)
-            {
-                if (mf.bnd.bndArr[0].isSet)
-                {
-                    btnOuter.Enabled = false;
-                    btnLoadBoundaryFromGE.Enabled = false;
-                    btnGo.Enabled = false;
-                    btnDelete.Enabled = true;
-                }
-                else
-                {
-                    btnOuter.Enabled = true;
-                    btnLoadBoundaryFromGE.Enabled = true;
-                    btnGo.Enabled = false;
-                    btnDelete.Enabled = false;
-                    cboxSelectBoundary.Enabled = false;
-                }
-            }
-            //must be an inner selected
-            else if (mf.bnd.bndArr[0].isSet)
-            {
-                if (mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
-                {
-                    btnOuter.Enabled = false;
-                    btnLoadBoundaryFromGE.Enabled = false;
-                    btnGo.Enabled = false;
-                    btnDelete.Enabled = true;
-                }
-                else
-                {
-                    cboxSelectBoundary.Enabled = false;
-                    cboxDriveThru.Visible = true;
-                    label2.Visible = true;
-                    btnDelete.Enabled = false;
-                }
-            }
-            else
-            {
-                mf.TimedMessageBox(1000, gStr.gsNoOuterBoundary, gStr.gsCreateOuterBoundary);
-            }
-
-            UpdateChart();
-        }
-
-        private void cboxDriveThru_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveThru = cboxDriveThru.SelectedIndex != 0;
-            cboxDriveThru.Visible = false;
-            label2.Visible = false;
-            cboxDriveAround.Visible = true;
-            label6.Visible = true;
-            UpdateChart();
-        }
-
-        private void cboxDriveAround_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveAround = cboxDriveAround.SelectedIndex != 0;
-            cboxDriveAround.Visible = false;
-            label6.Visible = false;
-
-            btnOuter.Enabled = true;
-            btnLoadBoundaryFromGE.Enabled = true;
-            btnGo.Enabled = false;
-            btnDelete.Enabled = false;
             UpdateChart();
         }
 
@@ -220,9 +225,76 @@ namespace AgOpenGPS
             UpdateChart();
         }
 
+
+        void DriveThru_Click(object sender, EventArgs e)
+        {
+            var b = sender as Button;
+            if (b != null)
+            {
+                mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru;
+                UpdateChart();
+            }
+        }
+
+
+        void OwnField_Click(object sender, EventArgs e)
+        {
+            var b = sender as Button;
+            if (b != null)
+            {
+                mf.bnd.bndArr[Convert.ToInt32(b.Name)].isOwnField = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isOwnField;
+                MultipleFieldLocked = true;
+                UpdateChart();
+            }
+        }
+        void DriveAround_Click(object sender, EventArgs e)
+        {
+            var b = sender as Button;
+            if (b != null)
+            {
+                mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveAround = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveAround;
+                UpdateChart();
+            }
+        }
+
+        void b_Click(object sender, EventArgs e)
+        {
+            var b = sender as Button;
+            if (b != null)
+            {
+
+                mf.bnd.boundarySelected = Convert.ToInt32(b.Name);
+
+                Selectedreset = false;
+
+                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected && mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
+                {
+                    btnOuter.Enabled = false;
+                    btnLoadBoundaryFromGE.Enabled = false;
+                    btnGo.Enabled = false;
+                    btnDelete.Enabled = true;
+
+                    btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+                    btnLeftRight.Enabled = false;
+
+                }
+                else
+                {
+                    btnOuter.Enabled = true;
+                    btnLoadBoundaryFromGE.Enabled = true;
+                    btnGo.Enabled = false;
+                    btnDelete.Enabled = false;
+                    btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+                    btnLeftRight.Enabled = false;
+                }
+
+            }
+            UpdateChart();
+        }
+
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
-            mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
             mf.mazeGrid.BuildMazeGridArray();
@@ -230,59 +302,48 @@ namespace AgOpenGPS
 
         private void btnLeftRight_Click(object sender, EventArgs e)
         {
-            mf.bnd.bndArr[mf.bnd.boundarySelected].isDrawRightSide = !mf.bnd.bndArr[mf.bnd.boundarySelected].isDrawRightSide;
-
-            btnLeftRight.Image = mf.bnd.bndArr[mf.bnd.boundarySelected].isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            mf.bnd.isDrawRightSide = !mf.bnd.isDrawRightSide;
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
             btnLeftRight.Enabled = false;
             btnOuter.Enabled = false;
             btnLoadBoundaryFromGE.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
-            cboxSelectBoundary.Enabled = true;
+            if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
             {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].ResetBoundary();
-                mf.FileSaveBoundary();
+                mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
+                mf.turn.turnArr.RemoveAt(mf.bnd.boundarySelected);
+                mf.gf.geoFenceArr.RemoveAt(mf.bnd.boundarySelected);
             }
-            btnLeftRight.Image = Properties.Resources.BoundaryRight;
+            mf.FileSaveBoundary();
+            mf.bnd.boundarySelected = -1;
+            Selectedreset = true;
+
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.RowStyles.Clear();
             UpdateChart();
-        }
-
-        private void btnToggleDriveThru_Click(object sender, EventArgs e)
-        {
-            if (mf.bnd.boundarySelected != 0 && mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
-            {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveThru = !mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveThru;
-                UpdateChart();
-
-                mf.FileSaveBoundary();
-            }
-        }
-
-        private void btnToggleDriveAround_Click(object sender, EventArgs e)
-        {
-            if (mf.bnd.boundarySelected != 0 && mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
-            {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveAround = !mf.bnd.bndArr[mf.bnd.boundarySelected].isDriveAround;
-                UpdateChart();
-
-                mf.FileSaveBoundary();
-            }
         }
 
         private double easting, northing, latK, lonK;
 
         private void ResetAllBoundary()
         {
-            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) mf.bnd.bndArr[j].ResetBoundary();
-            mf.FileSaveBoundary();
-            UpdateChart();
-            cboxSelectBoundary.SelectedIndex = 0;
-            cboxSelectBoundary.Enabled = true;
+            mf.bnd.bndArr.Clear();
+            mf.turn.turnArr.Clear();
+            mf.gf.geoFenceArr.Clear();
 
+            mf.FileSaveBoundary();
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.RowStyles.Clear();
+
+            UpdateChart();
+
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
             btnLeftRight.Enabled = false;
             btnOuter.Enabled = false;
             btnLoadBoundaryFromGE.Enabled = false;
@@ -293,15 +354,31 @@ namespace AgOpenGPS
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
             ResetAllBoundary();
-            mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
+
+            mf.bnd.boundarySelected = -1;
+            Selectedreset = true;
+
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
-            //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MultipleFieldLocked = !MultipleFieldLocked;
+            UpdateChart();
         }
 
         private void btnLoadMultiBoundaryFromGE_Click(object sender, EventArgs e)
         {
+            Selectedreset = true;
+
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            btnLeftRight.Enabled = false;
+            btnOuter.Enabled = false;
+            btnLoadBoundaryFromGE.Enabled = false;
+            btnGo.Enabled = false;
+            btnDelete.Enabled = false;
             string fileAndDirectory;
             {
                 //create the dialog instance
@@ -365,6 +442,9 @@ namespace AgOpenGPS
                         //at least 3 points
                         if (numberSets.Length > 2)
                         {
+                            mf.bnd.bndArr.Add(new CBoundaryLines());
+                            mf.turn.turnArr.Add(new CTurnLines());
+                            mf.gf.geoFenceArr.Add(new CGeoFenceLines());
                             //reset boundary
                             foreach (var item in numberSets)
                             {
@@ -395,17 +475,18 @@ namespace AgOpenGPS
                             mf.bnd.bndArr[i].CalculateBoundaryArea();
                             mf.bnd.bndArr[i].PreCalcBoundaryLines();
                             mf.bnd.bndArr[i].isSet = true;
-                            mf.bnd.bndArr[i].isDriveAround = true;
+
+                            if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
+                            else mf.bnd.bndArr[i].isOwnField = false;
                         }
                         else
                         {
-                            mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                            mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
                         }
                     }
 
                     mf.FileSaveBoundary();
                     UpdateChart();
-                    cboxSelectBoundary.Enabled = true;
                 }
                 catch (Exception)
                 {
@@ -416,6 +497,14 @@ namespace AgOpenGPS
 
         private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
         {
+            Selectedreset = true;
+
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            btnLeftRight.Enabled = false;
+            btnOuter.Enabled = false;
+            btnLoadBoundaryFromGE.Enabled = false;
+            btnGo.Enabled = false;
+            btnDelete.Enabled = false;
             string fileAndDirectory;
             {
                 //create the dialog instance
@@ -472,8 +561,11 @@ namespace AgOpenGPS
                             //at least 3 points
                             if (numberSets.Length > 2)
                             {
+                                mf.bnd.bndArr.Add(new CBoundaryLines());
+                                mf.turn.turnArr.Add(new CTurnLines());
+                                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
                                 //reset boundary
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].ResetBoundary();
+                                //mf.bnd.bndArr[mf.bnd.boundarySelected].ResetBoundary();
                                 foreach (var item in numberSets)
                                 {
                                     string[] fix = item.Split(',');
@@ -503,6 +595,8 @@ namespace AgOpenGPS
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
+                                if (mf.bnd.boundarySelected == 0) mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = true;
+                                else mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = false;
 
                                 {
                                     mf.FileSaveBoundary();
@@ -510,13 +604,12 @@ namespace AgOpenGPS
                             }
                             else
                             {
-                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                                mf.TimedMessageBox(2000, "Error reading KML", "Choose or Build a Different one");
                             }
                         }
                     }
 
                     UpdateChart();
-                    cboxSelectBoundary.Enabled = true;
                 }
                 catch (Exception)
                 {
