@@ -1142,12 +1142,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("380, 150")]
-        public global::System.Drawing.Point setDisplay_panelTramLocation {
+        public global::System.Drawing.Point setDisplay_panelTurnLocation {
             get {
-                return ((global::System.Drawing.Point)(this["setDisplay_panelTramLocation"]));
+                return ((global::System.Drawing.Point)(this["setDisplay_panelTurnLocation"]));
             }
             set {
-                this["setDisplay_panelTramLocation"] = value;
+                this["setDisplay_panelTurnLocation"] = value;
             }
         }
     }

@@ -574,6 +574,11 @@
     <None Include="btnImages\UnLock.png" />
     <None Include="btnImages\GifBounds.gif" />
     <None Include="btnImages\GifTractor.gif" />
+    <None Include="btnImages\UTurnLeft.png" />
+    <None Include="btnImages\UTurnRight.png" />
+    <None Include="btnImages\handUturnPanel.png" />
+    <None Include="btnImages\HandSnap.png" />
+    <None Include="btnImages\Boundary2.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

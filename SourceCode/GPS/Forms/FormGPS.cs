@@ -233,8 +233,11 @@ namespace AgOpenGPS
             InitializeComponent();
 
             ControlExtension.Draggable(panelSnap, true);
+            ControlExtension.Draggable(panelNTRIP, true);
             ControlExtension.Draggable(panelSim, true);
-            ControlExtension.Draggable(panelTram, true);
+            ControlExtension.Draggable(panelTurn, true);
+            //ControlExtension.Draggable(panelField, true);
+
 
 
             //file menu
@@ -277,13 +280,13 @@ namespace AgOpenGPS
             toolStripNTRIPConfig.Text = gStr.gsNTRIP;
 
             //Tools Menu
-            treePlanterToolStripMenuItem.Text = gStr.gsTreePlanter;
-            toolStripBtnSmoothABCurve.Text = gStr.gsSmoothABCurve;
+            treePlanterToolStripMenuItem1.Text = gStr.gsTreePlanter;
+            smoothABCurveToolStripMenuItem.Text = gStr.gsSmoothABCurve;
             toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
             toolStripAreYouSure.Text = gStr.gsAreYouSure;
-            webCamToolStripItem.Text = gStr.gsWebCam;
+            webCamToolStripMenuItem.Text = gStr.gsWebCam;
 
             //Recorded Path
             deletePathRecPathToolStripMenuItem.Text = gStr.gsDeletePath;
@@ -637,7 +640,7 @@ namespace AgOpenGPS
 
             Settings.Default.setDisplay_panelSnapLocation = panelSnap.Location;
             Settings.Default.setDisplay_panelSimLocation = panelSim.Location;
-            Settings.Default.setDisplay_panelTramLocation = panelTram.Location;
+            Settings.Default.setDisplay_panelTurnLocation = panelTurn.Location;
 
             Settings.Default.Save();
         }
@@ -663,10 +666,10 @@ namespace AgOpenGPS
             if (panelSim.Top < 1) panelSim.Top = 1;
             if (panelSim.Top > Height - 153) panelSim.Top = Height - 153;
 
-            if (panelTram.Top < 1) panelTram.Top = 1;
-            if (panelTram.Left + 182 > Width - 200)// || panelSim.Top + 50 > Height - 70))
+            if (panelTurn.Top < 1) panelTurn.Top = 1;
+            if (panelTurn.Left + 182 > Width - 200)// || panelSim.Top + 50 > Height - 70))
             {
-                panelTram.Left = Width - 200 - 180;
+                panelTurn.Left = Width - 200 - 180;
             }
                        
             //if (panelSnap.Top > Height - 130) panelSnap.Top = Height - 130;
@@ -885,8 +888,8 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
-        public bool isSecondRowVisible = false;
-        public int secondRowCounter = 8;
+        //public bool isSecondRowVisible = false;
+        //public int secondRowCounter = 8;
         private void oglMain_MouseUp(object sender, MouseEventArgs e)
         {
             //if (!isSecondRowVisible)
@@ -921,8 +924,6 @@ namespace AgOpenGPS
 
         private void webCamToolStripItem_Click(object sender, EventArgs e)
         {
-            Form form = new FormWebCam();
-            form.Show();
         }
 
         private void btnMakeBndContour_Click(object sender, EventArgs e)
@@ -1011,9 +1012,9 @@ namespace AgOpenGPS
 
         private void btnCamera_Click(object sender, EventArgs e)
         {
-            secondRowCounter = 0;
-            if (camera.camPitch < -1) camera.camPitch = 0;
-            else camera.camPitch = -68;
+            camera.camPitch += 23;
+            if (camera.camPitch > 0) camera.camPitch = -69;
+            //else camera.camPitch = -68;
         }
 
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
@@ -1317,6 +1318,63 @@ namespace AgOpenGPS
 
 
             }
+        }
+
+        private void smoothABCurveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted && curve.isCurveBtnOn)
+            {
+                using (var form = new FormSmoothAB(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+            }
+
+            else
+            {
+                if (!isJobStarted) TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                else TimedMessageBox(2000, gStr.gsCurveNotOn, gStr.gsTurnABCurveOn);
+            }
+        }
+
+        private void webCamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormWebCam();
+            form.Show();
+        }
+
+        private void treePlanterToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormTreePlant"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            //
+            Form form = new FormTreePlant(this);
+            form.Show();
+        }
+
+        private void boundaryToolStripBtn_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                using (var form = new FormBoundary(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Form form2 = new FormBoundaryPlayer(this);
+                        form2.Show();
+                    }
+                }
+            }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
         }
 
         public void GetAB()
