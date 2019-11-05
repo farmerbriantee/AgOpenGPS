@@ -551,8 +551,8 @@ namespace AgOpenGPS
             }
             else //show the A B Pause
             {
-                //this.Size = new System.Drawing.Size(239, 350);
-                this.Size = new System.Drawing.Size(339, 670);
+                this.Size = new System.Drawing.Size(239, 350);
+                //this.Size = new System.Drawing.Size(339, 670);
                 btnAddToFile.Visible = false;
                 btnAddAndGo.Visible = false;
                 btnListDelete.Visible = false;
@@ -570,12 +570,12 @@ namespace AgOpenGPS
                 lblCurveExists.Visible = true;
 
 
-                comboBox1.Visible = true;
-                button2.Visible = true;
-                label5.Visible = true;
-                label18.Visible = true;
-                nudLatitude.Visible = true;
-                nudLongitude.Visible = true;
+                //comboBox1.Visible = true;
+                //button2.Visible = true;
+                //label5.Visible = true;
+                //label18.Visible = true;
+                //nudLatitude.Visible = true;
+                //nudLongitude.Visible = true;
             }
         }
 

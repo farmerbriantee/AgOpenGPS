@@ -219,7 +219,7 @@ namespace AgOpenGPS
                 panelBatman.Visible = true;
                 //statusStripLeft.Left = 8;
 
-                txtDistanceOffABLine.Left = (Width + 70) / 2;
+                lblDistanceOffLine.Left = (Width -90) / 2;
                 LineUpManualBtns();
             }
             else
@@ -235,8 +235,8 @@ namespace AgOpenGPS
                 panelBatman.Visible = false;
                 //statusStripLeft.Left = 8;
 
-                txtDistanceOffABLine.Left = (Width - 150) / 2;
-                txtDistanceOffABLine.Top = -1;
+                lblDistanceOffLine.Left = (Width - 270) / 2;
+                lblDistanceOffLine.Top = -1;
                 panelBatman.Visible = false;
                 LineUpManualBtns();
             }
@@ -249,18 +249,18 @@ namespace AgOpenGPS
 
             if (panelBatman.Visible)
             {
-                btnRightYouTurn.Left = (Width+350) / 2 ;
-                btnLeftYouTurn.Left = (Width-133) / 2;
+                //btnRightYouTurn.Left = (Width+350) / 2 ;
+                //btnLeftYouTurn.Left = (Width-133) / 2;
                 //btnSwapDirection.Left = (Width + 100) / 2;
-                first2Thirds = (Width + 170) / 2;
+                first2Thirds = (Width + 50) / 2;
             }
 
             else
             {
-                btnRightYouTurn.Left = (Width+140) / 2;
-                btnLeftYouTurn.Left = (Width-345) / 2;
+                //btnRightYouTurn.Left = (Width+140) / 2;
+                //btnLeftYouTurn.Left = (Width-345) / 2;
                 //btnSwapDirection.Left = (Width-105) / 2;
-                first2Thirds = (Width - 40) / 2;
+                first2Thirds = (Width - 140) / 2;
             }
 
             int top = 0;
@@ -1111,7 +1111,7 @@ namespace AgOpenGPS
             //turn off ABLine 
             ABLine.isABLineBeingSet = false;
             ABLine.isABLineSet = false;
-            txtDistanceOffABLine.Visible = false;
+            lblDistanceOffLine.Visible = false;
 
             //change image to reflect on off
             btnABLine.Image = Properties.Resources.ABLineOff;
@@ -3238,7 +3238,7 @@ namespace AgOpenGPS
                             //lblSpeed.BackColor = SystemColors.ControlLight;
                             //lblHeading.BackColor = SystemColors.ControlLight;
                             //lblSpeedUnits.BackColor = SystemColors.ControlLight;
-                            //txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
+                            //lblDistanceOffLine.BackColor = SystemColors.ControlLight;
                             //lblHz.BackColor = SystemColors.ControlLight;
                         }
                         else
@@ -3248,7 +3248,7 @@ namespace AgOpenGPS
                             //lblSpeed.BackColor = Color.Tomato;
                             //lblHeading.BackColor = Color.Tomato;
                             //lblSpeedUnits.BackColor = Color.Tomato;
-                            //txtDistanceOffABLine.BackColor = Color.Tomato;
+                            //lblDistanceOffLine.BackColor = Color.Tomato;
                             //lblHz.BackColor = Color.Tomato;
                         }
                     }

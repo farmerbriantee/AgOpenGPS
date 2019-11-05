@@ -895,31 +895,6 @@ namespace AgOpenGPS
             sim.altitude = (double)nudElevation.Value;
         }
 
-        //public bool isSecondRowVisible = false;
-        //public int secondRowCounter = 8;
-        private void oglMain_MouseUp(object sender, MouseEventArgs e)
-        {
-            //if (!isSecondRowVisible)
-            //{
-            //    isSecondRowVisible = !isSecondRowVisible;
-            //    panelSim.Visible = false;
-
-            //    if (Properties.Settings.Default.setDisplay_isBatmanOn)
-            //    {
-            //        oglMain.Width -= 200;
-            //        oglMain.Left += 0;
-            //        panelZoom.Visible = false;
-            //    }
-            //    else
-            //    {
-            //        oglMain.Width -= 300;
-            //        oglMain.Left += 100;
-            //    }
-
-            //    secondRowCounter = 0;
-            //}
-        }
-
         private void fileExplorerToolStripItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -929,29 +904,6 @@ namespace AgOpenGPS
             Process.Start(fieldsDirectory + currentFieldDirectory);
         }
 
-        private void webCamToolStripItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnMakeBndContour_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnDeleteContours_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void toolStripBtnSmallRight_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void toolStripBtnSmallLeft_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void oglZoom_MouseUp(object sender, MouseEventArgs e)
-        {
-        }
 
         private void panelZoom_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1015,10 +967,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnCamera_Click(object sender, EventArgs e)
-        {
-        }
-
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
         {
             fd.distanceUser = 0;
@@ -1052,7 +1000,7 @@ namespace AgOpenGPS
                 //ABLine.DeleteAB();
                 ABLine.isABLineBeingSet = false;
                 ABLine.isABLineSet = false;
-                txtDistanceOffABLine.Visible = false;
+                lblDistanceOffLine.Visible = false;
 
                 //change image to reflect on off
                 btnABLine.Image = Properties.Resources.ABLineOff;
@@ -1182,14 +1130,6 @@ namespace AgOpenGPS
 
         }
 
-        private void btnNTRIP_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void fieldToolStripBtn_Click(object sender, EventArgs e)
-        {
-        }
-
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1296,6 +1236,35 @@ namespace AgOpenGPS
 
                 FileSaveABLines();
             }
+
+            if (curve.isCurveBtnOn)
+            {
+                if (curve.refList.Count > 0)
+                {
+                    //array number is 1 less since it starts at zero
+                    int idx = curve.numCurveLineSelected - 1;
+
+                    //curve.curveArr[idx].Name = textBox1.Text.Trim();
+                    if (idx >= 0)
+                    {
+
+                        curve.curveArr[idx].spiralmode = curve.spiralmode;
+                        curve.curveArr[idx].circlemode = curve.circlemode;
+
+                        curve.curveArr[idx].aveHeading = curve.aveLineHeading;
+
+                        curve.curveArr[idx].curvePts.Clear();
+                        //write out the Curve Points
+                        foreach (var item in curve.refList)
+                        {
+                            curve.curveArr[idx].curvePts.Add(item);
+                        }
+                    }
+
+                    //save entire list
+                    FileSaveCurveLines();
+                }
+            }
         }
 
         private void smoothABCurveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1353,23 +1322,6 @@ namespace AgOpenGPS
                 }
             }
             else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void btnVehicleSettings_Click_1(object sender, EventArgs e)
-        {
-        }
-
-        private void btnYouTurnMenu_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnAutoSteerSettingsMenu_Click(object sender, EventArgs e)
-        {
         }
 
         private void flagsGEToolStrip_ButtonClick(object sender, EventArgs e)
