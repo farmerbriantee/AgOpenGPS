@@ -197,7 +197,7 @@ namespace AgOpenGPS
             }
 
             //draw the sections
-            GL.LineWidth(16);
+            GL.LineWidth(12);
             GL.Begin(PrimitiveType.Lines);
 
             //draw section line

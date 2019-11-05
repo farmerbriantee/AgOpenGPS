@@ -712,26 +712,6 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap GifBounds {
-            get {
-                object obj = ResourceManager.GetObject("GifBounds", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap GifTractor {
-            get {
-                object obj = ResourceManager.GetObject("GifTractor", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap GoogleEarth {
             get {
                 object obj = ResourceManager.GetObject("GoogleEarth", resourceCulture);
@@ -995,26 +975,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap Play {
             get {
                 object obj = ResourceManager.GetObject("Play", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PointDelete {
-            get {
-                object obj = ResourceManager.GetObject("PointDelete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PointDone {
-            get {
-                object obj = ResourceManager.GetObject("PointDone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1295,16 +1255,6 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap tree {
             get {
                 object obj = ResourceManager.GetObject("tree", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TripOdometer {
-            get {
-                object obj = ResourceManager.GetObject("TripOdometer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

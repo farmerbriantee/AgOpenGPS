@@ -649,29 +649,36 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
-
+            
+            //top,right.bottom
             //keep snap in view on resizing
-            if (panelSnap.Left + 415 > Width - 200)// || panelSnap.Top + 50 > Height - 70))
-            {
-                panelSnap.Left = Width - 200 - 415;
-            }
+            if (panelSnap.Left + 342 > Width - 200)  panelSnap.Left = Width - 200 - 342;
             if (panelSnap.Top < 1) panelSnap.Top = 1;
+            if (panelSnap.Top > Height - 100) panelSnap.Top = Height - 100;
 
-            if (panelSnap.Top > Height - 170) panelSnap.Top = Height - 170;
+            if (panelSim.Left + 443 > Width - 200) panelSim.Left = Width - 200 - 443;
+            if (panelSim.Top < 80) panelSim.Top = 80;
+            if (panelSim.Top > Height - 150) panelSim.Top = Height - 150;
 
-            if (panelSim.Left + 443 > Width - 200)// || panelSim.Top + 50 > Height - 70))
+
+            if (panelTurn.Top < 48) panelTurn.Top = 48;
+            if (panelTurn.Left + 252 > Width - 200)  panelTurn.Left = Width - 200 - 252;
+            if (panelTurn.Top > Height - 180) panelTurn.Top = Height - 180;
+
+            if (panelBatman.Visible)
             {
-                panelSim.Left = Width - 200 - 443;
+                if (panelTurn.Left < 260) panelTurn.Left = 260;
+                if (panelSim.Left < 260) panelSim.Left = 260;
+                if (panelSnap.Left < 260) panelSnap.Left = 260;
             }
-            if (panelSim.Top < 1) panelSim.Top = 1;
-            if (panelSim.Top > Height - 153) panelSim.Top = Height - 153;
-
-            if (panelTurn.Top < 1) panelTurn.Top = 1;
-            if (panelTurn.Left + 182 > Width - 200)// || panelSim.Top + 50 > Height - 70))
+            else
             {
-                panelTurn.Left = Width - 200 - 180;
+                if (panelTurn.Left < 75) panelTurn.Left = 75;
+                if (panelSim.Left < 75) panelSim.Left = 75;
+                if (panelSnap.Left < 75) panelSnap.Left = 75;
             }
-                       
+
+
             //if (panelSnap.Top > Height - 130) panelSnap.Top = Height - 130;
         }
 
@@ -944,8 +951,6 @@ namespace AgOpenGPS
 
         private void oglZoom_MouseUp(object sender, MouseEventArgs e)
         {
-            if (oglZoom.Visible == true)
-                oglZoom.Visible = false;
         }
 
         private void panelZoom_MouseDown(object sender, MouseEventArgs e)
@@ -1012,9 +1017,6 @@ namespace AgOpenGPS
 
         private void btnCamera_Click(object sender, EventArgs e)
         {
-            camera.camPitch += 23;
-            if (camera.camPitch > 0) camera.camPitch = -69;
-            //else camera.camPitch = -68;
         }
 
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
@@ -1024,26 +1026,6 @@ namespace AgOpenGPS
         }
 
         private void toolStripBtnYouTurn_Click(object sender, EventArgs e)
-        {
-            var form = new FormYouTurn(this);
-            form.ShowDialog();
-            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-        }
-
-        private void toolStripButtonVehicleSettings_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormSettings(this, 0))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
-                    else btnAutoSteer.Text = "M";
-                }
-            }
-        }
-
-        private void toolStripBtnSerialPorts_Click(object sender, EventArgs e)
         {
         }
 
@@ -1294,8 +1276,6 @@ namespace AgOpenGPS
         {
             if (ABLine.isBtnABLineOn)
             {
-                
-
                 //index to last one. 
                 int idx = ABLine.numABLineSelected - 1;
 
@@ -1315,8 +1295,6 @@ namespace AgOpenGPS
                 }
 
                 FileSaveABLines();
-
-
             }
         }
 
@@ -1375,6 +1353,97 @@ namespace AgOpenGPS
                 }
             }
             else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void btnVehicleSettings_Click_1(object sender, EventArgs e)
+        {
+        }
+
+        private void btnYouTurnMenu_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnAutoSteerSettingsMenu_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void flagsGEToolStrip_ButtonClick(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                //save new copy of flags
+                FileSaveFlagsKML();
+
+                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
+                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flags.KML");
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                form.Show();
+            }
+        }
+
+        private void youTurnToolStrip_ButtonClick(object sender, EventArgs e)
+        {
+            var form = new FormYouTurn(this);
+            form.ShowDialog();
+            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+        }
+
+        private void autoSteerToolStrip_ButtonClick(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteer"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteer(this);
+            form.Show();
+        }
+
+        private void vehicleSettingsToolStrip_ButtonClick(object sender, EventArgs e)
+        {
+            using (var form = new FormSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+                    else btnAutoSteer.Text = "M";
+                }
+            }
+        }
+
+        private void twoDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = true;
+            camera.camPitch = 0;
+
+        }
+
+        private void threeDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = true;
+            camera.camPitch = -70;
+
+        }
+
+        private void northToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = false;
+
         }
 
         public void GetAB()
@@ -1474,6 +1543,10 @@ namespace AgOpenGPS
                     //Clicked X - No Save
                 }
             }
+
+            //if ntrip on turn on control panel
+            if (Properties.Settings.Default.setNTRIP_isOn) panelNTRIP.Visible = true;
+            else panelNTRIP.Visible = false;
         }
 
         //function to set section positions
@@ -2013,7 +2086,7 @@ namespace AgOpenGPS
             FileSaveFlagsKML();
 
             JobClose();
-            Text = "AgOpenGPS";
+            Text = "AgOpenGPS" ;
         }
 
         //an error log called by all try catches

@@ -138,6 +138,9 @@ namespace AgOpenGPS
 
             panelSnap.Visible = false;
             panelTurn.Visible = false;
+
+            if (Properties.Settings.Default.setNTRIP_isOn) panelNTRIP.Visible = true;
+            else panelNTRIP.Visible = false;
         }
 
         //force all the buttons same according to two main buttons
@@ -206,11 +209,11 @@ namespace AgOpenGPS
             {
                 //Batman mini-panel shows
                 //if (panelSim.Left < 390) panelSim.Left = 390;
-                oglMain.Left = 245;
-                oglMain.Width = Width - 245 - 200;
+                oglMain.Left = statusStripLeft.Width + panelBatman.Width + 1;
+                oglMain.Width = Width - (statusStripLeft.Width + panelBatman.Width) - 198;
 
-                panelBatman.Left = 0;
-                tableLayoutPanelDisplay.Left = 181;
+                panelBatman.Left = statusStripLeft.Width;
+                //tableLayoutPanelDisplay.Left = 181;
                 //panelSim.Left = 350;
 
                 panelBatman.Visible = true;
@@ -223,9 +226,9 @@ namespace AgOpenGPS
             {
                 //no side panel
                 //panelSim.Location = Properties.Settings.Default.setDisplay_panelSimLocation;
-                oglMain.Left = 70;
-                oglMain.Width = Width - 70 - 200;
-                tableLayoutPanelDisplay.Left = 8;
+                oglMain.Left = 72;
+                oglMain.Width = Width - 72 - 198;
+                //tableLayoutPanelDisplay.Left = 8;
                 //panelSnap.Left = 80;
 
 
@@ -1978,19 +1981,6 @@ namespace AgOpenGPS
         //Options
         private void btnFlagsGoogleEarth_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                //save new copy of flags
-                FileSaveFlagsKML();
-
-                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
-                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flags.KML");
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
-                form.Show();
-            }
         }
         private void btnWebCam_Click(object sender, EventArgs e)
         {
@@ -2776,6 +2766,14 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
             Properties.Settings.Default.Save();
             SwapBatmanPanels();
+
+            if (panelBatman.Visible)
+            {
+                if (panelTurn.Left < 260) panelTurn.Left = 260;
+                if (panelSim.Left < 260) panelSim.Left = 260;
+                if (panelSnap.Left < 260) panelSnap.Left = 260;
+            }
+
         }
 
         //Sim controls
@@ -2993,7 +2991,7 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateThreeSecondCounter = threeSeconds;
 
-                    if ((ABLine.isBtnABLineOn || curve.isCurveBtnOn) && !ct.isContourBtnOn)
+                    if (ABLine.isBtnABLineOn || curve.isCurveBtnOn || ct.isContourBtnOn)
                     {
                         panelSnap.Visible = true;
                         panelTurn.Visible = true;
@@ -3010,6 +3008,8 @@ namespace AgOpenGPS
                         //lblpAreaWorked.Text = fd.WorkedHectares;
                         toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" + 
                             fd.WorkedAreaRemainHectares  +" \r\n" + fd.TimeTillFinished;
+                        //status strip values
+                        lblToolEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
                     }
                     else //imperial
                     {
@@ -3017,10 +3017,8 @@ namespace AgOpenGPS
                         //lblpAreaWorked.Text = fd.WorkedAcres;
                         toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" + 
                             fd.WorkedAreaRemainAcres + " \r\n" + fd.TimeTillFinished;
+                        lblToolEqWidth.Text = vehiclefileName + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                     }
-
-                        //lblpFieldAreaRemainPercent.Text = fd.WorkedAreaRemainPercentage;
-                        //lblpTimeToFinish.Text = fd.TimeTillFinished;
 
 
                     if (panelBatman.Visible)
@@ -3230,28 +3228,28 @@ namespace AgOpenGPS
                     }
 
                     //statusbar flash red undefined headland
-                    if (mc.isOutOfBounds && statusStrip1.BackColor == SystemColors.ControlLight
+                    if (mc.isOutOfBounds && statusStrip1.BackColor == System.Drawing.Color.Lavender
                         || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
                     {
                         if (!mc.isOutOfBounds)
                         {
-                            statusStrip1.BackColor = SystemColors.ControlLight;
-                            menuStrip1.BackColor = SystemColors.ControlLight;
-                            lblSpeed.BackColor = SystemColors.ControlLight;
-                            lblHeading.BackColor = SystemColors.ControlLight;
-                            lblSpeedUnits.BackColor = SystemColors.ControlLight;
-                            txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
-                            lblHz.BackColor = SystemColors.ControlLight;
+                            statusStrip1.BackColor = System.Drawing.Color.Lavender;
+                            //menuStrip1.BackColor = SystemColors.ControlLight;
+                            //lblSpeed.BackColor = SystemColors.ControlLight;
+                            //lblHeading.BackColor = SystemColors.ControlLight;
+                            //lblSpeedUnits.BackColor = SystemColors.ControlLight;
+                            //txtDistanceOffABLine.BackColor = SystemColors.ControlLight;
+                            //lblHz.BackColor = SystemColors.ControlLight;
                         }
                         else
                         {
                             statusStrip1.BackColor = Color.Tomato;
-                            menuStrip1.BackColor = Color.Tomato;
-                            lblSpeed.BackColor = Color.Tomato;
-                            lblHeading.BackColor = Color.Tomato;
-                            lblSpeedUnits.BackColor = Color.Tomato;
-                            txtDistanceOffABLine.BackColor = Color.Tomato;
-                            lblHz.BackColor = Color.Tomato;
+                            //menuStrip1.BackColor = Color.Tomato;
+                            //lblSpeed.BackColor = Color.Tomato;
+                            //lblHeading.BackColor = Color.Tomato;
+                            //lblSpeedUnits.BackColor = Color.Tomato;
+                            //txtDistanceOffABLine.BackColor = Color.Tomato;
+                            //lblHz.BackColor = Color.Tomato;
                         }
                     }
 

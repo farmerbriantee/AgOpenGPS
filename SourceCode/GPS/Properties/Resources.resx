@@ -274,9 +274,6 @@
   <data name="CurveOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\CurveOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="PointDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\PointDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="UpArrow64" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\UpArrow64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -337,9 +334,6 @@
   <data name="SnapLeftSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SnapLeftSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="GifTractor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\GifTractor.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="BoundaryOuter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\BoundaryOuter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -390,9 +384,6 @@
   </data>
   <data name="AutoSteerOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AutoSteerOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PointDone" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\PointDone.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WorkSwitch" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\WorkSwitch.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -447,9 +438,6 @@
   </data>
   <data name="AddNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AddNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TripOdometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\TripOdometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="YouTurnReverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\YouTurnReverse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -522,9 +510,6 @@
   </data>
   <data name="ContourOn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ContourOn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="GifBounds" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\GifBounds.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="FileDelete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\FileDelete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
