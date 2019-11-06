@@ -381,6 +381,7 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
+            mf.curve.moveDistance = 0;
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.curve.refList?.Clear();

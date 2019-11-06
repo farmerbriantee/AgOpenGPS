@@ -972,7 +972,6 @@ namespace AgOpenGPS
 
         private void BtnMakeLinesFromBoundary_Click(object sender, EventArgs e)
         {
-            if ((sender as Control).IsDragging()) return;
             if (ct.isContourBtnOn) return;
 
             if (bnd.bndArr.Count == 0)
@@ -985,9 +984,9 @@ namespace AgOpenGPS
         }
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
-            if ((sender as Control).IsDragging()) return;
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
+                ABLine.moveDistance = 0;
                 ABLine.numABLineSelected++;
                 if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
                 ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
@@ -1001,6 +1000,7 @@ namespace AgOpenGPS
             }
             else if (curve.isCurveBtnOn && curve.numCurveLines > 0)
             {
+                curve.moveDistance = 0;
                 curve.numCurveLineSelected++;
                 if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
 
@@ -1214,7 +1214,6 @@ namespace AgOpenGPS
                     btnEnableAutoYouTurn.Enabled = true;
                     btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 }
-                //btnContourPriority.Enabled = false;
 
                 btnContourPriority.Image = Properties.Resources.Snap2;
             }
@@ -1240,16 +1239,6 @@ namespace AgOpenGPS
                 if (ABLine.isABLineSet)
                 {
                     ABLine.SnapABLine();
-
-                    //DialogResult result3 = MessageBox.Show("Save AB Line Snap?",
-                    //                            "Save or Not",
-                    //                            MessageBoxButtons.YesNo,
-                    //                            MessageBoxIcon.Question,
-                    //                            MessageBoxDefaultButton.Button2);
-                    //if (result3 == DialogResult.Yes)
-                    {
-                        //FileSaveABLine();
-                    }
                 }
                 else if (curve.isCurveSet)
                 {
@@ -1276,9 +1265,6 @@ namespace AgOpenGPS
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
                     ABLine.MoveABLine(-dist);
-
-                    ABLine.moveDistance -= dist;
-                    //FileSaveABLine();
                 }
                 else if (curve.isCurveSet)
                 {
@@ -1287,7 +1273,6 @@ namespace AgOpenGPS
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
 
                     curve.MoveABCurve(-dist);
-                    curve.moveDistance -= dist;
                 }
                 else
                 {
@@ -1306,9 +1291,6 @@ namespace AgOpenGPS
                     yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
                     ABLine.MoveABLine(dist);
-                    ABLine.moveDistance += dist;
-
-                    //FileSaveABLine();
                 }
                 else if (curve.isCurveSet)
                 {
@@ -1316,8 +1298,6 @@ namespace AgOpenGPS
                     yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
                     curve.MoveABCurve(dist);
-                    curve.moveDistance += dist;
-
                 }
                 else
                 {
@@ -1337,8 +1317,6 @@ namespace AgOpenGPS
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     ABLine.MoveABLine(dist);
-                    ABLine.moveDistance += dist;
-                    //FileSaveABLine();
                 }
                 else if (curve.isCurveSet)
                 {
@@ -1346,8 +1324,6 @@ namespace AgOpenGPS
                     yt.ResetCreatedYouTurn();
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
                     curve.MoveABCurve(dist);
-                    curve.moveDistance += dist;
-
                 }
                 else
                 {
@@ -1368,9 +1344,6 @@ namespace AgOpenGPS
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     ABLine.MoveABLine(-dist);
-                    ABLine.moveDistance -= dist;
-
-                    //FileSaveABLine();
                 }
                 else if (curve.isCurveSet)
                 {
@@ -1379,8 +1352,6 @@ namespace AgOpenGPS
                     double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistance;
 
                     curve.MoveABCurve(-dist);
-                    curve.moveDistance -= dist;
-
                 }
                 else
                 {
@@ -3098,10 +3069,10 @@ namespace AgOpenGPS
                     //}
 
                     //not Metric/Standard units sensitive
-                    if (ABLine.isBtnABLineOn) btnABLine.Text = PassNumber;
+                    if (ABLine.isBtnABLineOn) btnABLine.Text = "#"+PassNumber;
                     else btnABLine.Text = "";
 
-                    if (curve.isCurveBtnOn) btnCurve.Text = CurveNumber;
+                    if (curve.isCurveBtnOn) btnCurve.Text = "#"+CurveNumber;
                     else btnCurve.Text = "";
 
                     //update the online indicator 37 green red 38
@@ -3132,29 +3103,14 @@ namespace AgOpenGPS
 
                     //lblTest.Text = camera.camSetDistance.ToString();
 
-                    //if (isSecondRowVisible)
-                    //{
-                    //    secondRowCounter++;
-                    //    if (secondRowCounter > 4)
-                    //    {
-                    //        isSecondRowVisible = false;
-                    //        secondRowCounter = 8;
-                    //        if (timerSim.Enabled) panelSim.Visible = true;
-
-                    //        if (Properties.Settings.Default.setDisplay_isBatmanOn)
-                    //        {
-                    //            oglMain.Width += 200;
-                    //            oglMain.Left += 0;
-                    //            panelZoom.Visible = true;
-                    //        }
-                    //        else
-                    //        {
-                    //            oglMain.Width += 300;
-                    //            oglMain.Left -= 100;
-                    //            panelZoom.Visible = false;
-                    //        }
-                    //    }
-                    //}
+                    if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                    {
+                        btnSaveAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
+                    }
+                    if (curve.isCurveBtnOn && !ct.isContourBtnOn)
+                    {
+                        btnSaveAB.Text = ((int)(curve.moveDistance * 100)).ToString();
+                    }
 
                     if (panelBatman.Visible)
                     {

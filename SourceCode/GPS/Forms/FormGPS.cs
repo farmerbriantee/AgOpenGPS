@@ -1006,7 +1006,7 @@ namespace AgOpenGPS
                 //make sure the other stuff is off
                 curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
-                btnContourPriority.Enabled = false;
+                //btnContourPriority.Enabled = false;
                 curve.isCurveBtnOn = false;
                 btnCurve.Image = Properties.Resources.CurveOff;
             }
@@ -1113,7 +1113,7 @@ namespace AgOpenGPS
             if (cboxTramPassEvery.SelectedIndex > 0)
                 ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex + 1;
             else ABLine.tramPassEvery = 0;
-            Properties.Vehicle.Default.setTram_Skips = ABLine.tramPassEvery;
+            Properties.Vehicle.Default.setTram_Skips = cboxTramPassEvery.SelectedIndex;
             Properties.Vehicle.Default.Save();
         }
 
@@ -1185,6 +1185,7 @@ namespace AgOpenGPS
 
         }
 
+
         private void btnSnapRightSmall_Click(object sender, EventArgs e)
         {
             SnapSmallRight();
@@ -1228,6 +1229,7 @@ namespace AgOpenGPS
                 }
 
                 FileSaveABLines();
+                ABLine.moveDistance = 0;
             }
 
             if (curve.isCurveBtnOn)
@@ -1243,9 +1245,7 @@ namespace AgOpenGPS
 
                         curve.curveArr[idx].spiralmode = curve.spiralmode;
                         curve.curveArr[idx].circlemode = curve.circlemode;
-
                         curve.curveArr[idx].aveHeading = curve.aveLineHeading;
-
                         curve.curveArr[idx].curvePts.Clear();
                         //write out the Curve Points
                         foreach (var item in curve.refList)
@@ -1256,6 +1256,7 @@ namespace AgOpenGPS
 
                     //save entire list
                     FileSaveCurveLines();
+                    curve.moveDistance = 0;
                 }
             }
         }
@@ -1394,18 +1395,6 @@ namespace AgOpenGPS
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
-            //curve.isCurveSet = false;
-            //DisableYouTurnButtons();
-            //btnContourPriority.Enabled = false;
-            //curve.isCurveBtnOn = false;
-            //btnCurve.Image = Properties.Resources.CurveOff;
-
-            //ABLine.isABLineSet = false;
-            //ABLine.tramPassEvery = 0;
-            //ABLine.passBasedOn = 0;
-            //btnABLine.Image = Properties.Resources.ABLineOff;
-            //ABLine.isBtnABLineOn = false;
-
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
 
@@ -1712,7 +1701,7 @@ namespace AgOpenGPS
 
             //clear out contour and Lists
             btnContour.Enabled = false;
-            btnContourPriority.Enabled = false;
+            //btnContourPriority.Enabled = false;
             btnContourPriority.Image = Properties.Resources.Snap2;
             ct.ResetContour();
             ct.isContourBtnOn = false;

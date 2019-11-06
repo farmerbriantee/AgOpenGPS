@@ -757,8 +757,24 @@ namespace AgOpenGPS
             double headingAt90;
 
             //calculate the heading 90 degrees to ref ABLine heading
-            if (isOnRightSideCurrentLine) headingAt90 = glm.PIBy2;
-            else headingAt90 = -glm.PIBy2;
+            if (isOnRightSideCurrentLine)
+            {
+                headingAt90 = glm.PIBy2;
+            }
+            else
+            {
+                headingAt90 = -glm.PIBy2;
+            }
+
+            if (isABSameAsVehicleHeading)
+            {
+                moveDistance += distanceFromCurrentLine * 0.001;
+            }
+            else
+            {
+                moveDistance -= distanceFromCurrentLine * 0.001;
+            }
+
 
             int cnt = refList.Count;
             vec3[] arr = new vec3[cnt];
@@ -778,8 +794,18 @@ namespace AgOpenGPS
             double headingAt90;
 
             //calculate the heading 90 degrees to ref ABLine heading
-            if (isABSameAsVehicleHeading) headingAt90 = glm.PIBy2;
-            else headingAt90 = -glm.PIBy2;
+
+            if (isABSameAsVehicleHeading)
+            {
+                headingAt90 = glm.PIBy2;
+                moveDistance += dist;
+            }
+            else
+            {
+                headingAt90 = -glm.PIBy2;
+                moveDistance -= dist;
+            }
+
 
             int cnt = refList.Count;
             vec3[] arr = new vec3[cnt];
