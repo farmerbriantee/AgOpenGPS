@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -11,7 +9,8 @@ namespace AgOpenGPS
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
-        bool formLoading = true;
+
+        private bool formLoading = true;
 
         public FormABCurve(Form _mf)
         {
@@ -51,7 +50,6 @@ namespace AgOpenGPS
             }
             formLoading = false;
 
-
             if ((mf.curve.spiralmode || mf.curve.circlemode) && (mf.curve.refList.Count == 1))
             {
                 lblCurveExists.Text = gStr.gsCurveSet;
@@ -87,10 +85,10 @@ namespace AgOpenGPS
         public void SmoothAB(int smPts)
         {
             //count the reference list of original curve
-            int cnt = mf.curve.refList.Count;
+            int idx = mf.curve.refList.Count;
 
             //the temp array
-            vec3[] arr = new vec3[cnt];
+            vec3[] arr = new vec3[idx];
 
             //read the points before and after the setpoint
             for (int s = 0; s < smPts / 2; s++)
@@ -100,7 +98,7 @@ namespace AgOpenGPS
                 arr[s].heading = mf.curve.refList[s].heading;
             }
 
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
+            for (int s = idx - (smPts / 2); s < idx; s++)
             {
                 arr[s].easting = mf.curve.refList[s].easting;
                 arr[s].northing = mf.curve.refList[s].northing;
@@ -108,7 +106,7 @@ namespace AgOpenGPS
             }
 
             //average them - center weighted average
-            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
+            for (int i = smPts / 2; i < idx - (smPts / 2); i++)
             {
                 for (int j = -smPts / 2; j < smPts / 2; j++)
                 {
@@ -122,7 +120,7 @@ namespace AgOpenGPS
 
             //make a list to draw
             mf.curve.refList?.Clear();
-            for (int i = 0; i < cnt; i++)
+            for (int i = 0; i < idx; i++)
             {
                 mf.curve.refList.Add(arr[i]);
             }
@@ -140,23 +138,23 @@ namespace AgOpenGPS
                     if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                     //array number is 1 less since it starts at zero
-                    int cnt = mf.curve.curveArr.Count-1;
+                    int idx = mf.curve.curveArr.Count - 1;
 
-                    mf.curve.curveArr[cnt].Name = textBox1.Text.Trim();
+                    mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
 
-                    mf.curve.curveArr[cnt].spiralmode = mf.curve.spiralmode;
-                    mf.curve.curveArr[cnt].circlemode = mf.curve.circlemode;
+                    mf.curve.curveArr[idx].spiralmode = mf.curve.spiralmode;
+                    mf.curve.curveArr[idx].circlemode = mf.curve.circlemode;
 
-                    mf.curve.curveArr[cnt].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
 
                     //write out the Curve Points
                     foreach (var item in mf.curve.refList)
                     {
-                        mf.curve.curveArr[cnt].curvePts.Add(item);
+                        mf.curve.curveArr[idx].curvePts.Add(item);
                     }
 
                     //update the listbox with new curve name
-                    ListViewItem itm = new ListViewItem(mf.curve.curveArr[cnt].Name);
+                    ListViewItem itm = new ListViewItem(mf.curve.curveArr[idx].Name);
                     lvLines.Items.Add(itm);
                     lvLines.Enabled = true;
                     textBox1.BackColor = SystemColors.ControlLight;
@@ -178,8 +176,9 @@ namespace AgOpenGPS
                 var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
                 form2.Show();
                 textBox1.BackColor = SystemColors.Window;
-            }            
+            }
         }
+
         private void btnAddAndGo_Click(object sender, EventArgs e)
         {
             if (mf.curve.refList.Count > 0)
@@ -196,8 +195,6 @@ namespace AgOpenGPS
 
                     mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
                     mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
-
-
 
                     mf.curve.curveArr[idx].spiralmode = mf.curve.spiralmode;
                     mf.curve.curveArr[idx].circlemode = mf.curve.circlemode;
@@ -221,8 +218,8 @@ namespace AgOpenGPS
                 form2.Show();
                 textBox1.BackColor = SystemColors.Window;
             }
-
         }
+
         private void BtnNewCurve_Click(object sender, EventArgs e)
         {
             ShowSavedPanel(false);
@@ -247,6 +244,7 @@ namespace AgOpenGPS
 
         private void btnBPoint_Click(object sender, System.EventArgs e)
         {
+            vec3 pivAxle = mf.pivotAxlePos;
             mf.curve.aveLineHeading = 0;
             mf.curve.isOkToAddPoints = false;
             btnBPoint.Enabled = false;
@@ -277,20 +275,17 @@ namespace AgOpenGPS
 
                     mf.curve.refList?.Clear();
                     mf.curve.refList.Add(new vec3(easting, northing, 0));
-
                 }
                 else if (mf.curve.refList.Count < 1)
                 {
-                    mf.curve.refList.Add(new vec3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0));
+                    mf.curve.refList.Add(new vec3(pivAxle.easting, pivAxle.northing, 0));
                 }
-
 
                 mf.curve.oldhowManyPathsAway = -1;//reset
                 mf.curve.isCurveSet = true;
                 mf.EnableYouTurnButtons();
                 //mf.FileSaveCurveLine();
                 lblCurveExists.Text = gStr.gsCurveSet;
-
 
                 ShowSavedPanel(true);
 
@@ -360,8 +355,8 @@ namespace AgOpenGPS
 
                 textBox1.BackColor = Color.LightGreen;
                 textBox1.Enabled = true;
-                textBox1.Text = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) 
-                    + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) 
+                textBox1.Text = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                    + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading)
                     + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else
@@ -378,6 +373,7 @@ namespace AgOpenGPS
 
             lvLines.SelectedItems.Clear();
         }
+
         private void TextBox1_Enter(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -422,11 +418,12 @@ namespace AgOpenGPS
                 }
 
                 mf.FileSaveCurveLines();
-            }            
+            }
         }
 
         private void btnListUse_Click(object sender, EventArgs e)
         {
+            vec3 pivAxle = mf.pivotAxlePos;
             mf.curve.moveDistance = 0;
 
             int count = lvLines.SelectedItems.Count;
@@ -438,8 +435,6 @@ namespace AgOpenGPS
 
                 mf.curve.spiralmode = mf.curve.curveArr[idx].spiralmode;
                 mf.curve.circlemode = mf.curve.curveArr[idx].circlemode;
-
-
 
                 if (mf.curve.curveArr[idx].spiralmode || mf.curve.curveArr[idx].circlemode)
                 {
@@ -467,7 +462,7 @@ namespace AgOpenGPS
                     else
                     {
                         mf.curve.refList.Clear();
-                        mf.curve.refList.Add(new vec3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0));
+                        mf.curve.refList.Add(new vec3(pivAxle.easting, pivAxle.northing, 0));
                     }
                     mf.curve.oldhowManyPathsAway = -1;//reset
                     mf.curve.isCurveSet = true;
@@ -540,14 +535,12 @@ namespace AgOpenGPS
                 label2.Visible = false;
                 lblCurveExists.Visible = false;
 
-
                 comboBox1.Visible = false;
                 button2.Visible = false;
                 label5.Visible = false;
                 label18.Visible = false;
                 nudLatitude.Visible = false;
                 nudLongitude.Visible = false;
-
             }
             else //show the A B Pause
             {
@@ -568,7 +561,6 @@ namespace AgOpenGPS
                 btnPausePlay.Visible = true;
                 label2.Visible = true;
                 lblCurveExists.Visible = true;
-
 
                 //comboBox1.Visible = true;
                 //button2.Visible = true;
@@ -593,7 +585,7 @@ namespace AgOpenGPS
                 btnListUse.Enabled = false;
             }
         }
-        
+
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Width < 300) e.Cancel = true;
@@ -604,6 +596,7 @@ namespace AgOpenGPS
             mf.curve.moveDistance = 0;
 
             int count = lvLines.SelectedItems.Count;
+            vec3 pivAxle = mf.pivotAxlePos;
 
             if (count > 0)
             {
@@ -612,7 +605,6 @@ namespace AgOpenGPS
 
                 mf.curve.spiralmode = mf.curve.curveArr[idx].spiralmode;
                 mf.curve.circlemode = mf.curve.curveArr[idx].circlemode;
-
 
                 if (mf.curve.curveArr[idx].spiralmode || mf.curve.curveArr[idx].circlemode)
                 {
@@ -641,7 +633,7 @@ namespace AgOpenGPS
                     else
                     {
                         mf.curve.refList.Clear();
-                        mf.curve.refList.Add(new vec3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0));
+                        mf.curve.refList.Add(new vec3(pivAxle.easting, pivAxle.northing, 0));
                     }
                     mf.curve.oldhowManyPathsAway = -1;//reset
                     mf.curve.isCurveSet = true;
@@ -653,25 +645,22 @@ namespace AgOpenGPS
                     mf.curve.ResetCurveLine();
                     //mf.DisableYouTurnButtons();
 
+                    mf.curve.curveArr.RemoveAt(idx);
+                    lvLines.SelectedItems[0].Remove();
 
-                        mf.curve.curveArr.RemoveAt(idx);
-                        lvLines.SelectedItems[0].Remove();
+                    //everything changed, so make sure its right
+                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                    if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
-                        //everything changed, so make sure its right
-                        mf.curve.numCurveLines = mf.curve.curveArr.Count;
-                        if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+                    //if there are no saved oned, empty out current curve line and turn off
+                    if (mf.curve.numCurveLines == 0)
+                    {
+                        mf.curve.ResetCurveLine();
+                        if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                        if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    }
 
-                        //if there are no saved oned, empty out current curve line and turn off
-                        if (mf.curve.numCurveLines == 0)
-                        {
-                            mf.curve.ResetCurveLine();
-                            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
-                        }
-
-                        mf.FileSaveCurveLines();
-
-                    //delete?
+                    mf.FileSaveCurveLines();
                 }
                 else
                 {
@@ -683,16 +672,8 @@ namespace AgOpenGPS
                     }
                     mf.curve.isCurveSet = true;
                     //mf.EnableYouTurnButtons();
-                }
-                //can go back to Mainform without seeing form.
+                }                //can go back to Mainform without seeing form.
             }
-
-            //no item selected
-            else
-            {
-                //return;
-            }
-
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -731,7 +712,6 @@ namespace AgOpenGPS
 
         private void Button2_Click(object sender, EventArgs e)
         {
-
             double[] xy = mf.pn.DecDeg2UTM((double)nudLatitude.Value, (double)nudLongitude.Value);
             double east = xy[0] - mf.pn.utmEast + mf.pn.fixOffset.easting;
             double nort = xy[1] - mf.pn.utmNorth + mf.pn.fixOffset.northing;
@@ -742,8 +722,6 @@ namespace AgOpenGPS
             mf.curve.oldhowManyPathsAway = -1;
             mf.curve.isCurveSet = true;
             mf.EnableYouTurnButtons();
-            //mf.FileSaveCurveLine();
-
 
             lblCurveExists.Text = gStr.gsCurveSet;
 
@@ -757,13 +735,9 @@ namespace AgOpenGPS
 
             textBox1.BackColor = Color.LightGreen;
             textBox1.Enabled = true;
-            if (mf.curve.spiralmode) textBox1.Text = "spiral " + DateTime.Now.ToString("HH:mm:ss", CultureInfo.InvariantCulture);
+            if (mf.curve.spiralmode) textBox1.Text = "Spiral " + DateTime.Now.ToString("HH:mm:ss", CultureInfo.InvariantCulture);
 
-            if (mf.curve.circlemode) textBox1.Text = "circle " + DateTime.Now.ToString("HH:mm:ss", CultureInfo.InvariantCulture);
-
-
-
-            //Close();
+            if (mf.curve.circlemode) textBox1.Text = "Circle " + DateTime.Now.ToString("HH:mm:ss", CultureInfo.InvariantCulture);
         }
     }
 }

@@ -254,7 +254,7 @@
             this.btnAddToFile.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAddToFile.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnAddToFile.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAddToFile.Location = new System.Drawing.Point(285, 80);
+            this.btnAddToFile.Location = new System.Drawing.Point(285, 86);
             this.btnAddToFile.Name = "btnAddToFile";
             this.btnAddToFile.Size = new System.Drawing.Size(78, 74);
             this.btnAddToFile.TabIndex = 82;
@@ -316,7 +316,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(588, 361);
+            this.ClientSize = new System.Drawing.Size(584, 357);
             this.ControlBox = false;
             this.Controls.Add(this.btnAddAndGo);
             this.Controls.Add(this.tboxABLineName);

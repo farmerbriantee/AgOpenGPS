@@ -12,7 +12,7 @@ namespace AgOpenGPS
         private bool MultipleFieldLocked = true;
         private readonly FormGPS mf = null;
         private int position = 0;
-        private bool Scroll = false;
+        private bool scroll = false;
         private double viewableRatio = 0;
         private double contentHeight = 0;
         private int oldY = 0;
@@ -203,7 +203,8 @@ namespace AgOpenGPS
                         }
 
                         tableLayoutPanel1.SetColumnSpan(aa, 2);
-                        aa.Text = string.Format("Create Boundary", i - position + 1);
+                        aa.Text = string.Format("1. Create Boundary", i - position + 1);
+
 
                         Control cc = tableLayoutPanel1.GetControlFromPosition(2, i - position);
                         cc.Visible = false;
@@ -260,6 +261,7 @@ namespace AgOpenGPS
         {
             btnLeftRight.Enabled = true;
             btnLoadBoundaryFromGE.Enabled = false;
+            btnLoadMultiBoundaryFromGE.Enabled = false;
             btnOuter.Enabled = false;
             btnGo.Enabled = true;
 
@@ -446,22 +448,22 @@ namespace AgOpenGPS
         {
             
             oldY = MousePosition.Y;
-            Scroll = true;
+            scroll = true;
         }
 
         void Mouse_Up(object sender, MouseEventArgs e)
         {
-            Scroll = false;
+            scroll = false;
         }
 
         void Mouse_Leave(object sender, EventArgs e)
         {
-            Scroll = false;
+            scroll = false;
         }
 
         void Mouse_Move(object sender, MouseEventArgs e)
         {
-            if (Scroll == true && viewableRatio < 1)
+            if (scroll == true && viewableRatio < 1)
             {
                 if (!(oldY == MousePosition.Y))
                 {
@@ -494,7 +496,7 @@ namespace AgOpenGPS
 
             }
         }
-        
+
         private void btnLoadMultiBoundaryFromGE_Click(object sender, EventArgs e)
         {
             Selectedreset = true;

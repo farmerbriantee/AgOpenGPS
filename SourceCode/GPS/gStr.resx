@@ -310,7 +310,7 @@
     <value>Connect</value>
   </data>
   <data name="gsConnectingIn" xml:space="preserve">
-    <value>Connecting In</value>
+    <value>Connect </value>
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
     <value>Contour File is Corrupt</value>
@@ -1305,7 +1305,7 @@
     <value>Waiting</value>
   </data>
   <data name="gsWaitingForGPS" xml:space="preserve">
-    <value>Waiting for GPS</value>
+    <value>Waiting GPS</value>
   </data>
   <data name="gsWaterLevel" xml:space="preserve">
     <value>Water Level</value>

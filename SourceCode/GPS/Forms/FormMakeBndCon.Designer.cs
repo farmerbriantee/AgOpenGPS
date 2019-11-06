@@ -42,7 +42,7 @@
             // 
             this.nudPass.BackColor = System.Drawing.Color.AliceBlue;
             this.nudPass.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPass.Location = new System.Drawing.Point(37, 69);
+            this.nudPass.Location = new System.Drawing.Point(19, 69);
             this.nudPass.Maximum = new decimal(new int[] {
             9,
             0,
@@ -54,7 +54,7 @@
             0,
             0});
             this.nudPass.Name = "nudPass";
-            this.nudPass.Size = new System.Drawing.Size(120, 85);
+            this.nudPass.Size = new System.Drawing.Size(138, 85);
             this.nudPass.TabIndex = 5;
             this.nudPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudPass.Value = new decimal(new int[] {
@@ -70,7 +70,7 @@
             this.lblHz.BackColor = System.Drawing.Color.Transparent;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(34, 38);
+            this.lblHz.Location = new System.Drawing.Point(43, 38);
             this.lblHz.Name = "lblHz";
             this.lblHz.Size = new System.Drawing.Size(84, 25);
             this.lblHz.TabIndex = 250;
@@ -84,7 +84,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOk.Location = new System.Drawing.Point(346, 372);
+            this.btnOk.Location = new System.Drawing.Point(363, 372);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(129, 80);
@@ -97,7 +97,7 @@
             // 
             this.nudSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSpacing.Location = new System.Drawing.Point(30, 246);
+            this.nudSpacing.Location = new System.Drawing.Point(19, 246);
             this.nudSpacing.Maximum = new decimal(new int[] {
             4000,
             0,
@@ -109,11 +109,11 @@
             0,
             0});
             this.nudSpacing.Name = "nudSpacing";
-            this.nudSpacing.Size = new System.Drawing.Size(166, 85);
+            this.nudSpacing.Size = new System.Drawing.Size(179, 85);
             this.nudSpacing.TabIndex = 252;
             this.nudSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSpacing.Value = new decimal(new int[] {
-            20,
+            4000,
             0,
             0,
             0});
@@ -141,7 +141,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.Location = new System.Drawing.Point(230, 371);
+            this.btnCancel.Location = new System.Drawing.Point(247, 371);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 81);
@@ -157,7 +157,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.MakeBoundaryContour;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(501, 461);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);

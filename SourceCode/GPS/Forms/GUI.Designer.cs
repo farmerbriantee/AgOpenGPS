@@ -210,7 +210,7 @@ namespace AgOpenGPS
                 //Batman mini-panel shows
                 //if (panelSim.Left < 390) panelSim.Left = 390;
                 oglMain.Left = statusStripLeft.Width + panelBatman.Width + 1;
-                oglMain.Width = Width - (statusStripLeft.Width + panelBatman.Width) - 198;
+                oglMain.Width = Width - (statusStripLeft.Width + panelBatman.Width) - 200;
 
                 panelBatman.Left = statusStripLeft.Width;
                 //tableLayoutPanelDisplay.Left = 181;
@@ -227,7 +227,7 @@ namespace AgOpenGPS
                 //no side panel
                 //panelSim.Location = Properties.Settings.Default.setDisplay_panelSimLocation;
                 oglMain.Left = 72;
-                oglMain.Width = Width - 72 - 198;
+                oglMain.Width = Width - 72 - 200;
                 //tableLayoutPanelDisplay.Left = 8;
                 //panelSnap.Left = 80;
 
@@ -900,7 +900,7 @@ namespace AgOpenGPS
                 //update byte counter and up counter
                 if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
                 else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
-                else lblNTRIPSeconds.Text = gStr.gsConnectingIn + (ntripCounter - 22);
+                else lblNTRIPSeconds.Text = gStr.gsConnectingIn + (Math.Abs(ntripCounter - 22));
 
                 pbarNtrip.Value = unchecked((byte)(tripBytes * 0.02));
                 lblNtripBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " Kb";
@@ -3041,15 +3041,12 @@ namespace AgOpenGPS
                         //both
 
 
-                        if (!oglZoom.Visible)
-                        {
                             pbarSteerSmall.Value = pbarSteer;
                             pbarUDPSmall.Value = pbarUDP;
                             pbarRelayCommSmall.Value = pbarRelay;
 
                             lblSats.Text = SatsTracked;
                             lblZone.Text = pn.zone.ToString();
-                        }
                     }
 
                     //    if (isMetric)
@@ -3159,7 +3156,7 @@ namespace AgOpenGPS
                     //    }
                     //}
 
-                    if (panelBatman.Visible )
+                    if (panelBatman.Visible)
                     {
                         if (isJobStarted)
                         {
@@ -3172,18 +3169,15 @@ namespace AgOpenGPS
                             lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
                         }
 
-                        if (!oglZoom.Visible)
-                        {
-                            //both
-                            lblLatitude.Text = Latitude;
-                            lblLongitude.Text = Longitude;
+                        //both
+                        lblLatitude.Text = Latitude;
+                        lblLongitude.Text = Longitude;
 
-                            //up in the menu a few pieces of info
+                        //up in the menu a few pieces of info
 
-                            //tboxSentence.Text = recvSentenceSettings;
-                            //display items
-                            lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(8, '0');
-                        }
+                        //tboxSentence.Text = recvSentenceSettings;
+                        //display items
+                        lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(8, '0');
                     }
 
                     //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
@@ -3228,12 +3222,13 @@ namespace AgOpenGPS
                     }
 
                     //statusbar flash red undefined headland
-                    if (mc.isOutOfBounds && statusStrip1.BackColor == System.Drawing.Color.Lavender
+                    if (mc.isOutOfBounds && statusStrip1.BackColor == System.Drawing.Color.Azure
                         || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
                     {
                         if (!mc.isOutOfBounds)
                         {
-                            statusStrip1.BackColor = System.Drawing.Color.Lavender;
+                            statusStrip1.BackColor = System.Drawing.Color.Azure;
+                            statusStripLeft.BackColor = System.Drawing.Color.Azure;
                             //menuStrip1.BackColor = SystemColors.ControlLight;
                             //lblSpeed.BackColor = SystemColors.ControlLight;
                             //lblHeading.BackColor = SystemColors.ControlLight;
@@ -3244,6 +3239,7 @@ namespace AgOpenGPS
                         else
                         {
                             statusStrip1.BackColor = Color.Tomato;
+                            statusStripLeft.BackColor = Color.Tomato;
                             //menuStrip1.BackColor = Color.Tomato;
                             //lblSpeed.BackColor = Color.Tomato;
                             //lblHeading.BackColor = Color.Tomato;

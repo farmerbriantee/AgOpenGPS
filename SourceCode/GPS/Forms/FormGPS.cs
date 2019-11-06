@@ -904,13 +904,6 @@ namespace AgOpenGPS
             Process.Start(fieldsDirectory + currentFieldDirectory);
         }
 
-
-        private void panelZoom_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (!oglZoom.Visible)
-                        oglZoom.Visible = true;
-        }
-
         private void btnVehicleSettings_Click(object sender, EventArgs e)
         {
             using (var form = new FormSettings(this, 0))

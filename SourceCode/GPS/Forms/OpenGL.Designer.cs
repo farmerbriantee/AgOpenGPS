@@ -497,7 +497,7 @@ namespace AgOpenGPS
                 if (threeSeconds != zoomUpdateCounter )
                 {
                     zoomUpdateCounter = threeSeconds;
-                    if (panelBatman.Visible && oglZoom.Visible)
+                    if (panelBatman.Visible)
                     oglZoom.Refresh();
                 }
             }
