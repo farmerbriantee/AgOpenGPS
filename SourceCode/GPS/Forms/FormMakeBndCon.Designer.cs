@@ -113,7 +113,7 @@
             this.nudSpacing.TabIndex = 252;
             this.nudSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSpacing.Value = new decimal(new int[] {
-            4000,
+            50,
             0,
             0,
             0});
