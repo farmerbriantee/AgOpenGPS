@@ -284,5 +284,8 @@
     <Setting Name="setDisplay_panelTurnLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">380, 150</Value>
     </Setting>
+    <Setting Name="setDisplay_panelNTRIP" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">270, 70</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

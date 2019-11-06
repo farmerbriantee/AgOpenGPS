@@ -553,6 +553,7 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="Resources\MakeBoundary.png" />
     <None Include="Resources\Alarm10.wav" />
     <None Include="btnImages\ABLineCycle.png" />
     <None Include="btnImages\displayMenu.png" />
@@ -579,6 +580,9 @@
     <None Include="btnImages\handUturnPanel.png" />
     <None Include="btnImages\HandSnap.png" />
     <None Include="btnImages\Boundary2.png" />
+    <None Include="btnImages\HandNTRIP.png" />
+    <None Include="btnImages\MakeBoundaryContour.png" />
+    <None Include="btnImages\ABLineSave.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

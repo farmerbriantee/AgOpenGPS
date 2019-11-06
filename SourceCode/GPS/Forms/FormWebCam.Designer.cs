@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.stopButton = new System.Windows.Forms.Button();
             this.webCameraControl1 = new WebEye.Controls.WinForms.WebCameraControl.WebCameraControl();
+            this.stopButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,6 +46,17 @@
             this.comboBox1.TabIndex = 11;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
+            // webCameraControl1
+            // 
+            this.webCameraControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webCameraControl1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.webCameraControl1.Location = new System.Drawing.Point(0, 0);
+            this.webCameraControl1.Name = "webCameraControl1";
+            this.webCameraControl1.Size = new System.Drawing.Size(398, 229);
+            this.webCameraControl1.TabIndex = 10;
+            // 
             // stopButton
             // 
             this.stopButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -60,17 +71,6 @@
             this.stopButton.TabIndex = 13;
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click_1);
-            // 
-            // webCameraControl1
-            // 
-            this.webCameraControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webCameraControl1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.webCameraControl1.Location = new System.Drawing.Point(0, 0);
-            this.webCameraControl1.Name = "webCameraControl1";
-            this.webCameraControl1.Size = new System.Drawing.Size(398, 229);
-            this.webCameraControl1.TabIndex = 10;
             // 
             // startButton
             // 

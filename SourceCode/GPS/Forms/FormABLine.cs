@@ -430,6 +430,7 @@ namespace AgOpenGPS
 
         private void btnTurnOffAB_Click(object sender, EventArgs e)
         {
+            mf.ABLine.moveDistance = 0;
             //mf.ABLine.tramPassEvery = 0;
             //mf.ABLine.passBasedOn = 0;
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
@@ -492,6 +493,8 @@ namespace AgOpenGPS
 
             if (lvLines.SelectedItems.Count > 0)
             {
+                mf.ABLine.moveDistance = 0;
+
                 int idx = lvLines.SelectedIndices[0];
                 mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
                 mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;

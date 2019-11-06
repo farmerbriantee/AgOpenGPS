@@ -1150,5 +1150,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_panelTurnLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("270, 70")]
+        public global::System.Drawing.Point setDisplay_panelNTRIP {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelNTRIP"]));
+            }
+            set {
+                this["setDisplay_panelNTRIP"] = value;
+            }
+        }
     }
 }

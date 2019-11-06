@@ -622,8 +622,18 @@ namespace AgOpenGPS
 
         public void MoveABLine(double dist)
         {
+            double headingCalc;
             //calculate the heading 90 degrees to ref ABLine heading
-            double headingCalc = isABSameAsVehicleHeading ? abHeading + glm.PIBy2 : abHeading - glm.PIBy2;
+            if (isABSameAsVehicleHeading)
+            {
+                headingCalc = abHeading + glm.PIBy2;
+                moveDistance += dist;
+            }
+            else
+            {
+                headingCalc = abHeading - glm.PIBy2;
+                moveDistance -= dist;
+            }
 
             //calculate the new points for the reference line and points
             refPoint1.easting = (Math.Sin(headingCalc) * dist) + refPoint1.easting;
@@ -679,8 +689,25 @@ namespace AgOpenGPS
         {
             double headingCalc;
             //calculate the heading 90 degrees to ref ABLine heading
-            if (isOnRightSideCurrentLine) headingCalc = abHeading + glm.PIBy2;
-            else headingCalc = abHeading - glm.PIBy2;
+            if (isOnRightSideCurrentLine)
+            {
+                headingCalc = abHeading + glm.PIBy2;
+            }
+            else
+            {
+                headingCalc = abHeading - glm.PIBy2; 
+            }
+
+            if (isABSameAsVehicleHeading)
+            {
+                moveDistance += (distanceFromCurrentLine * 0.001);
+            }
+            else
+            {
+                moveDistance -= (distanceFromCurrentLine * 0.001);
+            }
+
+
 
             //calculate the new points for the reference line and points
             refPoint1.easting = (Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.001) + refPoint1.easting;
