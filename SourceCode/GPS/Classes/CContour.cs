@@ -133,7 +133,7 @@ namespace AgOpenGPS
         public void BuildBoundaryContours(int pass, int spacingInt)
         {
 
-            if (mf.bnd.bndArr.Count == 0)
+            if (!mf.bnd.bndArr[0].isSet)
             {
                 mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
                 return;
@@ -146,18 +146,17 @@ namespace AgOpenGPS
             vec3 point = new vec3();
             double totalHeadWidth = 0;
             int signPass = -1;
-            int isOuter = 1;
 
             if (pass == 1)
             {
-                signPass = 1;
+                signPass = -1;
                 //determine how wide a headland space
                 totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5) - spacing;
             }
 
             else
             {
-                signPass = -1;
+                signPass = 1;
                 totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * pass) + spacing +
                     ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5);
             }
@@ -165,18 +164,30 @@ namespace AgOpenGPS
 
             //outside boundary
 
+            //count the points from the boundary
+            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+
+            ptList = new List<vec3>();
+            stripList.Add(ptList);
+
+            for (int i = ptCount - 1; i >= 0; i--)
+            {
+                //calculate the point inside the boundary
+                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
+                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                ptList.Add(point);
+            }
 
             //totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5 + 0.2 + (mf.vehicle.toolWidth - mf.vehicle.toolOverlap);
 
-            for (int j = 0; j < mf.bnd.bndArr.Count; j++)
+            for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
             {
                 if (!mf.bnd.bndArr[j].isSet) continue;
 
-                if (mf.bnd.bndArr[j].isOwnField) isOuter = 1;
-                else isOuter = -1;
-
                 //count the points from the boundary
-                    int ptCount = mf.bnd.bndArr[j].bndLine.Count;
+                ptCount = mf.bnd.bndArr[j].bndLine.Count;
 
                 ptList = new List<vec3>();
                 stripList.Add(ptList);
@@ -184,8 +195,8 @@ namespace AgOpenGPS
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point inside the boundary
-                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (isOuter * signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (isOuter * signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
                     point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
@@ -193,6 +204,8 @@ namespace AgOpenGPS
                     ptList.Add(point);
                 }
 
+                //add the point list to the save list for appending to contour file
+                //mf.contourSaveList.Add(ptList);
             }
 
             mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");

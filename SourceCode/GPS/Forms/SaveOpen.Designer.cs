@@ -129,7 +129,6 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
-            curve.moveDistance = 0;
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
@@ -155,8 +154,6 @@ namespace AgOpenGPS
                             writer.WriteLine(curve.curveArr[i].Name);
 
                             //write out the aveheading
-                            writer.WriteLine(curve.curveArr[i].spiralmode.ToString(CultureInfo.InvariantCulture));
-                            writer.WriteLine(curve.curveArr[i].circlemode.ToString(CultureInfo.InvariantCulture));
                             writer.WriteLine(curve.curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
@@ -192,7 +189,6 @@ namespace AgOpenGPS
 
         public void FileLoadCurveLines()
         {
-            curve.moveDistance = 0;
             curve.curveArr?.Clear();
             curve.numCurveLines = 0;
 
@@ -240,30 +236,12 @@ namespace AgOpenGPS
                             curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
                             // get the average heading
                             line = reader.ReadLine();
-                            if (line == "True" || line == "False")
-                            {
-                                curve.curveArr[curve.numCurveLines].spiralmode = bool.Parse(line);
-                                line = reader.ReadLine();
-                            }
-                            else
-                            {
-                                curve.curveArr[curve.numCurveLines].spiralmode = false;
-                            }
-                            if (line == "True" || line == "False")
-                            {
-                                curve.curveArr[curve.numCurveLines].circlemode = bool.Parse(line);
-                                line = reader.ReadLine();
-                            }
-                            else
-                            {
-                                curve.curveArr[curve.numCurveLines].circlemode = false;
-                            }
                             curve.curveArr[curve.numCurveLines].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
-                            if (numPoints > 0)
+                            if (numPoints > 1)
                             {
                                 curve.curveArr[curve.numCurveLines].curvePts?.Clear();
 
@@ -302,7 +280,6 @@ namespace AgOpenGPS
 
         public void FileSaveABLines()
         {
-            ABLine.moveDistance = 0;
             //make sure at least a global blank AB Line file exists
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
@@ -338,7 +315,6 @@ namespace AgOpenGPS
 
         public void FileLoadABLines()
         {
-            ABLine.moveDistance = 0;
             //make sure at least a global blank AB Line file exists
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
@@ -407,7 +383,6 @@ namespace AgOpenGPS
 
             if (ABLine.numABLines == 0) ABLine.numABLineSelected = 0;
             if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = ABLine.numABLines;
-
         }
 
         //function that save vehicle and section settings
@@ -1078,7 +1053,7 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
-                        //lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                        lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
 
                     //start positions
@@ -1469,15 +1444,8 @@ namespace AgOpenGPS
                         //read header
                         line = reader.ReadLine();//Boundary
 
-                        for (int k = 0; true; k++)
+                        for (int k = 0; k < MAXBOUNDARIES; k++)
                         {
-                            //else error when open filed if nu boundary
-                            if (reader.EndOfStream) break;
-
-                            bnd.bndArr.Add(new CBoundaryLines());
-                            turn.turnArr.Add(new CTurnLines());
-                            gf.geoFenceArr.Add(new CGeoFenceLines());
-
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
 
@@ -1495,23 +1463,12 @@ namespace AgOpenGPS
                                 line = reader.ReadLine(); //number of points
                             }
 
-                            //Check for latest boundary files, then above line string is num of points
-                            bool turnheading = false;
-                            if (line == "True" || line == "False")
-                            {
-                                bnd.bndArr[k].isOwnField = bool.Parse(line);
-                                line = reader.ReadLine(); //number of points
-                            }
-                            else if (k == 0)
-                            {
-                                turnheading = true;
-                                bnd.bndArr[k].isOwnField = true;
-                            }
-
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 0)
                             {
+                                bnd.bndArr[k].bndLine.Clear();
+
                                 //load the line
                                 for (int i = 0; i < numPoints; i++)
                                 {
@@ -1522,10 +1479,6 @@ namespace AgOpenGPS
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
                                     double.Parse(words[2], CultureInfo.InvariantCulture));
 
-                                    if (turnheading)
-                                    {
-                                        vecPt.heading = vecPt.heading + Math.PI;
-                                    }
                                     bnd.bndArr[k].bndLine.Add(vecPt);
                                 }
 
@@ -1533,13 +1486,6 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].PreCalcBoundaryLines();
                                 if (bnd.bndArr[k].area > 0) bnd.bndArr[k].isSet = true;
                                 else bnd.bndArr[k].isSet = false;
-                            }
-                            else
-                            {
-                                bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
-                                turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
-                                gf.geoFenceArr.RemoveAt(bnd.bndArr.Count - 1);
-                                k = k - 1;
                             }
                             if (reader.EndOfStream) break;
                         }
@@ -1887,11 +1833,10 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + "Boundary.Txt"))
             {
                 writer.WriteLine("$Boundary");
-                for (int i = 0; i < bnd.bndArr.Count; i++)
+                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
                 {
                     writer.WriteLine(bnd.bndArr[i].isDriveThru);
                     writer.WriteLine(bnd.bndArr[i].isDriveAround);
-                    writer.WriteLine(bnd.bndArr[i].isOwnField);
 
                     writer.WriteLine(bnd.bndArr[i].bndLine.Count.ToString(CultureInfo.InvariantCulture));
                     if (bnd.bndArr[i].bndLine.Count > 0)
