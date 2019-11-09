@@ -66,7 +66,6 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
                 camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
                 CalcFrustum();
-
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
                 GL.Enable(EnableCap.Blend);
@@ -377,83 +376,83 @@ namespace AgOpenGPS
                     if (ct.isContourBtnOn)
                     {
                         string dist;
-                        lblDistanceOffLine.Visible = true;
+                        txtDistanceOffABLine.Visible = true;
                         //lblDelta.Visible = true;
                         if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
 
                         DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
                         if ((ct.distanceFromCurrentLine) < 0.0)
                         {
-                            lblDistanceOffLine.ForeColor = Color.Green;
+                            txtDistanceOffABLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                         else
                         {
-                            lblDistanceOffLine.ForeColor = Color.Red;
+                            txtDistanceOffABLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                     }
 
                     else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
                     {
                         string dist;
-                        lblDistanceOffLine.Visible = true;
+                        txtDistanceOffABLine.Visible = true;
                         //lblDelta.Visible = true;
                         DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
                         if ((ABLine.distanceFromCurrentLine) < 0.0)
                         {
                             // --->
-                            lblDistanceOffLine.ForeColor = Color.Green;
+                            txtDistanceOffABLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                         else
                         {
                             // <----
-                            lblDistanceOffLine.ForeColor = Color.Red;
+                            txtDistanceOffABLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                     }
 
                     else if (curve.isCurveBtnOn)
                     {
                         string dist;
-                        lblDistanceOffLine.Visible = true;
+                        txtDistanceOffABLine.Visible = true;
                         //lblDelta.Visible = true;
                         if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
 
                         DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
                         if ((curve.distanceFromCurrentLine) < 0.0)
                         {
-                            lblDistanceOffLine.ForeColor = Color.Green;
+                            txtDistanceOffABLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                         else
                         {
-                            lblDistanceOffLine.ForeColor = Color.Red;
+                            txtDistanceOffABLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
+                            txtDistanceOffABLine.Text = dist;
                         }
                     }
 
                     else
                     {
-                        lblDistanceOffLine.Visible = false;
+                        txtDistanceOffABLine.Visible = false;
                     }
                 }
                 else
                 {
-                    lblDistanceOffLine.Visible = false;
+                    txtDistanceOffABLine.Visible = false;
                 }
 
                 GL.Flush();//finish openGL commands
@@ -494,10 +493,9 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter )
+                if (threeSeconds != zoomUpdateCounter && !tabControl1.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
-                    if (panelBatman.Visible)
                     oglZoom.Refresh();
                 }
             }
@@ -590,16 +588,16 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr.Count > 0 && bnd.lastBoundary < bnd.bndArr.Count)
+            if (bnd.bndArr[0].isSet)
             {
                 ////draw the perimeter line so far
-                int ptCount = bnd.bndArr[bnd.lastBoundary].bndLine.Count;
+                int ptCount = bnd.bndArr[0].bndLine.Count;
                 if (ptCount > 1)
                 {
                     GL.LineWidth(2);                
                     GL.Color3(0.0f, 0.99f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[bnd.lastBoundary].bndLine[h].easting, bnd.bndArr[bnd.lastBoundary].bndLine[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
                     GL.End();
                 }
             }
@@ -705,7 +703,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (bnd.bndArr.Count > 0)
+                        if (bnd.bndArr[0].isSet)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -892,7 +890,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
+                if (isJobStarted && stripOnlineGPS.Value != 1)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
@@ -1237,51 +1235,21 @@ namespace AgOpenGPS
 
             //min max of the boundary
             //min max of the boundary
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndArr[0].isSet)
             {
-                if (bnd.currentBoundary == -1)
+                int bndCnt = bnd.bndArr[0].bndLine.Count;
+                for (int i = 0; i < bndCnt; i++)
                 {
-                    for (int i = 0; i < bnd.bndArr.Count; i++)
-                    {
-                        if (bnd.bndArr[i].isSet && bnd.bndArr[i].isOwnField)
-                        {
-                            int bndCnt = bnd.bndArr[i].bndLine.Count;
-                            for (int j = 0; j < bndCnt; j++)
-                            {
-                                double x = bnd.bndArr[i].bndLine[j].easting;
-                                double y = bnd.bndArr[i].bndLine[j].northing;
+                    double x = bnd.bndArr[0].bndLine[i].easting;
+                    double y = bnd.bndArr[0].bndLine[i].northing;
 
-                                //also tally the max/min of field x and z
-                                if (minFieldX > x) minFieldX = x;
-                                if (maxFieldX < x) maxFieldX = x;
-                                if (minFieldY > y) minFieldY = y;
-                                if (maxFieldY < y) maxFieldY = y;
-                            }
-                        }
-                    }
-                    double zoom = 500;
-                    if (minFieldX < pivotAxlePos.easting - zoom) minFieldX = pivotAxlePos.easting - zoom;
-                    if (maxFieldX > pivotAxlePos.easting + zoom) maxFieldX = pivotAxlePos.easting + zoom;
-                    if (minFieldY < pivotAxlePos.northing - zoom) minFieldY = pivotAxlePos.northing - zoom;
-                    if (maxFieldY > pivotAxlePos.northing + zoom) maxFieldY = pivotAxlePos.northing + zoom;
-
-
-
+                    //also tally the max/min of field x and z
+                    if (minFieldX > x) minFieldX = x;
+                    if (maxFieldX < x) maxFieldX = x;
+                    if (minFieldY > y) minFieldY = y;
+                    if (maxFieldY < y) maxFieldY = y;
                 }
-                else if (bnd.lastBoundary < bnd.bndArr.Count)
-                {
-                    int bndCnt = bnd.bndArr[bnd.lastBoundary].bndLine.Count;
-                    for (int i = 0; i < bndCnt; i++)
-                    {
-                        double x = bnd.bndArr[bnd.lastBoundary].bndLine[i].easting;
-                        double y = bnd.bndArr[bnd.lastBoundary].bndLine[i].northing;
-                        //also tally the max/min of field x and z
-                        if (minFieldX > x) minFieldX = x;
-                        if (maxFieldX < x) maxFieldX = x;
-                        if (minFieldY > y) minFieldY = y;
-                        if (maxFieldY < y) maxFieldY = y;
-                    }
-                }
+
             }
             else
             {
@@ -1340,16 +1308,16 @@ namespace AgOpenGPS
             //maxFieldX += 8;
             //maxFieldY += 8;
 
-            //if (isMetric)
-            //{
-            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-            //}
-            //else
-            //{
-            //    //lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-            //    //lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-            //}
+            if (isMetric)
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            }
+            else
+            {
+                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            }
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 

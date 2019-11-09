@@ -47,10 +47,10 @@
             this.btnJobOpen.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobOpen.Location = new System.Drawing.Point(45, 384);
+            this.btnJobOpen.Location = new System.Drawing.Point(45, 369);
             this.btnJobOpen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobOpen.Name = "btnJobOpen";
-            this.btnJobOpen.Size = new System.Drawing.Size(305, 84);
+            this.btnJobOpen.Size = new System.Drawing.Size(305, 99);
             this.btnJobOpen.TabIndex = 3;
             this.btnJobOpen.Text = "Open";
             this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -62,10 +62,10 @@
             this.btnJobNew.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.Location = new System.Drawing.Point(45, 264);
+            this.btnJobNew.Location = new System.Drawing.Point(45, 242);
             this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobNew.Name = "btnJobNew";
-            this.btnJobNew.Size = new System.Drawing.Size(305, 77);
+            this.btnJobNew.Size = new System.Drawing.Size(305, 99);
             this.btnJobNew.TabIndex = 2;
             this.btnJobNew.Text = "New";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -78,9 +78,9 @@
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(129, 504);
+            this.btnDeleteAB.Location = new System.Drawing.Point(95, 504);
             this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(127, 85);
+            this.btnDeleteAB.Size = new System.Drawing.Size(189, 85);
             this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -89,10 +89,10 @@
             this.btnJobResume.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
             this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobResume.Location = new System.Drawing.Point(45, 139);
+            this.btnJobResume.Location = new System.Drawing.Point(45, 116);
             this.btnJobResume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobResume.Name = "btnJobResume";
-            this.btnJobResume.Size = new System.Drawing.Size(305, 76);
+            this.btnJobResume.Size = new System.Drawing.Size(305, 99);
             this.btnJobResume.TabIndex = 1;
             this.btnJobResume.Text = "Resume";
             this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,7 +197,7 @@
             this.Name = "FormJob";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Start a field";
             this.Load += new System.EventHandler(this.FormJob_Load);
             this.ResumeLayout(false);

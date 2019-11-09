@@ -1583,7 +1583,7 @@
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDistanceDn.Location = new System.Drawing.Point(688, 512);
+            this.btnDistanceDn.Location = new System.Drawing.Point(777, 512);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
             this.btnDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1612,7 +1612,7 @@
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnDistanceUp.Location = new System.Drawing.Point(788, 512);
+            this.btnDistanceUp.Location = new System.Drawing.Point(681, 512);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
             this.btnDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1659,7 +1659,7 @@
             this.btnTriggerDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(359, 512);
+            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(459, 512);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
             this.btnTriggerDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1672,7 +1672,7 @@
             this.btnTriggerDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(459, 512);
+            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(363, 512);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
             this.btnTriggerDistanceUp.Size = new System.Drawing.Size(59, 69);
@@ -1732,7 +1732,7 @@
             this.btnGeoFenceDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(40, 512);
+            this.btnGeoFenceDistanceDn.Location = new System.Drawing.Point(141, 512);
             this.btnGeoFenceDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceDn.Name = "btnGeoFenceDistanceDn";
             this.btnGeoFenceDistanceDn.Size = new System.Drawing.Size(59, 69);
@@ -1745,7 +1745,7 @@
             this.btnGeoFenceDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGeoFenceDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGeoFenceDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(137, 512);
+            this.btnGeoFenceDistanceUp.Location = new System.Drawing.Point(45, 512);
             this.btnGeoFenceDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnGeoFenceDistanceUp.Name = "btnGeoFenceDistanceUp";
             this.btnGeoFenceDistanceUp.Size = new System.Drawing.Size(59, 69);

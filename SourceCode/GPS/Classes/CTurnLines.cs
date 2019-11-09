@@ -31,9 +31,6 @@ namespace AgOpenGPS
         {
             //to calc heading based on next and previous points to give an average heading.
             int cnt = turnLine.Count;
-
-            if (cnt <5) return;
-
             CTurnPt[] arr = new CTurnPt[cnt];
             cnt--;
             turnLine.CopyTo(arr);
