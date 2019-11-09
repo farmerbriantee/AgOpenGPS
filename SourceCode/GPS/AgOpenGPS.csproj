@@ -69,9 +69,6 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="Control.Draggable">
-      <HintPath>References\Control.Draggable.dll</HintPath>
-    </Reference>
     <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\Keypad.dll</HintPath>
@@ -553,7 +550,6 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
-    <None Include="Resources\MakeBoundary.png" />
     <None Include="Resources\Alarm10.wav" />
     <None Include="btnImages\ABLineCycle.png" />
     <None Include="btnImages\displayMenu.png" />
@@ -563,26 +559,6 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
-    <None Include="btnImages\SnapLeft.png" />
-    <None Include="btnImages\SnapRight.png" />
-    <None Include="btnImages\GPSSignalGood.png" />
-    <None Include="btnImages\GPSSignalPoor.png" />
-    <None Include="btnImages\SnapLeftSmall.png" />
-    <None Include="btnImages\SnapRightSmall.png" />
-    <None Include="btnImages\Config54.png" />
-    <None Include="btnImages\AutoManualIsAuto.png" />
-    <None Include="btnImages\AutoManualIsManual.png" />
-    <None Include="btnImages\UnLock.png" />
-    <None Include="btnImages\GifBounds.gif" />
-    <None Include="btnImages\GifTractor.gif" />
-    <None Include="btnImages\UTurnLeft.png" />
-    <None Include="btnImages\UTurnRight.png" />
-    <None Include="btnImages\handUturnPanel.png" />
-    <None Include="btnImages\HandSnap.png" />
-    <None Include="btnImages\Boundary2.png" />
-    <None Include="btnImages\HandNTRIP.png" />
-    <None Include="btnImages\MakeBoundaryContour.png" />
-    <None Include="btnImages\ABLineSave.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

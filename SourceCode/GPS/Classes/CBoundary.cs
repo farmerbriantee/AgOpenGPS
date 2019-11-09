@@ -12,13 +12,10 @@ namespace AgOpenGPS
         /// <summary>
         /// array of boundaries
         /// </summary>
-        //public CBoundaryLines[] bndArr;
-        public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
-        public List<CBndPt> BoundCreate = new List<CBndPt>();
+        public CBoundaryLines[] bndArr;
 
         private readonly double scanWidth, boxLength;
 
-        public bool isDrawRightSide = true, isOkToAddPoints = false;
         //constructor
         public CBoundary(FormGPS _f)
         {
@@ -26,15 +23,15 @@ namespace AgOpenGPS
             boundarySelected = 0;
             scanWidth = 1.0;
             boxLength = 2000;
-            currentBoundary = -1;
-            lastBoundary = 0;
             //boundaries array
+            bndArr = new CBoundaryLines[FormGPS.MAXBOUNDARIES];
+            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines();
         }
 
         // the list of possible bounds points
         public List<vec4> bndClosestList = new List<vec4>();
 
-        public int boundarySelected, currentBoundary, lastBoundary, closestBoundaryNum;
+        public int boundarySelected, closestBoundaryNum;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
@@ -70,6 +67,7 @@ namespace AgOpenGPS
             //    boxB.northing -= (Math.Cos(headAB) * boxLength);
             //}
             //else
+
             {
                 boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * (scanWidth - 2));
                 boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * (scanWidth - 2));
@@ -89,10 +87,10 @@ namespace AgOpenGPS
             //determine if point is inside bounding box
             bndClosestList.Clear();
             vec4 inBox;
-            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
+            for (int i = 0; i < FormGPS.MAXHEADS; i++)
             {
                 //skip the drive thru
-                if (!mf.bnd.bndArr[i].isOwnField && mf.bnd.bndArr[i].isDriveThru) continue;
+                if (bndArr[i].isDriveThru) continue;
 
                 ptCount = bndArr[i].bndLine.Count;
                 for (int p = 0; p < ptCount; p++)
@@ -148,27 +146,15 @@ namespace AgOpenGPS
         public void DrawBoundaryLines()
         {
             //draw the boundaries
-            for (int i = 0; i < bndArr.Count; i++)
+            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
             {
                 bndArr[i].DrawBoundaryLine();
-            }
-            if (BoundCreate.Count > 0)
-            {
-
-                //GL.PointSize(2);
-                GL.LineWidth(2);
-                GL.Color3(0.825f, 0.42f, 0.90f);
-                GL.Begin(PrimitiveType.Lines);
-                for (int h = 0; h < BoundCreate.Count; h++) GL.Vertex3(BoundCreate[h].easting, BoundCreate[h].northing, 0);
-                GL.Color3(0.95f, 0.972f, 0.90f);
-                GL.Vertex3(BoundCreate[0].easting, BoundCreate[0].northing, 0);
-                GL.End();
             }
         }
 
         public void ResetBoundaries()
         {
-            bndArr.Clear();
+            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) bndArr[i].ResetBoundary();
         }
 
         //draws the derived closest point

@@ -47,6 +47,8 @@ namespace AgOpenGPS
             {
                 //AB line is on screen and set
                 upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 6);
+                nudTramRepeats.Value = mf.ABLine.tramPassEvery;
+                nudBasedOnPass.Value = mf.ABLine.passBasedOn;
                 this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
                 tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
                 this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
@@ -57,8 +59,10 @@ namespace AgOpenGPS
                 btnAPoint.Enabled = false;
                 btnBPoint.Enabled = false;
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 6);
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.passBasedOn = 0;
+                nudTramRepeats.Value = 0;
+                nudBasedOnPass.Value = 0;
+                mf.ABLine.tramPassEvery = 0;
+                mf.ABLine.passBasedOn = 0;
             }
 
             lvLines.Clear();
@@ -179,8 +183,11 @@ namespace AgOpenGPS
                 btnNewABLine.Enabled = false;
                 btnTurnOffAB.Enabled = false;
 
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.passBasedOn = 0;
+                nudTramRepeats.Value = 0;
+                nudBasedOnPass.Value = 0;
+
+                mf.ABLine.tramPassEvery = 0;
+                mf.ABLine.passBasedOn = 0;
                 mf.ABLine.isABLineSet = false;
                 mf.ABLine.isABLineLoaded = false;
 
@@ -430,9 +437,8 @@ namespace AgOpenGPS
 
         private void btnTurnOffAB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.moveDistance = 0;
-            //mf.ABLine.tramPassEvery = 0;
-            //mf.ABLine.passBasedOn = 0;
+            mf.ABLine.tramPassEvery = 0;
+            mf.ABLine.passBasedOn = 0;
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.ABLine.isABLineSet = false;
@@ -487,14 +493,22 @@ namespace AgOpenGPS
             if (this.Width < 300) e.Cancel = true;
         }
 
+        private void nudTramRepeats_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.tramPassEvery = (int)nudTramRepeats.Value;
+        }
+
+        private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
+        }
+
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
         {
             //mf.ABLine.numABLineSelected = idx + 1;
 
             if (lvLines.SelectedItems.Count > 0)
             {
-                mf.ABLine.moveDistance = 0;
-
                 int idx = lvLines.SelectedIndices[0];
                 mf.ABLine.abHeading = mf.ABLine.lineArr[idx].heading;
                 mf.ABLine.refPoint1 = mf.ABLine.lineArr[idx].origin;
@@ -510,10 +524,13 @@ namespace AgOpenGPS
             if (showPanel)
             {
                 isFullPanel = true;
-                this.Size = new System.Drawing.Size(388, 400);
+                this.Size = new System.Drawing.Size(388, 411);
                 lvLines.Visible = true;
+                label2.Visible = true;
                 label3.Visible = true;
                 tboxABLineName.Visible = true;
+                nudBasedOnPass.Visible = true;
+                nudTramRepeats.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
                 btnAddToFile.Visible = true;
@@ -524,15 +541,17 @@ namespace AgOpenGPS
                 btnUpABHeadingBy1.Visible = false;
                 btnDnABHeadingBy1.Visible = false;
                 tboxHeading.Visible = false;
-                lblFixHeading.Visible = false;
             }
             else   //hide the panel
             {
                 isFullPanel = false;
                 this.Size = new System.Drawing.Size(245, 411);
                 lvLines.Visible = false;
+                label2.Visible = false;
                 label3.Visible = false;
                 tboxABLineName.Visible = false;
+                nudBasedOnPass.Visible = false;
+                nudTramRepeats.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
                 btnAddToFile.Visible = false;
@@ -543,7 +562,6 @@ namespace AgOpenGPS
                 btnUpABHeadingBy1.Visible = true;
                 btnDnABHeadingBy1.Visible = true;
                 tboxHeading.Visible = true;
-                lblFixHeading.Visible = true;
             }
         }
 
