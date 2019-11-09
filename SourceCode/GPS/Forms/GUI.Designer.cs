@@ -3101,7 +3101,7 @@ namespace AgOpenGPS
                     //counter used for saving field in background
                     saveCounter++;
 
-                    lblCurrentBoundary.Text = bnd.currentBoundary.ToString();
+                    //lblCurrentBoundary.Text = bnd.currentBoundary.ToString();
                     //lblTest.Text = camera.camSetDistance.ToString();
 
                     if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
