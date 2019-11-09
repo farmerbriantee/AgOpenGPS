@@ -46,7 +46,7 @@ namespace AgOpenGPS
             else lblABLineName.Text = "***";
         }
 
-        private void btnSelectCurve_Click(object sender, EventArgs e)
+        private void BtnSelectCurve_Click(object sender, EventArgs e)
         {
             if (mf.curve.numCurveLines > 0)
             {
@@ -61,7 +61,7 @@ namespace AgOpenGPS
             FixLabelsCurve();
         }
 
-        private void btnSelectABLine_Click(object sender, EventArgs e)
+        private void BtnSelectABLine_Click(object sender, EventArgs e)
         {
             if (mf.ABLine.numABLines > 0)
             {
@@ -76,7 +76,7 @@ namespace AgOpenGPS
             FixLabelsABLine();
         }
 
-        private void btnCancelTouch_Click(object sender, EventArgs e)
+        private void BtnCancelTouch_Click(object sender, EventArgs e)
         {
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
@@ -88,14 +88,14 @@ namespace AgOpenGPS
             btnCancelTouch.Enabled = false;
         }
 
-        private void nudDistance_Enter(object sender, EventArgs e)
+        private void NudDistance_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnSelectABLine.Focus();
 
         }
 
-        private void btnDeleteCurve_Click(object sender, EventArgs e)
+        private void BtnDeleteCurve_Click(object sender, EventArgs e)
         {
             if (mf.curve.curveArr.Count > 0 && mf.curve.numCurveLineSelected > 0)
             {
@@ -110,7 +110,7 @@ namespace AgOpenGPS
             FixLabelsCurve();
         }
 
-        private void btnDeleteABLine_Click(object sender, EventArgs e)
+        private void BtnDeleteABLine_Click(object sender, EventArgs e)
         {
             if (mf.ABLine.lineArr.Count > 0 && mf.ABLine.numABLineSelected > 0)
             {
@@ -144,26 +144,28 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
-            int cnt = mf.bnd.bndArr[0].bndLine.Count;
+            int cnt = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine.Count;
             arr = new vec3[cnt * 2];
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i].northing;
+                arr[i].easting = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i].easting;
+                arr[i].northing = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i].northing;
+                arr[i].heading = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i].northing;
             }
 
             for (int i = cnt; i < cnt * 2; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i - cnt].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i - cnt].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i - cnt].heading;
+                arr[i].easting = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i - cnt].easting;
+                arr[i].northing = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i - cnt].northing;
+                arr[i].heading = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i - cnt].heading;
             }
 
             nudDistance.Value = (decimal)(mf.vehicle.toolWidth * 100);
             FixLabelsABLine();
             FixLabelsCurve();
+
+            CalculateMinMax();
         }
 
         private void oglSelf_MouseDown(object sender, MouseEventArgs e)
@@ -285,6 +287,9 @@ namespace AgOpenGPS
         {
             btnCancelTouch.Enabled = false;
 
+            mf.curve.spiralmode = false;
+            mf.curve.circlemode = false;
+
             mf.curve.refList?.Clear();
             vec3 chk = new vec3(arr[start]);
 
@@ -345,7 +350,7 @@ namespace AgOpenGPS
                 chk.easting = (Math.Sin(headingAt90) * Math.Abs(offset)) + chk.easting;
                 chk.northing = (Math.Cos(headingAt90) * Math.Abs(offset)) + chk.northing;
 
-                if (!mf.bnd.bndArr[0].IsPointInsideBoundary(chk)) headingAt90 = mf.curve.aveLineHeading - glm.PIBy2;
+                if (!mf.bnd.bndArr[mf.bnd.lastBoundary].IsPointInsideBoundary(chk)) headingAt90 = mf.curve.aveLineHeading - glm.PIBy2;
 
                 cnt = mf.curve.refList.Count;
 
@@ -421,7 +426,7 @@ namespace AgOpenGPS
             mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * Math.Abs(offset)) + arr[A].easting;
             mf.ABLine.lineArr[idx].origin.northing = (Math.Cos(headingCalc) * Math.Abs(offset)) + arr[A].northing;
 
-            if (!mf.bnd.bndArr[0].IsPointInsideBoundary(mf.ABLine.lineArr[idx].origin))
+            if (!mf.bnd.bndArr[mf.bnd.lastBoundary].IsPointInsideBoundary(mf.ABLine.lineArr[idx].origin))
             {
                 headingCalc = abHead - glm.PIBy2;
                 mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * Math.Abs(offset)) + arr[A].easting;
@@ -456,13 +461,53 @@ namespace AgOpenGPS
             GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
             GL.LoadIdentity();                  // Reset The View
 
-            CalculateMinMax();
-
             //back the camera up
             GL.Translate(0, 0, -maxFieldDistance);
 
             //translate to that spot in the world
             GL.Translate(-fieldCenterX, -fieldCenterY, 0);
+
+            GL.Color3(0.352, 0.32, 0.332);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                int patchCount = mf.section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in mf.section[j].patchList)
+                    {
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
+                        int count2 = triList.Count;
+                        int mipmap = 16;
+
+                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                        if (count2 >= (mipmap))
+                        {
+                            int step = mipmap;
+                            for (int i = 0; i < count2; i += step)
+                            {
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+
+                                //too small to mipmap it
+                                if (count2 - i <= (mipmap + 2))
+                                    step = 0;
+                            }
+                        }
+
+                        else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        GL.End();
+
+                    }
+                }
+            } //end of section patches
+
+
 
             GL.Color3(1, 1, 1);
 
@@ -532,6 +577,10 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < numCurv; i++)
                 {
+                    if (mf.curve.curveArr[i].circlemode || mf.curve.curveArr[i].spiralmode)
+                    {
+                        //System.Windows.Forms.MessageBox.Show("circle / spiral");
+                    }
                     GL.LineWidth(2);
                     GL.Color3(0.0f, 1.0f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
@@ -542,10 +591,18 @@ namespace AgOpenGPS
                     GL.End();
                 }
 
+
+                //why double draw?;)
+
+
                 GL.Disable(EnableCap.LineStipple);
 
                 if (mf.curve.numCurveLineSelected > 0)
                 {
+                    if (mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].circlemode || mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].spiralmode)
+                    {
+                        //System.Windows.Forms.MessageBox.Show("circle / spiral");
+                    }
                     GL.LineWidth(4);
                     GL.Color3(0.0f, 1.0f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
@@ -631,7 +688,17 @@ namespace AgOpenGPS
             if (mf.curve.numCurveLineSelected > 0)
             {
                 int idx = mf.curve.numCurveLineSelected - 1;
+                if (mf.curve.curveArr[idx].circlemode || mf.curve.curveArr[idx].spiralmode)
+                {
+                    //System.Windows.Forms.MessageBox.Show("circle / spiral");
+                }
+
+
+
                 mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+
+
+
                 mf.curve.refList?.Clear();
                 foreach (vec3 v in mf.curve.curveArr[idx].curvePts) mf.curve.refList.Add(v);
                 mf.curve.isCurveSet = true;
@@ -701,39 +768,39 @@ namespace AgOpenGPS
             maxFieldX = -9999999; maxFieldY = -9999999;
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
-            {
-                //every time the section turns off and on is a new patch
-                int patchCount = mf.section[j].patchList.Count;
+            //for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            //{
+            //    //every time the section turns off and on is a new patch
+            //    int patchCount = mf.section[j].patchList.Count;
 
-                if (patchCount > 0)
-                {
-                    //for every new chunk of patch
-                    foreach (var triList in mf.section[j].patchList)
-                    {
-                        int count2 = triList.Count;
-                        for (int i = 0; i < count2; i += 3)
-                        {
-                            double x = triList[i].easting;
-                            double y = triList[i].northing;
+            //    if (patchCount > 0)
+            //    {
+            //        //for every new chunk of patch
+            //        foreach (var triList in mf.section[j].patchList)
+            //        {
+            //            int count2 = triList.Count;
+            //            for (int i = 0; i < count2; i += 3)
+            //            {
+            //                double x = triList[i].easting;
+            //                double y = triList[i].northing;
 
-                            //also tally the max/min of field x and z
-                            if (minFieldX > x) minFieldX = x;
-                            if (maxFieldX < x) maxFieldX = x;
-                            if (minFieldY > y) minFieldY = y;
-                            if (maxFieldY < y) maxFieldY = y;
-                        }
-                    }
-                }
+            //                //also tally the max/min of field x and z
+            //                if (minFieldX > x) minFieldX = x;
+            //                if (maxFieldX < x) maxFieldX = x;
+            //                if (minFieldY > y) minFieldY = y;
+            //                if (maxFieldY < y) maxFieldY = y;
+            //            }
+            //        }
+            //    }
 
                 //min max of the boundary
-                if (mf.bnd.bndArr[0].isSet)
+                //if (mf.bnd.bndArr.Count > 0 && mf.bnd.lastBoundary < mf.bnd.bndArr.Count)
                 {
-                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
+                    int bndCnt = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine.Count;
                     for (int i = 0; i < bndCnt; i++)
                     {
-                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
-                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
+                        double x = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i].easting;
+                        double y = mf.bnd.bndArr[mf.bnd.lastBoundary].bndLine[i].northing;
 
                         //also tally the max/min of field x and z
                         if (minFieldX > x) minFieldX = x;
@@ -774,7 +841,7 @@ namespace AgOpenGPS
                 //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
                 //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
                 //}
-            }
+            
         }
     }
 }

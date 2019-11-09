@@ -268,7 +268,7 @@
             // 
             this.btnLoadGPSFix.BackColor = System.Drawing.Color.AliceBlue;
             this.btnLoadGPSFix.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.btnLoadGPSFix.Image = global::AgOpenGPS.Properties.Resources.Satellite64;
+            this.btnLoadGPSFix.Image = global::AgOpenGPS.Properties.Resources.GPSSignalGood;
             this.btnLoadGPSFix.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadGPSFix.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnLoadGPSFix.Location = new System.Drawing.Point(774, 154);

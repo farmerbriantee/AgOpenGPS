@@ -144,10 +144,7 @@ namespace AgOpenGPS
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
                         SerialPortAutoSteerClose();
                     }
-                }
-
-
-                
+                }                
             } 
         }
 
@@ -215,9 +212,6 @@ namespace AgOpenGPS
         {
             if (spAutoSteer.IsOpen)
             {
-                
-
-
                 if (!Properties.Settings.Default.isJRK)
                 {
                     try
@@ -231,19 +225,15 @@ namespace AgOpenGPS
                     {
                         WriteErrorLog("AutoSteer Recv" + ex.ToString());
                     }
-
                 }
                 else   //get 2 byte feedback from pololu
-
                 {
-
-
                     byte[] buffer = new byte[2];
                     spAutoSteer.Read(buffer, 0, 2);
                     int feedback = buffer[0] + 256 * buffer[1];
 
                     actualSteerAngleDisp = feedback - 2047;
-                    actualSteerAngleDisp += (Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5;
+                    actualSteerAngleDisp -= (Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5;
                     actualSteerAngleDisp /= Properties.Settings.Default.setAS_countsPerDegree;
                     actualSteerAngleDisp *= 100;                               
                 }
@@ -520,7 +510,7 @@ namespace AgOpenGPS
             if (sp.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
-                panelSimControls.Visible = false;
+                panelSim.Visible = false;
                 timerSim.Enabled = false;
 
                 Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
@@ -545,7 +535,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * ";
                 //stripPortGPS.ForeColor = Color.Red;
-                stripOnlineGPS.Value = 1;
+                //stripOnlineGPS.Value = 1;
 
                 //SettingsPageOpen(0);
             }
@@ -583,8 +573,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 //stripPortGPS.ForeColor = Color.ForestGreen;
-                stripOnlineGPS.Value = 1;
-
+                //stripOnlineGPS.Value = 1;
                 sp.Dispose();
             }
 

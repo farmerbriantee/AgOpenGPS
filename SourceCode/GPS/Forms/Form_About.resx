@@ -117,17 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Andreas Ortner, Austria
-Wilhelm Eder, Germany
-MTZ8302, Germany
-Kevin Bouwman, USA
-Petar Starcev Serbia, Novi Sad
-Ray Bear - AutoAuto
-Daniel P - Multi Curve
-Maxime Emprou - Languages and Code
-Giianluca Ravazzolo - Italian Translation
-Travis Martin - Switch and Github
-And many others, Thank You so much!</value>
-  </data>
 </root>
