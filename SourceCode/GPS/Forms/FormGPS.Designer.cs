@@ -199,7 +199,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.pbarAutoSteerComm = new System.Windows.Forms.ToolStripProgressBar();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbarNtripMenu = new System.Windows.Forms.ToolStripProgressBar();
+            this.pbarUDPComm = new System.Windows.Forms.ToolStripProgressBar();
             this.cameraDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.twoDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.threeDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -210,7 +210,7 @@
             this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.googleEarthFlagsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripLblFieldFinish = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbarUDPComm = new System.Windows.Forms.ToolStripProgressBar();
+            this.pbarNtripMenu = new System.Windows.Forms.ToolStripProgressBar();
             this.NTRIPBytesMenu = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.lblDistanceOffLine = new System.Windows.Forms.Label();
@@ -1166,7 +1166,7 @@
             this.lblUturnByte.BackColor = System.Drawing.Color.Transparent;
             this.lblUturnByte.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.lblUturnByte.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblUturnByte.Location = new System.Drawing.Point(32, 436);
+            this.lblUturnByte.Location = new System.Drawing.Point(23, 417);
             this.lblUturnByte.Name = "lblUturnByte";
             this.lblUturnByte.Size = new System.Drawing.Size(89, 19);
             this.lblUturnByte.TabIndex = 272;
@@ -1211,7 +1211,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(16, 438);
+            this.label1.Location = new System.Drawing.Point(7, 419);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(21, 16);
             this.label1.TabIndex = 310;
@@ -2300,11 +2300,11 @@
             this.toolStripStatusLabel1,
             this.pbarAutoSteerComm,
             this.toolStripStatusLabel2,
-            this.pbarNtripMenu,
+            this.pbarUDPComm,
             this.cameraDropDown,
             this.toolStripDropDownButton3,
             this.toolStripLblFieldFinish,
-            this.pbarUDPComm,
+            this.pbarNtripMenu,
             this.NTRIPBytesMenu});
             this.statusStripLeft.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.statusStripLeft.Location = new System.Drawing.Point(0, 48);
@@ -2388,12 +2388,12 @@
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(33, 16);
             this.toolStripStatusLabel2.Text = "UDP";
             // 
-            // pbarNtripMenu
+            // pbarUDPComm
             // 
-            this.pbarNtripMenu.Maximum = 256;
-            this.pbarNtripMenu.Name = "pbarNtripMenu";
-            this.pbarNtripMenu.Size = new System.Drawing.Size(68, 7);
-            this.pbarNtripMenu.Value = 20;
+            this.pbarUDPComm.Maximum = 256;
+            this.pbarUDPComm.Name = "pbarUDPComm";
+            this.pbarUDPComm.Size = new System.Drawing.Size(68, 7);
+            this.pbarUDPComm.Value = 10;
             // 
             // cameraDropDown
             // 
@@ -2486,17 +2486,19 @@
             // 
             // toolStripLblFieldFinish
             // 
+            this.toolStripLblFieldFinish.AutoSize = false;
             this.toolStripLblFieldFinish.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLblFieldFinish.Name = "toolStripLblFieldFinish";
-            this.toolStripLblFieldFinish.Size = new System.Drawing.Size(32, 16);
+            this.toolStripLblFieldFinish.Size = new System.Drawing.Size(72, 55);
             this.toolStripLblFieldFinish.Text = "----";
+            this.toolStripLblFieldFinish.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pbarUDPComm
+            // pbarNtripMenu
             // 
-            this.pbarUDPComm.Maximum = 256;
-            this.pbarUDPComm.Name = "pbarUDPComm";
-            this.pbarUDPComm.Size = new System.Drawing.Size(68, 7);
-            this.pbarUDPComm.Value = 100;
+            this.pbarNtripMenu.Maximum = 256;
+            this.pbarNtripMenu.Name = "pbarNtripMenu";
+            this.pbarNtripMenu.Size = new System.Drawing.Size(68, 7);
+            this.pbarNtripMenu.Value = 20;
             // 
             // NTRIPBytesMenu
             // 
@@ -2629,7 +2631,7 @@
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.panelSnap.Controls.Add(this.btnSnapLeft, 0, 0);
             this.panelSnap.Controls.Add(this.btnSmallSnapLeft, 1, 0);
             this.panelSnap.Controls.Add(this.btnSmallSnapRight, 3, 0);
