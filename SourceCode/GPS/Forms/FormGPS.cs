@@ -89,6 +89,9 @@ namespace AgOpenGPS
 
         public double nudNumber = 0;
 
+        //used by filePicker Form to return picked file and directory
+        public string filePickerFileAndDirectory;
+
         //private int fiveSecondCounter = 0, fiveSeconds = 0;
 
         //the autoManual drive button. Assume in Auto

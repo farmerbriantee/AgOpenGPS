@@ -94,8 +94,8 @@ namespace AgOpenGPS
             {
                 if (mf.pn.speed > 0.1)
                     return (((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha)
-                        / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hours";
-                else return "\u221E Hours";
+                        / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hrs";
+                else return "\u221E Hrs";
             }
         }
 

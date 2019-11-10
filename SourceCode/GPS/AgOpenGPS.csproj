@@ -138,6 +138,12 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="FormFilePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFilePicker.Designer.cs">
+      <DependentUpon>FormFilePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -381,6 +387,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormFilePicker.resx">
+      <DependentUpon>FormFilePicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>

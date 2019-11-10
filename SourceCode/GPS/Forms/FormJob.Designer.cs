@@ -28,20 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnJobOpen = new System.Windows.Forms.Button();
             this.btnJobNew = new System.Windows.Forms.Button();
             this.btnDeleteAB = new System.Windows.Forms.Button();
             this.btnJobResume = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lvLines = new System.Windows.Forms.ListView();
-            this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblChoose = new System.Windows.Forms.Label();
-            this.btnOpenExistingLv = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.chDistance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnByDistance = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnJobOpen
@@ -111,65 +103,6 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Last Field Used:";
             // 
-            // lvLines
-            // 
-            this.lvLines.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvLines.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chName,
-            this.chDistance});
-            this.lvLines.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvLines.FullRowSelect = true;
-            this.lvLines.GridLines = true;
-            this.lvLines.HideSelection = false;
-            this.lvLines.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.lvLines.Location = new System.Drawing.Point(12, 53);
-            this.lvLines.MultiSelect = false;
-            this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(900, 433);
-            this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvLines.TabIndex = 85;
-            this.lvLines.UseCompatibleStateImageBehavior = false;
-            this.lvLines.View = System.Windows.Forms.View.Details;
-            // 
-            // chName
-            // 
-            this.chName.Text = "Field Name";
-            this.chName.Width = 850;
-            // 
-            // lblChoose
-            // 
-            this.lblChoose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblChoose.AutoSize = true;
-            this.lblChoose.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChoose.Location = new System.Drawing.Point(366, 11);
-            this.lblChoose.Name = "lblChoose";
-            this.lblChoose.Size = new System.Drawing.Size(230, 39);
-            this.lblChoose.TabIndex = 86;
-            this.lblChoose.Text = "Select a Field";
-            // 
-            // btnOpenExistingLv
-            // 
-            this.btnOpenExistingLv.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
-            this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenExistingLv.Location = new System.Drawing.Point(663, 525);
-            this.btnOpenExistingLv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnOpenExistingLv.Name = "btnOpenExistingLv";
-            this.btnOpenExistingLv.Size = new System.Drawing.Size(227, 63);
-            this.btnOpenExistingLv.TabIndex = 87;
-            this.btnOpenExistingLv.Text = "Use Selected";
-            this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenExistingLv.UseVisualStyleBackColor = false;
-            this.btnOpenExistingLv.Click += new System.EventHandler(this.BtnOpenExistingLv_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 300;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(29, 47);
@@ -178,40 +111,18 @@
             this.textBox1.Size = new System.Drawing.Size(332, 56);
             this.textBox1.TabIndex = 88;
             // 
-            // chDistance
-            // 
-            this.chDistance.Text = "Distance";
-            this.chDistance.Width = 150;
-            // 
-            // btnByDistance
-            // 
-            this.btnByDistance.BackColor = System.Drawing.Color.Transparent;
-            this.btnByDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnByDistance.Location = new System.Drawing.Point(393, 525);
-            this.btnByDistance.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnByDistance.Name = "btnByDistance";
-            this.btnByDistance.Size = new System.Drawing.Size(238, 63);
-            this.btnByDistance.TabIndex = 90;
-            this.btnByDistance.Text = "Sort";
-            this.btnByDistance.UseVisualStyleBackColor = false;
-            this.btnByDistance.Click += new System.EventHandler(this.btnByDistance_Click);
-            // 
             // FormJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(926, 601);
+            this.ClientSize = new System.Drawing.Size(381, 601);
             this.ControlBox = false;
-            this.Controls.Add(this.btnByDistance);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.btnOpenExistingLv);
-            this.Controls.Add(this.lblChoose);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteAB);
             this.Controls.Add(this.btnJobResume);
             this.Controls.Add(this.btnJobNew);
             this.Controls.Add(this.btnJobOpen);
-            this.Controls.Add(this.lvLines);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -234,13 +145,6 @@
         private System.Windows.Forms.Button btnJobResume;
         private System.Windows.Forms.Button btnDeleteAB;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListView lvLines;
-        private System.Windows.Forms.ColumnHeader chName;
-        private System.Windows.Forms.Label lblChoose;
-        private System.Windows.Forms.Button btnOpenExistingLv;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ColumnHeader chDistance;
-        private System.Windows.Forms.Button btnByDistance;
     }
 }
