@@ -288,7 +288,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(1348, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1266, 48);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -665,7 +665,7 @@
             this.lblSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(1111, 5);
+            this.lblSpeed.Location = new System.Drawing.Point(1029, 5);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(87, 31);
             this.lblSpeed.TabIndex = 116;
@@ -800,7 +800,7 @@
             this.lblSpeedUnits.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeedUnits.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblSpeedUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeedUnits.Location = new System.Drawing.Point(1192, 16);
+            this.lblSpeedUnits.Location = new System.Drawing.Point(1110, 16);
             this.lblSpeedUnits.Name = "lblSpeedUnits";
             this.lblSpeedUnits.Size = new System.Drawing.Size(38, 17);
             this.lblSpeedUnits.TabIndex = 139;
@@ -813,7 +813,7 @@
             this.lblHeading.BackColor = System.Drawing.Color.Transparent;
             this.lblHeading.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold);
             this.lblHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHeading.Location = new System.Drawing.Point(1235, 5);
+            this.lblHeading.Location = new System.Drawing.Point(1153, 5);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(109, 31);
             this.lblHeading.TabIndex = 117;
@@ -1518,7 +1518,7 @@
             this.oglMain.Location = new System.Drawing.Point(315, 49);
             this.oglMain.Margin = new System.Windows.Forms.Padding(1);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(848, 584);
+            this.oglMain.Size = new System.Drawing.Size(766, 584);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1575,7 +1575,7 @@
             this.layoutPanelRight.Controls.Add(this.btnEnableAutoYouTurn, 0, 4);
             this.layoutPanelRight.Controls.Add(this.btnContour, 1, 2);
             this.layoutPanelRight.Controls.Add(this.btnCurve, 1, 1);
-            this.layoutPanelRight.Location = new System.Drawing.Point(1165, 49);
+            this.layoutPanelRight.Location = new System.Drawing.Point(1083, 49);
             this.layoutPanelRight.Name = "layoutPanelRight";
             this.layoutPanelRight.RowCount = 7;
             this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
@@ -1879,7 +1879,7 @@
             this.lblTramSkips.BackColor = System.Drawing.Color.LightGreen;
             this.lblTramSkips.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTramSkips.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTramSkips.Location = new System.Drawing.Point(1266, 52);
+            this.lblTramSkips.Location = new System.Drawing.Point(1184, 52);
             this.lblTramSkips.Name = "lblTramSkips";
             this.lblTramSkips.Size = new System.Drawing.Size(72, 16);
             this.lblTramSkips.TabIndex = 322;
@@ -1892,7 +1892,7 @@
             this.lblTramStart.BackColor = System.Drawing.Color.Orchid;
             this.lblTramStart.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTramStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTramStart.Location = new System.Drawing.Point(1175, 52);
+            this.lblTramStart.Location = new System.Drawing.Point(1093, 52);
             this.lblTramStart.Name = "lblTramStart";
             this.lblTramStart.Size = new System.Drawing.Size(72, 16);
             this.lblTramStart.TabIndex = 321;
@@ -1912,17 +1912,17 @@
             this.toolStripBtnGPSStength,
             this.USBPortsToolBtn,
             this.youTurnStripBtn,
-            this.steerAnglesToolStripDropDownButton1,
-            this.AutoSteerToolBtn,
             this.vehicleToolStripBtn,
             this.toolStripDropDownButton2,
+            this.AutoSteerToolBtn,
+            this.steerAnglesToolStripDropDownButton1,
             this.toolStripBtnField,
             this.boundaryToolStripBtn,
             this.toolStripBtnDropDownBoundaryTools,
             this.stripEqWidth});
             this.statusStrip1.Location = new System.Drawing.Point(0, 633);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1348, 68);
+            this.statusStrip1.Size = new System.Drawing.Size(1266, 68);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 323;
             // 
@@ -1945,13 +1945,13 @@
             this.distanceToolBtn.AutoSize = false;
             this.distanceToolBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.distanceToolBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.distanceToolBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.distanceToolBtn.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.distanceToolBtn.Image = global::AgOpenGPS.Properties.Resources.Batman48;
             this.distanceToolBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.distanceToolBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.distanceToolBtn.Name = "distanceToolBtn";
             this.distanceToolBtn.ShowDropDownArrow = false;
-            this.distanceToolBtn.Size = new System.Drawing.Size(68, 66);
+            this.distanceToolBtn.Size = new System.Drawing.Size(72, 66);
             this.distanceToolBtn.Text = "88.8";
             this.distanceToolBtn.Click += new System.EventHandler(this.toolStripDropDownButtonDistance_Click);
             // 
@@ -1966,7 +1966,7 @@
             this.toolStripBtnGPSStength.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnGPSStength.Name = "toolStripBtnGPSStength";
             this.toolStripBtnGPSStength.ShowDropDownArrow = false;
-            this.toolStripBtnGPSStength.Size = new System.Drawing.Size(80, 66);
+            this.toolStripBtnGPSStength.Size = new System.Drawing.Size(100, 66);
             this.toolStripBtnGPSStength.Click += new System.EventHandler(this.toolStripBtnGPSStength_Click);
             // 
             // USBPortsToolBtn
@@ -1980,7 +1980,7 @@
             this.USBPortsToolBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.USBPortsToolBtn.Name = "USBPortsToolBtn";
             this.USBPortsToolBtn.ShowDropDownArrow = false;
-            this.USBPortsToolBtn.Size = new System.Drawing.Size(80, 66);
+            this.USBPortsToolBtn.Size = new System.Drawing.Size(100, 66);
             this.USBPortsToolBtn.Click += new System.EventHandler(this.USBPortsToolBtn_Click);
             // 
             // youTurnStripBtn
@@ -2011,7 +2011,7 @@
             this.steerAnglesToolStripDropDownButton1.ShowDropDownArrow = false;
             this.steerAnglesToolStripDropDownButton1.Size = new System.Drawing.Size(80, 66);
             this.steerAnglesToolStripDropDownButton1.Text = "-38.88";
-            this.steerAnglesToolStripDropDownButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.steerAnglesToolStripDropDownButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AutoSteerToolBtn
             // 
@@ -2020,7 +2020,7 @@
             this.AutoSteerToolBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.AutoSteerToolBtn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AutoSteerToolBtn.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.AutoSteerToolBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AutoSteerToolBtn.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.AutoSteerToolBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.AutoSteerToolBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AutoSteerToolBtn.Name = "AutoSteerToolBtn";
@@ -2278,7 +2278,7 @@
             // 
             this.stripEqWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(265, 63);
+            this.stripEqWidth.Size = new System.Drawing.Size(183, 63);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Vehicle";
             this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2534,7 +2534,7 @@
             this.lblDistanceOffLine.BackColor = System.Drawing.Color.Transparent;
             this.lblDistanceOffLine.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistanceOffLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceOffLine.Location = new System.Drawing.Point(713, 0);
+            this.lblDistanceOffLine.Location = new System.Drawing.Point(672, 0);
             this.lblDistanceOffLine.Name = "lblDistanceOffLine";
             this.lblDistanceOffLine.Size = new System.Drawing.Size(146, 40);
             this.lblDistanceOffLine.TabIndex = 328;
@@ -2554,7 +2554,7 @@
             this.panelTurn.Controls.Add(this.btnLeftYouTurn, 0, 0);
             this.panelTurn.Controls.Add(this.btnSwapDirection, 1, 0);
             this.panelTurn.Controls.Add(this.btnRightYouTurn, 2, 0);
-            this.panelTurn.Location = new System.Drawing.Point(743, 262);
+            this.panelTurn.Location = new System.Drawing.Point(661, 262);
             this.panelTurn.Name = "panelTurn";
             this.panelTurn.RowCount = 1;
             this.panelTurn.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -2631,13 +2631,13 @@
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.panelSnap.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 156F));
             this.panelSnap.Controls.Add(this.btnSnapLeft, 0, 0);
             this.panelSnap.Controls.Add(this.btnSmallSnapLeft, 1, 0);
             this.panelSnap.Controls.Add(this.btnSmallSnapRight, 3, 0);
             this.panelSnap.Controls.Add(this.btnSnapRight, 4, 0);
             this.panelSnap.Controls.Add(this.btnContourPriority, 2, 0);
-            this.panelSnap.Location = new System.Drawing.Point(799, 548);
+            this.panelSnap.Location = new System.Drawing.Point(717, 548);
             this.panelSnap.Name = "panelSnap";
             this.panelSnap.RowCount = 1;
             this.panelSnap.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -2745,7 +2745,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(1049, 3);
+            this.btnZoomIn.Location = new System.Drawing.Point(967, 3);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(56, 42);
             this.btnZoomIn.TabIndex = 120;
@@ -2762,7 +2762,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(972, 3);
+            this.btnZoomOut.Location = new System.Drawing.Point(890, 3);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(56, 42);
             this.btnZoomOut.TabIndex = 119;
@@ -2774,7 +2774,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1348, 701);
+            this.ClientSize = new System.Drawing.Size(1266, 701);
             this.Controls.Add(this.lblDistanceOffLine);
             this.Controls.Add(this.panelTurn);
             this.Controls.Add(this.panelSnap);
