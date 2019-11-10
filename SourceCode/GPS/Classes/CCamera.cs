@@ -22,6 +22,7 @@ namespace AgOpenGPS
         public double previousZoom = 25;
 
         public bool camFollowing;
+        public int camMode = 0;
 
         //private double camDelta = 0;
 
@@ -59,21 +60,7 @@ namespace AgOpenGPS
             if (camFollowing)
             {
                 GL.Rotate(camYaw, 0.0, 0.0, 1.0);
-
-                if (camPitch > -45)
-                {
-                    offset = (45.0 + camPitch) / 45.0;
-
-                    offset = (offset * offset * offset * offset * 0.015) + 0.02;
-
-                    GL.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                        -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
-                }
-                else
-                {
-                    GL.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                             -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
-                }
+                GL.Translate(-camPosX, -camPosY, -camPosZ);
             }
             else
             {

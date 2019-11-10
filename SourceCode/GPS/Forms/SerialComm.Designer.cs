@@ -507,9 +507,7 @@ namespace AgOpenGPS
 
                     //MessageBox.Show(ex.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "ComPort Failure!");
                 }
-
             }
-
         }
 
         public void SerialPortOpenGPS()
@@ -520,7 +518,7 @@ namespace AgOpenGPS
             if (sp.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
-                panelSimControls.Visible = false;
+                panelSim.Visible = false;
                 timerSim.Enabled = false;
 
                 Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
@@ -545,7 +543,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * ";
                 //stripPortGPS.ForeColor = Color.Red;
-                stripOnlineGPS.Value = 1;
+                //stripOnlineGPS.Value = 1;
 
                 //SettingsPageOpen(0);
             }
@@ -583,11 +581,9 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 //stripPortGPS.ForeColor = Color.ForestGreen;
-                stripOnlineGPS.Value = 1;
-
+                //stripOnlineGPS.Value = 1;
                 sp.Dispose();
             }
-
         }
 
         #endregion SerialPortGPS

@@ -1,4 +1,9 @@
-﻿v 3.0.0
+﻿v3.0 November
+* Stepped back to pre multi field and added new GUI.
+* Snap shows distance in AB Save, can save
+
+
+v 3.0.0
 * Removed all executables from Source
 * Source contains all packages for release to be created
 * Ready to start intial releases.

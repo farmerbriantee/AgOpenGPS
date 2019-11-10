@@ -69,6 +69,10 @@
   <PropertyGroup />
   <PropertyGroup />
   <ItemGroup>
+    <Reference Include="Control.Draggable, Version=1.0.7235.37687, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Control.Draggable.dll</HintPath>
+    </Reference>
     <Reference Include="Keypad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\Keypad.dll</HintPath>
@@ -145,12 +149,6 @@
     </Compile>
     <Compile Include="Forms\FormMakeBndCon.Designer.cs">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormElev.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormElev.Designer.cs">
-      <DependentUpon>FormElev.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormNtrip.cs">
       <SubType>Form</SubType>
@@ -389,9 +387,6 @@
     <EmbeddedResource Include="Forms\FormMakeBndCon.resx">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormElev.resx">
-      <DependentUpon>FormElev.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
     </EmbeddedResource>
@@ -559,6 +554,16 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
+    <None Include="btnImages\ABLineSave.png" />
+    <None Include="btnImages\UTurnLeft.png" />
+    <None Include="btnImages\UTurnRight.png" />
+    <None Include="btnImages\GPSSignalGood.png" />
+    <None Include="btnImages\GPSSignalPoor.png" />
+    <None Include="btnImages\AutoManualIsAuto.png" />
+    <None Include="btnImages\AutoManualIsManual.png" />
+    <None Include="btnImages\HandSnap.png" />
+    <None Include="btnImages\handUturnPanel.png" />
+    <None Include="btnImages\MakeBoundaryContour.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

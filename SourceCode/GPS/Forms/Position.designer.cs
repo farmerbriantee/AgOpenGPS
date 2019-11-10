@@ -493,7 +493,7 @@ namespace AgOpenGPS
                     if (yt.isYouTurnBtnOn)
                     {
                         yt.ResetCreatedYouTurn();
-                        sim.stepDistance = 0 / 17.86;
+                        //sim.stepDistance = 0 / 17.86;
                     }
                 }
             }

@@ -376,83 +376,83 @@ namespace AgOpenGPS
                     if (ct.isContourBtnOn)
                     {
                         string dist;
-                        txtDistanceOffABLine.Visible = true;
+                        lblDistanceOffLine.Visible = true;
                         //lblDelta.Visible = true;
                         if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
 
                         DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
                         if ((ct.distanceFromCurrentLine) < 0.0)
                         {
-                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            lblDistanceOffLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                         else
                         {
-                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            lblDistanceOffLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                     }
 
                     else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
                     {
                         string dist;
-                        txtDistanceOffABLine.Visible = true;
+                        lblDistanceOffLine.Visible = true;
                         //lblDelta.Visible = true;
                         DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
                         if ((ABLine.distanceFromCurrentLine) < 0.0)
                         {
                             // --->
-                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            lblDistanceOffLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                         else
                         {
                             // <----
-                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            lblDistanceOffLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                     }
 
                     else if (curve.isCurveBtnOn)
                     {
                         string dist;
-                        txtDistanceOffABLine.Visible = true;
+                        lblDistanceOffLine.Visible = true;
                         //lblDelta.Visible = true;
                         if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
 
                         DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
                         if ((curve.distanceFromCurrentLine) < 0.0)
                         {
-                            txtDistanceOffABLine.ForeColor = Color.Green;
+                            lblDistanceOffLine.ForeColor = Color.Green;
                             if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
                             else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                         else
                         {
-                            txtDistanceOffABLine.ForeColor = Color.Red;
+                            lblDistanceOffLine.ForeColor = Color.Red;
                             if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
                             else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
-                            txtDistanceOffABLine.Text = dist;
+                            lblDistanceOffLine.Text = dist;
                         }
                     }
 
                     else
                     {
-                        txtDistanceOffABLine.Visible = false;
+                        lblDistanceOffLine.Visible = false;
                     }
                 }
                 else
                 {
-                    txtDistanceOffABLine.Visible = false;
+                    lblDistanceOffLine.Visible = false;
                 }
 
                 GL.Flush();//finish openGL commands
@@ -493,7 +493,7 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && !tabControl1.Visible)
+                if (threeSeconds != zoomUpdateCounter && panelBatman.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
@@ -890,7 +890,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && stripOnlineGPS.Value != 1)
+                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
@@ -1308,16 +1308,16 @@ namespace AgOpenGPS
             //maxFieldX += 8;
             //maxFieldY += 8;
 
-            if (isMetric)
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-            }
-            else
-            {
-                lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-            }
+            //if (isMetric)
+            //{
+            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
+            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
+            //}
+            //else
+            //{
+            //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
+            //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
+            //}
 
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 

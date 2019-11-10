@@ -301,12 +301,13 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
+            mf.curve.moveDistance = 0;
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.curve.refList?.Clear();
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
-            mf.btnContourPriority.Enabled = false;
+            //mf.btnContourPriority.Enabled = false;
             //mf.curve.ResetCurveLine();
             mf.curve.isCurveBtnOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
@@ -319,6 +320,8 @@ namespace AgOpenGPS
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
+            mf.curve.moveDistance = 0;
+
             if (lvLines.SelectedItems.Count > 0)
             {
                 int num = lvLines.SelectedIndices[0];

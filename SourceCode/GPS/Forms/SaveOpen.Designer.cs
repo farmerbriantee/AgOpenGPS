@@ -129,6 +129,8 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
+            curve.moveDistance = 0;
+
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
@@ -189,6 +191,8 @@ namespace AgOpenGPS
 
         public void FileLoadCurveLines()
         {
+            curve.moveDistance = 0;
+
             curve.curveArr?.Clear();
             curve.numCurveLines = 0;
 
@@ -280,6 +284,8 @@ namespace AgOpenGPS
 
         public void FileSaveABLines()
         {
+            ABLine.moveDistance = 0;
+
             //make sure at least a global blank AB Line file exists
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
@@ -315,6 +321,8 @@ namespace AgOpenGPS
 
         public void FileLoadABLines()
         {
+            ABLine.moveDistance = 0;
+
             //make sure at least a global blank AB Line file exists
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);

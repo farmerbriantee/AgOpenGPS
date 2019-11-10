@@ -1069,13 +1069,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int setDisplay_panelStatus {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isBatmanOn {
             get {
-                return ((int)(this["setDisplay_panelStatus"]));
+                return ((bool)(this["setDisplay_isBatmanOn"]));
             }
             set {
-                this["setDisplay_panelStatus"] = value;
+                this["setDisplay_isBatmanOn"] = value;
             }
         }
         
@@ -1100,6 +1100,42 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_lineWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 50")]
+        public global::System.Drawing.Point setDisplay_panelSnapLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelSnapLocation"]));
+            }
+            set {
+                this["setDisplay_panelSnapLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 100")]
+        public global::System.Drawing.Point setDisplay_panelSimLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelSimLocation"]));
+            }
+            set {
+                this["setDisplay_panelSimLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("380, 150")]
+        public global::System.Drawing.Point setDisplay_panelTurnLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["setDisplay_panelTurnLocation"]));
+            }
+            set {
+                this["setDisplay_panelTurnLocation"] = value;
             }
         }
     }

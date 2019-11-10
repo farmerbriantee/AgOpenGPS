@@ -315,6 +315,9 @@
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
     <value>Contour File is Corrupt</value>
   </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Contour On</value>
+  </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
     <value>Couldn't Generate Valid Path</value>
   </data>
@@ -1219,6 +1222,9 @@
   </data>
   <data name="gsTurnOff" xml:space="preserve">
     <value>Turn Off</value>
+  </data>
+  <data name="gsTurnOffContourFirst" xml:space="preserve">
+    <value>Turn Of Contour First</value>
   </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
     <value>Turn Off Delay (secs)</value>
