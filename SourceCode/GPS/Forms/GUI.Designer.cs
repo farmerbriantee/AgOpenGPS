@@ -132,11 +132,16 @@ namespace AgOpenGPS
             cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
             ABLine.passBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
 
-            panelSnap.Location = Settings.Default.setDisplay_panelSnapLocation;
+            cboxTramPassEvery.Text = "0";
+            ABLine.tramPassEvery = 0;
+            cboxTramBasedOn.Text = "0";
+            ABLine.passBasedOn = 0;
+
+            //panelSnap.Location = Settings.Default.setDisplay_panelSnapLocation;
             panelSim.Location = Settings.Default.setDisplay_panelSimLocation;
             panelTurn.Location = Settings.Default.setDisplay_panelTurnLocation;
 
-            panelSnap.Visible = false;
+            //panelSnap.Visible = false;
             panelTurn.Visible = false;
 
             //if (Properties.Settings.Default.setNTRIP_isOn) panelNTRIP.Visible = true;
@@ -165,16 +170,16 @@ namespace AgOpenGPS
         private void FixPanelsAndMenus()
         {
             //keep snap in view on resizing
-            if (panelSnap.Top > Height - 170)
-            {
-                if (panelSnap.Left + 342 > Width - 5) panelSnap.Left = Width - 15 - 342;
-            }
-            else
-            {
-                if (panelSnap.Left + 342 > Width - 200) panelSnap.Left = Width - 200 - 342;
-            }
-            if (panelSnap.Top < 1) panelSnap.Top = 1;
-            if (panelSnap.Top > Height - 100) panelSnap.Top = Height - 100;
+            //if (panelSnap.Top > Height - 170)
+            //{
+            //    if (panelSnap.Left + 342 > Width - 5) panelSnap.Left = Width - 15 - 342;
+            //}
+            //else
+            //{
+            //    if (panelSnap.Left + 342 > Width - 200) panelSnap.Left = Width - 200 - 342;
+            //}
+            //if (panelSnap.Top < 1) panelSnap.Top = 1;
+            //if (panelSnap.Top > Height - 100) panelSnap.Top = Height - 100;
 
             if (panelSim.Left + 443 > Width - 200) panelSim.Left = Width - 200 - 443;
             if (panelSim.Top < 80) panelSim.Top = 80;
@@ -195,7 +200,7 @@ namespace AgOpenGPS
             //{
             if (panelTurn.Left < 75) panelTurn.Left = 75;
             if (panelSim.Left < 75) panelSim.Left = 75;
-            if (panelSnap.Left < 75) panelSnap.Left = 75;
+            //if (panelSnap.Left < 75) panelSnap.Left = 75;
             //}
 
             if (Width > 1100)
@@ -3175,11 +3180,11 @@ namespace AgOpenGPS
 
                     if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                     {
-                        btnSaveAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
+                        btnABMenu.Text = ((int)(ABLine.moveDistance * 100)).ToString();
                     }
                     if (curve.isCurveBtnOn && !ct.isContourBtnOn)
                     {
-                        btnSaveAB.Text = ((int)(curve.moveDistance * 100)).ToString();
+                        btnABMenu.Text = ((int)(curve.moveDistance * 100)).ToString();
                     }
 
 
@@ -3187,23 +3192,23 @@ namespace AgOpenGPS
                     {
                         if (ct.isContourBtnOn)
                         {
-                            panelSnap.Visible = true;
+                            //panelSnap.Visible = true;
                             panelTurn.Visible = false;
                         }
                         else
                         {
-                            panelSnap.Visible = true;
+                            //panelSnap.Visible = true;
                             panelTurn.Visible = true;
                         }
                     }
                     else if (ct.isContourBtnOn)
                     {
-                        panelSnap.Visible = true;
+                        //panelSnap.Visible = true;
                         panelTurn.Visible = false;
                     }
                     else
                     {
-                        panelSnap.Visible = false;
+                        //panelSnap.Visible = false;
                         panelTurn.Visible = false;
                     }
                     
