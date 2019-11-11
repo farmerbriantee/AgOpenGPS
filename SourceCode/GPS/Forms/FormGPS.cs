@@ -238,7 +238,7 @@ namespace AgOpenGPS
 
             //btnManualAutoDrive.Text = gStr.gsAbout;
 
-            ControlExtension.Draggable(panelSnap, true);
+            //ControlExtension.Draggable(panelSnap, true);
             //ControlExtension.Draggable(panelNTRIP, true);
             ControlExtension.Draggable(panelSim, true);
             ControlExtension.Draggable(panelTurn, true);
@@ -637,7 +637,7 @@ namespace AgOpenGPS
             Settings.Default.setF_UserTotalArea = fd.workedAreaTotalUser;
             Settings.Default.setF_UserTripAlarm = fd.userSquareMetersAlarm;
 
-            Settings.Default.setDisplay_panelSnapLocation = panelSnap.Location;
+            //Settings.Default.setDisplay_panelSnapLocation = panelSnap.Location;
             Settings.Default.setDisplay_panelSimLocation = panelSim.Location;
             Settings.Default.setDisplay_panelTurnLocation = panelTurn.Location;
 
@@ -1107,7 +1107,7 @@ namespace AgOpenGPS
             {
                 if (panelTurn.Left < 260) panelTurn.Left = 260;
                 if (panelSim.Left < 260) panelSim.Left = 260;
-                if (panelSnap.Left < 260) panelSnap.Left = 260;
+                //if (panelSnap.Left < 260) panelSnap.Left = 260;
             }
         }
 
@@ -1140,6 +1140,7 @@ namespace AgOpenGPS
 
         private void btnSaveAB_Click(object sender, EventArgs e)
         {
+            panelEditAB.Visible = false;
             if (ABLine.isBtnABLineOn)
             {
                 //index to last one. 
@@ -1295,6 +1296,56 @@ namespace AgOpenGPS
         private void USBPortsToolBtn_Click(object sender, EventArgs e)
         {
             SettingsCommunications();
+        }
+
+        private void btnABMenu_Click(object sender, EventArgs e)
+        {
+            if (ABLine.isBtnABLineOn || curve.isCurveBtnOn)
+            {
+                if (panelEditAB.Visible)
+                    panelEditAB.Visible = false;
+                else
+                    panelEditAB.Visible = true;
+            }
+            else
+            {
+                    panelEditAB.Visible = false;
+            }
+        }
+
+        private void btnEditAB_Click(object sender, EventArgs e)
+        {
+            panelEditAB.Visible = false;
+            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            {
+
+                Form form = new FormEditAB(this);
+                    form.Show();
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                form.Show();
+                return;
+            }
+        }
+
+        private void btnEditHeadingB_Click(object sender, EventArgs e)
+        {
+            panelEditAB.Visible = false;
+            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            {
+
+                Form form = new FormEditHeadingB(this);
+                form.Show();
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                form.Show();
+                return;
+            }
+
         }
 
         public void GetAB()

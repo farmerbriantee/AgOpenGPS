@@ -764,21 +764,21 @@ namespace AgOpenGPS
             nudSection8.Value = wide;
             nudSection8.ValueChanged += nudSection8_ValueChanged;
 
-            nudSection9.ValueChanged -= nudSection8_ValueChanged;
+            nudSection9.ValueChanged -= nudSection9_ValueChanged;
             nudSection9.Value = wide;
-            nudSection9.ValueChanged += nudSection8_ValueChanged;
+            nudSection9.ValueChanged += nudSection9_ValueChanged;
 
-            nudSection10.ValueChanged -= nudSection8_ValueChanged;
+            nudSection10.ValueChanged -= nudSection10_ValueChanged;
             nudSection10.Value = wide;
-            nudSection10.ValueChanged += nudSection8_ValueChanged;
+            nudSection10.ValueChanged += nudSection10_ValueChanged;
 
-            nudSection11.ValueChanged -= nudSection8_ValueChanged;
+            nudSection11.ValueChanged -= nudSection11_ValueChanged;
             nudSection11.Value = wide;
-            nudSection11.ValueChanged += nudSection8_ValueChanged;
+            nudSection11.ValueChanged += nudSection11_ValueChanged;
 
-            nudSection12.ValueChanged -= nudSection8_ValueChanged;
+            nudSection12.ValueChanged -= nudSection12_ValueChanged;
             nudSection12.Value = wide;
-            nudSection12.ValueChanged += nudSection8_ValueChanged;
+            nudSection12.ValueChanged += nudSection12_ValueChanged;
 
             UpdateSpinners();
         }
@@ -1358,7 +1358,7 @@ namespace AgOpenGPS
                     }
                 case 9:
                     {
-                        sectionPosition6 = sectionWidth4 / 2.0M;
+                        sectionPosition6 = sectionWidth5 / 2.0M;
                         sectionPosition5 = sectionPosition6 * -1;
                         sectionPosition4 = sectionPosition5 - sectionWidth4;
                         sectionPosition3 = sectionPosition4 - sectionWidth3;

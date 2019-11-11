@@ -138,6 +138,18 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="FormEditAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditAB.Designer.cs">
+      <DependentUpon>FormEditAB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormEditHeadingB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditHeadingB.Designer.cs">
+      <DependentUpon>FormEditHeadingB.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormFilePicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +399,12 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormEditAB.resx">
+      <DependentUpon>FormEditAB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditHeadingB.resx">
+      <DependentUpon>FormEditHeadingB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </EmbeddedResource>
@@ -573,6 +591,15 @@
     <None Include="btnImages\HandSnap.png" />
     <None Include="btnImages\handUturnPanel.png" />
     <None Include="btnImages\MakeBoundaryContour.png" />
+    <None Include="btnImages\ABLineEdit.png" />
+    <None Include="btnImages\SnapLeft.png" />
+    <None Include="btnImages\SnapRight.png" />
+    <None Include="btnImages\SnapLeftBig.png" />
+    <None Include="btnImages\SnapRightBig.png" />
+    <None Include="btnImages\SnapLeftWidth.png" />
+    <None Include="btnImages\SnapRightWidth.png" />
+    <None Include="btnImages\ABLineEditMenu.png" />
+    <None Include="btnImages\ABLineSnapEdit.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
