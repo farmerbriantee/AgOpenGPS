@@ -249,7 +249,7 @@
             this.lblWidthRight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWidthRight.Location = new System.Drawing.Point(397, 3);
             this.lblWidthRight.Name = "lblWidthRight";
-            this.lblWidthRight.Size = new System.Drawing.Size(74, 19);
+            this.lblWidthRight.Size = new System.Drawing.Size(81, 19);
             this.lblWidthRight.TabIndex = 421;
             this.lblWidthRight.Text = "2.3m";
             this.lblWidthRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,11 +257,11 @@
             // lblWidthLeft
             // 
             this.lblWidthLeft.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWidthLeft.Location = new System.Drawing.Point(12, 3);
+            this.lblWidthLeft.Location = new System.Drawing.Point(8, 3);
             this.lblWidthLeft.Name = "lblWidthLeft";
-            this.lblWidthLeft.Size = new System.Drawing.Size(74, 19);
+            this.lblWidthLeft.Size = new System.Drawing.Size(90, 19);
             this.lblWidthLeft.TabIndex = 422;
-            this.lblWidthLeft.Text = "-2.3m";
+            this.lblWidthLeft.Text = "-28.3m";
             this.lblWidthLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormEditAB

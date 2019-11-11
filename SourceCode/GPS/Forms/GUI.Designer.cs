@@ -132,6 +132,11 @@ namespace AgOpenGPS
             cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
             ABLine.passBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
 
+            cboxTramPassEvery.Text = "0";
+            ABLine.tramPassEvery = 0;
+            cboxTramBasedOn.Text = "0";
+            ABLine.passBasedOn = 0;
+
             //panelSnap.Location = Settings.Default.setDisplay_panelSnapLocation;
             panelSim.Location = Settings.Default.setDisplay_panelSimLocation;
             panelTurn.Location = Settings.Default.setDisplay_panelTurnLocation;
