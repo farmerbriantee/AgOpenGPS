@@ -1007,7 +1007,7 @@ namespace AgOpenGPS
 
         private void goPathMenu_Click(object sender, EventArgs e)
         {
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1154,7 +1154,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1934,7 +1934,7 @@ namespace AgOpenGPS
 
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
-            if (!bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -2864,7 +2864,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField ); }
+            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
         }
         private void toolstripField_Click(object sender, EventArgs e)
         {
@@ -3326,7 +3326,7 @@ namespace AgOpenGPS
 
                     if (isMetric)
                     {
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {
@@ -3343,7 +3343,7 @@ namespace AgOpenGPS
                     else
                     {
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
                             if (yt.isYouTurnRight)
                             {

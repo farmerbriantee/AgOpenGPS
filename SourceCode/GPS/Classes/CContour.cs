@@ -133,7 +133,7 @@ namespace AgOpenGPS
         public void BuildBoundaryContours(int pass, int spacingInt)
         {
 
-            if (!mf.bnd.bndArr[0].isSet)
+            if (mf.bnd.bndArr.Count == 0)
             {
                 mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
                 return;
@@ -182,7 +182,7 @@ namespace AgOpenGPS
 
             //totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5 + 0.2 + (mf.vehicle.toolWidth - mf.vehicle.toolOverlap);
 
-            for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
+            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
             {
                 if (!mf.bnd.bndArr[j].isSet) continue;
 
@@ -553,9 +553,6 @@ namespace AgOpenGPS
                 if (!fail) ctList.Add(point);
                 fail = false;
             }
-
-            //if no boundaries, just return.
-            //if (!mf.bnd.bndArr[0].isSet) return;
 
             int ctCount = ctList.Count;
             if (ctCount < 6) return;

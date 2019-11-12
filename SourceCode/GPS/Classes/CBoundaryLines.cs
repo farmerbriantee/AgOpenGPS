@@ -26,10 +26,8 @@ namespace AgOpenGPS
         {
             area = 0;
             isSet = false;
-            isOkToAddPoints = false;
             isDriveAround = false;
             isDriveThru = false;
-            isDrawRightSide = true;
         }
 
         //list of coordinates of boundary line
@@ -42,7 +40,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveAround, isDriveThru, isDrawRightSide;
+        public bool isSet, isDriveAround, isDriveThru;
 
         public void CalculateBoundaryHeadings()
         {
@@ -73,16 +71,6 @@ namespace AgOpenGPS
             pt3.heading = Math.Atan2(arr[0].easting - arr[cnt - 1].easting, arr[0].northing - arr[cnt - 1].northing);
             if (pt3.heading < 0) pt3.heading += glm.twoPI;
             bndLine.Add(pt3);
-        }
-
-        public void ResetBoundary()
-        {
-            calcList.Clear();
-            bndLine.Clear();
-            area = 0;
-            isSet = false;
-            isOkToAddPoints = false;
-            isDriveThru = false;
         }
 
         public void FixBoundaryLine(int bndNum, double spacing)

@@ -588,7 +588,7 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 ////draw the perimeter line so far
                 int ptCount = bnd.bndArr[0].bndLine.Count;
@@ -703,7 +703,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -1235,7 +1235,7 @@ namespace AgOpenGPS
 
             //min max of the boundary
             //min max of the boundary
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 int bndCnt = bnd.bndArr[0].bndLine.Count;
                 for (int i = 0; i < bndCnt; i++)

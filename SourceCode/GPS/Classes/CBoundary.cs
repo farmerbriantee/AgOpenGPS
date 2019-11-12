@@ -12,10 +12,13 @@ namespace AgOpenGPS
         /// <summary>
         /// array of boundaries
         /// </summary>
-        public CBoundaryLines[] bndArr;
+        /// 
+        public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
+        public List<CBndPt> BoundCreate = new List<CBndPt>();
 
         private readonly double scanWidth, boxLength;
 
+        public bool isDrawRightSide = true, isOkToAddPoints = false;
         //constructor
         public CBoundary(FormGPS _f)
         {
@@ -23,10 +26,8 @@ namespace AgOpenGPS
             boundarySelected = 0;
             scanWidth = 1.0;
             boxLength = 2000;
-            //boundaries array
-            bndArr = new CBoundaryLines[FormGPS.MAXBOUNDARIES];
-            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines();
-        }
+             //boundaries array
+    }
 
         // the list of possible bounds points
         public List<vec4> bndClosestList = new List<vec4>();
@@ -87,7 +88,7 @@ namespace AgOpenGPS
             //determine if point is inside bounding box
             bndClosestList.Clear();
             vec4 inBox;
-            for (int i = 0; i < FormGPS.MAXHEADS; i++)
+            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
                 //skip the drive thru
                 if (bndArr[i].isDriveThru) continue;
@@ -146,15 +147,27 @@ namespace AgOpenGPS
         public void DrawBoundaryLines()
         {
             //draw the boundaries
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
                 bndArr[i].DrawBoundaryLine();
+            }
+            if (BoundCreate.Count > 0)
+            {
+
+                GL.PointSize(2);
+                GL.LineWidth(1);
+                GL.Color3(0.825f, 0.42f, 0.90f);
+                GL.Begin(PrimitiveType.Lines);
+                for (int h = 0; h < BoundCreate.Count; h++) GL.Vertex3(BoundCreate[h].easting, BoundCreate[h].northing, 0);
+                GL.Color3(0.95f, 0.972f, 0.90f);
+                GL.Vertex3(BoundCreate[0].easting, BoundCreate[0].northing, 0);
+                GL.End();
             }
         }
 
         public void ResetBoundaries()
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) bndArr[i].ResetBoundary();
+            bndArr.Clear();
         }
 
         //draws the derived closest point

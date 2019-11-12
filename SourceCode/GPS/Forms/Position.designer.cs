@@ -424,7 +424,7 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
                 if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
@@ -720,17 +720,14 @@ namespace AgOpenGPS
 
             //build the boundary line
 
-            bool isInner = false;
-            for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bnd.bndArr[i].isOkToAddPoints;
-
-            if (isInner)
+            if (bnd.isOkToAddPoints)
             {
-                if (bnd.bndArr[bnd.boundarySelected].isDrawRightSide)
+                if (bnd.isDrawRightSide)
                 {
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
 
                 //draw on left side
@@ -739,7 +736,7 @@ namespace AgOpenGPS
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
+                    bnd.BoundCreate.Add(point);
                 }
             }
 
@@ -935,7 +932,7 @@ namespace AgOpenGPS
             bool isLeftIn = true, isRightIn = true;
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
-                if (bnd.bndArr[0].isSet)
+                if (bnd.bndArr.Count > 0)
                 {
                     if (j == 0)
                     {
@@ -943,7 +940,7 @@ namespace AgOpenGPS
                         isLeftIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].leftPoint);
                         isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
 
-                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
                             if (bnd.bndArr[i].isSet)
@@ -963,7 +960,7 @@ namespace AgOpenGPS
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
                         isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
-                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
                             if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
@@ -1078,7 +1075,7 @@ namespace AgOpenGPS
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
             if (gf.geoFenceArr[0].IsPointInGeoFenceArea(pivotAxlePos))
             {
-                for (int i = 1; i < MAXBOUNDARIES; i++)
+                for (int i = 1; i < bnd.bndArr.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
                     if (!bnd.bndArr[i].isSet) continue;

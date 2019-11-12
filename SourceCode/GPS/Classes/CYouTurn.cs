@@ -123,7 +123,7 @@ namespace AgOpenGPS
                         goto CrossingFound;
                     }
 
-                    for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                    for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                     {
                         //make sure not inside a non drivethru boundary
                         if (!mf.bnd.bndArr[i].isSet) continue;
@@ -161,7 +161,7 @@ namespace AgOpenGPS
                         goto CrossingFound;
                     }
 
-                    for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                    for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                     {
                         //make sure not inside a non drivethru boundary
                         if (!mf.bnd.bndArr[i].isSet) continue;
@@ -250,7 +250,7 @@ namespace AgOpenGPS
                 ytList.Add(pt);
             }
 
-            double distancePivotToTurnLine = 0;
+            double distancePivotToTurnLine;
             count = ytList.Count;
             for (int i = 0; i < count; i += 2)
             {
@@ -454,7 +454,7 @@ namespace AgOpenGPS
                 //grab the vehicle widths and offsets
                 double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
                 double toolOffset = mf.vehicle.toolOffset * 2.0;
-                double turnOffset = 0;
+                double turnOffset;
 
                 //turning right
                 if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
@@ -590,7 +590,7 @@ namespace AgOpenGPS
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                        for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
@@ -664,7 +664,7 @@ namespace AgOpenGPS
             //grab the vehicle widths and offsets
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
             double toolOffset = mf.vehicle.toolOffset * 2.0;
-            double turnOffset = 0;
+            double turnOffset;
 
             //turning right
             if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
@@ -765,7 +765,7 @@ namespace AgOpenGPS
                 ytList.Add(ptt);
             }
 
-            double distancePivotToTurnLine = 0;
+            double distancePivotToTurnLine;
             count = ytList.Count;
             for (int i = 0; i < count; i += 2)
             {
@@ -797,7 +797,7 @@ namespace AgOpenGPS
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                        for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
@@ -821,7 +821,7 @@ namespace AgOpenGPS
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                        for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
@@ -874,12 +874,12 @@ namespace AgOpenGPS
                 if (!mf.curve.isABSameAsVehicleHeading) head += Math.PI;
 
                 //are we going same way as creation of curve
-                bool isCountingUp = mf.curve.isABSameAsVehicleHeading;
+                //bool isCountingUp = mf.curve.isABSameAsVehicleHeading;
 
                 //grab the vehicle widths and offsets
                 double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
                 double toolOffset = mf.vehicle.toolOffset * 2.0;
-                double turnOffset = 0;
+                double turnOffset;
 
                 //turning right
                 if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
@@ -960,7 +960,7 @@ namespace AgOpenGPS
                     ytList.Add(ptt);
                 }
 
-                double distancePivotToTurnLine = 0;
+                double distancePivotToTurnLine;
                 count = ytList.Count;
                 for (int i = 0; i < count; i += 2)
                 {
@@ -999,7 +999,7 @@ namespace AgOpenGPS
                         if (!mf.turn.turnArr[0].IsPointInTurnWorkArea(ytList[j])) isOutOfBounds = true;
                         if (isOutOfBounds) break;
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                        for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
@@ -1120,7 +1120,7 @@ namespace AgOpenGPS
                 //grab the vehicle widths and offsets
                 double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
                 double toolOffset = mf.vehicle.toolOffset * 2.0;
-                double turnOffset = 0;
+                double turnOffset;
 
                 //calculate the true width
                 if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
@@ -1243,7 +1243,7 @@ namespace AgOpenGPS
                             break;
                         }
 
-                        for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                        for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                         {
                             //make sure not inside a non drivethru boundary
                             if (!mf.bnd.bndArr[i].isSet) continue;
@@ -1430,7 +1430,7 @@ namespace AgOpenGPS
             //grab the vehicle widths and offsets
             double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
             double toolOffset = mf.vehicle.toolOffset * 2.0;
-            double turnOffset = 0;
+            double turnOffset;
 
             //turning right
             if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);

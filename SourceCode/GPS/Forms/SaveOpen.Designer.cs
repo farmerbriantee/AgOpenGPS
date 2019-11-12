@@ -1452,8 +1452,14 @@ namespace AgOpenGPS
                         //read header
                         line = reader.ReadLine();//Boundary
 
-                        for (int k = 0; k < MAXBOUNDARIES; k++)
+                        for (int k = 0; true; k++)
                         {
+                            if (reader.EndOfStream) break;
+
+                            bnd.bndArr.Add(new CBoundaryLines());
+                            turn.turnArr.Add(new CTurnLines());
+                            gf.geoFenceArr.Add(new CGeoFenceLines());
+
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
 
@@ -1471,12 +1477,23 @@ namespace AgOpenGPS
                                 line = reader.ReadLine(); //number of points
                             }
 
+                            //Check for latest boundary files, then above line string is num of points
+                            //bool turnheading = false;
+                            //if (line == "True" || line == "False")
+                            //{
+                            //    bnd.bndArr[k].isOwnField = bool.Parse(line);
+                            //    line = reader.ReadLine(); //number of points
+                            //}
+                            //else if (k == 0)
+                            //{
+                            //    turnheading = true;
+                            //    bnd.bndArr[k].isOwnField = true;
+                            //}
+
                             int numPoints = int.Parse(line);
 
                             if (numPoints > 0)
                             {
-                                bnd.bndArr[k].bndLine.Clear();
-
                                 //load the line
                                 for (int i = 0; i < numPoints; i++)
                                 {
@@ -1487,6 +1504,10 @@ namespace AgOpenGPS
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
                                     double.Parse(words[2], CultureInfo.InvariantCulture));
 
+                                    //if (turnheading)
+                                    //{
+                                    //    vecPt.heading = vecPt.heading + Math.PI;
+                                    //}
                                     bnd.bndArr[k].bndLine.Add(vecPt);
                                 }
 
@@ -1494,6 +1515,13 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].PreCalcBoundaryLines();
                                 if (bnd.bndArr[k].area > 0) bnd.bndArr[k].isSet = true;
                                 else bnd.bndArr[k].isSet = false;
+                            }
+                            else
+                            {
+                                bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
+                                turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
+                                gf.geoFenceArr.RemoveAt(bnd.bndArr.Count - 1);
+                                k = k - 1;
                             }
                             if (reader.EndOfStream) break;
                         }
@@ -1841,10 +1869,11 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + "Boundary.Txt"))
             {
                 writer.WriteLine("$Boundary");
-                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+                for (int i = 0; i < bnd.bndArr.Count; i++)
                 {
                     writer.WriteLine(bnd.bndArr[i].isDriveThru);
                     writer.WriteLine(bnd.bndArr[i].isDriveAround);
+                    //writer.WriteLine(bnd.bndArr[i].isOwnField);
 
                     writer.WriteLine(bnd.bndArr[i].bndLine.Count.ToString(CultureInfo.InvariantCulture));
                     if (bnd.bndArr[i].bndLine.Count > 0)
