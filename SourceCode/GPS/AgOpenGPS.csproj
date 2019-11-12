@@ -138,22 +138,22 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
-    <Compile Include="FormEditAB.cs">
+    <Compile Include="Forms\FormEditAB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditAB.Designer.cs">
+    <Compile Include="Forms\FormEditAB.Designer.cs">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEditHeadingB.cs">
+    <Compile Include="Forms\FormEditHeadingB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEditHeadingB.Designer.cs">
+    <Compile Include="Forms\FormEditHeadingB.Designer.cs">
       <DependentUpon>FormEditHeadingB.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormFilePicker.cs">
+    <Compile Include="Forms\FormFilePicker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormFilePicker.Designer.cs">
+    <Compile Include="Forms\FormFilePicker.Designer.cs">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormNumeric.cs">
@@ -399,13 +399,13 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormEditAB.resx">
+    <EmbeddedResource Include="Forms\FormEditAB.resx">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditHeadingB.resx">
+    <EmbeddedResource Include="Forms\FormEditHeadingB.resx">
       <DependentUpon>FormEditHeadingB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormFilePicker.resx">
+    <EmbeddedResource Include="Forms\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNumeric.resx">

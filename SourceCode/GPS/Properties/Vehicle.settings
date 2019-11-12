@@ -51,7 +51,7 @@
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4.2</Value>
+      <Value Profile="(Default)">2.5</Value>
     </Setting>
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
