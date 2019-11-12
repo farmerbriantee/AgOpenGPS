@@ -571,7 +571,7 @@ namespace AgOpenGPS
 
             //start to read the file
             string line = "";
-            string coordinates = null;
+            string coordinates = "";
             int startIndex;
             int i = 0;
             using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
@@ -652,6 +652,7 @@ namespace AgOpenGPS
                                 //mf.bnd.bndArr[i].isDriveAround = true;
                                 //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
                                 //else mf.bnd.bndArr[i].isOwnField = false;
+                                coordinates = "";
                                 i++;
                             }
                             else
