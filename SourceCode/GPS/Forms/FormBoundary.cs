@@ -571,86 +571,93 @@ namespace AgOpenGPS
 
             //start to read the file
             string line = "";
-            int index;
-
+            string coordinates = null;
+            int startIndex;
+            int i = 0;
             using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
             {
-                int bndCount = 0;
-
                 ResetAllBoundary();
-
-                while (!reader.EndOfStream)
-                {
-                    line = reader.ReadLine();
-                    index = line.IndexOf("<coordinates>");
-
-                    if (index != -1) bndCount++;
-                }
-
-                reader.DiscardBufferedData();
-                reader.BaseStream.Seek(0, SeekOrigin.Begin);
-                reader.BaseStream.Position = 0;
 
                 try
                 {
-                    for (int i = 0; i < bndCount; i++)
+                    while (!reader.EndOfStream)
                     {
-                        //step thru the file till first boundary
-                        while (!reader.EndOfStream)
-                        {
-                            line = reader.ReadLine();
-                            index = line.IndexOf("<coord");
-                            if (index != -1) break;
-                        }
-
                         line = reader.ReadLine();
-                        line = line.Trim();
-                        char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                        string[] numberSets = line.Split(delimiterChars);
 
-                        //at least 3 points
-                        if (numberSets.Length > 2)
+                        startIndex = line.IndexOf("<coordinates>");
+
+                        if (startIndex != -1)
                         {
-                            mf.bnd.bndArr.Add(new CBoundaryLines());
-                            mf.turn.turnArr.Add(new CTurnLines());
-                            mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-                            //reset boundary
-                            foreach (var item in numberSets)
+                            while (true)
                             {
-                                string[] fix = item.Split(',');
-                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                                double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
+                                int endIndex = line.IndexOf("</coordinates>");
 
-                                //match new fix to current position
-                                easting = xy[0] - mf.pn.utmEast;
-                                northing = xy[1] - mf.pn.utmNorth;
-
-                                //fix the azimuth error
-                                easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
-                                northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
-
-                                //add the point to boundary
-                                CBndPt bndPt = new CBndPt(easting, northing, 0);
-                                mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                if (endIndex == -1)
+                                {
+                                    //just add the line
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13);
+                                }
+                                else
+                                {
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    break;
+                                }
+                                line = reader.ReadLine();
+                                line = line.Trim();
+                                startIndex = -1;
                             }
 
-                            //fix the points if there are gaps bigger then
-                            mf.bnd.bndArr[i].CalculateBoundaryHeadings();
-                            mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                            mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
+                            line = coordinates;
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            string[] numberSets = line.Split(delimiterChars);
 
-                            //boundary area, pre calcs etc
-                            mf.bnd.bndArr[i].CalculateBoundaryArea();
-                            mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                            mf.bnd.bndArr[i].isSet = true;
-                            //mf.bnd.bndArr[i].isDriveAround = true;
-                            //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
-                            //else mf.bnd.bndArr[i].isOwnField = false;
-                        }
-                        else
-                        {
-                            mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                            //at least 3 points
+                            if (numberSets.Length > 2)
+                            {
+                                mf.bnd.bndArr.Add(new CBoundaryLines());
+                                mf.turn.turnArr.Add(new CTurnLines());
+                                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+
+                                foreach (var item in numberSets)
+                                {
+                                    string[] fix = item.Split(',');
+                                    double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                    double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                    double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
+
+                                    //match new fix to current position
+                                    easting = xy[0] - mf.pn.utmEast;
+                                    northing = xy[1] - mf.pn.utmNorth;
+
+                                    //fix the azimuth error
+                                    easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
+                                    northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
+
+                                    //add the point to boundary
+                                    CBndPt bndPt = new CBndPt(easting, northing, 0);
+                                    mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                }
+
+                                //fix the points if there are gaps bigger then
+                                mf.bnd.bndArr[i].CalculateBoundaryHeadings();
+                                mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
+
+                                //boundary area, pre calcs etc
+                                mf.bnd.bndArr[i].CalculateBoundaryArea();
+                                mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                mf.bnd.bndArr[i].isSet = true;
+                                //mf.bnd.bndArr[i].isDriveAround = true;
+                                //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
+                                //else mf.bnd.bndArr[i].isOwnField = false;
+                                i++;
+                            }
+                            else
+                            {
+                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                            }
                         }
                     }
 
@@ -693,36 +700,44 @@ namespace AgOpenGPS
 
             //start to read the file
             string line = null;
-            int index;
+            string coordinates = null;
+            int startIndex;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
             {
-                //int count = 0;
-
-                //while (!reader.EndOfStream)
-                //{
-                //    line = reader.ReadLine();
-                //    index = line.IndexOf("<coordinates>");
-
-                //    if (index != -1) count++;
-                //}
-
-                //reader.DiscardBufferedData();
-                //reader.BaseStream.Seek(0, SeekOrigin.Begin);
-                //reader.BaseStream.Position = 0;
-
                 bool done = false;
                 try
                 {
                     while (!reader.EndOfStream && !done)
                     {
                         line = reader.ReadLine();
-                        index = line.IndexOf("coord");
 
-                        if (index != -1)
+                        startIndex = line.IndexOf("<coordinates>");
+
+                        if (startIndex != -1)
                         {
-                            line = reader.ReadLine();
-                            line = line.Trim();
+                            while (true)
+                            {
+                                int endIndex = line.IndexOf("</coordinates>");
+
+                                if (endIndex == -1)
+                                {
+                                    //just add the line
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13);
+                                }
+                                else
+                                {
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    break;
+                                }
+                                line = reader.ReadLine();
+                                line = line.Trim();
+                                startIndex = -1;
+                            }
+
+                            line = coordinates;
                             char[] delimiterChars = { ' ', '\t', '\r', '\n' };
                             string[] numberSets = line.Split(delimiterChars);
                             done = true;
