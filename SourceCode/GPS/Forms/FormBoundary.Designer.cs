@@ -51,9 +51,9 @@
             // 
             this.btnLeftRight.Enabled = false;
             this.btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
-            this.btnLeftRight.Location = new System.Drawing.Point(554, 187);
+            this.btnLeftRight.Location = new System.Drawing.Point(554, 193);
             this.btnLeftRight.Name = "btnLeftRight";
-            this.btnLeftRight.Size = new System.Drawing.Size(121, 109);
+            this.btnLeftRight.Size = new System.Drawing.Size(121, 84);
             this.btnLeftRight.TabIndex = 67;
             this.btnLeftRight.UseVisualStyleBackColor = true;
             this.btnLeftRight.Click += new System.EventHandler(this.btnLeftRight_Click);
@@ -62,7 +62,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnDelete.Location = new System.Drawing.Point(712, 333);
+            this.btnDelete.Location = new System.Drawing.Point(713, 326);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 109);
             this.btnDelete.TabIndex = 65;
@@ -77,7 +77,7 @@
             this.btnOuter.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
             this.btnOuter.Location = new System.Drawing.Point(554, 14);
             this.btnOuter.Name = "btnOuter";
-            this.btnOuter.Size = new System.Drawing.Size(121, 109);
+            this.btnOuter.Size = new System.Drawing.Size(110, 109);
             this.btnOuter.TabIndex = 65;
             this.btnOuter.Text = "Create";
             this.btnOuter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -91,7 +91,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSerialCancel.Location = new System.Drawing.Point(860, 333);
+            this.btnSerialCancel.Location = new System.Drawing.Point(860, 325);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 109);
@@ -109,7 +109,7 @@
             this.btnGo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnGo.Location = new System.Drawing.Point(554, 326);
+            this.btnGo.Location = new System.Drawing.Point(554, 325);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(121, 109);
@@ -136,9 +136,9 @@
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
             this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(712, 27);
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(712, 14);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
-            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(121, 84);
+            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(110, 109);
             this.btnOpenGoogleEarth.TabIndex = 69;
             this.btnOpenGoogleEarth.Text = "Google Earth";
             this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -150,21 +150,21 @@
             this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(860, 194);
+            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(860, 193);
             this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
             this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(121, 84);
             this.btnLoadMultiBoundaryFromGE.TabIndex = 99;
             this.btnLoadMultiBoundaryFromGE.Text = "Load Multi";
             this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadMultiBoundaryFromGE.UseVisualStyleBackColor = true;
-            this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadMultiBoundaryFromGE_Click);
+            this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
             // 
             // btnDeleteAll
             // 
             this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteAll.Location = new System.Drawing.Point(860, 14);
+            this.btnDeleteAll.Location = new System.Drawing.Point(860, 12);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(121, 109);
             this.btnDeleteAll.TabIndex = 100;

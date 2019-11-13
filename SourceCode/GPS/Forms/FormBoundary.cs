@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -537,268 +538,144 @@ namespace AgOpenGPS
                     UpdateChart();
                     oldY = MousePosition.Y;
                 }
-
-
-            }
-        }
-
-        private void btnLoadMultiBoundaryFromGE_Click(object sender, EventArgs e)
-        {
-            Selectedreset = true;
-
-            btnLeftRight.Enabled = false;
-            btnOuter.Enabled = false;
-            btnLoadBoundaryFromGE.Enabled = false;
-            btnGo.Enabled = false;
-            btnDelete.Enabled = false;
-
-            string fileAndDirectory;
-            {
-                //create the dialog instance
-                OpenFileDialog ofd = new OpenFileDialog
-                {
-                    //set the filter to text KML only
-                    Filter = "KML files (*.KML)|*.KML",
-
-                    //the initial directory, fields, for the open dialog
-                    InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-                };
-
-                //was a file selected
-                if (ofd.ShowDialog() == DialogResult.Cancel) return;
-                else fileAndDirectory = ofd.FileName;
-            }
-
-            //start to read the file
-            string line = "";
-            string coordinates = "";
-            int startIndex;
-            int i = 0;
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
-            {
-                ResetAllBoundary();
-
-                try
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        line = reader.ReadLine();
-
-                        startIndex = line.IndexOf("<coordinates>");
-
-                        if (startIndex != -1)
-                        {
-                            while (true)
-                            {
-                                int endIndex = line.IndexOf("</coordinates>");
-
-                                if (endIndex == -1)
-                                {
-                                    //just add the line
-                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
-                                    else coordinates = coordinates + line.Substring(startIndex + 13);
-                                }
-                                else
-                                {
-                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
-                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
-                                    break;
-                                }
-                                line = reader.ReadLine();
-                                line = line.Trim();
-                                startIndex = -1;
-                            }
-
-                            line = coordinates;
-                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                            string[] numberSets = line.Split(delimiterChars);
-
-                            //at least 3 points
-                            if (numberSets.Length > 2)
-                            {
-                                mf.bnd.bndArr.Add(new CBoundaryLines());
-                                mf.turn.turnArr.Add(new CTurnLines());
-                                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-
-                                foreach (var item in numberSets)
-                                {
-                                    string[] fix = item.Split(',');
-                                    double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                    double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                                    double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
-
-                                    //match new fix to current position
-                                    easting = xy[0] - mf.pn.utmEast;
-                                    northing = xy[1] - mf.pn.utmNorth;
-
-                                    //fix the azimuth error
-                                    easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
-                                    northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
-
-                                    //add the point to boundary
-                                    CBndPt bndPt = new CBndPt(easting, northing, 0);
-                                    mf.bnd.bndArr[i].bndLine.Add(bndPt);
-                                }
-
-                                //fix the points if there are gaps bigger then
-                                mf.bnd.bndArr[i].CalculateBoundaryHeadings();
-                                mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
-
-                                //boundary area, pre calcs etc
-                                mf.bnd.bndArr[i].CalculateBoundaryArea();
-                                mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[i].isSet = true;
-                                //mf.bnd.bndArr[i].isDriveAround = true;
-                                //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
-                                //else mf.bnd.bndArr[i].isOwnField = false;
-                                coordinates = "";
-                                i++;
-                            }
-                            else
-                            {
-                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
-                            }
-                        }
-                    }
-
-                    mf.FileSaveBoundary();
-                    UpdateChart();
-                    UpdateScroll(-1);
-                }
-                catch (Exception)
-                {
-                    return;
-                }
             }
         }
 
         private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
         {
-            Selectedreset = true;
-            btnLeftRight.Enabled = false;
-            btnOuter.Enabled = false;
-            btnLoadBoundaryFromGE.Enabled = false;
-            btnGo.Enabled = false;
-            btnDelete.Enabled = false;
 
-            string fileAndDirectory;
+            if (sender is Button button)
             {
-                //create the dialog instance
-                OpenFileDialog ofd = new OpenFileDialog
+                Selectedreset = true;
+                btnLeftRight.Enabled = false;
+                btnOuter.Enabled = false;
+                btnLoadBoundaryFromGE.Enabled = false;
+                btnGo.Enabled = false;
+                btnDelete.Enabled = false;
+
+                string fileAndDirectory;
                 {
-                    //set the filter to text KML only
-                    Filter = "KML files (*.KML)|*.KML",
-
-                    //the initial directory, fields, for the open dialog
-                    InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-                };
-
-                //was a file selected
-                if (ofd.ShowDialog() == DialogResult.Cancel) return;
-                else fileAndDirectory = ofd.FileName;
-            }
-
-            //start to read the file
-            string line = null;
-            string coordinates = null;
-            int startIndex;
-
-            using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
-            {
-                bool done = false;
-                try
-                {
-                    while (!reader.EndOfStream && !done)
+                    //create the dialog instance
+                    OpenFileDialog ofd = new OpenFileDialog
                     {
-                        line = reader.ReadLine();
+                        //set the filter to text KML only
+                        Filter = "KML files (*.KML)|*.KML",
 
-                        startIndex = line.IndexOf("<coordinates>");
+                        //the initial directory, fields, for the open dialog
+                        InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                    };
 
-                        if (startIndex != -1)
+                    //was a file selected
+                    if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                    else fileAndDirectory = ofd.FileName;
+                }
+
+                //start to read the file
+                string line = null;
+                string coordinates = null;
+                int startIndex;
+                int i = 0;
+
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
+                {
+
+                    if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
+                    else i = mf.bnd.boundarySelected;
+
+                    try
+                    {
+                        while (!reader.EndOfStream)
                         {
-                            while (true)
-                            {
-                                int endIndex = line.IndexOf("</coordinates>");
+                            line = reader.ReadLine();
 
-                                if (endIndex == -1)
+                            startIndex = line.IndexOf("<coordinates>");
+
+                            if (startIndex != -1)
+                            {
+                                while (true)
                                 {
-                                    //just add the line
-                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
-                                    else coordinates = coordinates + line.Substring(startIndex + 13);
+                                    int endIndex = line.IndexOf("</coordinates>");
+
+                                    if (endIndex == -1)
+                                    {
+                                        //just add the line
+                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                        else coordinates = coordinates + line.Substring(startIndex + 13);
+                                    }
+                                    else
+                                    {
+                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                        else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                        break;
+                                    }
+                                    line = reader.ReadLine();
+                                    line = line.Trim();
+                                    startIndex = -1;
+                                }
+
+                                line = coordinates;
+                                char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                                string[] numberSets = line.Split(delimiterChars);
+
+                                //at least 3 points
+                                if (numberSets.Length > 2)
+                                {
+                                    mf.bnd.bndArr.Add(new CBoundaryLines());
+                                    mf.turn.turnArr.Add(new CTurnLines());
+                                    mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+
+                                    foreach (var item in numberSets)
+                                    {
+                                        string[] fix = item.Split(',');
+                                        double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                        double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                        double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
+
+                                        //match new fix to current position
+                                        easting = xy[0] - mf.pn.utmEast;
+                                        northing = xy[1] - mf.pn.utmNorth;
+
+                                        //fix the azimuth error
+                                        easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
+                                        northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
+
+                                        //add the point to boundary
+                                        CBndPt bndPt = new CBndPt(easting, northing, 0);
+                                        mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                    }
+
+                                    //fix the points if there are gaps bigger then
+                                    mf.bnd.bndArr[i].CalculateBoundaryHeadings();
+                                    mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                    mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
+
+                                    //boundary area, pre calcs etc
+                                    mf.bnd.bndArr[i].CalculateBoundaryArea();
+                                    mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                    mf.bnd.bndArr[i].isSet = true;
+                                    //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
+                                    //else mf.bnd.bndArr[i].isOwnField = false;
+                                    coordinates = "";
+                                    i++;
                                 }
                                 else
                                 {
-                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
-                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                                }
+                                if (button.Name == "btnLoadBoundaryFromGE")
+                                {
                                     break;
                                 }
-                                line = reader.ReadLine();
-                                line = line.Trim();
-                                startIndex = -1;
-                            }
-
-                            line = coordinates;
-                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                            string[] numberSets = line.Split(delimiterChars);
-                            done = true;
-
-                            //at least 3 points
-                            if (numberSets.Length > 2)
-                            {
-                                mf.bnd.bndArr.Add(new CBoundaryLines());
-                                mf.turn.turnArr.Add(new CTurnLines());
-                                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-
-                                foreach (var item in numberSets)
-                                {
-                                    string[] fix = item.Split(',');
-                                    double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                    double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                                    double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
-
-                                    //match new fix to current position
-                                    easting = xy[0] - mf.pn.utmEast;
-                                    northing = xy[1] - mf.pn.utmNorth;
-
-                                    //fix the azimuth error
-                                    easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
-                                    northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
-
-                                    //add the point to boundary
-                                    CBndPt bndPt = new CBndPt(easting, northing, 0);
-                                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(bndPt);
-                                }
-
-                                //fix the points if there are gaps bigger then
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryHeadings();
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.vehicle.toolWidth);
-
-                                //boundary area, pre calcs etc
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
-                                //if (mf.bnd.boundarySelected == 0) mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = true;
-                                //else mf.bnd.bndArr[mf.bnd.boundarySelected].isOwnField = false;
-
-                                {
-                                    mf.FileSaveBoundary();
-                                }
-                            }
-                            else
-                            {
-                                mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                             }
                         }
+                        mf.FileSaveBoundary();
+                        UpdateChart();
+                        UpdateScroll(-1);
                     }
-
-                    UpdateChart();
-                    UpdateScroll(-1);
-                }
-                catch (Exception)
-                {
-                    return;
+                    catch (Exception)
+                    {
+                        return;
+                    }
                 }
             }
         }
