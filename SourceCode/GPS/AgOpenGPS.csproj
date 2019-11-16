@@ -137,6 +137,12 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Forms\FormBoundaryExt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormBoundaryExt.Designer.cs">
+      <DependentUpon>FormBoundaryExt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormEditAB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormBoundaryExt.resx">
+      <DependentUpon>FormBoundaryExt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEditAB.resx">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </EmbeddedResource>
@@ -602,6 +611,7 @@
     <None Include="btnImages\ABSwapPoints.png" />
     <None Include="btnImages\DisplayDrag.png" />
     <None Include="btnImages\ABTramLine.png" />
+    <None Include="btnImages\BoundaryDeleteAll.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

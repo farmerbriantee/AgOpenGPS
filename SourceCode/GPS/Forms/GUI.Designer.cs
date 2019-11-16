@@ -2845,7 +2845,7 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
-                using (var form = new FormBoundary(this))
+                using (var form = new FormBoundaryExt(this))
                 {
                     var result = form.ShowDialog();
                     if (result == DialogResult.OK)
