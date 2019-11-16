@@ -123,9 +123,9 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ABLineSnapEdit {
+        internal static System.Drawing.Bitmap ABSmooth {
             get {
-                object obj = ResourceManager.GetObject("ABLineSnapEdit", resourceCulture);
+                object obj = ResourceManager.GetObject("ABSmooth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,19 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ABSmooth {
+        internal static System.Drawing.Bitmap ABSwapPoints {
             get {
-                object obj = ResourceManager.GetObject("ABSmooth", resourceCulture);
+                object obj = ResourceManager.GetObject("ABSwapPoints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ABTramLine {
+            get {
+                object obj = ResourceManager.GetObject("ABTramLine", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -525,6 +535,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap Custom {
             get {
                 object obj = ResourceManager.GetObject("Custom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DisplayDrag {
+            get {
+                object obj = ResourceManager.GetObject("DisplayDrag", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

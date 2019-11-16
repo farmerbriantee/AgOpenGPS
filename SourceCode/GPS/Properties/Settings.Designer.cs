@@ -1138,5 +1138,65 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_panelTurnLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24")]
+        public double setTram_eqWidth {
+            get {
+                return ((double)(this["setTram_eqWidth"]));
+            }
+            set {
+                this["setTram_eqWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.7")]
+        public double setTram_wheelSpacing {
+            get {
+                return ((double)(this["setTram_wheelSpacing"]));
+            }
+            set {
+                this["setTram_wheelSpacing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setTram_snapAdj {
+            get {
+                return ((double)(this["setTram_snapAdj"]));
+            }
+            set {
+                this["setTram_snapAdj"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setTram_passes {
+            get {
+                return ((int)(this["setTram_passes"]));
+            }
+            set {
+                this["setTram_passes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setTram_offset {
+            get {
+                return ((double)(this["setTram_offset"]));
+            }
+            set {
+                this["setTram_offset"] = value;
+            }
+        }
     }
 }
