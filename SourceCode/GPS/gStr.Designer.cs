@@ -3321,6 +3321,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tram Lines.
+        /// </summary>
+        public static string gsTramLines {
+            get {
+                return ResourceManager.GetString("gsTramLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tree Plant Control.
         /// </summary>
         public static string gsTreePlantControl {

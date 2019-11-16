@@ -127,16 +127,6 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
             else btnAutoSteer.Text = "M";
 
-            cboxTramPassEvery.Text = Properties.Vehicle.Default.setTram_Skips.ToString();
-            ABLine.tramPassEvery = Properties.Vehicle.Default.setTram_Skips;
-            cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
-            ABLine.passBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
-
-            cboxTramPassEvery.Text = "0";
-            ABLine.tramPassEvery = 0;
-            cboxTramBasedOn.Text = "0";
-            ABLine.passBasedOn = 0;
-
             //panelSnap.Location = Settings.Default.setDisplay_panelSnapLocation;
             panelSim.Location = Settings.Default.setDisplay_panelSimLocation;
             panelTurn.Location = Settings.Default.setDisplay_panelTurnLocation;
@@ -1178,6 +1168,7 @@ namespace AgOpenGPS
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
                 btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
+                ABLine.BuildTram();
             }
             else if (curve.isCurveBtnOn && curve.numCurveLines > 0)
             {
@@ -3044,9 +3035,6 @@ namespace AgOpenGPS
 
         public string Altitude { get { return Convert.ToString(Math.Round(pn.altitude,1)); } }
         public string AltitudeFeet { get { return Convert.ToString((Math.Round((pn.altitude * 3.28084),1))); } }
-
-        public string PeriAreaAcres { get { return Math.Round(periArea.area * 0.000247105, 2).ToString(); } }
-        public string PeriAreaHectares { get { return Math.Round(periArea.area * 0.0001, 2).ToString(); } }
         public string DistPivotM
         {
             get

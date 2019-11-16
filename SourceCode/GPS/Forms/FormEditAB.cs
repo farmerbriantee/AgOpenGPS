@@ -30,7 +30,6 @@ namespace AgOpenGPS
 
             //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
             lblSmallSnapRight.Text = Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblSnapSmallLeft.Text = "-" + lblSmallSnapRight.Text;
 
             lblWidthRight.Text = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap).ToString() + "m";
             lblWidthLeft.Text = "-" + lblWidthRight.Text;
@@ -38,6 +37,10 @@ namespace AgOpenGPS
 
             snapAdj = Properties.Settings.Default.setDisplay_snapDistance * 0.01;
             nudMinTurnRadius.Value = Properties.Settings.Default.setDisplay_snapDistance;
+
+            tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
+            btnCancel.Focus();
+            mf.ABLine.isEditing = true;
         }
 
 
@@ -101,6 +104,8 @@ namespace AgOpenGPS
 
         private void bntOk_Click(object sender, EventArgs e)
         {
+            mf.ABLine.isEditing = false;
+
             //index to last one. 
             int idx = mf.ABLine.numABLineSelected - 1;
 
@@ -126,7 +131,66 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            mf.ABLine.isEditing = false;
+
             Close();
+        }
+
+        private void btnSwapAB_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.abHeading += Math.PI;
+            if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
+
+            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * 1000.0);
+            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * 1000.0);
+
+            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * 1000.0);
+            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * 1000.0);
+
+            mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
+            mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
+
+            mf.ABLine.BuildTram();
+
+            tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
+        }
+
+        private void btnBPoint_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.SetABLineByBPoint();
+            tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
+
+            //update the default
+            if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
+
+            tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
+        }
+
+        private void tboxHeading_Enter(object sender, EventArgs e)
+        {
+            tboxHeading.Text = "";
+
+            using (var form = new FormNumeric(0, 360, Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tboxHeading.Text = ((double)form.ReturnValue).ToString("N3");
+                    mf.ABLine.abHeading = glm.toRadians((double)form.ReturnValue);
+                    mf.ABLine.SetABLineByHeading();
+                }
+            }
+
+            btnCancel.Focus();
+
+        }
+
+        private void btnContourPriority_Click(object sender, EventArgs e)
+        {
+            if (mf.ABLine.isABLineSet)
+            {
+                mf.ABLine.SnapABLine();
+            }
         }
     }
 }

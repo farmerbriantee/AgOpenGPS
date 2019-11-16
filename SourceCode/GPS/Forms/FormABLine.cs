@@ -48,7 +48,7 @@ namespace AgOpenGPS
                 //AB line is on screen and set
                 upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 6);
                 nudTramRepeats.Value = mf.ABLine.tramPassEvery;
-                nudBasedOnPass.Value = mf.ABLine.passBasedOn;
+                nudBasedOnPass.Value = mf.ABLine.tramBasedOn;
                 this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
                 tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
                 this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
@@ -62,7 +62,7 @@ namespace AgOpenGPS
                 nudTramRepeats.Value = 0;
                 nudBasedOnPass.Value = 0;
                 mf.ABLine.tramPassEvery = 0;
-                mf.ABLine.passBasedOn = 0;
+                mf.ABLine.tramBasedOn = 0;
             }
 
             lvLines.Clear();
@@ -187,7 +187,7 @@ namespace AgOpenGPS
                 nudBasedOnPass.Value = 0;
 
                 mf.ABLine.tramPassEvery = 0;
-                mf.ABLine.passBasedOn = 0;
+                mf.ABLine.tramBasedOn = 0;
                 mf.ABLine.isABLineSet = false;
                 mf.ABLine.isABLineLoaded = false;
 
@@ -438,7 +438,7 @@ namespace AgOpenGPS
         private void btnTurnOffAB_Click(object sender, EventArgs e)
         {
             mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.passBasedOn = 0;
+            mf.ABLine.tramBasedOn = 0;
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.ABLine.isABLineSet = false;
@@ -500,7 +500,7 @@ namespace AgOpenGPS
 
         private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
+            mf.ABLine.tramBasedOn = (int)nudBasedOnPass.Value;
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)

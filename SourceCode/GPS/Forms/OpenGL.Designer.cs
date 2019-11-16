@@ -48,7 +48,7 @@ namespace AgOpenGPS
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
-
+        public double offX, offY;
         //oglMain rendering, Draw
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
@@ -64,7 +64,7 @@ namespace AgOpenGPS
                 //  Clear the color and depth buffer.
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();
-                camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
+                camera.SetWorldCam(pivotAxlePos.easting+offX, pivotAxlePos.northing+offY, camHeading);
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
                 //GL.Disable(EnableCap.DepthTest);
@@ -167,8 +167,8 @@ namespace AgOpenGPS
                 bnd.DrawBoundaryLines();
 
                 //draw the turnLines
-                turn.DrawTurnLines();
-                gf.DrawGeoFenceLines();
+                if (!ABLine.isEditing) turn.DrawTurnLines();
+                //gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
                 //turn.DrawTurnPointsLine();
 
@@ -209,9 +209,6 @@ namespace AgOpenGPS
                         GL.End();
                     }
                 }
-
-                //draw the perimter line, returns if no line to draw
-                if (periArea.isBtnPerimeterOn) periArea.DrawPerimeterLine();
 
                 ////Draw closest headland point if youturn on
                 //if (yt.isYouTurnBtnOn)
