@@ -40,7 +40,7 @@ namespace AgOpenGPS
 
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
             btnCancel.Focus();
-            mf.ABLine.isEditing = true;
+            //mf.ABLine.isEditing = true;
         }
 
 
@@ -132,6 +132,12 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             mf.ABLine.isEditing = false;
+            int lineNum = mf.ABLine.numABLineSelected;
+            mf.FileLoadABLines();
+            mf.ABLine.numABLineSelected = lineNum;
+            mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
+            mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
+            mf.ABLine.SetABLineByHeading();
 
             Close();
         }

@@ -1298,8 +1298,14 @@ namespace AgOpenGPS
                 Form form = new FormEditAB(this);
                 form.Show();
             }
-            else
+
+            else if (curve.numCurveLineSelected > 0 && curve.isCurveBtnOn)
             {
+
+            }
+
+            else
+                        {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
