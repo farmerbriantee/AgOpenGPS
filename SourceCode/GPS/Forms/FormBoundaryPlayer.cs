@@ -24,14 +24,14 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.BoundCreate.Count > 5)
+            if (mf.bnd.bndPts.Count > 5)
             {
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
                 mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-                for (int i = 0; i < mf.bnd.BoundCreate.Count; i++)
+                for (int i = 0; i < mf.bnd.bndPts.Count; i++)
                 {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.BoundCreate[i]);
+                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndPts[i]);
                 }
 
 
@@ -52,7 +52,7 @@ namespace AgOpenGPS
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
 
-            mf.bnd.BoundCreate.Clear();
+            mf.bnd.bndPts.Clear();
             //close window
             Close();
         }
@@ -82,7 +82,7 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int ptCount = mf.bnd.BoundCreate.Count;
+            int ptCount = mf.bnd.bndPts.Count;
             double area = 0;
 
             if (ptCount > 0)
@@ -91,7 +91,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < ptCount; j = i++)
                 {
-                    area += (mf.bnd.BoundCreate[j].easting + mf.bnd.BoundCreate[i].easting) * (mf.bnd.BoundCreate[j].northing - mf.bnd.BoundCreate[i].northing);
+                    area += (mf.bnd.bndPts[j].easting + mf.bnd.bndPts[i].easting) * (mf.bnd.bndPts[j].northing - mf.bnd.bndPts[i].northing);
                 }
                 area = Math.Abs(area / 2);
             }
