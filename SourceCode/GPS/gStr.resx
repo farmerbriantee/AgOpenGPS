@@ -1205,6 +1205,9 @@
   <data name="gsTrailingHitchLength" xml:space="preserve">
     <value>Tailing Hitch Length</value>
   </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Tram Lines</value>
+  </data>
   <data name="gsTreePlantControl" xml:space="preserve">
     <value>Tree Plant Control</value>
   </data>

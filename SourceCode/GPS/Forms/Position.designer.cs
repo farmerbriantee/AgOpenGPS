@@ -742,28 +742,6 @@ namespace AgOpenGPS
                     bnd.bndArr[bnd.boundarySelected].bndLine.Add(point);
                 }
             }
-
-
-            //build the polygon to calculate area
-            if (periArea.isBtnPerimeterOn)
-            {
-                if (isAreaOnRight)
-                {
-                    //Right side
-                    vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
-                        sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing);
-                    periArea.periPtList.Add(point);
-                }
-
-                //draw on left side
-                else
-                {
-                    //Right side
-                    vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
-                        sinSectionHeading * (section[0].positionLeft) + toolPos.northing);
-                    periArea.periPtList.Add(point);
-                }
-            }
         }
 
         //add the points for section, contour line points, Area Calc feature

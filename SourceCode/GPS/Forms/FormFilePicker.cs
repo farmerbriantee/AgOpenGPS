@@ -130,7 +130,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    catch (Exception er)
+                    catch (Exception)
                     {
                         var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                     }
@@ -142,7 +142,6 @@ namespace AgOpenGPS
 
                 fileList.Add(fieldDirectory);
                 fileList.Add(distance.ToString("00.###"));
-
             }
 
 
@@ -162,8 +161,6 @@ namespace AgOpenGPS
 
                 this.chDistance.Text = "Distance";
                 this.chDistance.Width = 150;
-
-
             }
             else
             {

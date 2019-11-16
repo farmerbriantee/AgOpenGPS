@@ -129,7 +129,6 @@
     <Compile Include="Classes\CContour.cs" />
     <Compile Include="Classes\CModuleComm.cs" />
     <Compile Include="Classes\CNMEA.cs" />
-    <Compile Include="Classes\CPerimeter.cs" />
     <Compile Include="Classes\CSection.cs" />
     <Compile Include="Classes\CPointData.cs" />
     <Compile Include="Classes\CVehicle.cs" />
@@ -143,12 +142,6 @@
     </Compile>
     <Compile Include="Forms\FormEditAB.Designer.cs">
       <DependentUpon>FormEditAB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormEditHeadingB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormEditHeadingB.Designer.cs">
-      <DependentUpon>FormEditHeadingB.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormFilePicker.cs">
       <SubType>Form</SubType>
@@ -314,6 +307,12 @@
     <Compile Include="Forms\FormTreePlant.Designer.cs">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormTram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTram.Designer.cs">
+      <DependentUpon>FormTram.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="gStr.de.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -401,9 +400,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\FormEditAB.resx">
       <DependentUpon>FormEditAB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormEditHeadingB.resx">
-      <DependentUpon>FormEditHeadingB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
@@ -500,6 +496,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTreePlant.resx">
       <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTram.resx">
+      <DependentUpon>FormTram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -600,6 +599,9 @@
     <None Include="btnImages\SnapRightWidth.png" />
     <None Include="btnImages\ABLineEditMenu.png" />
     <None Include="btnImages\ABLineSnapEdit.png" />
+    <None Include="btnImages\ABSwapPoints.png" />
+    <None Include="btnImages\DisplayDrag.png" />
+    <None Include="btnImages\ABTramLine.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -153,11 +153,6 @@ namespace AgOpenGPS
         public CModuleComm mc;
 
         /// <summary>
-        /// perimeter object for area calc
-        /// </summary>
-        public CPerimeter periArea;
-
-        /// <summary>
         /// The boundary object
         /// </summary>
         public CBoundary bnd;
@@ -335,9 +330,6 @@ namespace AgOpenGPS
 
             //module communication
             mc = new CModuleComm(this);
-
-            //perimeter list object
-            periArea = new CPerimeter();
 
             //boundary object
             bnd = new CBoundary(this);
@@ -1111,22 +1103,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ABLine.passBasedOn = cboxTramBasedOn.SelectedIndex - 5;
-            Properties.Vehicle.Default.setTram_BasedOn = ABLine.passBasedOn;
-            Properties.Vehicle.Default.Save();
-
-        }
-
-        private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboxTramPassEvery.SelectedIndex > 0)
-                ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex + 1;
-            else ABLine.tramPassEvery = 0;
-            Properties.Vehicle.Default.setTram_Skips = cboxTramPassEvery.SelectedIndex;
-            Properties.Vehicle.Default.Save();
-        }
 
         private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
         {
@@ -1320,32 +1296,88 @@ namespace AgOpenGPS
             {
 
                 Form form = new FormEditAB(this);
-                    form.Show();
+                form.Show();
             }
             else
             {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                form.Show();
                 return;
             }
         }
 
-        private void btnEditHeadingB_Click(object sender, EventArgs e)
+        private void btnTramMenu_Click(object sender, EventArgs e)
         {
+
+            curve.isOkToAddPoints = false;
             panelEditAB.Visible = false;
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
 
-                Form form = new FormEditHeadingB(this);
-                form.Show();
+                Form form99 = new FormTram(this);
+                form99.Show();
             }
             else
             {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                form.Show();
+                //form.Show();
+                layoutPanelRight.Enabled = true;
+                ABLine.isEditing = false;
                 return;
             }
 
+
+            //if (curve.isCurveBtnOn) btnCycleLines.Text = "Cu-" + curve.numCurveLineSelected;
+            //if (ABLine.isBtnABLineOn) btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
+        }
+
+        private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            offX += (Math.Sin(fixHeading) * 10);
+            offY += (Math.Cos(fixHeading) * 10);
+        }
+
+        private void btnMoveUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            offX -= (Math.Sin(fixHeading) * 10);
+            offY -= (Math.Cos(fixHeading) * 10);
+        }
+
+        private void btnMoveLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            offY += (Math.Sin(-fixHeading) * 10);
+            offX += (Math.Cos(-fixHeading) * 10);
+        }
+
+        private void btnMoveRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            offY -= (Math.Sin(-fixHeading) * 10);
+            offX -= (Math.Cos(-fixHeading) * 10);
+        }
+
+        private void btnMoveHome_Click(object sender, EventArgs e)
+        {
+            offX = 0;
+            offY = 0;
+        }
+
+        private void toolStripBtnDrag_ButtonClick(object sender, EventArgs e)
+        {
+            if (panelDrag.Visible)
+            {
+                offX = 0;
+                offY = 0;
+                panelDrag.Visible = false;
+            }
+            else
+            {
+                panelDrag.Top = 282;
+                panelDrag.Left = 80;
+                panelDrag.Visible = true;
+            }
         }
 
         public void GetAB()
@@ -1924,8 +1956,9 @@ namespace AgOpenGPS
             mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
         }
 
+
         //take the distance from object and convert to camera data
-        private void SetZoom()
+        public void SetZoom()
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
