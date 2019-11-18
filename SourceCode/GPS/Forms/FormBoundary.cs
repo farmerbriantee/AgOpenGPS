@@ -14,6 +14,9 @@ namespace AgOpenGPS
         private bool Selectedreset = true;
         private int position = 0;
 
+        private double easting, northing, latK, lonK;
+
+
         public FormBoundary(Form callingForm)
         {
             mf = callingForm as FormGPS;
@@ -34,6 +37,13 @@ namespace AgOpenGPS
             //btnSerialCancel.Text = gStr.gsSaveAndReturn;
             //btnDeleteAll.Text = gStr.gsDeleteAll;
             btnGo.Text = gStr.gsGo;
+
+            btnLoadBoundaryFromGE.Visible = false;
+            btnLoadMultiBoundaryFromGE.Visible = false;
+            btnGo.Visible = true;
+            btnLeftRight.Visible = true;
+            btnLoadMultiBoundaryFromGE.Enabled = true;
+            btnLoadBoundaryFromGE.Enabled = false;
         }
 
         private void UpdateChart()
@@ -155,7 +165,8 @@ namespace AgOpenGPS
                             dd.Anchor = System.Windows.Forms.AnchorStyles.None;
                             ee.Text = mf.bnd.bndArr[i].isDriveAround ? "Yes" : "No";
                             ee.Anchor = System.Windows.Forms.AnchorStyles.None;
-
+                            dd.BackColor = Color.Azure;
+                            ee.BackColor = Color.Azure;
                         }
 
                         if (mf.isMetric)
@@ -269,6 +280,8 @@ namespace AgOpenGPS
                     btnGo.Enabled = false;
                     btnDelete.Enabled = true;
                     btnLeftRight.Enabled = false;
+                    btnLoadBoundaryFromGE.Enabled = false;
+                    btnLoadMultiBoundaryFromGE.Enabled = false;
                 }
                 else
                 {
@@ -276,6 +289,8 @@ namespace AgOpenGPS
                     btnDelete.Enabled = false;
                     btnLeftRight.Enabled = true;
                     btnDeleteAll.Enabled = false;
+                    btnLoadBoundaryFromGE.Enabled = true;
+                    btnLoadMultiBoundaryFromGE.Enabled = false;
                 }
             }
             UpdateChart();
@@ -311,6 +326,11 @@ namespace AgOpenGPS
             mf.FileSaveBoundary();
             mf.bnd.boundarySelected = -1;
             Selectedreset = true;
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+            mf.turn.BuildTurnLines();
+            mf.gf.BuildGeoFenceLines();
+            mf.mazeGrid.BuildMazeGridArray();
+
             UpdateChart();
         }
 
@@ -344,6 +364,161 @@ namespace AgOpenGPS
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
             mf.mazeGrid.BuildMazeGridArray();
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+
+        }
+
+        private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                Selectedreset = true;
+                btnLoadBoundaryFromGE.Enabled = false;
+                btnDelete.Enabled = false;
+
+                string fileAndDirectory;
+                {
+                    //create the dialog instance
+                    OpenFileDialog ofd = new OpenFileDialog
+                    {
+                        //set the filter to text KML only
+                        Filter = "KML files (*.KML)|*.KML",
+
+                        //the initial directory, fields, for the open dialog
+                        InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                    };
+
+                    //was a file selected
+                    if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                    else fileAndDirectory = ofd.FileName;
+                }
+
+                //start to read the file
+                string line = null;
+                string coordinates = null;
+                int startIndex;
+                int i = 0;
+
+                using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
+                {
+
+                    if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
+                    else i = mf.bnd.boundarySelected;
+
+                    try
+                    {
+                        while (!reader.EndOfStream)
+                        {
+                            line = reader.ReadLine();
+
+                            startIndex = line.IndexOf("<coordinates>");
+
+                            if (startIndex != -1)
+                            {
+                                while (true)
+                                {
+                                    int endIndex = line.IndexOf("</coordinates>");
+
+                                    if (endIndex == -1)
+                                    {
+                                        //just add the line
+                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                        else coordinates = coordinates + line.Substring(startIndex + 13);
+                                    }
+                                    else
+                                    {
+                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                        else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                        break;
+                                    }
+                                    line = reader.ReadLine();
+                                    line = line.Trim();
+                                    startIndex = -1;
+                                }
+
+                                line = coordinates;
+                                char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                                string[] numberSets = line.Split(delimiterChars);
+
+                                //at least 3 points
+                                if (numberSets.Length > 2)
+                                {
+                                    mf.bnd.bndArr.Add(new CBoundaryLines());
+                                    mf.turn.turnArr.Add(new CTurnLines());
+                                    mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+
+                                    foreach (var item in numberSets)
+                                    {
+                                        string[] fix = item.Split(',');
+                                        double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                        double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+                                        double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
+
+                                        //match new fix to current position
+                                        easting = xy[0] - mf.pn.utmEast;
+                                        northing = xy[1] - mf.pn.utmNorth;
+
+                                        //fix the azimuth error
+                                        easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
+                                        northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
+
+                                        //add the point to boundary
+                                        CBndPt bndPt = new CBndPt(easting, northing, 0);
+                                        mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                    }
+
+                                    //fix the points if there are gaps bigger then
+                                    mf.bnd.bndArr[i].CalculateBoundaryHeadings();
+                                    mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                    mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
+
+                                    //boundary area, pre calcs etc
+                                    mf.bnd.bndArr[i].CalculateBoundaryArea();
+                                    mf.bnd.bndArr[i].PreCalcBoundaryLines();
+                                    mf.bnd.bndArr[i].isSet = true;
+                                    //if (i == 0) mf.bnd.bndArr[i].isOwnField = true;
+                                    //else mf.bnd.bndArr[i].isOwnField = false;
+                                    coordinates = "";
+                                    i++;
+                                }
+                                else
+                                {
+                                    mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
+                                }
+                                if (button.Name == "btnLoadBoundaryFromGE")
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        mf.FileSaveBoundary();
+                        mf.fd.UpdateFieldBoundaryGUIAreas();
+                        UpdateChart();
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void btnDriveOrExt_Click(object sender, EventArgs e)
+        {
+            if (btnLoadBoundaryFromGE.Visible == true)
+            {
+                btnLoadBoundaryFromGE.Visible = false;
+                btnLoadMultiBoundaryFromGE.Visible = false;
+                btnGo.Visible = true;
+                btnLeftRight.Visible = true;
+            }
+            else
+            {
+                btnLoadBoundaryFromGE.Visible = true;
+                btnLoadMultiBoundaryFromGE.Visible = true;
+                btnGo.Visible = false;
+                btnLeftRight.Visible = false;
+            }
         }
     }
 }

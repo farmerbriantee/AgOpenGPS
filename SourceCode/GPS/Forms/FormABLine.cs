@@ -444,6 +444,7 @@ namespace AgOpenGPS
             mf.ABLine.isABLineSet = false;
             mf.ABLine.isABLineLoaded = false;
             mf.ABLine.numABLineSelected = 0;
+            mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
             Close();

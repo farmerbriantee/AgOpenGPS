@@ -156,7 +156,7 @@ namespace AgOpenGPS
                 else// draw the current and reference AB Lines or CurveAB Ref and line
                 {
                     if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                    if (curve.isCurveBtnOn) curve.DrawCurve();
+                    if (curve.isBtnCurveOn) curve.DrawCurve();
                 }
 
                 //if (recPath.isRecordOn)
@@ -418,7 +418,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    else if (curve.isCurveBtnOn)
+                    else if (curve.isBtnCurveOn)
                     {
                         string dist;
                         lblDistanceOffLine.Visible = true;
@@ -1012,7 +1012,7 @@ namespace AgOpenGPS
             }
 
             //draw curve if there is one
-            if (curve.isCurveSet && curve.isCurveBtnOn)
+            if (curve.isCurveSet && curve.isBtnCurveOn)
             {
                 int ptC = curve.curList.Count;
                 if (ptC > 0)

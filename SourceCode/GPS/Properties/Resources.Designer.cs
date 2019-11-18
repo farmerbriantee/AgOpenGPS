@@ -312,9 +312,39 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BoundaryDriveOrLoad {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryDriveOrLoad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BoundaryLeft {
             get {
                 object obj = ResourceManager.GetObject("BoundaryLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BoundaryLoadFromGE {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryLoadFromGE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap BoundaryLoadMultiFromGE {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryLoadMultiFromGE", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

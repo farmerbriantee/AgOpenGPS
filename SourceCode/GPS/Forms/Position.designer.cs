@@ -779,7 +779,7 @@ namespace AgOpenGPS
                 }
             }
             if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-                        (!ct.isContourBtnOn && curve.isCurveBtnOn && curve.isCurveSet && isAutoSteerBtnOn))
+                        (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
             {
                 //no contour recorded
                 if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); }

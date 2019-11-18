@@ -657,7 +657,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (mf.curve.isCurveBtnOn)
+            if (mf.curve.isBtnCurveOn)
             {
                 if (mf.curve.numCurveLineSelected == 0)
                 {
@@ -665,7 +665,7 @@ namespace AgOpenGPS
                     if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
                     mf.curve.isCurveSet = false;
                     mf.curve.refList?.Clear();
-                    mf.curve.isCurveBtnOn = false;
+                    mf.curve.isBtnCurveOn = false;
                     mf.btnCurve.Image = Properties.Resources.CurveOff;
                 }
             }

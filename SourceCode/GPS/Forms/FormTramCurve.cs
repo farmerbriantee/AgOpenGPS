@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormTram : Form
+    public partial class FormTramCurve : Form
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         private double snapAdj = 0;
 
-        public FormTram(Form callingForm)
+        public FormTramCurve(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
