@@ -54,11 +54,142 @@ namespace AgOpenGPS
         public List<CCurveLines> curveArr = new List<CCurveLines>();
         public int numCurveLines, numCurveLineSelected;
 
+        public bool isEditing;
+        public List<vec2> tramArr = new List<vec2>();
 
         public CABCurve(FormGPS _f)
         {
             //constructor
             mf = _f;
+        }
+
+        public void DrawCurve()
+        {
+            if (!isEditing)
+            {
+                int ptCount = refList.Count;
+                if (refList.Count == 0) return;
+
+                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.Color3(0.30f, 0.692f, 0.60f);
+                GL.Begin(PrimitiveType.LineStrip);
+                for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
+                GL.Color3(0.930f, 0.0692f, 0.260f);
+                if (!mf.curve.isCurveSet)
+                {
+                    ptCount--;
+                    GL.Vertex3(refList[ptCount].easting, refList[ptCount].northing, 0);
+#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
+#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                }
+                GL.End();
+
+                //just draw ref and smoothed line if smoothing window is open
+                if (isSmoothWindowOpen)
+                {
+                    ptCount = smooList.Count;
+                    if (smooList.Count == 0) return;
+
+                    GL.LineWidth(mf.ABLine.lineWidth);
+                    GL.Color3(0.930f, 0.92f, 0.260f);
+                    GL.Begin(PrimitiveType.Lines);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
+                    GL.End();
+
+                    //GL.Color3(0.64f, 0.64f, 0.750f);
+                    //GL.Begin(PrimitiveType.Lines);
+                    //GL.Vertex3(boxA.easting, boxA.northing, 0);
+                    //GL.Vertex3(boxB.easting, boxB.northing, 0);
+                    //GL.Vertex3(boxC.easting, boxC.northing, 0);
+                    //GL.Vertex3(boxD.easting, boxD.northing, 0);
+                    //GL.End();
+                }
+                else //normal. Smoothing window is not open.
+                {
+                    ptCount = curList.Count;
+                    if (ptCount > 0 && isCurveSet)
+                    {
+                        GL.PointSize(2);
+
+                        GL.Color3(0.95f, 0.2f, 0.0f);
+                        GL.Begin(PrimitiveType.LineStrip);
+                        for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                        GL.End();
+
+                        if (mf.isPureDisplayOn && !mf.isStanleyUsed)
+                        {
+                            if (ppRadiusCu < 100 && ppRadiusCu > -100)
+                            {
+                                const int numSegments = 100;
+                                double theta = glm.twoPI / numSegments;
+                                double c = Math.Cos(theta);//precalculate the sine and cosine
+                                double s = Math.Sin(theta);
+                                double x = ppRadiusCu;//we start at angle = 0
+                                double y = 0;
+
+                                GL.LineWidth(1);
+                                GL.Color3(0.95f, 0.30f, 0.950f);
+                                GL.Begin(PrimitiveType.LineLoop);
+                                for (int ii = 0; ii < numSegments; ii++)
+                                {
+                                    //glVertex2f(x + cx, y + cy);//output vertex
+                                    GL.Vertex3(x + radiusPointCu.easting, y + radiusPointCu.northing, 0);//output vertex
+                                    double t = x;//apply the rotation matrix
+                                    x = (c * x) - (s * y);
+                                    y = (s * t) + (c * y);
+                                }
+                                GL.End();
+                            }
+
+                            //Draw lookahead Point
+                            GL.PointSize(4.0f);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Color3(1.0f, 0.5f, 0.95f);
+                            GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
+                            GL.End();
+                        }
+
+                        mf.yt.DrawYouTurn();
+
+                        if (mf.yt.isYouTurnTriggered)
+                        {
+                            GL.Color3(0.95f, 0.95f, 0.25f);
+                            GL.LineWidth(mf.ABLine.lineWidth);
+                            ptCount = mf.yt.ytList.Count;
+                            if (ptCount > 0)
+                            {
+                                GL.Begin(PrimitiveType.Points);
+                                for (int i = 0; i < ptCount; i++)
+                                {
+                                    GL.Vertex3(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
+                                }
+                                GL.End();
+                            }
+                            GL.Color3(0.95f, 0.05f, 0.05f);
+                        }
+                    }
+                }
+                GL.PointSize(1.0f);
+            }
+
+            if (isEditing)
+            {
+
+            }
+
+            if (tramArr.Count > 0) DrawTram();
+
+        }
+
+        public void DrawTram()
+        {
+
+        }
+
+        public void BuildTram()
+        {
+
         }
 
         //for calculating for display the averaged new line
@@ -728,113 +859,6 @@ namespace AgOpenGPS
         }
 
         ////draw the guidance line
-        public void DrawCurve()
-        {
-            int ptCount = refList.Count;
-            if (refList.Count == 0) return;
-
-            GL.LineWidth(mf.ABLine.lineWidth);
-            GL.Color3(0.30f, 0.692f, 0.60f);
-            GL.Begin(PrimitiveType.LineStrip);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
-            GL.Color3(0.930f, 0.0692f, 0.260f);
-            if (!mf.curve.isCurveSet)
-            {
-                ptCount--;
-                GL.Vertex3(refList[ptCount].easting, refList[ptCount].northing, 0);
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            }
-            GL.End();
-
-            //just draw ref and smoothed line if smoothing window is open
-            if (isSmoothWindowOpen)
-            {
-                ptCount = smooList.Count;
-                if (smooList.Count == 0) return;
-
-                GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.930f, 0.92f, 0.260f);
-                GL.Begin(PrimitiveType.Lines);
-                for (int h = 0; h < ptCount; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
-                GL.End();
-
-                //GL.Color3(0.64f, 0.64f, 0.750f);
-                //GL.Begin(PrimitiveType.Lines);
-                //GL.Vertex3(boxA.easting, boxA.northing, 0);
-                //GL.Vertex3(boxB.easting, boxB.northing, 0);
-                //GL.Vertex3(boxC.easting, boxC.northing, 0);
-                //GL.Vertex3(boxD.easting, boxD.northing, 0);
-                //GL.End();
-            }
-            else //normal. Smoothing window is not open.
-            {
-                ptCount = curList.Count;
-                if (ptCount > 0 && isCurveSet)
-                {
-                    GL.PointSize(2);
-
-                    GL.Color3(0.95f, 0.2f, 0.0f);
-                    GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
-                    GL.End();
-
-                    if (mf.isPureDisplayOn && !mf.isStanleyUsed)
-                    {
-                        if (ppRadiusCu < 100 && ppRadiusCu > -100)
-                        {
-                            const int numSegments = 100;
-                            double theta = glm.twoPI / numSegments;
-                            double c = Math.Cos(theta);//precalculate the sine and cosine
-                            double s = Math.Sin(theta);
-                            double x = ppRadiusCu;//we start at angle = 0
-                            double y = 0;
-
-                            GL.LineWidth(1);
-                            GL.Color3(0.95f, 0.30f, 0.950f);
-                            GL.Begin(PrimitiveType.LineLoop);
-                            for (int ii = 0; ii < numSegments; ii++)
-                            {
-                                //glVertex2f(x + cx, y + cy);//output vertex
-                                GL.Vertex3(x + radiusPointCu.easting, y + radiusPointCu.northing, 0);//output vertex
-                                double t = x;//apply the rotation matrix
-                                x = (c * x) - (s * y);
-                                y = (s * t) + (c * y);
-                            }
-                            GL.End();
-                        }
-
-                        //Draw lookahead Point
-                        GL.PointSize(4.0f);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(1.0f, 0.5f, 0.95f);
-                        GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
-                        GL.End();
-                    }
-
-                    mf.yt.DrawYouTurn();
-
-                    if (mf.yt.isYouTurnTriggered)
-                    {
-                        GL.Color3(0.95f, 0.95f, 0.25f);
-                        GL.LineWidth(mf.ABLine.lineWidth);
-                        ptCount = mf.yt.ytList.Count;
-                        if (ptCount > 0)
-                        {
-                            GL.Begin(PrimitiveType.Points);
-                            for (int i = 0; i < ptCount; i++)
-                            {
-                                GL.Vertex3(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
-                            }
-                            GL.End();
-                        }
-                        GL.Color3(0.95f, 0.05f, 0.05f);
-                    }
-                }
-            }
-            GL.PointSize(1.0f);
-        }
     }
 
     public class CCurveLines

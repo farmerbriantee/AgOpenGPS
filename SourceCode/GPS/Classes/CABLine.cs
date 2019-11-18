@@ -237,7 +237,7 @@ namespace AgOpenGPS
                 GL.LineStipple(1, 0x0707);
                 GL.Begin(PrimitiveType.Lines);
 
-                for (int i = 1; i <= 18; i++)
+                for (int i = 1; i <= 6; i++)
                 {
                     GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
                     GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
