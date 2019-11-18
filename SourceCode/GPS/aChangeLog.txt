@@ -1,7 +1,12 @@
 ﻿v3.0 November
 * Stepped back to pre multi field and added new GUI.
 * Snap shows distance in AB Save, can save
-
+* TramLines for AB
+* NewGUI
+* Boundaries are lists of classes
+* Panels for snaps
+* Move main screen and zooom to wherever
+* 
 
 v 3.0.0
 * Removed all executables from Source

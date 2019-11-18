@@ -236,7 +236,6 @@ namespace AgOpenGPS
             //ControlExtension.Draggable(panelSnap, true);
             //ControlExtension.Draggable(panelNTRIP, true);
             ControlExtension.Draggable(panelSim, true);
-            ControlExtension.Draggable(panelTurn, true);
 
 
 
@@ -631,7 +630,6 @@ namespace AgOpenGPS
 
             //Settings.Default.setDisplay_panelSnapLocation = panelSnap.Location;
             Settings.Default.setDisplay_panelSimLocation = panelSim.Location;
-            Settings.Default.setDisplay_panelTurnLocation = panelTurn.Location;
 
 
             Settings.Default.Save();
@@ -963,7 +961,7 @@ namespace AgOpenGPS
 
         private void SmoothABtoolStripMenu_Click(object sender, EventArgs e)
         {
-            if (isJobStarted && curve.isCurveBtnOn)
+            if (isJobStarted && curve.isBtnCurveOn)
             {
                 using (var form = new FormSmoothAB(this))
                 {
@@ -1095,12 +1093,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             SwapBatmanPanels();
 
-            if (panelBatman.Visible)
-            {
-                if (panelTurn.Left < 260) panelTurn.Left = 260;
-                if (panelSim.Left < 260) panelSim.Left = 260;
-                //if (panelSnap.Left < 260) panelSnap.Left = 260;
-            }
+            //if (panelBatman.Visible)
+            //{
+            //    //if (panelSim.Left < 260) panelSim.Left = 260;
+            //    //if (panelSnap.Left < 260) panelSnap.Left = 260;
+            //}
         }
 
 
@@ -1141,7 +1138,7 @@ namespace AgOpenGPS
                 ABLine.moveDistance = 0;
             }
 
-            if (curve.isCurveBtnOn)
+            if (curve.isBtnCurveOn)
             {
                 if (curve.refList.Count > 0)
                 {
@@ -1276,7 +1273,7 @@ namespace AgOpenGPS
 
         private void btnABMenu_Click(object sender, EventArgs e)
         {
-            if (ABLine.isBtnABLineOn || curve.isCurveBtnOn)
+            if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
             {
                 if (panelEditAB.Visible)
                     panelEditAB.Visible = false;
@@ -1298,8 +1295,14 @@ namespace AgOpenGPS
                 Form form = new FormEditAB(this);
                 form.Show();
             }
-            else
+
+            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
+
+            }
+
+            else
+                        {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
@@ -1319,6 +1322,12 @@ namespace AgOpenGPS
 
                 Form form99 = new FormTram(this);
                 form99.Show();
+            }
+            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+            {
+
+                //Form form97 = new FormTramCurve(this);
+                //form97.Show();
             }
             else
             {
@@ -1380,6 +1389,7 @@ namespace AgOpenGPS
             }
         }
 
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
@@ -1397,7 +1407,7 @@ namespace AgOpenGPS
                 curve.moveDistance = 0;
             }
 
-            if (curve.isCurveBtnOn) btnCycleLines.Text = "Cu-" + curve.numCurveLineSelected;
+            if (curve.isBtnCurveOn) btnCycleLines.Text = "Cu-" + curve.numCurveLineSelected;
             if (ABLine.isBtnABLineOn) btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
         }
 
@@ -1676,7 +1686,7 @@ namespace AgOpenGPS
             //curve line
             btnCurve.Enabled = false;
             btnCurve.Image = Properties.Resources.CurveOff;
-            curve.isCurveBtnOn = false;
+            curve.isBtnCurveOn = false;
             curve.isCurveSet = false;
             curve.ResetCurveLine();
 

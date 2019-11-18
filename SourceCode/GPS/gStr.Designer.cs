@@ -709,6 +709,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create New Boundary.
+        /// </summary>
+        public static string gsCreateNewBoundary {
+            get {
+                return ResourceManager.GetString("gsCreateNewBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New Field.
         /// </summary>
         public static string gsCreateNewField {

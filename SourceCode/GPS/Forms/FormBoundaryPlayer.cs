@@ -13,6 +13,7 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
 
+
             InitializeComponent();
 
             btnStop.Text = gStr.gsDone;
@@ -23,23 +24,26 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Count > 5)
+            if (mf.bnd.bndPts.Count > 5)
             {
+                mf.bnd.bndArr.Add(new CBoundaryLines());
+                mf.turn.turnArr.Add(new CTurnLines());
+                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+                for (int i = 0; i < mf.bnd.bndPts.Count; i++)
+                {
+                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndPts[i]);
+                }
+
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.vehicle.toolWidth);
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
-            }
-            else
-            {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].calcList.Clear();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Clear();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].area = 0;
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = false;
+                mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
+                mf.fd.UpdateFieldBoundaryGUIAreas();
             }
 
             //stop it all for adding
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
 
             //turn lines made from boundaries
             mf.CalculateMinMax();
@@ -49,6 +53,7 @@ namespace AgOpenGPS
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
 
+            mf.bnd.bndPts.Clear();
             //close window
             Close();
         }
@@ -56,15 +61,15 @@ namespace AgOpenGPS
         //actually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints)
+            if (mf.bnd.isOkToAddPoints)
             {
-                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+                mf.bnd.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = gStr.gsRecord;
             }
             else
             {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = true;
+                mf.bnd.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = gStr.gsPause;
             }
@@ -72,23 +77,32 @@ namespace AgOpenGPS
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bnd.bndArr[i].isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            {
-                mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
+            int ptCount = mf.bnd.bndPts.Count;
+            double area = 0;
 
-                if (mf.isMetric)
+            if (ptCount > 0)
+            {
+                int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
+
+                for (int i = 0; i < ptCount; j = i++)
                 {
-                    lblArea.Text = Math.Round(mf.bnd.bndArr[mf.bnd.boundarySelected].area * 0.0001, 2) + " Ha";
+                    area += (mf.bnd.bndPts[j].easting + mf.bnd.bndPts[i].easting) * (mf.bnd.bndPts[j].northing - mf.bnd.bndPts[i].northing);
                 }
-                else
-                {
-                    lblArea.Text = Math.Round(mf.bnd.bndArr[mf.bnd.boundarySelected].area * 0.000247105, 2) + " Acre";
-                }
+                area = Math.Abs(area / 2);
+            }
+            if (mf.isMetric)
+            {
+                lblArea.Text = Math.Round(area * 0.0001, 2) + " Ha";
+            }
+            else
+            {
+                lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
             }
         }
     }

@@ -156,7 +156,7 @@ namespace AgOpenGPS
                 else// draw the current and reference AB Lines or CurveAB Ref and line
                 {
                     if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                    if (curve.isCurveBtnOn) curve.DrawCurve();
+                    if (curve.isBtnCurveOn) curve.DrawCurve();
                 }
 
                 //if (recPath.isRecordOn)
@@ -418,7 +418,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    else if (curve.isCurveBtnOn)
+                    else if (curve.isBtnCurveOn)
                     {
                         string dist;
                         lblDistanceOffLine.Visible = true;
@@ -585,7 +585,7 @@ namespace AgOpenGPS
             }
 
             //draw bright green on back buffer
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 ////draw the perimeter line so far
                 int ptCount = bnd.bndArr[0].bndLine.Count;
@@ -700,7 +700,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (bnd.bndArr[0].isSet)
+                        if (bnd.bndArr.Count > 0)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -1012,7 +1012,7 @@ namespace AgOpenGPS
             }
 
             //draw curve if there is one
-            if (curve.isCurveSet && curve.isCurveBtnOn)
+            if (curve.isCurveSet && curve.isBtnCurveOn)
             {
                 int ptC = curve.curList.Count;
                 if (ptC > 0)
@@ -1232,7 +1232,7 @@ namespace AgOpenGPS
 
             //min max of the boundary
             //min max of the boundary
-            if (bnd.bndArr[0].isSet)
+            if (bnd.bndArr.Count > 0)
             {
                 int bndCnt = bnd.bndArr[0].bndLine.Count;
                 for (int i = 0; i < bndCnt; i++)

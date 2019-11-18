@@ -309,7 +309,7 @@ namespace AgOpenGPS
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
             //mf.curve.ResetCurveLine();
-            mf.curve.isCurveBtnOn = false;
+            mf.curve.isBtnCurveOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();

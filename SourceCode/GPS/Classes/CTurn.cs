@@ -14,7 +14,7 @@ namespace AgOpenGPS
         /// <summary>
         /// array of turns
         /// </summary>
-        public CTurnLines[] turnArr;
+        public List<CTurnLines> turnArr = new List<CTurnLines>();
 
         //constructor
         public CTurn(FormGPS _f)
@@ -23,10 +23,6 @@ namespace AgOpenGPS
             turnSelected = 0;
             //scanWidth = 1.5;
             boxLength = 2000;
-
-            //Turns array
-            turnArr = new CTurnLines[FormGPS.MAXBOUNDARIES];
-            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) turnArr[j] = new CTurnLines();
         }
 
         // the list of possible bounds points
@@ -44,8 +40,7 @@ namespace AgOpenGPS
 
         public void ResetTurnLines()
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
-                turnArr[i].ResetTurn();
+            turnArr.Clear();
         }
 
         public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
@@ -67,7 +62,7 @@ namespace AgOpenGPS
 
                 if (turnArr[0].IsPointInTurnWorkArea(pt))
                 {
-                    for (int t = 1; t < FormGPS.MAXBOUNDARIES; t++)
+                    for (int t = 1; t < mf.bnd.bndArr.Count; t++)
                     {
                         if (!mf.bnd.bndArr[t].isSet) continue;
                         if (mf.bnd.bndArr[t].isDriveThru) continue;
@@ -81,16 +76,15 @@ namespace AgOpenGPS
                             break;
                         }
                     }
+                    if (isFound) break;
                 }
                 else
                 {
-                    isFound = true;
                     closestTurnNum = 0;
                     rayPt.easting = pt.easting;
                     rayPt.northing = pt.northing;
                     break;
                 }
-                if (isFound) break;
             }
 
             //second scan is straight ahead of outside of tool based on turn direction
@@ -241,7 +235,7 @@ namespace AgOpenGPS
             //if inside outer boundary, then potentially add
             if (turnArr[0].IsPointInTurnWorkArea(pt))
             {
-                for (int b = 1; b < FormGPS.MAXBOUNDARIES; b++)
+                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
                 {
                     if (mf.bnd.bndArr[b].isSet)
                     {
@@ -265,7 +259,7 @@ namespace AgOpenGPS
             //update the GUI values for boundaries
             mf.fd.UpdateFieldBoundaryGUIAreas();
 
-            if (!mf.bnd.bndArr[0].isSet)
+            if (mf.bnd.bndArr.Count == 0)
             {
                 mf.TimedMessageBox(1500, " Error", "No Boundaries Made");
                 return;
@@ -299,7 +293,7 @@ namespace AgOpenGPS
             turnArr[0].PreCalcTurnLines();
 
             //inside boundaries
-            for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
+            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
             {
                 turnArr[j].turnLine.Clear();
                 if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru || mf.bnd.bndArr[j].isDriveAround) continue;
@@ -334,7 +328,7 @@ namespace AgOpenGPS
             GL.Color3(0.3555f, 0.6232f, 0.20f);
             //GL.PointSize(2);
 
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
                 if (!mf.bnd.bndArr[i].isSet && mf.bnd.bndArr[i].isDriveAround) continue;
                 //turnArr[i].DrawTurnLine();

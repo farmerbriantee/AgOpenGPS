@@ -10,7 +10,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isCurveBtnOn, isOkToAddPoints, isCurveSet;
+        public bool isBtnCurveOn, isOkToAddPoints, isCurveSet;
 
         private int closestRefIndex = 0;
         public double distanceFromCurrentLine;

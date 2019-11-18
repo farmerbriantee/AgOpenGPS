@@ -59,7 +59,7 @@ namespace AgOpenGPS
                 if (isOrderByName)
                 {
                     this.chName.Text = "Field Name";
-                    this.chName.Width = 750;
+                    this.chName.Width = 805;
 
                     this.chDistance.Text = "Distance";
                     this.chDistance.Width = 150;
@@ -70,7 +70,7 @@ namespace AgOpenGPS
                     this.chName.Width = 150;
 
                     this.chDistance.Text = "Field Name";
-                    this.chDistance.Width = 750;
+                    this.chDistance.Width = 805;
                 }
             }
         }
@@ -142,6 +142,13 @@ namespace AgOpenGPS
 
                 fileList.Add(fieldDirectory);
                 fileList.Add(distance.ToString("00.###"));
+
+                //this.chName.Text = "Field Name";
+                //this.chName.Width = 820;
+
+                //this.chDistance.Text = "Distance";
+                //this.chDistance.Width = 150;
+
             }
 
 
@@ -157,7 +164,7 @@ namespace AgOpenGPS
             if (lvLines.Items.Count > 0)
             {
                 this.chName.Text = "Field Name";
-                this.chName.Width = 750;
+                this.chName.Width = 805;
 
                 this.chDistance.Text = "Distance";
                 this.chDistance.Width = 150;

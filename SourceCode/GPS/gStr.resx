@@ -333,6 +333,9 @@
   <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
     <value>Create a Boundary and an ABLine or Curve First</value>
   </data>
+  <data name="gsCreateNewBoundary" xml:space="preserve">
+    <value>Create New Boundary</value>
+  </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Create New Field</value>
   </data>

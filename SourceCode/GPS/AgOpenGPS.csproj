@@ -263,6 +263,12 @@
     <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormTramCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTramCurve.Designer.cs">
+      <DependentUpon>FormTramCurve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -479,6 +485,9 @@
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTramCurve.resx">
+      <DependentUpon>FormTramCurve.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </EmbeddedResource>
@@ -602,6 +611,10 @@
     <None Include="btnImages\ABSwapPoints.png" />
     <None Include="btnImages\DisplayDrag.png" />
     <None Include="btnImages\ABTramLine.png" />
+    <None Include="btnImages\BoundaryDeleteAll.png" />
+    <None Include="btnImages\BoundaryDriveOrLoad.png" />
+    <None Include="btnImages\BoundaryLoadMultiFromGE.png" />
+    <None Include="btnImages\BoundaryLoadFromGE.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

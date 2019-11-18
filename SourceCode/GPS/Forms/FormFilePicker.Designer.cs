@@ -46,7 +46,7 @@
             this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chName,
             this.chDistance});
-            this.lvLines.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvLines.FullRowSelect = true;
             this.lvLines.GridLines = true;
             this.lvLines.HideSelection = false;
@@ -63,12 +63,12 @@
             // chName
             // 
             this.chName.Text = "Field Name";
-            this.chName.Width = 753;
+            this.chName.Width = 830;
             // 
             // chDistance
             // 
             this.chDistance.Text = "Distance";
-            this.chDistance.Width = 150;
+            this.chDistance.Width = 216;
             // 
             // btnByDistance
             // 
@@ -122,6 +122,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(992, 577);
+            this.ControlBox = false;
             this.Controls.Add(this.btnByDistance);
             this.Controls.Add(this.btnOpenExistingLv);
             this.Controls.Add(this.btnDeleteAB);
