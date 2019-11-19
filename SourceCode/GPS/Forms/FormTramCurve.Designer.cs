@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnExit = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.btnAdjLeft = new System.Windows.Forms.Button();
             this.btnAdjRight = new System.Windows.Forms.Button();
             this.nudSnapAdj = new System.Windows.Forms.NumericUpDown();
@@ -66,20 +66,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnExit
+            // btnSave
             // 
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(242, 587);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(98, 58);
-            this.btnExit.TabIndex = 234;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnSave.Location = new System.Drawing.Point(242, 587);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(98, 58);
+            this.btnSave.TabIndex = 234;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnAdjLeft
             // 
@@ -183,9 +183,9 @@
             this.btnCancel.FlatAppearance.BorderSize = 0;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(113, 588);
+            this.btnCancel.Location = new System.Drawing.Point(133, 588);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 58);
             this.btnCancel.TabIndex = 421;
@@ -276,9 +276,9 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(97, 5);
+            this.label5.Location = new System.Drawing.Point(120, 5);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(149, 19);
+            this.label5.Size = new System.Drawing.Size(105, 19);
             this.label5.TabIndex = 431;
             this.label5.Text = "1/2 W (m)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -569,7 +569,7 @@
             this.Controls.Add(this.btnRightFullWidth);
             this.Controls.Add(this.btnAdjLeft);
             this.Controls.Add(this.nudSnapAdj);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnAdjRight);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -591,7 +591,7 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnAdjLeft;
         private System.Windows.Forms.Button btnAdjRight;
         private System.Windows.Forms.NumericUpDown nudSnapAdj;

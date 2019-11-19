@@ -52,6 +52,8 @@ namespace AgOpenGPS
         public float lineWidth;
 
         public List<vec2> tramArr = new List<vec2>();
+        public List<vec2> tramRef = new List<vec2>();
+
         public double tramWheelSpacing;
         public double tramWidth, tramOffset;
         public int tramPasses;
@@ -237,13 +239,13 @@ namespace AgOpenGPS
                 GL.LineStipple(1, 0x0707);
                 GL.Begin(PrimitiveType.Lines);
 
-                for (int i = 1; i <= 6; i++)
-                {
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                    GL.Color3(0.20f, 0.90f, 0.750f);
-                }
+                //for (int i = 1; i <= 6; i++)
+                //{
+                //    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
+                //    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
+                //    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                //    GL.Color3(0.20f, 0.90f, 0.750f);
+                //}
 
                 GL.End();
                 GL.Disable(EnableCap.LineStipple);
@@ -337,103 +339,86 @@ namespace AgOpenGPS
         public void BuildTram()
         {
             tramArr?.Clear();
+            tramRef?.Clear();
 
-            vec2 tramLineP1, tramLineP2, tramLineP3, tramLineP4;
+            vec2 P1, P2;
 
             double pass = 0.5;
             double headingCalc;
-            //calculate the heading 90 degrees to ref ABLine heading
-            //if (isABSameAsVehicleHeading)
-            //{
             headingCalc = abHeading + glm.PIBy2;
-            //}
-            //else
-            //{
-            //    headingCalc = abHeading - glm.PIBy2;
-            //}
+            double hsin = Math.Sin(abHeading);
+            double hcos = Math.Cos(abHeading);
 
-            double hsin = Math.Sin(headingCalc);
-            double hcos = Math.Cos(headingCalc);
-            double halfWheel = tramWidth / 2.0;
+            //calculate the heading 90 degrees to ref ABLine heading
 
-            tramLineP1.easting = (hsin * ((tramWidth * (pass )) - halfWheel + tramOffset)) + refABLineP1.easting;
-            tramLineP1.northing = (hcos * ((tramWidth * (pass )) - halfWheel + tramOffset)) + refABLineP1.northing;
-            tramArr.Add(tramLineP1);
-
-            tramLineP3.easting = (hsin * ((tramWidth * (pass )) + halfWheel + tramOffset)) + refABLineP1.easting;
-            tramLineP3.northing = (hcos * ((tramWidth * (pass )) + halfWheel + tramOffset)) + refABLineP1.northing;
-            tramArr.Add(tramLineP3);
-
-            tramLineP2.easting = (hsin * ((tramWidth * (pass )) - halfWheel + tramOffset)) + refABLineP2.easting;
-            tramLineP2.northing = (hcos * ((tramWidth * (pass )) - halfWheel + tramOffset)) + refABLineP2.northing;
-            tramArr.Add(tramLineP2);
-
-            tramLineP4.easting = (hsin * ((tramWidth * (pass )) + halfWheel + tramOffset)) + refABLineP2.easting;
-            tramLineP4.northing = (hcos * ((tramWidth * (pass )) + halfWheel + tramOffset)) + refABLineP2.northing;
-            tramArr.Add(tramLineP4);
-
-            halfWheel = tramWheelSpacing / 2;
-
-            for (int i = 0; i < tramPasses; i++)
+            for (int i = 0; i < 4000; i+=4)
             {
-                tramLineP1.easting = (hsin * ( (tramWidth * (pass + i)) - halfWheel + tramOffset)) + refABLineP1.easting;
-                tramLineP1.northing = (hcos * ( (tramWidth * (pass + i)) - halfWheel + tramOffset)) + refABLineP1.northing;
-                tramArr.Add(tramLineP1);
-
-                tramLineP3.easting = (hsin * ( (tramWidth * (pass + i)) + halfWheel + tramOffset)) + refABLineP1.easting;
-                tramLineP3.northing = (hcos * ( (tramWidth * (pass + i)) + halfWheel + tramOffset)) + refABLineP1.northing;
-                tramArr.Add(tramLineP3);
-
-                tramLineP2.easting = (hsin * ( (tramWidth * (pass + i)) - halfWheel + tramOffset)) + refABLineP2.easting;
-                tramLineP2.northing = (hcos * ( (tramWidth * (pass + i)) - halfWheel + tramOffset)) + refABLineP2.northing;
-                tramArr.Add(tramLineP2);
-
-                tramLineP4.easting = (hsin * ( (tramWidth * (pass + i)) + halfWheel + tramOffset)) + refABLineP2.easting;
-                tramLineP4.northing = (hcos * ( (tramWidth * (pass + i)) + halfWheel + tramOffset)) + refABLineP2.northing;
-                tramArr.Add(tramLineP4);
+                P1.easting = (hsin * i) + refABLineP1.easting;
+                P1.northing = (hcos * i) + refABLineP1.northing;
+                tramRef.Add(P1);
             }
 
-        }
-        public void DrawTram()
-        {
-            if (isEditing)
+            hsin = Math.Sin(headingCalc);
+            hcos = Math.Cos(headingCalc);
+
+            for (int i = 0; i < mf.ABLine.tramPasses; i++)
             {
-                for (int i = 0; i < 4;)
+                for (int j = 0; j < tramRef.Count; j ++)
                 {
-                    GL.LineWidth(lineWidth);
-                    GL.Begin(PrimitiveType.TriangleStrip);
-                    GL.Color4(0.9f, 0.95f, 0.9f, 0.3);
+                    P1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].northing;
 
-                    GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                    i++;
-                    GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                    i++;
-                    GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                    i++;
-                    GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                    i++;
-
-                    GL.End();
+                    if (mf.bnd.bndArr[0].IsPointInsideBoundary(P1)) tramArr.Add(P1);
                 }
             }
 
-            for (int i = 4; i < tramArr.Count;)
+
+            tramRef?.Clear();
+            //outside tram
+
+            if (mf.bnd.bndArr.Count == 0)
             {
-                GL.LineWidth(lineWidth);
-                GL.Begin(PrimitiveType.TriangleStrip);
-                GL.Color4(0.9f, 0.90f, 0.0f, 0.2);
-
-                GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                i++;
-                GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                i++;
-                GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                i++;
-                GL.Vertex3(tramArr[i].easting, tramArr[i].northing, 0.0);
-                i++;
-
-                GL.End();
+                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
+                return;
             }
+
+           
+            //count the points from the boundary
+            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+
+            vec2 pt = new vec2();
+
+            if (mf.ABLine.tramPasses == 0)
+            {
+
+                for (int i = ptCount - 1; i >= 0; i--)
+                {
+                    //calculate the point inside the boundary
+                    pt.easting = mf.bnd.bndArr[0].bndLine[i].easting -
+                        (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
+
+                    pt.northing = mf.bnd.bndArr[0].bndLine[i].northing -
+                        (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
+
+                    tramArr.Add(pt);
+                }
+            }
+        }
+        public void DrawTram()
+        { 
+
+            GL.Color3(0.8630f, 0.93692f, 0.3260f);
+            GL.PointSize(4);
+            if (mf.camera.camSetDistance < -300) GL.PointSize(2);
+
+            GL.Begin(PrimitiveType.Points);
+            int k = (int)(mf.camera.camSetDistance / -400);
+            if (k < 1) k = 1;
+            if (k > 5) k = 5;
+
+            for (int h = 0; h < tramArr.Count; h += k) GL.Vertex3(tramArr[h].easting, tramArr[h].northing, 0);
+
+            GL.End();
         }
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)

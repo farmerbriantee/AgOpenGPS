@@ -71,9 +71,9 @@ namespace AgOpenGPS
                 if (refList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.30f, 0.692f, 0.60f);
-                GL.Begin(PrimitiveType.LineStrip);
-                for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
+                GL.Color3(0.930f, 0.1692f, 0.9260f);
+                GL.Begin(PrimitiveType.Lines);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
                 GL.Color3(0.930f, 0.0692f, 0.260f);
                 if (!mf.curve.isCurveSet)
                 {
@@ -96,14 +96,6 @@ namespace AgOpenGPS
                     GL.Begin(PrimitiveType.Lines);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
                     GL.End();
-
-                    //GL.Color3(0.64f, 0.64f, 0.750f);
-                    //GL.Begin(PrimitiveType.Lines);
-                    //GL.Vertex3(boxA.easting, boxA.northing, 0);
-                    //GL.Vertex3(boxB.easting, boxB.northing, 0);
-                    //GL.Vertex3(boxC.easting, boxC.northing, 0);
-                    //GL.Vertex3(boxD.easting, boxD.northing, 0);
-                    //GL.End();
                 }
                 else //normal. Smoothing window is not open.
                 {
@@ -175,21 +167,118 @@ namespace AgOpenGPS
 
             if (isEditing)
             {
+                int ptCount = refList.Count;
+                if (refList.Count == 0) return;
 
+                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.Color3(0.930f, 0.1692f, 0.9260f);
+                GL.Begin(PrimitiveType.Lines);
+                for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
+
+                GL.End();
+
+                double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
+                double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
+
+                GL.Color3(0.730f, 0.40692f, 0.6260f);
+                GL.PointSize(2);
+                GL.Begin(PrimitiveType.Points);
+
+                for (int i = 1; i <= 6; i++)
+                {
+                    for (int h = 0; h < ptCount; h++) 
+                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting, 
+                                      (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
+                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                }
+
+                GL.End();
             }
 
             if (tramArr.Count > 0) DrawTram();
-
         }
 
         public void DrawTram()
         {
+            GL.Color3(0.8630f, 0.93692f, 0.3260f);
+            GL.PointSize(4);
+            if (mf.camera.camSetDistance < -300) GL.PointSize(2);
+
+            GL.Begin(PrimitiveType.Points);
+            int k = (int)(mf.camera.camSetDistance / -400);
+            if (k < 1) k = 1;
+            if (k > 5) k = 5;
+
+                for (int h = 0; h < tramArr.Count; h+=k) GL.Vertex3(tramArr[h].easting, tramArr[h].northing, 0);
+
+            GL.End();
 
         }
 
         public void BuildTram()
         {
+            tramArr?.Clear();
 
+            vec2 tramLineP1;
+
+            double pass = 0.5;
+            double headingCalc;
+
+            headingCalc = aveLineHeading + glm.PIBy2;
+
+            double hsin = Math.Sin(headingCalc);
+            double hcos = Math.Cos(headingCalc);
+
+            //for (int j = 0; j < refList.Count; j+=4)
+            //{
+            //    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass))  + mf.ABLine.tramOffset)) + refList[j].easting;
+            //    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass)) + mf.ABLine.tramOffset)) + refList[j].northing;
+                
+            //    //only add if inside boundary.
+            //    if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
+            //}
+
+            for (int i = 0; i < mf.ABLine.tramPasses; i++)
+            {
+                for (int j = 0; j < refList.Count; j+=4)
+                {
+                    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass+i)) + mf.ABLine.tramOffset)) + refList[j].easting;
+                    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass+i)) + mf.ABLine.tramOffset)) + refList[j].northing;
+
+                    if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
+
+                }
+            }
+
+            //outside tram
+
+            if (mf.bnd.bndArr.Count == 0)
+            {
+                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
+                return;
+            }
+
+            //count the points from the boundary
+            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+
+            vec2 pt = new vec2();
+
+            if (mf.ABLine.tramPasses == 0)
+            {
+
+                for (int i = ptCount - 1; i >= 0; i--)
+                {
+                    //calculate the point inside the boundary
+                    pt.easting = mf.bnd.bndArr[0].bndLine[i].easting -
+                        (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
+
+                    pt.northing = mf.bnd.bndArr[0].bndLine[i].northing -
+                        (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
+
+                    tramArr.Add(pt);
+                }
+            }
         }
 
         //for calculating for display the averaged new line
