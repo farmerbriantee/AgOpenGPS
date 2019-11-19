@@ -1156,6 +1156,7 @@ namespace AgOpenGPS
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
                 btnCycleLines.Text = "Cur-" + curve.numCurveLineSelected;
+                curve.BuildTram();
             }
         }
 

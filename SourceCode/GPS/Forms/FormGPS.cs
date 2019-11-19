@@ -1326,8 +1326,8 @@ namespace AgOpenGPS
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
 
-                //Form form97 = new FormTramCurve(this);
-                //form97.Show();
+                Form form97 = new FormTramCurve(this);
+                form97.Show();
             }
             else
             {

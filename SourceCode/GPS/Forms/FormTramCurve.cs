@@ -14,17 +14,6 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
-
-        //list of coordinates of boundary line
-        public List<vec3> turnLine = new List<vec3>();
-
-        private vec3[] arr;
-        //private Point fixPt;
-
-        //private bool isA = true;
-        public vec3 pint = new vec3(0.0, 1.0, 0.0);
-
         private double snapAdj = 0;
 
         public FormTramCurve(Form callingForm)
@@ -44,18 +33,7 @@ namespace AgOpenGPS
         }
 
         private void FormTram_Load(object sender, EventArgs e)
-        {
-            int cnt = mf.bnd.bndArr[0].bndLine.Count;
-            arr = new vec3[cnt];
-
-            for (int i = 0; i < cnt; i++)
-            {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i].northing;
-            }
-
-
+        { 
             mf.ABLine.tramWidth = Properties.Settings.Default.setTram_eqWidth;
             mf.ABLine.tramWheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
             mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
@@ -67,18 +45,8 @@ namespace AgOpenGPS
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
             nudOffset.Value = (decimal)Properties.Settings.Default.setTram_offset;
 
-            mf.ABLine.BuildTram();
-            cboxTramPassEvery.SelectedIndexChanged -= cboxTramPassEvery_SelectedIndexChanged;
-            cboxTramPassEvery.Text = Properties.Vehicle.Default.setTram_Skips.ToString();
-            cboxTramPassEvery.SelectedIndexChanged += cboxTramPassEvery_SelectedIndexChanged;
-            mf.ABLine.tramPassEvery = Properties.Vehicle.Default.setTram_Skips;
-
-            cboxTramBasedOn.SelectedIndexChanged -= cboxTramBasedOn_SelectedIndexChanged;
-            cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
-            cboxTramBasedOn.SelectedIndexChanged += cboxTramBasedOn_SelectedIndexChanged;
-            mf.ABLine.tramBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
-
-            mf.ABLine.isEditing = true;
+            mf.curve.BuildTram();
+            mf.curve.isEditing = true;
             mf.layoutPanelRight.Enabled = false;
 
             this.Left = mf.Width - 430;
@@ -86,57 +54,60 @@ namespace AgOpenGPS
 
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            int idx = mf.ABLine.numABLineSelected - 1;
-
-            if (idx >= 0)
-            {
-
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
-                //calculate the new points for the reference line and points
-                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
-
-                //sin x cos z for endpoints, opposite for additional lines
-                mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
-            }
-
-            mf.FileSaveABLines();
-
-            mf.ABLine.moveDistance = 0;
-            mf.ABLine.isEditing = false;
+            //mf.ABLine.moveDistance = 0;
+            mf.curve.isEditing = false;
             mf.layoutPanelRight.Enabled = true;
 
             mf.offX = 0;
             mf.offY = 0;
+            if (mf.curve.refList.Count > 0)
+            {
+                //array number is 1 less since it starts at zero
+                int idx = mf.curve.numCurveLineSelected - 1;
+
+                //mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
+                if (idx >= 0)
+                {
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].curvePts.Clear();
+                    //write out the Curve Points
+                    foreach (var item in mf.curve.refList)
+                    {
+                        mf.curve.curveArr[idx].curvePts.Add(item);
+                    }
+                }
+
+                //save entire list
+                mf.FileSaveCurveLines();
+                mf.curve.moveDistance = 0;
+            }
 
             Close();
+
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
             double dist = 0.1;
-            mf.ABLine.MoveABLine(-dist);
-            mf.ABLine.BuildTram();
+            mf.curve.MoveABCurve(-dist);
+            mf.curve.BuildTram();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
             double dist = 0.1;
-            mf.ABLine.MoveABLine(dist);
-            mf.ABLine.BuildTram();
+            mf.curve.MoveABCurve(dist);
+            mf.curve.BuildTram();
         }
 
         private void btnLeftFullWidth_Click(object sender, EventArgs e)
         {
             double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
-            mf.ABLine.MoveABLine(-dist);
-            mf.ABLine.BuildTram();
+            mf.curve.MoveABCurve(-dist);
+            mf.curve.BuildTram();
 
         }
 
@@ -144,24 +115,22 @@ namespace AgOpenGPS
         {
             double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
 
-            mf.ABLine.MoveABLine(dist);
-            mf.ABLine.BuildTram();
+            mf.curve.MoveABCurve(dist);
+            mf.curve.BuildTram();
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            mf.ABLine.MoveABLine(-snapAdj);
-            mf.ABLine.BuildTram();
+            mf.curve.MoveABCurve(-snapAdj);
+            mf.curve.BuildTram();
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            mf.ABLine.BuildTram();
-            mf.ABLine.MoveABLine(snapAdj);
+            mf.curve.MoveABCurve(snapAdj);
+            mf.curve.BuildTram();
         }
 
-
-        //determine mins maxs of patches and whole field.
         private void nudSnapAdj_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
@@ -173,19 +142,13 @@ namespace AgOpenGPS
             mf.ABLine.tramPasses = (int)nudPasses.Value;
             Properties.Settings.Default.setTram_passes = mf.ABLine.tramPasses;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
         }
 
         private void nudPasses_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();
-            mf.ABLine.BuildTram();
-        }
-
-        private void btnCreateTramLines_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.BuildTram();
         }
 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
@@ -193,7 +156,7 @@ namespace AgOpenGPS
             mf.ABLine.tramOffset = (double)nudOffset.Value;
             Properties.Settings.Default.setTram_offset = mf.ABLine.tramOffset;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
         }
 
         private void nudOffset_Enter(object sender, EventArgs e)
@@ -204,39 +167,48 @@ namespace AgOpenGPS
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.abHeading += Math.PI;
-            if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
+            int cnt = mf.curve.refList.Count;
+            if (cnt > 0)
+            {
+                mf.curve.refList.Reverse();
 
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * 4000.0);
-            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * 4000.0);
+                vec3[] arr = new vec3[cnt];
+                cnt--;
+                mf.curve.refList.CopyTo(arr);
+                mf.curve.refList.Clear();
 
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * 4000.0);
-            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * 4000.0);
+                mf.curve.aveLineHeading += Math.PI;
+                if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
+                if (mf.curve.aveLineHeading > glm.twoPI) mf.curve.aveLineHeading -= glm.twoPI;
 
-            mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-            mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
-
-            mf.ABLine.BuildTram();
+                for (int i = 1; i < cnt; i++)
+                {
+                    vec3 pt3 = arr[i];
+                    pt3.heading += Math.PI;
+                    if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                    mf.curve.refList.Add(pt3);
+                }
+            }
+            mf.curve.BuildTram();
         }
 
         private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.UpButton();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
         }
 
         private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.DownButton();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            mf.ABLine.tramArr?.Clear();
-            mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.tramBasedOn = 0;
-            mf.ABLine.isEditing = false;
+            mf.curve.tramArr?.Clear();
+            mf.curve.isEditing = false;
             mf.layoutPanelRight.Enabled = true;
             mf.offX = 0;
             mf.offY = 0;
@@ -292,28 +264,12 @@ namespace AgOpenGPS
             mf.offY = 0;
         }
 
-        private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.ABLine.tramBasedOn = cboxTramBasedOn.SelectedIndex;
-            Properties.Vehicle.Default.setTram_BasedOn = mf.ABLine.tramBasedOn;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboxTramPassEvery.SelectedIndex > 0)
-                mf.ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex;
-            else mf.ABLine.tramPassEvery = 0;
-            Properties.Vehicle.Default.setTram_Skips = cboxTramPassEvery.SelectedIndex;
-            Properties.Vehicle.Default.Save();
-        }
-
         private void nudSnapAdj_ValueChanged(object sender, EventArgs e)
         {
             snapAdj = (double)nudSnapAdj.Value;
             Properties.Settings.Default.setTram_snapAdj = snapAdj;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
         }
 
         private void nudEqWidth_ValueChanged(object sender, EventArgs e)
@@ -321,7 +277,7 @@ namespace AgOpenGPS
             mf.ABLine.tramWidth  = (double)nudEqWidth.Value;
             Properties.Settings.Default.setTram_eqWidth = mf.ABLine.tramWidth;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
+            mf.curve.BuildTram();
 
         }
 
@@ -336,8 +292,7 @@ namespace AgOpenGPS
             mf.ABLine.tramWheelSpacing = (double)nudWheelSpacing.Value;
             Properties.Settings.Default.setTram_wheelSpacing = mf.ABLine.tramWheelSpacing;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
-
+            mf.curve.BuildTram();
         }
 
         private void nudWheelSpacing_Enter(object sender, EventArgs e)
@@ -345,60 +300,6 @@ namespace AgOpenGPS
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();        
         }
-        private void CalculateMinMax()
-        {
-            minFieldX = 9999999; minFieldY = 9999999;
-            maxFieldX = -9999999; maxFieldY = -9999999;
 
-                //min max of the boundary
-                if (mf.bnd.bndArr[0].isSet)
-                {
-                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
-                    for (int i = 0; i < bndCnt; i++)
-                    {
-                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
-                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
-
-                        //also tally the max/min of field x and z
-                        if (minFieldX > x) minFieldX = x;
-                        if (maxFieldX < x) maxFieldX = x;
-                        if (minFieldY > y) minFieldY = y;
-                        if (maxFieldY < y) maxFieldY = y;
-                    }
-                }
-
-                if (maxFieldX == -9999999 || minFieldX == 9999999 || maxFieldY == -9999999 || minFieldY == 9999999)
-                {
-                    maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
-                }
-                else
-                {
-                    //the largest distancew across field
-                    double dist = Math.Abs(minFieldX - maxFieldX);
-                    double dist2 = Math.Abs(minFieldY - maxFieldY);
-
-                    if (dist > dist2) maxFieldDistance = dist;
-                    else maxFieldDistance = dist2;
-
-                    if (maxFieldDistance < 100) maxFieldDistance = 100;
-                    if (maxFieldDistance > 19900) maxFieldDistance = 19900;
-                    //lblMax.Text = ((int)maxFieldDistance).ToString();
-
-                    fieldCenterX = (maxFieldX + minFieldX) / 2.0;
-                    fieldCenterY = (maxFieldY + minFieldY) / 2.0;
-                }
-
-                //if (isMetric)
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-                //}
-                //else
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-                //}
-            
-        }
     }
 }

@@ -458,9 +458,12 @@ namespace AgOpenGPS
                                         easting = xy[0] - mf.pn.utmEast;
                                         northing = xy[1] - mf.pn.utmNorth;
 
+                                        double east = easting;
+                                        double nort = northing;
+
                                         //fix the azimuth error
-                                        easting = (Math.Cos(-mf.pn.convergenceAngle) * easting) - (Math.Sin(-mf.pn.convergenceAngle) * northing);
-                                        northing = (Math.Sin(-mf.pn.convergenceAngle) * easting) + (Math.Cos(-mf.pn.convergenceAngle) * northing);
+                                        easting = (Math.Cos(-mf.pn.convergenceAngle) * east) - (Math.Sin(-mf.pn.convergenceAngle) * nort);
+                                        northing = (Math.Sin(-mf.pn.convergenceAngle) * east) + (Math.Cos(-mf.pn.convergenceAngle) * nort);
 
                                         //add the point to boundary
                                         CBndPt bndPt = new CBndPt(easting, northing, 0);
