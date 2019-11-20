@@ -230,6 +230,8 @@ namespace AgOpenGPS
             double hsin = Math.Sin(headingCalc);
             double hcos = Math.Cos(headingCalc);
 
+            bool isBnd = mf.bnd.bndArr.Count != 0;
+
             for (int i = 0; i < mf.ABLine.tramPasses; i++)
             {
                 for (int j = 0; j < refList.Count; j += 4)
@@ -237,8 +239,11 @@ namespace AgOpenGPS
                     tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + refList[j].easting;
                     tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + refList[j].northing;
 
-                    if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
-
+                    if (isBnd)
+                    {
+                        if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
+                    }
+                    else tramArr.Add(tramLineP1);
                 }
             }
 

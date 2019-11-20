@@ -349,9 +349,9 @@ namespace AgOpenGPS
             double hsin = Math.Sin(abHeading);
             double hcos = Math.Cos(abHeading);
 
-            //calculate the heading 90 degrees to ref ABLine heading
+            bool isBnd = mf.bnd.bndArr.Count != 0;
 
-            for (int i = 0; i < 4000; i += 4)
+            for (int i = 0; i < 3200; i += 4)
             {
                 P1.easting = (hsin * i) + refABLineP1.easting;
                 P1.northing = (hcos * i) + refABLineP1.northing;
@@ -368,16 +368,19 @@ namespace AgOpenGPS
                     P1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].northing;
 
-                    if (mf.bnd.bndArr[0].IsPointInsideBoundary(P1)) tramArr.Add(P1);
+                    if (isBnd)
+                    {
+                        if (mf.bnd.bndArr[0].IsPointInsideBoundary(P1)) tramArr.Add(P1);
+                    }
+                    else tramArr.Add(P1);
                 }
             }
 
             tramRef?.Clear();
             //outside tram
 
-            if (mf.bnd.bndArr.Count == 0)
+            if (mf.bnd.bndArr.Count == 0 )
             {
-                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
                 return;
             }
 
