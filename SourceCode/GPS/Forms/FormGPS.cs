@@ -1298,11 +1298,12 @@ namespace AgOpenGPS
 
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
-
+                Form form = new FormEditCurve(this);
+                form.Show();
             }
 
             else
-                        {
+            {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
@@ -1682,6 +1683,9 @@ namespace AgOpenGPS
             btnABLine.Image = Properties.Resources.ABLineOff;
             ABLine.isBtnABLineOn = false;
             ABLine.DeleteAB();
+            ABLine.lineArr?.Clear();
+            ABLine.numABLineSelected = 0;
+            ABLine.tramArr?.Clear();
 
             //curve line
             btnCurve.Enabled = false;
@@ -1689,6 +1693,9 @@ namespace AgOpenGPS
             curve.isBtnCurveOn = false;
             curve.isCurveSet = false;
             curve.ResetCurveLine();
+            curve.curveArr?.Clear();
+            curve.numCurveLineSelected = 0;
+            curve.tramArr?.Clear();
 
             //clear out contour and Lists
             btnContour.Enabled = false;

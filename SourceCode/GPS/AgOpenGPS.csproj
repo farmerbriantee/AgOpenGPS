@@ -137,6 +137,12 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Forms\FormEditCurve.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEditCurve.Designer.cs">
+      <DependentUpon>FormEditCurve.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormEditAB.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -404,6 +410,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormEditCurve.resx">
+      <DependentUpon>FormEditCurve.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEditAB.resx">
       <DependentUpon>FormEditAB.cs</DependentUpon>
     </EmbeddedResource>

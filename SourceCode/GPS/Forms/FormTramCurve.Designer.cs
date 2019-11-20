@@ -59,6 +59,8 @@
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.btnResetDrag = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapAdj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEqWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelSpacing)).BeginInit();
@@ -74,7 +76,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSave.Location = new System.Drawing.Point(242, 587);
+            this.btnSave.Location = new System.Drawing.Point(247, 489);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(98, 58);
             this.btnSave.TabIndex = 234;
@@ -88,9 +90,9 @@
             this.btnAdjLeft.FlatAppearance.BorderSize = 0;
             this.btnAdjLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftBig;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjLeft.Location = new System.Drawing.Point(30, 12);
+            this.btnAdjLeft.Location = new System.Drawing.Point(43, 12);
             this.btnAdjLeft.Name = "btnAdjLeft";
             this.btnAdjLeft.Size = new System.Drawing.Size(71, 45);
             this.btnAdjLeft.TabIndex = 416;
@@ -104,9 +106,9 @@
             this.btnAdjRight.FlatAppearance.BorderSize = 0;
             this.btnAdjRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightBig;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(245, 12);
+            this.btnAdjRight.Location = new System.Drawing.Point(228, 12);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(73, 45);
             this.btnAdjRight.TabIndex = 415;
@@ -152,7 +154,7 @@
             this.btnLeftFullWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnLeftFullWidth.Image = global::AgOpenGPS.Properties.Resources.SnapLeftWidth;
             this.btnLeftFullWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLeftFullWidth.Location = new System.Drawing.Point(53, 78);
+            this.btnLeftFullWidth.Location = new System.Drawing.Point(86, 78);
             this.btnLeftFullWidth.Name = "btnLeftFullWidth";
             this.btnLeftFullWidth.Size = new System.Drawing.Size(70, 45);
             this.btnLeftFullWidth.TabIndex = 418;
@@ -168,7 +170,7 @@
             this.btnRightFullWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRightFullWidth.Image = global::AgOpenGPS.Properties.Resources.SnapRightWidth;
             this.btnRightFullWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightFullWidth.Location = new System.Drawing.Point(225, 78);
+            this.btnRightFullWidth.Location = new System.Drawing.Point(186, 78);
             this.btnRightFullWidth.Name = "btnRightFullWidth";
             this.btnRightFullWidth.Size = new System.Drawing.Size(70, 45);
             this.btnRightFullWidth.TabIndex = 417;
@@ -185,7 +187,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(133, 588);
+            this.btnCancel.Location = new System.Drawing.Point(171, 489);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(70, 58);
             this.btnCancel.TabIndex = 421;
@@ -294,11 +296,11 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(129, 92);
+            this.label6.Location = new System.Drawing.Point(152, 92);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 19);
+            this.label6.Size = new System.Drawing.Size(37, 19);
             this.label6.TabIndex = 432;
-            this.label6.Text = "Width";
+            this.label6.Text = "W";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudPasses
@@ -312,6 +314,11 @@
             0,
             0,
             0});
+            this.nudPasses.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nudPasses.Name = "nudPasses";
             this.nudPasses.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.nudPasses.Size = new System.Drawing.Size(82, 40);
@@ -380,7 +387,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(11, 587);
+            this.btnSwapAB.Location = new System.Drawing.Point(10, 489);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(72, 62);
             this.btnSwapAB.TabIndex = 438;
@@ -519,7 +526,7 @@
             this.btnResetDrag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetDrag.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetDrag.Image = global::AgOpenGPS.Properties.Resources.back_button;
-            this.btnResetDrag.Location = new System.Drawing.Point(276, 457);
+            this.btnResetDrag.Location = new System.Drawing.Point(95, 449);
             this.btnResetDrag.Name = "btnResetDrag";
             this.btnResetDrag.Size = new System.Drawing.Size(70, 58);
             this.btnResetDrag.TabIndex = 451;
@@ -535,13 +542,46 @@
             this.panel1.Size = new System.Drawing.Size(331, 5);
             this.panel1.TabIndex = 325;
             // 
+            // btnLeft
+            // 
+            this.btnLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeft.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLeft.Location = new System.Drawing.Point(5, 79);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(70, 45);
+            this.btnLeft.TabIndex = 452;
+            this.btnLeft.UseVisualStyleBackColor = false;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnRight
+            // 
+            this.btnRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRight.Location = new System.Drawing.Point(276, 78);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(70, 45);
+            this.btnRight.TabIndex = 453;
+            this.btnRight.UseVisualStyleBackColor = false;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
             // FormTramCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(352, 660);
+            this.ClientSize = new System.Drawing.Size(352, 567);
             this.ControlBox = false;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnLeft);
+            this.Controls.Add(this.btnRight);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnResetDrag);
             this.Controls.Add(this.btnZoomIn);
@@ -557,7 +597,6 @@
             this.Controls.Add(this.nudOffset);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudPasses);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
@@ -620,5 +659,7 @@
         private ProXoft.WinForms.RepeatButton btnZoomOut;
         private System.Windows.Forms.Button btnResetDrag;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRight;
     }
 }

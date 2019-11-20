@@ -39,11 +39,26 @@ namespace AgOpenGPS
             mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
             mf.ABLine.tramOffset = Properties.Settings.Default.setTram_offset;
 
-            nudSnapAdj.Value = (decimal)((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0);
+            nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
+            snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0,2));
+            nudSnapAdj.Value = (decimal)snapAdj;
+            nudSnapAdj.ValueChanged += nudSnapAdj_ValueChanged;
+
+            nudEqWidth.ValueChanged -= nudEqWidth_ValueChanged;
             nudEqWidth.Value = (decimal)Properties.Settings.Default.setTram_eqWidth;
+            nudEqWidth.ValueChanged += nudEqWidth_ValueChanged;
+
+            nudWheelSpacing.ValueChanged -= nudWheelSpacing_ValueChanged;
             nudWheelSpacing.Value = (decimal)Properties.Settings.Default.setTram_wheelSpacing;
+            nudWheelSpacing.ValueChanged += nudWheelSpacing_ValueChanged;
+
+            nudPasses.ValueChanged -= nudPasses_ValueChanged;
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
+            nudPasses.ValueChanged += nudPasses_ValueChanged;
+
+            nudOffset.ValueChanged -= nudOffset_ValueChanged;
             nudOffset.Value = (decimal)Properties.Settings.Default.setTram_offset;
+            nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             mf.curve.BuildTram();
             mf.curve.isEditing = true;
@@ -90,8 +105,8 @@ namespace AgOpenGPS
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            double dist = 0.1;
-            mf.curve.MoveABCurve(-dist);
+            double dist = -0.1;
+            mf.curve.MoveABCurve(dist);
             mf.curve.BuildTram();
         }
 

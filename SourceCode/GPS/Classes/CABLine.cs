@@ -110,7 +110,7 @@ namespace AgOpenGPS
             //Draw reference AB line
             GL.LineWidth(3);
             GL.Begin(PrimitiveType.Lines);
-            GL.Color3(0.89f, 0.50f, 0.837f);
+            GL.Color3(0.930f, 0.1692f, 0.9260f);
             GL.Vertex3(refABLineP1.easting, refABLineP1.northing, 0);
             GL.Vertex3(refABLineP2.easting, refABLineP2.northing, 0);
             GL.End();
@@ -233,19 +233,19 @@ namespace AgOpenGPS
                 double cosHeading2 = Math.Cos(-mf.ABLine.abHeading);
                 double sinHeading2 = Math.Sin(-mf.ABLine.abHeading);
 
-                GL.Color3(0.20f, 0.90f, 0.750f);
+                GL.Color3(0.630f, 0.30692f, 0.5260f);
                 GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x0707);
+
                 GL.Begin(PrimitiveType.Lines);
 
-                //for (int i = 1; i <= 6; i++)
-                //{
-                //    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                //    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                //    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                //    GL.Color3(0.20f, 0.90f, 0.750f);
-                //}
+                for (int i = 1; i <= 6; i++)
+                {
+                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
+                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
+                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                }
 
                 GL.End();
                 GL.Disable(EnableCap.LineStipple);
@@ -351,7 +351,7 @@ namespace AgOpenGPS
 
             //calculate the heading 90 degrees to ref ABLine heading
 
-            for (int i = 0; i < 4000; i+=4)
+            for (int i = 0; i < 4000; i += 4)
             {
                 P1.easting = (hsin * i) + refABLineP1.easting;
                 P1.northing = (hcos * i) + refABLineP1.northing;
@@ -363,7 +363,7 @@ namespace AgOpenGPS
 
             for (int i = 0; i < mf.ABLine.tramPasses; i++)
             {
-                for (int j = 0; j < tramRef.Count; j ++)
+                for (int j = 0; j < tramRef.Count; j++)
                 {
                     P1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + tramRef[j].northing;
@@ -371,7 +371,6 @@ namespace AgOpenGPS
                     if (mf.bnd.bndArr[0].IsPointInsideBoundary(P1)) tramArr.Add(P1);
                 }
             }
-
 
             tramRef?.Clear();
             //outside tram
@@ -382,16 +381,17 @@ namespace AgOpenGPS
                 return;
             }
 
-           
             //count the points from the boundary
             int ptCount = mf.bnd.bndArr[0].bndLine.Count;
 
             vec2 pt = new vec2();
 
+            double distSq = (mf.ABLine.tramWidth * 0.5) * (mf.ABLine.tramWidth * 0.5) * 0.97;
+            bool fail = false;
+
             if (mf.ABLine.tramPasses == 0)
             {
-
-                for (int i = ptCount - 1; i >= 0; i--)
+                for (int i = 0; i < ptCount; i++)
                 {
                     //calculate the point inside the boundary
                     pt.easting = mf.bnd.bndArr[0].bndLine[i].easting -
@@ -400,10 +400,39 @@ namespace AgOpenGPS
                     pt.northing = mf.bnd.bndArr[0].bndLine[i].northing -
                         (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
 
-                    tramArr.Add(pt);
+                    for (int j = 0; j < ptCount; j++)
+                    {
+                        double check = glm.DistanceSquared(pt.northing, pt.easting,
+                                            mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
+                        if (check < distSq)
+                        {
+                            fail = true;
+                            break;
+                        }
+                    }
+
+                    if (!fail) tramArr.Add(pt);
+                    fail = false;
+                }
+            }
+
+            int cnt = tramArr.Count;
+            if (cnt < 6) return;
+
+            const double spacing = 2.0;
+            double distance;
+            for (int i = 0; i < cnt - 1; i++)
+            {
+                distance = glm.Distance(tramArr[i], tramArr[i + 1]);
+                if (distance < spacing)
+                {
+                    tramArr.RemoveAt(i + 1);
+                    cnt = tramArr.Count;
+                    i--;
                 }
             }
         }
+
         public void DrawTram()
         { 
 
@@ -468,11 +497,11 @@ namespace AgOpenGPS
                 }
 
                 //create the new line extent points for current ABLine based on original heading of AB line
-                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * 2000.0);
-                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 2000.0);
-
-                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * 2000.0);
-                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 2000.0);
+                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) *   1600.0);
+                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 1600.0);
+                                                                                    
+                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) *   1600.0);
+                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 1600.0);
 
                 //get the distance from currently active AB line
                 //x2-x1
@@ -598,11 +627,11 @@ namespace AgOpenGPS
                 }
 
                 //create the new line extent points for current ABLine based on original heading of AB line
-                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * 2000.0);
-                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 2000.0);
-
-                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * 2000.0);
-                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 2000.0);
+                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) *   1600.0);
+                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 1600.0);
+                                                                                    
+                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) *   1600.0);
+                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 1600.0);
 
                 //get the distance from currently active AB line
                 //x2-x1
@@ -743,11 +772,11 @@ namespace AgOpenGPS
             refPoint1.easting = (Math.Sin(headingCalc) * dist) + refPoint1.easting;
             refPoint1.northing = (Math.Cos(headingCalc) * dist) + refPoint1.northing;
 
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1000.0);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1000.0);
-
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1000.0);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1000.0);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1600.0);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1600.0);
+                                                                                
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1600.0);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1600.0);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
@@ -763,11 +792,11 @@ namespace AgOpenGPS
             if (abHeading < 0) abHeading += glm.twoPI;
 
             //sin x cos z for endpoints, opposite for additional lines
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1000.0);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1000.0);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1600.0);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1600.0);
 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1000.0);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1000.0);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1600.0);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1600.0);
 
             isABLineSet = true;
             isABLineLoaded = true;
@@ -776,11 +805,11 @@ namespace AgOpenGPS
         public void SetABLineByHeading()
         {
             //heading is set in the AB Form
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1000.0);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1000.0);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1600.0);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1600.0);
 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1000.0);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1000.0);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1600.0);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1600.0);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
@@ -817,11 +846,11 @@ namespace AgOpenGPS
             refPoint1.easting = (Math.Sin(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.001) + refPoint1.easting;
             refPoint1.northing = (Math.Cos(headingCalc) * Math.Abs(distanceFromCurrentLine) * 0.001) + refPoint1.northing;
 
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1000.0);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1000.0);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1600.0);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1600.0);
 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1000.0);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1000.0);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1600.0);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1600.0);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
