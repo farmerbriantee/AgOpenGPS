@@ -39,11 +39,26 @@ namespace AgOpenGPS
             mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
             mf.ABLine.tramOffset = Properties.Settings.Default.setTram_offset;
 
-            nudSnapAdj.Value = (decimal)((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0);
+            nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
+            snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 2));
+            nudSnapAdj.Value = (decimal)snapAdj;
+            nudSnapAdj.ValueChanged += nudSnapAdj_ValueChanged;
+
+            nudEqWidth.ValueChanged -= nudEqWidth_ValueChanged;
             nudEqWidth.Value = (decimal)Properties.Settings.Default.setTram_eqWidth;
+            nudEqWidth.ValueChanged += nudEqWidth_ValueChanged;
+
+            nudWheelSpacing.ValueChanged -= nudWheelSpacing_ValueChanged;
             nudWheelSpacing.Value = (decimal)Properties.Settings.Default.setTram_wheelSpacing;
+            nudWheelSpacing.ValueChanged += nudWheelSpacing_ValueChanged;
+
+            nudPasses.ValueChanged -= nudPasses_ValueChanged;
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
+            nudPasses.ValueChanged += nudPasses_ValueChanged;
+
+            nudOffset.ValueChanged -= nudOffset_ValueChanged;
             nudOffset.Value = (decimal)Properties.Settings.Default.setTram_offset;
+            nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             mf.ABLine.BuildTram();
             cboxTramPassEvery.SelectedIndexChanged -= cboxTramPassEvery_SelectedIndexChanged;
@@ -70,17 +85,16 @@ namespace AgOpenGPS
 
             if (idx >= 0)
             {
-
                 mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
                 //calculate the new points for the reference line and points
                 mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
                 mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
 
                 //sin x cos z for endpoints, opposite for additional lines
-                mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-                mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
+                mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
+                mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
+                mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
             }
 
             mf.FileSaveABLines();
@@ -97,8 +111,8 @@ namespace AgOpenGPS
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            double dist = 0.1;
-            mf.ABLine.MoveABLine(-dist);
+            double dist = -0.1;
+            mf.ABLine.MoveABLine(dist);
             mf.ABLine.BuildTram();
         }
 
@@ -185,11 +199,11 @@ namespace AgOpenGPS
             mf.ABLine.abHeading += Math.PI;
             if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * 4000.0);
-            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * 4000.0);
-
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * 4000.0);
-            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * 4000.0);
+            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) *   1600.0);
+            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * 1600.0);
+                                                                                                             
+            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) *   1600.0);
+            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * 1600.0);
 
             mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
             mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;

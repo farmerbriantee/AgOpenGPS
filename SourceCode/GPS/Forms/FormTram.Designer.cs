@@ -63,6 +63,8 @@
             this.lblTramSkips = new System.Windows.Forms.Label();
             this.lblTramStart = new System.Windows.Forms.Label();
             this.cboxTramBasedOn = new System.Windows.Forms.ComboBox();
+            this.btnLeft = new System.Windows.Forms.Button();
+            this.btnRight = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapAdj)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEqWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWheelSpacing)).BeginInit();
@@ -92,9 +94,9 @@
             this.btnAdjLeft.FlatAppearance.BorderSize = 0;
             this.btnAdjLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftBig;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjLeft.Location = new System.Drawing.Point(30, 12);
+            this.btnAdjLeft.Location = new System.Drawing.Point(47, 12);
             this.btnAdjLeft.Name = "btnAdjLeft";
             this.btnAdjLeft.Size = new System.Drawing.Size(71, 45);
             this.btnAdjLeft.TabIndex = 416;
@@ -108,9 +110,9 @@
             this.btnAdjRight.FlatAppearance.BorderSize = 0;
             this.btnAdjRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightBig;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(245, 12);
+            this.btnAdjRight.Location = new System.Drawing.Point(229, 12);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(73, 45);
             this.btnAdjRight.TabIndex = 415;
@@ -140,10 +142,10 @@
             this.nudSnapAdj.TabIndex = 414;
             this.nudSnapAdj.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSnapAdj.Value = new decimal(new int[] {
-            2101,
+            15,
             0,
             0,
-            131072});
+            65536});
             this.nudSnapAdj.ValueChanged += new System.EventHandler(this.nudSnapAdj_ValueChanged);
             this.nudSnapAdj.Enter += new System.EventHandler(this.nudSnapAdj_Enter);
             // 
@@ -156,7 +158,7 @@
             this.btnLeftFullWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnLeftFullWidth.Image = global::AgOpenGPS.Properties.Resources.SnapLeftWidth;
             this.btnLeftFullWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLeftFullWidth.Location = new System.Drawing.Point(53, 78);
+            this.btnLeftFullWidth.Location = new System.Drawing.Point(95, 78);
             this.btnLeftFullWidth.Name = "btnLeftFullWidth";
             this.btnLeftFullWidth.Size = new System.Drawing.Size(70, 45);
             this.btnLeftFullWidth.TabIndex = 418;
@@ -172,7 +174,7 @@
             this.btnRightFullWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRightFullWidth.Image = global::AgOpenGPS.Properties.Resources.SnapRightWidth;
             this.btnRightFullWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightFullWidth.Location = new System.Drawing.Point(225, 78);
+            this.btnRightFullWidth.Location = new System.Drawing.Point(185, 78);
             this.btnRightFullWidth.Name = "btnRightFullWidth";
             this.btnRightFullWidth.Size = new System.Drawing.Size(70, 45);
             this.btnRightFullWidth.TabIndex = 417;
@@ -250,10 +252,10 @@
             this.nudWheelSpacing.TabIndex = 423;
             this.nudWheelSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudWheelSpacing.Value = new decimal(new int[] {
-            100,
+            17,
             0,
             0,
-            131072});
+            65536});
             this.nudWheelSpacing.ValueChanged += new System.EventHandler(this.nudWheelSpacing_ValueChanged);
             this.nudWheelSpacing.Enter += new System.EventHandler(this.nudWheelSpacing_Enter);
             // 
@@ -298,11 +300,11 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(129, 92);
+            this.label6.Location = new System.Drawing.Point(158, 92);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 19);
+            this.label6.Size = new System.Drawing.Size(34, 19);
             this.label6.TabIndex = 432;
-            this.label6.Text = "Width";
+            this.label6.Text = "W";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudPasses
@@ -316,16 +318,21 @@
             0,
             0,
             0});
+            this.nudPasses.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
             this.nudPasses.Name = "nudPasses";
             this.nudPasses.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.nudPasses.Size = new System.Drawing.Size(82, 40);
             this.nudPasses.TabIndex = 433;
             this.nudPasses.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudPasses.Value = new decimal(new int[] {
-            888,
+            1,
             0,
             0,
-            0});
+            -2147483648});
             this.nudPasses.ValueChanged += new System.EventHandler(this.nudPasses_ValueChanged);
             this.nudPasses.Enter += new System.EventHandler(this.nudPasses_Enter);
             // 
@@ -372,10 +379,10 @@
             this.nudOffset.TabIndex = 436;
             this.nudOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudOffset.Value = new decimal(new int[] {
-            3901,
+            15,
             0,
             0,
-            131072});
+            65536});
             this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             this.nudOffset.Enter += new System.EventHandler(this.nudOffset_Enter);
             // 
@@ -618,6 +625,36 @@
             this.cboxTramBasedOn.TabIndex = 452;
             this.cboxTramBasedOn.SelectedIndexChanged += new System.EventHandler(this.cboxTramBasedOn_SelectedIndexChanged);
             // 
+            // btnLeft
+            // 
+            this.btnLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLeft.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLeft.Location = new System.Drawing.Point(5, 78);
+            this.btnLeft.Name = "btnLeft";
+            this.btnLeft.Size = new System.Drawing.Size(70, 45);
+            this.btnLeft.TabIndex = 456;
+            this.btnLeft.UseVisualStyleBackColor = false;
+            this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            // 
+            // btnRight
+            // 
+            this.btnRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRight.Location = new System.Drawing.Point(275, 78);
+            this.btnRight.Name = "btnRight";
+            this.btnRight.Size = new System.Drawing.Size(70, 45);
+            this.btnRight.TabIndex = 457;
+            this.btnRight.UseVisualStyleBackColor = false;
+            this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            // 
             // FormTram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -625,6 +662,8 @@
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(352, 660);
             this.ControlBox = false;
+            this.Controls.Add(this.btnLeft);
+            this.Controls.Add(this.btnRight);
             this.Controls.Add(this.cboxTramPassEvery);
             this.Controls.Add(this.lblTramSkips);
             this.Controls.Add(this.lblTramStart);
@@ -711,5 +750,7 @@
         private System.Windows.Forms.Label lblTramSkips;
         private System.Windows.Forms.Label lblTramStart;
         private System.Windows.Forms.ComboBox cboxTramBasedOn;
+        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.Button btnRight;
     }
 }

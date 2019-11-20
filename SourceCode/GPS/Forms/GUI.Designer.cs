@@ -161,6 +161,15 @@ namespace AgOpenGPS
 
             if (Width > 1100)
             {
+                EditABToolBtn.Visible = true;
+            }
+            else
+            {
+                EditABToolBtn.Visible = false;
+            }
+
+            if (Width > 1100)
+            {
                 youTurnStripBtn.Visible = true;
             }
             else
@@ -168,7 +177,7 @@ namespace AgOpenGPS
                 youTurnStripBtn.Visible = false;
             }
 
-            if (Width > 1250)
+            if (Width > 1100)
             {
                 distanceToolBtn.Visible = true;
             }
@@ -177,7 +186,7 @@ namespace AgOpenGPS
                 distanceToolBtn.Visible = false;
             }
 
-            if (Width > 1390)
+            if (Width > 1550)
             {
                 USBPortsToolBtn.Visible = true;
             }
@@ -278,15 +287,15 @@ namespace AgOpenGPS
             if (panelBatman.Visible)
             {
                 btnRightYouTurn.Left = (Width+350) / 2 ;
-                btnLeftYouTurn.Left = (Width-260) / 2;
-                btnSwapDirection.Left = (Width - 340) / 2 + 200;
+                btnLeftYouTurn.Left = (Width-290) / 2;
+                btnSwapDirection.Left = (Width - 340) / 2 + 190;
                 first2Thirds = (Width - 395) / 2 + 260;
             }
 
             else
             {
                 btnRightYouTurn.Left = (Width+140) / 2;
-                btnLeftYouTurn.Left = (Width-530) / 2;
+                btnLeftYouTurn.Left = (Width-550) / 2;
                 btnSwapDirection.Left = (Width-195) / 2;
                 first2Thirds = (Width - 118) / 2;
             }
@@ -1200,6 +1209,7 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
                 btnABLine.Image = Properties.Resources.ABLineOn;
                 ABLine.isBtnABLineOn = true;
+                ABLine.BuildTram();
                 return;
             }
             
@@ -1270,6 +1280,7 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
                 btnCurve.Image = Properties.Resources.CurveOn;
                 curve.isBtnCurveOn = true;
+                curve.BuildTram();
                 return;
             }
 

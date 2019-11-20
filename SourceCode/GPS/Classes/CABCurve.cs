@@ -181,7 +181,7 @@ namespace AgOpenGPS
                 double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
                 double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
 
-                GL.Color3(0.730f, 0.40692f, 0.6260f);
+                GL.Color3(0.630f, 0.30692f, 0.5260f);
                 GL.PointSize(2);
                 GL.Begin(PrimitiveType.Points);
 
@@ -230,24 +230,20 @@ namespace AgOpenGPS
             double hsin = Math.Sin(headingCalc);
             double hcos = Math.Cos(headingCalc);
 
-            //for (int j = 0; j < refList.Count; j+=4)
-            //{
-            //    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass))  + mf.ABLine.tramOffset)) + refList[j].easting;
-            //    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass)) + mf.ABLine.tramOffset)) + refList[j].northing;
-                
-            //    //only add if inside boundary.
-            //    if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
-            //}
+            bool isBnd = mf.bnd.bndArr.Count != 0;
 
             for (int i = 0; i < mf.ABLine.tramPasses; i++)
             {
-                for (int j = 0; j < refList.Count; j+=4)
+                for (int j = 0; j < refList.Count; j += 4)
                 {
-                    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass+i)) + mf.ABLine.tramOffset)) + refList[j].easting;
-                    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass+i)) + mf.ABLine.tramOffset)) + refList[j].northing;
+                    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + refList[j].easting;
+                    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) + mf.ABLine.tramOffset)) + refList[j].northing;
 
-                    if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
-
+                    if (isBnd)
+                    {
+                        if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1)) tramArr.Add(tramLineP1);
+                    }
+                    else tramArr.Add(tramLineP1);
                 }
             }
 
@@ -264,10 +260,13 @@ namespace AgOpenGPS
 
             vec2 pt = new vec2();
 
+            double distSq = (mf.ABLine.tramWidth*0.5) * (mf.ABLine.tramWidth* 0.5) * 0.97;
+            bool fail = false;
+
             if (mf.ABLine.tramPasses == 0)
             {
 
-                for (int i = ptCount - 1; i >= 0; i--)
+                for (int i = 0; i < ptCount; i++)
                 {
                     //calculate the point inside the boundary
                     pt.easting = mf.bnd.bndArr[0].bndLine[i].easting -
@@ -276,7 +275,36 @@ namespace AgOpenGPS
                     pt.northing = mf.bnd.bndArr[0].bndLine[i].northing -
                         (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5));
 
-                    tramArr.Add(pt);
+                    for (int j = 0; j < ptCount; j++)
+                    {
+                        double check = glm.DistanceSquared(pt.northing, pt.easting,
+                                            mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
+                        if (check < distSq)
+                        {
+                            fail = true;
+                            break;
+                        }
+                    }
+
+                    if (!fail) tramArr.Add(pt);
+                    fail = false;
+                }
+
+            }
+
+            int cnt = tramArr.Count;
+            if (cnt < 6) return;
+
+            const double spacing = 2.0;
+            double distance;
+            for (int i = 0; i < cnt - 1; i++)
+            {
+                distance = glm.Distance(tramArr[i], tramArr[i + 1]);
+                if (distance < spacing)
+                {
+                    tramArr.RemoveAt(i + 1);
+                    cnt = tramArr.Count;
+                    i--;
                 }
             }
         }
