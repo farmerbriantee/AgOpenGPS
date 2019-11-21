@@ -138,10 +138,10 @@
             this.nudSnapAdj.TabIndex = 414;
             this.nudSnapAdj.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSnapAdj.Value = new decimal(new int[] {
-            2101,
+            15,
             0,
             0,
-            131072});
+            65536});
             this.nudSnapAdj.ValueChanged += new System.EventHandler(this.nudSnapAdj_ValueChanged);
             this.nudSnapAdj.Enter += new System.EventHandler(this.nudSnapAdj_Enter);
             // 
@@ -262,7 +262,7 @@
             this.lblSmallSnapRight.Name = "lblSmallSnapRight";
             this.lblSmallSnapRight.Size = new System.Drawing.Size(189, 32);
             this.lblSmallSnapRight.TabIndex = 424;
-            this.lblSmallSnapRight.Text = "Tool Width (m)";
+            this.lblSmallSnapRight.Text = "Tram Width (m)";
             this.lblSmallSnapRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
@@ -272,7 +272,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(156, 32);
             this.label1.TabIndex = 425;
-            this.label1.Text = "Spacing (m)";
+            this.label1.Text = "Track (m)";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -335,9 +335,9 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(64, 237);
+            this.label3.Location = new System.Drawing.Point(26, 231);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 21);
+            this.label3.Size = new System.Drawing.Size(145, 24);
             this.label3.TabIndex = 435;
             this.label3.Text = "Passes";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -345,9 +345,9 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(227, 231);
+            this.label7.Location = new System.Drawing.Point(206, 231);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(100, 24);
+            this.label7.Size = new System.Drawing.Size(145, 24);
             this.label7.TabIndex = 437;
             this.label7.Text = "Offset";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -375,10 +375,10 @@
             this.nudOffset.TabIndex = 436;
             this.nudOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudOffset.Value = new decimal(new int[] {
-            3901,
+            20,
             0,
             0,
-            131072});
+            65536});
             this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             this.nudOffset.Enter += new System.EventHandler(this.nudOffset_Enter);
             // 
