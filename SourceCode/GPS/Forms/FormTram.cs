@@ -37,7 +37,7 @@ namespace AgOpenGPS
             mf.ABLine.tramWidth = Properties.Settings.Default.setTram_eqWidth;
             mf.ABLine.tramWheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
             mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
-            mf.ABLine.tramOffset = Properties.Settings.Default.setTram_offset;
+            mf.ABLine.tramOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
 
             nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
             snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 2));
@@ -214,13 +214,13 @@ namespace AgOpenGPS
         private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.UpButton();
-            mf.ABLine.BuildTram();
+            //mf.ABLine.BuildTram();
         }
 
         private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.DownButton();
-            mf.ABLine.BuildTram();
+            //mf.ABLine.BuildTram();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

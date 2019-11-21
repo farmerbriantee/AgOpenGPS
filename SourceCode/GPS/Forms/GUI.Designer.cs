@@ -162,27 +162,13 @@ namespace AgOpenGPS
             if (Width > 1100)
             {
                 EditABToolBtn.Visible = true;
-            }
-            else
-            {
-                EditABToolBtn.Visible = false;
-            }
-
-            if (Width > 1100)
-            {
                 youTurnStripBtn.Visible = true;
-            }
-            else
-            {
-                youTurnStripBtn.Visible = false;
-            }
-
-            if (Width > 1100)
-            {
                 distanceToolBtn.Visible = true;
             }
             else
             {
+                EditABToolBtn.Visible = false;
+                youTurnStripBtn.Visible = false;
                 distanceToolBtn.Visible = false;
             }
 

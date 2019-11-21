@@ -37,10 +37,10 @@ namespace AgOpenGPS
             mf.ABLine.tramWidth = Properties.Settings.Default.setTram_eqWidth;
             mf.ABLine.tramWheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
             mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
-            mf.ABLine.tramOffset = Properties.Settings.Default.setTram_offset;
+            mf.ABLine.tramOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
 
             nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
-            snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0,2));
+            snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0,3));
             nudSnapAdj.Value = (decimal)snapAdj;
             nudSnapAdj.ValueChanged += nudSnapAdj_ValueChanged;
 
@@ -57,7 +57,7 @@ namespace AgOpenGPS
             nudPasses.ValueChanged += nudPasses_ValueChanged;
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
-            nudOffset.Value = (decimal)Properties.Settings.Default.setTram_offset;
+            nudOffset.Value = (decimal)snapAdj;
             nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             mf.curve.BuildTram();
@@ -211,13 +211,13 @@ namespace AgOpenGPS
         private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.UpButton();
-            mf.curve.BuildTram();
+            //mf.curve.BuildTram();
         }
 
         private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.DownButton();
-            mf.curve.BuildTram();
+            //mf.curve.BuildTram();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -315,6 +315,5 @@ namespace AgOpenGPS
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();        
         }
-
     }
 }
