@@ -123,6 +123,11 @@ namespace AgOpenGPS
         public CABLine ABLine;
 
         /// <summary>
+        /// TramLine class for boundary and settings
+        /// </summary>
+        public CTram tram;
+
+        /// <summary>
         /// The grid for collision Avoidance
         /// </summary>
         public CMazeGrid mazeGrid;
@@ -323,6 +328,9 @@ namespace AgOpenGPS
 
             //new instance of contour mode
             curve = new CABCurve(this);
+
+            //instance of tram
+            tram = new CTram(this);
 
             //new instance of auto headland turn
             yt = new CYouTurn(this);

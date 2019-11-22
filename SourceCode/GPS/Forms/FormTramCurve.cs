@@ -34,11 +34,6 @@ namespace AgOpenGPS
 
         private void FormTram_Load(object sender, EventArgs e)
         { 
-            mf.ABLine.tramWidth = Properties.Settings.Default.setTram_eqWidth;
-            mf.ABLine.tramWheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
-            mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
-            mf.ABLine.tramOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
-
             nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
             snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset)/2.0,3));
             nudSnapAdj.Value = (decimal)snapAdj;
@@ -154,8 +149,8 @@ namespace AgOpenGPS
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramPasses = (int)nudPasses.Value;
-            Properties.Settings.Default.setTram_passes = mf.ABLine.tramPasses;
+            mf.tram.passes = (int)nudPasses.Value;
+            Properties.Settings.Default.setTram_passes = mf.tram.passes;
             Properties.Settings.Default.Save();
             mf.curve.BuildTram();
         }
@@ -168,8 +163,8 @@ namespace AgOpenGPS
 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramOffset = (double)nudOffset.Value;
-            Properties.Settings.Default.setTram_offset = mf.ABLine.tramOffset;
+            mf.tram.offset = (double)nudOffset.Value;
+            Properties.Settings.Default.setTram_offset = mf.tram.offset;
             Properties.Settings.Default.Save();
             mf.curve.BuildTram();
         }
@@ -289,8 +284,8 @@ namespace AgOpenGPS
 
         private void nudEqWidth_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramWidth  = (double)nudEqWidth.Value;
-            Properties.Settings.Default.setTram_eqWidth = mf.ABLine.tramWidth;
+            mf.tram.eqWidth  = (double)nudEqWidth.Value;
+            Properties.Settings.Default.setTram_eqWidth = mf.tram.eqWidth;
             Properties.Settings.Default.Save();
             mf.curve.BuildTram();
 
@@ -304,8 +299,8 @@ namespace AgOpenGPS
 
         private void nudWheelSpacing_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramWheelSpacing = (double)nudWheelSpacing.Value;
-            Properties.Settings.Default.setTram_wheelSpacing = mf.ABLine.tramWheelSpacing;
+            mf.tram.wheelSpacing = (double)nudWheelSpacing.Value;
+            Properties.Settings.Default.setTram_wheelSpacing = mf.tram.wheelSpacing;
             Properties.Settings.Default.Save();
             mf.curve.BuildTram();
         }

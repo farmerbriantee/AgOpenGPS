@@ -120,6 +120,7 @@
     <Compile Include="Classes\CMazePath.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSim.cs" />
+    <Compile Include="Classes\CTram.cs" />
     <Compile Include="Classes\CWorkSwitch.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CBoundary.cs" />
