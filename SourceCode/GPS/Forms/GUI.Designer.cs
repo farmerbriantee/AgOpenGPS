@@ -130,6 +130,10 @@ namespace AgOpenGPS
             panelSim.Location = Settings.Default.setDisplay_panelSimLocation;
 
             FixPanelsAndMenus();
+
+            layoutPanelRight.Enabled = false;
+            boundaryToolStripBtn.Enabled = false;
+            toolStripBtnDropDownBoundaryTools.Enabled = false;
         }
 
         //force all the buttons same according to two main buttons

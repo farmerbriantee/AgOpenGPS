@@ -73,7 +73,7 @@ namespace AgOpenGPS
                 if (refList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.930f, 0.1692f, 0.9260f);
+                GL.Color3(0.730f, 0.1692f, 0.7260f);
                 GL.Begin(PrimitiveType.Lines);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
                 GL.Color3(0.930f, 0.0692f, 0.260f);
@@ -179,26 +179,31 @@ namespace AgOpenGPS
 
                 GL.End();
 
-                double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
-                double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
-
-                GL.Color3(0.630f, 0.30692f, 0.5260f);
-                GL.PointSize(2);
-                GL.Begin(PrimitiveType.Points);
-
-                for (int i = 1; i <= 6; i++)
+                if (mf.camera.camSetDistance > -200)
                 {
-                    for (int h = 0; h < ptCount; h++) 
-                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting, 
-                                      (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
-                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                }
+                    double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
+                    double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
 
-                GL.End();
+                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.PointSize(2);
+                    GL.Begin(PrimitiveType.Points);
+
+
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        for (int h = 0; h < ptCount; h++)
+                            GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting,
+                                          (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
+                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    }
+
+                    GL.End();
+                }
             }
 
-            if (tramList.Count > 0) DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2) DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 3) mf.tram.DrawTramBnd();
         }
 
         public void DrawTram()
@@ -216,39 +221,37 @@ namespace AgOpenGPS
 
         public void BuildTram()
         {
+            mf.tram.BuildTramBnd();
+            tramList?.Clear();
             tramArr?.Clear();
 
             vec2 tramLineP1;
 
-            double pass = 0.5;
-            double halfWheel = mf.ABLine.tramWheelSpacing * 0.5;
+            bool isBndExist = mf.bnd.bndArr.Count != 0;
 
+            double pass = 0.5;
             double headingCalc = aveLineHeading + glm.PIBy2;
 
             double hsin = Math.Sin(headingCalc);
             double hcos = Math.Cos(headingCalc);
 
-            bool isBndExist = mf.bnd.bndArr.Count != 0;
-
-            tramList?.Clear();
-            tramArr?.Clear();
-            for (int i = 0; i < mf.ABLine.tramPasses; i++)
+            for (int i = 0; i < mf.tram.passes; i++)
             {
                 tramArr = new List<vec2>();
                 tramList.Add(tramArr);
                 for (int j = 0; j < refList.Count; j += 4)
                 {
-                    tramLineP1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) -halfWheel + mf.ABLine.tramOffset)) + refList[j].easting;
-                    tramLineP1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) -halfWheel + mf.ABLine.tramOffset)) + refList[j].northing;
+                    tramLineP1.easting = (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].easting;
+                    tramLineP1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) -mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].northing;
 
                     if (isBndExist)
                     {
-                        if (mf.gf.geoFenceArr[0].IsPointInGeoFenceArea(tramLineP1))
+                        if (mf.tram.IsPointInTramBndArea(tramLineP1))
                         {
                             tramArr.Add(tramLineP1);
 
-                            tramLineP1.easting = (hsin * mf.ABLine.tramWheelSpacing) + tramLineP1.easting;
-                            tramLineP1.northing = (hcos * mf.ABLine.tramWheelSpacing) + tramLineP1.northing;
+                            tramLineP1.easting =  (hsin * mf.tram.wheelTrack) + tramLineP1.easting;
+                            tramLineP1.northing = (hcos * mf.tram.wheelTrack) + tramLineP1.northing;
                             tramArr.Add(tramLineP1);
                         }
                     }
@@ -256,104 +259,12 @@ namespace AgOpenGPS
                     {
                         tramArr.Add(tramLineP1);
 
-                        tramLineP1.easting = (hsin * mf.ABLine.tramOffset) + tramLineP1.easting;
-                        tramLineP1.northing = (hcos * mf.ABLine.tramOffset) + tramLineP1.northing;
+                        tramLineP1.easting =  (hsin * mf.tram.wheelTrack) + tramLineP1.easting;
+                        tramLineP1.northing = (hcos * mf.tram.wheelTrack) + tramLineP1.northing;
                         tramArr.Add(tramLineP1);
                     }
                 }
-            }
-
-            //outside tram
-
-            if (mf.bnd.bndArr.Count == 0 || mf.ABLine.tramPasses !=0)
-            {
-                //return;
-            }
-
-           List<vec3> outArr = new List<vec3>();
-
-            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-
-            //outside point
-            vec3 pt3 = new vec3();
-
-            double distSq = ((mf.ABLine.tramWidth * 0.5) - halfWheel) * ((mf.ABLine.tramWidth* 0.5) - halfWheel) * 0.97;
-            bool fail = false;
-
-            //if (mf.ABLine.tramPasses == 0)
-            {
-
-                for (int i = 0; i < ptCount; i++)
-                {
-                    //calculate the point inside the boundary
-                    pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                        (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5 - halfWheel));
-
-                    pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                        (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5 - halfWheel));
-
-                    for (int j = 0; j < ptCount; j++)
-                    {
-                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                            mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
-                        if (check < distSq)
-                        {
-                            fail = true;
-                            break;
-                        }
-                    }
-
-                    if (!fail)
-                    {
-                        pt3.heading = mf.bnd.bndArr[0].bndLine[i].heading;
-                        outArr.Add(pt3);
-                    }
-                    fail = false;
-                }
-
-
-                int cnt = outArr.Count;
-                if (cnt < 6) return;
-
-                const double spacing = 2.0;
-                double distance;
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    distance = glm.Distance(outArr[i], outArr[i + 1]);
-                    if (distance < spacing)
-                    {
-                        outArr.RemoveAt(i + 1);
-                        cnt = outArr.Count;
-                        i--;
-                    }
-                }
-
-                cnt = outArr.Count;
-
-                if (cnt > 0)
-                {
-                    vec2 pt = new vec2();
-                    vec2 pt2 = new vec2();
-
-                    tramArr = new List<vec2>();
-                    tramList.Add(tramArr);
-
-                    for (int i = 0; i < cnt; i++)
-                    {
-                        pt.easting = outArr[i].easting;
-                        pt.northing = outArr[i].northing;
-                        tramArr.Add(pt);
-
-                        pt2.easting = outArr[i].easting -
-                            (Math.Sin(glm.PIBy2 + outArr[i].heading) * mf.ABLine.tramWheelSpacing);
-
-                        pt2.northing = outArr[i].northing -
-                            (Math.Cos(glm.PIBy2 + outArr[i].heading) * mf.ABLine.tramWheelSpacing);
-                        tramArr.Add(pt2);
-                    }
-                }
-            }
+            }            
         }
 
         //for calculating for display the averaged new line

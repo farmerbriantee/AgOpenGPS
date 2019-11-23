@@ -261,7 +261,7 @@ namespace AgOpenGPS
 
             if (mf.bnd.bndArr.Count == 0)
             {
-                mf.TimedMessageBox(1500, " Error", "No Boundaries Made");
+                mf.TimedMessageBox(1500, " No Boundaries", "No Turn Lines Made");
                 return;
             }
 

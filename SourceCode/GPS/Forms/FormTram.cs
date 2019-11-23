@@ -30,15 +30,11 @@ namespace AgOpenGPS
             nudEqWidth.Controls[0].Enabled = false;
             nudPasses.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
+            
         }
 
         private void FormTram_Load(object sender, EventArgs e)
         {
-            mf.ABLine.tramWidth = Properties.Settings.Default.setTram_eqWidth;
-            mf.ABLine.tramWheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
-            mf.ABLine.tramPasses = Properties.Settings.Default.setTram_passes;
-            mf.ABLine.tramOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
-
             nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
             snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 2));
             nudSnapAdj.Value = (decimal)snapAdj;
@@ -74,9 +70,27 @@ namespace AgOpenGPS
             mf.ABLine.isEditing = true;
             mf.layoutPanelRight.Enabled = false;
 
-            this.Left = mf.Width - 430;
-            this.Top = 100;
+            //if off, turn it on because they obviously want a tram.
+            if (mf.tram.displayMode == 0) mf.tram.displayMode = 1;
 
+            switch (mf.tram.displayMode)
+            {
+                case 0:
+                    btnMode.Image = Properties.Resources.TramOff;
+                    break;
+                case 1:
+                    btnMode.Image = Properties.Resources.TramAll;
+                    break;
+                case 2:
+                    btnMode.Image = Properties.Resources.TramLines;
+                    break;
+                case 3:
+                    btnMode.Image = Properties.Resources.TramOuter;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -102,7 +116,7 @@ namespace AgOpenGPS
             mf.ABLine.moveDistance = 0;
             mf.ABLine.isEditing = false;
             mf.layoutPanelRight.Enabled = true;
-
+            mf.panelDrag.Visible = false;
             mf.offX = 0;
             mf.offY = 0;
 
@@ -119,23 +133,6 @@ namespace AgOpenGPS
         private void btnRight_Click(object sender, EventArgs e)
         {
             double dist = 0.1;
-            mf.ABLine.MoveABLine(dist);
-            mf.ABLine.BuildTram();
-        }
-
-        private void btnLeftFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-
-            mf.ABLine.MoveABLine(-dist);
-            mf.ABLine.BuildTram();
-
-        }
-
-        private void btnRightFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-
             mf.ABLine.MoveABLine(dist);
             mf.ABLine.BuildTram();
         }
@@ -162,8 +159,8 @@ namespace AgOpenGPS
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramPasses = (int)nudPasses.Value;
-            Properties.Settings.Default.setTram_passes = mf.ABLine.tramPasses;
+            mf.tram.passes = (int)nudPasses.Value;
+            Properties.Settings.Default.setTram_passes = mf.tram.passes;
             Properties.Settings.Default.Save();
             mf.ABLine.BuildTram();
         }
@@ -182,8 +179,8 @@ namespace AgOpenGPS
 
         private void nudOffset_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramOffset = (double)nudOffset.Value;
-            Properties.Settings.Default.setTram_offset = mf.ABLine.tramOffset;
+            mf.tram.offset = (double)nudOffset.Value;
+            Properties.Settings.Default.setTram_offset = mf.tram.offset;
             Properties.Settings.Default.Save();
             mf.ABLine.BuildTram();
         }
@@ -226,62 +223,17 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             mf.ABLine.tramArr?.Clear();
+            mf.ABLine.tramList?.Clear();
+            mf.tram.tramBndArr?.Clear();
+
             mf.ABLine.tramPassEvery = 0;
             mf.ABLine.tramBasedOn = 0;
             mf.ABLine.isEditing = false;
             mf.layoutPanelRight.Enabled = true;
+            mf.panelDrag.Visible = false;
             mf.offX = 0;
             mf.offY = 0;
             Close();
-        }
-
-        private void btnZoomOut_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (mf.camera.zoomValue <= 20)
-            { if ((mf.camera.zoomValue -= mf.camera.zoomValue * 0.1) < 6.0) mf.camera.zoomValue = 6.0; }
-            else { if ((mf.camera.zoomValue -= mf.camera.zoomValue * 0.05) < 6.0) mf.camera.zoomValue = 6.0; }
-            mf.camera.camSetDistance = mf.camera.zoomValue * mf.camera.zoomValue * -1;
-            mf.SetZoom();
-        }
-
-        private void btnZoomIn_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (mf.camera.zoomValue <= 20) mf.camera.zoomValue += mf.camera.zoomValue * 0.1;
-            else mf.camera.zoomValue += mf.camera.zoomValue * 0.05;
-            if (mf.camera.zoomValue > 220) mf.camera.zoomValue = 220;
-            mf.camera.camSetDistance = mf.camera.zoomValue * mf.camera.zoomValue * -1;
-           mf.SetZoom();
-
-        }
-
-        private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
-        {
-            mf.offX += (Math.Sin(mf.fixHeading) * 10);
-            mf.offY += (Math.Cos(mf.fixHeading) * 10);
-        }
-
-        private void btnMoveUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            mf.offX -= (Math.Sin(mf.fixHeading) * 10);
-            mf.offY -= (Math.Cos(mf.fixHeading) * 10);
-        }
-
-        private void btnMoveLeft_MouseDown(object sender, MouseEventArgs e)
-        {
-            mf.offY += (Math.Sin(-mf.fixHeading) * 10);
-            mf.offX += (Math.Cos(-mf.fixHeading) * 10);
-        }
-
-        private void btnMoveRight_MouseDown(object sender, MouseEventArgs e)
-        {
-            mf.offY -= (Math.Sin(-mf.fixHeading) * 10);
-            mf.offX -= (Math.Cos(-mf.fixHeading) * 10);
-        }
-
-        private void btnResetDrag_Click(object sender, EventArgs e)
-        {
-            mf.offX = 0;
-            mf.offY = 0;
         }
 
         private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,8 +262,8 @@ namespace AgOpenGPS
 
         private void nudEqWidth_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramWidth  = (double)nudEqWidth.Value;
-            Properties.Settings.Default.setTram_eqWidth = mf.ABLine.tramWidth;
+            mf.tram.eqWidth  = (double)nudEqWidth.Value;
+            Properties.Settings.Default.setTram_eqWidth = mf.tram.eqWidth;
             Properties.Settings.Default.Save();
             mf.ABLine.BuildTram();
 
@@ -325,8 +277,9 @@ namespace AgOpenGPS
 
         private void nudWheelSpacing_ValueChanged(object sender, EventArgs e)
         {
-            mf.ABLine.tramWheelSpacing = (double)nudWheelSpacing.Value;
-            Properties.Settings.Default.setTram_wheelSpacing = mf.ABLine.tramWheelSpacing;
+            mf.tram.wheelTrack = (double)nudWheelSpacing.Value;
+            mf.tram.halfWheelTrack = mf.tram.wheelTrack * 0.5;
+            Properties.Settings.Default.setTram_wheelSpacing = mf.tram.wheelTrack;
             Properties.Settings.Default.Save();
             mf.ABLine.BuildTram();
 
@@ -336,6 +289,31 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();        
+        }
+
+        private void btnMode_Click(object sender, EventArgs e)
+        {
+            mf.tram.displayMode++;
+            if (mf.tram.displayMode > 3) mf.tram.displayMode = 0;
+            
+            switch (mf.tram.displayMode)
+            {
+                case 0:
+                    btnMode.Image = Properties.Resources.TramOff;
+                    break;
+                case 1:
+                    btnMode.Image = Properties.Resources.TramAll;
+                    break;
+                case 2:
+                    btnMode.Image = Properties.Resources.TramLines;
+                    break;
+                case 3:
+                    btnMode.Image = Properties.Resources.TramOuter;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }

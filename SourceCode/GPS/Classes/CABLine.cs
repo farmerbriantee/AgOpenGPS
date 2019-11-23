@@ -45,52 +45,27 @@ namespace AgOpenGPS
         public double refLineSide = 1.0;
         //the two inital A and B points
         public vec2 refPoint1 = new vec2(0.2, 0.2);
-
         public vec2 refPoint2 = new vec2(0.3, 0.3);
+
         public double snapDistance;
         public double steerAngleAB;
         public float lineWidth;
 
+        //tramlines
         public List<vec2> tramArr = new List<vec2>();
-        public List<vec2> tramRef = new List<vec2>();
         public List<List<vec2>> tramList = new List<List<vec2>>();
 
-        public double tramWheelSpacing;
-        public double tramWidth, tramOffset;
-        public int tramPasses;
-        public vec2 refTramP1 = new vec2();
-        public vec2 refTramP2 = new vec2();
-
-        //tramlines
         //Color tramColor = Color.YellowGreen;
         public int tramPassEvery;
         //pointers to mainform controls
         private readonly FormGPS mf;
+
         public CABLine(FormGPS _f)
         {
             //constructor
             mf = _f;
             isOnTramLine = true;
             lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
-
-        }
-
-        public void DeleteAB()
-        {
-            refPoint1 = new vec2(0.0, 0.0);
-            refPoint2 = new vec2(0.0, 1.0);
-
-            refABLineP1 = new vec2(0.0, 0.0);
-            refABLineP2 = new vec2(0.0, 1.0);
-
-            currentABLineP1 = new vec2(0.0, 0.0);
-            currentABLineP2 = new vec2(0.0, 1.0);
-
-            abHeading = 0.0;
-            passNumber = 0.0;
-            howManyPathsAway = 0.0;
-            isABLineSet = false;
-            isABLineLoaded = false;
         }
 
         public void DrawABLines()
@@ -232,22 +207,26 @@ namespace AgOpenGPS
                 double cosHeading2 = Math.Cos(-mf.ABLine.abHeading);
                 double sinHeading2 = Math.Sin(-mf.ABLine.abHeading);
 
-                GL.Color3(0.630f, 0.30692f, 0.5260f);
-                GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Enable(EnableCap.LineStipple);
-                GL.LineStipple(1, 0x0707);
-
-                GL.Begin(PrimitiveType.Lines);
-
-                for (int i = 1; i <= 6; i++)
+                if (mf.camera.camSetDistance > -200)
                 {
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                }
 
-                GL.End();
-                GL.Disable(EnableCap.LineStipple);
+                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.LineWidth(mf.ABLine.lineWidth);
+                    GL.Enable(EnableCap.LineStipple);
+                    GL.LineStipple(1, 0x0707);
+
+                    GL.Begin(PrimitiveType.Lines);
+
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
+                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
+                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    }
+
+                    GL.End();
+                    GL.Disable(EnableCap.LineStipple);
+                }
 
                 GL.LineWidth(4);
                 if (tramBasedOn > 0)
@@ -273,34 +252,6 @@ namespace AgOpenGPS
 
             if (mf.isPureDisplayOn && !mf.isStanleyUsed)
             {
-                //draw the guidance circle
-                //const int numSegments = 100;
-                //{
-                //    if (ppRadiusAB < 50 && ppRadiusAB > -50 && mf.isPureDisplayOn)
-                //    {
-                //        GL.Color3(0.95f, 0.30f, 0.950f);
-                //        double theta = glm.twoPI / numSegments;
-                //        double c = Math.Cos(theta);//precalculate the sine and cosine
-                //        double s = Math.Sin(theta);
-
-                //        double x = ppRadiusAB;//we start at angle = 0
-                //        double y = 0;
-                //        GL.LineWidth(1);
-                //        GL.Begin(PrimitiveType.LineLoop);
-                //        for (int ii = 0; ii < numSegments; ii++)
-                //        {
-                //            //output vertex
-                //            GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
-
-                //            //apply the rotation matrix
-                //            double t = x;
-                //            x = (c * x) - (s * y);
-                //            y = (s * t) + (c * y);
-                //        }
-                //        GL.End();
-                //    }
-                //}
-
                 //Draw lookahead Point
                 GL.PointSize(8.0f);
                 GL.Begin(PrimitiveType.Points);
@@ -332,22 +283,38 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
             GL.LineWidth(1);
 
-            if (tramList.Count > 0) DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2 )DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 3) mf.tram.DrawTramBnd();
+        }
+
+        public void DrawTram()
+        {
+            GL.Color4(0.8630f, 0.93692f, 0.3260f, 0.22);
+            for (int i = 0; i < tramList.Count; i++)
+            {
+                GL.Begin(PrimitiveType.TriangleStrip);
+                for (int h = 0; h < tramList[i].Count; h++) 
+                    GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
+                GL.End();
+            }
         }
 
         public void BuildTram()
         {
-            tramArr?.Clear();
-            tramRef?.Clear();
+            mf.tram.BuildTramBnd();
 
-            vec2 P1;
+            tramList?.Clear();
+            tramArr?.Clear();
+            List<vec2> tramRef = new List<vec2>();
+
+            bool isBndExist = mf.bnd.bndArr.Count != 0;
 
             double pass = 0.5;
             double hsin = Math.Sin(abHeading);
             double hcos = Math.Cos(abHeading);
 
-            bool isBndExist = mf.bnd.bndArr.Count != 0;
-
+            //divide up the AB line into segments
+            vec2 P1 = new vec2();
             for (int i = 0; i < 3200; i += 4)
             {
                 P1.easting = (hsin * i) + refABLineP1.easting;
@@ -355,31 +322,31 @@ namespace AgOpenGPS
                 tramRef.Add(P1);
             }
 
+            //create list of list of points of triangle strip of AB Highlight
             double headingCalc = abHeading + glm.PIBy2;
             hsin = Math.Sin(headingCalc);
             hcos = Math.Cos(headingCalc);
 
-            double halfWheel = mf.ABLine.tramWheelSpacing * 0.5;
-
             tramList?.Clear();
             tramArr?.Clear();
-            for (int i = 0; i < mf.ABLine.tramPasses; i++)
+
+            for (int i = 0; i < mf.tram.passes; i++)
             {
                 tramArr = new List<vec2>();
                 tramList.Add(tramArr);
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.ABLine.tramWidth * (pass + i)) - halfWheel + mf.ABLine.tramOffset)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.ABLine.tramWidth * (pass + i)) - halfWheel + mf.ABLine.tramOffset)) + tramRef[j].northing;
+                    P1.easting =  (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].northing;
 
                     if (isBndExist)
                     {
-                        if (mf.gf.geoFenceArr[0].IsPointInGeoFenceArea(P1))
+                        if (mf.tram.IsPointInTramBndArea(P1))
                         {
                             tramArr.Add(P1);
-                            P1.easting = (hsin * mf.ABLine.tramWheelSpacing) + P1.easting;
-                            P1.northing = (hcos * mf.ABLine.tramWheelSpacing) + P1.northing;
+                            P1.easting =  (hsin * mf.tram.wheelTrack) + P1.easting;
+                            P1.northing = (hcos * mf.tram.wheelTrack) + P1.northing;
                             tramArr.Add(P1);
                         }
                     }
@@ -387,8 +354,8 @@ namespace AgOpenGPS
                     {
                         tramArr.Add(P1);
 
-                        P1.easting = (hsin * mf.ABLine.tramWheelSpacing) + P1.easting;
-                        P1.northing = (hcos * mf.ABLine.tramWheelSpacing) + P1.northing;
+                        P1.easting =  (hsin * mf.tram.wheelTrack) + P1.easting;
+                        P1.northing = (hcos * mf.tram.wheelTrack) + P1.northing;
                         tramArr.Add(P1);
                     }
                 }
@@ -397,112 +364,12 @@ namespace AgOpenGPS
             tramRef?.Clear();
             //outside tram
 
-            if (mf.bnd.bndArr.Count == 0 || mf.ABLine.tramPasses != 0)
-            {
+            if (mf.bnd.bndArr.Count == 0 || mf.tram.passes != 0)
+            {                               
                 //return;
             }
-
-            List<vec3> outArr = new List<vec3>();
-
-            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-
-            //outside point
-            vec3 pt3 = new vec3();
-
-            double distSq = ((mf.ABLine.tramWidth * 0.5) - halfWheel) * ((mf.ABLine.tramWidth * 0.5) - halfWheel) * 0.97;
-            bool fail = false;
-
-            //if (mf.ABLine.tramPasses == 0)
-            {
-
-                for (int i = 0; i < ptCount; i++)
-                {
-                    //calculate the point inside the boundary
-                    pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                        (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5 - halfWheel));
-
-                    pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                        (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (mf.ABLine.tramWidth * 0.5 - halfWheel));
-
-                    for (int j = 0; j < ptCount; j++)
-                    {
-                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                            mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
-                        if (check < distSq)
-                        {
-                            fail = true;
-                            break;
-                        }
-                    }
-
-                    if (!fail)
-                    {
-                        pt3.heading = mf.bnd.bndArr[0].bndLine[i].heading;
-                        outArr.Add(pt3);
-                    }
-                    fail = false;
-                }
-
-
-                int cnt = outArr.Count;
-                if (cnt < 6) return;
-
-                const double spacing = 2.0;
-                double distance;
-                for (int i = 0; i < cnt - 1; i++)
-                {
-                    distance = glm.Distance(outArr[i], outArr[i + 1]);
-                    if (distance < spacing)
-                    {
-                        outArr.RemoveAt(i + 1);
-                        cnt = outArr.Count;
-                        i--;
-                    }
-                }
-
-                cnt = outArr.Count;
-
-                if (cnt > 0)
-                {
-                    vec2 pt = new vec2();
-                    vec2 pt2 = new vec2();
-
-                    tramArr = new List<vec2>();
-                    tramList.Add(tramArr);
-
-                    for (int i = 0; i < cnt; i++)
-                    {
-                        pt.easting = outArr[i].easting;
-                        pt.northing = outArr[i].northing;
-                        tramArr.Add(pt);
-
-                        pt2.easting = outArr[i].easting -
-                            (Math.Sin(glm.PIBy2 + outArr[i].heading) * mf.ABLine.tramWheelSpacing);
-
-                        pt2.northing = outArr[i].northing -
-                            (Math.Cos(glm.PIBy2 + outArr[i].heading) * mf.ABLine.tramWheelSpacing);
-                        tramArr.Add(pt2);
-                    }
-                }
-            }
         }
 
-        public void DrawTram()
-        {
-            GL.Color4(0.8630f, 0.93692f, 0.3260f, 0.22);
-            //if (mf.camera.camSetDistance < -300) GL.PointSize(2);
-
-            for (int i = 0; i < tramList.Count; i++)
-            {
-                //if (tramList[i].Count > 0)
-                {
-                    GL.Begin(PrimitiveType.TriangleStrip);
-                    for (int h = 0; h < tramList[i].Count; h++) GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
-                    GL.End();
-                }
-            }
-        }
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {
@@ -834,6 +701,24 @@ namespace AgOpenGPS
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
+        }
+
+        public void DeleteAB()
+        {
+            refPoint1 = new vec2(0.0, 0.0);
+            refPoint2 = new vec2(0.0, 1.0);
+
+            refABLineP1 = new vec2(0.0, 0.0);
+            refABLineP2 = new vec2(0.0, 1.0);
+
+            currentABLineP1 = new vec2(0.0, 0.0);
+            currentABLineP2 = new vec2(0.0, 1.0);
+
+            abHeading = 0.0;
+            passNumber = 0.0;
+            howManyPathsAway = 0.0;
+            isABLineSet = false;
+            isABLineLoaded = false;
         }
 
         public void SetABLineByBPoint()

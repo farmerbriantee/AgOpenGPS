@@ -2122,7 +2122,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No Boundary.
+        ///   Looks up a localized string similar to f.
         /// </summary>
         public static string gsNoBoundary {
             get {
