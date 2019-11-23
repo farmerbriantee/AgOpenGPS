@@ -44,7 +44,7 @@ namespace AgOpenGPS
         
         public double refLineSide = 1.0;
         //the two inital A and B points
-        public vec2 refPoint1 = new vec2(0.2, 0.2);
+        public vec2 refPoint1 = new vec2(0.2, 0.3);
         public vec2 refPoint2 = new vec2(0.3, 0.3);
 
         public double snapDistance;
