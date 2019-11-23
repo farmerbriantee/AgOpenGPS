@@ -290,22 +290,21 @@ namespace AgOpenGPS
             GL.Color3(0.9, 0.90, 0.0);
             GL.Begin(PrimitiveType.TriangleFan);
 
-            GL.Vertex3(0, antennaPivot, -0.2);
-            GL.Vertex3(1.2, -0, 0.0);
+            GL.Vertex3(0, antennaPivot, -0.0);
+            GL.Vertex3(0.8, -0, 0.0);
             GL.Color3(0.0, 0.90, 0.92);
             GL.Vertex3(0, wheelbase, 0.0);
             GL.Color3(0.920, 0.0, 0.9);
-            GL.Vertex3(-1.2, -0, 0.0);
-
-            GL.Vertex3(1.2, -0, 0.0);
+            GL.Vertex3(-0.8, -0, 0.0);
+            GL.Vertex3(0.8, -0, 0.0);
             GL.End();
 
             GL.LineWidth(3);
             GL.Color3(0.0, 0.0, 0.0);
             GL.Begin(PrimitiveType.LineLoop);
             {
-                GL.Vertex3(-1.2, 0, 0);
-                GL.Vertex3(1.2, 0, 0);
+                GL.Vertex3(-0.8, 0, 0);
+                GL.Vertex3(0.8, 0, 0);
                 GL.Vertex3(0, wheelbase, 0);
             }
             GL.End();
@@ -315,9 +314,9 @@ namespace AgOpenGPS
             GL.Color3(0.9, 0.95, 0.10);
             GL.Begin(PrimitiveType.LineStrip);
             {
-                GL.Vertex3(0.8, wheelbase + 6, 0.0);
+                GL.Vertex3(0.6, wheelbase + 6, 0.0);
                 GL.Vertex3(0, wheelbase + 8, 0.0);
-                GL.Vertex3(-0.8, wheelbase + 6, 0.0);
+                GL.Vertex3(-0.6, wheelbase + 6, 0.0);
             }
             GL.End();
 

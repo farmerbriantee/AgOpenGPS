@@ -9,7 +9,6 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
 
@@ -20,13 +19,13 @@ namespace AgOpenGPS
         public List<vec2> tramBndArr = new List<vec2>();
 
         //tram settings
-        public double wheelSpacing;
+        public double wheelTrack;
         public double eqWidth, offset;
-        public double halfWheel;
+        public double halfWheelTrack;
         public int passes;
 
+        // 0 off, 1 All, 2, Lines, 3 Outer
         public int displayMode;
-
 
         public CTram(FormGPS _f)
         {
@@ -34,24 +33,26 @@ namespace AgOpenGPS
             mf = _f;
 
             eqWidth = Properties.Settings.Default.setTram_eqWidth;
-            wheelSpacing = Properties.Settings.Default.setTram_wheelSpacing;
-            halfWheel = wheelSpacing * 0.5;
+            wheelTrack = Properties.Settings.Default.setTram_wheelSpacing;
+            halfWheelTrack = wheelTrack * 0.5;
 
             passes = Properties.Settings.Default.setTram_passes;
             offset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
             displayMode = 0;
         }
 
-        public void DrawBndTram()
+        public void DrawTramBnd()
         {
             if (tramBndArr.Count > 0)
             {
+                GL.Color4(0.8630f, 0.63692f, 0.7260f, 0.22);
                 GL.Begin(PrimitiveType.TriangleStrip);
                 for (int h = 0; h < tramBndArr.Count; h++) GL.Vertex3(tramBndArr[h].easting, tramBndArr[h].northing, 0);
                 GL.End();
             }
         }
-        public void BuildBndTram()
+
+        public void BuildTramBnd()
         {
             bool isBndExist = mf.bnd.bndArr.Count != 0;
 
@@ -77,7 +78,7 @@ namespace AgOpenGPS
             //outside point
             vec3 pt3 = new vec3();
 
-            double distSq = ((eqWidth * 0.5) - halfWheel) * ((eqWidth * 0.5) - halfWheel) * 0.97;
+            double distSq = ((eqWidth * 0.5) - halfWheelTrack) * ((eqWidth * 0.5) - halfWheelTrack) * 0.97;
             bool fail = false;
 
             //make the boundary tram outer array
@@ -85,10 +86,10 @@ namespace AgOpenGPS
             {
                 //calculate the point inside the boundary
                 pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheel));
+                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheelTrack));
 
                 pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheel));
+                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheelTrack));
 
                 for (int j = 0; j < ptCount; j++)
                 {
@@ -145,10 +146,10 @@ namespace AgOpenGPS
                     tramBndArr.Add(pt);
 
                     pt2.easting = mf.tram.outArr[i].easting -
-                        (Math.Sin(glm.PIBy2 + mf.tram.outArr[i].heading) * mf.tram.wheelSpacing);
+                        (Math.Sin(glm.PIBy2 + mf.tram.outArr[i].heading) * mf.tram.wheelTrack);
 
                     pt2.northing = mf.tram.outArr[i].northing -
-                        (Math.Cos(glm.PIBy2 + mf.tram.outArr[i].heading) * mf.tram.wheelSpacing);
+                        (Math.Cos(glm.PIBy2 + mf.tram.outArr[i].heading) * mf.tram.wheelTrack);
                     tramBndArr.Add(pt2);
                 }
             }

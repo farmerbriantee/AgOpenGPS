@@ -860,7 +860,6 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK) { }
             }
-
         }
 
         private void deleteContourPathsToolStripMenuItem_Click_1(object sender, EventArgs e)
@@ -1328,28 +1327,33 @@ namespace AgOpenGPS
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
-
+                panelDrag.Visible = true;
+                panelDrag.Top = 150;
+                panelDrag.Left = 76;
                 Form form99 = new FormTram(this);
                 form99.Show();
+                form99.Left = Width - 275;
+                form99.Top = 100;
+
             }
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
-
+                panelDrag.Visible = true;
+                panelDrag.Top = 150;
+                panelDrag.Left = 76;
                 Form form97 = new FormTramCurve(this);
                 form97.Show();
+                form97.Left = Width - 275;
+                form97.Top = 100;
             }
             else
             {
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                //form.Show();
+                form.Show();
                 layoutPanelRight.Enabled = true;
                 ABLine.isEditing = false;
                 return;
             }
-
-
-            //if (curve.isCurveBtnOn) btnCycleLines.Text = "Cu-" + curve.numCurveLineSelected;
-            //if (ABLine.isBtnABLineOn) btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
         }
 
         private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
@@ -1392,12 +1396,11 @@ namespace AgOpenGPS
             }
             else
             {
-                panelDrag.Top = 282;
-                panelDrag.Left = 80;
+                panelDrag.Top = 150;
+                panelDrag.Left = 76;
                 panelDrag.Visible = true;
             }
         }
-
 
         public void GetAB()
         {
@@ -1612,11 +1615,19 @@ namespace AgOpenGPS
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsCloseField;
             this.menustripLanguage.Enabled = false;
+            layoutPanelRight.Enabled = true;
+            boundaryToolStripBtn.Enabled = true;
+            toolStripBtnDropDownBoundaryTools.Enabled = true;
+
         }
 
         //close the current job
         public void JobClose()
         {
+            layoutPanelRight.Enabled = false;
+            boundaryToolStripBtn.Enabled = false;
+            toolStripBtnDropDownBoundaryTools.Enabled = false;
+
             menustripLanguage.Enabled = true;
             //job is closed
             isJobStarted = false;
@@ -1694,6 +1705,8 @@ namespace AgOpenGPS
             ABLine.lineArr?.Clear();
             ABLine.numABLineSelected = 0;
             ABLine.tramArr?.Clear();
+            ABLine.tramList?.Clear();
+
 
             //curve line
             btnCurve.Enabled = false;
@@ -1704,6 +1717,11 @@ namespace AgOpenGPS
             curve.curveArr?.Clear();
             curve.numCurveLineSelected = 0;
             curve.tramArr?.Clear();
+            curve.tramList?.Clear();
+
+            //clean up tram
+            tram.displayMode = 0;
+            tram.outArr?.Clear();
 
             //clear out contour and Lists
             btnContour.Enabled = false;
@@ -1763,7 +1781,6 @@ namespace AgOpenGPS
         private void JobNewOpenResume()
         {
             //bring up dialog if no job active, close job if one is
-
             if (!isJobStarted)
             {
                 if (toolStripBtnGPSStength.Image.Height == 38)
@@ -1785,6 +1802,19 @@ namespace AgOpenGPS
                 }
 
                 Text = "AgOpenGPS - " + currentFieldDirectory;
+
+                if (isJobStarted)
+                {
+                    layoutPanelRight.Enabled = true;
+                    boundaryToolStripBtn.Enabled = true;
+                    toolStripBtnDropDownBoundaryTools.Enabled = true;
+                }
+                else
+                {
+                    layoutPanelRight.Enabled = false;
+                    boundaryToolStripBtn.Enabled = false;
+                    toolStripBtnDropDownBoundaryTools.Enabled = false;
+                }
             }
 
             //close the current job and ask how to or if to save
@@ -1798,6 +1828,9 @@ namespace AgOpenGPS
                         Settings.Default.setF_CurrentDir = currentFieldDirectory;
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
+                        layoutPanelRight.Enabled = false;
+                        boundaryToolStripBtn.Enabled = false;
+                        toolStripBtnDropDownBoundaryTools.Enabled = false;
                         break;
                     //Ignore and return
                     case 1:

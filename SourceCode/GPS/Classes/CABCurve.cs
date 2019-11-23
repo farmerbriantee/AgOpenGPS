@@ -73,7 +73,7 @@ namespace AgOpenGPS
                 if (refList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.930f, 0.1692f, 0.9260f);
+                GL.Color3(0.730f, 0.1692f, 0.7260f);
                 GL.Begin(PrimitiveType.Lines);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
                 GL.Color3(0.930f, 0.0692f, 0.260f);
@@ -179,27 +179,31 @@ namespace AgOpenGPS
 
                 GL.End();
 
-                double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
-                double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
-
-                GL.Color3(0.630f, 0.30692f, 0.5260f);
-                GL.PointSize(2);
-                GL.Begin(PrimitiveType.Points);
-
-                for (int i = 1; i <= 6; i++)
+                if (mf.camera.camSetDistance > -200)
                 {
-                    for (int h = 0; h < ptCount; h++) 
-                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting, 
-                                      (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
-                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                }
+                    double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
+                    double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
 
-                GL.End();
+                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.PointSize(2);
+                    GL.Begin(PrimitiveType.Points);
+
+
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        for (int h = 0; h < ptCount; h++)
+                            GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting,
+                                          (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
+                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    }
+
+                    GL.End();
+                }
             }
 
-            DrawTram();
-            mf.tram.DrawBndTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2) DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 3) mf.tram.DrawTramBnd();
         }
 
         public void DrawTram()
@@ -217,7 +221,7 @@ namespace AgOpenGPS
 
         public void BuildTram()
         {
-            mf.tram.BuildBndTram();
+            mf.tram.BuildTramBnd();
             tramList?.Clear();
             tramArr?.Clear();
 
@@ -237,8 +241,8 @@ namespace AgOpenGPS
                 tramList.Add(tramArr);
                 for (int j = 0; j < refList.Count; j += 4)
                 {
-                    tramLineP1.easting = (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheel + mf.tram.offset)) + refList[j].easting;
-                    tramLineP1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) -mf.tram.halfWheel + mf.tram.offset)) + refList[j].northing;
+                    tramLineP1.easting = (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].easting;
+                    tramLineP1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) -mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].northing;
 
                     if (isBndExist)
                     {
@@ -246,8 +250,8 @@ namespace AgOpenGPS
                         {
                             tramArr.Add(tramLineP1);
 
-                            tramLineP1.easting =  (hsin * mf.tram.wheelSpacing) + tramLineP1.easting;
-                            tramLineP1.northing = (hcos * mf.tram.wheelSpacing) + tramLineP1.northing;
+                            tramLineP1.easting =  (hsin * mf.tram.wheelTrack) + tramLineP1.easting;
+                            tramLineP1.northing = (hcos * mf.tram.wheelTrack) + tramLineP1.northing;
                             tramArr.Add(tramLineP1);
                         }
                     }
@@ -255,8 +259,8 @@ namespace AgOpenGPS
                     {
                         tramArr.Add(tramLineP1);
 
-                        tramLineP1.easting =  (hsin * mf.tram.wheelSpacing) + tramLineP1.easting;
-                        tramLineP1.northing = (hcos * mf.tram.wheelSpacing) + tramLineP1.northing;
+                        tramLineP1.easting =  (hsin * mf.tram.wheelTrack) + tramLineP1.easting;
+                        tramLineP1.northing = (hcos * mf.tram.wheelTrack) + tramLineP1.northing;
                         tramArr.Add(tramLineP1);
                     }
                 }

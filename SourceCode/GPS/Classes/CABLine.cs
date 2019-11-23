@@ -207,22 +207,26 @@ namespace AgOpenGPS
                 double cosHeading2 = Math.Cos(-mf.ABLine.abHeading);
                 double sinHeading2 = Math.Sin(-mf.ABLine.abHeading);
 
-                GL.Color3(0.630f, 0.30692f, 0.5260f);
-                GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Enable(EnableCap.LineStipple);
-                GL.LineStipple(1, 0x0707);
-
-                GL.Begin(PrimitiveType.Lines);
-
-                for (int i = 1; i <= 6; i++)
+                if (mf.camera.camSetDistance > -200)
                 {
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                    toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                }
 
-                GL.End();
-                GL.Disable(EnableCap.LineStipple);
+                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.LineWidth(mf.ABLine.lineWidth);
+                    GL.Enable(EnableCap.LineStipple);
+                    GL.LineStipple(1, 0x0707);
+
+                    GL.Begin(PrimitiveType.Lines);
+
+                    for (int i = 1; i <= 6; i++)
+                    {
+                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
+                        GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
+                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    }
+
+                    GL.End();
+                    GL.Disable(EnableCap.LineStipple);
+                }
 
                 GL.LineWidth(4);
                 if (tramBasedOn > 0)
@@ -248,34 +252,6 @@ namespace AgOpenGPS
 
             if (mf.isPureDisplayOn && !mf.isStanleyUsed)
             {
-                //draw the guidance circle
-                //const int numSegments = 100;
-                //{
-                //    if (ppRadiusAB < 50 && ppRadiusAB > -50 && mf.isPureDisplayOn)
-                //    {
-                //        GL.Color3(0.95f, 0.30f, 0.950f);
-                //        double theta = glm.twoPI / numSegments;
-                //        double c = Math.Cos(theta);//precalculate the sine and cosine
-                //        double s = Math.Sin(theta);
-
-                //        double x = ppRadiusAB;//we start at angle = 0
-                //        double y = 0;
-                //        GL.LineWidth(1);
-                //        GL.Begin(PrimitiveType.LineLoop);
-                //        for (int ii = 0; ii < numSegments; ii++)
-                //        {
-                //            //output vertex
-                //            GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0.0);
-
-                //            //apply the rotation matrix
-                //            double t = x;
-                //            x = (c * x) - (s * y);
-                //            y = (s * t) + (c * y);
-                //        }
-                //        GL.End();
-                //    }
-                //}
-
                 //Draw lookahead Point
                 GL.PointSize(8.0f);
                 GL.Begin(PrimitiveType.Points);
@@ -307,9 +283,10 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
             GL.LineWidth(1);
 
-            DrawTram();
-            mf.tram.DrawBndTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2 )DrawTram();
+            if (mf.tram.displayMode == 1 || mf.tram.displayMode == 3) mf.tram.DrawTramBnd();
         }
+
         public void DrawTram()
         {
             GL.Color4(0.8630f, 0.93692f, 0.3260f, 0.22);
@@ -320,19 +297,11 @@ namespace AgOpenGPS
                     GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
                 GL.End();
             }
-
-            if (mf.tram.tramBndArr.Count > 0)
-            {
-                GL.Begin(PrimitiveType.TriangleStrip);
-                for (int h = 0; h < mf.tram.tramBndArr.Count; h++) 
-                    GL.Vertex3(mf.tram.tramBndArr[h].easting, mf.tram.tramBndArr[h].northing, 0);
-                GL.End();
-            }
         }
 
         public void BuildTram()
         {
-            mf.tram.BuildBndTram();
+            mf.tram.BuildTramBnd();
 
             tramList?.Clear();
             tramArr?.Clear();
@@ -368,16 +337,16 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting =  (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheel + mf.tram.offset)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheel + mf.tram.offset)) + tramRef[j].northing;
+                    P1.easting =  (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].northing;
 
                     if (isBndExist)
                     {
                         if (mf.tram.IsPointInTramBndArea(P1))
                         {
                             tramArr.Add(P1);
-                            P1.easting =  (hsin * mf.tram.wheelSpacing) + P1.easting;
-                            P1.northing = (hcos * mf.tram.wheelSpacing) + P1.northing;
+                            P1.easting =  (hsin * mf.tram.wheelTrack) + P1.easting;
+                            P1.northing = (hcos * mf.tram.wheelTrack) + P1.northing;
                             tramArr.Add(P1);
                         }
                     }
@@ -385,8 +354,8 @@ namespace AgOpenGPS
                     {
                         tramArr.Add(P1);
 
-                        P1.easting =  (hsin * mf.tram.wheelSpacing) + P1.easting;
-                        P1.northing = (hcos * mf.tram.wheelSpacing) + P1.northing;
+                        P1.easting =  (hsin * mf.tram.wheelTrack) + P1.easting;
+                        P1.northing = (hcos * mf.tram.wheelTrack) + P1.northing;
                         tramArr.Add(P1);
                     }
                 }

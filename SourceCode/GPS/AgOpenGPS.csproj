@@ -625,6 +625,10 @@
     <None Include="btnImages\BoundaryDriveOrLoad.png" />
     <None Include="btnImages\BoundaryLoadMultiFromGE.png" />
     <None Include="btnImages\BoundaryLoadFromGE.png" />
+    <None Include="btnImages\TramAll.png" />
+    <None Include="btnImages\TramLines.png" />
+    <None Include="btnImages\TramOff.png" />
+    <None Include="btnImages\TramOuter.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
