@@ -74,7 +74,7 @@ namespace AgOpenGPS
             GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
 
-            GL.Color3(0.95f, 0.0f, 0.0f);
+            GL.Color3(0.95f, 0.0f, 0.50f);
             GL.Vertex3(refPoint1.easting, refPoint1.northing, 0.0);
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(refPoint2.easting, refPoint2.northing, 0.0);
