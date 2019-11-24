@@ -241,8 +241,8 @@ namespace AgOpenGPS
                 tramList.Add(tramArr);
                 for (int j = 0; j < refList.Count; j += 4)
                 {
-                    tramLineP1.easting = (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].easting;
-                    tramLineP1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) -mf.tram.halfWheelTrack + mf.tram.offset)) + refList[j].northing;
+                    tramLineP1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.abOffset)) + refList[j].easting;
+                    tramLineP1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) -mf.tram.halfWheelTrack + mf.tram.abOffset)) + refList[j].northing;
 
                     if (isBndExist)
                     {

@@ -226,7 +226,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 24);
             this.label7.TabIndex = 437;
-            this.label7.Text = "Offset";
+            this.label7.Text = "AB Offset";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudOffset

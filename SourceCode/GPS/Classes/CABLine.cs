@@ -337,8 +337,8 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting =  (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].northing;
+                    P1.easting =  (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.abOffset)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.abOffset)) + tramRef[j].northing;
 
                     if (isBndExist)
                     {
