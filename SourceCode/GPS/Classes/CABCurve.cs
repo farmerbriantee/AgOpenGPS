@@ -246,7 +246,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.tram.IsPointInTramBndArea(tramLineP1))
+                        if (mf.bnd.bndArr[0].IsPointInsideBoundary(tramLineP1))
                         {
                             tramArr.Add(tramLineP1);
 

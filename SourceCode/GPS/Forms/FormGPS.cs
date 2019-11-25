@@ -1230,6 +1230,7 @@ namespace AgOpenGPS
             if (fc != null)
             {
                 fc.Focus();
+                fc.Close();
                 return;
             }
 
