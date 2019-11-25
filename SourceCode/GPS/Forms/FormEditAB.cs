@@ -163,7 +163,7 @@ namespace AgOpenGPS
             mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
             mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
 
-            mf.ABLine.BuildTram();
+            if (mf.tram.displayMode > 0) mf.ABLine.BuildTram();
 
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
         }

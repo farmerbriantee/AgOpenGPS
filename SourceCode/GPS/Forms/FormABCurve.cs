@@ -11,6 +11,7 @@ namespace AgOpenGPS
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
+        private int originalSelected = 0;
 
         public FormABCurve(Form _mf)
         {
@@ -29,6 +30,8 @@ namespace AgOpenGPS
             btnAddToFile.Enabled = false;
             btnAddAndGo.Enabled = false;
             textBox1.Enabled = false;
+
+            originalSelected = mf.ABLine.numABLineSelected;
 
             mf.curve.isOkToAddPoints = false;
 
@@ -407,7 +410,7 @@ namespace AgOpenGPS
             //show the list
             if (showPanel)
             {
-                this.Size = new System.Drawing.Size(377, 415);
+                this.Size = new System.Drawing.Size(436, 415);
                 btnAddToFile.Visible = true;
                 btnAddAndGo.Visible = true;
                 btnListDelete.Visible = true;
@@ -423,6 +426,8 @@ namespace AgOpenGPS
                 btnPausePlay.Visible = false;
                 label2.Visible = false;
                 lblCurveExists.Visible = false;
+                btnCancelMain.Visible = true;
+                btnCancel2.Visible = false;
 
             }
             else //show the A B Pause
@@ -444,6 +449,9 @@ namespace AgOpenGPS
                 label2.Visible = true;
                 lblCurveExists.Visible = true;
 
+                btnCancelMain.Visible = false;
+                btnCancel2.Visible = true;
+
             }
         }
 
@@ -464,7 +472,7 @@ namespace AgOpenGPS
         
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.Width < 300) e.Cancel = true;
+            //if (this.Width < 300) e.Cancel = true;
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
@@ -507,5 +515,58 @@ namespace AgOpenGPS
 
         }
 
+        private void btnCancelMain_Click(object sender, EventArgs e)
+        {
+                                mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                    if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+            if (mf.curve.numCurveLineSelected < originalSelected)
+            {
+                mf.curve.numCurveLineSelected = 0;
+            }
+            else mf.curve.numCurveLineSelected = originalSelected;
+
+            if (mf.curve.numCurveLineSelected > 0)
+            {
+                int idx = mf.curve.numCurveLineSelected - 1;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+
+                mf.curve.refList?.Clear();
+                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                }
+
+                if (mf.curve.refList.Count < 3)
+                {
+                    mf.btnCurve.PerformClick();
+                    mf.curve.ResetCurveLine();
+                    mf.DisableYouTurnButtons();
+                }
+                else
+                {
+                    mf.curve.isCurveSet = true;
+                }
+                Close();
+            }
+            else
+            {
+                mf.curve.moveDistance = 0;
+                mf.curve.isOkToAddPoints = false;
+                mf.curve.isCurveSet = false;
+                mf.curve.refList?.Clear();
+                mf.curve.isCurveSet = false;
+                mf.DisableYouTurnButtons();
+                //mf.btnContourPriority.Enabled = false;
+                //mf.curve.ResetCurveLine();
+                mf.curve.isBtnCurveOn = false;
+                mf.btnCurve.Image = Properties.Resources.CurveOff;
+                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+
+                mf.curve.numCurveLineSelected = 0;
+                Close();
+            }
+        }
     }
 }

@@ -1136,7 +1136,7 @@ namespace AgOpenGPS
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
                 btnCycleLines.Text = "AB-" + ABLine.numABLineSelected;
-                ABLine.BuildTram();
+                if (tram.displayMode > 0) ABLine.BuildTram();
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -1155,7 +1155,7 @@ namespace AgOpenGPS
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
                 btnCycleLines.Text = "Cur-" + curve.numCurveLineSelected;
-                curve.BuildTram();
+                if (tram.displayMode > 0) curve.BuildTram();
             }
         }
 
@@ -1199,7 +1199,7 @@ namespace AgOpenGPS
                 EnableYouTurnButtons();
                 btnABLine.Image = Properties.Resources.ABLineOn;
                 ABLine.isBtnABLineOn = true;
-                ABLine.BuildTram();
+                if (tram.displayMode > 0 ) ABLine.BuildTram();
                 return;
             }
             

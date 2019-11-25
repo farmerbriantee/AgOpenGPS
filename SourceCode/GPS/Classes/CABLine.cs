@@ -44,7 +44,7 @@ namespace AgOpenGPS
         
         public double refLineSide = 1.0;
         //the two inital A and B points
-        public vec2 refPoint1 = new vec2(0.2, 0.2);
+        public vec2 refPoint1 = new vec2(0.2, 0.15);
         public vec2 refPoint2 = new vec2(0.3, 0.3);
 
         public double snapDistance;
@@ -82,7 +82,7 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
 
             //Draw reference AB line
-            GL.LineWidth(3);
+            GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.930f, 0.1692f, 0.9260f);
             GL.Vertex3(refABLineP1.easting, refABLineP1.northing, 0);
@@ -94,7 +94,7 @@ namespace AgOpenGPS
                 //draw current AB Line
                 GL.LineWidth(lineWidth);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Color3(0.9f, 0.0f, 0.0f);
+                GL.Color3(0.95f, 0.0f, 0.0f);
 
                 //calculate if tram line is here
                 isOnTramLine = true;
@@ -337,8 +337,8 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting =  (hsin * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.eqWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.offset)) + tramRef[j].northing;
+                    P1.easting =  (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.abOffset)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tram.abOffset)) + tramRef[j].northing;
 
                     if (isBndExist)
                     {
