@@ -57,10 +57,10 @@ namespace AgOpenGPS
         public void DrawGeoFenceLine()
         {
             ////draw the turn line oject
+            if (geoFenceLine.Count < 1) return;
             int ptCount = geoFenceLine.Count;
-            if (ptCount < 1) return;
-            GL.LineWidth(1);
-            GL.Color3(0.86555f, 0.3232f, 0.0f);
+            GL.LineWidth(3);
+            GL.Color3(0.96555f, 0.1232f, 0.50f);
             //GL.PointSize(4);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(geoFenceLine[h].easting, geoFenceLine[h].northing, 0);

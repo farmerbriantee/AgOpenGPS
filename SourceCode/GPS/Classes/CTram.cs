@@ -20,7 +20,7 @@ namespace AgOpenGPS
 
         //tram settings
         public double wheelTrack;
-        public double eqWidth, offset;
+        public double tramWidth, abOffset;
         public double halfWheelTrack;
         public int passes;
 
@@ -32,12 +32,12 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
 
-            eqWidth = Properties.Settings.Default.setTram_eqWidth;
+            tramWidth = Properties.Settings.Default.setTram_eqWidth;
             wheelTrack = Properties.Settings.Default.setTram_wheelSpacing;
             halfWheelTrack = wheelTrack * 0.5;
 
             passes = Properties.Settings.Default.setTram_passes;
-            offset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOffset) / 2.0, 3));
+            abOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) / 2.0, 3));
             displayMode = 0;
         }
 
@@ -78,7 +78,7 @@ namespace AgOpenGPS
             //outside point
             vec3 pt3 = new vec3();
 
-            double distSq = ((eqWidth * 0.5) - halfWheelTrack) * ((eqWidth * 0.5) - halfWheelTrack) * 0.97;
+            double distSq = ((tramWidth * 0.5) - halfWheelTrack) * ((tramWidth * 0.5) - halfWheelTrack) * 0.97;
             bool fail = false;
 
             //make the boundary tram outer array
@@ -86,10 +86,10 @@ namespace AgOpenGPS
             {
                 //calculate the point inside the boundary
                 pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheelTrack));
+                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
 
                 pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (eqWidth * 0.5 - halfWheelTrack));
+                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
 
                 for (int j = 0; j < ptCount; j++)
                 {
