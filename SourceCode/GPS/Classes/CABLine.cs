@@ -82,7 +82,7 @@ namespace AgOpenGPS
             GL.PointSize(1.0f);
 
             //Draw reference AB line
-            GL.LineWidth(3);
+            GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
             GL.Color3(0.930f, 0.1692f, 0.9260f);
             GL.Vertex3(refABLineP1.easting, refABLineP1.northing, 0);

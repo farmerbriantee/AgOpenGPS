@@ -168,7 +168,7 @@ namespace AgOpenGPS
 
                 //draw the turnLines
                 if (!ABLine.isEditing) turn.DrawTurnLines();
-                //gf.DrawGeoFenceLines();
+                if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
                 turn.DrawClosestPoint();
                 //turn.DrawTurnPointsLine();
 
