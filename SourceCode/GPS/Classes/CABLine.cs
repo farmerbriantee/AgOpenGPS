@@ -94,7 +94,7 @@ namespace AgOpenGPS
                 //draw current AB Line
                 GL.LineWidth(lineWidth);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Color3(0.9f, 0.0f, 0.0f);
+                GL.Color3(0.95f, 0.0f, 0.0f);
 
                 //calculate if tram line is here
                 isOnTramLine = true;
