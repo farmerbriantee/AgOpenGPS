@@ -342,7 +342,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.tram.IsPointInTramBndArea(P1))
+                        if (mf.bnd.bndArr[0].IsPointInsideBoundary(P1))
                         {
                             tramArr.Add(P1);
                             P1.easting =  (hsin * mf.tram.wheelTrack) + P1.easting;

@@ -45,7 +45,7 @@ namespace AgOpenGPS
         {
             if (tramBndArr.Count > 0)
             {
-                GL.Color4(0.8630f, 0.63692f, 0.7260f, 0.22);
+                GL.Color4(0.8630f, 0.63692f, 0.9260f, 0.22);
                 GL.Begin(PrimitiveType.TriangleStrip);
                 for (int h = 0; h < tramBndArr.Count; h++) GL.Vertex3(tramBndArr[h].easting, tramBndArr[h].northing, 0);
                 GL.End();
