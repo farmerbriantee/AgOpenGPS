@@ -126,18 +126,18 @@ namespace AgOpenGPS
             if (mf.camera.camPitch < -45)
             {
                 GL.Rotate(90, 1, 0, 0);
-                if (!mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 1, 0);
+                if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 1, 0);
                 size = -mf.camera.camSetDistance;
                 size = Math.Pow(size, 0.8);
-                size /= 600;
+                size /= 800;
             }
 
             else
             {
-                if (!mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 0, 1);
+                if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 0, 1);
                 size = -mf.camera.camSetDistance;
                 size = Math.Pow(size, 0.85);
-                size /= 800;
+                size /= 1000;
             }
 
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);

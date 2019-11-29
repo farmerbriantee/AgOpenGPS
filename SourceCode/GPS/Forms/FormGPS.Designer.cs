@@ -76,6 +76,7 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.simulatorOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.topFieldViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.lblNorthing = new System.Windows.Forms.Label();
             this.lblEasting = new System.Windows.Forms.Label();
@@ -118,6 +119,8 @@
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.lblY = new System.Windows.Forms.Label();
+            this.lblX = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.lblWatch = new System.Windows.Forms.Label();
@@ -240,12 +243,10 @@
             this.btnBigSnapRight = new System.Windows.Forms.Button();
             this.btnSnapLeft = new System.Windows.Forms.Button();
             this.btnSnapRight = new System.Windows.Forms.Button();
-            this.btnSwapDirection = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
             this.btnRightYouTurn = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.topFieldViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -649,6 +650,16 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(282, 6);
+            // 
+            // topFieldViewToolStripMenuItem
+            // 
+            this.topFieldViewToolStripMenuItem.Checked = true;
+            this.topFieldViewToolStripMenuItem.CheckOnClick = true;
+            this.topFieldViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.topFieldViewToolStripMenuItem.Name = "topFieldViewToolStripMenuItem";
+            this.topFieldViewToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.topFieldViewToolStripMenuItem.Text = "Top Field View";
+            this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
             // 
             // tmrWatchdog
             // 
@@ -1147,6 +1158,8 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.Color.Transparent;
             this.panelBatman.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBatman.Controls.Add(this.lblY);
+            this.panelBatman.Controls.Add(this.lblX);
             this.panelBatman.Controls.Add(this.lblZone);
             this.panelBatman.Controls.Add(this.lblConvergenceAngle);
             this.panelBatman.Controls.Add(this.label3);
@@ -1183,6 +1196,30 @@
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
             this.panelBatman.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBatman_Paint);
+            // 
+            // lblY
+            // 
+            this.lblY.AutoSize = true;
+            this.lblY.BackColor = System.Drawing.Color.Transparent;
+            this.lblY.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblY.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblY.Location = new System.Drawing.Point(32, 520);
+            this.lblY.Name = "lblY";
+            this.lblY.Size = new System.Drawing.Size(52, 23);
+            this.lblY.TabIndex = 313;
+            this.lblY.Text = "22.6";
+            // 
+            // lblX
+            // 
+            this.lblX.AutoSize = true;
+            this.lblX.BackColor = System.Drawing.Color.Transparent;
+            this.lblX.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblX.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblX.Location = new System.Drawing.Point(32, 492);
+            this.lblX.Name = "lblX";
+            this.lblX.Size = new System.Drawing.Size(52, 23);
+            this.lblX.TabIndex = 312;
+            this.lblX.Text = "22.6";
             // 
             // label3
             // 
@@ -1744,6 +1781,7 @@
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
             this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
             this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
+            this.oglMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseUp);
             this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
             // 
             // oglBack
@@ -2842,7 +2880,7 @@
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
             this.panelSim.Controls.Add(this.hsbarStepDistance, 0, 0);
             this.panelSim.Controls.Add(this.btnResetSim, 1, 0);
-            this.panelSim.Location = new System.Drawing.Point(404, 185);
+            this.panelSim.Location = new System.Drawing.Point(635, 570);
             this.panelSim.Name = "panelSim";
             this.panelSim.RowCount = 1;
             this.panelSim.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -2998,26 +3036,6 @@
             this.btnSnapRight.UseVisualStyleBackColor = false;
             this.btnSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
             // 
-            // btnSwapDirection
-            // 
-            this.btnSwapDirection.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSwapDirection.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSwapDirection.FlatAppearance.BorderSize = 0;
-            this.btnSwapDirection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSwapDirection.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSwapDirection.Image = global::AgOpenGPS.Properties.Resources.YouTurnReverse;
-            this.btnSwapDirection.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSwapDirection.Location = new System.Drawing.Point(647, 91);
-            this.btnSwapDirection.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.Size = new System.Drawing.Size(64, 46);
-            this.btnSwapDirection.TabIndex = 179;
-            this.btnSwapDirection.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Visible = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click_1);
-            // 
             // btnLeftYouTurn
             // 
             this.btnLeftYouTurn.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -3088,16 +3106,6 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
-            // topFieldViewToolStripMenuItem
-            // 
-            this.topFieldViewToolStripMenuItem.Checked = true;
-            this.topFieldViewToolStripMenuItem.CheckOnClick = true;
-            this.topFieldViewToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.topFieldViewToolStripMenuItem.Name = "topFieldViewToolStripMenuItem";
-            this.topFieldViewToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.topFieldViewToolStripMenuItem.Text = "Top Field View";
-            this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3105,7 +3113,6 @@
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1250, 701);
             this.Controls.Add(this.oglZoom);
-            this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.btnLeftYouTurn);
             this.Controls.Add(this.btnRightYouTurn);
             this.Controls.Add(this.panelDrag);
@@ -3284,7 +3291,6 @@
         private System.Windows.Forms.Panel panelBatman;
         private System.Windows.Forms.ComboBox cboxpRowWidth;
         private System.Windows.Forms.Label lblHz;
-        public System.Windows.Forms.Button btnSwapDirection;
         private System.Windows.Forms.Label lblUturnByte;
         private System.Windows.Forms.Label lblNTRIPSeconds;
         private System.Windows.Forms.Button btnStartStopNtrip;
@@ -3386,6 +3392,8 @@
         private ProXoft.WinForms.RepeatButton btnpTiltDown;
         private ProXoft.WinForms.RepeatButton btnpTiltUp;
         private System.Windows.Forms.ToolStripMenuItem topFieldViewToolStripMenuItem;
+        private System.Windows.Forms.Label lblY;
+        private System.Windows.Forms.Label lblX;
     }
 }
 

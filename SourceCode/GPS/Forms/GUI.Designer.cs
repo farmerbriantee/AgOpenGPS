@@ -351,7 +351,6 @@ namespace AgOpenGPS
             {
                 btnRightYouTurn.Left = (Width+260) / 2 ;
                 btnLeftYouTurn.Left = (Width-340) / 2;
-                btnSwapDirection.Left = (Width - 300) / 2 + 140;
                 first2Thirds = (Width + 30) / 2;
             }
 
@@ -359,7 +358,6 @@ namespace AgOpenGPS
             {
                 btnRightYouTurn.Left = (Width+140) / 2;
                 btnLeftYouTurn.Left = (Width-550) / 2;
-                btnSwapDirection.Left = (Width-195) / 2;
                 first2Thirds = (Width - 130) / 2;
             }
 
@@ -1927,26 +1925,6 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void btnSwapDirection_Click_1(object sender, EventArgs e)
-        {
-            if (!yt.isYouTurnTriggered)
-            {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-            }
-        }
 
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
@@ -2039,7 +2017,6 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = true;
             btnRightYouTurn.Visible = true;
             btnLeftYouTurn.Visible = true;
-            btnSwapDirection.Visible = true;
 
             //auto YouTurn disabled
             yt.isYouTurnBtnOn = false;
@@ -2056,7 +2033,6 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
 
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;

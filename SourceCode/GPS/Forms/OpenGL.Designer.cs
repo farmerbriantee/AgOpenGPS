@@ -455,6 +455,9 @@ namespace AgOpenGPS
                 int left = oglMain.Width / 2 - 100;
                 font.DrawText(left, 40, Math.Round(fixHeading * 57.295779513, 1) + "$");
                 font.DrawText(left, 70, SpeedKPH);
+                if (yt.isYouTurnBtnOn) font.DrawText(-40, 60, "< - >");
+
+
 
                 //if (curve.isBtnCurveOn)
                 //    font.DrawText(-45, 120, "AB " + curve.curveNumber);

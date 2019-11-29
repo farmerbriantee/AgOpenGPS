@@ -303,7 +303,7 @@ namespace AgOpenGPS
             if (mazeList == null) return false;
 
             //not really changing direction so need to fake a turn twice.
-            mf.btnSwapDirection.PerformClick();
+            mf.SwapDirection();
 
             //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
             List<vec3> shortestDubinsList = new List<vec3>();
