@@ -1405,6 +1405,45 @@ namespace AgOpenGPS
             Settings.Default.Save();
         }
 
+        private void oglMain_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                //0 at bottom for opengl, 0 at top for windows, so invert Y value
+                Point point = oglMain.PointToClient(Cursor.Position);
+                lblX.Text = point.X.ToString();                
+                lblY.Text = (point.Y).ToString();
+
+                if (point.Y < 100 && point.Y > 30)
+                {
+                    int middle = oglMain.Width / 2;
+                    if (point.X > middle - 50 && point.X < middle + 50)
+                        SwapDirection();
+                }
+            }
+
+        }
+        public void SwapDirection()
+        {
+            if (!yt.isYouTurnTriggered)
+            {
+                //is it turning right already?
+                if (yt.isYouTurnRight)
+                {
+                    yt.isYouTurnRight = false;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    //make it turn the other way
+                    yt.isYouTurnRight = true;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+            }
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;

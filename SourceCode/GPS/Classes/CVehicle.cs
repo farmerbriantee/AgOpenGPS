@@ -310,19 +310,19 @@ namespace AgOpenGPS
             }
             GL.End();
             
-            if (mf.camera.camSetDistance > -150)
-            {
-                GL.LineWidth(2);
-                //Svenn Arrow
-                GL.Color3(0.9, 0.95, 0.10);
-                GL.Begin(PrimitiveType.LineStrip);
-                {
-                    GL.Vertex3(0.6, wheelbase + 6, 0.0);
-                    GL.Vertex3(0, wheelbase + 8, 0.0);
-                    GL.Vertex3(-0.6, wheelbase + 6, 0.0);
-                }
-                GL.End();
-            }
+            //if (mf.camera.camSetDistance > -150)
+            //{
+            //    GL.LineWidth(2);
+            //    //Svenn Arrow
+            //    GL.Color3(0.9, 0.95, 0.10);
+            //    GL.Begin(PrimitiveType.LineStrip);
+            //    {
+            //        GL.Vertex3(0.6, wheelbase + 6, 0.0);
+            //        GL.Vertex3(0, wheelbase + 8, 0.0);
+            //        GL.Vertex3(-0.6, wheelbase + 6, 0.0);
+            //    }
+            //    GL.End();
+            //}
 
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
