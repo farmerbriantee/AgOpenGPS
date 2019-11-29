@@ -54,6 +54,8 @@ namespace AgOpenGPS
 
         public void BuildTramBnd()
         {
+            //abOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) / 2.0, 3));
+
             bool isBndExist = mf.bnd.bndArr.Count != 0;
 
             if (isBndExist)

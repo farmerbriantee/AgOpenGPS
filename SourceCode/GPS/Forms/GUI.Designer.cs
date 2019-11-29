@@ -28,7 +28,7 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
-        public bool isPureDisplayOn = true, isSkyOn = true, isBigAltitudeOn = false;
+        public bool isPureDisplayOn = true, isSkyOn = true, isOGLZoomOn = true, isBigAltitudeOn = false;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -103,6 +103,16 @@ namespace AgOpenGPS
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             skyToolStripMenu.Checked = isSkyOn;
 
+            isOGLZoomOn = Settings.Default.setDisplay_isOGLZoomOn;
+            topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
+            if (isOGLZoomOn)
+            {
+                oglZoom.Visible = true;
+                oglZoom.Left = 80;
+                oglZoom.Top = 80;
+            }
+            else oglZoom.Visible = false;
+
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
             {
@@ -134,6 +144,35 @@ namespace AgOpenGPS
             layoutPanelRight.Enabled = false;
             boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
+
+            if (isNTRIP_RequiredOn)
+            {
+                btnStartStopNtrip.Visible = true;
+                lblNTRIPSeconds.Visible = true;
+                lblWatch.Visible = true;
+                NTRIPBytesMenu.Visible = true;
+                pbarNtripMenu.Visible = true;
+            }
+            else
+            {
+                btnStartStopNtrip.Visible = false;
+                lblNTRIPSeconds.Visible = false;
+                lblWatch.Visible = false;
+                NTRIPBytesMenu.Visible = false;
+                pbarNtripMenu.Visible = false;
+            }
+
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                pbarUDPComm.Visible = true;
+                toolStripStatusLabel2.Visible = true;
+            }
+            else
+            {
+                pbarUDPComm.Visible = false;
+                toolStripStatusLabel2.Visible = false;
+            }
+
         }
 
         //force all the buttons same according to two main buttons
@@ -165,26 +204,60 @@ namespace AgOpenGPS
 
             if (Width > 1100)
             {
-                EditABToolBtn.Visible = true;
                 youTurnStripBtn.Visible = true;
+                ZoomExtentsStripBtn.Visible = true;
+                stripEqWidth.Visible = false;
+            }
+            else
+            {
+                youTurnStripBtn.Visible = false;
+                ZoomExtentsStripBtn.Visible = false;
+                stripEqWidth.Visible = false;
+            }
+
+            if (Width > 1200)
+            {
+                stripEqWidth.Visible = true;
+            }
+            else
+            {
+                stripEqWidth.Visible = false;
+            }
+
+
+
+            if (Width > 1300)
+            {
                 distanceToolBtn.Visible = true;
             }
             else
             {
-                EditABToolBtn.Visible = false;
-                youTurnStripBtn.Visible = false;
                 distanceToolBtn.Visible = false;
             }
 
-            if (Width > 1550)
+            if (Width > 1600)
             {
-                USBPortsToolBtn.Visible = true;
+                snapLeftStrip.Visible = true;
+                snapLeftBigStrip.Visible = true;
+                snapRightBigStrip.Visible = true;
+                snapRightStrip.Visible = true;
             }
             else
             {
-                USBPortsToolBtn.Visible = false;
+                snapLeftStrip.Visible = false;
+                snapLeftBigStrip.Visible = false;
+                snapRightBigStrip.Visible = false;
+                snapRightStrip.Visible = false;
             }
 
+            if (Width > 1750)
+            {
+                steerChartTool.Visible = true;
+            }
+            else
+            {
+                steerChartTool.Visible = false;
+            }
 
         }
         public string FindDirection(double heading)
@@ -276,10 +349,10 @@ namespace AgOpenGPS
 
             if (panelBatman.Visible)
             {
-                btnRightYouTurn.Left = (Width+350) / 2 ;
-                btnLeftYouTurn.Left = (Width-290) / 2;
-                btnSwapDirection.Left = (Width - 340) / 2 + 190;
-                first2Thirds = (Width - 395) / 2 + 260;
+                btnRightYouTurn.Left = (Width+260) / 2 ;
+                btnLeftYouTurn.Left = (Width-340) / 2;
+                btnSwapDirection.Left = (Width - 300) / 2 + 140;
+                first2Thirds = (Width + 30) / 2;
             }
 
             else
@@ -287,7 +360,7 @@ namespace AgOpenGPS
                 btnRightYouTurn.Left = (Width+140) / 2;
                 btnLeftYouTurn.Left = (Width-550) / 2;
                 btnSwapDirection.Left = (Width-195) / 2;
-                first2Thirds = (Width - 118) / 2;
+                first2Thirds = (Width - 130) / 2;
             }
 
             int top = 0;
@@ -1743,14 +1816,16 @@ namespace AgOpenGPS
         }
         private void btnpTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch -= ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch > 0) camera.camPitch = 0;
+            camera.camPitch -= ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch > -58) camera.camPitch = 0;
         }
         private void btnpTiltDown_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch += ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch < -80) camera.camPitch = -80;
+            if (camera.camPitch > -59) camera.camPitch = -60;
+            camera.camPitch += ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch < -85) camera.camPitch = -85;
         }
+
         private void btnZoomExtents_Click(object sender, EventArgs e)
         {
             //if (isJobStarted)
@@ -2395,6 +2470,7 @@ namespace AgOpenGPS
         {
             isSkyOn = !isSkyOn;
             skyToolStripMenu.Checked = isSkyOn;
+
             Settings.Default.setMenu_isSkyOn = isSkyOn;
             Settings.Default.Save();
         }
@@ -3074,8 +3150,8 @@ namespace AgOpenGPS
                     else btnCurve.Text = "";
 
 
-                    //update the online indicator 37 green red 38
-                    if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 38)
+                    //update the online indicator 63 green red 64
+                    if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 64)
                     {
                         //stripOnlineGPS.Value = 1;
                         lblEasting.Text = "-";
@@ -3083,7 +3159,7 @@ namespace AgOpenGPS
                         //lblZone.Text = "-";
                         toolStripBtnGPSStength.Image = Resources.GPSSignalPoor;
                     }
-                    else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 37)
+                    else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 63)
                     {
                         //stripOnlineGPS.Value = 100;
                         toolStripBtnGPSStength.Image = Resources.GPSSignalGood;

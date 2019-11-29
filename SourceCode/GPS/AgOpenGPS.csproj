@@ -114,6 +114,7 @@
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
+    <Compile Include="Classes\CFont.cs" />
     <Compile Include="Classes\CGeoFence.cs" />
     <Compile Include="Classes\CGeoFenceLines.cs" />
     <Compile Include="Classes\CMazeGrid.cs" />
@@ -629,8 +630,13 @@
     <None Include="btnImages\TramLines.png" />
     <None Include="btnImages\TramOff.png" />
     <None Include="btnImages\TramOuter.png" />
+    <None Include="btnImages\FontOn.png" />
+    <None Include="btnImages\FontOff.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dependencies\Images\Font.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dependencies\YouTurnShapes\SemiCircle.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -759,13 +765,13 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dependencies\Images\Floor.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Dependencies\YouTurnShapes\Keyhole.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dependencies\Images\Landscape.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ALicense.txt" />
   </ItemGroup>

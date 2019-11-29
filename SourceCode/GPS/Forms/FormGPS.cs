@@ -227,6 +227,11 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndBoundaryAlarm;
 
+        /// <summary>
+        /// The font class
+        /// </summary>
+        public CFont font;
+
 
         #endregion // Class Props and instances
 
@@ -239,10 +244,8 @@ namespace AgOpenGPS
             //btnManualAutoDrive.Text = gStr.gsAbout;
 
             //ControlExtension.Draggable(panelSnap, true);
-            //ControlExtension.Draggable(panelNTRIP, true);
+            ControlExtension.Draggable(oglZoom, true);
             ControlExtension.Draggable(panelSim, true);
-
-
 
             //file menu
             //fileToolStripMenuItem.Text = gStr.gsFile;
@@ -386,6 +389,9 @@ namespace AgOpenGPS
 
             // Access to workswitch functionality
             workSwitch = new CWorkSwitch(this);
+
+            //access to font class
+            font = new CFont(this);
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -650,6 +656,8 @@ namespace AgOpenGPS
 
             FixPanelsAndMenus();
 
+            label3.Text = Width.ToString();
+
             //top,right.bottom
             //if (Width > 1100)
             //{
@@ -662,10 +670,9 @@ namespace AgOpenGPS
         }
 
         // Procedures and Functions ---------------------------------------
+
         public uint LoadGLTextures()
         {
-            //sndRedAlert.Play();
-
             GL.Enable(EnableCap.Texture2D);
             try
             {
@@ -690,6 +697,7 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Landscape Textures" + ex);
                 MessageBox.Show("Texture File LANDSCAPE.PNG is Missing", ex.Message);
             }
+
             try
             {
                 string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Images", "Floor.png");
@@ -712,75 +720,35 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File FLOOR.PNG is Missing", ex2.Message);
             }
-            //try
-            //{
-            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Images", "Vehicle.png");
-            //    if (File.Exists(text2))
-            //    {
-            //        using (Bitmap bitmap2 = new Bitmap(text2))
-            //        {
-            //            GL.GenTextures(1, out texture[2]);
-            //            GL.BindTexture(TextureTarget.Texture2D, texture[2]);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
-            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-            //            bitmap2.UnlockBits(bitmapData2);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex2)
-            //{
-            //    //WriteErrorLog("Loading Floor Texture" + ex2);
-            //    MessageBox.Show("Texture File Vehicle.PNG is Missing", ex2.Message);
-            //}
-            //try
-            //{
-            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\images", "Compass.png");
-            //    if (File.Exists(text2))
-            //    {
-            //        using (Bitmap bitmap2 = new Bitmap(text2))
-            //        {
-            //            GL.GenTextures(1, out texture[3]);
-            //            GL.BindTexture(TextureTarget.Texture2D, texture[3]);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMinFilter.Nearest);
-            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-            //            bitmap2.UnlockBits(bitmapData2);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex2)
-            //{
-            //    //WriteErrorLog("Loading Floor Texture" + ex2);
-            //    MessageBox.Show("Texture File Compass.PNG is Missing", ex2.Message);
-            //}
 
-            //try
-            //{
-            //    string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies", "Output.png");
-            //    if (File.Exists(text2))
-            //    {
-            //        using (Bitmap bitmap2 = new Bitmap(text2))
-            //        {
-            //            GL.GenTextures(1, out texture[4]);
-            //            GL.BindTexture(TextureTarget.Texture2D, texture[4]);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-            //            GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
-            //            BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            //            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData2.Width, bitmapData2.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData2.Scan0);
-            //            bitmap2.UnlockBits(bitmapData2);
-            //        }
-            //    }
-            //}
-            //catch (Exception ex2)
-            //{
-            //    //WriteErrorLog("Loading Floor Texture" + ex2);
-            //    MessageBox.Show("Texture File OUPUT.PNG is Missing", ex2.Message);
-            //}
-
+            try
+            {
+                string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Dependencies\\Images", "Font.png");
+                if (File.Exists(text2))
+                {
+                    using (Bitmap bitmap = new Bitmap(text2))
+                    {
+                        GL.GenTextures(1, out texture[2]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[2]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        
+                        font.textureWidth = bitmap.Width; font.textureHeight = bitmap.Height;
+                    }
+                }
+            }
+            catch (Exception ex2)
+            {
+                //WriteErrorLog("Loading Floor Texture" + ex2);
+                MessageBox.Show("Texture File Font.PNG is Missing", ex2.Message);
+            }
+            
+            //return array of textures
             return texture[0];
+
         }// Load Bitmaps And Convert To Textures
 
         //start the UDP server
@@ -1078,7 +1046,7 @@ namespace AgOpenGPS
         private void threeDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             camera.camFollowing = true;
-            camera.camPitch = -67;
+            camera.camPitch = -75;
 
         }
 
@@ -1274,11 +1242,6 @@ namespace AgOpenGPS
             form.Show();
         }
 
-        private void USBPortsToolBtn_Click(object sender, EventArgs e)
-        {
-            SettingsCommunications();
-        }
-
         private void btnABMenu_Click(object sender, EventArgs e)
         {
             if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
@@ -1329,7 +1292,7 @@ namespace AgOpenGPS
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
                 panelDrag.Visible = true;
-                panelDrag.Top = 150;
+                panelDrag.Top = 80;
                 panelDrag.Left = 76;
                 Form form99 = new FormTram(this);
                 form99.Show();
@@ -1340,7 +1303,7 @@ namespace AgOpenGPS
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
                 panelDrag.Visible = true;
-                panelDrag.Top = 150;
+                panelDrag.Top = 80;
                 panelDrag.Left = 76;
                 Form form97 = new FormTramCurve(this);
                 form97.Show();
@@ -1397,10 +1360,49 @@ namespace AgOpenGPS
             }
             else
             {
-                panelDrag.Top = 150;
+                panelDrag.Top = 80;
                 panelDrag.Left = 76;
                 panelDrag.Visible = true;
             }
+        }               
+
+        private void ZoomExtentsStripBtn_Click(object sender, EventArgs e)
+        {
+                if (camera.camSetDistance< -400) camera.camSetDistance = -75;
+                else camera.camSetDistance = -3 * maxFieldDistance;
+                if (camera.camSetDistance == 0) camera.camSetDistance = -2000;
+                SetZoom();
+        }
+
+        private void FontToolBtn_Click(object sender, EventArgs e)
+        {
+            font.isFontOn = !font.isFontOn;
+            if (font.isFontOn)
+                FontToolBtn.Image = Properties.Resources.FontOn;
+            else
+                FontToolBtn.Image = Properties.Resources.FontOff;
+
+        }
+
+        private void panelBatman_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isOGLZoomOn = !isOGLZoomOn;
+            topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
+            if (isOGLZoomOn)
+            {
+                oglZoom.Visible = true;
+                oglZoom.Left = 80;
+                oglZoom.Top = 80;
+            }
+            else oglZoom.Visible = false;
+
+            Settings.Default.setDisplay_isOGLZoomOn = isOGLZoomOn;
+            Settings.Default.Save();
         }
 
         public void GetAB()
@@ -1784,7 +1786,7 @@ namespace AgOpenGPS
             //bring up dialog if no job active, close job if one is
             if (!isJobStarted)
             {
-                if (toolStripBtnGPSStength.Image.Height == 38)
+                if (toolStripBtnGPSStength.Image.Height == 64)
                 {
                     var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
                     form.Show();
@@ -2021,15 +2023,15 @@ namespace AgOpenGPS
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
-            if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2000;
-            if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1000;
-            if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503;
-            if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2;
-            if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6;
-            if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3;
-            if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15;
-            if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06;
-            if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03;
+            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012;
+            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006;
+            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503;
+            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2;
+            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6;
+            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3;
+            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15;
+            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06;
+            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03;
             //1.216 2.532
 
             oglMain.MakeCurrent();
