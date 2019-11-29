@@ -513,6 +513,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_lineWidth = (int)(nudLineWidth.Value);
             mf.ABLine.lineWidth = (float)(nudLineWidth.Value);
 
+            mf.tram.abOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) / 2.0, 3));
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
