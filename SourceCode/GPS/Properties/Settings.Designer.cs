@@ -1198,5 +1198,17 @@ namespace AgOpenGPS.Properties {
                 this["setTram_offset"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isOGLZoomOn {
+            get {
+                return ((bool)(this["setDisplay_isOGLZoomOn"]));
+            }
+            set {
+                this["setDisplay_isOGLZoomOn"] = value;
+            }
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace AgOpenGPS
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
             nudOffset.Value = (decimal)snapAdj;
+            mf.tram.abOffset = snapAdj;
             nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             mf.curve.BuildTram();
@@ -226,6 +227,8 @@ namespace AgOpenGPS
             mf.panelDrag.Visible = false;
             mf.offX = 0;
             mf.offY = 0;
+
+            mf.tram.displayMode = 0;
             Close();
         }
 

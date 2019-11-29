@@ -53,19 +53,21 @@ namespace AgOpenGPS
             nudPasses.ValueChanged += nudPasses_ValueChanged;
 
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
-            nudOffset.Value = (decimal)Properties.Settings.Default.setTram_offset;
+            nudOffset.Value = (decimal)snapAdj;
+            mf.tram.abOffset = snapAdj;
             nudOffset.ValueChanged += nudOffset_ValueChanged;
 
             mf.ABLine.BuildTram();
-            cboxTramPassEvery.SelectedIndexChanged -= cboxTramPassEvery_SelectedIndexChanged;
-            cboxTramPassEvery.Text = Properties.Vehicle.Default.setTram_Skips.ToString();
-            cboxTramPassEvery.SelectedIndexChanged += cboxTramPassEvery_SelectedIndexChanged;
-            mf.ABLine.tramPassEvery = Properties.Vehicle.Default.setTram_Skips;
 
-            cboxTramBasedOn.SelectedIndexChanged -= cboxTramBasedOn_SelectedIndexChanged;
-            cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
-            cboxTramBasedOn.SelectedIndexChanged += cboxTramBasedOn_SelectedIndexChanged;
-            mf.ABLine.tramBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
+            //cboxTramPassEvery.SelectedIndexChanged -= cboxTramPassEvery_SelectedIndexChanged;
+            //cboxTramPassEvery.Text = Properties.Vehicle.Default.setTram_Skips.ToString();
+            //cboxTramPassEvery.SelectedIndexChanged += cboxTramPassEvery_SelectedIndexChanged;
+            //mf.ABLine.tramPassEvery = Properties.Vehicle.Default.setTram_Skips;
+
+            //cboxTramBasedOn.SelectedIndexChanged -= cboxTramBasedOn_SelectedIndexChanged;
+            //cboxTramBasedOn.Text = Properties.Vehicle.Default.setTram_BasedOn.ToString();
+            //cboxTramBasedOn.SelectedIndexChanged += cboxTramBasedOn_SelectedIndexChanged;
+            //mf.ABLine.tramBasedOn = Properties.Vehicle.Default.setTram_BasedOn;
 
             mf.ABLine.isEditing = true;
             mf.layoutPanelRight.Enabled = false;
@@ -226,31 +228,33 @@ namespace AgOpenGPS
             mf.ABLine.tramList?.Clear();
             mf.tram.tramBndArr?.Clear();
 
-            mf.ABLine.tramPassEvery = 0;
-            mf.ABLine.tramBasedOn = 0;
+            //mf.ABLine.tramPassEvery = 0;
+            //mf.ABLine.tramBasedOn = 0;
             mf.ABLine.isEditing = false;
             mf.layoutPanelRight.Enabled = true;
             mf.panelDrag.Visible = false;
             mf.offX = 0;
             mf.offY = 0;
+
+            mf.tram.displayMode = 0;
             Close();
         }
 
-        private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.ABLine.tramBasedOn = cboxTramBasedOn.SelectedIndex;
-            Properties.Vehicle.Default.setTram_BasedOn = mf.ABLine.tramBasedOn;
-            Properties.Vehicle.Default.Save();
-        }
+        //private void cboxTramBasedOn_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    mf.ABLine.tramBasedOn = cboxTramBasedOn.SelectedIndex;
+        //    Properties.Vehicle.Default.setTram_BasedOn = mf.ABLine.tramBasedOn;
+        //    Properties.Vehicle.Default.Save();
+        //}
 
-        private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboxTramPassEvery.SelectedIndex > 0)
-                mf.ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex;
-            else mf.ABLine.tramPassEvery = 0;
-            Properties.Vehicle.Default.setTram_Skips = cboxTramPassEvery.SelectedIndex;
-            Properties.Vehicle.Default.Save();
-        }
+        //private void cboxTramPassEvery_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (cboxTramPassEvery.SelectedIndex > 0)
+        //        mf.ABLine.tramPassEvery = cboxTramPassEvery.SelectedIndex;
+        //    else mf.ABLine.tramPassEvery = 0;
+        //    Properties.Vehicle.Default.setTram_Skips = cboxTramPassEvery.SelectedIndex;
+        //    Properties.Vehicle.Default.Save();
+        //}
 
         private void nudSnapAdj_ValueChanged(object sender, EventArgs e)
         {

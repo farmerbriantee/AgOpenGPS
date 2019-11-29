@@ -40,10 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.nudOffset = new System.Windows.Forms.NumericUpDown();
-            this.cboxTramPassEvery = new System.Windows.Forms.ComboBox();
-            this.lblTramSkips = new System.Windows.Forms.Label();
-            this.lblTramStart = new System.Windows.Forms.Label();
-            this.cboxTramBasedOn = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btnMode = new System.Windows.Forms.Button();
@@ -258,85 +254,6 @@
             this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             this.nudOffset.Enter += new System.EventHandler(this.nudOffset_Enter);
             // 
-            // cboxTramPassEvery
-            // 
-            this.cboxTramPassEvery.BackColor = System.Drawing.Color.Lavender;
-            this.cboxTramPassEvery.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxTramPassEvery.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxTramPassEvery.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxTramPassEvery.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboxTramPassEvery.FormattingEnabled = true;
-            this.cboxTramPassEvery.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.cboxTramPassEvery.Location = new System.Drawing.Point(148, 586);
-            this.cboxTramPassEvery.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cboxTramPassEvery.Name = "cboxTramPassEvery";
-            this.cboxTramPassEvery.Size = new System.Drawing.Size(57, 37);
-            this.cboxTramPassEvery.TabIndex = 453;
-            this.cboxTramPassEvery.SelectedIndexChanged += new System.EventHandler(this.cboxTramPassEvery_SelectedIndexChanged);
-            // 
-            // lblTramSkips
-            // 
-            this.lblTramSkips.BackColor = System.Drawing.Color.LightGreen;
-            this.lblTramSkips.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTramSkips.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTramSkips.Location = new System.Drawing.Point(132, 626);
-            this.lblTramSkips.Name = "lblTramSkips";
-            this.lblTramSkips.Size = new System.Drawing.Size(87, 25);
-            this.lblTramSkips.TabIndex = 455;
-            this.lblTramSkips.Text = "Every:";
-            this.lblTramSkips.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTramStart
-            // 
-            this.lblTramStart.BackColor = System.Drawing.Color.Orchid;
-            this.lblTramStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTramStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTramStart.Location = new System.Drawing.Point(12, 626);
-            this.lblTramStart.Name = "lblTramStart";
-            this.lblTramStart.Size = new System.Drawing.Size(93, 25);
-            this.lblTramStart.TabIndex = 454;
-            this.lblTramStart.Text = "Start On:";
-            this.lblTramStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboxTramBasedOn
-            // 
-            this.cboxTramBasedOn.BackColor = System.Drawing.Color.Lavender;
-            this.cboxTramBasedOn.DropDownHeight = 150;
-            this.cboxTramBasedOn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxTramBasedOn.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxTramBasedOn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxTramBasedOn.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboxTramBasedOn.FormattingEnabled = true;
-            this.cboxTramBasedOn.IntegralHeight = false;
-            this.cboxTramBasedOn.Items.AddRange(new object[] {
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9"});
-            this.cboxTramBasedOn.Location = new System.Drawing.Point(31, 586);
-            this.cboxTramBasedOn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cboxTramBasedOn.Name = "cboxTramBasedOn";
-            this.cboxTramBasedOn.Size = new System.Drawing.Size(57, 37);
-            this.cboxTramBasedOn.TabIndex = 452;
-            this.cboxTramBasedOn.SelectedIndexChanged += new System.EventHandler(this.cboxTramBasedOn_SelectedIndexChanged);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.HotTrack;
@@ -519,10 +436,6 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.btnLeft);
             this.Controls.Add(this.btnRight);
-            this.Controls.Add(this.cboxTramPassEvery);
-            this.Controls.Add(this.lblTramSkips);
-            this.Controls.Add(this.lblTramStart);
-            this.Controls.Add(this.cboxTramBasedOn);
             this.Controls.Add(this.btnTriggerDistanceDn);
             this.Controls.Add(this.btnTriggerDistanceUp);
             this.Controls.Add(this.btnSwapAB);
@@ -577,10 +490,6 @@
         private System.Windows.Forms.Button btnSwapAB;
         private ProXoft.WinForms.RepeatButton btnTriggerDistanceDn;
         private ProXoft.WinForms.RepeatButton btnTriggerDistanceUp;
-        private System.Windows.Forms.ComboBox cboxTramPassEvery;
-        private System.Windows.Forms.Label lblTramSkips;
-        private System.Windows.Forms.Label lblTramStart;
-        private System.Windows.Forms.ComboBox cboxTramBasedOn;
         private System.Windows.Forms.Button btnLeft;
         private System.Windows.Forms.Button btnRight;
         private System.Windows.Forms.Panel panel3;

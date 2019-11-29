@@ -247,6 +247,7 @@ namespace AgOpenGPS
 
             GL.PopMatrix();
             GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+            //mf.font.DrawText3D(0, 0, "&TGF");
 
             //if (mf.camera.camFollowing)
             //GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
@@ -308,17 +309,32 @@ namespace AgOpenGPS
                 GL.Vertex3(0, wheelbase, 0);
             }
             GL.End();
-            GL.LineWidth(2);
-
-            //Svenn Arrow
-            GL.Color3(0.9, 0.95, 0.10);
-            GL.Begin(PrimitiveType.LineStrip);
+            
+            if (mf.camera.camSetDistance > -150)
             {
-                GL.Vertex3(0.6, wheelbase + 6, 0.0);
-                GL.Vertex3(0, wheelbase + 8, 0.0);
-                GL.Vertex3(-0.6, wheelbase + 6, 0.0);
+                GL.LineWidth(2);
+                //Svenn Arrow
+                GL.Color3(0.9, 0.95, 0.10);
+                GL.Begin(PrimitiveType.LineStrip);
+                {
+                    GL.Vertex3(0.6, wheelbase + 6, 0.0);
+                    GL.Vertex3(0, wheelbase + 8, 0.0);
+                    GL.Vertex3(-0.6, wheelbase + 6, 0.0);
+                }
+                GL.End();
             }
-            GL.End();
+
+            if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
+            {
+                GL.Color4(0.969, 0.95, 0.9510, 0.87);
+                mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.2);
+            }
+            else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
+            {
+                GL.Color4(0.96, 0.95, 0.9510, 0.87);
+                mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.2);
+            }
+
 
             //draw the rigid hitch
             GL.Color3(0.37f, 0.37f, 0.97f);
@@ -331,12 +347,12 @@ namespace AgOpenGPS
 
             if (mf.camera.camSetDistance < -1000)
             {
-                GL.Color4(0.5f, 0.5f, 0.9f, 0.35);
+                GL.Color4(0.5f, 0.5f, 0.9f, 0.20);
                 double theta = glm.twoPI / 20;
                 double c = Math.Cos(theta);//precalculate the sine and cosine
                 double s = Math.Sin(theta);
 
-                double x = mf.camera.camSetDistance * -.02;//we start at angle = 0
+                double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
                 double y = 0;
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.TriangleFan);

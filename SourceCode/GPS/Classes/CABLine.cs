@@ -31,8 +31,8 @@ namespace AgOpenGPS
         public bool isOnRightSideCurrentLine = true;
 
 
-        public bool isOnTramLine;
-        public int tramBasedOn;
+        //public bool isOnTramLine;
+        //public int tramBasedOn;
         public double passNumber;
         public double ppRadiusAB;
         public vec2 radiusPointAB = new vec2(0, 0);
@@ -64,7 +64,7 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
-            isOnTramLine = true;
+            //isOnTramLine = true;
             lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
         }
 
@@ -79,6 +79,14 @@ namespace AgOpenGPS
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(refPoint2.easting, refPoint2.northing, 0.0);
             GL.End();
+
+
+            if (mf.font.isFontOn)
+            {
+                mf.font.DrawText3D(refPoint1.easting, refPoint1.northing, "&A");
+                mf.font.DrawText3D(refPoint2.easting, refPoint2.northing, "&B");
+            }
+
             GL.PointSize(1.0f);
 
             //Draw reference AB line
@@ -89,54 +97,28 @@ namespace AgOpenGPS
             GL.Vertex3(refABLineP2.easting, refABLineP2.northing, 0);
             GL.End();
 
+            //draw current AB Line
+            GL.LineWidth(lineWidth);
+            GL.Begin(PrimitiveType.Lines);
+            GL.Color3(0.95f, 0.0f, 0.0f);
+
+            GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
+            GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
+            GL.End();
+
             if (!isEditing)
             {
-                //draw current AB Line
-                GL.LineWidth(lineWidth);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Color3(0.95f, 0.0f, 0.0f);
-
-                //calculate if tram line is here
-                isOnTramLine = true;
-                if (tramPassEvery != 0)
-                {
-                    int pass = (int)passNumber + (tramPassEvery * 300) - tramBasedOn;
-                    if (pass % tramPassEvery != 0)
-                    {
-                        GL.Color3(0.9f, 0.0f, 0.0f);
-                        isOnTramLine = false;
-                    }
-                    else
-                    {
-                        GL.Color3(0, 0.9, 0);
-                        isOnTramLine = true;
-                    }
-
-                    if (isOnTramLine) mf.mc.relayData[mf.mc.rdTramLine] = 1;
-                    else mf.mc.relayData[mf.mc.rdTramLine] = 0;
-                }
-
-                //based on line pass, make ref purple
-                if (Math.Abs(tramBasedOn - (int)passNumber) <= 0 && tramPassEvery != 0) GL.Color3(0.990f, 0.190f, 0.990f);
-
-                GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
-                GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
-                GL.End();
-
-                //get the tool offset and width
-                double toolOffset = mf.vehicle.toolOffset * 2;
-                double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double cosHeading = Math.Cos(-abHeading);
-                double sinHeading = Math.Sin(-abHeading);
-
                 if (mf.isSideGuideLines)
                 {
+                    //get the tool offset and width
+                    double toolOffset = mf.vehicle.toolOffset * 2;
+                    double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    double cosHeading = Math.Cos(-abHeading);
+                    double sinHeading = Math.Sin(-abHeading);
 
                     GL.Color3(0.0f, 0.90f, 0.50f);
                     GL.LineWidth(lineWidth);
                     GL.Begin(PrimitiveType.Lines);
-
-                    //precalculate sin cos
 
                     if (isABSameAsVehicleHeading)
                     {
@@ -165,38 +147,6 @@ namespace AgOpenGPS
                         GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
                     }
 
-                    //if (isABSameAsVehicleHeading)
-                    //{
-                    //    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                    //    GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                    //    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP1.northing, 0);
-                    //    GL.Vertex3((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
-                    //    for (int i = 1; i <= 200; i++)
-                    //    {
-                    //        toolWidth = toolWidth + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                    //        GL.Vertex3((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
-                    //        GL.Vertex3((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
-                    //        GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                    //        GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                    //    GL.Vertex3((cosHeading * (toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-                    //    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP1.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP1.northing, 0);
-                    //    GL.Vertex3((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
-
-                    //    for (int i = 1; i <= 200; i++)
-                    //    {
-                    //        toolWidth = toolWidth + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                    //        GL.Vertex3((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
-                    //        GL.Vertex3((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
-                    //        GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
-                    //        GL.Vertex3((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
-                    //    }
-                    //}
-
                     GL.End();
                 }
             }
@@ -209,7 +159,6 @@ namespace AgOpenGPS
 
                 if (mf.camera.camSetDistance > -200)
                 {
-
                     GL.Color3(0.630f, 0.30692f, 0.5260f);
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Enable(EnableCap.LineStipple);
@@ -226,27 +175,6 @@ namespace AgOpenGPS
 
                     GL.End();
                     GL.Disable(EnableCap.LineStipple);
-                }
-
-                GL.LineWidth(4);
-                if (tramBasedOn > 0)
-                {
-                    toolWidth2 = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * tramBasedOn;
-                    GL.Color3(0.920f, 0.0f, 0.920f);
-                    GL.Begin(PrimitiveType.Lines);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                    GL.End();
-                }
-
-                if (tramPassEvery > 0)
-                {
-                    toolWidth2 = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * (tramBasedOn + tramPassEvery);
-                    GL.Color3(0.20f, 0.90f, 0.750f);
-                    GL.Begin(PrimitiveType.Lines);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
-                    GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                    GL.End();
                 }
             }
 
@@ -296,6 +224,24 @@ namespace AgOpenGPS
                 for (int h = 0; h < tramList[i].Count; h++) 
                     GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
                 GL.End();
+            }
+
+            //draw tram numbers at end and beggining of line
+            if (mf.font.isFontOn)
+            {
+
+                for (int i = 0; i < tramList.Count; i++)
+                {
+                    int middle = 0;
+                    GL.Color4(0.8630f, 0.93692f, 0.8260f, 0.752);
+                    if (tramList[i].Count > 1)
+                    {
+                        middle = tramList[i].Count - 1;
+                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString());
+                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString());
+
+                    }
+                }
             }
         }
 
@@ -369,7 +315,6 @@ namespace AgOpenGPS
                 //return;
             }
         }
-
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {

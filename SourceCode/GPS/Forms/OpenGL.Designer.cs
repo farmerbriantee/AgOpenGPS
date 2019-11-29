@@ -167,15 +167,18 @@ namespace AgOpenGPS
                 bnd.DrawBoundaryLines();
 
                 //draw the turnLines
-                if (!ABLine.isEditing) turn.DrawTurnLines();
+                if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn) turn.DrawTurnLines();
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
-                turn.DrawClosestPoint();
-                //turn.DrawTurnPointsLine();
-
+                //turn.DrawClosestPoint();
+                GL.PushMatrix();
                 //draw the flags if there are some
-                int flagCnt = flagPts.Count;
-                if (flagCnt > 0)
+                //GL.LoadIdentity();
+                //GL.Rotate(30, 1, 0, 0);
+                //GL.Rotate(-camHeading, 0, 0, 1);
+
+                if (flagPts.Count > 0 && font.isFontOn)
                 {
+                    int flagCnt = flagPts.Count;
                     for (int f = 0; f < flagCnt; f++)
                     {
                         GL.PointSize(8.0f);
@@ -185,6 +188,10 @@ namespace AgOpenGPS
                         if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
                         GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                         GL.End();
+
+                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
+                        //else
+                        //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
                     }
 
                     if (flagNumberPicked != 0)
@@ -202,30 +209,22 @@ namespace AgOpenGPS
                         GL.End();
 
                         //draw the flag with a black dot inside
-                        GL.PointSize(4.0f);
-                        GL.Color3(0, 0, 0);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.End();
+                        //GL.PointSize(4.0f);
+                        //GL.Color3(0, 0, 0);
+                        //GL.Begin(PrimitiveType.Points);
+                        //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
+                        //GL.End();
                     }
                 }
-
-                ////Draw closest headland point if youturn on
-                //if (yt.isYouTurnBtnOn)
-                //{
-                //    //hl.DrawClosestPoint();
-                //    bnd.DrawClosestPoint();
-                //}
+                GL.PopMatrix();
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
 
                 //Back to normal
                 GL.Color3(0.498f, 0.498f, 0.698f);
-                //GL.Enable(EnableCap.Blend);
-                //GL.Enable(EnableCap.DepthTest);
 
-                // 2D Ortho --------------------------
+                // 2D Ortho ---------------------------------------////////-------------------------------------------------
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.PushMatrix();
                 GL.LoadIdentity();
@@ -452,6 +451,17 @@ namespace AgOpenGPS
                     lblDistanceOffLine.Visible = false;
                 }
 
+                //text
+                int left = oglMain.Width / 2 - 100;
+                font.DrawText(left, 40, Math.Round(fixHeading * 57.295779513, 1) + "$");
+                font.DrawText(left, 70, SpeedKPH);
+
+                //if (curve.isBtnCurveOn)
+                //    font.DrawText(-45, 120, "AB " + curve.curveNumber);
+                //else if (ABLine.isBtnABLineOn)
+                //    font.DrawText(-45, 120, "AB " + ABLine.passNumber);
+
+
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
 
@@ -490,7 +500,7 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && panelBatman.Visible)
+                if (threeSeconds != zoomUpdateCounter && oglZoom.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
@@ -499,6 +509,50 @@ namespace AgOpenGPS
         }
 
         //Draw section OpenGL window, not visible
+//        public Vector2 form3Dto2D(Vector3 our3DPoint)
+//        {
+//            Vector3 our2DPoint;
+
+//            float[] modelviewMatrix = new float[16];
+//            float[] projectionMatrix = new float[16];
+//            int[] viewport = new int[4];
+
+//            GL.GetFloat(GetPName.ModelviewMatrix, modelviewMatrix);
+//            GL.GetFloat(GetPName.ProjectionMatrix, projectionMatrix);
+//            GL.GetInteger(GetPName.Viewport, viewport);
+
+//            OpenTK.Graphics.Glu.Project(our3DPoint, convertFloatsToDoubles(modelviewMatrix),
+//                convertFloatsToDoubles(projectionMatrix), viewport, out our2DPoint);
+
+//            return new Vector2(our2DPoint.X, our2DPoint.Y);
+//}
+
+//        public static double[] convertFloatsToDoubles(float[] input)
+//        {
+//            if (input == null)
+//            {
+//                return null; // Or throw an exception - your choice
+//            }
+
+//            double[] output = new double[input.Length];
+//            for (int i = 0; i < input.Length; i++)
+//            {
+//                output[i] = input[i];
+//            }
+//            return output;
+//        }
+//        private Vector2 Convert(Vector3 pos, Matrix4 viewMatrix, Matrix4 projectionMatrix, int screenWidth, int screenHeight)
+//        {
+//            pos = Vector3.Transform(pos, viewMatrix);
+//            pos = Vector3.Transform(pos, projectionMatrix);
+//            pos.X /= pos.Z;
+//            pos.Y /= pos.Z;
+//            pos.X = (pos.X + 1) * screenWidth / 2;
+//            pos.Y = (pos.Y + 1) * screenHeight / 2;
+
+//            return new Vector2(pos.X, pos.Y);
+//        }
+
         private void oglBack_Load(object sender, EventArgs e)
         {
             oglBack.MakeCurrent();
@@ -887,7 +941,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
+                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 63)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
