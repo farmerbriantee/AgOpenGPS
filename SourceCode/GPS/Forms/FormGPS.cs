@@ -653,20 +653,7 @@ namespace AgOpenGPS
         private void FormGPS_Resize(object sender, EventArgs e)
         {
             LineUpManualBtns();
-
             FixPanelsAndMenus();
-
-            label3.Text = Width.ToString();
-
-            //top,right.bottom
-            //if (Width > 1100)
-            //{
-            //    vehicleToolStripBtn.Visible = true;
-            //}
-            //else
-            //{
-            //    vehicleToolStripBtn.Visible = false;
-            //}
         }
 
         // Procedures and Functions ---------------------------------------
@@ -733,8 +720,8 @@ namespace AgOpenGPS
                         BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                         bitmap.UnlockBits(data);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Nearest);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                         
                         font.textureWidth = bitmap.Width; font.textureHeight = bitmap.Height;
                     }
@@ -745,7 +732,32 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Floor Texture" + ex2);
                 MessageBox.Show("Texture File Font.PNG is Missing", ex2.Message);
             }
-            
+
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Turn.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[3]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[3]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File TURN.PNG is Missing", ex.Message);
+            }
+
+
             //return array of textures
             return texture[0];
 
@@ -1291,9 +1303,9 @@ namespace AgOpenGPS
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
-                panelDrag.Visible = true;
-                panelDrag.Top = 80;
-                panelDrag.Left = 76;
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
                 Form form99 = new FormTram(this);
                 form99.Show();
                 form99.Left = Width - 275;
@@ -1302,9 +1314,9 @@ namespace AgOpenGPS
             }
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
-                panelDrag.Visible = true;
-                panelDrag.Top = 80;
-                panelDrag.Left = 76;
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
                 Form form97 = new FormTramCurve(this);
                 form97.Show();
                 form97.Left = Width - 275;
@@ -1384,11 +1396,6 @@ namespace AgOpenGPS
 
         }
 
-        private void panelBatman_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isOGLZoomOn = !isOGLZoomOn;
@@ -1409,19 +1416,14 @@ namespace AgOpenGPS
         {
             if (e.Button == MouseButtons.Left)
             {
-                //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
-                lblX.Text = point.X.ToString();                
-                lblY.Text = (point.Y).ToString();
-
-                if (point.Y < 100 && point.Y > 30)
+                if (point.Y < 120 && point.Y > 60)
                 {
-                    int middle = oglMain.Width / 2;
-                    if (point.X > middle - 50 && point.X < middle + 50)
+                    int middle = oglMain.Width / 2 + oglMain.Width /4;
+                    if (point.X > middle - 60 && point.X < middle + 60)
                         SwapDirection();
                 }
             }
-
         }
         public void SwapDirection()
         {
@@ -1432,14 +1434,14 @@ namespace AgOpenGPS
                 {
                     yt.isYouTurnRight = false;
                     yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
+                    ResetTurnBtn();
                 }
                 else
                 {
                     //make it turn the other way
                     yt.isYouTurnRight = true;
                     yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
+                    ResetTurnBtn();
                 }
             }
         }
@@ -1641,8 +1643,7 @@ namespace AgOpenGPS
             ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
 
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
+            DisableYouTurnButtons();
             btnFlag.Enabled = true;
 
             btnContourPriority.Image = Properties.Resources.Snap2;

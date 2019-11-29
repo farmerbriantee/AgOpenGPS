@@ -418,7 +418,7 @@ namespace AgOpenGPS
 
                 mf.ABLine.SetABLineByHeading();
 
-                //mf.EnableYouTurnButtons();
+                mf.EnableYouTurnButtons();
 
                 //Go back with Line enabled
                 Close();

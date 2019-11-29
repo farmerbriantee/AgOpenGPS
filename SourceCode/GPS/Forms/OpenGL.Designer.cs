@@ -49,6 +49,7 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
         public double offX, offY;
+
         //oglMain rendering, Draw
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
@@ -67,8 +68,6 @@ namespace AgOpenGPS
                 camera.SetWorldCam(pivotAxlePos.easting+offX, pivotAxlePos.northing+offY, camHeading);
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
-                //GL.Disable(EnableCap.DepthTest);
-                GL.Enable(EnableCap.Blend);
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -77,6 +76,7 @@ namespace AgOpenGPS
                 GL.Color4(redSections, grnSections, bluSections, (byte)160);
                 if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
+                GL.Enable(EnableCap.Blend);
                 //draw patches of sections
                 for (int j = 0; j < vehicle.numSuperSection; j++)
                 {
@@ -450,20 +450,68 @@ namespace AgOpenGPS
                 {
                     lblDistanceOffLine.Visible = false;
                 }
+                        int two3 = oglMain.Width / 4;
+
+                if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn)
+                {
+                    GL.Enable(EnableCap.Texture2D);
+                    GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
+                    if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
+                    else GL.Color3(0.93f, 0.35f, 0.3f);
+
+                    if (yt.isYouTurnTriggered) GL.Color3(0.0f, 0.0f, 0.93f);
+
+                    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                    if (!yt.isYouTurnRight)
+                    {
+                        GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 60); // 
+                        GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 60.0); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 120); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 120); //
+                    }
+                    else
+                    {
+                        GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 60); // 
+                        GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 60.0); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 120); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 120); //
+                    }
+                    //
+                    GL.End();
+                    GL.Disable(EnableCap.Texture2D);
+                    // Done Building Triangle Strip
+                    if (isMetric)
+                    {
+                        if (!yt.isYouTurnTriggered)
+                        {
+                            font.DrawText(-40 + two3, 80, DistPivotM);
+                        }
+                        else
+                        {
+                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                        }
+                    }
+                    else
+                    {
+
+                        if (!yt.isYouTurnTriggered)
+                        {
+                            font.DrawText(-40 + two3, 80, DistPivotFt);
+                        }
+                        else
+                        {
+                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                        }
+                    }
+
+                }
+
+                int left = oglMain.Width / 2 - 100;
 
                 //text
-                int left = oglMain.Width / 2 - 100;
-                font.DrawText(left, 40, Math.Round(fixHeading * 57.295779513, 1) + "$");
-                font.DrawText(left, 70, SpeedKPH);
-                if (yt.isYouTurnBtnOn) font.DrawText(-40, 60, "< - >");
-
-
-
-                //if (curve.isBtnCurveOn)
-                //    font.DrawText(-45, 120, "AB " + curve.curveNumber);
-                //else if (ABLine.isBtnABLineOn)
-                //    font.DrawText(-45, 120, "AB " + ABLine.passNumber);
-
+                font.DrawText(left, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
+                //font.DrawText(left, 70, SpeedKPH);
+                //if (yt.isYouTurnBtnOn) font.DrawText(-35, 60, "<   >");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
@@ -510,51 +558,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
-        //Draw section OpenGL window, not visible
-//        public Vector2 form3Dto2D(Vector3 our3DPoint)
-//        {
-//            Vector3 our2DPoint;
-
-//            float[] modelviewMatrix = new float[16];
-//            float[] projectionMatrix = new float[16];
-//            int[] viewport = new int[4];
-
-//            GL.GetFloat(GetPName.ModelviewMatrix, modelviewMatrix);
-//            GL.GetFloat(GetPName.ProjectionMatrix, projectionMatrix);
-//            GL.GetInteger(GetPName.Viewport, viewport);
-
-//            OpenTK.Graphics.Glu.Project(our3DPoint, convertFloatsToDoubles(modelviewMatrix),
-//                convertFloatsToDoubles(projectionMatrix), viewport, out our2DPoint);
-
-//            return new Vector2(our2DPoint.X, our2DPoint.Y);
-//}
-
-//        public static double[] convertFloatsToDoubles(float[] input)
-//        {
-//            if (input == null)
-//            {
-//                return null; // Or throw an exception - your choice
-//            }
-
-//            double[] output = new double[input.Length];
-//            for (int i = 0; i < input.Length; i++)
-//            {
-//                output[i] = input[i];
-//            }
-//            return output;
-//        }
-//        private Vector2 Convert(Vector3 pos, Matrix4 viewMatrix, Matrix4 projectionMatrix, int screenWidth, int screenHeight)
-//        {
-//            pos = Vector3.Transform(pos, viewMatrix);
-//            pos = Vector3.Transform(pos, projectionMatrix);
-//            pos.X /= pos.Z;
-//            pos.Y /= pos.Z;
-//            pos.X = (pos.X + 1) * screenWidth / 2;
-//            pos.Y = (pos.Y + 1) * screenHeight / 2;
-
-//            return new Vector2(pos.X, pos.Y);
-//        }
 
         private void oglBack_Load(object sender, EventArgs e)
         {

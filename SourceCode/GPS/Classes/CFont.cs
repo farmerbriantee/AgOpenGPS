@@ -107,8 +107,6 @@ namespace AgOpenGPS
 
                 x += CharXSpacing * size;
             }
-
-
             GL.End();
             GL.Disable(EnableCap.Texture2D);
 

@@ -75,9 +75,7 @@ namespace AgOpenGPS
             grnSections = Settings.Default.setF_SectionColorG;
             bluSections = Settings.Default.setF_SectionColorB;
 
-            //turn off the turn signals lol
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
+            DisableYouTurnButtons();
 
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
@@ -319,7 +317,7 @@ namespace AgOpenGPS
                 panelBatman.Visible = true;
                 //statusStripLeft.Left = 8;
 
-                lblDistanceOffLine.Left = (Width - 25) / 2;
+                lblDistanceOffLine.Left = (Width - 105) / 2;
                 LineUpManualBtns();
             }
             else
@@ -349,15 +347,11 @@ namespace AgOpenGPS
 
             if (panelBatman.Visible)
             {
-                btnRightYouTurn.Left = (Width+260) / 2 ;
-                btnLeftYouTurn.Left = (Width-340) / 2;
                 first2Thirds = (Width + 30) / 2;
             }
 
             else
             {
-                btnRightYouTurn.Left = (Width+140) / 2;
-                btnLeftYouTurn.Left = (Width-550) / 2;
                 first2Thirds = (Width - 130) / 2;
             }
 
@@ -1861,69 +1855,65 @@ namespace AgOpenGPS
         }
 
         //YouTurn on off
-        private void btnLeftYouTurn_Click(object sender, EventArgs e)
+        //private void btnLeftYouTurn_Click(object sender, EventArgs e)
+        //{
+        //    if (yt.isYouTurnTriggered)
+        //    {
+        //        //is it turning left already?
+        //        if (!yt.isYouTurnRight)
+        //        {
+        //            yt.ResetYouTurn();
+        //            AutoYouTurnButtonsReset();
+        //        }
+        //        else
+        //        {
+        //            yt.isYouTurnRight = false;
+        //            AutoYouTurnButtonsLeftTurn();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (yt.isYouTurnTriggered)
+        //        {
+        //            yt.ResetYouTurn();
+        //            AutoYouTurnButtonsReset();
+        //        }
+        //        else
+        //        {
+        //            yt.isYouTurnTriggered = true;
+        //            yt.BuildManualYouTurn(false, true);
+        //            AutoYouTurnButtonsLeftTurn();
+        //        }
+        //    }
+        //}
+        private void btnTurn_Click(object sender, EventArgs e)
         {
-            if (yt.isYouTurnTriggered)
-            {
-                //is it turning left already?
-                if (!yt.isYouTurnRight)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnRight = false;
-                    AutoYouTurnButtonsLeftTurn();
-                }
-            }
-            else
-            {
-                if (yt.isYouTurnTriggered)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnTriggered = true;
-                    yt.BuildManualYouTurn(false, true);
-                    AutoYouTurnButtonsLeftTurn();
-                }
-            }
-        }
-        private void btnRightYouTurn_Click(object sender, EventArgs e)
-        {
-            //is it already turning right, then cancel autoturn
+
+            ////is it already turning right, then cancel autoturn
             if (yt.isYouTurnTriggered)
             {
                 //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    AutoYouTurnButtonsRightTurn();
-                }
+                yt.ResetYouTurn();
+                ResetTurnBtn();
             }
             else
             {
-                if (yt.isYouTurnTriggered)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnTriggered = true;
-                    yt.BuildManualYouTurn(true, true);
-                    AutoYouTurnButtonsRightTurn();
-                }
+                SwapDirection();
             }
+            //else
+            //{
+            //    if (yt.isYouTurnTriggered)
+            //    {
+            //        yt.ResetYouTurn();
+            //        AutoYouTurnButtonsReset();
+            //    }
+            //    else
+            //    {
+            //        yt.isYouTurnTriggered = true;
+            //        yt.BuildManualYouTurn(true, true);
+            //        AutoYouTurnButtonsRightTurn();
+            //    }
+            //}
         }
 
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
@@ -1940,8 +1930,6 @@ namespace AgOpenGPS
                 yt.ResetCreatedYouTurn();
 
                 if (!isAutoSteerBtnOn) return;
-
-                yt.isYouTurnBtnOn = true;
                 yt.isYouTurnBtnOn = true;
                 yt.isTurnCreationTooClose = false;
                 yt.isTurnCreationNotCrossingError = false;
@@ -1964,75 +1952,26 @@ namespace AgOpenGPS
                 mc.machineControlData[mc.cnYouTurn] = 0;
             }
         }
-        public void AutoYouTurnButtonsRightTurn()
+
+        public void TurnNow()
         {
-            btnRightYouTurn.BackColor = Color.Yellow;
-            btnRightYouTurn.Height = 95;
-            btnRightYouTurn.Width = 95;
-            btnLeftYouTurn.Height = 66;
-            btnLeftYouTurn.Width = 80;
-            btnLeftYouTurn.Text = "";
-            btnLeftYouTurn.BackColor = Color.LightSteelBlue;
         }
-        public void AutoYouTurnButtonsLeftTurn()
+
+        public void ResetTurnBtn()
         {
-            btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.Height = 66;
-            btnRightYouTurn.Width = 80;
-            btnRightYouTurn.Text = "";
-            btnLeftYouTurn.Height = 95;
-            btnLeftYouTurn.Width = 95;
-            btnLeftYouTurn.BackColor = Color.Yellow;
-        }
-        public void AutoYouTurnButtonsReset()
-        {
-            //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
-
-            //fix the buttons
-            btnLeftYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnLeftYouTurn.Height = 66;
-            btnLeftYouTurn.Width = 80;
-            btnRightYouTurn.Height = 66;
-            btnRightYouTurn.Width = 80;
-            btnLeftYouTurn.Text = "";
-            btnRightYouTurn.Text = "";
-
-            // why yes it is backwards, puzzling
-            if (!yt.isYouTurnRight)
-            {
-                btnLeftYouTurn.BackColor = Color.LightSteelBlue;
-                btnRightYouTurn.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                btnLeftYouTurn.BackColor = Color.LightGreen;
-                btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            }
         }
+
         public void EnableYouTurnButtons()
         {
-            btnRightYouTurn.Enabled = true;
-            btnLeftYouTurn.Enabled = true;
-            btnRightYouTurn.Visible = true;
-            btnLeftYouTurn.Visible = true;
-
-            //auto YouTurn disabled
-            yt.isYouTurnBtnOn = false;
             yt.ResetYouTurn();
 
-            //turn off youturn...
-            btnEnableAutoYouTurn.Enabled = true;
             yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Enabled = true;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
         public void DisableYouTurnButtons()
         {
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
 
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
@@ -3209,7 +3148,7 @@ namespace AgOpenGPS
                         lblRoll.Text = RollInDegrees;
                         lblYawHeading.Text = GyroInDegrees;
                         lblGPSHeading.Text = GPSHeading;
-                        lblHeading2.Text = lblHeading.Text;
+                        //lblHeading2.Text = lblHeading.Text;
 
 
                         //Low means steer switch on
@@ -3298,40 +3237,6 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
 
-                    if (isMetric)
-                    {
-                        if (bnd.bndArr.Count > 0)
-                        {
-                            if (yt.isYouTurnRight)
-                            {
-                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
-                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                            else
-                            {
-                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
-                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                        }
-                    }
-                    else
-                    {
-
-                        if (bnd.bndArr.Count > 0)
-                        {
-                            if (yt.isYouTurnRight)
-                            {
-                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
-                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                            else
-                            {
-                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
-                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                        }
-                    }
-
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
@@ -3339,8 +3244,6 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
-
-                    lblHeading.Text = Math.Round(fixHeading * 57.295779513, 1) + "\u00B0";
 
                     if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
                     {

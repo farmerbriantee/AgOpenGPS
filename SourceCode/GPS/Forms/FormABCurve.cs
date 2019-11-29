@@ -374,7 +374,7 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveSet = true;
-                    //mf.EnableYouTurnButtons();
+                    mf.EnableYouTurnButtons();
                 }
                 //can go back to Mainform without seeing form.
                 Close();
