@@ -861,11 +861,18 @@ namespace AgOpenGPS
         private void DrawUTurnBtn()
         {
             GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
-            if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
-            else GL.Color3(0.93f, 0.35f, 0.3f);
 
-            if (yt.isYouTurnTriggered) GL.Color3(0.0f, 0.0f, 0.93f);
+            if (!yt.isYouTurnTriggered)
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
+                if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
+                else GL.Color3(0.93f, 0.35f, 0.3f);
+            }
+            else
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[4]);        // Select Our Texture
+                GL.Color3(0.90f, 0.90f, 0.293f);
+            }
 
             int two3 = oglMain.Width / 4;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip

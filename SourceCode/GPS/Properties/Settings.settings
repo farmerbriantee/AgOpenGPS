@@ -207,7 +207,7 @@
       <Value Profile="(Default)">2101</Value>
     </Setting>
     <Setting Name="setNTRIP_mount" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">ABIOS</Value>
     </Setting>
     <Setting Name="setNTRIP_userName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

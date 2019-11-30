@@ -73,6 +73,7 @@
             this.logNMEAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.extraGuidesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uTurnAlwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topFieldViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -240,7 +241,6 @@
             this.btnSnapRight = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.uTurnAlwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -304,7 +304,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(1250, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1342, 48);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -618,6 +618,13 @@
             this.extraGuidesToolStripMenuItem.Text = "Extra Guides";
             this.extraGuidesToolStripMenuItem.Click += new System.EventHandler(this.sideGuideLines_Click);
             // 
+            // uTurnAlwaysOnToolStripMenuItem
+            // 
+            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
+            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
+            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
+            // 
             // topFieldViewToolStripMenuItem
             // 
             this.topFieldViewToolStripMenuItem.Checked = true;
@@ -690,7 +697,7 @@
             this.lblSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(1119, 5);
+            this.lblSpeed.Location = new System.Drawing.Point(1211, 5);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(87, 31);
             this.lblSpeed.TabIndex = 116;
@@ -825,7 +832,7 @@
             this.lblSpeedUnits.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeedUnits.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblSpeedUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeedUnits.Location = new System.Drawing.Point(1200, 16);
+            this.lblSpeedUnits.Location = new System.Drawing.Point(1292, 16);
             this.lblSpeedUnits.Name = "lblSpeedUnits";
             this.lblSpeedUnits.Size = new System.Drawing.Size(38, 17);
             this.lblSpeedUnits.TabIndex = 139;
@@ -1685,10 +1692,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(245, 49);
+            this.oglMain.Location = new System.Drawing.Point(244, 49);
             this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(821, 584);
+            this.oglMain.Size = new System.Drawing.Size(913, 584);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1745,7 +1752,7 @@
             this.layoutPanelRight.Controls.Add(this.btnCycleLines, 0, 2);
             this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
             this.layoutPanelRight.Controls.Add(this.btnABMenu, 0, 1);
-            this.layoutPanelRight.Location = new System.Drawing.Point(1067, 49);
+            this.layoutPanelRight.Location = new System.Drawing.Point(1159, 49);
             this.layoutPanelRight.Name = "layoutPanelRight";
             this.layoutPanelRight.RowCount = 7;
             this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
@@ -2071,7 +2078,7 @@
             this.stripEqWidth});
             this.statusStrip1.Location = new System.Drawing.Point(0, 633);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1250, 68);
+            this.statusStrip1.Size = new System.Drawing.Size(1342, 68);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 323;
             // 
@@ -2476,7 +2483,7 @@
             this.snapLeftBigStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapLeftBigStrip.Name = "snapLeftBigStrip";
             this.snapLeftBigStrip.ShowDropDownArrow = false;
-            this.snapLeftBigStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapLeftBigStrip.Size = new System.Drawing.Size(80, 66);
             this.snapLeftBigStrip.Click += new System.EventHandler(this.btnSnapLeft_Click);
             // 
             // snapLeftStrip
@@ -2490,7 +2497,7 @@
             this.snapLeftStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapLeftStrip.Name = "snapLeftStrip";
             this.snapLeftStrip.ShowDropDownArrow = false;
-            this.snapLeftStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapLeftStrip.Size = new System.Drawing.Size(80, 66);
             this.snapLeftStrip.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
             // 
             // snapRightStrip
@@ -2504,7 +2511,7 @@
             this.snapRightStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapRightStrip.Name = "snapRightStrip";
             this.snapRightStrip.ShowDropDownArrow = false;
-            this.snapRightStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapRightStrip.Size = new System.Drawing.Size(80, 66);
             this.snapRightStrip.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
             // 
             // snapRightBigStrip
@@ -2518,14 +2525,14 @@
             this.snapRightBigStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapRightBigStrip.Name = "snapRightBigStrip";
             this.snapRightBigStrip.ShowDropDownArrow = false;
-            this.snapRightBigStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapRightBigStrip.Size = new System.Drawing.Size(80, 66);
             this.snapRightBigStrip.Click += new System.EventHandler(this.btnSnapRight_Click);
             // 
             // stripEqWidth
             // 
             this.stripEqWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(69, 23);
+            this.stripEqWidth.Size = new System.Drawing.Size(69, 63);
             this.stripEqWidth.Spring = true;
             this.stripEqWidth.Text = "Vehicle";
             this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2805,7 +2812,7 @@
             this.lblDistanceOffLine.BackColor = System.Drawing.Color.Transparent;
             this.lblDistanceOffLine.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistanceOffLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceOffLine.Location = new System.Drawing.Point(641, 0);
+            this.lblDistanceOffLine.Location = new System.Drawing.Point(687, 0);
             this.lblDistanceOffLine.Name = "lblDistanceOffLine";
             this.lblDistanceOffLine.Size = new System.Drawing.Size(146, 40);
             this.lblDistanceOffLine.TabIndex = 328;
@@ -2826,7 +2833,7 @@
             this.panelEditAB.Controls.Add(this.btnBigSnapRight, 0, 4);
             this.panelEditAB.Controls.Add(this.btnSnapLeft, 0, 3);
             this.panelEditAB.Controls.Add(this.btnSnapRight, 0, 2);
-            this.panelEditAB.Location = new System.Drawing.Point(989, 65);
+            this.panelEditAB.Location = new System.Drawing.Point(1081, 65);
             this.panelEditAB.Name = "panelEditAB";
             this.panelEditAB.RowCount = 6;
             this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -2958,7 +2965,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(1015, 3);
+            this.btnZoomIn.Location = new System.Drawing.Point(1107, 3);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(67, 42);
             this.btnZoomIn.TabIndex = 120;
@@ -2975,26 +2982,19 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(927, 3);
+            this.btnZoomOut.Location = new System.Drawing.Point(1019, 3);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(67, 42);
             this.btnZoomOut.TabIndex = 119;
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
-            // uTurnAlwaysOnToolStripMenuItem
-            // 
-            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
-            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
-            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1250, 701);
+            this.ClientSize = new System.Drawing.Size(1342, 701);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.panelDrag);
             this.Controls.Add(this.panelEditAB);

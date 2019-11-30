@@ -1319,8 +1319,6 @@ namespace AgOpenGPS
             //just do the opposite of last turn
             isYouTurnRight = !isLastYouTurnRight;
             isLastYouTurnRight = !isLastYouTurnRight;
-
-            mf.TurnNow();
         }
 
         //Normal copmpletion of youturn
@@ -1343,6 +1341,7 @@ namespace AgOpenGPS
             turnDistanceAdjuster = 0;
             mf.isBoundAlarming = false;
             isTurnCreationTooClose = false;
+            isTurnCreationNotCrossingError = false;
 
             //reset sequence
             mf.seq.ResetSequenceEventTriggers();
