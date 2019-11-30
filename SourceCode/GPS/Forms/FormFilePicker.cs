@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -19,7 +13,6 @@ namespace AgOpenGPS
         private bool isOrderByName;
 
         private List<string> fileList = new List<string>();
-
 
         public FormFilePicker(Form callingForm)
         {
@@ -51,8 +44,6 @@ namespace AgOpenGPS
                 }
                 lvLines.Items.Add(itm);
             }
-
-            //string fieldName = Path.GetDirectoryName(dir).ToString(CultureInfo.InvariantCulture);
 
             if (lvLines.Items.Count > 0)
             {
@@ -109,48 +100,44 @@ namespace AgOpenGPS
                 string fieldDirectory = Path.GetFileName(dir);
                 string filename = dir + "\\Field.txt";
                 string line;
-                using (StreamReader reader = new StreamReader(filename))
+
+                //make sure directory has a field.txt in it
+                if (File.Exists(filename))
                 {
-                    try
+                    using (StreamReader reader = new StreamReader(filename))
                     {
-                        //Date time line
-                        for (int i = 0; i < 8; i++)
+                        try
                         {
-                            line = reader.ReadLine();
+                            //Date time line
+                            for (int i = 0; i < 8; i++)
+                            {
+                                line = reader.ReadLine();
+                            }
+
+                            //start positions
+                            if (!reader.EndOfStream)
+                            {
+                                line = reader.ReadLine();
+                                string[] offs = line.Split(',');
+
+                                latStart = (double.Parse(offs[0], CultureInfo.InvariantCulture));
+                                lonStart = (double.Parse(offs[1], CultureInfo.InvariantCulture));
+                            }
                         }
-
-                        //start positions
-                        if (!reader.EndOfStream)
+                        catch (Exception)
                         {
-                            line = reader.ReadLine();
-                            string[] offs = line.Split(',');
-
-                            latStart = (double.Parse(offs[0], CultureInfo.InvariantCulture));
-                            lonStart = (double.Parse(offs[1], CultureInfo.InvariantCulture));
+                            var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         }
                     }
 
-                    catch (Exception)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
-                    }
+                    distance = Math.Pow((latStart - mf.pn.latitude), 2) + Math.Pow((lonStart - mf.pn.longitude), 2);
+                    distance = Math.Sqrt(distance);
+                    distance *= 100;
+
+                    fileList.Add(fieldDirectory);
+                    fileList.Add(distance.ToString("00.###"));
                 }
-
-                distance = Math.Pow((latStart - mf.pn.latitude), 2) + Math.Pow((lonStart - mf.pn.longitude), 2);
-                distance = Math.Sqrt(distance);
-                distance *= 100;
-
-                fileList.Add(fieldDirectory);
-                fileList.Add(distance.ToString("00.###"));
-
-                //this.chName.Text = "Field Name";
-                //this.chName.Width = 820;
-
-                //this.chDistance.Text = "Distance";
-                //this.chDistance.Width = 150;
-
             }
-
 
             for (int i = 0; i < fileList.Count; i += 2)
             {
@@ -174,7 +161,6 @@ namespace AgOpenGPS
                 //var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsCreated, gStr.gsCreateNewFieldFirst);
                 //form2.Show();
             }
-
         }
     }
 }

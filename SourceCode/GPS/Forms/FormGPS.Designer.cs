@@ -66,14 +66,16 @@
             this.toolStripUnitsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.metricToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.imperialToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.sideGuideLines = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.polygonsOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pursuitOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skyOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logNMEAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extraGuidesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uTurnAlwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topFieldViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logNMEAMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pursuitLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.skyToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.simulatorOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -302,7 +304,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(1250, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1342, 48);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -483,14 +485,9 @@
             this.toolStripSeparator2,
             this.colorsToolStripMenuItem,
             this.toolStripUnitsMenu,
-            this.sideGuideLines,
+            this.optionsToolStripMenuItem,
             this.topFieldViewToolStripMenuItem,
-            this.gridToolStripMenuItem,
             this.lightbarToolStripMenuItem,
-            this.logNMEAMenuItem,
-            this.polygonsToolStripMenuItem,
-            this.pursuitLineToolStripMenuItem,
-            this.skyToolStripMenu,
             this.toolStripSeparator6,
             this.simulatorOnToolStripMenuItem,
             this.toolStripSeparator7});
@@ -565,15 +562,68 @@
             this.imperialToolStrip.Text = "Imperial";
             this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
             // 
-            // sideGuideLines
+            // optionsToolStripMenuItem
             // 
-            this.sideGuideLines.Checked = true;
-            this.sideGuideLines.CheckOnClick = true;
-            this.sideGuideLines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sideGuideLines.Name = "sideGuideLines";
-            this.sideGuideLines.Size = new System.Drawing.Size(285, 40);
-            this.sideGuideLines.Text = "Extra Guides";
-            this.sideGuideLines.Click += new System.EventHandler(this.sideGuideLines_Click);
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.polygonsOnToolStripMenuItem,
+            this.pursuitOnToolStripMenuItem,
+            this.skyOnToolStripMenuItem,
+            this.logNMEAToolStripMenuItem,
+            this.gridOnToolStripMenuItem,
+            this.extraGuidesToolStripMenuItem,
+            this.uTurnAlwaysOnToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // polygonsOnToolStripMenuItem
+            // 
+            this.polygonsOnToolStripMenuItem.Name = "polygonsOnToolStripMenuItem";
+            this.polygonsOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.polygonsOnToolStripMenuItem.Text = "Polygons On";
+            this.polygonsOnToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
+            // 
+            // pursuitOnToolStripMenuItem
+            // 
+            this.pursuitOnToolStripMenuItem.Name = "pursuitOnToolStripMenuItem";
+            this.pursuitOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.pursuitOnToolStripMenuItem.Text = "Pursuit Line On";
+            this.pursuitOnToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
+            // 
+            // skyOnToolStripMenuItem
+            // 
+            this.skyOnToolStripMenuItem.Name = "skyOnToolStripMenuItem";
+            this.skyOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.skyOnToolStripMenuItem.Text = "Sky On";
+            this.skyOnToolStripMenuItem.Click += new System.EventHandler(this.skyToolStripMenu_Click);
+            // 
+            // logNMEAToolStripMenuItem
+            // 
+            this.logNMEAToolStripMenuItem.Name = "logNMEAToolStripMenuItem";
+            this.logNMEAToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.logNMEAToolStripMenuItem.Text = "Log NMEA";
+            this.logNMEAToolStripMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
+            // 
+            // gridOnToolStripMenuItem
+            // 
+            this.gridOnToolStripMenuItem.Name = "gridOnToolStripMenuItem";
+            this.gridOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.gridOnToolStripMenuItem.Text = "Grid On";
+            this.gridOnToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
+            // 
+            // extraGuidesToolStripMenuItem
+            // 
+            this.extraGuidesToolStripMenuItem.Name = "extraGuidesToolStripMenuItem";
+            this.extraGuidesToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.extraGuidesToolStripMenuItem.Text = "Extra Guides";
+            this.extraGuidesToolStripMenuItem.Click += new System.EventHandler(this.sideGuideLines_Click);
+            // 
+            // uTurnAlwaysOnToolStripMenuItem
+            // 
+            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
+            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
+            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
             // 
             // topFieldViewToolStripMenuItem
             // 
@@ -585,55 +635,12 @@
             this.topFieldViewToolStripMenuItem.Text = "Top Field View";
             this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
             // 
-            // gridToolStripMenuItem
-            // 
-            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
-            this.gridToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.gridToolStripMenuItem.Text = "Grid On";
-            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
             // lightbarToolStripMenuItem
             // 
             this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
             this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
             this.lightbarToolStripMenuItem.Text = "Lightbar On";
             this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
-            // 
-            // logNMEAMenuItem
-            // 
-            this.logNMEAMenuItem.Name = "logNMEAMenuItem";
-            this.logNMEAMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.logNMEAMenuItem.Text = "Log NMEA";
-            this.logNMEAMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
-            // 
-            // polygonsToolStripMenuItem
-            // 
-            this.polygonsToolStripMenuItem.Checked = true;
-            this.polygonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.polygonsToolStripMenuItem.Name = "polygonsToolStripMenuItem";
-            this.polygonsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.polygonsToolStripMenuItem.Text = "Polygons On";
-            this.polygonsToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
-            // 
-            // pursuitLineToolStripMenuItem
-            // 
-            this.pursuitLineToolStripMenuItem.Checked = true;
-            this.pursuitLineToolStripMenuItem.CheckOnClick = true;
-            this.pursuitLineToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.pursuitLineToolStripMenuItem.Name = "pursuitLineToolStripMenuItem";
-            this.pursuitLineToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.pursuitLineToolStripMenuItem.Text = "Pursuit Line";
-            this.pursuitLineToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
-            // 
-            // skyToolStripMenu
-            // 
-            this.skyToolStripMenu.Checked = true;
-            this.skyToolStripMenu.CheckOnClick = true;
-            this.skyToolStripMenu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.skyToolStripMenu.Name = "skyToolStripMenu";
-            this.skyToolStripMenu.Size = new System.Drawing.Size(285, 40);
-            this.skyToolStripMenu.Text = "Sky On";
-            this.skyToolStripMenu.Click += new System.EventHandler(this.skyToolStripMenu_Click);
             // 
             // toolStripSeparator6
             // 
@@ -690,7 +697,7 @@
             this.lblSpeed.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 20F, System.Drawing.FontStyle.Bold);
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(1119, 5);
+            this.lblSpeed.Location = new System.Drawing.Point(1211, 5);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(87, 31);
             this.lblSpeed.TabIndex = 116;
@@ -825,7 +832,7 @@
             this.lblSpeedUnits.BackColor = System.Drawing.Color.Transparent;
             this.lblSpeedUnits.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
             this.lblSpeedUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeedUnits.Location = new System.Drawing.Point(1200, 16);
+            this.lblSpeedUnits.Location = new System.Drawing.Point(1292, 16);
             this.lblSpeedUnits.Name = "lblSpeedUnits";
             this.lblSpeedUnits.Size = new System.Drawing.Size(38, 17);
             this.lblSpeedUnits.TabIndex = 139;
@@ -1685,16 +1692,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(245, 49);
+            this.oglMain.Location = new System.Drawing.Point(244, 49);
             this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(821, 584);
+            this.oglMain.Size = new System.Drawing.Size(913, 584);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
             this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
             this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
-            this.oglMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseUp);
             this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
             // 
             // oglBack
@@ -1746,7 +1752,7 @@
             this.layoutPanelRight.Controls.Add(this.btnCycleLines, 0, 2);
             this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
             this.layoutPanelRight.Controls.Add(this.btnABMenu, 0, 1);
-            this.layoutPanelRight.Location = new System.Drawing.Point(1067, 49);
+            this.layoutPanelRight.Location = new System.Drawing.Point(1159, 49);
             this.layoutPanelRight.Name = "layoutPanelRight";
             this.layoutPanelRight.RowCount = 7;
             this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
@@ -2072,7 +2078,7 @@
             this.stripEqWidth});
             this.statusStrip1.Location = new System.Drawing.Point(0, 633);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1250, 68);
+            this.statusStrip1.Size = new System.Drawing.Size(1342, 68);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 323;
             // 
@@ -2477,7 +2483,7 @@
             this.snapLeftBigStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapLeftBigStrip.Name = "snapLeftBigStrip";
             this.snapLeftBigStrip.ShowDropDownArrow = false;
-            this.snapLeftBigStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapLeftBigStrip.Size = new System.Drawing.Size(80, 66);
             this.snapLeftBigStrip.Click += new System.EventHandler(this.btnSnapLeft_Click);
             // 
             // snapLeftStrip
@@ -2491,7 +2497,7 @@
             this.snapLeftStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapLeftStrip.Name = "snapLeftStrip";
             this.snapLeftStrip.ShowDropDownArrow = false;
-            this.snapLeftStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapLeftStrip.Size = new System.Drawing.Size(80, 66);
             this.snapLeftStrip.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
             // 
             // snapRightStrip
@@ -2505,7 +2511,7 @@
             this.snapRightStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapRightStrip.Name = "snapRightStrip";
             this.snapRightStrip.ShowDropDownArrow = false;
-            this.snapRightStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapRightStrip.Size = new System.Drawing.Size(80, 66);
             this.snapRightStrip.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
             // 
             // snapRightBigStrip
@@ -2519,7 +2525,7 @@
             this.snapRightBigStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.snapRightBigStrip.Name = "snapRightBigStrip";
             this.snapRightBigStrip.ShowDropDownArrow = false;
-            this.snapRightBigStrip.Size = new System.Drawing.Size(66, 66);
+            this.snapRightBigStrip.Size = new System.Drawing.Size(80, 66);
             this.snapRightBigStrip.Click += new System.EventHandler(this.btnSnapRight_Click);
             // 
             // stripEqWidth
@@ -2806,7 +2812,7 @@
             this.lblDistanceOffLine.BackColor = System.Drawing.Color.Transparent;
             this.lblDistanceOffLine.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistanceOffLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceOffLine.Location = new System.Drawing.Point(641, 0);
+            this.lblDistanceOffLine.Location = new System.Drawing.Point(687, 0);
             this.lblDistanceOffLine.Name = "lblDistanceOffLine";
             this.lblDistanceOffLine.Size = new System.Drawing.Size(146, 40);
             this.lblDistanceOffLine.TabIndex = 328;
@@ -2827,7 +2833,7 @@
             this.panelEditAB.Controls.Add(this.btnBigSnapRight, 0, 4);
             this.panelEditAB.Controls.Add(this.btnSnapLeft, 0, 3);
             this.panelEditAB.Controls.Add(this.btnSnapRight, 0, 2);
-            this.panelEditAB.Location = new System.Drawing.Point(989, 65);
+            this.panelEditAB.Location = new System.Drawing.Point(1081, 65);
             this.panelEditAB.Name = "panelEditAB";
             this.panelEditAB.RowCount = 6;
             this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -2959,7 +2965,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(1015, 3);
+            this.btnZoomIn.Location = new System.Drawing.Point(1107, 3);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(67, 42);
             this.btnZoomIn.TabIndex = 120;
@@ -2976,7 +2982,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(927, 3);
+            this.btnZoomOut.Location = new System.Drawing.Point(1019, 3);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(67, 42);
             this.btnZoomOut.TabIndex = 119;
@@ -2988,7 +2994,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1250, 701);
+            this.ClientSize = new System.Drawing.Size(1342, 701);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.panelDrag);
             this.Controls.Add(this.panelEditAB);
@@ -3055,7 +3061,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Timer tmrWatchdog;
-        private System.Windows.Forms.ToolStripMenuItem polygonsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveVehicleToolStripMenuItem;
@@ -3066,7 +3071,6 @@
         private System.Windows.Forms.Button btnSection5Man;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightbarToolStripMenuItem;
         private System.Windows.Forms.Label lblNorthing;
         private System.Windows.Forms.Label lblEasting;
@@ -3096,16 +3100,12 @@
         private System.Windows.Forms.Button btnSection8Man;
         private System.Windows.Forms.Button btnSection7Man;
         private System.Windows.Forms.Button btnSection6Man;
-        private System.Windows.Forms.ToolStripMenuItem logNMEAMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripUnitsMenu;
         private System.Windows.Forms.ToolStripMenuItem metricToolStrip;
         private System.Windows.Forms.ToolStripMenuItem imperialToolStrip;
-        private System.Windows.Forms.ToolStripMenuItem skyToolStripMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.Label lblZone;
         private System.Windows.Forms.Label lblSpeedUnits;
-        private System.Windows.Forms.ToolStripMenuItem sideGuideLines;
-        private System.Windows.Forms.ToolStripMenuItem pursuitLineToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnFlag;
         private System.Windows.Forms.Button btnResetSteerAngle;
@@ -3260,6 +3260,14 @@
         private ProXoft.WinForms.RepeatButton btnpTiltDown;
         private ProXoft.WinForms.RepeatButton btnpTiltUp;
         private System.Windows.Forms.ToolStripMenuItem topFieldViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem polygonsOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pursuitOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skyOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logNMEAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gridOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extraGuidesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uTurnAlwaysOnToolStripMenuItem;
     }
 }
 

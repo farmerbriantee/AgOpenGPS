@@ -888,16 +888,16 @@ namespace AgOpenGPS
                         imperialToolStrip.Checked = !isMetric;
 
                         isGridOn = Properties.Settings.Default.setMenu_isGridOn;
-                        gridToolStripMenuItem.Checked = (isGridOn);
+                        gridOnToolStripMenuItem.Checked = (isGridOn);
 
                         isLightbarOn = Properties.Settings.Default.setMenu_isLightbarOn;
                         lightbarToolStripMenuItem.Checked = isLightbarOn;
 
                         isPureDisplayOn = Properties.Settings.Default.setMenu_isPureOn;
-                        pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
+                        pursuitOnToolStripMenuItem.Checked = isPureDisplayOn;
 
                         isSideGuideLines = Properties.Settings.Default.setMenu_isSideGuideLines;
-                        sideGuideLines.Checked = isSideGuideLines;
+                        extraGuidesToolStripMenuItem.Checked = isSideGuideLines;
 
                         isAreaOnRight = Properties.Settings.Default.setMenu_isAreaRight;
 

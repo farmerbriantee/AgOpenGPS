@@ -18,8 +18,9 @@ namespace AgOpenGPS
         double fovy = 0.7;
         double camDistanceFactor = -2;
         int mouseX = 0, mouseY = 0;
-
+        public double offX, offY;
         public double lookaheadActual, test2;
+        private int zoomUpdateCounter = 0;
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[125001];
@@ -43,12 +44,11 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
             GL.Viewport(0, 0, oglMain.Width, oglMain.Height);
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView((float)fovy, (float)oglMain.Width / (float)oglMain.Height, 
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView((float)fovy, (float)oglMain.Width / (float)oglMain.Height,
                 10.0f, (float)(camDistanceFactor * camera.camSetDistance));
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
-        public double offX, offY;
 
         //oglMain rendering, Draw
         private void oglMain_Paint(object sender, PaintEventArgs e)
@@ -65,7 +65,11 @@ namespace AgOpenGPS
                 //  Clear the color and depth buffer.
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();
-                camera.SetWorldCam(pivotAxlePos.easting+offX, pivotAxlePos.northing+offY, camHeading);
+
+                //position the camera
+                camera.SetWorldCam(pivotAxlePos.easting + offX, pivotAxlePos.northing + offY, camHeading);
+
+                //the bounding box of the camera for cullling.
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
 
@@ -134,7 +138,7 @@ namespace AgOpenGPS
                                     for (int i = 0; i < count2; i += step)
                                     {
                                         GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;                                        
+                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
                                         if (count2 - i <= (mipmap + 2)) step = 0;//too small to mipmap it
                                     }
                                 }
@@ -167,56 +171,32 @@ namespace AgOpenGPS
                 bnd.DrawBoundaryLines();
 
                 //draw the turnLines
-                if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn) turn.DrawTurnLines();
+
+                if (yt.isYouTurnBtnOn)
+                {
+                    if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn)
+                    {
+                        turn.DrawTurnLines();
+                    }
+                }
+                else if (!yt.isYouTurnBtnOn && isUTurnAlwaysOn)
+                {
+                    if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn)
+                    {
+                        turn.DrawTurnLines();
+                    }
+                }
+
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
                 //turn.DrawClosestPoint();
-                GL.PushMatrix();
+                //GL.PushMatrix();
                 //draw the flags if there are some
                 //GL.LoadIdentity();
                 //GL.Rotate(30, 1, 0, 0);
                 //GL.Rotate(-camHeading, 0, 0, 1);
 
-                if (flagPts.Count > 0 && font.isFontOn)
-                {
-                    int flagCnt = flagPts.Count;
-                    for (int f = 0; f < flagCnt; f++)
-                    {
-                        GL.PointSize(8.0f);
-                        GL.Begin(PrimitiveType.Points);
-                        if (flagPts[f].color == 0) GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 1) GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
-                        GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
-                        GL.End();
-
-                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
-                        //else
-                        //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
-                    }
-
-                    if (flagNumberPicked != 0)
-                    {
-                        ////draw the box around flag
-                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
-                        GL.LineWidth(4);
-                        GL.Color3(0.980f, 0.0f, 0.980f);
-                        GL.Begin(PrimitiveType.LineStrip);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                        GL.End();
-
-                        //draw the flag with a black dot inside
-                        //GL.PointSize(4.0f);
-                        //GL.Color3(0, 0, 0);
-                        //GL.Begin(PrimitiveType.Points);
-                        //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                        //GL.End();
-                    }
-                }
-                GL.PopMatrix();
+                if (flagPts.Count > 0 && font.isFontOn) DrawFlags();
+                //GL.PopMatrix();
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
@@ -230,7 +210,7 @@ namespace AgOpenGPS
                 GL.LoadIdentity();
 
                 //negative and positive on width, 0 at top to bottom ortho view
-                GL.Ortho(-(double)oglMain.Width / 2, (double)oglMain.Width / 2,  (double)oglMain.Height, 0, -1, 1);
+                GL.Ortho(-(double)oglMain.Width / 2, (double)oglMain.Width / 2, (double)oglMain.Height, 0, -1, 1);
                 //GL.Viewport(0, 0, Width, Height);
 
                 //  Create the appropriate modelview matrix.
@@ -238,284 +218,55 @@ namespace AgOpenGPS
                 GL.PushMatrix();
                 GL.LoadIdentity();
 
-                if (isSkyOn)
-                {
-                    //GL.Translate(0, 0, 0.9);
-                    ////draw the background when in 3D
-                    if (camera.camPitch < -60)
-                    {
-                        //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
-                        double hite = (camera.camPitch + 63) * -0.026;
+                if (isSkyOn) DrawSky();
 
-                        //the background
-                        double winLeftPos = -(double)oglMain.Width / 2;
-                        double winRightPos = -winLeftPos;
-                        GL.Enable(EnableCap.Texture2D);
-                        GL.BindTexture(TextureTarget.Texture2D, texture[0]);		// Select Our Texture
-
-                        GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
-                        GL.TexCoord2(0, 0); GL.Vertex2(winRightPos, 0.0); // Top Right
-                        GL.TexCoord2(1, 0); GL.Vertex2(winLeftPos, 0.0); // Top Left
-                        GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite * oglMain.Height); // Bottom Right
-                        GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * oglMain.Height); // Bottom Left
-                        GL.End();						// Done Building Triangle Strip
-
-                        //GL.BindTexture(TextureTarget.Texture2D, texture[3]);		// Select Our Texture
-                        // GL.Translate(400, 200, 0);
-                        //GL.Rotate(camHeading, 0, 0, 1);
-                        //GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
-                        //GL.TexCoord2(1, 0); GL.Vertex2(0.1 * winRightPos, -0.1 * Height); // Top Right
-                        //GL.TexCoord2(0, 0); GL.Vertex2(0.1 * winLeftPos, -0.1 * Height); // Top Left
-                        //GL.TexCoord2(1, 1); GL.Vertex2(0.1 * winRightPos, 0.1 * Height); // Bottom Right
-                        //GL.TexCoord2(0, 1); GL.Vertex2(0.1 * winLeftPos,  0.1 * Height); // Bottom Left
-                        //GL.End();						// Done Building Triangle Strip
-
-                        //disable, straight color
-                        GL.Disable(EnableCap.Texture2D);
-                    }
-                }
-                               
-                if (isLightbarOn)
-                //{ }
-                //else
-                {
-                    double set = guidanceLineSteerAngle * 0.01 * (50/vehicle.maxSteerAngle);
-                    double actual = actualSteerAngleDisp * 0.01 * (50 / vehicle.maxSteerAngle);
-                    double hiit = 0;
-
-                    GL.PushMatrix();
-                    GL.Translate(0, 160, 0);
-
-                    //If roll is used rotate graphic based on roll angle
-                    if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS) && ahrs.rollX16 != 9999)
-                        GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
-
-                    GL.LineWidth(1);
-                    GL.Color3(0.54f, 0.54f, 0.54f);
-                    double wiid = 50;
-
-                    GL.Begin(PrimitiveType.LineStrip);
-                    GL.Vertex2(-wiid, 25);
-                    GL.Vertex2(-wiid, 0);
-                    GL.Vertex2(wiid, 0);
-                    GL.Vertex2(wiid, 25);
-                    GL.End();
-
-                    GL.Translate(0, 10, 0);
-
-                    {
-                        if (actualSteerAngleDisp > 0)
-                        {
-                            GL.LineWidth(1);
-                            GL.Begin(PrimitiveType.LineStrip);
-
-                            GL.Color3(0.0f, 0.75930f, 0.0f);
-                            GL.Vertex2(0, hiit);
-                            GL.Vertex2(actual, hiit + 8);
-                            GL.Vertex2(0, hiit + 16);
-                            GL.Vertex2(0, hiit);
-
-                            GL.End();
-                        }
-                        else
-                        {
-                            //actual
-                            GL.LineWidth(1);
-                            GL.Begin(PrimitiveType.LineStrip);
-
-                            GL.Color3(0.75930f, 0.0f, 0.0f);
-                            GL.Vertex2(-0, hiit);
-                            GL.Vertex2(actual, hiit + 8);
-                            GL.Vertex2(-0, hiit + 16);
-                            GL.Vertex2(-0, hiit);
-
-                            GL.End();
-                        }
-                    }
-
-                    if (guidanceLineSteerAngle > 0)
-                    {
-                        GL.LineWidth(1);
-                        GL.Begin(PrimitiveType.LineStrip);
-
-                        GL.Color3(0.75930f, 0.75930f, 0.0f);
-                        GL.Vertex2(0, hiit);
-                        GL.Vertex2(set, hiit + 8);
-                        GL.Vertex2(0, hiit + 16);
-                        GL.Vertex2(0, hiit);
-
-                        GL.End();
-                    }
-                    else
-                    {
-                        GL.LineWidth(1);
-                        GL.Begin(PrimitiveType.LineStrip);
-
-                        GL.Color3(0.75930f, 0.75930f, 0.0f);
-                        GL.Vertex2(-0, hiit);
-                        GL.Vertex2(set, hiit + 8);
-                        GL.Vertex2(-0, hiit + 16);
-                        GL.Vertex2(-0, hiit);
-
-                        GL.End();
-                    }
-
-                    //return back
-                    GL.PopMatrix();
-                    GL.LineWidth(1);
-                }
 
                 //LightBar if AB Line is set and turned on or contour
                 if (isLightbarOn)
                 {
-                    GL.Disable(EnableCap.DepthTest);
-                    if (ct.isContourBtnOn)
-                    {
-                        string dist;
-                        lblDistanceOffLine.Visible = true;
-                        //lblDelta.Visible = true;
-                        if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
-
-                        DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
-                        if ((ct.distanceFromCurrentLine) < 0.0)
-                        {
-                            lblDistanceOffLine.ForeColor = Color.Green;
-                            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
-                            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
-                        }
-                        else
-                        {
-                            lblDistanceOffLine.ForeColor = Color.Red;
-                            if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
-                            else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
-                        }
-                    }
-
-                    else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-                    {
-                        string dist;
-                        lblDistanceOffLine.Visible = true;
-                        //lblDelta.Visible = true;
-                        DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
-                        if ((ABLine.distanceFromCurrentLine) < 0.0)
-                        {
-                            // --->
-                            lblDistanceOffLine.ForeColor = Color.Green;
-                            if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
-                            else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
-                        }
-                        else
-                        {
-                            // <----
-                            lblDistanceOffLine.ForeColor = Color.Red;
-                            if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
-                            else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
-                        }
-                    }
-
-                    else if (curve.isBtnCurveOn)
-                    {
-                        string dist;
-                        lblDistanceOffLine.Visible = true;
-                        //lblDelta.Visible = true;
-                        if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
-
-                        DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
-                        if ((curve.distanceFromCurrentLine) < 0.0)
-                        {
-                            lblDistanceOffLine.ForeColor = Color.Green;
-                            if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
-                            else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            lblDistanceOffLine.Text = dist;
-                        }
-                        else
-                        {
-                            lblDistanceOffLine.ForeColor = Color.Red;
-                            if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
-                            else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
-                            lblDistanceOffLine.Text = dist;
-                        }
-                    }
-
-                    else
-                    {
-                        lblDistanceOffLine.Visible = false;
-                    }
+                    DrawRollBar();
+                    DrawLightBarText();
                 }
-                else
-                {
-                    lblDistanceOffLine.Visible = false;
-                }
-                        int two3 = oglMain.Width / 4;
+                else lblDistanceOffLine.Visible = false;
 
-                if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn)
-                {
-                    GL.Enable(EnableCap.Texture2D);
-                    GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
-                    if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
-                    else GL.Color3(0.93f, 0.35f, 0.3f);
+                if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
-                    if (yt.isYouTurnTriggered) GL.Color3(0.0f, 0.0f, 0.93f);
+                if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
 
-                    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-                    if (!yt.isYouTurnRight)
-                    {
-                        GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 60); // 
-                        GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 60.0); // 
-                        GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 120); // 
-                        GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 120); //
-                    }
-                    else
-                    {
-                        GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 60); // 
-                        GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 60.0); // 
-                        GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 120); // 
-                        GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 120); //
-                    }
-                    //
-                    GL.End();
-                    GL.Disable(EnableCap.Texture2D);
-                    // Done Building Triangle Strip
-                    if (isMetric)
-                    {
-                        if (!yt.isYouTurnTriggered)
-                        {
-                            font.DrawText(-40 + two3, 80, DistPivotM);
-                        }
-                        else
-                        {
-                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
-                        }
-                    }
-                    else
-                    {
+                //GL.PushMatrix();
+                //GL.Enable(EnableCap.Texture2D);
 
-                        if (!yt.isYouTurnTriggered)
-                        {
-                            font.DrawText(-40 + two3, 80, DistPivotFt);
-                        }
-                        else
-                        {
-                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
-                        }
-                    }
+                //GL.BindTexture(TextureTarget.Texture2D, texture[6]);        // Select Our Texture
+                //GL.Color3(0.90f, 0.90f, 0.293f);
 
-                }
+                //int two3 = oglMain.Width / 4;
 
-                int left = oglMain.Width / 2 - 100;
+                //GL.Translate(100, 100, 0);
+                //GL.Rotate(-camHeading, 0, 0, 1);
+                //GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                //{
+                //    GL.TexCoord2(0, 0); GL.Vertex2(-80 , -80); // 
+                //    GL.TexCoord2(1, 0); GL.Vertex2(80, -80.0); // 
+                //    GL.TexCoord2(1, 1); GL.Vertex2(80, 80); // 
+                //    GL.TexCoord2(0, 1); GL.Vertex2(-80, 80); //
+                //}
+                //GL.End();
+                //GL.Disable(EnableCap.Texture2D);
+                //GL.PopMatrix();
 
-                //text
-                font.DrawText(left, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
-                //font.DrawText(left, 70, SpeedKPH);
-                //if (yt.isYouTurnBtnOn) font.DrawText(-35, 60, "<   >");
+
+
+
+
+                //HEading text
+                int rightSide = oglMain.Width / 2 - 100;
+                font.DrawText(rightSide, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
 
+                ////-------------------------------------------------ORTHO END---------------------------------------
+                
                 //  back to the projection and pop it, then back to the model view.
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.PopMatrix();
@@ -526,26 +277,7 @@ namespace AgOpenGPS
                 GL.Flush();
                 oglMain.SwapBuffers();
 
-                if (leftMouseDownOnOpenGL)
-                {
-                    leftMouseDownOnOpenGL = false;
-                    byte[] data1 = new byte[192];
-
-                    //scan the center of click and a set of square points around
-                    GL.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
-
-                    //made it here so no flag found
-                    flagNumberPicked = 0;
-
-                    for (int ctr = 0; ctr < 192; ctr += 3)
-                    {
-                        if (data1[ctr] == 255 | data1[ctr + 1] == 255)
-                        {
-                            flagNumberPicked = data1[ctr + 2];
-                            break;
-                        }
-                    }
-                }
+                if (leftMouseDownOnOpenGL) MakeFlagMark();
 
                 //draw the section control window off screen buffer
                 oglBack.Refresh();
@@ -651,7 +383,7 @@ namespace AgOpenGPS
                 int ptCount = bnd.bndArr[0].bndLine.Count;
                 if (ptCount > 1)
                 {
-                    GL.LineWidth(2);                
+                    GL.LineWidth(2);
                     GL.Color3(0.0f, 0.99f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
@@ -692,7 +424,7 @@ namespace AgOpenGPS
 
             //read the whole block of pixels up to max lookahead, one read only
             GL.ReadPixels(vehicle.rpXPosition, 252, vehicle.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
-            
+
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight) / (double)(vehicle.numOfSections * 1.5));
 
@@ -789,8 +521,8 @@ namespace AgOpenGPS
                                 end += vehicle.rpWidth;
                             }
 
-                            //minimum apllied conditions met
-                            GetMeOutaHere:
+                        //minimum apllied conditions met
+                        GetMeOutaHere:
 
                             start = 0; end = 0; skip = 0;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
@@ -819,7 +551,7 @@ namespace AgOpenGPS
                                 end += vehicle.rpWidth;
                             }
 
-                            GetMeOutaHereNow:
+                        GetMeOutaHereNow:
 
                             //if out of boundary, turn it off
                             if (!section[j].isInsideBoundary)
@@ -863,8 +595,8 @@ namespace AgOpenGPS
                                 end += vehicle.rpWidth;
                             }
 
-                            //minimum apllied conditions met
-                            GetMeOutaHere:
+                        //minimum apllied conditions met
+                        GetMeOutaHere:
                             start = 0;
                         }
                     }
@@ -915,7 +647,7 @@ namespace AgOpenGPS
                     }
 
                     //if going too slow turn off sections
-                    if (pn.speed < vehicle.slowSpeedCutoff )
+                    if (pn.speed < vehicle.slowSpeedCutoff)
                     {
                         section[j].sectionOnRequest = false;
                         section[j].sectionOffRequest = true;
@@ -990,9 +722,7 @@ namespace AgOpenGPS
 
             GL.MatrixMode(MatrixMode.Modelview);
         }
-
-        private int zoomUpdateCounter = 0;
-
+        
         private void oglZoom_Paint(object sender, PaintEventArgs e)
         {
             oglZoom.MakeCurrent();
@@ -1097,7 +827,150 @@ namespace AgOpenGPS
 
             GL.Flush();
             oglZoom.SwapBuffers();
-        }    
+        }
+
+        private void DrawManUTurnBtn()
+        {
+            GL.Enable(EnableCap.Texture2D);
+
+                GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
+                GL.Color3(0.90f, 0.90f, 0.293f);
+
+            int two3 = oglMain.Width / 4;
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2( 82 - two3, 50.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2( 82 - two3, 120); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 120); //
+            }
+            GL.End();
+            GL.Disable(EnableCap.Texture2D);
+
+        }
+
+        private void DrawUTurnBtn()
+        {
+            GL.Enable(EnableCap.Texture2D);
+
+            if (!yt.isYouTurnTriggered)
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
+                if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
+                else GL.Color3(0.93f, 0.35f, 0.3f);
+            }
+            else
+            {
+                GL.BindTexture(TextureTarget.Texture2D, texture[4]);        // Select Our Texture
+                GL.Color3(0.90f, 0.90f, 0.293f);
+            }
+
+            int two3 = oglMain.Width / 4;
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            if (!yt.isYouTurnRight)
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3,  50.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3,  120); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 120); //
+            }
+            else
+            {
+                GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 50); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3,  50.0); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3,  120); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 120); //
+            }
+            //
+            GL.End();
+            GL.Disable(EnableCap.Texture2D);
+            // Done Building Triangle Strip
+            if (isMetric)
+            {
+                if (!yt.isYouTurnTriggered)
+                {
+                    font.DrawText(-30 + two3, 80, DistPivotM);
+                }
+                else
+                {
+                    font.DrawText(-30 + two3, 80, yt.onA.ToString());
+                }
+            }
+            else
+            {
+
+                if (!yt.isYouTurnTriggered)
+                {
+                    font.DrawText(-40 + two3, 85, DistPivotFt);
+                }
+                else
+                {
+                    font.DrawText(-40 + two3, 85, yt.onA.ToString());
+                }
+            }
+        }
+
+        private void MakeFlagMark()
+        {
+            leftMouseDownOnOpenGL = false;
+            byte[] data1 = new byte[192];
+
+            //scan the center of click and a set of square points around
+            GL.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
+
+            //made it here so no flag found
+            flagNumberPicked = 0;
+
+            for (int ctr = 0; ctr < 192; ctr += 3)
+            {
+                if (data1[ctr] == 255 | data1[ctr + 1] == 255)
+                {
+                    flagNumberPicked = data1[ctr + 2];
+                    break;
+                }
+            }
+        }
+
+        private void DrawFlags()
+        {
+            int flagCnt = flagPts.Count;
+            for (int f = 0; f < flagCnt; f++)
+            {
+                GL.PointSize(8.0f);
+                GL.Begin(PrimitiveType.Points);
+                if (flagPts[f].color == 0) GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
+                if (flagPts[f].color == 1) GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
+                if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
+                GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
+                GL.End();
+
+                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
+                //else
+                //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
+            }
+
+            if (flagNumberPicked != 0)
+            {
+                ////draw the box around flag
+                double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
+                GL.LineWidth(4);
+                GL.Color3(0.980f, 0.0f, 0.980f);
+                GL.Begin(PrimitiveType.LineStrip);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                GL.End();
+
+                //draw the flag with a black dot inside
+                //GL.PointSize(4.0f);
+                //GL.Color3(0, 0, 0);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
+                //GL.End();
+            }
+        }
 
         public void DrawLightBar(double Width, double Height, double offlineDistance)
         {
@@ -1212,6 +1085,214 @@ namespace AgOpenGPS
             }
         }
 
+        public void DrawLightBarText()
+        {
+            {
+                GL.Disable(EnableCap.DepthTest);
+                if (ct.isContourBtnOn)
+                {
+                    string dist;
+                    lblDistanceOffLine.Visible = true;
+                    //lblDelta.Visible = true;
+                    if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
+
+                    DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
+                    if ((ct.distanceFromCurrentLine) < 0.0)
+                    {
+                        lblDistanceOffLine.ForeColor = Color.Green;
+                        if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
+                        else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                        lblDistanceOffLine.Text = dist;
+                    }
+                    else
+                    {
+                        lblDistanceOffLine.ForeColor = Color.Red;
+                        if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
+                        else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
+                        lblDistanceOffLine.Text = dist;
+                    }
+                }
+
+                else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+                {
+                    string dist;
+                    lblDistanceOffLine.Visible = true;
+                    //lblDelta.Visible = true;
+                    DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
+                    if ((ABLine.distanceFromCurrentLine) < 0.0)
+                    {
+                        // --->
+                        lblDistanceOffLine.ForeColor = Color.Green;
+                        if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
+                        else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                        lblDistanceOffLine.Text = dist;
+                    }
+                    else
+                    {
+                        // <----
+                        lblDistanceOffLine.ForeColor = Color.Red;
+                        if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+                        else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+                        lblDistanceOffLine.Text = dist;
+                    }
+                }
+
+                else if (curve.isBtnCurveOn)
+                {
+                    string dist;
+                    lblDistanceOffLine.Visible = true;
+                    //lblDelta.Visible = true;
+                    if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
+
+                    DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
+                    if ((curve.distanceFromCurrentLine) < 0.0)
+                    {
+                        lblDistanceOffLine.ForeColor = Color.Green;
+                        if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
+                        else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                        lblDistanceOffLine.Text = dist;
+                    }
+                    else
+                    {
+                        lblDistanceOffLine.ForeColor = Color.Red;
+                        if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
+                        else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
+                        lblDistanceOffLine.Text = dist;
+                    }
+                }
+
+                else
+                {
+                    lblDistanceOffLine.Visible = false;
+                }
+            }
+        }
+
+        public void DrawRollBar()
+        {
+            double set = guidanceLineSteerAngle * 0.01 * (50 / vehicle.maxSteerAngle);
+            double actual = actualSteerAngleDisp * 0.01 * (50 / vehicle.maxSteerAngle);
+            double hiit = 0;
+
+            GL.PushMatrix();
+            GL.Translate(0, 160, 0);
+
+            //If roll is used rotate graphic based on roll angle
+            if ((ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS) && ahrs.rollX16 != 9999)
+                GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
+
+            GL.LineWidth(1);
+            GL.Color3(0.54f, 0.54f, 0.54f);
+            double wiid = 50;
+
+            GL.Begin(PrimitiveType.LineStrip);
+            GL.Vertex2(-wiid, 25);
+            GL.Vertex2(-wiid, 0);
+            GL.Vertex2(wiid, 0);
+            GL.Vertex2(wiid, 25);
+            GL.End();
+
+            GL.Translate(0, 10, 0);
+
+            {
+                if (actualSteerAngleDisp > 0)
+                {
+                    GL.LineWidth(1);
+                    GL.Begin(PrimitiveType.LineStrip);
+
+                    GL.Color3(0.0f, 0.75930f, 0.0f);
+                    GL.Vertex2(0, hiit);
+                    GL.Vertex2(actual, hiit + 8);
+                    GL.Vertex2(0, hiit + 16);
+                    GL.Vertex2(0, hiit);
+
+                    GL.End();
+                }
+                else
+                {
+                    //actual
+                    GL.LineWidth(1);
+                    GL.Begin(PrimitiveType.LineStrip);
+
+                    GL.Color3(0.75930f, 0.0f, 0.0f);
+                    GL.Vertex2(-0, hiit);
+                    GL.Vertex2(actual, hiit + 8);
+                    GL.Vertex2(-0, hiit + 16);
+                    GL.Vertex2(-0, hiit);
+
+                    GL.End();
+                }
+            }
+
+            if (guidanceLineSteerAngle > 0)
+            {
+                GL.LineWidth(1);
+                GL.Begin(PrimitiveType.LineStrip);
+
+                GL.Color3(0.75930f, 0.75930f, 0.0f);
+                GL.Vertex2(0, hiit);
+                GL.Vertex2(set, hiit + 8);
+                GL.Vertex2(0, hiit + 16);
+                GL.Vertex2(0, hiit);
+
+                GL.End();
+            }
+            else
+            {
+                GL.LineWidth(1);
+                GL.Begin(PrimitiveType.LineStrip);
+
+                GL.Color3(0.75930f, 0.75930f, 0.0f);
+                GL.Vertex2(-0, hiit);
+                GL.Vertex2(set, hiit + 8);
+                GL.Vertex2(-0, hiit + 16);
+                GL.Vertex2(-0, hiit);
+
+                GL.End();
+            }
+
+            //return back
+            GL.PopMatrix();
+            GL.LineWidth(1);
+        }
+
+        public void DrawSky()
+        {
+            //GL.Translate(0, 0, 0.9);
+            ////draw the background when in 3D
+            if (camera.camPitch < -60)
+            {
+                //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
+                double hite = (camera.camPitch + 63) * -0.026;
+
+                //the background
+                double winLeftPos = -(double)oglMain.Width / 2;
+                double winRightPos = -winLeftPos;
+                GL.Enable(EnableCap.Texture2D);
+                GL.BindTexture(TextureTarget.Texture2D, texture[0]);        // Select Our Texture
+
+                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                GL.TexCoord2(0, 0); GL.Vertex2(winRightPos, 0.0); // Top Right
+                GL.TexCoord2(1, 0); GL.Vertex2(winLeftPos, 0.0); // Top Left
+                GL.TexCoord2(0, 1); GL.Vertex2(winRightPos, hite * oglMain.Height); // Bottom Right
+                GL.TexCoord2(1, 1); GL.Vertex2(winLeftPos, hite * oglMain.Height); // Bottom Left
+                GL.End();                       // Done Building Triangle Strip
+
+                //GL.BindTexture(TextureTarget.Texture2D, texture[3]);		// Select Our Texture
+                // GL.Translate(400, 200, 0);
+                //GL.Rotate(camHeading, 0, 0, 1);
+                //GL.Begin(PrimitiveType.TriangleStrip);				// Build Quad From A Triangle Strip
+                //GL.TexCoord2(1, 0); GL.Vertex2(0.1 * winRightPos, -0.1 * Height); // Top Right
+                //GL.TexCoord2(0, 0); GL.Vertex2(0.1 * winLeftPos, -0.1 * Height); // Top Left
+                //GL.TexCoord2(1, 1); GL.Vertex2(0.1 * winRightPos, 0.1 * Height); // Bottom Right
+                //GL.TexCoord2(0, 1); GL.Vertex2(0.1 * winLeftPos,  0.1 * Height); // Bottom Left
+                //GL.End();						// Done Building Triangle Strip
+
+                //disable, straight color
+                GL.Disable(EnableCap.Texture2D);
+            }
+        }
+
         public void CalcFrustum()
         {
             float[] proj = new float[16];							// For Grabbing The PROJECTION Matrix
@@ -1282,6 +1363,7 @@ namespace AgOpenGPS
         }
 
         public double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
+
         //determine mins maxs of patches and whole field.
         public void CalculateMinMax()
         {

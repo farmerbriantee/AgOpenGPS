@@ -1319,15 +1319,13 @@ namespace AgOpenGPS
             //just do the opposite of last turn
             isYouTurnRight = !isLastYouTurnRight;
             isLastYouTurnRight = !isLastYouTurnRight;
-
-            mf.TurnNow();
         }
 
         //Normal copmpletion of youturn
         public void CompleteYouTurn()
         {
             isYouTurnTriggered = false;
-            mf.ResetTurnBtn();
+            ResetCreatedYouTurn();
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
             mf.isBoundAlarming = false;
@@ -1339,14 +1337,22 @@ namespace AgOpenGPS
             //fix you turn
             isYouTurnTriggered = false;
             ytList?.Clear();
-            mf.ResetTurnBtn();
             ResetCreatedYouTurn();
             turnDistanceAdjuster = 0;
             mf.isBoundAlarming = false;
+            isTurnCreationTooClose = false;
+            isTurnCreationNotCrossingError = false;
 
             //reset sequence
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
+        }
+
+        public void ResetCreatedYouTurn()
+        {
+            turnDistanceAdjuster = 0;
+            youTurnPhase = 0;
+            ytList?.Clear();
         }
 
         //get list of points from txt shape file
@@ -1394,13 +1400,6 @@ namespace AgOpenGPS
         }
 
         //Resets the drawn YOuTurn and set diagPhase to 0
-        public void ResetCreatedYouTurn()
-        {
-            turnDistanceAdjuster = 0;
-            youTurnPhase = 0;
-            //isOutOfBounds = false;
-            ytList?.Clear();
-        }
 
         //build the points and path of youturn to be scaled and transformed
         public void BuildManualYouTurn(bool isTurnRight, bool isTurnButtonTriggered)
