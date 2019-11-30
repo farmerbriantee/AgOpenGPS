@@ -18,8 +18,9 @@ namespace AgOpenGPS
         double fovy = 0.7;
         double camDistanceFactor = -2;
         int mouseX = 0, mouseY = 0;
-
+        public double offX, offY;
         public double lookaheadActual, test2;
+        private int zoomUpdateCounter = 0;
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[125001];
@@ -48,7 +49,6 @@ namespace AgOpenGPS
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
-        public double offX, offY;
 
         //oglMain rendering, Draw
         private void oglMain_Paint(object sender, PaintEventArgs e)
@@ -65,7 +65,11 @@ namespace AgOpenGPS
                 //  Clear the color and depth buffer.
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();
+
+                //position the camera
                 camera.SetWorldCam(pivotAxlePos.easting + offX, pivotAxlePos.northing + offY, camHeading);
+
+                //the bounding box of the camera for cullling.
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
 
@@ -185,53 +189,14 @@ namespace AgOpenGPS
 
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
                 //turn.DrawClosestPoint();
-                GL.PushMatrix();
+                //GL.PushMatrix();
                 //draw the flags if there are some
                 //GL.LoadIdentity();
                 //GL.Rotate(30, 1, 0, 0);
                 //GL.Rotate(-camHeading, 0, 0, 1);
 
-                if (flagPts.Count > 0 && font.isFontOn)
-                {
-                    int flagCnt = flagPts.Count;
-                    for (int f = 0; f < flagCnt; f++)
-                    {
-                        GL.PointSize(8.0f);
-                        GL.Begin(PrimitiveType.Points);
-                        if (flagPts[f].color == 0) GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 1) GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
-                        GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
-                        GL.End();
-
-                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
-                        //else
-                        //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
-                    }
-
-                    if (flagNumberPicked != 0)
-                    {
-                        ////draw the box around flag
-                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
-                        GL.LineWidth(4);
-                        GL.Color3(0.980f, 0.0f, 0.980f);
-                        GL.Begin(PrimitiveType.LineStrip);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                        GL.End();
-
-                        //draw the flag with a black dot inside
-                        //GL.PointSize(4.0f);
-                        //GL.Color3(0, 0, 0);
-                        //GL.Begin(PrimitiveType.Points);
-                        //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                        //GL.End();
-                    }
-                }
-                GL.PopMatrix();
+                if (flagPts.Count > 0 && font.isFontOn) DrawFlags();
+                //GL.PopMatrix();
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
@@ -267,7 +232,32 @@ namespace AgOpenGPS
                 if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
                 if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
-                
+
+                //GL.PushMatrix();
+                //GL.Enable(EnableCap.Texture2D);
+
+                //GL.BindTexture(TextureTarget.Texture2D, texture[6]);        // Select Our Texture
+                //GL.Color3(0.90f, 0.90f, 0.293f);
+
+                //int two3 = oglMain.Width / 4;
+
+                //GL.Translate(100, 100, 0);
+                //GL.Rotate(-camHeading, 0, 0, 1);
+                //GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                //{
+                //    GL.TexCoord2(0, 0); GL.Vertex2(-80 , -80); // 
+                //    GL.TexCoord2(1, 0); GL.Vertex2(80, -80.0); // 
+                //    GL.TexCoord2(1, 1); GL.Vertex2(80, 80); // 
+                //    GL.TexCoord2(0, 1); GL.Vertex2(-80, 80); //
+                //}
+                //GL.End();
+                //GL.Disable(EnableCap.Texture2D);
+                //GL.PopMatrix();
+
+
+
+
+
                 //HEading text
                 int rightSide = oglMain.Width / 2 - 100;
                 font.DrawText(rightSide, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
@@ -287,26 +277,7 @@ namespace AgOpenGPS
                 GL.Flush();
                 oglMain.SwapBuffers();
 
-                if (leftMouseDownOnOpenGL)
-                {
-                    leftMouseDownOnOpenGL = false;
-                    byte[] data1 = new byte[192];
-
-                    //scan the center of click and a set of square points around
-                    GL.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
-
-                    //made it here so no flag found
-                    flagNumberPicked = 0;
-
-                    for (int ctr = 0; ctr < 192; ctr += 3)
-                    {
-                        if (data1[ctr] == 255 | data1[ctr + 1] == 255)
-                        {
-                            flagNumberPicked = data1[ctr + 2];
-                            break;
-                        }
-                    }
-                }
+                if (leftMouseDownOnOpenGL) MakeFlagMark();
 
                 //draw the section control window off screen buffer
                 oglBack.Refresh();
@@ -751,9 +722,7 @@ namespace AgOpenGPS
 
             GL.MatrixMode(MatrixMode.Modelview);
         }
-
-        private int zoomUpdateCounter = 0;
-
+        
         private void oglZoom_Paint(object sender, PaintEventArgs e)
         {
             oglZoom.MakeCurrent();
@@ -939,7 +908,69 @@ namespace AgOpenGPS
                     font.DrawText(-40 + two3, 85, yt.onA.ToString());
                 }
             }
-        }    
+        }
+
+        private void MakeFlagMark()
+        {
+            leftMouseDownOnOpenGL = false;
+            byte[] data1 = new byte[192];
+
+            //scan the center of click and a set of square points around
+            GL.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
+
+            //made it here so no flag found
+            flagNumberPicked = 0;
+
+            for (int ctr = 0; ctr < 192; ctr += 3)
+            {
+                if (data1[ctr] == 255 | data1[ctr + 1] == 255)
+                {
+                    flagNumberPicked = data1[ctr + 2];
+                    break;
+                }
+            }
+        }
+
+        private void DrawFlags()
+        {
+            int flagCnt = flagPts.Count;
+            for (int f = 0; f < flagCnt; f++)
+            {
+                GL.PointSize(8.0f);
+                GL.Begin(PrimitiveType.Points);
+                if (flagPts[f].color == 0) GL.Color3((byte)255, (byte)0, (byte)flagPts[f].ID);
+                if (flagPts[f].color == 1) GL.Color3((byte)0, (byte)255, (byte)flagPts[f].ID);
+                if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
+                GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
+                GL.End();
+
+                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
+                //else
+                //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
+            }
+
+            if (flagNumberPicked != 0)
+            {
+                ////draw the box around flag
+                double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
+                GL.LineWidth(4);
+                GL.Color3(0.980f, 0.0f, 0.980f);
+                GL.Begin(PrimitiveType.LineStrip);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
+                GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
+                GL.End();
+
+                //draw the flag with a black dot inside
+                //GL.PointSize(4.0f);
+                //GL.Color3(0, 0, 0);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
+                //GL.End();
+            }
+        }
 
         public void DrawLightBar(double Width, double Height, double offlineDistance)
         {
@@ -1332,6 +1363,7 @@ namespace AgOpenGPS
         }
 
         public double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
+
         //determine mins maxs of patches and whole field.
         public void CalculateMinMax()
         {
