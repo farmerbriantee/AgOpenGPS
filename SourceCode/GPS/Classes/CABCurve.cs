@@ -176,8 +176,18 @@ namespace AgOpenGPS
                 GL.Color3(0.930f, 0.1692f, 0.9260f);
                 GL.Begin(PrimitiveType.Lines);
                 for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
-
                 GL.End();
+
+                //current line
+                if (curList.Count > 0 && isCurveSet)
+                {
+                    ptCount = curList.Count;
+                    GL.Color3(0.95f, 0.2f, 0.0f);
+                    GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    GL.End();
+                }
+
 
                 if (mf.camera.camSetDistance > -200)
                 {
@@ -216,6 +226,21 @@ namespace AgOpenGPS
                 GL.Begin(PrimitiveType.TriangleStrip);
                 for (int h = 0; h < tramList[i].Count; h++) GL.Vertex3(tramList[i][h].easting, tramList[i][h].northing, 0);
                 GL.End();
+            }
+
+            if (mf.font.isFontOn)
+            {
+                for (int i = 0; i < tramList.Count; i++)
+                {
+                    int middle = 0;
+                    GL.Color4(0.8630f, 0.93692f, 0.8260f, 0.752);
+                    if (tramList[i].Count > 0)
+                    {
+                        middle = tramList[i].Count - 1;
+                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString());
+                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString());
+                    }
+                }
             }
         }
 

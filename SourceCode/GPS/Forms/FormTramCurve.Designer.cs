@@ -108,7 +108,7 @@
             131072});
             this.nudEqWidth.Name = "nudEqWidth";
             this.nudEqWidth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudEqWidth.Size = new System.Drawing.Size(110, 40);
+            this.nudEqWidth.Size = new System.Drawing.Size(117, 40);
             this.nudEqWidth.TabIndex = 422;
             this.nudEqWidth.Tag = "";
             this.nudEqWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -139,7 +139,7 @@
             131072});
             this.nudWheelSpacing.Name = "nudWheelSpacing";
             this.nudWheelSpacing.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudWheelSpacing.Size = new System.Drawing.Size(100, 40);
+            this.nudWheelSpacing.Size = new System.Drawing.Size(117, 40);
             this.nudWheelSpacing.TabIndex = 423;
             this.nudWheelSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudWheelSpacing.Value = new decimal(new int[] {
@@ -185,7 +185,7 @@
             this.nudPasses.BackColor = System.Drawing.Color.AliceBlue;
             this.nudPasses.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPasses.InterceptArrowKeys = false;
-            this.nudPasses.Location = new System.Drawing.Point(94, 320);
+            this.nudPasses.Location = new System.Drawing.Point(94, 331);
             this.nudPasses.Maximum = new decimal(new int[] {
             999,
             0,
@@ -212,7 +212,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(62, 290);
+            this.label3.Location = new System.Drawing.Point(62, 301);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(145, 24);
             this.label3.TabIndex = 435;
@@ -228,6 +228,7 @@
             this.label7.TabIndex = 437;
             this.label7.Text = "AB Offset";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.Visible = false;
             // 
             // nudOffset
             // 
@@ -256,6 +257,7 @@
             0,
             0,
             65536});
+            this.nudOffset.Visible = false;
             this.nudOffset.ValueChanged += new System.EventHandler(this.nudOffset_ValueChanged);
             this.nudOffset.Enter += new System.EventHandler(this.nudOffset_Enter);
             // 
@@ -283,9 +285,9 @@
             this.btnMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMode.Image = global::AgOpenGPS.Properties.Resources.TramOff;
-            this.btnMode.Location = new System.Drawing.Point(7, 394);
+            this.btnMode.Location = new System.Drawing.Point(167, 228);
             this.btnMode.Name = "btnMode";
-            this.btnMode.Size = new System.Drawing.Size(64, 64);
+            this.btnMode.Size = new System.Drawing.Size(70, 59);
             this.btnMode.TabIndex = 455;
             this.btnMode.UseVisualStyleBackColor = true;
             this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
@@ -329,7 +331,7 @@
             this.btnTriggerDistanceDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTriggerDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(12, 314);
+            this.btnTriggerDistanceDn.Location = new System.Drawing.Point(12, 321);
             this.btnTriggerDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceDn.Name = "btnTriggerDistanceDn";
             this.btnTriggerDistanceDn.Size = new System.Drawing.Size(66, 53);
@@ -344,7 +346,7 @@
             this.btnTriggerDistanceUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTriggerDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTriggerDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(189, 314);
+            this.btnTriggerDistanceUp.Location = new System.Drawing.Point(189, 319);
             this.btnTriggerDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnTriggerDistanceUp.Name = "btnTriggerDistanceUp";
             this.btnTriggerDistanceUp.Size = new System.Drawing.Size(66, 53);
@@ -358,7 +360,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(173, 136);
+            this.btnSwapAB.Location = new System.Drawing.Point(167, 140);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(70, 53);
             this.btnSwapAB.TabIndex = 438;
@@ -375,7 +377,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(90, 396);
+            this.btnCancel.Location = new System.Drawing.Point(24, 397);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(51, 58);
             this.btnCancel.TabIndex = 421;
@@ -406,7 +408,7 @@
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSave.Location = new System.Drawing.Point(157, 396);
+            this.btnSave.Location = new System.Drawing.Point(144, 396);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 58);
             this.btnSave.TabIndex = 234;

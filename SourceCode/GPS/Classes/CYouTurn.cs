@@ -303,7 +303,7 @@ namespace AgOpenGPS
             if (mazeList == null) return false;
 
             //not really changing direction so need to fake a turn twice.
-            mf.btnSwapDirection.PerformClick();
+            mf.SwapDirection();
 
             //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
             List<vec3> shortestDubinsList = new List<vec3>();
@@ -1320,15 +1320,14 @@ namespace AgOpenGPS
             isYouTurnRight = !isLastYouTurnRight;
             isLastYouTurnRight = !isLastYouTurnRight;
 
-            if (isYouTurnRight) mf.AutoYouTurnButtonsRightTurn();
-            else mf.AutoYouTurnButtonsLeftTurn();
+            mf.TurnNow();
         }
 
         //Normal copmpletion of youturn
         public void CompleteYouTurn()
         {
             isYouTurnTriggered = false;
-            mf.AutoYouTurnButtonsReset();
+            mf.ResetTurnBtn();
             mf.seq.ResetSequenceEventTriggers();
             mf.seq.isSequenceTriggered = false;
             mf.isBoundAlarming = false;
@@ -1340,7 +1339,7 @@ namespace AgOpenGPS
             //fix you turn
             isYouTurnTriggered = false;
             ytList?.Clear();
-            mf.AutoYouTurnButtonsReset();
+            mf.ResetTurnBtn();
             ResetCreatedYouTurn();
             turnDistanceAdjuster = 0;
             mf.isBoundAlarming = false;

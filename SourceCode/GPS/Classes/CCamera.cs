@@ -9,7 +9,7 @@ namespace AgOpenGPS
         private double camPosY;
         private readonly double camPosZ;
 
-        private double fixHeading;
+        //private double fixHeading;
         private double camYaw;
 
         public double camPitch;
@@ -38,7 +38,6 @@ namespace AgOpenGPS
         {
             camPosX = _fixPosX;
             camPosY = _fixPosY;
-            fixHeading = _fixHeading;
             camYaw = _fixHeading;
 
             //back the camera up
@@ -47,14 +46,14 @@ namespace AgOpenGPS
             GL.Rotate(camPitch, 1.0, 0.0, 0.0);
 
             ////draw the guide
-            //gl.Begin(OpenGL.GL_TRIANGLES);
-            //gl.Color(0.98f, 0.0f, 0.0f);
-            //gl.Vertex(0.0f, -2.0f, 0.0f);
-            //gl.Color(0.0f, 0.98f, 0.0f);
-            //gl.Vertex(-2.0f, -3.0f, 0.0f);
-            //gl.Color(0.98f, 0.98f, 0.0f);
-            //gl.Vertex(2.0f, -3.0f, 0.0f);
-            //gl.End();						// Done Drawing Reticle
+            //GL.Begin(PrimitiveType.Triangles);
+            //GL.Color3(0.98f, 0.0f, 0.0f);
+            //GL.Vertex3(0.0f, -2.0f, 0.0f);
+            //GL.Color3(0.0f, 0.98f, 0.0f);
+            //GL.Vertex3(-2.0f, -3.0f, 0.0f);
+            //GL.Color3(0.98f, 0.98f, 0.0f);
+            //GL.Vertex3(2.0f, -3.0f, 0.0f);
+            //GL.End();						// Done Drawing Reticle
 
             //following game style or N fixed cam
             if (camFollowing)

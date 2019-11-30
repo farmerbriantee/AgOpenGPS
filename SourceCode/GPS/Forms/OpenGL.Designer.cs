@@ -49,6 +49,7 @@ namespace AgOpenGPS
             GL.MatrixMode(MatrixMode.Modelview);
         }
         public double offX, offY;
+
         //oglMain rendering, Draw
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
@@ -67,8 +68,6 @@ namespace AgOpenGPS
                 camera.SetWorldCam(pivotAxlePos.easting+offX, pivotAxlePos.northing+offY, camHeading);
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
-                //GL.Disable(EnableCap.DepthTest);
-                GL.Enable(EnableCap.Blend);
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -77,6 +76,7 @@ namespace AgOpenGPS
                 GL.Color4(redSections, grnSections, bluSections, (byte)160);
                 if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
+                GL.Enable(EnableCap.Blend);
                 //draw patches of sections
                 for (int j = 0; j < vehicle.numSuperSection; j++)
                 {
@@ -167,15 +167,18 @@ namespace AgOpenGPS
                 bnd.DrawBoundaryLines();
 
                 //draw the turnLines
-                if (!ABLine.isEditing) turn.DrawTurnLines();
+                if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn) turn.DrawTurnLines();
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
-                turn.DrawClosestPoint();
-                //turn.DrawTurnPointsLine();
-
+                //turn.DrawClosestPoint();
+                GL.PushMatrix();
                 //draw the flags if there are some
-                int flagCnt = flagPts.Count;
-                if (flagCnt > 0)
+                //GL.LoadIdentity();
+                //GL.Rotate(30, 1, 0, 0);
+                //GL.Rotate(-camHeading, 0, 0, 1);
+
+                if (flagPts.Count > 0 && font.isFontOn)
                 {
+                    int flagCnt = flagPts.Count;
                     for (int f = 0; f < flagCnt; f++)
                     {
                         GL.PointSize(8.0f);
@@ -185,6 +188,10 @@ namespace AgOpenGPS
                         if (flagPts[f].color == 2) GL.Color3((byte)255, (byte)255, (byte)flagPts[f].ID);
                         GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                         GL.End();
+
+                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
+                        //else
+                        //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
                     }
 
                     if (flagNumberPicked != 0)
@@ -202,30 +209,22 @@ namespace AgOpenGPS
                         GL.End();
 
                         //draw the flag with a black dot inside
-                        GL.PointSize(4.0f);
-                        GL.Color3(0, 0, 0);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                        GL.End();
+                        //GL.PointSize(4.0f);
+                        //GL.Color3(0, 0, 0);
+                        //GL.Begin(PrimitiveType.Points);
+                        //GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
+                        //GL.End();
                     }
                 }
-
-                ////Draw closest headland point if youturn on
-                //if (yt.isYouTurnBtnOn)
-                //{
-                //    //hl.DrawClosestPoint();
-                //    bnd.DrawClosestPoint();
-                //}
+                GL.PopMatrix();
 
                 //draw the vehicle/implement
                 vehicle.DrawVehicle();
 
                 //Back to normal
                 GL.Color3(0.498f, 0.498f, 0.698f);
-                //GL.Enable(EnableCap.Blend);
-                //GL.Enable(EnableCap.DepthTest);
 
-                // 2D Ortho --------------------------
+                // 2D Ortho ---------------------------------------////////-------------------------------------------------
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.PushMatrix();
                 GL.LoadIdentity();
@@ -451,6 +450,68 @@ namespace AgOpenGPS
                 {
                     lblDistanceOffLine.Visible = false;
                 }
+                        int two3 = oglMain.Width / 4;
+
+                if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn)
+                {
+                    GL.Enable(EnableCap.Texture2D);
+                    GL.BindTexture(TextureTarget.Texture2D, texture[3]);        // Select Our Texture
+                    if (distancePivotToTurnLine > 0 && !yt.isOutOfBounds) GL.Color3(0.3f, 0.95f, 0.3f);
+                    else GL.Color3(0.93f, 0.35f, 0.3f);
+
+                    if (yt.isYouTurnTriggered) GL.Color3(0.0f, 0.0f, 0.93f);
+
+                    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                    if (!yt.isYouTurnRight)
+                    {
+                        GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 60); // 
+                        GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 60.0); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 120); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 120); //
+                    }
+                    else
+                    {
+                        GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 60); // 
+                        GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 60.0); // 
+                        GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 120); // 
+                        GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 120); //
+                    }
+                    //
+                    GL.End();
+                    GL.Disable(EnableCap.Texture2D);
+                    // Done Building Triangle Strip
+                    if (isMetric)
+                    {
+                        if (!yt.isYouTurnTriggered)
+                        {
+                            font.DrawText(-40 + two3, 80, DistPivotM);
+                        }
+                        else
+                        {
+                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                        }
+                    }
+                    else
+                    {
+
+                        if (!yt.isYouTurnTriggered)
+                        {
+                            font.DrawText(-40 + two3, 80, DistPivotFt);
+                        }
+                        else
+                        {
+                            font.DrawText(-40 + two3, 80, yt.onA.ToString());
+                        }
+                    }
+
+                }
+
+                int left = oglMain.Width / 2 - 100;
+
+                //text
+                font.DrawText(left, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
+                //font.DrawText(left, 70, SpeedKPH);
+                //if (yt.isYouTurnBtnOn) font.DrawText(-35, 60, "<   >");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
@@ -490,7 +551,7 @@ namespace AgOpenGPS
                 oglBack.Refresh();
 
                 //draw the zoom window
-                if (threeSeconds != zoomUpdateCounter && panelBatman.Visible)
+                if (threeSeconds != zoomUpdateCounter && oglZoom.Visible)
                 {
                     zoomUpdateCounter = threeSeconds;
                     oglZoom.Refresh();
@@ -498,7 +559,6 @@ namespace AgOpenGPS
             }
         }
 
-        //Draw section OpenGL window, not visible
         private void oglBack_Load(object sender, EventArgs e)
         {
             oglBack.MakeCurrent();
@@ -887,7 +947,7 @@ namespace AgOpenGPS
                 //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
-                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 38)
+                if (isJobStarted && toolStripBtnGPSStength.Image.Height == 63)
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();

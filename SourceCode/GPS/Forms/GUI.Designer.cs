@@ -28,7 +28,7 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
-        public bool isPureDisplayOn = true, isSkyOn = true, isBigAltitudeOn = false;
+        public bool isPureDisplayOn = true, isSkyOn = true, isOGLZoomOn = true, isBigAltitudeOn = false;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -75,9 +75,7 @@ namespace AgOpenGPS
             grnSections = Settings.Default.setF_SectionColorG;
             bluSections = Settings.Default.setF_SectionColorB;
 
-            //turn off the turn signals lol
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
+            DisableYouTurnButtons();
 
             //area side settings
             isAreaOnRight = Settings.Default.setMenu_isAreaRight;
@@ -102,6 +100,16 @@ namespace AgOpenGPS
 
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             skyToolStripMenu.Checked = isSkyOn;
+
+            isOGLZoomOn = Settings.Default.setDisplay_isOGLZoomOn;
+            topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
+            if (isOGLZoomOn)
+            {
+                oglZoom.Visible = true;
+                oglZoom.Left = 80;
+                oglZoom.Top = 80;
+            }
+            else oglZoom.Visible = false;
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -134,6 +142,35 @@ namespace AgOpenGPS
             layoutPanelRight.Enabled = false;
             boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
+
+            if (isNTRIP_RequiredOn)
+            {
+                btnStartStopNtrip.Visible = true;
+                lblNTRIPSeconds.Visible = true;
+                lblWatch.Visible = true;
+                NTRIPBytesMenu.Visible = true;
+                pbarNtripMenu.Visible = true;
+            }
+            else
+            {
+                btnStartStopNtrip.Visible = false;
+                lblNTRIPSeconds.Visible = false;
+                lblWatch.Visible = false;
+                NTRIPBytesMenu.Visible = false;
+                pbarNtripMenu.Visible = false;
+            }
+
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                pbarUDPComm.Visible = true;
+                toolStripStatusLabel2.Visible = true;
+            }
+            else
+            {
+                pbarUDPComm.Visible = false;
+                toolStripStatusLabel2.Visible = false;
+            }
+
         }
 
         //force all the buttons same according to two main buttons
@@ -165,26 +202,60 @@ namespace AgOpenGPS
 
             if (Width > 1100)
             {
-                EditABToolBtn.Visible = true;
                 youTurnStripBtn.Visible = true;
+                ZoomExtentsStripBtn.Visible = true;
+                stripEqWidth.Visible = false;
+            }
+            else
+            {
+                youTurnStripBtn.Visible = false;
+                ZoomExtentsStripBtn.Visible = false;
+                stripEqWidth.Visible = false;
+            }
+
+            if (Width > 1200)
+            {
+                stripEqWidth.Visible = true;
+            }
+            else
+            {
+                stripEqWidth.Visible = false;
+            }
+
+
+
+            if (Width > 1300)
+            {
                 distanceToolBtn.Visible = true;
             }
             else
             {
-                EditABToolBtn.Visible = false;
-                youTurnStripBtn.Visible = false;
                 distanceToolBtn.Visible = false;
             }
 
-            if (Width > 1550)
+            if (Width > 1600)
             {
-                USBPortsToolBtn.Visible = true;
+                snapLeftStrip.Visible = true;
+                snapLeftBigStrip.Visible = true;
+                snapRightBigStrip.Visible = true;
+                snapRightStrip.Visible = true;
             }
             else
             {
-                USBPortsToolBtn.Visible = false;
+                snapLeftStrip.Visible = false;
+                snapLeftBigStrip.Visible = false;
+                snapRightBigStrip.Visible = false;
+                snapRightStrip.Visible = false;
             }
 
+            if (Width > 1750)
+            {
+                steerChartTool.Visible = true;
+            }
+            else
+            {
+                steerChartTool.Visible = false;
+            }
 
         }
         public string FindDirection(double heading)
@@ -246,7 +317,7 @@ namespace AgOpenGPS
                 panelBatman.Visible = true;
                 //statusStripLeft.Left = 8;
 
-                lblDistanceOffLine.Left = (Width - 25) / 2;
+                lblDistanceOffLine.Left = (Width - 105) / 2;
                 LineUpManualBtns();
             }
             else
@@ -276,18 +347,12 @@ namespace AgOpenGPS
 
             if (panelBatman.Visible)
             {
-                btnRightYouTurn.Left = (Width+350) / 2 ;
-                btnLeftYouTurn.Left = (Width-290) / 2;
-                btnSwapDirection.Left = (Width - 340) / 2 + 190;
-                first2Thirds = (Width - 395) / 2 + 260;
+                first2Thirds = (Width + 30) / 2;
             }
 
             else
             {
-                btnRightYouTurn.Left = (Width+140) / 2;
-                btnLeftYouTurn.Left = (Width-550) / 2;
-                btnSwapDirection.Left = (Width-195) / 2;
-                first2Thirds = (Width - 118) / 2;
+                first2Thirds = (Width - 130) / 2;
             }
 
             int top = 0;
@@ -1743,14 +1808,16 @@ namespace AgOpenGPS
         }
         private void btnpTiltUp_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch -= ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch > 0) camera.camPitch = 0;
+            camera.camPitch -= ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch > -58) camera.camPitch = 0;
         }
         private void btnpTiltDown_MouseDown(object sender, MouseEventArgs e)
         {
-            camera.camPitch += ((camera.camPitch * 0.02) - 1);
-            if (camera.camPitch < -80) camera.camPitch = -80;
+            if (camera.camPitch > -59) camera.camPitch = -60;
+            camera.camPitch += ((camera.camPitch * 0.012) - 1);
+            if (camera.camPitch < -85) camera.camPitch = -85;
         }
+
         private void btnZoomExtents_Click(object sender, EventArgs e)
         {
             //if (isJobStarted)
@@ -1788,89 +1855,65 @@ namespace AgOpenGPS
         }
 
         //YouTurn on off
-        private void btnLeftYouTurn_Click(object sender, EventArgs e)
+        //private void btnLeftYouTurn_Click(object sender, EventArgs e)
+        //{
+        //    if (yt.isYouTurnTriggered)
+        //    {
+        //        //is it turning left already?
+        //        if (!yt.isYouTurnRight)
+        //        {
+        //            yt.ResetYouTurn();
+        //            AutoYouTurnButtonsReset();
+        //        }
+        //        else
+        //        {
+        //            yt.isYouTurnRight = false;
+        //            AutoYouTurnButtonsLeftTurn();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (yt.isYouTurnTriggered)
+        //        {
+        //            yt.ResetYouTurn();
+        //            AutoYouTurnButtonsReset();
+        //        }
+        //        else
+        //        {
+        //            yt.isYouTurnTriggered = true;
+        //            yt.BuildManualYouTurn(false, true);
+        //            AutoYouTurnButtonsLeftTurn();
+        //        }
+        //    }
+        //}
+        private void btnTurn_Click(object sender, EventArgs e)
         {
-            if (yt.isYouTurnTriggered)
-            {
-                //is it turning left already?
-                if (!yt.isYouTurnRight)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnRight = false;
-                    AutoYouTurnButtonsLeftTurn();
-                }
-            }
-            else
-            {
-                if (yt.isYouTurnTriggered)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnTriggered = true;
-                    yt.BuildManualYouTurn(false, true);
-                    AutoYouTurnButtonsLeftTurn();
-                }
-            }
-        }
-        private void btnRightYouTurn_Click(object sender, EventArgs e)
-        {
-            //is it already turning right, then cancel autoturn
+
+            ////is it already turning right, then cancel autoturn
             if (yt.isYouTurnTriggered)
             {
                 //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    AutoYouTurnButtonsRightTurn();
-                }
+                yt.ResetYouTurn();
+                ResetTurnBtn();
             }
             else
             {
-                if (yt.isYouTurnTriggered)
-                {
-                    yt.ResetYouTurn();
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    yt.isYouTurnTriggered = true;
-                    yt.BuildManualYouTurn(true, true);
-                    AutoYouTurnButtonsRightTurn();
-                }
+                SwapDirection();
             }
-        }
-        private void btnSwapDirection_Click_1(object sender, EventArgs e)
-        {
-            if (!yt.isYouTurnTriggered)
-            {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-            }
+            //else
+            //{
+            //    if (yt.isYouTurnTriggered)
+            //    {
+            //        yt.ResetYouTurn();
+            //        AutoYouTurnButtonsReset();
+            //    }
+            //    else
+            //    {
+            //        yt.isYouTurnTriggered = true;
+            //        yt.BuildManualYouTurn(true, true);
+            //        AutoYouTurnButtonsRightTurn();
+            //    }
+            //}
         }
 
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
@@ -1887,8 +1930,6 @@ namespace AgOpenGPS
                 yt.ResetCreatedYouTurn();
 
                 if (!isAutoSteerBtnOn) return;
-
-                yt.isYouTurnBtnOn = true;
                 yt.isYouTurnBtnOn = true;
                 yt.isTurnCreationTooClose = false;
                 yt.isTurnCreationNotCrossingError = false;
@@ -1911,77 +1952,26 @@ namespace AgOpenGPS
                 mc.machineControlData[mc.cnYouTurn] = 0;
             }
         }
-        public void AutoYouTurnButtonsRightTurn()
+
+        public void TurnNow()
         {
-            btnRightYouTurn.BackColor = Color.Yellow;
-            btnRightYouTurn.Height = 95;
-            btnRightYouTurn.Width = 95;
-            btnLeftYouTurn.Height = 66;
-            btnLeftYouTurn.Width = 80;
-            btnLeftYouTurn.Text = "";
-            btnLeftYouTurn.BackColor = Color.LightSteelBlue;
         }
-        public void AutoYouTurnButtonsLeftTurn()
+
+        public void ResetTurnBtn()
         {
-            btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.Height = 66;
-            btnRightYouTurn.Width = 80;
-            btnRightYouTurn.Text = "";
-            btnLeftYouTurn.Height = 95;
-            btnLeftYouTurn.Width = 95;
-            btnLeftYouTurn.BackColor = Color.Yellow;
-        }
-        public void AutoYouTurnButtonsReset()
-        {
-            //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
-
-            //fix the buttons
-            btnLeftYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnLeftYouTurn.Height = 66;
-            btnLeftYouTurn.Width = 80;
-            btnRightYouTurn.Height = 66;
-            btnRightYouTurn.Width = 80;
-            btnLeftYouTurn.Text = "";
-            btnRightYouTurn.Text = "";
-
-            // why yes it is backwards, puzzling
-            if (!yt.isYouTurnRight)
-            {
-                btnLeftYouTurn.BackColor = Color.LightSteelBlue;
-                btnRightYouTurn.BackColor = Color.LightGreen;
-            }
-            else
-            {
-                btnLeftYouTurn.BackColor = Color.LightGreen;
-                btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            }
         }
+
         public void EnableYouTurnButtons()
         {
-            btnRightYouTurn.Enabled = true;
-            btnLeftYouTurn.Enabled = true;
-            btnRightYouTurn.Visible = true;
-            btnLeftYouTurn.Visible = true;
-            btnSwapDirection.Visible = true;
-
-            //auto YouTurn disabled
-            yt.isYouTurnBtnOn = false;
             yt.ResetYouTurn();
 
-            //turn off youturn...
-            btnEnableAutoYouTurn.Enabled = true;
             yt.isYouTurnBtnOn = false;
+            btnEnableAutoYouTurn.Enabled = true;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
         public void DisableYouTurnButtons()
         {
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
 
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
@@ -2395,6 +2385,7 @@ namespace AgOpenGPS
         {
             isSkyOn = !isSkyOn;
             skyToolStripMenu.Checked = isSkyOn;
+
             Settings.Default.setMenu_isSkyOn = isSkyOn;
             Settings.Default.Save();
         }
@@ -3074,8 +3065,8 @@ namespace AgOpenGPS
                     else btnCurve.Text = "";
 
 
-                    //update the online indicator 37 green red 38
-                    if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 38)
+                    //update the online indicator 63 green red 64
+                    if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 64)
                     {
                         //stripOnlineGPS.Value = 1;
                         lblEasting.Text = "-";
@@ -3083,7 +3074,7 @@ namespace AgOpenGPS
                         //lblZone.Text = "-";
                         toolStripBtnGPSStength.Image = Resources.GPSSignalPoor;
                     }
-                    else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 37)
+                    else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 63)
                     {
                         //stripOnlineGPS.Value = 100;
                         toolStripBtnGPSStength.Image = Resources.GPSSignalGood;
@@ -3157,7 +3148,7 @@ namespace AgOpenGPS
                         lblRoll.Text = RollInDegrees;
                         lblYawHeading.Text = GyroInDegrees;
                         lblGPSHeading.Text = GPSHeading;
-                        lblHeading2.Text = lblHeading.Text;
+                        //lblHeading2.Text = lblHeading.Text;
 
 
                         //Low means steer switch on
@@ -3246,40 +3237,6 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
 
-                    if (isMetric)
-                    {
-                        if (bnd.bndArr.Count > 0)
-                        {
-                            if (yt.isYouTurnRight)
-                            {
-                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotM;
-                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                            else
-                            {
-                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotM;
-                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                        }
-                    }
-                    else
-                    {
-
-                        if (bnd.bndArr.Count > 0)
-                        {
-                            if (yt.isYouTurnRight)
-                            {
-                                if (!yt.isYouTurnTriggered) btnLeftYouTurn.Text = DistPivotFt;
-                                else { btnLeftYouTurn.Text = ""; btnRightYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                            else
-                            {
-                                if (!yt.isYouTurnTriggered) btnRightYouTurn.Text = DistPivotFt;
-                                else { btnRightYouTurn.Text = ""; btnLeftYouTurn.Text = gStr.gsCancel + "\r\n" + yt.onA; }
-                            }
-                        }
-                    }
-
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
@@ -3287,8 +3244,6 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
-
-                    lblHeading.Text = Math.Round(fixHeading * 57.295779513, 1) + "\u00B0";
 
                     if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
                     {
