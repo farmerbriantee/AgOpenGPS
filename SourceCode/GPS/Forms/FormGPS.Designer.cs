@@ -66,14 +66,15 @@
             this.toolStripUnitsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.metricToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.imperialToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.sideGuideLines = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.polygonsOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pursuitOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skyOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logNMEAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.extraGuidesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topFieldViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lightbarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logNMEAMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.polygonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pursuitLineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.skyToolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.simulatorOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
@@ -239,6 +240,7 @@
             this.btnSnapRight = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.uTurnAlwaysOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -483,14 +485,9 @@
             this.toolStripSeparator2,
             this.colorsToolStripMenuItem,
             this.toolStripUnitsMenu,
-            this.sideGuideLines,
+            this.optionsToolStripMenuItem,
             this.topFieldViewToolStripMenuItem,
-            this.gridToolStripMenuItem,
             this.lightbarToolStripMenuItem,
-            this.logNMEAMenuItem,
-            this.polygonsToolStripMenuItem,
-            this.pursuitLineToolStripMenuItem,
-            this.skyToolStripMenu,
             this.toolStripSeparator6,
             this.simulatorOnToolStripMenuItem,
             this.toolStripSeparator7});
@@ -565,15 +562,61 @@
             this.imperialToolStrip.Text = "Imperial";
             this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
             // 
-            // sideGuideLines
+            // optionsToolStripMenuItem
             // 
-            this.sideGuideLines.Checked = true;
-            this.sideGuideLines.CheckOnClick = true;
-            this.sideGuideLines.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sideGuideLines.Name = "sideGuideLines";
-            this.sideGuideLines.Size = new System.Drawing.Size(285, 40);
-            this.sideGuideLines.Text = "Extra Guides";
-            this.sideGuideLines.Click += new System.EventHandler(this.sideGuideLines_Click);
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.polygonsOnToolStripMenuItem,
+            this.pursuitOnToolStripMenuItem,
+            this.skyOnToolStripMenuItem,
+            this.logNMEAToolStripMenuItem,
+            this.gridOnToolStripMenuItem,
+            this.extraGuidesToolStripMenuItem,
+            this.uTurnAlwaysOnToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // polygonsOnToolStripMenuItem
+            // 
+            this.polygonsOnToolStripMenuItem.Name = "polygonsOnToolStripMenuItem";
+            this.polygonsOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.polygonsOnToolStripMenuItem.Text = "Polygons On";
+            this.polygonsOnToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
+            // 
+            // pursuitOnToolStripMenuItem
+            // 
+            this.pursuitOnToolStripMenuItem.Name = "pursuitOnToolStripMenuItem";
+            this.pursuitOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.pursuitOnToolStripMenuItem.Text = "Pursuit Line On";
+            this.pursuitOnToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
+            // 
+            // skyOnToolStripMenuItem
+            // 
+            this.skyOnToolStripMenuItem.Name = "skyOnToolStripMenuItem";
+            this.skyOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.skyOnToolStripMenuItem.Text = "Sky On";
+            this.skyOnToolStripMenuItem.Click += new System.EventHandler(this.skyToolStripMenu_Click);
+            // 
+            // logNMEAToolStripMenuItem
+            // 
+            this.logNMEAToolStripMenuItem.Name = "logNMEAToolStripMenuItem";
+            this.logNMEAToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.logNMEAToolStripMenuItem.Text = "Log NMEA";
+            this.logNMEAToolStripMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
+            // 
+            // gridOnToolStripMenuItem
+            // 
+            this.gridOnToolStripMenuItem.Name = "gridOnToolStripMenuItem";
+            this.gridOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.gridOnToolStripMenuItem.Text = "Grid On";
+            this.gridOnToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
+            // 
+            // extraGuidesToolStripMenuItem
+            // 
+            this.extraGuidesToolStripMenuItem.Name = "extraGuidesToolStripMenuItem";
+            this.extraGuidesToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.extraGuidesToolStripMenuItem.Text = "Extra Guides";
+            this.extraGuidesToolStripMenuItem.Click += new System.EventHandler(this.sideGuideLines_Click);
             // 
             // topFieldViewToolStripMenuItem
             // 
@@ -585,55 +628,12 @@
             this.topFieldViewToolStripMenuItem.Text = "Top Field View";
             this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
             // 
-            // gridToolStripMenuItem
-            // 
-            this.gridToolStripMenuItem.Name = "gridToolStripMenuItem";
-            this.gridToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.gridToolStripMenuItem.Text = "Grid On";
-            this.gridToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
             // lightbarToolStripMenuItem
             // 
             this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
             this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
             this.lightbarToolStripMenuItem.Text = "Lightbar On";
             this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
-            // 
-            // logNMEAMenuItem
-            // 
-            this.logNMEAMenuItem.Name = "logNMEAMenuItem";
-            this.logNMEAMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.logNMEAMenuItem.Text = "Log NMEA";
-            this.logNMEAMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
-            // 
-            // polygonsToolStripMenuItem
-            // 
-            this.polygonsToolStripMenuItem.Checked = true;
-            this.polygonsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.polygonsToolStripMenuItem.Name = "polygonsToolStripMenuItem";
-            this.polygonsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.polygonsToolStripMenuItem.Text = "Polygons On";
-            this.polygonsToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
-            // 
-            // pursuitLineToolStripMenuItem
-            // 
-            this.pursuitLineToolStripMenuItem.Checked = true;
-            this.pursuitLineToolStripMenuItem.CheckOnClick = true;
-            this.pursuitLineToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.pursuitLineToolStripMenuItem.Name = "pursuitLineToolStripMenuItem";
-            this.pursuitLineToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.pursuitLineToolStripMenuItem.Text = "Pursuit Line";
-            this.pursuitLineToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
-            // 
-            // skyToolStripMenu
-            // 
-            this.skyToolStripMenu.Checked = true;
-            this.skyToolStripMenu.CheckOnClick = true;
-            this.skyToolStripMenu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.skyToolStripMenu.Name = "skyToolStripMenu";
-            this.skyToolStripMenu.Size = new System.Drawing.Size(285, 40);
-            this.skyToolStripMenu.Text = "Sky On";
-            this.skyToolStripMenu.Click += new System.EventHandler(this.skyToolStripMenu_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1694,7 +1694,6 @@
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
             this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
             this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
-            this.oglMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseUp);
             this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
             // 
             // oglBack
@@ -2983,6 +2982,13 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
+            // uTurnAlwaysOnToolStripMenuItem
+            // 
+            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
+            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
+            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -3055,7 +3061,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Timer tmrWatchdog;
-        private System.Windows.Forms.ToolStripMenuItem polygonsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveVehicleToolStripMenuItem;
@@ -3066,7 +3071,6 @@
         private System.Windows.Forms.Button btnSection5Man;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem gridToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lightbarToolStripMenuItem;
         private System.Windows.Forms.Label lblNorthing;
         private System.Windows.Forms.Label lblEasting;
@@ -3096,16 +3100,12 @@
         private System.Windows.Forms.Button btnSection8Man;
         private System.Windows.Forms.Button btnSection7Man;
         private System.Windows.Forms.Button btnSection6Man;
-        private System.Windows.Forms.ToolStripMenuItem logNMEAMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripUnitsMenu;
         private System.Windows.Forms.ToolStripMenuItem metricToolStrip;
         private System.Windows.Forms.ToolStripMenuItem imperialToolStrip;
-        private System.Windows.Forms.ToolStripMenuItem skyToolStripMenu;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.Label lblZone;
         private System.Windows.Forms.Label lblSpeedUnits;
-        private System.Windows.Forms.ToolStripMenuItem sideGuideLines;
-        private System.Windows.Forms.ToolStripMenuItem pursuitLineToolStripMenuItem;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnFlag;
         private System.Windows.Forms.Button btnResetSteerAngle;
@@ -3260,6 +3260,14 @@
         private ProXoft.WinForms.RepeatButton btnpTiltDown;
         private ProXoft.WinForms.RepeatButton btnpTiltUp;
         private System.Windows.Forms.ToolStripMenuItem topFieldViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem polygonsOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pursuitOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skyOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logNMEAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gridOnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem extraGuidesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uTurnAlwaysOnToolStripMenuItem;
     }
 }
 

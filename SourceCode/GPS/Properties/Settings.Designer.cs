@@ -1202,12 +1202,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setDisplay_isOGLZoomOn {
+        public bool setMenu_isOGLZoomOn {
             get {
-                return ((bool)(this["setDisplay_isOGLZoomOn"]));
+                return ((bool)(this["setMenu_isOGLZoomOn"]));
             }
             set {
-                this["setDisplay_isOGLZoomOn"] = value;
+                this["setMenu_isOGLZoomOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setMenu_isUTurnAlwaysOn {
+            get {
+                return ((bool)(this["setMenu_isUTurnAlwaysOn"]));
+            }
+            set {
+                this["setMenu_isUTurnAlwaysOn"] = value;
             }
         }
     }

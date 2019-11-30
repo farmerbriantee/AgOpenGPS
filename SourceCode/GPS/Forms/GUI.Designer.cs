@@ -27,7 +27,7 @@ namespace AgOpenGPS
         private bool isDrawPolygons;
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
-        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
+        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isUTurnAlwaysOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isOGLZoomOn = true, isBigAltitudeOn = false;
 
         //master Manual and Auto, 3 states possible
@@ -83,25 +83,28 @@ namespace AgOpenGPS
 
             //set up grid and lightbar
             isGridOn = Settings.Default.setMenu_isGridOn;
-            gridToolStripMenuItem.Checked = isGridOn;
+            gridOnToolStripMenuItem.Checked = isGridOn;
 
             //log NMEA 
             isLogNMEA = Settings.Default.setMenu_isLogNMEA;
-            logNMEAMenuItem.Checked = isLogNMEA;
+            logNMEAToolStripMenuItem.Checked = isLogNMEA;
 
             isLightbarOn = Settings.Default.setMenu_isLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
 
             isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
-            sideGuideLines.Checked = isSideGuideLines;
+            extraGuidesToolStripMenuItem.Checked = isSideGuideLines;
 
             isPureDisplayOn = Settings.Default.setMenu_isPureOn;
-            pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
+            pursuitOnToolStripMenuItem.Checked = isPureDisplayOn;
 
             isSkyOn = Settings.Default.setMenu_isSkyOn;
-            skyToolStripMenu.Checked = isSkyOn;
+            skyOnToolStripMenuItem.Checked = isSkyOn;
 
-            isOGLZoomOn = Settings.Default.setDisplay_isOGLZoomOn;
+            isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
+            uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
+
+            isOGLZoomOn = Settings.Default.setMenu_isOGLZoomOn;
             topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
             if (isOGLZoomOn)
             {
@@ -1854,70 +1857,10 @@ namespace AgOpenGPS
             }
         }
 
-        //YouTurn on off
-        //private void btnLeftYouTurn_Click(object sender, EventArgs e)
-        //{
-        //    if (yt.isYouTurnTriggered)
-        //    {
-        //        //is it turning left already?
-        //        if (!yt.isYouTurnRight)
-        //        {
-        //            yt.ResetYouTurn();
-        //            AutoYouTurnButtonsReset();
-        //        }
-        //        else
-        //        {
-        //            yt.isYouTurnRight = false;
-        //            AutoYouTurnButtonsLeftTurn();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (yt.isYouTurnTriggered)
-        //        {
-        //            yt.ResetYouTurn();
-        //            AutoYouTurnButtonsReset();
-        //        }
-        //        else
-        //        {
-        //            yt.isYouTurnTriggered = true;
-        //            yt.BuildManualYouTurn(false, true);
-        //            AutoYouTurnButtonsLeftTurn();
-        //        }
-        //    }
-        //}
-        private void btnTurn_Click(object sender, EventArgs e)
-        {
-
-            ////is it already turning right, then cancel autoturn
-            if (yt.isYouTurnTriggered)
-            {
-                //is it turning right already?
-                yt.ResetYouTurn();
-                ResetTurnBtn();
-            }
-            else
-            {
-                SwapDirection();
-            }
-            //else
-            //{
-            //    if (yt.isYouTurnTriggered)
-            //    {
-            //        yt.ResetYouTurn();
-            //        AutoYouTurnButtonsReset();
-            //    }
-            //    else
-            //    {
-            //        yt.isYouTurnTriggered = true;
-            //        yt.BuildManualYouTurn(true, true);
-            //        AutoYouTurnButtonsRightTurn();
-            //    }
-            //}
-        }
-
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
+            yt.isTurnCreationTooClose = false;
+
             if (bnd.bndArr.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
@@ -1959,7 +1902,6 @@ namespace AgOpenGPS
 
         public void ResetTurnBtn()
         {
-            yt.ResetCreatedYouTurn();
         }
 
         public void EnableYouTurnButtons()
@@ -2335,7 +2277,7 @@ namespace AgOpenGPS
         private void logNMEAMenuItem_Click(object sender, EventArgs e)
         {
             isLogNMEA = !isLogNMEA;
-            logNMEAMenuItem.Checked = isLogNMEA;
+            logNMEAToolStripMenuItem.Checked = isLogNMEA;
             Settings.Default.setMenu_isLogNMEA = isLogNMEA;
             Settings.Default.Save();
         }
@@ -2349,26 +2291,26 @@ namespace AgOpenGPS
         private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isDrawPolygons = !isDrawPolygons;
-            polygonsToolStripMenuItem.Checked = !polygonsToolStripMenuItem.Checked;
+            polygonsOnToolStripMenuItem.Checked = !polygonsOnToolStripMenuItem.Checked;
         }
         private void gridToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isGridOn = !isGridOn;
-            gridToolStripMenuItem.Checked = isGridOn;
+            gridOnToolStripMenuItem.Checked = isGridOn;
             Settings.Default.setMenu_isGridOn = isGridOn;
             Settings.Default.Save();
         }
         private void sideGuideLines_Click(object sender, EventArgs e)
         {
             isSideGuideLines = !isSideGuideLines;
-            sideGuideLines.Checked = isSideGuideLines;
+            extraGuidesToolStripMenuItem.Checked = isSideGuideLines;
             Settings.Default.setMenu_isSideGuideLines = isSideGuideLines;
             Settings.Default.Save();
         }
         private void pursuitLineToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isPureDisplayOn = !isPureDisplayOn;
-            pursuitLineToolStripMenuItem.Checked = isPureDisplayOn;
+            pursuitOnToolStripMenuItem.Checked = isPureDisplayOn;
             Settings.Default.setMenu_isPureOn = isPureDisplayOn;
             Settings.Default.Save();
         }
@@ -2384,7 +2326,7 @@ namespace AgOpenGPS
         private void skyToolStripMenu_Click(object sender, EventArgs e)
         {
             isSkyOn = !isSkyOn;
-            skyToolStripMenu.Checked = isSkyOn;
+            skyOnToolStripMenuItem.Checked = isSkyOn;
 
             Settings.Default.setMenu_isSkyOn = isSkyOn;
             Settings.Default.Save();
@@ -2557,18 +2499,6 @@ namespace AgOpenGPS
 
                 //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
                 Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flag.KML");
-            }
-        }
-
-        private void oglMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                //0 at bottom for opengl, 0 at top for windows, so invert Y value
-                Point point = oglMain.PointToClient(Cursor.Position);
-                mouseX = point.X;
-                mouseY = oglMain.Height - point.Y;
-                leftMouseDownOnOpenGL = true;
             }
         }
 
