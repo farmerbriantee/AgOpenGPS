@@ -2474,7 +2474,37 @@ namespace AgOpenGPS
                         SwapDirection();
                         return;
                     }
+
+                    middle = oglMain.Width / 2 - oglMain.Width / 4;
+                    if (point.X > middle - 60 && point.X < middle)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(false, true);
+                            return;
+                        }
+                    }
+
+                    if (point.X > middle && point.X < middle + 60)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(true, true);
+                            return;
+                        }
+                    }
                 }
+
                 mouseX = point.X;
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;

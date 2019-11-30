@@ -644,6 +644,9 @@
     <Content Include="Dependencies\Images\TurnCancel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Dependencies\Images\TurnManual.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dependencies\YouTurnShapes\SemiCircle.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

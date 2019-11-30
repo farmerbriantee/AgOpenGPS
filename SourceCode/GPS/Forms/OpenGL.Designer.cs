@@ -266,13 +266,15 @@ namespace AgOpenGPS
 
                 if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
-
+                if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
+                
                 //HEading text
                 int rightSide = oglMain.Width / 2 - 100;
                 font.DrawText(rightSide, 30, Math.Round(fixHeading * 57.295779513, 1) + "$");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
+
                 ////-------------------------------------------------ORTHO END---------------------------------------
                 
                 //  back to the projection and pop it, then back to the model view.
@@ -858,6 +860,26 @@ namespace AgOpenGPS
             oglZoom.SwapBuffers();
         }
 
+        private void DrawManUTurnBtn()
+        {
+            GL.Enable(EnableCap.Texture2D);
+
+                GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
+                GL.Color3(0.90f, 0.90f, 0.293f);
+
+            int two3 = oglMain.Width / 4;
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 50); // 
+                GL.TexCoord2(1, 0); GL.Vertex2( 82 - two3, 50.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2( 82 - two3, 120); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 120); //
+            }
+            GL.End();
+            GL.Disable(EnableCap.Texture2D);
+
+        }
+
         private void DrawUTurnBtn()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -879,15 +901,15 @@ namespace AgOpenGPS
             if (!yt.isYouTurnRight)
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 50); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 50.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 120); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3,  50.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3,  120); // 
                 GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 120); //
             }
             else
             {
                 GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 50); // 
-                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 50.0); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 120); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3,  50.0); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3,  120); // 
                 GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 120); //
             }
             //
@@ -898,11 +920,11 @@ namespace AgOpenGPS
             {
                 if (!yt.isYouTurnTriggered)
                 {
-                    font.DrawText(-40 + two3, 85, DistPivotM);
+                    font.DrawText(-30 + two3, 80, DistPivotM);
                 }
                 else
                 {
-                    font.DrawText(-40 + two3, 85, yt.onA.ToString());
+                    font.DrawText(-30 + two3, 80, yt.onA.ToString());
                 }
             }
             else
