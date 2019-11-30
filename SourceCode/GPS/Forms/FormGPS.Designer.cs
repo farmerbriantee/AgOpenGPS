@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGPS));
             this.contextMenuStripOpenGL = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -239,6 +239,9 @@
             this.btnSnapRight = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.panelFlag = new System.Windows.Forms.Panel();
+            this.btnSaveFlag = new System.Windows.Forms.Button();
+            this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -251,19 +254,25 @@
             this.statusStripLeft.SuspendLayout();
             this.panelSim.SuspendLayout();
             this.panelEditAB.SuspendLayout();
+            this.panelFlag.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
             // 
             this.contextMenuStripOpenGL.AutoSize = false;
             this.contextMenuStripOpenGL.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteFlagToolOpenGLContextMenu,
             this.toolStripSeparator5,
+            this.deleteFlagToolOpenGLContextMenu,
             this.googleEarthOpenGLContextMenu});
             this.contextMenuStripOpenGL.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.contextMenuStripOpenGL.Name = "contextMenuStripOpenGL";
             this.contextMenuStripOpenGL.Size = new System.Drawing.Size(72, 160);
             this.contextMenuStripOpenGL.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripOpenGL_Opening);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(68, 6);
             // 
             // deleteFlagToolOpenGLContextMenu
             // 
@@ -275,11 +284,6 @@
             this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
             this.deleteFlagToolOpenGLContextMenu.Text = ".";
             this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(68, 6);
             // 
             // googleEarthOpenGLContextMenu
             // 
@@ -1100,7 +1104,7 @@
             this.oglZoom.Location = new System.Drawing.Point(717, 307);
             this.oglZoom.Margin = new System.Windows.Forms.Padding(0);
             this.oglZoom.Name = "oglZoom";
-            this.oglZoom.Size = new System.Drawing.Size(238, 238);
+            this.oglZoom.Size = new System.Drawing.Size(238, 237);
             this.oglZoom.TabIndex = 182;
             this.oglZoom.VSync = false;
             this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
@@ -1685,10 +1689,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(245, 49);
+            this.oglMain.Location = new System.Drawing.Point(244, 50);
             this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(821, 584);
+            this.oglMain.Size = new System.Drawing.Size(820, 585);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1868,7 +1872,7 @@
             this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editABToolStripMenuItem});
             this.contextMenuABLine.Name = "contextMenuABLine";
-            this.contextMenuABLine.Size = new System.Drawing.Size(148, 58);
+            this.contextMenuABLine.Size = new System.Drawing.Size(142, 58);
             // 
             // editABToolStripMenuItem
             // 
@@ -1876,7 +1880,7 @@
             this.editABToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Start48;
             this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
-            this.editABToolStripMenuItem.Size = new System.Drawing.Size(147, 54);
+            this.editABToolStripMenuItem.Size = new System.Drawing.Size(141, 54);
             this.editABToolStripMenuItem.Text = "EditAB";
             // 
             // btnMakeLinesFromBoundary
@@ -2983,12 +2987,39 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
+            // panelFlag
+            // 
+            this.panelFlag.Controls.Add(this.btnSaveFlag);
+            this.panelFlag.Controls.Add(this.rtbFlag);
+            this.panelFlag.Location = new System.Drawing.Point(729, 60);
+            this.panelFlag.Name = "panelFlag";
+            this.panelFlag.Size = new System.Drawing.Size(335, 174);
+            this.panelFlag.TabIndex = 446;
+            // 
+            // btnSaveFlag
+            // 
+            this.btnSaveFlag.Location = new System.Drawing.Point(207, 127);
+            this.btnSaveFlag.Name = "btnSaveFlag";
+            this.btnSaveFlag.Size = new System.Drawing.Size(104, 31);
+            this.btnSaveFlag.TabIndex = 1;
+            this.btnSaveFlag.Text = "SAVE";
+            this.btnSaveFlag.UseVisualStyleBackColor = true;
+            // 
+            // rtbFlag
+            // 
+            this.rtbFlag.Location = new System.Drawing.Point(23, 22);
+            this.rtbFlag.Name = "rtbFlag";
+            this.rtbFlag.Size = new System.Drawing.Size(289, 88);
+            this.rtbFlag.TabIndex = 0;
+            this.rtbFlag.Text = "";
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1250, 701);
+            this.Controls.Add(this.panelFlag);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.panelDrag);
             this.Controls.Add(this.panelEditAB);
@@ -3023,7 +3054,7 @@
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(950, 740);
+            this.MinimumSize = new System.Drawing.Size(950, 726);
             this.Name = "FormGPS";
             this.Text = "AgOpenGPS - No Field Loaded";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGPS_FormClosing);
@@ -3045,6 +3076,7 @@
             this.statusStripLeft.PerformLayout();
             this.panelSim.ResumeLayout(false);
             this.panelEditAB.ResumeLayout(false);
+            this.panelFlag.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3260,6 +3292,9 @@
         private ProXoft.WinForms.RepeatButton btnpTiltDown;
         private ProXoft.WinForms.RepeatButton btnpTiltUp;
         private System.Windows.Forms.ToolStripMenuItem topFieldViewToolStripMenuItem;
+        private System.Windows.Forms.Panel panelFlag;
+        private System.Windows.Forms.Button btnSaveFlag;
+        private System.Windows.Forms.RichTextBox rtbFlag;
     }
 }
 

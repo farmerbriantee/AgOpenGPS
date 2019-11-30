@@ -207,7 +207,7 @@ namespace AgOpenGPS
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
                         GL.End();
-
+                        
                         //draw the flag with a black dot inside
                         //GL.PointSize(4.0f);
                         //GL.Color3(0, 0, 0);
@@ -542,6 +542,10 @@ namespace AgOpenGPS
                         if (data1[ctr] == 255 | data1[ctr + 1] == 255)
                         {
                             flagNumberPicked = data1[ctr + 2];
+                            rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                            rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                            rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+
                             break;
                         }
                     }

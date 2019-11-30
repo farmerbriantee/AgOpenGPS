@@ -3229,6 +3229,16 @@ namespace AgOpenGPS
                     }
 
                     lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
+                    if (flagNumberPicked != 0)
+                    {
+                        panelFlag.Visible = true;
+                        
+
+                    }
+                    else
+                    {
+                        panelFlag.Visible = false;
+                    }
                 }
 
                 //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
