@@ -865,7 +865,9 @@ namespace AgOpenGPS
                 }
                 GL.End();
 
-                GL.Disable(EnableCap.Texture2D);                                                                                 
+                GL.Disable(EnableCap.Texture2D);
+                GL.CullFace(CullFaceMode.Back);
+                GL.Disable(EnableCap.Blend);
             }
 
             GL.Flush();
