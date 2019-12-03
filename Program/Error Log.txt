@@ -1,5 +1,0 @@
-Open VehicleSystem.FormatException: Input string was not in a correct format.
-   at System.Number.ParseDouble(String value, NumberStyles options, NumberFormatInfo numfmt)
-   at System.Double.Parse(String s, IFormatProvider provider)
-   at AgOpenGPS.FormGPS.FileOpenVehicle() in C:\Users\Grizs\Desktop\Git\AgOpenGPS\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 596 - 12/3/2019 9:05:57 AM
-
