@@ -46,6 +46,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -222,11 +223,22 @@
             this.lblVersion.TabIndex = 34;
             this.lblVersion.Text = "v3.0.8";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(274, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 19);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Sub 8";
+            // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(741, 494);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
@@ -271,5 +283,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label label2;
     }
 }
