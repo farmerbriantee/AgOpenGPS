@@ -237,8 +237,8 @@ namespace AgOpenGPS
                     if (tramList[i].Count > 0)
                     {
                         middle = tramList[i].Count - 1;
-                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString());
-                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString());
+                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString(),1);
+                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString(),1);
                     }
                 }
             }
