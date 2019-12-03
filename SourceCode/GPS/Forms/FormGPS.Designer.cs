@@ -3004,6 +3004,7 @@
             this.btnSaveFlag.TabIndex = 1;
             this.btnSaveFlag.Text = "SAVE";
             this.btnSaveFlag.UseVisualStyleBackColor = true;
+            this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
             // 
             // rtbFlag
             // 

@@ -542,9 +542,10 @@ namespace AgOpenGPS
                         if (data1[ctr] == 255 | data1[ctr + 1] == 255)
                         {
                             flagNumberPicked = data1[ctr + 2];
-                            rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
-                            rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
-                            rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+                            FileOpenFlagLog();
+                            //rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                            //rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                            //rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
 
                             break;
                         }

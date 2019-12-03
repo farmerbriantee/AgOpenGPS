@@ -1446,6 +1446,37 @@ namespace AgOpenGPS
             }
         }
 
+        private void BtnSaveFlag_Click(object sender, EventArgs e)
+        {
+            FileSaveFlagLog();
+        }
+
+        private void FileOpenFlagLog()
+        {
+            string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+            if (File.Exists(fileAndD))
+            {
+
+                rtbFlag.LoadFile(fileAndD, RichTextBoxStreamType.PlainText);
+            }
+            else
+            {
+                rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+             }
+
+        }
+
+        private void FileSaveFlagLog()
+        {
+            //rtbFlag.Text += "\r\n" + "Flag Last Saved";
+            //rtbFlag.Text += "\r\n" + (DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt"));
+            string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+            rtbFlag.SaveFile(fileAndD, RichTextBoxStreamType.PlainText);
+
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
