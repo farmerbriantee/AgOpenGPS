@@ -1616,10 +1616,10 @@ namespace AgOpenGPS
             {
                 //set up file and folder if it doesn't exist
                 const string strFileName = "Error Log.txt";
-                string strPath = Application.StartupPath;
+                //string strPath = Application.StartupPath;
 
                 //Write out the error appending to existing
-                File.AppendAllText(strPath + "\\" + strFileName, strErrorText + " - " +
+                File.AppendAllText(baseDirectory + "\\" + strFileName, strErrorText + " - " +
                     DateTime.Now.ToString() + "\r\n\r\n");
             }
             catch (Exception ex)
