@@ -1069,7 +1069,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setDisplay_isBatmanOn {
             get {
                 return ((bool)(this["setDisplay_isBatmanOn"]));
@@ -1105,37 +1105,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("380, 50")]
-        public global::System.Drawing.Point setDisplay_panelSnapLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["setDisplay_panelSnapLocation"]));
-            }
-            set {
-                this["setDisplay_panelSnapLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("380, 100")]
+        [global::System.Configuration.DefaultSettingValueAttribute("97, 600")]
         public global::System.Drawing.Point setDisplay_panelSimLocation {
             get {
                 return ((global::System.Drawing.Point)(this["setDisplay_panelSimLocation"]));
             }
             set {
                 this["setDisplay_panelSimLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("380, 150")]
-        public global::System.Drawing.Point setDisplay_panelTurnLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["setDisplay_panelTurnLocation"]));
-            }
-            set {
-                this["setDisplay_panelTurnLocation"] = value;
             }
         }
         
@@ -1201,10 +1177,10 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setMenu_isOGLZoomOn {
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int setMenu_isOGLZoomOn {
             get {
-                return ((bool)(this["setMenu_isOGLZoomOn"]));
+                return ((int)(this["setMenu_isOGLZoomOn"]));
             }
             set {
                 this["setMenu_isOGLZoomOn"] = value;
@@ -1220,6 +1196,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setMenu_isUTurnAlwaysOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setMenu_isCompassOn {
+            get {
+                return ((bool)(this["setMenu_isCompassOn"]));
+            }
+            set {
+                this["setMenu_isCompassOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setMenu_isSpeedoOn {
+            get {
+                return ((bool)(this["setMenu_isSpeedoOn"]));
+            }
+            set {
+                this["setMenu_isSpeedoOn"] = value;
             }
         }
     }

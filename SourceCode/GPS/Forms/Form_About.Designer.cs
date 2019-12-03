@@ -125,7 +125,7 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(619, 376);
+            this.button1.Location = new System.Drawing.Point(619, 410);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -198,7 +198,7 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label11.Location = new System.Drawing.Point(32, 217);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(308, 216);
+            this.label11.Size = new System.Drawing.Size(269, 216);
             this.label11.TabIndex = 32;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -218,15 +218,15 @@
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(148, 32);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(43, 19);
+            this.lblVersion.Size = new System.Drawing.Size(58, 19);
             this.lblVersion.TabIndex = 34;
-            this.lblVersion.Text = "v3.0";
+            this.lblVersion.Text = "v3.0.8";
             // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 459);
+            this.ClientSize = new System.Drawing.Size(741, 494);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);

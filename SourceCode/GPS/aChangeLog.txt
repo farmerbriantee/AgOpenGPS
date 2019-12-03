@@ -1,4 +1,15 @@
-﻿v3.0 November
+﻿v3.0.8 December 2019
+* Add fonts
+* Add Tramlines
+* Add Speedo and Compass
+* Fix extra move when uturn clears boundary.
+* Fix turnTooClose and ytBoundary resets.
+* Heli view 2 sizes and moveable
+* Edit lines
+* Moveable field for zooming in on an area
+* UTurn line either on all the time or by activate uturn
+
+v3.0 November
 * Stepped back to pre multi field and added new GUI.
 * Snap shows distance in AB Save, can save
 * TramLines for AB

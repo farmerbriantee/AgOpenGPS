@@ -393,14 +393,14 @@ namespace AgOpenGPS
                 {
                     mf.ABLine.DeleteAB();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
                 mf.FileSaveABLines();
             }
             else
             {
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             }
         }
 
@@ -442,7 +442,7 @@ namespace AgOpenGPS
             mf.ABLine.numABLineSelected = 0;
             mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
             Close();
         }
 
@@ -573,7 +573,7 @@ namespace AgOpenGPS
                 mf.ABLine.numABLineSelected = 0;
                 mf.DisableYouTurnButtons();
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 Close();
             }
 

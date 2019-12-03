@@ -825,7 +825,53 @@ namespace AgOpenGPS
                 MessageBox.Show("Texture File Compass.PNG is Missing", ex.Message);
             }
 
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Speedo.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[7]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[7]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File Speedo.PNG is Missing", ex.Message);
+            }
 
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "SpeedoNedle.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[8]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[8]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File SpeedoNeedle.PNG is Missing", ex.Message);
+            }
 
             //return array of textures
             return texture[0];
@@ -903,9 +949,10 @@ namespace AgOpenGPS
             }
             else
             {
-                if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
         }
+
 
         public void GetAB()
         {
@@ -1242,8 +1289,8 @@ namespace AgOpenGPS
 
             //auto YouTurn shutdown
             yt.isYouTurnBtnOn = false;
-            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            btnEnableAutoYouTurn.Enabled = false;
+            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+            btnAutoYouTurn.Enabled = false;
             yt.ResetYouTurn();
             DisableYouTurnButtons();
 

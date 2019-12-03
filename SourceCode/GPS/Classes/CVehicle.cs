@@ -292,20 +292,20 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.TriangleFan);
 
             GL.Vertex3(0, antennaPivot, -0.0);
-            GL.Vertex3(0.8, -0, 0.0);
+            GL.Vertex3(1.0, -0, 0.0);
             GL.Color3(0.0, 0.90, 0.92);
             GL.Vertex3(0, wheelbase, 0.0);
             GL.Color3(0.920, 0.0, 0.9);
-            GL.Vertex3(-0.8, -0, 0.0);
-            GL.Vertex3(0.8, -0, 0.0);
+            GL.Vertex3(-1.0, -0, 0.0);
+            GL.Vertex3(1.0, -0, 0.0);
             GL.End();
 
             GL.LineWidth(3);
             GL.Color3(0.0, 0.0, 0.0);
             GL.Begin(PrimitiveType.LineLoop);
             {
-                GL.Vertex3(-0.8, 0, 0);
-                GL.Vertex3(0.8, 0, 0);
+                GL.Vertex3(-1.0, 0, 0);
+                GL.Vertex3(1.0, 0, 0);
                 GL.Vertex3(0, wheelbase, 0);
             }
             GL.End();
@@ -327,12 +327,12 @@ namespace AgOpenGPS
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(0.969, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.2);
+                mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.5);
             }
             else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(0.96, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.2);
+                mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.5);
             }
 
 
