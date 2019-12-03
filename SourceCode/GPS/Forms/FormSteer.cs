@@ -42,8 +42,6 @@ namespace AgOpenGPS
             this.tabDrive.Text = gStr.gsDrive;
 
             this.Text = gStr.gsAutoSteerConfiguration;
-
-
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
