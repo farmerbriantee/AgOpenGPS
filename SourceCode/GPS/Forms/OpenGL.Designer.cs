@@ -189,7 +189,7 @@ namespace AgOpenGPS
                         GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                         GL.End();
 
-                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString(),1);
+                        font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + (f+1).ToString(),1);
                         //else
                         //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
                     }
@@ -208,7 +208,7 @@ namespace AgOpenGPS
                         GL.Vertex3(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
                         GL.End();
                         GL.Color3(0.980f, 0.98f, 0.980f);
-                        font.DrawText3D(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, "&" + (flagNumberPicked - 1).ToString(),3);
+                        font.DrawText3D(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, "&" + (flagNumberPicked).ToString(),3);
 
                         //draw the flag with a black dot inside
                         //GL.PointSize(4.0f);
