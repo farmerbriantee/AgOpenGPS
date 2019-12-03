@@ -37,19 +37,15 @@ namespace AgOpenGPS
         public vec2 goalPointCu = new vec2(0, 0);
 
         public vec2 radiusPointCu = new vec2(0, 0);
-        public double steerAngleCu;
-        public double rEastCu, rNorthCu;
-        public double ppRadiusCu;
-
-        public bool isSmoothWindowOpen;
+        public double steerAngleCu, rEastCu, rNorthCu, ppRadiusCu;
 
         //the list of points of the ref line.
         public List<vec3> refList = new List<vec3>();
-
-        public List<vec3> smooList = new List<vec3>();
-
         //the list of points of curve to drive on
         public List<vec3> curList = new List<vec3>();
+
+        public bool isSmoothWindowOpen;
+        public List<vec3> smooList = new List<vec3>();
 
         public List<CCurveLines> curveArr = new List<CCurveLines>();
         public int numCurveLines, numCurveLineSelected;
@@ -57,7 +53,6 @@ namespace AgOpenGPS
         public bool isEditing;
         public List<vec2> tramArr = new List<vec2>();
         public List<List<vec2>> tramList = new List<List<vec2>>();
-
 
         public CABCurve(FormGPS _f)
         {
@@ -73,19 +68,26 @@ namespace AgOpenGPS
                 if (refList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.730f, 0.1692f, 0.7260f);
+                GL.Color3(0.96, 0.2f, 0.2f);
                 GL.Begin(PrimitiveType.Lines);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
-                GL.Color3(0.930f, 0.0692f, 0.260f);
                 if (!mf.curve.isCurveSet)
                 {
+                    GL.Color3(0.930f, 0.0692f, 0.260f);
                     ptCount--;
                     GL.Vertex3(refList[ptCount].easting, refList[ptCount].northing, 0);
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                     GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                    #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 }
                 GL.End();
+
+                if (mf.font.isFontOn && refList.Count > 410)
+                {
+                    GL.Color3(0.40f, 0.90f, 0.95f);
+                    mf.font.DrawText3D(refList[201].easting, refList[201].northing, "&A");
+                    mf.font.DrawText3D(refList[refList.Count - 200].easting, refList[refList.Count - 200].northing, "&B");
+                }
 
                 //just draw ref and smoothed line if smoothing window is open
                 if (isSmoothWindowOpen)
@@ -106,7 +108,7 @@ namespace AgOpenGPS
                     {
                         GL.PointSize(2);
 
-                        GL.Color3(0.95f, 0.2f, 0.0f);
+                        GL.Color3(0.95f, 0.2f, 0.95f);
                         GL.Begin(PrimitiveType.LineStrip);
                         for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                         GL.End();
@@ -173,7 +175,7 @@ namespace AgOpenGPS
                 if (refList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
-                GL.Color3(0.930f, 0.1692f, 0.9260f);
+                GL.Color3(0.930f, 0.2f, 0.260f);
                 GL.Begin(PrimitiveType.Lines);
                 for (int h = 0; h < ptCount; h++) GL.Vertex3(refList[h].easting, refList[h].northing, 0);
                 GL.End();
@@ -182,7 +184,7 @@ namespace AgOpenGPS
                 if (curList.Count > 0 && isCurveSet)
                 {
                     ptCount = curList.Count;
-                    GL.Color3(0.95f, 0.2f, 0.0f);
+                    GL.Color3(0.95f, 0.2f, 0.950f);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
@@ -195,7 +197,7 @@ namespace AgOpenGPS
                     double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
                     double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
 
-                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.Color3(0.8f, 0.3f, 0.2f);
                     GL.PointSize(2);
                     GL.Begin(PrimitiveType.Points);
 

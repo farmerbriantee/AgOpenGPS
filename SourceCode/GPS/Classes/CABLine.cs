@@ -30,7 +30,6 @@ namespace AgOpenGPS
         public bool isBtnABLineOn;
         public bool isOnRightSideCurrentLine = true;
 
-
         //public bool isOnTramLine;
         //public int tramBasedOn;
         public double passNumber;
@@ -40,7 +39,6 @@ namespace AgOpenGPS
         //the reference line endpoints
         public vec2 refABLineP1 = new vec2(0.0, 0.0);
         public vec2 refABLineP2 = new vec2(0.0, 1.0);
-
         
         public double refLineSide = 1.0;
         //the two inital A and B points
@@ -79,8 +77,7 @@ namespace AgOpenGPS
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(refPoint2.easting, refPoint2.northing, 0.0);
             GL.End();
-
-
+            
             if (mf.font.isFontOn)
             {
                 mf.font.DrawText3D(refPoint1.easting, refPoint1.northing, "&A");
@@ -91,24 +88,27 @@ namespace AgOpenGPS
 
             //Draw reference AB line
             GL.LineWidth(lineWidth);
+            GL.Enable(EnableCap.LineStipple);
+            GL.LineStipple(1, 0x0F00);
             GL.Begin(PrimitiveType.Lines);
-            GL.Color3(0.930f, 0.1692f, 0.9260f);
+            GL.Color3(0.930f, 0.2f, 0.2f);
             GL.Vertex3(refABLineP1.easting, refABLineP1.northing, 0);
             GL.Vertex3(refABLineP2.easting, refABLineP2.northing, 0);
             GL.End();
+            GL.Disable(EnableCap.LineStipple);
 
             //draw current AB Line
             GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
-            GL.Color3(0.95f, 0.0f, 0.0f);
-
+            GL.Color3(0.95f, 0.0f, 0.950f);
             GL.Vertex3(currentABLineP1.easting, currentABLineP1.northing, 0.0);
             GL.Vertex3(currentABLineP2.easting, currentABLineP2.northing, 0.0);
             GL.End();
 
+
             if (!isEditing)
             {
-                if (mf.isSideGuideLines)
+                if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.vehicle.toolWidth * -120)
                 {
                     //get the tool offset and width
                     double toolOffset = mf.vehicle.toolOffset * 2;
@@ -116,7 +116,10 @@ namespace AgOpenGPS
                     double cosHeading = Math.Cos(-abHeading);
                     double sinHeading = Math.Sin(-abHeading);
 
-                    GL.Color3(0.0f, 0.90f, 0.50f);
+                    GL.Color3(0.56f, 0.650f, 0.650f);
+                    GL.Enable(EnableCap.LineStipple);
+                    GL.LineStipple(1, 0x0101);
+
                     GL.LineWidth(lineWidth);
                     GL.Begin(PrimitiveType.Lines);
 
@@ -148,6 +151,8 @@ namespace AgOpenGPS
                     }
 
                     GL.End();
+                    GL.Disable(EnableCap.LineStipple);
+
                 }
             }
 
@@ -159,7 +164,7 @@ namespace AgOpenGPS
 
                 if (mf.camera.camSetDistance > -200)
                 {
-                    GL.Color3(0.630f, 0.30692f, 0.5260f);
+                    GL.Color3(0.9630f, 0.2f, 0.2f);
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Enable(EnableCap.LineStipple);
                     GL.LineStipple(1, 0x0707);
@@ -207,7 +212,7 @@ namespace AgOpenGPS
                     GL.End();
                 }
             }
-
+            
             GL.PointSize(1.0f);
             GL.LineWidth(1);
 

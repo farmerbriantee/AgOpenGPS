@@ -580,8 +580,8 @@ namespace AgOpenGPS
 
                     for (int i = 0; i < cnt; i++)
                     {
-                        arr2[i].easting -= (sinHead * 2);
-                        arr2[i].northing -= (cosHead * 2);
+                        arr2[i].easting -= (sinHead);
+                        arr2[i].northing -= (cosHead);
                         ytList.Add(arr2[i]);
                     }
 
@@ -1018,21 +1018,21 @@ namespace AgOpenGPS
                     if (!isOutOfBounds)
                     {
                         youTurnPhase = 2;
-                        if (mf.curve.isABSameAsVehicleHeading)
-                        {
-                            crossingCurvePoint.index -= 2;
-                            if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
-                        }
-                        else
-                        {
-                            crossingCurvePoint.index += 2;
-                            if (crossingCurvePoint.index >= curListCount)
-                                crossingCurvePoint.index = curListCount - 1;
-                        }
+                        //if (mf.curve.isABSameAsVehicleHeading)
+                        //{
+                        //    crossingCurvePoint.index -= 2;
+                        //    if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
+                        //}
+                        //else
+                        //{
+                        //    crossingCurvePoint.index += 2;
+                        //    if (crossingCurvePoint.index >= curListCount)
+                        //        crossingCurvePoint.index = curListCount - 1;
+                        //}
 
-                        crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
-                        crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
-                        crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
+                        //crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
+                        //crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
+                        //crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
                         return true;
                     }
 
@@ -1262,20 +1262,20 @@ namespace AgOpenGPS
                     if (!isOutOfBounds)
                     {
                         youTurnPhase = 2;
-                        if (mf.curve.isABSameAsVehicleHeading)
-                        {
-                            crossingCurvePoint.index -= 2;
-                            if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
-                        }
-                        else
-                        {
-                            crossingCurvePoint.index += 2;
-                            if (crossingCurvePoint.index >= curListCount)
-                                crossingCurvePoint.index = curListCount - 1;
-                        }
-                        crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
-                        crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
-                        crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
+                        //if (mf.curve.isABSameAsVehicleHeading)
+                        //{
+                        //    crossingCurvePoint.index -= 2;
+                        //    if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
+                        //}
+                        //else
+                        //{
+                        //    crossingCurvePoint.index += 2;
+                        //    if (crossingCurvePoint.index >= curListCount)
+                        //        crossingCurvePoint.index = curListCount - 1;
+                        //}
+                        //crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
+                        //crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
+                        //crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
                         return true;
                     }
 

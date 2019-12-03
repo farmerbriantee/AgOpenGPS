@@ -27,7 +27,7 @@ namespace AgOpenGPS
         private bool isDrawPolygons;
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
-        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isUTurnAlwaysOn, isSideGuideLines = true;
+        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isOGLZoomOn = true, isBigAltitudeOn = false;
 
         //master Manual and Auto, 3 states possible
@@ -101,18 +101,42 @@ namespace AgOpenGPS
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             skyOnToolStripMenuItem.Checked = isSkyOn;
 
+            isCompassOn = Settings.Default.setMenu_isCompassOn;
+            compassOnToolStripMenuItem.Checked = isCompassOn;
+
+            isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
+            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
+
             isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
             uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
 
-            isOGLZoomOn = Settings.Default.setMenu_isOGLZoomOn;
-            topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
-            if (isOGLZoomOn)
+            if (Settings.Default.setMenu_isOGLZoomOn == 2)
             {
+                oglZoom.Width = 240;
+                oglZoom.Height = 240;
+                topFieldViewToolStripMenuItem.Checked = true;
                 oglZoom.Visible = true;
                 oglZoom.Left = 80;
                 oglZoom.Top = 80;
+                isOGLZoomOn = true;
             }
-            else oglZoom.Visible = false;
+
+            else if (Settings.Default.setMenu_isOGLZoomOn == 1)
+            {
+                oglZoom.Width = 120;
+                oglZoom.Height = 120;
+                topFieldViewToolStripMenuItem.Checked = true;
+                oglZoom.Visible = true;
+                oglZoom.Left = 80;
+                oglZoom.Top = 80;
+                isOGLZoomOn = true;
+            }
+
+            else if (Settings.Default.setMenu_isOGLZoomOn == 0)
+            {
+                oglZoom.Visible = false;
+                isOGLZoomOn = false;
+            }
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -1040,7 +1064,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
             //btnContourPriority.Enabled = true;
 
-            if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
+            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
 
             DisableYouTurnButtons();
@@ -1154,7 +1178,7 @@ namespace AgOpenGPS
             {
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
-                if (yt.isYouTurnBtnOn) btnEnableAutoYouTurn.PerformClick();
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
             else
             {
@@ -1846,7 +1870,7 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
+        private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
             yt.isTurnCreationTooClose = false;
 
@@ -1868,13 +1892,13 @@ namespace AgOpenGPS
                 yt.ResetYouTurn();
                 //mc.autoSteerData[mc.sdX] = 0;
                 mc.machineControlData[mc.cnYouTurn] = 0;
-                btnEnableAutoYouTurn.Image = Properties.Resources.Youturn80;
+                btnAutoYouTurn.Image = Properties.Resources.Youturn80;
             }
             else
             {
                 yt.isYouTurnBtnOn = false;
                 yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
-                btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+                btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 yt.ResetYouTurn();
 
                 //new direction so reset where to put turn diagnostic
@@ -2119,7 +2143,7 @@ namespace AgOpenGPS
         private void threeDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             camera.camFollowing = true;
-            camera.camPitch = -75;
+            camera.camPitch = -70;
         }
 
         private void northToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2327,6 +2351,8 @@ namespace AgOpenGPS
         private void btnEditAB_Click(object sender, EventArgs e)
         {
             panelEditAB.Visible = false;
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
                 Form form = new FormEditAB(this);
@@ -2446,18 +2472,24 @@ namespace AgOpenGPS
 
         private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            isOGLZoomOn = !isOGLZoomOn;
-            topFieldViewToolStripMenuItem.Checked = isOGLZoomOn;
-            if (isOGLZoomOn)
+            if (Settings.Default.setMenu_isOGLZoomOn > 0)
             {
+                oglZoom.Visible = false;
+                Settings.Default.setMenu_isOGLZoomOn = 0;
+                Settings.Default.Save();
+                topFieldViewToolStripMenuItem.Checked = false;
+                isOGLZoomOn = false;
+            }
+            else
+            {
+                Settings.Default.setMenu_isOGLZoomOn = 1;
+                Settings.Default.Save();
+                topFieldViewToolStripMenuItem.Checked = true;
                 oglZoom.Visible = true;
                 oglZoom.Left = 80;
                 oglZoom.Top = 80;
+                isOGLZoomOn = true;
             }
-            else oglZoom.Visible = false;
-
-            Settings.Default.setMenu_isOGLZoomOn = isOGLZoomOn;
-            Settings.Default.Save();
         }
 
         private void oglMain_MouseDown(object sender, MouseEventArgs e)
@@ -2466,17 +2498,20 @@ namespace AgOpenGPS
             {
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
-                if (point.Y < 120 && point.Y > 60)
+
+                label3.Text = point.X.ToString();
+
+                if (point.Y < 120 && point.Y > 50)
                 {
-                    int middle = oglMain.Width / 2 + oglMain.Width / 4;
+                    int middle = oglMain.Width / 2 + oglMain.Width / 6;
                     if (point.X > middle - 60 && point.X < middle + 60)
                     {
                         SwapDirection();
                         return;
                     }
 
-                    middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 60 && point.X < middle)
+                    middle = oglMain.Width / 2 - oglMain.Width / 6;
+                    if (point.X > middle - 80 && point.X < middle)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -2484,13 +2519,14 @@ namespace AgOpenGPS
                         }
                         else
                         {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(false, true);
                             return;
                         }
                     }
 
-                    if (point.X > middle && point.X < middle + 60)
+                    if (point.X > middle && point.X < middle + 80)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -2498,6 +2534,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(true, true);
                             return;
@@ -2511,6 +2548,29 @@ namespace AgOpenGPS
             }
         }
 
+        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
+        {
+            if ((sender as Control).IsDragging()) return;
+
+            if (oglZoom.Width == 120)
+            {
+                oglZoom.Width = 240;
+                oglZoom.Height = 240;
+                Settings.Default.setMenu_isOGLZoomOn = 2;
+                Settings.Default.Save();
+                isOGLZoomOn = true;
+            }
+
+            else if (oglZoom.Width == 240)
+            {
+                oglZoom.Width = 120;
+                oglZoom.Height = 120;
+                Settings.Default.setMenu_isOGLZoomOn = 1;
+                Settings.Default.Save();
+                isOGLZoomOn = true;
+            }
+        }
+
         private void uTurnAlwaysOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             isUTurnAlwaysOn = !isUTurnAlwaysOn;
@@ -2519,20 +2579,36 @@ namespace AgOpenGPS
             Settings.Default.Save();
         }
 
+        private void compassOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isCompassOn = !isCompassOn;
+            compassOnToolStripMenuItem.Checked = isCompassOn;
+            Settings.Default.setMenu_isCompassOn = isCompassOn;
+            Settings.Default.Save();
+        }
+
+        private void speedoOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isSpeedoOn = !isSpeedoOn;
+            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
+            Settings.Default.setMenu_isSpeedoOn = isSpeedoOn;
+            Settings.Default.Save();
+        }
+
         public void EnableYouTurnButtons()
         {
             yt.ResetYouTurn();
 
             yt.isYouTurnBtnOn = false;
-            btnEnableAutoYouTurn.Enabled = true;
-            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+            btnAutoYouTurn.Enabled = true;
+            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
         }
         public void DisableYouTurnButtons()
         {
 
-            btnEnableAutoYouTurn.Enabled = false;
+            btnAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
-            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurn();
         }
 
@@ -3248,7 +3324,15 @@ namespace AgOpenGPS
 
             //Check for a newline char, if none then just return
             int cr = pn.rawBuffer.IndexOf("\n", StringComparison.Ordinal);
-            if (cr == -1) return; // No end found, wait for more data
+            if (cr == -1) return;
+            //{
+            //    if (!isGPSPositionInitialized)
+            //    {
+            //        //oglMain.MakeCurrent();
+            //        //oglMain.Refresh();
+            //    }
+            //    return; // No end found, wait for more data
+            //}
 
             //go see if data ready for draw and position updates
             tmrWatchdog.Enabled = false;

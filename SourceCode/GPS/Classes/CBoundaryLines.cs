@@ -245,23 +245,17 @@ namespace AgOpenGPS
         public void DrawBoundaryLine()
         {
             ////draw the perimeter line so far
-            int ptCount = bndLine.Count;
-            if (ptCount < 1) return;
+            if (bndLine.Count < 1) return;
             //GL.PointSize(2);
             GL.LineWidth(2);
+            int ptCount = bndLine.Count;
             //if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
             //else 
-                GL.Color3(0.925f, 0.53142f, 0.250f);
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
-            GL.Color3(0.95f, 0.972f, 0.90f);
-            GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
+            //GL.Color3(0.95f, 0.972f, 0.90f);
+            //GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
             GL.End();
-
-            //gl.LineWidth(2);
-            //gl.Color(0.98f, 0.2f, 0.60f);
-            //gl.Begin(OpenGL.GL_LINE_STRIP);
-            //gl.End();
 
             //ptCount = bdList.Count;
             //if (ptCount < 1) return;
@@ -270,27 +264,6 @@ namespace AgOpenGPS
             //gl.Begin(OpenGL.GL_POINTS);
             ////gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
             //gl.End();
-        }
-
-        //draw a blue line in the back buffer for section control over boundary line
-        public void DrawBoundaryLineOnBackBuffer()
-        {
-            ////draw the perimeter line so far
-            int ptCount = bndLine.Count;
-            if (ptCount < 1) return;
-            //glb.LineWidth(4);
-            //glb.Color(0.0f, 0.99f, 0.0f);
-            //glb.Begin(OpenGL.GL_LINE_STRIP);
-            //for (int h = 0; h < ptCount; h++) glb.Vertex(ptList[h].easting, ptList[h].northing, 0);
-            //glb.End();
-
-            ////the "close the loop" line
-            //glb.LineWidth(4);
-            //glb.Color(0.0f, 0.990f, 0.0f);
-            //glb.Begin(OpenGL.GL_LINE_STRIP);
-            //glb.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
-            //glb.Vertex(ptList[0].easting, ptList[0].northing, 0);
-            //glb.End();
         }
 
         //obvious

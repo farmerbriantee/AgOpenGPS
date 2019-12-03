@@ -178,7 +178,7 @@ namespace AgOpenGPS
         {
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);
             // Select Our Texture
-            GL.Color3(0.95f, 0.95f, 0.40f);
+            //GL.Color3(0.95f, 0.95f, 0.40f);
             GL.Enable(EnableCap.Texture2D);
             GL.Begin(PrimitiveType.Quads);
 

@@ -315,7 +315,7 @@ namespace AgOpenGPS
             mf.curve.isBtnCurveOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
             mf.curve.numCurveLineSelected = 0;
             Close();
@@ -340,7 +340,7 @@ namespace AgOpenGPS
                 {
                     mf.curve.ResetCurveLine();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
 
                 mf.FileSaveCurveLines();
@@ -562,7 +562,7 @@ namespace AgOpenGPS
                 mf.curve.isBtnCurveOn = false;
                 mf.btnCurve.Image = Properties.Resources.CurveOff;
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
                 mf.curve.numCurveLineSelected = 0;
                 Close();

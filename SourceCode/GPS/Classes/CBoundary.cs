@@ -147,13 +147,15 @@ namespace AgOpenGPS
         public void DrawBoundaryLines()
         {
             //draw the boundaries
+            GL.Color3(0.95f, 0.5f, 0.250f);
+
             for (int i = 0; i < bndArr.Count; i++)
             {
                 bndArr[i].DrawBoundaryLine();
             }
+
             if (bndPts.Count > 0)
             {
-
                 GL.PointSize(2);
                 GL.LineWidth(1);
                 GL.Color3(0.825f, 0.42f, 0.90f);

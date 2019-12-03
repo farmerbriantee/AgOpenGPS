@@ -649,7 +649,7 @@ namespace AgOpenGPS
                 if (mf.ABLine.numABLineSelected == 0)
                 {
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                     mf.ABLine.isABLineSet = false;
                     mf.ABLine.isABLineLoaded = false;
                     mf.btnABLine.Image = Properties.Resources.ABLineOff;
@@ -662,7 +662,7 @@ namespace AgOpenGPS
                 if (mf.curve.numCurveLineSelected == 0)
                 {
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                     mf.curve.isCurveSet = false;
                     mf.curve.refList?.Clear();
                     mf.curve.isBtnCurveOn = false;
