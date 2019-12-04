@@ -1781,10 +1781,10 @@
             this.layoutPanelRight.Controls.Add(this.btnAutoSteer, 1, 6);
             this.layoutPanelRight.Controls.Add(this.btnSectionOffAutoOn, 1, 5);
             this.layoutPanelRight.Controls.Add(this.btnAutoYouTurn, 0, 6);
-            this.layoutPanelRight.Controls.Add(this.btnTramMenu, 1, 3);
             this.layoutPanelRight.Controls.Add(this.btnCycleLines, 0, 2);
-            this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
             this.layoutPanelRight.Controls.Add(this.btnABMenu, 0, 1);
+            this.layoutPanelRight.Controls.Add(this.btnTramMenu, 1, 3);
+            this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
             this.layoutPanelRight.Location = new System.Drawing.Point(801, 49);
             this.layoutPanelRight.Name = "layoutPanelRight";
             this.layoutPanelRight.RowCount = 7;

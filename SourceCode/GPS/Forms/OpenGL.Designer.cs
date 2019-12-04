@@ -5,6 +5,7 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -51,6 +52,8 @@ namespace AgOpenGPS
         }
 
         //oglMain rendering, Draw
+
+        StringBuilder sb = new StringBuilder();
         private void oglMain_Paint(object sender, PaintEventArgs e)
         {
             if (isGPSPositionInitialized)
@@ -226,6 +229,18 @@ namespace AgOpenGPS
                 if (isCompassOn) DrawCompass();
 
                  if (isSpeedoOn) DrawSpeedo();
+
+                sb.Clear();
+                sb.Append(Math.Round((fd.areaBoundaryOuterLessInner * glm.m2ha), 2));
+                sb.Append(" - ");
+                sb.Append(fd.WorkedHectares);
+                sb.Append(" = ");
+                sb.Append(Math.Round(((fd.areaBoundaryOuterLessInner - fd.workedAreaTotal) * glm.m2ha), 2));
+                sb.Append("Ha  ");
+                sb.Append(fd.TimeTillFinished);
+
+                GL.Color3(0.95, 0.95, 0.95);
+                font.DrawText(-200, oglMain.Height - 32, sb.ToString()); ;
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
