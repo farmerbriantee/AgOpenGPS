@@ -1110,13 +1110,18 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
-            if (Settings.Default.setMenu_isOGLZoomOn == 1) oglZoom.BringToFront();
-            //isGPSPositionInitialized = false;
-            //offset = 0;
-            //pn.latStart = pn.latitude;
-            //pn.lonStart = pn.longitude;
+            if (Settings.Default.setMenu_isOGLZoomOn == 1)
+            {
+                oglZoom.BringToFront();
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
+            }
+                //isGPSPositionInitialized = false;
+                //offset = 0;
+                //pn.latStart = pn.latitude;
+                //pn.lonStart = pn.longitude;
 
-            AutoSteerSettingsOutToPort();
+                AutoSteerSettingsOutToPort();
             isJobStarted = true;
             startCounter = 0;
 

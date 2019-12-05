@@ -257,12 +257,6 @@
     <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setRate_rateRight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">80</Value>
-    </Setting>
-    <Setting Name="setRate_rateLeft" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
-    </Setting>
     <Setting Name="setDisplay_isBatmanOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -291,7 +285,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setMenu_isOGLZoomOn" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setMenu_isUTurnAlwaysOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

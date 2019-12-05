@@ -110,16 +110,15 @@ namespace AgOpenGPS
             isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
             uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
 
-            //if (Settings.Default.setMenu_isOGLZoomOn == 1)
-            {
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
+            if (Settings.Default.setMenu_isOGLZoomOn == 1)
                 topFieldViewToolStripMenuItem.Checked = true;
-                oglZoom.Visible = true;
-                oglZoom.Left = 80;
-                oglZoom.Top = 80;
-                //oglZoom.BringToFront();
-            }
+            else topFieldViewToolStripMenuItem.Checked = false;
+
+            oglZoom.Width = 400;
+            oglZoom.Height = 400;
+            oglZoom.Visible = true;
+            oglZoom.Left = 80;
+            oglZoom.Top = 80;
 
             oglZoom.SendToBack();
 
@@ -1829,7 +1828,155 @@ namespace AgOpenGPS
             camera.camPitch += ((camera.camPitch * 0.012) - 1);
             if (camera.camPitch < -85) camera.camPitch = -85;
         }
+        private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
+        {
+            offX += (Math.Sin(fixHeading) * 10);
+            offY += (Math.Cos(fixHeading) * 10);
+        }
+        private void btnMoveUp_MouseDown(object sender, MouseEventArgs e)
+        {
+            offX -= (Math.Sin(fixHeading) * 10);
+            offY -= (Math.Cos(fixHeading) * 10);
+        }
+        private void btnMoveLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            offY += (Math.Sin(-fixHeading) * 10);
+            offX += (Math.Cos(-fixHeading) * 10);
+        }
+        private void btnMoveRight_MouseDown(object sender, MouseEventArgs e)
+        {
+            offY -= (Math.Sin(-fixHeading) * 10);
+            offX -= (Math.Cos(-fixHeading) * 10);
+        }
+        private void btnMoveHome_Click(object sender, EventArgs e)
+        {
+            offX = 0;
+            offY = 0;
+        }
 
+        //
+        private void btnSaveAB_Click(object sender, EventArgs e)
+        {
+            panelEditAB.Visible = false;
+            if (ABLine.isBtnABLineOn)
+            {
+                //index to last one.
+                int idx = ABLine.numABLineSelected - 1;
+
+                if (idx >= 0)
+                {
+                    ABLine.lineArr[idx].heading = ABLine.abHeading;
+                    //calculate the new points for the reference line and points
+                    ABLine.lineArr[idx].origin.easting = ABLine.refPoint1.easting;
+                    ABLine.lineArr[idx].origin.northing = ABLine.refPoint1.northing;
+
+                    //sin x cos z for endpoints, opposite for additional lines
+                    ABLine.lineArr[idx].ref1.easting = ABLine.lineArr[idx].origin.easting - (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref1.northing = ABLine.lineArr[idx].origin.northing - (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref2.easting = ABLine.lineArr[idx].origin.easting + (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
+                    ABLine.lineArr[idx].ref2.northing = ABLine.lineArr[idx].origin.northing + (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
+                }
+
+                FileSaveABLines();
+                ABLine.moveDistance = 0;
+            }
+
+            if (curve.isBtnCurveOn)
+            {
+                if (curve.refList.Count > 0)
+                {
+                    //array number is 1 less since it starts at zero
+                    int idx = curve.numCurveLineSelected - 1;
+
+                    //curve.curveArr[idx].Name = textBox1.Text.Trim();
+                    if (idx >= 0)
+                    {
+                        curve.curveArr[idx].aveHeading = curve.aveLineHeading;
+                        curve.curveArr[idx].curvePts.Clear();
+                        //write out the Curve Points
+                        foreach (var item in curve.refList)
+                        {
+                            curve.curveArr[idx].curvePts.Add(item);
+                        }
+                    }
+
+                    //save entire list
+                    FileSaveCurveLines();
+                    curve.moveDistance = 0;
+                }
+            }
+        }
+        private void btnABMenu_Click(object sender, EventArgs e)
+        {
+            if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
+            {
+                if (panelEditAB.Visible)
+                    panelEditAB.Visible = false;
+                else
+                    panelEditAB.Visible = true;
+            }
+            else
+            {
+                panelEditAB.Visible = false;
+            }
+        }
+        private void btnEditAB_Click(object sender, EventArgs e)
+        {
+            panelEditAB.Visible = false;
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            {
+                Form form = new FormEditAB(this);
+                form.Show();
+            }
+            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+            {
+                Form form = new FormEditCurve(this);
+                form.Show();
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                return;
+            }
+        }
+        private void btnTramMenu_Click(object sender, EventArgs e)
+        {
+            curve.isOkToAddPoints = false;
+            panelEditAB.Visible = false;
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
+            {
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
+                Form form99 = new FormTram(this);
+                form99.Show();
+                form99.Left = Width - 275;
+                form99.Top = 100;
+            }
+            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+            {
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
+                Form form97 = new FormTramCurve(this);
+                form97.Show();
+                form97.Left = Width - 275;
+                form97.Top = 100;
+            }
+            else
+            {
+                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
+                form.Show();
+                layoutPanelRight.Enabled = true;
+                ABLine.isEditing = false;
+                return;
+            }
+        }
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
@@ -1837,24 +1984,6 @@ namespace AgOpenGPS
             flagPts.Add(flagPt);
             FileSaveFlags();
         }
-
-        private void btnSmoothAB_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted && curve.isBtnCurveOn)
-            {
-                using (var form = new FormSmoothAB(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK) { }
-                }
-            }
-
-            else
-            {
-                TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
-            }
-        }
-
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
             yt.isTurnCreationTooClose = false;
@@ -1893,6 +2022,107 @@ namespace AgOpenGPS
                 mc.machineControlData[mc.cnYouTurn] = 0;
             }
         }
+
+        //Mouse Clicks 
+        private void oglMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                //0 at bottom for opengl, 0 at top for windows, so invert Y value
+                Point point = oglMain.PointToClient(Cursor.Position);
+
+                //label3.Text = point.X.ToString();
+
+                if (point.Y < 120 && point.Y > 50)
+                {
+                    int middle = oglMain.Width / 2 + oglMain.Width / 6;
+                    if (point.X > middle - 60 && point.X < middle + 60)
+                    {
+                        SwapDirection();
+                        return;
+                    }
+
+                    middle = oglMain.Width / 2 - oglMain.Width / 6;
+                    if (point.X > middle - 80 && point.X < middle)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(false, true);
+                            return;
+                        }
+                    }
+
+                    if (point.X > middle && point.X < middle + 80)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(true, true);
+                            return;
+                        }
+                    }
+                }
+
+                mouseX = point.X;
+                mouseY = oglMain.Height - point.Y;
+                leftMouseDownOnOpenGL = true;
+            }
+        }
+        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
+        {
+            if ((sender as Control).IsDragging()) return;
+
+            if (oglZoom.Width == 180)
+            {
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
+            }
+
+            else if (oglZoom.Width == 300)
+            {
+                oglZoom.Width = 180;
+                oglZoom.Height = 180;
+            }
+        }
+               
+        public void EnableYouTurnButtons()
+        {
+            yt.ResetYouTurn();
+
+            yt.isYouTurnBtnOn = false;
+            btnAutoYouTurn.Enabled = true;
+            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+        }
+        public void DisableYouTurnButtons()
+        {
+
+            btnAutoYouTurn.Enabled = false;
+            yt.isYouTurnBtnOn = false;
+            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+            yt.ResetYouTurn();
+        }
+
+        //Options
+        private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
+            yt.ResetCreatedYouTurn();
+            Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
+            Properties.Vehicle.Default.Save();
+        }
+
+        // Menu Items ------------------------------------------------------------------
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -2166,57 +2396,6 @@ namespace AgOpenGPS
             if (result3 == DialogResult.Yes) Close();
         }
 
-        private void btnSaveAB_Click(object sender, EventArgs e)
-        {
-            panelEditAB.Visible = false;
-            if (ABLine.isBtnABLineOn)
-            {
-                //index to last one.
-                int idx = ABLine.numABLineSelected - 1;
-
-                if (idx >= 0)
-                {
-                    ABLine.lineArr[idx].heading = ABLine.abHeading;
-                    //calculate the new points for the reference line and points
-                    ABLine.lineArr[idx].origin.easting = ABLine.refPoint1.easting;
-                    ABLine.lineArr[idx].origin.northing = ABLine.refPoint1.northing;
-
-                    //sin x cos z for endpoints, opposite for additional lines
-                    ABLine.lineArr[idx].ref1.easting = ABLine.lineArr[idx].origin.easting - (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
-                    ABLine.lineArr[idx].ref1.northing = ABLine.lineArr[idx].origin.northing - (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
-                    ABLine.lineArr[idx].ref2.easting = ABLine.lineArr[idx].origin.easting + (Math.Sin(ABLine.lineArr[idx].heading) * 2000.0);
-                    ABLine.lineArr[idx].ref2.northing = ABLine.lineArr[idx].origin.northing + (Math.Cos(ABLine.lineArr[idx].heading) * 2000.0);
-                }
-
-                FileSaveABLines();
-                ABLine.moveDistance = 0;
-            }
-
-            if (curve.isBtnCurveOn)
-            {
-                if (curve.refList.Count > 0)
-                {
-                    //array number is 1 less since it starts at zero
-                    int idx = curve.numCurveLineSelected - 1;
-
-                    //curve.curveArr[idx].Name = textBox1.Text.Trim();
-                    if (idx >= 0)
-                    {
-                        curve.curveArr[idx].aveHeading = curve.aveLineHeading;
-                        curve.curveArr[idx].curvePts.Clear();
-                        //write out the Curve Points
-                        foreach (var item in curve.refList)
-                        {
-                            curve.curveArr[idx].curvePts.Add(item);
-                        }
-                    }
-
-                    //save entire list
-                    FileSaveCurveLines();
-                    curve.moveDistance = 0;
-                }
-            }
-        }
 
         private void googleEarthFlagsToolStrip_Click(object sender, EventArgs e)
         {
@@ -2318,110 +2497,6 @@ namespace AgOpenGPS
             form.Show();
         }
 
-        private void btnABMenu_Click(object sender, EventArgs e)
-        {
-            if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
-            {
-                if (panelEditAB.Visible)
-                    panelEditAB.Visible = false;
-                else
-                    panelEditAB.Visible = true;
-            }
-            else
-            {
-                panelEditAB.Visible = false;
-            }
-        }
-
-        private void btnEditAB_Click(object sender, EventArgs e)
-        {
-            panelEditAB.Visible = false;
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-            {
-                Form form = new FormEditAB(this);
-                form.Show();
-            }
-            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
-            {
-                Form form = new FormEditCurve(this);
-                form.Show();
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                return;
-            }
-        }
-
-        private void btnTramMenu_Click(object sender, EventArgs e)
-        {
-            curve.isOkToAddPoints = false;
-            panelEditAB.Visible = false;
-
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-
-            if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-            {
-                //panelDrag.Visible = true;
-                //panelDrag.Top = 80;
-                //panelDrag.Left = 76;
-                Form form99 = new FormTram(this);
-                form99.Show();
-                form99.Left = Width - 275;
-                form99.Top = 100;
-            }
-            else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
-            {
-                //panelDrag.Visible = true;
-                //panelDrag.Top = 80;
-                //panelDrag.Left = 76;
-                Form form97 = new FormTramCurve(this);
-                form97.Show();
-                form97.Left = Width - 275;
-                form97.Top = 100;
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
-                form.Show();
-                layoutPanelRight.Enabled = true;
-                ABLine.isEditing = false;
-                return;
-            }
-        }
-
-        private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
-        {
-            offX += (Math.Sin(fixHeading) * 10);
-            offY += (Math.Cos(fixHeading) * 10);
-        }
-
-        private void btnMoveUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            offX -= (Math.Sin(fixHeading) * 10);
-            offY -= (Math.Cos(fixHeading) * 10);
-        }
-
-        private void btnMoveLeft_MouseDown(object sender, MouseEventArgs e)
-        {
-            offY += (Math.Sin(-fixHeading) * 10);
-            offX += (Math.Cos(-fixHeading) * 10);
-        }
-
-        private void btnMoveRight_MouseDown(object sender, MouseEventArgs e)
-        {
-            offY -= (Math.Sin(-fixHeading) * 10);
-            offX -= (Math.Cos(-fixHeading) * 10);
-        }
-
-        private void btnMoveHome_Click(object sender, EventArgs e)
-        {
-            offX = 0;
-            offY = 0;
-        }
-
         private void toolStripBtnDrag_ButtonClick(object sender, EventArgs e)
         {
             if (panelDrag.Visible)
@@ -2462,8 +2537,8 @@ namespace AgOpenGPS
                 Settings.Default.setMenu_isOGLZoomOn = 0;
                 Settings.Default.Save();
                 topFieldViewToolStripMenuItem.Checked = false;
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
+                oglZoom.Width = 400;
+                oglZoom.Height = 400;
                 oglZoom.SendToBack();
             }
             else
@@ -2472,136 +2547,14 @@ namespace AgOpenGPS
                 Settings.Default.Save();
                 topFieldViewToolStripMenuItem.Checked = true;
                 oglZoom.Visible = true;
-                oglZoom.Left = 80;
-                oglZoom.Top = 80;
-                oglZoom.BringToFront();
-            }
-        }
-
-        private void oglMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                //0 at bottom for opengl, 0 at top for windows, so invert Y value
-                Point point = oglMain.PointToClient(Cursor.Position);
-
-                label3.Text = point.X.ToString();
-
-                if (point.Y < 120 && point.Y > 50)
-                {
-                    int middle = oglMain.Width / 2 + oglMain.Width / 6;
-                    if (point.X > middle - 60 && point.X < middle + 60)
-                    {
-                        SwapDirection();
-                        return;
-                    }
-
-                    middle = oglMain.Width / 2 - oglMain.Width / 6;
-                    if (point.X > middle - 80 && point.X < middle)
-                    {
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(false, true);
-                            return;
-                        }
-                    }
-
-                    if (point.X > middle && point.X < middle + 80)
-                    {
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(true, true);
-                            return;
-                        }
-                    }
-                }
-
-                mouseX = point.X;
-                mouseY = oglMain.Height - point.Y;
-                leftMouseDownOnOpenGL = true;
-            }
-        }
-
-        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
-        {
-            if ((sender as Control).IsDragging()) return;
-
-            if (oglZoom.Width == 180)
-            {
                 oglZoom.Width = 300;
                 oglZoom.Height = 300;
-            }
-
-            else if (oglZoom.Width == 300)
-            {
-                oglZoom.Width = 180;
-                oglZoom.Height = 180;
+                oglZoom.Left = 80;
+                oglZoom.Top = 80;
+                if (isJobStarted) oglZoom.BringToFront();
             }
         }
 
-        private void uTurnAlwaysOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isUTurnAlwaysOn = !isUTurnAlwaysOn;
-            uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
-            Settings.Default.setMenu_isUTurnAlwaysOn = isUTurnAlwaysOn;
-            Settings.Default.Save();
-        }
-
-        private void compassOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isCompassOn = !isCompassOn;
-            compassOnToolStripMenuItem.Checked = isCompassOn;
-            Settings.Default.setMenu_isCompassOn = isCompassOn;
-            Settings.Default.Save();
-        }
-
-        private void speedoOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isSpeedoOn = !isSpeedoOn;
-            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
-            Settings.Default.setMenu_isSpeedoOn = isSpeedoOn;
-            Settings.Default.Save();
-        }
-
-        public void EnableYouTurnButtons()
-        {
-            yt.ResetYouTurn();
-
-            yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Enabled = true;
-            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-        }
-        public void DisableYouTurnButtons()
-        {
-
-            btnAutoYouTurn.Enabled = false;
-            yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            yt.ResetYouTurn();
-        }
-
-        //Options
-        private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
-            yt.ResetCreatedYouTurn();
-            Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
-            Properties.Vehicle.Default.Save();
-        }
-
-        // Menu Items ------------------------------------------------------------------
 
         //File drop down items
         private void loadVehicleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2693,142 +2646,6 @@ namespace AgOpenGPS
             }
         }
 
-        //Languages
-        private void menuLanguageEnglish_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("en");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-
-        }
-        private void menuLanguageDeutsch_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("de");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-
-        }
-        private void menuLanguageRussian_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("ru");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-        }
-        private void menuLanguageDutch_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("nl");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-        }
-        private void menuLanguageSpanish_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("es");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-        }
-        private void menuLanguageFrench_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("fr");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-        }
-        private void menuLanguageItalian_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-            SetLanguage("it");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            Close();
-        }
-        private void SetLanguage(string lang)
-        {
-            //reset them all to false
-            menuLanguageEnglish.Checked = false;
-            menuLanguageDeutsch.Checked = false;
-            menuLanguageRussian.Checked = false;
-            menuLanguageDutch.Checked = false;
-            menuLanguageSpanish.Checked = false;
-            menuLanguageFrench.Checked = false;
-            menuLanguageItalian.Checked = false;
-
-            switch (lang)
-            {
-                case "en":
-                    menuLanguageEnglish.Checked = true;
-                    break;
-
-                case "ru":
-                    menuLanguageRussian.Checked = true;
-                    break;
-
-                case "de":
-                    menuLanguageDeutsch.Checked = true;
-                    break;
-
-                case "nl":
-                    menuLanguageDutch.Checked = true;
-                    break;
-
-                case "it":
-                    menuLanguageItalian.Checked = true;
-                    break;
-
-                case "es":
-                    menuLanguageSpanish.Checked = true;
-                    break;
-
-                case "fr":
-                    menuLanguageFrench.Checked = true;
-                    break;
-            }
-
-            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-            //storing the values  
-            key.SetValue("Language", lang);
-            key.Close();
-        }
 
         //Help menu drop down items
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2979,6 +2796,28 @@ namespace AgOpenGPS
             Settings.Default.Save();
             LineUpManualBtns();
         }
+        private void uTurnAlwaysOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isUTurnAlwaysOn = !isUTurnAlwaysOn;
+            uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
+            Settings.Default.setMenu_isUTurnAlwaysOn = isUTurnAlwaysOn;
+            Settings.Default.Save();
+        }
+        private void compassOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isCompassOn = !isCompassOn;
+            compassOnToolStripMenuItem.Checked = isCompassOn;
+            Settings.Default.setMenu_isCompassOn = isCompassOn;
+            Settings.Default.Save();
+        }
+        private void speedoOnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isSpeedoOn = !isSpeedoOn;
+            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
+            Settings.Default.setMenu_isSpeedoOn = isSpeedoOn;
+            Settings.Default.Save();
+        }
+
 
         //setting color off Options Menu
         private void sectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -3161,6 +3000,143 @@ namespace AgOpenGPS
             sim.longitude = Properties.Settings.Default.setGPS_Longitude;
         }
 
+        //Languages
+        private void menuLanguageEnglish_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("en");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+
+        }
+        private void menuLanguageDeutsch_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("de");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+
+        }
+        private void menuLanguageRussian_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("ru");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+        private void menuLanguageDutch_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("nl");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+        private void menuLanguageSpanish_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("es");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+        private void menuLanguageFrench_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("fr");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+        private void menuLanguageItalian_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("it");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+        private void SetLanguage(string lang)
+        {
+            //reset them all to false
+            menuLanguageEnglish.Checked = false;
+            menuLanguageDeutsch.Checked = false;
+            menuLanguageRussian.Checked = false;
+            menuLanguageDutch.Checked = false;
+            menuLanguageSpanish.Checked = false;
+            menuLanguageFrench.Checked = false;
+            menuLanguageItalian.Checked = false;
+
+            switch (lang)
+            {
+                case "en":
+                    menuLanguageEnglish.Checked = true;
+                    break;
+
+                case "ru":
+                    menuLanguageRussian.Checked = true;
+                    break;
+
+                case "de":
+                    menuLanguageDeutsch.Checked = true;
+                    break;
+
+                case "nl":
+                    menuLanguageDutch.Checked = true;
+                    break;
+
+                case "it":
+                    menuLanguageItalian.Checked = true;
+                    break;
+
+                case "es":
+                    menuLanguageSpanish.Checked = true;
+                    break;
+
+                case "fr":
+                    menuLanguageFrench.Checked = true;
+                    break;
+            }
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", lang);
+            key.Close();
+        }
+
         #region Properties // ---------------------------------------------------------------------
 
         public string Zone { get { return Convert.ToString(pn.zone); } }
@@ -3305,14 +3281,6 @@ namespace AgOpenGPS
             //Check for a newline char, if none then just return
             int cr = pn.rawBuffer.IndexOf("\n", StringComparison.Ordinal);
             if (cr == -1) return;
-            //{
-            //    if (!isGPSPositionInitialized)
-            //    {
-            //        //oglMain.MakeCurrent();
-            //        //oglMain.Refresh();
-            //    }
-            //    return; // No end found, wait for more data
-            //}
 
             //go see if data ready for draw and position updates
             tmrWatchdog.Enabled = false;
@@ -3340,8 +3308,7 @@ namespace AgOpenGPS
                     oneFifthSecondCounter = 0;
                     oneFifthSecond++;
                 }
-
-
+                
                 /////////////////////////////////////////////////////////   333333333333333  ////////////////////////////////////////
                 //every 3 second update status
                 if (displayUpdateThreeSecondCounter != threeSeconds)
@@ -3425,32 +3392,6 @@ namespace AgOpenGPS
                         btnABMenu.Text = ((int)(curve.moveDistance * 100)).ToString();
                     }
 
-
-                    //if (ABLine.isBtnABLineOn || curve.isCurveBtnOn) 
-                    //{
-                    //    if (ct.isContourBtnOn)
-                    //    {
-                    //        //panelSnap.Visible = true;
-                    //        panelTurn.Visible = false;
-                    //    }
-                    //    else
-                    //    {
-                    //        //panelSnap.Visible = true;
-                    //        panelTurn.Visible = true;
-                    //    }
-                    //}
-                    //else if (ct.isContourBtnOn)
-                    //{
-                    //    //panelSnap.Visible = true;
-                    //    panelTurn.Visible = false;
-                    //}
-                    //else
-                    //{
-                    //    //panelSnap.Visible = false;
-                    //    panelTurn.Visible = false;
-                    //}
-                    
-
                     if (mc.steerSwitchValue == 0)
                     {
                         this.AutoSteerToolBtn.BackColor = System.Drawing.Color.LightBlue;
@@ -3473,10 +3414,6 @@ namespace AgOpenGPS
                         lblRoll.Text = RollInDegrees;
                         lblYawHeading.Text = GyroInDegrees;
                         lblGPSHeading.Text = GPSHeading;
-                        //lblHeading2.Text = lblHeading.Text;
-
-
-                        //Low means steer switch on
 
                         //up in the menu a few pieces of info
                         if (isJobStarted)
@@ -3490,8 +3427,6 @@ namespace AgOpenGPS
                             lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
                         }
 
-                        //tboxSentence.Text = recvSentenceSettings;
-                        //display items
                         lblUturnByte.Text = Convert.ToString(mc.autoSteerData[mc.sdYouTurnByte], 2).PadLeft(6, '0');
                     }
                     

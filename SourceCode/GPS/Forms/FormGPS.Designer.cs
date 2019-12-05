@@ -31,10 +31,168 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGPS));
             this.contextMenuStripOpenGL = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
+            this.lblNorthing = new System.Windows.Forms.Label();
+            this.lblEasting = new System.Windows.Forms.Label();
+            this.lblSpeed = new System.Windows.Forms.Label();
+            this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.contextMenuArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lblZone = new System.Windows.Forms.Label();
+            this.lblSpeedUnits = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label13 = new System.Windows.Forms.Label();
+            this.pbarRelayComm = new System.Windows.Forms.ProgressBar();
+            this.lblLongitude = new System.Windows.Forms.Label();
+            this.lblLatitude = new System.Windows.Forms.Label();
+            this.lblAltitude = new System.Windows.Forms.Label();
+            this.lblConvergenceAngle = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblRoll = new System.Windows.Forms.Label();
+            this.lblGPSHeading = new System.Windows.Forms.Label();
+            this.lblYawHeading = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.lblSats = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
+            this.oglZoom = new OpenTK.GLControl();
+            this.panelBatman = new System.Windows.Forms.Panel();
+            this.lblUturnByte = new System.Windows.Forms.Label();
+            this.lblWatch = new System.Windows.Forms.Label();
+            this.btnStartStopNtrip = new System.Windows.Forms.Button();
+            this.lblNTRIPSeconds = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelDrag = new System.Windows.Forms.TableLayoutPanel();
+            this.btnResetSim = new System.Windows.Forms.Button();
+            this.btnResetSteerAngle = new System.Windows.Forms.Button();
+            this.timerSim = new System.Windows.Forms.Timer(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hsbarSteerAngle = new System.Windows.Forms.HScrollBar();
+            this.hsbarStepDistance = new System.Windows.Forms.HScrollBar();
+            this.btnSection8Man = new System.Windows.Forms.Button();
+            this.btnSection7Man = new System.Windows.Forms.Button();
+            this.btnSection6Man = new System.Windows.Forms.Button();
+            this.btnSection5Man = new System.Windows.Forms.Button();
+            this.btnSection4Man = new System.Windows.Forms.Button();
+            this.btnSection3Man = new System.Windows.Forms.Button();
+            this.btnSection2Man = new System.Windows.Forms.Button();
+            this.btnSection1Man = new System.Windows.Forms.Button();
+            this.btnSection9Man = new System.Windows.Forms.Button();
+            this.btnSection10Man = new System.Windows.Forms.Button();
+            this.btnSection11Man = new System.Windows.Forms.Button();
+            this.btnSection12Man = new System.Windows.Forms.Button();
+            this.oglMain = new OpenTK.GLControl();
+            this.oglBack = new OpenTK.GLControl();
+            this.lblHz = new System.Windows.Forms.Label();
+            this.layoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
+            this.contextMenuABLine = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStripLeft = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbarAutoSteerComm = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbarUDPComm = new System.Windows.Forms.ToolStripProgressBar();
+            this.toolStripLblFieldFinish = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pbarNtripMenu = new System.Windows.Forms.ToolStripProgressBar();
+            this.NTRIPBytesMenu = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panelSim = new System.Windows.Forms.TableLayoutPanel();
+            this.lblDistanceOffLine = new System.Windows.Forms.Label();
+            this.panelEditAB = new System.Windows.Forms.TableLayoutPanel();
+            this.repeatButton1 = new ProXoft.WinForms.RepeatButton();
+            this.btnMoveHome = new System.Windows.Forms.Button();
+            this.repeatButton2 = new ProXoft.WinForms.RepeatButton();
+            this.btnMoveRight = new ProXoft.WinForms.RepeatButton();
+            this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
+            this.btnMoveLeft = new ProXoft.WinForms.RepeatButton();
+            this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
+            this.btnMoveUp = new ProXoft.WinForms.RepeatButton();
+            this.btnMoveDown = new ProXoft.WinForms.RepeatButton();
+            this.btnSaveAB = new System.Windows.Forms.Button();
+            this.btnEditHeadingB = new System.Windows.Forms.Button();
+            this.btnBigSnapLeft = new System.Windows.Forms.Button();
+            this.btnBigSnapRight = new System.Windows.Forms.Button();
+            this.btnSnapLeft = new System.Windows.Forms.Button();
+            this.btnSnapRight = new System.Windows.Forms.Button();
+            this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagGrn = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagYel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuFlagDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuRecPath = new System.Windows.Forms.ToolStripDropDownButton();
+            this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.cameraDropDown = new System.Windows.Forms.ToolStripDropDownButton();
+            this.twoDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.threeDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.northToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBtnDrag = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.treePlantToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.webcamToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.googleEarthFlagsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBtnPower = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
+            this.distanceToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.ZoomExtentsStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripBtnGPSStength = new System.Windows.Forms.ToolStripDropDownButton();
+            this.FontToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.EditABToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.youTurnStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.vehicleToolStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripAutoSteerChart = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripNTRIPConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripDisplayConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.steerChartTool = new System.Windows.Forms.ToolStripDropDownButton();
+            this.AutoSteerToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.steerAnglesToolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripBtnField = new System.Windows.Forms.ToolStripDropDownButton();
+            this.boundaryToolStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripBtnDropDownBoundaryTools = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileExplorerToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteContourPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
+            this.SmoothABtoolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.boundariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.snapLeftBigStrip = new System.Windows.Forms.ToolStripDropDownButton();
+            this.snapLeftStrip = new System.Windows.Forms.ToolStripDropDownButton();
+            this.snapRightStrip = new System.Windows.Forms.ToolStripDropDownButton();
+            this.snapRightBigStrip = new System.Windows.Forms.ToolStripDropDownButton();
+            this.btnContourPriority = new System.Windows.Forms.Button();
+            this.btnFlag = new System.Windows.Forms.Button();
+            this.btnCurve = new System.Windows.Forms.Button();
+            this.btnContour = new System.Windows.Forms.Button();
+            this.btnABLine = new System.Windows.Forms.Button();
+            this.btnMakeLinesFromBoundary = new System.Windows.Forms.Button();
+            this.btnManualOffOn = new System.Windows.Forms.Button();
+            this.btnAutoSteer = new System.Windows.Forms.Button();
+            this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
+            this.btnAutoYouTurn = new System.Windows.Forms.Button();
+            this.btnCycleLines = new System.Windows.Forms.Button();
+            this.btnABMenu = new System.Windows.Forms.Button();
+            this.btnTramMenu = new System.Windows.Forms.Button();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.menustripLanguage = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,169 +239,10 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.simulatorOnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
-            this.lblNorthing = new System.Windows.Forms.Label();
-            this.lblEasting = new System.Windows.Forms.Label();
-            this.lblSpeed = new System.Windows.Forms.Label();
-            this.contextMenuStripFlag = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemFlagRed = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagGrn = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuFlagYel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuFlagDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuFlagDeleteAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteFlagToolOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.googleEarthOpenGLContextMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuAreaSide = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblZone = new System.Windows.Forms.Label();
-            this.lblSpeedUnits = new System.Windows.Forms.Label();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.label13 = new System.Windows.Forms.Label();
-            this.pbarRelayComm = new System.Windows.Forms.ProgressBar();
-            this.lblLongitude = new System.Windows.Forms.Label();
-            this.lblLatitude = new System.Windows.Forms.Label();
-            this.lblAltitude = new System.Windows.Forms.Label();
-            this.lblConvergenceAngle = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblRoll = new System.Windows.Forms.Label();
-            this.lblGPSHeading = new System.Windows.Forms.Label();
-            this.lblYawHeading = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.lblSats = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
-            this.oglZoom = new OpenTK.GLControl();
-            this.panelBatman = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblUturnByte = new System.Windows.Forms.Label();
-            this.lblWatch = new System.Windows.Forms.Label();
-            this.btnStartStopNtrip = new System.Windows.Forms.Button();
-            this.lblNTRIPSeconds = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panelDrag = new System.Windows.Forms.TableLayoutPanel();
-            this.repeatButton1 = new ProXoft.WinForms.RepeatButton();
-            this.btnMoveHome = new System.Windows.Forms.Button();
-            this.repeatButton2 = new ProXoft.WinForms.RepeatButton();
-            this.btnMoveRight = new ProXoft.WinForms.RepeatButton();
-            this.btnpTiltDown = new ProXoft.WinForms.RepeatButton();
-            this.btnMoveLeft = new ProXoft.WinForms.RepeatButton();
-            this.btnpTiltUp = new ProXoft.WinForms.RepeatButton();
-            this.btnMoveUp = new ProXoft.WinForms.RepeatButton();
-            this.btnMoveDown = new ProXoft.WinForms.RepeatButton();
-            this.btnResetSim = new System.Windows.Forms.Button();
-            this.btnResetSteerAngle = new System.Windows.Forms.Button();
-            this.timerSim = new System.Windows.Forms.Timer(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hsbarSteerAngle = new System.Windows.Forms.HScrollBar();
-            this.hsbarStepDistance = new System.Windows.Forms.HScrollBar();
-            this.btnSection8Man = new System.Windows.Forms.Button();
-            this.btnSection7Man = new System.Windows.Forms.Button();
-            this.btnSection6Man = new System.Windows.Forms.Button();
-            this.btnSection5Man = new System.Windows.Forms.Button();
-            this.btnSection4Man = new System.Windows.Forms.Button();
-            this.btnSection3Man = new System.Windows.Forms.Button();
-            this.btnSection2Man = new System.Windows.Forms.Button();
-            this.btnSection1Man = new System.Windows.Forms.Button();
-            this.btnSection9Man = new System.Windows.Forms.Button();
-            this.btnSection10Man = new System.Windows.Forms.Button();
-            this.btnSection11Man = new System.Windows.Forms.Button();
-            this.btnSection12Man = new System.Windows.Forms.Button();
-            this.oglMain = new OpenTK.GLControl();
-            this.oglBack = new OpenTK.GLControl();
-            this.lblHz = new System.Windows.Forms.Label();
-            this.layoutPanelRight = new System.Windows.Forms.TableLayoutPanel();
-            this.btnContourPriority = new System.Windows.Forms.Button();
-            this.btnFlag = new System.Windows.Forms.Button();
-            this.btnCurve = new System.Windows.Forms.Button();
-            this.btnContour = new System.Windows.Forms.Button();
-            this.btnABLine = new System.Windows.Forms.Button();
-            this.contextMenuABLine = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editABToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnMakeLinesFromBoundary = new System.Windows.Forms.Button();
-            this.btnManualOffOn = new System.Windows.Forms.Button();
-            this.btnAutoSteer = new System.Windows.Forms.Button();
-            this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
-            this.btnAutoYouTurn = new System.Windows.Forms.Button();
-            this.btnCycleLines = new System.Windows.Forms.Button();
-            this.btnABMenu = new System.Windows.Forms.Button();
-            this.btnTramMenu = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
-            this.distanceToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.ZoomExtentsStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripBtnGPSStength = new System.Windows.Forms.ToolStripDropDownButton();
-            this.FontToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.EditABToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.youTurnStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.vehicleToolStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripAutoSteerChart = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripNTRIPConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripDisplayConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.steerChartTool = new System.Windows.Forms.ToolStripDropDownButton();
-            this.AutoSteerToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.steerAnglesToolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripBtnField = new System.Windows.Forms.ToolStripDropDownButton();
-            this.boundaryToolStripBtn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripBtnDropDownBoundaryTools = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileExplorerToolStripItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteContourPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
-            this.SmoothABtoolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.boundariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.snapLeftBigStrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.snapLeftStrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.snapRightStrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.snapRightBigStrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusStripLeft = new System.Windows.Forms.StatusStrip();
-            this.toolStripMenuRecPath = new System.Windows.Forms.ToolStripDropDownButton();
-            this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbarAutoSteerComm = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbarUDPComm = new System.Windows.Forms.ToolStripProgressBar();
-            this.cameraDropDown = new System.Windows.Forms.ToolStripDropDownButton();
-            this.twoDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.threeDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.northToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripBtnDrag = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.treePlantToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.webcamToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.googleEarthFlagsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripLblFieldFinish = new System.Windows.Forms.ToolStripStatusLabel();
-            this.pbarNtripMenu = new System.Windows.Forms.ToolStripProgressBar();
-            this.NTRIPBytesMenu = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripBtnPower = new System.Windows.Forms.ToolStripSplitButton();
-            this.panelSim = new System.Windows.Forms.TableLayoutPanel();
-            this.lblDistanceOffLine = new System.Windows.Forms.Label();
-            this.panelEditAB = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSaveAB = new System.Windows.Forms.Button();
-            this.btnEditHeadingB = new System.Windows.Forms.Button();
-            this.btnBigSnapLeft = new System.Windows.Forms.Button();
-            this.btnBigSnapRight = new System.Windows.Forms.Button();
-            this.btnSnapLeft = new System.Windows.Forms.Button();
-            this.btnSnapRight = new System.Windows.Forms.Button();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -270,31 +269,10 @@
             this.contextMenuStripOpenGL.Size = new System.Drawing.Size(72, 160);
             this.contextMenuStripOpenGL.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripOpenGL_Opening);
             // 
-            // deleteFlagToolOpenGLContextMenu
-            // 
-            this.deleteFlagToolOpenGLContextMenu.AutoSize = false;
-            this.deleteFlagToolOpenGLContextMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.deleteFlagToolOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
-            this.deleteFlagToolOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.deleteFlagToolOpenGLContextMenu.Name = "deleteFlagToolOpenGLContextMenu";
-            this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
-            this.deleteFlagToolOpenGLContextMenu.Text = ".";
-            this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(68, 6);
-            // 
-            // googleEarthOpenGLContextMenu
-            // 
-            this.googleEarthOpenGLContextMenu.AutoSize = false;
-            this.googleEarthOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
-            this.googleEarthOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.googleEarthOpenGLContextMenu.Name = "googleEarthOpenGLContextMenu";
-            this.googleEarthOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
-            this.googleEarthOpenGLContextMenu.Text = ".";
-            this.googleEarthOpenGLContextMenu.Click += new System.EventHandler(this.googleEarthOpenGLContextMenu_Click);
             // 
             // menuStrip1
             // 
@@ -310,374 +288,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(984, 48);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.AutoSize = false;
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator9,
-            this.menustripLanguage,
-            this.toolStripSeparator11,
-            this.setWorkingDirectoryToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.enterSimCoordsToolStripMenuItem,
-            this.toolStripSeparator12,
-            this.loadVehicleToolStripMenuItem,
-            this.saveVehicleToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.fieldToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.shortcutKeysToolStripMenuItem});
-            this.fileToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.fileMenu;
-            this.fileToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(120, 48);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(316, 6);
-            // 
-            // menustripLanguage
-            // 
-            this.menustripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuLanguageDeutsch,
-            this.menuLanguageEnglish,
-            this.menuLanguageFrench,
-            this.menuLanguageItalian,
-            this.menuLanguageDutch,
-            this.menuLanguageRussian,
-            this.menuLanguageSpanish});
-            this.menustripLanguage.Name = "menustripLanguage";
-            this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
-            this.menustripLanguage.Text = "Language";
-            // 
-            // menuLanguageDeutsch
-            // 
-            this.menuLanguageDeutsch.CheckOnClick = true;
-            this.menuLanguageDeutsch.Name = "menuLanguageDeutsch";
-            this.menuLanguageDeutsch.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageDeutsch.Text = "Deutsch";
-            this.menuLanguageDeutsch.Click += new System.EventHandler(this.menuLanguageDeutsch_Click);
-            // 
-            // menuLanguageEnglish
-            // 
-            this.menuLanguageEnglish.CheckOnClick = true;
-            this.menuLanguageEnglish.Name = "menuLanguageEnglish";
-            this.menuLanguageEnglish.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageEnglish.Text = "English";
-            this.menuLanguageEnglish.Click += new System.EventHandler(this.menuLanguageEnglish_Click);
-            // 
-            // menuLanguageFrench
-            // 
-            this.menuLanguageFrench.CheckOnClick = true;
-            this.menuLanguageFrench.Name = "menuLanguageFrench";
-            this.menuLanguageFrench.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageFrench.Text = "Français";
-            this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
-            // 
-            // menuLanguageItalian
-            // 
-            this.menuLanguageItalian.Name = "menuLanguageItalian";
-            this.menuLanguageItalian.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageItalian.Text = "Italiano";
-            this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
-            // 
-            // menuLanguageDutch
-            // 
-            this.menuLanguageDutch.CheckOnClick = true;
-            this.menuLanguageDutch.Name = "menuLanguageDutch";
-            this.menuLanguageDutch.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageDutch.Text = "Nederlands";
-            this.menuLanguageDutch.Click += new System.EventHandler(this.menuLanguageDutch_Click);
-            // 
-            // menuLanguageRussian
-            // 
-            this.menuLanguageRussian.CheckOnClick = true;
-            this.menuLanguageRussian.Enabled = false;
-            this.menuLanguageRussian.Name = "menuLanguageRussian";
-            this.menuLanguageRussian.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageRussian.Text = "русский";
-            this.menuLanguageRussian.Click += new System.EventHandler(this.menuLanguageRussian_Click);
-            // 
-            // menuLanguageSpanish
-            // 
-            this.menuLanguageSpanish.CheckOnClick = true;
-            this.menuLanguageSpanish.Enabled = false;
-            this.menuLanguageSpanish.Name = "menuLanguageSpanish";
-            this.menuLanguageSpanish.Size = new System.Drawing.Size(240, 40);
-            this.menuLanguageSpanish.Text = "Español";
-            this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(316, 6);
-            // 
-            // setWorkingDirectoryToolStripMenuItem
-            // 
-            this.setWorkingDirectoryToolStripMenuItem.Name = "setWorkingDirectoryToolStripMenuItem";
-            this.setWorkingDirectoryToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.setWorkingDirectoryToolStripMenuItem.Text = "Directories";
-            this.setWorkingDirectoryToolStripMenuItem.Click += new System.EventHandler(this.setWorkingDirectoryToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(316, 6);
-            // 
-            // enterSimCoordsToolStripMenuItem
-            // 
-            this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
-            this.enterSimCoordsToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.enterSimCoordsToolStripMenuItem.Text = "Enter Sim Coords";
-            this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(316, 6);
-            // 
-            // loadVehicleToolStripMenuItem
-            // 
-            this.loadVehicleToolStripMenuItem.Name = "loadVehicleToolStripMenuItem";
-            this.loadVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.loadVehicleToolStripMenuItem.Text = "Load Vehicle";
-            this.loadVehicleToolStripMenuItem.Click += new System.EventHandler(this.loadVehicleToolStripMenuItem_Click);
-            // 
-            // saveVehicleToolStripMenuItem
-            // 
-            this.saveVehicleToolStripMenuItem.Name = "saveVehicleToolStripMenuItem";
-            this.saveVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.saveVehicleToolStripMenuItem.Text = "Save Vehicle";
-            this.saveVehicleToolStripMenuItem.Click += new System.EventHandler(this.saveVehicleToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(316, 6);
-            // 
-            // fieldToolStripMenuItem
-            // 
-            this.fieldToolStripMenuItem.Name = "fieldToolStripMenuItem";
-            this.fieldToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.fieldToolStripMenuItem.Text = "Field";
-            this.fieldToolStripMenuItem.Click += new System.EventHandler(this.fieldToolStripMenuItem_Click);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.aboutToolStripMenuItem.Text = "About...";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // shortcutKeysToolStripMenuItem
-            // 
-            this.shortcutKeysToolStripMenuItem.Name = "shortcutKeysToolStripMenuItem";
-            this.shortcutKeysToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
-            this.shortcutKeysToolStripMenuItem.Text = "Shortcut Keys";
-            this.shortcutKeysToolStripMenuItem.Click += new System.EventHandler(this.shortcutKeysToolStripMenuItem_Click);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.AutoSize = false;
-            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.resetALLToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.colorsToolStripMenuItem,
-            this.toolStripUnitsMenu,
-            this.optionsToolStripMenuItem,
-            this.topFieldViewToolStripMenuItem,
-            this.lightbarToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.simulatorOnToolStripMenuItem,
-            this.toolStripSeparator7});
-            this.settingsToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.displayMenu;
-            this.settingsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(122, 48);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(282, 6);
-            // 
-            // resetALLToolStripMenuItem
-            // 
-            this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
-            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.resetALLToolStripMenuItem.Text = "Reset ALL";
-            this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(282, 6);
-            // 
-            // colorsToolStripMenuItem
-            // 
-            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sectionToolStripMenuItem,
-            this.fieldToolStripMenuItem1});
-            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
-            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.colorsToolStripMenuItem.Text = "Colors";
-            // 
-            // sectionToolStripMenuItem
-            // 
-            this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
-            this.sectionToolStripMenuItem.Size = new System.Drawing.Size(187, 40);
-            this.sectionToolStripMenuItem.Text = "Section";
-            this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
-            // 
-            // fieldToolStripMenuItem1
-            // 
-            this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
-            this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(187, 40);
-            this.fieldToolStripMenuItem1.Text = "Field";
-            this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
-            // 
-            // toolStripUnitsMenu
-            // 
-            this.toolStripUnitsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.metricToolStrip,
-            this.imperialToolStrip});
-            this.toolStripUnitsMenu.Name = "toolStripUnitsMenu";
-            this.toolStripUnitsMenu.Size = new System.Drawing.Size(285, 40);
-            this.toolStripUnitsMenu.Text = "Units";
-            // 
-            // metricToolStrip
-            // 
-            this.metricToolStrip.CheckOnClick = true;
-            this.metricToolStrip.Name = "metricToolStrip";
-            this.metricToolStrip.Size = new System.Drawing.Size(200, 40);
-            this.metricToolStrip.Text = "Metric";
-            this.metricToolStrip.Click += new System.EventHandler(this.metricToolStrip_Click);
-            // 
-            // imperialToolStrip
-            // 
-            this.imperialToolStrip.CheckOnClick = true;
-            this.imperialToolStrip.Name = "imperialToolStrip";
-            this.imperialToolStrip.Size = new System.Drawing.Size(200, 40);
-            this.imperialToolStrip.Text = "Imperial";
-            this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
-            // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.extraGuidesToolStripMenuItem,
-            this.uTurnAlwaysOnToolStripMenuItem,
-            this.compassOnToolStripMenuItem,
-            this.speedoOnToolStripMenuItem,
-            this.pursuitOnToolStripMenuItem,
-            this.skyOnToolStripMenuItem,
-            this.gridOnToolStripMenuItem,
-            this.polygonsOnToolStripMenuItem,
-            this.logNMEAToolStripMenuItem});
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.optionsToolStripMenuItem.Text = "Options";
-            // 
-            // extraGuidesToolStripMenuItem
-            // 
-            this.extraGuidesToolStripMenuItem.Name = "extraGuidesToolStripMenuItem";
-            this.extraGuidesToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.extraGuidesToolStripMenuItem.Text = "Extra Guides";
-            this.extraGuidesToolStripMenuItem.Click += new System.EventHandler(this.sideGuideLines_Click);
-            // 
-            // uTurnAlwaysOnToolStripMenuItem
-            // 
-            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
-            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
-            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
-            // 
-            // compassOnToolStripMenuItem
-            // 
-            this.compassOnToolStripMenuItem.CheckOnClick = true;
-            this.compassOnToolStripMenuItem.Name = "compassOnToolStripMenuItem";
-            this.compassOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.compassOnToolStripMenuItem.Text = "Compass On";
-            this.compassOnToolStripMenuItem.Click += new System.EventHandler(this.compassOnToolStripMenuItem_Click);
-            // 
-            // speedoOnToolStripMenuItem
-            // 
-            this.speedoOnToolStripMenuItem.CheckOnClick = true;
-            this.speedoOnToolStripMenuItem.Name = "speedoOnToolStripMenuItem";
-            this.speedoOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.speedoOnToolStripMenuItem.Text = "Speedo On";
-            this.speedoOnToolStripMenuItem.Click += new System.EventHandler(this.speedoOnToolStripMenuItem_Click);
-            // 
-            // pursuitOnToolStripMenuItem
-            // 
-            this.pursuitOnToolStripMenuItem.Name = "pursuitOnToolStripMenuItem";
-            this.pursuitOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.pursuitOnToolStripMenuItem.Text = "Pursuit Line On";
-            this.pursuitOnToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
-            // 
-            // skyOnToolStripMenuItem
-            // 
-            this.skyOnToolStripMenuItem.Name = "skyOnToolStripMenuItem";
-            this.skyOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.skyOnToolStripMenuItem.Text = "Sky On";
-            this.skyOnToolStripMenuItem.Click += new System.EventHandler(this.skyToolStripMenu_Click);
-            // 
-            // gridOnToolStripMenuItem
-            // 
-            this.gridOnToolStripMenuItem.Name = "gridOnToolStripMenuItem";
-            this.gridOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.gridOnToolStripMenuItem.Text = "Grid On";
-            this.gridOnToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
-            // 
-            // polygonsOnToolStripMenuItem
-            // 
-            this.polygonsOnToolStripMenuItem.Name = "polygonsOnToolStripMenuItem";
-            this.polygonsOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.polygonsOnToolStripMenuItem.Text = "Polygons On";
-            this.polygonsOnToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
-            // 
-            // logNMEAToolStripMenuItem
-            // 
-            this.logNMEAToolStripMenuItem.Name = "logNMEAToolStripMenuItem";
-            this.logNMEAToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
-            this.logNMEAToolStripMenuItem.Text = "Log NMEA";
-            this.logNMEAToolStripMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
-            // 
-            // topFieldViewToolStripMenuItem
-            // 
-            this.topFieldViewToolStripMenuItem.CheckOnClick = true;
-            this.topFieldViewToolStripMenuItem.Name = "topFieldViewToolStripMenuItem";
-            this.topFieldViewToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.topFieldViewToolStripMenuItem.Text = "Top Field View";
-            this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
-            // 
-            // lightbarToolStripMenuItem
-            // 
-            this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
-            this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.lightbarToolStripMenuItem.Text = "Lightbar On";
-            this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(282, 6);
-            // 
-            // simulatorOnToolStripMenuItem
-            // 
-            this.simulatorOnToolStripMenuItem.CheckOnClick = true;
-            this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
-            this.simulatorOnToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
-            this.simulatorOnToolStripMenuItem.Text = "Simulator On";
-            this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(282, 6);
             // 
             // tmrWatchdog
             // 
@@ -740,42 +350,6 @@
             this.contextMenuStripFlag.Size = new System.Drawing.Size(72, 400);
             this.contextMenuStripFlag.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripFlag_Opening);
             // 
-            // toolStripMenuItemFlagRed
-            // 
-            this.toolStripMenuItemFlagRed.AutoSize = false;
-            this.toolStripMenuItemFlagRed.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuItemFlagRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuItemFlagRed.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
-            this.toolStripMenuItemFlagRed.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuItemFlagRed.Name = "toolStripMenuItemFlagRed";
-            this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuItemFlagRed.Text = ".";
-            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
-            // 
-            // toolStripMenuFlagGrn
-            // 
-            this.toolStripMenuFlagGrn.AutoSize = false;
-            this.toolStripMenuFlagGrn.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagGrn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagGrn.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
-            this.toolStripMenuFlagGrn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagGrn.Name = "toolStripMenuFlagGrn";
-            this.toolStripMenuFlagGrn.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagGrn.Text = ".";
-            this.toolStripMenuFlagGrn.Click += new System.EventHandler(this.toolStripMenuGrn_Click);
-            // 
-            // toolStripMenuFlagYel
-            // 
-            this.toolStripMenuFlagYel.AutoSize = false;
-            this.toolStripMenuFlagYel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagYel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagYel.Image = global::AgOpenGPS.Properties.Resources.FlagYel;
-            this.toolStripMenuFlagYel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagYel.Name = "toolStripMenuFlagYel";
-            this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagYel.Text = ".";
-            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.AutoSize = false;
@@ -783,33 +357,11 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(68, 20);
             // 
-            // toolStripMenuFlagDelete
-            // 
-            this.toolStripMenuFlagDelete.AutoSize = false;
-            this.toolStripMenuFlagDelete.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.toolStripMenuFlagDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuFlagDelete.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
-            this.toolStripMenuFlagDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagDelete.Name = "toolStripMenuFlagDelete";
-            this.toolStripMenuFlagDelete.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagDelete.Text = ".";
-            this.toolStripMenuFlagDelete.Click += new System.EventHandler(this.toolStripMenuFlagDelete_Click);
-            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.AutoSize = false;
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(68, 20);
-            // 
-            // toolStripMenuFlagDeleteAll
-            // 
-            this.toolStripMenuFlagDeleteAll.AutoSize = false;
-            this.toolStripMenuFlagDeleteAll.Image = global::AgOpenGPS.Properties.Resources.FlagDeleteAll;
-            this.toolStripMenuFlagDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuFlagDeleteAll.Name = "toolStripMenuFlagDeleteAll";
-            this.toolStripMenuFlagDeleteAll.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuFlagDeleteAll.Text = "toolStripMenuFlagDeleteAll";
-            this.toolStripMenuFlagDeleteAll.Click += new System.EventHandler(this.toolStripMenuFlagDeleteAll_Click);
             // 
             // contextMenuArea
             // 
@@ -818,18 +370,6 @@
             this.toolStripMenuAreaSide});
             this.contextMenuArea.Name = "contextMenuArea";
             this.contextMenuArea.Size = new System.Drawing.Size(70, 80);
-            // 
-            // toolStripMenuAreaSide
-            // 
-            this.toolStripMenuAreaSide.AutoSize = false;
-            this.toolStripMenuAreaSide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuAreaSide.Image = global::AgOpenGPS.Properties.Resources.AreaSide;
-            this.toolStripMenuAreaSide.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripMenuAreaSide.Name = "toolStripMenuAreaSide";
-            this.toolStripMenuAreaSide.Size = new System.Drawing.Size(70, 70);
-            this.toolStripMenuAreaSide.Text = ".";
-            this.toolStripMenuAreaSide.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripMenuAreaSide.Click += new System.EventHandler(this.toolStripMenuAreaSide_Click);
             // 
             // lblZone
             // 
@@ -1112,7 +652,7 @@
             "8",
             "9",
             "10"});
-            this.cboxpRowWidth.Location = new System.Drawing.Point(13, 362);
+            this.cboxpRowWidth.Location = new System.Drawing.Point(13, 413);
             this.cboxpRowWidth.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxpRowWidth.Name = "cboxpRowWidth";
             this.cboxpRowWidth.Size = new System.Drawing.Size(64, 53);
@@ -1140,7 +680,6 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.Color.Transparent;
             this.panelBatman.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelBatman.Controls.Add(this.label3);
             this.panelBatman.Controls.Add(this.lblZone);
             this.panelBatman.Controls.Add(this.lblConvergenceAngle);
             this.panelBatman.Controls.Add(this.lblUturnByte);
@@ -1170,21 +709,9 @@
             this.panelBatman.Controls.Add(this.label1);
             this.panelBatman.Location = new System.Drawing.Point(74, 49);
             this.panelBatman.Name = "panelBatman";
-            this.panelBatman.Size = new System.Drawing.Size(168, 627);
+            this.panelBatman.Size = new System.Drawing.Size(168, 710);
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(39, 414);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 23);
-            this.label3.TabIndex = 311;
-            this.label3.Text = "22.6";
             // 
             // lblUturnByte
             // 
@@ -1274,6 +801,574 @@
             this.panelDrag.Size = new System.Drawing.Size(60, 498);
             this.panelDrag.TabIndex = 445;
             this.panelDrag.Visible = false;
+            // 
+            // btnResetSim
+            // 
+            this.btnResetSim.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnResetSim.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnResetSim.Location = new System.Drawing.Point(96, 3);
+            this.btnResetSim.Name = "btnResetSim";
+            this.btnResetSim.Size = new System.Drawing.Size(40, 41);
+            this.btnResetSim.TabIndex = 164;
+            this.btnResetSim.Text = "Rst";
+            this.btnResetSim.UseVisualStyleBackColor = false;
+            this.btnResetSim.Click += new System.EventHandler(this.btnResetSim_Click);
+            // 
+            // btnResetSteerAngle
+            // 
+            this.btnResetSteerAngle.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnResetSteerAngle.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(242, 3);
+            this.btnResetSteerAngle.Name = "btnResetSteerAngle";
+            this.btnResetSteerAngle.Size = new System.Drawing.Size(50, 41);
+            this.btnResetSteerAngle.TabIndex = 162;
+            this.btnResetSteerAngle.Text = "0";
+            this.btnResetSteerAngle.UseVisualStyleBackColor = false;
+            this.btnResetSteerAngle.Click += new System.EventHandler(this.btnResetSteerAngle_Click);
+            // 
+            // timerSim
+            // 
+            this.timerSim.Enabled = true;
+            this.timerSim.Interval = 200;
+            this.timerSim.Tick += new System.EventHandler(this.timerSim_Tick);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(334, 62);
+            this.toolStripMenuItem2.Text = "toolStripMenuItem2";
+            // 
+            // hsbarSteerAngle
+            // 
+            this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.hsbarSteerAngle.LargeChange = 20;
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(139, 0);
+            this.hsbarSteerAngle.Maximum = 600;
+            this.hsbarSteerAngle.Name = "hsbarSteerAngle";
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(100, 47);
+            this.hsbarSteerAngle.TabIndex = 179;
+            this.hsbarSteerAngle.Value = 300;
+            this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
+            // 
+            // hsbarStepDistance
+            // 
+            this.hsbarStepDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.hsbarStepDistance.LargeChange = 5;
+            this.hsbarStepDistance.Location = new System.Drawing.Point(0, 0);
+            this.hsbarStepDistance.Maximum = 300;
+            this.hsbarStepDistance.Name = "hsbarStepDistance";
+            this.hsbarStepDistance.Size = new System.Drawing.Size(93, 44);
+            this.hsbarStepDistance.TabIndex = 178;
+            this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
+            // 
+            // btnSection8Man
+            // 
+            this.btnSection8Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection8Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection8Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection8Man.Enabled = false;
+            this.btnSection8Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection8Man.FlatAppearance.BorderSize = 0;
+            this.btnSection8Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection8Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection8Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection8Man.Location = new System.Drawing.Point(530, 613);
+            this.btnSection8Man.Name = "btnSection8Man";
+            this.btnSection8Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection8Man.TabIndex = 125;
+            this.btnSection8Man.Text = "8";
+            this.btnSection8Man.UseVisualStyleBackColor = false;
+            this.btnSection8Man.Click += new System.EventHandler(this.btnSection8Man_Click);
+            // 
+            // btnSection7Man
+            // 
+            this.btnSection7Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection7Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection7Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection7Man.Enabled = false;
+            this.btnSection7Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection7Man.FlatAppearance.BorderSize = 0;
+            this.btnSection7Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection7Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection7Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection7Man.Location = new System.Drawing.Point(518, 599);
+            this.btnSection7Man.Name = "btnSection7Man";
+            this.btnSection7Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection7Man.TabIndex = 126;
+            this.btnSection7Man.Text = "7";
+            this.btnSection7Man.UseVisualStyleBackColor = false;
+            this.btnSection7Man.Click += new System.EventHandler(this.btnSection7Man_Click);
+            // 
+            // btnSection6Man
+            // 
+            this.btnSection6Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection6Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection6Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection6Man.Enabled = false;
+            this.btnSection6Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection6Man.FlatAppearance.BorderSize = 0;
+            this.btnSection6Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection6Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection6Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection6Man.Location = new System.Drawing.Point(496, 581);
+            this.btnSection6Man.Name = "btnSection6Man";
+            this.btnSection6Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection6Man.TabIndex = 127;
+            this.btnSection6Man.Text = "6";
+            this.btnSection6Man.UseVisualStyleBackColor = false;
+            this.btnSection6Man.Click += new System.EventHandler(this.btnSection6Man_Click);
+            // 
+            // btnSection5Man
+            // 
+            this.btnSection5Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection5Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection5Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection5Man.Enabled = false;
+            this.btnSection5Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection5Man.FlatAppearance.BorderSize = 0;
+            this.btnSection5Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection5Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection5Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection5Man.Location = new System.Drawing.Point(475, 563);
+            this.btnSection5Man.Name = "btnSection5Man";
+            this.btnSection5Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection5Man.TabIndex = 103;
+            this.btnSection5Man.Text = "5";
+            this.btnSection5Man.UseVisualStyleBackColor = false;
+            this.btnSection5Man.Click += new System.EventHandler(this.btnSection5Man_Click);
+            // 
+            // btnSection4Man
+            // 
+            this.btnSection4Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection4Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection4Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection4Man.Enabled = false;
+            this.btnSection4Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection4Man.FlatAppearance.BorderSize = 0;
+            this.btnSection4Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection4Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection4Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection4Man.Location = new System.Drawing.Point(540, 540);
+            this.btnSection4Man.Name = "btnSection4Man";
+            this.btnSection4Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection4Man.TabIndex = 102;
+            this.btnSection4Man.Text = "4";
+            this.btnSection4Man.UseVisualStyleBackColor = false;
+            this.btnSection4Man.Click += new System.EventHandler(this.btnSection4Man_Click);
+            // 
+            // btnSection3Man
+            // 
+            this.btnSection3Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection3Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection3Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection3Man.Enabled = false;
+            this.btnSection3Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection3Man.FlatAppearance.BorderSize = 0;
+            this.btnSection3Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection3Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection3Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection3Man.Location = new System.Drawing.Point(519, 526);
+            this.btnSection3Man.Name = "btnSection3Man";
+            this.btnSection3Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection3Man.TabIndex = 101;
+            this.btnSection3Man.Text = "3";
+            this.btnSection3Man.UseVisualStyleBackColor = false;
+            this.btnSection3Man.Click += new System.EventHandler(this.btnSection3Man_Click);
+            // 
+            // btnSection2Man
+            // 
+            this.btnSection2Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection2Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection2Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection2Man.Enabled = false;
+            this.btnSection2Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection2Man.FlatAppearance.BorderSize = 0;
+            this.btnSection2Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection2Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection2Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection2Man.Location = new System.Drawing.Point(496, 508);
+            this.btnSection2Man.Name = "btnSection2Man";
+            this.btnSection2Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection2Man.TabIndex = 100;
+            this.btnSection2Man.Text = "2";
+            this.btnSection2Man.UseVisualStyleBackColor = false;
+            this.btnSection2Man.Click += new System.EventHandler(this.btnSection2Man_Click);
+            // 
+            // btnSection1Man
+            // 
+            this.btnSection1Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection1Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection1Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection1Man.Enabled = false;
+            this.btnSection1Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection1Man.FlatAppearance.BorderSize = 0;
+            this.btnSection1Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection1Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection1Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection1Man.Location = new System.Drawing.Point(479, 490);
+            this.btnSection1Man.Name = "btnSection1Man";
+            this.btnSection1Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection1Man.TabIndex = 99;
+            this.btnSection1Man.Text = "1";
+            this.btnSection1Man.UseVisualStyleBackColor = false;
+            this.btnSection1Man.Click += new System.EventHandler(this.btnSection1Man_Click);
+            // 
+            // btnSection9Man
+            // 
+            this.btnSection9Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection9Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection9Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection9Man.Enabled = false;
+            this.btnSection9Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection9Man.FlatAppearance.BorderSize = 0;
+            this.btnSection9Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection9Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection9Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection9Man.Location = new System.Drawing.Point(447, 642);
+            this.btnSection9Man.Name = "btnSection9Man";
+            this.btnSection9Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection9Man.TabIndex = 174;
+            this.btnSection9Man.Text = "9";
+            this.btnSection9Man.UseVisualStyleBackColor = false;
+            this.btnSection9Man.Click += new System.EventHandler(this.btnSection9Man_Click);
+            // 
+            // btnSection10Man
+            // 
+            this.btnSection10Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection10Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection10Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection10Man.Enabled = false;
+            this.btnSection10Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection10Man.FlatAppearance.BorderSize = 0;
+            this.btnSection10Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection10Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection10Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection10Man.Location = new System.Drawing.Point(472, 654);
+            this.btnSection10Man.Name = "btnSection10Man";
+            this.btnSection10Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection10Man.TabIndex = 175;
+            this.btnSection10Man.Text = "10";
+            this.btnSection10Man.UseVisualStyleBackColor = false;
+            this.btnSection10Man.Click += new System.EventHandler(this.btnSection10Man_Click);
+            // 
+            // btnSection11Man
+            // 
+            this.btnSection11Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection11Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection11Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection11Man.Enabled = false;
+            this.btnSection11Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection11Man.FlatAppearance.BorderSize = 0;
+            this.btnSection11Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection11Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection11Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection11Man.Location = new System.Drawing.Point(504, 663);
+            this.btnSection11Man.Name = "btnSection11Man";
+            this.btnSection11Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection11Man.TabIndex = 176;
+            this.btnSection11Man.Text = "11";
+            this.btnSection11Man.UseVisualStyleBackColor = false;
+            this.btnSection11Man.Click += new System.EventHandler(this.btnSection11Man_Click);
+            // 
+            // btnSection12Man
+            // 
+            this.btnSection12Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSection12Man.BackColor = System.Drawing.Color.Silver;
+            this.btnSection12Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSection12Man.Enabled = false;
+            this.btnSection12Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.btnSection12Man.FlatAppearance.BorderSize = 0;
+            this.btnSection12Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSection12Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btnSection12Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSection12Man.Location = new System.Drawing.Point(521, 678);
+            this.btnSection12Man.Name = "btnSection12Man";
+            this.btnSection12Man.Size = new System.Drawing.Size(52, 30);
+            this.btnSection12Man.TabIndex = 177;
+            this.btnSection12Man.Text = "12";
+            this.btnSection12Man.UseVisualStyleBackColor = false;
+            this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
+            // 
+            // oglMain
+            // 
+            this.oglMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.oglMain.BackColor = System.Drawing.Color.Black;
+            this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
+            this.oglMain.Location = new System.Drawing.Point(244, 49);
+            this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.oglMain.Name = "oglMain";
+            this.oglMain.Size = new System.Drawing.Size(555, 710);
+            this.oglMain.TabIndex = 180;
+            this.oglMain.VSync = false;
+            this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
+            this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
+            this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
+            this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
+            // 
+            // oglBack
+            // 
+            this.oglBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.oglBack.BackColor = System.Drawing.Color.Black;
+            this.oglBack.ForeColor = System.Drawing.Color.Transparent;
+            this.oglBack.Location = new System.Drawing.Point(248, 678);
+            this.oglBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.oglBack.Name = "oglBack";
+            this.oglBack.Size = new System.Drawing.Size(500, 500);
+            this.oglBack.TabIndex = 181;
+            this.oglBack.VSync = false;
+            this.oglBack.Load += new System.EventHandler(this.oglBack_Load);
+            this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
+            this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
+            // 
+            // lblHz
+            // 
+            this.lblHz.AutoSize = true;
+            this.lblHz.BackColor = System.Drawing.Color.Transparent;
+            this.lblHz.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHz.Location = new System.Drawing.Point(244, 3);
+            this.lblHz.Name = "lblHz";
+            this.lblHz.Size = new System.Drawing.Size(70, 38);
+            this.lblHz.TabIndex = 249;
+            this.lblHz.Text = "5 Hz 32\r\nPPS";
+            // 
+            // layoutPanelRight
+            // 
+            this.layoutPanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.layoutPanelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.layoutPanelRight.ColumnCount = 2;
+            this.layoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.layoutPanelRight.Controls.Add(this.btnContourPriority, 0, 0);
+            this.layoutPanelRight.Controls.Add(this.btnFlag, 0, 5);
+            this.layoutPanelRight.Controls.Add(this.btnCurve, 1, 0);
+            this.layoutPanelRight.Controls.Add(this.btnContour, 1, 1);
+            this.layoutPanelRight.Controls.Add(this.btnABLine, 1, 2);
+            this.layoutPanelRight.Controls.Add(this.btnMakeLinesFromBoundary, 0, 3);
+            this.layoutPanelRight.Controls.Add(this.btnManualOffOn, 1, 4);
+            this.layoutPanelRight.Controls.Add(this.btnAutoSteer, 1, 6);
+            this.layoutPanelRight.Controls.Add(this.btnSectionOffAutoOn, 1, 5);
+            this.layoutPanelRight.Controls.Add(this.btnAutoYouTurn, 0, 6);
+            this.layoutPanelRight.Controls.Add(this.btnCycleLines, 0, 2);
+            this.layoutPanelRight.Controls.Add(this.btnABMenu, 0, 1);
+            this.layoutPanelRight.Controls.Add(this.btnTramMenu, 1, 3);
+            this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
+            this.layoutPanelRight.Location = new System.Drawing.Point(801, 49);
+            this.layoutPanelRight.Name = "layoutPanelRight";
+            this.layoutPanelRight.RowCount = 7;
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.22403F));
+            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.layoutPanelRight.Size = new System.Drawing.Size(180, 710);
+            this.layoutPanelRight.TabIndex = 320;
+            // 
+            // contextMenuABLine
+            // 
+            this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editABToolStripMenuItem});
+            this.contextMenuABLine.Name = "contextMenuABLine";
+            this.contextMenuABLine.Size = new System.Drawing.Size(148, 58);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AllowItemReorder = true;
+            this.statusStrip1.BackColor = System.Drawing.Color.Azure;
+            this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripBatman,
+            this.distanceToolBtn,
+            this.ZoomExtentsStripBtn,
+            this.toolStripBtnGPSStength,
+            this.FontToolBtn,
+            this.EditABToolBtn,
+            this.youTurnStripBtn,
+            this.vehicleToolStripBtn,
+            this.toolStripDropDownButton2,
+            this.steerChartTool,
+            this.AutoSteerToolBtn,
+            this.steerAnglesToolStripDropDownButton1,
+            this.toolStripBtnField,
+            this.boundaryToolStripBtn,
+            this.toolStripBtnDropDownBoundaryTools,
+            this.snapLeftBigStrip,
+            this.snapLeftStrip,
+            this.snapRightStrip,
+            this.snapRightBigStrip,
+            this.stripEqWidth});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 759);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(984, 68);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 323;
+            // 
+            // stripEqWidth
+            // 
+            this.stripEqWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stripEqWidth.Name = "stripEqWidth";
+            this.stripEqWidth.Size = new System.Drawing.Size(69, 23);
+            this.stripEqWidth.Spring = true;
+            this.stripEqWidth.Text = "Vehicle";
+            this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // statusStripLeft
+            // 
+            this.statusStripLeft.AllowMerge = false;
+            this.statusStripLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.statusStripLeft.AutoSize = false;
+            this.statusStripLeft.BackColor = System.Drawing.Color.Transparent;
+            this.statusStripLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.statusStripLeft.Dock = System.Windows.Forms.DockStyle.None;
+            this.statusStripLeft.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStripLeft.ImageScalingSize = new System.Drawing.Size(56, 56);
+            this.statusStripLeft.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuRecPath,
+            this.toolStripStatusLabel1,
+            this.pbarAutoSteerComm,
+            this.toolStripStatusLabel2,
+            this.pbarUDPComm,
+            this.cameraDropDown,
+            this.toolStripBtnDrag,
+            this.toolStripDropDownButton3,
+            this.toolStripLblFieldFinish,
+            this.pbarNtripMenu,
+            this.NTRIPBytesMenu,
+            this.toolStripBtnPower});
+            this.statusStripLeft.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.statusStripLeft.Location = new System.Drawing.Point(0, 48);
+            this.statusStripLeft.Name = "statusStripLeft";
+            this.statusStripLeft.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStripLeft.Size = new System.Drawing.Size(74, 709);
+            this.statusStripLeft.SizingGrip = false;
+            this.statusStripLeft.Stretch = false;
+            this.statusStripLeft.TabIndex = 324;
+            this.statusStripLeft.Text = "UDP";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 16);
+            this.toolStripStatusLabel1.Text = "Steer";
+            // 
+            // pbarAutoSteerComm
+            // 
+            this.pbarAutoSteerComm.Maximum = 256;
+            this.pbarAutoSteerComm.Name = "pbarAutoSteerComm";
+            this.pbarAutoSteerComm.Size = new System.Drawing.Size(68, 7);
+            this.pbarAutoSteerComm.Value = 20;
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(33, 16);
+            this.toolStripStatusLabel2.Text = "UDP";
+            // 
+            // pbarUDPComm
+            // 
+            this.pbarUDPComm.Maximum = 256;
+            this.pbarUDPComm.Name = "pbarUDPComm";
+            this.pbarUDPComm.Size = new System.Drawing.Size(68, 7);
+            this.pbarUDPComm.Value = 10;
+            // 
+            // toolStripLblFieldFinish
+            // 
+            this.toolStripLblFieldFinish.AutoSize = false;
+            this.toolStripLblFieldFinish.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLblFieldFinish.Name = "toolStripLblFieldFinish";
+            this.toolStripLblFieldFinish.Size = new System.Drawing.Size(72, 72);
+            this.toolStripLblFieldFinish.Text = "----";
+            this.toolStripLblFieldFinish.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // pbarNtripMenu
+            // 
+            this.pbarNtripMenu.Maximum = 256;
+            this.pbarNtripMenu.Name = "pbarNtripMenu";
+            this.pbarNtripMenu.Size = new System.Drawing.Size(68, 7);
+            this.pbarNtripMenu.Value = 20;
+            // 
+            // NTRIPBytesMenu
+            // 
+            this.NTRIPBytesMenu.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NTRIPBytesMenu.Name = "NTRIPBytesMenu";
+            this.NTRIPBytesMenu.Size = new System.Drawing.Size(35, 16);
+            this.NTRIPBytesMenu.Text = "0 kb";
+            // 
+            // panelSim
+            // 
+            this.panelSim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelSim.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelSim.ColumnCount = 5;
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
+            this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
+            this.panelSim.Controls.Add(this.hsbarStepDistance, 0, 0);
+            this.panelSim.Controls.Add(this.btnResetSim, 1, 0);
+            this.panelSim.Location = new System.Drawing.Point(235, 709);
+            this.panelSim.Name = "panelSim";
+            this.panelSim.RowCount = 1;
+            this.panelSim.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelSim.Size = new System.Drawing.Size(320, 47);
+            this.panelSim.TabIndex = 325;
+            // 
+            // lblDistanceOffLine
+            // 
+            this.lblDistanceOffLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblDistanceOffLine.BackColor = System.Drawing.Color.Transparent;
+            this.lblDistanceOffLine.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDistanceOffLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDistanceOffLine.Location = new System.Drawing.Point(508, 0);
+            this.lblDistanceOffLine.Name = "lblDistanceOffLine";
+            this.lblDistanceOffLine.Size = new System.Drawing.Size(146, 40);
+            this.lblDistanceOffLine.TabIndex = 328;
+            this.lblDistanceOffLine.Text = "88.8";
+            this.lblDistanceOffLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panelEditAB
+            // 
+            this.panelEditAB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEditAB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelEditAB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panelEditAB.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.panelEditAB.ColumnCount = 1;
+            this.panelEditAB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelEditAB.Controls.Add(this.btnSaveAB, 0, 0);
+            this.panelEditAB.Controls.Add(this.btnEditHeadingB, 0, 1);
+            this.panelEditAB.Controls.Add(this.btnBigSnapLeft, 0, 5);
+            this.panelEditAB.Controls.Add(this.btnBigSnapRight, 0, 4);
+            this.panelEditAB.Controls.Add(this.btnSnapLeft, 0, 3);
+            this.panelEditAB.Controls.Add(this.btnSnapRight, 0, 2);
+            this.panelEditAB.Location = new System.Drawing.Point(723, 65);
+            this.panelEditAB.Name = "panelEditAB";
+            this.panelEditAB.RowCount = 6;
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.panelEditAB.Size = new System.Drawing.Size(72, 480);
+            this.panelEditAB.TabIndex = 329;
+            this.panelEditAB.Visible = false;
             // 
             // repeatButton1
             // 
@@ -1427,693 +1522,335 @@
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnMoveDown_MouseDown);
             // 
-            // btnResetSim
-            // 
-            this.btnResetSim.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.btnResetSim.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(96, 3);
-            this.btnResetSim.Name = "btnResetSim";
-            this.btnResetSim.Size = new System.Drawing.Size(40, 34);
-            this.btnResetSim.TabIndex = 164;
-            this.btnResetSim.Text = "Rst";
-            this.btnResetSim.UseVisualStyleBackColor = false;
-            this.btnResetSim.Click += new System.EventHandler(this.btnResetSim_Click);
-            // 
-            // btnResetSteerAngle
-            // 
-            this.btnResetSteerAngle.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnResetSteerAngle.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
-            this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(242, 3);
-            this.btnResetSteerAngle.Name = "btnResetSteerAngle";
-            this.btnResetSteerAngle.Size = new System.Drawing.Size(50, 34);
-            this.btnResetSteerAngle.TabIndex = 162;
-            this.btnResetSteerAngle.Text = "0";
-            this.btnResetSteerAngle.UseVisualStyleBackColor = false;
-            this.btnResetSteerAngle.Click += new System.EventHandler(this.btnResetSteerAngle_Click);
-            // 
-            // timerSim
-            // 
-            this.timerSim.Enabled = true;
-            this.timerSim.Interval = 200;
-            this.timerSim.Tick += new System.EventHandler(this.timerSim_Tick);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(334, 62);
-            this.toolStripMenuItem2.Text = "toolStripMenuItem2";
-            // 
-            // hsbarSteerAngle
-            // 
-            this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(139, 0);
-            this.hsbarSteerAngle.Maximum = 600;
-            this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(100, 38);
-            this.hsbarSteerAngle.TabIndex = 179;
-            this.hsbarSteerAngle.Value = 300;
-            this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
-            // 
-            // hsbarStepDistance
-            // 
-            this.hsbarStepDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.hsbarStepDistance.LargeChange = 5;
-            this.hsbarStepDistance.Location = new System.Drawing.Point(0, 0);
-            this.hsbarStepDistance.Maximum = 300;
-            this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(93, 38);
-            this.hsbarStepDistance.TabIndex = 178;
-            this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
-            // 
-            // btnSection8Man
-            // 
-            this.btnSection8Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection8Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection8Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection8Man.Enabled = false;
-            this.btnSection8Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection8Man.FlatAppearance.BorderSize = 0;
-            this.btnSection8Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection8Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection8Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection8Man.Location = new System.Drawing.Point(530, 530);
-            this.btnSection8Man.Name = "btnSection8Man";
-            this.btnSection8Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection8Man.TabIndex = 125;
-            this.btnSection8Man.Text = "8";
-            this.btnSection8Man.UseVisualStyleBackColor = false;
-            this.btnSection8Man.Click += new System.EventHandler(this.btnSection8Man_Click);
-            // 
-            // btnSection7Man
-            // 
-            this.btnSection7Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection7Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection7Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection7Man.Enabled = false;
-            this.btnSection7Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection7Man.FlatAppearance.BorderSize = 0;
-            this.btnSection7Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection7Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection7Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection7Man.Location = new System.Drawing.Point(518, 516);
-            this.btnSection7Man.Name = "btnSection7Man";
-            this.btnSection7Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection7Man.TabIndex = 126;
-            this.btnSection7Man.Text = "7";
-            this.btnSection7Man.UseVisualStyleBackColor = false;
-            this.btnSection7Man.Click += new System.EventHandler(this.btnSection7Man_Click);
-            // 
-            // btnSection6Man
-            // 
-            this.btnSection6Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection6Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection6Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection6Man.Enabled = false;
-            this.btnSection6Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection6Man.FlatAppearance.BorderSize = 0;
-            this.btnSection6Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection6Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection6Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection6Man.Location = new System.Drawing.Point(496, 498);
-            this.btnSection6Man.Name = "btnSection6Man";
-            this.btnSection6Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection6Man.TabIndex = 127;
-            this.btnSection6Man.Text = "6";
-            this.btnSection6Man.UseVisualStyleBackColor = false;
-            this.btnSection6Man.Click += new System.EventHandler(this.btnSection6Man_Click);
-            // 
-            // btnSection5Man
-            // 
-            this.btnSection5Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection5Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection5Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection5Man.Enabled = false;
-            this.btnSection5Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection5Man.FlatAppearance.BorderSize = 0;
-            this.btnSection5Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection5Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection5Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection5Man.Location = new System.Drawing.Point(475, 480);
-            this.btnSection5Man.Name = "btnSection5Man";
-            this.btnSection5Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection5Man.TabIndex = 103;
-            this.btnSection5Man.Text = "5";
-            this.btnSection5Man.UseVisualStyleBackColor = false;
-            this.btnSection5Man.Click += new System.EventHandler(this.btnSection5Man_Click);
-            // 
-            // btnSection4Man
-            // 
-            this.btnSection4Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection4Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection4Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection4Man.Enabled = false;
-            this.btnSection4Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection4Man.FlatAppearance.BorderSize = 0;
-            this.btnSection4Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection4Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection4Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection4Man.Location = new System.Drawing.Point(540, 457);
-            this.btnSection4Man.Name = "btnSection4Man";
-            this.btnSection4Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection4Man.TabIndex = 102;
-            this.btnSection4Man.Text = "4";
-            this.btnSection4Man.UseVisualStyleBackColor = false;
-            this.btnSection4Man.Click += new System.EventHandler(this.btnSection4Man_Click);
-            // 
-            // btnSection3Man
-            // 
-            this.btnSection3Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection3Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection3Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection3Man.Enabled = false;
-            this.btnSection3Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection3Man.FlatAppearance.BorderSize = 0;
-            this.btnSection3Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection3Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection3Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection3Man.Location = new System.Drawing.Point(519, 443);
-            this.btnSection3Man.Name = "btnSection3Man";
-            this.btnSection3Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection3Man.TabIndex = 101;
-            this.btnSection3Man.Text = "3";
-            this.btnSection3Man.UseVisualStyleBackColor = false;
-            this.btnSection3Man.Click += new System.EventHandler(this.btnSection3Man_Click);
-            // 
-            // btnSection2Man
-            // 
-            this.btnSection2Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection2Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection2Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection2Man.Enabled = false;
-            this.btnSection2Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection2Man.FlatAppearance.BorderSize = 0;
-            this.btnSection2Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection2Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection2Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection2Man.Location = new System.Drawing.Point(496, 425);
-            this.btnSection2Man.Name = "btnSection2Man";
-            this.btnSection2Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection2Man.TabIndex = 100;
-            this.btnSection2Man.Text = "2";
-            this.btnSection2Man.UseVisualStyleBackColor = false;
-            this.btnSection2Man.Click += new System.EventHandler(this.btnSection2Man_Click);
-            // 
-            // btnSection1Man
-            // 
-            this.btnSection1Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection1Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection1Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection1Man.Enabled = false;
-            this.btnSection1Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection1Man.FlatAppearance.BorderSize = 0;
-            this.btnSection1Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection1Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection1Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection1Man.Location = new System.Drawing.Point(479, 407);
-            this.btnSection1Man.Name = "btnSection1Man";
-            this.btnSection1Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection1Man.TabIndex = 99;
-            this.btnSection1Man.Text = "1";
-            this.btnSection1Man.UseVisualStyleBackColor = false;
-            this.btnSection1Man.Click += new System.EventHandler(this.btnSection1Man_Click);
-            // 
-            // btnSection9Man
-            // 
-            this.btnSection9Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection9Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection9Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection9Man.Enabled = false;
-            this.btnSection9Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection9Man.FlatAppearance.BorderSize = 0;
-            this.btnSection9Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection9Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection9Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection9Man.Location = new System.Drawing.Point(447, 559);
-            this.btnSection9Man.Name = "btnSection9Man";
-            this.btnSection9Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection9Man.TabIndex = 174;
-            this.btnSection9Man.Text = "9";
-            this.btnSection9Man.UseVisualStyleBackColor = false;
-            this.btnSection9Man.Click += new System.EventHandler(this.btnSection9Man_Click);
-            // 
-            // btnSection10Man
-            // 
-            this.btnSection10Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection10Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection10Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection10Man.Enabled = false;
-            this.btnSection10Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection10Man.FlatAppearance.BorderSize = 0;
-            this.btnSection10Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection10Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection10Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection10Man.Location = new System.Drawing.Point(472, 571);
-            this.btnSection10Man.Name = "btnSection10Man";
-            this.btnSection10Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection10Man.TabIndex = 175;
-            this.btnSection10Man.Text = "10";
-            this.btnSection10Man.UseVisualStyleBackColor = false;
-            this.btnSection10Man.Click += new System.EventHandler(this.btnSection10Man_Click);
-            // 
-            // btnSection11Man
-            // 
-            this.btnSection11Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection11Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection11Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection11Man.Enabled = false;
-            this.btnSection11Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection11Man.FlatAppearance.BorderSize = 0;
-            this.btnSection11Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection11Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection11Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection11Man.Location = new System.Drawing.Point(504, 580);
-            this.btnSection11Man.Name = "btnSection11Man";
-            this.btnSection11Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection11Man.TabIndex = 176;
-            this.btnSection11Man.Text = "11";
-            this.btnSection11Man.UseVisualStyleBackColor = false;
-            this.btnSection11Man.Click += new System.EventHandler(this.btnSection11Man_Click);
-            // 
-            // btnSection12Man
-            // 
-            this.btnSection12Man.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSection12Man.BackColor = System.Drawing.Color.Silver;
-            this.btnSection12Man.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSection12Man.Enabled = false;
-            this.btnSection12Man.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.btnSection12Man.FlatAppearance.BorderSize = 0;
-            this.btnSection12Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSection12Man.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnSection12Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection12Man.Location = new System.Drawing.Point(521, 595);
-            this.btnSection12Man.Name = "btnSection12Man";
-            this.btnSection12Man.Size = new System.Drawing.Size(52, 30);
-            this.btnSection12Man.TabIndex = 177;
-            this.btnSection12Man.Text = "12";
-            this.btnSection12Man.UseVisualStyleBackColor = false;
-            this.btnSection12Man.Click += new System.EventHandler(this.btnSection12Man_Click);
-            // 
-            // oglMain
-            // 
-            this.oglMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.oglMain.BackColor = System.Drawing.Color.Black;
-            this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(244, 49);
-            this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(555, 627);
-            this.oglMain.TabIndex = 180;
-            this.oglMain.VSync = false;
-            this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
-            this.oglMain.Paint += new System.Windows.Forms.PaintEventHandler(this.oglMain_Paint);
-            this.oglMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglMain_MouseDown);
-            this.oglMain.Resize += new System.EventHandler(this.oglMain_Resize);
-            // 
-            // oglBack
-            // 
-            this.oglBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.oglBack.BackColor = System.Drawing.Color.Black;
-            this.oglBack.ForeColor = System.Drawing.Color.Transparent;
-            this.oglBack.Location = new System.Drawing.Point(248, 595);
-            this.oglBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.oglBack.Name = "oglBack";
-            this.oglBack.Size = new System.Drawing.Size(500, 500);
-            this.oglBack.TabIndex = 181;
-            this.oglBack.VSync = false;
-            this.oglBack.Load += new System.EventHandler(this.oglBack_Load);
-            this.oglBack.Paint += new System.Windows.Forms.PaintEventHandler(this.oglBack_Paint);
-            this.oglBack.Resize += new System.EventHandler(this.oglBack_Resize);
-            // 
-            // lblHz
-            // 
-            this.lblHz.AutoSize = true;
-            this.lblHz.BackColor = System.Drawing.Color.Transparent;
-            this.lblHz.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(244, 3);
-            this.lblHz.Name = "lblHz";
-            this.lblHz.Size = new System.Drawing.Size(70, 38);
-            this.lblHz.TabIndex = 249;
-            this.lblHz.Text = "5 Hz 32\r\nPPS";
-            // 
-            // layoutPanelRight
-            // 
-            this.layoutPanelRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.layoutPanelRight.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.layoutPanelRight.ColumnCount = 2;
-            this.layoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutPanelRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.layoutPanelRight.Controls.Add(this.btnContourPriority, 0, 0);
-            this.layoutPanelRight.Controls.Add(this.btnFlag, 0, 5);
-            this.layoutPanelRight.Controls.Add(this.btnCurve, 1, 0);
-            this.layoutPanelRight.Controls.Add(this.btnContour, 1, 1);
-            this.layoutPanelRight.Controls.Add(this.btnABLine, 1, 2);
-            this.layoutPanelRight.Controls.Add(this.btnMakeLinesFromBoundary, 0, 3);
-            this.layoutPanelRight.Controls.Add(this.btnManualOffOn, 1, 4);
-            this.layoutPanelRight.Controls.Add(this.btnAutoSteer, 1, 6);
-            this.layoutPanelRight.Controls.Add(this.btnSectionOffAutoOn, 1, 5);
-            this.layoutPanelRight.Controls.Add(this.btnAutoYouTurn, 0, 6);
-            this.layoutPanelRight.Controls.Add(this.btnCycleLines, 0, 2);
-            this.layoutPanelRight.Controls.Add(this.btnABMenu, 0, 1);
-            this.layoutPanelRight.Controls.Add(this.btnTramMenu, 1, 3);
-            this.layoutPanelRight.Controls.Add(this.cboxpRowWidth, 0, 4);
-            this.layoutPanelRight.Location = new System.Drawing.Point(801, 49);
-            this.layoutPanelRight.Name = "layoutPanelRight";
-            this.layoutPanelRight.RowCount = 7;
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.33226F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.9264F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.22403F));
-            this.layoutPanelRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.layoutPanelRight.Size = new System.Drawing.Size(180, 627);
-            this.layoutPanelRight.TabIndex = 320;
-            // 
-            // btnContourPriority
-            // 
-            this.btnContourPriority.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
-            this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnContourPriority.FlatAppearance.BorderSize = 0;
-            this.btnContourPriority.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.Snap2;
-            this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(5, 9);
-            this.btnContourPriority.Name = "btnContourPriority";
-            this.btnContourPriority.Size = new System.Drawing.Size(80, 65);
-            this.btnContourPriority.TabIndex = 178;
-            this.btnContourPriority.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnContourPriority.UseVisualStyleBackColor = false;
-            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
-            // 
-            // btnFlag
-            // 
-            this.btnFlag.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnFlag.FlatAppearance.BorderSize = 0;
-            this.btnFlag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlag.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
-            this.btnFlag.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFlag.Location = new System.Drawing.Point(5, 445);
-            this.btnFlag.Name = "btnFlag";
-            this.btnFlag.Size = new System.Drawing.Size(80, 74);
-            this.btnFlag.TabIndex = 121;
-            this.btnFlag.Text = "234.6";
-            this.btnFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnFlag.UseVisualStyleBackColor = false;
-            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
-            // 
-            // btnCurve
-            // 
-            this.btnCurve.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCurve.BackColor = System.Drawing.Color.Transparent;
-            this.btnCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCurve.Enabled = false;
-            this.btnCurve.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCurve.FlatAppearance.BorderSize = 0;
-            this.btnCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
-            this.btnCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCurve.Location = new System.Drawing.Point(94, 9);
-            this.btnCurve.Name = "btnCurve";
-            this.btnCurve.Size = new System.Drawing.Size(80, 65);
-            this.btnCurve.TabIndex = 173;
-            this.btnCurve.Text = "# 4";
-            this.btnCurve.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCurve.UseVisualStyleBackColor = false;
-            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
-            // 
-            // btnContour
-            // 
-            this.btnContour.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnContour.BackColor = System.Drawing.Color.Transparent;
-            this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnContour.Enabled = false;
-            this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnContour.FlatAppearance.BorderSize = 0;
-            this.btnContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnContour.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
-            this.btnContour.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContour.Location = new System.Drawing.Point(94, 92);
-            this.btnContour.Name = "btnContour";
-            this.btnContour.Size = new System.Drawing.Size(80, 65);
-            this.btnContour.TabIndex = 105;
-            this.btnContour.Text = "1 cm";
-            this.btnContour.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnContour.UseVisualStyleBackColor = false;
-            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // btnABLine
-            // 
-            this.btnABLine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
-            this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnABLine.ContextMenuStrip = this.contextMenuABLine;
-            this.btnABLine.Enabled = false;
-            this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnABLine.FlatAppearance.BorderSize = 0;
-            this.btnABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-            this.btnABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABLine.Location = new System.Drawing.Point(94, 175);
-            this.btnABLine.Name = "btnABLine";
-            this.btnABLine.Size = new System.Drawing.Size(80, 65);
-            this.btnABLine.TabIndex = 0;
-            this.btnABLine.Text = "# 3";
-            this.btnABLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnABLine.UseVisualStyleBackColor = false;
-            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
-            // 
-            // contextMenuABLine
-            // 
-            this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editABToolStripMenuItem});
-            this.contextMenuABLine.Name = "contextMenuABLine";
-            this.contextMenuABLine.Size = new System.Drawing.Size(148, 58);
-            // 
-            // editABToolStripMenuItem
-            // 
-            this.editABToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.editABToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Start48;
-            this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
-            this.editABToolStripMenuItem.Size = new System.Drawing.Size(147, 54);
-            this.editABToolStripMenuItem.Text = "EditAB";
-            // 
-            // btnMakeLinesFromBoundary
-            // 
-            this.btnMakeLinesFromBoundary.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMakeLinesFromBoundary.BackColor = System.Drawing.Color.Transparent;
-            this.btnMakeLinesFromBoundary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMakeLinesFromBoundary.Enabled = false;
-            this.btnMakeLinesFromBoundary.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnMakeLinesFromBoundary.FlatAppearance.BorderSize = 0;
-            this.btnMakeLinesFromBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMakeLinesFromBoundary.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.btnMakeLinesFromBoundary.Image = global::AgOpenGPS.Properties.Resources.PointStart;
-            this.btnMakeLinesFromBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeLinesFromBoundary.Location = new System.Drawing.Point(5, 259);
-            this.btnMakeLinesFromBoundary.Name = "btnMakeLinesFromBoundary";
-            this.btnMakeLinesFromBoundary.Size = new System.Drawing.Size(80, 74);
-            this.btnMakeLinesFromBoundary.TabIndex = 250;
-            this.btnMakeLinesFromBoundary.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMakeLinesFromBoundary.UseVisualStyleBackColor = false;
-            this.btnMakeLinesFromBoundary.Click += new System.EventHandler(this.BtnMakeLinesFromBoundary_Click);
-            // 
-            // btnManualOffOn
-            // 
-            this.btnManualOffOn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnManualOffOn.BackColor = System.Drawing.Color.Transparent;
-            this.btnManualOffOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnManualOffOn.Enabled = false;
-            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnManualOffOn.FlatAppearance.BorderSize = 0;
-            this.btnManualOffOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualOffOn.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.btnManualOffOn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnManualOffOn.Location = new System.Drawing.Point(94, 352);
-            this.btnManualOffOn.Name = "btnManualOffOn";
-            this.btnManualOffOn.Size = new System.Drawing.Size(80, 74);
-            this.btnManualOffOn.TabIndex = 98;
-            this.btnManualOffOn.UseVisualStyleBackColor = false;
-            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
-            // 
-            // btnAutoSteer
-            // 
-            this.btnAutoSteer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoSteer.Enabled = false;
-            this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAutoSteer.FlatAppearance.BorderSize = 0;
-            this.btnAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
-            this.btnAutoSteer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoSteer.Location = new System.Drawing.Point(94, 536);
-            this.btnAutoSteer.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAutoSteer.Name = "btnAutoSteer";
-            this.btnAutoSteer.Size = new System.Drawing.Size(80, 83);
-            this.btnAutoSteer.TabIndex = 128;
-            this.btnAutoSteer.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.btnAutoSteer.UseVisualStyleBackColor = false;
-            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
-            // 
-            // btnSectionOffAutoOn
-            // 
-            this.btnSectionOffAutoOn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Transparent;
-            this.btnSectionOffAutoOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSectionOffAutoOn.Enabled = false;
-            this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSectionOffAutoOn.FlatAppearance.BorderSize = 0;
-            this.btnSectionOffAutoOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.btnSectionOffAutoOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSectionOffAutoOn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(94, 442);
-            this.btnSectionOffAutoOn.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
-            this.btnSectionOffAutoOn.Size = new System.Drawing.Size(80, 80);
-            this.btnSectionOffAutoOn.TabIndex = 152;
-            this.btnSectionOffAutoOn.Text = "888.8";
-            this.btnSectionOffAutoOn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
-            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
-            // 
-            // btnAutoYouTurn
-            // 
-            this.btnAutoYouTurn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
-            this.btnAutoYouTurn.Enabled = false;
-            this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAutoYouTurn.FlatAppearance.BorderSize = 0;
-            this.btnAutoYouTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutoYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
-            this.btnAutoYouTurn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAutoYouTurn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAutoYouTurn.Location = new System.Drawing.Point(5, 539);
-            this.btnAutoYouTurn.Name = "btnAutoYouTurn";
-            this.btnAutoYouTurn.Size = new System.Drawing.Size(80, 77);
-            this.btnAutoYouTurn.TabIndex = 132;
-            this.btnAutoYouTurn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAutoYouTurn.UseVisualStyleBackColor = false;
-            this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
-            // 
-            // btnCycleLines
-            // 
-            this.btnCycleLines.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCycleLines.BackColor = System.Drawing.Color.Transparent;
-            this.btnCycleLines.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCycleLines.Enabled = false;
-            this.btnCycleLines.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
-            this.btnCycleLines.FlatAppearance.BorderSize = 0;
-            this.btnCycleLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCycleLines.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
-            this.btnCycleLines.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCycleLines.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCycleLines.Location = new System.Drawing.Point(5, 175);
-            this.btnCycleLines.Name = "btnCycleLines";
-            this.btnCycleLines.Size = new System.Drawing.Size(80, 65);
-            this.btnCycleLines.TabIndex = 251;
-            this.btnCycleLines.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnCycleLines.UseVisualStyleBackColor = false;
-            this.btnCycleLines.Click += new System.EventHandler(this.btnCycleLines_Click);
-            // 
-            // btnABMenu
-            // 
-            this.btnABMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnABMenu.BackColor = System.Drawing.Color.Transparent;
-            this.btnABMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnABMenu.FlatAppearance.BorderSize = 0;
-            this.btnABMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnABMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABMenu.Image = global::AgOpenGPS.Properties.Resources.ABLineEditMenu;
-            this.btnABMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnABMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABMenu.Location = new System.Drawing.Point(5, 92);
-            this.btnABMenu.Name = "btnABMenu";
-            this.btnABMenu.Size = new System.Drawing.Size(80, 65);
-            this.btnABMenu.TabIndex = 317;
-            this.btnABMenu.Text = "0 cm";
-            this.btnABMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnABMenu.UseVisualStyleBackColor = false;
-            this.btnABMenu.Click += new System.EventHandler(this.btnABMenu_Click);
-            // 
-            // btnTramMenu
-            // 
-            this.btnTramMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnTramMenu.BackColor = System.Drawing.Color.Transparent;
-            this.btnTramMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnTramMenu.FlatAppearance.BorderSize = 0;
-            this.btnTramMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTramMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTramMenu.Image = global::AgOpenGPS.Properties.Resources.ABTramLine;
-            this.btnTramMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnTramMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTramMenu.Location = new System.Drawing.Point(93, 261);
-            this.btnTramMenu.Name = "btnTramMenu";
-            this.btnTramMenu.Size = new System.Drawing.Size(82, 70);
-            this.btnTramMenu.TabIndex = 330;
-            this.btnTramMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnTramMenu.UseVisualStyleBackColor = false;
-            this.btnTramMenu.Click += new System.EventHandler(this.btnTramMenu_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.AllowItemReorder = true;
-            this.statusStrip1.BackColor = System.Drawing.Color.Azure;
-            this.statusStrip1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(48, 48);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripBatman,
-            this.distanceToolBtn,
-            this.ZoomExtentsStripBtn,
-            this.toolStripBtnGPSStength,
-            this.FontToolBtn,
-            this.EditABToolBtn,
-            this.youTurnStripBtn,
-            this.vehicleToolStripBtn,
-            this.toolStripDropDownButton2,
-            this.steerChartTool,
-            this.AutoSteerToolBtn,
-            this.steerAnglesToolStripDropDownButton1,
-            this.toolStripBtnField,
-            this.boundaryToolStripBtn,
-            this.toolStripBtnDropDownBoundaryTools,
-            this.snapLeftBigStrip,
-            this.snapLeftStrip,
-            this.snapRightStrip,
-            this.snapRightBigStrip,
-            this.stripEqWidth});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 676);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(984, 68);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 323;
+            // btnSaveAB
+            // 
+            this.btnSaveAB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSaveAB.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveAB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSaveAB.FlatAppearance.BorderSize = 0;
+            this.btnSaveAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAB.Image = global::AgOpenGPS.Properties.Resources.ABLineSave;
+            this.btnSaveAB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSaveAB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSaveAB.Location = new System.Drawing.Point(4, 15);
+            this.btnSaveAB.Name = "btnSaveAB";
+            this.btnSaveAB.Size = new System.Drawing.Size(64, 50);
+            this.btnSaveAB.TabIndex = 182;
+            this.btnSaveAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSaveAB.UseVisualStyleBackColor = false;
+            this.btnSaveAB.Click += new System.EventHandler(this.btnSaveAB_Click);
+            // 
+            // btnEditHeadingB
+            // 
+            this.btnEditHeadingB.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnEditHeadingB.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditHeadingB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnEditHeadingB.FlatAppearance.BorderSize = 0;
+            this.btnEditHeadingB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEditHeadingB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditHeadingB.Image = global::AgOpenGPS.Properties.Resources.ABLineEdit;
+            this.btnEditHeadingB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEditHeadingB.Location = new System.Drawing.Point(4, 87);
+            this.btnEditHeadingB.Name = "btnEditHeadingB";
+            this.btnEditHeadingB.Size = new System.Drawing.Size(64, 63);
+            this.btnEditHeadingB.TabIndex = 330;
+            this.btnEditHeadingB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEditHeadingB.UseVisualStyleBackColor = false;
+            this.btnEditHeadingB.Click += new System.EventHandler(this.btnEditAB_Click);
+            // 
+            // btnBigSnapLeft
+            // 
+            this.btnBigSnapLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBigSnapLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnBigSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnBigSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigSnapLeft.FlatAppearance.BorderSize = 0;
+            this.btnBigSnapLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBigSnapLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBigSnapLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
+            this.btnBigSnapLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBigSnapLeft.Location = new System.Drawing.Point(4, 416);
+            this.btnBigSnapLeft.Name = "btnBigSnapLeft";
+            this.btnBigSnapLeft.Size = new System.Drawing.Size(64, 43);
+            this.btnBigSnapLeft.TabIndex = 446;
+            this.btnBigSnapLeft.UseVisualStyleBackColor = false;
+            this.btnBigSnapLeft.Click += new System.EventHandler(this.btnSnapLeft_Click);
+            // 
+            // btnBigSnapRight
+            // 
+            this.btnBigSnapRight.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBigSnapRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnBigSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnBigSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBigSnapRight.FlatAppearance.BorderSize = 0;
+            this.btnBigSnapRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBigSnapRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBigSnapRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnBigSnapRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBigSnapRight.Location = new System.Drawing.Point(4, 334);
+            this.btnBigSnapRight.Name = "btnBigSnapRight";
+            this.btnBigSnapRight.Size = new System.Drawing.Size(64, 43);
+            this.btnBigSnapRight.TabIndex = 447;
+            this.btnBigSnapRight.UseVisualStyleBackColor = false;
+            this.btnBigSnapRight.Click += new System.EventHandler(this.btnSnapRight_Click);
+            // 
+            // btnSnapLeft
+            // 
+            this.btnSnapLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSnapLeft.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSnapLeft.FlatAppearance.BorderSize = 0;
+            this.btnSnapLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSnapLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnSnapLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
+            this.btnSnapLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSnapLeft.Location = new System.Drawing.Point(4, 255);
+            this.btnSnapLeft.Name = "btnSnapLeft";
+            this.btnSnapLeft.Size = new System.Drawing.Size(64, 43);
+            this.btnSnapLeft.TabIndex = 251;
+            this.btnSnapLeft.UseVisualStyleBackColor = false;
+            this.btnSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
+            // 
+            // btnSnapRight
+            // 
+            this.btnSnapRight.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSnapRight.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSnapRight.FlatAppearance.BorderSize = 0;
+            this.btnSnapRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSnapRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnSnapRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
+            this.btnSnapRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSnapRight.Location = new System.Drawing.Point(5, 176);
+            this.btnSnapRight.Name = "btnSnapRight";
+            this.btnSnapRight.Size = new System.Drawing.Size(61, 44);
+            this.btnSnapRight.TabIndex = 276;
+            this.btnSnapRight.UseVisualStyleBackColor = false;
+            this.btnSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
+            // 
+            // toolStripMenuItemFlagRed
+            // 
+            this.toolStripMenuItemFlagRed.AutoSize = false;
+            this.toolStripMenuItemFlagRed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuItemFlagRed.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuItemFlagRed.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.toolStripMenuItemFlagRed.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuItemFlagRed.Name = "toolStripMenuItemFlagRed";
+            this.toolStripMenuItemFlagRed.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuItemFlagRed.Text = ".";
+            this.toolStripMenuItemFlagRed.Click += new System.EventHandler(this.toolStripMenuItemFlagRed_Click);
+            // 
+            // toolStripMenuFlagGrn
+            // 
+            this.toolStripMenuFlagGrn.AutoSize = false;
+            this.toolStripMenuFlagGrn.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagGrn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagGrn.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
+            this.toolStripMenuFlagGrn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagGrn.Name = "toolStripMenuFlagGrn";
+            this.toolStripMenuFlagGrn.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagGrn.Text = ".";
+            this.toolStripMenuFlagGrn.Click += new System.EventHandler(this.toolStripMenuGrn_Click);
+            // 
+            // toolStripMenuFlagYel
+            // 
+            this.toolStripMenuFlagYel.AutoSize = false;
+            this.toolStripMenuFlagYel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagYel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagYel.Image = global::AgOpenGPS.Properties.Resources.FlagYel;
+            this.toolStripMenuFlagYel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagYel.Name = "toolStripMenuFlagYel";
+            this.toolStripMenuFlagYel.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagYel.Text = ".";
+            this.toolStripMenuFlagYel.Click += new System.EventHandler(this.toolStripMenuYel_Click);
+            // 
+            // toolStripMenuFlagDelete
+            // 
+            this.toolStripMenuFlagDelete.AutoSize = false;
+            this.toolStripMenuFlagDelete.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.toolStripMenuFlagDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuFlagDelete.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
+            this.toolStripMenuFlagDelete.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagDelete.Name = "toolStripMenuFlagDelete";
+            this.toolStripMenuFlagDelete.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagDelete.Text = ".";
+            this.toolStripMenuFlagDelete.Click += new System.EventHandler(this.toolStripMenuFlagDelete_Click);
+            // 
+            // toolStripMenuFlagDeleteAll
+            // 
+            this.toolStripMenuFlagDeleteAll.AutoSize = false;
+            this.toolStripMenuFlagDeleteAll.Image = global::AgOpenGPS.Properties.Resources.FlagDeleteAll;
+            this.toolStripMenuFlagDeleteAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuFlagDeleteAll.Name = "toolStripMenuFlagDeleteAll";
+            this.toolStripMenuFlagDeleteAll.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuFlagDeleteAll.Text = "toolStripMenuFlagDeleteAll";
+            this.toolStripMenuFlagDeleteAll.Click += new System.EventHandler(this.toolStripMenuFlagDeleteAll_Click);
+            // 
+            // toolStripMenuRecPath
+            // 
+            this.toolStripMenuRecPath.AutoSize = false;
+            this.toolStripMenuRecPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuRecPath.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.goPathMenu,
+            this.pausePathMenu,
+            this.recordPathMenu,
+            this.deletePathMenu});
+            this.toolStripMenuRecPath.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuRecPath.Image = global::AgOpenGPS.Properties.Resources.RecPath;
+            this.toolStripMenuRecPath.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripMenuRecPath.Name = "toolStripMenuRecPath";
+            this.toolStripMenuRecPath.Size = new System.Drawing.Size(72, 70);
+            this.toolStripMenuRecPath.Text = "toolStripDropDownButton3";
+            // 
+            // goPathMenu
+            // 
+            this.goPathMenu.AutoSize = false;
+            this.goPathMenu.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.goPathMenu.Name = "goPathMenu";
+            this.goPathMenu.Size = new System.Drawing.Size(443, 72);
+            this.goPathMenu.Text = "Go / Stop";
+            this.goPathMenu.Click += new System.EventHandler(this.goPathMenu_Click);
+            // 
+            // pausePathMenu
+            // 
+            this.pausePathMenu.AutoSize = false;
+            this.pausePathMenu.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+            this.pausePathMenu.Name = "pausePathMenu";
+            this.pausePathMenu.Size = new System.Drawing.Size(443, 72);
+            this.pausePathMenu.Text = "Pause / Resume";
+            this.pausePathMenu.Click += new System.EventHandler(this.PausePathMenu_Click);
+            // 
+            // recordPathMenu
+            // 
+            this.recordPathMenu.AutoSize = false;
+            this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.recordPathMenu.Name = "recordPathMenu";
+            this.recordPathMenu.Size = new System.Drawing.Size(443, 72);
+            this.recordPathMenu.Text = "Record";
+            this.recordPathMenu.Click += new System.EventHandler(this.RecordPathMenu_Click);
+            // 
+            // deletePathMenu
+            // 
+            this.deletePathMenu.AutoSize = false;
+            this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
+            this.deletePathMenu.Name = "deletePathMenu";
+            this.deletePathMenu.Size = new System.Drawing.Size(443, 72);
+            this.deletePathMenu.Text = "Delete Path";
+            this.deletePathMenu.Click += new System.EventHandler(this.DeletePathMenu_Click);
+            // 
+            // cameraDropDown
+            // 
+            this.cameraDropDown.AutoSize = false;
+            this.cameraDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cameraDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.twoDToolStripMenuItem,
+            this.threeDToolStripMenuItem,
+            this.northToolStripMenuItem});
+            this.cameraDropDown.Image = global::AgOpenGPS.Properties.Resources.Camera54;
+            this.cameraDropDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.cameraDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cameraDropDown.MergeAction = System.Windows.Forms.MergeAction.Insert;
+            this.cameraDropDown.Name = "cameraDropDown";
+            this.cameraDropDown.ShowDropDownArrow = false;
+            this.cameraDropDown.Size = new System.Drawing.Size(72, 72);
+            this.cameraDropDown.Text = "toolStripDropDownButton3";
+            // 
+            // twoDToolStripMenuItem
+            // 
+            this.twoDToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
+            this.twoDToolStripMenuItem.Name = "twoDToolStripMenuItem";
+            this.twoDToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
+            this.twoDToolStripMenuItem.Text = "2D";
+            this.twoDToolStripMenuItem.Click += new System.EventHandler(this.twoDToolStripMenuItem_Click);
+            // 
+            // threeDToolStripMenuItem
+            // 
+            this.threeDToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
+            this.threeDToolStripMenuItem.Name = "threeDToolStripMenuItem";
+            this.threeDToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
+            this.threeDToolStripMenuItem.Text = "3D";
+            this.threeDToolStripMenuItem.Click += new System.EventHandler(this.threeDToolStripMenuItem_Click);
+            // 
+            // northToolStripMenuItem
+            // 
+            this.northToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
+            this.northToolStripMenuItem.Name = "northToolStripMenuItem";
+            this.northToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
+            this.northToolStripMenuItem.Text = "North";
+            this.northToolStripMenuItem.Click += new System.EventHandler(this.northToolStripMenuItem_Click);
+            // 
+            // toolStripBtnDrag
+            // 
+            this.toolStripBtnDrag.AutoSize = false;
+            this.toolStripBtnDrag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnDrag.DropDownButtonWidth = 0;
+            this.toolStripBtnDrag.Image = global::AgOpenGPS.Properties.Resources.DisplayDrag;
+            this.toolStripBtnDrag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnDrag.Name = "toolStripBtnDrag";
+            this.toolStripBtnDrag.Size = new System.Drawing.Size(72, 72);
+            this.toolStripBtnDrag.ButtonClick += new System.EventHandler(this.toolStripBtnDrag_ButtonClick);
+            // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.AutoSize = false;
+            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.treePlantToolStrip,
+            this.webcamToolStrip,
+            this.offsetFixToolStrip,
+            this.googleEarthFlagsToolStrip});
+            this.toolStripDropDownButton3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripDropDownButton3.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(64, 72);
+            this.toolStripDropDownButton3.Text = "toolStripDropDownButton3";
+            // 
+            // treePlantToolStrip
+            // 
+            this.treePlantToolStrip.Image = global::AgOpenGPS.Properties.Resources.tree;
+            this.treePlantToolStrip.Name = "treePlantToolStrip";
+            this.treePlantToolStrip.Size = new System.Drawing.Size(365, 40);
+            this.treePlantToolStrip.Text = "Tree Planter";
+            this.treePlantToolStrip.Click += new System.EventHandler(this.treePlantToolStrip_Click);
+            // 
+            // webcamToolStrip
+            // 
+            this.webcamToolStrip.Image = global::AgOpenGPS.Properties.Resources.Webcam;
+            this.webcamToolStrip.Name = "webcamToolStrip";
+            this.webcamToolStrip.Size = new System.Drawing.Size(365, 40);
+            this.webcamToolStrip.Text = "WebCam";
+            this.webcamToolStrip.Click += new System.EventHandler(this.webcamToolStrip_Click);
+            // 
+            // offsetFixToolStrip
+            // 
+            this.offsetFixToolStrip.Image = global::AgOpenGPS.Properties.Resources.YouTurnReverse;
+            this.offsetFixToolStrip.Name = "offsetFixToolStrip";
+            this.offsetFixToolStrip.Size = new System.Drawing.Size(365, 40);
+            this.offsetFixToolStrip.Text = "Offset Fix";
+            this.offsetFixToolStrip.Click += new System.EventHandler(this.offsetFixToolStrip_Click);
+            // 
+            // googleEarthFlagsToolStrip
+            // 
+            this.googleEarthFlagsToolStrip.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.googleEarthFlagsToolStrip.Name = "googleEarthFlagsToolStrip";
+            this.googleEarthFlagsToolStrip.Size = new System.Drawing.Size(365, 40);
+            this.googleEarthFlagsToolStrip.Text = "Google Earth Flags";
+            this.googleEarthFlagsToolStrip.Click += new System.EventHandler(this.googleEarthFlagsToolStrip_Click);
+            // 
+            // toolStripBtnPower
+            // 
+            this.toolStripBtnPower.AutoSize = false;
+            this.toolStripBtnPower.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnPower.DropDownButtonWidth = 0;
+            this.toolStripBtnPower.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
+            this.toolStripBtnPower.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnPower.Name = "toolStripBtnPower";
+            this.toolStripBtnPower.Size = new System.Drawing.Size(72, 56);
+            this.toolStripBtnPower.ButtonClick += new System.EventHandler(this.toolStripBtnPower_ButtonClick);
             // 
             // toolStripBatman
             // 
@@ -2561,432 +2298,271 @@
             this.snapRightBigStrip.Size = new System.Drawing.Size(80, 66);
             this.snapRightBigStrip.Click += new System.EventHandler(this.btnSnapRight_Click);
             // 
-            // stripEqWidth
-            // 
-            this.stripEqWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Size = new System.Drawing.Size(69, 23);
-            this.stripEqWidth.Spring = true;
-            this.stripEqWidth.Text = "Vehicle";
-            this.stripEqWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // statusStripLeft
-            // 
-            this.statusStripLeft.AllowMerge = false;
-            this.statusStripLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.statusStripLeft.AutoSize = false;
-            this.statusStripLeft.BackColor = System.Drawing.Color.Transparent;
-            this.statusStripLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.statusStripLeft.Dock = System.Windows.Forms.DockStyle.None;
-            this.statusStripLeft.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusStripLeft.ImageScalingSize = new System.Drawing.Size(56, 56);
-            this.statusStripLeft.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuRecPath,
-            this.toolStripStatusLabel1,
-            this.pbarAutoSteerComm,
-            this.toolStripStatusLabel2,
-            this.pbarUDPComm,
-            this.cameraDropDown,
-            this.toolStripBtnDrag,
-            this.toolStripDropDownButton3,
-            this.toolStripLblFieldFinish,
-            this.pbarNtripMenu,
-            this.NTRIPBytesMenu,
-            this.toolStripBtnPower});
-            this.statusStripLeft.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
-            this.statusStripLeft.Location = new System.Drawing.Point(0, 48);
-            this.statusStripLeft.Name = "statusStripLeft";
-            this.statusStripLeft.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStripLeft.Size = new System.Drawing.Size(74, 626);
-            this.statusStripLeft.SizingGrip = false;
-            this.statusStripLeft.Stretch = false;
-            this.statusStripLeft.TabIndex = 324;
-            this.statusStripLeft.Text = "UDP";
-            // 
-            // toolStripMenuRecPath
-            // 
-            this.toolStripMenuRecPath.AutoSize = false;
-            this.toolStripMenuRecPath.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripMenuRecPath.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.goPathMenu,
-            this.pausePathMenu,
-            this.recordPathMenu,
-            this.deletePathMenu});
-            this.toolStripMenuRecPath.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuRecPath.Image = global::AgOpenGPS.Properties.Resources.RecPath;
-            this.toolStripMenuRecPath.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripMenuRecPath.Name = "toolStripMenuRecPath";
-            this.toolStripMenuRecPath.Size = new System.Drawing.Size(72, 80);
-            this.toolStripMenuRecPath.Text = "toolStripDropDownButton3";
-            // 
-            // goPathMenu
-            // 
-            this.goPathMenu.AutoSize = false;
-            this.goPathMenu.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.goPathMenu.Name = "goPathMenu";
-            this.goPathMenu.Size = new System.Drawing.Size(443, 72);
-            this.goPathMenu.Text = "Go / Stop";
-            this.goPathMenu.Click += new System.EventHandler(this.goPathMenu_Click);
-            // 
-            // pausePathMenu
-            // 
-            this.pausePathMenu.AutoSize = false;
-            this.pausePathMenu.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
-            this.pausePathMenu.Name = "pausePathMenu";
-            this.pausePathMenu.Size = new System.Drawing.Size(443, 72);
-            this.pausePathMenu.Text = "Pause / Resume";
-            this.pausePathMenu.Click += new System.EventHandler(this.PausePathMenu_Click);
-            // 
-            // recordPathMenu
-            // 
-            this.recordPathMenu.AutoSize = false;
-            this.recordPathMenu.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
-            this.recordPathMenu.Name = "recordPathMenu";
-            this.recordPathMenu.Size = new System.Drawing.Size(443, 72);
-            this.recordPathMenu.Text = "Record";
-            this.recordPathMenu.Click += new System.EventHandler(this.RecordPathMenu_Click);
-            // 
-            // deletePathMenu
-            // 
-            this.deletePathMenu.AutoSize = false;
-            this.deletePathMenu.Image = global::AgOpenGPS.Properties.Resources.FileDelete;
-            this.deletePathMenu.Name = "deletePathMenu";
-            this.deletePathMenu.Size = new System.Drawing.Size(443, 72);
-            this.deletePathMenu.Text = "Delete Path";
-            this.deletePathMenu.Click += new System.EventHandler(this.DeletePathMenu_Click);
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(44, 16);
-            this.toolStripStatusLabel1.Text = "Steer";
-            // 
-            // pbarAutoSteerComm
-            // 
-            this.pbarAutoSteerComm.Maximum = 256;
-            this.pbarAutoSteerComm.Name = "pbarAutoSteerComm";
-            this.pbarAutoSteerComm.Size = new System.Drawing.Size(68, 7);
-            this.pbarAutoSteerComm.Value = 20;
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(33, 16);
-            this.toolStripStatusLabel2.Text = "UDP";
-            // 
-            // pbarUDPComm
-            // 
-            this.pbarUDPComm.Maximum = 256;
-            this.pbarUDPComm.Name = "pbarUDPComm";
-            this.pbarUDPComm.Size = new System.Drawing.Size(68, 7);
-            this.pbarUDPComm.Value = 10;
-            // 
-            // cameraDropDown
-            // 
-            this.cameraDropDown.AutoSize = false;
-            this.cameraDropDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cameraDropDown.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.twoDToolStripMenuItem,
-            this.threeDToolStripMenuItem,
-            this.northToolStripMenuItem});
-            this.cameraDropDown.Image = global::AgOpenGPS.Properties.Resources.Camera54;
-            this.cameraDropDown.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.cameraDropDown.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cameraDropDown.MergeAction = System.Windows.Forms.MergeAction.Insert;
-            this.cameraDropDown.Name = "cameraDropDown";
-            this.cameraDropDown.ShowDropDownArrow = false;
-            this.cameraDropDown.Size = new System.Drawing.Size(72, 80);
-            this.cameraDropDown.Text = "toolStripDropDownButton3";
-            // 
-            // twoDToolStripMenuItem
-            // 
-            this.twoDToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
-            this.twoDToolStripMenuItem.Name = "twoDToolStripMenuItem";
-            this.twoDToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
-            this.twoDToolStripMenuItem.Text = "2D";
-            this.twoDToolStripMenuItem.Click += new System.EventHandler(this.twoDToolStripMenuItem_Click);
-            // 
-            // threeDToolStripMenuItem
-            // 
-            this.threeDToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
-            this.threeDToolStripMenuItem.Name = "threeDToolStripMenuItem";
-            this.threeDToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
-            this.threeDToolStripMenuItem.Text = "3D";
-            this.threeDToolStripMenuItem.Click += new System.EventHandler(this.threeDToolStripMenuItem_Click);
-            // 
-            // northToolStripMenuItem
-            // 
-            this.northToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
-            this.northToolStripMenuItem.Name = "northToolStripMenuItem";
-            this.northToolStripMenuItem.Size = new System.Drawing.Size(195, 62);
-            this.northToolStripMenuItem.Text = "North";
-            this.northToolStripMenuItem.Click += new System.EventHandler(this.northToolStripMenuItem_Click);
-            // 
-            // toolStripBtnDrag
-            // 
-            this.toolStripBtnDrag.AutoSize = false;
-            this.toolStripBtnDrag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnDrag.DropDownButtonWidth = 0;
-            this.toolStripBtnDrag.Image = global::AgOpenGPS.Properties.Resources.DisplayDrag;
-            this.toolStripBtnDrag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnDrag.Name = "toolStripBtnDrag";
-            this.toolStripBtnDrag.Size = new System.Drawing.Size(72, 72);
-            this.toolStripBtnDrag.ButtonClick += new System.EventHandler(this.toolStripBtnDrag_ButtonClick);
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.AutoSize = false;
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripDropDownButton3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.treePlantToolStrip,
-            this.webcamToolStrip,
-            this.offsetFixToolStrip,
-            this.googleEarthFlagsToolStrip});
-            this.toolStripDropDownButton3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripDropDownButton3.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(64, 80);
-            this.toolStripDropDownButton3.Text = "toolStripDropDownButton3";
-            // 
-            // treePlantToolStrip
-            // 
-            this.treePlantToolStrip.Image = global::AgOpenGPS.Properties.Resources.tree;
-            this.treePlantToolStrip.Name = "treePlantToolStrip";
-            this.treePlantToolStrip.Size = new System.Drawing.Size(365, 40);
-            this.treePlantToolStrip.Text = "Tree Planter";
-            this.treePlantToolStrip.Click += new System.EventHandler(this.treePlantToolStrip_Click);
-            // 
-            // webcamToolStrip
-            // 
-            this.webcamToolStrip.Image = global::AgOpenGPS.Properties.Resources.Webcam;
-            this.webcamToolStrip.Name = "webcamToolStrip";
-            this.webcamToolStrip.Size = new System.Drawing.Size(365, 40);
-            this.webcamToolStrip.Text = "WebCam";
-            this.webcamToolStrip.Click += new System.EventHandler(this.webcamToolStrip_Click);
-            // 
-            // offsetFixToolStrip
-            // 
-            this.offsetFixToolStrip.Image = global::AgOpenGPS.Properties.Resources.YouTurnReverse;
-            this.offsetFixToolStrip.Name = "offsetFixToolStrip";
-            this.offsetFixToolStrip.Size = new System.Drawing.Size(365, 40);
-            this.offsetFixToolStrip.Text = "Offset Fix";
-            this.offsetFixToolStrip.Click += new System.EventHandler(this.offsetFixToolStrip_Click);
-            // 
-            // googleEarthFlagsToolStrip
-            // 
-            this.googleEarthFlagsToolStrip.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
-            this.googleEarthFlagsToolStrip.Name = "googleEarthFlagsToolStrip";
-            this.googleEarthFlagsToolStrip.Size = new System.Drawing.Size(365, 40);
-            this.googleEarthFlagsToolStrip.Text = "Google Earth Flags";
-            this.googleEarthFlagsToolStrip.Click += new System.EventHandler(this.googleEarthFlagsToolStrip_Click);
-            // 
-            // toolStripLblFieldFinish
-            // 
-            this.toolStripLblFieldFinish.AutoSize = false;
-            this.toolStripLblFieldFinish.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripLblFieldFinish.Name = "toolStripLblFieldFinish";
-            this.toolStripLblFieldFinish.Size = new System.Drawing.Size(72, 80);
-            this.toolStripLblFieldFinish.Text = "----";
-            this.toolStripLblFieldFinish.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // pbarNtripMenu
-            // 
-            this.pbarNtripMenu.Maximum = 256;
-            this.pbarNtripMenu.Name = "pbarNtripMenu";
-            this.pbarNtripMenu.Size = new System.Drawing.Size(68, 7);
-            this.pbarNtripMenu.Value = 20;
-            // 
-            // NTRIPBytesMenu
-            // 
-            this.NTRIPBytesMenu.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NTRIPBytesMenu.Name = "NTRIPBytesMenu";
-            this.NTRIPBytesMenu.Size = new System.Drawing.Size(35, 16);
-            this.NTRIPBytesMenu.Text = "0 kb";
-            // 
-            // toolStripBtnPower
-            // 
-            this.toolStripBtnPower.AutoSize = false;
-            this.toolStripBtnPower.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnPower.DropDownButtonWidth = 0;
-            this.toolStripBtnPower.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
-            this.toolStripBtnPower.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnPower.Name = "toolStripBtnPower";
-            this.toolStripBtnPower.Size = new System.Drawing.Size(72, 56);
-            this.toolStripBtnPower.ButtonClick += new System.EventHandler(this.toolStripBtnPower_ButtonClick);
-            // 
-            // panelSim
-            // 
-            this.panelSim.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelSim.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelSim.ColumnCount = 5;
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
-            this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
-            this.panelSim.Controls.Add(this.hsbarStepDistance, 0, 0);
-            this.panelSim.Controls.Add(this.btnResetSim, 1, 0);
-            this.panelSim.Location = new System.Drawing.Point(235, 633);
-            this.panelSim.Name = "panelSim";
-            this.panelSim.RowCount = 1;
-            this.panelSim.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSim.Size = new System.Drawing.Size(320, 40);
-            this.panelSim.TabIndex = 325;
-            // 
-            // lblDistanceOffLine
-            // 
-            this.lblDistanceOffLine.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblDistanceOffLine.BackColor = System.Drawing.Color.Transparent;
-            this.lblDistanceOffLine.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDistanceOffLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceOffLine.Location = new System.Drawing.Point(508, 0);
-            this.lblDistanceOffLine.Name = "lblDistanceOffLine";
-            this.lblDistanceOffLine.Size = new System.Drawing.Size(146, 40);
-            this.lblDistanceOffLine.TabIndex = 328;
-            this.lblDistanceOffLine.Text = "88.8";
-            this.lblDistanceOffLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panelEditAB
-            // 
-            this.panelEditAB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEditAB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelEditAB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panelEditAB.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.panelEditAB.ColumnCount = 1;
-            this.panelEditAB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelEditAB.Controls.Add(this.btnSaveAB, 0, 0);
-            this.panelEditAB.Controls.Add(this.btnEditHeadingB, 0, 1);
-            this.panelEditAB.Controls.Add(this.btnBigSnapLeft, 0, 5);
-            this.panelEditAB.Controls.Add(this.btnBigSnapRight, 0, 4);
-            this.panelEditAB.Controls.Add(this.btnSnapLeft, 0, 3);
-            this.panelEditAB.Controls.Add(this.btnSnapRight, 0, 2);
-            this.panelEditAB.Location = new System.Drawing.Point(723, 65);
-            this.panelEditAB.Name = "panelEditAB";
-            this.panelEditAB.RowCount = 6;
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.panelEditAB.Size = new System.Drawing.Size(72, 480);
-            this.panelEditAB.TabIndex = 329;
-            this.panelEditAB.Visible = false;
-            // 
-            // btnSaveAB
-            // 
-            this.btnSaveAB.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSaveAB.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaveAB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSaveAB.FlatAppearance.BorderSize = 0;
-            this.btnSaveAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveAB.Image = global::AgOpenGPS.Properties.Resources.ABLineSave;
-            this.btnSaveAB.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSaveAB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSaveAB.Location = new System.Drawing.Point(4, 15);
-            this.btnSaveAB.Name = "btnSaveAB";
-            this.btnSaveAB.Size = new System.Drawing.Size(64, 50);
-            this.btnSaveAB.TabIndex = 182;
-            this.btnSaveAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSaveAB.UseVisualStyleBackColor = false;
-            this.btnSaveAB.Click += new System.EventHandler(this.btnSaveAB_Click);
-            // 
-            // btnEditHeadingB
-            // 
-            this.btnEditHeadingB.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEditHeadingB.BackColor = System.Drawing.Color.Transparent;
-            this.btnEditHeadingB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEditHeadingB.FlatAppearance.BorderSize = 0;
-            this.btnEditHeadingB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEditHeadingB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditHeadingB.Image = global::AgOpenGPS.Properties.Resources.ABLineEdit;
-            this.btnEditHeadingB.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditHeadingB.Location = new System.Drawing.Point(4, 87);
-            this.btnEditHeadingB.Name = "btnEditHeadingB";
-            this.btnEditHeadingB.Size = new System.Drawing.Size(64, 63);
-            this.btnEditHeadingB.TabIndex = 330;
-            this.btnEditHeadingB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEditHeadingB.UseVisualStyleBackColor = false;
-            this.btnEditHeadingB.Click += new System.EventHandler(this.btnEditAB_Click);
-            // 
-            // btnBigSnapLeft
-            // 
-            this.btnBigSnapLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBigSnapLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnBigSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnBigSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBigSnapLeft.FlatAppearance.BorderSize = 0;
-            this.btnBigSnapLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBigSnapLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBigSnapLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
-            this.btnBigSnapLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBigSnapLeft.Location = new System.Drawing.Point(4, 416);
-            this.btnBigSnapLeft.Name = "btnBigSnapLeft";
-            this.btnBigSnapLeft.Size = new System.Drawing.Size(64, 43);
-            this.btnBigSnapLeft.TabIndex = 446;
-            this.btnBigSnapLeft.UseVisualStyleBackColor = false;
-            this.btnBigSnapLeft.Click += new System.EventHandler(this.btnSnapLeft_Click);
-            // 
-            // btnBigSnapRight
-            // 
-            this.btnBigSnapRight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBigSnapRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnBigSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnBigSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBigSnapRight.FlatAppearance.BorderSize = 0;
-            this.btnBigSnapRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBigSnapRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBigSnapRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
-            this.btnBigSnapRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBigSnapRight.Location = new System.Drawing.Point(4, 334);
-            this.btnBigSnapRight.Name = "btnBigSnapRight";
-            this.btnBigSnapRight.Size = new System.Drawing.Size(64, 43);
-            this.btnBigSnapRight.TabIndex = 447;
-            this.btnBigSnapRight.UseVisualStyleBackColor = false;
-            this.btnBigSnapRight.Click += new System.EventHandler(this.btnSnapRight_Click);
-            // 
-            // btnSnapLeft
-            // 
-            this.btnSnapLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSnapLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnapLeft.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSnapLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSnapLeft.FlatAppearance.BorderSize = 0;
-            this.btnSnapLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSnapLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSnapLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeft;
-            this.btnSnapLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSnapLeft.Location = new System.Drawing.Point(4, 255);
-            this.btnSnapLeft.Name = "btnSnapLeft";
-            this.btnSnapLeft.Size = new System.Drawing.Size(64, 43);
-            this.btnSnapLeft.TabIndex = 251;
-            this.btnSnapLeft.UseVisualStyleBackColor = false;
-            this.btnSnapLeft.Click += new System.EventHandler(this.btnSmallSnapLeft_Click);
-            // 
-            // btnSnapRight
-            // 
-            this.btnSnapRight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSnapRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnapRight.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSnapRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSnapRight.FlatAppearance.BorderSize = 0;
-            this.btnSnapRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSnapRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSnapRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
-            this.btnSnapRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSnapRight.Location = new System.Drawing.Point(5, 176);
-            this.btnSnapRight.Name = "btnSnapRight";
-            this.btnSnapRight.Size = new System.Drawing.Size(61, 44);
-            this.btnSnapRight.TabIndex = 276;
-            this.btnSnapRight.UseVisualStyleBackColor = false;
-            this.btnSnapRight.Click += new System.EventHandler(this.btnSmallSnapRight_Click);
+            // btnContourPriority
+            // 
+            this.btnContourPriority.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnContourPriority.BackColor = System.Drawing.Color.Transparent;
+            this.btnContourPriority.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnContourPriority.FlatAppearance.BorderSize = 0;
+            this.btnContourPriority.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.Snap2;
+            this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnContourPriority.Location = new System.Drawing.Point(5, 15);
+            this.btnContourPriority.Name = "btnContourPriority";
+            this.btnContourPriority.Size = new System.Drawing.Size(80, 65);
+            this.btnContourPriority.TabIndex = 178;
+            this.btnContourPriority.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnContourPriority.UseVisualStyleBackColor = false;
+            this.btnContourPriority.Click += new System.EventHandler(this.btnContourPriority_Click);
+            // 
+            // btnFlag
+            // 
+            this.btnFlag.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFlag.BackColor = System.Drawing.Color.Transparent;
+            this.btnFlag.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnFlag.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnFlag.FlatAppearance.BorderSize = 0;
+            this.btnFlag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFlag.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFlag.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
+            this.btnFlag.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnFlag.Location = new System.Drawing.Point(5, 502);
+            this.btnFlag.Name = "btnFlag";
+            this.btnFlag.Size = new System.Drawing.Size(80, 86);
+            this.btnFlag.TabIndex = 121;
+            this.btnFlag.Text = "234.6";
+            this.btnFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFlag.UseVisualStyleBackColor = false;
+            this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
+            // 
+            // btnCurve
+            // 
+            this.btnCurve.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCurve.BackColor = System.Drawing.Color.Transparent;
+            this.btnCurve.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCurve.Enabled = false;
+            this.btnCurve.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCurve.FlatAppearance.BorderSize = 0;
+            this.btnCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
+            this.btnCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCurve.Location = new System.Drawing.Point(94, 4);
+            this.btnCurve.Name = "btnCurve";
+            this.btnCurve.Size = new System.Drawing.Size(80, 86);
+            this.btnCurve.TabIndex = 173;
+            this.btnCurve.Text = "# 4";
+            this.btnCurve.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCurve.UseVisualStyleBackColor = false;
+            this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
+            // 
+            // btnContour
+            // 
+            this.btnContour.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnContour.BackColor = System.Drawing.Color.Transparent;
+            this.btnContour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnContour.Enabled = false;
+            this.btnContour.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnContour.FlatAppearance.BorderSize = 0;
+            this.btnContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnContour.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnContour.Image = global::AgOpenGPS.Properties.Resources.ContourOff;
+            this.btnContour.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnContour.Location = new System.Drawing.Point(94, 98);
+            this.btnContour.Name = "btnContour";
+            this.btnContour.Size = new System.Drawing.Size(80, 86);
+            this.btnContour.TabIndex = 105;
+            this.btnContour.Text = "1 cm";
+            this.btnContour.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnContour.UseVisualStyleBackColor = false;
+            this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
+            // 
+            // btnABLine
+            // 
+            this.btnABLine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnABLine.ContextMenuStrip = this.contextMenuABLine;
+            this.btnABLine.Enabled = false;
+            this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnABLine.FlatAppearance.BorderSize = 0;
+            this.btnABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
+            this.btnABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnABLine.Location = new System.Drawing.Point(94, 192);
+            this.btnABLine.Name = "btnABLine";
+            this.btnABLine.Size = new System.Drawing.Size(80, 86);
+            this.btnABLine.TabIndex = 0;
+            this.btnABLine.Text = "# 3";
+            this.btnABLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnABLine.UseVisualStyleBackColor = false;
+            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
+            // 
+            // btnMakeLinesFromBoundary
+            // 
+            this.btnMakeLinesFromBoundary.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMakeLinesFromBoundary.BackColor = System.Drawing.Color.Transparent;
+            this.btnMakeLinesFromBoundary.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMakeLinesFromBoundary.Enabled = false;
+            this.btnMakeLinesFromBoundary.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnMakeLinesFromBoundary.FlatAppearance.BorderSize = 0;
+            this.btnMakeLinesFromBoundary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMakeLinesFromBoundary.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.btnMakeLinesFromBoundary.Image = global::AgOpenGPS.Properties.Resources.PointStart;
+            this.btnMakeLinesFromBoundary.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnMakeLinesFromBoundary.Location = new System.Drawing.Point(5, 292);
+            this.btnMakeLinesFromBoundary.Name = "btnMakeLinesFromBoundary";
+            this.btnMakeLinesFromBoundary.Size = new System.Drawing.Size(80, 86);
+            this.btnMakeLinesFromBoundary.TabIndex = 250;
+            this.btnMakeLinesFromBoundary.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnMakeLinesFromBoundary.UseVisualStyleBackColor = false;
+            this.btnMakeLinesFromBoundary.Click += new System.EventHandler(this.BtnMakeLinesFromBoundary_Click);
+            // 
+            // btnManualOffOn
+            // 
+            this.btnManualOffOn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnManualOffOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnManualOffOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnManualOffOn.Enabled = false;
+            this.btnManualOffOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnManualOffOn.FlatAppearance.BorderSize = 0;
+            this.btnManualOffOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManualOffOn.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnManualOffOn.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            this.btnManualOffOn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnManualOffOn.Location = new System.Drawing.Point(94, 397);
+            this.btnManualOffOn.Name = "btnManualOffOn";
+            this.btnManualOffOn.Size = new System.Drawing.Size(80, 86);
+            this.btnManualOffOn.TabIndex = 98;
+            this.btnManualOffOn.UseVisualStyleBackColor = false;
+            this.btnManualOffOn.Click += new System.EventHandler(this.btnManualOffOn_Click);
+            // 
+            // btnAutoSteer
+            // 
+            this.btnAutoSteer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoSteer.Enabled = false;
+            this.btnAutoSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAutoSteer.FlatAppearance.BorderSize = 0;
+            this.btnAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            this.btnAutoSteer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAutoSteer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAutoSteer.Location = new System.Drawing.Point(94, 612);
+            this.btnAutoSteer.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAutoSteer.Name = "btnAutoSteer";
+            this.btnAutoSteer.Size = new System.Drawing.Size(80, 83);
+            this.btnAutoSteer.TabIndex = 128;
+            this.btnAutoSteer.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.btnAutoSteer.UseVisualStyleBackColor = false;
+            this.btnAutoSteer.Click += new System.EventHandler(this.btnAutoSteer_Click);
+            // 
+            // btnSectionOffAutoOn
+            // 
+            this.btnSectionOffAutoOn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnSectionOffAutoOn.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionOffAutoOn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSectionOffAutoOn.Enabled = false;
+            this.btnSectionOffAutoOn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSectionOffAutoOn.FlatAppearance.BorderSize = 0;
+            this.btnSectionOffAutoOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSectionOffAutoOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSectionOffAutoOn.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.btnSectionOffAutoOn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSectionOffAutoOn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSectionOffAutoOn.Location = new System.Drawing.Point(94, 502);
+            this.btnSectionOffAutoOn.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSectionOffAutoOn.Name = "btnSectionOffAutoOn";
+            this.btnSectionOffAutoOn.Size = new System.Drawing.Size(80, 86);
+            this.btnSectionOffAutoOn.TabIndex = 152;
+            this.btnSectionOffAutoOn.Text = "888.8";
+            this.btnSectionOffAutoOn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSectionOffAutoOn.UseVisualStyleBackColor = false;
+            this.btnSectionOffAutoOn.Click += new System.EventHandler(this.btnSectionOffAutoOn_Click);
+            // 
+            // btnAutoYouTurn
+            // 
+            this.btnAutoYouTurn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnAutoYouTurn.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoYouTurn.Enabled = false;
+            this.btnAutoYouTurn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAutoYouTurn.FlatAppearance.BorderSize = 0;
+            this.btnAutoYouTurn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutoYouTurn.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnAutoYouTurn.Image = global::AgOpenGPS.Properties.Resources.YouTurnNo;
+            this.btnAutoYouTurn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnAutoYouTurn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAutoYouTurn.Location = new System.Drawing.Point(5, 615);
+            this.btnAutoYouTurn.Name = "btnAutoYouTurn";
+            this.btnAutoYouTurn.Size = new System.Drawing.Size(80, 77);
+            this.btnAutoYouTurn.TabIndex = 132;
+            this.btnAutoYouTurn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAutoYouTurn.UseVisualStyleBackColor = false;
+            this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
+            // 
+            // btnCycleLines
+            // 
+            this.btnCycleLines.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCycleLines.BackColor = System.Drawing.Color.Transparent;
+            this.btnCycleLines.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCycleLines.Enabled = false;
+            this.btnCycleLines.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnCycleLines.FlatAppearance.BorderSize = 0;
+            this.btnCycleLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCycleLines.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCycleLines.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
+            this.btnCycleLines.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCycleLines.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCycleLines.Location = new System.Drawing.Point(5, 192);
+            this.btnCycleLines.Name = "btnCycleLines";
+            this.btnCycleLines.Size = new System.Drawing.Size(80, 86);
+            this.btnCycleLines.TabIndex = 251;
+            this.btnCycleLines.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCycleLines.UseVisualStyleBackColor = false;
+            this.btnCycleLines.Click += new System.EventHandler(this.btnCycleLines_Click);
+            // 
+            // btnABMenu
+            // 
+            this.btnABMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnABMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnABMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnABMenu.FlatAppearance.BorderSize = 0;
+            this.btnABMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnABMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnABMenu.Image = global::AgOpenGPS.Properties.Resources.ABLineEditMenu;
+            this.btnABMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnABMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnABMenu.Location = new System.Drawing.Point(5, 98);
+            this.btnABMenu.Name = "btnABMenu";
+            this.btnABMenu.Size = new System.Drawing.Size(80, 86);
+            this.btnABMenu.TabIndex = 317;
+            this.btnABMenu.Text = "0 cm";
+            this.btnABMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnABMenu.UseVisualStyleBackColor = false;
+            this.btnABMenu.Click += new System.EventHandler(this.btnABMenu_Click);
+            // 
+            // btnTramMenu
+            // 
+            this.btnTramMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTramMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnTramMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTramMenu.FlatAppearance.BorderSize = 0;
+            this.btnTramMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTramMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTramMenu.Image = global::AgOpenGPS.Properties.Resources.ABTramLine;
+            this.btnTramMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTramMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTramMenu.Location = new System.Drawing.Point(94, 292);
+            this.btnTramMenu.Name = "btnTramMenu";
+            this.btnTramMenu.Size = new System.Drawing.Size(80, 86);
+            this.btnTramMenu.TabIndex = 330;
+            this.btnTramMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTramMenu.UseVisualStyleBackColor = false;
+            this.btnTramMenu.Click += new System.EventHandler(this.btnTramMenu_Click);
             // 
             // btnZoomIn
             // 
@@ -3022,12 +2598,422 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.AutoSize = false;
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator9,
+            this.menustripLanguage,
+            this.toolStripSeparator11,
+            this.setWorkingDirectoryToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.enterSimCoordsToolStripMenuItem,
+            this.toolStripSeparator12,
+            this.loadVehicleToolStripMenuItem,
+            this.saveVehicleToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.fieldToolStripMenuItem,
+            this.aboutToolStripMenuItem,
+            this.shortcutKeysToolStripMenuItem});
+            this.fileToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.fileMenu;
+            this.fileToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(120, 48);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(316, 6);
+            // 
+            // menustripLanguage
+            // 
+            this.menustripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuLanguageDeutsch,
+            this.menuLanguageEnglish,
+            this.menuLanguageFrench,
+            this.menuLanguageItalian,
+            this.menuLanguageDutch,
+            this.menuLanguageRussian,
+            this.menuLanguageSpanish});
+            this.menustripLanguage.Name = "menustripLanguage";
+            this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
+            this.menustripLanguage.Text = "Language";
+            // 
+            // menuLanguageDeutsch
+            // 
+            this.menuLanguageDeutsch.CheckOnClick = true;
+            this.menuLanguageDeutsch.Name = "menuLanguageDeutsch";
+            this.menuLanguageDeutsch.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageDeutsch.Text = "Deutsch";
+            this.menuLanguageDeutsch.Click += new System.EventHandler(this.menuLanguageDeutsch_Click);
+            // 
+            // menuLanguageEnglish
+            // 
+            this.menuLanguageEnglish.CheckOnClick = true;
+            this.menuLanguageEnglish.Name = "menuLanguageEnglish";
+            this.menuLanguageEnglish.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageEnglish.Text = "English";
+            this.menuLanguageEnglish.Click += new System.EventHandler(this.menuLanguageEnglish_Click);
+            // 
+            // menuLanguageFrench
+            // 
+            this.menuLanguageFrench.CheckOnClick = true;
+            this.menuLanguageFrench.Name = "menuLanguageFrench";
+            this.menuLanguageFrench.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageFrench.Text = "Français";
+            this.menuLanguageFrench.Click += new System.EventHandler(this.menuLanguageFrench_Click);
+            // 
+            // menuLanguageItalian
+            // 
+            this.menuLanguageItalian.Name = "menuLanguageItalian";
+            this.menuLanguageItalian.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageItalian.Text = "Italiano";
+            this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
+            // 
+            // menuLanguageDutch
+            // 
+            this.menuLanguageDutch.CheckOnClick = true;
+            this.menuLanguageDutch.Name = "menuLanguageDutch";
+            this.menuLanguageDutch.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageDutch.Text = "Nederlands";
+            this.menuLanguageDutch.Click += new System.EventHandler(this.menuLanguageDutch_Click);
+            // 
+            // menuLanguageRussian
+            // 
+            this.menuLanguageRussian.CheckOnClick = true;
+            this.menuLanguageRussian.Enabled = false;
+            this.menuLanguageRussian.Name = "menuLanguageRussian";
+            this.menuLanguageRussian.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageRussian.Text = "русский";
+            this.menuLanguageRussian.Click += new System.EventHandler(this.menuLanguageRussian_Click);
+            // 
+            // menuLanguageSpanish
+            // 
+            this.menuLanguageSpanish.CheckOnClick = true;
+            this.menuLanguageSpanish.Enabled = false;
+            this.menuLanguageSpanish.Name = "menuLanguageSpanish";
+            this.menuLanguageSpanish.Size = new System.Drawing.Size(240, 40);
+            this.menuLanguageSpanish.Text = "Español";
+            this.menuLanguageSpanish.Click += new System.EventHandler(this.menuLanguageSpanish_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(316, 6);
+            // 
+            // setWorkingDirectoryToolStripMenuItem
+            // 
+            this.setWorkingDirectoryToolStripMenuItem.Name = "setWorkingDirectoryToolStripMenuItem";
+            this.setWorkingDirectoryToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.setWorkingDirectoryToolStripMenuItem.Text = "Directories";
+            this.setWorkingDirectoryToolStripMenuItem.Click += new System.EventHandler(this.setWorkingDirectoryToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(316, 6);
+            // 
+            // enterSimCoordsToolStripMenuItem
+            // 
+            this.enterSimCoordsToolStripMenuItem.Name = "enterSimCoordsToolStripMenuItem";
+            this.enterSimCoordsToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.enterSimCoordsToolStripMenuItem.Text = "Enter Sim Coords";
+            this.enterSimCoordsToolStripMenuItem.Click += new System.EventHandler(this.enterSimCoordsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(316, 6);
+            // 
+            // loadVehicleToolStripMenuItem
+            // 
+            this.loadVehicleToolStripMenuItem.Name = "loadVehicleToolStripMenuItem";
+            this.loadVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.loadVehicleToolStripMenuItem.Text = "Load Vehicle";
+            this.loadVehicleToolStripMenuItem.Click += new System.EventHandler(this.loadVehicleToolStripMenuItem_Click);
+            // 
+            // saveVehicleToolStripMenuItem
+            // 
+            this.saveVehicleToolStripMenuItem.Name = "saveVehicleToolStripMenuItem";
+            this.saveVehicleToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.saveVehicleToolStripMenuItem.Text = "Save Vehicle";
+            this.saveVehicleToolStripMenuItem.Click += new System.EventHandler(this.saveVehicleToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(316, 6);
+            // 
+            // fieldToolStripMenuItem
+            // 
+            this.fieldToolStripMenuItem.Name = "fieldToolStripMenuItem";
+            this.fieldToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.fieldToolStripMenuItem.Text = "Field";
+            this.fieldToolStripMenuItem.Click += new System.EventHandler(this.fieldToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.aboutToolStripMenuItem.Text = "About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // shortcutKeysToolStripMenuItem
+            // 
+            this.shortcutKeysToolStripMenuItem.Name = "shortcutKeysToolStripMenuItem";
+            this.shortcutKeysToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
+            this.shortcutKeysToolStripMenuItem.Text = "Shortcut Keys";
+            this.shortcutKeysToolStripMenuItem.Click += new System.EventHandler(this.shortcutKeysToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.AutoSize = false;
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.resetALLToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.colorsToolStripMenuItem,
+            this.toolStripUnitsMenu,
+            this.optionsToolStripMenuItem,
+            this.topFieldViewToolStripMenuItem,
+            this.lightbarToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.simulatorOnToolStripMenuItem,
+            this.toolStripSeparator7});
+            this.settingsToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.displayMenu;
+            this.settingsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(122, 48);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(282, 6);
+            // 
+            // resetALLToolStripMenuItem
+            // 
+            this.resetALLToolStripMenuItem.Name = "resetALLToolStripMenuItem";
+            this.resetALLToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.resetALLToolStripMenuItem.Text = "Reset ALL";
+            this.resetALLToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(282, 6);
+            // 
+            // colorsToolStripMenuItem
+            // 
+            this.colorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sectionToolStripMenuItem,
+            this.fieldToolStripMenuItem1});
+            this.colorsToolStripMenuItem.Name = "colorsToolStripMenuItem";
+            this.colorsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.colorsToolStripMenuItem.Text = "Colors";
+            // 
+            // sectionToolStripMenuItem
+            // 
+            this.sectionToolStripMenuItem.Name = "sectionToolStripMenuItem";
+            this.sectionToolStripMenuItem.Size = new System.Drawing.Size(187, 40);
+            this.sectionToolStripMenuItem.Text = "Section";
+            this.sectionToolStripMenuItem.Click += new System.EventHandler(this.sectionToolStripMenuItem_Click);
+            // 
+            // fieldToolStripMenuItem1
+            // 
+            this.fieldToolStripMenuItem1.Name = "fieldToolStripMenuItem1";
+            this.fieldToolStripMenuItem1.Size = new System.Drawing.Size(187, 40);
+            this.fieldToolStripMenuItem1.Text = "Field";
+            this.fieldToolStripMenuItem1.Click += new System.EventHandler(this.fieldToolStripMenuItem1_Click);
+            // 
+            // toolStripUnitsMenu
+            // 
+            this.toolStripUnitsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.metricToolStrip,
+            this.imperialToolStrip});
+            this.toolStripUnitsMenu.Name = "toolStripUnitsMenu";
+            this.toolStripUnitsMenu.Size = new System.Drawing.Size(285, 40);
+            this.toolStripUnitsMenu.Text = "Units";
+            // 
+            // metricToolStrip
+            // 
+            this.metricToolStrip.CheckOnClick = true;
+            this.metricToolStrip.Name = "metricToolStrip";
+            this.metricToolStrip.Size = new System.Drawing.Size(200, 40);
+            this.metricToolStrip.Text = "Metric";
+            this.metricToolStrip.Click += new System.EventHandler(this.metricToolStrip_Click);
+            // 
+            // imperialToolStrip
+            // 
+            this.imperialToolStrip.CheckOnClick = true;
+            this.imperialToolStrip.Name = "imperialToolStrip";
+            this.imperialToolStrip.Size = new System.Drawing.Size(200, 40);
+            this.imperialToolStrip.Text = "Imperial";
+            this.imperialToolStrip.Click += new System.EventHandler(this.imperialToolStrip_Click);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extraGuidesToolStripMenuItem,
+            this.uTurnAlwaysOnToolStripMenuItem,
+            this.compassOnToolStripMenuItem,
+            this.speedoOnToolStripMenuItem,
+            this.pursuitOnToolStripMenuItem,
+            this.skyOnToolStripMenuItem,
+            this.gridOnToolStripMenuItem,
+            this.polygonsOnToolStripMenuItem,
+            this.logNMEAToolStripMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // extraGuidesToolStripMenuItem
+            // 
+            this.extraGuidesToolStripMenuItem.Name = "extraGuidesToolStripMenuItem";
+            this.extraGuidesToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.extraGuidesToolStripMenuItem.Text = "Extra Guides";
+            this.extraGuidesToolStripMenuItem.Click += new System.EventHandler(this.sideGuideLines_Click);
+            // 
+            // uTurnAlwaysOnToolStripMenuItem
+            // 
+            this.uTurnAlwaysOnToolStripMenuItem.Name = "uTurnAlwaysOnToolStripMenuItem";
+            this.uTurnAlwaysOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.uTurnAlwaysOnToolStripMenuItem.Text = "UTurn Always On";
+            this.uTurnAlwaysOnToolStripMenuItem.Click += new System.EventHandler(this.uTurnAlwaysOnToolStripMenuItem_Click);
+            // 
+            // compassOnToolStripMenuItem
+            // 
+            this.compassOnToolStripMenuItem.CheckOnClick = true;
+            this.compassOnToolStripMenuItem.Name = "compassOnToolStripMenuItem";
+            this.compassOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.compassOnToolStripMenuItem.Text = "Compass On";
+            this.compassOnToolStripMenuItem.Click += new System.EventHandler(this.compassOnToolStripMenuItem_Click);
+            // 
+            // speedoOnToolStripMenuItem
+            // 
+            this.speedoOnToolStripMenuItem.CheckOnClick = true;
+            this.speedoOnToolStripMenuItem.Name = "speedoOnToolStripMenuItem";
+            this.speedoOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.speedoOnToolStripMenuItem.Text = "Speedo On";
+            this.speedoOnToolStripMenuItem.Click += new System.EventHandler(this.speedoOnToolStripMenuItem_Click);
+            // 
+            // pursuitOnToolStripMenuItem
+            // 
+            this.pursuitOnToolStripMenuItem.Name = "pursuitOnToolStripMenuItem";
+            this.pursuitOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.pursuitOnToolStripMenuItem.Text = "Pursuit Line On";
+            this.pursuitOnToolStripMenuItem.Click += new System.EventHandler(this.pursuitLineToolStripMenuItem_Click);
+            // 
+            // skyOnToolStripMenuItem
+            // 
+            this.skyOnToolStripMenuItem.Name = "skyOnToolStripMenuItem";
+            this.skyOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.skyOnToolStripMenuItem.Text = "Sky On";
+            this.skyOnToolStripMenuItem.Click += new System.EventHandler(this.skyToolStripMenu_Click);
+            // 
+            // gridOnToolStripMenuItem
+            // 
+            this.gridOnToolStripMenuItem.Name = "gridOnToolStripMenuItem";
+            this.gridOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.gridOnToolStripMenuItem.Text = "Grid On";
+            this.gridOnToolStripMenuItem.Click += new System.EventHandler(this.gridToolStripMenuItem_Click);
+            // 
+            // polygonsOnToolStripMenuItem
+            // 
+            this.polygonsOnToolStripMenuItem.Name = "polygonsOnToolStripMenuItem";
+            this.polygonsOnToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.polygonsOnToolStripMenuItem.Text = "Polygons On";
+            this.polygonsOnToolStripMenuItem.Click += new System.EventHandler(this.polygonsToolStripMenuItem_Click);
+            // 
+            // logNMEAToolStripMenuItem
+            // 
+            this.logNMEAToolStripMenuItem.Name = "logNMEAToolStripMenuItem";
+            this.logNMEAToolStripMenuItem.Size = new System.Drawing.Size(320, 40);
+            this.logNMEAToolStripMenuItem.Text = "Log NMEA";
+            this.logNMEAToolStripMenuItem.Click += new System.EventHandler(this.logNMEAMenuItem_Click);
+            // 
+            // topFieldViewToolStripMenuItem
+            // 
+            this.topFieldViewToolStripMenuItem.CheckOnClick = true;
+            this.topFieldViewToolStripMenuItem.Name = "topFieldViewToolStripMenuItem";
+            this.topFieldViewToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.topFieldViewToolStripMenuItem.Text = "Top Field View";
+            this.topFieldViewToolStripMenuItem.Click += new System.EventHandler(this.topFieldViewToolStripMenuItem_Click);
+            // 
+            // lightbarToolStripMenuItem
+            // 
+            this.lightbarToolStripMenuItem.Name = "lightbarToolStripMenuItem";
+            this.lightbarToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.lightbarToolStripMenuItem.Text = "Lightbar On";
+            this.lightbarToolStripMenuItem.Click += new System.EventHandler(this.lightbarToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(282, 6);
+            // 
+            // simulatorOnToolStripMenuItem
+            // 
+            this.simulatorOnToolStripMenuItem.CheckOnClick = true;
+            this.simulatorOnToolStripMenuItem.Name = "simulatorOnToolStripMenuItem";
+            this.simulatorOnToolStripMenuItem.Size = new System.Drawing.Size(285, 40);
+            this.simulatorOnToolStripMenuItem.Text = "Simulator On";
+            this.simulatorOnToolStripMenuItem.Click += new System.EventHandler(this.simulatorOnToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(282, 6);
+            // 
+            // deleteFlagToolOpenGLContextMenu
+            // 
+            this.deleteFlagToolOpenGLContextMenu.AutoSize = false;
+            this.deleteFlagToolOpenGLContextMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.deleteFlagToolOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
+            this.deleteFlagToolOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.deleteFlagToolOpenGLContextMenu.Name = "deleteFlagToolOpenGLContextMenu";
+            this.deleteFlagToolOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
+            this.deleteFlagToolOpenGLContextMenu.Text = ".";
+            this.deleteFlagToolOpenGLContextMenu.Click += new System.EventHandler(this.deleteFlagToolOpenGLContextMenu_Click);
+            // 
+            // googleEarthOpenGLContextMenu
+            // 
+            this.googleEarthOpenGLContextMenu.AutoSize = false;
+            this.googleEarthOpenGLContextMenu.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.googleEarthOpenGLContextMenu.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.googleEarthOpenGLContextMenu.Name = "googleEarthOpenGLContextMenu";
+            this.googleEarthOpenGLContextMenu.Size = new System.Drawing.Size(70, 70);
+            this.googleEarthOpenGLContextMenu.Text = ".";
+            this.googleEarthOpenGLContextMenu.Click += new System.EventHandler(this.googleEarthOpenGLContextMenu_Click);
+            // 
+            // toolStripMenuAreaSide
+            // 
+            this.toolStripMenuAreaSide.AutoSize = false;
+            this.toolStripMenuAreaSide.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripMenuAreaSide.Image = global::AgOpenGPS.Properties.Resources.AreaSide;
+            this.toolStripMenuAreaSide.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripMenuAreaSide.Name = "toolStripMenuAreaSide";
+            this.toolStripMenuAreaSide.Size = new System.Drawing.Size(70, 70);
+            this.toolStripMenuAreaSide.Text = ".";
+            this.toolStripMenuAreaSide.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.toolStripMenuAreaSide.Click += new System.EventHandler(this.toolStripMenuAreaSide_Click);
+            // 
+            // editABToolStripMenuItem
+            // 
+            this.editABToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.editABToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Start48;
+            this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
+            this.editABToolStripMenuItem.Size = new System.Drawing.Size(147, 54);
+            this.editABToolStripMenuItem.Text = "EditAB";
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(984, 744);
+            this.ClientSize = new System.Drawing.Size(984, 827);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.panelDrag);
             this.Controls.Add(this.panelEditAB);
@@ -3303,7 +3289,6 @@
         private System.Windows.Forms.ToolStripMenuItem uTurnAlwaysOnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compassOnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speedoOnToolStripMenuItem;
-        private System.Windows.Forms.Label label3;
     }
 }
 
