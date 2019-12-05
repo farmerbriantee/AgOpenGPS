@@ -28,7 +28,7 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
-        public bool isPureDisplayOn = true, isSkyOn = true, isOGLZoomOn = true, isBigAltitudeOn = false;
+        public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isBigAltitudeOn = false;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -110,33 +110,18 @@ namespace AgOpenGPS
             isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
             uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
 
-            if (Settings.Default.setMenu_isOGLZoomOn == 2)
+            //if (Settings.Default.setMenu_isOGLZoomOn == 1)
             {
-                oglZoom.Width = 240;
-                oglZoom.Height = 240;
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
                 topFieldViewToolStripMenuItem.Checked = true;
                 oglZoom.Visible = true;
                 oglZoom.Left = 80;
                 oglZoom.Top = 80;
-                isOGLZoomOn = true;
+                //oglZoom.BringToFront();
             }
 
-            else if (Settings.Default.setMenu_isOGLZoomOn == 1)
-            {
-                oglZoom.Width = 120;
-                oglZoom.Height = 120;
-                topFieldViewToolStripMenuItem.Checked = true;
-                oglZoom.Visible = true;
-                oglZoom.Left = 80;
-                oglZoom.Top = 80;
-                isOGLZoomOn = true;
-            }
-
-            else if (Settings.Default.setMenu_isOGLZoomOn == 0)
-            {
-                oglZoom.Visible = false;
-                isOGLZoomOn = false;
-            }
+            oglZoom.SendToBack();
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -2472,13 +2457,14 @@ namespace AgOpenGPS
 
         private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Settings.Default.setMenu_isOGLZoomOn > 0)
+            if (Settings.Default.setMenu_isOGLZoomOn == 1)
             {
-                oglZoom.Visible = false;
                 Settings.Default.setMenu_isOGLZoomOn = 0;
                 Settings.Default.Save();
                 topFieldViewToolStripMenuItem.Checked = false;
-                isOGLZoomOn = false;
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
+                oglZoom.SendToBack();
             }
             else
             {
@@ -2488,7 +2474,7 @@ namespace AgOpenGPS
                 oglZoom.Visible = true;
                 oglZoom.Left = 80;
                 oglZoom.Top = 80;
-                isOGLZoomOn = true;
+                oglZoom.BringToFront();
             }
         }
 
@@ -2552,22 +2538,16 @@ namespace AgOpenGPS
         {
             if ((sender as Control).IsDragging()) return;
 
-            if (oglZoom.Width == 120)
+            if (oglZoom.Width == 180)
             {
-                oglZoom.Width = 240;
-                oglZoom.Height = 240;
-                Settings.Default.setMenu_isOGLZoomOn = 2;
-                Settings.Default.Save();
-                isOGLZoomOn = true;
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
             }
 
-            else if (oglZoom.Width == 240)
+            else if (oglZoom.Width == 300)
             {
-                oglZoom.Width = 120;
-                oglZoom.Height = 120;
-                Settings.Default.setMenu_isOGLZoomOn = 1;
-                Settings.Default.Save();
-                isOGLZoomOn = true;
+                oglZoom.Width = 180;
+                oglZoom.Height = 180;
             }
         }
 

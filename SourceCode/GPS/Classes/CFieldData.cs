@@ -17,8 +17,13 @@ namespace AgOpenGPS
 
         public double barPercent = 0;
 
+        public double overlapPercent = 0;
+
         //Outside area minus inner boundaries areas (m)
         public double areaBoundaryOuterLessInner;
+
+        //used for overlap calcs - total done minus overlap
+        public double actualAreaCovered;
 
         //Inner area of outer boundary(m)
         public double areaOuterBoundary;
