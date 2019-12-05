@@ -170,9 +170,9 @@
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
             this.btnAutoYouTurn = new System.Windows.Forms.Button();
-            this.btnTramMenu = new System.Windows.Forms.Button();
             this.btnCycleLines = new System.Windows.Forms.Button();
             this.btnABMenu = new System.Windows.Forms.Button();
+            this.btnTramMenu = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripBatman = new System.Windows.Forms.ToolStripDropDownButton();
             this.distanceToolBtn = new System.Windows.Forms.ToolStripDropDownButton();
@@ -1123,10 +1123,10 @@
             // 
             this.oglZoom.BackColor = System.Drawing.Color.Black;
             this.oglZoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.oglZoom.Location = new System.Drawing.Point(354, 102);
+            this.oglZoom.Location = new System.Drawing.Point(344, 92);
             this.oglZoom.Margin = new System.Windows.Forms.Padding(0);
             this.oglZoom.Name = "oglZoom";
-            this.oglZoom.Size = new System.Drawing.Size(120, 120);
+            this.oglZoom.Size = new System.Drawing.Size(180, 180);
             this.oglZoom.TabIndex = 182;
             this.oglZoom.VSync = false;
             this.oglZoom.Load += new System.EventHandler(this.oglZoom_Load);
@@ -1725,10 +1725,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(244, 50);
+            this.oglMain.Location = new System.Drawing.Point(244, 49);
             this.oglMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(555, 628);
+            this.oglMain.Size = new System.Drawing.Size(555, 627);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1741,7 +1741,7 @@
             this.oglBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.oglBack.BackColor = System.Drawing.Color.Black;
             this.oglBack.ForeColor = System.Drawing.Color.Transparent;
-            this.oglBack.Location = new System.Drawing.Point(228, 629);
+            this.oglBack.Location = new System.Drawing.Point(248, 595);
             this.oglBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglBack.Name = "oglBack";
             this.oglBack.Size = new System.Drawing.Size(500, 500);
@@ -2021,25 +2021,6 @@
             this.btnAutoYouTurn.UseVisualStyleBackColor = false;
             this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
             // 
-            // btnTramMenu
-            // 
-            this.btnTramMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnTramMenu.BackColor = System.Drawing.Color.Transparent;
-            this.btnTramMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnTramMenu.FlatAppearance.BorderSize = 0;
-            this.btnTramMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTramMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTramMenu.Image = global::AgOpenGPS.Properties.Resources.ABTramLine;
-            this.btnTramMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnTramMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTramMenu.Location = new System.Drawing.Point(93, 261);
-            this.btnTramMenu.Name = "btnTramMenu";
-            this.btnTramMenu.Size = new System.Drawing.Size(82, 70);
-            this.btnTramMenu.TabIndex = 330;
-            this.btnTramMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnTramMenu.UseVisualStyleBackColor = false;
-            this.btnTramMenu.Click += new System.EventHandler(this.btnTramMenu_Click);
-            // 
             // btnCycleLines
             // 
             this.btnCycleLines.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2080,6 +2061,25 @@
             this.btnABMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnABMenu.UseVisualStyleBackColor = false;
             this.btnABMenu.Click += new System.EventHandler(this.btnABMenu_Click);
+            // 
+            // btnTramMenu
+            // 
+            this.btnTramMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTramMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnTramMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnTramMenu.FlatAppearance.BorderSize = 0;
+            this.btnTramMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTramMenu.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTramMenu.Image = global::AgOpenGPS.Properties.Resources.ABTramLine;
+            this.btnTramMenu.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTramMenu.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTramMenu.Location = new System.Drawing.Point(93, 261);
+            this.btnTramMenu.Name = "btnTramMenu";
+            this.btnTramMenu.Size = new System.Drawing.Size(82, 70);
+            this.btnTramMenu.TabIndex = 330;
+            this.btnTramMenu.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTramMenu.UseVisualStyleBackColor = false;
+            this.btnTramMenu.Click += new System.EventHandler(this.btnTramMenu_Click);
             // 
             // statusStrip1
             // 

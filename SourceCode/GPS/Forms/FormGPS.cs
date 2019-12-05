@@ -1110,6 +1110,7 @@ namespace AgOpenGPS
         //request a new job
         public void JobNew()
         {
+            if (Settings.Default.setMenu_isOGLZoomOn == 1) oglZoom.BringToFront();
             //isGPSPositionInitialized = false;
             //offset = 0;
             //pn.latStart = pn.latitude;
@@ -1172,6 +1173,7 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            oglZoom.SendToBack();
             layoutPanelRight.Enabled = false;
             boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
