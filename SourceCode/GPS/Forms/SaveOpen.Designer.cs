@@ -1529,7 +1529,6 @@ namespace AgOpenGPS
                         CalculateMinMax();
                         turn.BuildTurnLines();
                         gf.BuildGeoFenceLines();
-
                         mazeGrid.BuildMazeGridArray();
 
                     }
@@ -1540,8 +1539,6 @@ namespace AgOpenGPS
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
                     }
-
-
                 }
             } 
 

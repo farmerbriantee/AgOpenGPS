@@ -632,6 +632,7 @@
     <None Include="btnImages\TramOuter.png" />
     <None Include="btnImages\FontOn.png" />
     <None Include="btnImages\FontOff.png" />
+    <None Include="btnImages\HeadlandMenu.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

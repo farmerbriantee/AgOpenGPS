@@ -262,7 +262,7 @@ namespace AgOpenGPS
                         oglZoom.Refresh();
                     }
                 }
-                else oglZoom.Refresh();
+                //else oglZoom.Refresh();
             }
         }
 
@@ -354,7 +354,7 @@ namespace AgOpenGPS
             //draw bright green on back buffer
             if (bnd.bndArr.Count > 0)
             {
-                ////draw the perimeter line so far
+                ////draw the bnd line 
                 int ptCount = bnd.bndArr[0].bndLine.Count;
                 if (ptCount > 1)
                 {
@@ -365,6 +365,15 @@ namespace AgOpenGPS
                     GL.End();
                 }
             }
+
+            //int ptCount = hdArr.hdLine.Count;
+            //GL.LineWidth(1);
+            //GL.Color3(0.96555f, 0.9232f, 0.50f);
+            ////GL.PointSize(4);
+            //GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(hdLine[h].easting, hdLine[h].northing, 0);
+            //GL.Vertex3(hdLine[0].easting, hdLine[0].northing, 0);
+            //GL.End();
 
             GL.Flush();
 
@@ -722,6 +731,8 @@ namespace AgOpenGPS
 
                 GL.Color4(0.5, 0.5, 0.5, 0.5);
                 //draw patches j= # of sections
+                int count2;
+
                 for (int j = 0; j < vehicle.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
@@ -734,25 +745,28 @@ namespace AgOpenGPS
                         {
                             //draw the triangle in each triangle strip
                             GL.Begin(PrimitiveType.TriangleStrip);
-                            int count2 = triList.Count;
-                            int mipmap = 2;
+                            count2 = triList.Count;
+                            //int mipmap = 2;
 
-                            //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                            if (count2 >= (mipmap))
-                            {
-                                int step = mipmap;
-                                for (int i = 0; i < count2; i += step)
-                                {
-                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                    GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                            ////if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                            //if (count2 >= (mipmap))
+                            //{
+                            //    int step = mipmap;
+                            //    for (int i = 0; i < count2; i += step)
+                            //    {
+                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                            //        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
-                                    //too small to mipmap it
-                                    if (count2 - i <= (mipmap + 2))
-                                        step = 0;
-                                }
-                            }
+                            //        //too small to mipmap it
+                            //        if (count2 - i <= (mipmap + 2))
+                            //            step = 0;
+                            //    }
+                            //}
 
-                            else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                            //else 
+                            //{
+                                for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); 
+                            //}
                             GL.End();
 
                         }
@@ -822,11 +836,14 @@ namespace AgOpenGPS
 
                     GL.Color3(redSections, grnSections, bluSections);
 
+                    int cnt, step, patchCount;
+                    int mipmap = 8;
+
                     //draw patches j= # of sections
                     for (int j = 0; j < vehicle.numSuperSection; j++)
                     {
                         //every time the section turns off and on is a new patch
-                        int patchCount = section[j].patchList.Count;
+                        patchCount = section[j].patchList.Count;
 
                         if (patchCount > 0)
                         {
@@ -835,25 +852,24 @@ namespace AgOpenGPS
                             {
                                 //draw the triangle in each triangle strip
                                 GL.Begin(PrimitiveType.TriangleStrip);
-                                int count2 = triList.Count;
-                                int mipmap = 16;
+                                cnt = triList.Count;
 
                                 //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                                if (count2 >= (mipmap))
+                                if (cnt >= (mipmap))
                                 {
-                                    int step = mipmap;
-                                    for (int i = 0; i < count2; i += step)
+                                    step = mipmap;
+                                    for (int i = 0; i < cnt; i += step)
                                     {
                                         GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
                                         GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
 
                                         //too small to mipmap it
-                                        if (count2 - i <= (mipmap + 2))
+                                        if (cnt - i <= (mipmap + 2))
                                             step = 0;
                                     }
                                 }
 
-                                else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                                else { for (int i = 0; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                 GL.End();
 
                             }
@@ -1463,10 +1479,10 @@ namespace AgOpenGPS
             GL.Rotate(angle, 0, 0, 1);
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-56, -56); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(56, -56.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(56, 56); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-56, 56); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-64, -64); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(64, -64.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(64, 64); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-64, 64); //
             }
             GL.End();
 
@@ -1477,31 +1493,67 @@ namespace AgOpenGPS
 
         private void DrawFieldText()
         {
-            if (bnd.bndArr.Count > 0)
+            if (isMetric)
             {
-                sb.Clear();
-                sb.Append(fd.overlapPercent.ToString("N2"));
-                sb.Append("%   ");
-                sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ha).ToString("N2"));
-                sb.Append(" - ");
-                sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
-                sb.Append(" = ");
-                sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
-                sb.Append("Ha  ");
-                sb.Append(fd.TimeTillFinished);
-                GL.Color3(0.95, 0.95, 0.95);
-                font.DrawText(-oglMain.Width / 4, oglMain.Height - 32, sb.ToString());
+                if (bnd.bndArr.Count > 0)
+                {
+                    sb.Clear();
+                    sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
+                    sb.Append("Ha ");
+                    sb.Append(fd.overlapPercent.ToString("N2"));
+                    sb.Append("%  ");
+                    sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ha).ToString("N2"));
+                    sb.Append("-");
+                    sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
+                    sb.Append(" = ");
+                    sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
+                    sb.Append("Ha  ");
+                    sb.Append(fd.TimeTillFinished);
+                    GL.Color3(0.95, 0.95, 0.95);
+                    font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
+                }
+                else
+                {
+                    sb.Clear();
+                    //sb.Append("Overlap ");
+                    sb.Append(fd.overlapPercent.ToString("N3"));
+                    sb.Append("%   ");
+                    sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N3"));
+                    sb.Append("Ha");
+                    GL.Color3(0.95, 0.95, 0.95);
+                    font.DrawText(0, oglMain.Height - 32, sb.ToString());
+                }
             }
             else
             {
-                sb.Clear();
-                //sb.Append("Overlap ");
-                sb.Append(fd.overlapPercent.ToString("N2"));
-                sb.Append("%   ");
-                sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
-                sb.Append("Ha");
-                GL.Color3(0.95, 0.95, 0.95);
-                font.DrawText(0, oglMain.Height - 32, sb.ToString());
+                if (bnd.bndArr.Count > 0)
+                {
+                    sb.Clear();
+                    sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
+                    sb.Append("Ac ");
+                    sb.Append(fd.overlapPercent.ToString("N2"));
+                    sb.Append("%  ");
+                    sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ac).ToString("N2"));
+                    sb.Append("-");
+                    sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
+                    sb.Append(" = ");
+                    sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
+                    sb.Append("Ac  ");
+                    sb.Append(fd.TimeTillFinished);
+                    GL.Color3(0.95, 0.95, 0.95);
+                    font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
+                }
+                else
+                {
+                    sb.Clear();
+                    //sb.Append("Overlap ");
+                    sb.Append(fd.overlapPercent.ToString("N3"));
+                    sb.Append("%   ");
+                    sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N3"));
+                    sb.Append("Ac");
+                    GL.Color3(0.95, 0.95, 0.95);
+                    font.DrawText(0, oglMain.Height - 32, sb.ToString());
+                }
             }
         }
 

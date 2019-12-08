@@ -231,7 +231,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 19);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Sub 8";
+            this.label2.Text = "Sub 9";
             // 
             // Form_About
             // 

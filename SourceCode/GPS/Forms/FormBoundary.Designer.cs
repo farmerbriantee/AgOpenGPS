@@ -42,6 +42,7 @@
             this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
+            this.btnOpenGoogleEarth = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -64,54 +65,54 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(530, 363);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(530, 353);
             this.tableLayoutPanel1.TabIndex = 205;
             // 
             // Around
             // 
             this.Around.BackColor = System.Drawing.Color.Transparent;
             this.Around.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Around.Location = new System.Drawing.Point(441, 14);
+            this.Around.Location = new System.Drawing.Point(441, 6);
             this.Around.Margin = new System.Windows.Forms.Padding(0);
             this.Around.Name = "Around";
             this.Around.Size = new System.Drawing.Size(90, 49);
             this.Around.TabIndex = 204;
             this.Around.Text = "Around?";
-            this.Around.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Around.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Boundary
             // 
             this.Boundary.BackColor = System.Drawing.Color.Transparent;
             this.Boundary.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Boundary.Location = new System.Drawing.Point(18, 14);
+            this.Boundary.Location = new System.Drawing.Point(18, 6);
             this.Boundary.Name = "Boundary";
             this.Boundary.Size = new System.Drawing.Size(150, 49);
             this.Boundary.TabIndex = 203;
             this.Boundary.Text = "Bounds";
-            this.Boundary.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Boundary.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Thru
             // 
             this.Thru.BackColor = System.Drawing.Color.Transparent;
             this.Thru.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Thru.Location = new System.Drawing.Point(340, 14);
+            this.Thru.Location = new System.Drawing.Point(340, 6);
             this.Thru.Name = "Thru";
             this.Thru.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Thru.Size = new System.Drawing.Size(80, 49);
             this.Thru.TabIndex = 202;
             this.Thru.Text = "Thru?";
-            this.Thru.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Thru.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Area
             // 
             this.Area.BackColor = System.Drawing.Color.Transparent;
             this.Area.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Area.Location = new System.Drawing.Point(176, 14);
+            this.Area.Location = new System.Drawing.Point(176, 6);
             this.Area.Name = "Area";
             this.Area.Size = new System.Drawing.Size(116, 49);
             this.Area.TabIndex = 201;
             this.Area.Text = "Area";
-            this.Area.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Area.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnLeftRight
             // 
@@ -119,7 +120,7 @@
             this.btnLeftRight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnLeftRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
-            this.btnLeftRight.Location = new System.Drawing.Point(193, 451);
+            this.btnLeftRight.Location = new System.Drawing.Point(163, 451);
             this.btnLeftRight.Name = "btnLeftRight";
             this.btnLeftRight.Size = new System.Drawing.Size(91, 84);
             this.btnLeftRight.TabIndex = 67;
@@ -137,7 +138,7 @@
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnGo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGo.Location = new System.Drawing.Point(368, 451);
+            this.btnGo.Location = new System.Drawing.Point(329, 451);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(91, 84);
@@ -165,7 +166,7 @@
             this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadMultiFromGE;
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(351, 452);
+            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(344, 452);
             this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
             this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(91, 84);
             this.btnLoadMultiBoundaryFromGE.TabIndex = 211;
@@ -180,7 +181,7 @@
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(177, 451);
+            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(180, 452);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
             this.btnLoadBoundaryFromGE.Size = new System.Drawing.Size(91, 84);
             this.btnLoadBoundaryFromGE.TabIndex = 210;
@@ -209,7 +210,7 @@
             this.btnDeleteAll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.BoundaryDeleteAll;
             this.btnDeleteAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteAll.Location = new System.Drawing.Point(580, 66);
+            this.btnDeleteAll.Location = new System.Drawing.Point(580, 146);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(78, 68);
             this.btnDeleteAll.TabIndex = 100;
@@ -222,7 +223,7 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnDelete.Location = new System.Drawing.Point(580, 207);
+            this.btnDelete.Location = new System.Drawing.Point(580, 241);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(78, 68);
             this.btnDelete.TabIndex = 65;
@@ -245,13 +246,29 @@
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
             // 
+            // btnOpenGoogleEarth
+            // 
+            this.btnOpenGoogleEarth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(580, 12);
+            this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
+            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(78, 84);
+            this.btnOpenGoogleEarth.TabIndex = 213;
+            this.btnOpenGoogleEarth.Text = "Google Earth";
+            this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
+            this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
+            // 
             // FormBoundary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(674, 559);
+            this.ClientSize = new System.Drawing.Size(674, 545);
             this.ControlBox = false;
+            this.Controls.Add(this.btnOpenGoogleEarth);
             this.Controls.Add(this.btnLeftRight);
             this.Controls.Add(this.btnGo);
             this.Controls.Add(this.btnDriveOrExt);
@@ -295,5 +312,6 @@
         private System.Windows.Forms.Button btnLoadMultiBoundaryFromGE;
         private System.Windows.Forms.Button btnLoadBoundaryFromGE;
         private System.Windows.Forms.Button btnDriveOrExt;
+        private System.Windows.Forms.Button btnOpenGoogleEarth;
     }
 }

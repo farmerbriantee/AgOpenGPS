@@ -58,6 +58,12 @@ namespace AgOpenGPS
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
 
+        private readonly Stopwatch swDraw = new Stopwatch();
+        //swDraw.Reset();
+        //swDraw.Start();
+        //swDraw.Stop();
+        //label3.Text = ((double) swDraw.ElapsedTicks / (double) System.Diagnostics.Stopwatch.Frequency * 1000).ToString();
+
         //Time to do fix position update and draw routine
         private double frameTime = 0;
 
@@ -165,16 +171,6 @@ namespace AgOpenGPS
         /// The boundary object
         /// </summary>
         public CTurn turn;
-
-        /// <summary>
-        /// The headland created
-        /// </summary>
-        //public CHeadland hl;
-
-        /// <summary>
-        /// array of headlands
-        /// </summary>
-        //public CHeadlandLines[] hlArr;
 
         /// <summary>
         /// The entry and exit sequences, functions, actions
@@ -347,13 +343,6 @@ namespace AgOpenGPS
             //GeoFence
             gf = new CGeoFence(this);
 
-            ////headland object
-            //hl = new CHeadland(gl, this);
-
-            ////headlands array
-            //hlArr = new CHeadlandLines[MAXHEADS];
-            //for (int j = 0; j < MAXHEADS; j++) hlArr[j] = new CHeadlandLines(gl, this);
-
             //headland entry/exit sequences
             seq = new CSequence(this);
 
@@ -376,7 +365,7 @@ namespace AgOpenGPS
             mazeGrid = new CMazeGrid(this);
 
             //start the stopwatch
-            swFrame.Start();
+            //swFrame.Start();
 
             //resource for gloabal language strings
             _rm = new ResourceManager("AgOpenGPS.gStr", Assembly.GetExecutingAssembly());
@@ -953,6 +942,9 @@ namespace AgOpenGPS
             }
         }
 
+        private void EditHeadlandStripBtn_Click(object sender, EventArgs e)
+        {
+        }
 
         public void GetAB()
         {

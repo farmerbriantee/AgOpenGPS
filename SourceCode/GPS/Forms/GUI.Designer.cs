@@ -1857,7 +1857,6 @@ namespace AgOpenGPS
         //
         private void btnSaveAB_Click(object sender, EventArgs e)
         {
-            panelEditAB.Visible = false;
             if (ABLine.isBtnABLineOn)
             {
                 //index to last one.
@@ -1906,24 +1905,18 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void btnABMenu_Click(object sender, EventArgs e)
-        {
-            if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
-            {
-                if (panelEditAB.Visible)
-                    panelEditAB.Visible = false;
-                else
-                    panelEditAB.Visible = true;
-            }
-            else
-            {
-                panelEditAB.Visible = false;
-            }
-        }
+
         private void btnEditAB_Click(object sender, EventArgs e)
         {
-            panelEditAB.Visible = false;
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            Form fc = Application.OpenForms["FormEditAB"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
@@ -1944,7 +1937,6 @@ namespace AgOpenGPS
         private void btnTramMenu_Click(object sender, EventArgs e)
         {
             curve.isOkToAddPoints = false;
-            panelEditAB.Visible = false;
 
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
@@ -3385,11 +3377,11 @@ namespace AgOpenGPS
 
                     if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                     {
-                        btnABMenu.Text = ((int)(ABLine.moveDistance * 100)).ToString();
+                        btnEditHeadingB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
                     }
                     if (curve.isBtnCurveOn && !ct.isContourBtnOn)
                     {
-                        btnABMenu.Text = ((int)(curve.moveDistance * 100)).ToString();
+                        btnEditHeadingB.Text = ((int)(curve.moveDistance * 100)).ToString();
                     }
 
                     if (mc.steerSwitchValue == 0)
@@ -3488,7 +3480,6 @@ namespace AgOpenGPS
                         }
                     }
 
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
                 }
 
                 //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
@@ -3513,6 +3504,8 @@ namespace AgOpenGPS
                     {
                         steerAnglesToolStripDropDownButton1.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                     }
+                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
+
                 }
 
             } //there was a new GPS update

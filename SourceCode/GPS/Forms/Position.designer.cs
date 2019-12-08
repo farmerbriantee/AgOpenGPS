@@ -728,7 +728,7 @@ namespace AgOpenGPS
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    bnd.bndPts.Add(point);
+                    bnd.bndBeingMadePts.Add(point);
                 }
 
                 //draw on left side
@@ -737,7 +737,7 @@ namespace AgOpenGPS
                     //Right side
                     CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    bnd.bndPts.Add(point);
+                    bnd.bndBeingMadePts.Add(point);
                 }
             }
         }
@@ -913,6 +913,8 @@ namespace AgOpenGPS
             {
                 if (bnd.bndArr.Count > 0)
                 {
+
+
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
@@ -957,6 +959,7 @@ namespace AgOpenGPS
                     section[j].isInsideBoundary = true;
                     section[vehicle.numOfSections].isInsideBoundary = false;
                 }
+
             }
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
