@@ -285,7 +285,7 @@ namespace AgOpenGPS
                 //only add if inside actual field boundary
                 if (mf.bnd.bndArr[0].IsPointInsideBoundary(point))
                 {
-                    CTurnPt tPnt = new CTurnPt(point.easting, point.northing, point.heading);
+                    vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                     turnArr[0].turnLine.Add(tPnt);
                 }
             }
@@ -311,7 +311,7 @@ namespace AgOpenGPS
                     //only add if outside actual field boundary
                     if (!mf.bnd.bndArr[j].IsPointInsideBoundary(point))
                     {
-                        CTurnPt tPnt = new CTurnPt(point.easting, point.northing, point.heading);
+                        vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         turnArr[j].turnLine.Add(tPnt);
                     }
                 }

@@ -329,6 +329,7 @@ namespace AgOpenGPS
             mf.fd.UpdateFieldBoundaryGUIAreas();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+
             mf.mazeGrid.BuildMazeGridArray();
 
             UpdateChart();
@@ -351,6 +352,13 @@ namespace AgOpenGPS
             btnLeftRight.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
+        }
+
+        private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
+        {
+            //save new copy of kml with selected flag and view in GoogleEarth
+            mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
+            System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
         }
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
@@ -514,6 +522,7 @@ namespace AgOpenGPS
                 btnLoadMultiBoundaryFromGE.Visible = false;
                 btnGo.Visible = true;
                 btnLeftRight.Visible = true;
+
             }
             else
             {

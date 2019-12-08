@@ -14,7 +14,7 @@ namespace AgOpenGPS
         /// </summary>
         /// 
         public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
-        public List<CBndPt> bndPts = new List<CBndPt>();
+        public List<CBndPt> bndBeingMadePts = new List<CBndPt>();
 
         private readonly double scanWidth, boxLength;
 
@@ -154,15 +154,15 @@ namespace AgOpenGPS
                 bndArr[i].DrawBoundaryLine();
             }
 
-            if (bndPts.Count > 0)
+            if (bndBeingMadePts.Count > 0)
             {
                 GL.PointSize(2);
                 GL.LineWidth(1);
                 GL.Color3(0.825f, 0.42f, 0.90f);
                 GL.Begin(PrimitiveType.Lines);
-                for (int h = 0; h < bndPts.Count; h++) GL.Vertex3(bndPts[h].easting, bndPts[h].northing, 0);
+                for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.Color3(0.95f, 0.972f, 0.90f);
-                GL.Vertex3(bndPts[0].easting, bndPts[0].northing, 0);
+                GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
                 GL.End();
             }
         }

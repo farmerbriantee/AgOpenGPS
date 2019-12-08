@@ -24,14 +24,15 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndPts.Count > 5)
+            if (mf.bnd.bndBeingMadePts.Count > 5)
             {
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
                 mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-                for (int i = 0; i < mf.bnd.bndPts.Count; i++)
+
+                for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndPts[i]);
+                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndBeingMadePts[i]);
                 }
 
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
@@ -50,10 +51,11 @@ namespace AgOpenGPS
             mf.FileSaveBoundary();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
 
-            mf.bnd.bndPts.Clear();
+            mf.bnd.bndBeingMadePts.Clear();
             //close window
             Close();
         }
@@ -83,7 +85,7 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int ptCount = mf.bnd.bndPts.Count;
+            int ptCount = mf.bnd.bndBeingMadePts.Count;
             double area = 0;
 
             if (ptCount > 0)
@@ -92,7 +94,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < ptCount; j = i++)
                 {
-                    area += (mf.bnd.bndPts[j].easting + mf.bnd.bndPts[i].easting) * (mf.bnd.bndPts[j].northing - mf.bnd.bndPts[i].northing);
+                    area += (mf.bnd.bndBeingMadePts[j].easting + mf.bnd.bndBeingMadePts[i].easting) * (mf.bnd.bndBeingMadePts[j].northing - mf.bnd.bndBeingMadePts[i].northing);
                 }
                 area = Math.Abs(area / 2);
             }
