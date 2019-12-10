@@ -942,8 +942,97 @@ namespace AgOpenGPS
             }
         }
 
+        private void FileOpenFlagLog()
+        {
+            string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+            if (File.Exists(fileAndD))
+            {
+
+
+                rtbFlag.LoadFile(fileAndD, RichTextBoxStreamType.PlainText);
+                rtbFlag.Text += "\r\n" + "Loaded from File!!";
+            }
+            else
+            {
+                //rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                rtbFlag.Text = "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+            }
+
+        }
+
+        private void FileRenuberFlagLog()
+        {
+            if ((flagNumberPicked) <= flagPts.Count)
+            {
+                string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+                if (File.Exists(fileAndD))
+                {
+
+                    File.Delete(fileAndD);
+
+                }
+                int flagCnt = flagPts.Count;
+                if (flagCnt > 0)
+                {
+                    for (int i = flagNumberPicked; i < flagCnt; i++)
+                    {
+
+                        string fileAndDold = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[i]).ID.ToString() + "_Log.rtf";
+                        string fileAndDnew = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[i - 1]).ID.ToString() + "_Log.rtf";
+                        if (File.Exists(fileAndDold))
+                        {
+                            File.Copy(fileAndDold, fileAndDnew);
+                            File.Delete(fileAndDold);
+                        }
+
+
+                    }
+
+                }
+            }
+            else
+            {
+                string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + flagNumberPicked.ToString() + "_Log.rtf";
+                if (File.Exists(fileAndD))
+                {
+
+                    File.Delete(fileAndD);
+
+                }
+            }
+
+        }
+        private void FileSaveFlagLog()
+        {
+            //rtbFlag.Text += "\r\n" + "Flag Last Saved";
+            //rtbFlag.Text += "\r\n" + (DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt"));
+            string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+            rtbFlag.SaveFile(fileAndD, RichTextBoxStreamType.PlainText);
+
+        }
         private void EditHeadlandStripBtn_Click(object sender, EventArgs e)
         {
+        }
+
+        private void BtnNxtFlg_Click(object sender, EventArgs e)
+        {
+            if (flagNumberPicked >= flagPts.Count)
+            {
+                flagNumberPicked = 1;
+                FileOpenFlagLog();
+            }
+            else
+            {
+                flagNumberPicked += 1;
+                FileOpenFlagLog();
+
+            }
+        }
+
+        private void BtnSaveFlag_Click(object sender, EventArgs e)
+        {
+            FileSaveFlagLog();
         }
 
         public void GetAB()
@@ -1603,6 +1692,7 @@ namespace AgOpenGPS
             FileSaveSections();
             FileSaveContour();
             FileSaveFlagsKML();
+            FileSaveFlags();
 
             JobClose();
             Text = "AgOpenGPS";

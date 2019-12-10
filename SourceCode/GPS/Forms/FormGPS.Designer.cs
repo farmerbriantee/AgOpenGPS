@@ -235,6 +235,10 @@
             this.lblDistanceOffLine = new System.Windows.Forms.Label();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.panelFlag = new System.Windows.Forms.Panel();
+            this.rtbFlag = new System.Windows.Forms.RichTextBox();
+            this.btnNxtFlg = new System.Windows.Forms.Button();
+            this.btnSaveFlag = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -246,6 +250,7 @@
             this.statusStrip1.SuspendLayout();
             this.statusStripLeft.SuspendLayout();
             this.panelSim.SuspendLayout();
+            this.panelFlag.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripOpenGL
@@ -1945,7 +1950,7 @@
             this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editABToolStripMenuItem});
             this.contextMenuABLine.Name = "contextMenuABLine";
-            this.contextMenuABLine.Size = new System.Drawing.Size(148, 58);
+            this.contextMenuABLine.Size = new System.Drawing.Size(142, 58);
             // 
             // editABToolStripMenuItem
             // 
@@ -1953,7 +1958,7 @@
             this.editABToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Start48;
             this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
-            this.editABToolStripMenuItem.Size = new System.Drawing.Size(147, 54);
+            this.editABToolStripMenuItem.Size = new System.Drawing.Size(141, 54);
             this.editABToolStripMenuItem.Text = "EditAB";
             // 
             // btnContour
@@ -2846,12 +2851,52 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
+            // panelFlag
+            // 
+            this.panelFlag.Controls.Add(this.rtbFlag);
+            this.panelFlag.Controls.Add(this.btnNxtFlg);
+            this.panelFlag.Controls.Add(this.btnSaveFlag);
+            this.panelFlag.Location = new System.Drawing.Point(815, 52);
+            this.panelFlag.Name = "panelFlag";
+            this.panelFlag.Size = new System.Drawing.Size(335, 174);
+            this.panelFlag.TabIndex = 448;
+            this.panelFlag.Visible = false;
+            // 
+            // rtbFlag
+            // 
+            this.rtbFlag.Location = new System.Drawing.Point(22, 20);
+            this.rtbFlag.Name = "rtbFlag";
+            this.rtbFlag.Size = new System.Drawing.Size(288, 93);
+            this.rtbFlag.TabIndex = 3;
+            this.rtbFlag.Text = "";
+            // 
+            // btnNxtFlg
+            // 
+            this.btnNxtFlg.Location = new System.Drawing.Point(26, 128);
+            this.btnNxtFlg.Name = "btnNxtFlg";
+            this.btnNxtFlg.Size = new System.Drawing.Size(132, 30);
+            this.btnNxtFlg.TabIndex = 2;
+            this.btnNxtFlg.Text = "NEXT FLAG";
+            this.btnNxtFlg.UseVisualStyleBackColor = true;
+            this.btnNxtFlg.Click += new System.EventHandler(this.BtnNxtFlg_Click);
+            // 
+            // btnSaveFlag
+            // 
+            this.btnSaveFlag.Location = new System.Drawing.Point(207, 127);
+            this.btnSaveFlag.Name = "btnSaveFlag";
+            this.btnSaveFlag.Size = new System.Drawing.Size(104, 31);
+            this.btnSaveFlag.TabIndex = 1;
+            this.btnSaveFlag.Text = "SAVE";
+            this.btnSaveFlag.UseVisualStyleBackColor = true;
+            this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1111, 661);
+            this.Controls.Add(this.panelFlag);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.panelDrag);
             this.Controls.Add(this.panelSim);
@@ -2906,6 +2951,7 @@
             this.statusStripLeft.ResumeLayout(false);
             this.statusStripLeft.PerformLayout();
             this.panelSim.ResumeLayout(false);
+            this.panelFlag.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3117,6 +3163,10 @@
         private System.Windows.Forms.ToolStripMenuItem uTurnAlwaysOnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem compassOnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem speedoOnToolStripMenuItem;
+        private System.Windows.Forms.Panel panelFlag;
+        private System.Windows.Forms.RichTextBox rtbFlag;
+        private System.Windows.Forms.Button btnNxtFlg;
+        private System.Windows.Forms.Button btnSaveFlag;
     }
 }
 

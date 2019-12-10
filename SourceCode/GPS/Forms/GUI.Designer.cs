@@ -29,6 +29,9 @@ namespace AgOpenGPS
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isBigAltitudeOn = false;
+        public double camZoomNow = -10;
+        public double camDistNow = -10;
+        public bool fieldZoom = false;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -923,7 +926,7 @@ namespace AgOpenGPS
         {
             //delete selected flag and set selected to none
             flagPts.RemoveAt(flagNumberPicked - 1);
-            flagNumberPicked = 0;
+
 
             // re-sort the id's based on how many flags left
             int flagCnt = flagPts.Count;
@@ -931,6 +934,11 @@ namespace AgOpenGPS
             {
                 for (int i = 0; i < flagCnt; i++) flagPts[i].ID = i + 1;
             }
+
+            FileRenuberFlagLog();
+
+
+            flagNumberPicked = 0;
         }
 
         private void DoNTRIPSecondRoutine()
@@ -2507,10 +2515,27 @@ namespace AgOpenGPS
 
         private void ZoomExtentsStripBtn_Click(object sender, EventArgs e)
         {
-            if (camera.camSetDistance < -400) camera.camSetDistance = -75;
-            else camera.camSetDistance = -3 * maxFieldDistance;
-            if (camera.camSetDistance == 0) camera.camSetDistance = -2000;
-            SetZoom();
+            if (!isJobStarted)
+            {
+                TimedMessageBox(1000, "No Field Open", "Please Start a Field");
+                return;
+            }
+            if (fieldZoom)
+            {
+                fieldZoom = false;
+                camera.camFollowing = true;
+                camera.zoomValue = camZoomNow;
+                camera.camSetDistance = camDistNow;
+
+            }
+            else
+            {
+                fieldZoom = true;
+                camera.camFollowing = false;
+                camZoomNow = camera.zoomValue;
+                camDistNow = camera.camSetDistance;
+
+            }
         }
 
         private void FontToolBtn_Click(object sender, EventArgs e)
@@ -3505,7 +3530,16 @@ namespace AgOpenGPS
                         steerAnglesToolStripDropDownButton1.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                     }
                     lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
+                    if (flagNumberPicked != 0)
+                    {
+                        panelFlag.Visible = true;
 
+
+                    }
+                    else
+                    {
+                        panelFlag.Visible = false;
+                    }
                 }
 
             } //there was a new GPS update

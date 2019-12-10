@@ -113,9 +113,9 @@ namespace AgOpenGPS
             GL.PopMatrix();
         }
 
-        public void DrawText3D(double x1, double y1, string text, double size = 1.0)
+        public void DrawText3D(double x1, double y1, string text, double fact)
         {
-            double x = 0, y = 0;
+            double x = 0, y = 0, size = 1;
 
             GL.PushMatrix();
 
@@ -126,7 +126,7 @@ namespace AgOpenGPS
                 GL.Rotate(90, 1, 0, 0);
                 if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 1, 0);
                 size = -mf.camera.camSetDistance;
-                size = Math.Pow(size, 0.8);
+                size = Math.Pow(size, 0.8)*fact;
                 size /= 800;
             }
 
@@ -134,7 +134,7 @@ namespace AgOpenGPS
             {
                 if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 0, 1);
                 size = -mf.camera.camSetDistance;
-                size = Math.Pow(size, 0.85);
+                size = Math.Pow(size, 0.85)*fact;
                 size /= 1000;
             }
 

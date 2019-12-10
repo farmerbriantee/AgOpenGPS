@@ -85,8 +85,8 @@ namespace AgOpenGPS
                 if (mf.font.isFontOn && refList.Count > 410)
                 {
                     GL.Color3(0.40f, 0.90f, 0.95f);
-                    mf.font.DrawText3D(refList[201].easting, refList[201].northing, "&A");
-                    mf.font.DrawText3D(refList[refList.Count - 200].easting, refList[refList.Count - 200].northing, "&B");
+                    mf.font.DrawText3D(refList[201].easting, refList[201].northing, "&A",1);
+                    mf.font.DrawText3D(refList[refList.Count - 200].easting, refList[refList.Count - 200].northing, "&B",1);
                 }
 
                 //just draw ref and smoothed line if smoothing window is open
@@ -239,8 +239,8 @@ namespace AgOpenGPS
                     if (tramList[i].Count > 0)
                     {
                         middle = tramList[i].Count - 1;
-                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString());
-                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString());
+                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString(),1);
+                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString(),1);
                     }
                 }
             }

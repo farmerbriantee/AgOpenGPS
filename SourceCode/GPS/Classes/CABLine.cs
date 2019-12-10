@@ -80,8 +80,8 @@ namespace AgOpenGPS
             
             if (mf.font.isFontOn)
             {
-                mf.font.DrawText3D(refPoint1.easting, refPoint1.northing, "&A");
-                mf.font.DrawText3D(refPoint2.easting, refPoint2.northing, "&B");
+                mf.font.DrawText3D(refPoint1.easting, refPoint1.northing, "&A",1);
+                mf.font.DrawText3D(refPoint2.easting, refPoint2.northing, "&B",1);
             }
 
             GL.PointSize(1.0f);
@@ -242,8 +242,8 @@ namespace AgOpenGPS
                     if (tramList[i].Count > 1)
                     {
                         middle = tramList[i].Count - 1;
-                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString());
-                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString());
+                        mf.font.DrawText3D(tramList[i][middle].easting, tramList[i][middle].northing, (i + 1).ToString(),1);
+                        mf.font.DrawText3D(tramList[i][0].easting, tramList[i][0].northing, (i + 1).ToString(),1);
 
                     }
                 }
