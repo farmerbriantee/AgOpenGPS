@@ -2939,6 +2939,7 @@ namespace AgOpenGPS
         {
             //delete selected flag and set selected to none
             DeleteSelectedFlag();
+            FileSaveFlags();
         }
         private void contextMenuStripOpenGL_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {

@@ -226,152 +226,154 @@ namespace AgOpenGPS
         //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //reset Sim
-            if (keyData == Keys.L)
+            if (flagNumberPicked == 0)
             {
-                btnResetSim.PerformClick();
-                return true;
+                //reset Sim
+                if (keyData == Keys.L)
+                {
+                    btnResetSim.PerformClick();
+                    return true;
+                }
+
+                //speed up
+                if (keyData == Keys.Up)
+                {
+                    sim.stepDistance += 0.05;
+                    if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
+                    hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+
+                    return true;
+                }
+
+                //Stop
+                if (keyData == Keys.OemPeriod)
+                {
+                    sim.stepDistance = 0;
+                    hsbarStepDistance.Value = 0;
+                    return true;
+                }
+
+                //slow down
+                if (keyData == Keys.Down)
+                {
+                    sim.stepDistance -= 0.05;
+                    if (sim.stepDistance < 0) sim.stepDistance = 0;
+                    hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+                    return true;
+                }
+
+                //turn right
+                if (keyData == Keys.Right)
+                {
+                    sim.steerAngle++;
+                    if (sim.steerAngle > 30) sim.steerAngle = 30;
+                    if (sim.steerAngle < -30) sim.steerAngle = -30;
+                    sim.steerAngleScrollBar = sim.steerAngle;
+                    btnResetSteerAngle.Text = sim.steerAngle.ToString();
+                    hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                    return true;
+                }
+
+                //turn left
+                if (keyData == Keys.Left)
+                {
+                    sim.steerAngle--;
+                    if (sim.steerAngle > 30) sim.steerAngle = 30;
+                    if (sim.steerAngle < -30) sim.steerAngle = -30;
+                    sim.steerAngleScrollBar = sim.steerAngle;
+                    btnResetSteerAngle.Text = sim.steerAngle.ToString();
+                    hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                    return true;
+                }
+
+                //zero steering
+                if (keyData == Keys.OemQuestion)
+                {
+                    sim.steerAngle = 0.0;
+                    sim.steerAngleScrollBar = sim.steerAngle;
+                    btnResetSteerAngle.Text = sim.steerAngle.ToString();
+                    hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                    return true;
+                }
+
+                if (keyData == (Keys.F))
+                {
+                    JobNewOpenResume();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.A)) //autosteer button on off
+                {
+                    btnAutoSteer.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                //if (keyData == (Keys.S)) //open the steer chart
+                //{
+                //    toolstripAutoSteerConfig.PerformClick();
+                //    return true;    // indicate that you handled this keystroke
+                //}
+
+                if (keyData == (Keys.S)) //open the steer chart
+                {
+                    btnContourPriority.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.C)) //open the steer chart
+                {
+                    toolStripAutoSteerChart.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.V)) //open the vehicle Settings
+                {
+                    toolstripVehicleConfig.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.U)) //open the UTurn Settings
+                {
+                    toolstripYouTurnConfig.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.NumPad1)) //auto section on off
+                {
+                    btnSectionOffAutoOn.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.N)) //auto section on off
+                {
+                    btnSectionOffAutoOn.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.NumPad0)) //auto section on off
+                {
+                    btnManualOffOn.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.M)) //auto section on off
+                {
+                    btnManualOffOn.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.G)) // Flag click
+                {
+                    btnFlag.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
+
+                if (keyData == (Keys.P)) // Snap/Prioritu click
+                {
+                    btnContourPriority.PerformClick();
+                    return true;    // indicate that you handled this keystroke
+                }
             }
-
-            //speed up
-            if (keyData == Keys.Up)
-            {
-                sim.stepDistance += 0.05;
-                if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
-
-                return true;
-            }
-
-            //Stop
-            if (keyData == Keys.OemPeriod)
-            {
-                sim.stepDistance = 0;
-                hsbarStepDistance.Value = 0;
-                return true;
-            }
-
-            //slow down
-            if (keyData == Keys.Down)
-            {
-                sim.stepDistance -= 0.05;
-                if (sim.stepDistance < 0) sim.stepDistance = 0;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
-                return true;
-            }
-
-            //turn right
-            if (keyData == Keys.Right)
-            {
-                sim.steerAngle++;
-                if (sim.steerAngle > 30) sim.steerAngle = 30;
-                if (sim.steerAngle < -30) sim.steerAngle = -30;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
-                return true;
-            }
-
-            //turn left
-            if (keyData == Keys.Left)
-            {
-                sim.steerAngle--;
-                if (sim.steerAngle > 30) sim.steerAngle = 30;
-                if (sim.steerAngle < -30) sim.steerAngle = -30;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
-                return true;
-            }
-
-            //zero steering
-            if (keyData == Keys.OemQuestion)
-            {
-                sim.steerAngle = 0.0;
-                sim.steerAngleScrollBar = sim.steerAngle;
-                btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
-                return true;
-            }
-
-            if (keyData == (Keys.F))
-            {
-                JobNewOpenResume();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.A)) //autosteer button on off
-            {
-                btnAutoSteer.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            //if (keyData == (Keys.S)) //open the steer chart
-            //{
-            //    toolstripAutoSteerConfig.PerformClick();
-            //    return true;    // indicate that you handled this keystroke
-            //}
-
-            if (keyData == (Keys.S)) //open the steer chart
-            {
-                btnContourPriority.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.C)) //open the steer chart
-            {
-                toolStripAutoSteerChart.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.V)) //open the vehicle Settings
-            {
-                toolstripVehicleConfig.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.U)) //open the UTurn Settings
-            {
-                toolstripYouTurnConfig.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.NumPad1)) //auto section on off
-            {
-                btnSectionOffAutoOn.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.N)) //auto section on off
-            {
-                btnSectionOffAutoOn.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.NumPad0)) //auto section on off
-            {
-                btnManualOffOn.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.M)) //auto section on off
-            {
-                btnManualOffOn.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.G)) // Flag click
-            {
-                btnFlag.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.P)) // Snap/Prioritu click
-            {
-                btnContourPriority.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }
