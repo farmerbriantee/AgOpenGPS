@@ -1980,7 +1980,7 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, flagColor, nextflag);
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, flagColor, nextflag,"");
             flagPts.Add(flagPt);
             FileSaveFlags();
         }
@@ -2951,7 +2951,7 @@ namespace AgOpenGPS
             if (isJobStarted)
             {
                 //save new copy of kml with selected flag and view in GoogleEarth
-                FileSaveSingleFlagKML(flagNumberPicked);
+                FileSaveSingleFlagKML(flagNumberPicked,flagPts[flagNumberPicked-1].flgtxt);
 
                 //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
                 Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flag.KML");

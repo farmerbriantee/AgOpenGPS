@@ -19,8 +19,10 @@ namespace AgOpenGPS
 
         public int ID = 0;
 
+        public string flgtxt = "";
+
         //constructor
-        public CFlag(double _lati, double _longi, double _easting, double _northing, int _color, int _ID)
+        public CFlag(double _lati, double _longi, double _easting, double _northing, int _color, int _ID,string _flgtxt)
         {
             latitude = Math.Round(_lati, 7);
             longitude = Math.Round(_longi, 7);
@@ -28,6 +30,7 @@ namespace AgOpenGPS
             northing = Math.Round(_northing, 7);
             color = _color;
             ID = _ID;
+            flgtxt = _flgtxt;
         }
     }
 }

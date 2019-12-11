@@ -1404,12 +1404,14 @@ namespace AgOpenGPS
                             double east;
                             double nort;
                             int color, ID;
+                            string flgtxty;
 
                             for (int v = 0; v < points; v++)
                             {
 
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
+                                int ct = words.Length;
 
                                 lat = double.Parse(words[0], CultureInfo.InvariantCulture);
                                 longi = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -1417,9 +1419,20 @@ namespace AgOpenGPS
                                 nort = double.Parse(words[3], CultureInfo.InvariantCulture);
                                 color = int.Parse(words[4]);
                                 ID = int.Parse(words[5]);
+                                if (ct == 7)
+                                {
+                                    flgtxty = words[6];
+                                    CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID, flgtxty);
+                                    flagPts.Add(flagPt);
+                                }
+                                else
+                                {
+                                    CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID,"");
+                                    flagPts.Add(flagPt);
+                                }                             
 
-                                CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID);
-                                flagPts.Add(flagPt);
+                                
+                               
                             }
 
                         }
@@ -2007,8 +2020,9 @@ namespace AgOpenGPS
                             flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture));
-                    }
+                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].flgtxt.ToString(CultureInfo.InvariantCulture) );
+                }
                 }
 
                 catch (Exception e)
@@ -2161,7 +2175,7 @@ namespace AgOpenGPS
                         writer.WriteLine(@"<color>ff44ffff</color>");
 
                     writer.WriteLine(@"</IconStyle> </Style>");
-                    writer.WriteLine(@" <name> " + (i+1) + @"</name>");
+                    writer.WriteLine(@" <name> " + (i+1)+ " " + flagPts[i].flgtxt + @"</name>");
                     writer.WriteLine(@"<Point><coordinates> " +
                                     flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
                                     @"</coordinates> </Point> ");
@@ -2180,7 +2194,7 @@ namespace AgOpenGPS
         }
 
         //generate KML file from flag
-        public void FileSaveSingleFlagKML(int flagNumber)
+        public void FileSaveSingleFlagKML(int flagNumber,string flgtext)
         {
 
             //get the directory and make sure it exists, create if not
@@ -2212,7 +2226,7 @@ namespace AgOpenGPS
                     if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
                         writer.WriteLine(@"<color>ff44ffff</color>");
                     writer.WriteLine(@"</IconStyle> </Style>");
-                    writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
+                    writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + " " + flgtext + @"</name>");
                     writer.WriteLine(@"<Point><coordinates> " +
                                     flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
                                     @"</coordinates> </Point> ");

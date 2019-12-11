@@ -948,15 +948,19 @@ namespace AgOpenGPS
             if (File.Exists(fileAndD))
             {
 
-
-                rtbFlag.LoadFile(fileAndD, RichTextBoxStreamType.PlainText);
-                rtbFlag.Text += "\r\n" + "Loaded from File!!";
+                rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                rtbFlag.Text = "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+                FlagTextBox.Text = flagPts[flagNumberPicked - 1].flgtxt;
+                //rtbFlag.LoadFile(fileAndD, RichTextBoxStreamType.PlainText);
+                //rtbFlag.Text += "\r\n" + "Loaded from File!!";
             }
             else
             {
-                //rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
+                rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
                 rtbFlag.Text = "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
                 rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
+                FlagTextBox.Text = flagPts[flagNumberPicked - 1].flgtxt;
             }
 
         }
@@ -1007,8 +1011,10 @@ namespace AgOpenGPS
         {
             //rtbFlag.Text += "\r\n" + "Flag Last Saved";
             //rtbFlag.Text += "\r\n" + (DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt"));
-            string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
-            rtbFlag.SaveFile(fileAndD, RichTextBoxStreamType.PlainText);
+            //string fileAndD = fieldsDirectory + currentFieldDirectory + "\\Flag_" + (flagPts[flagNumberPicked - 1]).ID.ToString() + "_Log.rtf";
+            //rtbFlag.SaveFile(fileAndD, RichTextBoxStreamType.PlainText);
+            flagPts[flagNumberPicked - 1].flgtxt = FlagTextBox.Text;
+
 
         }
         private void EditHeadlandStripBtn_Click(object sender, EventArgs e)

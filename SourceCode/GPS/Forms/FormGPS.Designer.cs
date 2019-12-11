@@ -239,6 +239,7 @@
             this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.btnNxtFlg = new System.Windows.Forms.Button();
             this.btnSaveFlag = new System.Windows.Forms.Button();
+            this.FlagTextBox = new System.Windows.Forms.TextBox();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -2853,10 +2854,11 @@
             // 
             // panelFlag
             // 
+            this.panelFlag.Controls.Add(this.FlagTextBox);
             this.panelFlag.Controls.Add(this.rtbFlag);
             this.panelFlag.Controls.Add(this.btnNxtFlg);
             this.panelFlag.Controls.Add(this.btnSaveFlag);
-            this.panelFlag.Location = new System.Drawing.Point(815, 52);
+            this.panelFlag.Location = new System.Drawing.Point(776, 49);
             this.panelFlag.Name = "panelFlag";
             this.panelFlag.Size = new System.Drawing.Size(335, 174);
             this.panelFlag.TabIndex = 448;
@@ -2864,9 +2866,11 @@
             // 
             // rtbFlag
             // 
+            this.rtbFlag.BackColor = System.Drawing.Color.LightGray;
             this.rtbFlag.Location = new System.Drawing.Point(22, 20);
             this.rtbFlag.Name = "rtbFlag";
-            this.rtbFlag.Size = new System.Drawing.Size(288, 93);
+            this.rtbFlag.ReadOnly = true;
+            this.rtbFlag.Size = new System.Drawing.Size(288, 47);
             this.rtbFlag.TabIndex = 3;
             this.rtbFlag.Text = "";
             // 
@@ -2889,6 +2893,13 @@
             this.btnSaveFlag.Text = "SAVE";
             this.btnSaveFlag.UseVisualStyleBackColor = true;
             this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
+            // 
+            // FlagTextBox
+            // 
+            this.FlagTextBox.Location = new System.Drawing.Point(22, 81);
+            this.FlagTextBox.Name = "FlagTextBox";
+            this.FlagTextBox.Size = new System.Drawing.Size(273, 27);
+            this.FlagTextBox.TabIndex = 4;
             // 
             // FormGPS
             // 
@@ -2952,6 +2963,7 @@
             this.statusStripLeft.PerformLayout();
             this.panelSim.ResumeLayout(false);
             this.panelFlag.ResumeLayout(false);
+            this.panelFlag.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3167,6 +3179,7 @@
         private System.Windows.Forms.RichTextBox rtbFlag;
         private System.Windows.Forms.Button btnNxtFlg;
         private System.Windows.Forms.Button btnSaveFlag;
+        private System.Windows.Forms.TextBox FlagTextBox;
     }
 }
 
