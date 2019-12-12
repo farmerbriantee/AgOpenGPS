@@ -31,6 +31,7 @@ namespace AgOpenGPS
         public vec3 toolPos = new vec3(0, 0, 0);
         public vec3 tankPos = new vec3(0, 0, 0);
         public vec2 hitchPos = new vec2(0, 0);
+        public vec2 there;
 
         //history
         public vec2 prevFix = new vec2(0, 0);
@@ -769,6 +770,13 @@ namespace AgOpenGPS
 
             // if non zero, at least one section is on.
             int sectionCounter = 0;
+
+            vec2 here = new vec2(pn.latitude, pn.longitude);
+            if (here.easting != there.easting && here.northing != there.northing)
+            {
+                driveList.Add(here);
+            }
+            there = here;
 
             //send the current and previous GPS fore/aft corrected fix to each section
             for (int j = 0; j < vehicle.numOfSections + 1; j++)

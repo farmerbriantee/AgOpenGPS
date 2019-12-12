@@ -2205,6 +2205,7 @@ namespace AgOpenGPS
 
             string myFileName;
             myFileName = "BND.kml";
+            driveList = new List<vec2>();
 
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
@@ -2212,7 +2213,8 @@ namespace AgOpenGPS
                 writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
                 writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
 
-                int count2 = driveList.Count;
+                int count1 = driveGroupList.Count;
+                
 
                 writer.WriteLine(@"<Document>");
                 writer.WriteLine(@"  <name> polygon.kml </name>");
@@ -2229,20 +2231,25 @@ namespace AgOpenGPS
                 writer.WriteLine(@" </LineStyle>");
 
                 writer.WriteLine(@"</Style>");
-                writer.WriteLine(@"  <Placemark>");
-                writer.WriteLine(@"<name> A polygon </name>");
+                foreach (var driveList in driveGroupList)
+                {
+
+                    writer.WriteLine(@"  <Placemark>");
+                    writer.WriteLine(@"<name> A polygon </name>");
                     writer.WriteLine(@"<styleUrl >#orange-5px</styleUrl>");
                     writer.WriteLine(@"<LineString>");
                     writer.WriteLine(@"<tessellate> 1 </tessellate>");
-                    writer.WriteLine (@" <coordinates>");
-               
-                for (int i = 0; i < count2; i++)
-                {
-                    writer.WriteLine(@driveList[i].northing+","+ driveList[i].easting + ",0");
-                }
+                    writer.WriteLine(@" <coordinates>");
+                    int count2 = driveList.Count;
+
+                    for (int i = 0; i < count2; i++)
+                    {
+                        writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
+                    }
                     writer.WriteLine(@"</coordinates>");
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
+                }
                 writer.WriteLine(@"</Document>");
                 writer.WriteLine(@"</kml>                                         ");
             }

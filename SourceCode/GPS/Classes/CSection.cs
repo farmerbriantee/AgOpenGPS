@@ -55,6 +55,7 @@ namespace AgOpenGPS
         public vec2 leftPoint;
 
         public vec2 rightPoint;
+        public vec2 there;
 
         //used to determine left and right point
         public vec2 lastLeftPoint;
@@ -91,15 +92,15 @@ namespace AgOpenGPS
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
                 triangleList = new List<vec2>();
-
+                
                 patchList.Add(triangleList);
+                
 
                 //left side of triangle
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
                         (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
-                vec2 here = new vec2(mf.pn.latitude, mf.pn.longitude);
-                mf.driveList.Add(here);
+               
                 triangleList.Add(point);
 
                 //Right side of triangle
@@ -120,6 +121,8 @@ namespace AgOpenGPS
 
             //save the triangle list in a patch list to add to saving file
             mf.patchSaveList.Add(triangleList);
+            
+
         }
 
         //every time a new fix, a new patch point from last point to this point
@@ -135,7 +138,7 @@ namespace AgOpenGPS
             //add the point to List
             triangleList.Add(point);
             vec2 here = new vec2(mf.pn.latitude, mf.pn.longitude);
-            mf.driveList.Add(here);
+            
 
 
             //Right side
@@ -176,7 +179,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (numTriangles > 36)
+            if (numTriangles > 2000000)
             {
                 numTriangles = 0;
 

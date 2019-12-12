@@ -20,6 +20,7 @@ namespace AgOpenGPS
         public byte redField, grnField, bluField;
         public byte flagColor = 0;
         public List<vec2> driveList = new List<vec2>();
+        public List<List<vec2>> driveGroupList = new List<List<vec2>>();
 
         //how many cm off line per big pixel
         public int lightbarCmPerPixel;
@@ -1589,7 +1590,14 @@ namespace AgOpenGPS
                     btnManualOffOn.Image = Properties.Resources.ManualOn;
 
                     //if Auto is on, turn it off
-                    autoBtnState = btnStates.Off;
+                    if (autoBtnState != btnStates.Off)
+                    { 
+                       vec2 here1 = new vec2(pn.latitude, pn.longitude);
+                        driveList.Add(here1);
+                       driveGroupList.Add(driveList);
+
+                    }
+                        autoBtnState = btnStates.Off;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
@@ -1600,6 +1608,9 @@ namespace AgOpenGPS
                     }
 
                     ManualAllBtnsUpdate();
+                    driveList = new List<vec2>();
+                    vec2 here = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here);
                     break;
 
                 case btnStates.On:
@@ -1615,6 +1626,11 @@ namespace AgOpenGPS
 
                     //Update the button colors and text
                     ManualAllBtnsUpdate();
+                    here = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here);
+                    driveGroupList.Add(driveList);
+                    driveList = new List<vec2>();
+
                     break;
             }
         }
@@ -1630,7 +1646,13 @@ namespace AgOpenGPS
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOn;
 
                     //turn off manual if on
-                    manualBtnState = btnStates.Off;
+                    if (manualBtnState != btnStates.Off)
+                        {
+                            vec2 here1 = new vec2(pn.latitude, pn.longitude);
+                            driveList.Add(here1);
+                            driveGroupList.Add(driveList);
+                        }
+                        manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
@@ -1641,6 +1663,9 @@ namespace AgOpenGPS
                     }
 
                     ManualAllBtnsUpdate();
+                    driveList = new List<vec2>();
+                    vec2 here = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here);
                     break;
 
                 case btnStates.Auto:
@@ -1657,6 +1682,12 @@ namespace AgOpenGPS
 
                     //Update the button colors and text
                     ManualAllBtnsUpdate();
+                    here = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here);
+                    driveGroupList.Add(driveList);
+                    driveList = new List<vec2>();
+
+
                     break;
             }
         }
