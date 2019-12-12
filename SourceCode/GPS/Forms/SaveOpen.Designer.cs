@@ -2218,13 +2218,13 @@ namespace AgOpenGPS
                 writer.WriteLine(@"  <name> polygon.kml </name>");
 
 
-                writer.WriteLine(@"<Style id = ""orange -5px"">");
+                writer.WriteLine(@"<Style id = ""orange-5px"">");
 
                 writer.WriteLine(@"<LineStyle>");
 
                 writer.WriteLine(@"<color> ff00aaff </color>");
 
-                writer.WriteLine(@"<width> 5 </width>");
+                writer.WriteLine(@"<width> 10 </width>");
 
                 writer.WriteLine(@" </LineStyle>");
 
