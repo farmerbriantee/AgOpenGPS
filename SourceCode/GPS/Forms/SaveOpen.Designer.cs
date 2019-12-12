@@ -123,6 +123,7 @@ namespace AgOpenGPS
 
         //list of the list of patch data individual triangles for field sections
         public List<List<vec2>> patchSaveList = new List<List<vec2>>();
+        
 
         //list of the list of patch data individual triangles for contour tracking
         public List<List<vec3>> contourSaveList = new List<List<vec3>>();
@@ -2211,7 +2212,7 @@ namespace AgOpenGPS
                 writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
                 writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
 
-                int count2 = flagPts.Count;
+                int count2 = driveList.Count;
 
                 writer.WriteLine(@"<Document>");
                 writer.WriteLine(@"  <name> polygon.kml </name>");
@@ -2237,7 +2238,7 @@ namespace AgOpenGPS
                
                 for (int i = 0; i < count2; i++)
                 {
-                    writer.WriteLine(@flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
+                    writer.WriteLine(@driveList[i].northing+","+ driveList[i].easting + ",0");
                 }
                     writer.WriteLine(@"</coordinates>");
                     writer.WriteLine(@"</LineString>");

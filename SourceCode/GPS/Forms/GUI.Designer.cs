@@ -19,6 +19,7 @@ namespace AgOpenGPS
         private byte redSections, grnSections, bluSections;
         public byte redField, grnField, bluField;
         public byte flagColor = 0;
+        public List<vec2> driveList = new List<vec2>();
 
         //how many cm off line per big pixel
         public int lightbarCmPerPixel;

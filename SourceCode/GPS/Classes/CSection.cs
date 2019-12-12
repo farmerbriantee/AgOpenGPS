@@ -16,6 +16,7 @@ namespace AgOpenGPS
 
         //list of patch data individual triangles
         public List<vec2> triangleList = new List<vec2>();
+        
 
         //list of the list of patch data individual triangles for that entire section activity
         public List<List<vec2>> patchList = new List<List<vec2>>();
@@ -90,12 +91,15 @@ namespace AgOpenGPS
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
                 triangleList = new List<vec2>();
+
                 patchList.Add(triangleList);
 
                 //left side of triangle
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
                         (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
+                vec2 here = new vec2(mf.pn.latitude, mf.pn.longitude);
+                mf.driveList.Add(here);
                 triangleList.Add(point);
 
                 //Right side of triangle
@@ -130,6 +134,9 @@ namespace AgOpenGPS
 
             //add the point to List
             triangleList.Add(point);
+            vec2 here = new vec2(mf.pn.latitude, mf.pn.longitude);
+            mf.driveList.Add(here);
+
 
             //Right side
             vec2 point2 = new vec2((cosHeading * positionRight) + easting,
