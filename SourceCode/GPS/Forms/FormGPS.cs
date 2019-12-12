@@ -1699,6 +1699,7 @@ namespace AgOpenGPS
             FileSaveContour();
             FileSaveFlagsKML();
             FileSaveFlags();
+            FileSaveBndryKML();
 
             JobClose();
             Text = "AgOpenGPS";

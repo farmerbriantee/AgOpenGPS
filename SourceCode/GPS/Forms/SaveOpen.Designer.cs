@@ -2192,6 +2192,61 @@ namespace AgOpenGPS
             }
 
         }
+        public void FileSaveBndryKML()
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "BND.kml";
+
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+
+                int count2 = flagPts.Count;
+
+                writer.WriteLine(@"<Document>");
+                writer.WriteLine(@"  <name> polygon.kml </name>");
+
+
+                writer.WriteLine(@"<Style id = ""orange -5px"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color> ff00aaff </color>");
+
+                writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+                writer.WriteLine(@"  <Placemark>");
+                writer.WriteLine(@"<name> A polygon </name>");
+                    writer.WriteLine(@"<styleUrl >#orange-5px</styleUrl>");
+                    writer.WriteLine(@"<LineString>");
+                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                    writer.WriteLine (@" <coordinates>");
+               
+                for (int i = 0; i < count2; i++)
+                {
+                    writer.WriteLine(@flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
+                }
+                    writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@"</LineString>");
+                    writer.WriteLine(@"  </Placemark>");
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+            }
+
+        }
 
         //generate KML file from flag
         public void FileSaveSingleFlagKML(int flagNumber,string flgtext)
