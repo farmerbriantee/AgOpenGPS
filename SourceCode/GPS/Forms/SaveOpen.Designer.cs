@@ -1128,136 +1128,7 @@ namespace AgOpenGPS
                 curve.isCurveSet = false;
                 curve.refList?.Clear();
             }
-
-            ////Either exit or update running save
-            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
-            //if (!File.Exists(fileAndDirectory))
-            //{
-            //    var form = new FormTimedMessage(2000, gStr.gsMissingABLinesFile, gStr.gsButFieldIsLoaded);
-            //    form.Show();
-            //}
-
-            //else
-            //{
-            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
-            //    {
-            //        try
-            //        {
-            //            ABLine.isABLineLoaded = false;
-
-            //            //read header
-            //            line = reader.ReadLine();
-
-            //            line = reader.ReadLine();
-            //            bool isAB = bool.Parse(line);
-
-            //            if (isAB)
-            //            {
-            //                //Heading  , ,refPoint2x,z                    
-            //                line = reader.ReadLine();
-            //                ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-            //                //refPoint1x,z
-            //                line = reader.ReadLine();
-            //                string[] words = line.Split(',');
-            //                ABLine.refPoint1.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-            //                ABLine.refPoint1.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-            //                //refPoint2x,z
-            //                line = reader.ReadLine();
-            //                words = line.Split(',');
-            //                ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-            //                ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-            //                //Tramline
-            //                line = reader.ReadLine();
-            //                words = line.Split(',');
-            //                ABLine.tramPassEvery = int.Parse(words[0]);
-            //                ABLine.passBasedOn = int.Parse(words[1]);
-
-            //                ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 4000.0;
-            //                ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 4000.0;
-
-            //                ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 4000.0;
-            //                ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 4000.0;
-
-            //                ABLine.isABLineLoaded = true;
-
-            //            }
-
-            //            //clean up from last field maybe
-            //            ABLine.isABLineSet = false;
-            //            ABLine.isBtnABLineOn = false;
-            //            DisableYouTurnButtons();
-            //            btnContourPriority.Enabled = true;
-            //            btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-            //        }
-
-            //        catch (Exception e)
-            //        {
-            //            var form = new FormTimedMessage(2000, gStr.gsABLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-            //            form.Show();
-            //            WriteErrorLog("Load AB Line" + e.ToString());
-
-            //        }
-            //    }
-            //}
-            //// CurveLine  -------------------------------------------------------------------------------------------------
-
-            ////Either exit or update running save
-            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\CurveLine.txt";
-            //if (!File.Exists(fileAndDirectory))
-            //{
-            //    var form = new FormTimedMessage(2000, gStr.gsMissingABCurveFile, gStr.gsButFieldIsLoaded);
-            //    form.Show();
-            //}
-
-            //else
-            //{
-            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
-            //    {
-            //        try
-            //        {
-            //            //read header
-            //            line = reader.ReadLine();
-
-            //            // get the average heading
-            //            line = reader.ReadLine();
-            //            curve.aveLineHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-
-            //            line = reader.ReadLine();
-            //            int numPoints = int.Parse(line);
-
-            //            if (numPoints > 0)
-            //            {
-            //                curve.refList?.Clear();
-
-            //                //load the line
-            //                for (int i = 0; i < numPoints; i++)
-            //                {
-            //                    line = reader.ReadLine();
-            //                    string[] words = line.Split(',');
-            //                    vec3 vecPt = new vec3(
-            //                    double.Parse(words[0], CultureInfo.InvariantCulture),
-            //                    double.Parse(words[1], CultureInfo.InvariantCulture),
-            //                    double.Parse(words[2], CultureInfo.InvariantCulture));
-
-            //                    curve.refList.Add(vecPt);
-            //                }
-            //            }
-            //        }
-
-            //        catch (Exception e)
-            //        {
-            //            var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
-            //            form.Show();
-            //            WriteErrorLog("Load Boundary Line" + e.ToString());
-
-            //        }
-            //    }
-            //}
-
+            
             //section patches
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Sections.txt";
             if (!File.Exists(fileAndDirectory))
@@ -1449,6 +1320,7 @@ namespace AgOpenGPS
                 {
                     try
                     {
+
                         //read header
                         line = reader.ReadLine();//Boundary
 
@@ -1459,6 +1331,7 @@ namespace AgOpenGPS
                             bnd.bndArr.Add(new CBoundaryLines());
                             turn.turnArr.Add(new CTurnLines());
                             gf.geoFenceArr.Add(new CGeoFenceLines());
+                            hd.headArr.Add(new CHeadLines());
 
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
@@ -1476,19 +1349,6 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].isDriveAround = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
-
-                            //Check for latest boundary files, then above line string is num of points
-                            //bool turnheading = false;
-                            //if (line == "True" || line == "False")
-                            //{
-                            //    bnd.bndArr[k].isOwnField = bool.Parse(line);
-                            //    line = reader.ReadLine(); //number of points
-                            //}
-                            //else if (k == 0)
-                            //{
-                            //    turnheading = true;
-                            //    bnd.bndArr[k].isOwnField = true;
-                            //}
 
                             int numPoints = int.Parse(line);
 
@@ -1530,7 +1390,6 @@ namespace AgOpenGPS
                         turn.BuildTurnLines();
                         gf.BuildGeoFenceLines();
                         mazeGrid.BuildMazeGridArray();
-
                     }
 
                     catch (Exception e)
@@ -1539,70 +1398,72 @@ namespace AgOpenGPS
                         form.Show();
                         WriteErrorLog("Load Boundary Line" + e.ToString());
                     }
+
+
                 }
-            } 
+            }
 
-            //// Headland  -------------------------------------------------------------------------------------------------
-            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
-            //if (!File.Exists(fileAndDirectory))
-            //{
-            //    var form = new FormTimedMessage(2000, "Missing Headland File", "But Field is Loaded");
-            //    form.Show();
-            //}
+            // Headland  -------------------------------------------------------------------------------------------------
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
+            //hd.headArr.Add(new CHeadLines());
 
-            //else
-            //{
-            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
-            //    {
-            //        try
-            //        {
-            //            //read header
-            //            line = reader.ReadLine();
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
 
-            //            for (int j = 0; j < FormGPS.MAXHEADS; j++)
-            //            {
-            //                //read the number of points
-            //                line = reader.ReadLine();
-            //                int numPoints = int.Parse(line);
 
-            //                if (numPoints > 0)
-            //                {
-            //                    hlArr[j].hlLine.Clear();
+                        for (int k = 0; true; k++)
+                        {
+                            if (reader.EndOfStream) break;
 
-            //                    //load the line
-            //                    for (int i = 0; i < numPoints; i++)
-            //                    {
-            //                        line = reader.ReadLine();
-            //                        string[] words = line.Split(',');
-            //                        vec3 vecPt = new vec3(
-            //                            double.Parse(words[0], CultureInfo.InvariantCulture),
-            //                            double.Parse(words[1], CultureInfo.InvariantCulture),
-            //                            double.Parse(words[2], CultureInfo.InvariantCulture));
-            //                        hlArr[j].hlLine.Add(vecPt);
-            //                    }
+                            hd.headArr?.Clear();
 
-            //                    hlArr[j].PreCalcHeadlandLines();
-            //                    hlArr[j].isSet = true;
-            //                }
-            //                else
-            //                {
-            //                    hlArr[j].isSet = false;
-            //                }
+                            //read the number of points
+                            line = reader.ReadLine();
+                            int numPoints = int.Parse(line);
 
-            //                //if older versions or different number, there is only 1
-            //                if (reader.EndOfStream) break;
-            //            }
-            //        }
+                            if (numPoints > 0 && bnd.bndArr.Count >= hd.headArr.Count)
+                            {
+                                hd.headArr.Add(new CHeadLines());
 
-            //        catch (Exception e)
-            //        {
-            //            var form = new FormTimedMessage(2000, "Headland File is Corrupt", "But Field is Loaded");
-            //            form.Show();
-            //            WriteErrorLog("Load Headland Loop" + e.ToString());
-            //        }
-            //    }
-            //}
+                                hd.headArr[k].hdLine.Clear();
+                                hd.headArr[k].calcList.Clear();
 
+                                //load the line
+                                for (int i = 0; i < numPoints; i++)
+                                {
+                                    line = reader.ReadLine();
+                                    string[] words = line.Split(',');
+                                    vec3 vecPt = new vec3(
+                                        double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture),
+                                        double.Parse(words[2], CultureInfo.InvariantCulture));
+                                    hd.headArr[k].hdLine.Add(vecPt);
+                                }
+                                hd.headArr[k].PreCalcHeadLines();
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(2000, "Headland File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                        WriteErrorLog("Load Headland Loop" + e.ToString());
+                    }
+                }
+            }
+
+            if (hd.headArr[0].hdLine.Count > 0) hd.isOn = true;
+            else hd.isOn = false;
+
+            if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
             //Recorded Path
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
@@ -1884,39 +1745,40 @@ namespace AgOpenGPS
             }
         }
 
-        ////save the headland
-        //public void FileSaveHeadland()
-        //{
-        //    //get the directory and make sure it exists, create if not
-        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //save the headland
+        public void FileSaveHeadland()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-        //    string directoryName = Path.GetDirectoryName(dirField);
-        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        //    { Directory.CreateDirectory(directoryName); }
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
 
-        //    //write out the file
-        //    using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
-        //    {
-        //        writer.WriteLine("$Headland");
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
+            {
+                writer.WriteLine("$Headland");
 
-        //        //writer.WriteLine("$StartPoint");
-        //        //writer.WriteLine(hl.startPoint.easting.ToString(CultureInfo.InvariantCulture) + "," + 
-        //        //                hl.startPoint.northing.ToString(CultureInfo.InvariantCulture) + "," + 
-        //        //                hl.startPoint.heading.ToString(CultureInfo.InvariantCulture));
+                //writer.WriteLine("$StartPoint");
+                //writer.WriteLine(hl.startPoint.easting.ToString(CultureInfo.InvariantCulture) + "," + 
+                //                hl.startPoint.northing.ToString(CultureInfo.InvariantCulture) + "," + 
+                //                hl.startPoint.heading.ToString(CultureInfo.InvariantCulture));
 
-        //        for (int i = 0; i < FormGPS.MAXHEADS; i++)
-        //        {
-        //            writer.WriteLine(hlArr[i].hlLine.Count.ToString(CultureInfo.InvariantCulture));
-        //            if (hlArr[0].hlLine.Count > 0)
-        //            {
-        //                for (int j = 0; j < hlArr[i].hlLine.Count; j++)
-        //                    writer.WriteLine(Math.Round(hlArr[i].hlLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                     Math.Round(hlArr[i].hlLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                     Math.Round(hlArr[i].hlLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
-        //            }
-        //        }
-        //    }
-        //}
+
+                for (int i = 0; i < hd.headArr.Count; i++)
+                {
+                    writer.WriteLine(hd.headArr[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
+                    if (hd.headArr[0].hdLine.Count > 0)
+                    {
+                        for (int j = 0; j < hd.headArr[i].hdLine.Count; j++)
+                            writer.WriteLine(Math.Round(hd.headArr[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                             Math.Round(hd.headArr[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                             Math.Round(hd.headArr[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
+                    }
+                }
+            }
+        }
 
         //Create contour file
         public void FileCreateRecPath()

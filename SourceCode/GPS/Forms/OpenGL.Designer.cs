@@ -192,6 +192,8 @@ namespace AgOpenGPS
 
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
 
+                if (bnd.bndArr.Count > 0) hd.DrawHeadLines();
+
                 if (flagPts.Count > 0 && font.isFontOn) DrawFlags();
 
                 //draw the vehicle/implement
@@ -231,7 +233,7 @@ namespace AgOpenGPS
 
                 if (isSpeedoOn) DrawSpeedo();
 
-                if (isJobStarted) DrawFieldText();
+                //if (isJobStarted) DrawFieldText();
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
@@ -377,9 +379,6 @@ namespace AgOpenGPS
 
             GL.Flush();
 
-            //Paint to context
-            oglBack.SwapBuffers();
-
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
 
@@ -408,6 +407,10 @@ namespace AgOpenGPS
 
             //read the whole block of pixels up to max lookahead, one read only
             GL.ReadPixels(vehicle.rpXPosition, 252, vehicle.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
+
+            //Paint to context
+            //oglBack.MakeCurrent();
+            //oglBack.SwapBuffers();
 
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight) / (double)(vehicle.numOfSections * 1.5));
@@ -715,7 +718,6 @@ namespace AgOpenGPS
         {
             oglZoom.MakeCurrent();
 
-
             if (isJobStarted)
             {
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
@@ -773,6 +775,8 @@ namespace AgOpenGPS
                     }
                 } //end of section patches
 
+                GL.Flush();
+
                 int grnHeight = oglZoom.Height;
                 int grnWidth = oglZoom.Width;
                 byte[] overPix = new byte[grnHeight * grnWidth + 1];
@@ -818,8 +822,9 @@ namespace AgOpenGPS
                     fd.actualAreaCovered = fd.overlapPercent = 0;
                 }
 
-                GL.Flush();
-                oglZoom.SwapBuffers();
+                //GL.Flush();
+                //oglZoom.MakeCurrent();
+                //oglZoom.SwapBuffers();
 
                 if (oglZoom.Width != 400)
                 {
@@ -925,6 +930,7 @@ namespace AgOpenGPS
                     GL.PointSize(1.0f);
 
                     GL.Flush();
+                    oglZoom.MakeCurrent();
                     oglZoom.SwapBuffers();
                 }
             }

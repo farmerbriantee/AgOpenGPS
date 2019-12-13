@@ -47,7 +47,7 @@ namespace AgOpenGPS
 
         public double snapDistance;
         public double steerAngleAB;
-        public float lineWidth;
+        public int lineWidth;
 
         //tramlines
         public List<vec2> tramArr = new List<vec2>();

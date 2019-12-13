@@ -601,13 +601,12 @@
             // checkBoxusetcp
             // 
             this.checkBoxusetcp.AutoSize = true;
-            this.checkBoxusetcp.Location = new System.Drawing.Point(239, 336);
+            this.checkBoxusetcp.Location = new System.Drawing.Point(262, 320);
             this.checkBoxusetcp.Name = "checkBoxusetcp";
-            this.checkBoxusetcp.Size = new System.Drawing.Size(113, 17);
+            this.checkBoxusetcp.Size = new System.Drawing.Size(94, 17);
             this.checkBoxusetcp.TabIndex = 132;
-            this.checkBoxusetcp.Text = "Use only TCP:Port";
+            this.checkBoxusetcp.Text = "Only TCP:Port";
             this.checkBoxusetcp.UseVisualStyleBackColor = true;
-            this.checkBoxusetcp.CheckedChanged += new System.EventHandler(this.checkBoxusetcp_CheckedChanged);
             // 
             // FormNtrip
             // 

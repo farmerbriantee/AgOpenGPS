@@ -115,6 +115,8 @@
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CFont.cs" />
+    <Compile Include="Classes\CHeadLines.cs" />
+    <Compile Include="Classes\CHead.cs" />
     <Compile Include="Classes\CGeoFence.cs" />
     <Compile Include="Classes\CGeoFenceLines.cs" />
     <Compile Include="Classes\CMazeGrid.cs" />
@@ -139,6 +141,12 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Forms\FormHeadland.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeadland.Designer.cs">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormEditCurve.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -412,6 +420,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormHeadland.resx">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEditCurve.resx">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </EmbeddedResource>
@@ -633,6 +644,10 @@
     <None Include="btnImages\FontOn.png" />
     <None Include="btnImages\FontOff.png" />
     <None Include="btnImages\HeadlandMenu.png" />
+    <None Include="btnImages\HeadlandDeletePoints.png" />
+    <None Include="btnImages\HeadlandTouchSave.png" />
+    <None Include="btnImages\HeadlandOff.png" />
+    <None Include="btnImages\HeadlandOn.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

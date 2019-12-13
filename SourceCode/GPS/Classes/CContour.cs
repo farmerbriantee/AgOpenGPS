@@ -16,7 +16,6 @@ namespace AgOpenGPS
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
-
         public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
         public vec2 boxE = new vec2(3, 4), boxF = new vec2(4, 5);
         public vec2 boxG = new vec2(6, 6), boxH = new vec2(7, 7);
@@ -1005,7 +1004,7 @@ namespace AgOpenGPS
             int ptCount = ctList.Count;
             if (ptCount < 2) return;
             GL.LineWidth(mf.ABLine.lineWidth);
-            GL.Color3(0.98f, 0.2f, 0.0f);
+            GL.Color3(0.98f, 0.2f, 0.980f);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
             GL.End();
@@ -1013,7 +1012,7 @@ namespace AgOpenGPS
             GL.PointSize(mf.ABLine.lineWidth);
             GL.Begin(PrimitiveType.Points);
 
-            GL.Color3(0.7f, 0.7f, 0.25f);
+            GL.Color3(0.87f, 08.7f, 0.25f);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
             GL.End();

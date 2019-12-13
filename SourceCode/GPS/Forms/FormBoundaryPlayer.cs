@@ -29,6 +29,7 @@ namespace AgOpenGPS
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
                 mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+                mf.hd.headArr.Add(new CHeadLines());
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
@@ -51,6 +52,7 @@ namespace AgOpenGPS
             mf.FileSaveBoundary();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
 
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();

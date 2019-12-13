@@ -151,7 +151,7 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
 
             layoutPanelRight.Enabled = false;
-            boundaryToolStripBtn.Enabled = false;
+            //boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
 
             if (isNTRIP_RequiredOn)
@@ -181,6 +181,9 @@ namespace AgOpenGPS
                 pbarUDPComm.Visible = false;
                 toolStripStatusLabel2.Visible = false;
             }
+
+            if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
         }
 
@@ -213,38 +216,38 @@ namespace AgOpenGPS
 
             if (Width > 1100)
             {
-                youTurnStripBtn.Visible = true;
-                ZoomExtentsStripBtn.Visible = true;
-                stripEqWidth.Visible = false;
+                //youTurnStripBtn.Visible = true;
+                //ZoomExtentsStripBtn.Visible = true;
+                //stripEqWidth.Visible = false;
             }
             else
             {
-                youTurnStripBtn.Visible = false;
-                ZoomExtentsStripBtn.Visible = false;
-                stripEqWidth.Visible = false;
+                //youTurnStripBtn.Visible = false;
+                //ZoomExtentsStripBtn.Visible = false;
+                //stripEqWidth.Visible = false;
             }
+
+            //if (Width > 1200)
+            //{
+            //    stripEqWidth.Visible = true;
+            //}
+            //else
+            //{
+            //    stripEqWidth.Visible = false;
+            //}
+
+
+
+            //if (Width > 1300)
+            //{
+            //    distanceToolBtn.Visible = true;
+            //}
+            //else
+            //{
+            //    distanceToolBtn.Visible = false;
+            //}
 
             if (Width > 1200)
-            {
-                stripEqWidth.Visible = true;
-            }
-            else
-            {
-                stripEqWidth.Visible = false;
-            }
-
-
-
-            if (Width > 1300)
-            {
-                distanceToolBtn.Visible = true;
-            }
-            else
-            {
-                distanceToolBtn.Visible = false;
-            }
-
-            if (Width > 1600)
             {
                 snapLeftStrip.Visible = true;
                 snapLeftBigStrip.Visible = true;
@@ -259,7 +262,7 @@ namespace AgOpenGPS
                 snapRightStrip.Visible = false;
             }
 
-            if (Width > 1750)
+            if (Width > 1400)
             {
                 steerChartTool.Visible = true;
             }
@@ -2513,15 +2516,6 @@ namespace AgOpenGPS
             SetZoom();
         }
 
-        private void FontToolBtn_Click(object sender, EventArgs e)
-        {
-            font.isFontOn = !font.isFontOn;
-            if (font.isFontOn)
-                FontToolBtn.Image = Properties.Resources.FontOn;
-            else
-                FontToolBtn.Image = Properties.Resources.FontOff;
-        }
-
         private void topFieldViewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Settings.Default.setMenu_isOGLZoomOn == 1)
@@ -2914,6 +2908,7 @@ namespace AgOpenGPS
         {
             //delete selected flag and set selected to none
             DeleteSelectedFlag();
+            FileSaveFlags();
         }
         private void contextMenuStripOpenGL_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -3325,20 +3320,31 @@ namespace AgOpenGPS
 
                     if (isMetric)
                     {
+                        lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersHectares;
+                        lblTotalAppliedArea.Text = fd.WorkedHectares;
+                        lblWorkRemaining.Text = fd.WorkedAreaRemainHectares;
+                        lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
+                        lblTimeRemaining.Text = fd.TimeTillFinished;
+
+                        lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
+                        lblAreaMinusActualApplied.Text = (((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
+                        lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
+                        lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
+
                         btnFlag.Text = fd.AreaBoundaryLessInnersHectares;
                         //lblpAreaWorked.Text = fd.WorkedHectares;
-                        toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
-                            fd.WorkedAreaRemainHectares + " \r\n" + fd.TimeTillFinished;
+                        //toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
+                        //    fd.WorkedAreaRemainHectares + " \r\n" + fd.TimeTillFinished;
                         //status strip values
-                        stripEqWidth.Text = vehiclefileName + "\r\n" + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
+                        //stripEqWidth.Text = vehiclefileName + "\r\n" + (Math.Round(vehicle.toolWidth, 2)).ToString() + " m";
                     }
                     else //imperial
                     {
                         btnFlag.Text = fd.AreaBoundaryLessInnersAcres;
                         //lblpAreaWorked.Text = fd.WorkedAcres;
-                        toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
-                            fd.WorkedAreaRemainAcres + " \r\n" + fd.TimeTillFinished;
-                        stripEqWidth.Text = vehiclefileName + "\r\n" + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
+                        //toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
+                        //    fd.WorkedAreaRemainAcres + " \r\n" + fd.TimeTillFinished;
+                        //stripEqWidth.Text = vehiclefileName + "\r\n" + (Math.Round(vehicle.toolWidth * glm.m2ft, 2)).ToString() + " ft";
                     }
 
                     //not Metric/Standard units sensitive

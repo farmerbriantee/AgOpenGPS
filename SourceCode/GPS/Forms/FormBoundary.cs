@@ -301,6 +301,7 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
             mf.mazeGrid.BuildMazeGridArray();
         }
 
@@ -329,6 +330,7 @@ namespace AgOpenGPS
             mf.fd.UpdateFieldBoundaryGUIAreas();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
 
             mf.mazeGrid.BuildMazeGridArray();
 
@@ -371,6 +373,7 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
             mf.mazeGrid.BuildMazeGridArray();
             mf.fd.UpdateFieldBoundaryGUIAreas();
 
@@ -454,6 +457,7 @@ namespace AgOpenGPS
                                     mf.bnd.bndArr.Add(new CBoundaryLines());
                                     mf.turn.turnArr.Add(new CTurnLines());
                                     mf.gf.geoFenceArr.Add(new CGeoFenceLines());
+                                    mf.hd.headArr.Add(new CHeadLines());
 
                                     foreach (var item in numberSets)
                                     {

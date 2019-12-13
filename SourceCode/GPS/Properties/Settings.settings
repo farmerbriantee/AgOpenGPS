@@ -296,7 +296,7 @@
     <Setting Name="setMenu_isSpeedoOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setNtriponlytcp" Type="System.Boolean" Scope="User">
+    <Setting Name="setNTRIP_isTCP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

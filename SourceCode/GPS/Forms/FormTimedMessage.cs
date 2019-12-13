@@ -28,6 +28,7 @@ namespace AgOpenGPS
         {
             timer1.Enabled = false;
             timer1.Dispose();
+            Dispose();
             Close();
         }
     }

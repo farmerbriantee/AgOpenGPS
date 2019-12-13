@@ -52,6 +52,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nudDistance = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnDrawSections = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -379,6 +380,23 @@
             this.label5.Text = "Tool Width";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnDrawSections
+            // 
+            this.btnDrawSections.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDrawSections.BackColor = System.Drawing.Color.Lavender;
+            this.btnDrawSections.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDrawSections.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDrawSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDrawSections.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnDrawSections.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDrawSections.Location = new System.Drawing.Point(732, 642);
+            this.btnDrawSections.Name = "btnDrawSections";
+            this.btnDrawSections.Size = new System.Drawing.Size(89, 63);
+            this.btnDrawSections.TabIndex = 340;
+            this.btnDrawSections.Text = "Off";
+            this.btnDrawSections.UseVisualStyleBackColor = false;
+            this.btnDrawSections.Click += new System.EventHandler(this.btnDrawSections_Click);
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,6 +404,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1004, 709);
             this.ControlBox = false;
+            this.Controls.Add(this.btnDrawSections);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.nudDistance);
             this.Controls.Add(this.label4);
@@ -447,5 +466,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown nudDistance;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDrawSections;
     }
 }

@@ -173,6 +173,11 @@ namespace AgOpenGPS
         public CTurn turn;
 
         /// <summary>
+        /// The headland created
+        /// </summary>
+        public CHead hd;
+
+        /// <summary>
         /// The entry and exit sequences, functions, actions
         /// </summary>
         public CSequence seq;
@@ -342,6 +347,13 @@ namespace AgOpenGPS
 
             //GeoFence
             gf = new CGeoFence(this);
+
+            //headland object
+            hd = new CHead( this);
+
+            ////headlands array
+            //hlArr = new CHeadlandLines[MAXHEADS];
+            //for (int j = 0; j < MAXHEADS; j++) hlArr[j] = new CHeadlandLines(gl, this);
 
             //headland entry/exit sequences
             seq = new CSequence(this);
@@ -942,8 +954,33 @@ namespace AgOpenGPS
             }
         }
 
-        private void EditHeadlandStripBtn_Click(object sender, EventArgs e)
+        public void GetHeadland()
         {
+            using (var form = new FormHeadland (this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
+
+       private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndArr.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            GetHeadland();
+        }
+
+        private void btnHeadlandOnOff_Click(object sender, EventArgs e)
+        {
+            hd.isOn = !hd.isOn;
+            if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
         }
 
         public void GetAB()
@@ -1163,7 +1200,7 @@ namespace AgOpenGPS
             fieldToolStripMenuItem.Text = gStr.gsCloseField;
             this.menustripLanguage.Enabled = false;
             layoutPanelRight.Enabled = true;
-            boundaryToolStripBtn.Enabled = true;
+            //boundaryToolStripBtn.Enabled = true;
             toolStripBtnDropDownBoundaryTools.Enabled = true;
         }
 
@@ -1171,8 +1208,14 @@ namespace AgOpenGPS
         public void JobClose()
         {
             oglZoom.SendToBack();
+
+            bnd.bndArr?.Clear();
+            gf.geoFenceArr?.Clear();
+            turn.turnArr?.Clear();
+            hd.headArr?.Clear();
+
             layoutPanelRight.Enabled = false;
-            boundaryToolStripBtn.Enabled = false;
+            //boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
 
             menustripLanguage.Enabled = true;
@@ -1352,13 +1395,13 @@ namespace AgOpenGPS
                 if (isJobStarted)
                 {
                     layoutPanelRight.Enabled = true;
-                    boundaryToolStripBtn.Enabled = true;
+                    //boundaryToolStripBtn.Enabled = true;
                     toolStripBtnDropDownBoundaryTools.Enabled = true;
                 }
                 else
                 {
                     layoutPanelRight.Enabled = false;
-                    boundaryToolStripBtn.Enabled = false;
+                    //boundaryToolStripBtn.Enabled = false;
                     toolStripBtnDropDownBoundaryTools.Enabled = false;
                 }
             }
@@ -1375,7 +1418,7 @@ namespace AgOpenGPS
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
                         layoutPanelRight.Enabled = false;
-                        boundaryToolStripBtn.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
                         toolStripBtnDropDownBoundaryTools.Enabled = false;
                         break;
                     //Ignore and return

@@ -19,7 +19,9 @@ namespace AgOpenGPS
 
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
         public double low = 0, high = 1;
-        private int A, B, C, D, E, start = 99999, end = 99999;     
+        private int A, B, C, D, E, start = 99999, end = 99999;
+
+        private bool isDrawSections = false;
 
         //list of coordinates of boundary line
         public List<vec3> turnLine = new List<vec3>();
@@ -123,6 +125,13 @@ namespace AgOpenGPS
             else mf.ABLine.numABLineSelected = 0;
 
             FixLabelsABLine();
+        }
+
+        private void btnDrawSections_Click(object sender, EventArgs e)
+        {
+            isDrawSections = !isDrawSections;
+            if (isDrawSections) btnDrawSections.Text = "On";
+            else btnDrawSections.Text = "Off";
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
@@ -469,6 +478,8 @@ namespace AgOpenGPS
             //draw all the boundaries
             mf.bnd.DrawBoundaryLines();
 
+            if (isDrawSections) DrawSections();
+
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchLine();
 
@@ -692,6 +703,52 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
             GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
+        }
+
+        private void DrawSections()
+        {
+            int cnt, step, patchCount;
+            int mipmap = 8;
+
+            GL.Color3(0.0, 0.0, 0.352);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                patchCount = mf.section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in mf.section[j].patchList)
+                    {
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
+                        cnt = triList.Count;
+
+                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                        if (cnt >= (mipmap))
+                        {
+                            step = mipmap;
+                            for (int i = 0; i < cnt; i += step)
+                            {
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+
+                                //too small to mipmap it
+                                if (cnt - i <= (mipmap + 2))
+                                    step = 0;
+                            }
+                        }
+
+                        else { for (int i = 0; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        GL.End();
+
+                    }
+                }
+            } //end of section patches
+
         }
 
         //determine mins maxs of patches and whole field.

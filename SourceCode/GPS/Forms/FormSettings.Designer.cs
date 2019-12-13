@@ -252,7 +252,7 @@
             this.chkIsTrailingRigid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.chkIsTrailingRigid.Location = new System.Drawing.Point(256, 431);
             this.chkIsTrailingRigid.Name = "chkIsTrailingRigid";
-            this.chkIsTrailingRigid.Size = new System.Drawing.Size(70, 69);
+            this.chkIsTrailingRigid.Size = new System.Drawing.Size(70, 70);
             this.chkIsTrailingRigid.TabIndex = 1;
             this.chkIsTrailingRigid.UseVisualStyleBackColor = true;
             this.chkIsTrailingRigid.CheckedChanged += new System.EventHandler(this.chkIsTrailingRigid_CheckedChanged);
@@ -265,7 +265,7 @@
             this.chkIsAft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.chkIsAft.Location = new System.Drawing.Point(256, 300);
             this.chkIsAft.Name = "chkIsAft";
-            this.chkIsAft.Size = new System.Drawing.Size(70, 70);
+            this.chkIsAft.Size = new System.Drawing.Size(67, 70);
             this.chkIsAft.TabIndex = 7;
             this.chkIsAft.UseVisualStyleBackColor = true;
             this.chkIsAft.CheckedChanged += new System.EventHandler(this.chkIsAft_CheckedChanged);
@@ -536,7 +536,7 @@
             this.chkIsSteerAxleAhead.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.chkIsSteerAxleAhead.Location = new System.Drawing.Point(754, 78);
             this.chkIsSteerAxleAhead.Name = "chkIsSteerAxleAhead";
-            this.chkIsSteerAxleAhead.Size = new System.Drawing.Size(86, 86);
+            this.chkIsSteerAxleAhead.Size = new System.Drawing.Size(69, 70);
             this.chkIsSteerAxleAhead.TabIndex = 22;
             this.chkIsSteerAxleAhead.UseVisualStyleBackColor = true;
             this.chkIsSteerAxleAhead.CheckedChanged += new System.EventHandler(this.chkIsSteerAxleAhead_CheckedChanged);
@@ -946,16 +946,6 @@
             this.nudMinApplied.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinApplied.InterceptArrowKeys = false;
             this.nudMinApplied.Location = new System.Drawing.Point(375, 437);
-            this.nudMinApplied.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.nudMinApplied.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
             this.nudMinApplied.Name = "nudMinApplied";
             this.nudMinApplied.Size = new System.Drawing.Size(125, 52);
             this.nudMinApplied.TabIndex = 47;
@@ -1554,7 +1544,7 @@
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.Location = new System.Drawing.Point(60, 79);
             this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
-            this.cboxAutoSteerAuto.Size = new System.Drawing.Size(86, 96);
+            this.cboxAutoSteerAuto.Size = new System.Drawing.Size(70, 70);
             this.cboxAutoSteerAuto.TabIndex = 0;
             this.cboxAutoSteerAuto.Text = "Manual";
             this.cboxAutoSteerAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

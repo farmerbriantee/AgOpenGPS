@@ -1202,12 +1202,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setNtriponlytcp {
+        public bool setNTRIP_isTCP {
             get {
-                return ((bool)(this["setNtriponlytcp"]));
+                return ((bool)(this["setNTRIP_isTCP"]));
             }
             set {
-                this["setNtriponlytcp"] = value;
+                this["setNTRIP_isTCP"] = value;
             }
         }
     }

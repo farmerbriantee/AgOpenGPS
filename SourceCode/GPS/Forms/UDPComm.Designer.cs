@@ -238,7 +238,7 @@ namespace AgOpenGPS
             {
                 sim.stepDistance += 0.05;
                 if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5.0 * fixUpdateHz);
 
                 return true;
             }

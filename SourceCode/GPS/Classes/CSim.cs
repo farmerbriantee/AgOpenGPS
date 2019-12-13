@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
             //calc the speed
             //speed = Math.Round(1.944 * stepDistance * (double)nudHz.Value, 1);
-            speed = Math.Round(1.944 * stepDistance * 5.0, 1);
+            speed = Math.Round(1.944 * stepDistance * 5, 1);
             //lblSpeed.Text = (Math.Round(1.852 * speed, 1)).ToString();
 
             //BuildOGI();
