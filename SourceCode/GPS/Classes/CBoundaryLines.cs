@@ -32,6 +32,7 @@ namespace AgOpenGPS
 
         //list of coordinates of boundary line
         public List<CBndPt> bndLine = new List<CBndPt>();
+        
 
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();

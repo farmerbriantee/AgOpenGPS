@@ -23,6 +23,8 @@ namespace AgOpenGPS
         public List<List<vec2>> driveGroupList = new List<List<vec2>>();
         public List<List<vec2>> autoGroupList = new List<List<vec2>>();
         public List<List<vec2>> manualGroupList = new List<List<vec2>>();
+        
+        public List<CBndPt> bndkml = new List<CBndPt>();
 
 
         //how many cm off line per big pixel

@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace AgOpenGPS
 {
-    
+
     public partial class FormGPS
     {
         //public void FileAppendCurveLine(string curveName)
@@ -123,7 +123,7 @@ namespace AgOpenGPS
 
         //list of the list of patch data individual triangles for field sections
         public List<List<vec2>> patchSaveList = new List<List<vec2>>();
-        
+
 
         //list of the list of patch data individual triangles for contour tracking
         public List<List<vec3>> contourSaveList = new List<List<vec3>>();
@@ -374,7 +374,7 @@ namespace AgOpenGPS
                             ABLine.lineArr[i].origin.northing = double.Parse(words[3], CultureInfo.InvariantCulture);
 
                             ABLine.lineArr[i].ref1.easting = ABLine.lineArr[i].origin.easting - (Math.Sin(ABLine.lineArr[i].heading) * 1000.0);
-                            ABLine.lineArr[i].ref1.northing = ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) *1000.0);
+                            ABLine.lineArr[i].ref1.northing = ABLine.lineArr[i].origin.northing - (Math.Cos(ABLine.lineArr[i].heading) * 1000.0);
 
                             ABLine.lineArr[i].ref2.easting = ABLine.lineArr[i].origin.easting + (Math.Sin(ABLine.lineArr[i].heading) * 1000.0);
                             ABLine.lineArr[i].ref2.northing = ABLine.lineArr[i].origin.northing + (Math.Cos(ABLine.lineArr[i].heading) * 1000.0);
@@ -436,7 +436,7 @@ namespace AgOpenGPS
                     writer.WriteLine("Wheelbase," + Properties.Vehicle.Default.setVehicle_wheelbase.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("IsPivotBehindAntenna," + Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("IsSteerAxleAhead," + Properties.Vehicle.Default.setVehicle_isSteerAxleAhead.ToString(CultureInfo.InvariantCulture)); 
+                    writer.WriteLine("IsSteerAxleAhead," + Properties.Vehicle.Default.setVehicle_isSteerAxleAhead.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsToolBehindPivot," + Properties.Vehicle.Default.setVehicle_isToolBehindPivot.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsToolTrailing," + Properties.Vehicle.Default.setVehicle_isToolTrailing.ToString(CultureInfo.InvariantCulture));
 
@@ -600,7 +600,7 @@ namespace AgOpenGPS
 
                         if (fileVersion < 3.0)
                         {
-                            var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion  + Application.ProductVersion.ToString(CultureInfo.InvariantCulture)+ " or higher");
+                            var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
                             form.Show();
                             return false;
                         }
@@ -1323,16 +1323,16 @@ namespace AgOpenGPS
                 }
             }
 
-                    // Contour points ----------------------------------------------------------------------------
+            // Contour points ----------------------------------------------------------------------------
 
-                    fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingContourFile, gStr.gsButFieldIsLoaded);
                 form.Show();
                 //return;
             }
-            
+
             //Points in Patch followed by easting, heading, northing, altitude
             else
             {
@@ -1428,12 +1428,12 @@ namespace AgOpenGPS
                                 }
                                 else
                                 {
-                                    CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID,"");
+                                    CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID, "");
                                     flagPts.Add(flagPt);
-                                }                             
+                                }
 
-                                
-                               
+
+
                             }
 
                         }
@@ -1451,7 +1451,7 @@ namespace AgOpenGPS
 
             //Boundaries
             //Either exit or update running save
-                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingBoundaryFile, gStr.gsButFieldIsLoaded);
@@ -1554,7 +1554,7 @@ namespace AgOpenGPS
                         WriteErrorLog("Load Boundary Line" + e.ToString());
                     }
                 }
-            } 
+            }
 
             //// Headland  -------------------------------------------------------------------------------------------------
             //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
@@ -1776,8 +1776,8 @@ namespace AgOpenGPS
                         writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine((Math.Round(triList[i].easting,3)).ToString(CultureInfo.InvariantCulture) +
-                                "," + (Math.Round(triList[i].northing,3)).ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine((Math.Round(triList[i].easting, 3)).ToString(CultureInfo.InvariantCulture) +
+                                "," + (Math.Round(triList[i].northing, 3)).ToString(CultureInfo.InvariantCulture));
                     }
                 }
 
@@ -1855,7 +1855,7 @@ namespace AgOpenGPS
                         for (int i = 0; i < count2; i++)
                         {
                             writer.WriteLine(Math.Round((triList[i].easting), 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].northing, 3).ToString(CultureInfo.InvariantCulture)+ "," +
+                                Math.Round(triList[i].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
                                 Math.Round(triList[i].heading, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
@@ -1890,9 +1890,9 @@ namespace AgOpenGPS
                     if (bnd.bndArr[i].bndLine.Count > 0)
                     {
                         for (int j = 0; j < bnd.bndArr[i].bndLine.Count; j++)
-                            writer.WriteLine(Math.Round(bnd.bndArr[i].bndLine[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
+                            writer.WriteLine(Math.Round(bnd.bndArr[i].bndLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
                                                 Math.Round(bnd.bndArr[i].bndLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(bnd.bndArr[i].bndLine[j].heading,5).ToString(CultureInfo.InvariantCulture));
+                                                    Math.Round(bnd.bndArr[i].bndLine[j].heading, 5).ToString(CultureInfo.InvariantCulture));
                     }
                 }
             }
@@ -2022,8 +2022,8 @@ namespace AgOpenGPS
                             flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].flgtxt.ToString(CultureInfo.InvariantCulture) );
-                }
+                            flagPts[i].flgtxt.ToString(CultureInfo.InvariantCulture));
+                    }
                 }
 
                 catch (Exception e)
@@ -2176,12 +2176,12 @@ namespace AgOpenGPS
                         writer.WriteLine(@"<color>ff44ffff</color>");
 
                     writer.WriteLine(@"</IconStyle> </Style>");
-                    writer.WriteLine(@" <name> " + (i+1)+ " " + flagPts[i].flgtxt + @"</name>");
+                    writer.WriteLine(@" <name> " + (i + 1) + " " + flagPts[i].flgtxt + @"</name>");
                     writer.WriteLine(@"<Point><coordinates> " +
                                     flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
                                     @"</coordinates> </Point> ");
-                writer.WriteLine(@"  </Placemark>                                 ");
-                       
+                    writer.WriteLine(@"  </Placemark>                                 ");
+
                 }
 
                 writer.WriteLine(@"</Document>");
@@ -2189,9 +2189,33 @@ namespace AgOpenGPS
                 writer.WriteLine(@"</kml>                                         ");
 
 
-            
+
             }
 
+        }
+
+        public void BuildBoundaryLATLON()
+        {
+            int ptCount = bnd.bndArr[0].bndLine.Count;
+            double XO = 0;
+            double YO = 0;
+
+            if (ptCount > 1)
+            {
+
+                for (int h = 0; h < ptCount; h++)
+                {
+                    XO = bnd.bndArr[0].bndLine[h].easting + pn.utmEast;
+                    YO = bnd.bndArr[0].bndLine[h].northing + pn.utmNorth;
+                    UTMToLatLon(XO, YO);
+                    CBndPt vecPt = new CBndPt(utmLat, utmLon, 0);
+
+                    
+                    bndkml.Add(vecPt);
+                }
+
+                
+            }
         }
         public void FileSaveBndryKML()
         {
@@ -2206,7 +2230,9 @@ namespace AgOpenGPS
             string myFileName;
             myFileName = "BND.kml";
             driveGroupList.Add(driveList);
-            
+            BuildBoundaryLATLON();
+
+
 
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
@@ -2217,6 +2243,10 @@ namespace AgOpenGPS
                 int count1 = driveGroupList.Count;
                 int count2 = autoGroupList.Count;
                 int count3 = manualGroupList.Count;
+                int count7 = bndkml.Count;
+                int count9 = flagPts.Count;
+
+
 
 
                 writer.WriteLine(@"<Document>");
@@ -2260,6 +2290,21 @@ namespace AgOpenGPS
                 writer.WriteLine(@" </LineStyle>");
 
                 writer.WriteLine(@"</Style>");
+
+                //Style for Boundary Purple
+                writer.WriteLine(@"<Style id = ""BoundaryStyle"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color>  ff800080 </color>");
+
+                writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+
+
 
                 foreach (var driveList in driveGroupList)
                 {
@@ -2318,6 +2363,46 @@ namespace AgOpenGPS
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 }
+                
+                // Boundary
+
+                    writer.WriteLine(@"  <Placemark>");
+                    writer.WriteLine(@"<name> Boundary </name>");
+                    writer.WriteLine(@"<styleUrl >#BoundaryStyle</styleUrl>");
+                    writer.WriteLine(@"<LineString>");
+                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                    writer.WriteLine(@" <coordinates>");
+                    int count8 = bndkml.Count;
+
+                    for (int i = 0; i < count8; i++)
+                    {
+                        writer.WriteLine(@bndkml[i].northing + "," + bndkml[i].easting + ",0");
+                    }
+                    writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@"</LineString>");
+                    writer.WriteLine(@"  </Placemark>");
+                //Flags
+
+                for (int i = 0; i < count9; i++)
+                {
+                    writer.WriteLine(@"  <Placemark>                                  ");
+                    writer.WriteLine(@"<Style> <IconStyle>");
+                    if (flagPts[i].color == 0)  //red - xbgr
+                        writer.WriteLine(@"<color>ff4400ff</color>");
+                    if (flagPts[i].color == 1)  //grn - xbgr
+                        writer.WriteLine(@"<color>ff44ff00</color>");
+                    if (flagPts[i].color == 2)  //yel - xbgr
+                        writer.WriteLine(@"<color>ff44ffff</color>");
+
+                    writer.WriteLine(@"</IconStyle> </Style>");
+                    writer.WriteLine(@" <name> " + (i + 1) + " " + flagPts[i].flgtxt + @"</name>");
+                    writer.WriteLine(@"<Point><coordinates> " +
+                                    flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
+                                    @"</coordinates> </Point> ");
+                    writer.WriteLine(@"  </Placemark>                                 ");
+
+                }
+
                 writer.WriteLine(@"</Document>");
                 writer.WriteLine(@"</kml>                                         ");
             }
