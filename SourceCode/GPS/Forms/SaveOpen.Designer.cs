@@ -2205,7 +2205,8 @@ namespace AgOpenGPS
 
             string myFileName;
             myFileName = "BND.kml";
-            driveList = new List<vec2>();
+            driveGroupList.Add(driveList);
+            
 
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
@@ -2214,35 +2215,102 @@ namespace AgOpenGPS
                 writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
 
                 int count1 = driveGroupList.Count;
-                
+                int count2 = autoGroupList.Count;
+                int count3 = manualGroupList.Count;
+
 
                 writer.WriteLine(@"<Document>");
-                writer.WriteLine(@"  <name> polygon.kml </name>");
+                writer.WriteLine(@"  <name> AOG File </name>");
 
-
-                writer.WriteLine(@"<Style id = ""orange-5px"">");
+                //Style for Just driving around blue
+                writer.WriteLine(@"<Style id = ""DriveStyle"">");
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> ff00aaff </color>");
+                writer.WriteLine(@"<color> ffff0000 </color>");
 
-                writer.WriteLine(@"<width> 10 </width>");
+                writer.WriteLine(@"<width> 2 </width>");
 
                 writer.WriteLine(@" </LineStyle>");
 
                 writer.WriteLine(@"</Style>");
+
+                //Style for auto tool green
+                writer.WriteLine(@"<Style id = ""AutoStyle"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color> ff00ff00 </color>");
+
+                writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+
+                //Style for Manual yellow
+                writer.WriteLine(@"<Style id = ""ManualStyle"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color> ff00ffff </color>");
+
+                writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+
                 foreach (var driveList in driveGroupList)
                 {
 
                     writer.WriteLine(@"  <Placemark>");
-                    writer.WriteLine(@"<name> A polygon </name>");
-                    writer.WriteLine(@"<styleUrl >#orange-5px</styleUrl>");
+                    writer.WriteLine(@"<name> Driving </name>");
+                    writer.WriteLine(@"<styleUrl >#DriveStyle</styleUrl>");
                     writer.WriteLine(@"<LineString>");
                     writer.WriteLine(@"<tessellate> 1 </tessellate>");
                     writer.WriteLine(@" <coordinates>");
-                    int count2 = driveList.Count;
+                    int count4 = driveList.Count;
 
-                    for (int i = 0; i < count2; i++)
+                    for (int i = 0; i < count4; i++)
+                    {
+                        writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
+                    }
+                    writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@"</LineString>");
+                    writer.WriteLine(@"  </Placemark>");
+                }
+                foreach (var driveList in autoGroupList)
+                {
+
+                    writer.WriteLine(@"  <Placemark>");
+                    writer.WriteLine(@"<name> Auto Tool </name>");
+                    writer.WriteLine(@"<styleUrl >#AutoStyle</styleUrl>");
+                    writer.WriteLine(@"<LineString>");
+                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                    writer.WriteLine(@" <coordinates>");
+                    int count5 = driveList.Count;
+
+                    for (int i = 0; i < count5; i++)
+                    {
+                        writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
+                    }
+                    writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@"</LineString>");
+                    writer.WriteLine(@"  </Placemark>");
+                }
+                foreach (var driveList in manualGroupList)
+                {
+
+                    writer.WriteLine(@"  <Placemark>");
+                    writer.WriteLine(@"<name> Manual Tool </name>");
+                    writer.WriteLine(@"<styleUrl >#ManualStyle</styleUrl>");
+                    writer.WriteLine(@"<LineString>");
+                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                    writer.WriteLine(@" <coordinates>");
+                    int count6 = driveList.Count;
+
+                    for (int i = 0; i < count6; i++)
                     {
                         writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
                     }

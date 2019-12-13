@@ -161,16 +161,19 @@ namespace AgOpenGPS
                                 }
                                 else { for (int i = 0; i < count2; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                                 GL.End();
+                                
                             }
+
                         }
                     }
                 }
 
                 GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
                 GL.Color3(1, 1, 1);
+                
 
-                //draw contour line if button on 
-                if (ct.isContourBtnOn)
+                    //draw contour line if button on 
+                    if (ct.isContourBtnOn)
                 {
                     ct.DrawContourLine();
                 }

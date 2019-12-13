@@ -772,11 +772,11 @@ namespace AgOpenGPS
             int sectionCounter = 0;
 
             vec2 here = new vec2(pn.latitude, pn.longitude);
-            if (here.easting != there.easting && here.northing != there.northing)
-            {
+            //if (here.easting != there.easting && here.northing != there.northing)
+            //{
                 driveList.Add(here);
-            }
-            there = here;
+            //}
+            //there = here;
 
             //send the current and previous GPS fore/aft corrected fix to each section
             for (int j = 0; j < vehicle.numOfSections + 1; j++)

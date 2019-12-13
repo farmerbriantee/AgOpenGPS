@@ -21,6 +21,9 @@ namespace AgOpenGPS
         public byte flagColor = 0;
         public List<vec2> driveList = new List<vec2>();
         public List<List<vec2>> driveGroupList = new List<List<vec2>>();
+        public List<List<vec2>> autoGroupList = new List<List<vec2>>();
+        public List<List<vec2>> manualGroupList = new List<List<vec2>>();
+
 
         //how many cm off line per big pixel
         public int lightbarCmPerPixel;
@@ -1588,13 +1591,24 @@ namespace AgOpenGPS
                 case btnStates.Off:
                     manualBtnState = btnStates.On;
                     btnManualOffOn.Image = Properties.Resources.ManualOn;
+                    vec2 here1 = new vec2(pn.latitude, pn.longitude);
 
                     //if Auto is on, turn it off
                     if (autoBtnState != btnStates.Off)
                     { 
-                       vec2 here1 = new vec2(pn.latitude, pn.longitude);
+                       
                         driveList.Add(here1);
-                       driveGroupList.Add(driveList);
+                       autoGroupList.Add(driveList);
+                        driveList = new List<vec2>();
+                        driveList.Add(here1);
+
+                    }
+                    else
+                    {
+                        driveList.Add(here1);
+                        driveGroupList.Add(driveList);
+                        driveList = new List<vec2>();
+                        driveList.Add(here1);
 
                     }
                         autoBtnState = btnStates.Off;
@@ -1608,9 +1622,8 @@ namespace AgOpenGPS
                     }
 
                     ManualAllBtnsUpdate();
-                    driveList = new List<vec2>();
-                    vec2 here = new vec2(pn.latitude, pn.longitude);
-                    driveList.Add(here);
+                    
+                    
                     break;
 
                 case btnStates.On:
@@ -1626,10 +1639,11 @@ namespace AgOpenGPS
 
                     //Update the button colors and text
                     ManualAllBtnsUpdate();
-                    here = new vec2(pn.latitude, pn.longitude);
+                    vec2 here = new vec2(pn.latitude, pn.longitude);
                     driveList.Add(here);
-                    driveGroupList.Add(driveList);
+                    manualGroupList.Add(driveList);
                     driveList = new List<vec2>();
+                    driveList.Add(here);
 
                     break;
             }
@@ -1644,15 +1658,29 @@ namespace AgOpenGPS
 
                     autoBtnState = btnStates.Auto;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOn;
+                    vec2 here1 = new vec2(pn.latitude, pn.longitude);
 
                     //turn off manual if on
                     if (manualBtnState != btnStates.Off)
-                        {
-                            vec2 here1 = new vec2(pn.latitude, pn.longitude);
-                            driveList.Add(here1);
-                            driveGroupList.Add(driveList);
-                        }
-                        manualBtnState = btnStates.Off;
+                    {
+
+                        driveList.Add(here1);
+                        manualGroupList.Add(driveList);
+                        driveList = new List<vec2>();
+                        driveList.Add(here1);
+
+                    }
+                    else
+                    {
+                        driveList.Add(here1);
+                        driveGroupList.Add(driveList);
+                        driveList = new List<vec2>();
+                        driveList.Add(here1);
+
+                    }
+
+
+                    manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
                     //turn all the sections allowed and update to ON!! Auto changes to ON
@@ -1663,9 +1691,7 @@ namespace AgOpenGPS
                     }
 
                     ManualAllBtnsUpdate();
-                    driveList = new List<vec2>();
-                    vec2 here = new vec2(pn.latitude, pn.longitude);
-                    driveList.Add(here);
+                    
                     break;
 
                 case btnStates.Auto:
@@ -1682,10 +1708,11 @@ namespace AgOpenGPS
 
                     //Update the button colors and text
                     ManualAllBtnsUpdate();
-                    here = new vec2(pn.latitude, pn.longitude);
-                    driveList.Add(here);
-                    driveGroupList.Add(driveList);
+                    here1 = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here1);
+                    autoGroupList.Add(driveList);
                     driveList = new List<vec2>();
+                    driveList.Add(here1);
 
 
                     break;

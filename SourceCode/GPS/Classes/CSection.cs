@@ -137,7 +137,7 @@ namespace AgOpenGPS
 
             //add the point to List
             triangleList.Add(point);
-            vec2 here = new vec2(mf.pn.latitude, mf.pn.longitude);
+            
             
 
 
