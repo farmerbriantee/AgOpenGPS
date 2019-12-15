@@ -25,6 +25,7 @@ namespace AgOpenGPS
         public List<List<vec2>> manualGroupList = new List<List<vec2>>();
         
         public List<CBndPt> bndkml = new List<CBndPt>();
+        public List<CBndPt> cutList = new List<CBndPt>();
 
 
         //how many cm off line per big pixel

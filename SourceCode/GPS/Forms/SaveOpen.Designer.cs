@@ -2217,6 +2217,36 @@ namespace AgOpenGPS
                 
             }
         }
+        public void BuildCutList()
+        {
+            BuildPointLATLON(minFieldX, minFieldY);
+            CBndPt vecPt = new CBndPt(utmLat, utmLon, 0);
+            cutList.Add(vecPt);
+            BuildPointLATLON(maxFieldX, minFieldY);
+            vecPt = new CBndPt(utmLat, utmLon, 0);
+            cutList.Add(vecPt);
+            BuildPointLATLON(maxFieldX, maxFieldY);
+            vecPt = new CBndPt(utmLat, utmLon, 0);
+            cutList.Add(vecPt);
+            BuildPointLATLON(minFieldX, maxFieldY);
+            vecPt = new CBndPt(utmLat, utmLon, 0);
+            cutList.Add(vecPt);
+            BuildPointLATLON(minFieldX, minFieldY);
+            vecPt = new CBndPt(utmLat, utmLon, 0);
+            cutList.Add(vecPt);
+        }
+
+        public void BuildPointLATLON(double easting, double northing)
+        {
+            double XO = 0;
+            double YO = 0;
+            XO = easting + pn.utmEast;
+            YO = northing + pn.utmNorth;
+            UTMToLatLon(XO, YO);
+            double latpoint = YO;
+            double longpoint = XO;
+        }
+
         public void FileSaveBndryKML()
         {
 
@@ -2228,9 +2258,12 @@ namespace AgOpenGPS
             { Directory.CreateDirectory(directoryName); }
 
             string myFileName;
-            myFileName = "BND.kml";
+            myFileName = "AOGkml" + "-" + (DateTime.Now.ToString("yyyyMMddhhmmss")) + ".kml";
+
+            //myFileName = "AOGkml"+"-"+(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture))+".kml";
             driveGroupList.Add(driveList);
             BuildBoundaryLATLON();
+            BuildCutList();
 
 
 
@@ -2238,7 +2271,8 @@ namespace AgOpenGPS
             {
 
                 writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2"" ");
+                writer.WriteLine(@"xmlns:gx=""http://www.google.com/kml/ext/2.2"">");
 
                 int count1 = driveGroupList.Count;
                 int count2 = autoGroupList.Count;
@@ -2250,7 +2284,7 @@ namespace AgOpenGPS
 
 
                 writer.WriteLine(@"<Document>");
-                writer.WriteLine(@"  <name> AOG File </name>");
+                writer.WriteLine(@"  <name> AOGkml-" + (DateTime.Now.ToString("yyyyMMddhhmmss", CultureInfo.InvariantCulture))+ "</name>");
 
                 //Style for Just driving around blue
                 writer.WriteLine(@"<Style id = ""DriveStyle"">");
@@ -2270,9 +2304,10 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> ff00ff00 </color>");
+                writer.WriteLine(@"<color> 5000ff00 </color>");
+                writer.WriteLine(@"<gx:physicalWidth>"+ vehicle.toolWidth +"</gx:physicalWidth>");
 
-                writer.WriteLine(@"<width> 5 </width>");
+                //writer.WriteLine(@" < width> 5 </width>");
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2283,9 +2318,9 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> ff00ffff </color>");
-
-                writer.WriteLine(@"<width> 5 </width>");
+                writer.WriteLine(@"<color> 5000ffff </color>");
+                writer.WriteLine(@"<gx:physicalWidth>" + vehicle.toolWidth + "</gx:physicalWidth>");
+                //writer.WriteLine(@"<width> 5 </width>");
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2299,6 +2334,19 @@ namespace AgOpenGPS
                 writer.WriteLine(@"<color>  ff800080 </color>");
 
                 writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+
+                //Style for CutLine
+                writer.WriteLine(@"<Style id = ""CutStyle"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color>  cc0000ff </color>");
+
+                writer.WriteLine(@"<width> 1 </width>");
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2402,6 +2450,24 @@ namespace AgOpenGPS
                     writer.WriteLine(@"  </Placemark>                                 ");
 
                 }
+                //Cut Area
+                
+
+                writer.WriteLine(@"  <Placemark>");
+                writer.WriteLine(@"<name> Cut Area </name>");
+                writer.WriteLine(@"<styleUrl >#CutStyle</styleUrl>");
+                writer.WriteLine(@"<LineString>");
+                writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                writer.WriteLine(@" <coordinates>");
+                count9= cutList.Count;
+
+                for (int i = 0; i < count9; i++)
+                {
+                    writer.WriteLine(@cutList[i].northing + "," + cutList[i].easting + ",0");
+                }
+                writer.WriteLine(@"</coordinates>");
+                writer.WriteLine(@"</LineString>");
+                writer.WriteLine(@"  </Placemark>");
 
                 writer.WriteLine(@"</Document>");
                 writer.WriteLine(@"</kml>                                         ");
