@@ -2211,29 +2211,30 @@ namespace AgOpenGPS
                     CBndPt vecPt = new CBndPt(utmLat, utmLon, 0);
 
                     
-                    bndkml.Add(vecPt);
+                    bndkml.Add(vecPt);//builds the boundary list.  Does not connect front to rear.
                 }
 
                 
             }
         }
-        public void BuildCutList()
+        public void BuildCutList()//Three times bigger than needed so you don't "fall off" the field
         {
-            BuildPointLATLON(minFieldX, minFieldY);
+            BuildPointLATLON(minFieldX - maxFieldDistance, minFieldY - maxFieldDistance);
             CBndPt vecPt = new CBndPt(utmLat, utmLon, 0);
             cutList.Add(vecPt);
-            BuildPointLATLON(maxFieldX, minFieldY);
+            BuildPointLATLON(maxFieldX + maxFieldDistance, minFieldY - maxFieldDistance);
             vecPt = new CBndPt(utmLat, utmLon, 0);
             cutList.Add(vecPt);
-            BuildPointLATLON(maxFieldX, maxFieldY);
+            BuildPointLATLON(maxFieldX + maxFieldDistance, maxFieldY + maxFieldDistance);
             vecPt = new CBndPt(utmLat, utmLon, 0);
             cutList.Add(vecPt);
-            BuildPointLATLON(minFieldX, maxFieldY);
+            BuildPointLATLON(minFieldX - maxFieldDistance, maxFieldY + maxFieldDistance);
             vecPt = new CBndPt(utmLat, utmLon, 0);
             cutList.Add(vecPt);
-            BuildPointLATLON(minFieldX, minFieldY);
+            BuildPointLATLON(minFieldX - maxFieldDistance, minFieldY - maxFieldDistance);
             vecPt = new CBndPt(utmLat, utmLon, 0);
             cutList.Add(vecPt);
+            
         }
 
         public void BuildPointLATLON(double easting, double northing)
@@ -2247,7 +2248,7 @@ namespace AgOpenGPS
             double longpoint = XO;
         }
 
-        public void FileSaveBndryKML()
+        public void FileSaveBndryKML()//called at field closing
         {
 
             //get the directory and make sure it exists, create if not
@@ -2274,11 +2275,12 @@ namespace AgOpenGPS
                 writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2"" ");
                 writer.WriteLine(@"xmlns:gx=""http://www.google.com/kml/ext/2.2"">");
 
-                int count1 = driveGroupList.Count;
-                int count2 = autoGroupList.Count;
-                int count3 = manualGroupList.Count;
-                int count7 = bndkml.Count;
-                int count9 = flagPts.Count;
+                int count1 = driveGroupList.Count;//not needed
+                int count2 = autoGroupList.Count;//not needed
+                int count3 = manualGroupList.Count;//not needed
+                int count7 = bndkml.Count;//not needed
+                int count9 = flagPts.Count;//defined here but changed later.
+                //All the counts could be done from one count, but this was eaiser to follow
 
 
 
@@ -2291,9 +2293,9 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> ffff0000 </color>");
+                writer.WriteLine(@"<color> ffff0000 </color>");//Blue at 100%
 
-                writer.WriteLine(@"<width> 2 </width>");
+                writer.WriteLine(@"<width> 2 </width>");//Just a Line
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2304,10 +2306,10 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> 5000ff00 </color>");
+                writer.WriteLine(@"<color> 5000ff00 </color>");//green at 50%
                 writer.WriteLine(@"<gx:physicalWidth>"+ vehicle.toolWidth +"</gx:physicalWidth>");
 
-                //writer.WriteLine(@" < width> 5 </width>");
+                //writer.WriteLine(@" < width> 5 </width>");//Just a single line
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2318,9 +2320,9 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color> 5000ffff </color>");
+                writer.WriteLine(@"<color> 5000ffff </color>");//yellow at 50%
                 writer.WriteLine(@"<gx:physicalWidth>" + vehicle.toolWidth + "</gx:physicalWidth>");
-                //writer.WriteLine(@"<width> 5 </width>");
+                //writer.WriteLine(@"<width> 5 </width>");//Just a single line
 
                 writer.WriteLine(@" </LineStyle>");
 
@@ -2331,7 +2333,7 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color>  ff800080 </color>");
+                writer.WriteLine(@"<color>  ff800080 </color>");//purple at full
 
                 writer.WriteLine(@"<width> 5 </width>");
 
@@ -2344,7 +2346,7 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<LineStyle>");
 
-                writer.WriteLine(@"<color>  cc0000ff </color>");
+                writer.WriteLine(@"<color>  500000ff </color>");//red at 50%
 
                 writer.WriteLine(@"<width> 1 </width>");
 
@@ -2354,7 +2356,7 @@ namespace AgOpenGPS
 
 
 
-                foreach (var driveList in driveGroupList)
+                foreach (var driveList in driveGroupList)//Build the Just Driving Line
                 {
 
                     writer.WriteLine(@"  <Placemark>");
@@ -2373,7 +2375,7 @@ namespace AgOpenGPS
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 }
-                foreach (var driveList in autoGroupList)
+                foreach (var driveList in autoGroupList)//Build the Auto Tool
                 {
 
                     writer.WriteLine(@"  <Placemark>");
@@ -2392,7 +2394,7 @@ namespace AgOpenGPS
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 }
-                foreach (var driveList in manualGroupList)
+                foreach (var driveList in manualGroupList)//Build the Manual Tool
                 {
 
                     writer.WriteLine(@"  <Placemark>");
@@ -2426,7 +2428,8 @@ namespace AgOpenGPS
                     {
                         writer.WriteLine(@bndkml[i].northing + "," + bndkml[i].easting + ",0");
                     }
-                    writer.WriteLine(@"</coordinates>");
+                writer.WriteLine(@bndkml[0].northing + "," + bndkml[0].easting + ",0");//Close the loop
+                writer.WriteLine(@"</coordinates>");
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 //Flags
