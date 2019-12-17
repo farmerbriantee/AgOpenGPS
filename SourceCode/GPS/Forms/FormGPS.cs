@@ -222,6 +222,8 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndBoundaryAlarm;
 
+        public CVRate rateMap;
+
         /// <summary>
         /// The font class
         /// </summary>
@@ -363,6 +365,8 @@ namespace AgOpenGPS
 
             //The grid for obstacle avoidance
             mazeGrid = new CMazeGrid(this);
+
+            rateMap = new CVRate(this);
 
             //start the stopwatch
             //swFrame.Start();
@@ -1039,6 +1043,33 @@ namespace AgOpenGPS
         private void BtnSaveFlag_Click(object sender, EventArgs e)
         {
             FileSaveFlagLog();
+        }
+
+        private void BackGroumdBtn_Click(object sender, EventArgs e)
+        {
+            if (!isJobStarted)
+            {
+                TimedMessageBox(1000, "No Field Open", "Please Start a Field");
+                return;
+            }
+            if (isBackgroundOn)
+            {
+                isBackgroundOn = false;
+                backGroumdBtn.Text = "Load Background";
+                backGroumdBtn.BackColor = System.Drawing.Color.Transparent;
+                return;
+            }
+            using (var form = new FormVRate(this))
+            {
+                var result = form.ShowDialog();
+                //if (result == DialogResult.OK)
+                //{
+                //    Form form2 = new FormBoundaryPlayer(this);
+                //    form2.Show();
+                //}
+            }
+            backGroumdBtn.Text = "Click Background Off";
+            backGroumdBtn.BackColor = System.Drawing.Color.Lime;
         }
 
         public void GetAB()

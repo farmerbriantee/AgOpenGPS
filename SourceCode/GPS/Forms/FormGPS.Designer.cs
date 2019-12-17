@@ -236,10 +236,11 @@
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.panelFlag = new System.Windows.Forms.Panel();
+            this.FlagTextBox = new System.Windows.Forms.TextBox();
             this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.btnNxtFlg = new System.Windows.Forms.Button();
             this.btnSaveFlag = new System.Windows.Forms.Button();
-            this.FlagTextBox = new System.Windows.Forms.TextBox();
+            this.backGroumdBtn = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1136,6 +1137,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.Color.Transparent;
             this.panelBatman.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBatman.Controls.Add(this.backGroumdBtn);
             this.panelBatman.Controls.Add(this.lblZone);
             this.panelBatman.Controls.Add(this.lblConvergenceAngle);
             this.panelBatman.Controls.Add(this.lblUturnByte);
@@ -2864,6 +2866,13 @@
             this.panelFlag.TabIndex = 448;
             this.panelFlag.Visible = false;
             // 
+            // FlagTextBox
+            // 
+            this.FlagTextBox.Location = new System.Drawing.Point(22, 81);
+            this.FlagTextBox.Name = "FlagTextBox";
+            this.FlagTextBox.Size = new System.Drawing.Size(273, 27);
+            this.FlagTextBox.TabIndex = 4;
+            // 
             // rtbFlag
             // 
             this.rtbFlag.BackColor = System.Drawing.Color.LightGray;
@@ -2894,12 +2903,15 @@
             this.btnSaveFlag.UseVisualStyleBackColor = true;
             this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
             // 
-            // FlagTextBox
+            // backGroumdBtn
             // 
-            this.FlagTextBox.Location = new System.Drawing.Point(22, 81);
-            this.FlagTextBox.Name = "FlagTextBox";
-            this.FlagTextBox.Size = new System.Drawing.Size(273, 27);
-            this.FlagTextBox.TabIndex = 4;
+            this.backGroumdBtn.Location = new System.Drawing.Point(25, 395);
+            this.backGroumdBtn.Name = "backGroumdBtn";
+            this.backGroumdBtn.Size = new System.Drawing.Size(114, 72);
+            this.backGroumdBtn.TabIndex = 311;
+            this.backGroumdBtn.Text = "Background";
+            this.backGroumdBtn.UseVisualStyleBackColor = true;
+            this.backGroumdBtn.Click += new System.EventHandler(this.BackGroumdBtn_Click);
             // 
             // FormGPS
             // 
@@ -3180,6 +3192,7 @@
         private System.Windows.Forms.Button btnNxtFlg;
         private System.Windows.Forms.Button btnSaveFlag;
         private System.Windows.Forms.TextBox FlagTextBox;
+        private System.Windows.Forms.Button backGroumdBtn;
     }
 }
 

@@ -89,6 +89,10 @@ namespace AgOpenGPS
                 //the bounding box of the camera for cullling.
                 CalcFrustum();
                 worldGrid.DrawFieldSurface();
+                if (isBackgroundOn)
+                {
+                    rateMap.DrawArr();
+                }
 
                 ////if grid is on draw it
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
@@ -98,6 +102,7 @@ namespace AgOpenGPS
                 if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
                 GL.Enable(EnableCap.Blend);
+               
                 //draw patches of sections
                 for (int j = 0; j < vehicle.numSuperSection; j++)
                 {

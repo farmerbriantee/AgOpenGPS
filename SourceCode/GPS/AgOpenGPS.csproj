@@ -139,6 +139,7 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Classes\CVRate.cs" />
     <Compile Include="Forms\FormEditCurve.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +277,12 @@
     </Compile>
     <Compile Include="Forms\FormTramCurve.Designer.cs">
       <DependentUpon>FormTramCurve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVRate.designer.cs">
+      <DependentUpon>FormVRate.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
@@ -498,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormTramCurve.resx">
       <DependentUpon>FormTramCurve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVRate.resx">
+      <DependentUpon>FormVRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
