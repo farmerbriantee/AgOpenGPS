@@ -172,8 +172,8 @@ namespace AgOpenGPS
                     {
                         using (Bitmap bitmap2 = new Bitmap(text2))
                         {
-                            GL.GenTextures(1, out mf.texture[4]);
-                            GL.BindTexture(TextureTarget.Texture2D, mf.texture[4]);
+                            GL.GenTextures(1, out mf.texture[9]);
+                            GL.BindTexture(TextureTarget.Texture2D, mf.texture[9]);
                             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
                             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                             BitmapData bitmapData2 = bitmap2.LockBits(new Rectangle(0, 0, bitmap2.Width, bitmap2.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
@@ -198,7 +198,7 @@ namespace AgOpenGPS
 
             GL.Enable(EnableCap.Texture2D);
             GL.Color3(0.96f, .96f, 0.96f);
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[4]);
+            GL.BindTexture(TextureTarget.Texture2D, mf.texture[9]);
             GL.Begin(PrimitiveType.TriangleStrip);
             GL.TexCoord2(0, 0);
             GL.Vertex3(mf.minFieldX - mf.maxFieldDistance, mf.maxFieldY + mf.maxFieldDistance, 0.0);
