@@ -2205,9 +2205,9 @@ namespace AgOpenGPS
 
                 for (int h = 0; h < ptCount; h++)
                 {
-                    XO = bnd.bndArr[0].bndLine[h].easting + pn.utmEast;
-                    YO = bnd.bndArr[0].bndLine[h].northing + pn.utmNorth;
-                    UTMToLatLon(XO, YO);
+                    XO = bnd.bndArr[0].bndLine[h].easting;
+                    YO = bnd.bndArr[0].bndLine[h].northing;
+                    BuildPointLATLON(XO, YO);
                     CBndPt vecPt = new CBndPt(utmLat, utmLon, 0);
 
                     
@@ -2243,9 +2243,13 @@ namespace AgOpenGPS
             double YO = 0;
             XO = easting + pn.utmEast;
             YO = northing + pn.utmNorth;
+            easting = (Math.Cos(pn.convergenceAngle) * easting) - (Math.Sin(pn.convergenceAngle) * northing);
+            northing = (Math.Sin(pn.convergenceAngle) * easting) + (Math.Cos(pn.convergenceAngle) * northing);
+            XO = easting + pn.utmEast;
+            YO = northing + pn.utmNorth;
             UTMToLatLon(XO, YO);
-            double latpoint = YO;
-            double longpoint = XO;
+            //double latpoint = YO;
+            //double longpoint = XO;
         }
 
         public void FileSaveBndryKML()//called at field closing
@@ -2287,6 +2291,19 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"<Document>");
                 writer.WriteLine(@"  <name> AOGkml-" + (DateTime.Now.ToString("yyyyMMddhhmmss", CultureInfo.InvariantCulture))+ "</name>");
+
+                //Style for Total path
+                writer.WriteLine(@"<Style id = ""PathStyle"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color> ff000000 </color>");//Black at 100%
+
+                writer.WriteLine(@"<width> 1 </width>");//Just a Line
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
 
                 //Style for Just driving around blue
                 writer.WriteLine(@"<Style id = ""DriveStyle"">");
@@ -2354,7 +2371,22 @@ namespace AgOpenGPS
 
                 writer.WriteLine(@"</Style>");
 
+                //Build total pathList
+                writer.WriteLine(@"  <Placemark>");
+                writer.WriteLine(@"<name> Total Job </name>");
+                writer.WriteLine(@"<styleUrl >#PathStyle</styleUrl>");
+                writer.WriteLine(@"<LineString>");
+                writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                writer.WriteLine(@" <coordinates>");
+                int count4 = pathList.Count;
 
+                for (int i = 0; i < count4; i++)
+                {
+                    writer.WriteLine(@pathList[i].northing + "," + pathList[i].easting + ",0");
+                }
+                writer.WriteLine(@"</coordinates>");
+                writer.WriteLine(@"</LineString>");
+                writer.WriteLine(@"  </Placemark>");
 
                 foreach (var driveList in driveGroupList)//Build the Just Driving Line
                 {
@@ -2365,7 +2397,7 @@ namespace AgOpenGPS
                     writer.WriteLine(@"<LineString>");
                     writer.WriteLine(@"<tessellate> 1 </tessellate>");
                     writer.WriteLine(@" <coordinates>");
-                    int count4 = driveList.Count;
+                    count4 = driveList.Count;
 
                     for (int i = 0; i < count4; i++)
                     {

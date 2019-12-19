@@ -775,6 +775,8 @@ namespace AgOpenGPS
             //if (here.easting != there.easting && here.northing != there.northing)
             //{
                 driveList.Add(here);
+                pathList.Add(here);
+
             //}
             //there = here;
 

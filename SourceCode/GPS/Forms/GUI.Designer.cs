@@ -20,6 +20,7 @@ namespace AgOpenGPS
         public byte redField, grnField, bluField;
         public byte flagColor = 0;
         public List<vec2> driveList = new List<vec2>();
+        public List<vec2> pathList = new List<vec2>();
         public List<List<vec2>> driveGroupList = new List<List<vec2>>();
         public List<List<vec2>> autoGroupList = new List<List<vec2>>();
         public List<List<vec2>> manualGroupList = new List<List<vec2>>();
