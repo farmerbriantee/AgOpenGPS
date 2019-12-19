@@ -2241,15 +2241,11 @@ namespace AgOpenGPS
         {
             double XO = 0;
             double YO = 0;
-            XO = easting + pn.utmEast;
-            YO = northing + pn.utmNorth;
             easting = (Math.Cos(pn.convergenceAngle) * easting) - (Math.Sin(pn.convergenceAngle) * northing);
             northing = (Math.Sin(pn.convergenceAngle) * easting) + (Math.Cos(pn.convergenceAngle) * northing);
             XO = easting + pn.utmEast;
             YO = northing + pn.utmNorth;
             UTMToLatLon(XO, YO);
-            //double latpoint = YO;
-            //double longpoint = XO;
         }
 
         public void FileSaveBndryKML()//called at field closing
