@@ -389,7 +389,7 @@ namespace AgOpenGPS
                     GL.End();
                 }
             }
-            if (mf.fieldZoom)
+            if (mf.fieldZoom&&!mf.walkAbout)
             {
                 GL.PopMatrix();
                 GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
@@ -478,8 +478,15 @@ namespace AgOpenGPS
                 GL.Vertex3(0, -6, 0);
                 GL.Vertex3(0,6, 0);
                 GL.End();
-
-               
+                GL.Rotate(glm.toDegrees(mf.fixHeading), 0.0, 0.0, 1.0);
+                GL.Color3(0.97, 0.97, 0);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(-.5, 4, 0);
+                GL.Vertex3(0, 6, 0);
+                GL.Vertex3(0, 6, 0);
+                GL.Vertex3(.5, 4, 0);
+                GL.End();
+        
             }
 
         }
