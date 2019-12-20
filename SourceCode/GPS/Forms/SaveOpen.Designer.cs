@@ -2241,10 +2241,10 @@ namespace AgOpenGPS
         {
             double XO = 0;
             double YO = 0;
-            easting = (Math.Cos(pn.convergenceAngle) * easting) - (Math.Sin(pn.convergenceAngle) * northing);
-            northing = (Math.Sin(pn.convergenceAngle) * easting) + (Math.Cos(pn.convergenceAngle) * northing);
-            XO = easting + pn.utmEast;
-            YO = northing + pn.utmNorth;
+            XO = (Math.Cos(pn.convergenceAngle) * easting) - (Math.Sin(pn.convergenceAngle) * northing);
+            YO = (Math.Sin(pn.convergenceAngle) * easting) + (Math.Cos(pn.convergenceAngle) * northing);
+            XO = XO + pn.utmEast;
+            YO = YO + pn.utmNorth;
             UTMToLatLon(XO, YO);
         }
 
