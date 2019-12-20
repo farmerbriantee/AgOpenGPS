@@ -138,226 +138,274 @@ namespace AgOpenGPS
             GL.Translate(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
             GL.PushMatrix();
 
-            //translate down to the hitch pin
-            GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
+            if (!mf.fieldZoom&&!mf.walkAbout)
+            {
+                //translate down to the hitch pin
+                GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
                             Math.Cos(mf.fixHeading) * hitchLength, 0);
 
-            //settings doesn't change trailing hitch length if set to rigid, so do it here
-            double trailingTank, trailingTool;
-            if (isToolTrailing)
-            {
-                trailingTank = tankTrailingHitchLength;
-                trailingTool = toolTrailingHitchLength;
-            }
-            else { trailingTank = 0; trailingTool = 0; }
+                //settings doesn't change trailing hitch length if set to rigid, so do it here
+                double trailingTank, trailingTool;
+                if (isToolTrailing)
+                {
+                    trailingTank = tankTrailingHitchLength;
+                    trailingTool = toolTrailingHitchLength;
+                }
+                else { trailingTank = 0; trailingTool = 0; }
 
-            //there is a trailing tow between hitch
-            if (tankTrailingHitchLength < -2.0 && isToolTrailing)
-            {
-                //rotate to tank heading
-                GL.Rotate(glm.toDegrees(-mf.tankPos.heading), 0.0, 0.0, 1.0);
+                //there is a trailing tow between hitch
+                if (tankTrailingHitchLength < -2.0 && isToolTrailing)
+                {
+                    //rotate to tank heading
+                    GL.Rotate(glm.toDegrees(-mf.tankPos.heading), 0.0, 0.0, 1.0);
 
-                //draw the tank hitch
-                GL.LineWidth(2f);
-                GL.Color3(0.7f, 0.7f, 0.97f);
-                GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(0.0, trailingTank, 0.0);
-                GL.Vertex3(0, 0, 0);
-                GL.End();
+                    //draw the tank hitch
+                    GL.LineWidth(2f);
+                    GL.Color3(0.7f, 0.7f, 0.97f);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex3(0.0, trailingTank, 0.0);
+                    GL.Vertex3(0, 0, 0);
+                    GL.End();
 
-                //section markers
-                GL.Color3(0.95f, 0.95f, 0f);
-                GL.PointSize(6f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Vertex3(0.0, trailingTank, 0.0);
-                GL.End();
+                    //section markers
+                    GL.Color3(0.95f, 0.95f, 0f);
+                    GL.PointSize(6f);
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Vertex3(0.0, trailingTank, 0.0);
+                    GL.End();
 
-                //move down the tank hitch, unwind, rotate to section heading
-                GL.Translate(0.0, trailingTank, 0.0);
-                GL.Rotate(glm.toDegrees(mf.tankPos.heading), 0.0, 0.0, 1.0);
-                GL.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
-            }
+                    //move down the tank hitch, unwind, rotate to section heading
+                    GL.Translate(0.0, trailingTank, 0.0);
+                    GL.Rotate(glm.toDegrees(mf.tankPos.heading), 0.0, 0.0, 1.0);
+                    GL.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
+                }
 
-            //no tow between hitch
-            else
-            {
-                GL.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
-            }
+                //no tow between hitch
+                else
+                {
+                    GL.Rotate(glm.toDegrees(-mf.toolPos.heading), 0.0, 0.0, 1.0);
+                }
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
 
-            //draw the hitch if trailing
-            if (isToolTrailing)
-            {
-                GL.LineWidth(2f);
-                GL.Color3(0.7f, 0.7f, 0.97f);
+                //draw the hitch if trailing
+                if (isToolTrailing)
+                {
+                    GL.LineWidth(2f);
+                    GL.Color3(0.7f, 0.7f, 0.97f);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Vertex3(0.0, trailingTool, 0.0);
+                    GL.Vertex3(0, 0, 0);
+                    GL.End();
+                }
+
+                //draw the sections
+                GL.LineWidth(8);
                 GL.Begin(PrimitiveType.Lines);
-                GL.Vertex3(0.0, trailingTool, 0.0);
+
+                //draw section line
+                if (mf.section[numOfSections].isSectionOn)
+                {
+                    if (mf.section[0].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.0f, 0.97f, 0.0f);
+                    else GL.Color3(0.99, 0.99, 0);
+                    GL.Vertex3(mf.section[numOfSections].positionLeft, trailingTool, 0);
+                    GL.Vertex3(mf.section[numOfSections].positionRight, trailingTool, 0);
+                }
+                else
+                {
+                    for (int j = 0; j < mf.vehicle.numOfSections; j++)
+                    {
+                        //if section is on, green, if off, red color
+                        if (mf.section[j].isSectionOn)
+                        {
+                            if (mf.section[j].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.0f, 0.97f, 0.0f);
+                            else GL.Color3(0.97, 0.97, 0);
+                        }
+                        else
+                        {
+                            GL.Color3(0.97f, 0.2f, 0.2f);
+                        }
+
+                        //draw section line
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    }
+                }
+
+                GL.End();
+
+                //draw section markers if close enough
+                if (mf.camera.camSetDistance > -1500)
+                {
+                    GL.Color3(0.0f, 0.0f, 0.0f);
+                    //section markers
+                    GL.PointSize(4.0f);
+                    GL.Begin(PrimitiveType.Points);
+                    for (int j = 0; j < mf.vehicle.numOfSections - 1; j++)
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    GL.End();
+                }
+
+                //draw vehicle
+
+                GL.PopMatrix();
+                GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+                //mf.font.DrawText3D(0, 0, "&TGF");
+
+                //if (mf.camera.camFollowing)
+                //GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
+
+                ////draw the vehicle Body
+                //GL.Color3(0.95f, 0.95f, 0.95f);
+                //GL.Enable(EnableCap.Texture2D);
+                //GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
+                //GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                //GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
+                //GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
+                //GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight + wheelbase); // Bottom Right
+                //GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight + wheelbase); // Bottom Left
+                //GL.End();                       // Done Building Triangle Strip
+                ////disable, straight color
+                //GL.Disable(EnableCap.Texture2D);
+
+                //draw the area side marker
+                //GL.Color3(0.95f, 0.90f, 0.0f);
+                GL.PointSize(6.0f);
+                GL.Begin(PrimitiveType.Points);
+                //if (mf.isAreaOnRight) GL.Vertex3(2.0, -antennaPivot, 0);
+                //else GL.Vertex3(-2.0, -antennaPivot, 0);
+
+                //antenna
+                GL.Color3(0.0f, 0.95f, 0.95f);
+                GL.Vertex3(0, antennaPivot, 0);
+
+                //hitch pin
+                GL.Color3(0.95f, 0.0f, 0.0f);
+                GL.Vertex3(0, mf.vehicle.hitchLength, 0);
+
+                ////rear Tires
+                //GL.PointSize(12.0f);
+                //GL.Color3(0, 0, 0);
+                //GL.Vertex3(-1.8, 0, 0);
+                //GL.Vertex3(1.8, 0, 0);
+                GL.End();
+
+                ////draw the vehicle Body
+                GL.Color3(0.9, 0.90, 0.0);
+                GL.Begin(PrimitiveType.TriangleFan);
+
+                GL.Vertex3(0, antennaPivot, -0.0);
+                GL.Vertex3(1.0, -0, 0.0);
+                GL.Color3(0.0, 0.90, 0.92);
+                GL.Vertex3(0, wheelbase, 0.0);
+                GL.Color3(0.920, 0.0, 0.9);
+                GL.Vertex3(-1.0, -0, 0.0);
+                GL.Vertex3(1.0, -0, 0.0);
+                GL.End();
+
+                GL.LineWidth(3);
+                GL.Color3(0.0, 0.0, 0.0);
+                GL.Begin(PrimitiveType.LineLoop);
+                {
+                    GL.Vertex3(-1.0, 0, 0);
+                    GL.Vertex3(1.0, 0, 0);
+                    GL.Vertex3(0, wheelbase, 0);
+                }
+                GL.End();
+
+                //if (mf.camera.camSetDistance > -150)
+                //{
+                //    GL.LineWidth(2);
+                //    //Svenn Arrow
+                //    GL.Color3(0.9, 0.95, 0.10);
+                //    GL.Begin(PrimitiveType.LineStrip);
+                //    {
+                //        GL.Vertex3(0.6, wheelbase + 6, 0.0);
+                //        GL.Vertex3(0, wheelbase + 8, 0.0);
+                //        GL.Vertex3(-0.6, wheelbase + 6, 0.0);
+                //    }
+                //    GL.End();
+                //}
+
+                if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
+                {
+                    GL.Color4(0.969, 0.95, 0.9510, 0.87);
+                    mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.5);
+                }
+                else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
+                {
+                    GL.Color4(0.96, 0.95, 0.9510, 0.87);
+                    mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.5);
+                }
+
+
+                //draw the rigid hitch
+                GL.Color3(0.37f, 0.37f, 0.97f);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(0, hitchLength, 0);
                 GL.Vertex3(0, 0, 0);
                 GL.End();
-            }
 
-            //draw the sections
-            GL.LineWidth(8);
-            GL.Begin(PrimitiveType.Lines);
+                GL.LineWidth(1);
 
-            //draw section line
-            if (mf.section[numOfSections].isSectionOn)
-            {
-                if (mf.section[0].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.0f, 0.97f, 0.0f);
-                else GL.Color3(0.99, 0.99, 0);
-                GL.Vertex3(mf.section[numOfSections].positionLeft, trailingTool, 0);
-                GL.Vertex3(mf.section[numOfSections].positionRight, trailingTool, 0);
-            }
-            else
-            {
-                for (int j = 0; j < mf.vehicle.numOfSections; j++)
+                if (mf.camera.camSetDistance < -1000)
                 {
-                    //if section is on, green, if off, red color
-                    if (mf.section[j].isSectionOn)
-                    {
-                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.0f, 0.97f, 0.0f);
-                        else GL.Color3(0.97, 0.97, 0);
-                    }
-                    else
-                    {
-                        GL.Color3(0.97f, 0.2f, 0.2f);
-                    }
+                    GL.Color4(0.5f, 0.5f, 0.9f, 0.20);
+                    double theta = glm.twoPI / 20;
+                    double c = Math.Cos(theta);//precalculate the sine and cosine
+                    double s = Math.Sin(theta);
 
-                    //draw section line
-                    GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
-                    GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
+                    double y = 0;
+                    GL.LineWidth(1);
+                    GL.Begin(PrimitiveType.TriangleFan);
+                    GL.Vertex3(x, y, 0.0);
+                    for (int ii = 0; ii < 20; ii++)
+                    {
+                        //output vertex
+                        GL.Vertex3(x, y, 0.0);
+
+                        //apply the rotation matrix
+                        double t = x;
+                        x = (c * x) - (s * y);
+                        y = (s * t) + (c * y);
+                        // GL.Vertex3(x, y, 0.0);
+                    }
+                    GL.End();
+                    GL.Color3(0.5f, 0.9f, 0.2f);
+                    GL.LineWidth(1);
+                    GL.Begin(PrimitiveType.LineLoop);
+
+                    for (int ii = 0; ii < 20; ii++)
+                    {
+                        //output vertex
+                        GL.Vertex3(x, y, 0.0);
+
+                        //apply the rotation matrix
+                        double t = x;
+                        x = (c * x) - (s * y);
+                        y = (s * t) + (c * y);
+                        // GL.Vertex3(x, y, 0.0);
+                    }
+                    GL.End();
                 }
             }
-
-            GL.End();
-
-            //draw section markers if close enough
-            if (mf.camera.camSetDistance > -1500)
+            if (mf.fieldZoom)
             {
-                GL.Color3(0.0f, 0.0f, 0.0f);
-                //section markers
-                GL.PointSize(4.0f);
-                GL.Begin(PrimitiveType.Points);
-                for (int j = 0; j < mf.vehicle.numOfSections - 1; j++)
-                    GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
-                GL.End();
-            }
-
-            //draw vehicle
-
-            GL.PopMatrix();
-            GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
-            //mf.font.DrawText3D(0, 0, "&TGF");
-
-            //if (mf.camera.camFollowing)
-            //GL.Rotate(mf.camera.camPitch * -0.15, 1, 0, 0);
-
-            ////draw the vehicle Body
-            //GL.Color3(0.95f, 0.95f, 0.95f);
-            //GL.Enable(EnableCap.Texture2D);
-            //GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);        // Select Our Texture
-            //GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-            //GL.TexCoord2(0, 0); GL.Vertex2(2.8, 4); // Top Right
-            //GL.TexCoord2(1, 0); GL.Vertex2(-2.8, 4); // Top Left
-            //GL.TexCoord2(0, 1); GL.Vertex2(2.8, -antennaHeight + wheelbase); // Bottom Right
-            //GL.TexCoord2(1, 1); GL.Vertex2(-2.8, -antennaHeight + wheelbase); // Bottom Left
-            //GL.End();                       // Done Building Triangle Strip
-            ////disable, straight color
-            //GL.Disable(EnableCap.Texture2D);
-
-            //draw the area side marker
-            //GL.Color3(0.95f, 0.90f, 0.0f);
-            GL.PointSize(6.0f);
-            GL.Begin(PrimitiveType.Points);
-            //if (mf.isAreaOnRight) GL.Vertex3(2.0, -antennaPivot, 0);
-            //else GL.Vertex3(-2.0, -antennaPivot, 0);
-
-            //antenna
-            GL.Color3(0.0f, 0.95f, 0.95f);
-            GL.Vertex3(0, antennaPivot, 0);
-
-            //hitch pin
-            GL.Color3(0.95f, 0.0f, 0.0f);
-            GL.Vertex3(0, mf.vehicle.hitchLength, 0);
-
-            ////rear Tires
-            //GL.PointSize(12.0f);
-            //GL.Color3(0, 0, 0);
-            //GL.Vertex3(-1.8, 0, 0);
-            //GL.Vertex3(1.8, 0, 0);
-            GL.End();
-
-            ////draw the vehicle Body
-            GL.Color3(0.9, 0.90, 0.0);
-            GL.Begin(PrimitiveType.TriangleFan);
-
-            GL.Vertex3(0, antennaPivot, -0.0);
-            GL.Vertex3(1.0, -0, 0.0);
-            GL.Color3(0.0, 0.90, 0.92);
-            GL.Vertex3(0, wheelbase, 0.0);
-            GL.Color3(0.920, 0.0, 0.9);
-            GL.Vertex3(-1.0, -0, 0.0);
-            GL.Vertex3(1.0, -0, 0.0);
-            GL.End();
-
-            GL.LineWidth(3);
-            GL.Color3(0.0, 0.0, 0.0);
-            GL.Begin(PrimitiveType.LineLoop);
-            {
-                GL.Vertex3(-1.0, 0, 0);
-                GL.Vertex3(1.0, 0, 0);
-                GL.Vertex3(0, wheelbase, 0);
-            }
-            GL.End();
-            
-            //if (mf.camera.camSetDistance > -150)
-            //{
-            //    GL.LineWidth(2);
-            //    //Svenn Arrow
-            //    GL.Color3(0.9, 0.95, 0.10);
-            //    GL.Begin(PrimitiveType.LineStrip);
-            //    {
-            //        GL.Vertex3(0.6, wheelbase + 6, 0.0);
-            //        GL.Vertex3(0, wheelbase + 8, 0.0);
-            //        GL.Vertex3(-0.6, wheelbase + 6, 0.0);
-            //    }
-            //    GL.End();
-            //}
-
-            if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
-            {
-                GL.Color4(0.969, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.5);
-            }
-            else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
-            {
-                GL.Color4(0.96, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.5);
-            }
-
-
-            //draw the rigid hitch
-            GL.Color3(0.37f, 0.37f, 0.97f);
-            GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(0, hitchLength, 0);
-            GL.Vertex3(0, 0, 0);
-            GL.End();
-
-            GL.LineWidth(1);
-
-            if (mf.camera.camSetDistance < -1000)
-            {
-                GL.Color4(0.5f, 0.5f, 0.9f, 0.20);
-                double theta = glm.twoPI / 20;
+                GL.PopMatrix();
+                GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+                GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
+                            Math.Cos(mf.fixHeading) * hitchLength, 0);
+                GL.Color4(0.99f, 0.99f, 0.99f, .15f);
+                double theta = glm.twoPI / 30;
                 double c = Math.Cos(theta);//precalculate the sine and cosine
                 double s = Math.Sin(theta);
 
-                double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
+                double x = mf.maxFieldDistance * .10;//we start at angle = 0
                 double y = 0;
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.TriangleFan);
                 GL.Vertex3(x, y, 0.0);
-                for (int ii = 0; ii < 20; ii++)
+                for (int ii = 0; ii < 30; ii++)
                 {
                     //output vertex
                     GL.Vertex3(x, y, 0.0);
@@ -369,11 +417,11 @@ namespace AgOpenGPS
                     // GL.Vertex3(x, y, 0.0);
                 }
                 GL.End();
-                GL.Color3(0.5f, 0.9f, 0.2f);
+                GL.Color3(0.99f, 0.99f, 0.99f);
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.LineLoop);
 
-                for (int ii = 0; ii < 20; ii++)
+                for (int ii = 0; ii < 30; ii++)
                 {
                     //output vertex
                     GL.Vertex3(x, y, 0.0);
@@ -385,6 +433,53 @@ namespace AgOpenGPS
                     // GL.Vertex3(x, y, 0.0);
                 }
                 GL.End();
+                ////draw the vehicle Arrow
+                GL.Color3(0.99, 0.99, 0.99);
+                GL.Begin(PrimitiveType.TriangleFan);
+                GL.Vertex3(0, 0, 0);
+                GL.Vertex3(mf.maxFieldDistance * .02, -mf.maxFieldDistance * .02, 0.0);
+                GL.Vertex3(0, mf.maxFieldDistance * .02, 0.0);
+                GL.Vertex3(-mf.maxFieldDistance * .02, -mf.maxFieldDistance * .02, 0.0);
+                GL.Vertex3(0, 0, 0.0);
+                GL.End();
+
+                GL.LineWidth(1);
+                GL.Color3(.0, .0, .0);
+                GL.Begin(PrimitiveType.LineLoop);
+                {
+                    GL.Vertex3(0, 0, 0);
+                    GL.Vertex3(mf.maxFieldDistance * .02, -mf.maxFieldDistance * .02, 0.0);
+                    GL.Vertex3(0, mf.maxFieldDistance * .02, 0.0);
+                    GL.Vertex3(-mf.maxFieldDistance * .02, -mf.maxFieldDistance * .02, 0.0);
+                    GL.Vertex3(0, 0, 0);
+                }
+                GL.End();
+            }
+            if (mf.walkAbout)
+            {
+                GL.PopMatrix();
+                GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+                //GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
+                  //          Math.Cos(mf.fixHeading) * hitchLength, 0);
+                GL.Color3(0.99f, 0.99f, 0.99f);
+                GL.LineWidth(1);
+                GL.Begin(PrimitiveType.LineLoop);
+                    GL.Vertex3(-.5, -.5, 0);
+                    GL.Vertex3(.5, -.5, 0);
+                    GL.Vertex3(.5, .5, 0);
+                    GL.Vertex3(-.5, .5, 0);
+                    GL.Vertex3(-.5, -.5, 0);
+                GL.End();
+                ////draw the vehicle Arrow
+                GL.Color3(0.99, 0.99, 0.99);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(-6, 0, 0);
+                GL.Vertex3(6, 0, 0);
+                GL.Vertex3(0, -6, 0);
+                GL.Vertex3(0,6, 0);
+                GL.End();
+
+               
             }
 
         }

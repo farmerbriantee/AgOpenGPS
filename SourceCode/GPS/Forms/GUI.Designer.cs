@@ -41,6 +41,7 @@ namespace AgOpenGPS
         public double camZoomNow = -10;
         public double camDistNow = -10;
         public bool fieldZoom = false;
+        public bool walkAbout = false;
         public bool isBackgroundOn = false;
 
         //master Manual and Auto, 3 states possible
@@ -2598,6 +2599,7 @@ namespace AgOpenGPS
                 camera.camFollowing = false;
                 camZoomNow = camera.zoomValue;
                 camDistNow = camera.camSetDistance;
+                
 
             }
         }
