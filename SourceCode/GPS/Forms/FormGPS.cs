@@ -1072,6 +1072,124 @@ namespace AgOpenGPS
             backGroumdBtn.BackColor = System.Drawing.Color.Lime;
         }
 
+        private void WalkAboutBtn_Click(object sender, EventArgs e)
+        {
+            if(!walkAbout)
+            {
+                walkAbout = true;
+                //fix ManualOffOnAuto buttons
+                btnManualOffOn.Enabled = false;
+                manualBtnState = btnStates.Off;
+                btnManualOffOn.Image = Properties.Resources.ManualOff;
+
+                //fix auto button
+                btnSectionOffAutoOn.Enabled = false;
+                autoBtnState = btnStates.Off;
+                btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+                
+                btnSection1Man.Enabled = false;
+                btnSection2Man.Enabled = false;
+                btnSection3Man.Enabled = false;
+                btnSection4Man.Enabled = false;
+                btnSection5Man.Enabled = false;
+                btnSection6Man.Enabled = false;
+                btnSection7Man.Enabled = false;
+                btnSection8Man.Enabled = false;
+                btnSection9Man.Enabled = false;
+                btnSection10Man.Enabled = false;
+                btnSection11Man.Enabled = false;
+                btnSection12Man.Enabled = false;
+                                
+                //ABLine
+                btnABLine.Enabled = false;
+                btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+                ABLine.isBtnABLineOn = false;
+                ABLine.isABLineSet = false;
+                ABLine.isABLineLoaded = false;
+                
+
+                //curve line
+                btnCurve.Enabled = false;
+                btnCurve.Image = Properties.Resources.CurveOff;
+                curve.isBtnCurveOn = false;
+                curve.isCurveSet = false;
+
+                //clean up tram
+                tram.displayMode = 0;
+                
+
+                //clear out contour and Lists
+                btnContour.Enabled = false;
+                //btnContourPriority.Enabled = false;
+                btnContourPriority.Image = Properties.Resources.Snap2;
+                ct.isContourBtnOn = false;
+                btnContour.Image = Properties.Resources.ContourOff;
+                ct.isContourOn = false;
+
+                btnMakeLinesFromBoundary.Enabled = false;
+                btnCycleLines.Enabled = false;
+
+                //AutoSteer
+                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                btnAutoSteer.Enabled = false;
+                isAutoSteerBtnOn = false;
+                btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
+
+                //auto YouTurn shutdown
+                yt.isYouTurnBtnOn = false;
+                btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                btnAutoYouTurn.Enabled = false;
+
+                btnABLine.Image = Properties.Resources.ABLineOff;
+                ABLine.isBtnABLineOn = false;
+                ABLine.isABLineSet = false;
+                ABLine.isABLineLoaded = false;
+                ABLine.numABLineSelected = 0;
+                DisableYouTurnButtons();
+                
+               
+
+            }
+            else
+            {
+                walkAbout = false;
+                btnManualOffOn.Enabled = true;
+                manualBtnState = btnStates.Off;
+                btnManualOffOn.Image = Properties.Resources.ManualOff;
+
+                btnSectionOffAutoOn.Enabled = true;
+                autoBtnState = btnStates.Off;
+                btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+
+                btnSection1Man.Enabled = true;
+                btnSection2Man.Enabled = true;
+                btnSection3Man.Enabled = true;
+                btnSection4Man.Enabled = true;
+                btnSection5Man.Enabled = true;
+                btnSection6Man.Enabled = true;
+                btnSection7Man.Enabled = true;
+                btnSection8Man.Enabled = true;
+                btnSection9Man.Enabled = true;
+                btnSection10Man.Enabled = true;
+                btnSection11Man.Enabled = true;
+                btnSection12Man.Enabled = true;
+
+                btnABLine.Enabled = true;
+                btnContour.Enabled = true;
+                btnCurve.Enabled = true;
+                btnMakeLinesFromBoundary.Enabled = true;
+                btnCycleLines.Enabled = true;
+
+               
+                btnAutoSteer.Enabled = true;
+
+                
+                btnContourPriority.Image = Properties.Resources.Snap2;
+            }
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;

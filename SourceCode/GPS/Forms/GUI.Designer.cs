@@ -1590,6 +1590,10 @@ namespace AgOpenGPS
         //Section Manual and Auto
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
+            if(walkAbout)
+            {
+                return;
+            }
             System.Media.SystemSounds.Asterisk.Play();
 
             switch (manualBtnState)
@@ -1656,6 +1660,10 @@ namespace AgOpenGPS
         }
         private void btnSectionOffAutoOn_Click(object sender, EventArgs e)
         {
+            if (walkAbout)
+            {
+                return;
+            }
             System.Media.SystemSounds.Exclamation.Play();
 
             switch (autoBtnState)

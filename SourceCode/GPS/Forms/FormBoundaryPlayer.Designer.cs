@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblArea = new System.Windows.Forms.Label();
+            this.BndPointBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnStop
@@ -92,12 +93,25 @@
             this.lblArea.TabIndex = 142;
             this.lblArea.Text = "999";
             // 
+            // BndPointBtn
+            // 
+            this.BndPointBtn.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
+            this.BndPointBtn.Location = new System.Drawing.Point(276, 15);
+            this.BndPointBtn.Name = "BndPointBtn";
+            this.BndPointBtn.Size = new System.Drawing.Size(90, 97);
+            this.BndPointBtn.TabIndex = 143;
+            this.BndPointBtn.Text = "Point";
+            this.BndPointBtn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.BndPointBtn.UseVisualStyleBackColor = true;
+            this.BndPointBtn.Click += new System.EventHandler(this.BndPointBtn_Click);
+            // 
             // FormBoundaryPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(254, 165);
+            this.ClientSize = new System.Drawing.Size(394, 165);
             this.ControlBox = false;
+            this.Controls.Add(this.BndPointBtn);
             this.Controls.Add(this.lblArea);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
@@ -123,6 +137,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblArea;
-
+        private System.Windows.Forms.Button BndPointBtn;
     }
 }

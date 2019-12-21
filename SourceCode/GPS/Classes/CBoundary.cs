@@ -159,7 +159,7 @@ namespace AgOpenGPS
                 GL.PointSize(2);
                 GL.LineWidth(1);
                 GL.Color3(0.825f, 0.42f, 0.90f);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Begin(PrimitiveType.LineLoop);
                 for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.Color3(0.95f, 0.972f, 0.90f);
                 GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);

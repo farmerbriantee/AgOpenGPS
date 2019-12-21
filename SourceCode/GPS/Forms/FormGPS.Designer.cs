@@ -120,6 +120,7 @@
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.backGroumdBtn = new System.Windows.Forms.Button();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.lblWatch = new System.Windows.Forms.Label();
             this.btnStartStopNtrip = new System.Windows.Forms.Button();
@@ -240,7 +241,7 @@
             this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.btnNxtFlg = new System.Windows.Forms.Button();
             this.btnSaveFlag = new System.Windows.Forms.Button();
-            this.backGroumdBtn = new System.Windows.Forms.Button();
+            this.WalkAboutBtn = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1137,6 +1138,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.Color.Transparent;
             this.panelBatman.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBatman.Controls.Add(this.WalkAboutBtn);
             this.panelBatman.Controls.Add(this.backGroumdBtn);
             this.panelBatman.Controls.Add(this.lblZone);
             this.panelBatman.Controls.Add(this.lblConvergenceAngle);
@@ -1170,6 +1172,16 @@
             this.panelBatman.Size = new System.Drawing.Size(168, 544);
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
+            // 
+            // backGroumdBtn
+            // 
+            this.backGroumdBtn.Location = new System.Drawing.Point(16, 378);
+            this.backGroumdBtn.Name = "backGroumdBtn";
+            this.backGroumdBtn.Size = new System.Drawing.Size(114, 72);
+            this.backGroumdBtn.TabIndex = 311;
+            this.backGroumdBtn.Text = "Background";
+            this.backGroumdBtn.UseVisualStyleBackColor = true;
+            this.backGroumdBtn.Click += new System.EventHandler(this.BackGroumdBtn_Click);
             // 
             // lblUturnByte
             // 
@@ -2903,15 +2915,15 @@
             this.btnSaveFlag.UseVisualStyleBackColor = true;
             this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
             // 
-            // backGroumdBtn
+            // WalkAboutBtn
             // 
-            this.backGroumdBtn.Location = new System.Drawing.Point(25, 395);
-            this.backGroumdBtn.Name = "backGroumdBtn";
-            this.backGroumdBtn.Size = new System.Drawing.Size(114, 72);
-            this.backGroumdBtn.TabIndex = 311;
-            this.backGroumdBtn.Text = "Background";
-            this.backGroumdBtn.UseVisualStyleBackColor = true;
-            this.backGroumdBtn.Click += new System.EventHandler(this.BackGroumdBtn_Click);
+            this.WalkAboutBtn.Location = new System.Drawing.Point(16, 464);
+            this.WalkAboutBtn.Name = "WalkAboutBtn";
+            this.WalkAboutBtn.Size = new System.Drawing.Size(113, 43);
+            this.WalkAboutBtn.TabIndex = 312;
+            this.WalkAboutBtn.Text = "Walk About";
+            this.WalkAboutBtn.UseVisualStyleBackColor = true;
+            this.WalkAboutBtn.Click += new System.EventHandler(this.WalkAboutBtn_Click);
             // 
             // FormGPS
             // 
@@ -3193,6 +3205,7 @@
         private System.Windows.Forms.Button btnSaveFlag;
         private System.Windows.Forms.TextBox FlagTextBox;
         private System.Windows.Forms.Button backGroumdBtn;
+        private System.Windows.Forms.Button WalkAboutBtn;
     }
 }
 

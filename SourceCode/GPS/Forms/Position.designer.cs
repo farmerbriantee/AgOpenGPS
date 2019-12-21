@@ -724,6 +724,14 @@ namespace AgOpenGPS
 
             if (bnd.isOkToAddPoints)
             {
+                if(walkAbout)
+                {
+
+                    CBndPt point = new CBndPt(pn.fix.easting,pn.fix.northing, toolPos.heading);
+                    bnd.bndBeingMadePts.Add(point);
+                    return;
+
+                }
                 if (bnd.isDrawRightSide)
                 {
                     //Right side
