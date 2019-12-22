@@ -714,7 +714,7 @@ namespace AgOpenGPS
         }
 
         //perimeter and boundary point generation
-        private void AddBoundaryAndPerimiterPoint()
+        public void AddBoundaryAndPerimiterPoint()
         {
             //save the north & east as previous
             prevBoundaryPos.easting = pn.fix.easting;

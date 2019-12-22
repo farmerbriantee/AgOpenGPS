@@ -87,7 +87,7 @@ namespace AgOpenGPS
         {
             int ptCount = mf.bnd.bndBeingMadePts.Count;
             double area = 0;
-            BndPointBtn.Text = "Point " + (ptCount+1).ToString();
+            BndPointBtn.Text = "Point " + (ptCount).ToString();
 
             if (ptCount > 0)
             {
@@ -111,9 +111,9 @@ namespace AgOpenGPS
 
         private void BndPointBtn_Click(object sender, EventArgs e)
         {
-            CBndPt point = new CBndPt(mf.pn.fix.easting, mf.pn.fix.northing, mf.toolPos.heading);
-            mf.bnd.bndBeingMadePts.Add(point);
-            return;
+            mf.bnd.isOkToAddPoints = true;
+            mf.AddBoundaryAndPerimiterPoint();
+            mf.bnd.isOkToAddPoints = false;
         }
     }
 }

@@ -2263,8 +2263,11 @@ namespace AgOpenGPS
 
             //myFileName = "AOGkml"+"-"+(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture))+".kml";
             driveGroupList.Add(driveList);
-            BuildBoundaryLATLON();
-            BuildCutList();
+            if (bnd.bndArr.Count>0)
+            {
+                BuildBoundaryLATLON();
+                BuildCutList();
+            }
 
 
 
@@ -2441,8 +2444,10 @@ namespace AgOpenGPS
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 }
-                
+
                 // Boundary
+                if (bndkml.Count > 0)
+                {
 
                     writer.WriteLine(@"  <Placemark>");
                     writer.WriteLine(@"<name> Boundary </name>");
@@ -2456,10 +2461,11 @@ namespace AgOpenGPS
                     {
                         writer.WriteLine(@bndkml[i].northing + "," + bndkml[i].easting + ",0");
                     }
-                writer.WriteLine(@bndkml[0].northing + "," + bndkml[0].easting + ",0");//Close the loop
-                writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@bndkml[0].northing + "," + bndkml[0].easting + ",0");//Close the loop
+                    writer.WriteLine(@"</coordinates>");
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
+                }
                 //Flags
 
                 for (int i = 0; i < count9; i++)

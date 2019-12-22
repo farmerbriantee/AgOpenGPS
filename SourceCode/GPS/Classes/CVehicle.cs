@@ -459,8 +459,6 @@ namespace AgOpenGPS
             {
                 GL.PopMatrix();
                 GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
-                //GL.Translate(Math.Sin(mf.fixHeading) * hitchLength,
-                  //          Math.Cos(mf.fixHeading) * hitchLength, 0);
                 GL.Color3(0.99f, 0.99f, 0.99f);
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.LineLoop);
@@ -470,7 +468,7 @@ namespace AgOpenGPS
                     GL.Vertex3(-.5, .5, 0);
                     GL.Vertex3(-.5, -.5, 0);
                 GL.End();
-                ////draw the vehicle Arrow
+                ////draw the CrossHairs
                 GL.Color3(0.99, 0.99, 0.99);
                 GL.Begin(PrimitiveType.Lines);
                 GL.Vertex3(-6, 0, 0);
@@ -486,7 +484,23 @@ namespace AgOpenGPS
                 GL.Vertex3(0, 6, 0);
                 GL.Vertex3(.5, 4, 0);
                 GL.End();
-        
+                //if (!mf.fieldZoom||mf.isIn3D)
+                //{
+                //    //Vertical Flag
+                //    GL.Rotate(glm.toDegrees(-mf.fixHeading), 0.0, 0.0, 1.0);
+                //    GL.LineWidth(1);
+                //    GL.Color4(0.99f, 0.99f, 0.99f,.30f);
+                //    GL.Begin(PrimitiveType.LineLoop);
+                //    GL.Vertex3(0, 0, 0);
+                //    GL.Vertex3(0, 0, 5);
+                //    GL.Vertex3(2, 0, 5);
+                //    GL.Vertex3(1, 0, 4.5);
+                //    GL.Vertex3(2, 0, 4);
+                //    GL.Vertex3(0, 0, 4);
+                //    GL.Vertex3(0, 0, 0);
+                //    GL.End();
+                //}
+
             }
 
         }
