@@ -14,6 +14,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -1841,6 +1842,19 @@ namespace AgOpenGPS
                 section[j].sectionOnOffCycle = false;
                 section[j].sectionOffRequest = false;
             }
+            if (autoBtnState != btnStates.Off)
+            {
+
+                autoGroupList.Add(driveList);
+                driveList = new List<vec2>();
+            }
+            if (manualBtnState != btnStates.Off)
+            {
+
+                manualGroupList.Add(driveList);
+                driveList = new List<vec2>();
+            }
+
 
             //FileSaveHeadland();
             FileSaveBoundary();
@@ -1849,6 +1863,7 @@ namespace AgOpenGPS
             FileSaveFlagsKML();
             FileSaveFlags();
             FileSaveBndryKML();
+            FileSaveJobKML();
 
             JobClose();
             Text = "AgOpenGPS";

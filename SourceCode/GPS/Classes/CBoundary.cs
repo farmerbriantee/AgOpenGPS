@@ -164,6 +164,17 @@ namespace AgOpenGPS
                 GL.Color3(0.95f, 0.972f, 0.90f);
                 GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
                 GL.End();
+                GL.Enable(EnableCap.LineStipple);
+                GL.LineStipple(1, 0x0707);
+                GL.Color3(0.950f, 0.95f, 0.95f);
+                GL.LineWidth(2);
+                GL.Begin(PrimitiveType.Lines);
+                GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
+                GL.Vertex3(mf.pn.fix.easting, mf.pn.fix.northing, 0);
+                GL.Vertex3(mf.pn.fix.easting, mf.pn.fix.northing, 0);
+                GL.Vertex3(bndBeingMadePts[bndBeingMadePts.Count-1].easting, bndBeingMadePts[bndBeingMadePts.Count-1].northing, 0);
+                GL.End();
+                GL.Disable(EnableCap.LineStipple);
             }
         }
 

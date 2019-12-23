@@ -2197,6 +2197,7 @@ namespace AgOpenGPS
         public void BuildBoundaryLATLON()
         {
             int ptCount = bnd.bndArr[0].bndLine.Count;
+            bndkml = new List<CBndPt>();
             double XO = 0;
             double YO = 0;
 
@@ -2248,7 +2249,7 @@ namespace AgOpenGPS
             UTMToLatLon(XO, YO);
         }
 
-        public void FileSaveBndryKML()//called at field closing
+        public void FileSaveJobKML()//called at field closing
         {
 
             //get the directory and make sure it exists, create if not
@@ -2389,22 +2390,25 @@ namespace AgOpenGPS
 
                 foreach (var driveList in driveGroupList)//Build the Just Driving Line
                 {
-
-                    writer.WriteLine(@"  <Placemark>");
-                    writer.WriteLine(@"<name> Driving </name>");
-                    writer.WriteLine(@"<styleUrl >#DriveStyle</styleUrl>");
-                    writer.WriteLine(@"<LineString>");
-                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
-                    writer.WriteLine(@" <coordinates>");
                     count4 = driveList.Count;
-
-                    for (int i = 0; i < count4; i++)
+                    if (count4 >= 2)
                     {
-                        writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
+                        writer.WriteLine(@"  <Placemark>");
+                        writer.WriteLine(@"<name> Driving </name>");
+                        writer.WriteLine(@"<styleUrl >#DriveStyle</styleUrl>");
+                        writer.WriteLine(@"<LineString>");
+                        writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                        writer.WriteLine(@" <coordinates>");
+
+
+                        for (int i = 0; i < count4; i++)
+                        {
+                            writer.WriteLine(@driveList[i].northing + "," + driveList[i].easting + ",0");
+                        }
+                        writer.WriteLine(@"</coordinates>");
+                        writer.WriteLine(@"</LineString>");
+                        writer.WriteLine(@"  </Placemark>");
                     }
-                    writer.WriteLine(@"</coordinates>");
-                    writer.WriteLine(@"</LineString>");
-                    writer.WriteLine(@"  </Placemark>");
                 }
                 foreach (var driveList in autoGroupList)//Build the Auto Tool
                 {
@@ -2446,6 +2450,7 @@ namespace AgOpenGPS
                 }
 
                 // Boundary
+
                 if (bndkml.Count > 0)
                 {
 
@@ -2506,6 +2511,79 @@ namespace AgOpenGPS
                 writer.WriteLine(@"</LineString>");
                 writer.WriteLine(@"  </Placemark>");
 
+                writer.WriteLine(@"</Document>");
+                writer.WriteLine(@"</kml>                                         ");
+            }
+
+        }
+        public void FileSaveBndryKML()//called at field closing
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "BoundaryKml.kml";
+
+            //myFileName = "AOGkml"+"-"+(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture))+".kml";
+           
+            if (bnd.bndArr.Count > 0)
+            {
+                BuildBoundaryLATLON();
+            }
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+
+                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
+                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2"" ");
+                writer.WriteLine(@"xmlns:gx=""http://www.google.com/kml/ext/2.2"">");
+
+                
+                writer.WriteLine(@"<Document>");
+                writer.WriteLine(@"  <name> BoundaryKml-" + (DateTime.Now.ToString("yyyyMMddhhmmss", CultureInfo.InvariantCulture)) + "</name>");
+
+
+                //Style for Boundary Red
+                writer.WriteLine(@"<Style id = ""BoundaryStyleRed"">");
+
+                writer.WriteLine(@"<LineStyle>");
+
+                writer.WriteLine(@"<color>  ff0000ff </color>");//red at full
+
+                writer.WriteLine(@"<width> 5 </width>");
+
+                writer.WriteLine(@" </LineStyle>");
+
+                writer.WriteLine(@"</Style>");
+
+
+                // Boundary
+
+                if (bndkml.Count > 0)
+                {
+
+                    writer.WriteLine(@"  <Placemark>");
+                    writer.WriteLine(@"<name> Boundary </name>");
+                    writer.WriteLine(@"<styleUrl >#BoundaryStyleRed</styleUrl>");
+                    writer.WriteLine(@"<LineString>");
+                    writer.WriteLine(@"<tessellate> 1 </tessellate>");
+                    writer.WriteLine(@" <coordinates>");
+                    int count8 = bndkml.Count;
+
+                    for (int i = 0; i < count8; i++)
+                    {
+                        writer.WriteLine(@bndkml[i].northing + "," + bndkml[i].easting + ",0");
+                    }
+                    writer.WriteLine(@bndkml[0].northing + "," + bndkml[0].easting + ",0");//Close the loop
+                    writer.WriteLine(@"</coordinates>");
+                    writer.WriteLine(@"</LineString>");
+                    writer.WriteLine(@"  </Placemark>");
+                }
+                
                 writer.WriteLine(@"</Document>");
                 writer.WriteLine(@"</kml>                                         ");
             }
