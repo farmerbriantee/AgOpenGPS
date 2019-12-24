@@ -2571,15 +2571,16 @@ namespace AgOpenGPS
                     writer.WriteLine(@"<styleUrl >#BoundaryStyleRed</styleUrl>");
                     writer.WriteLine(@"<LineString>");
                     writer.WriteLine(@"<tessellate> 1 </tessellate>");
-                    writer.WriteLine(@" <coordinates>");
+                    writer.WriteLine(@"     <coordinates>");
                     int count8 = bndkml.Count;
-
+                    string Combined = "            " + bndkml[0].northing + "," + bndkml[0].easting + ",0 ";
                     for (int i = 0; i < count8; i++)
                     {
-                        writer.WriteLine(@bndkml[i].northing + "," + bndkml[i].easting + ",0");
+                         Combined += bndkml[i].northing + "," + bndkml[i].easting + ",0 ";
                     }
-                    writer.WriteLine(@bndkml[0].northing + "," + bndkml[0].easting + ",0");//Close the loop
-                    writer.WriteLine(@"</coordinates>");
+                    Combined += bndkml[count8-1].northing + "," + bndkml[count8-1].easting + ",0";//Close the loop
+                    writer.WriteLine(@Combined);
+                    writer.WriteLine(@"     </coordinates>");
                     writer.WriteLine(@"</LineString>");
                     writer.WriteLine(@"  </Placemark>");
                 }
