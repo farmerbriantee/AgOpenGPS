@@ -120,6 +120,7 @@
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.WalkAboutBtn = new System.Windows.Forms.Button();
             this.backGroumdBtn = new System.Windows.Forms.Button();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.lblWatch = new System.Windows.Forms.Label();
@@ -241,7 +242,7 @@
             this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.btnNxtFlg = new System.Windows.Forms.Button();
             this.btnSaveFlag = new System.Windows.Forms.Button();
-            this.WalkAboutBtn = new System.Windows.Forms.Button();
+            this.FlagDistLbl = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1172,6 +1173,16 @@
             this.panelBatman.Size = new System.Drawing.Size(168, 544);
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
+            // 
+            // WalkAboutBtn
+            // 
+            this.WalkAboutBtn.Location = new System.Drawing.Point(16, 464);
+            this.WalkAboutBtn.Name = "WalkAboutBtn";
+            this.WalkAboutBtn.Size = new System.Drawing.Size(113, 43);
+            this.WalkAboutBtn.TabIndex = 312;
+            this.WalkAboutBtn.Text = "Walk About";
+            this.WalkAboutBtn.UseVisualStyleBackColor = true;
+            this.WalkAboutBtn.Click += new System.EventHandler(this.WalkAboutBtn_Click);
             // 
             // backGroumdBtn
             // 
@@ -2868,19 +2879,20 @@
             // 
             // panelFlag
             // 
+            this.panelFlag.Controls.Add(this.FlagDistLbl);
             this.panelFlag.Controls.Add(this.FlagTextBox);
             this.panelFlag.Controls.Add(this.rtbFlag);
             this.panelFlag.Controls.Add(this.btnNxtFlg);
             this.panelFlag.Controls.Add(this.btnSaveFlag);
             this.panelFlag.Location = new System.Drawing.Point(776, 49);
             this.panelFlag.Name = "panelFlag";
-            this.panelFlag.Size = new System.Drawing.Size(335, 174);
+            this.panelFlag.Size = new System.Drawing.Size(335, 207);
             this.panelFlag.TabIndex = 448;
             this.panelFlag.Visible = false;
             // 
             // FlagTextBox
             // 
-            this.FlagTextBox.Location = new System.Drawing.Point(22, 81);
+            this.FlagTextBox.Location = new System.Drawing.Point(22, 113);
             this.FlagTextBox.Name = "FlagTextBox";
             this.FlagTextBox.Size = new System.Drawing.Size(273, 27);
             this.FlagTextBox.TabIndex = 4;
@@ -2897,7 +2909,7 @@
             // 
             // btnNxtFlg
             // 
-            this.btnNxtFlg.Location = new System.Drawing.Point(26, 128);
+            this.btnNxtFlg.Location = new System.Drawing.Point(22, 158);
             this.btnNxtFlg.Name = "btnNxtFlg";
             this.btnNxtFlg.Size = new System.Drawing.Size(132, 30);
             this.btnNxtFlg.TabIndex = 2;
@@ -2907,7 +2919,7 @@
             // 
             // btnSaveFlag
             // 
-            this.btnSaveFlag.Location = new System.Drawing.Point(207, 127);
+            this.btnSaveFlag.Location = new System.Drawing.Point(210, 158);
             this.btnSaveFlag.Name = "btnSaveFlag";
             this.btnSaveFlag.Size = new System.Drawing.Size(104, 31);
             this.btnSaveFlag.TabIndex = 1;
@@ -2915,15 +2927,14 @@
             this.btnSaveFlag.UseVisualStyleBackColor = true;
             this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
             // 
-            // WalkAboutBtn
+            // FlagDistLbl
             // 
-            this.WalkAboutBtn.Location = new System.Drawing.Point(16, 464);
-            this.WalkAboutBtn.Name = "WalkAboutBtn";
-            this.WalkAboutBtn.Size = new System.Drawing.Size(113, 43);
-            this.WalkAboutBtn.TabIndex = 312;
-            this.WalkAboutBtn.Text = "Walk About";
-            this.WalkAboutBtn.UseVisualStyleBackColor = true;
-            this.WalkAboutBtn.Click += new System.EventHandler(this.WalkAboutBtn_Click);
+            this.FlagDistLbl.AutoSize = true;
+            this.FlagDistLbl.Location = new System.Drawing.Point(28, 79);
+            this.FlagDistLbl.Name = "FlagDistLbl";
+            this.FlagDistLbl.Size = new System.Drawing.Size(68, 19);
+            this.FlagDistLbl.TabIndex = 5;
+            this.FlagDistLbl.Text = "Distance";
             // 
             // FormGPS
             // 
@@ -3206,6 +3217,7 @@
         private System.Windows.Forms.TextBox FlagTextBox;
         private System.Windows.Forms.Button backGroumdBtn;
         private System.Windows.Forms.Button WalkAboutBtn;
+        private System.Windows.Forms.Label FlagDistLbl;
     }
 }
 

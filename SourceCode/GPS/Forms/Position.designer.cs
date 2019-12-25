@@ -291,8 +291,15 @@ namespace AgOpenGPS
                 distance = glm.Distance(pn.fix, prevFix);
                 if ((fd.distanceUser += distance) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
 
+                if (walkAbout)
+                {
+                    vec2 here = new vec2(pn.latitude, pn.longitude);
+                    driveList.Add(here);
+                    pathList.Add(here);
+                }
                 //most recent fixes are now the prev ones
                 prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
+
 
                 //load up history with valid data
                 for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
@@ -779,11 +786,14 @@ namespace AgOpenGPS
             // if non zero, at least one section is on.
             int sectionCounter = 0;
 
-            vec2 here = new vec2(pn.latitude, pn.longitude);
-            //if (here.easting != there.easting && here.northing != there.northing)
-            //{
+            if (!walkAbout)
+            {
+                vec2 here = new vec2(pn.latitude, pn.longitude);
+                //if (here.easting != there.easting && here.northing != there.northing)
+                //{
                 driveList.Add(here);
                 pathList.Add(here);
+            }
 
             //}
             //there = here;
@@ -1049,9 +1059,14 @@ namespace AgOpenGPS
                 stepFixPts[0].northing = pn.fix.northing;
 
                 //keep here till valid data
-                if (startCounter > (totalFixSteps/2.0)) isGPSPositionInitialized = true;
-
-
+                if (!walkAbout)
+                {
+                    if (startCounter > (totalFixSteps / 2.0)) isGPSPositionInitialized = true;
+                }
+                else
+                {
+                    isGPSPositionInitialized = true;
+                }
 
                 //in radians
                 fixHeading = Math.Atan2(pn.fix.easting - stepFixPts[totalFixSteps - 1].easting, pn.fix.northing - stepFixPts[totalFixSteps - 1].northing);

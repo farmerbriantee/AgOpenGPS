@@ -3608,7 +3608,19 @@ namespace AgOpenGPS
                     if (flagNumberPicked != 0)
                     {
                         panelFlag.Visible = true;
+                        double flagHeading = Math.Atan2(pn.fix.easting - flagPts[flagNumberPicked - 1].easting, pn.fix.northing - flagPts[flagNumberPicked - 1].northing);
+                        if (flagHeading < 0) flagHeading += glm.twoPI;
+                        flagHeading = glm.toDegrees(flagHeading)-180;
+                        if (flagHeading < 0) flagHeading += 360;
 
+                        if (isMetric)
+                        {
+                            FlagDistLbl.Text = "Distance form here: " + (glm.Distance(pn.fix.easting, pn.fix.northing, flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing)).ToString("N2") + " meters @ "+flagHeading.ToString("N0")+ "°";
+                        }
+                        else
+                        {
+                            FlagDistLbl.Text = "Distance form here: " + ((glm.Distance(pn.fix.easting, pn.fix.northing, flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing))*glm.m2ft).ToString("N2") + " feet@ " + flagHeading.ToString("N0") + "°";
+                        }
 
                     }
                     else
