@@ -29,14 +29,14 @@ namespace AgOpenGPS
         {
 
             //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblSmallSnapRight.Text = Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString("N2") + "cm";
+            lblSmallSnapRight.Text = Properties.Settings.Default.setAS_snapDistanceSmall.ToString("N2") + "cm";
 
-            lblWidthRight.Text = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap).ToString() + "m";
+            lblWidthRight.Text = (mf.tool.toolWidth - mf.tool.toolOverlap).ToString() + "m";
             lblWidthLeft.Text = "-" + lblWidthRight.Text;
 
 
-            snapAdj = Properties.Settings.Default.setDisplay_snapDistance * 0.01;
-            nudMinTurnRadius.Value = Properties.Settings.Default.setDisplay_snapDistance;
+            snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
+            nudMinTurnRadius.Value = Properties.Settings.Default.setAS_snapDistance;
 
             btnCancel.Focus();
             mf.curve.isEditing = true;
@@ -45,7 +45,7 @@ namespace AgOpenGPS
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
 
             mf.curve.MoveABCurve(-dist);
 
@@ -53,7 +53,7 @@ namespace AgOpenGPS
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            double dist = 0.01 * Properties.Settings.Default.setDisplay_snapDistanceSmall;
+            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
 
             mf.curve.MoveABCurve(dist);
 
@@ -61,7 +61,7 @@ namespace AgOpenGPS
 
         private void btnLeftFullWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
 
             mf.curve.MoveABCurve(-dist);
 
@@ -69,7 +69,7 @@ namespace AgOpenGPS
 
         private void btnRightFullWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
 
             mf.curve.MoveABCurve(dist);
 
@@ -181,6 +181,22 @@ namespace AgOpenGPS
             {
                 mf.curve.SnapABCurve();
             }
+        }
+
+        private void btnRightHalfWidth_Click(object sender, EventArgs e)
+        {
+            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
+
+            mf.curve.MoveABCurve(dist*0.5);
+
+        }
+
+        private void btnLeftHalfWidth_Click(object sender, EventArgs e)
+        {
+            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
+
+            mf.curve.MoveABCurve(-dist*0.5);
+
         }
     }
 }

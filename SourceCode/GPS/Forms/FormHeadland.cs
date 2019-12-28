@@ -17,7 +17,7 @@ namespace AgOpenGPS
         private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
         private Point fixPt;
 
-        private bool isA, isSet, isDeleting;
+        private bool isA, isSet;
         public double headWidth = 0;
         private int A, B, C, D, E, start = 99999, end = 99999;     
 
@@ -36,7 +36,7 @@ namespace AgOpenGPS
 
             InitializeComponent();
             //lblPick.Text = gStr.gsSelectALine;
-            this.Text = gStr.gsClick2Pointsontheboundary;
+            this.Text = gStr.gsHeadlandForm;
 
             nudDistance.Controls[0].Enabled = false;
         }
@@ -47,7 +47,7 @@ namespace AgOpenGPS
             isSet = false;
 
             //Builds line
-            nudDistance.Value = (decimal)(Math.Round(mf.vehicle.toolWidth * 3,1));
+            nudDistance.Value = (decimal)(Math.Round(mf.tool.toolWidth * 3,1));
             nudSetDistance.Value = 20;
 
             if (mf.hd.headArr[0].hdLine.Count > 0)
@@ -164,7 +164,7 @@ namespace AgOpenGPS
             //make sure distance isn't too small between points on turnLine
             bndCount = foos.Count;
 
-            //double spacing = mf.vehicle.toolWidth * 0.25;
+            //double spacing = mf.tool.toolWidth * 0.25;
             for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(foos[i], foos[i + 1]);
@@ -187,11 +187,11 @@ namespace AgOpenGPS
             //{
             //    int j = i + 1;
             //    if (j == bndCount) j = 0;
-            //    distance = glm.Distance(foos[i], foos[j]);
-            //    if (distance > (spacing * 1.25))
+            //    distance = glm.DistanceSquared(foos[i].easting, foos[i].northing, foos[j].easting, foos[j].northing);
+            //    if (distance > 2.3)
             //    {
-            //        vec3 pointB = new vec3((foos[i].easting + foos[j].easting) / 2.0, 
-            //            (foos[i].northing + foos[j].northing) / 2.0, 
+            //        vec3 pointB = new vec3((foos[i].easting + foos[j].easting) / 2.0,
+            //            (foos[i].northing + foos[j].northing) / 2.0,
             //            foos[j].heading);
 
             //        foos.Insert(j, pointB);
@@ -526,8 +526,6 @@ namespace AgOpenGPS
         private void btnReset_Click(object sender, EventArgs e)
         {
             BuildHeadLineTemplateFromBoundary();
-
-            isDeleting = false;
         }
 
         private void nudDistance_Enter(object sender, EventArgs e)
@@ -588,14 +586,32 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            mf.hd.headArr[0].hdLine.Clear();
+            mf.hd.headArr[0].hdLine?.Clear();
+            mf.hd.headArr[0].isDrawList?.Clear();
+
             for (int i = 0; i < hdArr.Length; i++)
             {
                 vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
                 mf.hd.headArr[0].hdLine.Add(pt);
+
+                if (mf.gf.geoFenceArr[0].IsPointInGeoFenceArea(pt)) mf.hd.headArr[0].isDrawList.Add(true);
+                else mf.hd.headArr[0].isDrawList.Add(false);
             }
 
             mf.hd.headArr[0].PreCalcHeadLines();
+
+            mf.FileSaveHeadland();
+
+            Close();
+        }
+
+        private void btnTurnOffHeadland_Click(object sender, EventArgs e)
+        {
+            mf.hd.headArr[0].hdLine?.Clear();
+
+            mf.hd.headArr[0].calcList?.Clear();
+
+            mf.hd.headArr[0].isDrawList?.Clear();
 
             mf.FileSaveHeadland();
 
@@ -616,6 +632,25 @@ namespace AgOpenGPS
                 headLineTemplate.RemoveRange(start, end - start);
             }
 
+            int bndCount = headLineTemplate.Count;
+            for (int i = 0; i < bndCount; i++)
+            {
+                int j = i + 1;
+                if (j == bndCount) j = 0;
+                double distanceSq = glm.DistanceSquared(headLineTemplate[i].easting, headLineTemplate[i].northing, 
+                                                headLineTemplate[j].easting, headLineTemplate[j].northing);
+                if (distanceSq > 2.3)
+                {
+                    vec3 pointB = new vec3((headLineTemplate[i].easting + headLineTemplate[j].easting) / 2.0,
+                        (headLineTemplate[i].northing + headLineTemplate[j].northing) / 2.0,
+                        headLineTemplate[j].heading);
+
+                    headLineTemplate.Insert(j, pointB);
+                    bndCount = headLineTemplate.Count;
+                    i--;
+                }
+            }
+
             int cnt = headLineTemplate.Count;
             hdArr = new vec3[cnt];
             headLineTemplate.CopyTo(hdArr);
@@ -628,7 +663,7 @@ namespace AgOpenGPS
         {
             if (start != 99999)
             {
-                if (start > 0 || start < end) start--;
+                if (start > 0 && start < end-1) start--;
             }
         }
 
@@ -636,7 +671,7 @@ namespace AgOpenGPS
         {
             if (start != 99999)
             {
-                if (start < end) start++;
+                if (start < end-2) start++;
             }
         }
 
@@ -644,7 +679,7 @@ namespace AgOpenGPS
         {
             if (end != 99999)
             {
-                if (end > start) end--;
+                if (end-2 > start) end--;
             }
         }
 
@@ -652,10 +687,9 @@ namespace AgOpenGPS
         {
             if (end != 99999) 
             {
-                if (end > start && end < hdx2.Length) end++;
+                if (end-1 > start && end < hdx2.Length) end++;
             }
         }
-
 
         private void oglSelf_Load(object sender, EventArgs e)
         {
@@ -685,7 +719,7 @@ namespace AgOpenGPS
             maxFieldX = -9999999; maxFieldY = -9999999;
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            for (int j = 0; j < mf.tool.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = mf.section[j].patchList.Count;

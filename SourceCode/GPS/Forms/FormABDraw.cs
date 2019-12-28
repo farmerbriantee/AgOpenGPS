@@ -170,7 +170,8 @@ namespace AgOpenGPS
                 arr[i].heading = mf.bnd.bndArr[0].bndLine[i - cnt].heading;
             }
 
-            nudDistance.Value = (decimal)(mf.vehicle.toolWidth * 100);
+            nudDistance.Value = 0; // 
+            label6.Text = Math.Round((mf.tool.toolWidth * 100),1).ToString();
             FixLabelsABLine();
             FixLabelsCurve();
         }
@@ -713,7 +714,7 @@ namespace AgOpenGPS
             GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            for (int j = 0; j < mf.tool.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 patchCount = mf.section[j].patchList.Count;
@@ -758,7 +759,7 @@ namespace AgOpenGPS
             maxFieldX = -9999999; maxFieldY = -9999999;
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            for (int j = 0; j < mf.tool.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = mf.section[j].patchList.Count;

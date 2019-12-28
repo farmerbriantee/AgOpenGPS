@@ -42,7 +42,7 @@
             this.nudSetDistance = new System.Windows.Forms.NumericUpDown();
             this.btnSetDistance = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
-            this.btnCancelTouch = new System.Windows.Forms.Button();
+            this.btnTurnOffHeadland = new System.Windows.Forms.Button();
             this.btnEndUp = new ProXoft.WinForms.RepeatButton();
             this.btnEndDown = new ProXoft.WinForms.RepeatButton();
             this.btnMoveRight = new ProXoft.WinForms.RepeatButton();
@@ -94,6 +94,7 @@
             // 
             // lblStart
             // 
+            this.lblStart.BackColor = System.Drawing.Color.LightSalmon;
             this.lblStart.Enabled = false;
             this.lblStart.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStart.Location = new System.Drawing.Point(710, 398);
@@ -106,6 +107,7 @@
             // 
             // lblEnd
             // 
+            this.lblEnd.BackColor = System.Drawing.Color.Khaki;
             this.lblEnd.Enabled = false;
             this.lblEnd.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEnd.Location = new System.Drawing.Point(710, 546);
@@ -257,21 +259,22 @@
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // btnCancelTouch
+            // btnTurnOffHeadland
             // 
-            this.btnCancelTouch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelTouch.BackColor = System.Drawing.Color.Lavender;
-            this.btnCancelTouch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnCancelTouch.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnCancelTouch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancelTouch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelTouch.Location = new System.Drawing.Point(726, 637);
-            this.btnCancelTouch.Name = "btnCancelTouch";
-            this.btnCancelTouch.Size = new System.Drawing.Size(88, 70);
-            this.btnCancelTouch.TabIndex = 460;
-            this.btnCancelTouch.UseVisualStyleBackColor = false;
+            this.btnTurnOffHeadland.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTurnOffHeadland.BackColor = System.Drawing.Color.Transparent;
+            this.btnTurnOffHeadland.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTurnOffHeadland.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnTurnOffHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTurnOffHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnTurnOffHeadland.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
+            this.btnTurnOffHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTurnOffHeadland.Location = new System.Drawing.Point(726, 637);
+            this.btnTurnOffHeadland.Name = "btnTurnOffHeadland";
+            this.btnTurnOffHeadland.Size = new System.Drawing.Size(88, 70);
+            this.btnTurnOffHeadland.TabIndex = 460;
+            this.btnTurnOffHeadland.UseVisualStyleBackColor = false;
+            this.btnTurnOffHeadland.Click += new System.EventHandler(this.btnTurnOffHeadland_Click);
             // 
             // btnEndUp
             // 
@@ -407,7 +410,7 @@
             this.Controls.Add(this.lblStart);
             this.Controls.Add(this.btnEndUp);
             this.Controls.Add(this.btnEndDown);
-            this.Controls.Add(this.btnCancelTouch);
+            this.Controls.Add(this.btnTurnOffHeadland);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSetDistance);
             this.Controls.Add(this.nudSetDistance);
@@ -447,7 +450,7 @@
         private System.Windows.Forms.NumericUpDown nudSetDistance;
         private System.Windows.Forms.Button btnSetDistance;
         private System.Windows.Forms.Button btnReset;
-        private System.Windows.Forms.Button btnCancelTouch;
+        private System.Windows.Forms.Button btnTurnOffHeadland;
         private ProXoft.WinForms.RepeatButton btnEndUp;
         private ProXoft.WinForms.RepeatButton btnEndDown;
         private ProXoft.WinForms.RepeatButton btnMoveRight;

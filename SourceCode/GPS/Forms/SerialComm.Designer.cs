@@ -114,7 +114,7 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                if (Properties.Settings.Default.isJRK)
+                if (Properties.Settings.Default.setAS_isJRK)
                 {
                     byte[] command = new byte[2];
                     int target;
@@ -144,10 +144,7 @@ namespace AgOpenGPS
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
                         SerialPortAutoSteerClose();
                     }
-                }
-
-
-                
+                }                
             } 
         }
 
@@ -218,7 +215,7 @@ namespace AgOpenGPS
                 
 
 
-                if (!Properties.Settings.Default.isJRK)
+                if (!Properties.Settings.Default.setAS_isJRK)
                 {
                     try
                     {
@@ -318,9 +315,9 @@ namespace AgOpenGPS
             int relay = 0;
 
             //check if super section is on
-            if (section[vehicle.numOfSections].isSectionOn)
+            if (section[tool.numOfSections].isSectionOn)
             {
-                for (int j = 0; j < vehicle.numOfSections; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     //all the sections are on, so set them
                     relay = relay | set;

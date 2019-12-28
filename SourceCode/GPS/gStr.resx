@@ -225,6 +225,9 @@
   <data name="gsBaud" xml:space="preserve">
     <value>Baud</value>
   </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>Be Sure To Save If You Did</value>
+  </data>
   <data name="gsBegin" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -302,6 +305,12 @@
   </data>
   <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
     <value>Complete An AB Curve Line First</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Completely Delete Boundary</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuration</value>
   </data>
   <data name="gsConfirmIP" xml:space="preserve">
     <value>Confirm IP</value>
@@ -386,6 +395,9 @@
   </data>
   <data name="gsDelta_" xml:space="preserve">
     <value>Delta:</value>
+  </data>
+  <data name="gsDidYouMakeChanges" xml:space="preserve">
+    <value>Did You Make Changes?</value>
   </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
     <value>Did you make changes to the vehicle?</value>
@@ -626,6 +638,9 @@
   </data>
   <data name="gsHeadingRoll" xml:space="preserve">
     <value>Heading / Roll</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Create and Edit Headland</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
     <value>Height</value>
@@ -1067,6 +1082,9 @@
   </data>
   <data name="gsSetToZeroForSerial" xml:space="preserve">
     <value>Set to 0 for Serial</value>
+  </data>
+  <data name="gsSettings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
     <value>Shift GPS Position (cm)</value>

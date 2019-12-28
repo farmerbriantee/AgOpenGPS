@@ -44,8 +44,8 @@ namespace AgOpenGPS
         public CSim(FormGPS _f)
         {
             mf = _f;
-            latitude = Properties.Settings.Default.setGPS_Latitude;
-            longitude = Properties.Settings.Default.setGPS_Longitude;
+            latitude = Properties.Settings.Default.setGPS_SimLatitude;
+            longitude = Properties.Settings.Default.setGPS_SimLongitude;
         }
 
         public void DoSimTick(double _st)

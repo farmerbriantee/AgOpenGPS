@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgOpenGPS.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="setCam_pitch" Type="System.Double" Scope="User">
+    <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-32</Value>
     </Setting>
     <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
@@ -39,9 +39,6 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setMenu_isLightbarOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="setMenu_isAreaRight" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
@@ -152,7 +149,7 @@
     <Setting Name="setMenu_isSkyOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="set_culture" Type="System.String" Scope="User">
+    <Setting Name="setF_culture" Type="System.String" Scope="User">
       <Value Profile="(Default)">en</Value>
     </Setting>
     <Setting Name="setF_workingDirectory" Type="System.String" Scope="User">
@@ -194,10 +191,10 @@
     <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
       <Value Profile="(Default)">Fix</Value>
     </Setting>
-    <Setting Name="setGPS_Latitude" Type="System.Double" Scope="User">
+    <Setting Name="setGPS_SimLatitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">53.4360564</Value>
     </Setting>
-    <Setting Name="setGPS_Longitude" Type="System.Double" Scope="User">
+    <Setting Name="setGPS_SimLongitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-111.160047</Value>
     </Setting>
     <Setting Name="setNTRIP_casterIP" Type="System.String" Scope="User">
@@ -207,7 +204,7 @@
       <Value Profile="(Default)">2101</Value>
     </Setting>
     <Setting Name="setNTRIP_mount" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ABIOS</Value>
+      <Value Profile="(Default)">AZU1</Value>
     </Setting>
     <Setting Name="setNTRIP_userName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -236,10 +233,10 @@
     <Setting Name="setNTRIP_isGGAManual" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setDisplay_snapDistance" Type="System.Int32" Scope="User">
+    <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
-    <Setting Name="setDisplay_snapDistanceSmall" Type="System.Int32" Scope="User">
+    <Setting Name="setAS_snapDistanceSmall" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
@@ -260,7 +257,7 @@
     <Setting Name="setDisplay_isBatmanOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="isJRK" Type="System.Boolean" Scope="User">
+    <Setting Name="setAS_isJRK" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
@@ -298,6 +295,9 @@
     </Setting>
     <Setting Name="setNTRIP_isTCP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isOfflineCm" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

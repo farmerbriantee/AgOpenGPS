@@ -84,7 +84,7 @@ namespace AgOpenGPS
             geoFenceDistance = Properties.Vehicle.Default.set_geoFenceDistance;
 
             //how far before or after boundary line should turn happen
-            youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;
+            youTurnStartOffset = Properties.Vehicle.Default.set_youTurnDistance;
 
             //the youturn shape scaling.
             //rowSkipsHeight = Properties.Vehicle.Default.set_youSkipHeight;
@@ -411,7 +411,7 @@ namespace AgOpenGPS
                 tangencyAngle = (glm.PIBy2 - Math.Abs(boundaryAngleOffPerpendicular)) * 0.5;
 
                 //baseline away from boundary to start calculations
-                double toolTurnWidth = mf.vehicle.toolWidth * rowSkipsWidth;
+                double toolTurnWidth = mf.tool.toolWidth * rowSkipsWidth;
 
                 //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
                 distanceTurnBeforeLine = 0;
@@ -452,8 +452,8 @@ namespace AgOpenGPS
                 double head = mf.ABLine.abHeading;
 
                 //grab the vehicle widths and offsets
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double toolOffset = mf.vehicle.toolOffset * 2.0;
+                double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+                double toolOffset = mf.tool.toolOffset * 2.0;
                 double turnOffset;
 
                 //turning right
@@ -662,8 +662,8 @@ namespace AgOpenGPS
             double head = mf.ABLine.abHeading;
 
             //grab the vehicle widths and offsets
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-            double toolOffset = mf.vehicle.toolOffset * 2.0;
+            double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+            double toolOffset = mf.tool.toolOffset * 2.0;
             double turnOffset;
 
             //turning right
@@ -877,8 +877,8 @@ namespace AgOpenGPS
                 //bool isCountingUp = mf.curve.isABSameAsVehicleHeading;
 
                 //grab the vehicle widths and offsets
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double toolOffset = mf.vehicle.toolOffset * 2.0;
+                double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+                double toolOffset = mf.tool.toolOffset * 2.0;
                 double turnOffset;
 
                 //turning right
@@ -1088,7 +1088,7 @@ namespace AgOpenGPS
                 tangencyAngle = (glm.PIBy2 - Math.Abs(boundaryAngleOffPerpendicular)) * 0.5;
 
                 //distance from crossPoint to turn line
-                if (mf.vehicle.minTurningRadius * 2 < (mf.vehicle.toolWidth * rowSkipsWidth))
+                if (mf.vehicle.minTurningRadius * 2 < (mf.tool.toolWidth * rowSkipsWidth))
                 {
                     if (boundaryAngleOffPerpendicular < 0)
                     {
@@ -1118,8 +1118,8 @@ namespace AgOpenGPS
                 CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
                 //grab the vehicle widths and offsets
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-                double toolOffset = mf.vehicle.toolOffset * 2.0;
+                double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+                double toolOffset = mf.tool.toolOffset * 2.0;
                 double turnOffset;
 
                 //calculate the true width
@@ -1426,8 +1426,8 @@ namespace AgOpenGPS
             }
 
             //grab the vehicle widths and offsets
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
-            double toolOffset = mf.vehicle.toolOffset * 2.0;
+            double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+            double toolOffset = mf.tool.toolOffset * 2.0;
             double turnOffset;
 
             //turning right
@@ -1620,7 +1620,7 @@ namespace AgOpenGPS
                     distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
                     //every guidance method dumps into these that are used and sent everywhere, last one wins
-                    mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                    mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
                     mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
                 }
                 else
@@ -1792,7 +1792,7 @@ namespace AgOpenGPS
                         if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                     }
 
-                    mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                    mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
                     mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
                 }
             }

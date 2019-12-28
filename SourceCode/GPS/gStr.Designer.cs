@@ -394,6 +394,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Be Sure To Save If You Did.
+        /// </summary>
+        public static string gsBeSureToSaveIfYouDid {
+            get {
+                return ResourceManager.GetString("gsBeSureToSaveIfYouDid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Be sure to save vehicle if you did.
         /// </summary>
         public static string gsBesuretosavevehicleifyoudid {
@@ -615,6 +624,24 @@ namespace AgOpenGPS {
         public static string gsCompleteAnABCurveLineFirst {
             get {
                 return ResourceManager.GetString("gsCompleteAnABCurveLineFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completely Delete Boundary.
+        /// </summary>
+        public static string gsCompletelyDeleteBoundary {
+            get {
+                return ResourceManager.GetString("gsCompletelyDeleteBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration.
+        /// </summary>
+        public static string gsConfiguration {
+            get {
+                return ResourceManager.GetString("gsConfiguration", resourceCulture);
             }
         }
         
@@ -867,6 +894,15 @@ namespace AgOpenGPS {
         public static string gsDelta_ {
             get {
                 return ResourceManager.GetString("gsDelta_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Did You Make Changes?.
+        /// </summary>
+        public static string gsDidYouMakeChanges {
+            get {
+                return ResourceManager.GetString("gsDidYouMakeChanges", resourceCulture);
             }
         }
         
@@ -1591,6 +1627,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create and Edit Headland.
+        /// </summary>
+        public static string gsHeadlandForm {
+            get {
+                return ResourceManager.GetString("gsHeadlandForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string gsHeight {
@@ -2122,7 +2167,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to f.
+        ///   Looks up a localized string similar to No Boundary.
         /// </summary>
         public static string gsNoBoundary {
             get {
@@ -2901,6 +2946,15 @@ namespace AgOpenGPS {
         public static string gsSetPoint {
             get {
                 return ResourceManager.GetString("gsSetPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string gsSettings {
+            get {
+                return ResourceManager.GetString("gsSettings", resourceCulture);
             }
         }
         

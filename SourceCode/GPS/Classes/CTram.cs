@@ -37,7 +37,7 @@ namespace AgOpenGPS
             halfWheelTrack = wheelTrack * 0.5;
 
             passes = Properties.Settings.Default.setTram_passes;
-            abOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) / 2.0, 3));
+            abOffset = (Math.Round((mf.tool.toolWidth - mf.tool.toolOverlap) / 2.0, 3));
             displayMode = 0;
         }
 
@@ -54,7 +54,7 @@ namespace AgOpenGPS
 
         public void BuildTramBnd()
         {
-            //abOffset = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) / 2.0, 3));
+            //abOffset = (Math.Round((mf.tool.toolWidth - mf.tool.toolOverlap) / 2.0, 3));
 
             bool isBndExist = mf.bnd.bndArr.Count != 0;
 

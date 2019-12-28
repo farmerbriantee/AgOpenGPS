@@ -147,27 +147,6 @@ namespace AgOpenGPS
                 + Math.Pow(first.northing - second.northing, 2));
         }
 
-        public static double Distance(CBndPt first, vec3 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
-        public static double Distance(CBndPt first, vec2 second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
-        public static double Distance(CBndPt first, CBndPt second)
-        {
-            return Math.Sqrt(
-                Math.Pow(first.easting - second.easting, 2)
-                + Math.Pow(first.northing - second.northing, 2));
-        }
-
         public static double Distance(vec3 first, vec3 second)
         {
             return Math.Sqrt(
@@ -194,6 +173,35 @@ namespace AgOpenGPS
         {
             return Math.Pow(easting1 - easting2, 2) + Math.Pow(northing1 - northing2, 2);
         }
+
+        public static double DistanceSquared(vec3 first, vec2 second)
+        {
+            return (
+            Math.Pow(first.easting - second.easting, 2)
+            + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double DistanceSquared(vec2 first, vec3 second)
+        {
+            return (
+            Math.Pow(first.easting - second.easting, 2)
+            + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double DistanceSquared(vec3 first, vec3 second)
+        {
+            return (
+            Math.Pow(first.easting - second.easting, 2)
+            + Math.Pow(first.northing - second.northing, 2));
+        }
+        public static double DistanceSquared(vec2 first, vec2 second)
+        {
+            return (
+            Math.Pow(first.easting - second.easting, 2)
+            + Math.Pow(first.northing - second.northing, 2));
+        }
+
+
 
         //float functions
         public static float acos(float x)

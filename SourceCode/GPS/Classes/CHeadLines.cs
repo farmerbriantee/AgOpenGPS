@@ -12,6 +12,8 @@ namespace AgOpenGPS
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
 
+        public List<bool> isDrawList = new List<bool>();
+
         public void ResetHead()
         {
             calcList?.Clear();
@@ -57,45 +59,51 @@ namespace AgOpenGPS
         public void DrawHeadLine(int linewidth)
         {
             ////draw the turn line oject
-            if (hdLine.Count < 1) return;
-            int ptCount = hdLine.Count;
-            GL.LineWidth(linewidth);
-            GL.Color3(0.732f, 0.7932f, 0.30f);
-            GL.Begin(PrimitiveType.LineStrip);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(hdLine[h].easting, hdLine[h].northing, 0);
-            GL.Vertex3(hdLine[0].easting, hdLine[0].northing, 0);
-            GL.End();
-
-            //if (hdLine.Count < 2) return;
+            //if (hdLine.Count < 1) return;
             //int ptCount = hdLine.Count;
-            //int cntr = 0;
-            //if (ptCount > 1)
-            //{
-            //    GL.LineWidth(linewidth);
-            //    GL.Color3(0.960f, 0.96232f, 0.30f);
-            //    //GL.PointSize(2);
+            //GL.LineWidth(linewidth);
+            //GL.Color3(0.732f, 0.7932f, 0.30f);
+            //GL.Begin(PrimitiveType.LineStrip);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(hdLine[h].easting, hdLine[h].northing, 0);
+            //GL.Vertex3(hdLine[0].easting, hdLine[0].northing, 0);
+            //GL.End();
 
-            //    while (cntr < ptCount)
-            //    {
-            //        if (hdLine[cntr].heading == 1)
-            //        {
-            //            GL.Begin(PrimitiveType.LineStrip);
+            if (hdLine.Count < 2) return;
+            int ptCount = hdLine.Count;
+            int cntr = 0;
+            if (ptCount > 1)
+            {
+                GL.LineWidth(linewidth);
+                GL.Color3(0.960f, 0.96232f, 0.30f);
+                //GL.PointSize(2);
 
-            //            for (int i = cntr; i < ptCount; i++)
-            //            {
-            //                cntr++;
-            //                if (hdLine[i].heading == 0) break;
-            //                GL.Vertex3(hdLine[i].easting, hdLine[i].northing, 0);
-            //            }
-            //            GL.End();
-            //        }
-            //        else
-            //        {
-            //            cntr++;
-            //        }
-            //    }
+                while (cntr < ptCount)
+                {
+                    if (isDrawList[cntr])
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
 
-                //  }
+                        if (cntr > 0) GL.Vertex3(hdLine[cntr-1].easting, hdLine[cntr-1].northing, 0);
+                        else GL.Vertex3(hdLine[hdLine.Count-1].easting, hdLine[hdLine.Count-1].northing, 0);
+
+
+                        for (int i = cntr; i < ptCount; i++)
+                        {
+                            cntr++;
+                            if (!isDrawList[i]) break;
+                            GL.Vertex3(hdLine[i].easting, hdLine[i].northing, 0);
+                        }
+                        if (cntr < ptCount - 1)
+                        GL.Vertex3(hdLine[cntr+1].easting, hdLine[cntr+1].northing, 0);
+
+                        GL.End();
+                    }
+                    else
+                    {
+                        cntr++;
+                    }
+                }
+            }
         }
 
         public void PreCalcHeadLines()

@@ -24,6 +24,9 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
+            nudBndOffset.Controls[0].Enabled = false;
+
+
             this.Text = gStr.gsStartDeleteABoundary;
 
             //Column Header
@@ -37,10 +40,13 @@ namespace AgOpenGPS
             //btnSerialCancel.Text = gStr.gsSaveAndReturn;
             //btnDeleteAll.Text = gStr.gsDeleteAll;
             btnGo.Text = gStr.gsGo;
+            lblOffset.Text = gStr.gsOffset;
 
             btnLoadBoundaryFromGE.Visible = false;
             btnLoadMultiBoundaryFromGE.Visible = false;
             btnGo.Visible = true;
+            nudBndOffset.Visible = true;
+
             btnLeftRight.Visible = true;
             btnLoadMultiBoundaryFromGE.Enabled = true;
             btnLoadBoundaryFromGE.Enabled = false;
@@ -243,9 +249,11 @@ namespace AgOpenGPS
             btnLeftRight.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
+            nudBndOffset.Enabled = false;
 
             //update the list view with real data
             UpdateChart();
+            nudBndOffset.Value = (decimal)(mf.tool.toolWidth * 0.5);
         }
 
         void DriveThru_Click(object sender, EventArgs e)
@@ -278,6 +286,7 @@ namespace AgOpenGPS
                 if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected && mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
                 {
                     btnGo.Enabled = false;
+                    nudBndOffset.Enabled = false;
                     btnDelete.Enabled = true;
                     btnLeftRight.Enabled = false;
                     btnLoadBoundaryFromGE.Enabled = false;
@@ -286,6 +295,7 @@ namespace AgOpenGPS
                 else
                 {
                     btnGo.Enabled = true;
+                    nudBndOffset.Enabled = true;
                     btnDelete.Enabled = false;
                     btnLeftRight.Enabled = true;
                     btnDeleteAll.Enabled = false;
@@ -316,6 +326,7 @@ namespace AgOpenGPS
             btnLeftRight.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
+            nudBndOffset.Enabled = false;
 
             if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
             {
@@ -325,13 +336,19 @@ namespace AgOpenGPS
             }
 
             mf.FileSaveBoundary();
+
+            if (mf.bnd.boundarySelected == 0)
+            {
+                mf.hd.headArr.Clear();
+                mf.hd.isOn = false;
+                mf.FileSaveHeadland();
+            }
+
             mf.bnd.boundarySelected = -1;
             Selectedreset = true;
             mf.fd.UpdateFieldBoundaryGUIAreas();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
-            //mf.hd.BuildSingleSpaceHeadLines();
-
             mf.mazeGrid.BuildMazeGridArray();
 
             UpdateChart();
@@ -354,6 +371,7 @@ namespace AgOpenGPS
             btnLeftRight.Enabled = false;
             btnGo.Enabled = false;
             btnDelete.Enabled = false;
+            nudBndOffset.Enabled = false;
         }
 
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
@@ -361,6 +379,18 @@ namespace AgOpenGPS
             //save new copy of kml with selected flag and view in GoogleEarth
             mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
+        }
+
+        private void nudBndOffset_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void btnGo_Click(object sender, EventArgs e)
+        {
+            mf.bnd.createBndOffset = (double)nudBndOffset.Value;
+            mf.bnd.isBndBeingMade = true;
         }
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
@@ -373,7 +403,11 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
-            //mf.hd.BuildSingleSpaceHeadLines();
+            mf.hd.headArr.Clear();
+            mf.hd.isOn = false;
+            mf.FileSaveHeadland();
+
+            mf.hd.isOn = false;
             mf.mazeGrid.BuildMazeGridArray();
             mf.fd.UpdateFieldBoundaryGUIAreas();
 
@@ -478,14 +512,14 @@ namespace AgOpenGPS
                                         northing = (Math.Sin(-mf.pn.convergenceAngle) * east) + (Math.Cos(-mf.pn.convergenceAngle) * nort);
 
                                         //add the point to boundary
-                                        CBndPt bndPt = new CBndPt(easting, northing, 0);
+                                        vec3 bndPt = new vec3(easting, northing, 0);
                                         mf.bnd.bndArr[i].bndLine.Add(bndPt);
                                     }
 
                                     //fix the points if there are gaps bigger then
                                     mf.bnd.bndArr[i].CalculateBoundaryHeadings();
                                     mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                                    mf.bnd.bndArr[i].FixBoundaryLine(i, mf.vehicle.toolWidth);
+                                    mf.bnd.bndArr[i].FixBoundaryLine(i, mf.tool.toolWidth);
 
                                     //boundary area, pre calcs etc
                                     mf.bnd.bndArr[i].CalculateBoundaryArea();
@@ -526,6 +560,7 @@ namespace AgOpenGPS
                 btnLoadMultiBoundaryFromGE.Visible = false;
                 btnGo.Visible = true;
                 btnLeftRight.Visible = true;
+                nudBndOffset.Visible = true;
 
             }
             else
@@ -534,6 +569,7 @@ namespace AgOpenGPS
                 btnLoadMultiBoundaryFromGE.Visible = true;
                 btnGo.Visible = false;
                 btnLeftRight.Visible = false;
+                nudBndOffset.Visible = false;
             }
         }
     }

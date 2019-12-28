@@ -150,14 +150,14 @@ namespace AgOpenGPS
             {
                 signPass = -1;
                 //determine how wide a headland space
-                totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5) - spacing;
+                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5) - spacing;
             }
 
             else
             {
                 signPass = 1;
-                totalHeadWidth = ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * pass) + spacing +
-                    ((mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5);
+                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * pass) + spacing +
+                    ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5);
             }
 
 
@@ -179,7 +179,7 @@ namespace AgOpenGPS
                 ptList.Add(point);
             }
 
-            //totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * 0.5 + 0.2 + (mf.vehicle.toolWidth - mf.vehicle.toolOverlap);
+            //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
 
             for (int j = 1; j < mf.bnd.bndArr.Count; j++)
             {
@@ -213,7 +213,7 @@ namespace AgOpenGPS
         //determine closest point on left side
         public void BuildContourGuidanceLine(vec3 pivot)
         {
-            double toolWid = mf.vehicle.toolWidth;
+            double toolWid = mf.tool.toolWidth;
 
             double sinH = Math.Sin(pivot.heading) * 2.0 * toolWid;
             double cosH = Math.Cos(pivot.heading) * 2.0 * toolWid;
@@ -223,27 +223,27 @@ namespace AgOpenGPS
             double sin2HR = 0;
             double cos2HR = 0;
 
-            if (mf.vehicle.toolOffset < 0)
+            if (mf.tool.toolOffset < 0)
             {
                 //sticks out more left
-                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
-                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset * 2)));
+                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset * 2)));
 
-                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
-                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset)));
+                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset)));
             }
             else
             {
                 //sticks out more right
-                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
-                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset)));
+                sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset)));
+                cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset)));
 
-                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
-                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.vehicle.toolOffset * 2)));
+                sin2HR = Math.Sin(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset * 2)));
+                cos2HR = Math.Cos(pivot.heading + glm.PIBy2) * (1.33 * (toolWid + Math.Abs(mf.tool.toolOffset * 2)));
             }
 
             //narrow equipment needs bigger bounding box.
-            if (mf.vehicle.toolWidth < 6)
+            if (mf.tool.toolWidth < 6)
             {
                 sinH = Math.Sin(pivot.heading) * 4 * toolWid;
                 cosH = Math.Cos(pivot.heading) * 4 * toolWid;
@@ -497,7 +497,7 @@ namespace AgOpenGPS
             else piSide = -glm.PIBy2;
 
             //offset calcs
-            double toolOffset = mf.vehicle.toolOffset;
+            double toolOffset = mf.tool.toolOffset;
             if (isSameWay)
             {
                 toolOffset = 0.0;
@@ -509,7 +509,7 @@ namespace AgOpenGPS
             }
 
             //move the Guidance Line over based on the overlap, width, and offset amount set in vehicle
-            double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap + toolOffset;
+            double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap + toolOffset;
 
             //absolute the distance
             distanceFromRefLine = Math.Abs(distanceFromRefLine);
@@ -986,7 +986,7 @@ namespace AgOpenGPS
                 }
 
                 //fill in the autosteer variables
-                mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
                 mf.guidanceLineSteerAngle = (Int16)(steerAngleCT * 100);
             }
             else

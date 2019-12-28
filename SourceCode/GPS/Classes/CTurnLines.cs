@@ -64,7 +64,7 @@ namespace AgOpenGPS
             turnLine?.Clear();
         }
 
-        public void FixTurnLine(double totalHeadWidth, List<CBndPt> curBnd, double spacing)
+        public void FixTurnLine(double totalHeadWidth, List<vec3> curBnd, double spacing)
         {
             //count the points from the boundary
             int lineCount = turnLine.Count;
@@ -92,7 +92,7 @@ namespace AgOpenGPS
             //make sure distance isn't too small between points on turnLine
             bndCount = turnLine.Count;
 
-            //double spacing = mf.vehicle.toolWidth * 0.25;
+            //double spacing = mf.tool.toolWidth * 0.25;
             for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(turnLine[i], turnLine[i + 1]);

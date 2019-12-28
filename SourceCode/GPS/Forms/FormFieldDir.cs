@@ -39,7 +39,7 @@ namespace AgOpenGPS
             btnTemplate.Enabled = false;
             btnSave.Enabled = false;
             lblTemplateChosen.Text = "None Selected";
-            tboxVehicle.Text = mf.vehiclefileName;
+            tboxVehicle.Text = mf.vehicleFileName + " " + mf.toolFileName;
             lblFilename.Text = "";
         }
 

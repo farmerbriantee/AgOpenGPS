@@ -15,7 +15,7 @@ namespace AgOpenGPS
         public StringBuilder sbFix = new StringBuilder();
 
         // autosteer variables for sending serial
-        public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle;
+        public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle, distanceDisplay;
 
         //how many fix updates per sec
         public int fixUpdateHz = 5;
@@ -427,7 +427,7 @@ namespace AgOpenGPS
             if (bnd.bndArr.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInWorkingArea() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (IsInsideGeoFence() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -612,19 +612,19 @@ namespace AgOpenGPS
             steerAxlePos.heading = fixHeading;
 
             //determine where the rigid vehicle hitch ends
-            hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
-            hitchPos.northing = pn.fix.northing + (Math.Cos(fixHeading) * (vehicle.hitchLength - vehicle.antennaPivot));
+            hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));
+            hitchPos.northing = pn.fix.northing + (Math.Cos(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));
 
             //tool attached via a trailing hitch
-            if (vehicle.isToolTrailing)
+            if (tool.isToolTrailing)
             {
                 double over;
-                if (vehicle.tankTrailingHitchLength < -2.0)
+                if (tool.isToolTBT)
                 {
                     //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                     if (distanceCurrentStepFix != 0)
                     {
-                        double t = (vehicle.tankTrailingHitchLength) / distanceCurrentStepFix;
+                        double t = (tool.toolTankTrailingHitchLength) / distanceCurrentStepFix;
                         tankPos.easting = hitchPos.easting + t * (hitchPos.easting - tankPos.easting);
                         tankPos.northing = hitchPos.northing + t * (hitchPos.northing - tankPos.northing);
                         tankPos.heading = Math.Atan2(hitchPos.easting - tankPos.easting, hitchPos.northing - tankPos.northing);
@@ -635,16 +635,16 @@ namespace AgOpenGPS
 
                     if (over < 2.0 && startCounter > 50)
                     {
-                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (vehicle.tankTrailingHitchLength));
-                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (vehicle.tankTrailingHitchLength));
+                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
                     }
 
                     //criteria for a forced reset to put tool directly behind vehicle
                     if (over > 2.0 | startCounter < 51)
                     {
                         tankPos.heading = fixHeading;
-                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (vehicle.tankTrailingHitchLength));
-                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (vehicle.tankTrailingHitchLength));
+                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
                     }
                 }
                 else
@@ -657,7 +657,7 @@ namespace AgOpenGPS
                 //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                 if (distanceCurrentStepFix != 0)
                 {
-                    double t = (vehicle.toolTrailingHitchLength) / distanceCurrentStepFix;
+                    double t = (tool.toolTrailingHitchLength) / distanceCurrentStepFix;
                     toolPos.easting = tankPos.easting + t * (tankPos.easting - toolPos.easting);
                     toolPos.northing = tankPos.northing + t * (tankPos.northing - toolPos.northing);
                     toolPos.heading = Math.Atan2(tankPos.easting - toolPos.easting, tankPos.northing - toolPos.northing);
@@ -668,16 +668,16 @@ namespace AgOpenGPS
 
                 if (over < 1.9 && startCounter > 50)
                 {
-                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (vehicle.toolTrailingHitchLength));
-                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (vehicle.toolTrailingHitchLength));
+                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
+                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
                 }
 
                 //criteria for a forced reset to put tool directly behind vehicle
                 if (over > 1.9 | startCounter < 51)
                 {
                     toolPos.heading = tankPos.heading;
-                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (vehicle.toolTrailingHitchLength));
-                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (vehicle.toolTrailingHitchLength));
+                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
+                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
                 }
             }
 
@@ -695,13 +695,13 @@ namespace AgOpenGPS
             double metersPerSec = pn.speed * 0.277777777;
 
             //whichever is less
-            if (vehicle.toolFarLeftSpeed < vehicle.toolFarRightSpeed)
-                sectionTriggerStepDistance = vehicle.toolFarLeftSpeed / metersPerSec;
-            else sectionTriggerStepDistance = vehicle.toolFarRightSpeed / metersPerSec;
+            if (tool.toolFarLeftSpeed < tool.toolFarRightSpeed)
+                sectionTriggerStepDistance = tool.toolFarLeftSpeed / metersPerSec;
+            else sectionTriggerStepDistance = tool.toolFarRightSpeed / metersPerSec;
 
             //finally determine distance
             if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance *
-                metersPerSec * 2.0 + 1.0;
+                metersPerSec + 1.0;
             else sectionTriggerStepDistance = 1.0;
 
             //check to make sure the grid is big enough
@@ -713,7 +713,7 @@ namespace AgOpenGPS
         }
 
         //perimeter and boundary point generation
-        private void AddBoundaryAndPerimiterPoint()
+        public void AddBoundaryAndPerimiterPoint()
         {
             //save the north & east as previous
             prevBoundaryPos.easting = pn.fix.easting;
@@ -726,8 +726,12 @@ namespace AgOpenGPS
                 if (bnd.isDrawRightSide)
                 {
                     //Right side
-                    CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
-                        sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
+                    //vec3 point = new vec3(cosSectionHeading * (section[tool.numOfSections - 1].positionRight) + toolPos.easting,
+                    //    sinSectionHeading * (section[tool.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
+                    vec3 point = new vec3(
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset), 
+                        pivotAxlePos.heading);
                     bnd.bndBeingMadePts.Add(point);
                 }
 
@@ -735,8 +739,13 @@ namespace AgOpenGPS
                 else
                 {
                     //Right side
-                    CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
-                        sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
+                    //vec3 point = new vec3(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
+                    //    sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
+                    vec3 point = new vec3(
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset), 
+                        pivotAxlePos.heading);
+
                     bnd.bndBeingMadePts.Add(point);
                 }
             }
@@ -771,7 +780,7 @@ namespace AgOpenGPS
             int sectionCounter = 0;
 
             //send the current and previous GPS fore/aft corrected fix to each section
-            for (int j = 0; j < vehicle.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections + 1; j++)
             {
                 if (section[j].isSectionOn)
                 {
@@ -843,7 +852,7 @@ namespace AgOpenGPS
             double leftSpeed = 0, rightSpeed = 0, leftLook = 0, rightLook = 0;
 
             //now loop all the section rights and the one extreme left
-            for (int j = 0; j < vehicle.numOfSections; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (j == 0)
                 {
@@ -858,10 +867,10 @@ namespace AgOpenGPS
 
                     //get the speed for left side only once
                     leftSpeed = left.GetLength() / fixUpdateTime * 10;
-                    leftLook = leftSpeed * vehicle.toolLookAhead;
+                    leftLook = leftSpeed * tool.toolLookAhead;
 
                     //save the far left speed
-                    vehicle.toolFarLeftSpeed = leftSpeed;
+                    tool.toolFarLeftSpeed = leftSpeed;
                 }
                 else
                 {
@@ -885,7 +894,7 @@ namespace AgOpenGPS
 
                 //grab vector length and convert to meters/sec/10 pixels per meter                
                 rightSpeed = right.GetLength() / fixUpdateTime * 10;
-                rightLook = rightSpeed * vehicle.toolLookAhead;
+                rightLook = rightSpeed * tool.toolLookAhead;
 
                 //Is section outer going forward or backward
                 double head = left.HeadingXZ();
@@ -905,16 +914,16 @@ namespace AgOpenGPS
             }//endfor
 
             //set up the super for youturn
-            section[vehicle.numOfSections].isInsideBoundary = true;
+            section[tool.numOfSections].isInsideBoundary = true;
 
             //determine if section is in boundary using the section left/right positions
             bool isLeftIn = true, isRightIn = true;
-            for (int j = 0; j < vehicle.numOfSections; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (bnd.bndArr.Count > 0)
                 {
                     //is a headland
-                    if (hd.headArr.Count > 0)
+                    if ( hd.isOn)
                     {
                         if (j == 0)
                         {
@@ -951,7 +960,7 @@ namespace AgOpenGPS
                             if (!isLeftIn && !isRightIn) section[j].isInsideBoundary = false;
                             else section[j].isInsideBoundary = true;
                         }
-                        section[vehicle.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
+                        section[tool.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
                     }
 
                     //only outside boundary
@@ -992,8 +1001,7 @@ namespace AgOpenGPS
                             if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
                             else section[j].isInsideBoundary = false;
                         }
-                        section[vehicle.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
-
+                        section[tool.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
                     }
                 }
 
@@ -1001,19 +1009,19 @@ namespace AgOpenGPS
                 else
                 {
                     section[j].isInsideBoundary = true;
-                    section[vehicle.numOfSections].isInsideBoundary = false;
+                    section[tool.numOfSections].isInsideBoundary = false;
                 }
-
             }
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
             //save far right speed, 0 if going backwards, in meters/sec
-            if (section[vehicle.numOfSections - 1].sectionLookAhead > 0) vehicle.toolFarRightSpeed = rightSpeed * 0.05;
-            else vehicle.toolFarRightSpeed = 0;
+            if (section[tool.numOfSections - 1].sectionLookAhead > 0) tool.toolFarRightSpeed = rightSpeed * 0.1;
+            else tool.toolFarRightSpeed = 0;
 
             //save left side, 0 if going backwards, in meters/sec convert back from pixels/m
-            if (section[0].sectionLookAhead > 0) vehicle.toolFarLeftSpeed = vehicle.toolFarLeftSpeed * 0.05;
-            else vehicle.toolFarLeftSpeed = 0;
+            if (section[0].sectionLookAhead > 0) tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.1;
+            else tool.toolFarLeftSpeed = 0;
+
         }
 
         //the start of first few frames to initialize entire program
@@ -1096,7 +1104,7 @@ namespace AgOpenGPS
             }
         }
 
-        public bool IsInWorkingArea()
+        public bool IsInsideGeoFence()
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
             if (gf.geoFenceArr[0].IsPointInGeoFenceArea(pivotAxlePos))
@@ -1293,7 +1301,7 @@ namespace AgOpenGPS
 //        //while (headlandAngleOffPerpendicular > 1.57) headlandAngleOffPerpendicular -= 1.57;
 //        headlandAngleOffPerpendicular -= glm.PIBy2;
 //        headlandDistanceDelta = Math.Tan(Math.Abs(headlandAngleOffPerpendicular));
-//        headlandDistanceDelta *= vehicle.toolWidth;
+//        headlandDistanceDelta *= tool.toolWidth;
 //    }
 
 //    if (yt.isEnteringDriveThru)

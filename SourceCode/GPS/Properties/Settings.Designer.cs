@@ -26,12 +26,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-32")]
-        public double setCam_pitch {
+        public double setDisplay_camPitch {
             get {
-                return ((double)(this["setCam_pitch"]));
+                return ((double)(this["setDisplay_camPitch"]));
             }
             set {
-                this["setCam_pitch"] = value;
+                this["setDisplay_camPitch"] = value;
             }
         }
         
@@ -176,18 +176,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setMenu_isLightbarOn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setMenu_isAreaRight {
-            get {
-                return ((bool)(this["setMenu_isAreaRight"]));
-            }
-            set {
-                this["setMenu_isAreaRight"] = value;
             }
         }
         
@@ -626,12 +614,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("en")]
-        public string set_culture {
+        public string setF_culture {
             get {
-                return ((string)(this["set_culture"]));
+                return ((string)(this["setF_culture"]));
             }
             set {
-                this["set_culture"] = value;
+                this["setF_culture"] = value;
             }
         }
         
@@ -794,24 +782,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("53.4360564")]
-        public double setGPS_Latitude {
+        public double setGPS_SimLatitude {
             get {
-                return ((double)(this["setGPS_Latitude"]));
+                return ((double)(this["setGPS_SimLatitude"]));
             }
             set {
-                this["setGPS_Latitude"] = value;
+                this["setGPS_SimLatitude"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-111.160047")]
-        public double setGPS_Longitude {
+        public double setGPS_SimLongitude {
             get {
-                return ((double)(this["setGPS_Longitude"]));
+                return ((double)(this["setGPS_SimLongitude"]));
             }
             set {
-                this["setGPS_Longitude"] = value;
+                this["setGPS_SimLongitude"] = value;
             }
         }
         
@@ -841,7 +829,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ABIOS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("AZU1")]
         public string setNTRIP_mount {
             get {
                 return ((string)(this["setNTRIP_mount"]));
@@ -962,24 +950,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("40")]
-        public int setDisplay_snapDistance {
+        public int setAS_snapDistance {
             get {
-                return ((int)(this["setDisplay_snapDistance"]));
+                return ((int)(this["setAS_snapDistance"]));
             }
             set {
-                this["setDisplay_snapDistance"] = value;
+                this["setAS_snapDistance"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int setDisplay_snapDistanceSmall {
+        public int setAS_snapDistanceSmall {
             get {
-                return ((int)(this["setDisplay_snapDistanceSmall"]));
+                return ((int)(this["setAS_snapDistanceSmall"]));
             }
             set {
-                this["setDisplay_snapDistanceSmall"] = value;
+                this["setAS_snapDistanceSmall"] = value;
             }
         }
         
@@ -1058,12 +1046,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool isJRK {
+        public bool setAS_isJRK {
             get {
-                return ((bool)(this["isJRK"]));
+                return ((bool)(this["setAS_isJRK"]));
             }
             set {
-                this["isJRK"] = value;
+                this["setAS_isJRK"] = value;
             }
         }
         
@@ -1208,6 +1196,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setNTRIP_isTCP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isOfflineCm {
+            get {
+                return ((bool)(this["setDisplay_isOfflineCm"]));
+            }
+            set {
+                this["setDisplay_isOfflineCm"] = value;
             }
         }
     }

@@ -38,7 +38,13 @@ namespace AgOpenGPS
         public string baseDirectory;
 
         //current directory of vehicle
-        public string vehiclesDirectory, vehiclefileName = "";
+        public string vehiclesDirectory, vehicleFileName = "";
+
+        //current directory of tools
+        public string toolsDirectory, toolFileName = "";
+
+        //current directory of Environments
+        public string envDirectory, envFileName = "";
 
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory;
@@ -47,7 +53,7 @@ namespace AgOpenGPS
         private int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn, isLidarBtnOn = true;
+        public bool isJobStarted = false, isAutoSteerBtnOn, isLidarBtnOn = true;
 
         //if we are saving a file
         public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
@@ -153,10 +159,15 @@ namespace AgOpenGPS
         public CYouTurn yt;
 
         /// <summary>
-        /// Our vehicle including the tool
+        /// Our vehicle only
         /// </summary>
         public CVehicle vehicle;
 
+        /// <summary>
+        /// Just the tool attachment that includes the sections
+        /// </summary>
+        public CTool tool;
+        
         /// <summary>
         /// All the structs for recv and send of information out ports
         /// </summary>
@@ -250,9 +261,8 @@ namespace AgOpenGPS
             //fileToolStripMenuItem.Text = gStr.gsFile;
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
-            loadVehicleToolStripMenuItem.Text = gStr.gsLoadVehicle;
-            saveVehicleToolStripMenuItem.Text = gStr.gsSaveVehicle;
-            fieldToolStripMenuItem.Text = gStr.gsField;
+            topMenuLoadVehicle.Text = gStr.gsLoadVehicle;
+            topMenuSaveVehicle.Text = gStr.gsSaveVehicle;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             shortcutKeysToolStripMenuItem.Text = gStr.gsShortcutKeys;
             menustripLanguage.Text = gStr.gsLanguage;
@@ -273,7 +283,6 @@ namespace AgOpenGPS
             metricToolStrip.Text = gStr.gsMetric;
             imperialToolStrip.Text = gStr.gsImperial;
             sectionToolStripMenuItem.Text = gStr.gsSection;
-            fieldToolStripMenuItem.Text = gStr.gsField;
 
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
@@ -313,6 +322,8 @@ namespace AgOpenGPS
             //our vehicle made with gl object and pointer of mainform
             vehicle = new CVehicle(this);
 
+            tool = new CTool(this);
+
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
             section = new CSection[MAXSECTIONS];
@@ -350,10 +361,6 @@ namespace AgOpenGPS
 
             //headland object
             hd = new CHead( this);
-
-            ////headlands array
-            //hlArr = new CHeadlandLines[MAXHEADS];
-            //for (int j = 0; j < MAXHEADS; j++) hlArr[j] = new CHeadlandLines(gl, this);
 
             //headland entry/exit sequences
             seq = new CSequence(this);
@@ -418,6 +425,7 @@ namespace AgOpenGPS
         {
             this.MouseWheel += ZoomByMouseWheel;
 
+
             if (Settings.Default.setF_workingDirectory == "Default")
                 baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\";
             else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgOpenGPS\\";
@@ -431,6 +439,17 @@ namespace AgOpenGPS
             vehiclesDirectory = baseDirectory + "Vehicles\\";
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the tools directory, if not exist, create
+            toolsDirectory = baseDirectory + "Tools\\";
+            dir = Path.GetDirectoryName(toolsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the tools directory, if not exist, create
+            envDirectory = baseDirectory + "Environments\\";
+            dir = Path.GetDirectoryName(envDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
 
             //make sure current field directory exists, null if not
             currentFieldDirectory = Settings.Default.setF_CurrentDir;
@@ -460,7 +479,9 @@ namespace AgOpenGPS
             }
 
             //grab the current vehicle filename - make sure it exists
-            vehiclefileName = Vehicle.Default.setVehicle_Name;
+            vehicleFileName = Vehicle.Default.setVehicle_vehicleName;
+            toolFileName = Vehicle.Default.setVehicle_toolName;
+            envFileName = Vehicle.Default.setVehicle_envName;
 
             fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
             fixUpdateTime = 1 / (double)fixUpdateHz;
@@ -531,7 +552,7 @@ namespace AgOpenGPS
             //remembered window position
             if (Settings.Default.setWindow_Maximized)
             {
-                WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Normal;
                 Location = Settings.Default.setWindow_Location;
                 Size = Settings.Default.setWindow_Size;
             }
@@ -618,7 +639,7 @@ namespace AgOpenGPS
             {
                 Settings.Default.setWindow_Location = RestoreBounds.Location;
                 Settings.Default.setWindow_Size = RestoreBounds.Size;
-                Settings.Default.setWindow_Maximized = true;
+                Settings.Default.setWindow_Maximized = false;
                 Settings.Default.setWindow_Minimized = false;
             }
             else if (WindowState == FormWindowState.Normal)
@@ -636,7 +657,7 @@ namespace AgOpenGPS
                 Settings.Default.setWindow_Minimized = true;
             }
 
-            Settings.Default.setCam_pitch = camera.camPitch;
+            Settings.Default.setDisplay_camPitch = camera.camPitch;
             Settings.Default.setF_UserTotalArea = fd.workedAreaTotalUser;
             Settings.Default.setF_UserTripAlarm = fd.userSquareMetersAlarm;
 
@@ -890,6 +911,9 @@ namespace AgOpenGPS
                 sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 recvSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
+                sendSocket.EnableBroadcast = true;
+                recvSocket.EnableBroadcast = true;
+
                 // Initialise the IPEndPoint for the server and listen on port 9999
                 IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_thisPort);
 
@@ -963,6 +987,17 @@ namespace AgOpenGPS
                 {
                 }
             }
+
+            if (hd.headArr[0].hdLine.Count > 0)
+            {
+                hd.isOn = true;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            }
+            else
+            {
+                hd.isOn = false;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            }
         }
 
        private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
@@ -981,6 +1016,258 @@ namespace AgOpenGPS
             hd.isOn = !hd.isOn;
             if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fileAndDirectory;
+            {
+                //create the dialog instance
+                OpenFileDialog ofd = new OpenFileDialog
+                {
+                    //set the filter to text KML only
+                    Filter = "KML files (*.KML)|*.KML",
+
+                    //the initial directory, fields, for the open dialog
+                    InitialDirectory = fieldsDirectory + currentFieldDirectory
+                };
+
+                //was a file selected
+                if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                else fileAndDirectory = ofd.FileName;
+            }
+
+            //start to read the file
+            string line = null;
+            string coordinates = null;
+            int startIndex;
+            //int i = 0;
+
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
+            {
+                try
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        line = reader.ReadLine();
+
+                        startIndex = line.IndexOf("<coordinates>");
+
+                        if (startIndex != -1)
+                        {
+                            while (true)
+                            {
+                                int endIndex = line.IndexOf("</coordinates>");
+
+                                if (endIndex == -1)
+                                {
+                                    //just add the line
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13);
+                                }
+                                else
+                                {
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    break;
+                                }
+                                line = reader.ReadLine();
+                                line = line.Trim();
+                                startIndex = -1;
+                            }
+
+                            line = coordinates;
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            
+                            string[] numberSets = line.Split(delimiterChars);
+
+
+                            //at least 3 points
+                            if (numberSets.Length > 1)
+                            {
+                                double latK, lonK;
+                                string[] item = numberSets[1].Split(',');
+
+                                double.TryParse(item[0], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(item[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out latK);
+                                double[] xy = pn.DecDeg2UTM(latK, lonK);
+
+                                //match new fix to current position
+                                double easting = xy[0] - pn.utmEast;
+                                double northing = xy[1] - pn.utmNorth;
+
+                                double east = easting;
+                                double nort = northing;
+
+                                //fix the azimuth error
+                                easting = (Math.Cos(-pn.convergenceAngle) * east) - (Math.Sin(-pn.convergenceAngle) * nort);
+                                northing = (Math.Sin(-pn.convergenceAngle) * east) + (Math.Cos(-pn.convergenceAngle) * nort);
+
+                                //add the point to boundary
+                                vec3 bndPt = new vec3(easting, northing, 0);
+                                //mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                int nextflag = flagPts.Count + 1;
+                                CFlag flagPt = new CFlag(latK, lonK, easting, northing, flagColor, nextflag);
+                                flagPts.Add(flagPt);
+                                //FileSaveFlags();
+
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void toolToolStripMenu_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormToolSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
+
+        private void topMenuLoadVehicle_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            if (FileOpenVehicle())
+            {
+                using (var form = new FormSettings(this, 0))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+                using (var form = new FormIMU(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+
+                TimedMessageBox(3000, gStr.gsDidyoumakechangestothevehicle, gStr.gsBesuretosavevehicleifyoudid);
+            }
+        }
+
+        private void topMenuSaveVehicle_Click(object sender, EventArgs e)
+        {
+            FileSaveVehicle();
+        }
+
+        private void topMenuLoadTool_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            if (FileOpenTool())
+            {
+                using (var form = new FormToolSettings(this, 0))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+
+                TimedMessageBox(3000, gStr.gsDidYouMakeChanges, gStr.gsBeSureToSaveIfYouDid);
+            }
+        }
+
+        private void topMenuSaveTool_Click(object sender, EventArgs e)
+        {
+            FileSaveTool();
+        }
+
+        private void topMenuLoadEnvironment_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
+            if (FileOpenEnvironment())
+            {
+                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+                if (isJobStarted) JobClose();
+                Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show(gStr.gsError,
+                    gStr.gsFileError,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+
+                if (isJobStarted) JobClose();
+                Application.Exit();
+            }
+
+        }
+
+        private void arduinoSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormArduinoSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            isFullScreen = !isFullScreen;
+            if (isFullScreen)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.TopMost = true;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
+                btnFullScreen.Image = Properties.Resources.WindowNormal;
+
+            }
+            else
+            {
+                this.TopMost = false;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.WindowState = FormWindowState.Normal;
+                btnFullScreen.Image = Properties.Resources.WindowFullScreen;
+
+            }
+
+        }
+
+        private void btnShutdown_Click(object sender, EventArgs e)
+        {
+            DialogResult result3 = MessageBox.Show(gStr.gsOff,
+                    gStr.gsWaiting,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.Yes) Close();
+
+        }
+
+        private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
+        {
+            FileSaveEnvironment();
         }
 
         public void GetAB()
@@ -1120,20 +1407,20 @@ namespace AgOpenGPS
             }
 
             //calculate tool width based on extreme right and left values
-            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[vehicle.numOfSections - 1].positionRight);
+            tool.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[tool.numOfSections - 1].positionRight);
 
             //left and right tool position
-            vehicle.toolFarLeftPosition = section[0].positionLeft;
-            vehicle.toolFarRightPosition = section[vehicle.numOfSections - 1].positionRight;
+            tool.toolFarLeftPosition = section[0].positionLeft;
+            tool.toolFarRightPosition = section[tool.numOfSections - 1].positionRight;
 
             //now do the full width section
-            section[vehicle.numOfSections].sectionWidth = vehicle.toolWidth;
-            section[vehicle.numOfSections].positionLeft = vehicle.toolFarLeftPosition;
-            section[vehicle.numOfSections].positionRight = vehicle.toolFarRightPosition;
+            section[tool.numOfSections].sectionWidth = tool.toolWidth;
+            section[tool.numOfSections].positionLeft = tool.toolFarLeftPosition;
+            section[tool.numOfSections].positionRight = tool.toolFarRightPosition;
 
             //find the right side pixel position
-            vehicle.rpXPosition = 250 + (int)(Math.Round(vehicle.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
-            vehicle.rpWidth = (int)(Math.Round(vehicle.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
+            tool.rpXPosition = 250 + (int)(Math.Round(tool.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
+            tool.rpWidth = (int)(Math.Round(tool.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
         }
 
         //request a new job
@@ -1197,7 +1484,6 @@ namespace AgOpenGPS
             LineUpManualBtns();
 
             //update the menu
-            fieldToolStripMenuItem.Text = gStr.gsCloseField;
             this.menustripLanguage.Enabled = false;
             layoutPanelRight.Enabled = true;
             //boundaryToolStripBtn.Enabled = true;
@@ -1207,6 +1493,9 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            hd.isOn = false;
+            btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+
             oglZoom.SendToBack();
 
             bnd.bndArr?.Clear();
@@ -1348,12 +1637,6 @@ namespace AgOpenGPS
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();
 
-            //reset headland
-            //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
-
-            //update the menu
-            fieldToolStripMenuItem.Text = gStr.gsStartNewField;
-
             ////turn off path record
             recPath.recList?.Clear();
             if (recPath.isRecordOn)
@@ -1435,13 +1718,13 @@ namespace AgOpenGPS
         {
             //if (pn.speed > 0.2)
             {
-                for (int j = 0; j < vehicle.numOfSections + 1; j++)
+                for (int j = 0; j < tool.numOfSections + 1; j++)
                 {
                     //Turn ON
                     //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
                     if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
                     {
-                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead) + 1;
+                        section[j].sectionOnTimer = (int)(pn.speed * tool.toolLookAhead) + 1;
                         if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
                         section[j].sectionOnOffCycle = true;
                     }
@@ -1457,10 +1740,10 @@ namespace AgOpenGPS
                         if (!section[j].isSectionOn) section[j].TurnSectionOn();
 
                         //keep resetting the section OFF timer while the ON is active
-                        section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
+                        section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
                     }
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
 
                     //decrement the off timer
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
@@ -1634,7 +1917,7 @@ namespace AgOpenGPS
             if (ct.isContourOn) ct.StopContourLine(pivotAxlePos);
 
             //turn off all the sections
-            for (int j = 0; j < vehicle.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections + 1; j++)
             {
                 if (section[j].isSectionOn) section[j].TurnSectionOff();
                 section[j].sectionOnOffCycle = false;

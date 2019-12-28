@@ -141,6 +141,7 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Classes\CTool.cs" />
     <Compile Include="Forms\FormHeadland.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +189,18 @@
     </Compile>
     <Compile Include="Forms\FormABDraw.Designer.cs">
       <DependentUpon>FormABDraw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormArduinoSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormArduinoSettings.Designer.cs">
+      <DependentUpon>FormArduinoSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormToolSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormToolSettings.Designer.cs">
+      <DependentUpon>FormToolSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormShortcutKeys.cs">
       <SubType>Form</SubType>
@@ -444,6 +457,14 @@
     <EmbeddedResource Include="Forms\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormArduinoSettings.resx">
+      <DependentUpon>FormArduinoSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormToolSettings.resx">
+      <DependentUpon>FormToolSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
       <DependentUpon>FormShortcutKeys.cs</DependentUpon>
     </EmbeddedResource>
@@ -648,6 +669,26 @@
     <None Include="btnImages\HeadlandTouchSave.png" />
     <None Include="btnImages\HeadlandOff.png" />
     <None Include="btnImages\HeadlandOn.png" />
+    <None Include="btnImages\PointAdd.png" />
+    <None Include="btnImages\ToolMenu.png" />
+    <None Include="btnImages\ToolPage1.jpg" />
+    <None Include="btnImages\ToolChkTBT.png" />
+    <None Include="btnImages\ToolChkFront.png" />
+    <None Include="btnImages\ToolChkRear.png" />
+    <None Include="btnImages\ToolChkTrailing.png" />
+    <None Include="btnImages\ToolHitchPageTrailing.jpg" />
+    <None Include="btnImages\ToolHitchPageFront.jpg" />
+    <None Include="btnImages\ToolHitchPageRear.jpg" />
+    <None Include="btnImages\ToolHitchPageTBT.jpg" />
+    <None Include="btnImages\ToolAcceptChange.png" />
+    <None Include="btnImages\vehiclePage4WD.png" />
+    <None Include="btnImages\vehiclePageHarvester.png" />
+    <None Include="btnImages\vehiclePageTractor.png" />
+    <None Include="btnImages\VehicleSettings4WD.jpg" />
+    <None Include="btnImages\VehicleSettingsHarvester.jpg" />
+    <None Include="btnImages\VehicleSettingsTractor.jpg" />
+    <None Include="btnImages\WindowFullScreen.png" />
+    <None Include="btnImages\WindowNormal.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

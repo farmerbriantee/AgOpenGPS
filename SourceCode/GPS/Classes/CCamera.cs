@@ -29,7 +29,7 @@ namespace AgOpenGPS
         public CCamera()
         {
             //get the pitch of camera from settings
-            camPitch = Properties.Settings.Default.setCam_pitch;
+            camPitch = Properties.Settings.Default.setDisplay_camPitch;
             camPosZ = 0.0;
             camFollowing = true;
         }

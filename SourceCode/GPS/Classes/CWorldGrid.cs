@@ -39,6 +39,16 @@ namespace AgOpenGPS
             GL.Vertex3(eastingMin, northingMin, 0.0);
             GL.TexCoord2(texZoomE, texZoomN);
             GL.Vertex3(eastingMax, northingMin, 0.0);
+
+            //GL.TexCoord2(0, 0);
+            //GL.Vertex3(eastingMin,  -200.0, northingMax);
+            //GL.TexCoord2(texZoomE, 0.0);
+            //GL.Vertex3(eastingMax, -200.0, northingMax);
+            //GL.TexCoord2(0.0, texZoomN);
+            //GL.Vertex3(eastingMin, -200.0, northingMin);
+            //GL.TexCoord2(texZoomE, texZoomN);
+            //GL.Vertex3(eastingMax, -200.0, northingMin);
+
             GL.End();
             GL.Disable(EnableCap.Texture2D);
         }
@@ -63,10 +73,10 @@ namespace AgOpenGPS
 
         public void CreateWorldGrid(double northing, double easting)
         {
-            northingMax = northing + 16000.0;
-            northingMin = northing - 16000.0;
-            eastingMax = easting + 16000.0;
-            eastingMin = easting - 16000.0;
+            northingMax = northing + 160.0;
+            northingMin = northing - 160.0;
+            eastingMax = easting + 160.0;
+            eastingMin = easting - 160.0;
         }
 
         public void checkZoomWorldGrid(double northing, double easting)

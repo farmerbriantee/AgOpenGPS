@@ -85,7 +85,7 @@ namespace AgOpenGPS
 
                 GL.Enable(EnableCap.Blend);
                 //draw patches of sections
-                for (int j = 0; j < vehicle.numSuperSection; j++)
+                for (int j = 0; j < tool.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;
@@ -192,11 +192,12 @@ namespace AgOpenGPS
 
                 if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
 
-                if (bnd.bndArr.Count > 0) hd.DrawHeadLines();
+                if (hd.isOn) hd.DrawHeadLines();
 
-                if (flagPts.Count > 0 && font.isFontOn) DrawFlags();
+                if (flagPts.Count > 0) DrawFlags();
 
                 //draw the vehicle/implement
+                tool.DrawTool();
                 vehicle.DrawVehicle();
 
                 // 2D Ortho ---------------------------------------////////-------------------------------------------------
@@ -221,7 +222,6 @@ namespace AgOpenGPS
                     DrawRollBar();
                     DrawLightBarText();
                 }
-                else lblDistanceOffLine.Visible = false;
 
                 if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
@@ -313,7 +313,7 @@ namespace AgOpenGPS
             bool isDraw;
 
             //draw patches j= # of sections
-            for (int j = 0; j < vehicle.numSuperSection; j++)
+            for (int j = 0; j < tool.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count;
@@ -383,22 +383,22 @@ namespace AgOpenGPS
             double rpHeight = 0;
 
             //assume all sections are on and super can be on, if not set false to turn off.
-            vehicle.isSuperSectionAllowedOn = true;
+            tool.isSuperSectionAllowedOn = true;
 
             //find any off buttons, any outside of boundary, going backwards, and the farthest lookahead
-            for (int j = 0; j < vehicle.numOfSections; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (section[j].sectionLookAhead > rpHeight) rpHeight = section[j].sectionLookAhead;
-                if (section[j].manBtnState == manBtn.Off) vehicle.isSuperSectionAllowedOn = false;
-                if (!section[j].isInsideBoundary) vehicle.isSuperSectionAllowedOn = false;
+                if (section[j].manBtnState == manBtn.Off) tool.isSuperSectionAllowedOn = false;
+                if (!section[j].isInsideBoundary) tool.isSuperSectionAllowedOn = false;
 
                 //check if any sections going backwards
-                if (section[j].sectionLookAhead < 0) vehicle.isSuperSectionAllowedOn = false;
+                if (section[j].sectionLookAhead < 0) tool.isSuperSectionAllowedOn = false;
             }
 
             //if only one section, or going slow no need for super section 
-            if (vehicle.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff)
-                vehicle.isSuperSectionAllowedOn = false;
+            if (tool.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff)
+                tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
             rpHeight = Math.Abs(rpHeight) * 2.0;
@@ -406,34 +406,34 @@ namespace AgOpenGPS
             if (rpHeight < 8) rpHeight = 8;
 
             //read the whole block of pixels up to max lookahead, one read only
-            GL.ReadPixels(vehicle.rpXPosition, 252, vehicle.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
+            GL.ReadPixels(tool.rpXPosition, 252, tool.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
 
             //Paint to context
             //oglBack.MakeCurrent();
             //oglBack.SwapBuffers();
 
             //10 % min is required for overlap, otherwise it never would be on.
-            int pixLimit = (int)((double)(vehicle.rpWidth * rpHeight) / (double)(vehicle.numOfSections * 1.5));
+            int pixLimit = (int)((double)(tool.rpWidth * rpHeight) / (double)(tool.numOfSections * 1.5));
 
             //is applied area coming up?
             int totalPixs = 0;
-            if (vehicle.isSuperSectionAllowedOn)
+            if (tool.isSuperSectionAllowedOn)
             {
                 //look for anything applied coming up
-                for (int a = 0; a < (vehicle.rpWidth * rpHeight); a++)
+                for (int a = 0; a < (tool.rpWidth * rpHeight); a++)
                 {
                     if (grnPixels[a] != 0)
                     {
                         if (totalPixs++ > pixLimit)
                         {
-                            vehicle.isSuperSectionAllowedOn = false;
+                            tool.isSuperSectionAllowedOn = false;
                             break;
                         }
 
                         //check for a boundary line
                         if (grnPixels[a] > 200)
                         {
-                            vehicle.isSuperSectionAllowedOn = false;
+                            tool.isSuperSectionAllowedOn = false;
                             break;
                         }
                     }
@@ -442,9 +442,9 @@ namespace AgOpenGPS
 
 
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
-            if (vehicle.isSuperSectionAllowedOn)
+            if (tool.isSuperSectionAllowedOn)
             {
-                for (int j = 0; j < vehicle.numOfSections; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     if (section[j].isSectionOn)
                     {
@@ -456,8 +456,8 @@ namespace AgOpenGPS
                 }
 
                 //turn on super section
-                section[vehicle.numOfSections].sectionOnRequest = true;
-                section[vehicle.numOfSections].sectionOffRequest = false;
+                section[tool.numOfSections].sectionOnRequest = true;
+                section[tool.numOfSections].sectionOffRequest = false;
             }
 
             /* Below is priority based. The last if statement is the one that is
@@ -471,7 +471,7 @@ namespace AgOpenGPS
             {
                 //Read the pixels ahead of tool a normal section at a time. Each section can have its own lookahead manipulated. 
 
-                for (int j = 0; j < vehicle.numOfSections; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     //is section going backwards?
                     if (section[j].sectionLookAhead > 0)
@@ -485,8 +485,8 @@ namespace AgOpenGPS
                             int start = 0, end = 0, skip = 0;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                             end = section[j].rpSectionWidth - 1 + start;
-                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
-                            skip = vehicle.rpWidth - (end - start);
+                            if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                            skip = tool.rpWidth - (end - start);
 
 
                             int tagged = 0;
@@ -496,7 +496,7 @@ namespace AgOpenGPS
                                 {
                                     if (grnPixels[a] == 0)
                                     {
-                                        if (tagged++ > vehicle.toolMinUnappliedPixels)
+                                        if (tagged++ > tool.toolMinUnappliedPixels)
                                         {
                                             section[j].isSectionRequiredOn = true;
                                             goto GetMeOutaHere;
@@ -504,8 +504,8 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                start += vehicle.rpWidth;
-                                end += vehicle.rpWidth;
+                                start += tool.rpWidth;
+                                end += tool.rpWidth;
                             }
 
                         //minimum apllied conditions met
@@ -514,8 +514,8 @@ namespace AgOpenGPS
                             start = 0; end = 0; skip = 0;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                             end = section[j].rpSectionWidth - 1 + start;
-                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
-                            skip = vehicle.rpWidth - (end - start);
+                            if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                            skip = tool.rpWidth - (end - start);
 
                             //looking for boundary line color, bright green
                             for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
@@ -534,8 +534,8 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                start += vehicle.rpWidth;
-                                end += vehicle.rpWidth;
+                                start += tool.rpWidth;
+                                end += tool.rpWidth;
                             }
 
                         GetMeOutaHereNow:
@@ -559,8 +559,8 @@ namespace AgOpenGPS
                             int start = 0, end = 0, skip = 0;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                             end = section[j].rpSectionWidth - 1 + start;
-                            if (end > vehicle.rpWidth - 1) end = vehicle.rpWidth - 1;
-                            skip = vehicle.rpWidth - (end - start);
+                            if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                            skip = tool.rpWidth - (end - start);
 
 
                             int tagged = 0;
@@ -570,7 +570,7 @@ namespace AgOpenGPS
                                 {
                                     if (grnPixels[a] == 0)
                                     {
-                                        if (tagged++ > vehicle.toolMinUnappliedPixels)
+                                        if (tagged++ > tool.toolMinUnappliedPixels)
                                         {
                                             section[j].isSectionRequiredOn = true;
                                             goto GetMeOutaHere;
@@ -578,8 +578,8 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                start += vehicle.rpWidth;
-                                end += vehicle.rpWidth;
+                                start += tool.rpWidth;
+                                end += tool.rpWidth;
                             }
 
                         //minimum apllied conditions met
@@ -594,16 +594,16 @@ namespace AgOpenGPS
                 }
 
                 //if the superSection is on, turn it off
-                if (section[vehicle.numOfSections].isSectionOn)
+                if (section[tool.numOfSections].isSectionOn)
                 {
-                    section[vehicle.numOfSections].sectionOffRequest = true;
-                    section[vehicle.numOfSections].sectionOnRequest = false;
-                    section[vehicle.numOfSections].sectionOffTimer = 0;
-                    section[vehicle.numOfSections].sectionOnTimer = 0;
+                    section[tool.numOfSections].sectionOffRequest = true;
+                    section[tool.numOfSections].sectionOnRequest = false;
+                    section[tool.numOfSections].sectionOffTimer = 0;
+                    section[tool.numOfSections].sectionOnTimer = 0;
                 }
 
                 //if Master Auto is on
-                for (int j = 0; j < vehicle.numOfSections; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     if (section[j].isSectionRequiredOn && section[j].isAllowedOn)
                     {
@@ -735,7 +735,7 @@ namespace AgOpenGPS
                 //draw patches j= # of sections
                 int count2;
 
-                for (int j = 0; j < vehicle.numSuperSection; j++)
+                for (int j = 0; j < tool.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;
@@ -845,7 +845,7 @@ namespace AgOpenGPS
                     int mipmap = 8;
 
                     //draw patches j= # of sections
-                    for (int j = 0; j < vehicle.numSuperSection; j++)
+                    for (int j = 0; j < tool.numSuperSection; j++)
                     {
                         //every time the section turns off and on is a new patch
                         patchCount = section[j].patchList.Count;
@@ -943,7 +943,7 @@ namespace AgOpenGPS
                 GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
                 GL.Color3(0.90f, 0.90f, 0.293f);
 
-            int two3 = oglMain.Width / 6;
+            int two3 = oglMain.Width / 5;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 45); // 
@@ -972,7 +972,7 @@ namespace AgOpenGPS
                 GL.Color3(0.90f, 0.90f, 0.293f);
             }
 
-            int two3 = oglMain.Width / 6;
+            int two3 = oglMain.Width / 5;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             if (!yt.isYouTurnRight)
             {
@@ -1194,85 +1194,110 @@ namespace AgOpenGPS
 
         private void DrawLightBarText()
         {
+
+            GL.Disable(EnableCap.DepthTest);
+
+            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn)
             {
-                GL.Disable(EnableCap.DepthTest);
-                if (ct.isContourBtnOn)
-                {
-                    string dist;
-                    lblDistanceOffLine.Visible = true;
-                    //lblDelta.Visible = true;
-                    if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
+                double dist = distanceDisplay * 0.1;
 
-                    DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
-                    if ((ct.distanceFromCurrentLine) < 0.0)
+                DrawLightBar(oglMain.Width, oglMain.Height, dist);
+
+                double size = 1.5;
+                string hede;
+
+                if (dist == 3200 || dist == 3202 )
+                {
+                    //lblDistanceOffLine.Text = "Lost";
+                }
+                else 
+                {
+                    if (dist < 0.0)
                     {
-                        lblDistanceOffLine.ForeColor = Color.Green;
-                        if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
-                        else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                        lblDistanceOffLine.Text = dist;
+                        GL.Color3(0.50f, 0.960f, 0.3f);
+                         hede = "< " + (Math.Abs(dist)).ToString("N1");
                     }
                     else
                     {
-                        lblDistanceOffLine.ForeColor = Color.Red;
-                        if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
-                        else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
-                        lblDistanceOffLine.Text = dist;
+                        GL.Color3(0.9760f, 0.50f, 0.3f);
+                         hede = (dist).ToString("N1") + " >" ;
                     }
-                }
-
-                else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-                {
-                    string dist;
-                    lblDistanceOffLine.Visible = true;
-                    //lblDelta.Visible = true;
-                    DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
-                    if ((ABLine.distanceFromCurrentLine) < 0.0)
-                    {
-                        // --->
-                        lblDistanceOffLine.ForeColor = Color.Green;
-                        if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
-                        else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                        lblDistanceOffLine.Text = dist;
-                    }
-                    else
-                    {
-                        // <----
-                        lblDistanceOffLine.ForeColor = Color.Red;
-                        if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
-                        else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                        lblDistanceOffLine.Text = dist;
-                    }
-                }
-
-                else if (curve.isBtnCurveOn)
-                {
-                    string dist;
-                    lblDistanceOffLine.Visible = true;
-                    //lblDelta.Visible = true;
-                    if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
-
-                    DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
-                    if ((curve.distanceFromCurrentLine) < 0.0)
-                    {
-                        lblDistanceOffLine.ForeColor = Color.Green;
-                        if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
-                        else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                        lblDistanceOffLine.Text = dist;
-                    }
-                    else
-                    {
-                        lblDistanceOffLine.ForeColor = Color.Red;
-                        if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
-                        else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
-                        lblDistanceOffLine.Text = dist;
-                    }
-                }
-
-                else
-                {
-                    lblDistanceOffLine.Visible = false;
+                        int center = -(int)(((double)(hede.Length) * 0.5) * 16 * size);
+                        font.DrawText(center, 38, hede, size);
                 }
             }
+            //if (ct.isContourBtnOn)
+            //{
+            //    string dist;
+            //    lblDistanceOffLine.Visible = true;
+            //    //lblDelta.Visible = true;
+            //    if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
+
+            //    DrawLightBar(oglMain.Width, oglMain.Height, ct.distanceFromCurrentLine * 0.1);
+
+            //    if ((ct.distanceFromCurrentLine) < 0.0)
+            //    {
+            //        lblDistanceOffLine.ForeColor = Color.Green;
+            //        if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
+            //        else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //    else
+            //    {
+            //        lblDistanceOffLine.ForeColor = Color.Red;
+            //        if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
+            //        else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //}
+
+            //else if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+            //{
+            //    string dist;
+            //    lblDistanceOffLine.Visible = true;
+            //    //lblDelta.Visible = true;
+            //    DrawLightBar(oglMain.Width, oglMain.Height, ABLine.distanceFromCurrentLine * 0.1);
+            //    if ((ABLine.distanceFromCurrentLine) < 0.0)
+            //    {
+            //        // --->
+            //        lblDistanceOffLine.ForeColor = Color.Green;
+            //        if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
+            //        else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //    else
+            //    {
+            //        // <----
+            //        lblDistanceOffLine.ForeColor = Color.Red;
+            //        if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+            //        else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //}
+
+            //else if (curve.isBtnCurveOn)
+            //{
+            //    string dist;
+            //    lblDistanceOffLine.Visible = true;
+            //    //lblDelta.Visible = true;
+            //    if (curve.distanceFromCurrentLine == 32000) curve.distanceFromCurrentLine = 0;
+
+            //    DrawLightBar(oglMain.Width, oglMain.Height, curve.distanceFromCurrentLine * 0.1);
+            //    if ((curve.distanceFromCurrentLine) < 0.0)
+            //    {
+            //        lblDistanceOffLine.ForeColor = Color.Green;
+            //        if (isMetric) dist = ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1)) + " ->";
+            //        else dist = ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //    else
+            //    {
+            //        lblDistanceOffLine.ForeColor = Color.Red;
+            //        if (isMetric) dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine * 0.1));
+            //        else dist = "<- " + ((int)Math.Abs(curve.distanceFromCurrentLine / 2.54 * 0.1));
+            //        lblDistanceOffLine.Text = dist;
+            //    }
+            //}
         }
 
         private void DrawRollBar()
@@ -1663,7 +1688,7 @@ namespace AgOpenGPS
             else
             {
                 //draw patches j= # of sections
-                for (int j = 0; j < vehicle.numSuperSection; j++)
+                for (int j = 0; j < tool.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;

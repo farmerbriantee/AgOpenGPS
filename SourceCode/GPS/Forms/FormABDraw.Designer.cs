@@ -53,6 +53,7 @@
             this.nudDistance = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.btnDrawSections = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -361,11 +362,7 @@
             this.nudDistance.Name = "nudDistance";
             this.nudDistance.Size = new System.Drawing.Size(132, 52);
             this.nudDistance.TabIndex = 338;
-            this.nudDistance.Value = new decimal(new int[] {
-            4888,
-            0,
-            0,
-            -2147483648});
+            this.nudDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudDistance.Enter += new System.EventHandler(this.nudDistance_Enter);
             // 
             // label5
@@ -377,7 +374,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(146, 57);
             this.label5.TabIndex = 339;
-            this.label5.Text = "Tool Width";
+            this.label5.Text = "Tool Width (cm)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnDrawSections
@@ -397,6 +394,18 @@
             this.btnDrawSections.UseVisualStyleBackColor = false;
             this.btnDrawSections.Click += new System.EventHandler(this.btnDrawSections_Click);
             // 
+            // label6
+            // 
+            this.label6.Enabled = false;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(922, 90);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(70, 25);
+            this.label6.TabIndex = 341;
+            this.label6.Text = "2";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,6 +413,7 @@
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1004, 709);
             this.ControlBox = false;
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnDrawSections);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.nudDistance);
@@ -467,5 +477,6 @@
         private System.Windows.Forms.NumericUpDown nudDistance;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnDrawSections;
+        private System.Windows.Forms.Label label6;
     }
 }
