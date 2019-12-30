@@ -934,5 +934,53 @@ namespace AgOpenGPS.Properties {
                 this["setArd_isEncoder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position14 {
+            get {
+                return ((decimal)(this["setSection_position14"]));
+            }
+            set {
+                this["setSection_position14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position15 {
+            get {
+                return ((decimal)(this["setSection_position15"]));
+            }
+            set {
+                this["setSection_position15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position16 {
+            get {
+                return ((decimal)(this["setSection_position16"]));
+            }
+            set {
+                this["setSection_position16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position17 {
+            get {
+                return ((decimal)(this["setSection_position17"]));
+            }
+            set {
+                this["setSection_position17"] = value;
+            }
+        }
     }
 }

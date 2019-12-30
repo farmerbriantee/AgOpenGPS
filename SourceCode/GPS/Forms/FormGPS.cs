@@ -23,7 +23,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        private const int MAXSECTIONS = 13;
+        private const int MAXSECTIONS = 17;
 
         //How many youturn functions
         public const int MAXFUNCTIONS = 8;
@@ -255,7 +255,7 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(panelSim, true);
+            //ControlExtension.Draggable(panelSim, true);
 
             //file menu
             //fileToolStripMenuItem.Text = gStr.gsFile;
@@ -1013,9 +1013,12 @@ namespace AgOpenGPS
 
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
-            hd.isOn = !hd.isOn;
-            if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
-            else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            if (hd.headArr[0].hdLine.Count > 0)
+            {
+                hd.isOn = !hd.isOn;
+                if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+                else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1237,7 +1240,7 @@ namespace AgOpenGPS
             if (isFullScreen)
             {
                 this.WindowState = FormWindowState.Normal;
-                this.TopMost = true;
+                //this.TopMost = true;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
                 btnFullScreen.Image = Properties.Resources.WindowNormal;
@@ -1251,7 +1254,6 @@ namespace AgOpenGPS
                 btnFullScreen.Image = Properties.Resources.WindowFullScreen;
 
             }
-
         }
 
         private void btnShutdown_Click(object sender, EventArgs e)
@@ -1263,6 +1265,20 @@ namespace AgOpenGPS
                     MessageBoxDefaultButton.Button2);
             if (result3 == DialogResult.Yes) Close();
 
+        }
+
+        private void btnReverseDirection_Click(object sender, EventArgs e)
+        {
+            sim.headingTrue += Math.PI;
+            if (sim.headingTrue > (2.0 * Math.PI)) sim.headingTrue -= (2.0 * Math.PI);
+            if (sim.headingTrue < 0) sim.headingTrue += (2.0 * Math.PI);
+
+        }
+
+        private void btnSimSetSpeedToZero_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            hsbarStepDistance.Value = 0;
         }
 
         private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
@@ -1394,6 +1410,18 @@ namespace AgOpenGPS
 
             section[11].positionLeft = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[12].positionLeft = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
+            section[12].positionRight = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[13].positionLeft = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
+            section[13].positionRight = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[14].positionLeft = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
+            section[14].positionRight = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[15].positionLeft = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
+            section[15].positionRight = (double)Vehicle.Default.setSection_position17 + Vehicle.Default.setVehicle_toolOffset;
         }
 
         //function to calculate the width of each section and update
@@ -1461,6 +1489,28 @@ namespace AgOpenGPS
             btnSection10Man.BackColor = Color.Red;
             btnSection11Man.BackColor = Color.Red;
             btnSection12Man.BackColor = Color.Red;
+            btnSection13Man.BackColor = Color.Red;
+            btnSection14Man.BackColor = Color.Red;
+            btnSection15Man.BackColor = Color.Red;
+            btnSection16Man.BackColor = Color.Red;
+
+            btnSection1Man.Enabled = true;
+            btnSection2Man.Enabled = true;
+            btnSection3Man.Enabled = true;
+            btnSection4Man.Enabled = true;
+            btnSection5Man.Enabled = true;
+            btnSection6Man.Enabled = true;
+            btnSection7Man.Enabled = true;
+            btnSection8Man.Enabled = true;
+            btnSection9Man.Enabled = true;
+            btnSection10Man.Enabled = true;
+            btnSection11Man.Enabled = true;
+            btnSection12Man.Enabled = true;
+            btnSection13Man.Enabled = true;
+            btnSection14Man.Enabled = true;
+            btnSection15Man.Enabled = true;
+            btnSection16Man.Enabled = true;
+
 
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
@@ -1550,6 +1600,10 @@ namespace AgOpenGPS
             btnSection10Man.Enabled = false;
             btnSection11Man.Enabled = false;
             btnSection12Man.Enabled = false;
+            btnSection13Man.Enabled = false;
+            btnSection14Man.Enabled = false;
+            btnSection15Man.Enabled = false;
+            btnSection16Man.Enabled = false;
 
             btnSection1Man.BackColor = Color.Silver;
             btnSection2Man.BackColor = Color.Silver;
@@ -1563,6 +1617,10 @@ namespace AgOpenGPS
             btnSection10Man.BackColor = Color.Silver;
             btnSection11Man.BackColor = Color.Silver;
             btnSection12Man.BackColor = Color.Silver;
+            btnSection13Man.BackColor = Color.Silver;
+            btnSection14Man.BackColor = Color.Silver;
+            btnSection15Man.BackColor = Color.Silver;
+            btnSection16Man.BackColor = Color.Silver;
 
             //clear the section lists
             for (int j = 0; j < MAXSECTIONS; j++)
