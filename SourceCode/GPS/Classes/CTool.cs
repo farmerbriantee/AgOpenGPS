@@ -167,8 +167,7 @@ namespace AgOpenGPS
                     }
                     else
                     {
-                        if (mf.section[j].manBtnState == FormGPS.manBtn.Off) GL.Color3(0.0f, 0.97f, 0.0f);
-                        else GL.Color3(0.97f, 0.52f, 0.32f);
+                        GL.Color3(0.97f, 0.2f, 0.2f);
                     }
 
                     //draw section line

@@ -315,6 +315,7 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setAS_isJRK = usejrk.Checked;
             Properties.Settings.Default.Save();
+            mf.isJRK = Properties.Settings.Default.setAS_isJRK;
         }
     } //class
 } //namespace

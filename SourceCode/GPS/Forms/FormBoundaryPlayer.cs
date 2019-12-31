@@ -29,7 +29,6 @@ namespace AgOpenGPS
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
                 mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-                mf.hd.headArr.Add(new CHeadLines());
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {

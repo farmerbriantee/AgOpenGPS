@@ -14,11 +14,10 @@ namespace AgOpenGPS
 
         private bool isPivotBehindAntenna, isSteerAxleAhead;
 
-        private readonly double metImp2m, m2MetImp, cutoffMetricImperial;
-        private double cutoffSpeed;
+        private readonly double metImp2m, m2MetImp;
 
         private bool isAutoSteerAuto;
-        private int snapDistance, snapDistanceSmall, vehicleType;
+        private int snapDistance, vehicleType;
 
         private int lightbarCmPerPixie;
 
@@ -40,13 +39,10 @@ namespace AgOpenGPS
             label7.Text = gStr.gsOffset;
             label18.Text = gStr.gsDistance;
 
-            lblTurnOffBelowUnits.Text = gStr.gsKMH;
-            label30.Text = gStr.gsSectionsTurnOffBelow;
 
             groupBox2.Text = gStr.gsCmPerLightbarPixel;
             groupBox9.Text = gStr.gsAutoManualAutosteerBtn;
             cboxAutoSteerAuto.Text = gStr.gsManual;
-            groupBox8.Text = gStr.gs__SnapDistance;
             groupBox1.Text = gStr.gs____SnapDistance;
             label17.Text = gStr.gsMeasurementsIn;
 
@@ -56,11 +52,9 @@ namespace AgOpenGPS
             nudAntennaHeight.Controls[0].Enabled = false;
             nudAntennaOffset.Controls[0].Enabled = false;
             nudAntennaPivot.Controls[0].Enabled = false;
-            nudCutoffSpeed.Controls[0].Enabled = false;
             nudLightbarCmPerPixel.Controls[0].Enabled = false;
             nudMinTurnRadius.Controls[0].Enabled = false;
             nudSnapDistance.Controls[0].Enabled = false;
-            nudSnapDistanceSmall.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
             nudLineWidth.Controls[0].Enabled = false;
 
@@ -69,16 +63,12 @@ namespace AgOpenGPS
                 metImp2m = 0.01;
                 m2MetImp = 100.0;
                 lblInchesCm.Text = gStr.gsCentimeters;
-                lblTurnOffBelowUnits.Text = gStr.gsKMH;
-                cutoffMetricImperial = 1;
             }
             else
             {
                 metImp2m = glm.in2m;
                 m2MetImp = glm.m2in;
                 lblInchesCm.Text = gStr.gsInches;
-                lblTurnOffBelowUnits.Text = gStr.gsMPH;
-                cutoffMetricImperial = 1.60934;
             }
             //select the page as per calling menu or button from mainGPS form
             tabControl1.SelectedIndex = page;
@@ -106,16 +96,11 @@ namespace AgOpenGPS
             antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
             if (nudAntennaOffset.CheckValueCm(ref antennaOffset)) nudAntennaOffset.BackColor = System.Drawing.Color.OrangeRed;
 
-            cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
-            decimal temp = (decimal)cutoffSpeed;
-            if (nudCutoffSpeed.CheckValue(ref temp)) nudCutoffSpeed.BackColor = System.Drawing.Color.OrangeRed;
-            cutoffSpeed = (double)temp;
 
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
 
             nudSnapDistance.Value = Properties.Settings.Default.setAS_snapDistance;
-            nudSnapDistanceSmall.Value = Properties.Settings.Default.setAS_snapDistanceSmall;
 
             cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
             isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
@@ -147,9 +132,6 @@ namespace AgOpenGPS
 
                 nudMinTurnRadius.Maximum /= 2.54M;
                 nudMinTurnRadius.Minimum /= 2.54M;
-
-                nudCutoffSpeed.Maximum /= 1.60934M;
-                nudCutoffSpeed.Minimum /= 1.60934M;
             }
 
             nudAntennaHeight.ValueChanged -= nudAntennaHeight_ValueChanged;
@@ -171,10 +153,6 @@ namespace AgOpenGPS
             nudMinTurnRadius.ValueChanged -= nudMinTurnRadius_ValueChanged;
             nudMinTurnRadius.Value = (decimal)(minTurningRadius * m2MetImp);
             nudMinTurnRadius.ValueChanged += nudMinTurnRadius_ValueChanged;
-
-            nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
-            nudCutoffSpeed.Value = (decimal)cutoffSpeed;
-            nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
 
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
@@ -222,14 +200,9 @@ namespace AgOpenGPS
             //Guidance
 
             Properties.Settings.Default.setAS_snapDistance = snapDistance;
-            Properties.Settings.Default.setAS_snapDistanceSmall = snapDistanceSmall;
 
             mf.ahrs.isAutoSteerAuto = isAutoSteerAuto;
             Properties.Settings.Default.setAS_isAutoSteerAutoOn = isAutoSteerAuto;
-
-            //Slow speed cutoff
-            Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
-            mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
 
             Properties.Settings.Default.setDisplay_lineWidth = (int)(nudLineWidth.Value);
             mf.ABLine.lineWidth = (int)(nudLineWidth.Value);
@@ -252,16 +225,8 @@ namespace AgOpenGPS
             lightbarCmPerPixie = (int)nudLightbarCmPerPixel.Value;
         }
 
-        private void NudSnapDistanceSmall_ValueChanged(object sender, EventArgs e)
-        {
-            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
-            snapDistanceSmall = (int)nudSnapDistanceSmall.Value;
-        }
-
         private void NudSnapDistance_ValueChanged(object sender, EventArgs e)
         {
-            if (nudSnapDistanceSmall.Value > nudSnapDistance.Value) nudSnapDistanceSmall.Value = nudSnapDistance.Value;
-
             snapDistance = (int)nudSnapDistance.Value;
         }
 
@@ -416,11 +381,6 @@ namespace AgOpenGPS
         private void nudAntennaHeight_ValueChanged(object sender, EventArgs e)
         {
             antennaHeight = (double)nudAntennaHeight.Value * metImp2m;
-        }
-
-        private void nudCutoffSpeed_ValueChanged(object sender, EventArgs e)
-        {
-            cutoffSpeed = (double)nudCutoffSpeed.Value;
         }
 
         private void nudAntennaPivot_ValueChanged(object sender, EventArgs e)

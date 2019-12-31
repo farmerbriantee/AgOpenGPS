@@ -30,6 +30,7 @@ namespace AgOpenGPS
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
+        public bool isDay = true;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -185,6 +186,26 @@ namespace AgOpenGPS
             isFullScreen = false;
         }
 
+        private void SwapDayNightMode()
+        {
+            isDay = !isDay;
+            if (isDay)
+            {
+                btnDayNightMode.Image = Properties.Resources.WindowNightMode;
+                statusStripBottom.BackColor = Color.WhiteSmoke;
+                this.BackColor = Color.WhiteSmoke;
+                panelFieldData.BackColor = Color.WhiteSmoke;
+            }
+            else //nightmode
+            {
+                btnDayNightMode.Image = Properties.Resources.WindowDayMode;
+                statusStripBottom.BackColor = Color.DarkGray;
+                this.BackColor = Color.DarkGray;
+                panelFieldData.BackColor = Color.DarkGray;
+
+            }
+        }
+
         private void FixPanelsAndMenus()
         {
 
@@ -230,17 +251,13 @@ namespace AgOpenGPS
 
             if (Width > 1200)
             {
-                snapLeftStrip.Visible = true;
                 snapLeftBigStrip.Visible = true;
                 snapRightBigStrip.Visible = true;
-                snapRightStrip.Visible = true;
             }
             else
             {
-                snapLeftStrip.Visible = false;
                 snapLeftBigStrip.Visible = false;
                 snapRightBigStrip.Visible = false;
-                snapRightStrip.Visible = false;
             }
 
             if (Width > 1400)
@@ -344,7 +361,7 @@ namespace AgOpenGPS
             }
 
             int top = 180;
-            if (panelSim.Visible == true) top = 250;
+            if (panelSim.Visible == true) top = 230;
 
             btnSection1Man.Top  = Height - top;
             btnSection2Man.Top  = Height - top;
@@ -363,8 +380,9 @@ namespace AgOpenGPS
             btnSection15Man.Top = Height - top;
             btnSection16Man.Top = Height - top;
 
+            int oglButtonWidth = oglMain.Width * 3/4;
+            //if (tool.numOfSections < 9 )  oglButtonWidth = oglMain.Width * 5/6;
 
-            int oglButtonWidth = oglMain.Width * 5 / 6;
             int buttonMaxWidth = 120, buttonHeight = 30;
 
             int buttonWidth = oglButtonWidth / tool.numOfSections;
@@ -1441,63 +1459,6 @@ namespace AgOpenGPS
         }
 
         //Snaps
-        private void SnapSmallLeft()
-        {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-                    ABLine.MoveABLine(-dist);
-
-                    //FileSaveABLine();
-                }
-                else if (curve.isCurveSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-                    curve.MoveABCurve(-dist);
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show();
-                }
-            }
-        }
-        private void SnapSmallRight()
-        {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-                    ABLine.MoveABLine(dist);
-
-                    //FileSaveABLine();
-                }
-                else if (curve.isCurveSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-                    curve.MoveABCurve(dist);
-
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show();
-                }
-            }
-        }
         private void SnapRight()
         {
             if (!ct.isContourBtnOn)
@@ -1557,14 +1518,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnSmallSnapLeft_Click(object sender, EventArgs e)
-        { 
-                SnapSmallLeft();
-        }
-        private void btnSmallSnapRight_Click(object sender, EventArgs e)
-        {
-            SnapSmallRight();
-        }
         private void btnSnapRight_Click(object sender, EventArgs e)
         {
             SnapRight();
@@ -3493,16 +3446,16 @@ namespace AgOpenGPS
                     }
 
                     //statusbar flash red undefined headland
-                    if (mc.isOutOfBounds && statusStrip1.BackColor == Color.Azure
-                        || !mc.isOutOfBounds && statusStrip1.BackColor == Color.Tomato)
+                    if (mc.isOutOfBounds && statusStripBottom.BackColor == Color.WhiteSmoke
+                        || !mc.isOutOfBounds && statusStripBottom.BackColor == Color.Tomato)
                     {
                         if (!mc.isOutOfBounds)
                         {
-                            statusStrip1.BackColor = Color.Azure;
+                            statusStripBottom.BackColor = Color.WhiteSmoke;
                         }
                         else
                         {
-                            statusStrip1.BackColor = Color.Tomato;
+                            statusStripBottom.BackColor = Color.Tomato;
                         }
                     }
 

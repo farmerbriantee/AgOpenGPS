@@ -34,6 +34,8 @@ namespace AgOpenGPS
             leftToolDistance = 99999;
             rightToolDistance = 99999;
             isToolUp = true;
+            headArr.Add(new CHeadLines());
+
         }
 
         public bool FindHeadlandDistance()
@@ -219,46 +221,46 @@ namespace AgOpenGPS
             //GL.End();
         }
 
-        public bool IsPointInsideHeadLine(vec3 pt)
-        {
-            //if inside outer boundary, then potentially add
-            if (headArr.Count > 0 && headArr[0].IsPointInHeadArea(pt))
-            {
-                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
-                {
-                    if (mf.bnd.bndArr[b].isSet)
-                    {
-                        if (headArr[b].IsPointInHeadArea(pt))
-                        {
-                            //point is in an inner turn area but inside outer
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public bool IsPointInsideHeadLine(vec3 pt)
+        //{
+        //    //if inside outer boundary, then potentially add
+        //    if (headArr[0].IsPointInHeadArea(pt))
+        //    {
+        //        for (int b = 1; b < mf.bnd.bndArr.Count; b++)
+        //        {
+        //            if (mf.bnd.bndArr[b].isSet)
+        //            {
+        //                if (headArr[b].IsPointInHeadArea(pt))
+        //                {
+        //                    //point is in an inner turn area but inside outer
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
             if (headArr.Count > 0 && headArr[0].IsPointInHeadArea(pt))
             {
-                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
-                {
-                    if (mf.bnd.bndArr[b].isSet)
-                    {
-                        if (headArr[b].IsPointInHeadArea(pt))
-                        {
-                            //point is in an inner turn area but inside outer
-                            return false;
-                        }
-                    }
-                }
+                //for (int b = 1; b < mf.bnd.bndArr.Count; b++)
+                //{
+                //    if (mf.bnd.bndArr[b].isSet)
+                //    {
+                //        if (headArr[b].IsPointInHeadArea(pt))
+                //        {
+                //            //point is in an inner turn area but inside outer
+                //            return false;
+                //        }
+                //    }
+                //}
                 return true;
             }
             else
@@ -266,7 +268,6 @@ namespace AgOpenGPS
                 return false;
             }
         }
-
     }
 }
 

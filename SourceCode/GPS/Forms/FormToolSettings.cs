@@ -27,7 +27,8 @@ namespace AgOpenGPS
 
         private bool isWorkSwEn, isWorkSwActiveLow, isWorkSwitchManual;
 
-        private readonly double metImp2m, m2MetImp, maxWidth;
+        private readonly double metImp2m, m2MetImp, maxWidth ;
+        private double cutoffSpeed, cutoffMetricImperial;
 
         //constructor
         public FormToolSettings(Form callingForm, int page)
@@ -47,6 +48,9 @@ namespace AgOpenGPS
             label41.Text = gStr.gsMinUnapplied;
             label2.Text = gStr.gs_OfSections;
 
+            lblTurnOffBelowUnits.Text = gStr.gsKMH;
+            label30.Text = gStr.gsSectionsTurnOffBelow;
+
             groupBox3.Text = gStr.gsWorkSwitch;
             checkWorkSwitchManual.Text = gStr.gsWorkSwitchControlsManual;
             chkWorkSwActiveLow.Text = gStr.gsActiveLow;
@@ -54,8 +58,9 @@ namespace AgOpenGPS
             label17.Text = gStr.gsMeasurementsIn;
             label16.Text = gStr.gsToolWidth;
 
-            Text = gStr.gsVehicleSettings;
+            Text = gStr.gsToolSettings;
 
+            nudCutoffSpeed.Controls[0].Enabled = false;
             nudForeAft.Controls[0].Enabled = false;
             nudHitchLength.Controls[0].Enabled = false;
             nudLookAhead.Controls[0].Enabled = false;
@@ -75,6 +80,10 @@ namespace AgOpenGPS
             nudSection10.Controls[0].Enabled = false;
             nudSection11.Controls[0].Enabled = false;
             nudSection12.Controls[0].Enabled = false;
+            nudSection13.Controls[0].Enabled = false;
+            nudSection14.Controls[0].Enabled = false;
+            nudSection15.Controls[0].Enabled = false;
+            nudSection16.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
             nudTurnOffDelay.Controls[0].Enabled = false;
 
@@ -197,6 +206,54 @@ namespace AgOpenGPS
 
                 nudOffset.Maximum /= 2.54M;
                 nudOffset.Minimum /= 2.54M;
+
+                nudCutoffSpeed.Maximum /= 1.60934M;
+                nudCutoffSpeed.Minimum /= 1.60934M;
+
+                nudSection1.Maximum /= 2.54M;
+                nudSection1.Minimum /= 2.54M;
+                nudSection2.Maximum /= 2.54M;
+                nudSection2.Minimum /= 2.54M;
+                nudSection3.Maximum /= 2.54M;
+                nudSection3.Minimum /= 2.54M;
+                nudSection4.Maximum /= 2.54M;
+                nudSection4.Minimum /= 2.54M;
+                nudSection5.Maximum /= 2.54M;
+                nudSection5.Minimum /= 2.54M;
+                nudSection6.Maximum /= 2.54M;
+                nudSection6.Minimum /= 2.54M;
+                nudSection7.Maximum /= 2.54M;
+                nudSection7.Minimum /= 2.54M;
+                nudSection8.Maximum /= 2.54M;
+                nudSection8.Minimum /= 2.54M;
+                nudSection9.Maximum /= 2.54M;
+                nudSection9.Minimum /= 2.54M;
+                nudSection10.Maximum /= 2.54M;
+                nudSection10.Minimum /= 2.54M;
+                nudSection11.Maximum /= 2.54M;
+                nudSection11.Minimum /= 2.54M;
+                nudSection12.Maximum /= 2.54M;
+                nudSection12.Minimum /= 2.54M;
+                nudSection13.Maximum /= 2.54M;
+                nudSection13.Minimum /= 2.54M;
+                nudSection14.Maximum /= 2.54M;
+                nudSection14.Minimum /= 2.54M;
+                nudSection15.Maximum /= 2.54M;
+                nudSection15.Minimum /= 2.54M;
+                nudSection16.Maximum /= 2.54M;
+                nudSection16.Minimum /= 2.54M;
+
+                nudDefaultSectionWidth.Maximum /= 2.54M;
+                nudDefaultSectionWidth.Minimum /= 2.54M;
+
+                lblTurnOffBelowUnits.Text = gStr.gsMPH;
+                cutoffMetricImperial = 1.60934;
+
+            }
+            else
+            {
+                lblTurnOffBelowUnits.Text = gStr.gsKMH;
+                cutoffMetricImperial = 1;
             }
 
             nudHitchLength.ValueChanged -= nudHitchLength_ValueChanged;
@@ -274,6 +331,16 @@ namespace AgOpenGPS
 
             btnChangeAttachment.BackColor = System.Drawing.Color.Transparent;
             btnChangeAttachment.Enabled = false;
+
+
+            cutoffSpeed = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff / cutoffMetricImperial;
+            temp = (decimal)cutoffSpeed;
+            if (nudCutoffSpeed.CheckValue(ref temp)) nudCutoffSpeed.BackColor = System.Drawing.Color.OrangeRed;
+            cutoffSpeed = (double)temp;
+
+            nudCutoffSpeed.ValueChanged -= nudCutoffSpeed_ValueChanged;
+            nudCutoffSpeed.Value = (decimal)cutoffSpeed;
+            nudCutoffSpeed.ValueChanged += nudCutoffSpeed_ValueChanged;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -313,6 +380,10 @@ namespace AgOpenGPS
             if (isToolBehindPivot) hitchLength *= -1;
             mf.tool.hitchLength = hitchLength;
             Properties.Vehicle.Default.setVehicle_hitchLength = mf.tool.hitchLength;
+
+            //Slow speed cutoff
+            Properties.Vehicle.Default.setVehicle_slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
+            mf.vehicle.slowSpeedCutoff = cutoffSpeed * cutoffMetricImperial;
 
             //Sections ------------------------------------------------------------------------------------------
 
@@ -377,6 +448,17 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void NudCutoffSpeed_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void nudCutoffSpeed_ValueChanged(object sender, EventArgs e)
+        {
+            cutoffSpeed = (double)nudCutoffSpeed.Value;
+        }
+               
         private void NudHitchLength_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
@@ -652,8 +734,16 @@ namespace AgOpenGPS
 
             decimal wide = nudDefaultSectionWidth.Value;
 
-            if (numberOfSections * wide > 4800) wide = 200;
-            if (!mf.isMetric) wide = 100;
+            
+            if (mf.isMetric)
+            {
+            if (numberOfSections * wide > 4800) wide = 99;
+                
+            }
+            else
+            {
+                if (numberOfSections * wide > 1900) wide = 19;
+            }
 
             nudSection1.ValueChanged -= nudSection1_ValueChanged;
             nudSection1.Value = wide;
@@ -1559,7 +1649,6 @@ namespace AgOpenGPS
                         sectionPosition17 = sectionPosition16 + sectionWidth16;
                         break;
                     }
-
             }
         }
 

@@ -931,16 +931,6 @@ namespace AgOpenGPS
                             isLeftIn = hd.headArr[0].IsPointInHeadArea(section[j].leftPoint);
                             isRightIn = hd.headArr[0].IsPointInHeadArea(section[j].rightPoint);
 
-                            for (int i = 1; i < hd.headArr.Count; i++)
-                            {
-                                //inner boundaries should normally NOT have point inside
-                                //if (hd.headArr[i].isSet)
-                                //{
-                                //    isLeftIn &= !hd.headArr[i].IsPointInHeadArea(section[j].leftPoint);
-                                //    isRightIn &= !hd.headArr[i].IsPointInHeadArea(section[j].rightPoint);
-                                //}
-                            }
-
                             //merge the two sides into in or out
                             if (!isLeftIn && !isRightIn) section[j].isInsideBoundary = false;
                             else section[j].isInsideBoundary = true;

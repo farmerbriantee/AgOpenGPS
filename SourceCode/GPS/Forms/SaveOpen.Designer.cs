@@ -457,7 +457,8 @@ namespace AgOpenGPS
                     writer.WriteLine("MaxSteerAngle," + Properties.Vehicle.Default.setVehicle_maxSteerAngle.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("MaxAngularVelocity," + Properties.Vehicle.Default.setVehicle_maxAngularVelocity.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsJRK," + Properties.Settings.Default.setAS_isJRK.ToString(CultureInfo.InvariantCulture));
-
+                    writer.WriteLine("SnapDistance," + Properties.Settings.Default.setAS_snapDistance.ToString(CultureInfo.InvariantCulture));
+                    
                     writer.WriteLine("isStanleyUsed," + Properties.Vehicle.Default.setVehicle_isStanleyUsed.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("StanleyGain," + Properties.Vehicle.Default.setVehicle_stanleyGain.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("StanleyHEadingError," + Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain.ToString(CultureInfo.InvariantCulture));
@@ -638,7 +639,9 @@ namespace AgOpenGPS
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Settings.Default.setAS_isJRK = bool.Parse(words[1]);
                             line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setAS_snapDistance = int.Parse(words[1]);
 
+                            line = reader.ReadLine(); words = line.Split(',');
                             Properties.Vehicle.Default.setVehicle_isStanleyUsed = bool.Parse(words[1]);
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Vehicle.Default.setVehicle_stanleyGain = int.Parse(words[1], CultureInfo.InvariantCulture);
@@ -746,8 +749,7 @@ namespace AgOpenGPS
                             vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
                             vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
 
-
-                            //**************8JRK
+                            isJRK = Properties.Settings.Default.setAS_isJRK;
 
                             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
                             vehicle.stanleyGain = Properties.Vehicle.Default.setVehicle_stanleyGain;
@@ -1791,7 +1793,6 @@ namespace AgOpenGPS
                             bnd.bndArr.Add(new CBoundaryLines());
                             turn.turnArr.Add(new CTurnLines());
                             gf.geoFenceArr.Add(new CGeoFenceLines());
-                            hd.headArr.Add(new CHeadLines());
 
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
@@ -1865,7 +1866,6 @@ namespace AgOpenGPS
 
             // Headland  -------------------------------------------------------------------------------------------------
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
-            //hd.headArr.Add(new CHeadLines());
 
             if (File.Exists(fileAndDirectory))
             {
@@ -1876,12 +1876,11 @@ namespace AgOpenGPS
                         //read header
                         line = reader.ReadLine();
 
-
                         for (int k = 0; true; k++)
                         {
                             if (reader.EndOfStream) break;
 
-                            hd.headArr?.Clear();
+                            hd.headArr[0].hdLine.Clear();
 
                             //read the number of points
                             line = reader.ReadLine();
@@ -1889,7 +1888,6 @@ namespace AgOpenGPS
 
                             if (numPoints > 0 && bnd.bndArr.Count >= hd.headArr.Count)
                             {
-                                hd.headArr.Add(new CHeadLines());
 
                                 hd.headArr[k].hdLine.Clear();
                                 hd.headArr[k].calcList.Clear();
@@ -2223,7 +2221,7 @@ namespace AgOpenGPS
             {
                 writer.WriteLine("$Headland");
 
-                if (hd.headArr.Count > 0)
+                if (hd.headArr[0].hdLine.Count > 0)
                 {
                     for (int i = 0; i < hd.headArr.Count; i++)
                     {

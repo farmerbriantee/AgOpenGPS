@@ -42,6 +42,9 @@
             this.nudHitchLength = new System.Windows.Forms.NumericUpDown();
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.tabSettings = new System.Windows.Forms.TabPage();
+            this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label30 = new System.Windows.Forms.Label();
+            this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.nudOffset = new System.Windows.Forms.NumericUpDown();
             this.label23 = new System.Windows.Forms.Label();
             this.nudTurnOffDelay = new System.Windows.Forms.NumericUpDown();
@@ -110,6 +113,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).BeginInit();
             this.tabSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).BeginInit();
@@ -370,6 +374,9 @@
             this.tabSettings.BackColor = System.Drawing.SystemColors.Window;
             this.tabSettings.BackgroundImage = global::AgOpenGPS.Properties.Resources.ImplementSettings;
             this.tabSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabSettings.Controls.Add(this.nudCutoffSpeed);
+            this.tabSettings.Controls.Add(this.label30);
+            this.tabSettings.Controls.Add(this.lblTurnOffBelowUnits);
             this.tabSettings.Controls.Add(this.nudOffset);
             this.tabSettings.Controls.Add(this.label23);
             this.tabSettings.Controls.Add(this.nudTurnOffDelay);
@@ -381,6 +388,59 @@
             this.tabSettings.Size = new System.Drawing.Size(970, 541);
             this.tabSettings.TabIndex = 9;
             this.tabSettings.Text = "Settings";
+            // 
+            // nudCutoffSpeed
+            // 
+            this.nudCutoffSpeed.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudCutoffSpeed.DecimalPlaces = 1;
+            this.nudCutoffSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCutoffSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudCutoffSpeed.InterceptArrowKeys = false;
+            this.nudCutoffSpeed.Location = new System.Drawing.Point(699, 429);
+            this.nudCutoffSpeed.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.nudCutoffSpeed.Name = "nudCutoffSpeed";
+            this.nudCutoffSpeed.Size = new System.Drawing.Size(152, 52);
+            this.nudCutoffSpeed.TabIndex = 110;
+            this.nudCutoffSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudCutoffSpeed.Value = new decimal(new int[] {
+            11,
+            0,
+            0,
+            65536});
+            this.nudCutoffSpeed.ValueChanged += new System.EventHandler(this.nudCutoffSpeed_ValueChanged);
+            this.nudCutoffSpeed.Enter += new System.EventHandler(this.NudCutoffSpeed_Enter);
+            // 
+            // label30
+            // 
+            this.label30.BackColor = System.Drawing.SystemColors.Window;
+            this.label30.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label30.Location = new System.Drawing.Point(694, 353);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(244, 61);
+            this.label30.TabIndex = 111;
+            this.label30.Text = "Off below";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // lblTurnOffBelowUnits
+            // 
+            this.lblTurnOffBelowUnits.AutoSize = true;
+            this.lblTurnOffBelowUnits.BackColor = System.Drawing.SystemColors.Window;
+            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 20.25F);
+            this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(857, 441);
+            this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
+            this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(82, 33);
+            this.lblTurnOffBelowUnits.TabIndex = 112;
+            this.lblTurnOffBelowUnits.Text = "Km/H";
             // 
             // nudOffset
             // 
@@ -742,7 +802,7 @@
             this.nudDefaultSectionWidth.TabIndex = 249;
             this.nudDefaultSectionWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudDefaultSectionWidth.Value = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -1446,6 +1506,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHitchLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTankHitch)).EndInit();
             this.tabSettings.ResumeLayout(false);
+            this.tabSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudOffset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnOffDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAhead)).EndInit();
@@ -1554,5 +1616,8 @@
         private System.Windows.Forms.NumericUpDown nudSection15;
         private System.Windows.Forms.NumericUpDown nudSection14;
         private System.Windows.Forms.NumericUpDown nudSection13;
+        private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label lblTurnOffBelowUnits;
     }
 }

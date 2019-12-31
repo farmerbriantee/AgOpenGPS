@@ -155,8 +155,8 @@ namespace AgOpenGPS
                             dd.Anchor = System.Windows.Forms.AnchorStyles.None;
                             ee.Text = mf.bnd.bndArr[i].isDriveAround ? "--" : "--";
                             ee.Anchor = System.Windows.Forms.AnchorStyles.None;
-                            dd.BackColor = Color.Azure;
-                            ee.BackColor = Color.Azure;
+                            dd.BackColor = Color.WhiteSmoke;
+                            ee.BackColor = Color.WhiteSmoke;
 
                         }
                         else
@@ -171,8 +171,8 @@ namespace AgOpenGPS
                             dd.Anchor = System.Windows.Forms.AnchorStyles.None;
                             ee.Text = mf.bnd.bndArr[i].isDriveAround ? "Yes" : "No";
                             ee.Anchor = System.Windows.Forms.AnchorStyles.None;
-                            dd.BackColor = Color.Azure;
-                            ee.BackColor = Color.Azure;
+                            dd.BackColor = Color.WhiteSmoke;
+                            ee.BackColor = Color.WhiteSmoke;
                         }
 
                         if (mf.isMetric)
@@ -339,7 +339,7 @@ namespace AgOpenGPS
 
             if (mf.bnd.boundarySelected == 0)
             {
-                mf.hd.headArr.Clear();
+                mf.hd.headArr[0].hdLine.Clear();
                 mf.hd.isOn = false;
                 mf.FileSaveHeadland();
             }
@@ -403,7 +403,7 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
-            mf.hd.headArr.Clear();
+            mf.hd.headArr[0].hdLine.Clear();
             mf.hd.isOn = false;
             mf.FileSaveHeadland();
 
@@ -491,7 +491,6 @@ namespace AgOpenGPS
                                     mf.bnd.bndArr.Add(new CBoundaryLines());
                                     mf.turn.turnArr.Add(new CTurnLines());
                                     mf.gf.geoFenceArr.Add(new CGeoFenceLines());
-                                    mf.hd.headArr.Add(new CHeadLines());
 
                                     foreach (var item in numberSets)
                                     {

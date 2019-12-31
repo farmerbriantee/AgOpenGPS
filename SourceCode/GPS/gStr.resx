@@ -1212,6 +1212,9 @@
   <data name="gsToolOffsetLR" xml:space="preserve">
     <value>Tool Offset L/R</value>
   </data>
+  <data name="gsToolSettings" xml:space="preserve">
+    <value>Tool Settings</value>
+  </data>
   <data name="gsToolWidth" xml:space="preserve">
     <value>Tool Width</value>
   </data>

@@ -603,6 +603,7 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            isJRK = Properties.Settings.Default.setAS_isJRK;
         }
 
         //form is closing so tidy up and save settings
@@ -1281,6 +1282,11 @@ namespace AgOpenGPS
             hsbarStepDistance.Value = 0;
         }
 
+        private void btnDayNightMode_Click(object sender, EventArgs e)
+        {
+            SwapDayNightMode();
+        }
+
         private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
         {
             FileSaveEnvironment();
@@ -1551,7 +1557,7 @@ namespace AgOpenGPS
             bnd.bndArr?.Clear();
             gf.geoFenceArr?.Clear();
             turn.turnArr?.Clear();
-            hd.headArr?.Clear();
+            hd.headArr[0].hdLine?.Clear();
 
             layoutPanelRight.Enabled = false;
             //boundaryToolStripBtn.Enabled = false;

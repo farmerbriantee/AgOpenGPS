@@ -48,10 +48,7 @@
             this.nudAntennaOffset = new System.Windows.Forms.NumericUpDown();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
-            this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
-            this.label30 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabGuidance = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -60,8 +57,6 @@
             this.nudLightbarCmPerPixel = new System.Windows.Forms.NumericUpDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.cboxAutoSteerAuto = new System.Windows.Forms.CheckBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.nudSnapDistanceSmall = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudSnapDistance = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
@@ -78,7 +73,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
             this.tabVehicle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabGuidance.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -86,8 +80,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).BeginInit();
             this.groupBox9.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).BeginInit();
             this.SuspendLayout();
@@ -392,10 +384,7 @@
             this.tabVehicle.BackColor = System.Drawing.SystemColors.Window;
             this.tabVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.tabVehicle.Controls.Add(this.nudMinTurnRadius);
-            this.tabVehicle.Controls.Add(this.nudCutoffSpeed);
-            this.tabVehicle.Controls.Add(this.label30);
             this.tabVehicle.Controls.Add(this.pictureBox1);
-            this.tabVehicle.Controls.Add(this.lblTurnOffBelowUnits);
             this.tabVehicle.Controls.Add(this.label6);
             this.tabVehicle.Location = new System.Drawing.Point(4, 73);
             this.tabVehicle.Margin = new System.Windows.Forms.Padding(4);
@@ -435,47 +424,6 @@
             this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
             this.nudMinTurnRadius.Enter += new System.EventHandler(this.NudMinTurnRadius_Enter);
             // 
-            // nudCutoffSpeed
-            // 
-            this.nudCutoffSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudCutoffSpeed.DecimalPlaces = 1;
-            this.nudCutoffSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudCutoffSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudCutoffSpeed.InterceptArrowKeys = false;
-            this.nudCutoffSpeed.Location = new System.Drawing.Point(464, 148);
-            this.nudCutoffSpeed.Maximum = new decimal(new int[] {
-            30,
-            0,
-            0,
-            0});
-            this.nudCutoffSpeed.Name = "nudCutoffSpeed";
-            this.nudCutoffSpeed.Size = new System.Drawing.Size(152, 52);
-            this.nudCutoffSpeed.TabIndex = 28;
-            this.nudCutoffSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudCutoffSpeed.Value = new decimal(new int[] {
-            11,
-            0,
-            0,
-            65536});
-            this.nudCutoffSpeed.ValueChanged += new System.EventHandler(this.nudCutoffSpeed_ValueChanged);
-            this.nudCutoffSpeed.Enter += new System.EventHandler(this.NudCutoffSpeed_Enter);
-            // 
-            // label30
-            // 
-            this.label30.BackColor = System.Drawing.SystemColors.Window;
-            this.label30.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label30.Location = new System.Drawing.Point(459, 72);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(244, 61);
-            this.label30.TabIndex = 29;
-            this.label30.Text = "Sections Turn Off below";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.tire;
@@ -486,18 +434,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
-            // 
-            // lblTurnOffBelowUnits
-            // 
-            this.lblTurnOffBelowUnits.AutoSize = true;
-            this.lblTurnOffBelowUnits.BackColor = System.Drawing.SystemColors.Window;
-            this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 20.25F);
-            this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(622, 160);
-            this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
-            this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(82, 33);
-            this.lblTurnOffBelowUnits.TabIndex = 30;
-            this.lblTurnOffBelowUnits.Text = "Km/H";
             // 
             // label6
             // 
@@ -516,7 +452,6 @@
             this.tabGuidance.Controls.Add(this.groupBox4);
             this.tabGuidance.Controls.Add(this.groupBox2);
             this.tabGuidance.Controls.Add(this.groupBox9);
-            this.tabGuidance.Controls.Add(this.groupBox8);
             this.tabGuidance.Controls.Add(this.groupBox1);
             this.tabGuidance.Location = new System.Drawing.Point(4, 73);
             this.tabGuidance.Name = "tabGuidance";
@@ -630,45 +565,11 @@
             this.cboxAutoSteerAuto.UseVisualStyleBackColor = true;
             this.cboxAutoSteerAuto.CheckedChanged += new System.EventHandler(this.CboxAutoSteerAuto_CheckedChanged);
             // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.nudSnapDistanceSmall);
-            this.groupBox8.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox8.Location = new System.Drawing.Point(45, 59);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(279, 172);
-            this.groupBox8.TabIndex = 91;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "< > Snap Distance (cm)";
-            // 
-            // nudSnapDistanceSmall
-            // 
-            this.nudSnapDistanceSmall.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudSnapDistanceSmall.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSnapDistanceSmall.InterceptArrowKeys = false;
-            this.nudSnapDistanceSmall.Location = new System.Drawing.Point(23, 73);
-            this.nudSnapDistanceSmall.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudSnapDistanceSmall.Name = "nudSnapDistanceSmall";
-            this.nudSnapDistanceSmall.Size = new System.Drawing.Size(184, 65);
-            this.nudSnapDistanceSmall.TabIndex = 66;
-            this.nudSnapDistanceSmall.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSnapDistanceSmall.Value = new decimal(new int[] {
-            499,
-            0,
-            0,
-            0});
-            this.nudSnapDistanceSmall.ValueChanged += new System.EventHandler(this.NudSnapDistanceSmall_ValueChanged);
-            this.nudSnapDistanceSmall.Enter += new System.EventHandler(this.NudSnapDistanceSmall_Enter);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.nudSnapDistance);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(45, 288);
+            this.groupBox1.Location = new System.Drawing.Point(34, 63);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(279, 168);
             this.groupBox1.TabIndex = 90;
@@ -758,7 +659,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1341, 700);
+            this.ClientSize = new System.Drawing.Size(992, 700);
             this.ControlBox = false;
             this.Controls.Add(this.lblInchesCm);
             this.Controls.Add(this.label17);
@@ -786,9 +687,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             this.tabVehicle.ResumeLayout(false);
-            this.tabVehicle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCutoffSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabGuidance.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -797,8 +696,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudLightbarCmPerPixel)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistanceSmall)).EndInit();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudSnapDistance)).EndInit();
             this.ResumeLayout(false);
@@ -819,9 +716,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblTurnOffBelowUnits;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.NumericUpDown nudCutoffSpeed;
         private System.Windows.Forms.Label lblInchesCm;
         private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
         private System.Windows.Forms.Label label9;
@@ -833,8 +727,6 @@
         private System.Windows.Forms.TabPage tabGuidance;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.CheckBox cboxAutoSteerAuto;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.NumericUpDown nudSnapDistanceSmall;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown nudSnapDistance;
         private System.Windows.Forms.GroupBox groupBox2;

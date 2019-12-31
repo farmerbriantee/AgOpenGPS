@@ -3328,6 +3328,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tool Settings.
+        /// </summary>
+        public static string gsToolSettings {
+            get {
+                return ResourceManager.GetString("gsToolSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tool Width.
         /// </summary>
         public static string gsToolWidth {

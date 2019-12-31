@@ -1672,9 +1672,29 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap WindowDayMode {
+            get {
+                object obj = ResourceManager.GetObject("WindowDayMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WindowFullScreen {
             get {
                 object obj = ResourceManager.GetObject("WindowFullScreen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WindowNightMode {
+            get {
+                object obj = ResourceManager.GetObject("WindowNightMode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

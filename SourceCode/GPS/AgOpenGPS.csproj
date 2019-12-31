@@ -689,6 +689,8 @@
     <None Include="btnImages\VehicleSettingsTractor.jpg" />
     <None Include="btnImages\WindowFullScreen.png" />
     <None Include="btnImages\WindowNormal.png" />
+    <None Include="btnImages\WindowDayMode.png" />
+    <None Include="btnImages\WindowNightMode.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

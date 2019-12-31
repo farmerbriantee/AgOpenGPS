@@ -236,9 +236,6 @@
     <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
-    <Setting Name="setAS_snapDistanceSmall" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
     <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

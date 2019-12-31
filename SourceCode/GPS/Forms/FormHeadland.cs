@@ -58,7 +58,7 @@ namespace AgOpenGPS
             }
             else
             {
-                BuildHeadLineTemplateFromBoundary();                
+                BuildHeadLineTemplateFromBoundary();
             }
         }
 
@@ -581,7 +581,6 @@ namespace AgOpenGPS
                 btnMakeFixedHeadland.Enabled = true;
                 nudDistance.Enabled = true;
             }
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)

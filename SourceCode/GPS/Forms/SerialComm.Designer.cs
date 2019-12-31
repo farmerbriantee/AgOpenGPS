@@ -20,7 +20,7 @@ namespace AgOpenGPS
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 38400;
 
-        //private string[] words;
+        public bool isJRK;
 
         public string NMEASentence = "No Data";
 
@@ -114,7 +114,7 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                if (Properties.Settings.Default.setAS_isJRK)
+                if (isJRK)
                 {
                     byte[] command = new byte[2];
                     int target;

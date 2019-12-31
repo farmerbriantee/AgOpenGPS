@@ -961,18 +961,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public int setAS_snapDistanceSmall {
-            get {
-                return ((int)(this["setAS_snapDistanceSmall"]));
-            }
-            set {
-                this["setAS_snapDistanceSmall"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setF_IsWorkSwitchManual {
             get {

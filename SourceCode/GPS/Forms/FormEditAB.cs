@@ -28,12 +28,6 @@ namespace AgOpenGPS
         private void FormEditAB_Load(object sender, EventArgs e)
         {
 
-            //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblSmallSnapRight.Text = Properties.Settings.Default.setAS_snapDistanceSmall.ToString() + "cm";
-
-            lblWidthRight.Text = (mf.tool.toolWidth - mf.tool.toolOverlap).ToString("N2") + "m";
-            lblWidthLeft.Text = "-" + lblWidthRight.Text;
-
             snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
             nudMinTurnRadius.Value = Properties.Settings.Default.setAS_snapDistance;
 
@@ -41,44 +35,7 @@ namespace AgOpenGPS
             btnCancel.Focus();
             mf.ABLine.isEditing = true;
             mf.layoutPanelRight.Enabled = true;
-        }
-
-
-        private void btnSnap_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.SnapABLine();
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-            mf.ABLine.MoveABLine(-dist);
-
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-            mf.ABLine.MoveABLine(dist);
-
-        }
-
-        private void btnLeftFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
-
-            mf.ABLine.MoveABLine(-dist);
-
-        }
-
-        private void btnRightFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
-
-            mf.ABLine.MoveABLine(dist);
-
+            label3.Text = "\u00BD";
         }
 
         private void nudMinTurnRadius_Enter(object sender, EventArgs e)

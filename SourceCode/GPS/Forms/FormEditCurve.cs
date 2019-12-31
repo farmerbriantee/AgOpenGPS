@@ -29,10 +29,7 @@ namespace AgOpenGPS
         {
 
             //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblSmallSnapRight.Text = Properties.Settings.Default.setAS_snapDistanceSmall.ToString("N2") + "cm";
-
-            lblWidthRight.Text = (mf.tool.toolWidth - mf.tool.toolOverlap).ToString() + "m";
-            lblWidthLeft.Text = "-" + lblWidthRight.Text;
+            label2.Text = "\u00BD";
 
 
             snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
@@ -41,38 +38,6 @@ namespace AgOpenGPS
             btnCancel.Focus();
             mf.curve.isEditing = true;
             mf.layoutPanelRight.Enabled = false;
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-            mf.curve.MoveABCurve(-dist);
-
-        }
-
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-            double dist = 0.01 * Properties.Settings.Default.setAS_snapDistanceSmall;
-
-            mf.curve.MoveABCurve(dist);
-
-        }
-
-        private void btnLeftFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
-
-            mf.curve.MoveABCurve(-dist);
-
-        }
-
-        private void btnRightFullWidth_Click(object sender, EventArgs e)
-        {
-            double dist = mf.tool.toolWidth - mf.tool.toolOverlap;
-
-            mf.curve.MoveABCurve(dist);
-
         }
 
         private void nudMinTurnRadius_Enter(object sender, EventArgs e)
