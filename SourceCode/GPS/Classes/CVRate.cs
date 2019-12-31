@@ -195,19 +195,18 @@ namespace AgOpenGPS
         {
             int ptCount = mapList.Count;
             if (ptCount == 0) return;
-
             GL.Enable(EnableCap.Texture2D);
             GL.Color3(0.96f, .96f, 0.96f);
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[9]);
             GL.Begin(PrimitiveType.TriangleStrip);
             GL.TexCoord2(0, 0);
-            GL.Vertex3(mf.minFieldX - mf.maxFieldDistance, mf.maxFieldY + mf.maxFieldDistance, 0.0);
+            GL.Vertex3(mf.minFieldX - mf.maxFieldDistance + mf.offXB, mf.maxFieldY + mf.maxFieldDistance + mf.offYB, 0.0);
             GL.TexCoord2(1.0, 0.0);
-            GL.Vertex3(mf.maxFieldX + mf.maxFieldDistance, mf.maxFieldY + mf.maxFieldDistance, 0.0);
+            GL.Vertex3(mf.maxFieldX + mf.maxFieldDistance + mf.offXB, mf.maxFieldY + mf.maxFieldDistance + mf.offYB, 0.0);
             GL.TexCoord2(0.0, 1.0);
-            GL.Vertex3(mf.minFieldX - mf.maxFieldDistance, mf.minFieldY - mf.maxFieldDistance, 0.0);
+            GL.Vertex3(mf.minFieldX - mf.maxFieldDistance + mf.offXB, mf.minFieldY - mf.maxFieldDistance + mf.offYB, 0.0);
             GL.TexCoord2(1.0, 1.0);
-            GL.Vertex3(mf.maxFieldX + mf.maxFieldDistance, mf.minFieldY - mf.maxFieldDistance, 0.0);
+            GL.Vertex3(mf.maxFieldX + mf.maxFieldDistance + mf.offXB, mf.minFieldY - mf.maxFieldDistance + mf.offYB, 0.0);
             GL.End();
             GL.Disable(EnableCap.Texture2D);
 

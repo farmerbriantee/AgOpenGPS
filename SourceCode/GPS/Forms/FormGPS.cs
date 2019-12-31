@@ -954,7 +954,7 @@ namespace AgOpenGPS
             {
 
                 rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
-                rtbFlag.Text = "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
                 rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
                 FlagTextBox.Text = flagPts[flagNumberPicked - 1].flgtxt;
                 //rtbFlag.LoadFile(fileAndD, RichTextBoxStreamType.PlainText);
@@ -963,7 +963,7 @@ namespace AgOpenGPS
             else
             {
                 rtbFlag.Text = "Flag Number " + (flagPts[flagNumberPicked - 1]).ID.ToString();
-                rtbFlag.Text = "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
+                rtbFlag.Text += "\r\n" + "Lat: " + (flagPts[flagNumberPicked - 1]).latitude.ToString();
                 rtbFlag.Text += "\r\n" + "Long: " + (flagPts[flagNumberPicked - 1]).longitude.ToString();
                 FlagTextBox.Text = flagPts[flagNumberPicked - 1].flgtxt;
             }
@@ -1058,6 +1058,7 @@ namespace AgOpenGPS
                 isBackgroundOn = false;
                 backGroumdBtn.Text = "Load Background";
                 backGroumdBtn.BackColor = System.Drawing.Color.Transparent;
+                BackAdjustBtn.Visible = false;
                 return;
             }
             using (var form = new FormVRate(this))
@@ -1071,6 +1072,7 @@ namespace AgOpenGPS
             }
             backGroumdBtn.Text = "Click Background Off";
             backGroumdBtn.BackColor = System.Drawing.Color.Lime;
+            BackAdjustBtn.Visible = true;
         }
 
         private void WalkAboutBtn_Click(object sender, EventArgs e)
@@ -1188,6 +1190,20 @@ namespace AgOpenGPS
 
                 
                 btnContourPriority.Image = Properties.Resources.Snap2;
+            }
+        }
+
+        
+
+        private void BackAdjustBtn_Click(object sender, EventArgs e)
+        {
+            if(backGroundAdjust)
+            {
+                backGroundAdjust = false;
+            }
+            else
+            {
+                backGroundAdjust = true;
             }
         }
 

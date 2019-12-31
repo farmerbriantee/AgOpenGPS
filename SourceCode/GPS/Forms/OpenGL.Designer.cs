@@ -19,9 +19,12 @@ namespace AgOpenGPS
         private double camDistanceFactor = -2;
 
         int mouseX = 0, mouseY = 0;
-        public double offX, offY;
+        public double offX, offY,offXB,offYB;
         public double lookaheadActual, test2;
         private int zoomUpdateCounter = 0;
+        public double mouseXO = 0;
+        public double mouseYO = 0;
+        public bool backGroundAdjust = false;
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[125001];
@@ -255,6 +258,8 @@ namespace AgOpenGPS
 
                 if (isJobStarted) DrawFieldText();
 
+                DrawBackGroundAjst();
+
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.
 
@@ -270,7 +275,36 @@ namespace AgOpenGPS
                 GL.Flush();
                 oglMain.SwapBuffers();
 
-                if (leftMouseDownOnOpenGL) MakeFlagMark();
+                if (leftMouseDownOnOpenGL)
+                {
+                    MakeFlagMark();
+
+                    //Build the adjust things.
+                    ScreenToMouse(oglMain.Width / 2 * -.85, oglMain.Height * .75);
+                    if (glm.Distance(mouseX, mouseY, mouseXO, mouseYO) <= 50)//home
+                    {
+                        if (backGroundAdjust)
+                        {
+                            offXB = -(mouseX - mouseXO) / 10;
+                            offYB = -(mouseY - mouseYO) / 10;
+                        }
+                        else
+
+                        {
+                            if (glm.Distance(mouseX, mouseY, mouseXO, mouseYO) >= 5)
+                            {
+                                    offX = -(mouseX - mouseXO);
+                                    offY = -(mouseY - mouseYO);
+                                }
+                                else
+                                {
+                                    offX = 0;
+                                    offY = 0;
+                                
+                            }
+                        }
+                    }
+                }
 
                 //draw the section control window off screen buffer
                 oglBack.Refresh();
@@ -1582,6 +1616,117 @@ namespace AgOpenGPS
                     font.DrawText(0, oglMain.Height - 32, sb.ToString());
                 }
             }
+        }
+
+        public void ScreenToMouse(Double ScreenXO, Double ScreenYO)
+        {
+            mouseXO = oglMain.Width/2 + ScreenXO;
+            mouseYO = oglMain.Height - ScreenYO;
+        }
+
+        private void DrawBackGroundAjst()
+        {
+            GL.PushMatrix();
+
+            double theta = glm.twoPI / 20;
+            double c = Math.Cos(theta);//precalculate the sine and cosine
+            double s = Math.Sin(theta);
+
+            double x = 50;//we start at angle = 0
+            double y = 0;
+            GL.Translate((oglMain.Width/2 * -.85), (oglMain.Height * .75), 0);
+            GL.Color4(0.95f, 0.95f, 0.95f, 0.5f);
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.LineLoop);
+
+            for (int ii = 0; ii < 20; ii++)
+            {
+                //output vertex
+                GL.Vertex3(x, y, 0.0);
+
+                //apply the rotation matrix
+                double t = x;
+                x = (c * x) - (s * y);
+                y = (s * t) + (c * y);
+                // GL.Vertex3(x, y, 0.0);
+            }
+            GL.End();
+            GL.Color4(0.95f, 0.95f, 0.95f, 0.15f);
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.TriangleFan);
+            GL.Vertex3(x, y, 0.0);
+            for (int ii = 0; ii < 20; ii++)
+            {
+                //output vertex
+                GL.Vertex3(x, y, 0.0);
+
+                //apply the rotation matrix
+                double t = x;
+                x = (c * x) - (s * y);
+                y = (s * t) + (c * y);
+                // GL.Vertex3(x, y, 0.0);
+            }
+            GL.End();
+            GL.Color4(0.95f, 0.00f, 0.00f, 0.8f);
+            if (backGroundAdjust)
+            {
+                GL.Translate((15 * 10 * -offXB / 25), (15 * 10 * offYB / 25), 0);
+                GL.Color4(0.95f, 0.00f, 0.00f, 0.8f);
+            }
+            else
+            {
+                GL.Translate((15 * -offX / 25), (15 * offY / 25), 0);
+                if (offX != 0 && offY != 0)
+                {
+                    GL.Color4(0.95f, 0.00f, 0.00f, 0.5f);
+                }
+                else
+                {
+                    GL.Color4(0.95f, 0.95f, 0.95f, 0.5f);
+                }
+
+            }
+            x = 20;//we start at angle = 0
+            y = 0;
+            GL.Begin(PrimitiveType.LineLoop);
+
+            for (int ii = 0; ii < 20; ii++)
+            {
+                //output vertex
+                GL.Vertex3(x, y, 0.0);
+
+                //apply the rotation matrix
+                double t = x;
+                x = (c * x) - (s * y);
+                y = (s * t) + (c * y);
+                // GL.Vertex3(x, y, 0.0);
+            }
+            GL.End();
+            if (offX != 0 && offY != 0)
+            {
+                GL.Color4(0.95f, 0.00f, 0.00f, 0.15f);
+            }
+            else
+            {
+                GL.Color4(0.95f, 0.95f, 0.95f, 0.15f);
+            }
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.TriangleFan);
+            GL.Vertex3(x, y, 0.0);
+            for (int ii = 0; ii < 20; ii++)
+            {
+                //output vertex
+                GL.Vertex3(x, y, 0.0);
+
+                //apply the rotation matrix
+                double t = x;
+                x = (c * x) - (s * y);
+                y = (s * t) + (c * y);
+                // GL.Vertex3(x, y, 0.0);
+            }
+            GL.End();
+            GL.PopMatrix();
+            
         }
 
         private void CalcFrustum()

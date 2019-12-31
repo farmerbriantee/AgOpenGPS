@@ -120,6 +120,7 @@
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.BackAdjustBtn = new System.Windows.Forms.Button();
             this.WalkAboutBtn = new System.Windows.Forms.Button();
             this.backGroumdBtn = new System.Windows.Forms.Button();
             this.lblUturnByte = new System.Windows.Forms.Label();
@@ -238,11 +239,11 @@
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.panelFlag = new System.Windows.Forms.Panel();
+            this.FlagDistLbl = new System.Windows.Forms.Label();
             this.FlagTextBox = new System.Windows.Forms.TextBox();
             this.rtbFlag = new System.Windows.Forms.RichTextBox();
             this.btnNxtFlg = new System.Windows.Forms.Button();
             this.btnSaveFlag = new System.Windows.Forms.Button();
-            this.FlagDistLbl = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1139,6 +1140,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panelBatman.BackColor = System.Drawing.Color.Transparent;
             this.panelBatman.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBatman.Controls.Add(this.BackAdjustBtn);
             this.panelBatman.Controls.Add(this.WalkAboutBtn);
             this.panelBatman.Controls.Add(this.backGroumdBtn);
             this.panelBatman.Controls.Add(this.lblZone);
@@ -1173,10 +1175,22 @@
             this.panelBatman.Size = new System.Drawing.Size(168, 544);
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
+            
+            // 
+            // BackAdjustBtn
+            // 
+            this.BackAdjustBtn.Location = new System.Drawing.Point(18, 436);
+            this.BackAdjustBtn.Name = "BackAdjustBtn";
+            this.BackAdjustBtn.Size = new System.Drawing.Size(111, 38);
+            this.BackAdjustBtn.TabIndex = 313;
+            this.BackAdjustBtn.Text = "Adjust";
+            this.BackAdjustBtn.UseVisualStyleBackColor = true;
+            this.BackAdjustBtn.Visible = false;
+            this.BackAdjustBtn.Click += new System.EventHandler(this.BackAdjustBtn_Click);
             // 
             // WalkAboutBtn
             // 
-            this.WalkAboutBtn.Location = new System.Drawing.Point(16, 464);
+            this.WalkAboutBtn.Location = new System.Drawing.Point(16, 480);
             this.WalkAboutBtn.Name = "WalkAboutBtn";
             this.WalkAboutBtn.Size = new System.Drawing.Size(113, 43);
             this.WalkAboutBtn.TabIndex = 312;
@@ -1188,7 +1202,7 @@
             // 
             this.backGroumdBtn.Location = new System.Drawing.Point(16, 378);
             this.backGroumdBtn.Name = "backGroumdBtn";
-            this.backGroumdBtn.Size = new System.Drawing.Size(114, 72);
+            this.backGroumdBtn.Size = new System.Drawing.Size(114, 60);
             this.backGroumdBtn.TabIndex = 311;
             this.backGroumdBtn.Text = "Background";
             this.backGroumdBtn.UseVisualStyleBackColor = true;
@@ -2886,13 +2900,22 @@
             this.panelFlag.Controls.Add(this.btnSaveFlag);
             this.panelFlag.Location = new System.Drawing.Point(776, 49);
             this.panelFlag.Name = "panelFlag";
-            this.panelFlag.Size = new System.Drawing.Size(335, 207);
+            this.panelFlag.Size = new System.Drawing.Size(335, 223);
             this.panelFlag.TabIndex = 448;
             this.panelFlag.Visible = false;
             // 
+            // FlagDistLbl
+            // 
+            this.FlagDistLbl.AutoSize = true;
+            this.FlagDistLbl.Location = new System.Drawing.Point(18, 95);
+            this.FlagDistLbl.Name = "FlagDistLbl";
+            this.FlagDistLbl.Size = new System.Drawing.Size(68, 19);
+            this.FlagDistLbl.TabIndex = 5;
+            this.FlagDistLbl.Text = "Distance";
+            // 
             // FlagTextBox
             // 
-            this.FlagTextBox.Location = new System.Drawing.Point(22, 113);
+            this.FlagTextBox.Location = new System.Drawing.Point(22, 121);
             this.FlagTextBox.Name = "FlagTextBox";
             this.FlagTextBox.Size = new System.Drawing.Size(273, 27);
             this.FlagTextBox.TabIndex = 4;
@@ -2903,13 +2926,13 @@
             this.rtbFlag.Location = new System.Drawing.Point(22, 20);
             this.rtbFlag.Name = "rtbFlag";
             this.rtbFlag.ReadOnly = true;
-            this.rtbFlag.Size = new System.Drawing.Size(288, 47);
+            this.rtbFlag.Size = new System.Drawing.Size(288, 69);
             this.rtbFlag.TabIndex = 3;
             this.rtbFlag.Text = "";
             // 
             // btnNxtFlg
             // 
-            this.btnNxtFlg.Location = new System.Drawing.Point(22, 158);
+            this.btnNxtFlg.Location = new System.Drawing.Point(22, 174);
             this.btnNxtFlg.Name = "btnNxtFlg";
             this.btnNxtFlg.Size = new System.Drawing.Size(132, 30);
             this.btnNxtFlg.TabIndex = 2;
@@ -2919,22 +2942,13 @@
             // 
             // btnSaveFlag
             // 
-            this.btnSaveFlag.Location = new System.Drawing.Point(210, 158);
+            this.btnSaveFlag.Location = new System.Drawing.Point(210, 173);
             this.btnSaveFlag.Name = "btnSaveFlag";
             this.btnSaveFlag.Size = new System.Drawing.Size(104, 31);
             this.btnSaveFlag.TabIndex = 1;
             this.btnSaveFlag.Text = "SAVE";
             this.btnSaveFlag.UseVisualStyleBackColor = true;
             this.btnSaveFlag.Click += new System.EventHandler(this.BtnSaveFlag_Click);
-            // 
-            // FlagDistLbl
-            // 
-            this.FlagDistLbl.AutoSize = true;
-            this.FlagDistLbl.Location = new System.Drawing.Point(28, 79);
-            this.FlagDistLbl.Name = "FlagDistLbl";
-            this.FlagDistLbl.Size = new System.Drawing.Size(68, 19);
-            this.FlagDistLbl.TabIndex = 5;
-            this.FlagDistLbl.Text = "Distance";
             // 
             // FormGPS
             // 
@@ -3218,6 +3232,7 @@
         private System.Windows.Forms.Button backGroumdBtn;
         private System.Windows.Forms.Button WalkAboutBtn;
         private System.Windows.Forms.Label FlagDistLbl;
+        private System.Windows.Forms.Button BackAdjustBtn;
     }
 }
 
