@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using OpenTK.Graphics.OpenGL;
+using System.Drawing;
 
 namespace AgOpenGPS
 {
@@ -27,8 +28,10 @@ namespace AgOpenGPS
 
         public void DrawFieldSurface()
         {
+
+            Color field = mf.fieldColor;
             GL.Enable(EnableCap.Texture2D);
-            GL.Color3(mf.redField, mf.grnField, mf.bluField);
+            GL.Color3(field.R, field.G, field.B);
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);
             GL.Begin(PrimitiveType.TriangleStrip);
             GL.TexCoord2(0, 0);

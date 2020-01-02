@@ -242,5 +242,8 @@
     <Setting Name="setSection_position17" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="setVehicle_hydraulicLiftLookAhead" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

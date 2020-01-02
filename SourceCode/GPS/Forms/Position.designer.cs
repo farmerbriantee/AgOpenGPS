@@ -692,20 +692,30 @@ namespace AgOpenGPS
             #endregion
             //used to increase triangle count when going around corners, less on straight
             //pick the slow moving side edge of tool
-            double metersPerSec = pn.speed * 0.277777777;
+            double distance = tool.toolWidth * 0.5;
+            if (distance > 8) distance = 8;
 
+            
             //whichever is less
             if (tool.toolFarLeftSpeed < tool.toolFarRightSpeed)
-                sectionTriggerStepDistance = tool.toolFarLeftSpeed / metersPerSec;
-            else sectionTriggerStepDistance = tool.toolFarRightSpeed / metersPerSec;
+            {
+                double twist = tool.toolFarLeftSpeed / tool.toolFarRightSpeed;
+                //twist *= twist;
+                if (twist < 0.2) twist = 0.2;
+                sectionTriggerStepDistance = distance * twist* twist;
+            }
+            else
+            {
+                double twist = tool.toolFarRightSpeed / tool.toolFarLeftSpeed;
+                //twist *= twist;
+                if (twist < 0.2) twist = 0.2;
+
+                sectionTriggerStepDistance = distance * twist*twist;
+            }
 
             //finally determine distance
-            if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance * sectionTriggerStepDistance *
-                metersPerSec + 1.0;
+            if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
             else sectionTriggerStepDistance = 1.0;
-
-            //check to make sure the grid is big enough
-            worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
             //precalc the sin and cos of heading * -1
             sinSectionHeading = Math.Sin(-toolPos.heading);

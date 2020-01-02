@@ -691,6 +691,9 @@
     <None Include="btnImages\WindowNormal.png" />
     <None Include="btnImages\WindowDayMode.png" />
     <None Include="btnImages\WindowNightMode.png" />
+    <None Include="btnImages\Boundary.png" />
+    <None Include="btnImages\Simplify.png" />
+    <None Include="btnImages\CameraNorth2D.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -157,13 +157,12 @@ namespace AgOpenGPS
 
                 vec3 toolFix = mf.toolPos;
                 double headAB = toolFix.heading;
-                double boxLength = 2;
 
-                downL.easting = mf.section[0].leftPoint.easting + (Math.Sin(headAB) * boxLength * mf.tool.toolFarLeftSpeed);
-                downL.northing = mf.section[0].leftPoint.northing + (Math.Cos(headAB) * boxLength * mf.tool.toolFarLeftSpeed);
+                downL.easting = mf.section[0].leftPoint.easting + (Math.Sin(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarLeftSpeed);
+                downL.northing = mf.section[0].leftPoint.northing + (Math.Cos(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarLeftSpeed);
 
-                downR.easting = mf.section[mf.tool.numOfSections - 1].rightPoint.easting + (Math.Sin(headAB) * boxLength * mf.tool.toolFarRightSpeed);
-                downR.northing = mf.section[mf.tool.numOfSections - 1].rightPoint.northing + (Math.Cos(headAB) * boxLength * mf.tool.toolFarRightSpeed);
+                downR.easting = mf.section[mf.tool.numOfSections - 1].rightPoint.easting + (Math.Sin(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarRightSpeed);
+                downR.northing = mf.section[mf.tool.numOfSections - 1].rightPoint.northing + (Math.Cos(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarRightSpeed);
 
                 //bool isToolFullyOut = 
                 bool isLookRightIn = IsPointInsideHeadLine(downR);

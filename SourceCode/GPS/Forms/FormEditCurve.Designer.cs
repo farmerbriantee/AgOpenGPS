@@ -173,7 +173,7 @@
             this.btnLeftHalfWidth.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnLeftHalfWidth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeftHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnLeftHalfWidth.Image = global::AgOpenGPS.Properties.Resources.SnapLeftWidth;
+            this.btnLeftHalfWidth.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
             this.btnLeftHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnLeftHalfWidth.Location = new System.Drawing.Point(1, 12);
             this.btnLeftHalfWidth.Name = "btnLeftHalfWidth";
@@ -188,7 +188,7 @@
             this.btnRightHalfWidth.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnRightHalfWidth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRightHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnRightHalfWidth.Image = global::AgOpenGPS.Properties.Resources.SnapRightWidth;
+            this.btnRightHalfWidth.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnRightHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnRightHalfWidth.Location = new System.Drawing.Point(113, 12);
             this.btnRightHalfWidth.Name = "btnRightHalfWidth";

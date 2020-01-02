@@ -47,6 +47,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.nudAntennaOffset = new System.Windows.Forms.NumericUpDown();
             this.tabVehicle = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.nudHydLiftSecs = new System.Windows.Forms.NumericUpDown();
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -72,6 +74,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).BeginInit();
             this.tabVehicle.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftSecs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabGuidance.SuspendLayout();
@@ -383,6 +387,7 @@
             // 
             this.tabVehicle.BackColor = System.Drawing.SystemColors.Window;
             this.tabVehicle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabVehicle.Controls.Add(this.groupBox3);
             this.tabVehicle.Controls.Add(this.nudMinTurnRadius);
             this.tabVehicle.Controls.Add(this.pictureBox1);
             this.tabVehicle.Controls.Add(this.label6);
@@ -394,6 +399,40 @@
             this.tabVehicle.Size = new System.Drawing.Size(970, 541);
             this.tabVehicle.TabIndex = 1;
             this.tabVehicle.Text = "  Vehicle ";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.nudHydLiftSecs);
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(395, 36);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(250, 172);
+            this.groupBox3.TabIndex = 125;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Hydraulic Lift Look Ahead (secs)";
+            // 
+            // nudHydLiftSecs
+            // 
+            this.nudHydLiftSecs.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudHydLiftSecs.DecimalPlaces = 1;
+            this.nudHydLiftSecs.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudHydLiftSecs.InterceptArrowKeys = false;
+            this.nudHydLiftSecs.Location = new System.Drawing.Point(26, 73);
+            this.nudHydLiftSecs.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudHydLiftSecs.Name = "nudHydLiftSecs";
+            this.nudHydLiftSecs.Size = new System.Drawing.Size(148, 65);
+            this.nudHydLiftSecs.TabIndex = 117;
+            this.nudHydLiftSecs.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudHydLiftSecs.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudHydLiftSecs.Enter += new System.EventHandler(this.nudHydLiftSecs_Enter);
             // 
             // nudMinTurnRadius
             // 
@@ -659,7 +698,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(992, 700);
+            this.ClientSize = new System.Drawing.Size(1303, 700);
             this.ControlBox = false;
             this.Controls.Add(this.lblInchesCm);
             this.Controls.Add(this.label17);
@@ -687,6 +726,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaPivot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             this.tabVehicle.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftSecs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabGuidance.ResumeLayout(false);
@@ -740,5 +781,7 @@
         private System.Windows.Forms.RadioButton rbtnHarvester;
         private System.Windows.Forms.RadioButton rbtn4WD;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.NumericUpDown nudHydLiftSecs;
     }
 }

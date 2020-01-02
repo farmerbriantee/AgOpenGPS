@@ -461,7 +461,7 @@ namespace AgOpenGPS
                     
                     writer.WriteLine("isStanleyUsed," + Properties.Vehicle.Default.setVehicle_isStanleyUsed.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("StanleyGain," + Properties.Vehicle.Default.setVehicle_stanleyGain.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("StanleyHEadingError," + Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("StanleyHeadingError," + Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain.ToString(CultureInfo.InvariantCulture));
                                        
                     writer.WriteLine("GoalPointLookAhead," + 
                         Properties.Vehicle.Default.setVehicle_goalPointLookAhead.ToString(CultureInfo.InvariantCulture));
@@ -474,6 +474,9 @@ namespace AgOpenGPS
 
                     writer.WriteLine("GoalPointLookAheadDistanceFromLine," +
                         Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine.ToString(CultureInfo.InvariantCulture));
+
+                    writer.WriteLine("HydLiftLookAhead," + Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead.ToString(CultureInfo.InvariantCulture));
+
 
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -655,7 +658,10 @@ namespace AgOpenGPS
                             Properties.Vehicle.Default.setVehicle_lookAheadMinimum = double.Parse(words[1], CultureInfo.InvariantCulture);
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            
+
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
+
                             //line = reader.ReadLine(); words = line.Split(',');
                             //if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
                             //else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -759,6 +765,7 @@ namespace AgOpenGPS
                             vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
                             vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
                             vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
+                            vehicle.hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
                             headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
                             pn.fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
@@ -1208,19 +1215,20 @@ namespace AgOpenGPS
                     writer.WriteLine("GPSSimLatitude," + Properties.Settings.Default.setGPS_SimLatitude.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("GPSSimLongitude" + "," + Properties.Settings.Default.setGPS_SimLongitude.ToString(CultureInfo.InvariantCulture));
 
-
-
+                    
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
 
-                    writer.WriteLine("FieldColorR," + Properties.Settings.Default.setF_FieldColorR.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("FieldColorG," + Properties.Settings.Default.setF_FieldColorG.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("FieldColorB," + Properties.Settings.Default.setF_FieldColorB.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SectionColorR," + Properties.Settings.Default.setF_SectionColorR.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SectionColorG," + Properties.Settings.Default.setF_SectionColorG.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SectionColorB," + Properties.Settings.Default.setF_SectionColorB.ToString(CultureInfo.InvariantCulture));
+
+                    writer.WriteLine("FieldColor," + Properties.Settings.Default.setDisplay_colorField.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SectionColor," + Properties.Settings.Default.setDisplay_colorSections.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("DayColor," + Properties.Settings.Default.setDisplay_colorDayMode.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("NightColor," + Properties.Settings.Default.setDisplay_colorNightMode.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IsSimple," + Properties.Settings.Default.setDisplay_isSimple.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IsDayMode," + Properties.Settings.Default.setDisplay_isDayMode.ToString(CultureInfo.InvariantCulture));
+
 
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -1382,17 +1390,18 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
 
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_FieldColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_colorField = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_FieldColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_colorSections = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_FieldColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_colorDayMode = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_SectionColorR = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_colorNightMode = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
+
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_SectionColorG = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_isSimple = bool.Parse(words[1]);
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_SectionColorB = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                            Properties.Settings.Default.setDisplay_isDayMode = bool.Parse(words[1]);
 
                             line = reader.ReadLine();
                             line = reader.ReadLine();
@@ -1405,6 +1414,12 @@ namespace AgOpenGPS
 
                             Properties.Settings.Default.Save();
                             Properties.Vehicle.Default.Save();
+
+                            //nightColor = Properties.Settings.Default.setDisplay_colorNightMode;
+                            //dayColor = Properties.Settings.Default.setDisplay_colorDayMode;
+                            //sectionColor = Properties.Settings.Default.setDisplay_colorSections;
+                            //fieldColor = Properties.Settings.Default.setDisplay_colorField;
+
 
                         }
 

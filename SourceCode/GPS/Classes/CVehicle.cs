@@ -36,6 +36,7 @@ namespace AgOpenGPS
         public double maxSteerAngle;
         public double maxAngularVelocity;
         public double treeSpacing;
+        public double hydLiftLookAhead;
 
         public CVehicle(FormGPS _f)
         {
@@ -67,7 +68,9 @@ namespace AgOpenGPS
             //treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
             treeSpacing = 0;
 
-            vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;            
+            vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
+
+            hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)

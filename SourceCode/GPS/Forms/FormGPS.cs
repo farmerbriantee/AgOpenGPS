@@ -1244,7 +1244,7 @@ namespace AgOpenGPS
                 //this.TopMost = true;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
-                btnFullScreen.Image = Properties.Resources.WindowNormal;
+                btnFullScreen.BackgroundImage = Properties.Resources.WindowNormal;
 
             }
             else
@@ -1252,7 +1252,7 @@ namespace AgOpenGPS
                 this.TopMost = false;
                 this.FormBorderStyle = FormBorderStyle.Sizable;
                 this.WindowState = FormWindowState.Normal;
-                btnFullScreen.Image = Properties.Resources.WindowFullScreen;
+                btnFullScreen.BackgroundImage = Properties.Resources.WindowFullScreen;
 
             }
         }
@@ -1286,6 +1286,26 @@ namespace AgOpenGPS
         {
             SwapDayNightMode();
         }
+
+        private void batmanToolStrip_Click(object sender, EventArgs e)
+        {
+            //if (secondRowCounter < 8) return;
+            Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
+            Properties.Settings.Default.Save();
+            SwapBatmanPanels();
+
+        }
+
+        private void simplifyToolStrip_Click(object sender, EventArgs e)
+        {
+            isSimple = !isSimple;
+
+            Settings.Default.setDisplay_isSimple = isSimple;
+            Settings.Default.Save();
+            SwapBatmanPanels();
+            FixPanelsAndMenus();
+        }
+
 
         private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
         {

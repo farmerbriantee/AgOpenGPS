@@ -193,78 +193,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("98")]
-        public byte setF_FieldColorR {
-            get {
-                return ((byte)(this["setF_FieldColorR"]));
-            }
-            set {
-                this["setF_FieldColorR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("98")]
-        public byte setF_FieldColorG {
-            get {
-                return ((byte)(this["setF_FieldColorG"]));
-            }
-            set {
-                this["setF_FieldColorG"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("98")]
-        public byte setF_FieldColorB {
-            get {
-                return ((byte)(this["setF_FieldColorB"]));
-            }
-            set {
-                this["setF_FieldColorB"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("27")]
-        public byte setF_SectionColorR {
-            get {
-                return ((byte)(this["setF_SectionColorR"]));
-            }
-            set {
-                this["setF_SectionColorR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("151")]
-        public byte setF_SectionColorG {
-            get {
-                return ((byte)(this["setF_SectionColorG"]));
-            }
-            set {
-                this["setF_SectionColorG"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("160")]
-        public byte setF_SectionColorB {
-            get {
-                return ((byte)(this["setF_SectionColorB"]));
-            }
-            set {
-                this["setF_SectionColorB"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setF_IsWorkSwitchActiveLow {
             get {
@@ -1189,13 +1117,73 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setDisplay_isOfflineCm {
+        [global::System.Configuration.DefaultSettingValueAttribute("210, 220, 230")]
+        public global::System.Drawing.Color setDisplay_colorDayMode {
             get {
-                return ((bool)(this["setDisplay_isOfflineCm"]));
+                return ((global::System.Drawing.Color)(this["setDisplay_colorDayMode"]));
             }
             set {
-                this["setDisplay_isOfflineCm"] = value;
+                this["setDisplay_colorDayMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60, 60, 60")]
+        public global::System.Drawing.Color setDisplay_colorNightMode {
+            get {
+                return ((global::System.Drawing.Color)(this["setDisplay_colorNightMode"]));
+            }
+            set {
+                this["setDisplay_colorNightMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27, 151, 160")]
+        public global::System.Drawing.Color setDisplay_colorSections {
+            get {
+                return ((global::System.Drawing.Color)(this["setDisplay_colorSections"]));
+            }
+            set {
+                this["setDisplay_colorSections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("90, 90, 90")]
+        public global::System.Drawing.Color setDisplay_colorField {
+            get {
+                return ((global::System.Drawing.Color)(this["setDisplay_colorField"]));
+            }
+            set {
+                this["setDisplay_colorField"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isSimple {
+            get {
+                return ((bool)(this["setDisplay_isSimple"]));
+            }
+            set {
+                this["setDisplay_isSimple"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isDayMode {
+            get {
+                return ((bool)(this["setDisplay_isDayMode"]));
+            }
+            set {
+                this["setDisplay_isDayMode"] = value;
             }
         }
     }

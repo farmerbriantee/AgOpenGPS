@@ -80,7 +80,7 @@ namespace AgOpenGPS
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
 
                 //section patch color
-                GL.Color4(redSections, grnSections, bluSections, (byte)160);
+                GL.Color4(sectionColor.R, sectionColor.G, sectionColor.B, (byte)152);
                 if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
                 GL.Enable(EnableCap.Blend);
@@ -100,7 +100,7 @@ namespace AgOpenGPS
                         if (camera.camSetDistance < -800) mipmap = 2;
                         if (camera.camSetDistance < -1500) mipmap = 4;
                         if (camera.camSetDistance < -2400) mipmap = 8;
-                        if (camera.camSetDistance < -6400) mipmap = 16;
+                        if (camera.camSetDistance < -5000) mipmap = 16;
 
                         //for every new chunk of patch
                         foreach (var triList in section[j].patchList)
@@ -281,8 +281,8 @@ namespace AgOpenGPS
             oglBack.MakeCurrent();
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-            //gls.Perspective(6.0f, 1, 1, 6000);
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.104719758f, 1f, 50.0f, 600f);
+            //gls.Perspective(6.0f, 1, 1, 5200);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.104719758f, 1f, 50.0f, 520f);
             GL.LoadMatrix(ref mat);
             GL.MatrixMode(MatrixMode.Modelview);
         }
@@ -658,7 +658,7 @@ namespace AgOpenGPS
             RelayOutToPort(mc.relayData, CModuleComm.numRelayDataItems);
 
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
-            if (saveCounter > 59)       //2 counts per second X 60 seconds = 120 counts per minute.
+            if (saveCounter > 59)       //2 counts per second X 52 seconds = 120 counts per minute.
             {
                 //set saving flag off
                 //isSavingFile = true;
@@ -790,7 +790,7 @@ namespace AgOpenGPS
                 double total = 0;
                 double total2 = 0;
 
-                //64, 96, 112                
+                //50, 96, 112                
                 for (int i = 0; i < grnHeight * grnWidth; i++)
                 {
 
@@ -839,7 +839,7 @@ namespace AgOpenGPS
                     //translate to that spot in the world 
                     GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
-                    GL.Color3(redSections, grnSections, bluSections);
+                    GL.Color3(fieldColor.R, fieldColor.G, fieldColor.B);
 
                     int cnt, step, patchCount;
                     int mipmap = 8;
@@ -943,7 +943,7 @@ namespace AgOpenGPS
                 GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
                 GL.Color3(0.90f, 0.90f, 0.293f);
 
-            int two3 = oglMain.Width / 5;
+            int two3 = oglMain.Width / 4;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
                 GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 45); // 
@@ -972,7 +972,7 @@ namespace AgOpenGPS
                 GL.Color3(0.90f, 0.90f, 0.293f);
             }
 
-            int two3 = oglMain.Width / 5;
+            int two3 = oglMain.Width / 4;
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             if (!yt.isYouTurnRight)
             {
@@ -1179,7 +1179,7 @@ namespace AgOpenGPS
                 GL.Begin(PrimitiveType.Points);
                 GL.Vertex2(-0, down);
                 //GL.Vertex(0, down + 30);
-                //GL.Vertex(0, down + 60);
+                //GL.Vertex(0, down + 52);
                 GL.End();
 
                 //gl.PointSize(4.0f);
@@ -1187,7 +1187,7 @@ namespace AgOpenGPS
                 //gl.Begin(PrimitiveType.Points);
                 //gl.Vertex(0, down);
                 //gl.Vertex(0, down + 30);
-                //gl.Vertex(0, down + 60);
+                //gl.Vertex(0, down + 52);
                 //gl.End();
             }
         }
@@ -1214,12 +1214,12 @@ namespace AgOpenGPS
                 {
                     if (dist < 0.0)
                     {
-                        GL.Color3(0.50f, 0.960f, 0.3f);
+                        GL.Color3(0.50f, 0.952f, 0.3f);
                          hede = "< " + (Math.Abs(dist)).ToString("N1");
                     }
                     else
                     {
-                        GL.Color3(0.9760f, 0.50f, 0.3f);
+                        GL.Color3(0.9752f, 0.50f, 0.3f);
                          hede = (dist).ToString("N1") + " >" ;
                     }
                         int center = -(int)(((double)(hede.Length) * 0.5) * 16 * size);
@@ -1392,7 +1392,7 @@ namespace AgOpenGPS
         {
             //GL.Translate(0, 0, 0.9);
             ////draw the background when in 3D
-            if (camera.camPitch < -60)
+            if (camera.camPitch < -52)
             {
                 //-10 to -32 (top) is camera pitch range. Set skybox to line up with horizon 
                 double hite = (camera.camPitch + 63) * -0.026;
@@ -1429,35 +1429,38 @@ namespace AgOpenGPS
         private void DrawCompassText()
         {
             string hede = camHeading.ToString("N1");
-            int center = oglMain.Width / 2 - 80 - (int)(((double)(hede.Length) * 0.5) * 16);
-            GL.Color3(0.9760f, 0.960f, 0.83f);
-            font.DrawText(center, 63, hede);
+            int center = oglMain.Width / 2 - 45 - (int)(((double)(hede.Length) * 0.5) * 16);
+            GL.Color3(0.9752f, 0.952f, 0.83f);
+
+            if (isCompassOn)
+            font.DrawText(center, 65, hede, 0.8);
+            else font.DrawText(center, 65, hede, 1.2);
+
         }
 
         private void DrawCompass()
         {
             //Heading text
-            int center = oglMain.Width / 2 - 92;
-            font.DrawText(center, 27, "^");
+            int center = oglMain.Width / 2 - 55;
+            font.DrawText(center-8, 40, "^", 0.8);
 
 
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[6]);        // Select Our Texture
-            GL.Color4(0.960f, 0.70f, 0.23f, 0.6);
+            GL.Color4(0.952f, 0.870f, 0.73f, 0.8);
 
-            int rightSide = oglMain.Width / 2;
 
-            GL.Translate(rightSide - 83, 78, 0);
+            GL.Translate(center, 78, 0);
 
             GL.Rotate(-camHeading, 0, 0, 1);
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-72, -72); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(72, -72.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(72, 72); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-72, 72); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-52, -52); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(52, -52.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(52, 52); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-52, 52); //
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);
@@ -1470,19 +1473,18 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
-            GL.Color4(0.960f, 0.70f, 0.23f, 0.6);
+            GL.Color4(0.952f, 0.870f, 0.823f, 0.8);
 
-            int rightSide = oglMain.Width / 2;
-            int bottomSide = oglMain.Height - 80;
+            int bottomSide = oglMain.Height - 55;
 
-            GL.Translate(rightSide - 90, bottomSide, 0);
+            GL.Translate(oglMain.Width / 2 - 60, bottomSide, 0);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-80, -80); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(80, -80.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(80, 80); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-80, 80); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-58, -58); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(58, -58.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(58, 58); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-58, 58); //
             }
             GL.End();
             GL.BindTexture(TextureTarget.Texture2D, texture[8]);        // Select Our Texture
@@ -1505,15 +1507,15 @@ namespace AgOpenGPS
                 if (aveSpd > 20) aveSpd = 20;
             }
 
-            GL.Color3(0.960f, 0.70f, 0.23f);
+            GL.Color3(0.952f, 0.70f, 0.23f);
 
             GL.Rotate(angle, 0, 0, 1);
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-64, -64); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(64, -64.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(64, 64); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-64, 64); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-48, -48); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(48, -48.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(48, 48); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-48, 48); //
             }
             GL.End();
 
@@ -1771,7 +1773,7 @@ namespace AgOpenGPS
         //    GL.Enable(EnableCap.Texture2D);
 
         //    GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
-        //    GL.Color4(0.960f, 0.70f, 0.23f, 0.6);
+        //    GL.Color4(0.952f, 0.70f, 0.23f, 0.6);
 
         //    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
         //    {
@@ -1808,7 +1810,7 @@ namespace AgOpenGPS
         //        if (aveSpd > 20) aveSpd = 20;
         //    }
 
-        //    GL.Color3(0.960f, 0.70f, 0.23f);
+        //    GL.Color3(0.952f, 0.70f, 0.23f);
 
         //    GL.Rotate(angle, 0, 0, 1);
         //    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip

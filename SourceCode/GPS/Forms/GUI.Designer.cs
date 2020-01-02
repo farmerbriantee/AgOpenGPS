@@ -16,8 +16,6 @@ namespace AgOpenGPS
         public string ablinesDirectory;
 
         //colors for sections and field background
-        private byte redSections, grnSections, bluSections;
-        public byte redField, grnField, bluField;
         public byte flagColor = 0;
 
         //how many cm off line per big pixel
@@ -30,12 +28,18 @@ namespace AgOpenGPS
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
-        public bool isDay = true;
+        public bool isDay = true, isSimple;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
+
+        public Color dayColor = Properties.Settings.Default.setDisplay_colorDayMode;
+        public Color nightColor = Properties.Settings.Default.setDisplay_colorNightMode;
+        public Color sectionColor = Properties.Settings.Default.setDisplay_colorSections;
+        public Color fieldColor = Properties.Settings.Default.setDisplay_colorField;
+
 
         //section button states
         public enum manBtn { Off, Auto, On }
@@ -47,6 +51,12 @@ namespace AgOpenGPS
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
+
+            isDay = Properties.Settings.Default.setDisplay_isDayMode;
+            isDay = !isDay;
+            SwapDayNightMode();
+
+            isSimple = Properties.Settings.Default.setDisplay_isSimple;
 
             //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
@@ -69,13 +79,8 @@ namespace AgOpenGPS
             }
 
             //load up colors
-            redField = (Settings.Default.setF_FieldColorR);
-            grnField = (Settings.Default.setF_FieldColorG);
-            bluField = (Settings.Default.setF_FieldColorB);
-
-            redSections = Settings.Default.setF_SectionColorR;
-            grnSections = Settings.Default.setF_SectionColorG;
-            bluSections = Settings.Default.setF_SectionColorB;
+            fieldColor = (Settings.Default.setDisplay_colorField);
+            sectionColor = (Settings.Default.setDisplay_colorSections);
 
             DisableYouTurnButtons();
 
@@ -185,6 +190,7 @@ namespace AgOpenGPS
 
             isFullScreen = false;
         }
+        
 
         private void SwapDayNightMode()
         {
@@ -192,17 +198,29 @@ namespace AgOpenGPS
             if (isDay)
             {
                 btnDayNightMode.Image = Properties.Resources.WindowNightMode;
-                statusStripBottom.BackColor = Color.WhiteSmoke;
-                this.BackColor = Color.WhiteSmoke;
-                panelFieldData.BackColor = Color.WhiteSmoke;
+
+                this.BackColor = dayColor;
+                foreach (Control c in this.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = Color.Black;
+                    }
+                }
+                LineUpManualBtns();
             }
             else //nightmode
             {
                 btnDayNightMode.Image = Properties.Resources.WindowDayMode;
-                statusStripBottom.BackColor = Color.DarkGray;
-                this.BackColor = Color.DarkGray;
-                panelFieldData.BackColor = Color.DarkGray;
+                this.BackColor = nightColor;
 
+                foreach (Control c in this.Controls)
+                {
+                    {
+                        c.ForeColor = Color.White;
+                    }
+                }
+                LineUpManualBtns();
             }
         }
 
@@ -216,38 +234,34 @@ namespace AgOpenGPS
 
             //if (panelSim.Left < 75) panelSim.Left = 75;
 
+            if (!isSimple)
+            {
+                steerChartTool.Visible = true;
+                youTurnStripBtn.Visible = true;
+                toolToolbottomStripBtn.Visible = true;
+                vehicleToolStripBtn.Visible = true;
+                steerChartTool.Visible = true;
+                AutoSteerToolBtn.Visible = true;
+                toolStripMenuRecPath.Visible = true;
+                toolStripDropDownButton3.Visible = true;
+                toolStripStatusLabel2.Visible = true;
+                pbarUDPComm.Visible = true;
+            }
+
+
             if (Width > 1100)
             {
-                //youTurnStripBtn.Visible = true;
+                youTurnStripBtn.Visible = true;
                 //ZoomExtentsStripBtn.Visible = true;
                 //stripEqWidth.Visible = false;
             }
             else
             {
-                //youTurnStripBtn.Visible = false;
+                youTurnStripBtn.Visible = false;
                 //ZoomExtentsStripBtn.Visible = false;
                 //stripEqWidth.Visible = false;
             }
 
-            //if (Width > 1200)
-            //{
-            //    stripEqWidth.Visible = true;
-            //}
-            //else
-            //{
-            //    stripEqWidth.Visible = false;
-            //}
-
-
-
-            if (Width > 1100)
-            {
-                distanceToolBtn.Visible = true;
-            }
-            else
-            {
-                distanceToolBtn.Visible = false;
-            }
 
             if (Width > 1200)
             {
@@ -268,7 +282,22 @@ namespace AgOpenGPS
             {
                 steerChartTool.Visible = false;
             }
+            
 
+            if (isSimple)
+            {
+                steerChartTool.Visible = false;
+                youTurnStripBtn.Visible = false;
+                toolToolbottomStripBtn.Visible = false;
+                vehicleToolStripBtn.Visible = false;
+                steerChartTool.Visible = false;
+                AutoSteerToolBtn.Visible = false;
+                toolStripMenuRecPath.Visible = false;
+                toolStripDropDownButton3.Visible = false;
+                toolStripStatusLabel2.Visible = false;
+                pbarUDPComm.Visible = false;
+
+            }
         }
         public string FindDirection(double heading)
         {
@@ -320,11 +349,20 @@ namespace AgOpenGPS
                 //Batman mini-panel shows
                 //if (panelSim.Left < 390) panelSim.Left = 390;
                 oglMain.Left = statusStripLeft.Width + panelBatman.Width;
-                oglMain.Width = Width - (statusStripLeft.Width + panelBatman.Width) - 200;
+
+                    if (isSimple)
+                    {
+                        oglMain.Width = Width - statusStripLeft.Width - panelBatman.Width - 112;
+                    }
+                    else
+                        oglMain.Width = Width - statusStripLeft.Width - panelBatman.Width - 200;
+
 
                 panelBatman.Left = statusStripLeft.Width;
                 //tableLayoutPanelDisplay.Left = 181;
                 //panelSim.Left = 350;
+                panelFieldData.Width = oglMain.Width + panelBatman.Width+3;
+
 
                 panelBatman.Visible = true;
                 //statusStripLeft.Left = 8;
@@ -335,14 +373,22 @@ namespace AgOpenGPS
             else
             {
                 //no side panel
-                oglMain.Left = 72;
-                oglMain.Width = Width - 72 - 200;
+                oglMain.Left = statusStripLeft.Width;
+                if (isSimple)
+                {
+                    oglMain.Width = Width - (statusStripLeft.Width) - 112;
+                }
+                else
+                    oglMain.Width = Width - (statusStripLeft.Width) - 202;
                 panelBatman.Visible = false;
                 
-                panelSim.Left = 76;
+                panelSim.Left = 80;
+
+            panelFieldData.Width = oglMain.Width+3;
 
                 LineUpManualBtns();
             }
+
         }
 
         //line up section On Off Auto buttons based on how many there are
@@ -929,15 +975,18 @@ namespace AgOpenGPS
                 case manBtn.Off:
                     section[sectNumber].manBtnState = manBtn.Auto;
                     btn.BackColor = Color.Lime;
+                    btn.ForeColor = Color.Black;
                     break;
 
                 case manBtn.Auto:
                     section[sectNumber].manBtnState = manBtn.On;
                     btn.BackColor = Color.Yellow;
+                    btn.ForeColor = Color.Black;
                     break;
 
                 case manBtn.On:
                     section[sectNumber].manBtnState = manBtn.Off;
+                    btn.ForeColor = Color.Black;
                     btn.BackColor = Color.Red;
                     break;
             }
@@ -2049,14 +2098,14 @@ namespace AgOpenGPS
 
                 if (point.Y < 120 && point.Y > 50)
                 {
-                    int middle = oglMain.Width / 2 + oglMain.Width / 5;
+                    int middle = oglMain.Width / 2 + oglMain.Width / 4;
                     if (point.X > middle - 60 && point.X < middle + 60)
                     {
                         SwapDirection();
                         return;
                     }
 
-                    middle = oglMain.Width / 2 - oglMain.Width / 5;
+                    middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 80 && point.X < middle)
                     {
                         if (yt.isYouTurnTriggered)
@@ -2378,6 +2427,12 @@ namespace AgOpenGPS
         private void northToolStripMenuItem_Click(object sender, EventArgs e)
         {
             camera.camFollowing = false;
+            camera.camPitch = 0;
+        }
+        private void dNorthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camPitch = -70;
+            camera.camFollowing = false;
         }
 
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
@@ -2388,10 +2443,6 @@ namespace AgOpenGPS
 
         private void toolStripBatman_Click_1(object sender, EventArgs e)
         {
-            //if (secondRowCounter < 8) return;
-            Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
-            Properties.Settings.Default.Save();
-            SwapBatmanPanels();
         }
 
         private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
@@ -2789,28 +2840,21 @@ namespace AgOpenGPS
         //setting color off Options Menu
         private void sectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //color picker for sections
             ColorDialog colorDlg = new ColorDialog
             {
                 FullOpen = true,
                 AnyColor = true,
                 SolidColorOnly = false,
-                Color = Color.FromArgb(255, redSections, grnSections, bluSections)
+                Color = Settings.Default.setDisplay_colorSections
             };
 
             if (colorDlg.ShowDialog() != DialogResult.OK) return;
 
-            redSections = colorDlg.Color.R;
-            if (redSections > 253) redSections = 253;
-            grnSections = colorDlg.Color.G;
-            if (grnSections > 253) grnSections = 253;
-            bluSections = colorDlg.Color.B;
-            if (bluSections > 253) bluSections = 253;
+            sectionColor = colorDlg.Color;
 
-            Settings.Default.setF_SectionColorR = redSections;
-            Settings.Default.setF_SectionColorG = grnSections;
-            Settings.Default.setF_SectionColorB = bluSections;
+            Settings.Default.setDisplay_colorSections = sectionColor;
             Settings.Default.Save();
+
         }
         private void fieldToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -2821,24 +2865,62 @@ namespace AgOpenGPS
                 FullOpen = true,
                 AnyColor = true,
                 SolidColorOnly = false,
-                Color = Color.FromArgb(255, Settings.Default.setF_FieldColorR,
-                Settings.Default.setF_FieldColorG, Settings.Default.setF_FieldColorB)
+                Color = Settings.Default.setDisplay_colorField
             };
 
             if (colorDlg.ShowDialog() != DialogResult.OK) return;
 
-            redField = colorDlg.Color.R;
-            if (redField > 253) redField = 253;
-            grnField = colorDlg.Color.G;
-            if (grnField > 253) grnField = 253;
-            bluField = colorDlg.Color.B;
-            if (bluField > 253) bluField = 253;
+            fieldColor = colorDlg.Color;
 
-            Settings.Default.setF_FieldColorR = redField;
-            Settings.Default.setF_FieldColorG = grnField;
-            Settings.Default.setF_FieldColorB = bluField;
+            Settings.Default.setDisplay_colorField = fieldColor;
             Settings.Default.Save();
         }
+
+        private void dayModeToolStrip_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+            {
+                FullOpen = true,
+                AnyColor = true,
+                SolidColorOnly = true,
+                Color = Properties.Settings.Default.setDisplay_colorDayMode
+            };
+
+            if (colorDlg.ShowDialog() != DialogResult.OK) return;
+
+            dayColor = colorDlg.Color;
+
+            Properties.Settings.Default.setDisplay_colorDayMode = dayColor;
+                Settings.Default.Save();
+            isDay = false;
+            SwapDayNightMode();
+
+        }
+
+        private void nightModeToolStrip_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+            {
+                FullOpen = true,
+                AnyColor = true,
+                SolidColorOnly = true,
+                Color = Properties.Settings.Default.setDisplay_colorNightMode
+            };
+
+            if (colorDlg.ShowDialog() != DialogResult.OK) return;
+
+            nightColor = colorDlg.Color;
+
+            Properties.Settings.Default.setDisplay_colorNightMode = nightColor;
+            Settings.Default.Save();
+            isDay = true;
+            SwapDayNightMode();
+
+
+        }
+
+
+
 
         //The flag context menus
         private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
@@ -3276,6 +3358,9 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateThreeSecondCounter = threeSeconds;
 
+                    //check to make sure the grid is big enough
+                    worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
+
                     if (panelBatman.Visible)
                     {
                         if (isMetric)
@@ -3304,7 +3389,7 @@ namespace AgOpenGPS
                         lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
                         lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
 
-                        btnFlag.Text = fd.AreaBoundaryLessInnersHectares;
+                        btnManualOffOn.Text = fd.AreaBoundaryLessInnersHectares;
                         //lblpAreaWorked.Text = fd.WorkedHectares;
                         //toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
                         //    fd.WorkedAreaRemainHectares + " \r\n" + fd.TimeTillFinished;
@@ -3313,7 +3398,7 @@ namespace AgOpenGPS
                     }
                     else //imperial
                     {
-                        btnFlag.Text = fd.AreaBoundaryLessInnersAcres;
+                        btnManualOffOn.Text = fd.AreaBoundaryLessInnersAcres;
                         //lblpAreaWorked.Text = fd.WorkedAcres;
                         //toolStripLblFieldFinish.Text = fd.WorkedAreaRemainPercentage + " \r\n" +
                         //    fd.WorkedAreaRemainAcres + " \r\n" + fd.TimeTillFinished;
@@ -3446,12 +3531,12 @@ namespace AgOpenGPS
                     }
 
                     //statusbar flash red undefined headland
-                    if (mc.isOutOfBounds && statusStripBottom.BackColor == Color.WhiteSmoke
+                    if (mc.isOutOfBounds && statusStripBottom.BackColor == Color.Transparent
                         || !mc.isOutOfBounds && statusStripBottom.BackColor == Color.Tomato)
                     {
                         if (!mc.isOutOfBounds)
                         {
-                            statusStripBottom.BackColor = Color.WhiteSmoke;
+                            statusStripBottom.BackColor = Color.Transparent;
                         }
                         else
                         {
@@ -3470,7 +3555,8 @@ namespace AgOpenGPS
                     if (hd.isOn)
                     {
                         //if (hd.isOn)
-                        lblUpDown.Text = hd.FindHeadlandDistance().ToString();
+                        //lblUpDown.Text = hd.FindHeadlandDistance().ToString();
+                        hd.FindHeadlandDistance();
                         if (hd.isToolUp)
                         {
                             lblHeadLeftDist.BackColor = Color.Salmon;
@@ -3485,10 +3571,12 @@ namespace AgOpenGPS
 
                         lblHeadLeftDist.Text = hd.leftToolDistance.ToString("N2");
                         lblHeadRightDist.Text = hd.rightToolDistance.ToString("N2");
-                        lblToolHeading.Text = toolPos.heading.ToString("N2");
-                        lblRightSpeed.Text = tool.toolFarRightSpeed.ToString("N2");
-                        lblLeftSpeed.Text = tool.toolFarLeftSpeed.ToString("N2");
                     }
+
+                    lblRightSpeed.Text = tool.toolFarRightSpeed.ToString("N2");
+                    lblLeftSpeed.Text = tool.toolFarLeftSpeed.ToString("N2");
+                    lblTrigger.Text = sectionTriggerStepDistance.ToString("N2");
+
 
                 } //end every 1/2 second
 

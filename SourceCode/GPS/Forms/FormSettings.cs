@@ -57,6 +57,7 @@ namespace AgOpenGPS
             nudSnapDistance.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
             nudLineWidth.Controls[0].Enabled = false;
+            nudHydLiftSecs.Controls[0].Enabled = false;
 
             if (mf.isMetric)
             {
@@ -96,6 +97,7 @@ namespace AgOpenGPS
             antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
             if (nudAntennaOffset.CheckValueCm(ref antennaOffset)) nudAntennaOffset.BackColor = System.Drawing.Color.OrangeRed;
 
+            nudHydLiftSecs.Value = (decimal)Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
             isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
             isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
@@ -212,6 +214,9 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setVehicle_vehicleType = vehicleType;
             mf.vehicle.vehicleType = vehicleType;
 
+            mf.vehicle.hydLiftLookAhead = (double)nudHydLiftSecs.Value;
+            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = mf.vehicle.hydLiftLookAhead;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -309,9 +314,10 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         { DialogResult = DialogResult.Cancel; Close(); }
 
-        private void btnCmMm_Click(object sender, EventArgs e)
+        private void nudHydLiftSecs_Enter(object sender, EventArgs e)
         {
-
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
         }
 
         private void btnChangeAttachment_Click(object sender, EventArgs e)
