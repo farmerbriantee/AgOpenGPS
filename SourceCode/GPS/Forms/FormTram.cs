@@ -22,10 +22,8 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
-            this.Text = gStr.gsTramLines;
-            lblSmallSnapRight.Text = gStr.gsWidth + " (m)";
-            label1.Text = gStr.gsTrack + " (m)";
-            label3.Text = gStr.gsPasses;             
+
+            this.Text = gStr.gsTramLines;               
 
             nudWheelSpacing.Controls[0].Enabled = false;
             nudSnapAdj.Controls[0].Enabled = false;

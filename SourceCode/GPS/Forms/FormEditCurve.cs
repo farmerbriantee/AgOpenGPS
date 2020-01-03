@@ -22,7 +22,6 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
-            this.Text = gStr.gsEditABCurve;
             nudMinTurnRadius.Controls[0].Enabled = false;
         }
 
