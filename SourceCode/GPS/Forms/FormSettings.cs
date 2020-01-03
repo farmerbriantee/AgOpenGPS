@@ -31,13 +31,14 @@ namespace AgOpenGPS
             //Language keys
             tabSettings.Text = gStr.gsAntenna;
             tabVehicle.Text = gStr.gsVehicle;
-
+            gboxAttachment.Text = gStr.gsVehicleType;
             label6.Text = gStr.gsTurnRadius;
             label26.Text = gStr.gsWheelbase;
             label9.Text = gStr.gsLeftIs_;
             label15.Text = gStr.gsHeight;
             label7.Text = gStr.gsOffset;
             label18.Text = gStr.gsDistance;
+            groupBox3.Text = gStr.gsHydraulicLiftLookAhead;
 
 
             groupBox2.Text = gStr.gsCmPerLightbarPixel;
@@ -45,7 +46,7 @@ namespace AgOpenGPS
             cboxAutoSteerAuto.Text = gStr.gsManual;
             groupBox1.Text = gStr.gs____SnapDistance;
             label17.Text = gStr.gsMeasurementsIn;
-
+            groupBox4.Text = gStr.gsGuidanceLineWidth;
             Text = gStr.gsVehicleSettings;
 
             nudMinTurnRadius.Controls[0].Enabled = false;
