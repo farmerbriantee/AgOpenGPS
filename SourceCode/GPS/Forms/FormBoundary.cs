@@ -26,7 +26,6 @@ namespace AgOpenGPS
 
             nudBndOffset.Controls[0].Enabled = false;
 
-
             this.Text = gStr.gsStartDeleteABoundary;
 
             //Column Header

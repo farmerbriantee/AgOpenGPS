@@ -20,6 +20,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
 
             InitializeComponent();
+            btnByDistance.Text = gStr.gsSort;
             btnOpenExistingLv.Text = gStr.gsUseSelected;
         }
 

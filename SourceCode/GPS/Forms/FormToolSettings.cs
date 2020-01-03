@@ -38,6 +38,8 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //Language keys
+            gboxAttachment.Text = gStr.gsAttachmentStyle;
+            tabHitch.Text = gStr.gsHitch;
             tabConfig.Text = gStr.gsConfiguration;
             tabSections.Text = gStr.gsSection;
             tabSettings.Text = gStr.gsSettings;
