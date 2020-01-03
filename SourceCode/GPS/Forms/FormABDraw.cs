@@ -19,7 +19,9 @@ namespace AgOpenGPS
 
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
         public double low = 0, high = 1;
-        private int A, B, C, D, E, start = 99999, end = 99999;     
+        private int A, B, C, D, E, start = 99999, end = 99999;
+
+        private bool isDrawSections = false;
 
         //list of coordinates of boundary line
         public List<vec3> turnLine = new List<vec3>();
@@ -44,47 +46,6 @@ namespace AgOpenGPS
 
             if (mf.ABLine.numABLineSelected > 0) lblABLineName.Text = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].Name;
             else lblABLineName.Text = "***";
-        }
-
-        private string FindDirection(double heading)
-        {
-            if (heading < 0) heading += glm.twoPI;
-
-            heading = glm.toDegrees(heading);
-
-            if (heading > 337.5 || heading < 22.5)
-            {
-                return gStr.gsNorth;
-            }
-            if (heading > 22.5 && heading < 67.5)
-            {
-                return gStr.gsN_East;
-            }
-            if (heading > 67.5 && heading < 111.5)
-            {
-                return gStr.gsEast;
-            }
-            if (heading > 111.5 && heading < 157.5)
-            {
-                return gStr.gsS_East;
-            }
-            if (heading > 157.5 && heading < 202.5)
-            {
-                return gStr.gsSouth;
-            }
-            if (heading > 202.5 && heading < 247.5)
-            {
-                return gStr.gsS_West;
-            }
-            if (heading > 247.5 && heading < 292.5)
-            {
-                return gStr.gsWest;
-            }
-            if (heading > 292.5 && heading < 337.5)
-            {
-                return gStr.gsN_West;
-            }
-            return gStr.gsLost;
         }
 
         private void btnSelectCurve_Click(object sender, EventArgs e)
@@ -166,6 +127,13 @@ namespace AgOpenGPS
             FixLabelsABLine();
         }
 
+        private void btnDrawSections_Click(object sender, EventArgs e)
+        {
+            isDrawSections = !isDrawSections;
+            if (isDrawSections) btnDrawSections.Text = "On";
+            else btnDrawSections.Text = "Off";
+        }
+
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         public FormABDraw(Form callingForm)
@@ -202,7 +170,8 @@ namespace AgOpenGPS
                 arr[i].heading = mf.bnd.bndArr[0].bndLine[i - cnt].heading;
             }
 
-            nudDistance.Value = (decimal)(mf.vehicle.toolWidth * 100);
+            nudDistance.Value = 0; // 
+            label6.Text = Math.Round((mf.tool.toolWidth * 100),1).ToString();
             FixLabelsABLine();
             FixLabelsCurve();
         }
@@ -410,7 +379,7 @@ namespace AgOpenGPS
 
                 //create a name
                 mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                     + "\u00B0" + FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                     + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                 mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
 
@@ -470,14 +439,14 @@ namespace AgOpenGPS
             }
 
             //sin x cos z for endpoints, opposite for additional lines
-            mf.ABLine.lineArr[idx].ref1.easting =   mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-            mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
-            mf.ABLine.lineArr[idx].ref2.easting =  mf.ABLine.lineArr[idx].origin.easting +  (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
-            mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
+            mf.ABLine.lineArr[idx].ref1.easting =   mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1600.0);
+            mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
+            mf.ABLine.lineArr[idx].ref2.easting =  mf.ABLine.lineArr[idx].origin.easting +  (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1600.0);
+            mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
 
             //create a name
             mf.ABLine.lineArr[idx].Name = (Math.Round(glm.toDegrees(mf.ABLine.lineArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                 + "\u00B0" + FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                 + "\u00B0" + mf.FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
             //clean up gui
             btnMakeABLine.Enabled = false;
@@ -509,6 +478,8 @@ namespace AgOpenGPS
 
             //draw all the boundaries
             mf.bnd.DrawBoundaryLines();
+
+            if (isDrawSections) DrawSections();
 
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchLine();
@@ -690,7 +661,7 @@ namespace AgOpenGPS
                 if (mf.ABLine.numABLineSelected == 0)
                 {
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                     mf.ABLine.isABLineSet = false;
                     mf.ABLine.isABLineLoaded = false;
                     mf.btnABLine.Image = Properties.Resources.ABLineOff;
@@ -698,15 +669,15 @@ namespace AgOpenGPS
                 }
             }
 
-            if (mf.curve.isCurveBtnOn)
+            if (mf.curve.isBtnCurveOn)
             {
                 if (mf.curve.numCurveLineSelected == 0)
                 {
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                     mf.curve.isCurveSet = false;
                     mf.curve.refList?.Clear();
-                    mf.curve.isCurveBtnOn = false;
+                    mf.curve.isBtnCurveOn = false;
                     mf.btnCurve.Image = Properties.Resources.CurveOff;
                 }
             }
@@ -735,6 +706,52 @@ namespace AgOpenGPS
             GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
         }
 
+        private void DrawSections()
+        {
+            int cnt, step, patchCount;
+            int mipmap = 8;
+
+            GL.Color3(0.0, 0.0, 0.352);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < mf.tool.numSuperSection; j++)
+            {
+                //every time the section turns off and on is a new patch
+                patchCount = mf.section[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (var triList in mf.section[j].patchList)
+                    {
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
+                        cnt = triList.Count;
+
+                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                        if (cnt >= (mipmap))
+                        {
+                            step = mipmap;
+                            for (int i = 0; i < cnt; i += step)
+                            {
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+
+                                //too small to mipmap it
+                                if (cnt - i <= (mipmap + 2))
+                                    step = 0;
+                            }
+                        }
+
+                        else { for (int i = 0; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        GL.End();
+
+                    }
+                }
+            } //end of section patches
+
+        }
+
         //determine mins maxs of patches and whole field.
         private void CalculateMinMax()
         {
@@ -742,7 +759,7 @@ namespace AgOpenGPS
             maxFieldX = -9999999; maxFieldY = -9999999;
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.vehicle.numSuperSection; j++)
+            for (int j = 0; j < mf.tool.numSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = mf.section[j].patchList.Count;
@@ -768,7 +785,7 @@ namespace AgOpenGPS
                 }
 
                 //min max of the boundary
-                if (mf.bnd.bndArr[0].isSet)
+                if (mf.bnd.bndArr.Count > 0)
                 {
                     int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
                     for (int i = 0; i < bndCnt; i++)

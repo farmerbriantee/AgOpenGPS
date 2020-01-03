@@ -42,8 +42,6 @@ namespace AgOpenGPS
             this.tabDrive.Text = gStr.gsDrive;
 
             this.Text = gStr.gsAutoSteerConfiguration;
-
-
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
@@ -107,6 +105,9 @@ namespace AgOpenGPS
             hSBarFreeDrive.Value = 0;
             mf.ast.driveFreeSteerAngle = 0;
             lblFreeDriveAngle.Text = "0";
+
+            if (mf.isStanleyUsed) btnStanley.Text = "Stanley";
+            else btnStanley.Text = "Pure P";
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)

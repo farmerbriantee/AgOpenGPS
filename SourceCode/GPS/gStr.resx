@@ -225,6 +225,9 @@
   <data name="gsBaud" xml:space="preserve">
     <value>Baud</value>
   </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>Be Sure To Save If You Did</value>
+  </data>
   <data name="gsBegin" xml:space="preserve">
     <value>Begin</value>
   </data>
@@ -303,6 +306,12 @@
   <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
     <value>Complete An AB Curve Line First</value>
   </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Completely Delete Boundary</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
   <data name="gsConfirmIP" xml:space="preserve">
     <value>Confirm IP</value>
   </data>
@@ -314,6 +323,9 @@
   </data>
   <data name="gsContourFileIsCorrupt" xml:space="preserve">
     <value>Contour File is Corrupt</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Contour On</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
     <value>Couldn't Generate Valid Path</value>
@@ -329,6 +341,9 @@
   </data>
   <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
     <value>Create a Boundary and an ABLine or Curve First</value>
+  </data>
+  <data name="gsCreateNewBoundary" xml:space="preserve">
+    <value>Create New Boundary</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Create New Field</value>
@@ -380,6 +395,9 @@
   </data>
   <data name="gsDelta_" xml:space="preserve">
     <value>Delta:</value>
+  </data>
+  <data name="gsDidYouMakeChanges" xml:space="preserve">
+    <value>Did You Make Changes?</value>
   </data>
   <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
     <value>Did you make changes to the vehicle?</value>
@@ -620,6 +638,9 @@
   </data>
   <data name="gsHeadingRoll" xml:space="preserve">
     <value>Heading / Roll</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Create and Edit Headland</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
     <value>Height</value>
@@ -1062,6 +1083,9 @@
   <data name="gsSetToZeroForSerial" xml:space="preserve">
     <value>Set to 0 for Serial</value>
   </data>
+  <data name="gsSettings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
     <value>Shift GPS Position (cm)</value>
   </data>
@@ -1188,6 +1212,9 @@
   <data name="gsToolOffsetLR" xml:space="preserve">
     <value>Tool Offset L/R</value>
   </data>
+  <data name="gsToolSettings" xml:space="preserve">
+    <value>Tool Settings</value>
+  </data>
   <data name="gsToolWidth" xml:space="preserve">
     <value>Tool Width</value>
   </data>
@@ -1201,6 +1228,9 @@
   </data>
   <data name="gsTrailingHitchLength" xml:space="preserve">
     <value>Tailing Hitch Length</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Tram Lines</value>
   </data>
   <data name="gsTreePlantControl" xml:space="preserve">
     <value>Tree Plant Control</value>
@@ -1219,6 +1249,9 @@
   </data>
   <data name="gsTurnOff" xml:space="preserve">
     <value>Turn Off</value>
+  </data>
+  <data name="gsTurnOffContourFirst" xml:space="preserve">
+    <value>Turn Of Contour First</value>
   </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
     <value>Turn Off Delay (secs)</value>

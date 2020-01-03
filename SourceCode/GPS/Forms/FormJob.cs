@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -17,12 +18,10 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            btnOpenExistingLv.Text = gStr.gsUseSelected;
             btnJobOpen.Text = gStr.gsOpen;
             btnJobNew.Text = gStr.gsNew;
             btnJobResume.Text = gStr.gsResume;
 
-            lblChoose.Text = gStr.gsSelectAField;
             label1.Text = gStr.gsLastFieldUsed;
 
             this.Text = gStr.gsStartNewField;
@@ -30,36 +29,34 @@ namespace AgOpenGPS
 
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
+            mf.filePickerFileAndDirectory = "";
 
-            timer1.Enabled = true;
-
-            string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
-
-            ListViewItem itm;
-
-            foreach (string dir in dirs)
+            using (var form = new FormFilePicker(mf))
             {
-                // fieldName = Path.GetDirectoryName(dir).ToString(CultureInfo.InvariantCulture);
-                string fieldName = Path.GetFileName(dir);
-                itm = new ListViewItem(fieldName);
-                lvLines.Items.Add(itm);
-            }
+                var result = form.ShowDialog();
 
-            if (lvLines.Items.Count > 0)
-            {
-                //ImageList imgList = new ImageList();
-                //imgList.ImageSize = new System.Drawing.Size(1, 60);
-                //lvLines.SmallImageList = imgList;
+                //returns full field.txt file dir name
+                if (result == DialogResult.Yes)
+                {
+                    mf.FileOpenField(mf.filePickerFileAndDirectory);
+                    Close();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
 
-                ShowSavedPanel(true);
-                lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-            }
-            else
-            {
-                var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsCreated, gStr.gsCreateNewFieldFirst);
-                form2.Show();
-                ShowSavedPanel(false);
-            }
+        private void BtnOpenExistingLv_Click(object sender, EventArgs e)
+        {
+            //int count = lvLines.SelectedItems.Count;
+            //if (count > 0)
+            //{
+            //    if (isOrderByName) mf.FileOpenField(mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text+"\\Field.txt");
+            //    else mf.FileOpenField(mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
+            //    Close();
+            //}
         }
 
         private void btnJobNew_Click(object sender, EventArgs e)
@@ -99,61 +96,6 @@ namespace AgOpenGPS
             {
                 textBox1.Text = mf.currentFieldDirectory;
             }
-
-            ShowSavedPanel(false);
-
-        }
-
-        private void ShowSavedPanel(bool showPanel)
-        {
-            if (showPanel)
-            {
-                this.Size = new System.Drawing.Size(915, 640);
-                lvLines.Visible = true;
-                lblChoose.Visible = true;
-
-                btnJobNew.Visible = false;
-                btnJobOpen.Visible = false;
-                btnJobResume.Visible = false;
-                label1.Visible = false;
-                textBox1.Visible = false;
-            }
-            else
-            {
-                this.Size = new System.Drawing.Size(420, 640);
-                lvLines.Visible = false;
-                lblChoose.Visible = false;
-
-                btnJobNew.Visible = true;
-                btnJobOpen.Visible = true;
-                btnJobResume.Visible = true;
-                label1.Visible = true;
-                textBox1.Visible = true;
-            }
-        }
-
-        private void BtnOpenExistingLv_Click(object sender, EventArgs e)
-        {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
-            {
-                mf.FileOpenField(mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text+"\\Field.txt");
-                Close();
-            }
-        }
-
-        private void Timer1_Tick(object sender, EventArgs e)
-        {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
-            {
-                btnOpenExistingLv.Enabled = true;
-            }
-            else
-            {
-                btnOpenExistingLv.Enabled = false;
-            }
-
         }
     }
 }

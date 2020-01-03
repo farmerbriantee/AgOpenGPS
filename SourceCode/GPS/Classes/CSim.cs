@@ -44,8 +44,8 @@ namespace AgOpenGPS
         public CSim(FormGPS _f)
         {
             mf = _f;
-            latitude = Properties.Settings.Default.setGPS_Latitude;
-            longitude = Properties.Settings.Default.setGPS_Longitude;
+            latitude = Properties.Settings.Default.setGPS_SimLatitude;
+            longitude = Properties.Settings.Default.setGPS_SimLongitude;
         }
 
         public void DoSimTick(double _st)
@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
             //calc the speed
             //speed = Math.Round(1.944 * stepDistance * (double)nudHz.Value, 1);
-            speed = Math.Round(1.944 * stepDistance * 5.0, 1);
+            speed = Math.Round(1.944 * stepDistance * 5, 1);
             //lblSpeed.Text = (Math.Round(1.852 * speed, 1)).ToString();
 
             //BuildOGI();

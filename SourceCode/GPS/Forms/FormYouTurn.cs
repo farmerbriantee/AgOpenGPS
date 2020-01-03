@@ -1170,7 +1170,7 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.set_youSkipWidth = mf.yt.rowSkipsWidth;
             Properties.Vehicle.Default.set_youUseDubins = mf.yt.isUsingDubinsTurn;
 
-            Properties.Vehicle.Default.set_youStartYouTurnAt = mf.yt.youTurnStartOffset;
+            Properties.Vehicle.Default.set_youTurnDistance = mf.yt.youTurnStartOffset;
             Properties.Vehicle.Default.set_youTriggerDistance = mf.yt.triggerDistanceOffset;
             Properties.Vehicle.Default.set_geoFenceDistance = mf.yt.geoFenceDistance;
             //mf.hl.boxLength = 3.0 * mf.yt.triggerDistanceOffset;
@@ -1227,6 +1227,7 @@ namespace AgOpenGPS
             Close();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
 
             mf.mazeGrid.BuildMazeGridArray();
             //mf.rateMap.BuildRateMap();

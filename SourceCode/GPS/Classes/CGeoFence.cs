@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -10,23 +11,14 @@ namespace AgOpenGPS
         /// <summary>
         /// array of turns
         /// </summary>
-        public CGeoFenceLines[] geoFenceArr;
+        public List<CGeoFenceLines> geoFenceArr = new List<CGeoFenceLines>();
 
         //constructor
         public CGeoFence(FormGPS _f)
         {
             mf = _f;
-
-            //GeoFenceLines array
-            geoFenceArr = new CGeoFenceLines[FormGPS.MAXBOUNDARIES];
-            for (int j = 0; j < FormGPS.MAXBOUNDARIES; j++) geoFenceArr[j] = new CGeoFenceLines();
         }
 
-        public void ResetGeoFenceLines()
-        {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
-                geoFenceArr[i].ResetGeoFence();
-        }
 
         public void FindPointsDriveAround(vec3 fromPt, double headAB, ref vec3 start, ref vec3 stop)
         {
@@ -48,7 +40,7 @@ namespace AgOpenGPS
 
                 if (mf.turn.turnArr[0].IsPointInTurnWorkArea(pt))
                 {
-                    for (int t = 1; t < FormGPS.MAXBOUNDARIES; t++)
+                    for (int t = 1; t < mf.bnd.bndArr.Count; t++)
                     {
                         if (!mf.bnd.bndArr[t].isSet || mf.bnd.bndArr[t].isDriveThru) continue;
 
@@ -150,9 +142,9 @@ namespace AgOpenGPS
         public bool IsPointInsideGeoFences(vec3 pt)
         {
             //if inside outer boundary, then potentially add
-            if (geoFenceArr[0].IsPointInGeoFenceArea(pt))
+            if (geoFenceArr.Count > 0 && geoFenceArr[0].IsPointInGeoFenceArea(pt))
             {
-                for (int b = 1; b < FormGPS.MAXBOUNDARIES; b++)
+                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
                 {
                     if (mf.bnd.bndArr[b].isSet)
                     {
@@ -174,9 +166,9 @@ namespace AgOpenGPS
         public bool IsPointInsideGeoFences(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (geoFenceArr[0].IsPointInGeoFenceArea(pt))
+            if (geoFenceArr.Count > 0 && geoFenceArr[0].IsPointInGeoFenceArea(pt))
             {
-                for (int b = 1; b < FormGPS.MAXBOUNDARIES; b++)
+                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
                 {
                     if (mf.bnd.bndArr[b].isSet)
                     {
@@ -200,9 +192,9 @@ namespace AgOpenGPS
             //update the GUI values for boundaries
             //mf.fd.UpdateFieldBoundaryGUIAreas();
 
-            if (!mf.bnd.bndArr[0].isSet)
+            if (mf.bnd.bndArr.Count == 0)
             {
-                mf.TimedMessageBox(1500, " Error", "No Boundaries Made");
+                //mf.TimedMessageBox(1500, " No Boundary ", "No GeoFence Made");
                 return;
             }
 
@@ -230,11 +222,11 @@ namespace AgOpenGPS
                     geoFenceArr[0].geoFenceLine.Add(tPnt);
                 }
             }
-            geoFenceArr[0].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth);
+            geoFenceArr[0].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.tool.toolWidth);
             geoFenceArr[0].PreCalcTurnLines();
 
             //inside boundaries
-            for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
+            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
             {
                 geoFenceArr[j].geoFenceLine.Clear();
                 if (!mf.bnd.bndArr[j].isSet || mf.bnd.bndArr[j].isDriveThru) continue;
@@ -256,7 +248,7 @@ namespace AgOpenGPS
                         geoFenceArr[j].geoFenceLine.Add(tPnt);
                     }
                 }
-                geoFenceArr[j].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.vehicle.toolWidth * 0.5);
+                geoFenceArr[j].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.tool.toolWidth * 0.5);
                 geoFenceArr[j].PreCalcTurnLines();
             }
 
@@ -265,7 +257,7 @@ namespace AgOpenGPS
 
         public void DrawGeoFenceLines()
         {
-            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
             {
                 if (mf.bnd.bndArr[i].isSet)
                     geoFenceArr[i].DrawGeoFenceLine();

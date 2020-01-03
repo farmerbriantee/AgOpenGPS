@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CBndPt
-    {
-        public double easting { get; set; }
-        public double northing { get; set; }
-        public double heading { get; set; }
+    //public class vec3
+    //{
+    //    public double easting { get; set; }
+    //    public double northing { get; set; }
+    //    public double heading { get; set; }
 
-        //constructor
-        public CBndPt(double _easting, double _northing, double _heading)
-        {
-            easting = _easting;
-            northing = _northing;
-            heading = _heading;
-        }
-    }
+    //    //constructor
+    //    public vec3(double _easting, double _northing, double _heading)
+    //    {
+    //        easting = _easting;
+    //        northing = _northing;
+    //        heading = _heading;
+    //    }
+    //}
 
     public class CBoundaryLines
     {
@@ -26,14 +26,12 @@ namespace AgOpenGPS
         {
             area = 0;
             isSet = false;
-            isOkToAddPoints = false;
             isDriveAround = false;
             isDriveThru = false;
-            isDrawRightSide = true;
         }
 
         //list of coordinates of boundary line
-        public List<CBndPt> bndLine = new List<CBndPt>();
+        public List<vec3> bndLine = new List<vec3>();
 
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
@@ -42,19 +40,19 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isOkToAddPoints, isSet, isDriveAround, isDriveThru, isDrawRightSide;
+        public bool isSet, isDriveAround, isDriveThru;
 
         public void CalculateBoundaryHeadings()
         {
             //to calc heading based on next and previous points to give an average heading.
             int cnt = bndLine.Count;
-            CBndPt[] arr = new CBndPt[cnt];
+            vec3[] arr = new vec3[cnt];
             cnt--;
             bndLine.CopyTo(arr);
             bndLine.Clear();
 
             //first point needs last, first, second points
-            CBndPt pt3 = arr[0];
+            vec3 pt3 = arr[0];
             pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
             if (pt3.heading < 0) pt3.heading += glm.twoPI;
             bndLine.Add(pt3);
@@ -75,16 +73,6 @@ namespace AgOpenGPS
             bndLine.Add(pt3);
         }
 
-        public void ResetBoundary()
-        {
-            calcList.Clear();
-            bndLine.Clear();
-            area = 0;
-            isSet = false;
-            isOkToAddPoints = false;
-            isDriveThru = false;
-        }
-
         public void FixBoundaryLine(int bndNum, double spacing)
         {
             //count the points from the boundary
@@ -98,8 +86,8 @@ namespace AgOpenGPS
 
             //first find out which side is inside the boundary
             double oneSide = glm.PIBy2;
-            vec3 point = new vec3(bndLine[3].easting - (Math.Sin(oneSide + bndLine[3].heading) * 2.0),
-            bndLine[3].northing - (Math.Cos(oneSide + bndLine[3].heading) * 2.0), 0.0);
+            vec3 point = new vec3(bndLine[2].easting - (Math.Sin(oneSide + bndLine[2].heading) * 2.0),
+            bndLine[2].northing - (Math.Cos(oneSide + bndLine[2].heading) * 2.0), 0.0);
 
             //make sure boundaries are wound correctly
             if (bndNum == 0)
@@ -140,7 +128,7 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing)
                 {
-                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
                     bndLine.Insert(j, pointB);
@@ -161,7 +149,7 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing)
                 {
-                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
                     bndLine.Insert(j, pointB);
@@ -178,7 +166,7 @@ namespace AgOpenGPS
         {
             //reverse the boundary
             int cnt = bndLine.Count;
-            CBndPt[] arr = new CBndPt[cnt];
+            vec3[] arr = new vec3[cnt];
             cnt--;
             bndLine.CopyTo(arr);
             bndLine.Clear();
@@ -257,22 +245,17 @@ namespace AgOpenGPS
         public void DrawBoundaryLine()
         {
             ////draw the perimeter line so far
+            if (bndLine.Count < 1) return;
+            //GL.PointSize(2);
+            GL.LineWidth(2);
             int ptCount = bndLine.Count;
-            if (ptCount < 1) return;
-            GL.PointSize(2);
-            GL.LineWidth(1);
-            if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
-            else GL.Color3(0.825f, 0.42f, 0.90f);
+            //if (isDriveThru) GL.Color3(0.25f, 0.752f, 0.860f);
+            //else 
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
-            GL.Color3(0.95f, 0.972f, 0.90f);
-            GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
+            //GL.Color3(0.95f, 0.972f, 0.90f);
+            //GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
             GL.End();
-
-            //gl.LineWidth(2);
-            //gl.Color(0.98f, 0.2f, 0.60f);
-            //gl.Begin(OpenGL.GL_LINE_STRIP);
-            //gl.End();
 
             //ptCount = bdList.Count;
             //if (ptCount < 1) return;
@@ -281,27 +264,6 @@ namespace AgOpenGPS
             //gl.Begin(OpenGL.GL_POINTS);
             ////gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
             //gl.End();
-        }
-
-        //draw a blue line in the back buffer for section control over boundary line
-        public void DrawBoundaryLineOnBackBuffer()
-        {
-            ////draw the perimeter line so far
-            int ptCount = bndLine.Count;
-            if (ptCount < 1) return;
-            //glb.LineWidth(4);
-            //glb.Color(0.0f, 0.99f, 0.0f);
-            //glb.Begin(OpenGL.GL_LINE_STRIP);
-            //for (int h = 0; h < ptCount; h++) glb.Vertex(ptList[h].easting, ptList[h].northing, 0);
-            //glb.End();
-
-            ////the "close the loop" line
-            //glb.LineWidth(4);
-            //glb.Color(0.0f, 0.990f, 0.0f);
-            //glb.Begin(OpenGL.GL_LINE_STRIP);
-            //glb.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
-            //glb.Vertex(ptList[0].easting, ptList[0].northing, 0);
-            //glb.End();
         }
 
         //obvious

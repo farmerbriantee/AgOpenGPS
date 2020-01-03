@@ -167,28 +167,30 @@ namespace AgOpenGPS
             {
                 //string str = "GET /SRG HTTP / 1.1\r\nUser - Agent: NTRIP LefebureNTRIPClient/ 20131124\r\nAccept: */*\r\nConnection: close\r\n";
 
-                //encode user and password
-                string auth = ToBase64(username + ":" + password);
+                if (!Properties.Settings.Default.setNTRIP_isTCP)
+                {
+                    //encode user and password
+                    string auth = ToBase64(username + ":" + password);
 
-                //grab location sentence
-                BuildGGA();
-                GGASentence = sbGGA.ToString();
+                    //grab location sentence
+                    BuildGGA();
+                    GGASentence = sbGGA.ToString();
 
-                //Build authorization string
-                string str = "GET /" + mount + " HTTP/1.1\r\n";
-                str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
-                str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
-                //str += GGASentence; //this line can be removed if no position feedback is needed
-                str += "Accept: */*\r\nConnection: close\r\n";
-                str += "\r\n";
+                    //Build authorization string
+                    string str = "GET /" + mount + " HTTP/1.1\r\n";
+                    str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
+                    str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
+                                                                    //str += GGASentence; //this line can be removed if no position feedback is needed
+                    str += "Accept: */*\r\nConnection: close\r\n";
+                    str += "\r\n";
 
-                // Convert to byte array and send.
-                Byte[] byteDateLine = Encoding.ASCII.GetBytes(str.ToCharArray());
-                clientSocket.Send(byteDateLine, byteDateLine.Length, 0);
+                    // Convert to byte array and send.
+                    Byte[] byteDateLine = Encoding.ASCII.GetBytes(str.ToCharArray());
+                    clientSocket.Send(byteDateLine, byteDateLine.Length, 0);
 
-                //enable to periodically send GGA sentence to server.
-                if (sendGGAInterval > 0) tmr.Enabled = true;
-
+                    //enable to periodically send GGA sentence to server.
+                    if (sendGGAInterval > 0) tmr.Enabled = true;
+                }
                 //say its connected
                 isNTRIP_Connected = true;
                 isNTRIP_Starting = false;

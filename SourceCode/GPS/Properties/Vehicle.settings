@@ -6,9 +6,9 @@
       <Value Profile="(Default)">16</Value>
     </Setting>
     <Setting Name="setVehicle_toolOverlap" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setVehicle_toolTrailingHitchLength" Type="System.Double" Scope="User">
+    <Setting Name="setTool_toolTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2</Value>
     </Setting>
     <Setting Name="setVehicle_numSections" Type="System.Int32" Scope="User">
@@ -38,25 +38,25 @@
     <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setVehicle_isToolTrailing" Type="System.Boolean" Scope="User">
+    <Setting Name="setTool_isToolTrailing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setVehicle_toolOffset" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setVehicle_isToolBehindPivot" Type="System.Boolean" Scope="User">
+    <Setting Name="setTool_isToolBehindPivot" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setVehicle_antennaPivot" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">4.2</Value>
+      <Value Profile="(Default)">2.5</Value>
     </Setting>
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
     </Setting>
-    <Setting Name="setVehicle_turnOffDelay" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_toolTurnOffDelay" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_isPivotBehindAntenna" Type="System.Boolean" Scope="User">
@@ -65,8 +65,8 @@
     <Setting Name="setVehicle_isSteerAxleAhead" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setVehicle_Name" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default - </Value>
+    <Setting Name="setVehicle_vehicleName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default Vehicle - </Value>
     </Setting>
     <Setting Name="setSection_position7" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -78,7 +78,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_slowSpeedCutoff" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_tankTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-1.5</Value>
@@ -95,13 +95,7 @@
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
       <Value Profile="(Default)">40</Value>
     </Setting>
-    <Setting Name="set_youSkipWidth" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="set_youSkipHeight" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="set_youStartYouTurnAt" Type="System.Int32" Scope="User">
+    <Setting Name="set_youTurnDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="set_youToolWidths" Type="System.Double" Scope="User">
@@ -175,6 +169,81 @@
     </Setting>
     <Setting Name="setVehicle_isStanleyUsed" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setTram_BasedOn" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setTram_Skips" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setVehicle_toolName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default Tool - </Value>
+    </Setting>
+    <Setting Name="setVehicle_envName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Environment_Basic</Value>
+    </Setting>
+    <Setting Name="setTool_isToolTBT" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setVehicle_vehicleType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="set_youSkipWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setArd_motorDriver" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArd_a2dConvertor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArd_relayType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArd_steerEnable" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArd_MMAAxis" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArd_minSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setArd_maxSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setArd_isInvertWAS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArd_isInvertSteer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArd_isBNOInstalled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArd_isEthernet" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArd_isInvertRoll" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArd_isEncoder" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setSection_position14" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setSection_position15" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setSection_position16" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setSection_position17" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setVehicle_hydraulicLiftLookAhead" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>

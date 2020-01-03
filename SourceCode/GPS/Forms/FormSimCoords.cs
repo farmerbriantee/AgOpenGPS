@@ -30,8 +30,8 @@ namespace AgOpenGPS
 
         private void FormSimCoords_Load(object sender, EventArgs e)
         {
-            nudLatitude.Value = (decimal)Properties.Settings.Default.setGPS_Latitude;
-            nudLongitude.Value = (decimal)Properties.Settings.Default.setGPS_Longitude;
+            nudLatitude.Value = (decimal)Properties.Settings.Default.setGPS_SimLatitude;
+            nudLongitude.Value = (decimal)Properties.Settings.Default.setGPS_SimLongitude;
 
             lblLatStart.Text = mf.pn.latStart.ToString("N6");
             lblLonStart.Text = mf.pn.lonStart.ToString("N6");
@@ -49,8 +49,8 @@ namespace AgOpenGPS
             mf.sim.latitude = (double)nudLatitude.Value;
             mf.sim.longitude = (double)nudLongitude.Value;
 
-            Properties.Settings.Default.setGPS_Latitude = mf.sim.latitude;
-            Properties.Settings.Default.setGPS_Longitude = mf.sim.longitude;
+            Properties.Settings.Default.setGPS_SimLatitude = mf.sim.latitude;
+            Properties.Settings.Default.setGPS_SimLongitude = mf.sim.longitude;
             Properties.Settings.Default.Save();
             Close();
         }

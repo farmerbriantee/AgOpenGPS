@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using OpenTK.Graphics.OpenGL;
+using System.Drawing;
 
 namespace AgOpenGPS
 {
@@ -27,8 +28,10 @@ namespace AgOpenGPS
 
         public void DrawFieldSurface()
         {
+
+            Color field = mf.fieldColor;
             GL.Enable(EnableCap.Texture2D);
-            GL.Color3(mf.redField, mf.grnField, mf.bluField);
+            GL.Color3(field.R, field.G, field.B);
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);
             GL.Begin(PrimitiveType.TriangleStrip);
             GL.TexCoord2(0, 0);
@@ -39,6 +42,16 @@ namespace AgOpenGPS
             GL.Vertex3(eastingMin, northingMin, 0.0);
             GL.TexCoord2(texZoomE, texZoomN);
             GL.Vertex3(eastingMax, northingMin, 0.0);
+
+            //GL.TexCoord2(0, 0);
+            //GL.Vertex3(eastingMin,  -200.0, northingMax);
+            //GL.TexCoord2(texZoomE, 0.0);
+            //GL.Vertex3(eastingMax, -200.0, northingMax);
+            //GL.TexCoord2(0.0, texZoomN);
+            //GL.Vertex3(eastingMin, -200.0, northingMin);
+            //GL.TexCoord2(texZoomE, texZoomN);
+            //GL.Vertex3(eastingMax, -200.0, northingMin);
+
             GL.End();
             GL.Disable(EnableCap.Texture2D);
         }
@@ -63,10 +76,10 @@ namespace AgOpenGPS
 
         public void CreateWorldGrid(double northing, double easting)
         {
-            northingMax = northing + 16000.0;
-            northingMin = northing - 16000.0;
-            eastingMax = easting + 16000.0;
-            eastingMin = easting - 16000.0;
+            northingMax = northing + 160.0;
+            northingMin = northing - 160.0;
+            eastingMax = easting + 160.0;
+            eastingMin = easting - 160.0;
         }
 
         public void checkZoomWorldGrid(double northing, double easting)

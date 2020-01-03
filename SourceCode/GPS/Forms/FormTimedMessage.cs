@@ -26,8 +26,10 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Close();
+            timer1.Enabled = false;
+            timer1.Dispose();
             Dispose();
+            Close();
         }
     }
 }
