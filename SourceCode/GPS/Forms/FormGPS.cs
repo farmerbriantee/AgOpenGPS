@@ -266,6 +266,10 @@ namespace AgOpenGPS
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             shortcutKeysToolStripMenuItem.Text = gStr.gsShortcutKeys;
             menustripLanguage.Text = gStr.gsLanguage;
+            topMenuLoadTool.Text = gStr.gsLoadTool;
+            topMenuSaveTool.Text = gStr.gsSaveTool;
+            topMenuLoadEnvironment.Text = gStr.gsLoadEnvironment;
+            topMenuSaveEnvironment.Text = gStr.gsSaveEnvironment;
 
             //Display Menu
             //settingsToolStripMenuItem.Text = gStr.gsDisplay;
@@ -283,6 +287,12 @@ namespace AgOpenGPS
             metricToolStrip.Text = gStr.gsMetric;
             imperialToolStrip.Text = gStr.gsImperial;
             sectionToolStripMenuItem.Text = gStr.gsSection;
+            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
+            uTurnAlwaysOnToolStripMenuItem.Text = gStr.gsUTurnAlwaysOn;
+            compassOnToolStripMenuItem.Text = gStr.gsCompassOn;
+            speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
+            toolToolStripMenu.Text = gStr.gsTool;
+            fieldToolStripMenuItem1.Text = gStr.gsField;
 
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
@@ -298,10 +308,15 @@ namespace AgOpenGPS
             treePlantToolStrip.Text = gStr.gsTreePlanter;
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
+            headlandToolStripMenuItem.Text = gStr.gsHeadland;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
             toolStripAreYouSure.Text = gStr.gsAreYouSure;
             webcamToolStrip.Text = gStr.gsWebCam;
+            googleEarthFlagsToolStrip.Text = gStr.gsgoogleEarthFlags;
+            offsetFixToolStrip.Text = gStr.gsOffsetFix;
+            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoSetup;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;

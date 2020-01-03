@@ -21,6 +21,8 @@ namespace AgOpenGPS
 
             InitializeComponent();
             btnOpenExistingLv.Text = gStr.gsUseSelected;
+            btnByDistance.Text = gStr.gsSort;
+            btnOpenExistingLv.Text = gStr.gsUseSelected;
         }
 
         private void btnByDistance_Click(object sender, EventArgs e)
